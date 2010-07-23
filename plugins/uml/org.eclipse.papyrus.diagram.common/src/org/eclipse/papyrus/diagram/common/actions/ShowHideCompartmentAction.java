@@ -14,51 +14,34 @@
 package org.eclipse.papyrus.diagram.common.actions;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
-import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
-import org.eclipse.gmf.runtime.common.ui.util.DisplayUtils;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpart.EditPartService;
+import org.eclipse.gmf.runtime.notation.BasicCompartment;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.action.IAction;
-import org.eclipse.jface.dialogs.Dialog;
-import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.jface.viewers.ILabelProviderListener;
-import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ITreeContentProvider;
-import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.Messages;
-import org.eclipse.papyrus.diagram.common.command.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.papyrus.diagram.common.commands.ShowHideCompartmentRequest;
 import org.eclipse.papyrus.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
+import org.eclipse.papyrus.diagram.common.providers.EditorLabelProvider;
 import org.eclipse.papyrus.diagram.common.util.ViewServiceUtil;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.ui.IActionDelegate;
 import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.IWorkbenchWindowActionDelegate;
-import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.dialogs.CheckedTreeSelectionDialog;
-import org.eclipse.uml2.uml.Class;
-import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Model;
-import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.Profile;
-import org.eclipse.uml2.uml.Stereotype;
-import org.eclipse.uml2.uml.Type;
 
 /**
  * 
@@ -66,57 +49,24 @@ import org.eclipse.uml2.uml.Type;
  * This action allows to choose the compartment to display for each EditPart owning CompartmentEditPart
  * 
  */
-public class ShowHideCompartmentAction implements IActionDelegate, IWorkbenchWindowActionDelegate {
+public class ShowHideCompartmentAction extends AbstractShowHideAction {
 
-
-	/** icon for metaclass */
-	public static final String ICON_METACLASS = "/icons/Metaclass.gif";//$NON-NLS-1$
-
-	/** icon for a class */
-	public static final String ICON_CLASS = "/icons/Class.gif"; //$NON-NLS-1$
-
-	/** icon for a datatype */
-	public static final String ICON_DATATYPE = "/icons/DataType.gif"; //$NON-NLS-1$
-
-	/** icon for a stereotype */
-	public static final String ICON_STEREOTYPE = "/icons/Stereotype.gif"; //$NON-NLS-1$
-
-	/** icon for a profile */
-	public static final String ICON_PROFILE = "/icons/Profile.gif"; //$NON-NLS-1$
-
-	/** icon for a model */
-	public static final String ICON_MODEL = "/icons/obj16/Model.gif"; //$NON-NLS-1$
-
-	/** icon for a package */
-	public static final String ICON_PACKAGE = "/icons/Package.gif"; //$NON-NLS-1$
-
-	/** icon for a string */
-	public static final String ICON_STRING = "icons/obj16/LiteralString.gif"; //$NON-NLS-1$
-
-	/** icon for a compartment */
-	public static final String ICON_COMPARTMENT = "/icons/none_comp_vis.gif"; //$NON-NLS-1$
 
 	/** String used when the name of an element was not found */
-	public static final String NO_NAME = Messages.ShowHideCompartmentAction_No_Name;
+	public static final String NO_NAME = Messages.ShowHideAction_No_Name;
 
 	/** the transactional editing domain */
 	protected TransactionalEditingDomain domain;
 
-	/** the list of the views to destroy */
-	protected List<View> viewsToDestroy;
-
-	/** the list of the view to create */
-	protected List<View> viewsToCreate;
-
-	/** the selected elements */
-	protected List<EditPart> selectedElements;
-
-	/** the list of the representation for the {@link #selectedElements} */
-	protected List<EditPartRepresentation> representations;
-
-	/** the initial selection */
-	protected List<Element> initialSelection;
-
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * 
+	 */
+	public ShowHideCompartmentAction() {
+		super(Messages.ShowHideCompartmentAction_Title, Messages.ShowHideCompartmentAction_Message, ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY);
+	}
 
 	/**
 	 * 
@@ -124,94 +74,61 @@ public class ShowHideCompartmentAction implements IActionDelegate, IWorkbenchWin
 	 * 
 	 * @param window
 	 */
+	@Override
 	public void init(IWorkbenchWindow window) {
 
 	}
 
-	//
 	/**
 	 * 
 	 * @see org.eclipse.ui.IWorkbenchWindowActionDelegate#dispose()
 	 * 
 	 */
+	@Override
 	public void dispose() {
-		
+
 	}
 
-	/**
-	 * @see org.eclipse.ui.IActionDelegate#run(org.eclipse.jface.action.IAction)
-	 * 
-	 * @param action
-	 */
 
-	public void run(IAction action) {
-		initAction();
-		CheckedTreeSelectionDialog selectionDialog = new CheckedTreeSelectionDialog(DisplayUtils.getDisplay().getActiveShell(), new EditorLabelProvider(), new ContentProvider());
-		selectionDialog.setTitle(Messages.ShowHideCompartmentAction_Title);
-		selectionDialog.setMessage(Messages.ShowHideCompartmentAction_Message);
-		selectionDialog.setContainerMode(true);
-		selectionDialog.setInput(getInput());
-		selectionDialog.setExpandedElements(getInput().toArray());
-		selectionDialog.setInitialElementSelections(this.initialSelection);
-		selectionDialog.open();
+	@Override
+	protected void buildShowHideElementsList(Object[] results) {
+		super.buildShowHideElementsList(results);
+		List<Object> result = new ArrayList<Object>();
 
-		if(selectionDialog.getReturnCode() == Dialog.OK) {
-			Object[] results = selectionDialog.getResult();
-
-			List<Object> result = new ArrayList<Object>();
-
-			//we remove the Element from the result
-			for(int i = 0; i < results.length; i++) {
-				if(results[i] instanceof Element) {
-					continue;
-				} else {
-					result.add(results[i]);
-				}
+		//we remove the Element from the result
+		for(int i = 0; i < results.length; i++) {
+			if(results[i] instanceof Element) {
+				continue;
+			} else {
+				result.add(results[i]);
 			}
+		}
 
 
-			//we are looking for the object to show
-			for(Object node : result) {
-				if(initialSelection.contains(node)) {
-					//we do nothing
-					continue;
-				} else {
-					viewsToCreate.add((View)node);
-				}
+		//we are looking for the object to show
+		for(Object node : result) {
+			if(initialSelection.contains(node)) {
+				//we do nothing
+				continue;
+			} else {
+				viewsToCreate.add(node);
 			}
+		}
 
 
-			//we are looking for the view to destroy
-			for(Object current : this.initialSelection) {
-				if(!result.contains(current)) {
-					viewsToDestroy.add((View)current);
-				}
-			}
-
-			final Command command = getActionCommand();
-			final TransactionalEditingDomain theDomain = domain;
-			if(command.canExecute()) {
-				try {
-					domain.runExclusive(new Runnable() {
-
-						public void run() {
-							PlatformUI.getWorkbench().getDisplay().asyncExec(new Runnable() {
-
-								//executing the command
-								public void run() {
-									theDomain.getCommandStack().execute(new GEFtoEMFCommandWrapper(command));
-								}
-							});
-						}
-					});
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
+		//we are looking for the view to destroy
+		for(Object current : this.initialSelection) {
+			if(!result.contains(current)) {
+				viewsToDestroy.add(current);
 			}
 		}
 	}
 
-
+	@Override
+	public void run(IAction action) {
+		initAction();
+		super.run(action);
+	}
 
 	/**
 	 * Initialize the following fields :
@@ -223,31 +140,32 @@ public class ShowHideCompartmentAction implements IActionDelegate, IWorkbenchWin
 	 * <li> {@link #initialSelection}</li>
 	 * </ul>
 	 */
-
+	@Override
 	protected void initAction() {
-		//set all fields to their default value
-		this.viewsToCreate = new ArrayList<View>();
-		this.viewsToDestroy = new ArrayList<View>();
-		this.representations = new ArrayList<ShowHideCompartmentAction.EditPartRepresentation>();
-
+		super.initAction();
+		setContentProvider(new ContentProvider());
+		this.setEditorLabelProvider(new CustomEditorLabelProvider());
 		this.domain = ((IGraphicalEditPart)this.selectedElements.get(0)).getEditingDomain();
 		for(EditPart current : this.selectedElements) {
-			EditPartRepresentation rep = new EditPartRepresentation(current);
+			CustomEditPartRepresentation rep = new CustomEditPartRepresentation(current);
 			representations.add(rep);
 		}
 		this.initialSelection = getInitialSelection();
 	}
 
+
 	/**
-	 * Returns the input for the TreeDialog
+	 * 
+	 * @see org.eclipse.papyrus.diagram.common.actions.AbstractShowHideAction#getInput()
 	 * 
 	 * @return
-	 *         the input for the TreeDialog
 	 */
-	protected List getInput() {
+	@Override
+	protected List<Object> getInput() {
+		Iterator it = this.representations.iterator();
 		List<Object> input = new ArrayList<Object>();
-		for(EditPartRepresentation current : representations) {
-			input.add(current.getSemanticElement());
+		while(it.hasNext()) {
+			input.add(it.next());
 		}
 		return input;
 	}
@@ -259,6 +177,7 @@ public class ShowHideCompartmentAction implements IActionDelegate, IWorkbenchWin
 	 *         the command to execute to show/hide the selected compartments
 	 */
 
+	@Override
 	protected Command getActionCommand() {
 		/* for further information, see bug 302555 */
 		ViewServiceUtil.forceLoad();
@@ -267,30 +186,33 @@ public class ShowHideCompartmentAction implements IActionDelegate, IWorkbenchWin
 		CompoundCommand completeCmd = new CompoundCommand("Destroy and Create Compartment Command"); //$NON-NLS-1$
 
 		//the commands to hide compartment
-		for(View current : this.viewsToDestroy) {
-			EditPartRepresentation rep = findRepresentation(current.getElement(), representations);
-			if(rep != null) {
-				EditPart ep = rep.getRepresentedEditPart();
-				req = new ShowHideCompartmentRequest(ShowHideCompartmentRequest.HIDE, current.getType());
-				req.setType(ShowHideCompartmentRequest.SHOW_HIDE_COMPARTMENT);
-				Command tmp = ep.getCommand(req);
-				if(tmp != null && tmp.canExecute()) {
-					completeCmd.add(tmp);
+		for(Object current : this.viewsToDestroy) {
+			if(current instanceof View) {
+				CustomEditPartRepresentation rep = findRepresentation(((View)current).getElement(), representations);
+				if(rep != null) {
+					EditPart ep = rep.getRepresentedEditPart();
+					req = new ShowHideCompartmentRequest(ShowHideCompartmentRequest.HIDE, ((View)current).getType());
+					req.setType(ShowHideCompartmentRequest.SHOW_HIDE_COMPARTMENT);
+					Command tmp = ep.getCommand(req);
+					if(tmp != null && tmp.canExecute()) {
+						completeCmd.add(tmp);
+					}
 				}
-
 			}
 		}
 
 		//the command to show compartment
-		for(View current : this.viewsToCreate) {
-			EditPartRepresentation rep = findRepresentation(current.getElement(), representations);
-			if(rep != null) {
-				EditPart ep = rep.getRepresentedEditPart();
-				req = new ShowHideCompartmentRequest(ShowHideCompartmentRequest.SHOW, current.getType());
-				req.setType(ShowHideCompartmentRequest.SHOW_HIDE_COMPARTMENT);
-				Command tmp = ep.getCommand(req);
-				if(tmp != null && tmp.canExecute()) {
-					completeCmd.add(tmp);
+		for(Object current : this.viewsToCreate) {
+			if(current instanceof View) {
+				CustomEditPartRepresentation rep = findRepresentation(((View)current).getElement(), representations);
+				if(rep != null) {
+					EditPart ep = rep.getRepresentedEditPart();
+					req = new ShowHideCompartmentRequest(ShowHideCompartmentRequest.SHOW, ((View)current).getType());
+					req.setType(ShowHideCompartmentRequest.SHOW_HIDE_COMPARTMENT);
+					Command tmp = ep.getCommand(req);
+					if(tmp != null && tmp.canExecute()) {
+						completeCmd.add(tmp);
+					}
 				}
 			}
 		}
@@ -300,70 +222,23 @@ public class ShowHideCompartmentAction implements IActionDelegate, IWorkbenchWin
 
 
 	/**
-	 * Returns the initial selection for the Tree Dialog.
-	 * 
-	 * @return
-	 *         The initial selection for the Tree Dialog
-	 */
-	protected List<Element> getInitialSelection() {
-		List<Element> initialSelection2 = new ArrayList<Element>();
-
-		for(EditPartRepresentation current : this.representations) {
-			initialSelection2.addAll(current.getInitialSelection());
-		}
-
-		return initialSelection2;
-	}
-
-	/**
-	 * 
-	 * @see org.eclipse.ui.IActionDelegate#selectionChanged(org.eclipse.jface.action.IAction, org.eclipse.jface.viewers.ISelection)
-	 * 
-	 * @param action
-	 * @param selection
-	 */
-	public void selectionChanged(IAction action, ISelection selection) {
-		//		if(this.action == null) {
-		//			this.action = action;
-		//		}
-
-		boolean enable = false;
-		selectedElements = new ArrayList<EditPart>();
-		if(selection instanceof StructuredSelection) {
-			selectedElements = ((StructuredSelection)selection).toList();
-			for(Object current : this.selectedElements) {
-				if(current instanceof EditPart) {
-					EditPolicy policy = ((EditPart)current).getEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY);
-					if(policy != null) {
-						enable = true;
-						break;
-					}
-				}
-			}
-		}
-
-
-		action.setEnabled(enable);
-	}
-
-	/**
 	 * 
 	 * @param element
 	 *        an element
 	 * @param representationList
-	 *        a list of {@link EditPartRepresentation}
+	 *        a list of {@link CustomEditPartRepresentation}
 	 * @return
 	 *         <ul>
-	 *         <li>the {@link EditPartRepresentation}</li> owning the element, if it's found
+	 *         <li>the {@link CustomEditPartRepresentation}</li> owning the element, if it's found
 	 *         <li> <code>null</code> if not</li>
 	 *         </ul>
 	 */
-	protected EditPartRepresentation findRepresentation(Object element, List<EditPartRepresentation> representationList) {
+	protected CustomEditPartRepresentation findRepresentation(Object element, List<EditPartRepresentation> representationList) {
 		for(EditPartRepresentation current : representationList) {
-			if(current.getSemanticElement() == element) {
-				return current;
-			} else if(current.getAllPossibleCompartment().contains(element)) {
-				return current;
+			if(((CustomEditPartRepresentation)current).getSemanticElement() == element) {
+				return (CustomEditPartRepresentation)current;
+			} else if(((CustomEditPartRepresentation)current).getAllPossibleCompartment().contains(element)) {
+				return (CustomEditPartRepresentation)current;
 
 			}
 		}
@@ -377,89 +252,21 @@ public class ShowHideCompartmentAction implements IActionDelegate, IWorkbenchWin
 	 * Provide the label for the selected element
 	 * 
 	 */
-	protected class EditorLabelProvider implements ILabelProvider {
-
-
-		/**
-		 * 
-		 * Constructor.
-		 * 
-		 */
-		public EditorLabelProvider() {
-
-		}
+	protected class CustomEditorLabelProvider extends EditorLabelProvider {
 
 		/**
 		 * 
-		 * @see org.eclipse.jface.viewers.IBaseLabelProvider#addListener(org.eclipse.jface.viewers.ILabelProviderListener)
-		 * 
-		 * @param listener
-		 */
-		public void addListener(ILabelProviderListener listener) {
-			// TODO Auto-generated method stub
-		}
-
-		/**
-		 * 
-		 * @see org.eclipse.jface.viewers.IBaseLabelProvider#dispose()
-		 * 
-		 */
-		public void dispose() {
-			// TODO Auto-generated method stub
-		}
-
-		/**
-		 * 
-		 * @see org.eclipse.jface.viewers.IBaseLabelProvider#isLabelProperty(java.lang.Object, java.lang.String)
-		 * 
-		 * @param element
-		 * @param property
-		 * @return
-		 */
-		public boolean isLabelProperty(Object element, String property) {
-			// TODO Auto-generated method stub
-			return false;
-		}
-
-		/**
-		 * 
-		 * @see org.eclipse.jface.viewers.IBaseLabelProvider#removeListener(org.eclipse.jface.viewers.ILabelProviderListener)
-		 * 
-		 * @param listener
-		 */
-		public void removeListener(ILabelProviderListener listener) {
-			// TODO Auto-generated method stub
-		}
-
-		/**
-		 * Return the corresponding image for the element
-		 * 
-		 * @see org.eclipse.jface.viewers.ILabelProvider#getImage(java.lang.Object)
+		 * @see org.eclipse.papyrus.diagram.common.providers.EditorLabelProvider#getImage(java.lang.Object)
 		 * 
 		 * @param element
 		 * @return
 		 */
+		@Override
 		public Image getImage(Object element) {
-			if(element instanceof Class) {
-				if(org.eclipse.papyrus.diagram.common.util.Util.isMetaclass((Type)element)) {
-					return Activator.getPluginIconImage(Activator.ID, ICON_METACLASS);
-				} else {
-					return Activator.getPluginIconImage(Activator.ID, ICON_CLASS);
-				}
-			} else if(element instanceof DataType) {
-				return Activator.getPluginIconImage(Activator.ID, ICON_DATATYPE);
-			} else if(element instanceof Stereotype) {
-				return Activator.getPluginIconImage(Activator.ID, ICON_STEREOTYPE);
-			} else if(element instanceof Profile) {
-				return Activator.getPluginIconImage(Activator.ID, ICON_PROFILE);
-			} else if(element instanceof Model) {
-				return Activator.getPluginIconImage(Activator.ID, ICON_MODEL);
-			} else if(element instanceof Package) {
-				return Activator.getPluginIconImage(Activator.ID, ICON_PACKAGE);
-			} else if(element instanceof View) {
-				return Activator.getPluginIconImage(Activator.ID, ICON_COMPARTMENT);
+			if(element instanceof EditPartRepresentation) {
+				element = ((View)((EditPartRepresentation)element).getRepresentedEditPart().getModel()).getElement();
 			}
-			return null;
+			return super.getImage(element);
 		}
 
 		/**
@@ -470,11 +277,14 @@ public class ShowHideCompartmentAction implements IActionDelegate, IWorkbenchWin
 		 * @return
 		 *         the name of the element or
 		 */
+		@Override
 		public String getText(Object element) {
-			if(element instanceof NamedElement) {
-				return ((NamedElement)element).getName();
-			} else if(element instanceof View) {
-				EditPartRepresentation rep = findRepresentation(element, representations);
+			if(element instanceof EditPartRepresentation) {
+				element = ((View)((EditPartRepresentation)element).getRepresentedEditPart().getModel()).getElement();
+			}
+
+			if(element instanceof BasicCompartment) {
+				CustomEditPartRepresentation rep = findRepresentation(element, representations);
 				if(rep != null) {
 					String name = rep.getName(element);
 					if(name != null) {
@@ -482,7 +292,7 @@ public class ShowHideCompartmentAction implements IActionDelegate, IWorkbenchWin
 					}
 				}
 			}
-			return NO_NAME;
+			return super.getText(element);
 		}
 	}
 
@@ -523,13 +333,7 @@ public class ShowHideCompartmentAction implements IActionDelegate, IWorkbenchWin
 		 */
 		public Object[] getElements(Object inputElement) {
 			if(inputElement instanceof List) {
-				List returnedValues = new ArrayList();
-				for(Object obj : (List)inputElement) {
-					if(obj instanceof Element) {
-						returnedValues.add(obj);
-					}
-				}
-				return returnedValues.toArray();
+				return ((List)inputElement).toArray();
 			}
 			return new Object[0];
 		}
@@ -542,11 +346,8 @@ public class ShowHideCompartmentAction implements IActionDelegate, IWorkbenchWin
 		 * @return
 		 */
 		public Object[] getChildren(Object parentElement) {
-			EditPartRepresentation rep = findRepresentation(parentElement, representations);
-			if(rep != null) {
-				if(!rep.getAllPossibleCompartment().isEmpty()) {
-					return rep.getAllPossibleCompartment().toArray();
-				}
+			if(parentElement instanceof CustomEditPartRepresentation) {
+				return ((CustomEditPartRepresentation)parentElement).getAllPossibleCompartment().toArray();
 			}
 			return null;
 		}
@@ -563,10 +364,9 @@ public class ShowHideCompartmentAction implements IActionDelegate, IWorkbenchWin
 				return null;
 			} else { //it's a basicCompartment
 				for(EditPartRepresentation rep : representations) {
-					List init = rep.getInitialSelection();
+					List<?> init = rep.getInitialSelection();
 					if(init.contains(element)) {
-						//return rep;
-						return rep.getSemanticElement();
+						return rep;
 					}
 				}
 			}
@@ -581,12 +381,9 @@ public class ShowHideCompartmentAction implements IActionDelegate, IWorkbenchWin
 		 * @return
 		 */
 		public boolean hasChildren(Object element) {
-			if(element instanceof Element) {
-				EditPartRepresentation rep = findRepresentation(element, representations);
-				if(rep != null) {
-					if(!rep.getAllPossibleCompartment().isEmpty()) {
-						return true;
-					}
+			if(element instanceof CustomEditPartRepresentation) {
+				if(((CustomEditPartRepresentation)element).getAllPossibleCompartment().size() > 0) {
+					return true;
 				}
 			}
 			return false;
@@ -601,10 +398,7 @@ public class ShowHideCompartmentAction implements IActionDelegate, IWorkbenchWin
 	 * This class provides some facilities to build this action.
 	 * 
 	 */
-	protected class EditPartRepresentation {
-
-		/** the editpart represented by this class */
-		protected EditPart ep = null;
+	protected class CustomEditPartRepresentation extends EditPartRepresentation {
 
 		/** the initial compartment visible for this editpart, represented by their Visual ID */
 		protected List<String> initialCompartments = new ArrayList<String>();
@@ -621,8 +415,8 @@ public class ShowHideCompartmentAction implements IActionDelegate, IWorkbenchWin
 		 * 
 		 * @param editpart
 		 */
-		public EditPartRepresentation(EditPart editpart) {
-			this.ep = editpart;
+		public CustomEditPartRepresentation(EditPart editpart) {
+			super(editpart);
 			init();
 
 		}
@@ -636,7 +430,7 @@ public class ShowHideCompartmentAction implements IActionDelegate, IWorkbenchWin
 		 * </ul>
 		 */
 		protected void init() {
-			List localChildren = ep.getChildren();
+			List localChildren = representedEditPart.getChildren();
 
 			//fill this.initialCompartments
 			for(Object current : localChildren) {
@@ -646,7 +440,7 @@ public class ShowHideCompartmentAction implements IActionDelegate, IWorkbenchWin
 			}
 
 			//fill this.possibleCompartments
-			this.possibleCompartments = ((GraphicalEditPart)ep).getNotationView().getChildren();
+			this.possibleCompartments = ((GraphicalEditPart)representedEditPart).getNotationView().getChildren();
 
 			//fill this.initialSelection
 			if(this.possibleCompartments != null && !this.possibleCompartments.isEmpty()) {
@@ -719,18 +513,19 @@ public class ShowHideCompartmentAction implements IActionDelegate, IWorkbenchWin
 		 * @return
 		 *         {@link #initialSelection}
 		 */
+		@Override
 		public List getInitialSelection() {
 			return this.initialSelection;
 		}
 
 		/**
-		 * Returns the semantic element represented by {@link #ep}
+		 * Returns the semantic element represented by {@link #representedEditPart}
 		 * 
 		 * @return
-		 *         the semantic element represented by {@link #ep}
+		 *         the semantic element represented by {@link #representedEditPart}
 		 */
 		public Element getSemanticElement() {
-			return (Element)((View)ep.getModel()).getElement();
+			return (Element)((View)representedEditPart.getModel()).getElement();
 		}
 
 		/**
@@ -750,16 +545,6 @@ public class ShowHideCompartmentAction implements IActionDelegate, IWorkbenchWin
 		}
 
 		/**
-		 * Getter for {@link #ep}
-		 * 
-		 * @return
-		 *         the represented editpart, {@link #ep}
-		 */
-		public EditPart getRepresentedEditPart() {
-			return this.ep;
-		}
-
-		/**
 		 * Test if the view represents a compartment name
 		 * 
 		 * @param view
@@ -772,7 +557,7 @@ public class ShowHideCompartmentAction implements IActionDelegate, IWorkbenchWin
 		 *         </ul>
 		 */
 		public boolean isCompartmentName(View view) {
-			List chilrenEP = this.ep.getChildren();
+			List<?> chilrenEP = this.representedEditPart.getChildren();
 			for(Object current : chilrenEP) {//the name compartment is never hide!
 				if(((View)((EditPart)current).getModel()).getType().equals(view.getType())) {
 					if(current instanceof CompartmentEditPart && current instanceof ITextAwareEditPart) {

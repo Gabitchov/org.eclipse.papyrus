@@ -15,9 +15,11 @@ package org.eclipse.papyrus.diagram.clazz.custom.policies.itemsemantic;
 
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.papyrus.diagram.clazz.custom.command.CGeneralizationSetCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.GeneralizationItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.common.helper.GeneralizationHelper;
 
 /**
  * this a specialization to manage creation of GeneralizationSet
@@ -27,6 +29,22 @@ public class CustomGeneralizationItemSemanticEditPolicy extends GeneralizationIt
 	/**
 	 * @generated
 	 */
+	@Override
+	protected Command getDestroyElementCommand(DestroyElementRequest req) {
+		//we add the command to destroy the view of the inherited elements
+		Command inheritedCommand = GeneralizationHelper.getCommandToRemoveInheritedContents(req);
+		if(inheritedCommand.canExecute()) {
+			return inheritedCommand.chain(super.getDestroyElementCommand(req));
+		} else {
+			return super.getDestroyElementCommand(req);
+		}
+
+	}
+
+	/**
+	 * @generated
+	 */
+	@Override
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
 
 		if(UMLElementTypes.GeneralizationSet_4020 == req.getElementType()) {
@@ -38,6 +56,7 @@ public class CustomGeneralizationItemSemanticEditPolicy extends GeneralizationIt
 	/**
 	 * @generated
 	 */
+	@Override
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
 
 		if(UMLElementTypes.GeneralizationSet_4020 == req.getElementType()) {

@@ -37,11 +37,12 @@ import org.eclipse.papyrus.diagram.common.commands.ShowHideCompartmentRequest;
 /**
  * 
  * This editpolicy provides the same commands that {@link PropertyHandlerEditPolicy},
- * more the command to Show/Hide a given compartment //TODO
+ * more the command to Show/Hide a given compartment
  * 
  */
-public class ShowHideCompartmentEditPolicy extends AbstractEditPolicy /* PropertyHandlerEditPolicy */{//TODO : change this extension!
+public class ShowHideCompartmentEditPolicy extends AbstractEditPolicy {
 
+	/** key for this editpolicy */
 	public static final String SHOW_HIDE_COMPARTMENT_POLICY = "Show/Hide Compartment Policy"; //$NON-NLS-1$
 
 	/**

@@ -380,10 +380,14 @@ public class Messages extends NLS {
 	public static String ShowHideCompartmentAction_Message;
 
 	/** The string No Name for the ShowHideCompartment Action */
-	public static String ShowHideCompartmentAction_No_Name;
+	public static String ShowHideAction_No_Name;
 
 	/** %Title for the ShowHideCompartment Action */
 	public static String ShowHideCompartmentAction_Title;
+
+	public static String ShowHideContentsAction_Message;
+
+	public static String ShowHideContentsAction_Title;
 
 	/** Label for Hide Selected Element Action (when many elements are selected) */
 	public static String DeleteFromDiagramHandler_HideTextPlural;

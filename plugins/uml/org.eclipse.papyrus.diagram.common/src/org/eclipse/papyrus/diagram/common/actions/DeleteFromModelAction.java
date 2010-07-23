@@ -105,7 +105,8 @@ public class DeleteFromModelAction extends AbstractDeleteFromAction {
 		CompositeTransactionalCommand command = new CompositeTransactionalCommand(getEditingDomain(), getCommandLabel());
 		while(editParts.hasNext()) {
 			EditPart editPart = (EditPart)editParts.next();
-			//Delete From Model on a compartment, remove the editpart owning the parent.
+			//Delete From Model on a compartment, remove the editpart owning the Compartment.
+			//doesn't work because Property are compartment too in class diagram!
 			//if((editPart instanceof CompartmentEditPart)) {
 			//	editPart = editPart.getParent();
 			//}

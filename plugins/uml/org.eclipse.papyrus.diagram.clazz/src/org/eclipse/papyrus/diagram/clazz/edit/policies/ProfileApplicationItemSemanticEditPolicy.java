@@ -52,7 +52,6 @@ public class ProfileApplicationItemSemanticEditPolicy extends UMLBaseItemSemanti
 	 * @generated
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
-		// org.eclipse.gmf.runtime.notation.View view = (org.eclipse.gmf.runtime.notation.View) getHost().getModel();
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(true);
 		List<EObject> todestroy = new ArrayList<EObject>();

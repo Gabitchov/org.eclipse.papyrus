@@ -279,6 +279,12 @@
          id="org.eclipse.papyrus.diagram.common.commands.ShowHideCompartmentCommand"
          name="Show/Hide Compartment Command">
    </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         description="Call the Show/Hide Contents Action"
+         id="org.eclipse.papyrus.diagram.common.commands.ShowHideContentsCommand"
+         name="Show/Hide Contents Command">
+   </command>
 </extension>
 <extension
       point="org.eclipse.ui.popupMenus">
@@ -526,6 +532,18 @@
          commandId="org.eclipse.papyrus.diagram.common.commands.DeleteFromModelCommand"
          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
          sequence="CTRL+DEL">
+   </key>
+   <key
+         commandId="org.eclipse.papyrus.diagram.common.commands.ShowHideContentsCommand"
+         contextId="org.eclipse.gmf.runtime.diagram.ui.diagramContext"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="F4">
+   </key>
+   <key
+         commandId="org.eclipse.papyrus.diagram.common.commands.DeleteFromDiagramCommand"
+         contextId="org.eclipse.gmf.runtime.diagram.ui.diagramContext"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="DEL">
    </key>
 </extension>
 <extension
@@ -965,11 +983,28 @@
             objectClass="org.eclipse.papyrus.diagram.common.editparts.NamedElementEditPart">
          <action
                class="org.eclipse.papyrus.diagram.common.actions.ShowHideCompartmentAction"
+               definitionId="org.eclipse.papyrus.diagram.common.commands.ShowHideCompartmentCommand"
                enablesFor="+1"
-               icon="icons/fantom.gif"
+               icon="icons/fantomCompartment.gif"
                id="org.eclipse.papyrus.diagram.composite.ShowHideCompartmentAction"
                label="Show/Hide Compartments"
-               menubarPath="filtersMenu/expandFilterGroup">
+               menubarPath="filtersMenu/expandFilterGroup"
+               tooltip="Show/Hide Compartments">
+         </action>
+      </objectContribution>
+      <objectContribution
+            adaptable="false"
+            id="org.eclipse.papyrus.diagram.composite.contentsviewer"
+            objectClass="org.eclipse.papyrus.diagram.common.editparts.NamedElementEditPart">
+         <action
+               class="org.eclipse.papyrus.diagram.common.actions.ShowHideContentsAction"
+               definitionId="org.eclipse.papyrus.diagram.common.commands.ShowHideContentsCommand"
+               enablesFor="1"
+               icon="icons/fantomContents.gif"
+               id="org.eclipse.papyrus.diagram.composite.ShowHideInheritedContentsAction"
+               label="Show/Hide Con&amp;tents"
+               menubarPath="filtersMenu/expandFilterGroup"
+               tooltip="Show/Hide Contents">
          </action>
       </objectContribution>
    </extension>
@@ -982,13 +1017,30 @@
          <action
                class="org.eclipse.papyrus.diagram.common.actions.ShowHideCompartmentAction"
                definitionId="org.eclipse.papyrus.diagram.common.commands.ShowHideCompartmentCommand"
-               icon="icons/fantom.gif"
+               icon="icons/fantomCompartment.gif"
                id="org.eclipse.papyrus.diagram.common.myShowHideCompartmentAction"
                label="Show/Hide &amp;Compartments"
                menubarPath="diagramMenu/filtersMenu/compartmentMenu"
                style="push"
                toolbarPath="compartmentMenu/allCompartmentsGroup"
                tooltip="Show/Hide Compartments">
+         </action>
+      </actionSet>
+      <actionSet
+            id="org.eclipse.papyrus.diagram.common.ShowHideContentsActionSet"
+            label="Show/Hide Contents"
+            visible="true">
+         <action
+               class="org.eclipse.papyrus.diagram.common.actions.ShowHideContentsAction"
+               definitionId="org.eclipse.papyrus.diagram.common.commands.ShowHideContentsCommand"
+               enablesFor="1"
+               icon="icons/fantomContents.gif"
+               id="org.eclipse.papyrus.diagram.common.myShowHideContentsAction"
+               label="Show/Hide Con&amp;tents"
+               menubarPath="diagramMenu/filtersMenu/compartmentMenu"
+               style="push"
+               toolbarPath="compartmentMenu/allCompartmentsGroup"
+               tooltip="Show/Hide Contents">
          </action>
       </actionSet>
    </extension>
