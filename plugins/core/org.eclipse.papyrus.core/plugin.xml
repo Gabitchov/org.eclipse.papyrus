@@ -249,6 +249,29 @@
                serviceKeyRef="org.eclipse.papyrus.sasheditor.contentprovider.di.DiSashModelMngr">
          </dependsOn>
       </serviceFactory>
+      <service
+            classname="org.eclipse.papyrus.core.lifecycleevents.SaveAndDirtyService"
+            description="Service used to maintain the dirty state, and to perform save and saveAs"
+            id="org.eclipse.papyrus.core.lifecycleevents.ISaveAndDirtyService"
+            priority="1"
+            startKind="startup">
+         <dependsOn
+               serviceKeyRef="org.eclipse.emf.transaction.TransactionalEditingDomain">
+         </dependsOn>
+         <dependsOn
+               serviceKeyRef="org.eclipse.papyrus.resource.ModelSet">
+         </dependsOn>
+      </service>
+      <serviceFactory
+            classname="org.eclipse.papyrus.core.lifecycleevents.LifeCycleEventsProviderServiceFactory"
+            description="Service allowing to listen on save events."
+            id="org.eclipse.papyrus.core.lifecycleevents.ILifeCycleEventsProvider"
+            priority="1"
+            startKind="startup">
+         <dependsOn
+               serviceKeyRef=" org.eclipse.papyrus.core.lifecycleevents.ISaveAndDirtyService">
+         </dependsOn>
+      </serviceFactory>
    </extension>
 	
 	

@@ -16,19 +16,12 @@ package org.eclipse.papyrus.core.editor;
 
 import static org.eclipse.papyrus.core.Activator.log;
 
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.EventObject;
 import java.util.List;
 
 import org.eclipse.core.commands.operations.IUndoContext;
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.common.command.BasicCommandStack;
-import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -37,10 +30,6 @@ import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.emf.transaction.NotificationFilter;
-import org.eclipse.emf.transaction.ResourceSetChangeEvent;
-import org.eclipse.emf.transaction.ResourceSetListener;
-import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.ui.actions.ActionRegistry;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
@@ -51,13 +40,12 @@ import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.EditingDomainUndoContext;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
-import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.core.Activator;
 import org.eclipse.papyrus.core.contentoutline.ContentOutlineRegistry;
 import org.eclipse.papyrus.core.lifecycleevents.DoSaveEvent;
-import org.eclipse.papyrus.core.lifecycleevents.ILifeCycleEventsProvider;
-import org.eclipse.papyrus.core.lifecycleevents.LifeCycleEventsProvider;
+import org.eclipse.papyrus.core.lifecycleevents.IEditorInputChangedListener;
+import org.eclipse.papyrus.core.lifecycleevents.ISaveAndDirtyService;
 import org.eclipse.papyrus.core.multidiagram.actionbarcontributor.ActionBarContributorRegistry;
 import org.eclipse.papyrus.core.multidiagram.actionbarcontributor.CoreComposedActionBarContributor;
 import org.eclipse.papyrus.core.services.ExtensionServicesRegistry;
@@ -76,7 +64,6 @@ import org.eclipse.papyrus.sasheditor.contentprovider.di.TransactionalDiSashMode
 import org.eclipse.papyrus.sasheditor.editor.AbstractMultiPageSashEditor;
 import org.eclipse.papyrus.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.sasheditor.editor.gef.MultiDiagramEditorGefDelegate;
-import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorActionBarContributor;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
@@ -84,8 +71,6 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.actions.WorkspaceModifyOperation;
-import org.eclipse.ui.dialogs.SaveAsDialog;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 import org.eclipse.ui.views.properties.IPropertySheetPage;
@@ -125,18 +110,50 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	/** SashModelMngr to add pages */
 	protected DiSashModelMngr sashModelMngr;
 
+	/**
+	 * Service used to maintain the dirty state and to perform save and saveAs.
+	 */
+	protected ISaveAndDirtyService saveAndDirtyService;
+	
+	/**
+	 * Listener on {@link ISaveAndDirtyService#addInputChangedListener(IEditorInputChangedListener)}
+	 */
+	protected IEditorInputChangedListener editorInputChangedListener = new IEditorInputChangedListener() {
+		/**
+		 * This method is called when the editor input is changed from the ISaveAndDirtyService.
+		 * @see org.eclipse.papyrus.core.lifecycleevents.IEditorInputChangedListener#editorInputChanged(org.eclipse.ui.part.FileEditorInput)
+		 *
+		 * @param fileEditorInput
+		 */
+		public void editorInputChanged(FileEditorInput fileEditorInput) {
+			// Change the editor input.
+			setInputWithNotify(fileEditorInput);
+			setPartName(fileEditorInput.getName());
+		}
+
+		/**
+		 * The isDirty flag has changed, reflect its new value
+		 * @see org.eclipse.papyrus.core.lifecycleevents.IEditorInputChangedListener#isDirtyChanged()
+		 *
+		 */
+		public void isDirtyChanged() {
+			
+			// Run it in async way.
+			getSite().getShell().getDisplay().asyncExec(new Runnable() {
+
+				public void run() {
+					firePropertyChange(IEditorPart.PROP_DIRTY);
+				}
+			});
+		}
+	};
+	
 	private TransactionalEditingDomain transactionalEditingDomain;
 
 	/**
 	 * Object managing models lifeCycle.
 	 */
 	protected ModelSet resourceSet ;
-
-	/**
-	 * Class used to propagate life cycle events.
-	 * This class can be retrieved as a service using {@link ILifeCycleEventsProvider}.class.
-	 */
-	protected LifeCycleEventsProvider lifeCycleEventsProvider;
 
 	/**
 	 * Cached event that can be reused.
@@ -171,56 +188,9 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		}
 	};
 
-	private final org.eclipse.emf.common.command.CommandStackListener commandStackListener = new org.eclipse.emf.common.command.CommandStackListener() {
-
-		public void commandStackChanged(EventObject event) {
-			getSite().getShell().getDisplay().asyncExec(new Runnable() {
-
-				public void run() {
-					firePropertyChange(IEditorPart.PROP_DIRTY);
-				}
-			});
-		}
-	};
-
-	private final ResourceSetListener resourceSetListener = new ResourceSetListener() {
-
-		public NotificationFilter getFilter() {
-			return null;
-		}
-
-		public boolean isAggregatePrecommitListener() {
-			return false;
-		}
-
-		public boolean isPostcommitOnly() {
-			return true;
-		}
-
-		public boolean isPrecommitOnly() {
-			return false;
-		}
-
-		public void resourceSetChanged(ResourceSetChangeEvent event) {
-			if(event.getTransaction() != null && event.getTransaction().getStatus().isOK()) {
-				getSite().getShell().getDisplay().asyncExec(new Runnable() {
-
-					public void run() {
-						firePropertyChange(IEditorPart.PROP_DIRTY);
-					}
-				});
-			}
-		}
-
-		public Command transactionAboutToCommit(ResourceSetChangeEvent event) throws RollbackException {
-			return null;
-		}
-
-	};
-
 	/**
-	 * Unod context used to have the same undo context in all Papyrus related views and editors.
-	 * TODO : move away, use a version independant of GMF, add a listener that will add 
+	 * Undo context used to have the same undo context in all Papyrus related views and editors.
+	 * TODO : move away, use a version independent of GMF, add a listener that will add 
 	 * the context to all commands modifying attached Resources (==> linked to ModelSet ?)
 	 */
 	private EditingDomainUndoContext undoContext;
@@ -463,10 +433,13 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		// Create ServicesRegistry and register services
 		servicesRegistry = createServicesRegistry();
 
+		// Add itself as a service
+		servicesRegistry.add(IMultiDiagramEditor.class, 1, this);
+		
 		// Create lifeCycle event provider and the event that is used when the editor fire a save event.
-		lifeCycleEventsProvider = new LifeCycleEventsProvider();
-		lifeCycleEvent = new DoSaveEvent(servicesRegistry, this);
-		servicesRegistry.add(ILifeCycleEventsProvider.class, 1, lifeCycleEventsProvider);
+//		lifeCycleEventsProvider = new LifeCycleEventsProvider();
+//		lifeCycleEvent = new DoSaveEvent(servicesRegistry, this);
+//		servicesRegistry.add(ILifeCycleEventsProvider.class, 1, lifeCycleEventsProvider);
 
 		// register services
 		servicesRegistry.add(ActionBarContributorRegistry.class, 1, getActionBarContributorRegistry());
@@ -544,26 +517,26 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 			transactionalEditingDomain = servicesRegistry.getService(TransactionalEditingDomain.class);
 			sashModelMngr = servicesRegistry.getService(DiSashModelMngr.class);
 			contentProvider = servicesRegistry.getService(ISashWindowsContentProvider.class);
+			saveAndDirtyService = servicesRegistry.getService(ISaveAndDirtyService.class);
 		} catch (ServiceException e) {
-			log.error(e);
+			log.error("A required service is missing.", e);
 			// if one of the services above fail to start, the editor can't run => stop
 			throw new PartInitException ("could not initialize services", e);
 		}
 
+		
+		
 		// Set the content provider providing editors.
 		setContentProvider(contentProvider);
 		
-		// Listen to the modifications of the EMF model
-		transactionalEditingDomain.getCommandStack().addCommandStackListener(commandStackListener);
-
-		// Let's listen to the resource set change
-		transactionalEditingDomain.addResourceSetListener(resourceSetListener);
-
 		// Set editor name
 		setPartName(file.getName());
 
 		// Listen on contentProvider changes
 		sashModelMngr.getSashModelContentChangedProvider().addListener(contentChangedListener);
+		
+		// Listen on input changed from the ISaveAndDirtyService
+		saveAndDirtyService.addInputChangedListener(editorInputChangedListener);
 	}
 
 	/**
@@ -620,11 +593,6 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 			sashModelMngr.getSashModelContentChangedProvider().removeListener(contentChangedListener);
 		}
 
-		if(transactionalEditingDomain != null) {
-			transactionalEditingDomain.getCommandStack().removeCommandStackListener(commandStackListener);
-			transactionalEditingDomain.removeResourceSetListener(resourceSetListener);
-		}
-
 		// Avoid memory leak
 		if(resourceSet != null) {
 			resourceSet.unload();
@@ -652,33 +620,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	@Override
 	public void doSave(IProgressMonitor monitor) {
 
-		// Sent pre doSave event
-		lifeCycleEventsProvider.fireAboutToDoSaveEvent(lifeCycleEvent);
-
-		// sent doSaveEvent
-		lifeCycleEventsProvider.fireDoSaveEvent(lifeCycleEvent);
-		// Perform local doSave
-		// TODO : put it in a listener ?
-		try {
-			// Save each associated resource
-			resourceSet.save(monitor);
-			markSaveLocation();
-		} catch (IOException e) {
-			log.error("Error during save", e);
-		}
-
-		// Sent post Events
-		lifeCycleEventsProvider.firePostDoSaveEvent(lifeCycleEvent);
-
-	}
-
-	/**
-	 * Mark the command stack of all sub-editors. Default implementation do nothing.
-	 */
-	@Override
-	protected void markSaveLocation() {
-		((BasicCommandStack)transactionalEditingDomain.getCommandStack()).saveIsDone();
-		super.markSaveLocation();
+		saveAndDirtyService.doSave(monitor);
 	}
 
 	/**
@@ -686,8 +628,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	 */
 	@Override
 	public boolean isDirty() {
-		// First, look if the model part (EMF) is dirty, else look at the Graphical part (GEF/GMF)
-		return ((BasicCommandStack)transactionalEditingDomain.getCommandStack()).isSaveNeeded() || super.isDirty();
+		return saveAndDirtyService.isDirty();
 	}
 
 	/**
@@ -700,51 +641,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	@Override
 	public void doSaveAs() {
 
-		// Sent pre doSave event
-		lifeCycleEventsProvider.fireAboutToDoSaveAsEvent(lifeCycleEvent);
-
-		// sent doSaveEvent
-		lifeCycleEventsProvider.fireDoSaveAsEvent(lifeCycleEvent);
-		// Perform local doSaveAs
-
-
-		// Show a SaveAs dialog
-		Shell shell = getEditorSite().getWorkbenchWindow().getShell();
-		SaveAsDialog dialog = new SaveAsDialog(shell);
-		dialog.setOriginalFile(((IFileEditorInput)getEditorInput()).getFile());
-		dialog.open();
-		final IPath path = dialog.getResult();
-		if(path != null) {
-			// try to save the editor's contents under a different file name
-			final IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(path);
-			try {
-				new ProgressMonitorDialog(shell).run(false, // don't fork
-				false, // not cancelable
-				new WorkspaceModifyOperation() { // run this operation
-
-					@Override
-					public void execute(final IProgressMonitor monitor) {
-						try {
-							resourceSet.saveAs(path);
-						} catch (IOException e) {
-							log.error("Unable to saveAs the resource set", e);
-						}
-					}
-				});
-				// set input to the new file
-				setInput(new FileEditorInput(file));
-				markSaveLocation();
-			} catch (InterruptedException e) {
-				// should not happen, since the monitor dialog is not cancelable
-				log.error(e);
-			} catch (InvocationTargetException e) {
-				log.error(e);
-			}
-		}
-
-		// sent doSaveEvent
-		lifeCycleEventsProvider.firePostDoSaveAsEvent(lifeCycleEvent);
-
+		saveAndDirtyService.doSaveAs();
 	}
 
 	/**
@@ -859,11 +756,11 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	 * 
 	 * @param newInput
 	 *        The new input
+	 * @deprecated Not used anymore
 	 */
 
 	public void setEditorInput(IEditorInput newInput) {
 		setInputWithNotify(newInput);
 		setPartName(newInput.getName());
-		markSaveLocation();
 	}
 }

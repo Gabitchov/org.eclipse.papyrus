@@ -16,6 +16,7 @@ package org.eclipse.papyrus.modelexplorer;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.eclipse.core.commands.operations.IUndoContext;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.ResourceSetChangeEvent;
 import org.eclipse.emf.transaction.ResourceSetListener;
@@ -23,10 +24,17 @@ import org.eclipse.emf.transaction.ResourceSetListenerImpl;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.core.lifecycleevents.IEditorInputChangedListener;
+import org.eclipse.papyrus.core.lifecycleevents.ISaveAndDirtyService;
+import org.eclipse.papyrus.core.lifecycleevents.SaveAndDirtyService;
+import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.core.utils.ServiceUtils;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.IActionBars;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IMemento;
+import org.eclipse.ui.ISaveablePart;
 import org.eclipse.ui.IViewSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
@@ -34,6 +42,7 @@ import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.navigator.CommonNavigator;
 import org.eclipse.ui.operations.RedoActionHandler;
 import org.eclipse.ui.operations.UndoActionHandler;
+import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributor;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
@@ -46,14 +55,48 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
  */
 public class ModelExplorerView extends CommonNavigator {
 
+	/**
+	 * The associated EditorPart
+	 */
 	private IMultiDiagramEditor editorPart;
 
+	/**
+	 * The save aservice associated to the editor.
+	 */
+	private ISaveAndDirtyService saveAndDirtyService;
+	
 	private TransactionalEditingDomain editingDomain;
 
 	/**
 	 * Flag to avoid reentrant call to refresh.
 	 */
 	private AtomicBoolean isRefreshing = new AtomicBoolean(false);
+
+	/**
+	 * Listener on {@link ISaveAndDirtyService#addInputChangedListener(IEditorInputChangedListener)}
+	 */
+	protected IEditorInputChangedListener editorInputChangedListener = new IEditorInputChangedListener() {
+		/**
+		 * This method is called when the editor input is changed from the ISaveAndDirtyService.
+		 * @see org.eclipse.papyrus.core.lifecycleevents.IEditorInputChangedListener#editorInputChanged(org.eclipse.ui.part.FileEditorInput)
+		 *
+		 * @param fileEditorInput
+		 */
+		public void editorInputChanged(FileEditorInput fileEditorInput) {
+			// Change the editor input.
+			setPartName(fileEditorInput.getName());
+		}
+
+		/**
+		 * The isDirty flag has changed, reflect its new value
+		 * @see org.eclipse.papyrus.core.lifecycleevents.IEditorInputChangedListener#isDirtyChanged()
+		 *
+		 */
+		public void isDirtyChanged() {
+			firePropertyChange(IEditorPart.PROP_DIRTY);
+		}
+	};
+	
 
 	/**
 	 * Undo action handler
@@ -80,6 +123,11 @@ public class ModelExplorerView extends CommonNavigator {
 	 */
 	public ModelExplorerView(IMultiDiagramEditor part) {
 		this.editorPart = part;
+		try {
+			this.saveAndDirtyService =editorPart.getServicesRegistry().getService(ISaveAndDirtyService.class);
+		} catch (ServiceException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -133,7 +181,7 @@ public class ModelExplorerView extends CommonNavigator {
 	};
 
 	/**
-	 * 
+	 * Run in a UI thread to avoid non UI thread exception.
 	 * @param event
 	 */
 	private void handleResourceSetChanged(ResourceSetChangeEvent event) {
@@ -191,18 +239,22 @@ public class ModelExplorerView extends CommonNavigator {
 	private void activate() {
 
 		if(editorPart != null) {
-			this.editingDomain = EditorUtils.getTransactionalEditingDomain(editorPart.getServicesRegistry());
-
-
-			if(editingDomain != null) {
-
+			
+			try {
+				this.editingDomain = ServiceUtils.getInstance().getTransactionalEditingDomain(editorPart.getServicesRegistry());
+//			this.editingDomain = EditorUtils.getTransactionalEditingDomain(editorPart.getServicesRegistry());
 				// Set Viewer input if it already exist
 				if(getCommonViewer() != null) {
 					getCommonViewer().setInput(editorPart.getServicesRegistry());
 				}
 				editingDomain.addResourceSetListener(resourceSetListener);
+			} catch (ServiceException e) {
+				// Can't get EditingDomain, skip
 			}
 
+			// Listen to isDirty flag
+			saveAndDirtyService.addInputChangedListener(editorInputChangedListener);
+			
 			// Hook 
 			//			if(undoHandler != null){
 			//				IUndoContext undoContext = getUndoContext(part);
@@ -236,7 +288,11 @@ public class ModelExplorerView extends CommonNavigator {
 
 		// deactivate global handler
 		if(editorPart != null) {
-			Activator.log.debug("deactivate " + editorPart.getTitle());
+            Activator.log.debug("deactivate " + editorPart.getTitle());
+			
+			// Stop Listenning to isDirty flag
+			saveAndDirtyService.removeInputChangedListener(editorInputChangedListener);
+
 			// unhook 
 			//			IUndoContext undoContext = getUndoContext(editorPart);
 			//			undoHandler.setContext(undoContext);
@@ -296,6 +352,12 @@ public class ModelExplorerView extends CommonNavigator {
 
 			// Let the parent return the adapter.
 		}
+		
+		if( ISaveablePart.class.equals(adapter)) {
+			
+			return saveAndDirtyService;
+		}
+		
 		return super.getAdapter(adapter);
 	}
 

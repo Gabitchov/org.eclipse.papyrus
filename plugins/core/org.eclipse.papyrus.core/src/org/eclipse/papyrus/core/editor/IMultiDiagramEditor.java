@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.core.editor;
 
-import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditDomain;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.ui.IEditorInput;
@@ -25,11 +24,18 @@ import org.eclipse.ui.views.properties.IPropertySheetPage;
  * Interface implemented by the main multipage editor. This interface list the methods available to diagram editors. Diagram editors can relies on
  * this interface to retrieve services from the main
  * multi diagram editor.
+ * <br>
+ * This interface should stay minimalist, as the editor is not designed to handle the services itself.
+ * A service should be retrieved by using {@link #getServicesRegistry()}.
  * 
- * @author dumoulin
+ * 
+ * @author cedric dumoulin
+ * 
+ * TODO remove extends IEditingDomainProvider. This interface should be independant of any technology (EMF, GMF, ...).
+ * If the EditingDomain is required, it can be retrieved by the registry.
  * 
  */
-public interface IMultiDiagramEditor extends IEditorPart, IEditingDomainProvider {
+public interface IMultiDiagramEditor extends IEditorPart {
 
 	/**
 	 * Returns the service registry associated to the editor.
@@ -57,6 +63,7 @@ public interface IMultiDiagramEditor extends IEditorPart, IEditingDomainProvider
 	 * Change the editor input.
 	 * 
 	 * @param newInput The new input.
+	 * @deprecated No replacement. Input can't be changed on multi editors.
 	 */
 	public void setEditorInput(IEditorInput newInput);
 
@@ -64,12 +71,13 @@ public interface IMultiDiagramEditor extends IEditorPart, IEditingDomainProvider
 	 * Returns the edit domain shared among editors
 	 * 
 	 * @return the edit domain shared among editors
+	 * @deprecated Use {@link #getServicesRegistry()} or {@link #getAdapter(Class)}
 	 */
 	// FIXME Remove it (GMF dependency)
 	public DiagramEditDomain getDiagramEditDomain();
 
 	/**
-	 * Get the currently active Editor.
+	 * Get the currently active nested Editor.
 	 */
 	public IEditorPart getActiveEditor();
 
@@ -77,6 +85,7 @@ public interface IMultiDiagramEditor extends IEditorPart, IEditingDomainProvider
 	 * Get the property sheet page associated to the Editor.
 	 * 
 	 * @return the property sheet page associated to the Editor.
+	 * @deprecated Use {@link #getServicesRegistry()} or {@link #getAdapter(Class)}
 	 */
 	public IPropertySheetPage getPropertySheetPage();
 }

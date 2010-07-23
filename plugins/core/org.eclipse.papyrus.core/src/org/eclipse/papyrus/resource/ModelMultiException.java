@@ -121,4 +121,11 @@ public class ModelMultiException extends ModelException {
 		encounteredModels.add(identifier);
 	}
 	
+	/**
+	 * Return true if this MultiExceptions contains nested exceptions.
+	 * @return
+	 */
+	public boolean isNotEmpty() {
+		return encounteredExceptions.size() != 0;
+	}
 }

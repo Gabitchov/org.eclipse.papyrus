@@ -9,8 +9,10 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.eclipse.papyrus.core.lifecycleevents.ISaveAndDirtyService;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
+import org.eclipse.papyrus.core.utils.ServiceUtils;
 
 
 /**
@@ -51,8 +53,36 @@ public class UmlGmfDiagramEditor extends DiagramDocumentEditor {
 		this.servicesRegistry=servicesRegistry;
 		// Install synchronizer
 		partNameSynchronizer = new PartNameSynchronizer(diagram);
+		
+		// Register this part to the ISaveAndDirtyService.
+		// This will allows to be notified of saveAs events, and the isDirty flag will be taken into
+		// account.
+		ISaveAndDirtyService saveAndDirtyService = servicesRegistry.getService(ISaveAndDirtyService.class);
+		saveAndDirtyService.registerIsaveablePart(this);
+		
+		// TODO: unregister when editor is disposed !
 	}
 
+	/**
+	 * Dispose services used in this part.
+	 * @see org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor#dispose()
+	 *
+	 */
+	@Override
+	public void dispose() {
+		super.dispose();
+		
+		ISaveAndDirtyService saveAndDirtyService;
+		try {
+			saveAndDirtyService = servicesRegistry.getService(ISaveAndDirtyService.class);
+			saveAndDirtyService.removeIsaveablePart(this);
+
+		} catch (ServiceException e) {
+			// the service can't be found. Maybe it is already disposed.
+			// Do nothing
+		}
+		
+	}
 	/**
 	 * 
 	 * @return  the backbone service registry. it cannot return null. 

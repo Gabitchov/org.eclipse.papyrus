@@ -7,8 +7,17 @@ package org.eclipse.papyrus.core.services;
 /**
  * An Service that can be registered in the {@link ServicesRegistry}.
  * A service is a singleton available throw the registry. A service can be shared across editors.
+ * <br>
+ * The life cycle is as follow:
+ * <ul>
+ *   <li>service creation</li>
+ *   <li>{@link #init(ServicesRegistry)} - Other service can be retrieved from the registry, but are not started yet.</li>
+ *   <li>{@link #startService()} - service is started.</li>
+ *   <li>Service can be used</li>
+ *   <li>{@link #disposeService()} - service is disposed and should not be used anymore.</li>
+ * </ul>
  * 
- * @author dumoulin
+ * @author cedric dumoulin
  * 
  */
 public interface IService {
