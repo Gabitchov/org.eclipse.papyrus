@@ -56,7 +56,7 @@ import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.jface.wizard.WizardPage;
-import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.core.editor.CoreMultiDiagramEditor;
 import org.eclipse.papyrus.properties.runtime.controller.descriptor.ControllerDescriptorState;
 import org.eclipse.papyrus.properties.runtime.dialogs.PropertyDialog;
 import org.eclipse.papyrus.properties.runtime.state.IFragmentDescriptorState;
@@ -110,6 +110,8 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.Tree;
+import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.FilteredTree;
 import org.eclipse.ui.dialogs.PatternFilter;
 import org.eclipse.ui.views.properties.tabbed.ITabDescriptor;
@@ -1147,8 +1149,12 @@ public class CustomizeContentWizardPage extends WizardPage {
 	 */
 	protected List<EObject> retrieveAvailableMetamodels() {
 		List<EObject> metamodels = new ArrayList<EObject>();
+		DiagramEditor editor = null;
 		// retrieve current editor, and current resources
-		DiagramEditor editor = EditorUtils.lookupActiveDiagramEditor();
+		IEditorPart mainEditor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+		if(mainEditor instanceof org.eclipse.papyrus.core.editor.CoreMultiDiagramEditor) {
+			editor = (DiagramEditor)((CoreMultiDiagramEditor)mainEditor).getActiveEditor();
+		}
 		if(editor == null) {
 			Activator.log.warn(Messages.CustomizeContentWizardPage_Error_NoActiveDiagram);
 			return Collections.emptyList();
