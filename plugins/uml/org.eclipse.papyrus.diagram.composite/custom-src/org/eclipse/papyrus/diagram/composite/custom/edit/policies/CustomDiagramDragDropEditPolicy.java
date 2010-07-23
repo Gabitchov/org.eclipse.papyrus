@@ -25,9 +25,11 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
+import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
@@ -45,7 +47,6 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.editpolicies.CommonDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.diagram.composite.custom.edit.command.CreateViewCommand;
 import org.eclipse.papyrus.diagram.composite.custom.helper.CollaborationHelper;
-import org.eclipse.papyrus.diagram.composite.custom.helper.CollaborationUseHelper;
 import org.eclipse.papyrus.diagram.composite.custom.helper.CompositeLinkMappingHelper;
 import org.eclipse.papyrus.diagram.composite.custom.helper.ConnectorHelper;
 import org.eclipse.papyrus.diagram.composite.custom.helper.DurationObservationHelper;
@@ -757,7 +758,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 
 				if(droppedObject instanceof Collaboration) {
 
-					CollaborationUseHelper helper = new CollaborationUseHelper(getEditingDomain());
+					CollaborationHelper helper = new CollaborationHelper(getEditingDomain());
 					cc.add(helper.dropCollaborationOnCollaborationUse((GraphicalEditPart)getHost(), (Collaboration)droppedObject, location));
 				}
 			}
@@ -766,9 +767,91 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		if(!cc.isEmpty()) {
 			return cc;
 		}
-
 		return super.getDropObjectsCommand(dropRequest);
 	}
-	
-	
+
+
+	/** Avoid dropped element to get orphaned for DND action resulting in a specific action (not a move) */
+	@Override
+	protected Command getDragCommand(ChangeBoundsRequest request) {
+
+		Boolean isSpecificDrag = false;
+
+		Iterator<?> iter = request.getEditParts().iterator();
+		EObject graphicalParentObject = ((GraphicalEditPart)getHost()).resolveSemanticElement();
+		while((graphicalParentObject != null) && (iter.hasNext())) {
+
+			EObject droppedObject = null;
+			EditPart droppedEditPart = (EditPart)iter.next();
+			if(droppedEditPart instanceof GraphicalEditPart) {
+				droppedObject = ((GraphicalEditPart)droppedEditPart).resolveSemanticElement();
+			}
+
+			isSpecificDrag = isSpecificDropActionExpected((GraphicalEditPart)getHost(), droppedObject);
+		}
+
+		if(isSpecificDrag) {
+			return null;
+		}
+
+		return super.getDragCommand(request);
+	}
+
+	protected Command getDropCommand(ChangeBoundsRequest request) {
+		Boolean isSpecificDrop = false;
+
+		Iterator<?> iter = request.getEditParts().iterator();
+		EObject graphicalParentObject = ((GraphicalEditPart)getHost()).resolveSemanticElement();
+		while((graphicalParentObject != null) && (iter.hasNext())) {
+			EObject droppedObject = null;
+			EditPart droppedEditPart = (EditPart)iter.next();
+			if(droppedEditPart instanceof GraphicalEditPart) {
+				droppedObject = ((GraphicalEditPart)droppedEditPart).resolveSemanticElement();
+			}
+
+			isSpecificDrop = isSpecificDropActionExpected((GraphicalEditPart)getHost(), droppedObject);
+		}
+
+		if(isSpecificDrop) {
+			return getDropObjectsCommand(castToDropObjectsRequest(request));
+		}
+
+		return super.getDropCommand(request);
+	}
+
+	/** Test if a specific drop action shall is expected */
+	protected boolean isSpecificDropActionExpected(GraphicalEditPart graphicalParent, EObject droppedObject) {
+		boolean isSpecificDropActionExpected = false;
+
+		EObject graphicalParentObject = graphicalParent.resolveSemanticElement();
+		if(graphicalParentObject != null) {
+
+			if(graphicalParentObject instanceof Collaboration) {
+
+				if((droppedObject instanceof Collaboration) || (droppedObject instanceof Class)) {
+					isSpecificDropActionExpected = true;
+				}
+
+			} else if(graphicalParentObject instanceof StructuredClassifier) {
+
+				if((droppedObject instanceof Collaboration) || (droppedObject instanceof Class)) {
+					isSpecificDropActionExpected = true;
+				}
+
+			} else if(graphicalParentObject instanceof TypedElement) {
+
+				if(droppedObject instanceof Type) {
+					isSpecificDropActionExpected = true;
+				}
+
+			} else if(graphicalParentObject instanceof CollaborationUse) {
+
+				if(droppedObject instanceof Collaboration) {
+					isSpecificDropActionExpected = true;
+				}
+			}
+		}
+
+		return isSpecificDropActionExpected;
+	}
 }

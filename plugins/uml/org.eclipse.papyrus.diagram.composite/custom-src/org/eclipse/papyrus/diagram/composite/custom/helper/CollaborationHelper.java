@@ -22,19 +22,27 @@ import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
+import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.diagram.common.helper.ElementHelper;
 import org.eclipse.papyrus.diagram.composite.custom.edit.command.CollaborationUseFromTypeCreateCommand;
 import org.eclipse.papyrus.diagram.composite.custom.edit.command.CreateViewCommand;
+import org.eclipse.papyrus.diagram.composite.custom.utils.CompositeEditPartUtil;
 import org.eclipse.papyrus.diagram.composite.edit.parts.CollaborationUseEditPartCN;
 import org.eclipse.papyrus.diagram.composite.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Collaboration;
+import org.eclipse.uml2.uml.CollaborationUse;
 import org.eclipse.uml2.uml.StructuredClassifier;
+import org.eclipse.uml2.uml.Type;
+import org.eclipse.uml2.uml.UMLPackage;
 
 public class CollaborationHelper extends ElementHelper {
 
@@ -71,7 +79,7 @@ public class CollaborationHelper extends ElementHelper {
 
 			// 2. Prepare the drop command
 			ViewDescriptor descriptor = new ViewDescriptor((IAdaptable)cUseCreateCommand.getCommandResult().getReturnValue(), Node.class, elementType.getSemanticHint(), ViewUtil.APPEND, false, graphicalTarget.getDiagramPreferencesHint());
-			CreateViewCommand viewCreateCommand = new CreateViewCommand(getEditingDomain(), descriptor, ((View)(graphicalTarget.getModel())));
+			CreateViewCommand viewCreateCommand = new CreateViewCommand(getEditingDomain(), descriptor, ((View)(reTarget(graphicalTarget).getModel())));
 			SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)viewCreateCommand.getCommandResult().getReturnValue(), location);
 
 			// 3. Create the compound command
@@ -81,5 +89,42 @@ public class CollaborationHelper extends ElementHelper {
 		}
 
 		return cc;
+	}
+
+	public CompoundCommand dropCollaborationOnCollaborationUse(GraphicalEditPart graphicalTarget, Type semanticElement, Point location) {
+		CompoundCommand cc = new CompoundCommand("DropCollaborationOnCollaborationUse");
+
+		EObject graphicalParentObject = graphicalTarget.resolveSemanticElement();
+		if(graphicalParentObject instanceof CollaborationUse) {
+			SetRequest req = new SetRequest(graphicalParentObject, UMLPackage.eINSTANCE.getCollaborationUse_Type(), semanticElement);
+			// Set type with confirmation dialog is currently disabled as it causes transaction issue (transaction is
+			// never committed) in case of a DND from the diagram to the diagram (is work well from Explorer to Diagram).
+			// The command is temporary replaced by a basic set value command without confirmation dialog.
+			//SetTypeWithDialogCommand setTypeCommand = new SetTypeWithDialogCommand(req);
+			SetValueCommand setTypeCommand = new SetValueCommand(req);
+			cc.add(new ICommandProxy(setTypeCommand));
+		}
+
+		return cc;
+	}
+
+	/**
+	 * Re-target the target EditPart to the real expected target (e.g.: one of its compartment)
+	 * 
+	 * @param initialTarget
+	 *        The original target
+	 * @return the real expected target edit part (can return null)
+	 */
+	protected IGraphicalEditPart reTarget(IGraphicalEditPart initialTarget) {
+		IGraphicalEditPart newTarget = null;
+
+		if(!(initialTarget instanceof ShapeCompartmentEditPart)) {
+			newTarget = CompositeEditPartUtil.getCompositeCompartmentEditPart(initialTarget);
+		} else {
+			// No need to re-target here
+			newTarget = initialTarget;
+		}
+
+		return newTarget;
 	}
 }
