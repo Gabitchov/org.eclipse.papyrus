@@ -29,6 +29,7 @@ import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IMemento;
 import org.eclipse.ui.IViewSite;
 import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.navigator.CommonNavigator;
 import org.eclipse.ui.operations.RedoActionHandler;
@@ -40,8 +41,7 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 /**
  * Papyrus Model Explorer associated to one {@link IMultiDiagramEditor}.
  * This ModelExplorer is linked to one single {@link IMultiDiagramEditor}. It doesn't change its
- * source when the current Editor change. To allow to explore different Model, use a 
- * {@link ModelExplorerPageBookView}.
+ * source when the current Editor change. To allow to explore different Model, use a {@link ModelExplorerPageBookView}.
  * 
  */
 public class ModelExplorerView extends CommonNavigator {
@@ -94,8 +94,7 @@ public class ModelExplorerView extends CommonNavigator {
 	}
 
 	@Override
-	public void init(IViewSite site, IMemento aMemento)
-			throws PartInitException {
+	public void init(IViewSite site, IMemento aMemento) throws PartInitException {
 		// TODO Auto-generated method stub
 		super.init(site, aMemento);
 
@@ -138,8 +137,15 @@ public class ModelExplorerView extends CommonNavigator {
 	 * @param event
 	 */
 	private void handleResourceSetChanged(ResourceSetChangeEvent event) {
+		PlatformUI.getWorkbench().getDisplay().syncExec(new Runnable() {
 
-		refresh();
+			/**
+			 * {@inheritDoc}
+			 */
+			public void run() {
+				refresh();
+			}
+		});
 	}
 
 	/**
