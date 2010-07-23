@@ -41,8 +41,19 @@ import org.eclipse.ui.PlatformUI;
  * @author cedric dumoulin
  *
  */
-public abstract class ServiceUtilsForActionHandlers {
+public class ServiceUtilsForActionHandlers {
 
+	private final static ServiceUtils instance = new ServiceUtils();
+	
+	/**
+	 * Get the singleton instance of the class.
+	 * 
+	 * @return
+	 */
+	public static final ServiceUtils getInstance() {
+		return instance;
+	}
+	
 	/**
 	 * Get the service registry from the specified parameter.
 	 * 
