@@ -531,10 +531,13 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 			servicesRegistry.startRegistry();
 		} catch (ModelMultiException e) {
 			log.error(e);
+			throw new PartInitException ("errors in model", e);
 		} catch (ServiceException e) {
 			log.error(e);
+			throw new PartInitException ("could not initialize services", e);
 		}
-
+	
+			
 		// Get required services
 		ISashWindowsContentProvider contentProvider = null;
 		try {
@@ -543,8 +546,8 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 			contentProvider = servicesRegistry.getService(ISashWindowsContentProvider.class);
 		} catch (ServiceException e) {
 			log.error(e);
-			// TODO : if one of the services above fail to start, the editor can't run.
-			// We should certainly stop it here
+			// if one of the services above fail to start, the editor can't run => stop
+			throw new PartInitException ("could not initialize services", e);
 		}
 
 		// Set the content provider providing editors.
