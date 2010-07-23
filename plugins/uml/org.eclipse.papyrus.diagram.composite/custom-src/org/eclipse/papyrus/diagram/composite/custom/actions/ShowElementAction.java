@@ -350,7 +350,6 @@ public class ShowElementAction implements IActionDelegate {
 	 */
 	protected CompositeCommand getCreateViewCommand() {
 		CompositeCommand createCommand = new CompositeCommand("Create View Command"); //$NON-NLS-1$
-
 		Point location = new Point();
 		for(Object obj : this.viewToCreate) {
 			View containerView = null;
@@ -359,6 +358,8 @@ public class ShowElementAction implements IActionDelegate {
 				location = portLocation.getCopy();
 				portLocation = portLocation.translate(0, 25);
 				containerView = (View)this.selectedEditPart.getModel();
+
+
 			} else if(obj instanceof Property) {
 				location = propertyLocation.getCopy();
 				propertyLocation = propertyLocation.translate(20, 20);
@@ -368,15 +369,16 @@ public class ShowElementAction implements IActionDelegate {
 
 			// creation of the node
 			ViewDescriptor viewDescriptor = new ViewDescriptor(new EObjectAdapter((EObject)obj), Node.class, null, ViewUtil.APPEND, false, ((IGraphicalEditPart)this.selectedEditPart).getDiagramPreferencesHint());
+
 			CreateCommand cmd = new CreateCommand(this.domain, viewDescriptor, containerView);
 			if(cmd.canExecute()) {
 				createCommand.add(cmd);
-			}
-			SetBoundsCommand setBoundsCommand = new SetBoundsCommand(this.domain, "move", (IAdaptable)cmd.getCommandResult().getReturnValue(), location); //$NON-NLS-1$
-			if(setBoundsCommand.canExecute()) {
-				createCommand.add(setBoundsCommand);
-			}
 
+				SetBoundsCommand setBoundsCommand = new SetBoundsCommand(this.domain, "move", (IAdaptable)cmd.getCommandResult().getReturnValue(), location); //$NON-NLS-1$
+				if(setBoundsCommand.canExecute()) {
+					createCommand.add(setBoundsCommand);
+				}
+			}
 
 
 		}
@@ -580,7 +582,6 @@ public class ShowElementAction implements IActionDelegate {
 		public Object[] getChildren(Object parentElement) {
 			if(parentElement instanceof Classifier) {
 				EList<Property> properties = ((Classifier)parentElement).getAttributes();
-				Activator.log.debug(properties.toString());
 				return properties.toArray();
 			}
 			return null;
