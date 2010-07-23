@@ -549,7 +549,7 @@
    <extension
          point="org.eclipse.papyrus.core.papyrusDiagram">
       <editorDiagram
-            actionBarContributorId="org.eclipse.papyrus.diagram.statemachine.part.UMLDiagramActionBarContributor"
+            actionBarContributorId="org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor"
             factoryClass="org.eclipse.papyrus.diagram.statemachine.StateMachineDiagramEditorFactory"
             icon="icons/obj16/Diagram_StateMachine.gif">
       </editorDiagram>
@@ -851,7 +851,7 @@
 		</paletteProvider>	
 			
 	</extension>
-
+<!-- PALETTE REMOVED BECAUSED IT IS NOW DEFINED USING A SPECIFIC XML FILE 
 <extension
 		id="PapyrusUMLStateMachineDiagram.standard"
 		name="PapyrusUMLStateMachineDiagram Standard Palette"
@@ -953,7 +953,7 @@
 		</paletteProvider>	
 			
 	</extension>
-
+-->
 <extension point="org.eclipse.ui.handlers" id="menu-handlers">
       <?gmfgen generated="true"?>
    </extension>

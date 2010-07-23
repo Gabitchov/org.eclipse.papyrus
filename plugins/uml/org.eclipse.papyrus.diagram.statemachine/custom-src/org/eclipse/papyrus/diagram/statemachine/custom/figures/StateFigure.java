@@ -17,7 +17,7 @@ public class StateFigure extends NodeNamedElementFigure implements IPapyrusNodeF
 	 * The information label.
 	 */
 	protected WrappingLabel informationLabel;
-	
+
 	protected boolean isInformationShown = false;
 
 	/**
@@ -67,17 +67,20 @@ public class StateFigure extends NodeNamedElementFigure implements IPapyrusNodeF
 		return getDefaultLabelsConstraint();
 	}
 
-	public void fillInformation(String text){
+	public void fillInformation(String text) {
 		informationLabel.setText(text);
 		refreshInformationToShow();
 	}
-	
-	protected void refreshInformationToShow(){
-		if(informationLabel.getText().isEmpty() || informationLabel.getText().equalsIgnoreCase("\n")){
+
+	/**
+	 * Refreshes the status of the label that displays information, depending on the text to display
+	 */
+	protected void refreshInformationToShow() {
+		String text = informationLabel.getText();
+		if(text == null || text.length() == 0 || text.equalsIgnoreCase("\n")) {
 			informationLabel.setVisible(false);
 			isInformationShown = false;
-		}
-		else{
+		} else {
 			informationLabel.setVisible(true);
 			isInformationShown = true;
 		}
@@ -88,8 +91,8 @@ public class StateFigure extends NodeNamedElementFigure implements IPapyrusNodeF
 		shadowborder.setColor(getForegroundColor());
 
 		refreshInformationToShow();
-		
-		if(isInformationShown){
+
+		if(isInformationShown) {
 			Rectangle rect = informationLabel.getBounds();
 
 			graphics.setLineStyle(SWT.BORDER_SOLID);
@@ -98,7 +101,7 @@ public class StateFigure extends NodeNamedElementFigure implements IPapyrusNodeF
 			graphics.drawLine(rect.x, rect.y - 2, rect.x + rect.width - 1, rect.y - 2);
 
 		}
-		
+
 	}
 
 	public void setShadow(boolean shadow) {
