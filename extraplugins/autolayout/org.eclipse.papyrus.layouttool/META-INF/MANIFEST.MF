@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Layouttools Plug-in
+Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.layouttool;singleton:=true
 Bundle-Version: 0.7.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.layouttool.Activator
@@ -13,4 +13,4 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.papyrus.layouttool,
  org.eclipse.papyrus.layouttool.managealgorithms
 Bundle-ActivationPolicy: lazy
-Bundle-Vendor: Atos Origin
+Bundle-Vendor: %providerName
