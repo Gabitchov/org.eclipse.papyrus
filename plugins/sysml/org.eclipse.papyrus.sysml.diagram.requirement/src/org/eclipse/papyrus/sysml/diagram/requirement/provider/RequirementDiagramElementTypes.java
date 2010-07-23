@@ -63,4 +63,9 @@ public class RequirementDiagramElementTypes extends AbstractElementTypeEnumerato
 	 */
 	public static final IHintedType CONTAINMENT_LINK = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Link_4023"); //$NON-NLS-1$
 
+	/**
+	 * The containment relation is also based on this Link from the Class Diagram
+	 */
+	public static final IHintedType ADDED_LINK = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Added_Link_4022"); //$NON-NLS-1$
+
 }

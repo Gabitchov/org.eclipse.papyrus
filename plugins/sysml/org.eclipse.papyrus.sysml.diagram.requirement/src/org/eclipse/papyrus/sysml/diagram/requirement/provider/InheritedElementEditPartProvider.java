@@ -9,8 +9,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.requirement.provider;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpart.CreateGraphicEditPartOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpart.IEditPartOperation;
 import org.eclipse.gmf.runtime.notation.View;
@@ -37,13 +37,21 @@ public class InheritedElementEditPartProvider extends CUMLEditPartProvider {
 	public synchronized boolean provides(IOperation operation) {
 		if(operation instanceof CreateGraphicEditPartOperation) {
 			View view = ((IEditPartOperation)operation).getView();
+
+			// Ensure current diagram is an InternalBlock Diagram
 			if(!RequirementDiagramEditPart.DIAGRAM_ID.equals(view.getDiagram().getType())) {
 				return false;
 			}
-			IGraphicalEditPart part = createEditPart(view);
-			if(part != null) {
+
+			// Test for supported inherited types for related accepted nodes and edges
+			EObject eobject = view.getElement();
+			if((eobject instanceof org.eclipse.uml2.uml.Class) || (eobject instanceof org.eclipse.uml2.uml.Package) || (eobject instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.ContainmentCircleEditPart)) {
 				return true;
 			}
+			if((eobject instanceof org.eclipse.uml2.uml.Association) || (eobject instanceof org.eclipse.uml2.uml.Abstraction) || (eobject instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.ContainmentLinkEditPart) || (eobject instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.AddedLinkEditPart) || (eobject instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.AbstractionEditPart)) {
+				return true;
+			}
+
 		}
 		return false;
 	}

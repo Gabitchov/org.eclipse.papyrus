@@ -22,6 +22,7 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLViewProvider;
+import org.eclipse.papyrus.sysml.diagram.requirement.Activator;
 import org.eclipse.papyrus.sysml.diagram.requirement.Messages;
 import org.eclipse.papyrus.sysml.diagram.requirement.edit.part.RequirementDiagramEditPart;
 
@@ -48,6 +49,11 @@ public class InheritedElementViewProvider extends UMLViewProvider {
 		// This provider is registered for Requirement Diagram for Abstraction usage (Satisfy, Verify, Copy links)
 		IElementType elementType = (IElementType)op.getSemanticAdapter().getAdapter(IElementType.class);
 		if(elementType == RequirementDiagramElementTypes.ABSTRACTION) {
+			return true;
+		}
+
+		// This provider is registered for Requirement Diagram for Added Link (for containment) usage
+		if(elementType == RequirementDiagramElementTypes.ADDED_LINK) {
 			return true;
 		}
 
@@ -102,7 +108,6 @@ public class InheritedElementViewProvider extends UMLViewProvider {
 			return true;
 		}
 
-
 		// else : unknown element
 		return false;
 
@@ -117,7 +122,7 @@ public class InheritedElementViewProvider extends UMLViewProvider {
 		}
 
 		// SemanticHint may be null when the element is created indirectly by
-		// DND from model explorer
+		// DND (Drag And Drop) from model explorer
 		EObject eobject = (EObject)semanticAdapter.getAdapter(EObject.class);
 		if(eobject instanceof org.eclipse.uml2.uml.Package) {
 			return super.createNode(semanticAdapter, containerView, RequirementDiagramElementTypes.PACKAGE.getSemanticHint(), index, persisted, preferencesHint);
@@ -125,8 +130,8 @@ public class InheritedElementViewProvider extends UMLViewProvider {
 			return super.createNode(semanticAdapter, containerView, RequirementDiagramElementTypes.CLASS_TOP_NODE.getSemanticHint(), index, persisted, preferencesHint);
 		}
 
-
-		// Log a warning here
+		// Log a warning here when the DND is done on elements that are not allowed in the selected diagram/view
+		Activator.log.warn(Messages.No_View_Can_Be_Created);
 		return null;
 
 	}

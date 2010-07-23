@@ -38,12 +38,7 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String SysMLEditPartFactory_CreateEditPart_Null_Result;
-
-	/**
-	 * @generated
-	 */
-	public static String Unable_To_Create_View_For_Hint;
+	public static String No_EditPart_Can_Be_Created;
 
 	/**
 	 * @generated
@@ -55,6 +50,10 @@ public class Messages extends NLS {
 	 */
 	public static String Model_ID;
 
+	/**
+	 * @generated
+	 */
+	public static String No_View_Can_Be_Created;
 
 	/**
 	 * @generated

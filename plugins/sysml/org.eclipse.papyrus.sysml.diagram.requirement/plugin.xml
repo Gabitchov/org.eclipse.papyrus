@@ -129,7 +129,7 @@
                viewClass="org.eclipse.gmf.runtime.notation.Node"></context>
           <!-- Handlers for abstraction (4006) and for containement (4023) -->
          <context
-               semanticHints="4006, 4023"
+               semanticHints="4006, 4022, 4023"
                viewClass="org.eclipse.gmf.runtime.notation.Edge">
          </context>
       </viewProvider>
@@ -162,7 +162,7 @@
                id="inherited-edges">
             <method
                   name="getType()"
-                  value="4006, 4023">
+                  value="4006, 4022, 4023">
             </method>
          </object>
       </editpartProvider>
@@ -237,7 +237,7 @@
             category="org.eclipse.papyrus.preferences.diagrams"
             class="org.eclipse.papyrus.sysml.diagram.requirement.preferences.RequirementDiagramGeneralPreferencePage"
             id="org.eclipse.papyrus.sysml.diagram.requirement.preferences"
-            name="Requirement Diagram">
+            name="PapyrusSysMLRequirement Diagram">
       </page>
       
       	<!-- Not yet supported individually by diagrams (see https://bugs.eclipse.org/bugs/show_bug.cgi?id=318865)
