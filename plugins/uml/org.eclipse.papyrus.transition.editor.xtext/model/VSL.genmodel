@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.papyrus.marte.vsl/src-gen"
+    editDirectory="/org.eclipse.papyrus.marte.vsl.edit/src" editorDirectory="/org.eclipse.papyrus.marte.vsl.editor/src"
+    modelPluginID="org.eclipse.papyrus.marte.vsl" forceOverwrite="true" modelName="VSL"
+    updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    complianceLevel="5.0" copyrightFields="false" editPluginID="org.eclipse.papyrus.marte.vsl.edit"
+    editorPluginID="org.eclipse.papyrus.marte.vsl.editor" usedGenPackages="../../../../../../model/UML.genmodel#//uml">
+  <genPackages prefix="VSL" basePackage="org.eclipse.papyrus.marte.vsl" resource="XML"
+      disposableProviderFactory="true" ecorePackage="VSL.ecore#/">
+    <genClasses ecoreClass="VSL.ecore#//Model">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//Model/imports"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//Model/context"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//Model/value"/>
+    </genClasses>
+    <genClasses ecoreClass="VSL.ecore#//Import">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VSL.ecore#//Import/importURI"/>
+    </genClasses>
+    <genClasses ecoreClass="VSL.ecore#//Context">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference VSL.ecore#//Context/context"/>
+    </genClasses>
+    <genClasses ecoreClass="VSL.ecore#//Expression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//Expression/exp"/>
+    </genClasses>
+    <genClasses ecoreClass="VSL.ecore#//AndOrXorExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//AndOrXorExpression/exp"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VSL.ecore#//AndOrXorExpression/op"/>
+    </genClasses>
+    <genClasses ecoreClass="VSL.ecore#//EqualityExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//EqualityExpression/exp"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VSL.ecore#//EqualityExpression/op"/>
+    </genClasses>
+    <genClasses ecoreClass="VSL.ecore#//RelationalExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//RelationalExpression/exp"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VSL.ecore#//RelationalExpression/op"/>
+    </genClasses>
+    <genClasses ecoreClass="VSL.ecore#//ConditionalExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//ConditionalExpression/exp"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VSL.ecore#//ConditionalExpression/op"/>
+    </genClasses>
+    <genClasses ecoreClass="VSL.ecore#//AdditiveExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//AdditiveExpression/exp"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VSL.ecore#//AdditiveExpression/op"/>
+    </genClasses>
+    <genClasses ecoreClass="VSL.ecore#//MultiplicativeExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//MultiplicativeExpression/exp"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VSL.ecore#//MultiplicativeExpression/op"/>
+    </genClasses>
+    <genClasses ecoreClass="VSL.ecore#//UnaryExpression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VSL.ecore#//UnaryExpression/op"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//UnaryExpression/unary"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//UnaryExpression/exp"/>
+    </genClasses>
+    <genClasses ecoreClass="VSL.ecore#//PrimaryExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//PrimaryExpression/prefix"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//PrimaryExpression/suffix"/>
+    </genClasses>
+    <genClasses ecoreClass="VSL.ecore#//ValueSpecification"/>
+    <genClasses ecoreClass="VSL.ecore#//OperationCallExpression">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference VSL.ecore#//OperationCallExpression/operation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//OperationCallExpression/arguments"/>
+    </genClasses>
+    <genClasses ecoreClass="VSL.ecore#//Literal">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VSL.ecore#//Literal/value"/>
+    </genClasses>
+    <genClasses ecoreClass="VSL.ecore#//Name">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//Name/path"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference VSL.ecore#//Name/id"/>
+    </genClasses>
+    <genClasses ecoreClass="VSL.ecore#//QualifiedName">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference VSL.ecore#//QualifiedName/path"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//QualifiedName/remaining"/>
+    </genClasses>
+    <genClasses ecoreClass="VSL.ecore#//Interval">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VSL.ecore#//Interval/isLowerIncluded"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//Interval/lower"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//Interval/upper"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VSL.ecore#//Interval/isUpperIncluded"/>
+    </genClasses>
+    <genClasses ecoreClass="VSL.ecore#//CollectionOrTuple">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//CollectionOrTuple/listOfValues"/>
+    </genClasses>
+    <genClasses ecoreClass="VSL.ecore#//Tuple">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//Tuple/listOfValueNamePairs"/>
+    </genClasses>
+    <genClasses ecoreClass="VSL.ecore#//Choice">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference VSL.ecore#//Choice/chosenAlternative"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//Choice/value"/>
+    </genClasses>
+    <genClasses ecoreClass="VSL.ecore#//ListOfValues">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//ListOfValues/values"/>
+    </genClasses>
+    <genClasses ecoreClass="VSL.ecore#//ListOfValueNamePairs">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//ListOfValueNamePairs/valueNamePairs"/>
+    </genClasses>
+    <genClasses ecoreClass="VSL.ecore#//ValueNamePair">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference VSL.ecore#//ValueNamePair/property"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//ValueNamePair/value"/>
+    </genClasses>
+    <genClasses ecoreClass="VSL.ecore#//TimeExpression"/>
+    <genClasses ecoreClass="VSL.ecore#//InstantObsExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//InstantObsExpression/id"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//InstantObsExpression/index"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//InstantObsExpression/condition"/>
+    </genClasses>
+    <genClasses ecoreClass="VSL.ecore#//InstantObsName">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference VSL.ecore#//InstantObsName/path"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference VSL.ecore#//InstantObsName/instantId"/>
+    </genClasses>
+    <genClasses ecoreClass="VSL.ecore#//DurationObsExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//DurationObsExpression/id"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//DurationObsExpression/index"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//DurationObsExpression/condition"/>
+    </genClasses>
+    <genClasses ecoreClass="VSL.ecore#//DurationObsName">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference VSL.ecore#//DurationObsName/path"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference VSL.ecore#//DurationObsName/durationId"/>
+    </genClasses>
+    <genClasses ecoreClass="VSL.ecore#//JitterExp">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//JitterExp/firstInstant"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//JitterExp/secondInstant"/>
+    </genClasses>
+    <genClasses ecoreClass="VSL.ecore#//VariableDeclaration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VSL.ecore#//VariableDeclaration/variableDeclaration"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VSL.ecore#//VariableDeclaration/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//VariableDeclaration/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//VariableDeclaration/initValue"/>
+    </genClasses>
+    <genClasses ecoreClass="VSL.ecore#//DataTypeName">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference VSL.ecore#//DataTypeName/path"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference VSL.ecore#//DataTypeName/type"/>
+    </genClasses>
+    <genClasses ecoreClass="VSL.ecore#//NumberLiteralRule"/>
+    <genClasses ecoreClass="VSL.ecore#//IntegerLiteralRule"/>
+    <genClasses ecoreClass="VSL.ecore#//UnlimitedLiteralRule"/>
+    <genClasses ecoreClass="VSL.ecore#//RealLiteralRule"/>
+    <genClasses ecoreClass="VSL.ecore#//DateTimeLiteralRule"/>
+    <genClasses ecoreClass="VSL.ecore#//BooleanLiteralRule"/>
+    <genClasses ecoreClass="VSL.ecore#//NullLiteralRule"/>
+    <genClasses ecoreClass="VSL.ecore#//DefaultLiteralRule"/>
+    <genClasses ecoreClass="VSL.ecore#//StringLiteralRule"/>
+  </genPackages>
+</genmodel:GenModel>
