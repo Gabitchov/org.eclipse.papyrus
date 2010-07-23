@@ -242,6 +242,7 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 	 * It doesn't work on other kind of IEditor. It introduce problems in IEditor of other kinds
 	 * 
 	 * @see org.eclipse.papyrus.sasheditor.editor.ISashWindowsContainer#isDirty()
+	 * @deprecated A SaveAndDirtyService is used instead.
 	 */
 	@Override
 	public boolean isDirty() {
@@ -264,6 +265,7 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 	 * 
 	 * TODO Move this method aways. This method is too tightly coupled to the Papyrus GMF UML IEditor.
 	 * It doesn't work on other kind of IEditor. It introduce problems in IEditor of other kinds
+	 * @deprecated A SaveAndDirtyService is used instead.
 	 */
 	protected void markSaveLocation() {
 		//		return sashContainer.isDirty();
