@@ -16,3 +16,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.uml.service.creation;bundle-version="0.7.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
+Export-Package: org.eclipse.papyrus.sysml.service.creation,
+ org.eclipse.papyrus.sysml.service.creation.advice,
+ org.eclipse.papyrus.sysml.service.creation.element,
+ org.eclipse.papyrus.sysml.service.creation.handler,
+ org.eclipse.papyrus.sysml.service.creation.matcher
