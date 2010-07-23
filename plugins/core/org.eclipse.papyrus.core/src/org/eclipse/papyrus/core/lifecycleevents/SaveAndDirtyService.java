@@ -176,7 +176,6 @@ public class SaveAndDirtyService extends LifeCycleEventsProvider implements ISav
 	 * @param servicesRegistry
 	 * @throws ServiceException
 	 */
-	@Override
 	public void init(ServicesRegistry servicesRegistry) throws ServiceException {
 
 		this.servicesRegistry = servicesRegistry;
@@ -200,7 +199,6 @@ public class SaveAndDirtyService extends LifeCycleEventsProvider implements ISav
 	 * 
 	 * @throws ServiceException
 	 */
-	@Override
 	public void startService() throws ServiceException {
 
 		// Listen to the modifications of the EMF model
@@ -215,7 +213,6 @@ public class SaveAndDirtyService extends LifeCycleEventsProvider implements ISav
 	 * 
 	 * @throws ServiceException
 	 */
-	@Override
 	public void disposeService() throws ServiceException {
 		if(transactionalEditingDomain != null) {
 			transactionalEditingDomain.getCommandStack().removeCommandStackListener(commandStackListener);
@@ -230,7 +227,6 @@ public class SaveAndDirtyService extends LifeCycleEventsProvider implements ISav
 	 * 
 	 * @param monitor
 	 */
-	@Override
 	public void doSave(IProgressMonitor monitor) {
 		// Sent pre doSave event
 		lifeCycleEventsProvider.fireAboutToDoSaveEvent(lifeCycleEvent);
@@ -258,7 +254,6 @@ public class SaveAndDirtyService extends LifeCycleEventsProvider implements ISav
 	 * @see org.eclipse.ui.ISaveablePart#doSaveAs()
 	 * 
 	 */
-	@Override
 	public void doSaveAs() {
 		// Sent pre doSave event
 		lifeCycleEventsProvider.fireAboutToDoSaveAsEvent(lifeCycleEvent);
@@ -353,19 +348,16 @@ public class SaveAndDirtyService extends LifeCycleEventsProvider implements ISav
 	 * <li></li>
 	 * <li></li>
 	 * </ul>
-	 * If one of these states is false, the returned value is false.
-	 * <br>
+	 * If one of these states is false, the returned value is false. <br>
 	 * If all of these states are true, the returned value is true.
 	 * 
 	 * @see org.eclipse.ui.ISaveablePart#isDirty()
 	 * 
 	 * @return
 	 */
-	@Override
 	public boolean isDirty() {
 		// First, look if the model part (EMF) is dirty, else look at the Graphical part (GEF/GMF)
-		return ((BasicCommandStack)transactionalEditingDomain.getCommandStack()).isSaveNeeded()
-				|| registeredIsaveablePart.isDirty();
+		return ((BasicCommandStack)transactionalEditingDomain.getCommandStack()).isSaveNeeded() || registeredIsaveablePart.isDirty();
 	}
 
 	/**
@@ -373,7 +365,6 @@ public class SaveAndDirtyService extends LifeCycleEventsProvider implements ISav
 	 * 
 	 * @return
 	 */
-	@Override
 	public boolean isSaveAsAllowed() {
 		return true;
 	}
@@ -383,7 +374,6 @@ public class SaveAndDirtyService extends LifeCycleEventsProvider implements ISav
 	 * 
 	 * @return
 	 */
-	@Override
 	public boolean isSaveOnCloseNeeded() {
 		return isDirty();
 	}
