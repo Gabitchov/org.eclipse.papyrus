@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.gmt.modisco.infra.common.core,
+ org.eclipse.gmt.modisco.infra.query.core,
+ org.eclipse.uml2.uml,
+ org.eclipse.papyrus.sysml,
+ org.eclipse.swt,
+ org.eclipse.papyrus.diagram.common
+Bundle-Vendor: %providerName
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .,bin
+Bundle-Version: 0.7.0.qualifier
+Bundle-Name: %pluginName
+Bundle-Activator: org.eclipse.papyrus.sysml.modelexplorer.Activator
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.sysml.modelexplorer;singleton
+ :=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/2.1.0/UML" xmi:id="_RzX4UAisEd6_MpEAxXq7Hg" name="ClassDiagramEditorTest">
+  <ownedComment xmi:id="_hyN6oAisEd6X-5NwKztg_w">
+    <body>The purpose if this model is to test the class diagram editor.&#xD;
+Each package focuses on testing one element.</body>
+  </ownedComment>
+  <packagedElement xmi:type="uml:Package" xmi:id="_yYZpwAisEd6X-5NwKztg_w" name="ClassElementTest">
+    <ownedComment xmi:id="_IPpp4AitEd6X-5NwKztg_w">
+      <body>The prupose is to test:&#xD;
+	- creation with undo redo&#xD;
+	- graphical deletion with undo redo&#xD;
+	-model deletion with undo redo</body>
+    </ownedComment>
+    <ownedComment xmi:id="_LwSEwAi9Ed67XriYtPXATQ">
+      <body>The purpose is to test here the resizing and the movement of the element in each direction.&#xD;
+</body>
+    </ownedComment>
+    <ownedComment xmi:id="_shM9IAi9Ed67XriYtPXATQ">
+      <body>The purpose is to test the movement of the element into a container with undo redo</body>
+    </ownedComment>
+    <ownedComment xmi:id="_IVCQcAi-Ed67XriYtPXATQ">
+      <body>The purpose is to test the drop of element from the model explorer with undo redo</body>
+    </ownedComment>
+    <packagedElement xmi:type="uml:Class" xmi:id="_Z3mkwAi9Ed67XriYtPXATQ" name="ClassToTest"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_0c5oYAi9Ed67XriYtPXATQ" name="Container"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_gHVR4AjHEd6G3Oli81IDTQ" name="CommentElementTest">
+    <ownedComment xmi:id="_nXz14AjHEd6G3Oli81IDTQ">
+      <body>The prupose is to test:&#xD;
+	- creation with undo redo&#xD;
+	- graphical deletion with undo redo&#xD;
+	-model deletion with undo redo</body>
+    </ownedComment>
+    <ownedComment xmi:id="_nXz14QjHEd6G3Oli81IDTQ">
+      <body>The purpose is to test here the resizing and the movement of the element in each direction.&#xD;
+</body>
+    </ownedComment>
+    <ownedComment xmi:id="_nXz14gjHEd6G3Oli81IDTQ">
+      <body>The purpose is to test the drop of element from the model explorer with undo redo</body>
+    </ownedComment>
+    <ownedComment xmi:id="_nXz14wjHEd6G3Oli81IDTQ">
+      <body>Name: test of move on Element&#xD;
+Goal: test the movement of a Comment into a container, including undo/redo.&#xD;
+Actions:&#xD;
+a1 - move the yellow comment element into the package called Container.&#xD;
+a2 - undo and redo.&#xD;
+Comments:&#xD;
+N/A.</body>
+    </ownedComment>
+    <ownedComment xmi:id="_lYQmsAjMEd6s1Ji8suGDvw">
+      <body>I am the Comment model element to use for this test.</body>
+    </ownedComment>
+    <packagedElement xmi:type="uml:Package" xmi:id="_UKsZYAjKEd6s1Ji8suGDvw" name="Container"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_nFXIEAjUEd6s1Ji8suGDvw" name="ComponentElementTest">
+    <ownedComment xmi:id="_nFXIEQjUEd6s1Ji8suGDvw">
+      <body>The purpose is to test:&#xD;
+	- creation with undo redo&#xD;
+	- graphical deletion with undo redo&#xD;
+	- model deletion with undo redo</body>
+    </ownedComment>
+    <ownedComment xmi:id="_nFXIEgjUEd6s1Ji8suGDvw">
+      <body>The purpose is to test here the resizing and the movement of the element in each direction.&#xD;
+</body>
+    </ownedComment>
+    <ownedComment xmi:id="_nFXIEwjUEd6s1Ji8suGDvw">
+      <body>The purpose is to test the movement of the element into a container with undo redo</body>
+    </ownedComment>
+    <ownedComment xmi:id="_nFXIFAjUEd6s1Ji8suGDvw">
+      <body>The purpose is to test the drop of element from the model explorer with undo redo</body>
+    </ownedComment>
+    <packagedElement xmi:type="uml:Package" xmi:id="_nFXIFgjUEd6s1Ji8suGDvw" name="Container"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_rkCLcAjXEd6s1Ji8suGDvw" name="ComponentToTest"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_USWtUAjaEd6ftJNsxnHJwA" name="ConstraintElementTest">
+    <ownedComment xmi:id="_USWtUQjaEd6ftJNsxnHJwA">
+      <body>The purpose is to test:&#xD;
+	- creation with undo redo&#xD;
+	- graphical deletion with undo redo&#xD;
+	- model deletion with undo redo</body>
+    </ownedComment>
+    <ownedComment xmi:id="_USWtUgjaEd6ftJNsxnHJwA">
+      <body>The purpose is to test here the resizing and the movement of the element in each direction.&#xD;
+Action:&#xD;
+	- resize in all directions&#xD;
+	- move the element&#xD;
+</body>
+    </ownedComment>
+    <ownedComment xmi:id="_USWtUwjaEd6ftJNsxnHJwA">
+      <body>Name: test of move on Element&#xD;
+Goal: test the movement of an element into a container, including undo/redo.&#xD;
+Actions:&#xD;
+a1 - move the yellow element into the package called Container.&#xD;
+a2 - undo and redo.</body>
+    </ownedComment>
+    <ownedComment xmi:id="_USWtVAjaEd6ftJNsxnHJwA">
+      <body>The purpose is to test the drop of element from the model explorer with undo redo</body>
+    </ownedComment>
+    <packagedElement xmi:type="uml:Package" xmi:id="_USWtVQjaEd6ftJNsxnHJwA" name="Container"/>
+    <packagedElement xmi:type="uml:Constraint" xmi:id="_uZbj4AjaEd6ftJNsxnHJwA" name="ConstraintToTest"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_eY9UcAjbEd6ftJNsxnHJwA" name="DataTypeElementTest">
+    <ownedComment xmi:id="_eY9UcQjbEd6ftJNsxnHJwA">
+      <body>Name: creation deletion test&#xD;
+Goal :The purpose is to test the creation, graphical deletion, model deletion&#xD;
+Action:&#xD;
+	a. create the element with undo redo&#xD;
+	b. delete from model with undo redo&#xD;
+	c. do a graphical deletion with undo redo</body>
+    </ownedComment>
+    <ownedComment xmi:id="_eY9UcgjbEd6ftJNsxnHJwA">
+      <body>Name: movement and resizing element,&#xD;
+Goal: The purpose is to test here the resizing and the movement of the element in each direction.&#xD;
+Action:&#xD;
+	a. resize in all directions&#xD;
+	b. move the element</body>
+    </ownedComment>
+    <ownedComment xmi:id="_eY9UcwjbEd6ftJNsxnHJwA">
+      <body>Name: test of move on Element&#xD;
+Goal: test the movement of an element into a container, including undo/redo.&#xD;
+Actions:&#xD;
+a1 - move the  element into the package called Container.&#xD;
+a2 - undo and redo.</body>
+    </ownedComment>
+    <ownedComment xmi:id="_eY9UdAjbEd6ftJNsxnHJwA">
+      <body>Name: Drop Test&#xD;
+Goal: The purpose is to test the drop of element from the model explorer&#xD;
+Actions:&#xD;
+	a. drop the element&#xD;
+	b. undo and redo</body>
+    </ownedComment>
+    <packagedElement xmi:type="uml:Package" xmi:id="_eY9UdQjbEd6ftJNsxnHJwA" name="Container"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="_l6Rw0AjbEd6ftJNsxnHJwA" name="DataTypeToTest"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_xrkYIAjcEd6ftJNsxnHJwA" name="EnumerationElementTest">
+    <ownedComment xmi:id="_xrkYIQjcEd6ftJNsxnHJwA">
+      <body>Name: creation deletion test&#xD;
+Goal :The purpose is to test the creation, graphical deletion, model deletion&#xD;
+Action:&#xD;
+	a. create the element with undo redo&#xD;
+	b. delete from model with undo redo&#xD;
+	c. do a graphical deletion with undo redo</body>
+    </ownedComment>
+    <ownedComment xmi:id="_xrkYIgjcEd6ftJNsxnHJwA">
+      <body>Name: movement and resizing element,&#xD;
+Goal: The purpose is to test here the resizing and the movement of the element in each direction.&#xD;
+Action:&#xD;
+	a. resize in all directions&#xD;
+	b. move the element</body>
+    </ownedComment>
+    <ownedComment xmi:id="_xrkYIwjcEd6ftJNsxnHJwA">
+      <body>Name: test of move on Element&#xD;
+Goal: test the movement of an element into a container, including undo/redo.&#xD;
+Actions:&#xD;
+a1 - move the  element into the package called Container.&#xD;
+a2 - undo and redo.</body>
+    </ownedComment>
+    <ownedComment xmi:id="_xrkYJAjcEd6ftJNsxnHJwA">
+      <body>Name: Drop Test&#xD;
+Goal: The purpose is to test the drop of element from the model explorer&#xD;
+Actions:&#xD;
+	a. drop the element&#xD;
+	b. undo and redo</body>
+    </ownedComment>
+    <packagedElement xmi:type="uml:Package" xmi:id="_xrkYJQjcEd6ftJNsxnHJwA" name="Container"/>
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_GtLwwAjdEd6ftJNsxnHJwA" name="EnumerationToTest"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_uL594AjdEd6M04pHOkSelQ" name="EnumerationLiteralElementTest">
+    <ownedComment xmi:id="_uL594QjdEd6M04pHOkSelQ">
+      <body>Name: creation deletion test of &#xD;
+ennumeration&#xD;
+Goal :The purpose is to test the creation, graphical deletion, model deletion&#xD;
+Action:&#xD;
+	a. create the element with undo redo&#xD;
+	b. delete from model with undo redo&#xD;
+	c. do a graphical deletion with undo redo</body>
+    </ownedComment>
+    <ownedComment xmi:id="_uL594gjdEd6M04pHOkSelQ">
+      <body>Name: movement&#xD;
+Goal: The purpose is to test here the movement of the element in his container.&#xD;
+Action:&#xD;
+	a. move the element in the list</body>
+    </ownedComment>
+    <ownedComment xmi:id="_uL594wjdEd6M04pHOkSelQ">
+      <body>Name: test of move on Element&#xD;
+Goal: test the movement of an element into a container, including undo/redo.&#xD;
+Actions:&#xD;
+a1 - move the  element into the enumeration called Container.&#xD;
+a2 - undo and redo.</body>
+    </ownedComment>
+    <ownedComment xmi:id="_uL595AjdEd6M04pHOkSelQ">
+      <body>Name: Drop Test&#xD;
+Goal: The purpose is to test the drop of element from the model explorer&#xD;
+Actions:&#xD;
+	a. drop the element&#xD;
+	b. undo and redo</body>
+    </ownedComment>
+    <packagedElement xmi:type="uml:Package" xmi:id="_uL595QjdEd6M04pHOkSelQ" name="Container"/>
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_uL595gjdEd6M04pHOkSelQ" name="Enumeration">
+      <ownedLiteral xmi:id="_GecUsAjeEd6M04pHOkSelQ" name="EnumerationLiteral0"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_VvWBAAjgEd6M04pHOkSelQ" name="Enumeration0">
+      <ownedLiteral xmi:id="_XBvdAAjgEd6M04pHOkSelQ" name="EnumerationLiteralToMove"/>
+      <ownedLiteral xmi:id="_XX89kAjgEd6M04pHOkSelQ" name="EnumerationLiteral1"/>
+      <ownedLiteral xmi:id="_XvWJ4AjgEd6M04pHOkSelQ" name="EnumerationLiteral2"/>
+      <ownedLiteral xmi:id="_YC3i0AjgEd6M04pHOkSelQ" name="EnumerationLiteral3"/>
+      <ownedLiteral xmi:id="_YVye0AjgEd6M04pHOkSelQ" name="EnumerationLiteral4"/>
+      <ownedLiteral xmi:id="_YvbG0AjgEd6M04pHOkSelQ" name="EnumerationLiteral5"/>
+      <ownedLiteral xmi:id="_ZCo9wAjgEd6M04pHOkSelQ" name="EnumerationLiteral6"/>
+      <ownedLiteral xmi:id="_Za7h8AjgEd6M04pHOkSelQ" name="EnumerationLiteral7"/>
+      <ownedLiteral xmi:id="_ZwilkAjgEd6M04pHOkSelQ" name="EnumerationLiteral8"/>
+      <ownedLiteral xmi:id="_nvRU0AjhEd6tRLTiTp-cYA" name="EnumerationLiteral0"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_tU5gkAjhEd6tRLTiTp-cYA" name="Container"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_eAmaoAjiEd6tRLTiTp-cYA" name="InstanceSpecificationElementTest">
+    <ownedComment xmi:id="_pLatQAjiEd6tRLTiTp-cYA">
+      <body>Name: creation deletion test&#xD;
+Goal :The purpose is to test the creation, graphical deletion, model deletion&#xD;
+Action:&#xD;
+	a. create the element with undo redo&#xD;
+	b. delete from model with undo redo&#xD;
+	c. do a graphical deletion with undo redo</body>
+    </ownedComment>
+    <ownedComment xmi:id="_pLatQQjiEd6tRLTiTp-cYA">
+      <body>Name: Drop Test&#xD;
+Goal: The purpose is to test the drop of element from the model explorer&#xD;
+Actions:&#xD;
+	a. drop the element&#xD;
+	b. undo and redo</body>
+    </ownedComment>
+    <ownedComment xmi:id="_pLatQgjiEd6tRLTiTp-cYA">
+      <body>Name: movement and resizing element,&#xD;
+Goal: The purpose is to test here the resizing and the movement of the element in each direction.&#xD;
+Action:&#xD;
+	a. resize in all directions&#xD;
+	b. move the element</body>
+    </ownedComment>
+    <ownedComment xmi:id="_pLatQwjiEd6tRLTiTp-cYA">
+      <body>Name: test of move on Element&#xD;
+Goal: test the movement of an element into a container, including undo/redo.&#xD;
+Actions:&#xD;
+a1 - move the  element into the package called Container.&#xD;
+a2 - undo and redo.</body>
+    </ownedComment>
+    <packagedElement xmi:type="uml:Package" xmi:id="_eAmapQjiEd6tRLTiTp-cYA" name="Container"/>
+    <packagedElement xmi:type="uml:Constraint" xmi:id="_eAmapgjiEd6tRLTiTp-cYA" name="ConstraintToTest"/>
+    <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_q6uuwAjiEd6tRLTiTp-cYA" name="InstanceSpecificationToTest"/>
+  </packagedElement>
+  <profileApplication xmi:id="_RzX4UQisEd6_MpEAxXq7Hg">
+    <eAnnotations xmi:id="_RzX4UgisEd6_MpEAxXq7Hg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w"/>
+    </eAnnotations>
+    <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+  </profileApplication>
+</uml:Model>

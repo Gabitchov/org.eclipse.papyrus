@@ -1,0 +1,239 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.papyrus.core" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appInfo>
+         <meta.schema plugin="org.eclipse.papyrus.core" id="service" name="Service"/>
+      </appInfo>
+      <documentation>
+         Define a Service used by Papyrus Editors. 
+A service can be shared across editors. It can be used as a shared object between editors.
+Some services are used to load models, provide factories, ...
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appInfo>
+            <meta.element />
+         </appInfo>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="service" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="serviceFactory" minOccurs="0" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appInfo>
+                  <meta.attribute translatable="true"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="service">
+      <annotation>
+         <documentation>
+            A service that should be registered to the ServicesRegistry.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence minOccurs="0" maxOccurs="unbounded">
+            <element ref="dependsOn"/>
+         </sequence>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  The key used to retrieve the service from the ServiceRegistry. 
+If not set (default), the classname is used as key.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="classname" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Name of the class implementing the service.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.core.services.IService"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="priority" type="string" use="default" value="1">
+            <annotation>
+               <documentation>
+                  Priority used when two services are registered under the same key. The service with the higher prority is used.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="startKind" use="default" value="lazy">
+            <annotation>
+               <documentation>
+                  Specify how the service is started:
+lazy: when the service is requested.
+startup: started when the Registry is about to finish its initialization.
+               </documentation>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="lazy">
+                  </enumeration>
+                  <enumeration value="startup">
+                  </enumeration>
+               </restriction>
+            </simpleType>
+         </attribute>
+         <attribute name="description" type="string">
+            <annotation>
+               <documentation>
+                  A human readable description
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="serviceFactory">
+      <annotation>
+         <documentation>
+            A service factory that should be registered to the ServicesRegistry.
+The factory is used to create the service. The factory receive all the services event, and take incharge to forward them to the service.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence minOccurs="0" maxOccurs="unbounded">
+            <element ref="dependsOn"/>
+         </sequence>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  The key used to retrieve the service from the ServiceRegistry. 
+If not set (default), the classname is used as key.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="classname" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Name of the class implementing the service.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.core.services.IServiceFactory"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="priority" type="string" use="default" value="1">
+            <annotation>
+               <documentation>
+                  Priority used when two services are registered under the same key. The service with the higher prority is used.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="startKind" use="default" value="lazy">
+            <annotation>
+               <documentation>
+                  Specify how the service is started:
+lazy: when the service is requested.
+startup: started when the Registry is about to finish its initialization.
+               </documentation>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="lazy">
+                  </enumeration>
+                  <enumeration value="startup">
+                  </enumeration>
+               </restriction>
+            </simpleType>
+         </attribute>
+         <attribute name="description" type="string">
+            <annotation>
+               <documentation>
+                  A human readable description
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="dependsOn">
+      <annotation>
+         <documentation>
+            Allows to express dependancies needed before starting the surrounding service.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="serviceKeyRef" type="string">
+            <annotation>
+               <documentation>
+                  Key of the service on which the surrounding service depends.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="description" type="string">
+            <annotation>
+               <documentation>
+                  A human readable description
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="since"/>
+      </appInfo>
+      <documentation>
+         [Enter the first release in which this extension point appears.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="examples"/>
+      </appInfo>
+      <documentation>
+         [Enter extension point usage example here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="apiinfo"/>
+      </appInfo>
+      <documentation>
+         [Enter API information here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="implementation"/>
+      </appInfo>
+      <documentation>
+         [Enter information about supplied implementation of this extension point.]
+      </documentation>
+   </annotation>
+
+
+</schema>

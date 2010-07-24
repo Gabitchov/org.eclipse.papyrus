@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            name="Sash Windows Simple Editor"
+            extensions="simpleEditor"
+            icon="icons/sample.gif"
+            contributorClass="org.eclipse.papyrus.example.sashwindows.simpleeditor.editors.MultiPageEditorContributor"
+            class="org.eclipse.papyrus.example.sashwindows.simpleeditor.editors.SimpleTextMultiPageEditor"
+            id="org.eclipse.papyrus.example.sashwindows.SimpleEditor">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            name="Sash Windows Examples"
+            id="org.eclipse.papyrus.example.sashwindows">
+      </category>
+      <wizard
+            name="Sash Windows Simple Editor"
+            icon="icons/sample.gif"
+            category="org.eclipse.papyrus.example.sashwindows"
+            class="org.eclipse.papyrus.example.sashwindows.simpleeditor.wizards.MultiPageEditorNewWizard"
+            id="org.eclipse.papyrus.example.sashwindows.wizards.SimpleEditor">
+      </wizard>
+   </extension>
+
+</plugin>

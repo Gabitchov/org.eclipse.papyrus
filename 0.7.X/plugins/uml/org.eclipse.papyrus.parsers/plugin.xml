@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.extensionpoints.editors.DirectEditor">
+      <DirectEditor
+            contributor="CEA LIST"
+            editorConfiguration="org.eclipse.papyrus.parsers.texteditor.propertylabel.PropertyConfigurationForUML"
+            icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
+            language="Papyrus UML"
+            objectToEdit="org.eclipse.uml2.uml.Property">
+         <simpleeditor
+               editorConfiguration="org.eclipse.papyrus.parsers.texteditor.propertylabel.PropertyConfigurationForUML">
+         </simpleeditor>
+      </DirectEditor>
+      <DirectEditor
+            contributor="CEA LIST"
+            editorConfiguration="org.eclipse.papyrus.parsers.texteditor.propertylabel.PropertyConfigurationForUML"
+            icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Port.gif"
+            language="Papyrus UML"
+            objectToEdit="org.eclipse.uml2.uml.Port">
+         <simpleeditor
+               editorConfiguration="org.eclipse.papyrus.parsers.texteditor.propertylabel.PropertyConfigurationForUML">
+         </simpleeditor>
+      </DirectEditor>
+      <DirectEditor
+            contributor="CEA LIST"
+            editorConfiguration="org.eclipse.papyrus.parsers.texteditor.collaborationuselabel.CollaborationUseConfigurationForUML"
+            icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CollaborationUse.gif"
+            language="Papyrus UML"
+            objectToEdit="org.eclipse.uml2.uml.CollaborationUse">
+         <simpleeditor
+               editorConfiguration="org.eclipse.papyrus.parsers.texteditor.collaborationuselabel.CollaborationUseConfigurationForUML">
+         </simpleeditor>
+      </DirectEditor>
+      <DirectEditor
+            contributor="CEA LIST"
+            editorConfiguration="org.eclipse.papyrus.parsers.texteditor.parameterlabel.ParameterConfigurationForUML"
+            icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Parameter.gif"
+            language="Papyrus UML"
+            objectToEdit="org.eclipse.uml2.uml.Parameter">
+         <simpleeditor
+               editorConfiguration="org.eclipse.papyrus.parsers.texteditor.parameterlabel.ParameterConfigurationForUML">
+         </simpleeditor>
+      </DirectEditor>
+   </extension>
+   <!--
+   <extension
+         point="org.eclipse.papyrus.extensionpoints.editors.DirectEditor">
+      <DirectEditor
+            editorConfiguration="com.cea.papyrus.classdiagram.parsers.texteditor.propertylabel.PropertyConfigurationForUML"
+            language="UML"
+            objectToEdit="org.eclipse.uml2.uml.Property">
+      </DirectEditor>
+   </extension>
+	-->
+
+</plugin>

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension"
+            class="org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage"
+            genModel="model/papyrusGmfgenExtension.genmodel"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+
+            <objectContribution
+            adaptable="true"
+            id="org.eclipse.papyrus.papyrusgmfgenextension.popupactions"
+            objectClass="org.eclipse.emf.ecore.EObject">
+                    <menu
+                          icon="icons/PapyrusLogo16x16.gif"
+                          id="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus"
+                          label="Papyrus GMFGen Tools"
+                          path="papyrus">
+                    </menu>
+                    <action
+                          class="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddNodeQualifiedNameBehavior"
+                          enablesFor="*"
+                          id="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddNodeQualifiedNameBehavior"
+                          label="Add behavior to display qualified name"
+                          menubarPath="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus/AddNodeQualifiedNameBehavior">
+                       <enablement>
+                          <objectClass
+                                name="org.eclipse.gmf.codegen.gmfgen.GenNode">
+                          </objectClass>
+                       </enablement>
+                    </action>
+                 <action
+                       class="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddNodeStereotypeDisplayBehavior"
+                       enablesFor="*"
+                       id="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddNodeStereotypeDisplayBehavior"
+                       label="Add behavior to display applied stereotype for a node"
+                       menubarPath="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus/AddNodeStereotypeDisplayBehavior">
+                    <enablement>
+                       <objectClass
+                             name="org.eclipse.gmf.codegen.gmfgen.GenNode">
+                       </objectClass>
+                    </enablement>
+                 </action>
+                 <action
+                       class="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddNodeShowHideCompartmentBehavior"
+                       enablesFor="*"
+                       id="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddNodeShowHideBehavior"
+                       label="Add behavior to show/hide compartments"
+                       menubarPath="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus/AddNodeShowHideBehavior">
+                    <enablement>
+                       <objectClass
+                             name="org.eclipse.gmf.codegen.gmfgen.GenNode">
+                       </objectClass>
+                    </enablement>
+                 </action>
+               
+                 <action
+               class="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddGenLinkStereotypeDisplayBehavior"
+               enablesFor="*"
+               id="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddGenLinkStereotypeDisplayBehavior"
+               label="Add label to display applied stereotype for a link"
+               menubarPath="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus/AddGenLinkStereotypeDisplayBehavior">
+                    <enablement>
+                       <objectClass
+                             name="org.eclipse.gmf.codegen.gmfgen.GenLink">
+                       </objectClass>
+                    </enablement>
+         </action>
+                 <action
+                       class="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddExternalNodeStereotypeDisplayBehavior"
+                       enablesFor="*"
+                       id="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddExternalNodeStereotypeDisplayBehavior"
+                       label="Add label to display applied stereotype as an external node label"
+                       menubarPath="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus/AddExternalNodeStereotypeDisplayBehavior">
+                    <enablement>
+                       <objectClass
+                             name="org.eclipse.gmf.codegen.gmfgen.GenNode">
+                       </objectClass>
+                    </enablement>
+                 </action>
+                 <action
+                       class="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddHyperLinkPopupBarBehavior"
+                       enablesFor="*"
+                       id="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddHyperLinkPopupBarBehavior"
+                       label="Add hyperlink PopupBar Behavior"
+                       menubarPath="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus/AddHyperLinkPopupBarBehavior">
+                    <enablement>
+                       <objectClass
+                             name="org.eclipse.gmf.codegen.gmfgen.GenNode">
+                       </objectClass>
+                    </enablement>
+                 </action>
+                          <action
+               class="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.SetVisualIDWithUnusedValue"
+               enablesFor="*"
+               id="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.SetVisualIDWithUnusedValue"
+               label="Set VisualID with unused value"
+               menubarPath="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus/SetVisualIDWithUnusedValue">
+                    <enablement>
+                       <objectClass
+                             name="org.eclipse.gmf.codegen.gmfgen.GenCommonBase">
+                       </objectClass>
+                    </enablement>
+         </action>
+                          <action
+                                class="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddSmallAndLargeIconForPaletteAction"
+                                enablesFor="*"
+                                icon="icons/palette_view.gif"
+                                id="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.addsmallandlargeiconstopalette"
+                                label="Add Icons to Palette Elements"
+                                menubarPath="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus/iconsManagement">
+                             <enablement>
+                                <or>
+                                   <objectClass
+                                         name="org.eclipse.gmf.codegen.gmfgen.ToolGroup">
+                                   </objectClass>
+                                   <objectClass
+                                         name="org.eclipse.gmf.codegen.gmfgen.Palette">
+                                   </objectClass>
+                                   <objectClass
+                                         name="org.eclipse.gmf.codegen.gmfgen.ToolEntry">
+                                   </objectClass>
+                                </or>
+                             </enablement>
+                          </action>
+                          <action
+                                class="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddOrUpdateCommentEditParts"
+                                enablesFor="*"
+                                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
+                                id="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddOrUpdateCommentEditParts"
+                                label="Update Comments For multi label management"
+                                menubarPath="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus/AddOrUpdateCommentEditParts">
+                             <enablement>
+                                <objectClass
+                                      name="org.eclipse.gmf.codegen.gmfgen.GenEditorGenerator">
+                                </objectClass>
+                             </enablement>
+                          </action>
+                          <action
+                                class="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddDefaultNamedElementAction"
+                                enablesFor="*"
+                                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif"
+                                id="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddDefaultNamedElementAction"
+                                label="Add DefaultNamedElement EditPart"
+                                menubarPath="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus/AddHyperLinkPopupBarBehavior">
+                             <enablement>
+                                <or>
+                                   <objectClass
+                                         name="org.eclipse.gmf.codegen.gmfgen.GenEditorGenerator">
+                                   </objectClass>
+                                   <objectClass
+                                         name="org.eclipse.gmf.codegen.gmfgen.GenDiagram">
+                                   </objectClass>
+                                </or>
+                             </enablement>
+                          </action>
+                          <action
+                                class="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddShapeNamedElementAction"
+                                enablesFor="*"
+                                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Image.gif"
+                                id="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddShapeNamedElementAction"
+                                label="Add ShapeNamedElement EditPart"
+                                menubarPath="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus/AddHyperLinkPopupBarBehavior">
+                             <enablement>
+                                <or>
+                                   <objectClass
+                                         name="org.eclipse.gmf.codegen.gmfgen.GenEditorGenerator">
+                                   </objectClass>
+                                   <objectClass
+                                         name="org.eclipse.gmf.codegen.gmfgen.GenDiagram">
+                                   </objectClass>
+                                </or>
+                             </enablement>
+                          </action>
+      </objectContribution>
+   </extension>
+
+</plugin>

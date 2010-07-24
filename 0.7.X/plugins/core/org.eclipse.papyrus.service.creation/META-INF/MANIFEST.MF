@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.papyrus.service.creation;singleton:=true
+Bundle-Version: 0.7.0.qualifier
+Bundle-Activator: org.eclipse.papyrus.service.creation.Activator
+Bundle-Vendor: %providerName
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.papyrus.core;bundle-version="0.7.0";visibility:=reexport
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy
+Export-Package: org.eclipse.papyrus.service.creation,
+ org.eclipse.papyrus.service.creation.utils

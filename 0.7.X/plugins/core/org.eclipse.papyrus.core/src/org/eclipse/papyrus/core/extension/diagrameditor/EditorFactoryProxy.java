@@ -1,0 +1,107 @@
+/**
+ * 
+ */
+package org.eclipse.papyrus.core.extension.diagrameditor;
+
+import org.eclipse.papyrus.core.editorsfactory.IEditorFactory;
+import org.eclipse.papyrus.core.services.ServicesRegistry;
+import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
+
+
+/**
+ * A proxy implementation of {@link IEditorFactory} used to do lazy instantiation 
+ * of concrete {@link IPluggableEditorFactory}.
+ * This class is used by the {@link PluggableEditorFactoryReader}
+ * 
+ * @author cedric dumoulin
+ *
+ */
+public class EditorFactoryProxy implements IEditorFactory {
+
+	/**
+	 * The concrete implementation.
+	 */
+	private IPluggableEditorFactory editorFactory;
+	
+	/**
+	 * EditorDescriptor associated to the factory.
+	 */
+	protected EditorDescriptor editorDescriptor;
+
+	/**
+	 * ServiceRegistry that can be provided to created editors.
+	 */
+	private ServicesRegistry serviceRegistry;
+
+	/**
+	 * Constructor.
+	 *
+	 * @param serviceRegistry
+	 * @param editorDescriptor
+	 */
+	public EditorFactoryProxy(ServicesRegistry serviceRegistry, EditorDescriptor editorDescriptor) {
+		this.serviceRegistry = serviceRegistry;
+		this.editorDescriptor = editorDescriptor;
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.core.editorsfactory.IEditorFactory#createIPageModel(java.lang.Object)
+	 *
+	 * @param pageIdentifier
+	 * @return
+	 */
+	public IPageModel createIPageModel(Object pageIdentifier) {
+		return getEditorFactory().createIPageModel(pageIdentifier);
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.core.editorsfactory.IEditorFactory#isPageModelFactoryFor(java.lang.Object)
+	 *
+	 * @param pageIdentifier
+	 * @return
+	 */
+	public boolean isPageModelFactoryFor(Object pageIdentifier) {
+		return getEditorFactory().isPageModelFactoryFor(pageIdentifier);
+	}
+
+	
+	/**
+	 * @return the editorFactory
+	 */
+	protected IPluggableEditorFactory getEditorFactory() {
+		
+		if(editorFactory == null)
+		{
+			editorFactory = createEditorFactory();
+		}
+		
+		return editorFactory;
+		
+	}
+
+	/**
+	 * Create an instance of IPluggableEditorFactory as described in the editorDescriptor.
+	 * TODO let propagate the exceptions.
+	 * @return
+	 */
+	private IPluggableEditorFactory createEditorFactory() {
+		// Create the requested class.
+		try {
+			editorFactory = editorDescriptor.getEditorFactoryClass().newInstance();
+			// Set the descriptor. USed by the factory to get the ActionBarId and Icon
+			editorFactory.init(serviceRegistry,  editorDescriptor);
+			return editorFactory;
+		} catch (InstantiationException e) {
+			// Lets propagate. This is an implementation problem that should be
+			// solved by programmer.
+			throw new RuntimeException(e);
+		} catch (IllegalAccessException e) {
+			// Lets propagate. This is an implementation problem that should be
+			// solved by programmer.
+			throw new RuntimeException(e);
+		}
+
+	}
+
+	
+}

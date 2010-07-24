@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: HorizontalAlgorithm Plug-in
+Bundle-SymbolicName: org.eclipse.papyrus.layouttool.algorithms.horizontalAlgorithm;singleton:=true
+Bundle-Version: 0.7.0.qualifier
+Bundle-Activator: org.eclipse.papyrus.layouttool.algorithms.horizontalalgorithm.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.zest.layouts,
+ org.eclipse.papyrus.layouttool
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Vendor: Atos Origin

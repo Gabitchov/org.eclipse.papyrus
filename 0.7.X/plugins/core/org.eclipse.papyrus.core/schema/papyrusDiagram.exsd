@@ -1,0 +1,301 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="papyrus.gmf.multipages" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appinfo>
+         <meta.schema plugin="papyrus.gmf.multipages" id="nestedEditor" name="NestedEditor"/>
+      </appinfo>
+      <documentation>
+         Define a nested editor descriptor. This descriptor is used to add instance of the described editor to a multi diagram editor.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="editorDiagram" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="creationCommand" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="actionBarContributor" minOccurs="0" maxOccurs="unbounded"/>
+			<element ref="diagramCategory" minOccurs="0" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="editorDiagram">
+      <annotation>
+         <documentation>
+            A diagram suitable for Papyrus backbone.
+Such diagram is a Eclipse Editor.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="factoryClass" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The factory used to create an instance of the editor.
+The factory must implements org.eclipse.papyrus.sasheditor.extension.IEditorFactory
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.core.extension.diagrameditor.IPluggableEditorFactory"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="actionBarContributorId" type="string">
+            <annotation>
+               <documentation>
+                  ID of the ActionBarContributor requested by the editor.
+The ID must match a declared ActionBarContributor.
+If no ID is set, the main ActionBarContributor is used (the one associated to the MultiEditor).
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="icon" type="string">
+            <annotation>
+               <documentation>
+                  The icon representing the diagram. (use in outline tree)
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="resource"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="actionBarContributor">
+      <annotation>
+         <documentation>
+            An ActionBarContributor that can be associated to Editors or Views.
+An ActionBarContributor can be shared among several Editors or Views.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Id of the ActionBarContributor. Use to associate the ActionBarContributor to editors.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="implementingClass" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The class implementing the ActionBarContributor.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn="org.eclipse.ui.part.EditorActionBarContributor:"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="creationCommand">
+      <annotation>
+         <documentation>
+            A creation command used to create a new diagram.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Id of the creation command.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="identifier" basedOn="org.eclipse.ui.commands/command/@id"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="label" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Label of the creation command.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="creationCommandClass" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The class implementing the context.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.core.extension.commands.ICreationCommand"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="icon" type="string">
+            <annotation>
+               <documentation>
+                  The icon representing the command.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="resource"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="creationCondition" type="string">
+            <annotation>
+               <documentation>
+                  this condition is evaluated at diagram creation menu and if the method returning boolean in the interface returns false then the diagram will not be available
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.core.extension.commands.ICreationCondition"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="language" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="identifier" basedOn="org.eclipse.papyrus.core.papyrusDiagram/@id"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="diagramCategory">
+      <annotation>
+         <documentation>
+            The language, e.g. UML, SysML, Profile, etc... The language is used to put different kinds of diagrams into categories and to filter model templates.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The id of the diagram category. It is used to filter model templates and diagram kinds.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  A creation command class used to create a newdomain model for the given category.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.core.extension.commands.IModelCreationCommand"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="extensionPrefix" type="string">
+            <annotation>
+               <documentation>
+                  The file extension
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="label" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="description" type="string">
+            <annotation>
+               <documentation>
+                  Description of the diagram category is to be displayed next ti its label in UI.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="icon" type="string">
+            <annotation>
+               <documentation>
+                  The icon representing the diagram category.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="resource"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="since"/>
+      </appinfo>
+      <documentation>
+         [Enter the first release in which this extension point appears.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="examples"/>
+      </appinfo>
+      <documentation>
+         [Enter extension point usage example here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="apiInfo"/>
+      </appinfo>
+      <documentation>
+         [Enter API information here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="implementation"/>
+      </appinfo>
+      <documentation>
+         [Enter information about supplied implementation of this extension point.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="copyright"/>
+      </appinfo>
+      <documentation>
+         /*******************************************************************************
+ * Copyright (c) 2008 CEA List.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     CEA List - initial API and implementation
+ *******************************************************************************/
+      </documentation>
+   </annotation>
+
+</schema>

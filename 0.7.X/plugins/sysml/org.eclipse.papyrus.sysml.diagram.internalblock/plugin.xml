@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+<!-- Diagram declaration -->
+<extension point="org.eclipse.papyrus.core.papyrusDiagram">
+	<creationCommand
+		creationCommandClass="org.eclipse.papyrus.sysml.diagram.internalblock.InternalBlockDiagramCreateCommand"
+		icon="icons/obj16/Diagram_InternalBlock.gif"
+		id="org.eclipse.papyrus.sysml.diagram.internalblock.CreateCommand"
+		language="sysml"
+		label="SysML Internal Block Diagram"/>
+	<editorDiagram
+		actionBarContributorId="org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor"
+		factoryClass="org.eclipse.papyrus.sysml.diagram.internalblock.InternalBlockDiagramEditorFactory"
+		icon="icons/obj16/Diagram_InternalBlock.gif" />
+</extension>
+
+<!-- Diagram creation command and handler -->
+<extension point="org.eclipse.ui.commands">
+	<command id="org.eclipse.papyrus.sysml.diagram.internalblock.CreateCommand"
+		name="Create a new Internal Block Diagram"
+		description="Create a new Internal Block Diagram"
+		categoryId="org.eclipse.papyrus.editor.category"/>
+</extension>
+
+<extension point="org.eclipse.ui.handlers">
+	<handler
+		class="org.eclipse.papyrus.sysml.diagram.internalblock.InternalBlockDiagramCreateCommand"
+		commandId="org.eclipse.papyrus.sysml.diagram.internalblock.CreateCommand">
+		<activeWhen>
+			<with variable="activeEditorId">
+				<equals value="org.eclipse.papyrus.core.papyrusEditor" />
+			</with>
+		</activeWhen>
+	</handler>
+</extension>
+
+<!-- Diagram creation command registration in menu and toolbar -->
+<extension point="org.eclipse.ui.menus">
+
+	<menuContribution locationURI="menu:org.eclipse.papyrus.ui.menu">
+	<menu id="org.eclipse.papyrus.diagram.ui.menu.diagrams" label="Diagrams">
+		<command commandId="org.eclipse.papyrus.sysml.diagram.internalblock.CreateCommand"
+			icon="icons/obj16/Diagram_InternalBlock.gif" label="Create a new Internal Block Diagram"
+			style="push" tooltip="Create a new Internal Block Diagram">
+			<visibleWhen>
+				<with variable="activeEditorId">
+					<equals value="org.eclipse.papyrus.core.papyrusEditor" />
+				</with>
+			</visibleWhen>
+		</command>
+	</menu>
+	</menuContribution>
+	
+	<menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar">
+	<toolbar id="org.eclipse.papyrus.diagram.ui.toolbar">
+		<command commandId="org.eclipse.papyrus.sysml.diagram.internalblock.CreateCommand"
+			icon="icons/obj16/Diagram_InternalBlock.gif" label="Create a new Internal Block Diagram"
+			style="push" tooltip="Create a new Internal Block Diagram">
+			<visibleWhen>
+				<with variable="activeEditorId">
+					<equals value="org.eclipse.papyrus.core.papyrusEditor" />
+				</with>
+			</visibleWhen>
+		</command>
+	</toolbar>
+	</menuContribution>
+</extension>
+
+<!-- Palette tool declaration (declares the real palette containment) -->
+<extension point="org.eclipse.papyrus.diagram.common.paletteDefinition"
+	name="SysML_IBD">
+	
+	<paletteDefinition ID="SysML_IBD"
+		class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
+		name="IBD" icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif" 
+		path="palettes/internalblock.palette.xml"
+		provider="CEA LIST">
+		<Priority name="Low"/>
+		
+		<!-- Specify diagram this palette tools relate to -->						
+		<editor id="org.eclipse.papyrus.sysml.diagram.internalblock"/>
+	</paletteDefinition>
+</extension>
+
+<!-- Diagram view providers declaration -->
+<extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders">
+
+	<!-- Diagram view provider -->
+	<viewProvider class="org.eclipse.papyrus.sysml.diagram.internalblock.provider.InternalBlockDiagramViewProvider">
+		<Priority name="Low"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="InternalBlock"/>
+	</viewProvider>
+
+	<!-- ViewProvider for inherited elements (from CompositeStructureDiagramm UMLViewProvider) -->
+	<viewProvider class="org.eclipse.papyrus.sysml.diagram.internalblock.provider.InheritedElementViewProvider">
+		<Priority name="Low"/>
+		<!-- 
+			"2073, 3085" = Class
+			"3070"       = Property
+			"3069"       = Port										
+		  -->			
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2073, 3085, 3070, 3069"/>
+		<!-- 
+			"4013" = Connector											
+		  -->		
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4013"/>
+	</viewProvider>
+	
+</extension>
+
+<!-- Diagram edit part providers declaration -->
+<extension point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders">
+
+	<!-- Diagram edit part provider -->
+	<editpartProvider class="org.eclipse.papyrus.sysml.diagram.internalblock.provider.InternalBlockDiagramEditPartProvider">
+		<Priority name="Low"/>
+		<object 
+			id="org.eclipse.papyrus.sysml.diagram.internalblock.Diagram"
+			class="org.eclipse.gmf.runtime.notation.Diagram">
+			<method name="getType()" value="InternalBlock"/>
+		</object>
+	</editpartProvider>
+	
+	<!-- EditPartProvider for inherited elements (from CompositeStructureDiagram) -->
+	<editpartProvider class="org.eclipse.papyrus.sysml.diagram.internalblock.provider.InheritedElementEditPartProvider">
+		<Priority name="Low"/>
+		
+		<!-- 
+			The semantic hints given here are used in case the provider is not already loaded.
+			As soon as the provider is loaded its provides method is used.
+			"2073" = Class
+			"5156" = Class composite name label
+			"7073" = Class composite compartment
+			"3085" = Class (Child Node)
+			"5155" = Class (Child Node) composite name label
+			"7060" = Class (Child Node) composite compartment
+			"3070" = Property (part)
+			"5126" = Property (part) name label
+			"7077" = Property (part) compartment
+			"3069" = Port 
+			"5125" = Port name label 
+			"6029" = Port applied stereotype label -->			
+		<object
+			id="ClassComposite"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="2073, 5156, 7073, 3085, 5155, 7060"/>
+		</object>
+		<object
+			id="PropertyPart"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3070, 5126, 7077"/>
+		</object>
+		<object
+			id="Port"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3069, 5125, 6029"/>
+		</object>
+
+		<!-- 
+			"4013" = Connector
+			"6029" = Connector applied stereotype label -->					
+		<object
+			id="Connector"
+			class="org.eclipse.gmf.runtime.notation.Edge">
+			<method name="getType()" value="4013, 6025"/>
+		</object>
+		<context views="ClassComposite, PropertyPart, Port"/>
+		<context views="Connector"/>
+	</editpartProvider>
+	
+</extension>
+
+<!-- Diagram edit policy provider -->	
+<extension
+	point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
+	<editpolicyProvider
+		class="org.eclipse.papyrus.sysml.diagram.internalblock.provider.InheritedElementEditPolicyProvider">
+		<Priority name="Low"/>
+	</editpolicyProvider>
+</extension>
+
+<!-- Preference pages declaration -->
+<extension point="org.eclipse.ui.preferencePages" id="prefpages">
+
+	<!-- Diagram Preference pages declaration -->
+	<page
+		id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences"
+		name="Internal Block Diagram"
+		category="org.eclipse.papyrus.preferences.diagrams"
+		class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.DiagramGeneralPreferencePage">
+	</page>
+
+	<!-- Not yet supported individually by diagrams (see https://bugs.eclipse.org/bugs/show_bug.cgi?id=318865)
+	<page
+		id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.DiagramPrintingPreferencePage"
+		name="Printing"
+		category="org.eclipse.papyrus.sysml.diagram.internalblock.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.DiagramPrintingPreferencePage">
+	</page>
+
+	<page
+		id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.DiagramRulersAndGridPreferencePage"
+		name="Rulers and Grid"
+		category="org.eclipse.papyrus.sysml.diagram.internalblock.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.DiagramRulersAndGridPreferencePage">
+	</page>
+	  -->
+
+	<!-- Element Preference pages declaration -->
+	<page  	category="org.eclipse.papyrus.sysml.diagram.internalblock.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.BlockPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.BlockPreferencePage"
+		name="Class">
+	</page>
+
+	<page  	category="org.eclipse.papyrus.sysml.diagram.internalblock.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.PropertyPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.PropertyPreferencePage"
+		name="Property">
+	</page>
+	
+	<page  	category="org.eclipse.papyrus.sysml.diagram.internalblock.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.PortPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.PortPreferencePage"
+		name="Port">
+	</page>	
+
+	<page  	category="org.eclipse.papyrus.sysml.diagram.internalblock.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.ConnectorPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.ConnectorPreferencePage"
+		name="Connector">
+	</page>	
+	
+</extension>
+   
+</plugin>

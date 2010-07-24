@@ -1,0 +1,8 @@
+Complete the base editor with requested methods
+Separate model management in its own class
+	- crud
+	- change listener ?
+	- define provided services
+Separate UML and graphic models management ?
+Try editor with no registered diagrams
+Try to register a Papyrus diagram

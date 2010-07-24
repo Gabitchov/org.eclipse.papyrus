@@ -1,0 +1,3254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+	<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
+		<metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+			<metamodelType eclass="Comment" id="org.eclipse.papyrus.uml.Comment"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Comment">
+				<param name="semanticHint" value="UML::Comment">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="Package" id="org.eclipse.papyrus.uml.Package"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Package">
+				<param name="semanticHint" value="UML::Package">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="Dependency"
+				id="org.eclipse.papyrus.uml.Dependency"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Dependency">
+				<param name="semanticHint" value="UML::Dependency">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="ElementImport"
+				id="org.eclipse.papyrus.uml.ElementImport"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::ElementImport">
+				<param name="semanticHint" value="UML::ElementImport">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="PackageImport"
+				id="org.eclipse.papyrus.uml.PackageImport"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::PackageImport">
+				<param name="semanticHint" value="UML::PackageImport">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="Constraint"
+				id="org.eclipse.papyrus.uml.Constraint"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Constraint">
+				<param name="semanticHint" value="UML::Constraint">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="Association"
+				id="org.eclipse.papyrus.uml.Association"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Association">
+				<param name="semanticHint" value="UML::Association">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="TemplateBinding"
+				id="org.eclipse.papyrus.uml.TemplateBinding"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::TemplateBinding">
+				<param name="semanticHint" value="UML::TemplateBinding">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="TemplateSignature"
+				id="org.eclipse.papyrus.uml.TemplateSignature"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::TemplateSignature">
+				<param name="semanticHint" value="UML::TemplateSignature">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="TemplateParameter"
+				id="org.eclipse.papyrus.uml.TemplateParameter"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::TemplateParameter">
+				<param name="semanticHint" value="UML::TemplateParameter">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="TemplateParameterSubstitution"
+				id="org.eclipse.papyrus.uml.TemplateParameterSubstitution"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::TemplateParameterSubstitution">
+				<param name="semanticHint" value="UML::TemplateParameterSubstitution">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="Generalization"
+				id="org.eclipse.papyrus.uml.Generalization"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Generalization">
+				<param name="semanticHint" value="UML::Generalization">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="GeneralizationSet"
+				id="org.eclipse.papyrus.uml.GeneralizationSet"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::GeneralizationSet">
+				<param name="semanticHint" value="UML::GeneralizationSet">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="Substitution"
+				id="org.eclipse.papyrus.uml.Substitution"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Substitution">
+				<param name="semanticHint" value="UML::Substitution">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="Realization"
+				id="org.eclipse.papyrus.uml.Realization"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Realization">
+				<param name="semanticHint" value="UML::Realization">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="Abstraction"
+				id="org.eclipse.papyrus.uml.Abstraction"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Abstraction">
+				<param name="semanticHint" value="UML::Abstraction">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="OpaqueExpression"
+				id="org.eclipse.papyrus.uml.OpaqueExpression"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::OpaqueExpression">
+				<param name="semanticHint" value="UML::OpaqueExpression">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="Parameter"
+				id="org.eclipse.papyrus.uml.Parameter"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Parameter">
+				<param name="semanticHint" value="UML::Parameter">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="ConnectableElementTemplateParameter"
+				id="org.eclipse.papyrus.uml.ConnectableElementTemplateParameter"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::ConnectableElementTemplateParameter">
+				<param name="semanticHint" value="UML::ConnectableElementTemplateParameter">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="ConnectorEnd"
+				id="org.eclipse.papyrus.uml.ConnectorEnd"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::ConnectorEnd">
+				<param name="semanticHint" value="UML::ConnectorEnd">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="Property"
+				id="org.eclipse.papyrus.uml.Property"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Property">
+				<param name="semanticHint" value="UML::Property">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="Deployment"
+				id="org.eclipse.papyrus.uml.Deployment"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Deployment">
+				<param name="semanticHint" value="UML::Deployment">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="DeploymentSpecification"
+				id="org.eclipse.papyrus.uml.DeploymentSpecification"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::DeploymentSpecification">
+				<param name="semanticHint" value="UML::DeploymentSpecification">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="Artifact"
+				id="org.eclipse.papyrus.uml.Artifact"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Artifact">
+				<param name="semanticHint" value="UML::Artifact">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="Manifestation"
+				id="org.eclipse.papyrus.uml.Manifestation"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Manifestation">
+				<param name="semanticHint" value="UML::Manifestation">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="Operation"
+				id="org.eclipse.papyrus.uml.Operation"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Operation">
+				<param name="semanticHint" value="UML::Operation">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="Class" id="org.eclipse.papyrus.uml.Class"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Class">
+				<param name="semanticHint" value="UML::Class">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="InterfaceRealization"
+				id="org.eclipse.papyrus.uml.InterfaceRealization"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::InterfaceRealization">
+				<param name="semanticHint" value="UML::InterfaceRealization">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="Interface"
+				id="org.eclipse.papyrus.uml.Interface"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Interface">
+				<param name="semanticHint" value="UML::Interface">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="Reception"
+				id="org.eclipse.papyrus.uml.Reception"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Reception">
+				<param name="semanticHint" value="UML::Reception">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="Signal" id="org.eclipse.papyrus.uml.Signal"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Signal">
+				<param name="semanticHint" value="UML::Signal">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="ProtocolStateMachine"
+				id="org.eclipse.papyrus.uml.ProtocolStateMachine"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::ProtocolStateMachine">
+				<param name="semanticHint" value="UML::ProtocolStateMachine">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="StateMachine"
+				id="org.eclipse.papyrus.uml.StateMachine"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::StateMachine">
+				<param name="semanticHint" value="UML::StateMachine">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="Region" id="org.eclipse.papyrus.uml.Region"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Region">
+				<param name="semanticHint" value="UML::Region">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="Transition"
+				id="org.eclipse.papyrus.uml.Transition"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Transition">
+				<param name="semanticHint" value="UML::Transition">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="Trigger" id="org.eclipse.papyrus.uml.Trigger"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Trigger">
+				<param name="semanticHint" value="UML::Trigger">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="Port" id="org.eclipse.papyrus.uml.Port"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.PortEditHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Port">
+				<param name="semanticHint" value="UML::Port">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="State" id="org.eclipse.papyrus.uml.State"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::State">
+				<param name="semanticHint" value="UML::State">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="ConnectionPointReference"
+				id="org.eclipse.papyrus.uml.ConnectionPointReference"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::ConnectionPointReference">
+				<param name="semanticHint" value="UML::ConnectionPointReference">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="Pseudostate"
+				id="org.eclipse.papyrus.uml.Pseudostate"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Pseudostate">
+				<param name="semanticHint" value="UML::Pseudostate">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="ProtocolConformance"
+				id="org.eclipse.papyrus.uml.ProtocolConformance"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::ProtocolConformance">
+				<param name="semanticHint" value="UML::ProtocolConformance">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="Connector"
+				id="org.eclipse.papyrus.uml.Connector"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Connector">
+				<param name="semanticHint" value="UML::Connector">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="Extension"
+				id="org.eclipse.papyrus.uml.Extension"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Extension">
+				<param name="semanticHint" value="UML::Extension">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="ExtensionEnd"
+				id="org.eclipse.papyrus.uml.ExtensionEnd"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::ExtensionEnd">
+				<param name="semanticHint" value="UML::ExtensionEnd">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="Stereotype"
+				id="org.eclipse.papyrus.uml.Stereotype"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Stereotype">
+				<param name="semanticHint" value="UML::Stereotype">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="Image" id="org.eclipse.papyrus.uml.Image"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Image">
+				<param name="semanticHint" value="UML::Image">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="Profile" id="org.eclipse.papyrus.uml.Profile"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Profile">
+				<param name="semanticHint" value="UML::Profile">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="Model" id="org.eclipse.papyrus.uml.Model"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Model">
+				<param name="semanticHint" value="UML::Model">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="ParameterSet"
+				id="org.eclipse.papyrus.uml.ParameterSet"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::ParameterSet">
+				<param name="semanticHint" value="UML::ParameterSet">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="DataType"
+				id="org.eclipse.papyrus.uml.DataType"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::DataType">
+				<param name="semanticHint" value="UML::DataType">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="OperationTemplateParameter"
+				id="org.eclipse.papyrus.uml.OperationTemplateParameter"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::OperationTemplateParameter">
+				<param name="semanticHint" value="UML::OperationTemplateParameter">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="CollaborationUse"
+				id="org.eclipse.papyrus.uml.CollaborationUse"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::CollaborationUse">
+				<param name="semanticHint" value="UML::CollaborationUse">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="Collaboration"
+				id="org.eclipse.papyrus.uml.Collaboration"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Collaboration">
+				<param name="semanticHint" value="UML::Collaboration">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="UseCase" id="org.eclipse.papyrus.uml.UseCase"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::UseCase">
+				<param name="semanticHint" value="UML::UseCase">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="Include" id="org.eclipse.papyrus.uml.Include"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Include">
+				<param name="semanticHint" value="UML::Include">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="Extend" id="org.eclipse.papyrus.uml.Extend"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Extend">
+				<param name="semanticHint" value="UML::Extend">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="ExtensionPoint"
+				id="org.eclipse.papyrus.uml.ExtensionPoint"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::ExtensionPoint">
+				<param name="semanticHint" value="UML::ExtensionPoint">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="RedefinableTemplateSignature"
+				id="org.eclipse.papyrus.uml.RedefinableTemplateSignature"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::RedefinableTemplateSignature">
+				<param name="semanticHint" value="UML::RedefinableTemplateSignature">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="ClassifierTemplateParameter"
+				id="org.eclipse.papyrus.uml.ClassifierTemplateParameter"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::ClassifierTemplateParameter">
+				<param name="semanticHint" value="UML::ClassifierTemplateParameter">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="StringExpression"
+				id="org.eclipse.papyrus.uml.StringExpression"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::StringExpression">
+				<param name="semanticHint" value="UML::StringExpression">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="Expression"
+				id="org.eclipse.papyrus.uml.Expression"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Expression">
+				<param name="semanticHint" value="UML::Expression">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="Usage" id="org.eclipse.papyrus.uml.Usage"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Usage">
+				<param name="semanticHint" value="UML::Usage">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="PackageMerge"
+				id="org.eclipse.papyrus.uml.PackageMerge"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::PackageMerge">
+				<param name="semanticHint" value="UML::PackageMerge">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="ProfileApplication"
+				id="org.eclipse.papyrus.uml.ProfileApplication"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::ProfileApplication">
+				<param name="semanticHint" value="UML::ProfileApplication">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="Enumeration"
+				id="org.eclipse.papyrus.uml.Enumeration"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Enumeration">
+				<param name="semanticHint" value="UML::Enumeration">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="EnumerationLiteral"
+				id="org.eclipse.papyrus.uml.EnumerationLiteral"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::EnumerationLiteral">
+				<param name="semanticHint" value="UML::EnumerationLiteral">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="InstanceSpecification"
+				id="org.eclipse.papyrus.uml.InstanceSpecification"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::InstanceSpecification">
+				<param name="semanticHint" value="UML::InstanceSpecification">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="Slot" id="org.eclipse.papyrus.uml.Slot"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Slot">
+				<param name="semanticHint" value="UML::Slot">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="PrimitiveType"
+				id="org.eclipse.papyrus.uml.PrimitiveType"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::PrimitiveType">
+				<param name="semanticHint" value="UML::PrimitiveType">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="LiteralInteger"
+				id="org.eclipse.papyrus.uml.LiteralInteger"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::LiteralInteger">
+				<param name="semanticHint" value="UML::LiteralInteger">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="LiteralString"
+				id="org.eclipse.papyrus.uml.LiteralString"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::LiteralString">
+				<param name="semanticHint" value="UML::LiteralString">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="LiteralBoolean"
+				id="org.eclipse.papyrus.uml.LiteralBoolean"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::LiteralBoolean">
+				<param name="semanticHint" value="UML::LiteralBoolean">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="LiteralNull"
+				id="org.eclipse.papyrus.uml.LiteralNull"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::LiteralNull">
+				<param name="semanticHint" value="UML::LiteralNull">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="InstanceValue"
+				id="org.eclipse.papyrus.uml.InstanceValue"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::InstanceValue">
+				<param name="semanticHint" value="UML::InstanceValue">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="LiteralUnlimitedNatural"
+				id="org.eclipse.papyrus.uml.LiteralUnlimitedNatural"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::LiteralUnlimitedNatural">
+				<param name="semanticHint" value="UML::LiteralUnlimitedNatural">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="OpaqueBehavior"
+				id="org.eclipse.papyrus.uml.OpaqueBehavior"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::OpaqueBehavior">
+				<param name="semanticHint" value="UML::OpaqueBehavior">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="FunctionBehavior"
+				id="org.eclipse.papyrus.uml.FunctionBehavior"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::FunctionBehavior">
+				<param name="semanticHint" value="UML::FunctionBehavior">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="OpaqueAction"
+				id="org.eclipse.papyrus.uml.OpaqueAction"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::OpaqueAction">
+				<param name="semanticHint" value="UML::OpaqueAction">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="StructuredActivityNode"
+				id="org.eclipse.papyrus.uml.StructuredActivityNode"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::StructuredActivityNode">
+				<param name="semanticHint" value="UML::StructuredActivityNode">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="Activity"
+				id="org.eclipse.papyrus.uml.Activity"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Activity">
+				<param name="semanticHint" value="UML::Activity">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="Variable"
+				id="org.eclipse.papyrus.uml.Variable"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Variable">
+				<param name="semanticHint" value="UML::Variable">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="ActivityPartition"
+				id="org.eclipse.papyrus.uml.ActivityPartition"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::ActivityPartition">
+				<param name="semanticHint" value="UML::ActivityPartition">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="InterruptibleActivityRegion"
+				id="org.eclipse.papyrus.uml.InterruptibleActivityRegion"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::InterruptibleActivityRegion">
+				<param name="semanticHint" value="UML::InterruptibleActivityRegion">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="ExceptionHandler"
+				id="org.eclipse.papyrus.uml.ExceptionHandler"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::ExceptionHandler">
+				<param name="semanticHint" value="UML::ExceptionHandler">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="OutputPin"
+				id="org.eclipse.papyrus.uml.OutputPin"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::OutputPin">
+				<param name="semanticHint" value="UML::OutputPin">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="Pin" id="org.eclipse.papyrus.uml.Pin"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Pin">
+				<param name="semanticHint" value="UML::Pin">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="InputPin"
+				id="org.eclipse.papyrus.uml.InputPin"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::InputPin">
+				<param name="semanticHint" value="UML::InputPin">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="SendSignalAction"
+				id="org.eclipse.papyrus.uml.SendSignalAction"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::SendSignalAction">
+				<param name="semanticHint" value="UML::SendSignalAction">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="CallOperationAction"
+				id="org.eclipse.papyrus.uml.CallOperationAction"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::CallOperationAction">
+				<param name="semanticHint" value="UML::CallOperationAction">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="CallBehaviorAction"
+				id="org.eclipse.papyrus.uml.CallBehaviorAction"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::CallBehaviorAction">
+				<param name="semanticHint" value="UML::CallBehaviorAction">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="SequenceNode"
+				id="org.eclipse.papyrus.uml.SequenceNode"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::SequenceNode">
+				<param name="semanticHint" value="UML::SequenceNode">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="ControlFlow"
+				id="org.eclipse.papyrus.uml.ControlFlow"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::ControlFlow">
+				<param name="semanticHint" value="UML::ControlFlow">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="InitialNode"
+				id="org.eclipse.papyrus.uml.InitialNode"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::InitialNode">
+				<param name="semanticHint" value="UML::InitialNode">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="ActivityParameterNode"
+				id="org.eclipse.papyrus.uml.ActivityParameterNode"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::ActivityParameterNode">
+				<param name="semanticHint" value="UML::ActivityParameterNode">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="ValuePin"
+				id="org.eclipse.papyrus.uml.ValuePin"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::ValuePin">
+				<param name="semanticHint" value="UML::ValuePin">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="Message" id="org.eclipse.papyrus.uml.Message"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Message">
+				<param name="semanticHint" value="UML::Message">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="Interaction"
+				id="org.eclipse.papyrus.uml.Interaction"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Interaction">
+				<param name="semanticHint" value="UML::Interaction">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="Lifeline"
+				id="org.eclipse.papyrus.uml.Lifeline"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Lifeline">
+				<param name="semanticHint" value="UML::Lifeline">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="PartDecomposition"
+				id="org.eclipse.papyrus.uml.PartDecomposition"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::PartDecomposition">
+				<param name="semanticHint" value="UML::PartDecomposition">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="InteractionUse"
+				id="org.eclipse.papyrus.uml.InteractionUse"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::InteractionUse">
+				<param name="semanticHint" value="UML::InteractionUse">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="Gate" id="org.eclipse.papyrus.uml.Gate"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Gate">
+				<param name="semanticHint" value="UML::Gate">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="GeneralOrdering"
+				id="org.eclipse.papyrus.uml.GeneralOrdering"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::GeneralOrdering">
+				<param name="semanticHint" value="UML::GeneralOrdering">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="OccurrenceSpecification"
+				id="org.eclipse.papyrus.uml.OccurrenceSpecification"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::OccurrenceSpecification">
+				<param name="semanticHint" value="UML::OccurrenceSpecification">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="InteractionOperand"
+				id="org.eclipse.papyrus.uml.InteractionOperand"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::InteractionOperand">
+				<param name="semanticHint" value="UML::InteractionOperand">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="InteractionConstraint"
+				id="org.eclipse.papyrus.uml.InteractionConstraint"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::InteractionConstraint">
+				<param name="semanticHint" value="UML::InteractionConstraint">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="StateInvariant"
+				id="org.eclipse.papyrus.uml.StateInvariant"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::StateInvariant">
+				<param name="semanticHint" value="UML::StateInvariant">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="ActionExecutionSpecification"
+				id="org.eclipse.papyrus.uml.ActionExecutionSpecification"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::ActionExecutionSpecification">
+				<param name="semanticHint" value="UML::ActionExecutionSpecification">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="BehaviorExecutionSpecification"
+				id="org.eclipse.papyrus.uml.BehaviorExecutionSpecification"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::BehaviorExecutionSpecification">
+				<param name="semanticHint" value="UML::BehaviorExecutionSpecification">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="ExecutionEvent"
+				id="org.eclipse.papyrus.uml.ExecutionEvent"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::ExecutionEvent">
+				<param name="semanticHint" value="UML::ExecutionEvent">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="CreationEvent"
+				id="org.eclipse.papyrus.uml.CreationEvent"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::CreationEvent">
+				<param name="semanticHint" value="UML::CreationEvent">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="DestructionEvent"
+				id="org.eclipse.papyrus.uml.DestructionEvent"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::DestructionEvent">
+				<param name="semanticHint" value="UML::DestructionEvent">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="SendOperationEvent"
+				id="org.eclipse.papyrus.uml.SendOperationEvent"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::SendOperationEvent">
+				<param name="semanticHint" value="UML::SendOperationEvent">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="SendSignalEvent"
+				id="org.eclipse.papyrus.uml.SendSignalEvent"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::SendSignalEvent">
+				<param name="semanticHint" value="UML::SendSignalEvent">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="MessageOccurrenceSpecification"
+				id="org.eclipse.papyrus.uml.MessageOccurrenceSpecification"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::MessageOccurrenceSpecification">
+				<param name="semanticHint" value="UML::MessageOccurrenceSpecification">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="ExecutionOccurrenceSpecification"
+				id="org.eclipse.papyrus.uml.ExecutionOccurrenceSpecification"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::ExecutionOccurrenceSpecification">
+				<param name="semanticHint" value="UML::ExecutionOccurrenceSpecification">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="ReceiveOperationEvent"
+				id="org.eclipse.papyrus.uml.ReceiveOperationEvent"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::ReceiveOperationEvent">
+				<param name="semanticHint" value="UML::ReceiveOperationEvent">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="ReceiveSignalEvent"
+				id="org.eclipse.papyrus.uml.ReceiveSignalEvent"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::ReceiveSignalEvent">
+				<param name="semanticHint" value="UML::ReceiveSignalEvent">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="Actor" id="org.eclipse.papyrus.uml.Actor"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Actor">
+				<param name="semanticHint" value="UML::Actor">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="CallEvent"
+				id="org.eclipse.papyrus.uml.CallEvent"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::CallEvent">
+				<param name="semanticHint" value="UML::CallEvent">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="ChangeEvent"
+				id="org.eclipse.papyrus.uml.ChangeEvent"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::ChangeEvent">
+				<param name="semanticHint" value="UML::ChangeEvent">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="SignalEvent"
+				id="org.eclipse.papyrus.uml.SignalEvent"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::SignalEvent">
+				<param name="semanticHint" value="UML::SignalEvent">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="AnyReceiveEvent"
+				id="org.eclipse.papyrus.uml.AnyReceiveEvent"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::AnyReceiveEvent">
+				<param name="semanticHint" value="UML::AnyReceiveEvent">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="ForkNode"
+				id="org.eclipse.papyrus.uml.ForkNode"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::ForkNode">
+				<param name="semanticHint" value="UML::ForkNode">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="FlowFinalNode"
+				id="org.eclipse.papyrus.uml.FlowFinalNode"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::FlowFinalNode">
+				<param name="semanticHint" value="UML::FlowFinalNode">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="CentralBufferNode"
+				id="org.eclipse.papyrus.uml.CentralBufferNode"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::CentralBufferNode">
+				<param name="semanticHint" value="UML::CentralBufferNode">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="MergeNode"
+				id="org.eclipse.papyrus.uml.MergeNode"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::MergeNode">
+				<param name="semanticHint" value="UML::MergeNode">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="DecisionNode"
+				id="org.eclipse.papyrus.uml.DecisionNode"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::DecisionNode">
+				<param name="semanticHint" value="UML::DecisionNode">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="ActivityFinalNode"
+				id="org.eclipse.papyrus.uml.ActivityFinalNode"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::ActivityFinalNode">
+				<param name="semanticHint" value="UML::ActivityFinalNode">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="ComponentRealization"
+				id="org.eclipse.papyrus.uml.ComponentRealization"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::ComponentRealization">
+				<param name="semanticHint" value="UML::ComponentRealization">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="Component"
+				id="org.eclipse.papyrus.uml.Component"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Component">
+				<param name="semanticHint" value="UML::Component">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="Node" id="org.eclipse.papyrus.uml.Node"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Node">
+				<param name="semanticHint" value="UML::Node">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="Device" id="org.eclipse.papyrus.uml.Device"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Device">
+				<param name="semanticHint" value="UML::Device">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="ExecutionEnvironment"
+				id="org.eclipse.papyrus.uml.ExecutionEnvironment"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::ExecutionEnvironment">
+				<param name="semanticHint" value="UML::ExecutionEnvironment">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="CommunicationPath"
+				id="org.eclipse.papyrus.uml.CommunicationPath"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::CommunicationPath">
+				<param name="semanticHint" value="UML::CommunicationPath">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="CombinedFragment"
+				id="org.eclipse.papyrus.uml.CombinedFragment"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::CombinedFragment">
+				<param name="semanticHint" value="UML::CombinedFragment">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="Continuation"
+				id="org.eclipse.papyrus.uml.Continuation"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Continuation">
+				<param name="semanticHint" value="UML::Continuation">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="ConsiderIgnoreFragment"
+				id="org.eclipse.papyrus.uml.ConsiderIgnoreFragment"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::ConsiderIgnoreFragment">
+				<param name="semanticHint" value="UML::ConsiderIgnoreFragment">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="CreateObjectAction"
+				id="org.eclipse.papyrus.uml.CreateObjectAction"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::CreateObjectAction">
+				<param name="semanticHint" value="UML::CreateObjectAction">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="DestroyObjectAction"
+				id="org.eclipse.papyrus.uml.DestroyObjectAction"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::DestroyObjectAction">
+				<param name="semanticHint" value="UML::DestroyObjectAction">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="TestIdentityAction"
+				id="org.eclipse.papyrus.uml.TestIdentityAction"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::TestIdentityAction">
+				<param name="semanticHint" value="UML::TestIdentityAction">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="ReadSelfAction"
+				id="org.eclipse.papyrus.uml.ReadSelfAction"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::ReadSelfAction">
+				<param name="semanticHint" value="UML::ReadSelfAction">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="ReadStructuralFeatureAction"
+				id="org.eclipse.papyrus.uml.ReadStructuralFeatureAction"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::ReadStructuralFeatureAction">
+				<param name="semanticHint" value="UML::ReadStructuralFeatureAction">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="ClearStructuralFeatureAction"
+				id="org.eclipse.papyrus.uml.ClearStructuralFeatureAction"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::ClearStructuralFeatureAction">
+				<param name="semanticHint" value="UML::ClearStructuralFeatureAction">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="RemoveStructuralFeatureValueAction"
+				id="org.eclipse.papyrus.uml.RemoveStructuralFeatureValueAction"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::RemoveStructuralFeatureValueAction">
+				<param name="semanticHint" value="UML::RemoveStructuralFeatureValueAction">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="AddStructuralFeatureValueAction"
+				id="org.eclipse.papyrus.uml.AddStructuralFeatureValueAction"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::AddStructuralFeatureValueAction">
+				<param name="semanticHint" value="UML::AddStructuralFeatureValueAction">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="LinkEndData"
+				id="org.eclipse.papyrus.uml.LinkEndData"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::LinkEndData">
+				<param name="semanticHint" value="UML::LinkEndData">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="QualifierValue"
+				id="org.eclipse.papyrus.uml.QualifierValue"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::QualifierValue">
+				<param name="semanticHint" value="UML::QualifierValue">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="ReadLinkAction"
+				id="org.eclipse.papyrus.uml.ReadLinkAction"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::ReadLinkAction">
+				<param name="semanticHint" value="UML::ReadLinkAction">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="LinkEndCreationData"
+				id="org.eclipse.papyrus.uml.LinkEndCreationData"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::LinkEndCreationData">
+				<param name="semanticHint" value="UML::LinkEndCreationData">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="CreateLinkAction"
+				id="org.eclipse.papyrus.uml.CreateLinkAction"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::CreateLinkAction">
+				<param name="semanticHint" value="UML::CreateLinkAction">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="DestroyLinkAction"
+				id="org.eclipse.papyrus.uml.DestroyLinkAction"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::DestroyLinkAction">
+				<param name="semanticHint" value="UML::DestroyLinkAction">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="LinkEndDestructionData"
+				id="org.eclipse.papyrus.uml.LinkEndDestructionData"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::LinkEndDestructionData">
+				<param name="semanticHint" value="UML::LinkEndDestructionData">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="ClearAssociationAction"
+				id="org.eclipse.papyrus.uml.ClearAssociationAction"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::ClearAssociationAction">
+				<param name="semanticHint" value="UML::ClearAssociationAction">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="BroadcastSignalAction"
+				id="org.eclipse.papyrus.uml.BroadcastSignalAction"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::BroadcastSignalAction">
+				<param name="semanticHint" value="UML::BroadcastSignalAction">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="SendObjectAction"
+				id="org.eclipse.papyrus.uml.SendObjectAction"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::SendObjectAction">
+				<param name="semanticHint" value="UML::SendObjectAction">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="ValueSpecificationAction"
+				id="org.eclipse.papyrus.uml.ValueSpecificationAction"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::ValueSpecificationAction">
+				<param name="semanticHint" value="UML::ValueSpecificationAction">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="TimeExpression"
+				id="org.eclipse.papyrus.uml.TimeExpression"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::TimeExpression">
+				<param name="semanticHint" value="UML::TimeExpression">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="Duration"
+				id="org.eclipse.papyrus.uml.Duration"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Duration">
+				<param name="semanticHint" value="UML::Duration">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="DurationInterval"
+				id="org.eclipse.papyrus.uml.DurationInterval"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::DurationInterval">
+				<param name="semanticHint" value="UML::DurationInterval">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="Interval"
+				id="org.eclipse.papyrus.uml.Interval"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Interval">
+				<param name="semanticHint" value="UML::Interval">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="TimeConstraint"
+				id="org.eclipse.papyrus.uml.TimeConstraint"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::TimeConstraint">
+				<param name="semanticHint" value="UML::TimeConstraint">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="IntervalConstraint"
+				id="org.eclipse.papyrus.uml.IntervalConstraint"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::IntervalConstraint">
+				<param name="semanticHint" value="UML::IntervalConstraint">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="TimeInterval"
+				id="org.eclipse.papyrus.uml.TimeInterval"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::TimeInterval">
+				<param name="semanticHint" value="UML::TimeInterval">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="DurationConstraint"
+				id="org.eclipse.papyrus.uml.DurationConstraint"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::DurationConstraint">
+				<param name="semanticHint" value="UML::DurationConstraint">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="TimeObservation"
+				id="org.eclipse.papyrus.uml.TimeObservation"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::TimeObservation">
+				<param name="semanticHint" value="UML::TimeObservation">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="DurationObservation"
+				id="org.eclipse.papyrus.uml.DurationObservation"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::DurationObservation">
+				<param name="semanticHint" value="UML::DurationObservation">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="FinalState"
+				id="org.eclipse.papyrus.uml.FinalState"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::FinalState">
+				<param name="semanticHint" value="UML::FinalState">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="TimeEvent"
+				id="org.eclipse.papyrus.uml.TimeEvent"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::TimeEvent">
+				<param name="semanticHint" value="UML::TimeEvent">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="ReadVariableAction"
+				id="org.eclipse.papyrus.uml.ReadVariableAction"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::ReadVariableAction">
+				<param name="semanticHint" value="UML::ReadVariableAction">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="ClearVariableAction"
+				id="org.eclipse.papyrus.uml.ClearVariableAction"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::ClearVariableAction">
+				<param name="semanticHint" value="UML::ClearVariableAction">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="AddVariableValueAction"
+				id="org.eclipse.papyrus.uml.AddVariableValueAction"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::AddVariableValueAction">
+				<param name="semanticHint" value="UML::AddVariableValueAction">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="RemoveVariableValueAction"
+				id="org.eclipse.papyrus.uml.RemoveVariableValueAction"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::RemoveVariableValueAction">
+				<param name="semanticHint" value="UML::RemoveVariableValueAction">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="RaiseExceptionAction"
+				id="org.eclipse.papyrus.uml.RaiseExceptionAction"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::RaiseExceptionAction">
+				<param name="semanticHint" value="UML::RaiseExceptionAction">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="ActionInputPin"
+				id="org.eclipse.papyrus.uml.ActionInputPin"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::ActionInputPin">
+				<param name="semanticHint" value="UML::ActionInputPin">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="InformationItem"
+				id="org.eclipse.papyrus.uml.InformationItem"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::InformationItem">
+				<param name="semanticHint" value="UML::InformationItem">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="InformationFlow"
+				id="org.eclipse.papyrus.uml.InformationFlow"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::InformationFlow">
+				<param name="semanticHint" value="UML::InformationFlow">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="ReadExtentAction"
+				id="org.eclipse.papyrus.uml.ReadExtentAction"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::ReadExtentAction">
+				<param name="semanticHint" value="UML::ReadExtentAction">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="ReclassifyObjectAction"
+				id="org.eclipse.papyrus.uml.ReclassifyObjectAction"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::ReclassifyObjectAction">
+				<param name="semanticHint" value="UML::ReclassifyObjectAction">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="ReadIsClassifiedObjectAction"
+				id="org.eclipse.papyrus.uml.ReadIsClassifiedObjectAction"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::ReadIsClassifiedObjectAction">
+				<param name="semanticHint" value="UML::ReadIsClassifiedObjectAction">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="StartClassifierBehaviorAction"
+				id="org.eclipse.papyrus.uml.StartClassifierBehaviorAction"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::StartClassifierBehaviorAction">
+				<param name="semanticHint" value="UML::StartClassifierBehaviorAction">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="ReadLinkObjectEndAction"
+				id="org.eclipse.papyrus.uml.ReadLinkObjectEndAction"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::ReadLinkObjectEndAction">
+				<param name="semanticHint" value="UML::ReadLinkObjectEndAction">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="ReadLinkObjectEndQualifierAction"
+				id="org.eclipse.papyrus.uml.ReadLinkObjectEndQualifierAction"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::ReadLinkObjectEndQualifierAction">
+				<param name="semanticHint" value="UML::ReadLinkObjectEndQualifierAction">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="CreateLinkObjectAction"
+				id="org.eclipse.papyrus.uml.CreateLinkObjectAction"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::CreateLinkObjectAction">
+				<param name="semanticHint" value="UML::CreateLinkObjectAction">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="AcceptEventAction"
+				id="org.eclipse.papyrus.uml.AcceptEventAction"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::AcceptEventAction">
+				<param name="semanticHint" value="UML::AcceptEventAction">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="AcceptCallAction"
+				id="org.eclipse.papyrus.uml.AcceptCallAction"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::AcceptCallAction">
+				<param name="semanticHint" value="UML::AcceptCallAction">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="ReplyAction"
+				id="org.eclipse.papyrus.uml.ReplyAction"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::ReplyAction">
+				<param name="semanticHint" value="UML::ReplyAction">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="UnmarshallAction"
+				id="org.eclipse.papyrus.uml.UnmarshallAction"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::UnmarshallAction">
+				<param name="semanticHint" value="UML::UnmarshallAction">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="ReduceAction"
+				id="org.eclipse.papyrus.uml.ReduceAction"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::ReduceAction">
+				<param name="semanticHint" value="UML::ReduceAction">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="JoinNode"
+				id="org.eclipse.papyrus.uml.JoinNode"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::JoinNode">
+				<param name="semanticHint" value="UML::JoinNode">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="DataStoreNode"
+				id="org.eclipse.papyrus.uml.DataStoreNode"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::DataStoreNode">
+				<param name="semanticHint" value="UML::DataStoreNode">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="ObjectFlow"
+				id="org.eclipse.papyrus.uml.ObjectFlow"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::ObjectFlow">
+				<param name="semanticHint" value="UML::ObjectFlow">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="ConditionalNode"
+				id="org.eclipse.papyrus.uml.ConditionalNode"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::ConditionalNode">
+				<param name="semanticHint" value="UML::ConditionalNode">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="Clause" id="org.eclipse.papyrus.uml.Clause"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Clause">
+				<param name="semanticHint" value="UML::Clause">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="LoopNode"
+				id="org.eclipse.papyrus.uml.LoopNode"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::LoopNode">
+				<param name="semanticHint" value="UML::LoopNode">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="ExpansionNode"
+				id="org.eclipse.papyrus.uml.ExpansionNode"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::ExpansionNode">
+				<param name="semanticHint" value="UML::ExpansionNode">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="ExpansionRegion"
+				id="org.eclipse.papyrus.uml.ExpansionRegion"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::ExpansionRegion">
+				<param name="semanticHint" value="UML::ExpansionRegion">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="ProtocolTransition"
+				id="org.eclipse.papyrus.uml.ProtocolTransition"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::ProtocolTransition">
+				<param name="semanticHint" value="UML::ProtocolTransition">
+				</param>
+			</metamodelType>
+			<metamodelType eclass="AssociationClass"
+				id="org.eclipse.papyrus.uml.AssociationClass"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::AssociationClass">
+				<param name="semanticHint" value="UML::AssociationClass">
+				</param>
+
+
+			</metamodelType>
+
+			<metamodelType eclass="NamedElement"
+				id="org.eclipse.papyrus.uml.NamedElement" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+				name="UML::NamedElement">
+				<param name="semanticHint" value="UML::NamedElement">
+				</param>
+
+
+			</metamodelType>
+			<adviceBinding
+				class="org.eclipse.papyrus.uml.service.creation.helper.NamedElementInitializerHelperAdvice"
+				id="org.eclipse.papyrus.uml.advice.NameElementInitializer"
+				inheritance="all" typeId="org.eclipse.papyrus.uml.NamedElement">
+			</adviceBinding>
+		</metamodel>
+	</extension>
+
+	<!-- Creating a default binding -->
+	<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
+		<!-- Context declaration -->
+		<clientContext id="org.eclipse.papyrus.uml.service.creation.TypeContext">
+     <matcher
+           class="org.eclipse.papyrus.uml.service.creation.matcher.NoContextEnablementMatcher">
+     </matcher>
+		</clientContext>
+
+		<!-- Bindings declaration -->
+		<binding context="org.eclipse.papyrus.uml.service.creation.TypeContext">
+			<elementType pattern="org.eclipse.papyrus.uml.*" />
+			<advice ref="org.eclipse.papyrus.uml.advice.NameElementInitializer" />
+		</binding>
+	</extension>
+	<extension point="org.eclipse.ui.commands">
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.CommentHandler"
+			description="Create a newComment"
+			id="org.eclipse.papyrus.uml.service.creation.comment.Handler" name="Create a new Comment" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.PackageHandler"
+			description="Create a newPackage"
+			id="org.eclipse.papyrus.uml.service.creation.package.Handler" name="Create a new Package" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.DependencyHandler"
+			description="Create a newDependency"
+			id="org.eclipse.papyrus.uml.service.creation.dependency.Handler"
+			name="Create a new Dependency" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ElementImportHandler"
+			description="Create a newElementImport"
+			id="org.eclipse.papyrus.uml.service.creation.elementimport.Handler"
+			name="Create a new ElementImport" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.PackageImportHandler"
+			description="Create a newPackageImport"
+			id="org.eclipse.papyrus.uml.service.creation.packageimport.Handler"
+			name="Create a new PackageImport" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ConstraintHandler"
+			description="Create a newConstraint"
+			id="org.eclipse.papyrus.uml.service.creation.constraint.Handler"
+			name="Create a new Constraint" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.AssociationHandler"
+			description="Create a newAssociation"
+			id="org.eclipse.papyrus.uml.service.creation.association.Handler"
+			name="Create a new Association" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.TemplateBindingHandler"
+			description="Create a newTemplateBinding"
+			id="org.eclipse.papyrus.uml.service.creation.templatebinding.Handler"
+			name="Create a new TemplateBinding" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.TemplateSignatureHandler"
+			description="Create a newTemplateSignature"
+			id="org.eclipse.papyrus.uml.service.creation.templatesignature.Handler"
+			name="Create a new TemplateSignature" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.TemplateParameterHandler"
+			description="Create a newTemplateParameter"
+			id="org.eclipse.papyrus.uml.service.creation.templateparameter.Handler"
+			name="Create a new TemplateParameter" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.TemplateParameterSubstitutionHandler"
+			description="Create a newTemplateParameterSubstitution"
+			id="org.eclipse.papyrus.uml.service.creation.templateparametersubstitution.Handler"
+			name="Create a new TemplateParameterSubstitution" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.GeneralizationHandler"
+			description="Create a newGeneralization"
+			id="org.eclipse.papyrus.uml.service.creation.generalization.Handler"
+			name="Create a new Generalization" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.GeneralizationSetHandler"
+			description="Create a newGeneralizationSet"
+			id="org.eclipse.papyrus.uml.service.creation.generalizationset.Handler"
+			name="Create a new GeneralizationSet" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.SubstitutionHandler"
+			description="Create a newSubstitution"
+			id="org.eclipse.papyrus.uml.service.creation.substitution.Handler"
+			name="Create a new Substitution" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.RealizationHandler"
+			description="Create a newRealization"
+			id="org.eclipse.papyrus.uml.service.creation.realization.Handler"
+			name="Create a new Realization" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.AbstractionHandler"
+			description="Create a newAbstraction"
+			id="org.eclipse.papyrus.uml.service.creation.abstraction.Handler"
+			name="Create a new Abstraction" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.OpaqueExpressionHandler"
+			description="Create a newOpaqueExpression"
+			id="org.eclipse.papyrus.uml.service.creation.opaqueexpression.Handler"
+			name="Create a new OpaqueExpression" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ParameterHandler"
+			description="Create a newParameter"
+			id="org.eclipse.papyrus.uml.service.creation.parameter.Handler" name="Create a new Parameter" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ConnectableElementTemplateParameterHandler"
+			description="Create a newConnectableElementTemplateParameter"
+			id="org.eclipse.papyrus.uml.service.creation.connectableelementtemplateparameter.Handler"
+			name="Create a new ConnectableElementTemplateParameter" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ConnectorEndHandler"
+			description="Create a newConnectorEnd"
+			id="org.eclipse.papyrus.uml.service.creation.connectorend.Handler"
+			name="Create a new ConnectorEnd" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.PropertyHandler"
+			description="Create a newProperty"
+			id="org.eclipse.papyrus.uml.service.creation.property.Handler" name="Create a new Property" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.DeploymentHandler"
+			description="Create a newDeployment"
+			id="org.eclipse.papyrus.uml.service.creation.deployment.Handler"
+			name="Create a new Deployment" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.DeploymentSpecificationHandler"
+			description="Create a newDeploymentSpecification"
+			id="org.eclipse.papyrus.uml.service.creation.deploymentspecification.Handler"
+			name="Create a new DeploymentSpecification" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ArtifactHandler"
+			description="Create a newArtifact"
+			id="org.eclipse.papyrus.uml.service.creation.artifact.Handler" name="Create a new Artifact" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ManifestationHandler"
+			description="Create a newManifestation"
+			id="org.eclipse.papyrus.uml.service.creation.manifestation.Handler"
+			name="Create a new Manifestation" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.OperationHandler"
+			description="Create a newOperation"
+			id="org.eclipse.papyrus.uml.service.creation.operation.Handler" name="Create a new Operation" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ClassHandler"
+			description="Create a newClass" id="org.eclipse.papyrus.uml.service.creation.class.Handler"
+			name="Create a new Class" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.InterfaceRealizationHandler"
+			description="Create a newInterfaceRealization"
+			id="org.eclipse.papyrus.uml.service.creation.interfacerealization.Handler"
+			name="Create a new InterfaceRealization" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.InterfaceHandler"
+			description="Create a newInterface"
+			id="org.eclipse.papyrus.uml.service.creation.interface.Handler" name="Create a new Interface" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ReceptionHandler"
+			description="Create a newReception"
+			id="org.eclipse.papyrus.uml.service.creation.reception.Handler" name="Create a new Reception" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.SignalHandler"
+			description="Create a newSignal" id="org.eclipse.papyrus.uml.service.creation.signal.Handler"
+			name="Create a new Signal" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ProtocolStateMachineHandler"
+			description="Create a newProtocolStateMachine"
+			id="org.eclipse.papyrus.uml.service.creation.protocolstatemachine.Handler"
+			name="Create a new ProtocolStateMachine" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.StateMachineHandler"
+			description="Create a newStateMachine"
+			id="org.eclipse.papyrus.uml.service.creation.statemachine.Handler"
+			name="Create a new StateMachine" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.RegionHandler"
+			description="Create a newRegion" id="org.eclipse.papyrus.uml.service.creation.region.Handler"
+			name="Create a new Region" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.TransitionHandler"
+			description="Create a newTransition"
+			id="org.eclipse.papyrus.uml.service.creation.transition.Handler"
+			name="Create a new Transition" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.TriggerHandler"
+			description="Create a newTrigger"
+			id="org.eclipse.papyrus.uml.service.creation.trigger.Handler" name="Create a new Trigger" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.PortHandler"
+			description="Create a newPort" id="org.eclipse.papyrus.uml.service.creation.port.Handler"
+			name="Create a new Port" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.StateHandler"
+			description="Create a newState" id="org.eclipse.papyrus.uml.service.creation.state.Handler"
+			name="Create a new State" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ConnectionPointReferenceHandler"
+			description="Create a newConnectionPointReference"
+			id="org.eclipse.papyrus.uml.service.creation.connectionpointreference.Handler"
+			name="Create a new ConnectionPointReference" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.PseudostateHandler"
+			description="Create a newPseudostate"
+			id="org.eclipse.papyrus.uml.service.creation.pseudostate.Handler"
+			name="Create a new Pseudostate" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ProtocolConformanceHandler"
+			description="Create a newProtocolConformance"
+			id="org.eclipse.papyrus.uml.service.creation.protocolconformance.Handler"
+			name="Create a new ProtocolConformance" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ConnectorHandler"
+			description="Create a newConnector"
+			id="org.eclipse.papyrus.uml.service.creation.connector.Handler" name="Create a new Connector" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ExtensionHandler"
+			description="Create a newExtension"
+			id="org.eclipse.papyrus.uml.service.creation.extension.Handler" name="Create a new Extension" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ExtensionEndHandler"
+			description="Create a newExtensionEnd"
+			id="org.eclipse.papyrus.uml.service.creation.extensionend.Handler"
+			name="Create a new ExtensionEnd" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.StereotypeHandler"
+			description="Create a newStereotype"
+			id="org.eclipse.papyrus.uml.service.creation.stereotype.Handler"
+			name="Create a new Stereotype" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ImageHandler"
+			description="Create a newImage" id="org.eclipse.papyrus.uml.service.creation.image.Handler"
+			name="Create a new Image" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ProfileHandler"
+			description="Create a newProfile"
+			id="org.eclipse.papyrus.uml.service.creation.profile.Handler" name="Create a new Profile" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ModelHandler"
+			description="Create a newModel" id="org.eclipse.papyrus.uml.service.creation.model.Handler"
+			name="Create a new Model" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ParameterSetHandler"
+			description="Create a newParameterSet"
+			id="org.eclipse.papyrus.uml.service.creation.parameterset.Handler"
+			name="Create a new ParameterSet" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.DataTypeHandler"
+			description="Create a newDataType"
+			id="org.eclipse.papyrus.uml.service.creation.datatype.Handler" name="Create a new DataType" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.OperationTemplateParameterHandler"
+			description="Create a newOperationTemplateParameter"
+			id="org.eclipse.papyrus.uml.service.creation.operationtemplateparameter.Handler"
+			name="Create a new OperationTemplateParameter" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.CollaborationUseHandler"
+			description="Create a newCollaborationUse"
+			id="org.eclipse.papyrus.uml.service.creation.collaborationuse.Handler"
+			name="Create a new CollaborationUse" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.CollaborationHandler"
+			description="Create a newCollaboration"
+			id="org.eclipse.papyrus.uml.service.creation.collaboration.Handler"
+			name="Create a new Collaboration" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.UseCaseHandler"
+			description="Create a newUseCase"
+			id="org.eclipse.papyrus.uml.service.creation.usecase.Handler" name="Create a new UseCase" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.IncludeHandler"
+			description="Create a newInclude"
+			id="org.eclipse.papyrus.uml.service.creation.include.Handler" name="Create a new Include" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ExtendHandler"
+			description="Create a newExtend" id="org.eclipse.papyrus.uml.service.creation.extend.Handler"
+			name="Create a new Extend" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ExtensionPointHandler"
+			description="Create a newExtensionPoint"
+			id="org.eclipse.papyrus.uml.service.creation.extensionpoint.Handler"
+			name="Create a new ExtensionPoint" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.RedefinableTemplateSignatureHandler"
+			description="Create a newRedefinableTemplateSignature"
+			id="org.eclipse.papyrus.uml.service.creation.redefinabletemplatesignature.Handler"
+			name="Create a new RedefinableTemplateSignature" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ClassifierTemplateParameterHandler"
+			description="Create a newClassifierTemplateParameter"
+			id="org.eclipse.papyrus.uml.service.creation.classifiertemplateparameter.Handler"
+			name="Create a new ClassifierTemplateParameter" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.StringExpressionHandler"
+			description="Create a newStringExpression"
+			id="org.eclipse.papyrus.uml.service.creation.stringexpression.Handler"
+			name="Create a new StringExpression" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ExpressionHandler"
+			description="Create a newExpression"
+			id="org.eclipse.papyrus.uml.service.creation.expression.Handler"
+			name="Create a new Expression" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.UsageHandler"
+			description="Create a newUsage" id="org.eclipse.papyrus.uml.service.creation.usage.Handler"
+			name="Create a new Usage" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.PackageMergeHandler"
+			description="Create a newPackageMerge"
+			id="org.eclipse.papyrus.uml.service.creation.packagemerge.Handler"
+			name="Create a new PackageMerge" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ProfileApplicationHandler"
+			description="Create a newProfileApplication"
+			id="org.eclipse.papyrus.uml.service.creation.profileapplication.Handler"
+			name="Create a new ProfileApplication" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.EnumerationHandler"
+			description="Create a newEnumeration"
+			id="org.eclipse.papyrus.uml.service.creation.enumeration.Handler"
+			name="Create a new Enumeration" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.EnumerationLiteralHandler"
+			description="Create a newEnumerationLiteral"
+			id="org.eclipse.papyrus.uml.service.creation.enumerationliteral.Handler"
+			name="Create a new EnumerationLiteral" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.InstanceSpecificationHandler"
+			description="Create a newInstanceSpecification"
+			id="org.eclipse.papyrus.uml.service.creation.instancespecification.Handler"
+			name="Create a new InstanceSpecification" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.SlotHandler"
+			description="Create a newSlot" id="org.eclipse.papyrus.uml.service.creation.slot.Handler"
+			name="Create a new Slot" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.PrimitiveTypeHandler"
+			description="Create a newPrimitiveType"
+			id="org.eclipse.papyrus.uml.service.creation.primitivetype.Handler"
+			name="Create a new PrimitiveType" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.LiteralIntegerHandler"
+			description="Create a newLiteralInteger"
+			id="org.eclipse.papyrus.uml.service.creation.literalinteger.Handler"
+			name="Create a new LiteralInteger" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.LiteralStringHandler"
+			description="Create a newLiteralString"
+			id="org.eclipse.papyrus.uml.service.creation.literalstring.Handler"
+			name="Create a new LiteralString" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.LiteralBooleanHandler"
+			description="Create a newLiteralBoolean"
+			id="org.eclipse.papyrus.uml.service.creation.literalboolean.Handler"
+			name="Create a new LiteralBoolean" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.LiteralNullHandler"
+			description="Create a newLiteralNull"
+			id="org.eclipse.papyrus.uml.service.creation.literalnull.Handler"
+			name="Create a new LiteralNull" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.InstanceValueHandler"
+			description="Create a newInstanceValue"
+			id="org.eclipse.papyrus.uml.service.creation.instancevalue.Handler"
+			name="Create a new InstanceValue" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.LiteralUnlimitedNaturalHandler"
+			description="Create a newLiteralUnlimitedNatural"
+			id="org.eclipse.papyrus.uml.service.creation.literalunlimitednatural.Handler"
+			name="Create a new LiteralUnlimitedNatural" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.OpaqueBehaviorHandler"
+			description="Create a newOpaqueBehavior"
+			id="org.eclipse.papyrus.uml.service.creation.opaquebehavior.Handler"
+			name="Create a new OpaqueBehavior" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.FunctionBehaviorHandler"
+			description="Create a newFunctionBehavior"
+			id="org.eclipse.papyrus.uml.service.creation.functionbehavior.Handler"
+			name="Create a new FunctionBehavior" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.OpaqueActionHandler"
+			description="Create a newOpaqueAction"
+			id="org.eclipse.papyrus.uml.service.creation.opaqueaction.Handler"
+			name="Create a new OpaqueAction" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.StructuredActivityNodeHandler"
+			description="Create a newStructuredActivityNode"
+			id="org.eclipse.papyrus.uml.service.creation.structuredactivitynode.Handler"
+			name="Create a new StructuredActivityNode" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ActivityHandler"
+			description="Create a newActivity"
+			id="org.eclipse.papyrus.uml.service.creation.activity.Handler" name="Create a new Activity" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.VariableHandler"
+			description="Create a newVariable"
+			id="org.eclipse.papyrus.uml.service.creation.variable.Handler" name="Create a new Variable" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ActivityPartitionHandler"
+			description="Create a newActivityPartition"
+			id="org.eclipse.papyrus.uml.service.creation.activitypartition.Handler"
+			name="Create a new ActivityPartition" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.InterruptibleActivityRegionHandler"
+			description="Create a newInterruptibleActivityRegion"
+			id="org.eclipse.papyrus.uml.service.creation.interruptibleactivityregion.Handler"
+			name="Create a new InterruptibleActivityRegion" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ExceptionHandlerHandler"
+			description="Create a newExceptionHandler"
+			id="org.eclipse.papyrus.uml.service.creation.exceptionhandler.Handler"
+			name="Create a new ExceptionHandler" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.OutputPinHandler"
+			description="Create a newOutputPin"
+			id="org.eclipse.papyrus.uml.service.creation.outputpin.Handler" name="Create a new OutputPin" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.PinHandler"
+			description="Create a newPin" id="org.eclipse.papyrus.uml.service.creation.pin.Handler"
+			name="Create a new Pin" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.InputPinHandler"
+			description="Create a newInputPin"
+			id="org.eclipse.papyrus.uml.service.creation.inputpin.Handler" name="Create a new InputPin" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.SendSignalActionHandler"
+			description="Create a newSendSignalAction"
+			id="org.eclipse.papyrus.uml.service.creation.sendsignalaction.Handler"
+			name="Create a new SendSignalAction" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.CallOperationActionHandler"
+			description="Create a newCallOperationAction"
+			id="org.eclipse.papyrus.uml.service.creation.calloperationaction.Handler"
+			name="Create a new CallOperationAction" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.CallBehaviorActionHandler"
+			description="Create a newCallBehaviorAction"
+			id="org.eclipse.papyrus.uml.service.creation.callbehavioraction.Handler"
+			name="Create a new CallBehaviorAction" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.SequenceNodeHandler"
+			description="Create a newSequenceNode"
+			id="org.eclipse.papyrus.uml.service.creation.sequencenode.Handler"
+			name="Create a new SequenceNode" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ControlFlowHandler"
+			description="Create a newControlFlow"
+			id="org.eclipse.papyrus.uml.service.creation.controlflow.Handler"
+			name="Create a new ControlFlow" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.InitialNodeHandler"
+			description="Create a newInitialNode"
+			id="org.eclipse.papyrus.uml.service.creation.initialnode.Handler"
+			name="Create a new InitialNode" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ActivityParameterNodeHandler"
+			description="Create a newActivityParameterNode"
+			id="org.eclipse.papyrus.uml.service.creation.activityparameternode.Handler"
+			name="Create a new ActivityParameterNode" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ValuePinHandler"
+			description="Create a newValuePin"
+			id="org.eclipse.papyrus.uml.service.creation.valuepin.Handler" name="Create a new ValuePin" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.MessageHandler"
+			description="Create a newMessage"
+			id="org.eclipse.papyrus.uml.service.creation.message.Handler" name="Create a new Message" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.InteractionHandler"
+			description="Create a newInteraction"
+			id="org.eclipse.papyrus.uml.service.creation.interaction.Handler"
+			name="Create a new Interaction" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.LifelineHandler"
+			description="Create a newLifeline"
+			id="org.eclipse.papyrus.uml.service.creation.lifeline.Handler" name="Create a new Lifeline" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.PartDecompositionHandler"
+			description="Create a newPartDecomposition"
+			id="org.eclipse.papyrus.uml.service.creation.partdecomposition.Handler"
+			name="Create a new PartDecomposition" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.InteractionUseHandler"
+			description="Create a newInteractionUse"
+			id="org.eclipse.papyrus.uml.service.creation.interactionuse.Handler"
+			name="Create a new InteractionUse" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.GateHandler"
+			description="Create a newGate" id="org.eclipse.papyrus.uml.service.creation.gate.Handler"
+			name="Create a new Gate" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.GeneralOrderingHandler"
+			description="Create a newGeneralOrdering"
+			id="org.eclipse.papyrus.uml.service.creation.generalordering.Handler"
+			name="Create a new GeneralOrdering" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.OccurrenceSpecificationHandler"
+			description="Create a newOccurrenceSpecification"
+			id="org.eclipse.papyrus.uml.service.creation.occurrencespecification.Handler"
+			name="Create a new OccurrenceSpecification" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.InteractionOperandHandler"
+			description="Create a newInteractionOperand"
+			id="org.eclipse.papyrus.uml.service.creation.interactionoperand.Handler"
+			name="Create a new InteractionOperand" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.InteractionConstraintHandler"
+			description="Create a newInteractionConstraint"
+			id="org.eclipse.papyrus.uml.service.creation.interactionconstraint.Handler"
+			name="Create a new InteractionConstraint" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.StateInvariantHandler"
+			description="Create a newStateInvariant"
+			id="org.eclipse.papyrus.uml.service.creation.stateinvariant.Handler"
+			name="Create a new StateInvariant" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ActionExecutionSpecificationHandler"
+			description="Create a newActionExecutionSpecification"
+			id="org.eclipse.papyrus.uml.service.creation.actionexecutionspecification.Handler"
+			name="Create a new ActionExecutionSpecification" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.BehaviorExecutionSpecificationHandler"
+			description="Create a newBehaviorExecutionSpecification"
+			id="org.eclipse.papyrus.uml.service.creation.behaviorexecutionspecification.Handler"
+			name="Create a new BehaviorExecutionSpecification" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ExecutionEventHandler"
+			description="Create a newExecutionEvent"
+			id="org.eclipse.papyrus.uml.service.creation.executionevent.Handler"
+			name="Create a new ExecutionEvent" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.CreationEventHandler"
+			description="Create a newCreationEvent"
+			id="org.eclipse.papyrus.uml.service.creation.creationevent.Handler"
+			name="Create a new CreationEvent" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.DestructionEventHandler"
+			description="Create a newDestructionEvent"
+			id="org.eclipse.papyrus.uml.service.creation.destructionevent.Handler"
+			name="Create a new DestructionEvent" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.SendOperationEventHandler"
+			description="Create a newSendOperationEvent"
+			id="org.eclipse.papyrus.uml.service.creation.sendoperationevent.Handler"
+			name="Create a new SendOperationEvent" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.SendSignalEventHandler"
+			description="Create a newSendSignalEvent"
+			id="org.eclipse.papyrus.uml.service.creation.sendsignalevent.Handler"
+			name="Create a new SendSignalEvent" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.MessageOccurrenceSpecificationHandler"
+			description="Create a newMessageOccurrenceSpecification"
+			id="org.eclipse.papyrus.uml.service.creation.messageoccurrencespecification.Handler"
+			name="Create a new MessageOccurrenceSpecification" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ExecutionOccurrenceSpecificationHandler"
+			description="Create a newExecutionOccurrenceSpecification"
+			id="org.eclipse.papyrus.uml.service.creation.executionoccurrencespecification.Handler"
+			name="Create a new ExecutionOccurrenceSpecification" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ReceiveOperationEventHandler"
+			description="Create a newReceiveOperationEvent"
+			id="org.eclipse.papyrus.uml.service.creation.receiveoperationevent.Handler"
+			name="Create a new ReceiveOperationEvent" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ReceiveSignalEventHandler"
+			description="Create a newReceiveSignalEvent"
+			id="org.eclipse.papyrus.uml.service.creation.receivesignalevent.Handler"
+			name="Create a new ReceiveSignalEvent" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ActorHandler"
+			description="Create a newActor" id="org.eclipse.papyrus.uml.service.creation.actor.Handler"
+			name="Create a new Actor" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.CallEventHandler"
+			description="Create a newCallEvent"
+			id="org.eclipse.papyrus.uml.service.creation.callevent.Handler" name="Create a new CallEvent" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ChangeEventHandler"
+			description="Create a newChangeEvent"
+			id="org.eclipse.papyrus.uml.service.creation.changeevent.Handler"
+			name="Create a new ChangeEvent" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.SignalEventHandler"
+			description="Create a newSignalEvent"
+			id="org.eclipse.papyrus.uml.service.creation.signalevent.Handler"
+			name="Create a new SignalEvent" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.AnyReceiveEventHandler"
+			description="Create a newAnyReceiveEvent"
+			id="org.eclipse.papyrus.uml.service.creation.anyreceiveevent.Handler"
+			name="Create a new AnyReceiveEvent" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ForkNodeHandler"
+			description="Create a newForkNode"
+			id="org.eclipse.papyrus.uml.service.creation.forknode.Handler" name="Create a new ForkNode" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.FlowFinalNodeHandler"
+			description="Create a newFlowFinalNode"
+			id="org.eclipse.papyrus.uml.service.creation.flowfinalnode.Handler"
+			name="Create a new FlowFinalNode" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.CentralBufferNodeHandler"
+			description="Create a newCentralBufferNode"
+			id="org.eclipse.papyrus.uml.service.creation.centralbuffernode.Handler"
+			name="Create a new CentralBufferNode" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.MergeNodeHandler"
+			description="Create a newMergeNode"
+			id="org.eclipse.papyrus.uml.service.creation.mergenode.Handler" name="Create a new MergeNode" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.DecisionNodeHandler"
+			description="Create a newDecisionNode"
+			id="org.eclipse.papyrus.uml.service.creation.decisionnode.Handler"
+			name="Create a new DecisionNode" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ActivityFinalNodeHandler"
+			description="Create a newActivityFinalNode"
+			id="org.eclipse.papyrus.uml.service.creation.activityfinalnode.Handler"
+			name="Create a new ActivityFinalNode" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ComponentRealizationHandler"
+			description="Create a newComponentRealization"
+			id="org.eclipse.papyrus.uml.service.creation.componentrealization.Handler"
+			name="Create a new ComponentRealization" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ComponentHandler"
+			description="Create a newComponent"
+			id="org.eclipse.papyrus.uml.service.creation.component.Handler" name="Create a new Component" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.NodeHandler"
+			description="Create a newNode" id="org.eclipse.papyrus.uml.service.creation.node.Handler"
+			name="Create a new Node" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.DeviceHandler"
+			description="Create a newDevice" id="org.eclipse.papyrus.uml.service.creation.device.Handler"
+			name="Create a new Device" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ExecutionEnvironmentHandler"
+			description="Create a newExecutionEnvironment"
+			id="org.eclipse.papyrus.uml.service.creation.executionenvironment.Handler"
+			name="Create a new ExecutionEnvironment" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.CommunicationPathHandler"
+			description="Create a newCommunicationPath"
+			id="org.eclipse.papyrus.uml.service.creation.communicationpath.Handler"
+			name="Create a new CommunicationPath" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.CombinedFragmentHandler"
+			description="Create a newCombinedFragment"
+			id="org.eclipse.papyrus.uml.service.creation.combinedfragment.Handler"
+			name="Create a new CombinedFragment" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ContinuationHandler"
+			description="Create a newContinuation"
+			id="org.eclipse.papyrus.uml.service.creation.continuation.Handler"
+			name="Create a new Continuation" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ConsiderIgnoreFragmentHandler"
+			description="Create a newConsiderIgnoreFragment"
+			id="org.eclipse.papyrus.uml.service.creation.considerignorefragment.Handler"
+			name="Create a new ConsiderIgnoreFragment" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.CreateObjectActionHandler"
+			description="Create a newCreateObjectAction"
+			id="org.eclipse.papyrus.uml.service.creation.createobjectaction.Handler"
+			name="Create a new CreateObjectAction" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.DestroyObjectActionHandler"
+			description="Create a newDestroyObjectAction"
+			id="org.eclipse.papyrus.uml.service.creation.destroyobjectaction.Handler"
+			name="Create a new DestroyObjectAction" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.TestIdentityActionHandler"
+			description="Create a newTestIdentityAction"
+			id="org.eclipse.papyrus.uml.service.creation.testidentityaction.Handler"
+			name="Create a new TestIdentityAction" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ReadSelfActionHandler"
+			description="Create a newReadSelfAction"
+			id="org.eclipse.papyrus.uml.service.creation.readselfaction.Handler"
+			name="Create a new ReadSelfAction" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ReadStructuralFeatureActionHandler"
+			description="Create a newReadStructuralFeatureAction"
+			id="org.eclipse.papyrus.uml.service.creation.readstructuralfeatureaction.Handler"
+			name="Create a new ReadStructuralFeatureAction" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ClearStructuralFeatureActionHandler"
+			description="Create a newClearStructuralFeatureAction"
+			id="org.eclipse.papyrus.uml.service.creation.clearstructuralfeatureaction.Handler"
+			name="Create a new ClearStructuralFeatureAction" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.RemoveStructuralFeatureValueActionHandler"
+			description="Create a newRemoveStructuralFeatureValueAction"
+			id="org.eclipse.papyrus.uml.service.creation.removestructuralfeaturevalueaction.Handler"
+			name="Create a new RemoveStructuralFeatureValueAction" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.AddStructuralFeatureValueActionHandler"
+			description="Create a newAddStructuralFeatureValueAction"
+			id="org.eclipse.papyrus.uml.service.creation.addstructuralfeaturevalueaction.Handler"
+			name="Create a new AddStructuralFeatureValueAction" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.LinkEndDataHandler"
+			description="Create a newLinkEndData"
+			id="org.eclipse.papyrus.uml.service.creation.linkenddata.Handler"
+			name="Create a new LinkEndData" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.QualifierValueHandler"
+			description="Create a newQualifierValue"
+			id="org.eclipse.papyrus.uml.service.creation.qualifiervalue.Handler"
+			name="Create a new QualifierValue" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ReadLinkActionHandler"
+			description="Create a newReadLinkAction"
+			id="org.eclipse.papyrus.uml.service.creation.readlinkaction.Handler"
+			name="Create a new ReadLinkAction" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.LinkEndCreationDataHandler"
+			description="Create a newLinkEndCreationData"
+			id="org.eclipse.papyrus.uml.service.creation.linkendcreationdata.Handler"
+			name="Create a new LinkEndCreationData" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.CreateLinkActionHandler"
+			description="Create a newCreateLinkAction"
+			id="org.eclipse.papyrus.uml.service.creation.createlinkaction.Handler"
+			name="Create a new CreateLinkAction" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.DestroyLinkActionHandler"
+			description="Create a newDestroyLinkAction"
+			id="org.eclipse.papyrus.uml.service.creation.destroylinkaction.Handler"
+			name="Create a new DestroyLinkAction" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.LinkEndDestructionDataHandler"
+			description="Create a newLinkEndDestructionData"
+			id="org.eclipse.papyrus.uml.service.creation.linkenddestructiondata.Handler"
+			name="Create a new LinkEndDestructionData" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ClearAssociationActionHandler"
+			description="Create a newClearAssociationAction"
+			id="org.eclipse.papyrus.uml.service.creation.clearassociationaction.Handler"
+			name="Create a new ClearAssociationAction" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.BroadcastSignalActionHandler"
+			description="Create a newBroadcastSignalAction"
+			id="org.eclipse.papyrus.uml.service.creation.broadcastsignalaction.Handler"
+			name="Create a new BroadcastSignalAction" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.SendObjectActionHandler"
+			description="Create a newSendObjectAction"
+			id="org.eclipse.papyrus.uml.service.creation.sendobjectaction.Handler"
+			name="Create a new SendObjectAction" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ValueSpecificationActionHandler"
+			description="Create a newValueSpecificationAction"
+			id="org.eclipse.papyrus.uml.service.creation.valuespecificationaction.Handler"
+			name="Create a new ValueSpecificationAction" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.TimeExpressionHandler"
+			description="Create a newTimeExpression"
+			id="org.eclipse.papyrus.uml.service.creation.timeexpression.Handler"
+			name="Create a new TimeExpression" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.DurationHandler"
+			description="Create a newDuration"
+			id="org.eclipse.papyrus.uml.service.creation.duration.Handler" name="Create a new Duration" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.DurationIntervalHandler"
+			description="Create a newDurationInterval"
+			id="org.eclipse.papyrus.uml.service.creation.durationinterval.Handler"
+			name="Create a new DurationInterval" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.IntervalHandler"
+			description="Create a newInterval"
+			id="org.eclipse.papyrus.uml.service.creation.interval.Handler" name="Create a new Interval" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.TimeConstraintHandler"
+			description="Create a newTimeConstraint"
+			id="org.eclipse.papyrus.uml.service.creation.timeconstraint.Handler"
+			name="Create a new TimeConstraint" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.IntervalConstraintHandler"
+			description="Create a newIntervalConstraint"
+			id="org.eclipse.papyrus.uml.service.creation.intervalconstraint.Handler"
+			name="Create a new IntervalConstraint" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.TimeIntervalHandler"
+			description="Create a newTimeInterval"
+			id="org.eclipse.papyrus.uml.service.creation.timeinterval.Handler"
+			name="Create a new TimeInterval" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.DurationConstraintHandler"
+			description="Create a newDurationConstraint"
+			id="org.eclipse.papyrus.uml.service.creation.durationconstraint.Handler"
+			name="Create a new DurationConstraint" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.TimeObservationHandler"
+			description="Create a newTimeObservation"
+			id="org.eclipse.papyrus.uml.service.creation.timeobservation.Handler"
+			name="Create a new TimeObservation" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.DurationObservationHandler"
+			description="Create a newDurationObservation"
+			id="org.eclipse.papyrus.uml.service.creation.durationobservation.Handler"
+			name="Create a new DurationObservation" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.FinalStateHandler"
+			description="Create a newFinalState"
+			id="org.eclipse.papyrus.uml.service.creation.finalstate.Handler"
+			name="Create a new FinalState" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.TimeEventHandler"
+			description="Create a newTimeEvent"
+			id="org.eclipse.papyrus.uml.service.creation.timeevent.Handler" name="Create a new TimeEvent" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ReadVariableActionHandler"
+			description="Create a newReadVariableAction"
+			id="org.eclipse.papyrus.uml.service.creation.readvariableaction.Handler"
+			name="Create a new ReadVariableAction" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ClearVariableActionHandler"
+			description="Create a newClearVariableAction"
+			id="org.eclipse.papyrus.uml.service.creation.clearvariableaction.Handler"
+			name="Create a new ClearVariableAction" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.AddVariableValueActionHandler"
+			description="Create a newAddVariableValueAction"
+			id="org.eclipse.papyrus.uml.service.creation.addvariablevalueaction.Handler"
+			name="Create a new AddVariableValueAction" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.RemoveVariableValueActionHandler"
+			description="Create a newRemoveVariableValueAction"
+			id="org.eclipse.papyrus.uml.service.creation.removevariablevalueaction.Handler"
+			name="Create a new RemoveVariableValueAction" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.RaiseExceptionActionHandler"
+			description="Create a newRaiseExceptionAction"
+			id="org.eclipse.papyrus.uml.service.creation.raiseexceptionaction.Handler"
+			name="Create a new RaiseExceptionAction" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ActionInputPinHandler"
+			description="Create a newActionInputPin"
+			id="org.eclipse.papyrus.uml.service.creation.actioninputpin.Handler"
+			name="Create a new ActionInputPin" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.InformationItemHandler"
+			description="Create a newInformationItem"
+			id="org.eclipse.papyrus.uml.service.creation.informationitem.Handler"
+			name="Create a new InformationItem" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.InformationFlowHandler"
+			description="Create a newInformationFlow"
+			id="org.eclipse.papyrus.uml.service.creation.informationflow.Handler"
+			name="Create a new InformationFlow" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ReadExtentActionHandler"
+			description="Create a newReadExtentAction"
+			id="org.eclipse.papyrus.uml.service.creation.readextentaction.Handler"
+			name="Create a new ReadExtentAction" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ReclassifyObjectActionHandler"
+			description="Create a newReclassifyObjectAction"
+			id="org.eclipse.papyrus.uml.service.creation.reclassifyobjectaction.Handler"
+			name="Create a new ReclassifyObjectAction" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ReadIsClassifiedObjectActionHandler"
+			description="Create a newReadIsClassifiedObjectAction"
+			id="org.eclipse.papyrus.uml.service.creation.readisclassifiedobjectaction.Handler"
+			name="Create a new ReadIsClassifiedObjectAction" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.StartClassifierBehaviorActionHandler"
+			description="Create a newStartClassifierBehaviorAction"
+			id="org.eclipse.papyrus.uml.service.creation.startclassifierbehavioraction.Handler"
+			name="Create a new StartClassifierBehaviorAction" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ReadLinkObjectEndActionHandler"
+			description="Create a newReadLinkObjectEndAction"
+			id="org.eclipse.papyrus.uml.service.creation.readlinkobjectendaction.Handler"
+			name="Create a new ReadLinkObjectEndAction" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ReadLinkObjectEndQualifierActionHandler"
+			description="Create a newReadLinkObjectEndQualifierAction"
+			id="org.eclipse.papyrus.uml.service.creation.readlinkobjectendqualifieraction.Handler"
+			name="Create a new ReadLinkObjectEndQualifierAction" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.CreateLinkObjectActionHandler"
+			description="Create a newCreateLinkObjectAction"
+			id="org.eclipse.papyrus.uml.service.creation.createlinkobjectaction.Handler"
+			name="Create a new CreateLinkObjectAction" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.AcceptEventActionHandler"
+			description="Create a newAcceptEventAction"
+			id="org.eclipse.papyrus.uml.service.creation.accepteventaction.Handler"
+			name="Create a new AcceptEventAction" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.AcceptCallActionHandler"
+			description="Create a newAcceptCallAction"
+			id="org.eclipse.papyrus.uml.service.creation.acceptcallaction.Handler"
+			name="Create a new AcceptCallAction" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ReplyActionHandler"
+			description="Create a newReplyAction"
+			id="org.eclipse.papyrus.uml.service.creation.replyaction.Handler"
+			name="Create a new ReplyAction" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.UnmarshallActionHandler"
+			description="Create a newUnmarshallAction"
+			id="org.eclipse.papyrus.uml.service.creation.unmarshallaction.Handler"
+			name="Create a new UnmarshallAction" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ReduceActionHandler"
+			description="Create a newReduceAction"
+			id="org.eclipse.papyrus.uml.service.creation.reduceaction.Handler"
+			name="Create a new ReduceAction" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.JoinNodeHandler"
+			description="Create a newJoinNode"
+			id="org.eclipse.papyrus.uml.service.creation.joinnode.Handler" name="Create a new JoinNode" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.DataStoreNodeHandler"
+			description="Create a newDataStoreNode"
+			id="org.eclipse.papyrus.uml.service.creation.datastorenode.Handler"
+			name="Create a new DataStoreNode" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ObjectFlowHandler"
+			description="Create a newObjectFlow"
+			id="org.eclipse.papyrus.uml.service.creation.objectflow.Handler"
+			name="Create a new ObjectFlow" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ConditionalNodeHandler"
+			description="Create a newConditionalNode"
+			id="org.eclipse.papyrus.uml.service.creation.conditionalnode.Handler"
+			name="Create a new ConditionalNode" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ClauseHandler"
+			description="Create a newClause" id="org.eclipse.papyrus.uml.service.creation.clause.Handler"
+			name="Create a new Clause" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.LoopNodeHandler"
+			description="Create a newLoopNode"
+			id="org.eclipse.papyrus.uml.service.creation.loopnode.Handler" name="Create a new LoopNode" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ExpansionNodeHandler"
+			description="Create a newExpansionNode"
+			id="org.eclipse.papyrus.uml.service.creation.expansionnode.Handler"
+			name="Create a new ExpansionNode" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ExpansionRegionHandler"
+			description="Create a newExpansionRegion"
+			id="org.eclipse.papyrus.uml.service.creation.expansionregion.Handler"
+			name="Create a new ExpansionRegion" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.ProtocolTransitionHandler"
+			description="Create a newProtocolTransition"
+			id="org.eclipse.papyrus.uml.service.creation.protocoltransition.Handler"
+			name="Create a new ProtocolTransition" />
+		<command categoryId="org.eclipse.papyrus.editor.category"
+			defaultHandler="org.eclipse.papyrus.uml.service.creation.handler.AssociationClassHandler"
+			description="Create a newAssociationClass"
+			id="org.eclipse.papyrus.uml.service.creation.associationclass.Handler"
+			name="Create a new AssociationClass" />
+	</extension>
+	<extension point="org.eclipse.ui.menus">
+   <menuContribution
+         allPopups="false"
+         locationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.createchild">
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.acceptcallaction.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AcceptCallAction.gif"
+					label="Create a new AcceptCallAction" style="push"
+					tooltip="Create a new AcceptCallAction">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.accepteventaction.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AcceptEventAction.gif"
+					label="Create a new AcceptEventAction" style="push"
+					tooltip="Create a new AcceptEventAction">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.actionexecutionspecification.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActionExecutionSpecification.gif"
+					label="Create a new ActionExecutionSpecification" style="push"
+					tooltip="Create a new ActionExecutionSpecification">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.actioninputpin.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActionInputPin.gif"
+					label="Create a new ActionInputPin" style="push"
+					tooltip="Create a new ActionInputPin">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command commandId="org.eclipse.papyrus.uml.service.creation.activity.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Activity.gif"
+					label="Create a new Activity" style="push" tooltip="Create a new Activity">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.activityfinalnode.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActivityFinalNode.gif"
+					label="Create a new ActivityFinalNode" style="push"
+					tooltip="Create a new ActivityFinalNode">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.activityparameternode.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActivityParameterNode.gif"
+					label="Create a new ActivityParameterNode" style="push"
+					tooltip="Create a new ActivityParameterNode">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.activitypartition.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActivityPartition.gif"
+					label="Create a new ActivityPartition" style="push"
+					tooltip="Create a new ActivityPartition">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command commandId="org.eclipse.papyrus.uml.service.creation.actor.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Actor.gif"
+					label="Create a new Actor" style="push" tooltip="Create a new Actor">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.addstructuralfeaturevalueaction.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AddStructuralFeatureValueAction.gif"
+					label="Create a new AddStructuralFeatureValueAction" style="push"
+					tooltip="Create a new AddStructuralFeatureValueAction">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.addvariablevalueaction.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AddVariableValueAction.gif"
+					label="Create a new AddVariableValueAction" style="push"
+					tooltip="Create a new AddVariableValueAction">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command commandId="org.eclipse.papyrus.uml.service.creation.artifact.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Artifact.gif"
+					label="Create a new Artifact" style="push" tooltip="Create a new Artifact">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.broadcastsignalaction.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/BroadcastSignalAction.gif"
+					label="Create a new BroadcastSignalAction" style="push"
+					tooltip="Create a new BroadcastSignalAction">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.callbehavioraction.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CallBehaviorAction.gif"
+					label="Create a new CallBehaviorAction" style="push"
+					tooltip="Create a new CallBehaviorAction">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.calloperationaction.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CallOperationAction.gif"
+					label="Create a new CallOperationAction" style="push"
+					tooltip="Create a new CallOperationAction">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.centralbuffernode.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CentralBufferNode.gif"
+					label="Create a new CentralBufferNode" style="push"
+					tooltip="Create a new CentralBufferNode">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command commandId="org.eclipse.papyrus.uml.service.creation.class.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif"
+					label="Create a new Class" style="push" tooltip="Create a new Class">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.classifiertemplateparameter.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ClassifierTemplateParameter.gif"
+					label="Create a new ClassifierTemplateParameter" style="push"
+					tooltip="Create a new ClassifierTemplateParameter">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command commandId="org.eclipse.papyrus.uml.service.creation.clause.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Clause.gif"
+					label="Create a new Clause" style="push" tooltip="Create a new Clause">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.clearassociationaction.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ClearAssociationAction.gif"
+					label="Create a new ClearAssociationAction" style="push"
+					tooltip="Create a new ClearAssociationAction">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.clearstructuralfeatureaction.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ClearStructuralFeatureAction.gif"
+					label="Create a new ClearStructuralFeatureAction" style="push"
+					tooltip="Create a new ClearStructuralFeatureAction">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.clearvariableaction.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ClearVariableAction.gif"
+					label="Create a new ClearVariableAction" style="push"
+					tooltip="Create a new ClearVariableAction">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.collaboration.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Collaboration.gif"
+					label="Create a new Collaboration" style="push"
+					tooltip="Create a new Collaboration">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.collaborationuse.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CollaborationUse.gif"
+					label="Create a new CollaborationUse" style="push"
+					tooltip="Create a new CollaborationUse">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command commandId="org.eclipse.papyrus.uml.service.creation.comment.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
+					label="Create a new Comment" style="push" tooltip="Create a new Comment">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.component.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Component.gif"
+					label="Create a new Component" style="push" tooltip="Create a new Component">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.componentrealization.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ComponentRealization.gif"
+					label="Create a new ComponentRealization" style="push"
+					tooltip="Create a new ComponentRealization">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.conditionalnode.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConditionalNode.gif"
+					label="Create a new ConditionalNode" style="push"
+					tooltip="Create a new ConditionalNode">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.connectionpointreference.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConnectionPointReference.gif"
+					label="Create a new ConnectionPointReference" style="push"
+					tooltip="Create a new ConnectionPointReference">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.connector.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Connector.gif"
+					label="Create a new Connector" style="push" tooltip="Create a new Connector">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.connectorend.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConnectorEnd.gif"
+					label="Create a new ConnectorEnd" style="push" tooltip="Create a new ConnectorEnd">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.considerignorefragment.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConsiderIgnoreFragment.gif"
+					label="Create a new ConsiderIgnoreFragment" style="push"
+					tooltip="Create a new ConsiderIgnoreFragment">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.constraint.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
+					label="Create a new Constraint" style="push" tooltip="Create a new Constraint">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.createlinkaction.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CreateLinkAction.gif"
+					label="Create a new CreateLinkAction" style="push"
+					tooltip="Create a new CreateLinkAction">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.createlinkobjectaction.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CreateLinkObjectAction.gif"
+					label="Create a new CreateLinkObjectAction" style="push"
+					tooltip="Create a new CreateLinkObjectAction">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.createobjectaction.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CreateObjectAction.gif"
+					label="Create a new CreateObjectAction" style="push"
+					tooltip="Create a new CreateObjectAction">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.creationevent.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CreationEvent.gif"
+					label="Create a new CreationEvent" style="push"
+					tooltip="Create a new CreationEvent">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.datastorenode.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DataStoreNode.gif"
+					label="Create a new DataStoreNode" style="push"
+					tooltip="Create a new DataStoreNode">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command commandId="org.eclipse.papyrus.uml.service.creation.datatype.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DataType.gif"
+					label="Create a new DataType" style="push" tooltip="Create a new DataType">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.decisionnode.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DecisionNode.gif"
+					label="Create a new DecisionNode" style="push" tooltip="Create a new DecisionNode">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.deployment.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Deployment.gif"
+					label="Create a new Deployment" style="push" tooltip="Create a new Deployment">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.deploymentspecification.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DeploymentSpecification.gif"
+					label="Create a new DeploymentSpecification" style="push"
+					tooltip="Create a new DeploymentSpecification">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.destroylinkaction.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DestroyLinkAction.gif"
+					label="Create a new DestroyLinkAction" style="push"
+					tooltip="Create a new DestroyLinkAction">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.destroyobjectaction.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DestroyObjectAction.gif"
+					label="Create a new DestroyObjectAction" style="push"
+					tooltip="Create a new DestroyObjectAction">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command commandId="org.eclipse.papyrus.uml.service.creation.device.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Device.gif"
+					label="Create a new Device" style="push" tooltip="Create a new Device">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.enumeration.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Enumeration.gif"
+					label="Create a new Enumeration" style="push" tooltip="Create a new Enumeration">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.enumerationliteral.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/EnumerationLiteral.gif"
+					label="Create a new EnumerationLiteral" style="push"
+					tooltip="Create a new EnumerationLiteral">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.exceptionhandler.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExceptionHandler.gif"
+					label="Create a new ExceptionHandler" style="push"
+					tooltip="Create a new ExceptionHandler">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.executionenvironment.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExecutionEnvironment.gif"
+					label="Create a new ExecutionEnvironment" style="push"
+					tooltip="Create a new ExecutionEnvironment">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.expansionnode.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExpansionNode.gif"
+					label="Create a new ExpansionNode" style="push"
+					tooltip="Create a new ExpansionNode">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.expansionregion.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExpansionRegion.gif"
+					label="Create a new ExpansionRegion" style="push"
+					tooltip="Create a new ExpansionRegion">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.extensionend.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExtensionEnd.gif"
+					label="Create a new ExtensionEnd" style="push" tooltip="Create a new ExtensionEnd">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.extensionpoint.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExtensionPoint.gif"
+					label="Create a new ExtensionPoint" style="push"
+					tooltip="Create a new ExtensionPoint">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.finalstate.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/FinalState.gif"
+					label="Create a new FinalState" style="push" tooltip="Create a new FinalState">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.flowfinalnode.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/FlowFinalNode.gif"
+					label="Create a new FlowFinalNode" style="push"
+					tooltip="Create a new FlowFinalNode">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command commandId="org.eclipse.papyrus.uml.service.creation.forknode.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ForkNode.gif"
+					label="Create a new ForkNode" style="push" tooltip="Create a new ForkNode">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.functionbehavior.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/FunctionBehavior.gif"
+					label="Create a new FunctionBehavior" style="push"
+					tooltip="Create a new FunctionBehavior">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command commandId="org.eclipse.papyrus.uml.service.creation.image.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Image.gif"
+					label="Create a new Image" style="push" tooltip="Create a new Image">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.initialnode.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InitialNode.gif"
+					label="Create a new InitialNode" style="push" tooltip="Create a new InitialNode">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command commandId="org.eclipse.papyrus.uml.service.creation.inputpin.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InputPin.gif"
+					label="Create a new InputPin" style="push" tooltip="Create a new InputPin">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.instancespecification.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InstanceSpecification.gif"
+					label="Create a new InstanceSpecification" style="push"
+					tooltip="Create a new InstanceSpecification">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.instancevalue.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InstanceValue.gif"
+					label="Create a new InstanceValue" style="push"
+					tooltip="Create a new InstanceValue">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.interaction.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interaction.gif"
+					label="Create a new Interaction" style="push" tooltip="Create a new Interaction">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.interface.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interface.gif"
+					label="Create a new Interface" style="push" tooltip="Create a new Interface">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.interruptibleactivityregion.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InterruptibleActivityRegion.gif"
+					label="Create a new InterruptibleActivityRegion" style="push"
+					tooltip="Create a new InterruptibleActivityRegion">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command commandId="org.eclipse.papyrus.uml.service.creation.joinnode.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/JoinNode.gif"
+					label="Create a new JoinNode" style="push" tooltip="Create a new JoinNode">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command commandId="org.eclipse.papyrus.uml.service.creation.lifeline.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Lifeline.gif"
+					label="Create a new Lifeline" style="push" tooltip="Create a new Lifeline">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.linkenddata.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LinkEndData.gif"
+					label="Create a new LinkEndData" style="push" tooltip="Create a new LinkEndData">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command commandId="org.eclipse.papyrus.uml.service.creation.loopnode.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LoopNode.gif"
+					label="Create a new LoopNode" style="push" tooltip="Create a new LoopNode">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.mergenode.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/MergeNode.gif"
+					label="Create a new MergeNode" style="push" tooltip="Create a new MergeNode">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command commandId="org.eclipse.papyrus.uml.service.creation.model.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Model.gif"
+					label="Create a new Model" style="push" tooltip="Create a new Model">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command commandId="org.eclipse.papyrus.uml.service.creation.node.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Node.gif"
+					label="Create a new Node" style="push" tooltip="Create a new Node">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.opaqueaction.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OpaqueAction.gif"
+					label="Create a new OpaqueAction" style="push" tooltip="Create a new OpaqueAction">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.operation.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Operation.gif"
+					label="Create a new Operation" style="push" tooltip="Create a new Operation">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.operationtemplateparameter.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OperationTemplateParameter.gif"
+					label="Create a new OperationTemplateParameter" style="push"
+					tooltip="Create a new OperationTemplateParameter">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.outputpin.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OutputPin.gif"
+					label="Create a new OutputPin" style="push" tooltip="Create a new OutputPin">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command commandId="org.eclipse.papyrus.uml.service.creation.package.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif"
+					label="Create a new Package" style="push" tooltip="Create a new Package">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.parameter.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Parameter.gif"
+					label="Create a new Parameter" style="push" tooltip="Create a new Parameter">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.parameterset.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ParameterSet.gif"
+					label="Create a new ParameterSet" style="push" tooltip="Create a new ParameterSet">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command commandId="org.eclipse.papyrus.uml.service.creation.pin.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pin.gif"
+					label="Create a new Pin" style="push" tooltip="Create a new Pin">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command commandId="org.eclipse.papyrus.uml.service.creation.port.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Port.gif"
+					label="Create a new Port" style="push" tooltip="Create a new Port">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.primitivetype.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PrimitiveType.gif"
+					label="Create a new PrimitiveType" style="push"
+					tooltip="Create a new PrimitiveType">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command commandId="org.eclipse.papyrus.uml.service.creation.profile.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Profile.gif"
+					label="Create a new Profile" style="push" tooltip="Create a new Profile">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command commandId="org.eclipse.papyrus.uml.service.creation.property.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
+					label="Create a new Property" style="push" tooltip="Create a new Property">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.protocolstatemachine.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ProtocolStateMachine.gif"
+					label="Create a new ProtocolStateMachine" style="push"
+					tooltip="Create a new ProtocolStateMachine">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.pseudostate.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate.gif"
+					label="Create a new Pseudostate" style="push" tooltip="Create a new Pseudostate">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.raiseexceptionaction.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/RaiseExceptionAction.gif"
+					label="Create a new RaiseExceptionAction" style="push"
+					tooltip="Create a new RaiseExceptionAction">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.readextentaction.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadExtentAction.gif"
+					label="Create a new ReadExtentAction" style="push"
+					tooltip="Create a new ReadExtentAction">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.readisclassifiedobjectaction.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadIsClassifiedObjectAction.gif"
+					label="Create a new ReadIsClassifiedObjectAction" style="push"
+					tooltip="Create a new ReadIsClassifiedObjectAction">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.readlinkaction.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadLinkAction.gif"
+					label="Create a new ReadLinkAction" style="push"
+					tooltip="Create a new ReadLinkAction">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.readlinkobjectendaction.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadLinkObjectEndAction.gif"
+					label="Create a new ReadLinkObjectEndAction" style="push"
+					tooltip="Create a new ReadLinkObjectEndAction">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.readlinkobjectendqualifieraction.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadLinkObjectEndQualifierAction.gif"
+					label="Create a new ReadLinkObjectEndQualifierAction" style="push"
+					tooltip="Create a new ReadLinkObjectEndQualifierAction">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.readselfaction.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadSelfAction.gif"
+					label="Create a new ReadSelfAction" style="push"
+					tooltip="Create a new ReadSelfAction">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.readstructuralfeatureaction.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadStructuralFeatureAction.gif"
+					label="Create a new ReadStructuralFeatureAction" style="push"
+					tooltip="Create a new ReadStructuralFeatureAction">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.readvariableaction.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadVariableAction.gif"
+					label="Create a new ReadVariableAction" style="push"
+					tooltip="Create a new ReadVariableAction">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.realization.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Realization.gif"
+					label="Create a new Realization" style="push" tooltip="Create a new Realization">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.reception.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Reception.gif"
+					label="Create a new Reception" style="push" tooltip="Create a new Reception">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.reclassifyobjectaction.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReclassifyObjectAction.gif"
+					label="Create a new ReclassifyObjectAction" style="push"
+					tooltip="Create a new ReclassifyObjectAction">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.reduceaction.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReduceAction.gif"
+					label="Create a new ReduceAction" style="push" tooltip="Create a new ReduceAction">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command commandId="org.eclipse.papyrus.uml.service.creation.region.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Region.gif"
+					label="Create a new Region" style="push" tooltip="Create a new Region">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.removestructuralfeaturevalueaction.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/RemoveStructuralFeatureValueAction.gif"
+					label="Create a new RemoveStructuralFeatureValueAction" style="push"
+					tooltip="Create a new RemoveStructuralFeatureValueAction">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.removevariablevalueaction.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/RemoveVariableValueAction.gif"
+					label="Create a new RemoveVariableValueAction" style="push"
+					tooltip="Create a new RemoveVariableValueAction">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.replyaction.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReplyAction.gif"
+					label="Create a new ReplyAction" style="push" tooltip="Create a new ReplyAction">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.sendobjectaction.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/SendObjectAction.gif"
+					label="Create a new SendObjectAction" style="push"
+					tooltip="Create a new SendObjectAction">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.sendsignalaction.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/SendSignalAction.gif"
+					label="Create a new SendSignalAction" style="push"
+					tooltip="Create a new SendSignalAction">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.sequencenode.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/SequenceNode.gif"
+					label="Create a new SequenceNode" style="push" tooltip="Create a new SequenceNode">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command commandId="org.eclipse.papyrus.uml.service.creation.signal.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Signal.gif"
+					label="Create a new Signal" style="push" tooltip="Create a new Signal">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command commandId="org.eclipse.papyrus.uml.service.creation.slot.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Slot.gif"
+					label="Create a new Slot" style="push" tooltip="Create a new Slot">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.startclassifierbehavioraction.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StartClassifierBehaviorAction.gif"
+					label="Create a new StartClassifierBehaviorAction" style="push"
+					tooltip="Create a new StartClassifierBehaviorAction">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command commandId="org.eclipse.papyrus.uml.service.creation.state.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/State.gif"
+					label="Create a new State" style="push" tooltip="Create a new State">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.stateinvariant.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StateInvariant.gif"
+					label="Create a new StateInvariant" style="push"
+					tooltip="Create a new StateInvariant">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.statemachine.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StateMachine.gif"
+					label="Create a new StateMachine" style="push" tooltip="Create a new StateMachine">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.stereotype.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Stereotype.gif"
+					label="Create a new Stereotype" style="push" tooltip="Create a new Stereotype">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.structuredactivitynode.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StructuredActivityNode.gif"
+					label="Create a new StructuredActivityNode" style="push"
+					tooltip="Create a new StructuredActivityNode">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.templateparameter.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateParameter.gif"
+					label="Create a new TemplateParameter" style="push"
+					tooltip="Create a new TemplateParameter">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.templateparametersubstitution.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateParameterSubstitution.gif"
+					label="Create a new TemplateParameterSubstitution" style="push"
+					tooltip="Create a new TemplateParameterSubstitution">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.templatesignature.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateSignature.gif"
+					label="Create a new TemplateSignature" style="push"
+					tooltip="Create a new TemplateSignature">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.testidentityaction.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TestIdentityAction.gif"
+					label="Create a new TestIdentityAction" style="push"
+					tooltip="Create a new TestIdentityAction">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.unmarshallaction.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/UnmarshallAction.gif"
+					label="Create a new UnmarshallAction" style="push"
+					tooltip="Create a new UnmarshallAction">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command commandId="org.eclipse.papyrus.uml.service.creation.usecase.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/UseCase.gif"
+					label="Create a new UseCase" style="push" tooltip="Create a new UseCase">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command commandId="org.eclipse.papyrus.uml.service.creation.valuepin.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ValuePin.gif"
+					label="Create a new ValuePin" style="push" tooltip="Create a new ValuePin">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command commandId="org.eclipse.papyrus.uml.service.creation.variable.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Variable.gif"
+					label="Create a new Variable" style="push" tooltip="Create a new Variable">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+			
+   </menuContribution>
+	</extension>
+
+
+	<extension point="org.eclipse.ui.startup">
+		<startup class="org.eclipse.papyrus.uml.service.creation.Activator">
+		</startup>
+	</extension>
+</plugin>

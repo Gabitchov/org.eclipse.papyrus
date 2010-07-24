@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+      point="org.eclipse.papyrus.properties.runtime.propertyModelHandler">
+   		<propertyModelHandler
+     	    class="org.eclipse.papyrus.properties.runtime.uml.modelhandler.MultiplicityModelHandlerFactory"
+   	     	description="this is the model handler for multiplicity"
+   	    	id="Multiplicity"
+    	    name="Multiplicity EMF model handler">
+   		</propertyModelHandler>
+	</extension>
+	<extension
+      point="org.eclipse.papyrus.properties.runtime.propertyModelHandler">
+   		<propertyModelHandler
+     	    class="org.eclipse.papyrus.properties.runtime.uml.modelhandler.AssociationEndOwnerModelHandlerFactory"
+   	     	description="this is the model handler for owner of association ends"
+   	    	id="AssociationEndOwner"
+    	    name="AssociationEndOwner EMF model handler">
+   		</propertyModelHandler>
+	</extension>
+	<extension
+      point="org.eclipse.papyrus.properties.runtime.propertyModelHandler">
+   		<propertyModelHandler
+     	    class="org.eclipse.papyrus.properties.runtime.uml.modelhandler.AssociationEndNavigationModelHandlerFactory"
+   	     	description="this is the model handler for navigation of association ends"
+   	    	id="AssociationEndNavigation"
+    	    name="AssociationEndNavigation EMF model handler">
+   		</propertyModelHandler>
+	</extension>
+	<extension
+      point="org.eclipse.papyrus.properties.runtime.propertyEditorProvider">
+   		<propertyEditorProvider
+         class="org.eclipse.papyrus.properties.runtime.propertyeditor.PropertyEditorProvider">
+      		<Priority
+            	name="Lowest">
+      		</Priority>
+      		<PropertyEditor
+            	allowMultiValue="false"
+            	class="org.eclipse.papyrus.properties.runtime.uml.propertyeditor.MultiplicityPropertyEditor"
+            	description="This editor allows edition of multiplicity properties "
+            	factory="org.eclipse.papyrus.properties.runtime.uml.propertyeditor.descriptor.MultiplicityPropertyEditorDescriptorFactory"
+            	id="org.eclipse.papyrus.properties.runtime.uml.multiplicityPropertyEditor"
+            	typeValidator="org.eclipse.papyrus.properties.runtime.uml.propertyeditor.MultiplicityPropertyEditorValidator">
+      		</PropertyEditor>
+   		</propertyEditorProvider>
+	</extension>
+</plugin>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<psf version="2.0">
+<provider id="org.tigris.subversion.subclipse.core.svnnature">
+<project reference="0.7.0,https://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/org.eclipse.papyrus.releng,org.eclipse.papyrus.releng"/>
+</provider>
+<provider id="org.eclipse.team.cvs.core.cvsnature">
+<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/technology,org.eclipse.dash/athena/org.eclipse.dash.commonbuilder/org.eclipse.dash.common.releng,org.eclipse.dash.common.releng"/>
+<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/eclipse,org.eclipse.releng.basebuilder,org.eclipse.releng.basebuilder,r35x_v20090811"/>
+</provider>
+</psf>

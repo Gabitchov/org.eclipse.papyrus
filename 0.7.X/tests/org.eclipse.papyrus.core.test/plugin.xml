@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.emf.ecore.uri_mapping">
+      <mapping
+            source="pathmap://TestModel1/"
+            target="platform:/plugin/org.eclipse.papyrus.core.test/resources/TestModel1/">
+      </mapping>
+      <mapping
+            source="pathmap://TestModel2/"
+            target="platform:/plugin/org.eclipse.papyrus.core.test/resources/TestModel2/">
+      </mapping>
+   </extension>
+
+</plugin>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:ModelElements="http://www.papyrusuml.org/SysML/ModelElements/1" xmlns:uml="http://www.eclipse.org/uml2/2.1.0/UML">
+  <uml:Model xmi:id="_vKPhgA_vEd2uupC7rat70Q" name="SysML_View_TEST">
+    <packageImport xmi:id="_vKPhgQ_vEd2uupC7rat70Q">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Class" xmi:id="_v9DegA_vEd2uupC7rat70Q" name="Class_0"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_xOtToA_vEd2uupC7rat70Q" name="Package_0" clientDependency="_1ofXUA_vEd2uupC7rat70Q"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_xknSMA_vEd2uupC7rat70Q" name="Class_1"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_yAVk4A_vEd2uupC7rat70Q" name="Package_1"/>
+    <packagedElement xmi:type="uml:Abstraction" xmi:id="_1ofXUA_vEd2uupC7rat70Q" name="FromPackage_0toClass_0" supplier="_v9DegA_vEd2uupC7rat70Q" client="_xOtToA_vEd2uupC7rat70Q"/>
+    <profileApplication xmi:id="_vKPhgg_vEd2uupC7rat70Q">
+      <eAnnotations xmi:id="_vKPhgw_vEd2uupC7rat70Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/schemas/Standard/1#/"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+    <profileApplication xmi:id="_3pF9Xw_vEd2uupC7rat70Q">
+      <eAnnotations xmi:id="_3pPHEA_vEd2uupC7rat70Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.papyrusuml.org/SysML/1#//modelelements"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://SysML_PROFILES/SysML.profile.uml#_Gx8MgLX7EduFmqQsrNB9lw"/>
+    </profileApplication>
+  </uml:Model>
+  <ModelElements:Conform xmi:id="_5P6J8A_vEd2uupC7rat70Q" base_Dependency="_1ofXUA_vEd2uupC7rat70Q"/>
+  <ModelElements:ViewPoint xmi:id="_6YLZkA_vEd2uupC7rat70Q" base_Class="_v9DegA_vEd2uupC7rat70Q"/>
+  <ModelElements:ViewPoint xmi:id="_7AQtQA_vEd2uupC7rat70Q" base_Class="_xknSMA_vEd2uupC7rat70Q"/>
+  <ModelElements:View xmi:id="_7oWA8A_vEd2uupC7rat70Q" base_Package="_yAVk4A_vEd2uupC7rat70Q"/>
+  <ModelElements:View xmi:id="_8UTvEA_vEd2uupC7rat70Q" base_Package="_xOtToA_vEd2uupC7rat70Q"/>
+</xmi:XMI>

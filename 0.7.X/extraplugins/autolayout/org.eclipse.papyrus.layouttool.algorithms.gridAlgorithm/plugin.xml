@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.layouttool.algorithms">
+      <client
+            class="org.eclipse.papyrus.layouttool.algorithms.gridalgorithm.GridAlgorithm"
+            icon="icons/gridAlgorithm_tmp.gif"
+            name="Grid"
+            toolTipText="A grid layout is a special kind of graph layout, where all graph nodes are placed on a 2-dimensional squared grid.">
+      </client>
+   </extension>
+
+</plugin>

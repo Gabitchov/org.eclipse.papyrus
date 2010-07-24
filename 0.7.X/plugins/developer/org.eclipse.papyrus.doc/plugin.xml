@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+    <extension
+         id="product"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="org.eclipse.ui.ide.workbench"
+            name="Eclipse">
+         <property
+               name="preferenceCustomization"
+               value="plugin_customization.ini">
+         </property>
+         <property
+               name="appName"
+               value="Eclipse">
+         </property>
+         <property
+               name="aboutText"
+               value="Papyrus (Eclipse Modeling Tools)&#x0A;&#x0A;Version: Helios Release (3.6.0)&#x0A;Build id: {0}&#x0A;&#x0A;(c) Copyright Eclipse contributors and others 2000, 2010.  All rights reserved.&#x0A;Visit http://eclipse.org/&#x0A;&#x0A;This product includes software developed by the&#x0A;Apache Software Foundation http://apache.org/">
+         </property>
+         <property
+               name="startupProgressRect"
+               value="5,275,445,15">
+         </property>
+         <property
+               name="aboutImage"
+               value="icons/PapyrusLogo16x16.png">
+         </property>
+         <property
+               name="windowImages"
+               value="icons/PapyrusLogo16x16.png,icons/PapyrusLogo32x32.png,icons/PapyrusLogo48x48.png">
+         </property>
+         <property
+              name="introBrandingImage"
+              value="product:icons/PapyrusLogo48x48.png"/>
+         <property
+               name="introTitle"
+               value="Welcome to Papyrus - UML and SysML editors">
+         </property>
+         <property
+               name="introBrandingImageText"
+               value="Eclipse Project">
+         </property>
+      </product>
+   </extension>
+   <extension
+         point="org.eclipse.ui.intro">
+      <introProductBinding
+            introId="org.eclipse.ui.intro.universal"
+            productId="org.eclipse.papyrus.doc.product">
+      </introProductBinding>
+   </extension>
+   
+  <extension point="org.eclipse.help.toc">
+    <toc file="toc.xml" primary="true"/>
+  </extension>
+  
+  <extension
+        point="org.eclipse.ui.intro.configExtension">
+     <configExtension
+           configId="org.eclipse.ui.intro.universalConfig"
+           content="intro/firststeps.xml">
+     </configExtension>
+     <configExtension
+           configId="org.eclipse.ui.intro.universalConfig"
+           content="intro/overview.xml">
+     </configExtension>
+  </extension>
+</plugin>

@@ -1,0 +1,698 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trace:TraceModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:trace="http://www.eclipse.org/gmf/2006/Trace">
+  <nodeTraces
+      visualID="2001"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Activity') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Package') and _containmentMF_.name = 'packagedElement')">
+    <nodeLabelTraces
+        visualID="5001"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5002"
+        queryText="true"/>
+    <compartmentTraces
+        visualID="7001"
+        queryText="true"/>
+    <compartmentTraces
+        visualID="7002"
+        queryText="true"/>
+    <compartmentTraces
+        visualID="7003"
+        queryText="true"/>
+    <compartmentTraces
+        visualID="7004"
+        queryText="true"/>
+  </nodeTraces>
+  <childNodeTraces
+      visualID="3001"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Parameter') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Behavior') and _containmentMF_.name = 'ownedParameter')"/>
+  <childNodeTraces
+      visualID="3002"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Constraint') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Namespace') and _containmentMF_.name = 'ownedRule') and ( let _childMF_:ecore::EStructuralFeature = modelFacet.childMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _childMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Behavior') and _childMF_.name = 'precondition')"/>
+  <childNodeTraces
+      visualID="3003"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Constraint') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Namespace') and _containmentMF_.name = 'ownedRule') and ( let _childMF_:ecore::EStructuralFeature = modelFacet.childMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _childMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Behavior') and _childMF_.name = 'postcondition')"/>
+  <childNodeTraces
+      visualID="3004"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'InitialNode') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Activity') and _containmentMF_.name = 'node')">
+    <nodeLabelTraces
+        visualID="5080"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3005"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'ActivityFinalNode') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Activity') and _containmentMF_.name = 'node')">
+    <nodeLabelTraces
+        visualID="5081"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3006"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'FlowFinalNode') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Activity') and _containmentMF_.name = 'node')">
+    <nodeLabelTraces
+        visualID="5082"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3007"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'OpaqueAction') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Activity') and _containmentMF_.name = 'node')">
+    <nodeLabelTraces
+        visualID="5003"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3008"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'CallBehaviorAction') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Activity') and _containmentMF_.name = 'node')">
+    <nodeLabelTraces
+        visualID="5004"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3010"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'CallOperationAction') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Activity') and _containmentMF_.name = 'node')">
+    <nodeLabelTraces
+        visualID="5006"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3011"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Constraint') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Action') and _containmentMF_.name = 'localPrecondition')">
+    <nodeLabelTraces
+        visualID="5007"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3012"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Constraint') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Action') and _containmentMF_.name = 'localPostcondition')">
+    <nodeLabelTraces
+        visualID="5008"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3013"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'InputPin') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'OpaqueAction') and _containmentMF_.name = 'inputValue')">
+    <nodeLabelTraces
+        visualID="5009"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5085"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3014"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'OutputPin') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'OpaqueAction') and _containmentMF_.name = 'outputValue')">
+    <nodeLabelTraces
+        visualID="5010"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5086"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3015"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'ValuePin') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'OpaqueAction') and _containmentMF_.name = 'inputValue')">
+    <nodeLabelTraces
+        visualID="5011"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5024"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5083"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3016"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'ActionInputPin') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'OpaqueAction') and _containmentMF_.name = 'inputValue')">
+    <nodeLabelTraces
+        visualID="5012"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5025"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5084"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3017"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'ValuePin') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'InvocationAction') and _containmentMF_.name = 'argument')">
+    <nodeLabelTraces
+        visualID="5013"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5026"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5087"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3018"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'ActionInputPin') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'InvocationAction') and _containmentMF_.name = 'argument')">
+    <nodeLabelTraces
+        visualID="5014"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5027"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5088"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3019"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'InputPin') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'InvocationAction') and _containmentMF_.name = 'argument')">
+    <nodeLabelTraces
+        visualID="5015"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5089"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3020"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'OutputPin') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'CallAction') and _containmentMF_.name = 'result')">
+    <nodeLabelTraces
+        visualID="5016"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5090"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3021"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'ActionInputPin') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'InvocationAction') and _containmentMF_.name = 'argument')">
+    <nodeLabelTraces
+        visualID="5017"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5028"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5091"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3022"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'ValuePin') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'InvocationAction') and _containmentMF_.name = 'argument')">
+    <nodeLabelTraces
+        visualID="5018"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5029"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5092"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3023"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'InputPin') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'InvocationAction') and _containmentMF_.name = 'argument')">
+    <nodeLabelTraces
+        visualID="5019"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5093"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3024"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'OutputPin') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'CallAction') and _containmentMF_.name = 'result')">
+    <nodeLabelTraces
+        visualID="5020"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5094"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3025"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'ValuePin') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'CallOperationAction') and _containmentMF_.name = 'target')">
+    <nodeLabelTraces
+        visualID="5021"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5030"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5095"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3026"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'ActionInputPin') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'CallOperationAction') and _containmentMF_.name = 'target')">
+    <nodeLabelTraces
+        visualID="5022"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5031"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5096"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3027"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'InputPin') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'CallOperationAction') and _containmentMF_.name = 'target')">
+    <nodeLabelTraces
+        visualID="5023"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5097"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3030"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'InteractionConstraint') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Action') and _containmentMF_.name = 'localPrecondition')">
+    <nodeLabelTraces
+        visualID="5034"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3031"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'InteractionConstraint') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Action') and _containmentMF_.name = 'localPostcondition')">
+    <nodeLabelTraces
+        visualID="5035"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3032"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'IntervalConstraint') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Action') and _containmentMF_.name = 'localPrecondition')">
+    <nodeLabelTraces
+        visualID="5036"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3033"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'IntervalConstraint') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Action') and _containmentMF_.name = 'localPostcondition')">
+    <nodeLabelTraces
+        visualID="5037"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3034"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'DurationConstraint') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Action') and _containmentMF_.name = 'localPrecondition')">
+    <nodeLabelTraces
+        visualID="5038"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3035"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'DurationConstraint') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Action') and _containmentMF_.name = 'localPostcondition')">
+    <nodeLabelTraces
+        visualID="5039"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3036"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'TimeConstraint') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Action') and _containmentMF_.name = 'localPrecondition')">
+    <nodeLabelTraces
+        visualID="5040"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3037"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'TimeConstraint') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Action') and _containmentMF_.name = 'localPostcondition')">
+    <nodeLabelTraces
+        visualID="5041"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3038"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'DecisionNode') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Activity') and _containmentMF_.name = 'node')">
+    <nodeLabelTraces
+        visualID="5043"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5098"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3039"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'MergeNode') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Activity') and _containmentMF_.name = 'node')">
+    <nodeLabelTraces
+        visualID="5099"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3040"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'ForkNode') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Activity') and _containmentMF_.name = 'node')">
+    <nodeLabelTraces
+        visualID="5100"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3041"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'JoinNode') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Activity') and _containmentMF_.name = 'node')">
+    <nodeLabelTraces
+        visualID="5042"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5101"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3042"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'SendObjectAction') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Activity') and _containmentMF_.name = 'node')">
+    <nodeLabelTraces
+        visualID="5059"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3046"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'ValuePin') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'SendObjectAction') and _containmentMF_.name = 'request')">
+    <nodeLabelTraces
+        visualID="5049"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5050"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5102"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3047"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'ActionInputPin') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'SendObjectAction') and _containmentMF_.name = 'request')">
+    <nodeLabelTraces
+        visualID="5051"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5052"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5103"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3048"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'InputPin') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'SendObjectAction') and _containmentMF_.name = 'request')">
+    <nodeLabelTraces
+        visualID="5053"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5104"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3049"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'ValuePin') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'SendObjectAction') and _containmentMF_.name = 'target')">
+    <nodeLabelTraces
+        visualID="5054"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5055"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5105"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3050"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'ActionInputPin') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'SendObjectAction') and _containmentMF_.name = 'target')">
+    <nodeLabelTraces
+        visualID="5056"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5057"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5106"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3051"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'InputPin') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'SendObjectAction') and _containmentMF_.name = 'target')">
+    <nodeLabelTraces
+        visualID="5058"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5107"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3052"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'SendSignalAction') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Activity') and _containmentMF_.name = 'node')">
+    <nodeLabelTraces
+        visualID="5060"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3053"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'ActionInputPin') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'InvocationAction') and _containmentMF_.name = 'argument')">
+    <nodeLabelTraces
+        visualID="5061"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5062"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5108"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3054"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'ValuePin') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'InvocationAction') and _containmentMF_.name = 'argument')">
+    <nodeLabelTraces
+        visualID="5063"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5064"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5109"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3055"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'InputPin') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'InvocationAction') and _containmentMF_.name = 'argument')">
+    <nodeLabelTraces
+        visualID="5065"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5110"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3059"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'ActivityParameterNode') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Activity') and _containmentMF_.name = 'node')">
+    <nodeLabelTraces
+        visualID="5071"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3060"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'ValuePin') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'SendSignalAction') and _containmentMF_.name = 'target')">
+    <nodeLabelTraces
+        visualID="5072"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5073"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5111"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3061"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'ActionInputPin') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'SendSignalAction') and _containmentMF_.name = 'target')">
+    <nodeLabelTraces
+        visualID="5074"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5075"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5112"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3062"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'InputPin') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'SendSignalAction') and _containmentMF_.name = 'target')">
+    <nodeLabelTraces
+        visualID="5076"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5113"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3063"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'AcceptEventAction') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Activity') and _containmentMF_.name = 'node')">
+    <nodeLabelTraces
+        visualID="5078"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5079"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5115"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3064"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'OutputPin') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'AcceptEventAction') and _containmentMF_.name = 'result')">
+    <nodeLabelTraces
+        visualID="5077"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5114"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3065"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'StructuredActivityNode') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Activity') and _containmentMF_.name = 'group')">
+    <nodeLabelTraces
+        visualID="5117"
+        queryText="true"/>
+    <compartmentTraces
+        visualID="7005"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3067"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'ActivityPartition') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Activity') and _containmentMF_.name = 'group')">
+    <nodeLabelTraces
+        visualID="5118"
+        queryText="true"/>
+    <compartmentTraces
+        visualID="7006"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3068"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'InterruptibleActivityRegion') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Activity') and _containmentMF_.name = 'group')">
+    <compartmentTraces
+        visualID="7007"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3069"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'ConditionalNode') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Activity') and _containmentMF_.name = 'group')">
+    <nodeLabelTraces
+        visualID="5119"
+        queryText="true"/>
+    <compartmentTraces
+        visualID="7008"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3070"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'ExpansionRegion') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Activity') and _containmentMF_.name = 'group')">
+    <nodeLabelTraces
+        visualID="5120"
+        queryText="true"/>
+    <compartmentTraces
+        visualID="7009"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3071"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'LoopNode') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Activity') and _containmentMF_.name = 'group')">
+    <nodeLabelTraces
+        visualID="5121"
+        queryText="true"/>
+    <compartmentTraces
+        visualID="7010"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3073"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'SequenceNode') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Activity') and _containmentMF_.name = 'group')">
+    <nodeLabelTraces
+        visualID="5123"
+        queryText="true"/>
+    <compartmentTraces
+        visualID="7012"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3074"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'ExpansionNode') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'StructuredActivityNode') and _containmentMF_.name = 'node') and ( let _childMF_:ecore::EStructuralFeature = modelFacet.childMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _childMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'ExpansionRegion') and _childMF_.name = 'inputElement')"/>
+  <childNodeTraces
+      visualID="3075"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'ExpansionNode') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'StructuredActivityNode') and _containmentMF_.name = 'node') and ( let _childMF_:ecore::EStructuralFeature = modelFacet.childMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _childMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'ExpansionRegion') and _childMF_.name = 'outputElement')"/>
+  <childNodeTraces
+      visualID="3076"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'ValueSpecificationAction') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Activity') and _containmentMF_.name = 'node')">
+    <nodeLabelTraces
+        visualID="5126"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3077"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'OutputPin') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'ValueSpecificationAction') and _containmentMF_.name = 'result')">
+    <nodeLabelTraces
+        visualID="5124"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5125"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3078"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'DataStoreNode') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Activity') and _containmentMF_.name = 'node')">
+    <nodeLabelTraces
+        visualID="5127"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5128"
+        queryText="true"/>
+  </childNodeTraces>
+  <linkTraces
+      visualID="4001"
+      queryText="modelFacet.oclIsKindOf(gmfgen::FeatureLinkModelFacet) and (let _feature_:ecore::EStructuralFeature = modelFacet.oclAsType(gmfgen::FeatureLinkModelFacet).metaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _feature_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Action') and _feature_.name = 'localPrecondition')"/>
+  <linkTraces
+      visualID="4002"
+      queryText="modelFacet.oclIsKindOf(gmfgen::FeatureLinkModelFacet) and (let _feature_:ecore::EStructuralFeature = modelFacet.oclAsType(gmfgen::FeatureLinkModelFacet).metaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _feature_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Action') and _feature_.name = 'localPostcondition')"/>
+  <linkTraces
+      visualID="4003"
+      queryText="modelFacet.oclIsKindOf(gmfgen::TypeLinkModelFacet) and (let _eClass_:ecore::EClass = modelFacet.oclAsType(gmfgen::TypeLinkModelFacet).metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'ObjectFlow')">
+    <linkLabelTraces
+        visualID="6001"
+        queryText="true"/>
+    <linkLabelTraces
+        visualID="6002"
+        queryText="true"/>
+    <linkLabelTraces
+        visualID="6005"
+        queryText="true"/>
+    <linkLabelTraces
+        visualID="6006"
+        queryText="true"/>
+    <linkLabelTraces
+        visualID="6007"
+        queryText="true"/>
+    <linkLabelTraces
+        visualID="6008"
+        queryText="true"/>
+    <linkLabelTraces
+        visualID="6010"
+        queryText="true"/>
+  </linkTraces>
+  <linkTraces
+      visualID="4004"
+      queryText="modelFacet.oclIsKindOf(gmfgen::TypeLinkModelFacet) and (let _eClass_:ecore::EClass = modelFacet.oclAsType(gmfgen::TypeLinkModelFacet).metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'ControlFlow')">
+    <linkLabelTraces
+        visualID="6003"
+        queryText="true"/>
+    <linkLabelTraces
+        visualID="6004"
+        queryText="true"/>
+    <linkLabelTraces
+        visualID="6009"
+        queryText="true"/>
+    <linkLabelTraces
+        visualID="6011"
+        queryText="true"/>
+  </linkTraces>
+  <linkTraces
+      visualID="4005"
+      queryText="modelFacet.oclIsKindOf(gmfgen::TypeLinkModelFacet) and (let _eClass_:ecore::EClass = modelFacet.oclAsType(gmfgen::TypeLinkModelFacet).metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'ExceptionHandler')">
+    <linkLabelTraces
+        visualID="6012"
+        queryText="true"/>
+  </linkTraces>
+</trace:TraceModel>

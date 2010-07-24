@@ -1,0 +1,7 @@
+# Tracing options for the org.eclipse.papyrus.diagram.profile plug-in
+
+# Common issues
+org.eclipse.papyrus.diagram.profile/debug=false
+
+# Visual IDs
+org.eclipse.papyrus.diagram.profile/debug/visualID=false

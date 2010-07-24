@@ -1,0 +1,1324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+
+   <extension point="org.eclipse.ui.contexts" id="ui-context">
+      <?gmfgen generated="true"?>
+      <context
+         description="%context.description"
+         id="org.eclipse.papyrus.diagram.usecase.ui.diagramContext"
+         name="%context.name"
+         parentId="org.eclipse.gmf.runtime.diagram.ui.diagramContext">
+      </context>
+   </extension>
+   
+	<extension
+         point="org.eclipse.ui.commands">
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            description="Create a new UseCase Diagram (Papyrus II)"
+            id="org.eclipse.papyrus.diagram.usecase.CreateUseCaseDiagramCommand"
+            name="Create a new UseCase Diagram">
+      </command>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.eclipse.papyrus.diagram.usecase.CreateUseCaseDiagramCommand"
+            commandId="org.eclipse.papyrus.diagram.usecase.CreateUseCaseDiagramCommand">
+         <activeWhen>
+            <or>
+               <with
+                     variable="activeEditorId">
+                  <equals
+                        value="org.eclipse.papyrus.core.papyrusEditor">
+                  </equals>
+               </with>
+            </or>
+         </activeWhen>
+      </handler>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="toolbar:org.eclipse.ui.main.toolbar">
+         <toolbar
+               id="org.eclipse.papyrus.diagram.ui.toolbar">
+            <command
+                  commandId="org.eclipse.papyrus.diagram.usecase.CreateUseCaseDiagramCommand"
+                  icon="icons/obj16/Diagram_UseCase.gif"
+                  label="Create a new UseCase Diagram"
+                  style="push"
+                  tooltip="Create a new UseCase Diagram">
+                  <visibleWhen>
+                  <with
+                        variable="activeEditorId">
+                     <equals
+                           value="org.eclipse.papyrus.core.papyrusEditor">
+                     </equals>
+                  </with>
+               </visibleWhen>
+            </command>
+         </toolbar>
+      </menuContribution>
+      <menuContribution
+            locationURI="menu:org.eclipse.papyrus.ui.menu">
+         <menu
+               id="org.eclipse.papyrus.diagram.ui.menu.diagrams"
+               label="Diagrams">
+            <command
+                  commandId="org.eclipse.papyrus.diagram.usecase.CreateUseCaseDiagramCommand"
+                  icon="icons/obj16/Diagram_UseCase.gif"
+                  label="Create a new UseCase Diagram"
+                  style="push"
+                  tooltip="Create a new UML2 UseCase Diagram  (Papyrus II)">
+            </command>
+         </menu>
+      </menuContribution>
+   </extension>
+   
+   <extension
+         point="org.eclipse.papyrus.core.papyrusDiagram">
+      <editorDiagram
+            actionBarContributorId="org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor"
+            contextId="com.cea.papyrus.gmf.editor.context"
+            factoryClass="org.eclipse.papyrus.diagram.usecase.UseCaseDiagramEditorFactory"
+            icon="icons/obj16/Diagram_UseCase.gif">
+      </editorDiagram>
+      <creationCommand
+            creationCommandClass="org.eclipse.papyrus.diagram.usecase.CreateUseCaseDiagramCommand"
+            creationCondition="org.eclipse.papyrus.diagram.usecase.UseCaseDiagramCreationCondition"
+            icon="icons/obj16/Diagram_UseCase.gif"
+            id="org.eclipse.papyrus.diagram.usecase.CreateUseCaseDiagramCommand"
+            label="UML UseCase Diagram"
+            language="uml">
+      </creationCommand>
+   </extension>
+   	
+   <extension point="org.eclipse.gmf.runtime.common.ui.services.action.globalActionHandlerProviders" id="global-actions">
+      <?gmfgen generated="true"?>
+      <GlobalActionHandlerProvider
+         class="org.eclipse.papyrus.diagram.common.providers.PapyrusGlobalActionHandlerProvider"
+         id="UseCasePresentation">
+         <Priority name="Highest"/>
+         <ViewId id="org.eclipse.papyrus.core.papyrusEditor">
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="delete"/>
+            </ElementType>
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart">
+               <GlobalActionId actionId="save"/>
+            </ElementType>
+         </ViewId>
+      </GlobalActionHandlerProvider>
+      <GlobalActionHandlerProvider
+         class="org.eclipse.gmf.runtime.diagram.ui.providers.ide.providers.DiagramIDEGlobalActionHandlerProvider"
+         id="UseCasePresentationIDE">
+         <Priority name="Low"/>
+         <ViewId id="org.eclipse.papyrus.core.papyrusEditor">
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="bookmark"/>
+            </ElementType>
+         </ViewId>
+      </GlobalActionHandlerProvider>
+      <GlobalActionHandlerProvider
+            class="org.eclipse.papyrus.diagram.common.providers.PapyrusGlobalActionHandlerProvider"
+            id="UseCaseRender">
+         <Priority name="Highest"/>
+         <ViewId id="org.eclipse.papyrus.core.papyrusEditor">
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="cut"/>
+               <GlobalActionId actionId="copy"/>
+               <GlobalActionId actionId="paste"/>
+            </ElementType>
+         </ViewId>
+      </GlobalActionHandlerProvider>
+   </extension>
+
+
+   
+
+
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertyContributor" id="prop-contrib">
+      <?gmfgen generated="true"?>
+      <propertyContributor
+            contributorId="org.eclipse.papyrus.diagram.usecase"
+            labelProvider="org.eclipse.papyrus.diagram.usecase.sheet.UMLSheetLabelProvider">
+         <propertyCategory category="domain"/>
+         <propertyCategory category="visual"/>
+         <propertyCategory category="extra"/>
+      </propertyContributor>
+   </extension>
+
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertyTabs" id="proptabs">
+      <?gmfgen generated="true"?>   
+      <propertyTabs contributorId="org.eclipse.papyrus.diagram.usecase">
+         <propertyTab
+             category="visual"
+             id="property.tab.AppearancePropertySection"
+             label="%tab.appearance"/>
+          <propertyTab
+             category="visual"
+             id="property.tab.DiagramPropertySection"
+             label="%tab.diagram"/>
+          <propertyTab
+             category="domain"
+             id="property.tab.domain"
+             label="%tab.domain"/>
+      </propertyTabs>
+   </extension>
+
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertySections" id="propsections">
+      <?gmfgen generated="true"?>   
+      <propertySections contributorId="org.eclipse.papyrus.diagram.usecase">
+         <propertySection id="property.section.ConnectorAppearancePropertySection" 
+            filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.ConnectionEditPartPropertySectionFilter" 
+            class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.ConnectionAppearancePropertySection" 
+            tab="property.tab.AppearancePropertySection">
+         </propertySection>
+         <propertySection id="property.section.ShapeColorAndFontPropertySection" 
+            filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.ShapeEditPartPropertySectionFilter" 
+            class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.ShapeColorsAndFontsPropertySection" 
+            tab="property.tab.AppearancePropertySection">
+         </propertySection> 
+         <propertySection id="property.section.DiagramColorsAndFontsPropertySection" 
+            filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.DiagramEditPartPropertySectionFilter" 
+            class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.DiagramColorsAndFontsPropertySection" 
+            tab="property.tab.AppearancePropertySection">
+         </propertySection>     
+         <propertySection id="property.section.RulerGridPropertySection" 
+            filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.DiagramEditPartPropertySectionFilter" 
+            class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.grid.RulerGridPropertySection" 
+            tab="property.tab.DiagramPropertySection">
+         </propertySection>     
+         <propertySection
+            id="property.section.domain" 
+            tab="property.tab.domain"
+            class="org.eclipse.papyrus.diagram.usecase.sheet.UMLPropertySection">
+            <input type="org.eclipse.gmf.runtime.notation.View"/>
+            <input type="org.eclipse.gef.EditPart"/>
+            <input type="org.eclipse.papyrus.diagram.usecase.navigator.UMLAbstractNavigatorItem"/>
+         </propertySection>
+      </propertySections>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders" id="view-provider">
+      <?gmfgen generated="true"?>
+      <viewProvider class="org.eclipse.papyrus.diagram.usecase.providers.UMLViewProvider">
+         <Priority name="Lowest"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="UseCase"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2011,2012,2013,2014,2015,2016,2017,2018,2019,3007,3008,3009,3016,3015,3017,3018,3010,3011,3012,3013,3014"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4008,4009,4010,4011,4012,4013,4014,4015,4016,4017,4018,4019"/>
+      </viewProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders" id="ep-provider">
+      <?gmfgen generated="true"?>
+      <editpartProvider class="org.eclipse.papyrus.diagram.usecase.providers.UMLEditPartProvider">
+         <Priority name="Lowest"/>
+         <object class="org.eclipse.gmf.runtime.notation.Diagram" id="generated-diagram">
+            <method name="getType()" value="UseCase"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
+            <method name="getType()" value="2011,2012,2013,2014,2015,2016,2017,2018,2019,3007,3008,3009,3016,3015,3017,3018,3010,3011,3012,3013,3014"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
+            <method name="getType()" value="4008,4009,4010,4011,4012,4013,4014,4015,4016,4017,4018,4019"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
+            <method name="getType()" value="5014,6029,5015,5016,5017,5019,5025,5026,5027,5032,5018,5030,5028,5029,5031,6027,5020,5021,6028,5022,5023,5024"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
+            <method name="getType()" value="7009,7010,7011,7012,7017,7014,7015,7016,7013"/>
+         </object>
+         <context views="generated-diagram,generated-nodes,generated-links,generated-labels,generated-compartments"/>
+      </editpartProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders" id="modelassist-provider">
+      <?gmfgen generated="true"?>
+      <modelingAssistantProvider class="org.eclipse.papyrus.diagram.usecase.providers.UMLModelingAssistantProvider">
+         <Priority name="Lowest"/>
+         <object class="org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseDiagramEditPart" id="Package_1000"/>
+         <object class="org.eclipse.papyrus.diagram.usecase.edit.parts.ActorEditPartTN" id="Actor_2011"/>
+         <object class="org.eclipse.papyrus.diagram.usecase.edit.parts.ActorAsRectangleEditPartTN" id="Actor_2012"/>
+         <object class="org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseEditPartTN" id="UseCase_2013"/>
+         <object class="org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseAsRectangleEditPartTN" id="UseCase_2014"/>
+         <object class="org.eclipse.papyrus.diagram.usecase.edit.parts.ComponentEditPartTN" id="Component_2015"/>
+         <object class="org.eclipse.papyrus.diagram.usecase.edit.parts.PackageEditPartTN" id="Package_2016"/>
+         <object class="org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintEditPartTN" id="Constraint_2017"/>
+         <object class="org.eclipse.papyrus.diagram.usecase.edit.parts.CommentEditPartTN" id="Comment_2018"/>
+         <object class="org.eclipse.papyrus.diagram.usecase.edit.parts.ShortCutDiagramEditPart" id="Diagram_2019"/>
+         <context elements="Package_1000,Actor_2011,Actor_2012,UseCase_2013,UseCase_2014,Component_2015,Package_2016,Constraint_2017,Comment_2018,Diagram_2019"/>
+      </modelingAssistantProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.common.ui.services.iconProviders" id="icon-provider">
+      <?gmfgen generated="true"?>
+      <IconProvider class="org.eclipse.papyrus.diagram.usecase.providers.UMLIconProvider">
+         <Priority name="Low"/>
+      </IconProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.common.ui.services.parserProviders" id="parser-provider">
+      <?gmfgen generated="true"?>
+      <ParserProvider class="org.eclipse.papyrus.diagram.usecase.providers.UMLParserProvider">
+         <Priority name="Lowest"/>
+      </ParserProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes" id="element-types">
+      <?gmfgen generated="true"?>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.usecase.Package_1000"
+               name="%metatype.name.Package_1000"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Package"
+               edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.PackageEditHelper">
+            <param name="semanticHint" value="1000"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.usecase.Actor_2011"
+               name="%metatype.name.Actor_2011"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Actor"
+               edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.ActorEditHelper">
+            <param name="semanticHint" value="2011"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.usecase.Actor_2012"
+               name="%metatype.name.Actor_2012"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.usecase.Actor_2011"/>
+            <param name="semanticHint" value="2012"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.usecase.UseCase_2013"
+               name="%metatype.name.UseCase_2013"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="UseCase"
+               edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.UseCaseEditHelper">
+            <param name="semanticHint" value="2013"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.usecase.UseCase_2014"
+               name="%metatype.name.UseCase_2014"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.usecase.UseCase_2013"/>
+            <param name="semanticHint" value="2014"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.usecase.Component_2015"
+               name="%metatype.name.Component_2015"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Component"
+               edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.ComponentEditHelper">
+            <param name="semanticHint" value="2015"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.usecase.Package_2016"
+               name="%metatype.name.Package_2016"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.usecase.Package_1000"/>
+            <param name="semanticHint" value="2016"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.usecase.Constraint_2017"
+               name="%metatype.name.Constraint_2017"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.usecase.Constraint_3017"/>
+            <param name="semanticHint" value="2017"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.usecase.Comment_2018"
+               name="%metatype.name.Comment_2018"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.usecase.Comment_3015"/>
+            <param name="semanticHint" value="2018"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/gmf/runtime/1.0.2/notation">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.usecase.Diagram_2019"
+               name="%metatype.name.Diagram_2019"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Diagram"
+               edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.ShortCutDiagramEditHelper">
+            <param name="semanticHint" value="2019"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.usecase.ExtensionPoint_3007"
+               name="%metatype.name.ExtensionPoint_3007"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="ExtensionPoint"
+               edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.ExtensionPointEditHelper">
+            <param name="semanticHint" value="3007"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.usecase.ExtensionPoint_3008"
+               name="%metatype.name.ExtensionPoint_3008"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.usecase.ExtensionPoint_3007"/>
+            <param name="semanticHint" value="3008"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.usecase.UseCase_3009"
+               name="%metatype.name.UseCase_3009"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.usecase.UseCase_2013"/>
+            <param name="semanticHint" value="3009"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.usecase.Component_3016"
+               name="%metatype.name.Component_3016"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.usecase.Component_2015"/>
+            <param name="semanticHint" value="3016"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.usecase.Comment_3015"
+               name="%metatype.name.Comment_3015"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Comment"
+               edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.CommentEditHelper">
+            <param name="semanticHint" value="3015"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.usecase.Constraint_3017"
+               name="%metatype.name.Constraint_3017"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Constraint"
+               edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.ConstraintEditHelper">
+            <param name="semanticHint" value="3017"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.usecase.Actor_3018"
+               name="%metatype.name.Actor_3018"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.usecase.Actor_2011"/>
+            <param name="semanticHint" value="3018"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.usecase.Constraint_3010"
+               name="%metatype.name.Constraint_3010"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.usecase.Constraint_3017"/>
+            <param name="semanticHint" value="3010"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.usecase.Actor_3011"
+               name="%metatype.name.Actor_3011"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.usecase.Actor_2011"/>
+            <param name="semanticHint" value="3011"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.usecase.UseCase_3012"
+               name="%metatype.name.UseCase_3012"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.usecase.UseCase_2013"/>
+            <param name="semanticHint" value="3012"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.usecase.Component_3013"
+               name="%metatype.name.Component_3013"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.usecase.Component_2015"/>
+            <param name="semanticHint" value="3013"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.usecase.Package_3014"
+               name="%metatype.name.Package_3014"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.usecase.Package_1000"/>
+            <param name="semanticHint" value="3014"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.usecase.Include_4008"
+               name="%metatype.name.Include_4008"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Include"
+               edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.IncludeEditHelper">
+            <param name="semanticHint" value="4008"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.usecase.Extend_4009"
+               name="%metatype.name.Extend_4009"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Extend"
+               edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.ExtendEditHelper">
+            <param name="semanticHint" value="4009"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.usecase.Generalization_4010"
+               name="%metatype.name.Generalization_4010"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Generalization"
+               edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.GeneralizationEditHelper">
+            <param name="semanticHint" value="4010"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.usecase.Association_4011"
+               name="%metatype.name.Association_4011"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Association"
+               edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.AssociationEditHelper">
+            <param name="semanticHint" value="4011"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.usecase.ConstraintConstrainedElement_4012"
+               name="%metatype.name.ConstraintConstrainedElement_4012"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="4012"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.usecase.Dependency_4013"
+               name="%metatype.name.Dependency_4013"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Dependency"
+               edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.DependencyEditHelper">
+            <param name="semanticHint" value="4013"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.usecase.CommentAnnotatedElement_4014"
+               name="%metatype.name.CommentAnnotatedElement_4014"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="4014"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.usecase.Abstraction_4015"
+               name="%metatype.name.Abstraction_4015"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Abstraction"
+               edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.AbstractionEditHelper">
+            <param name="semanticHint" value="4015"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.usecase.Usage_4016"
+               name="%metatype.name.Usage_4016"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Usage"
+               edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.UsageEditHelper">
+            <param name="semanticHint" value="4016"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.usecase.Realization_4017"
+               name="%metatype.name.Realization_4017"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Realization"
+               edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.RealizationEditHelper">
+            <param name="semanticHint" value="4017"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.usecase.PackageMerge_4018"
+               name="%metatype.name.PackageMerge_4018"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="PackageMerge"
+               edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.PackageMergeEditHelper">
+            <param name="semanticHint" value="4018"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.usecase.PackageImport_4019"
+               name="%metatype.name.PackageImport_4019"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="PackageImport"
+               edithelper="org.eclipse.papyrus.diagram.usecase.edit.helpers.PackageImportEditHelper">
+            <param name="semanticHint" value="4019"/>
+         </metamodelType>
+      </metamodel>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
+      <?gmfgen generated="true"?>
+      <clientContext id="org.eclipse.papyrus.diagram.usecase.TypeContext">
+         <enablement>
+            <test
+               property="org.eclipse.gmf.runtime.emf.core.editingDomain"
+               value="org.eclipse.papyrus.diagram.usecase.EditingDomain"/>
+         </enablement>
+      </clientContext> 
+      <binding context="org.eclipse.papyrus.diagram.usecase.TypeContext">
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.Package_1000"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.Actor_2011"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.Actor_2012"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.UseCase_2013"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.UseCase_2014"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.Component_2015"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.Package_2016"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.Constraint_2017"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.Comment_2018"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.Diagram_2019"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.ExtensionPoint_3007"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.ExtensionPoint_3008"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.UseCase_3009"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.Component_3016"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.Comment_3015"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.Constraint_3017"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.Actor_3018"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.Constraint_3010"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.Actor_3011"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.UseCase_3012"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.Component_3013"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.Package_3014"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.Include_4008"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.Extend_4009"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.Generalization_4010"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.Association_4011"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.ConstraintConstrainedElement_4012"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.Dependency_4013"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.CommentAnnotatedElement_4014"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.Abstraction_4015"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.Usage_4016"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.Realization_4017"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.PackageMerge_4018"/>
+         <elementType ref="org.eclipse.papyrus.diagram.usecase.PackageImport_4019"/>
+         <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
+      </binding>
+   </extension>
+	   <extension point="org.eclipse.core.expressions.propertyTesters" id="navigator-proptest.isURIEditorInput">
+      <?gmfgen generated="true"?>
+       <propertyTester
+           id="org.eclipse.papyrus.diagram.usecase.URIEditorInputPropertyTester"
+           type="org.eclipse.emf.common.ui.URIEditorInput"
+           namespace="org.eclipse.papyrus.diagram.usecase"
+           properties="isURIEditorInput"
+           class="org.eclipse.papyrus.diagram.usecase.part.UMLUriEditorInputTester">
+       </propertyTester>
+   </extension>
+
+	   
+	   <extension point="org.eclipse.ui.navigator.viewer" id="navigator-viewbinding">
+      <?gmfgen generated="true"?>
+      <viewerContentBinding viewerId="org.eclipse.ui.navigator.ProjectExplorer">
+         <includes>
+            <contentExtension pattern="org.eclipse.papyrus.diagram.usecase.resourceContent"/>
+			<contentExtension pattern="org.eclipse.papyrus.diagram.usecase.domainResourceContent"/>
+            <contentExtension pattern="org.eclipse.papyrus.diagram.usecase.navigatorLinkHelper"/>
+         </includes>
+      </viewerContentBinding>
+      <viewerActionBinding viewerId="org.eclipse.ui.navigator.ProjectExplorer">
+         <includes>
+            <actionExtension pattern="org.eclipse.papyrus.diagram.usecase.navigatorActionProvider"/>
+         </includes>
+      </viewerActionBinding>
+   </extension>
+
+   <extension point="org.eclipse.ui.navigator.navigatorContent" id="navigator-content">
+      <?gmfgen generated="true"?>
+      <navigatorContent
+            id="org.eclipse.papyrus.diagram.usecase.resourceContent" 
+            name="%navigatorContentName" 
+            priority="normal" 
+            contentProvider="org.eclipse.papyrus.diagram.usecase.navigator.UMLNavigatorContentProvider" 
+            labelProvider="org.eclipse.papyrus.diagram.usecase.navigator.UMLNavigatorLabelProvider"
+            icon="icons/obj16/Diagram_UseCase.gif"
+            activeByDefault="true">
+         <triggerPoints>
+            <or>
+	           <and>
+    	          <instanceof value="org.eclipse.core.resources.IFile"/>
+        	      <test property="org.eclipse.core.resources.extension" value="PapyrusUMLUsecase_diagram"/>
+               </and>
+               <instanceof value="org.eclipse.papyrus.diagram.usecase.navigator.UMLAbstractNavigatorItem"/>
+            </or>
+         </triggerPoints>
+         <possibleChildren>
+            <or>
+         	   <instanceof value="org.eclipse.papyrus.diagram.usecase.navigator.UMLAbstractNavigatorItem"/>
+            </or>
+         </possibleChildren>
+         <commonSorter 
+               id="org.eclipse.papyrus.diagram.usecase.navigatorSorter" 
+               class="org.eclipse.papyrus.diagram.usecase.navigator.UMLNavigatorSorter">
+            <parentExpression>
+               <or>
+	              <and>
+    	             <instanceof value="org.eclipse.core.resources.IFile"/>
+        	         <test property="org.eclipse.core.resources.extension" value="PapyrusUMLUsecase_diagram"/>
+                  </and>
+                  <instanceof value="org.eclipse.papyrus.diagram.usecase.navigator.UMLAbstractNavigatorItem"/>
+               </or>
+            </parentExpression>
+         </commonSorter>
+      </navigatorContent>
+      <navigatorContent
+            id="org.eclipse.papyrus.diagram.usecase.domainResourceContent" 
+            name="%domainNavigatorContentName" 
+            priority="normal" 
+            contentProvider="org.eclipse.papyrus.diagram.usecase.navigator.UMLDomainNavigatorContentProvider" 
+            labelProvider="org.eclipse.papyrus.diagram.usecase.navigator.UMLDomainNavigatorLabelProvider"
+            icon="icons/obj16/Diagram_UseCase.gif"
+            activeByDefault="true">
+         <triggerPoints>
+            <or>
+	           <and>
+    	          <instanceof value="org.eclipse.core.resources.IFile"/>
+        	      <test property="org.eclipse.core.resources.extension" value="PapyrusUMLUsecase"/>
+               </and>
+               <instanceof value="org.eclipse.papyrus.diagram.usecase.navigator.UMLDomainNavigatorItem"/>
+            </or>
+         </triggerPoints>
+         <possibleChildren>
+            <instanceof value="org.eclipse.papyrus.diagram.usecase.navigator.UMLDomainNavigatorItem"/>
+         </possibleChildren>
+      </navigatorContent>
+      <actionProvider
+            id="org.eclipse.papyrus.diagram.usecase.navigatorActionProvider"
+            class="org.eclipse.papyrus.diagram.usecase.navigator.UMLNavigatorActionProvider">
+         <enablement>
+            <or>
+               <instanceof value="org.eclipse.papyrus.diagram.usecase.navigator.UMLAbstractNavigatorItem"/>
+            </or>
+         </enablement>
+      </actionProvider>
+   </extension>
+   
+	   <extension point="org.eclipse.ui.navigator.linkHelper" id="navigator-linkhelper">
+      <?gmfgen generated="true"?>
+      <linkHelper
+            id="org.eclipse.papyrus.diagram.usecase.navigatorLinkHelper"
+            class="org.eclipse.papyrus.diagram.usecase.navigator.UMLNavigatorLinkHelper">
+         <editorInputEnablement>
+            <and>
+               <instanceof value="org.eclipse.emf.common.ui.URIEditorInput"/>
+               <test property="org.eclipse.papyrus.diagram.usecase.isURIEditorInput"/>
+            </and>
+         </editorInputEnablement>
+         <selectionEnablement>
+            <instanceof value="org.eclipse.papyrus.diagram.usecase.navigator.UMLAbstractNavigatorItem"/>
+         </selectionEnablement>
+      </linkHelper>
+   </extension>
+   <extension point="org.eclipse.ui.commands" id="update-cmd">
+      <?gmfgen generated="true"?>
+      <command
+         categoryId="org.eclipse.ui.category.edit"
+         defaultHandler="org.eclipse.papyrus.diagram.usecase.part.UMLDiagramUpdateCommand"
+         description="%update.diagram.description"
+         id="org.eclipse.papyrus.diagram.usecase.updateDiagram"
+         name="%update.diagram.name"/>
+   </extension>
+   
+   <extension point="org.eclipse.ui.bindings" id="update-cmd-binding">
+      <?gmfgen generated="true"?>
+      <key 
+         commandId="org.eclipse.papyrus.diagram.usecase.updateDiagram"
+         contextId="org.eclipse.papyrus.diagram.usecase.ui.diagramContext"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="F5"/>
+   </extension>
+  <extension point="org.eclipse.core.runtime.preferences">
+		<?gmfgen generated="true"?>
+		<initializer class="org.eclipse.papyrus.diagram.usecase.preferences.DiagramPreferenceInitializer"/>
+	</extension>
+
+
+<extension point="org.eclipse.ui.menus" id="context-menus">
+      <?gmfgen generated="true"?>
+      <!-- menuContribution locationURI="menu:org.eclipse.ui.main.menu?after=">
+      </menuContribution>
+      <menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar?after=">
+      </menuContribution -->
+      <menuContribution locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
+         <command commandId="org.eclipse.papyrus.diagram.usecase.LoadResourceAction">
+            <visibleWhen>
+               <and>
+                  <with variable="activePartId"><equals value="org.eclipse.papyrus.diagram.usecase.part.UMLDiagramEditorID"/></with>
+                  <with variable="selection"><iterate ifEmpty="false"> 
+                     <instanceof value="org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseDiagramEditPart"/>
+                  </iterate></with>
+               </and>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+
+<extension point="org.eclipse.ui.commands" id="menu-commands">
+      <?gmfgen generated="true"?>
+      <category id="org.eclipse.papyrus.diagram.usecase.part.UMLDiagramEditorID" name="%cmdcategory.name" description="%cmdcategory.desc"/>
+      <command id="org.eclipse.papyrus.diagram.usecase.LoadResourceAction"
+         name="Load Resource"
+         categoryId="org.eclipse.papyrus.diagram.usecase.part.UMLDiagramEditorID"
+         defaultHandler="org.eclipse.papyrus.diagram.usecase.part.LoadResourceAction"/>
+   </extension>
+
+<extension point="org.eclipse.ui.handlers" id="menu-handlers">
+      <?gmfgen generated="true"?>
+   </extension>
+<extension point="org.eclipse.ui.preferencePages" id="prefpages">
+      <?gmfgen generated="true"?>
+      <page
+            id="org.eclipse.papyrus.preferences.diagrams.UseCase"
+            name="UseCase Diagram"
+            category="org.eclipse.papyrus.preferences.diagrams"
+            class="org.eclipse.papyrus.diagram.usecase.preferences.DiagramGeneralPreferencePage">
+      </page>
+      
+
+
+      <page
+            id="org.eclipse.papyrus.diagram.usecase.preferences.DiagramPrintingPreferencePage"
+            name="%prefpage.org.eclipse.uml2.uml.diagram.printing"
+            category="org.eclipse.papyrus.preferences.diagrams.UseCase"
+            class="org.eclipse.papyrus.diagram.usecase.preferences.DiagramPrintingPreferencePage">
+      </page>
+
+      <page
+            id="org.eclipse.papyrus.diagram.usecase.preferences.DiagramRulersAndGridPreferencePage"
+            name="%prefpage.org.eclipse.uml2.uml.diagram.rulersAndGrid"
+            category="org.eclipse.papyrus.preferences.diagrams.UseCase"
+            class="org.eclipse.papyrus.diagram.usecase.preferences.DiagramRulersAndGridPreferencePage">
+      </page>
+
+   </extension>
+
+<extension point="org.eclipse.ui.preferencePages">
+
+
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
+			class="org.eclipse.papyrus.diagram.usecase.preferences.CommentPreferencePage"
+            id="org.eclipse.papyrus.diagram.usecase.preferences.CommentPreferencePage"
+            name="Comment Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
+			class="org.eclipse.papyrus.diagram.usecase.preferences.ComponentPreferencePage"
+            id="org.eclipse.papyrus.diagram.usecase.preferences.ComponentPreferencePage"
+            name="Component Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
+			class="org.eclipse.papyrus.diagram.usecase.preferences.ConstraintPreferencePage"
+            id="org.eclipse.papyrus.diagram.usecase.preferences.ConstraintPreferencePage"
+            name="Constraint Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
+			class="org.eclipse.papyrus.diagram.usecase.preferences.PackagePreferencePage"
+            id="org.eclipse.papyrus.diagram.usecase.preferences.PackagePreferencePage"
+            name="Package Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
+			class="org.eclipse.papyrus.diagram.usecase.preferences.ActorPreferencePage"
+            id="org.eclipse.papyrus.diagram.usecase.preferences.ActorPreferencePage"
+            name="Actor Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
+			class="org.eclipse.papyrus.diagram.usecase.preferences.ExtensionPointPreferencePage"
+            id="org.eclipse.papyrus.diagram.usecase.preferences.ExtensionPointPreferencePage"
+            name="ExtensionPoint Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
+			class="org.eclipse.papyrus.diagram.usecase.preferences.UseCasePreferencePage"
+            id="org.eclipse.papyrus.diagram.usecase.preferences.UseCasePreferencePage"
+            name="UseCase Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
+			class="org.eclipse.papyrus.diagram.usecase.preferences.ShortCutDiagramPreferencePage"
+            id="org.eclipse.papyrus.diagram.usecase.preferences.ShortCutDiagramPreferencePage"
+            name="ShortCutDiagram Node" />
+	
+
+
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
+			class="org.eclipse.papyrus.diagram.usecase.preferences.DependencyPreferencePage"
+            id="org.eclipse.papyrus.diagram.usecase.preferences.DependencyPreferencePage"
+            name="Dependency Link" />
+		
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
+			class="org.eclipse.papyrus.diagram.usecase.preferences.GeneralizationPreferencePage"
+            id="org.eclipse.papyrus.diagram.usecase.preferences.GeneralizationPreferencePage"
+            name="Generalization Link" />
+		
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
+			class="org.eclipse.papyrus.diagram.usecase.preferences.UsagePreferencePage"
+            id="org.eclipse.papyrus.diagram.usecase.preferences.UsagePreferencePage"
+            name="Usage Link" />
+		
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
+			class="org.eclipse.papyrus.diagram.usecase.preferences.AssociationPreferencePage"
+            id="org.eclipse.papyrus.diagram.usecase.preferences.AssociationPreferencePage"
+            name="Association Link" />
+		
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
+			class="org.eclipse.papyrus.diagram.usecase.preferences.PackageImportPreferencePage"
+            id="org.eclipse.papyrus.diagram.usecase.preferences.PackageImportPreferencePage"
+            name="PackageImport Link" />
+		
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
+			class="org.eclipse.papyrus.diagram.usecase.preferences.PackageMergePreferencePage"
+            id="org.eclipse.papyrus.diagram.usecase.preferences.PackageMergePreferencePage"
+            name="PackageMerge Link" />
+		
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
+			class="org.eclipse.papyrus.diagram.usecase.preferences.AbstractionPreferencePage"
+            id="org.eclipse.papyrus.diagram.usecase.preferences.AbstractionPreferencePage"
+            name="Abstraction Link" />
+		
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
+			class="org.eclipse.papyrus.diagram.usecase.preferences.ExtendPreferencePage"
+            id="org.eclipse.papyrus.diagram.usecase.preferences.ExtendPreferencePage"
+            name="Extend Link" />
+		
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
+			class="org.eclipse.papyrus.diagram.usecase.preferences.UndefinedPreferencePage"
+            id="org.eclipse.papyrus.diagram.usecase.preferences.UndefinedPreferencePage"
+            name="Undefined Link" />
+		
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
+			class="org.eclipse.papyrus.diagram.usecase.preferences.RealizationPreferencePage"
+            id="org.eclipse.papyrus.diagram.usecase.preferences.RealizationPreferencePage"
+            name="Realization Link" />
+		
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
+			class="org.eclipse.papyrus.diagram.usecase.preferences.IncludePreferencePage"
+            id="org.eclipse.papyrus.diagram.usecase.preferences.IncludePreferencePage"
+            name="Include Link" />
+		
+
+</extension>
+<extension
+		id="Papyrus useCase editor Plugin.palettedefinition"
+		name="Papyrus useCase editor Plugin Predefined Entries"
+		point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders"> 
+		
+		<?gmfgen generated="true"?>	
+		<paletteProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider">
+			<Priority name="Lowest"/>
+      		<contribution
+            	factoryClass="org.eclipse.papyrus.diagram.usecase.part.UMLPaletteFactory">
+     			<predefinedEntry id="standardGroup/noteStack/noteTool" remove="true"/> 
+				<predefinedEntry id="standardGroup/noteStack/textTool" remove="true"/> 
+				<predefinedEntry id="standardGroup/noteStack/noteattachmentTool" remove="true"/>
+					<entry
+       defineOnly="true"
+       description="Create Package"
+       id="usecase.tool.package"
+       kind="tool"
+       label="Package"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create Subject"
+       id="usecase.tool.subject"
+       kind="tool"
+       label="Subject"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Component.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Component.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create Actor"
+       id="usecase.tool.actor"
+       kind="tool"
+       label="Actor"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Actor.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Actor.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create Use Case"
+       id="usecase.tool.usecase"
+       kind="tool"
+       label="Use Case"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/UseCase.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/UseCase.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create Constraint"
+       id="usecase.tool.constraint"
+       kind="tool"
+       label="Constraint"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create Comment"
+       id="usecase.tool.comment"
+       kind="tool"
+       label="Comment"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create Extension Point"
+       id="usecase.tool.extensionpoint"
+       kind="tool"
+       label="Extension Point"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExtensionPoint.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExtensionPoint.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create Association Link"
+       id="usecase.tool.association"
+       kind="tool"
+       label="Association"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create Generalization Link"
+       id="usecase.tool.generalization"
+       kind="tool"
+       label="Generalization"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create Dependency Link"
+       id="usecase.tool.dependency"
+       kind="tool"
+       label="Dependency"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create Abstraction Link"
+       id="usecase.tool.abstraction"
+       kind="tool"
+       label="Abstraction"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Abstraction.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Abstraction.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create Realization Link"
+       id="usecase.tool.realization"
+       kind="tool"
+       label="Realization"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Realization.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Realization.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create Usage Link"
+       id="usecase.tool.usage"
+       kind="tool"
+       label="Usage"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Usage.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Usage.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create PackageMerge Link"
+       id="usecase.tool.packagemerge"
+       kind="tool"
+       label="PackageMerge"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PackageMerge.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PackageMerge.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create PackageImport Link"
+       id="usecase.tool.packageimport"
+       kind="tool"
+       label="PackageImport"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PackageImport.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PackageImport.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create Include Link"
+       id="usecase.tool.include"
+       kind="tool"
+       label="Include"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Include.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Include.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create Extend"
+       id="usecase.tool.extend"
+       kind="tool"
+       label="Extend"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Extend.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Extend.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create Constrained Element"
+       id="usecase.tool.constraintlink"
+       kind="tool"
+       label="Constrained Element"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create Comment Link"
+       id="usecase.tool.commentlink"
+       kind="tool"
+       label="Comment link"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif">
+ 	</entry>
+
+			</contribution>
+		</paletteProvider>	
+			
+	</extension>
+
+<extension
+		id="Papyrus useCase editor Plugin.standard"
+		name="Papyrus useCase editor Plugin Standard Palette"
+		point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders"> 
+		
+		<?gmfgen generated="true"?>	
+		<paletteProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider">
+			<Priority name="Low"/>
+      		<contribution
+            	factoryClass="org.eclipse.papyrus.diagram.usecase.part.UMLPaletteFactory">
+     			<predefinedEntry id="standardGroup/noteStack/noteTool" remove="true"/> 
+				<predefinedEntry id="standardGroup/noteStack/textTool" remove="true"/> 
+				<predefinedEntry id="standardGroup/noteStack/noteattachmentTool" remove="true"/>
+					<entry
+       description="Diagram Nodes"
+       id="usecase.group.nodes"
+       kind="drawer"
+       label="Nodes"
+       large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
+       path="/"
+       small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
+ 	</entry>
+ 	 
+ 	 	<predefinedEntry
+          id="usecase.tool.package"
+          path="/usecase.group.nodes">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="usecase.tool.subject"
+          path="/usecase.group.nodes">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="usecase.tool.actor"
+          path="/usecase.group.nodes">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="usecase.tool.usecase"
+          path="/usecase.group.nodes">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="usecase.tool.constraint"
+          path="/usecase.group.nodes">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="usecase.tool.comment"
+          path="/usecase.group.nodes">
+    </predefinedEntry>
+
+	<entry
+       description="Child Elements of the Diagram Nodes"
+       id="usecase.group.children"
+       kind="drawer"
+       label="Children"
+       large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
+       path="/"
+       small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
+ 	</entry>
+ 	 
+ 	 	<predefinedEntry
+          id="usecase.tool.extensionpoint"
+          path="/usecase.group.children">
+    </predefinedEntry>
+
+	<entry
+       description="Diagram Links"
+       id="usecase.group.links"
+       kind="drawer"
+       label="Links"
+       large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
+       path="/"
+       small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
+ 	</entry>
+ 	 
+ 	 	<predefinedEntry
+          id="usecase.tool.association"
+          path="/usecase.group.links">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="usecase.tool.generalization"
+          path="/usecase.group.links">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="usecase.tool.dependency"
+          path="/usecase.group.links">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="usecase.tool.abstraction"
+          path="/usecase.group.links">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="usecase.tool.realization"
+          path="/usecase.group.links">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="usecase.tool.usage"
+          path="/usecase.group.links">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="usecase.tool.packagemerge"
+          path="/usecase.group.links">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="usecase.tool.packageimport"
+          path="/usecase.group.links">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="usecase.tool.include"
+          path="/usecase.group.links">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="usecase.tool.extend"
+          path="/usecase.group.links">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="usecase.tool.constraintlink"
+          path="/usecase.group.links">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="usecase.tool.commentlink"
+          path="/usecase.group.links">
+    </predefinedEntry>
+
+
+			</contribution>
+			<editor id="org.eclipse.papyrus.diagram.usecase"/>
+		</paletteProvider>	
+			
+	</extension>
+
+
+
+
+</plugin>

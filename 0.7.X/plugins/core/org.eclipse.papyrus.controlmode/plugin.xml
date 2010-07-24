@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="org.eclipse.papyrus.controlmode.customControlCommand" name="customControlCommand" schema="schema/customControlCommand.exsd"/>
+   <extension
+         point="org.eclipse.papyrus.modelexplorer.actionHandler">
+      <customAction
+            actionHandler="org.eclipse.papyrus.controlmode.action.CollaborativeActionsFactory"
+            actionId="org.eclipse.papyrus.controlmode.action.collaborativeActions"
+            afterAction="org.eclipse.papyrus.modelexplorer.factory.defaultEMFActions"
+            needSeparator="false">
+      </customAction>
+   </extension>
+
+</plugin>

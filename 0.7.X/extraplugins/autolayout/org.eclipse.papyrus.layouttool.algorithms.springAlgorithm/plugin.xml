@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.layouttool.algorithms">
+      <client
+            class="org.eclipse.papyrus.layouttool.algorithms.springalgorithm.SpringAlgorithm"
+            icon="icons/springAlgorithm2.gif"
+            name="Spring"
+            toolTipText="In a Spring Algorithm, on the one hand all nodes try to get as far of each other as possible and on the other hand there are the edges which keep nodes together, higher weight the edges have, stronger are they in pulling nodes near each other">
+      </client>
+   </extension>
+
+</plugin>

@@ -1,0 +1,646 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+<!-- Diagram declaration -->
+<extension point="org.eclipse.papyrus.core.papyrusDiagram"> 
+	<creationCommand
+		creationCommandClass="org.eclipse.papyrus.sysml.diagram.blockdefinition.BlockDefinitionDiagramCreateCommand"
+		icon="icons/obj16/Diagram_BlockDefinition.gif" 
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.CreateCommand"
+        language="sysml"
+		label="SysML Block Definition Diagram" />
+	<editorDiagram
+		actionBarContributorId="org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor"
+		factoryClass="org.eclipse.papyrus.sysml.diagram.blockdefinition.BlockDefinitionDiagramEditorFactory"
+		icon="icons/obj16/Diagram_BlockDefinition.gif" />
+</extension>
+
+<!-- Diagram creation command and handler -->
+<extension point="org.eclipse.ui.commands">
+	<command id="org.eclipse.papyrus.sysml.diagram.blockdefinition.CreateCommand" 
+		name="Create a new Block Definition Diagram"
+		description="Create a new Block Definition Diagram"
+		categoryId="org.eclipse.papyrus.editor.category" />
+</extension>
+
+<extension point="org.eclipse.ui.handlers">
+	<handler
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.BlockDefinitionDiagramCreateCommand"
+		commandId="org.eclipse.papyrus.sysml.diagram.blockdefinition.CreateCommand">
+		<activeWhen>
+			<with variable="activeEditorId">
+				<equals value="org.eclipse.papyrus.core.papyrusEditor" />
+			</with>
+		</activeWhen>
+	</handler>
+</extension>
+
+<!-- Diagram creation command registration in menu and toolbar -->
+<extension point="org.eclipse.ui.menus">
+	
+	<menuContribution locationURI="menu:org.eclipse.papyrus.ui.menu">
+	<menu id="org.eclipse.papyrus.diagram.ui.menu.diagrams" label="Diagrams">
+		<command commandId="org.eclipse.papyrus.sysml.diagram.blockdefinition.CreateCommand"
+			icon="icons/obj16/Diagram_BlockDefinition.gif" label="Create a new Block Definition Diagram"
+			style="push" tooltip="Create a new Block Definition Diagram">
+			<visibleWhen>
+				<with variable="activeEditorId">
+					<equals value="org.eclipse.papyrus.core.papyrusEditor" />
+				</with>
+			</visibleWhen>
+		</command>
+	</menu>
+	</menuContribution>
+	
+	<menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar">
+	<toolbar id="org.eclipse.papyrus.diagram.ui.toolbar">
+		<command commandId="org.eclipse.papyrus.sysml.diagram.blockdefinition.CreateCommand"
+			icon="icons/obj16/Diagram_BlockDefinition.gif" label="Create a new Block Definition Diagram"
+			style="push" tooltip="Create a new Block Definition Diagram">
+				<visibleWhen>
+					<with variable="activeEditorId">
+						<equals value="org.eclipse.papyrus.core.papyrusEditor" />
+					</with>
+				</visibleWhen>
+		</command>
+	</toolbar>
+	</menuContribution>
+</extension>
+
+<!-- Palette tool declaration (declares the real palette containment) -->
+<extension point="org.eclipse.papyrus.diagram.common.paletteDefinition"
+	name="SysML_BDD">
+	
+	<paletteDefinition ID="SysML_BDD"
+		class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
+		name="BDD" icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif" 
+		path="palettes/blockdefinition.palette.xml"
+		provider="CEA LIST">
+		<Priority name="Low"/>
+
+		<!-- Specify diagram this palette tools relate to -->				
+		<editor id="org.eclipse.papyrus.sysml.diagram.blockdefinition"/>
+	</paletteDefinition>
+</extension>
+
+<!-- Palette tool definition (defines tools possibly used by the palette(s)) -->
+<extension point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders"
+	name="SysML BDD Predefined Entries"
+	id="org.eclipse.papyrus.sysml.diagram.blockdefinition.palettedefinition"> 
+		
+	<paletteProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider">
+	<Priority name="Lowest"/> <!-- Lower priority than Palette tool declaration -->
+	
+
+	<!-- Block Definition Diagram specific tool definition -->
+	<contribution
+		factoryClass="org.eclipse.papyrus.sysml.diagram.blockdefinition.factory.BlockDefinitionDiagramPaletteFactory">
+		
+		<!-- blockdefinition.tool.block -->
+		<entry
+			defineOnly="true"
+			description="Create a Block"
+			id="blockdefinition.tool.block"
+			kind="tool"
+			label="Block"
+			large_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Block.gif"
+			path=""
+			small_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Block.gif">
+		</entry>
+
+		<!-- blockdefinition.tool.constraint -->		
+		<entry
+			defineOnly="true"
+			description="Create new Constraint"
+			id="blockdefinition.tool.constraint"
+			kind="tool"
+			label="Constraint"
+			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
+			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif">
+		</entry>
+		
+	</contribution>	
+	
+	</paletteProvider>	
+</extension>
+
+<!-- Diagram view providers declaration -->
+<extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders">
+
+	<!-- Diagram view provider -->
+	<viewProvider class="org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.BlockDefinitionDiagramViewProvider">
+		<Priority name="Low"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="BlockDefinition"/>
+	</viewProvider>
+
+	<!-- Block view provider -->
+	<viewProvider class="org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.BlockViewProvider">
+		<Priority name="Low"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="Block, Constraint"/>		
+	</viewProvider>	
+
+	<!-- ViewProvider for inherited elements (from ClassDiagram UMLViewProvider) -->
+    <viewProvider class="org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.InheritedClassDiagramElementViewProvider">
+		<Priority name="Low"/>
+		<!-- 
+			"2007, 3009" = Package
+			"2005, 3024" = Model
+			"2008, 3010" = Class
+			"2004, 3023" = Interface
+			"2009, 3026" = PrimitiveType
+			"2010, 3027" = DataType
+			"2006, 3025" = Enumeration
+			"2001, 3020" = InstanceSpecification
+			"2013" = AssociationClass
+			"2012, 3028" = Comment
+			"2011, 3029" = Constraint
+			"3032" = ContainmentCircle		
+			"3018, 3012, 3006, 3002" = Property CLN
+			"3019, 3013, 3007, 3003" = Operation CLN
+			"3011" = Reception CLN
+			"3014, 3008, 3004" = Class CLN
+			"3017" = EnumerationLiteral CLN
+			"3030" = Slot CLN											
+		  -->		
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" 
+			semanticHints="2007, 3009, 2005, 3024, 2008, 3010, 2004, 3023, 2009, 3026, 2010, 3027, 2006, 3025, 2001, 3020"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" 
+			semanticHints="2013, 2012, 3028, 2011, 3029, 3032"/>
+		<!-- CLN -->
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node"
+			semanticHints="3018, 3012, 3006, 3002, 3019, 3013, 3007, 3003, 3011, 3014, 3008, 3004, 3017, 3030"/>					
+		<!-- 
+			"4008" = Dependency
+			"4007" = Usage
+			"4003" = InterfaceRealization
+			"4002" = Generalization
+			"4020" = GeneralizationSet
+			"4001" = Association
+			"4017" = AssociationClass
+			"4016" = AssociationClassLink
+			"4023, 4022" = ContainmentLink, AddedLink
+			"4013" = CommentLink
+			"4014" = ConstraintLink												
+		  -->
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" 
+			semanticHints="4008, 4007, 4003, 4020, 4002, 4001, 4017, 4016, 4023, 4022, 4013, 4014"/>		
+    </viewProvider>
+
+	<!-- ViewProvider for inherited elements (from CompositeStructureDiagram UMLViewProvider) -->
+    <viewProvider class="org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.InheritedCompositeDiagramElementViewProvider">
+		<Priority name="Low"/>
+		<!-- 
+			"3069" = Port
+		  -->		
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" 
+			semanticHints="3069"/>					
+    </viewProvider>
+
+</extension>
+
+<!-- Diagram edit part providers declaration -->
+<extension point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders">
+
+	<!-- Diagram edit part provider -->
+	<editpartProvider class="org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.BlockDefinitionDiagramEditPartProvider">
+		<Priority name="Low"/>
+		<object
+			class="org.eclipse.gmf.runtime.notation.Diagram(org.eclipse.gmf.runtime.notation)"
+			id="BlockDefinition">
+			<method name="getType()" value="BlockDefinition"/>
+		</object>
+	</editpartProvider>
+
+	<!-- Block edit part provider -->
+	<editpartProvider class="org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.BlockEditPartProvider">
+		<Priority name="Low"/>
+		<object
+			class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)"
+			id="org.eclipse.papyrus.sysml.diagram.blockdefinition.Block">
+			<method name="getType()" value="Block, Block_Constraint_Compartment, Constraint"/>
+		</object>
+	</editpartProvider>
+
+	<!-- EditPartProvider for inherited elements (from ClassDiagram) -->
+	<editpartProvider class="org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.InheritedClassDiagramElementEditPartProvider">
+		<Priority name="Low"/>
+		
+		<!-- 
+			The semantic hints given here are used in case the provider is not already loaded.
+			As soon as the provider is loaded its provides method is used.
+			"2007, 5026, 7016" = Package / name label / packageable element compartment
+			"3009, 5017, 7010" = Package / name label / packageable element compartment (CN)
+
+			"2007, 5026, 7016" = Model / name label / packageable element compartment
+			"3009, 5017, 7010" = Model / name label / packageable element compartment (CN)
+			
+			"2008, 5029, 7017, 7018, 7019" = Class / name label / compartment (Prop - Oper - NestClass)
+			"3010, 5014, 7013, 7012, 7011" = Class / name label / compartment (Prop - Oper - NestClass) (CN)			
+			"3012, 3013, 3011, 3014"       = Class compartment element labels			
+
+			"2004, 5011, 7006, 7007, 7008" = Interface / name label / compartment (Prop - Oper - NestClass)
+			"3023, 5049, 7027, 7028, 7029" = Interface / name label / compartment (Prop - Oper - NestClass) (CN)			
+			"3006, 3007, 3008"             = Interface compartment element labels	
+
+			"2009, 5032" = PrimitiveType / name label
+			"3026, 5058" = PrimitiveType / name label (CN)
+			
+			"2010, 5035, 7020, 7021" = DataType / name label / compartment (Prop - Oper)
+			"3027, 5061, 7032, 7033" = DataType / name label / compartment (Prop - Oper) (CN)			
+			"3018, 3019"             = DataType compartment element labels	
+
+			"2006, 5023, 7015" = Enumeration / name label / compartment (Literal)
+			"3025, 5055, 7031" = Enumeration / name label / compartment (Literal) (CN)			
+			"3017"             = Enumeration compartment element labels	
+
+			"2001, 5002, 7001" = InstanceSpecification / name label / compartment (Slot)
+			"3020, 5040, 7035" = InstanceSpecification / name label / compartment (Slot) (CN)			
+			"3030"             = InstanceSpecification compartment element labels	
+
+			"2013, 5066, 7034, 7036, 7037" = AssociationClass / name label / compartment (Prop - Oper - NestClass)
+			"3002, 3003, 3004"             = AssociationClass compartment element labels
+			
+			"2012, 5038" = Comment / body label
+			"3028, 5063" = Comment / body label (CN)
+			
+			"2011, 5037, 5159" = Constraint / name / spec label
+			"3029, 5064, 5160" = Constraint / name / spec label (CN)
+			
+			"3032" = ContainmentCircle												
+		  -->			
+		<object
+			id="Package"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="2007, 5026, 7016, 3009, 5017, 7010"/>
+		</object>
+
+		<object
+			id="Model"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="2005, 5020, 7009, 3024, 5052, 7030"/>
+		</object>
+				
+		<object
+			id="Class"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="2008, 5029, 7017, 7018, 7019, 3010, 5014, 7013, 7012, 7011, 3012, 3013, 3011, 3014"/>
+		</object>
+
+		<object
+			id="Interface"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="2004, 5011, 7006, 7007, 7008, 3023, 5049, 7027, 7028, 7029, 3006, 3007, 3008"/>
+		</object>
+
+		<object
+			id="PrimitiveType"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="2009, 5032, 3026, 5058"/>
+		</object>
+
+		<object
+			id="DataType"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="2010, 5035, 7020, 7021, 3027, 5061, 7032, 7033, 3018, 3019"/>
+		</object>
+		
+		<object
+			id="Enumeration"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="2006, 5023, 7015, 3025, 5055, 7031, 3017"/>
+		</object>
+		
+		<object
+			id="InstanceSpecification"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="2001, 5002, 7001, 3020, 5040, 7035, 3030"/>
+		</object>
+		
+		<object
+			id="AssociationClass"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="2013, 5066, 7034, 7036, 7037, 3002, 3003, 3004"/>
+		</object>
+
+		<object
+			id="Comment"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="2012, 5038, 3028, 5063"/>
+		</object>
+		
+		<object
+			id="Constraint"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="2011, 5037, 5159, 3029, 5064, 5160"/>
+		</object>
+
+		<object
+			id="ContainmentCircle"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3032"/>
+		</object>				
+			
+		<!-- 
+			"4008" = Dependency
+			"6026" = Dependency name label
+			"6027" = Dependency applied stereotype label
+			"4007" = Usage
+			"6016" = Usage name label
+			"6017" = Usage applied stereotype label			
+			"4003" = InterfaceRealization
+			"6009" = InterfaceRealization name label
+			"6008" = InterfaceRealization applied stereotype label			
+			"4002" = Generalization
+			"6007" = Generalization applied stereotype label		
+			"4020" = GeneralizationSet
+			"5067" = GeneralizationSet label								
+			"4001" = Association
+			"6002" = Association name label
+			"6001" = Association applied stereotype label
+			"6003" = Association role source label
+			"6005" = Association role target label		
+			"4017" = AssociationClass	
+			"6031" = AssociationClass role source label
+			"6032" = AssociationClass role target label
+			"4016" = AssociationClass link between Class and Association
+			"4013" = CommentLink
+			"4014" = ConstraintLink
+			"4023, 4022" = ContainmentLink, AddedLink																				
+		  -->
+		  	
+		<object
+			id="Dependency"
+			class="org.eclipse.gmf.runtime.notation.Edge">
+			<method name="getType()" value="4008, 6026, 6027"/>
+		</object>
+				  	
+		<object
+			id="Usage"
+			class="org.eclipse.gmf.runtime.notation.Edge">
+			<method name="getType()" value="4007, 6016, 6017"/>
+		</object>
+
+		<object
+			id="InterfaceRealization"
+			class="org.eclipse.gmf.runtime.notation.Edge">
+			<method name="getType()" value="4003, 6009, 6008"/>
+		</object>
+				
+		<object
+			id="Generalization"
+			class="org.eclipse.gmf.runtime.notation.Edge">
+			<method name="getType()" value="4002, 6007"/>
+		</object>
+
+		<object
+			id="GeneralizationSet"
+			class="org.eclipse.gmf.runtime.notation.Edge">
+			<method name="getType()" value="4020, 5067"/>
+		</object>
+		
+		<object
+			id="Association"
+			class="org.eclipse.gmf.runtime.notation.Edge">
+			<method name="getType()" value="4001, 6002, 6001, 6003, 6005"/>
+		</object>
+				
+		<object
+			id="AssociationClass"
+			class="org.eclipse.gmf.runtime.notation.Edge">
+			<method name="getType()" value="4017, 6031, 6032, 4016"/>
+		</object>
+
+		<object
+			id="CommentLink"
+			class="org.eclipse.gmf.runtime.notation.Edge">
+			<method name="getType()" value="4013"/>
+		</object>
+								
+		<object
+			id="ConstraintLink"
+			class="org.eclipse.gmf.runtime.notation.Edge">
+			<method name="getType()" value="4014"/>
+		</object>
+
+		<object
+			id="ContainmentLink"
+			class="org.eclipse.gmf.runtime.notation.Edge">
+			<method name="getType()" value="4023, 4022"/>
+		</object>
+		
+		<context views="Package, Model, Class, Interface, PrimitiveType, DataType, Enumeration, InstanceSpecification, AssociationClass, Comment, Constraint, ContainmentCircle"/>
+		<context views="Dependency, Usage, InterfaceRealization, Generalization,GeneralizationSet, Association, AssociationClass, CommentLink, ConstraintLink, ContainmentLink"/>
+		
+	</editpartProvider>
+
+	<!-- EditPartProvider for inherited elements (from CompositeStructureDiagram) -->
+	<editpartProvider class="org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.InheritedCompositeDiagramElementEditPartProvider">
+		<Priority name="Low"/>
+		
+		<!-- 
+			The semantic hints given here are used in case the provider is not already loaded.
+			As soon as the provider is loaded its provides method is used.
+			"3069, 5125, 6029" = Port / name label / stereotype label												
+		  -->			
+		<object
+			id="Port"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3069, 5125, 6029"/>
+		</object>	
+							  							
+		<context views="Port"/>
+		
+	</editpartProvider>
+
+</extension>
+
+<!-- Diagram edit policy providers declaration -->
+<extension
+	point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
+	<editpolicyProvider
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.EditPolicyProvider">
+		<Priority name="Low"/>
+	</editpolicyProvider>
+</extension>
+ 
+<!-- Diagram element types declaration -->
+<!-- The diagram itself should be declared as an element type -->
+<!-- A kind type should be created for diagram elements       -->
+<extension
+		point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
+           
+	<specializationType
+		edithelperadvice="org.eclipse.papyrus.sysml.diagram.blockdefinition.helper.BlockEditHelperAdvice"
+		icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Block.gif"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.Block"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+		name="Block">
+		<specializes id="org.eclipse.papyrus.uml.Class"/>
+		<param name="semanticHint" value="Block"/>
+		<matcher class = "org.eclipse.papyrus.sysml.diagram.blockdefinition.matcher.BlockMatcher" />
+	</specializationType>
+	
+	<specializationType
+		icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.Constraint"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+		name="Constraint">
+		<specializes id="org.eclipse.papyrus.diagram.clazz.Constraint_3029"/>
+		<param name="semanticHint" value="Constraint"/>
+	</specializationType>
+	
+</extension>
+
+
+<!-- Preference pages declaration -->
+<extension point="org.eclipse.ui.preferencePages" id="prefpages">
+
+	<!-- Diagram Preference pages declaration -->
+	<page
+		id="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences"
+		name="Block Definition Diagram"
+		category="org.eclipse.papyrus.preferences.diagrams"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.DiagramGeneralPreferencePage">
+	</page>
+
+	<!-- Not yet supported individually by diagrams (see https://bugs.eclipse.org/bugs/show_bug.cgi?id=318865)
+	<page
+		id="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences.DiagramPrintingPreferencePage"
+		name="Printing"
+		category="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.DiagramPrintingPreferencePage">
+	</page>
+
+	<page
+		id="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preference.DiagramRulersAndGridPreferencePage"
+		name="Rulers and Grid"
+		category="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.DiagramRulersAndGridPreferencePage">
+	</page>
+	  -->
+
+	<!-- Element Preference pages declaration -->
+	<page  	category="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences"
+			class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.BlockPreferencePage"
+            id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.BlockPreferencePage"
+            name="Block">
+	</page>
+	
+	<page  	category="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences"
+			class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.PackagePreferencePage"
+            id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.PackagePreferencePage"
+            name="Package">
+	</page>	
+	
+	<page  	category="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences"
+			class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.ModelPreferencePage"
+            id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.ModelPreferencePage"
+            name="Model">
+	</page>	
+		
+	<page  	category="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences"
+			class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.ClassPreferencePage"
+            id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.ClassPreferencePage"
+            name="Class">
+	</page>			
+	
+	<page  	category="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences"
+			class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.PrimitiveTypePreferencePage"
+            id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.PrimitiveTypePreferencePage"
+            name="PrimitiveType">
+	</page>	
+
+	<page  	category="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences"
+			class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.DataTypePreferencePage"
+            id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.DataTypePreferencePage"
+            name="DataType">
+	</page>	
+
+	<page  	category="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences"
+			class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.EnumerationPreferencePage"
+            id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.EnumerationPreferencePage"
+            name="Enumeration">
+	</page>	
+
+	<page  	category="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences"
+			class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.InterfacePreferencePage"
+            id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.InterfacePreferencePage"
+            name="Interface">
+	</page>	
+
+	<page  	category="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences"
+			class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.InstanceSpecificationPreferencePage"
+            id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.InstanceSpecificationPreferencePage"
+            name="InstanceSpecification">
+	</page>	
+
+	<page  	category="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences"
+			class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.AssociationClassNodePreferencePage"
+            id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.AssociationClassNodePreferencePage"
+            name="AssociationClass (Node)">
+	</page>	
+	
+	<page  	category="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences"
+			class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.CommentPreferencePage"
+            id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.CommentPreferencePage"
+            name="Comment">
+	</page>	
+
+	<page  	category="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences"
+			class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.ConstraintPreferencePage"
+            id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.ConstraintPreferencePage"
+            name="Constraint">
+	</page>	
+			
+	<page  	category="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences"
+			class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.PortPreferencePage"
+            id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.PortPreferencePage"
+            name="Port">
+	</page>	
+				
+	<page  	category="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences"
+			class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.UsagePreferencePage"
+            id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.UsagePreferencePage"
+            name="Usage">
+	</page>				
+
+	<page  	category="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences"
+			class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.DependencyPreferencePage"
+            id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.DependencyPreferencePage"
+            name="Dependency">
+	</page>		
+
+	<page  	category="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences"
+			class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.InterfaceRealizationPreferencePage"
+            id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.InterfaceRealizationPreferencePage"
+            name="InterfaceRealization">
+	</page>	
+	
+	<page  	category="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences"
+			class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.AssociationPreferencePage"
+            id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.AssociationPreferencePage"
+            name="Association">
+	</page>	
+
+	<page  	category="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences"
+			class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.GeneralizationPreferencePage"
+            id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.GeneralizationPreferencePage"
+            name="Generalization">
+	</page>	
+
+	<page  	category="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences"
+			class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.GeneralizationSetPreferencePage"
+            id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.GeneralizationSetPreferencePage"
+            name="GeneralizationSet">
+	</page>	
+	
+	<page  	category="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences"
+			class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.AssociationClassEdgePreferencePage"
+            id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.AssociationClassEdgePreferencePage"
+            name="AssociationClass (Edge)">
+	</page>	
+					
+</extension>
+
+</plugin>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/uml2/2.2.0/GenModel" modelDirectory="/org.eclipse.papyrus.sasheditor.di/src"
+    modelPluginID="org.eclipse.papyrus.sasheditor.di" modelName="Sashwindowsdi" importerID="org.eclipse.uml2.uml.ecore.importer"
+    complianceLevel="5.0" copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
+  <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/importer/org.eclipse.uml2.uml.ecore.importer">
+    <details key="ECORE_TAGGED_VALUES" value="PROCESS"/>
+    <details key="UNION_PROPERTIES" value="REPORT"/>
+    <details key="DUPLICATE_FEATURES" value="DISCARD"/>
+    <details key="SUBSETTING_PROPERTIES" value="REPORT"/>
+    <details key="COMMENTS" value="PROCESS"/>
+    <details key="DUPLICATE_FEATURE_INHERITANCE" value="DISCARD"/>
+    <details key="DUPLICATE_OPERATIONS" value="DISCARD"/>
+    <details key="INVARIANT_CONSTRAINTS" value="PROCESS"/>
+    <details key="REDEFINING_PROPERTIES" value="REPORT"/>
+    <details key="ANNOTATION_DETAILS" value="PROCESS"/>
+    <details key="DUPLICATE_OPERATION_INHERITANCE" value="DISCARD"/>
+    <details key="REDEFINING_OPERATIONS" value="REPORT"/>
+    <details key="DERIVED_FEATURES" value="PROCESS"/>
+    <details key="OPERATION_BODIES" value="IGNORE"/>
+    <details key="CAMEL_CASE_NAMES" value="IGNORE"/>
+    <details key="SUPER_CLASS_ORDER" value="PROCESS"/>
+  </genAnnotations>
+  <foreignModel>sashwindowsdi.uml</foreignModel>
+  <genPackages xsi:type="genmodel:GenPackage" prefix="Di" basePackage="org.eclipse.papyrus.sashwindows"
+      resource="XMI" disposableProviderFactory="true" ecorePackage="di.ecore#/">
+    <genDataTypes xsi:type="genmodel:GenDataType" ecoreDataType="di.ecore#//int"/>
+    <genDataTypes xsi:type="genmodel:GenDataType" ecoreDataType="di.ecore#//JavaObject"/>
+    <genDataTypes xsi:type="genmodel:GenDataType" ecoreDataType="di.ecore#//Float"/>
+    <genDataTypes xsi:type="genmodel:GenDataType" ecoreDataType="di.ecore#//boolean"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="di.ecore#//SashModel">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference di.ecore#//SashModel/windows"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference di.ecore#//SashModel/currentSelection"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="di.ecore#//SashModel/addPage">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="di.ecore#//SashModel/addPage/pageIdentifier"/>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="di.ecore#//SashModel/removePage">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="di.ecore#//SashModel/removePage/pageIdentifier"/>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="di.ecore#//SashModel/lookupPage">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="di.ecore#//SashModel/lookupPage/pageIdentifier"/>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="di.ecore#//SashModel/movePage">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="di.ecore#//SashModel/movePage/srcParentFolder"/>
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="di.ecore#//SashModel/movePage/srcIndex"/>
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="di.ecore#//SashModel/movePage/targetParentFolder"/>
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="di.ecore#//SashModel/movePage/targetIndex"/>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="di.ecore#//SashModel/insertFolder">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="di.ecore#//SashModel/insertFolder/folderToInsert"/>
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="di.ecore#//SashModel/insertFolder/refFolder"/>
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="di.ecore#//SashModel/insertFolder/refFolderSide"/>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="di.ecore#//SashModel/movePage.1">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="di.ecore#//SashModel/movePage.1/srcParentFolder"/>
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="di.ecore#//SashModel/movePage.1/srcIndex"/>
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="di.ecore#//SashModel/movePage.1/targetParentFolder"/>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="di.ecore#//SashModel/removeEmptyFolder">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="di.ecore#//SashModel/removeEmptyFolder/folder"/>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="di.ecore#//SashModel/removeAllPages"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="di.ecore#//SashModel/removeOtherPages">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="di.ecore#//SashModel/removeOtherPages/pageIdentifier"/>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="di.ecore#//SashModel/lookupFirstWindow"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="di.ecore#//SashModel/lookupFirstFolder"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="di.ecore#//Window">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference di.ecore#//Window/position"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference di.ecore#//Window/size"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference di.ecore#//Window/panel"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="di.ecore#//PanelParent">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference di.ecore#//PanelParent/children"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="di.ecore#//PanelParent/replaceChild">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="di.ecore#//PanelParent/replaceChild/oldChild"/>
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="di.ecore#//PanelParent/replaceChild/newChild"/>
+      </genOperations>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="di.ecore#//AbstractPanel">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false"
+          ecoreFeature="ecore:EReference di.ecore#//AbstractPanel/parent"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="di.ecore#//Position">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute di.ecore#//Position/x"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute di.ecore#//Position/y"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="di.ecore#//Size">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute di.ecore#//Size/width"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute di.ecore#//Size/length"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="di.ecore#//TabFolder">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference di.ecore#//TabFolder/children"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="di.ecore#//TabFolder/movePage">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="di.ecore#//TabFolder/movePage/oldIndex"/>
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="di.ecore#//TabFolder/movePage/newIndex"/>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="di.ecore#//TabFolder/addPage">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="di.ecore#//TabFolder/addPage/pageIdentifier"/>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="di.ecore#//TabFolder/removePage">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="di.ecore#//TabFolder/removePage/pageIndex"/>
+      </genOperations>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="di.ecore#//PageRef">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference di.ecore#//PageRef/emfPageIdentifier"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute di.ecore#//PageRef/pageIdentifier"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute di.ecore#//PageRef/objectPageIdentifier"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false"
+          ecoreFeature="ecore:EReference di.ecore#//PageRef/parent"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="di.ecore#//PageRef/isForIdentifier">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="di.ecore#//PageRef/isForIdentifier/pageIdentifier"/>
+      </genOperations>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="di.ecore#//SashPanel">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute di.ecore#//SashPanel/sashPosition"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute di.ecore#//SashPanel/direction"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="di.ecore#//SashPanel/setChildren">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="di.ecore#//SashPanel/setChildren/leftChild"/>
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="di.ecore#//SashPanel/setChildren/rightChild"/>
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="di.ecore#//SashPanel/setChildren/direction"/>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="di.ecore#//SashPanel/delete">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="di.ecore#//SashPanel/delete/childToDelete"/>
+      </genOperations>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="di.ecore#//AbstractPage">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute di.ecore#//AbstractPage/pageIdentifier"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="di.ecore#//PageList">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference di.ecore#//PageList/availablePage"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="di.ecore#//PageList/addPage">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="di.ecore#//PageList/addPage/pageIdentifier"/>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="di.ecore#//PageList/removePage">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="di.ecore#//PageList/removePage/pageIdentifier"/>
+      </genOperations>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="di.ecore#//SashWindowsMngr">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference di.ecore#//SashWindowsMngr/pageList"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference di.ecore#//SashWindowsMngr/sashModel"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

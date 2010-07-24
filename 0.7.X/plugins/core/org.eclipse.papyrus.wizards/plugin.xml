@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin>
+<extension point="org.eclipse.ui.newWizards">
+	<category 
+		id="org.eclipse.papyrus.wizards.category"
+    	name="Papyrus">
+	</category>
+	<wizard
+         category="org.eclipse.papyrus.wizards.category"
+         class="org.eclipse.papyrus.wizards.NewPapyrusProjectWizard"
+         finalPerspective="org.eclipse.papyrus.core.perspective"         
+         icon="icons/papyrus/new_papyrus_project.gif"
+         id="org.eclipse.papyrus.wizards.1createproject"
+         name="Papyrus Project"
+         project="true">
+      <description>
+         %NewWizards.project.description
+      </description>
+	</wizard>
+    <wizard
+         category="org.eclipse.papyrus.wizards.category"
+         class="org.eclipse.papyrus.wizards.InitModelWizard"
+         finalPerspective="org.eclipse.papyrus.core.perspective"
+         icon="icons/papyrus/new_papyrus_model.gif"
+         id="org.eclipse.papyrus.wizards.createmodel"
+         name="Papyrus Model">
+   </wizard>
+</extension>
+
+<extension-point id="templates" name="UML2 Model Templates" schema="schema/templates.exsd"/>
+
+</plugin>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_7t5TEATfEd-Zgu2nuGnNfQ" name="SynchronizePinsAndParameters">
+  <packagedElement xmi:type="uml:Activity" xmi:id="_9UHqAATfEd-Zgu2nuGnNfQ" name="Activity1"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_GhTyUATgEd-Zgu2nuGnNfQ" name="ClassA">
+    <ownedOperation xmi:id="_IondEATgEd-Zgu2nuGnNfQ" name="op1">
+      <ownedParameter xmi:id="_enbdwATgEd-Zgu2nuGnNfQ" name="param1In" isOrdered="true">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2Sb6gATgEd-Zgu2nuGnNfQ" value="3"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_15_lUATgEd-Zgu2nuGnNfQ" value="2"/>
+      </ownedParameter>
+      <ownedParameter xmi:id="_enbdwQTgEd-Zgu2nuGnNfQ" name="param2In" isUnique="false">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_244PcATgEd-Zgu2nuGnNfQ" value="*"/>
+      </ownedParameter>
+      <ownedParameter xmi:id="_enbdwgTgEd-Zgu2nuGnNfQ" name="param3InOut" direction="inout"/>
+      <ownedParameter xmi:id="_enbdwwTgEd-Zgu2nuGnNfQ" name="param4Out" direction="out"/>
+    </ownedOperation>
+    <ownedOperation xmi:id="_L1XF4ATgEd-Zgu2nuGnNfQ" name="op2">
+      <ownedParameter xmi:id="_e0issATgEd-Zgu2nuGnNfQ" name="param1In"/>
+      <ownedParameter xmi:id="_e0issQTgEd-Zgu2nuGnNfQ" name="param2In"/>
+      <ownedParameter xmi:id="_e0issgTgEd-Zgu2nuGnNfQ" name="param3InOut" direction="inout"/>
+      <ownedParameter xmi:id="_e0isswTgEd-Zgu2nuGnNfQ" name="param4Out" direction="out"/>
+    </ownedOperation>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_f3TKMATgEd-Zgu2nuGnNfQ" name="ClassB"/>
+  <packagedElement xmi:type="uml:Activity" xmi:id="_k9LIwATpEd-Zgu2nuGnNfQ" name="Behavior1">
+    <ownedParameter xmi:id="_O9oeYATgEd-Zgu2nuGnNfQ" name="param1In" isOrdered="true">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_0sNjkATgEd-Zgu2nuGnNfQ" value="3"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_0WTlAATgEd-Zgu2nuGnNfQ" value="2"/>
+    </ownedParameter>
+    <ownedParameter xmi:id="_RSMiAATgEd-Zgu2nuGnNfQ" name="param2In" isUnique="false">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1XII0ATgEd-Zgu2nuGnNfQ" value="*"/>
+    </ownedParameter>
+    <ownedParameter xmi:id="_TpJLQATgEd-Zgu2nuGnNfQ" name="param3InOut" direction="inout"/>
+    <ownedParameter xmi:id="_Y0_lEATgEd-Zgu2nuGnNfQ" name="param4Out" direction="out"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Activity" xmi:id="_qBbFwATpEd-Zgu2nuGnNfQ" name="Activity2">
+    <node xmi:type="uml:CallOperationAction" xmi:id="_3tw58ATpEd-Zgu2nuGnNfQ" name="CallOpModelNotDrawn" operation="_IondEATgEd-Zgu2nuGnNfQ">
+      <argument xmi:id="_4-B7kxJpEd-5NogAXN0hfQ" name="param1In" isOrdered="true">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_4-B7lBJpEd-5NogAXN0hfQ" value="3"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_4-B7lRJpEd-5NogAXN0hfQ" value="2"/>
+      </argument>
+      <argument xmi:id="_4-B7kRJpEd-5NogAXN0hfQ" name="param2In" isUnique="false">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_4-B7khJpEd-5NogAXN0hfQ" value="*"/>
+      </argument>
+      <argument xmi:id="_4-B7kBJpEd-5NogAXN0hfQ" name="param3InOut"/>
+      <result xmi:id="_4-B7lxJpEd-5NogAXN0hfQ" name="param3InOut"/>
+      <result xmi:id="_4-B7lhJpEd-5NogAXN0hfQ" name="param4Out"/>
+      <target xmi:id="_4-B7mBJpEd-5NogAXN0hfQ" name="target" type="_GhTyUATgEd-Zgu2nuGnNfQ"/>
+    </node>
+    <node xmi:type="uml:CallBehaviorAction" xmi:id="_Of5ocAT_Ed-Zgu2nuGnNfQ" name="CallBehModelNotDrawn" behavior="_k9LIwATpEd-Zgu2nuGnNfQ">
+      <argument xmi:id="_pLlWgxJpEd-5NogAXN0hfQ" name="param1In" isOrdered="true">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_pLlWhBJpEd-5NogAXN0hfQ" value="3"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_pLlWhRJpEd-5NogAXN0hfQ" value="2"/>
+      </argument>
+      <argument xmi:id="_pLlWgRJpEd-5NogAXN0hfQ" name="param2In" isUnique="false">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_pLlWghJpEd-5NogAXN0hfQ" value="*"/>
+      </argument>
+      <argument xmi:id="_pLlWgBJpEd-5NogAXN0hfQ" name="param3InOut"/>
+      <result xmi:id="_pLugcRJpEd-5NogAXN0hfQ" name="param3InOut"/>
+      <result xmi:id="_pLugcBJpEd-5NogAXN0hfQ" name="param4Out"/>
+    </node>
+  </packagedElement>
+</uml:Model>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gmfgraph:Canvas xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:gmfgraph="http://www.eclipse.org/gmf/2006/GraphicalDefinition" name="umlclassdiagram">
+  <figures
+      name="Default">
+    <descriptors
+        name="CornerBentDescriptor">
+      <actualFigure
+          xsi:type="gmfgraph:CustomFigure"
+          name="HTMLCornerBentFigure"
+          qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.HTMLCornerBentFigure">
+        <customChildren
+            accessor="getCornerBentFigure()">
+          <typedFigure
+              xsi:type="gmfgraph:CustomFigure"
+              name="HTMLCornerBentFigure"
+              qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.HTMLCornerBentFigure"/>
+        </customChildren>
+      </actualFigure>
+      <accessors
+          accessor="getCornerBentFigure"
+          figure="//@figures.0/@descriptors.0/@actualFigure/@customChildren.0/@typedFigure"/>
+    </descriptors>
+    <descriptors
+        name="CommentLinkDescriptor">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="CommentLinkPolilyne"
+          lineKind="LINE_DASH"/>
+    </descriptors>
+  </figures>
+  <nodes
+      name="CornerBentNode"
+      figure="CornerBentDescriptor"/>
+  <connections
+      name="CommentLinkConnection"
+      figure="CommentLinkDescriptor"/>
+  <labels
+      name="CornerBentContentDiagramLabel"
+      figure="CornerBentDescriptor"
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.0/@accessors.0"/>
+</gmfgraph:Canvas>

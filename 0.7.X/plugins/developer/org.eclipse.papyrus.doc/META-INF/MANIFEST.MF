@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Papyrus Documenation and Help Plugin
+Bundle-SymbolicName: org.eclipse.papyrus.doc;singleton:=true
+Bundle-Version: 0.7.0.qualifier
+Bundle-Vendor: CEA LIST
+Require-Bundle: org.eclipse.equinox.app,
+ org.eclipse.ui,
+ org.eclipse.help,
+ org.eclipse.ui.intro,
+ org.eclipse.pde.ui;bundle-version="3.6.0"

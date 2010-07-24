@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><paletteDefinition><content><drawer iconpath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif" id="org.eclipse.papyrus.uml.diagram.pkg.UML_Package__001" name="Tools"><aspectTool description="Create a new Package" id="package.tool.package" name="Package" refToolId="clazz.tool.package"></aspectTool>
+	<aspectTool description="Create a new Dependency"
+		id="package.tool.dependency" name="Dependency" refToolId="clazz.tool.dependency">
+	</aspectTool>
+	<aspectTool description="Create a new PackageImport" id="PackageImport" name="PackageImport" refToolId="clazz.tool.packageimport"></aspectTool></drawer></content></paletteDefinition>

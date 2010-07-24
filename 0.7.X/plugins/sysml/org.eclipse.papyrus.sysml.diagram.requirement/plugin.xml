@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+<!-- Palette tool declaration (declares the real palette containment) -->
+   <extension
+         point="org.eclipse.papyrus.diagram.common.paletteDefinition">
+      <paletteDefinition
+            ID="SysML_Req"
+            class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
+            icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
+            name="Reqs"
+            path="palette/requirement.palette.xml"
+            provider="CEA LIST">
+         <Priority
+               name="Low">
+         </Priority>
+		 <!-- Specify diagram this palette tools relate to -->				
+         <editor
+               id="org.eclipse.papyrus.sysml.diagram.requirement">
+         </editor>
+      </paletteDefinition>
+   </extension>
+
+<!-- Diagram creation command registration in menu and toolbar -->
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="menu:org.eclipse.papyrus.ui.menu">
+         <menu
+               id="org.eclipse.papyrus.diagram.ui.menu.diagrams"
+               label="Diagrams">
+            <command
+                  commandId="org.eclipse.papyrus.sysml.diagram.requirement.CreateCommand"
+                  icon="icons/obj16/Diagram_Requirement.gif"
+                  label="SysML Requirement Diagram"
+                  style="push"
+                  tooltip="SysML Requirement Diagram">
+            </command>
+         </menu>
+      </menuContribution>
+      <menuContribution
+            locationURI="toolbar:org.eclipse.ui.main.toolbar">
+         <toolbar
+               id="org.eclipse.papyrus.diagram.ui.toolbar">
+            <command
+                  commandId="org.eclipse.papyrus.sysml.diagram.requirement.CreateCommand"
+                  icon="icons/obj16/Diagram_Requirement.gif"
+                  label="Create a new Requirement Diagram"
+                  style="push"
+                  tooltip="Create a new Requirement Diagram">
+               <visibleWhen>
+                  <with
+                        variable="activeEditorId">
+                     <equals
+                           value="org.eclipse.papyrus.core.papyrusEditor">
+                     </equals>
+                  </with>
+               </visibleWhen>
+            </command>
+         </toolbar>
+      </menuContribution>
+   </extension>
+   
+<!-- Diagram creation command -->
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            description="SysML Requirement Diagram"
+            id="org.eclipse.papyrus.sysml.diagram.requirement.CreateCommand"
+            name="SysML Requirement Diagram">
+      </command>
+   </extension>
+
+<!-- Diagram declaration -->
+   <extension
+         point="org.eclipse.papyrus.core.papyrusDiagram">
+      <editorDiagram
+            actionBarContributorId="org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor"
+            factoryClass="org.eclipse.papyrus.sysml.diagram.requirement.RequirementDiagramEditorFactory"
+            icon="icons/obj16/Diagram_Requirement.gif">
+      </editorDiagram>
+      <creationCommand
+            creationCommandClass="org.eclipse.papyrus.sysml.diagram.requirement.RequirementDiagramCreateCommand"
+            icon="icons/obj16/Diagram_Requirement.gif"
+            id="org.eclipse.papyrus.sysml.diagram.requirement.CreateCommand"
+            label="SysML Requirement Diagram"
+            language="sysml">
+      </creationCommand>
+   </extension>
+   
+<!-- Diagram creation handlers -->
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.eclipse.papyrus.sysml.diagram.requirement.RequirementDiagramCreateCommand"
+            commandId="org.eclipse.papyrus.sysml.diagram.requirement.CreateCommand">
+         <activeWhen>
+            <with
+                  variable="activeEditorId">
+               <equals
+                     value="org.eclipse.papyrus.core.papyrusEditor">
+               </equals>
+            </with>
+         </activeWhen>
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.gmf.runtime.diagram.core.viewProviders">
+      <viewProvider
+            class="org.eclipse.papyrus.sysml.diagram.requirement.provider.RequirementDiagramViewProvider">
+         <Priority
+               name="Highest">
+         </Priority>
+         <context
+               semanticHints="RequirementDiagram"
+               viewClass="org.eclipse.gmf.runtime.notation.Diagram">
+         </context>
+      </viewProvider>
+      <viewProvider
+            class="org.eclipse.papyrus.sysml.diagram.requirement.provider.InheritedElementViewProvider">
+         <Priority
+               name="Highest">
+         </Priority>
+         <!-- Handlers for class (2008, 3010), for packages (2007), for any Named Element from the model explorer (2097) and for containement (3032) -->
+         <context
+               semanticHints="2007, 2008, 2097, 3010, 3032"
+               viewClass="org.eclipse.gmf.runtime.notation.Node"></context>
+          <!-- Handlers for abstraction (4006) and for containement (4023) -->
+         <context
+               semanticHints="4006, 4022, 4023"
+               viewClass="org.eclipse.gmf.runtime.notation.Edge">
+         </context>
+      </viewProvider>
+   </extension>
+   <extension
+         point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders">
+      <editpartProvider
+            class="org.eclipse.papyrus.sysml.diagram.requirement.provider.RequirementDiagramEditPartProvider">
+         <Priority
+               name="Low">
+         </Priority>
+      </editpartProvider>
+      <editpartProvider
+            class="org.eclipse.papyrus.sysml.diagram.requirement.provider.InheritedElementEditPartProvider">
+         <Priority
+               name="Low">
+         </Priority>
+         <!-- Edit Part Providers for Nodes for class (2008, 3010), for packages (2007), for any Named Element from the model explorer (2097) and for containement (3032) -->
+         <object
+               class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)"
+               id="inherited-nodes">
+            <method
+                  name="getType()"
+                  value="2007, 2008, 2097, 3010, 3032">
+            </method>
+         </object>
+           <!-- Edit Part Providers for Edges for abstraction (4006) and for containement (4023) -->
+         <object
+               class="org.eclipse.gmf.runtime.notation.Edge(org.eclipse.gmf.runtime.notation)"
+               id="inherited-edges">
+            <method
+                  name="getType()"
+                  value="4006, 4022, 4023">
+            </method>
+         </object>
+      </editpartProvider>
+   </extension>
+   
+   <!-- Palette tool definition (defines tools possibly used by the palette(s)) -->
+   <extension
+         id="org.eclipse.papyrus.sysml.diagram.requirement.palettedefinition"
+         name="SysML Reqs Predefined Entries"
+         point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders">
+      <paletteProvider
+            class="org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider">
+         <Priority
+               name="Lowest">
+         </Priority>
+         <contribution
+               factoryClass="org.eclipse.papyrus.diagram.clazz.part.UMLPaletteFactory">
+            <entry
+                  defineOnly="true"
+                  description="Create a new Requirement"
+                  id="clazz.tool.class"
+                  kind="tool"
+                  label="Class"
+                  large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif"
+                  small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif">
+            </entry>
+            <entry
+                  defineOnly="true"
+                  description="Create a new Relation"
+                  id="clazz.tool.abstraction"
+                  kind="tool"
+                  label="Abstraction"
+                  large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Abstraction.gif"
+                  small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Abstraction.gif">
+            </entry>
+            <entry
+                  defineOnly="true"
+                  description="Create a new Containment Link"
+                  id="clazz.tool.containmentlink"
+                  kind="tool"
+                  label="ContainmentLink"
+                  large_icon="platform:/plugin/org.eclipse.papyrus.diagram.clazz/icons/obj16/ContainmentConnection.gif"
+                  small_icon="platform:/plugin/org.eclipse.papyrus.diagram.clazz/icons/obj16/ContainmentConnection.gif">
+            </entry>
+            <entry
+                  defineOnly="true"
+                  description="Create a new Package"
+                  id="clazz.tool.package"
+                  kind="tool"
+                  label="Package"
+                  large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif"
+                  small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif">
+            </entry>
+         </contribution>
+      </paletteProvider>
+   </extension>
+   <extension
+         point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
+      <editpolicyProvider
+            class="org.eclipse.papyrus.sysml.diagram.requirement.provider.EditPolicyProvider">
+         <Priority
+               name="Low">
+         </Priority>
+      </editpolicyProvider>
+   </extension>
+   
+ <!-- Preference pages declaration -->
+   <extension
+         id="prefpages"
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="org.eclipse.papyrus.preferences.diagrams"
+            class="org.eclipse.papyrus.sysml.diagram.requirement.preferences.RequirementDiagramGeneralPreferencePage"
+            id="org.eclipse.papyrus.sysml.diagram.requirement.preferences"
+            name="PapyrusSysMLRequirement Diagram">
+      </page>
+      
+      	<!-- Not yet supported individually by diagrams (see https://bugs.eclipse.org/bugs/show_bug.cgi?id=318865)
+      <page
+            category="org.eclipse.papyrus.sysml.diagram.requirement.preferences"
+            class="org.eclipse.papyrus.sysml.diagram.requirement.preferences.DiagramPrintingPreferencePage"
+            id="org.eclipse.papyrus.sysml.diagram.requirement.preferences.DiagramPrintingPreferencePage"
+            name="Printing">
+      </page>
+      <page
+            category="org.eclipse.papyrus.sysml.diagram.requirement.preferences"
+            class="org.eclipse.papyrus.sysml.diagram.requirement.preferencesDiagramRulesAndGridPreferences"
+            id="org.eclipse.papyrus.sysml.diagram.requirement.preferencesDiagramRulesAndGridPreferences"
+            name="Rules and Grid">
+      </page>
+        -->
+        
+      	<!-- Element Preference pages declaration -->
+	<page  	category="org.eclipse.papyrus.sysml.diagram.requirement.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.requirement.preferences.ClassPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.requirement.preferences.ClassPreferencePage"
+		name="Class">
+	</page>
+
+	<page  	category="org.eclipse.papyrus.sysml.diagram.requirement.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.requirement.preferences.PackagePreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.requirement.preferences.PackagePreferencePage"
+		name="Package">
+	</page>
+	
+	<page  	category="org.eclipse.papyrus.sysml.diagram.requirement.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.requirement.preferences.AssociationPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.requirement.preferences.AssociationPreferencePage"
+		name="Association">
+	</page>	
+	
+	<page  	category="org.eclipse.papyrus.sysml.diagram.requirement.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.requirement.preferences.AbstractionPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.requirement.preferences.AbstractionPreferencePage"
+		name="Abstraction">
+	</page>	
+
+	<page  	category="org.eclipse.papyrus.sysml.diagram.requirement.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.requirement.preferences.ContainmentPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.requirement.preferences.ContainmentPreferencePage"
+		name="Containment">
+	</page>	  
+   </extension>
+
+</plugin>

@@ -1,0 +1,7 @@
+# Tracing options for the org.eclipse.papyrus.diagram.communication plug-in
+
+# Common issues
+org.eclipse.papyrus.diagram.communication/debug=false
+
+# Visual IDs
+org.eclipse.papyrus.diagram.communication/debug/visualID=false

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.controlmode.customControlCommand">
+      <customControlCommand
+            controlCommand="org.eclipse.papyrus.controlmode.umlprofiles.commands.UMLProfileControlCommand">
+      </customControlCommand>
+      <customUncontrolCommand
+            uncontrolCommand="org.eclipse.papyrus.controlmode.umlprofiles.commands.UMLProfileUncontrolCommand">
+      </customUncontrolCommand>
+      <enableControlCommand
+            controlCondition="org.eclipse.papyrus.controlmode.umlprofiles.commands.UMLProfileControlCondition">
+      </enableControlCommand>
+   </extension>
+
+</plugin>

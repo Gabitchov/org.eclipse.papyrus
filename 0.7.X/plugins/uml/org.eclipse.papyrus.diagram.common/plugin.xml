@@ -1,0 +1,1049 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+##########################################################################################
+# Copyright (c) 2008 Conselleria de Infraestructuras y Transporte, Generalitat 
+# de la Comunitat Valenciana . All rights reserved. This program
+# and the accompanying materials are made available under the terms of the
+# Eclipse Public License v1.0 which accompanies this distribution, and is
+# available at http://www.eclipse.org/legal/epl-v10.html
+# 
+# Contributors: Francisco Javier Cano MuÃ±oz (Prodevelop) - initial API implementation
+#
+########################################################################################
+-->
+
+<plugin>
+	<extension-point id="modelToEditorMap" name="ModelToEditorMap" schema="schema/modelToEditorMap.exsd"/>
+ <extension-point id="editorAssistantProvider" name="editorAssistantProvider" schema="schema/editorAssistantProvider.exsd"/>
+ <extension-point id="viewInfo" name="viewInfo" schema="schema/viewInfo.exsd"/>
+ <extension-point id="moskittEditorFactory" name="moskittEditorFactory" schema="schema/moskittEditorFactory.exsd"/>
+ <extension-point id="paletteDefinition" name="PaletteDefinition" schema="schema/paletteDefinition.exsd"/>
+ <extension-point id="aspectToolProvider" name="aspectToolProvider" schema="schema/aspectToolProvider.exsd"/>
+   <!--
+   <extension
+         point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
+       <contributionItemProvider
+            checkPluginLoaded="true"
+            class="org.eclipse.papyrus.diagram.common.actions.DeleteFromDiagramActionItemProvider">
+         <Priority name="Medium"/>
+		 <popupContribution
+               class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+			 <popupMenuGroup
+                  id="DeleteFromDiagramGroup"
+                  path="/propertiesGroup">
+             </popupMenuGroup>
+             <popupAction
+                  path="/editGroup"
+                  id="delete_from_diagram">
+             </popupAction>
+             <popupStructuredContributionCriteria
+                   policyClass="org.eclipse.papyrus.diagram.common.actions.DeleteFromDiagramPopupMenuContributionPolicy">
+             </popupStructuredContributionCriteria>            
+		 </popupContribution>
+      </contributionItemProvider>
+       <contributionItemProvider
+             checkPluginLoaded="true"
+             class="org.eclipse.papyrus.diagram.common.actions.DeleteActionItemProvider">
+          <Priority
+                name="Medium">
+          </Priority>
+          <popupContribution
+                class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+             <popupMenuGroup
+                   id="DeleteFromDiagramGroup"
+                   path="/propertiesGroup">
+             </popupMenuGroup>
+             <popupAction
+                   id="delete_from_model"
+                   path="/editGroup">
+             </popupAction>
+             <popupStructuredContributionCriteria
+                   policyClass="org.eclipse.papyrus.diagram.common.actions.DeleteActionMenuContributionPolicy">
+             </popupStructuredContributionCriteria>
+          </popupContribution>
+       </contributionItemProvider>
+   </extension>
+   -->
+   <!--
+   <extension
+         point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
+      <contributionItemProvider
+            checkPluginLoaded="true"
+            class="org.eclipse.papyrus.diagram.common.actions.ApplicableStereotypesItemProvider">
+         <Priority
+               name="Medium">
+         </Priority>
+         <popupContribution
+               class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+            <popupMenuGroup
+                  id="ApplyStereotypeGroup"
+                  path="/propertiesGroup">
+            </popupMenuGroup>
+            <popupMenu
+                  id="menu_apply_unapply_stereotype"
+                  path="/ApplyStereotypeGroup">
+            </popupMenu>
+            <popupStructuredContributionCriteria
+                  policyClass="org.eclipse.papyrus.diagram.common.actions.StereotypePopupMenuContributionPolicy">
+            </popupStructuredContributionCriteria>
+         </popupContribution>
+      </contributionItemProvider>
+   </extension>
+   -->
+   <!--extension
+         point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
+      <contributionItemProvider
+            checkPluginLoaded="true"
+            class="org.eclipse.papyrus.diagram.common.actions.ApplicableProfilesItemProvider">
+         <Priority
+               name="Medium">
+         </Priority>
+         <popupContribution
+               class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+            <popupMenuGroup
+                  id="ApplyProfileGroup"
+                  path="/propertiesGroup">
+            </popupMenuGroup>
+            <popupMenu
+                  id="menu_apply_unapply_profile"
+                  path="/ApplyProfileGroup">
+            </popupMenu>
+            <popupStructuredContributionCriteria
+                  policyClass="org.eclipse.papyrus.diagram.common.actions.ProfilePopupMenuContributionPolicy">
+            </popupStructuredContributionCriteria>
+         </popupContribution>
+      </contributionItemProvider>
+   </extension -->
+   
+      
+      <extension point="org.eclipse.ui.views">
+   <category 
+	id="org.eclipse.papyrus.views.category"
+	name="Papyrus">
+   </category>
+   
+</extension>
+<extension
+            point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
+         <contributionItemProvider
+               checkPluginLoaded="true"
+               class="org.eclipse.papyrus.diagram.common.actions.FilterViewsLabelItemProvider">
+            <Priority
+                  name="Lowest">
+            </Priority>
+            <popupContribution
+                  class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+               <popupMenuGroup
+                     id="FilterViewsGroup"
+                     path="/propertiesGroup">
+               </popupMenuGroup>
+               <popupStructuredContributionCriteria
+                     policyClass="org.eclipse.papyrus.diagram.common.actions.FilterViewsLabelsPopupMenuContributionPolicy">
+               </popupStructuredContributionCriteria>
+               <popupAction
+                     id="filter_views_and_labels"
+                     path="/FilterViewsGroup">
+               </popupAction>
+            </popupContribution>
+         </contributionItemProvider>
+      </extension>
+<extension
+      point="org.eclipse.papyrus.core.modelListener">
+   <listener
+         name="StereotypeApplicationListener"
+         realization="org.eclipse.papyrus.diagram.common.editparts.PapyrusStereotypeListener">
+   </listener>
+</extension>
+
+<extension
+      point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders">
+   <paletteProvider
+         class="org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider">
+      <Priority
+            name="Highest">
+      </Priority>
+      <contribution>
+         <predefinedEntry
+               id="standardGroup/noteStack/noteTool"
+               remove="true">
+         </predefinedEntry>
+         <predefinedEntry
+               id="standardGroup/noteStack/textTool"
+               remove="true">
+         </predefinedEntry>
+         <predefinedEntry
+               id="standardGroup/noteStack/noteattachmentTool"
+               remove="true">
+         </predefinedEntry>
+      </contribution>
+   </paletteProvider>
+</extension>
+
+<extension
+	point="org.eclipse.ui.views.properties.tabbed.propertySections">
+	<propertySections contributorId="TreeOutlinePage">
+		<propertySection
+			afterSection=""
+	   		class="org.eclipse.papyrus.diagram.common.sheet.UMLPropertySection"
+	  		id="AdvancedProperty"
+	   		tab="advanced">
+	   		<input type="java.lang.Object"/>
+		</propertySection>
+	</propertySections>
+</extension>
+<!-- The class doesn't exist
+<extension
+      point="org.eclipse.ui.startup">
+   <startup
+         class="org.eclipse.papyrus.diagram.common.Startup"></startup>
+</extension>
+-->
+<extension
+      point="org.eclipse.ui.menus">
+   <menuContribution
+         locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContribution">
+      <command
+            commandId="org.eclipse.papyrus.diagram.commands.LoadResourceAction"
+            label="Load resource..."
+            style="push">
+         <visibleWhen>
+            <or>
+               <with
+                     variable="activePartId">
+                  <equals
+                        value="org.eclipse.papyrus.core.papyrusEditor">
+                  </equals>
+               </with>
+            </or>
+         </visibleWhen>
+      </command>
+   </menuContribution>
+</extension>
+<extension
+      point="org.eclipse.ui.commands">
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         defaultHandler="org.eclipse.papyrus.diagram.common.actions.LoadResourceAction"
+         id="org.eclipse.papyrus.diagram.commands.LoadResourceAction"
+         name="Load Resource">
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         defaultHandler="org.eclipse.papyrus.diagram.common.handlers.PasteWithModelHandler"
+         description="Paste content in a diagram (graphic+ semantic)"
+         id="org.eclipse.papyrus.diagram.common.commands.PasteWithModelCommand"
+         name="PasteWithModel">
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         defaultHandler="org.eclipse.papyrus.diagram.common.handlers.AlignementHandler"
+         description="Call the alignment action"
+         id="org.eclipse.papyrus.diagram.common.commands.AlignmentCommand"
+         name="AlignmentCommand">
+      <commandParameter
+            id="org.eclipse.papyrus.diagram.common.commandAlignmentParameter"
+            name="alignmentParameter"
+            optional="true">
+      </commandParameter>
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         defaultHandler="org.eclipse.papyrus.diagram.common.handlers.RoutingHandler"
+         description="Call the routing action"
+         id="org.eclipse.papyrus.diagram.common.commands.RoutingCommand"
+         name="RoutingCommand">
+      <commandParameter
+            id="org.eclipse.papyrus.diagram.common.commandRoutingParameter"
+            name="routingParameter"
+            optional="true">
+      </commandParameter>
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         defaultHandler="org.eclipse.papyrus.diagram.common.handlers.DeleteFromModelHandler"
+         description="Call the delete from model action"
+         id="org.eclipse.papyrus.diagram.common.commands.DeleteFromModelCommand"
+         name="Delete From Model Command">
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         description="Call the delete from diagram action"
+         id="org.eclipse.papyrus.diagram.common.commands.DeleteFromDiagramCommand"
+         name="Delete From Diagram Command">
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         description="Call the Show/Hide Compartment Action"
+         id="org.eclipse.papyrus.diagram.common.commands.ShowHideCompartmentCommand"
+         name="Show/Hide Compartment Command">
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         description="Call the Show/Hide Contents Action"
+         id="org.eclipse.papyrus.diagram.common.commands.ShowHideContentsCommand"
+         name="Show/Hide Contents Command">
+   </command>
+</extension>
+<extension
+      point="org.eclipse.ui.popupMenus">
+   <objectContribution
+         adaptable="false"
+         id="org.eclipse.papyrus.diagram.clazz.objectContribution.dependencybranchdeletion"
+         objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart">
+      <action
+            class="org.eclipse.papyrus.diagram.common.commands.CleanDiagram"
+            definitionId="org.eclipse.papyrus.common.cleandiagram"
+            enablesFor="1"
+            id="org.eclipse.papyrus.common.cleandiagram"
+            label="Clean invalid views"
+            menubarPath="editMenu/editGroup">
+      </action>
+   </objectContribution>
+   <objectContribution
+         adaptable="false"
+         id="org.eclipse.papyrus.diagram.common.pastewithmodelaction"
+         objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart">
+      <action
+            class="org.eclipse.papyrus.diagram.common.actions.PasteWithModelAction"
+            definitionId="org.eclipse.papyrus.common.pasteWithModel"
+            enablesFor="1"
+            icon="icons/paste_edit.gif"
+            id="org.eclipse.papyrus.diagram.common.objectContribution.pastewithmodelaction"
+            label="Paste with model"
+            menubarPath="editMenu/editGroup">
+      </action>
+   </objectContribution>
+   <objectContribution
+         adaptable="false"
+         id="org.eclipse.papyrus.diagram.common.deletefrommodelaction"
+         objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+      <action
+            class="org.eclipse.papyrus.diagram.common.handlers.DeleteFromModelHandler"
+            definitionId="org.eclipse.papyrus.diagram.common.commands.DeleteFromModelCommand"
+            icon="icons/delete.gif"
+            id="org.eclipse.papyrus.diagram.common.objectContribution.deletefrommodelaction"
+            label="Delete Selected Element"
+            menubarPath="editMenu">
+      </action>
+   </objectContribution>
+   <objectContribution
+         adaptable="false"
+         id="org.eclipse.papyrus.diagram.common.deletefromdiagramaction"
+         objectClass="org.eclipse.gmf.runtime.diagram.ui.internal.editparts.IContainedEditPart">
+      <action
+            class="org.eclipse.papyrus.diagram.common.handlers.DeleteFromDiagramHandler"
+            definitionId="org.eclipse.papyrus.diagram.common.commands.DeleteFromDiagramCommand"
+            icon="icons/obj16/eraser.gif"
+            id="org.eclipse.papyrus.diagram.common.objectContribution.deletefromdiagramaction"
+            label="Hide Selected Element"
+            menubarPath="editMenu">
+      </action>
+   </objectContribution>
+</extension>
+<extension
+      point="org.eclipse.papyrus.core.modelListener">
+   <listener
+         description="This listener listens for profile (un)applications to update the palette"
+         name="PaletteProfileApplicationListener"
+         realization="org.eclipse.papyrus.diagram.common.service.PaletteProfileApplicationListener">
+   </listener>
+</extension>
+<extension
+      point="org.eclipse.papyrus.core.modelListener">
+   <listener
+         name="org.eclipse.papyrus.diagram.common.listener1"
+         realization="org.eclipse.papyrus.diagram.common.listeners.RemoveStereotypeApplicationListener">
+   </listener>
+</extension>
+<extension
+      point="org.eclipse.papyrus.core.papyrusDiagram">
+   <actionBarContributor
+         id="org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor"
+         implementingClass="org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor">
+   </actionBarContributor>
+</extension>
+<extension
+      point="org.eclipse.papyrus.diagram.common.aspectToolProvider">
+   <aspectToolProvider
+         class="org.eclipse.papyrus.diagram.common.service.palette.AssociationEndAspectActionProvider"
+         description="This Provider handles actions taken after association creation. It modifies the 2 properties, member ends of the created association."
+         icon="icons/obj16/Association_composite.gif"
+         id="org.eclipse.papyrus.postaction.associationendactionprovider"
+         name="Set Association ends properties">
+      <Priority
+            name="Lowest">
+      </Priority>
+   </aspectToolProvider>
+</extension>
+<extension
+      point="org.eclipse.papyrus.diagram.common.aspectToolProvider">
+   <aspectToolProvider
+         class="org.eclipse.papyrus.diagram.common.service.palette.ChangeStereotypeDisplayAspectActionProvider"
+         description="This changes the way stereotypes are displayed in the created element. (Vertical or horizontal display, icon or text, etc.)"
+         icon="icons/stereotype_display.gif"
+         id="org.eclipse.papyrus.postaction.changeStereotypeDisplayProvider"
+         name="Set applied stereotypes appearance">
+      <Priority
+            name="Lowest">
+      </Priority>
+   </aspectToolProvider>
+</extension>
+<extension
+      point="org.eclipse.papyrus.diagram.common.aspectToolProvider">
+   <aspectToolProvider
+         class="org.eclipse.papyrus.diagram.common.service.palette.StereotypeAspectActionProvider"
+         description="This provider creates action that applies a list of stereotypes to the given element."
+         icon="icons/stereotype.gif"
+         id="org.eclipse.papyrus.applystereotypeactionprovider"
+         name="Set list of applied stereotypes">
+      <Priority
+            name="Lowest">
+      </Priority>
+   </aspectToolProvider>
+</extension>
+<extension
+      point="org.eclipse.papyrus.diagram.common.aspectToolProvider">
+   <aspectToolProvider
+         class="org.eclipse.papyrus.diagram.common.service.palette.SemanticAspectActionProvider"
+         description="The actions provided by this extension modify a semantic element, giving static-defined values to some of his attributes"
+         icon="icons/stack.gif"
+         id="org.eclipse.papyrus.postaction.semanticactionprovider"
+         name="Set meta-element properties">
+      <Priority
+            name="Lowest">
+      </Priority>
+   </aspectToolProvider>
+</extension>
+<extension
+      point="org.eclipse.papyrus.diagram.common.aspectToolProvider">
+   <aspectToolProvider
+         class="org.eclipse.papyrus.diagram.common.service.palette.GraphicalAspectActionProvider"
+         description="This action modifies graphical representation of the specified element"
+         icon="icons/change_display.gif"
+         id="org.eclipse.papyrus.postaction.graphicalactionprovider"
+         name="Set graphical properties">
+      <Priority
+            name="Lowest">
+      </Priority>
+   </aspectToolProvider>
+</extension>
+<extension
+      point="org.eclipse.papyrus.diagram.common.aspectToolProvider">
+   <aspectToolProvider
+         class="org.eclipse.papyrus.diagram.common.service.palette.DisplayAppliedStereotypeAspectActionProvider"
+         description="This action modifies the list of stereotype that will be displayed for the specified element, and if they are displayed using qualified name or simple name"
+         icon="icons/stereotype_display.gif"
+         id="org.eclipse.papyrus.postaction.displayAppliedStereotypeactionprovider"
+         name="Set list of displayed stereotypes">
+      <Priority
+            name="Lowest">
+      </Priority>
+   </aspectToolProvider>
+</extension>
+<extension
+      point="org.eclipse.papyrus.pastemanager.pasteCommandProvider">
+   <PasteCommandProvider
+         priority="Lowest"
+         realization="org.eclipse.papyrus.pastemanager.service.DefaultPasteCommandProvider">
+   </PasteCommandProvider>
+</extension>
+<extension
+      id="update-cmd-binding"
+      point="org.eclipse.ui.bindings">
+   <key
+         commandId="org.eclipse.papyrus.diagram.common.commands.PasteWithModelCommand"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="CTRL+SHIFT+V">
+   </key>
+   <key
+         commandId="org.eclipse.papyrus.diagram.common.commands.AlignmentCommand"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="CTRL+ARROW_LEFT">
+      <parameter
+            id="org.eclipse.papyrus.diagram.common.commandAlignmentParameter"
+            value="parameter_left"></parameter>
+   </key>
+   <key
+         commandId="org.eclipse.papyrus.diagram.common.commands.AlignmentCommand"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="CTRL+ARROW_RIGHT">
+      <parameter
+            id="org.eclipse.papyrus.diagram.common.commandAlignmentParameter"
+            value="parameter_right">
+      </parameter>
+   </key>
+   <key
+         commandId="org.eclipse.papyrus.diagram.common.commands.AlignmentCommand"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="CTRL+ARROW_UP">
+      <parameter
+            id="org.eclipse.papyrus.diagram.common.commandAlignmentParameter"
+            value="parameter_top">
+      </parameter>
+   </key>
+   <key
+         commandId="org.eclipse.papyrus.diagram.common.commands.AlignmentCommand"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="CTRL+ARROW_DOWN">
+      <parameter
+            id="org.eclipse.papyrus.diagram.common.commandAlignmentParameter"
+            value="parameter_bottom">
+      </parameter>
+   </key>
+   <key
+         commandId="org.eclipse.papyrus.diagram.common.commands.RoutingCommand"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="CTRL+SHIFT+ARROW_LEFT">
+      <parameter
+            id="org.eclipse.papyrus.diagram.common.commandRoutingParameter"
+            value="parameter_left">
+      </parameter>
+   </key>
+   <key
+         commandId="org.eclipse.papyrus.diagram.common.commands.RoutingCommand"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="CTRL+SHIFT+ARROW_RIGHT">
+      <parameter
+            id="org.eclipse.papyrus.diagram.common.commandRoutingParameter"
+            value="parameter_right">
+      </parameter>
+   </key>
+   <key
+         commandId="org.eclipse.papyrus.diagram.common.commands.RoutingCommand"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="CTRL+SHIFT+ARROW_UP">
+      <parameter
+            id="org.eclipse.papyrus.diagram.common.commandRoutingParameter"
+            value="parameter_top">
+      </parameter>
+   </key>
+   <key
+         commandId="org.eclipse.papyrus.diagram.common.commands.RoutingCommand"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="CTRL+SHIFT+ARROW_DOWN">
+      <parameter
+            id="org.eclipse.papyrus.diagram.common.commandRoutingParameter"
+            value="parameter_bottom">
+      </parameter>
+   </key>
+   <key
+         commandId="org.eclipse.papyrus.diagram.common.commands.DeleteFromModelCommand"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="CTRL+DEL">
+   </key>
+   <key
+         commandId="org.eclipse.papyrus.diagram.common.commands.ShowHideContentsCommand"
+         contextId="org.eclipse.gmf.runtime.diagram.ui.diagramContext"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="F4">
+   </key>
+   <key
+         commandId="org.eclipse.papyrus.diagram.common.commands.DeleteFromDiagramCommand"
+         contextId="org.eclipse.gmf.runtime.diagram.ui.diagramContext"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="DEL">
+   </key>
+</extension>
+<extension
+      point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
+   <contributionItemProvider
+         checkPluginLoaded="true"
+         class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContributionItemProvider">
+      <Priority
+            name="High">
+      </Priority>
+      <partContribution
+            class="org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart">
+         <partPredefinedItem
+               id="org.eclipse.gef.align_left"
+               menubarPath="/diagramMenu/alignMenu/alignHorizontalGroup"
+               removeFromMenubar="true"
+               removeFromToolbar="true"
+               toolbarPath="/alignMenu/alignHorizontalGroup">
+         </partPredefinedItem>
+         <partPredefinedItem
+               id="org.eclipse.gef.align_center"
+               menubarPath="/diagramMenu/alignMenu/alignHorizontalGroup"
+               removeFromMenubar="true"
+               removeFromToolbar="true"
+               toolbarPath="/alignMenu/alignHorizontalGroup">
+         </partPredefinedItem>
+         <partPredefinedItem
+               id="org.eclipse.gef.align_right"
+               menubarPath="/diagramMenu/alignMenu/alignHorizontalGroup"
+               removeFromMenubar="true"
+               removeFromToolbar="true"
+               toolbarPath="/alignMenu/alignHorizontalGroup">
+         </partPredefinedItem>
+         <partPredefinedItem
+               id="org.eclipse.gef.align_bottom"
+               menubarPath="/diagramMenu/alignMenu/alignVerticalGroup"
+               removeFromMenubar="true"
+               removeFromToolbar="true"
+               toolbarPath="/alignMenu/alignVerticalGroup">
+         </partPredefinedItem>
+         <partPredefinedItem
+               id="org.eclipse.gef.align_middle"
+               menubarPath="/diagramMenu/alignMenu/alignVerticalGroup"
+               removeFromMenubar="true"
+               removeFromToolbar="true"
+               toolbarPath="/alignMenu/alignVerticalGroup">
+         </partPredefinedItem>
+         <partPredefinedItem
+               id="org.eclipse.gef.align_top"
+               menubarPath="/diagramMenu/alignMenu/alignVerticalGroup"
+               removeFromMenubar="true"
+               removeFromToolbar="true"
+               toolbarPath="/alignMenu/alignVerticalGroup">
+         </partPredefinedItem>
+      </partContribution>
+      <popupContribution
+            class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+         <popupPredefinedItem
+               id="alignLeftAction"
+               path="/formatMenu/alignMenu/alignHorizontalGroup"
+               remove="true">
+         </popupPredefinedItem>
+         <popupPredefinedItem
+               id="alignCenterAction"
+               path="/formatMenu/alignMenu/alignHorizontalGroup"
+               remove="true">
+         </popupPredefinedItem>
+         <popupPredefinedItem
+               id="alignRightAction"
+               path="/formatMenu/alignMenu/alignHorizontalGroup"
+               remove="true">
+         </popupPredefinedItem>
+         <popupPredefinedItem
+               id="alignBottomAction"
+               path="/formatMenu/alignMenu/alignVerticalGroup"
+               remove="true">
+         </popupPredefinedItem>
+         <popupPredefinedItem
+               id="alignMiddleAction"
+               path="/formatMenu/alignMenu/alignVerticalGroup"
+               remove="true">
+         </popupPredefinedItem>
+         <popupPredefinedItem
+               id="alignTopAction"
+               path="/formatMenu/alignMenu/alignVerticalGroup"
+               remove="true">
+         </popupPredefinedItem>
+      </popupContribution>
+   </contributionItemProvider>
+</extension>
+<extension
+      point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
+   <contributionItemProvider
+         checkPluginLoaded="true"
+         class="org.eclipse.papyrus.diagram.common.actions.LayoutContributionItemProvider">
+      <Priority
+            name="Medium">
+      </Priority>
+      <partContribution
+            class="org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart">
+         <partAction
+               id="org.eclipse.gef.align_left"
+               menubarPath="/diagramMenu/alignMenu/alignHorizontalGroup"
+               toolbarPath="/alignMenu/alignHorizontalGroup">
+         </partAction>
+         <partAction
+               id="org.eclipse.gef.align_center"
+               menubarPath="/diagramMenu/alignMenu/alignHorizontalGroup"
+               toolbarPath="/alignMenu/alignHorizontalGroup">
+         </partAction>
+         <partAction
+               id="org.eclipse.gef.align_right"
+               menubarPath="/diagramMenu/alignMenu/alignHorizontalGroup"
+               toolbarPath="/alignMenu/alignHorizontalGroup">
+         </partAction>
+         <partAction
+               id="org.eclipse.gef.align_bottom"
+               menubarPath="/diagramMenu/alignMenu/alignVerticalGroup"
+               toolbarPath="/alignMenu/alignVerticalGroup">
+         </partAction>
+         <partAction
+               id="org.eclipse.gef.align_middle"
+               menubarPath="/diagramMenu/alignMenu/alignVerticalGroup"
+               toolbarPath="/alignMenu/alignVerticalGroup">
+         </partAction>
+         <partAction
+               id="org.eclipse.gef.align_top"
+               menubarPath="/diagramMenu/alignMenu/alignVerticalGroup"
+               toolbarPath="/alignMenu/alignVerticalGroup">
+         </partAction>
+      </partContribution>
+      <popupContribution
+            class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+         <popupAction
+               id="alignLeftAction"
+               path="/formatMenu/alignMenu/alignHorizontalGroup">
+         </popupAction>
+         <popupAction
+               id="alignCenterAction"
+               path="/formatMenu/alignMenu/alignHorizontalGroup">
+         </popupAction>
+         <popupAction
+               id="alignRightAction"
+               path="/formatMenu/alignMenu/alignHorizontalGroup">
+         </popupAction>
+         <popupAction
+               id="alignBottomAction"
+               path="/formatMenu/alignMenu/alignVerticalGroup">
+         </popupAction>
+         <popupAction
+               id="alignMiddleAction"
+               path="/formatMenu/alignMenu/alignVerticalGroup">
+         </popupAction>
+         <popupAction
+               id="alignTopAction"
+               path="/formatMenu/alignMenu/alignVerticalGroup">
+         </popupAction>
+      </popupContribution>
+   </contributionItemProvider>
+</extension>
+<extension
+      point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
+   <contributionItemProvider
+         checkPluginLoaded="true"
+         class="org.eclipse.papyrus.diagram.common.actions.DistributeContributionItemProvider">
+      <Priority
+            name="Medium">
+      </Priority>
+      <partContribution
+            class="org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart">
+         <partMenu
+               id="distributeMenu"
+               menubarPath="/diagramMenu/formatGroup"
+               toolbarPath="/toolbarViewGroup">
+         </partMenu>
+         <partMenuGroup
+               id="distributeHorizontallyGroup"
+               menubarPath="/diagramMenu/distributeMenu/"
+               separator="true"
+               toolbarPath="/distributeMenu/">
+         </partMenuGroup>
+         <partMenuGroup
+               id="distributeVerticallyGroup"
+               menubarPath="/diagramMenu/distributeMenu/"
+               separator="true"
+               toolbarPath="/distributeMenu/">
+         </partMenuGroup>
+         <partAction
+               id="org.eclipse.papyrus.diagram.common.distribute_horizontally"
+               menubarPath="/diagramMenu/distributeMenu/distributeHorizontallyGroup"
+               toolbarPath="/distributeMenu/distributeHorizontallyGroup">
+         </partAction>
+         <partAction
+               id="org.eclipse.papyrus.diagram.common.distribute_horizontally_between_nodes"
+               menubarPath="/diagramMenu/distributeMenu/distributeHorizontallyGroup"
+               toolbarPath="/distributeMenu/distributeHorizontallyGroup">
+         </partAction>
+         <partAction
+               id="org.eclipse.papyrus.diagram.common.distribute_vertically"
+               menubarPath="/diagramMenu/distributeMenu/distributeVerticallyGroup"
+               toolbarPath="/distributeMenu/distributeVerticallyGroup">
+         </partAction>
+         <partAction
+               id="org.eclipse.papyrus.diagram.common.distribute_vertically_between_nodes"
+               menubarPath="/diagramMenu/distributeMenu/distributeVerticallyGroup"
+               toolbarPath="/distributeMenu/distributeVerticallyGroup">
+         </partAction>
+      </partContribution>
+      <popupContribution
+            class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+         <popupMenu
+               id="distributeMenu"
+               path="/formatMenu/miscellaneousGroup">
+         </popupMenu>
+         <popupMenuGroup
+               id="distributeHorizontallyMenuAction"
+               path="/formatMenu/distributeMenu/"
+               separator="true">
+         </popupMenuGroup>
+         <popupMenuGroup
+               id="distributeVerticallyMenuAction"
+               path="/formatMenu/distributeMenu/"
+               separator="true">
+         </popupMenuGroup>
+         <popupAction
+               id="org.eclipse.papyrus.diagram.common.distribute_horizontally_action"
+               path="/formatMenu/distributeMenu/distributeHorizontallyMenuAction">   
+               </popupAction>
+                    <popupAction
+               id="org.eclipse.papyrus.diagram.common.distribute_horizontally_between_nodes_action"
+               path="/formatMenu/distributeMenu/distributeHorizontallyMenuAction">
+         </popupAction>
+         <popupAction
+               id="org.eclipse.papyrus.diagram.common.distribute_vertically_action"
+               path="/formatMenu/distributeMenu/distributeVerticallyMenuAction">
+         </popupAction>
+         <popupAction
+               id="org.eclipse.papyrus.diagram.common.distribute_vertically_between_nodes_action"
+               path="/formatMenu/distributeMenu/distributeVerticallyMenuAction">
+         </popupAction>
+      </popupContribution>
+   </contributionItemProvider>
+</extension>
+<extension
+      point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
+   <contributionItemProvider
+         checkPluginLoaded="true"
+         class="org.eclipse.papyrus.diagram.common.actions.RoutingContributionItemProvider">
+      <Priority
+            name="Medium">
+      </Priority>
+      <partContribution
+            class="org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart">
+         <partMenu
+               id="routingMenu"
+               menubarPath="/diagramMenu/formatGroup"
+               toolbarPath="/toolbarViewGroup">
+         </partMenu>
+         <partMenuGroup
+               id="routingHorizontallyGroup"
+               menubarPath="/diagramMenu/routingMenu/"
+               separator="true"
+               toolbarPath="/routingMenu/">
+         </partMenuGroup>
+         <partMenuGroup
+               id="routingVerticallyGroup"
+               menubarPath="/diagramMenu/routingMenu/"
+               separator="true"
+               toolbarPath="/routingMenu/">
+         </partMenuGroup>
+         <partAction
+               id="org.eclipse.papyrus.diagram.common.routing_horizontally_by_left"
+               menubarPath="/diagramMenu/routingMenu/routingHorizontallyGroup"
+               toolbarPath="/routingMenu/routingHorizontallyGroup">
+         </partAction>
+         <partAction
+               id="org.eclipse.papyrus.diagram.common.routing_horizontally_by_right"
+               menubarPath="/diagramMenu/routingMenu/routingHorizontallyGroup"
+               toolbarPath="/routingMenu/routingHorizontallyGroup">
+         </partAction>
+         <partAction
+               id="org.eclipse.papyrus.diagram.common.routing_vertically_by_top"
+               menubarPath="/diagramMenu/routingMenu/routingVerticallyGroup"
+               toolbarPath="/routingMenu/routingVerticallyGroup">
+         </partAction>
+         <partAction
+               id="org.eclipse.papyrus.diagram.common.routing_vertically_by_bottom"
+               menubarPath="/diagramMenu/routingMenu/routingVerticallyGroup"
+               toolbarPath="/routingMenu/routingVerticallyGroup">
+         </partAction>
+      </partContribution>
+      <popupContribution
+            class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+         <popupMenu
+               id="routingMenu"
+               path="/formatMenu/miscellaneousGroup">
+         </popupMenu>
+         <popupMenuGroup
+               id="routingHorizontallyMenuAction"
+               path="/formatMenu/routingMenu/"
+               separator="true">
+         </popupMenuGroup>
+         <popupMenuGroup
+               id="routingVerticallyMenuAction"
+               path="/formatMenu/routingMenu/"
+               separator="true">
+         </popupMenuGroup>
+         <popupAction
+               id="org.eclipse.papyrus.diagram.common.routing_horizontally_by_left_action"
+               path="/formatMenu/routingMenu/routingHorizontallyMenuAction">
+         </popupAction>
+         <popupAction
+               id="org.eclipse.papyrus.diagram.common.routing_horizontally_by_right_action"
+               path="/formatMenu/routingMenu/routingHorizontallyMenuAction">
+         </popupAction>
+         <popupAction
+               id="org.eclipse.papyrus.diagram.common.routing_vertically_by_top_action"
+               path="/formatMenu/routingMenu/routingVerticallyMenuAction">
+         </popupAction>
+         <popupAction
+               id="org.eclipse.papyrus.diagram.common.routing_vertically_by_bottom_action"
+               path="/formatMenu/routingMenu/routingVerticallyMenuAction">
+         </popupAction>
+      </popupContribution>
+   </contributionItemProvider>
+</extension>
+   <extension
+         point="org.eclipse.papyrus.core.papyrusDiagram">
+      <diagramCategory
+            class="org.eclipse.papyrus.diagram.common.commands.CreateUMLModelCommand"
+            description="Create Unified Modeling Language diagrams"
+            icon="icons/category_uml.gif"
+            id="uml"
+            label="UML">
+      </diagramCategory>      
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.diagram.common.aspectToolProvider">
+      <aspectToolProvider
+            class="org.eclipse.papyrus.diagram.common.service.palette.PseudostateAspectActionProvider"
+            description="This Provider handles actions taken after pseudostate creation. It modifies the name according to the PseudostateKind of the element."
+            icon="icons/obj16/Pseudostate.gif"
+            id="org.eclipse.papyrus.postaction.pseudostateactionprovider"
+            name="Rename pseudostate according to its kind">
+         <Priority
+               name="Lowest">
+         </Priority>
+      </aspectToolProvider>
+   </extension>
+   <extension
+         point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
+      <contributionItemProvider
+            checkPluginLoaded="true"
+            class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContributionItemProvider">
+         <Priority
+               name="High">
+         </Priority>
+         <popupContribution
+               class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+            <popupPredefinedItem
+                  id="hideSelectionAction"
+                  path="/filtersMenu/miscellaneousGroup"
+                  remove="true">
+            </popupPredefinedItem>
+            <popupPredefinedItem
+                  id="hideTypeAction"
+                  path="/filtersMenu/miscellaneousGroup"
+                  remove="true">
+            </popupPredefinedItem>
+            <popupPredefinedItem
+                  id="hideSemanticAction"
+                  path="/filtersMenu/miscellaneousGroup"
+                  remove="true">
+            </popupPredefinedItem>
+            <popupPredefinedItem
+                  id="showHiddenPartAction"
+                  path="/filtersMenu/miscellaneousGroup"
+                  remove="true">
+            </popupPredefinedItem>
+            <popupPredefinedItem
+                  id="hideInheritanceTypeAction"
+                  path="/filtersMenu/additions"
+                  remove="true">
+            </popupPredefinedItem>
+            <popupPredefinedItem
+                  id="hideReferenceTypeAction"
+                  path="/filtersMenu/additions"
+                  remove="true">
+            </popupPredefinedItem>
+            <popupPredefinedItem
+                  id="deleteFromDiagramAction"
+                  path="/editGroup"
+                  remove="true">
+            </popupPredefinedItem>
+            <popupPredefinedItem
+                  id="allCompartmentsAction"
+                  path="/filtersMenu/compartmentMenu/allCompartmentsGroup"
+                  remove="true">
+            </popupPredefinedItem>
+            <popupPredefinedItem
+                  id="noCompartmentsAction"
+                  path="/filtersMenu/compartmentMenu/allCompartmentsGroup"
+                  remove="true">
+            </popupPredefinedItem>
+         </popupContribution>
+         <partContribution
+               class="org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart">
+            <partPredefinedItem
+                  id="noCompartmentsAction"
+                  menubarPath="/diagramMenu/filtersMenu/compartmentMenu/allCompartmentsGroup"
+                  removeFromMenubar="true"
+                  removeFromToolbar="true"
+                  toolbarPath="/compartmentMenu/allCompartmentsGroup">
+            </partPredefinedItem>
+            <partPredefinedItem
+                  id="diagramFilterActionMenu"
+                  removeFromMenubar="true"
+                  removeFromToolbar="true"
+                  toolbarPath="/toolbarFilterGroup">
+            </partPredefinedItem>
+            <partPredefinedItem
+                  id="allCompartmentsAction"
+                  menubarPath="/diagramMenu/filtersMenu/compartmentMenu/allCompartmentsGroup"
+                  removeFromMenubar="true"
+                  removeFromToolbar="true"
+                  toolbarPath="/compartmentMenu/allCompartmentsGroup">
+            </partPredefinedItem>
+         </partContribution>
+      </contributionItemProvider>
+   </extension>
+   <extension
+         id="org.eclipse.papyrus.diagram.composite.compartmentviewer"
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="false"
+            id="org.eclipse.papyrus.diagram.composite.compartmentviewer"
+            objectClass="org.eclipse.papyrus.diagram.common.editparts.NamedElementEditPart">
+         <action
+               class="org.eclipse.papyrus.diagram.common.actions.ShowHideCompartmentAction"
+               definitionId="org.eclipse.papyrus.diagram.common.commands.ShowHideCompartmentCommand"
+               enablesFor="+1"
+               icon="icons/fantomCompartment.gif"
+               id="org.eclipse.papyrus.diagram.composite.ShowHideCompartmentAction"
+               label="Show/Hide Compartments"
+               menubarPath="filtersMenu/expandFilterGroup"
+               tooltip="Show/Hide Compartments">
+         </action>
+      </objectContribution>
+      <objectContribution
+            adaptable="false"
+            id="org.eclipse.papyrus.diagram.composite.contentsviewer"
+            objectClass="org.eclipse.papyrus.diagram.common.editparts.NamedElementEditPart">
+         <action
+               class="org.eclipse.papyrus.diagram.common.actions.ShowHideContentsAction"
+               definitionId="org.eclipse.papyrus.diagram.common.commands.ShowHideContentsCommand"
+               enablesFor="1"
+               icon="icons/fantomContents.gif"
+               id="org.eclipse.papyrus.diagram.composite.ShowHideInheritedContentsAction"
+               label="Show/Hide Con&amp;tents"
+               menubarPath="filtersMenu/expandFilterGroup"
+               tooltip="Show/Hide Contents">
+         </action>
+      </objectContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            id="org.eclipse.papyrus.diagram.common.ShowHideCompartmentActionSet"
+            label="Show/Hide Compartments"
+            visible="true">
+         <action
+               class="org.eclipse.papyrus.diagram.common.actions.ShowHideCompartmentAction"
+               definitionId="org.eclipse.papyrus.diagram.common.commands.ShowHideCompartmentCommand"
+               icon="icons/fantomCompartment.gif"
+               id="org.eclipse.papyrus.diagram.common.myShowHideCompartmentAction"
+               label="Show/Hide &amp;Compartments"
+               menubarPath="diagramMenu/filtersMenu/compartmentMenu"
+               style="push"
+               toolbarPath="compartmentMenu/allCompartmentsGroup"
+               tooltip="Show/Hide Compartments">
+         </action>
+      </actionSet>
+      <actionSet
+            id="org.eclipse.papyrus.diagram.common.ShowHideContentsActionSet"
+            label="Show/Hide Contents"
+            visible="true">
+         <action
+               class="org.eclipse.papyrus.diagram.common.actions.ShowHideContentsAction"
+               definitionId="org.eclipse.papyrus.diagram.common.commands.ShowHideContentsCommand"
+               enablesFor="1"
+               icon="icons/fantomContents.gif"
+               id="org.eclipse.papyrus.diagram.common.myShowHideContentsAction"
+               label="Show/Hide Con&amp;tents"
+               menubarPath="diagramMenu/filtersMenu/compartmentMenu"
+               style="push"
+               toolbarPath="compartmentMenu/allCompartmentsGroup"
+               tooltip="Show/Hide Contents">
+         </action>
+      </actionSet>
+   </extension>
+
+
+</plugin>

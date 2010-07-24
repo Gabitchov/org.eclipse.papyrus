@@ -1,0 +1,4 @@
+import org::eclipse::papyrus::transition::editor::xtext::umlTransition;
+
+sortedGreetings(Model this) :
+	this.greetings.sortBy(g|g.name.toLowerCase());

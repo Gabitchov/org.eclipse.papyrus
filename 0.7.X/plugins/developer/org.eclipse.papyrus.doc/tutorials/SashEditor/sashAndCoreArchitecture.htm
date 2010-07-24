@@ -1,0 +1,2529 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 11">
+<meta name=Originator content="Microsoft Word 11">
+<link rel=File-List href="sashAndCoreArchitecture_fichiers/filelist.xml">
+<link rel=Edit-Time-Data href="sashAndCoreArchitecture_fichiers/editdata.mso">
+<!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]-->
+<title>Sash and Core </title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>Cedric</o:Author>
+  <o:LastAuthor>TF227273</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>7777</o:TotalTime>
+  <o:LastPrinted>2010-01-22T13:54:00Z</o:LastPrinted>
+  <o:Created>2010-06-22T14:54:00Z</o:Created>
+  <o:LastSaved>2010-06-22T14:54:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>3046</o:Words>
+  <o:Characters>16753</o:Characters>
+  <o:Company> dream factory</o:Company>
+  <o:Lines>139</o:Lines>
+  <o:Paragraphs>39</o:Paragraphs>
+  <o:CharactersWithSpaces>19760</o:CharactersWithSpaces>
+  <o:Version>11.9999</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:View>Print</w:View>
+  <w:Zoom>FullPage</w:Zoom>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:HyphenationZone>21</w:HyphenationZone>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:Compatibility>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:UseWord2002TableStyleRules/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" LatentStyleCount="156">
+ </w:LatentStyles>
+</xml><![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;
+	mso-font-charset:2;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:0 268435456 0 0 -2147483648 0;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:1627421319 -2147483648 8 0 66047 0;}
+@font-face
+	{font-family:"HG Mincho Light J";
+	mso-font-alt:"Times New Roman";
+	mso-font-charset:0;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:0 0 0 0 0 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+h1
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:18.0pt;
+	text-align:justify;
+	text-indent:-18.0pt;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:1;
+	mso-list:l17 level1 lfo13;
+	tab-stops:list 18.0pt;
+	font-size:16.0pt;
+	font-family:Arial;
+	mso-font-kerning:16.0pt;
+	mso-fareast-language:EN-US;}
+h2
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:39.6pt;
+	text-align:justify;
+	text-indent:-21.6pt;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:2;
+	mso-list:l17 level2 lfo13;
+	tab-stops:list 54.0pt;
+	font-size:14.0pt;
+	font-family:Arial;
+	mso-fareast-language:EN-US;
+	font-style:italic;}
+h3
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:61.2pt;
+	text-align:justify;
+	text-indent:-25.2pt;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:3;
+	mso-list:l17 level3 lfo13;
+	tab-stops:list 72.0pt;
+	font-size:13.0pt;
+	font-family:Arial;
+	mso-fareast-language:EN-US;}
+h4
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:4;
+	font-size:14.0pt;
+	font-family:"Times New Roman";}
+h5
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	mso-outline-level:5;
+	font-size:13.0pt;
+	font-family:"Times New Roman";
+	font-style:italic;}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	tab-stops:center 207.65pt right 415.3pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-ansi-language:EN-US;
+	mso-fareast-language:EN-US;}
+p.MsoCaption, li.MsoCaption, div.MsoCaption
+	{mso-style-next:Normal;
+	margin-top:6.0pt;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	font-weight:bold;}
+p.MsoTitle, li.MsoTitle, div.MsoTitle
+	{margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:center;
+	mso-pagination:widow-orphan;
+	mso-outline-level:1;
+	font-size:16.0pt;
+	font-family:Arial;
+	mso-fareast-font-family:"Times New Roman";
+	mso-font-kerning:14.0pt;
+	font-weight:bold;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:#606420;
+	text-decoration:underline;
+	text-underline:single;}
+p.MsoDocumentMap, li.MsoDocumentMap, div.MsoDocumentMap
+	{mso-style-noshow:yes;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	background:navy;
+	font-size:12.0pt;
+	font-family:Tahoma;
+	mso-fareast-font-family:"Times New Roman";}
+p.Titre1Unnumbered, li.Titre1Unnumbered, div.Titre1Unnumbered
+	{mso-style-name:"Titre 1 Unnumbered";
+	mso-style-parent:"Titre 2";
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:2;
+	font-size:14.0pt;
+	font-family:Arial;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-language:EN-US;
+	font-weight:bold;
+	font-style:italic;}
+span.GramE
+	{mso-style-name:"";
+	mso-gram-e:yes;}
+@page Section1
+	{size:595.3pt 841.9pt;
+	margin:70.85pt 70.85pt 70.85pt 70.85pt;
+	mso-header-margin:35.4pt;
+	mso-footer-margin:35.4pt;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ @list l0
+	{mso-list-id:-132;
+	mso-list-type:simple;
+	mso-list-template-ids:-249420238;}
+@list l0:level1
+	{mso-level-tab-stop:74.6pt;
+	mso-level-number-position:left;
+	margin-left:74.6pt;
+	text-indent:-18.0pt;}
+@list l1
+	{mso-list-id:-131;
+	mso-list-type:simple;
+	mso-list-template-ids:-1333508160;}
+@list l1:level1
+	{mso-level-tab-stop:60.45pt;
+	mso-level-number-position:left;
+	margin-left:60.45pt;
+	text-indent:-18.0pt;}
+@list l2
+	{mso-list-id:-130;
+	mso-list-type:simple;
+	mso-list-template-ids:394265852;}
+@list l2:level1
+	{mso-level-tab-stop:46.3pt;
+	mso-level-number-position:left;
+	margin-left:46.3pt;
+	text-indent:-18.0pt;}
+@list l3
+	{mso-list-id:-129;
+	mso-list-type:simple;
+	mso-list-template-ids:287878184;}
+@list l3:level1
+	{mso-level-tab-stop:32.15pt;
+	mso-level-number-position:left;
+	margin-left:32.15pt;
+	text-indent:-18.0pt;}
+@list l4
+	{mso-list-id:-128;
+	mso-list-type:simple;
+	mso-list-template-ids:583202384;}
+@list l4:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:74.6pt;
+	mso-level-number-position:left;
+	margin-left:74.6pt;
+	text-indent:-18.0pt;
+	font-family:Symbol;}
+@list l5
+	{mso-list-id:-127;
+	mso-list-type:simple;
+	mso-list-template-ids:-961781948;}
+@list l5:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:60.45pt;
+	mso-level-number-position:left;
+	margin-left:60.45pt;
+	text-indent:-18.0pt;
+	font-family:Symbol;}
+@list l6
+	{mso-list-id:-126;
+	mso-list-type:simple;
+	mso-list-template-ids:902342150;}
+@list l6:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:46.3pt;
+	mso-level-number-position:left;
+	margin-left:46.3pt;
+	text-indent:-18.0pt;
+	font-family:Symbol;}
+@list l7
+	{mso-list-id:-125;
+	mso-list-type:simple;
+	mso-list-template-ids:-1088380170;}
+@list l7:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:32.15pt;
+	mso-level-number-position:left;
+	margin-left:32.15pt;
+	text-indent:-18.0pt;
+	font-family:Symbol;}
+@list l8
+	{mso-list-id:-120;
+	mso-list-type:simple;
+	mso-list-template-ids:2017499872;}
+@list l8:level1
+	{mso-level-tab-stop:18.0pt;
+	mso-level-number-position:left;
+	margin-left:18.0pt;
+	text-indent:-18.0pt;}
+@list l9
+	{mso-list-id:-119;
+	mso-list-type:simple;
+	mso-list-template-ids:-936112584;}
+@list l9:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:18.0pt;
+	mso-level-number-position:left;
+	margin-left:18.0pt;
+	text-indent:-18.0pt;
+	font-family:Symbol;}
+@list l10
+	{mso-list-id:50926754;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1978739192 67895297 67895299 67895301 67895297 67895299 67895301 67895297 67895299 67895301;}
+@list l10:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Symbol;}
+@list l11
+	{mso-list-id:63653096;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-2051903002 -46369714 67895321 67895323 67895311 67895321 67895323 67895311 67895321 67895323;}
+@list l11:level1
+	{mso-level-start-at:0;
+	mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Symbol;
+	mso-fareast-font-family:"HG Mincho Light J";
+	color:windowtext;}
+@list l12
+	{mso-list-id:215090344;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1156575396 -46369714 67895299 67895301 67895297 67895299 67895301 67895297 67895299 67895301;}
+@list l12:level1
+	{mso-level-start-at:0;
+	mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Symbol;
+	mso-fareast-font-family:"HG Mincho Light J";
+	color:windowtext;}
+@list l13
+	{mso-list-id:224686809;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1702673594 67895297 67895299 67895301 67895297 67895299 67895301 67895297 67895299 67895301;}
+@list l13:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Symbol;}
+@list l14
+	{mso-list-id:370152369;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1376048120 67895297 67895299 67895301 67895297 67895299 67895301 67895297 67895299 67895301;}
+@list l14:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Symbol;}
+@list l15
+	{mso-list-id:389617626;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1453601744 67895311 67895321 67895323 67895311 67895321 67895323 67895311 67895321 67895323;}
+@list l15:level1
+	{mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l16
+	{mso-list-id:450638552;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1575564428 67895311 67895321 67895323 67895311 67895321 67895323 67895311 67895321 67895323;}
+@list l16:level1
+	{mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l16:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:72.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l17
+	{mso-list-id:469055050;
+	mso-list-template-ids:1387152692;}
+@list l17:level1
+	{mso-level-style-link:"Titre 1";
+	mso-level-tab-stop:18.0pt;
+	mso-level-number-position:left;
+	margin-left:18.0pt;
+	text-indent:-18.0pt;}
+@list l17:level2
+	{mso-level-style-link:"Titre 2";
+	mso-level-text:"%1\.%2\.";
+	mso-level-tab-stop:54.0pt;
+	mso-level-number-position:left;
+	margin-left:39.6pt;
+	text-indent:-21.6pt;}
+@list l17:level3
+	{mso-level-style-link:"Titre 3";
+	mso-level-text:"%1\.%2\.%3\.";
+	mso-level-tab-stop:72.0pt;
+	mso-level-number-position:left;
+	margin-left:61.2pt;
+	text-indent:-25.2pt;}
+@list l17:level4
+	{mso-level-text:"%1\.%2\.%3\.%4\.";
+	mso-level-tab-stop:108.0pt;
+	mso-level-number-position:left;
+	margin-left:86.4pt;
+	text-indent:-32.4pt;}
+@list l17:level5
+	{mso-level-text:"%1\.%2\.%3\.%4\.%5\.";
+	mso-level-tab-stop:144.0pt;
+	mso-level-number-position:left;
+	margin-left:111.6pt;
+	text-indent:-39.6pt;}
+@list l17:level6
+	{mso-level-text:"%1\.%2\.%3\.%4\.%5\.%6\.";
+	mso-level-tab-stop:162.0pt;
+	mso-level-number-position:left;
+	margin-left:136.8pt;
+	text-indent:-46.8pt;}
+@list l17:level7
+	{mso-level-text:"%1\.%2\.%3\.%4\.%5\.%6\.%7\.";
+	mso-level-tab-stop:198.0pt;
+	mso-level-number-position:left;
+	margin-left:162.0pt;
+	text-indent:-54.0pt;}
+@list l17:level8
+	{mso-level-text:"%1\.%2\.%3\.%4\.%5\.%6\.%7\.%8\.";
+	mso-level-tab-stop:234.0pt;
+	mso-level-number-position:left;
+	margin-left:187.2pt;
+	text-indent:-61.2pt;}
+@list l17:level9
+	{mso-level-text:"%1\.%2\.%3\.%4\.%5\.%6\.%7\.%8\.%9\.";
+	mso-level-tab-stop:252.0pt;
+	mso-level-number-position:left;
+	margin-left:216.0pt;
+	text-indent:-72.0pt;}
+@list l18
+	{mso-list-id:578253460;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-465642354 67895297 67895299 67895301 67895297 67895299 67895301 67895297 67895299 67895301;}
+@list l18:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Symbol;}
+@list l19
+	{mso-list-id:591745468;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1061151342 -46369714 67895299 -46369714 67895297 67895299 67895301 67895297 67895299 67895301;}
+@list l19:level1
+	{mso-level-start-at:0;
+	mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Symbol;
+	mso-fareast-font-family:"HG Mincho Light J";
+	color:windowtext;}
+@list l19:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:72.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:"Courier New";}
+@list l19:level3
+	{mso-level-start-at:0;
+	mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:108.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Symbol;
+	mso-fareast-font-family:"HG Mincho Light J";
+	color:windowtext;}
+@list l20
+	{mso-list-id:633022734;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1804438702 67895311 67895299 67895301 67895297 67895299 67895301 67895297 67895299 67895301;}
+@list l20:level1
+	{mso-level-tab-stop:53.4pt;
+	mso-level-number-position:left;
+	margin-left:53.4pt;
+	text-indent:-18.0pt;
+	color:windowtext;}
+@list l21
+	{mso-list-id:834296254;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1253721346 67895297 67895299 67895301 67895297 67895299 67895301 67895297 67895299 67895301;}
+@list l21:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Symbol;}
+@list l22
+	{mso-list-id:863861844;
+	mso-list-type:hybrid;
+	mso-list-template-ids:256962598 -46369714 67895299 67895301 67895297 67895299 67895301 67895297 67895299 67895301;}
+@list l22:level1
+	{mso-level-start-at:0;
+	mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Symbol;
+	mso-fareast-font-family:"HG Mincho Light J";
+	color:windowtext;}
+@list l23
+	{mso-list-id:920483153;
+	mso-list-template-ids:-2027151842;}
+@list l23:level1
+	{mso-level-tab-stop:18.0pt;
+	mso-level-number-position:left;
+	margin-left:18.0pt;
+	text-indent:-18.0pt;}
+@list l23:level2
+	{mso-level-text:"%1\.%2\.";
+	mso-level-tab-stop:54.0pt;
+	mso-level-number-position:left;
+	margin-left:39.6pt;
+	text-indent:-21.6pt;}
+@list l23:level3
+	{mso-level-text:"%1\.%2\.%3\.";
+	mso-level-tab-stop:72.0pt;
+	mso-level-number-position:left;
+	margin-left:61.2pt;
+	text-indent:-25.2pt;}
+@list l23:level4
+	{mso-level-text:"%1\.%2\.%3\.%4\.";
+	mso-level-tab-stop:108.0pt;
+	mso-level-number-position:left;
+	margin-left:86.4pt;
+	text-indent:-32.4pt;}
+@list l23:level5
+	{mso-level-text:"%1\.%2\.%3\.%4\.%5\.";
+	mso-level-tab-stop:144.0pt;
+	mso-level-number-position:left;
+	margin-left:111.6pt;
+	text-indent:-39.6pt;}
+@list l23:level6
+	{mso-level-text:"%1\.%2\.%3\.%4\.%5\.%6\.";
+	mso-level-tab-stop:162.0pt;
+	mso-level-number-position:left;
+	margin-left:136.8pt;
+	text-indent:-46.8pt;}
+@list l23:level7
+	{mso-level-text:"%1\.%2\.%3\.%4\.%5\.%6\.%7\.";
+	mso-level-tab-stop:198.0pt;
+	mso-level-number-position:left;
+	margin-left:162.0pt;
+	text-indent:-54.0pt;}
+@list l23:level8
+	{mso-level-text:"%1\.%2\.%3\.%4\.%5\.%6\.%7\.%8\.";
+	mso-level-tab-stop:234.0pt;
+	mso-level-number-position:left;
+	margin-left:187.2pt;
+	text-indent:-61.2pt;}
+@list l23:level9
+	{mso-level-text:"%1\.%2\.%3\.%4\.%5\.%6\.%7\.%8\.%9\.";
+	mso-level-tab-stop:252.0pt;
+	mso-level-number-position:left;
+	margin-left:216.0pt;
+	text-indent:-72.0pt;}
+@list l24
+	{mso-list-id:923954546;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-463724184 -46369714 67895299 67895301 67895297 67895299 67895301 67895297 67895299 67895301;}
+@list l24:level1
+	{mso-level-start-at:0;
+	mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Symbol;
+	mso-fareast-font-family:"HG Mincho Light J";
+	color:windowtext;}
+@list l25
+	{mso-list-id:1220478831;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-2048500308 67895297 67895299 67895301 67895297 67895299 67895301 67895297 67895299 67895301;}
+@list l25:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Symbol;}
+@list l25:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:"Courier New";}
+@list l26
+	{mso-list-id:1224557434;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1483294370 -46369714 67895311 67895301 67895297 67895299 67895301 67895297 67895299 67895301;}
+@list l26:level1
+	{mso-level-start-at:0;
+	mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:53.4pt;
+	mso-level-number-position:left;
+	margin-left:53.4pt;
+	text-indent:-18.0pt;
+	font-family:Symbol;
+	mso-fareast-font-family:"HG Mincho Light J";
+	color:windowtext;}
+@list l26:level2
+	{mso-level-tab-stop:89.4pt;
+	mso-level-number-position:left;
+	margin-left:89.4pt;
+	text-indent:-18.0pt;
+	color:windowtext;}
+@list l27
+	{mso-list-id:1336374424;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1765186426 67895297 67895299 67895301 67895297 67895299 67895301 67895297 67895299 67895301;}
+@list l27:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Symbol;}
+@list l28
+	{mso-list-id:1400590077;
+	mso-list-template-ids:1754717086;}
+@list l28:level1
+	{mso-level-tab-stop:18.0pt;
+	mso-level-number-position:left;
+	margin-left:18.0pt;
+	text-indent:-18.0pt;}
+@list l28:level2
+	{mso-level-text:"%1\.%2\.";
+	mso-level-tab-stop:54.0pt;
+	mso-level-number-position:left;
+	margin-left:39.6pt;
+	text-indent:-21.6pt;}
+@list l28:level3
+	{mso-level-text:"%1\.%2\.%3\.";
+	mso-level-tab-stop:72.0pt;
+	mso-level-number-position:left;
+	margin-left:61.2pt;
+	text-indent:-25.2pt;}
+@list l28:level4
+	{mso-level-text:"%1\.%2\.%3\.%4\.";
+	mso-level-tab-stop:108.0pt;
+	mso-level-number-position:left;
+	margin-left:86.4pt;
+	text-indent:-32.4pt;}
+@list l28:level5
+	{mso-level-text:"%1\.%2\.%3\.%4\.%5\.";
+	mso-level-tab-stop:144.0pt;
+	mso-level-number-position:left;
+	margin-left:111.6pt;
+	text-indent:-39.6pt;}
+@list l28:level6
+	{mso-level-text:"%1\.%2\.%3\.%4\.%5\.%6\.";
+	mso-level-tab-stop:162.0pt;
+	mso-level-number-position:left;
+	margin-left:136.8pt;
+	text-indent:-46.8pt;}
+@list l28:level7
+	{mso-level-text:"%1\.%2\.%3\.%4\.%5\.%6\.%7\.";
+	mso-level-tab-stop:198.0pt;
+	mso-level-number-position:left;
+	margin-left:162.0pt;
+	text-indent:-54.0pt;}
+@list l28:level8
+	{mso-level-text:"%1\.%2\.%3\.%4\.%5\.%6\.%7\.%8\.";
+	mso-level-tab-stop:234.0pt;
+	mso-level-number-position:left;
+	margin-left:187.2pt;
+	text-indent:-61.2pt;}
+@list l28:level9
+	{mso-level-text:"%1\.%2\.%3\.%4\.%5\.%6\.%7\.%8\.%9\.";
+	mso-level-tab-stop:252.0pt;
+	mso-level-number-position:left;
+	margin-left:216.0pt;
+	text-indent:-72.0pt;}
+@list l29
+	{mso-list-id:1645770726;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-480600758 67895297 67895299 67895301 67895297 67895299 67895301 67895297 67895299 67895301;}
+@list l29:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Symbol;}
+@list l30
+	{mso-list-id:1846168918;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1576944272 -46369714 67895299 67895301 67895297 67895299 67895301 67895297 67895299 67895301;}
+@list l30:level1
+	{mso-level-start-at:0;
+	mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Symbol;
+	mso-fareast-font-family:"HG Mincho Light J";
+	color:windowtext;}
+@list l31
+	{mso-list-id:1990741231;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1991534240 67895297 67895299 67895301 67895297 67895299 67895301 67895297 67895299 67895301;}
+@list l31:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Symbol;}
+@list l31:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:"Courier New";}
+@list l32
+	{mso-list-id:2008243448;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1566939782 -46369714 67895299 -46369714 67895297 67895299 67895301 67895297 67895299 67895301;}
+@list l32:level1
+	{mso-level-start-at:0;
+	mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Symbol;
+	mso-fareast-font-family:"HG Mincho Light J";
+	color:windowtext;}
+@list l32:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:72.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:"Courier New";}
+@list l32:level3
+	{mso-level-start-at:0;
+	mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:108.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Symbol;
+	mso-fareast-font-family:"HG Mincho Light J";
+	color:windowtext;}
+@list l33
+	{mso-list-id:2044086261;
+	mso-list-type:hybrid;
+	mso-list-template-ids:2025750302 -46369714 67895321 67895323 67895311 67895321 67895323 67895311 67895321 67895323;}
+@list l33:level1
+	{mso-level-start-at:0;
+	mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:53.4pt;
+	mso-level-number-position:left;
+	margin-left:53.4pt;
+	text-indent:-18.0pt;
+	font-family:Symbol;
+	mso-fareast-font-family:"HG Mincho Light J";
+	color:windowtext;}
+@list l33:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:89.4pt;
+	mso-level-number-position:left;
+	margin-left:89.4pt;
+	text-indent:-18.0pt;}
+@list l34
+	{mso-list-id:2085371194;
+	mso-list-type:hybrid;
+	mso-list-template-ids:614252818 -46369714 67895299 67895301 67895297 67895299 67895301 67895297 67895299 67895301;}
+@list l34:level1
+	{mso-level-start-at:0;
+	mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Symbol;
+	mso-fareast-font-family:"HG Mincho Light J";
+	color:windowtext;}
+@list l34:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:72.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:"Courier New";}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:"Tableau Normal";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-para-margin:0cm;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-ansi-language:#0400;
+	mso-fareast-language:#0400;
+	mso-bidi-language:#0400;}
+table.MsoTableGrid
+	{mso-style-name:"Grille du tableau";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	border:solid windowtext 1.0pt;
+	mso-border-alt:solid windowtext .5pt;
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-border-insideh:.5pt solid windowtext;
+	mso-border-insidev:.5pt solid windowtext;
+	mso-para-margin:0cm;
+	mso-para-margin-bottom:.0001pt;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-ansi-language:#0400;
+	mso-fareast-language:#0400;
+	mso-bidi-language:#0400;}
+</style>
+<![endif]--><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="2050"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body lang=FR link=blue vlink="#606420" style='tab-interval:35.4pt'>
+
+<div class=Section1>
+
+<p class=MsoTitle><span lang=EN-GB style='mso-ansi-language:EN-GB'>Sash and
+Core <br>
+Architectures<o:p></o:p></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span class=GramE><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>Author :</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> </span><a
+href="mailto:cedric.dumoulin@lifl.fr"><span lang=EN-GB style='mso-ansi-language:
+EN-GB'>Cedric Dumoulin</span></a><span lang=EN-GB style='mso-ansi-language:
+EN-GB'><o:p></o:p></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span class=GramE><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>Date :</span></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> </span><!--[if supportFields]><span
+style='mso-element:field-begin'></span><span
+style='mso-spacerun:yes'> </span>CREATEDATE \@ &quot;d MMM. yyyy&quot; \*
+MERGEFORMAT <span style='mso-element:field-separator'></span><![endif]--><span
+style='mso-no-proof:yes'>6 déc. 2009</span><!--[if supportFields]><span
+style='mso-element:field-end'></span><![endif]--><span lang=EN-GB
+style='mso-ansi-language:EN-GB'><o:p></o:p></span></p>
+
+<p class=MsoFooter align=center style='text-align:center'><span class=GramE><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>Rev :</span></span><span lang=EN-GB
+style='mso-ansi-language:EN-GB'> </span><!--[if supportFields]><span
+lang=EN-US><span style='mso-element:field-begin'></span><span
+style='mso-spacerun:yes'> </span>SAVEDATE \@ &quot;d MMM. yyyy&quot; \*
+MERGEFORMAT <span style='mso-element:field-separator'></span></span><![endif]--><span
+lang=EN-US><span style='mso-no-proof:yes'>22 Jan. 2010</span></span><!--[if supportFields]><span
+lang=EN-US><span style='mso-element:field-end'></span></span><![endif]--><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><o:p></o:p></span></p>
+
+<p class=MsoTitle><span lang=EN-GB style='mso-ansi-language:EN-GB'><o:p>&nbsp;</o:p></span></p>
+
+<h1><![if !supportLists]><span lang=EN-GB style='mso-fareast-font-family:Arial;
+mso-ansi-language:EN-GB'><span style='mso-list:Ignore'>1.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span></span><![endif]><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>Introduction<o:p></o:p></span></h1>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>Sash System
+and Core are used by the Papyrus UML editor.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>The Sash
+System provides an editor of pages that can be arranged in multiple pages
+separated by sashes. A page can be either an editor or a SWT Component.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>The Core
+provides the main Editor implemented with the Sash. The core also provides a
+notion of Services that can be added to the main editor. The services can then
+be retrieved and shared between nested pages.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>The Core
+depends on the Sash System (<span style='mso-field-code:" REF _Ref247902394 \\h "'><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>Figure <span style='mso-no-proof:
+yes'>1</span></span><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003200340037003900300032003300390034000000</w:data>
+</xml><![endif]--></span>). The Sash System is independent.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'><!--[if gte vml 1]><v:shapetype
+ id="_x0000_t75" coordsize="21600,21600" o:spt="75" o:preferrelative="t"
+ path="m@4@5l@4@11@9@11@9@5xe" filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:182.25pt;
+ height:214.5pt'>
+ <v:imagedata src="sashAndCoreArchitecture_fichiers/image001.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=243 height=286
+src="sashAndCoreArchitecture_fichiers/image002.jpg" v:shapes="_x0000_i1025"><![endif]><o:p></o:p></span></p>
+
+<p class=MsoCaption><a name="_Ref247902394"><span lang=EN-GB style='mso-ansi-language:
+EN-GB'>Figure </span></a><!--[if supportFields]><span style='mso-bookmark:_Ref247902394'></span><span
+style='mso-element:field-begin'></span><span style='mso-bookmark:_Ref247902394'><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span
+style='mso-spacerun:yes'> </span>SEQ Figure \* ARABIC </span><span
+style='mso-element:field-separator'></span></span><![endif]--><span
+style='mso-bookmark:_Ref247902394'></span><span style='mso-bookmark:_Ref247902394'><span
+lang=EN-GB style='mso-ansi-language:EN-GB;mso-no-proof:yes'>1</span></span><!--[if supportFields]><span
+style='mso-bookmark:_Ref247902394'></span><span style='mso-element:field-end'></span><![endif]--><span
+style='mso-bookmark:_Ref247902394'></span><span style='mso-bookmark:_Ref247902394'></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> Sash and Core packages</span><span
+lang=EN-US style='mso-ansi-language:EN-US'><o:p></o:p></span></p>
+
+<h1><![if !supportLists]><span lang=EN-US style='mso-fareast-font-family:Arial;
+mso-ansi-language:EN-US'><span style='mso-list:Ignore'>2.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span></span><![endif]><span
+lang=EN-US style='mso-ansi-language:EN-US'>Sash System<o:p></o:p></span></h1>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>The sash
+system is used to render multiple nested pages in one main editor. A page can
+be an editor or a SWT component.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>In the sash
+system, nested pages can be layed in tabfolders and side by side. The sash
+system allows to move the pages from tabfolder to tabfolder, or to create new
+tabfolders.<o:p></o:p></span></p>
+
+<h2><![if !supportLists]><span lang=EN-US style='mso-fareast-font-family:Arial;
+mso-ansi-language:EN-US'><span style='mso-list:Ignore'>2.1.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US'>Architecture
+Overview<o:p></o:p></span></h2>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>The sash
+system main component is the SashWindowsContainer class. It is used to render
+the pages as described above. The class requires two interfaces in order to
+work properly (<span style='mso-field-code:" REF _Ref247906499 \\h "'><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>Figure <span style='mso-no-proof:
+yes'>2</span></span><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003200340037003900300036003400390039000000</w:data>
+</xml><![endif]--></span>):<o:p></o:p></span></p>
+
+<ul style='margin-top:0cm' type=disc>
+ <li class=MsoNormal style='mso-list:l24 level1 lfo15;tab-stops:list 36.0pt'><span
+     lang=EN-US style='mso-ansi-language:EN-US'>ISashWindowsContentProvider – The
+     content provider is used to store the structure representing the pages
+     (editors or components) to be rendered. It is used by the SashContainer to
+     discover and modify the structure.<o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-list:l24 level1 lfo15;tab-stops:list 36.0pt'><span
+     lang=EN-US style='mso-ansi-language:EN-US'>IMultiEditorManager – Is
+     required if the SashContainer should render Eclipse IEditor. It is used to
+     get Eclipse Site and EditorInput.<o:p></o:p></span></li>
+</ul>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'><!--[if gte vml 1]><v:shape
+ id="_x0000_i1026" type="#_x0000_t75" style='width:453.75pt;height:236.25pt'>
+ <v:imagedata src="sashAndCoreArchitecture_fichiers/image003.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=605 height=315
+src="sashAndCoreArchitecture_fichiers/image004.jpg" v:shapes="_x0000_i1026"><![endif]><o:p></o:p></span></p>
+
+<p class=MsoCaption><a name="_Ref247906499"><span lang=EN-GB style='mso-ansi-language:
+EN-GB'>Figure </span></a><!--[if supportFields]><span style='mso-bookmark:_Ref247906499'></span><span
+style='mso-element:field-begin'></span><span style='mso-bookmark:_Ref247906499'><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span
+style='mso-spacerun:yes'> </span>SEQ Figure \* ARABIC </span><span
+style='mso-element:field-separator'></span></span><![endif]--><span
+style='mso-bookmark:_Ref247906499'></span><span style='mso-bookmark:_Ref247906499'><span
+lang=EN-GB style='mso-ansi-language:EN-GB;mso-no-proof:yes'>2</span></span><!--[if supportFields]><span
+style='mso-bookmark:_Ref247906499'></span><span style='mso-element:field-end'></span><![endif]--><span
+style='mso-bookmark:_Ref247906499'></span><span style='mso-bookmark:_Ref247906499'></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> Sash Container and its required
+interfaces<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-GB style='mso-ansi-language:EN-GB'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-GB style='mso-ansi-language:EN-GB'>The Sash
+Container can be used directly in an Eclipse editor. A base implementation is
+provided in </span><span lang=EN-GB style='font-family:"Courier New";
+mso-ansi-language:EN-GB'>AbstractMultiPageSashEditor</span><span lang=EN-GB
+style='mso-ansi-language:EN-GB'>. This implementation requires a concrete
+implementation for the </span><span lang=EN-US style='font-family:"Courier New";
+mso-ansi-language:EN-US'>ISashWindowsContentProvider</span><span lang=EN-US
+style='mso-ansi-language:EN-US'> interface.</span><span lang=EN-GB
+style='mso-ansi-language:EN-GB'><o:p></o:p></span></p>
+
+<h2><![if !supportLists]><span lang=EN-US style='mso-fareast-font-family:Arial;
+mso-ansi-language:EN-US'><span style='mso-list:Ignore'>2.2.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US'>ContentProvider<o:p></o:p></span></h2>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>The
+ContentProvider is used by the SashContainer to discover the content of the
+sash, and to store this content externally.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>The
+ContentProvider main API is ISashWindowContentProvider. <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span></p>
+
+<h3><![if !supportLists]><span lang=EN-US style='mso-fareast-font-family:Arial;
+mso-ansi-language:EN-US'><span style='mso-list:Ignore'>2.2.1.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span></span><![endif]><span
+lang=EN-US style='mso-ansi-language:EN-US'>ContentProvider structure<o:p></o:p></span></h3>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>The
+ContentProvider is used to read and store the structure to be rendered by the
+SashContainer. This structure can be implemented in different manners. <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>The
+ContentProvider API is design in order to be able to implement the structure by
+using any kind of Objects, called <i style='mso-bidi-font-style:normal'>raw
+model</i>. The Container call special methods (<span class=GramE>createChildSashModel(</span>Object))
+to obtain a well known API from a raw model used in the container.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>The content
+provider returns a view on the real structure implementation. The SashContainer
+start to explore this view from the ISashWindowContentProvider. The virtual
+view is made of ‘<i style='mso-bidi-font-style:normal'>Model’</i> represented
+by the different </span><i style='mso-bidi-font-style:normal'><span lang=EN-US
+style='font-family:"Courier New";mso-ansi-language:EN-US'>IXxxModel </span></i><span
+lang=EN-US style='mso-ansi-language:EN-US'>interfaces in <span
+style='mso-field-code:" REF _Ref250718046 \\h "'>Figure <span style='mso-no-proof:
+yes'>3</span><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003200350030003700310038003000340036000000</w:data>
+</xml><![endif]--></span>.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'><!--[if gte vml 1]><v:shape
+ id="_x0000_i1027" type="#_x0000_t75" style='width:452.25pt;height:186.75pt'>
+ <v:imagedata src="sashAndCoreArchitecture_fichiers/image005.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=603 height=249
+src="sashAndCoreArchitecture_fichiers/image006.jpg" v:shapes="_x0000_i1027"><![endif]><o:p></o:p></span></p>
+
+<p class=MsoCaption><a name="_Ref250718046"><span lang=EN-US style='mso-ansi-language:
+EN-US'>Figure </span></a><!--[if supportFields]><span style='mso-bookmark:_Ref250718046'></span><span
+style='mso-element:field-begin'></span><span style='mso-bookmark:_Ref250718046'><span
+lang=EN-US style='mso-ansi-language:EN-US'><span
+style='mso-spacerun:yes'> </span>SEQ Figure \* ARABIC </span><span
+style='mso-element:field-separator'></span></span><![endif]--><span
+style='mso-bookmark:_Ref250718046'></span><span style='mso-bookmark:_Ref250718046'><span
+lang=EN-US style='mso-ansi-language:EN-US;mso-no-proof:yes'>3</span></span><!--[if supportFields]><span
+style='mso-bookmark:_Ref250718046'></span><span style='mso-element:field-end'></span><![endif]--><span
+style='mso-bookmark:_Ref250718046'></span><span style='mso-bookmark:_Ref250718046'></span><span
+lang=EN-US style='mso-ansi-language:EN-US'> ContentProvider set of interfaces
+used by the SashContener<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>From the
+content provider, <span class=GramE>the <span style='mso-spacerun:yes'> </span>virtual</span>
+view is as follow:<o:p></o:p></span></p>
+
+<ul style='margin-top:0cm' type=disc>
+ <li class=MsoNormal style='mso-list:l22 level1 lfo14;tab-stops:list 36.0pt'><span
+     lang=EN-US style='mso-ansi-language:EN-US'>A root contains a PanelModel
+     which can be either <span class=GramE>a</span> ISashModel or a IFolderModel.<o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-list:l22 level1 lfo14;tab-stops:list 36.0pt'><span
+     class=GramE><span lang=EN-US style='mso-ansi-language:EN-US'>A</span></span><span
+     lang=EN-US style='mso-ansi-language:EN-US'> ISashModel is made of two
+     children of type IPanelModel. This represent two panel separated by a
+     sash.<o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-list:l22 level1 lfo14;tab-stops:list 36.0pt'><span
+     class=GramE><span lang=EN-US style='mso-ansi-language:EN-US'>A</span></span><span
+     lang=EN-US style='mso-ansi-language:EN-US'> IFolderModel is made of
+     several children of type IPageModel. This represents a tabfolder made of
+     pages.<o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-list:l22 level1 lfo14;tab-stops:list 36.0pt'><span
+     class=GramE><span lang=EN-US style='mso-ansi-language:EN-US'>A</span></span><span
+     lang=EN-US style='mso-ansi-language:EN-US'> IPageModel can be either a IComponentModel
+     or a IEditorModel.<o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-list:l22 level1 lfo14;tab-stops:list 36.0pt'><span
+     class=GramE><span lang=EN-US style='mso-ansi-language:EN-US'>A</span></span><span
+     lang=EN-US style='mso-ansi-language:EN-US'> IComponentModel represents a
+     SWT Component.<o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-list:l22 level1 lfo14;tab-stops:list 36.0pt'><span
+     class=GramE><span lang=EN-US style='mso-ansi-language:EN-US'>A</span></span><span
+     lang=EN-US style='mso-ansi-language:EN-US'> IEditorModel represent an
+     Eclipse Editor.<o:p></o:p></span></li>
+</ul>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span></p>
+
+<h3><![if !supportLists]><span lang=EN-US style='mso-fareast-font-family:Arial;
+mso-ansi-language:EN-US'><span style='mso-list:Ignore'>2.2.2.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span></span><![endif]><span
+lang=EN-US style='mso-ansi-language:EN-US'>ContentProvider main API<o:p></o:p></span></h3>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>The main
+API of the content provider is ISashWindowsContentProvider. <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>There is
+two methods to explore the ContentProvider structure: </span><span class=GramE><span
+lang=EN-US style='font-family:"Courier New";mso-ansi-language:EN-US'>getRootModel(</span></span><span
+lang=EN-US style='font-family:"Courier New";mso-ansi-language:EN-US'>)</span><span
+lang=EN-US style='mso-ansi-language:EN-US'> and </span><span lang=EN-US
+style='font-family:"Courier New";mso-ansi-language:EN-US'>createChildSashModel(object</span><span
+lang=EN-US style='mso-ansi-language:EN-US'>).<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>Others
+methods are used by the Container to modify the content after a user
+interaction.<o:p></o:p></span></p>
+
+<h3><![if !supportLists]><span lang=EN-US style='mso-fareast-font-family:Arial;
+mso-ansi-language:EN-US'><span style='mso-list:Ignore'>2.2.3.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span></span><![endif]><span
+lang=EN-US style='mso-ansi-language:EN-US'>ContentProvider exploration<o:p></o:p></span></h3>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>To discover
+the content, the Container first call the <span class=GramE>getRootModel(</span>)
+to get the root model of the content. This returns an Object representing the
+root of the structure of the Sash. <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>Then the
+container call <span class=GramE>createChildSashModel(</span>object) whith the
+previous object to get the Model represented by the Object. This is either <span
+class=GramE>a</span> ISashPanelModel or a ITabFolderModel.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>For a
+ISashPanelModel the container call the <span class=GramE>getChildren(</span>)
+method to obtain the raw models of the node. Then for each childs it get the
+IAbstractPanelModel by calling <span class=GramE>createChildSashModel(</span>object).<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>For a a
+ITabFolderModel, the container call the <span class=GramE>getChildren(</span>)
+method to obtain the raw models of the node. Then for each childs it get the
+IPageModel by calling <span class=GramE>createChildSashModel(</span>object). <span
+class=GramE>This return</span> either a IComponentModel or a IEditorModel,
+representing a SWT Component or a IEditor.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>The <span
+class=GramE>container create</span> the corresponding SWT component or
+IEditorPart by calling appropriate method.<o:p></o:p></span></p>
+
+<h3><![if !supportLists]><span lang=EN-US style='mso-fareast-font-family:Arial;
+mso-ansi-language:EN-US'><span style='mso-list:Ignore'>2.2.4.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span></span><![endif]><span
+lang=EN-US style='mso-ansi-language:EN-US'>ContentProvider Modification by the
+SashContainer<o:p></o:p></span></h3>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>The
+SashContainer modify the ContentProvider by the way of the
+ISashWindowsContentProvider interface. It doesn’t create models by itself.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>The
+SashContainer transforms user interactions in calls to
+ISashWindowsContentProvider.<span style='mso-spacerun:yes'>  </span>This should
+modify the ContentProvider internal structure. In turn, something must call the
+</span><span class=GramE><span lang=EN-US style='font-family:"Courier New";
+mso-ansi-language:EN-US'>refresh(</span></span><span lang=EN-US
+style='font-family:"Courier New";mso-ansi-language:EN-US'>)</span><span
+lang=EN-US style='mso-ansi-language:EN-US'> method on the SashContainer in
+order to refresh it (to force it to synchronize itself with the
+ContentProvider).<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>The
+SashContainer do not listen on the ContentProvider. This should be implemented
+externally.<o:p></o:p></span></p>
+
+<h2><![if !supportLists]><span lang=EN-US style='mso-fareast-font-family:Arial;
+mso-ansi-language:EN-US'><span style='mso-list:Ignore'>2.3.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US'>DI
+ContentProvider<o:p></o:p></span></h2>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US;mso-fareast-language:
+EN-US'>The DiContentProvider is an implementation of the
+ISashWindowContentProvider.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US;mso-fareast-language:
+EN-US'>It is implemented </span><span lang=EN-US style='mso-ansi-language:EN-US'>with
+an EMF metamodel, to save its content as EMF model.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>The
+DiContentProvider is accessible throw the DiSashModelMngr class or
+TransactionalDiSashModelMngr class.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>The
+internal EMF implementation is not intended to be used directly by users. Some
+interfaces are provided in order to access it: IPageMngr <span class=GramE>and<span
+style='mso-spacerun:yes'>  </span><span style='mso-fareast-language:EN-US'>ISashWindowContentProvider</span></span>.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span class=GramE><span lang=EN-US style='mso-ansi-language:
+EN-US'>IPageMngr,</span></span><span lang=EN-US style='mso-ansi-language:EN-US'>
+provides methods to add, open, remove Editors from the ContentProvider. This is
+the API used by user.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>An
+implementation of the IPageMngr can be obtained from the DiSashModelMngr or the
+TransactionalDiSashModelMngr.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span></p>
+
+<h3><![if !supportLists]><span lang=EN-US style='mso-fareast-font-family:Arial;
+mso-ansi-language:EN-US'><span style='mso-list:Ignore'>2.3.1.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span></span><![endif]><span
+lang=EN-US style='mso-ansi-language:EN-US'>DiSashModelMngr<o:p></o:p></span></h3>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>To get an
+instance of the DiContentProvider, it is necessary to create an instance of
+DiSashModelMngr (or the Transactional one). This class requires two classes to
+work (<span style='mso-field-code:" REF _Ref250973441 \\h "'>Figure <span
+style='mso-no-proof:yes'>4</span><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003200350030003900370033003400340031000000</w:data>
+</xml><![endif]--></span>): an <i style='mso-bidi-font-style:normal'>EMF
+Resource</i> that is used to store/retrieve content, and <span class=GramE>a</span>
+<i style='mso-bidi-font-style:normal'>IPageModelFactory</i>, used to create
+instance of IPageModel (model used by the SashContentProvider to create
+instance of nested Editor).<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'><!--[if gte vml 1]><v:shape
+ id="_x0000_i1028" type="#_x0000_t75" style='width:453pt;height:246.75pt'>
+ <v:imagedata src="sashAndCoreArchitecture_fichiers/image007.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=604 height=329
+src="sashAndCoreArchitecture_fichiers/image008.jpg" v:shapes="_x0000_i1028"><![endif]><o:p></o:p></span></p>
+
+<p class=MsoCaption><a name="_Ref250973441"><span lang=EN-US style='mso-ansi-language:
+EN-US'>Figure </span></a><!--[if supportFields]><span style='mso-bookmark:_Ref250973441'></span><span
+style='mso-element:field-begin'></span><span style='mso-bookmark:_Ref250973441'><span
+lang=EN-US style='mso-ansi-language:EN-US'><span
+style='mso-spacerun:yes'> </span>SEQ Figure \* ARABIC </span><span
+style='mso-element:field-separator'></span></span><![endif]--><span
+style='mso-bookmark:_Ref250973441'></span><span style='mso-bookmark:_Ref250973441'><span
+lang=EN-US style='mso-ansi-language:EN-US;mso-no-proof:yes'>4</span></span><!--[if supportFields]><span
+style='mso-bookmark:_Ref250973441'></span><span style='mso-element:field-end'></span><![endif]--><span
+style='mso-bookmark:_Ref250973441'></span><span style='mso-bookmark:_Ref250973441'></span><span
+lang=EN-US style='mso-ansi-language:EN-US'> DiContentProvider Provided and Required
+Interfaces<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span></p>
+
+<h3><![if !supportLists]><span lang=EN-US style='mso-fareast-font-family:Arial;
+mso-ansi-language:EN-US'><span style='mso-list:Ignore'>2.3.2.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span></span><![endif]><span
+lang=EN-US style='mso-ansi-language:EN-US'>Internal Structure<o:p></o:p></span></h3>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US;mso-fareast-language:
+EN-US'>The implementation is made of 3 parts:<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;mso-list:l29 level1 lfo28'><![if !supportLists]><span
+lang=EN-US style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol;mso-ansi-language:EN-US;mso-fareast-language:EN-US'><span
+style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US;
+mso-fareast-language:EN-US'>The manager, used to retrieve the concrete
+implementations of provided interfaces (<span style='mso-field-code:" REF _Ref250973441 \\h "'><span
+style='mso-fareast-language:FR'>Figure <span style='mso-no-proof:yes'>4</span></span><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003200350030003900370033003400340031000000</w:data>
+</xml><![endif]--></span>)<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;mso-list:l29 level1 lfo28'><![if !supportLists]><span
+lang=EN-US style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol;mso-ansi-language:EN-US;mso-fareast-language:EN-US'><span
+style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US;
+mso-fareast-language:EN-US'>Implementations of ISashWindowContentProvider and
+IPageMngr (<span style='mso-field-code:" REF _Ref250973441 \\h "'><span
+style='mso-fareast-language:FR'>Figure <span style='mso-no-proof:yes'>4</span></span><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003200350030003900370033003400340031000000</w:data>
+</xml><![endif]--></span>)<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;mso-list:l29 level1 lfo28'><![if !supportLists]><span
+lang=EN-US style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol;mso-ansi-language:EN-US;mso-fareast-language:EN-US'><span
+style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US;
+mso-fareast-language:EN-US'>An EMF metamodel and model used to store/retrieve
+the sash structure (<span style='mso-field-code:" REF _Ref247906790 \\h "'><span
+lang=EN-GB style='mso-ansi-language:EN-GB;mso-fareast-language:FR'>Figure <span
+style='mso-no-proof:yes'>5</span></span><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003200340037003900300036003700390030000000</w:data>
+</xml><![endif]--></span>).<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt'><span lang=EN-US
+style='mso-ansi-language:EN-US;mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'><!--[if gte vml 1]><v:shape
+ id="_x0000_i1029" type="#_x0000_t75" style='width:453pt;height:237.75pt'>
+ <v:imagedata src="sashAndCoreArchitecture_fichiers/image009.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=604 height=317
+src="sashAndCoreArchitecture_fichiers/image010.jpg" v:shapes="_x0000_i1029"><![endif]><o:p></o:p></span></p>
+
+<p class=MsoCaption><a name="_Ref247906790"><span lang=EN-GB style='mso-ansi-language:
+EN-GB'>Figure </span></a><!--[if supportFields]><span style='mso-bookmark:_Ref247906790'></span><span
+style='mso-element:field-begin'></span><span style='mso-bookmark:_Ref247906790'><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span
+style='mso-spacerun:yes'> </span>SEQ Figure \* ARABIC </span><span
+style='mso-element:field-separator'></span></span><![endif]--><span
+style='mso-bookmark:_Ref247906790'></span><span style='mso-bookmark:_Ref247906790'><span
+lang=EN-GB style='mso-ansi-language:EN-GB;mso-no-proof:yes'>5</span></span><!--[if supportFields]><span
+style='mso-bookmark:_Ref247906790'></span><span style='mso-element:field-end'></span><![endif]--><span
+style='mso-bookmark:_Ref247906790'></span><span style='mso-bookmark:_Ref247906790'></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> <span class=GramE>The</span> di
+sashwindows metamodel (internal structure).<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-GB style='mso-ansi-language:EN-GB'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-GB style='mso-ansi-language:EN-GB'>The EMF
+metamodel is itself made of two parts:<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;mso-list:l14 level1 lfo29'><![if !supportLists]><span
+lang=EN-GB style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol;mso-ansi-language:EN-GB'><span style='mso-list:Ignore'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-GB style='mso-ansi-language:EN-GB'>A
+SashModel representing the structure of SashSystem. This is a tree structure
+whose leaf are objects representing pages (an Editor or a Component).<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;mso-list:l14 level1 lfo29'><![if !supportLists]><span
+lang=EN-GB style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol;mso-ansi-language:EN-GB'><span style='mso-list:Ignore'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-GB style='mso-ansi-language:EN-GB'>A
+PageList – a list of pages currently available for the SashSystem. This list
+contains objects representing all the pages, the open ones as well as the
+closed ones.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span></p>
+
+<h2><![if !supportLists]><span lang=EN-US style='mso-fareast-font-family:Arial;
+mso-ansi-language:EN-US'><span style='mso-list:Ignore'>2.4.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US'>AbstractMultiPageSashEditor<o:p></o:p></span></h2>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>The Sash
+System provides an abstract base implementation <span class=GramE>of a
+multieditors</span>. The class is </span><span lang=EN-GB style='font-family:
+"Courier New";mso-ansi-language:EN-GB'>AbstractMultiPageSashEditor. </span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>This implementation uses a SashContainer
+and requires <span class=GramE>a</span> ISashWindowsContentProvider.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-GB style='mso-ansi-language:EN-GB'>This later
+should be set by calling <span class=GramE>setContentProvider(</span>).<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-GB style='mso-ansi-language:EN-GB'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-GB style='mso-ansi-language:EN-GB'><!--[if gte vml 1]><v:shape
+ id="_x0000_i1030" type="#_x0000_t75" style='width:453pt;height:275.25pt'>
+ <v:imagedata src="sashAndCoreArchitecture_fichiers/image011.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=604 height=367
+src="sashAndCoreArchitecture_fichiers/image012.jpg" v:shapes="_x0000_i1030"><![endif]><o:p></o:p></span></p>
+
+<p class=MsoCaption>Figure <!--[if supportFields]><span style='mso-element:
+field-begin'></span><span style='mso-spacerun:yes'> </span>SEQ Figure \* ARABIC
+<span style='mso-element:field-separator'></span><![endif]--><span
+style='mso-no-proof:yes'>6</span><!--[if supportFields]><span style='mso-element:
+field-end'></span><![endif]--> AbstractMultiPageSashEditor Overview</p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span></p>
+
+<h2><![if !supportLists]><span lang=EN-US style='mso-fareast-font-family:Arial;
+mso-ansi-language:EN-US'><span style='mso-list:Ignore'>2.5.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US'>SashContainerFactory<o:p></o:p></span></h2>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US;mso-fareast-language:
+EN-US'>The SashContainerFactory class can be used to get an instance of the
+SashContainer, as this later is not directly accessible.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US;mso-fareast-language:
+EN-US'>Note: this class is not yet implemented. It will be if there is a need
+for it.<o:p></o:p></span></p>
+
+<h2><![if !supportLists]><span lang=EN-US style='mso-fareast-font-family:Arial;
+mso-ansi-language:EN-US'><span style='mso-list:Ignore'>2.6.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US'>Glossary<o:p></o:p></span></h2>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-yfti-tbllook:480;mso-padding-alt:0cm 5.4pt 0cm 5.4pt;mso-border-insideh:
+ .5pt solid windowtext;mso-border-insidev:.5pt solid windowtext'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
+  <td width=307 valign=top style='width:230.3pt;border:solid windowtext 1.0pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center'><b
+  style='mso-bidi-font-weight:normal'><span lang=EN-US style='mso-ansi-language:
+  EN-US'>Concept<o:p></o:p></span></b></p>
+  </td>
+  <td width=307 valign=top style='width:230.3pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal align=center style='text-align:center'><b
+  style='mso-bidi-font-weight:normal'><span lang=EN-US style='mso-ansi-language:
+  EN-US'>Definition<o:p></o:p></span></b></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:1'>
+  <td width=307 valign=top style='width:230.3pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>SashContainer<o:p></o:p></span></p>
+  </td>
+  <td width=307 valign=top style='width:230.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>A sash
+  container is the main component of the sash system. It contains pages that
+  can be arranged in multiple windows, and inside each window the pages can be
+  arranged side by side or in sash folder. Two adjacent pages are separated by
+  a sash allowing <span class=GramE>to resize</span> the pages.<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:2'>
+  <td width=307 valign=top style='width:230.3pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>Sash
+  Window<o:p></o:p></span></p>
+  </td>
+  <td width=307 valign=top style='width:230.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>A sash
+  window is a window that can be moved independently from the Eclipse window. A
+  sash window show one or more pages of a Sash container.<o:p></o:p></span></p>
+  <p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>Note: the
+  actual implementation allows only one window docked inside Eclipse.<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:3'>
+  <td width=307 valign=top style='width:230.3pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>Sash
+  Folder<o:p></o:p></span></p>
+  <p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>Sash
+  tabfolder<o:p></o:p></span></p>
+  <p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>Folder<o:p></o:p></span></p>
+  </td>
+  <td width=307 valign=top style='width:230.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>A sash
+  folder renders pages in a tab fashion. A folder contains several pages, but show
+  only one of them at a time. Pages can be selected with a tab.<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:4'>
+  <td width=307 valign=top style='width:230.3pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>Sash
+  Panel<o:p></o:p></span></p>
+  </td>
+  <td width=307 valign=top style='width:230.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>A sash
+  panel render two <o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:5;mso-yfti-lastrow:yes'>
+  <td width=307 valign=top style='width:230.3pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>Sash Page<o:p></o:p></span></p>
+  </td>
+  <td width=307 valign=top style='width:230.3pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>A sash
+  page is the final <o:p></o:p></span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span></p>
+
+<h1><![if !supportLists]><span lang=EN-US style='mso-fareast-font-family:Arial;
+mso-ansi-language:EN-US'><span style='mso-list:Ignore'>3.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span></span><![endif]><span
+lang=EN-US style='mso-ansi-language:EN-US'>Core / Backbone<o:p></o:p></span></h1>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>The Core
+main intent is to provide <span class=GramE>a multieditors</span>, that is, an
+editor of editors. <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>The
+provided <span class=GramE>multieditors is</span> independent from the nested
+editors. These nested editors can be registered by using the Eclipse extension
+mechanism. <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>Nested
+editors can share objects thanks to the ServiceRegistry who register services.
+These services are registered programmatically or by using the Eclipse
+extension mechanism.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>The
+multieditors use a Di ContentProvider to register the Sash content.<o:p></o:p></span></p>
+
+<h2><![if !supportLists]><span lang=EN-US style='mso-fareast-font-family:Arial;
+mso-ansi-language:EN-US'><span style='mso-list:Ignore'>3.1.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US'>Architecture
+Overview<o:p></o:p></span></h2>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>The main
+class of the core is the CoreMultiDiagramEditor. It extends the
+sasheditor.AbstractMultiPageEditor to provide <span class=GramE>a multieditors</span>.
+It adds some services needed by the nested editors.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'><span
+style='mso-field-code:" REF _Ref248079560 \\h "'>Figure <span style='mso-no-proof:
+yes'>7</span><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003200340038003000370039003500360030000000</w:data>
+</xml><![endif]--></span> shows the main classes and the added services.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'><!--[if gte vml 1]><v:shape
+ id="_x0000_i1031" type="#_x0000_t75" style='width:453.75pt;height:248.25pt'>
+ <v:imagedata src="sashAndCoreArchitecture_fichiers/image013.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=605 height=331
+src="sashAndCoreArchitecture_fichiers/image014.jpg" v:shapes="_x0000_i1031"><![endif]><o:p></o:p></span></p>
+
+<p class=MsoCaption><a name="_Ref248079560">Figure </a><!--[if supportFields]><span
+style='mso-bookmark:_Ref248079560'></span><span style='mso-element:field-begin'></span><span
+style='mso-bookmark:_Ref248079560'><span style='mso-spacerun:yes'> </span>SEQ
+Figure \* ARABIC <span style='mso-element:field-separator'></span></span><![endif]--><span
+style='mso-bookmark:_Ref248079560'><span style='mso-no-proof:yes'>7</span></span><!--[if supportFields]><span
+style='mso-bookmark:_Ref248079560'></span><span style='mso-element:field-end'></span><![endif]--><span
+style='mso-bookmark:_Ref248079560'></span> Core multieditors overview.<span
+lang=EN-US style='mso-ansi-language:EN-US'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>All the
+services are also accessible thanks to the ServicesRegistry. This
+ServicesRegistry is provided to all nested editors while they are created. The
+nested editors can then retrieve any service it need.<o:p></o:p></span></p>
+
+<h2><![if !supportLists]><span lang=EN-US style='mso-fareast-font-family:Arial;
+mso-ansi-language:EN-US'><span style='mso-list:Ignore'>3.2.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US'>Public
+API<o:p></o:p></span></h2>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US;mso-fareast-language:
+EN-US'>Main API of the core is represented in <span style='mso-field-code:" REF _Ref251681771 \\h "'><span
+style='mso-fareast-language:FR'>Figure <span style='mso-no-proof:yes'>8</span></span><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003200350031003600380031003700370031000000</w:data>
+</xml><![endif]--></span>.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US;mso-fareast-language:
+EN-US'>From the main editor (aka instance of CoreMultiDiagramEditor<span
+class=GramE>) ,</span> it is possible to get the following members :<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;mso-list:l21 level1 lfo32'><![if !supportLists]><span
+lang=EN-US style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol;mso-ansi-language:EN-US;mso-fareast-language:EN-US'><span
+style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US;
+mso-fareast-language:EN-US'>ServicesRegistry – To get other registered services<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;mso-list:l21 level1 lfo32'><![if !supportLists]><span
+lang=EN-US style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol;mso-ansi-language:EN-US;mso-fareast-language:EN-US'><span
+style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US;
+mso-fareast-language:EN-US'>SashWindowsContainer – To get the active editor or
+refresh all editors<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;mso-list:l21 level1 lfo32'><![if !supportLists]><span
+lang=EN-US style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol;mso-ansi-language:EN-US;mso-fareast-language:EN-US'><span
+style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US;
+mso-fareast-language:EN-US'>DiSashModelManager – To add, remove move, open,
+close diagrams in the editors<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;mso-list:l21 level1 lfo32'><![if !supportLists]><span
+lang=EN-US style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol;mso-ansi-language:EN-US;mso-fareast-language:EN-US'><span
+style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US;
+mso-fareast-language:EN-US'>Main IEditorSite – To get the Eclipse
+SelectionService<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;mso-list:l21 level1 lfo32'><![if !supportLists]><span
+lang=EN-US style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol;mso-ansi-language:EN-US;mso-fareast-language:EN-US'><span
+style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US;
+mso-fareast-language:EN-US'>The currently active nested editor. – Required by
+some GMF stuff<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;mso-list:l21 level1 lfo32'><![if !supportLists]><span
+lang=EN-US style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol;mso-ansi-language:EN-US;mso-fareast-language:EN-US'><span
+style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US;
+mso-fareast-language:EN-US'>LifeCycleEventsProvider – To listen on life cycles
+events on the main editor (doSave, doSaveAs)<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:18.0pt'><span lang=EN-US
+style='mso-ansi-language:EN-US;mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-left:18.0pt'><span lang=EN-US
+style='mso-ansi-language:EN-US;mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US;mso-fareast-language:
+EN-US'><!--[if gte vml 1]><v:shape id="_x0000_i1032" type="#_x0000_t75"
+ style='width:453pt;height:315pt'>
+ <v:imagedata src="sashAndCoreArchitecture_fichiers/image015.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=604 height=420
+src="sashAndCoreArchitecture_fichiers/image016.jpg" v:shapes="_x0000_i1032"><![endif]><o:p></o:p></span></p>
+
+<p class=MsoCaption><a name="_Ref251681767"></a><a name="_Ref251681771"><span
+style='mso-bookmark:_Ref251681767'>Figure </span></a><!--[if supportFields]><span
+style='mso-bookmark:_Ref251681771'><span style='mso-bookmark:_Ref251681767'></span></span><span
+style='mso-element:field-begin'></span><span style='mso-bookmark:_Ref251681771'><span
+style='mso-bookmark:_Ref251681767'><span style='mso-spacerun:yes'> </span>SEQ
+Figure \* ARABIC <span style='mso-element:field-separator'></span></span></span><![endif]--><span
+style='mso-bookmark:_Ref251681771'><span style='mso-bookmark:_Ref251681767'><span
+style='mso-no-proof:yes'>8</span></span></span><!--[if supportFields]><span
+style='mso-bookmark:_Ref251681771'><span style='mso-bookmark:_Ref251681767'></span></span><span
+style='mso-element:field-end'></span><![endif]--><span style='mso-bookmark:
+_Ref251681771'><span style='mso-bookmark:_Ref251681767'></span></span><span
+style='mso-bookmark:_Ref251681767'> Core main APIs</span><span
+style='mso-bookmark:_Ref251681767'></span><span lang=EN-US style='mso-ansi-language:
+EN-US;mso-fareast-language:EN-US'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US;mso-fareast-language:
+EN-US'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;mso-list:l27 level1 lfo31'><![if !supportLists]><span
+lang=EN-US style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol;mso-ansi-language:EN-US;mso-fareast-language:EN-US'><span
+style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US;
+mso-fareast-language:EN-US'>ServiceRegistry – Used to get registered services<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;mso-list:l27 level1 lfo31'><![if !supportLists]><span
+lang=EN-US style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol;mso-ansi-language:EN-US;mso-fareast-language:EN-US'><span
+style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US;
+mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p>
+
+<h2><![if !supportLists]><span lang=EN-US style='mso-fareast-font-family:Arial;
+mso-ansi-language:EN-US'><span style='mso-list:Ignore'>3.3.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US'>Available
+Services<o:p></o:p></span></h2>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US;mso-fareast-language:
+EN-US'>The core creates and registers a number of services:<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;mso-list:l31 level1 lfo30'><![if !supportLists]><span
+lang=EN-US style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol;mso-ansi-language:EN-US;mso-fareast-language:EN-US'><span
+style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US;
+mso-fareast-language:EN-US'>See org.eclipse.papyrus.core.editor.CoreMultiDiagramEditor.init(IEditorSite,
+IEditorInput) <o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;mso-list:l31 level1 lfo30'><![if !supportLists]><span
+lang=EN-US style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol;mso-ansi-language:EN-US;mso-fareast-language:EN-US'><span
+style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US;
+mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p>
+
+<h2><![if !supportLists]><span lang=EN-US style='mso-fareast-font-family:Arial;
+mso-ansi-language:EN-US'><span style='mso-list:Ignore'>3.4.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US'>ServiceRegistry<o:p></o:p></span></h2>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>The
+ServiceRegistry is used to register services that can be found by a key,
+generally the classname of the service.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>A service
+can be retrieve in a standard way, generally by using its ID or its implementation
+class.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span></p>
+
+<h3><![if !supportLists]><span lang=EN-US style='mso-fareast-font-family:Arial;
+mso-ansi-language:EN-US'><span style='mso-list:Ignore'>3.4.1.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span></span><![endif]><span
+lang=EN-US style='mso-ansi-language:EN-US'>Architecture Overview<o:p></o:p></span></h3>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'><span
+style='mso-field-code:" REF _Ref248121826 \\h "'>Figure <span style='mso-no-proof:
+yes'>9</span><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003200340038003100320031003800320036000000</w:data>
+</xml><![endif]--></span> shows the architecture of the ServiceRegistry.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'><!--[if gte vml 1]><v:shape
+ id="_x0000_i1033" type="#_x0000_t75" style='width:453pt;height:154.5pt'>
+ <v:imagedata src="sashAndCoreArchitecture_fichiers/image017.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=604 height=206
+src="sashAndCoreArchitecture_fichiers/image018.jpg" v:shapes="_x0000_i1033"><![endif]><o:p></o:p></span></p>
+
+<p class=MsoCaption><a name="_Ref248121826">Figure </a><!--[if supportFields]><span
+style='mso-bookmark:_Ref248121826'></span><span style='mso-element:field-begin'></span><span
+style='mso-bookmark:_Ref248121826'><span style='mso-spacerun:yes'> </span>SEQ
+Figure \* ARABIC <span style='mso-element:field-separator'></span></span><![endif]--><span
+style='mso-bookmark:_Ref248121826'><span style='mso-no-proof:yes'>9</span></span><!--[if supportFields]><span
+style='mso-bookmark:_Ref248121826'></span><span style='mso-element:field-end'></span><![endif]--><span
+style='mso-bookmark:_Ref248121826'></span> ServiceRegistry Architecture<span
+lang=EN-US style='mso-ansi-language:EN-US'><o:p></o:p></span></p>
+
+<h3><![if !supportLists]><span lang=EN-US style='mso-fareast-font-family:Arial;
+mso-ansi-language:EN-US'><span style='mso-list:Ignore'>3.4.2.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span></span><![endif]><span
+lang=EN-US style='mso-ansi-language:EN-US'>Designing a Service<o:p></o:p></span></h3>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>A service
+is a class providing some methods. <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>The class
+can be a Pojo, or it can extend the IService interface.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>If the
+service extends the IService interface, the ServiceRegistry will call the life
+cycle methods on the service.<o:p></o:p></span></p>
+
+<h3><![if !supportLists]><span lang=EN-US style='mso-fareast-font-family:Arial;
+mso-ansi-language:EN-US'><span style='mso-list:Ignore'>3.4.3.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span></span><![endif]><span
+lang=EN-US style='mso-ansi-language:EN-US'>Register a Service<o:p></o:p></span></h3>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>A service
+can be registered in several ways:<o:p></o:p></span></p>
+
+<ul style='margin-top:0cm' type=disc>
+ <li class=MsoNormal style='mso-list:l12 level1 lfo17;tab-stops:list 36.0pt'><span
+     lang=EN-US style='mso-ansi-language:EN-US'>Using the Eclipse extension
+     mechanism<o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-list:l12 level1 lfo17;tab-stops:list 36.0pt'><span
+     lang=EN-US style='mso-ansi-language:EN-US'>Programmatically<o:p></o:p></span></li>
+</ul>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span></p>
+
+<h4><span lang=EN-US style='mso-ansi-language:EN-US'>Using the Eclipse
+extension mechanism<o:p></o:p></span></h4>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>A service
+can be registered using the Eclipse extension mechanism.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'><span
+style='mso-field-code:" REF _Ref248080737 \\h "'><span lang=EN-GB
+style='mso-ansi-language:EN-GB'>Figure <span style='mso-no-proof:yes'>10</span></span><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003200340038003000380030003700330037000000</w:data>
+</xml><![endif]--></span> shows the extension names and fields.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'><!--[if gte vml 1]><v:shape
+ id="_x0000_i1034" type="#_x0000_t75" style='width:453.75pt;height:96pt'>
+ <v:imagedata src="sashAndCoreArchitecture_fichiers/image019.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=605 height=128
+src="sashAndCoreArchitecture_fichiers/image020.jpg" v:shapes="_x0000_i1034"><![endif]><o:p></o:p></span></p>
+
+<p class=MsoCaption><a name="_Ref248080737"><span lang=EN-GB style='mso-ansi-language:
+EN-GB'>Figure </span></a><!--[if supportFields]><span style='mso-bookmark:_Ref248080737'></span><span
+style='mso-element:field-begin'></span><span style='mso-bookmark:_Ref248080737'><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span
+style='mso-spacerun:yes'> </span>SEQ Figure \* ARABIC </span><span
+style='mso-element:field-separator'></span></span><![endif]--><span
+style='mso-bookmark:_Ref248080737'></span><span style='mso-bookmark:_Ref248080737'><span
+lang=EN-GB style='mso-ansi-language:EN-GB;mso-no-proof:yes'>10</span></span><!--[if supportFields]><span
+style='mso-bookmark:_Ref248080737'></span><span style='mso-element:field-end'></span><![endif]--><span
+style='mso-bookmark:_Ref248080737'></span><span style='mso-bookmark:_Ref248080737'></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> Register a Service with Eclipse
+extension</span><span lang=EN-US style='mso-ansi-language:EN-US'><o:p></o:p></span></p>
+
+<ul style='margin-top:0cm' type=disc>
+ <li class=MsoNormal style='mso-list:l11 level1 lfo19;tab-stops:list 36.0pt'><span
+     class=GramE><span lang=EN-US style='mso-ansi-language:EN-US'>classname</span></span><span
+     lang=EN-US style='mso-ansi-language:EN-US'> – The name of the class
+     implementing the service. The class should implements the IService
+     interface.<o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-list:l11 level1 lfo19;tab-stops:list 36.0pt'><span
+     class=GramE><span lang=EN-US style='mso-ansi-language:EN-US'>id</span></span><span
+     lang=EN-US style='mso-ansi-language:EN-US'> – id used to register the
+     service when useClassTypeAsKey=true.<o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-list:l11 level1 lfo19;tab-stops:list 36.0pt'><span
+     class=GramE><span lang=EN-US style='mso-ansi-language:EN-US'>useClassTypeAsKey</span></span><span
+     lang=EN-US style='mso-ansi-language:EN-US'> – Boolean. If true, use the
+     class type as the key to register the service. Otherwise, use the id
+     (which should not be null).<o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-list:l11 level1 lfo19;tab-stops:list 36.0pt'><span
+     class=GramE><span lang=EN-US style='mso-ansi-language:EN-US'>priority</span></span><span
+     lang=EN-US style='mso-ansi-language:EN-US'> – If more than one service are
+     declared for the same key, only the service with the higher priority is
+     registered.<o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-list:l11 level1 lfo19;tab-stops:list 36.0pt'><span
+     class=GramE><span lang=EN-US style='mso-ansi-language:EN-US'>startkind</span></span><span
+     lang=EN-US style='mso-ansi-language:EN-US'> – lazy or startup. Specify
+     when the service should be started. <span class=GramE>startup</span>: the
+     service will start as soon as it is registered; lazy: the service will
+     start when it is first retrieved from the registry.<o:p></o:p></span></li>
+</ul>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span></p>
+
+<h4><span lang=EN-US style='mso-ansi-language:EN-US'>Programmatically<o:p></o:p></span></h4>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>Services
+can be registered programmatically using one of the </span><span class=GramE><span
+lang=EN-US style='font-family:"Courier New";mso-ansi-language:EN-US'>add(</span></span><span
+lang=EN-US style='font-family:"Courier New";mso-ansi-language:EN-US'>…)</span><span
+lang=EN-US style='mso-ansi-language:EN-US'> methods (<span style='mso-field-code:
+" REF _Ref248115334 \\h "'><span lang=EN-GB style='mso-ansi-language:EN-GB'>Figure
+<span style='mso-no-proof:yes'>11</span></span><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003200340038003100310035003300330034000000</w:data>
+</xml><![endif]--></span>). In this case, the service can be a Pojo.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'><!--[if gte vml 1]><v:shape
+ id="_x0000_i1035" type="#_x0000_t75" style='width:281.25pt;height:172.5pt'>
+ <v:imagedata src="sashAndCoreArchitecture_fichiers/image021.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=375 height=230
+src="sashAndCoreArchitecture_fichiers/image022.jpg" v:shapes="_x0000_i1035"><![endif]><o:p></o:p></span></p>
+
+<p class=MsoCaption><a name="_Ref248115334"><span lang=EN-GB style='mso-ansi-language:
+EN-GB'>Figure </span></a><!--[if supportFields]><span style='mso-bookmark:_Ref248115334'></span><span
+style='mso-element:field-begin'></span><span style='mso-bookmark:_Ref248115334'><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span
+style='mso-spacerun:yes'> </span>SEQ Figure \* ARABIC </span><span
+style='mso-element:field-separator'></span></span><![endif]--><span
+style='mso-bookmark:_Ref248115334'></span><span style='mso-bookmark:_Ref248115334'><span
+lang=EN-GB style='mso-ansi-language:EN-GB;mso-no-proof:yes'>11</span></span><!--[if supportFields]><span
+style='mso-bookmark:_Ref248115334'></span><span style='mso-element:field-end'></span><![endif]--><span
+style='mso-bookmark:_Ref248115334'></span><span style='mso-bookmark:_Ref248115334'></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> ServicesRegistry class public API.</span><span
+lang=EN-US style='mso-ansi-language:EN-US'><o:p></o:p></span></p>
+
+<h2><![if !supportLists]><span lang=EN-US style='mso-fareast-font-family:Arial;
+mso-ansi-language:EN-US'><span style='mso-list:Ignore'>3.5.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US'>EditorRegistry<o:p></o:p></span></h2>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>The
+EditorRegistry is used to register the descriptors of editors that can be
+created in the multieditor. <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>Editor
+descriptors can be registered using the Eclipse extension mechanism (<span
+style='mso-field-code:" REF _Ref248115692 \\h "'><span lang=EN-GB
+style='mso-ansi-language:EN-GB'>Figure <span style='mso-no-proof:yes'>12</span></span><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003200340038003100310035003600390032000000</w:data>
+</xml><![endif]--></span>).<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'><!--[if gte vml 1]><v:shape
+ id="_x0000_i1036" type="#_x0000_t75" style='width:453.75pt;height:78.75pt'>
+ <v:imagedata src="sashAndCoreArchitecture_fichiers/image023.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=605 height=105
+src="sashAndCoreArchitecture_fichiers/image024.jpg" v:shapes="_x0000_i1036"><![endif]><o:p></o:p></span></p>
+
+<p class=MsoCaption><a name="_Ref248115692"><span lang=EN-GB style='mso-ansi-language:
+EN-GB'>Figure </span></a><!--[if supportFields]><span style='mso-bookmark:_Ref248115692'></span><span
+style='mso-element:field-begin'></span><span style='mso-bookmark:_Ref248115692'><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span
+style='mso-spacerun:yes'> </span>SEQ Figure \* ARABIC </span><span
+style='mso-element:field-separator'></span></span><![endif]--><span
+style='mso-bookmark:_Ref248115692'></span><span style='mso-bookmark:_Ref248115692'><span
+lang=EN-GB style='mso-ansi-language:EN-GB;mso-no-proof:yes'>12</span></span><!--[if supportFields]><span
+style='mso-bookmark:_Ref248115692'></span><span style='mso-element:field-end'></span><![endif]--><span
+style='mso-bookmark:_Ref248115692'></span><span style='mso-bookmark:_Ref248115692'></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> Nested Editor registered with
+Eclipse Extension</span><span lang=EN-US style='mso-ansi-language:EN-US'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>The
+EditorRegistry is mainly used by the SashContainer to create nested Editors
+when requested by the user, or when the multieditor is reopened.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>The
+EditorRegistry requires the following to work:<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;mso-list:l31 level1 lfo30'><![if !supportLists]><span
+lang=EN-US style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol;mso-ansi-language:EN-US'><span style='mso-list:Ignore'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span></p>
+
+<h1><![if !supportLists]><span lang=EN-US style='mso-fareast-font-family:Arial;
+mso-ansi-language:EN-US'><span style='mso-list:Ignore'>4.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span></span><![endif]><span
+lang=EN-US style='mso-ansi-language:EN-US'>Nested Editors<o:p></o:p></span></h1>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>A nested
+editor, or embedded editor, is an editor that can be created and rendered in
+the multieditors.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>A nested
+editor can be a regular Eclipse editor implementing the IEditorPart interface.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>There is
+several ways to create nested editor, depending on which package you use (Sash
+only, <span class=GramE>Core, …)</span>.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>Usually,
+all nested editors share common resources, like the EMF Resource. This can be
+achieved with the help of the ServiceRegistry.<o:p></o:p></span></p>
+
+<h2><![if !supportLists]><span lang=EN-US style='mso-fareast-font-family:Arial;
+mso-ansi-language:EN-US'><span style='mso-list:Ignore'>4.1.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US'>Sash
+Requirements for nested Editors<o:p></o:p></span></h2>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>On the Sash
+level, it is necessary to provide a ContentProvider managing the structure of
+rendered editors.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>The sash
+package provides 3 implementations for the ContentProvider:<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;mso-list:l31 level1 lfo30'><![if !supportLists]><span
+lang=EN-US style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol;mso-ansi-language:EN-US'><span style='mso-list:Ignore'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US'>org.eclipse.papyrus.sasheditor.contentprovider.singlefolder<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:72.0pt;text-indent:-18.0pt;mso-list:l31 level2 lfo30'><![if !supportLists]><span
+lang=EN-US style='font-family:"Courier New";mso-fareast-font-family:"Courier New";
+mso-ansi-language:EN-US'><span style='mso-list:Ignore'>o<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US'>Mainly
+used for test purpose. This implementation only allows one tabfolder, and all
+nested editor are in this tabfolder. Implementation using this ContentProvider
+will react as the original Eclipse MultiTabEditor.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;mso-list:l31 level1 lfo30'><![if !supportLists]><span
+lang=EN-US style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol;mso-ansi-language:EN-US'><span style='mso-list:Ignore'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US'>org.eclipse.papyrus.sasheditor.contentprovider.simple<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:72.0pt;text-indent:-18.0pt;mso-list:l31 level2 lfo30'><![if !supportLists]><span
+lang=EN-US style='font-family:"Courier New";mso-fareast-font-family:"Courier New";
+mso-ansi-language:EN-US'><span style='mso-list:Ignore'>o<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US'>A
+simple implementation where the structure is only maintained in memory. There
+is no way to save the structure. This is an example design. <o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;mso-list:l31 level1 lfo30'><![if !supportLists]><span
+lang=EN-US style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol;mso-ansi-language:EN-US'><span style='mso-list:Ignore'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US'>org.eclipse.papyrus.sasheditor.contentprovider.di<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:72.0pt;text-indent:-18.0pt;mso-list:l31 level2 lfo30'><![if !supportLists]><span
+lang=EN-US style='font-family:"Courier New";mso-fareast-font-family:"Courier New";
+mso-ansi-language:EN-US'><span style='mso-list:Ignore'>o<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US'>An
+implementation done with an EMF model called sashdi. This implementation allows
+save and restore of nested EMF based editors.<o:p></o:p></span></p>
+
+<h2><![if !supportLists]><span lang=EN-US style='mso-fareast-font-family:Arial;
+mso-ansi-language:EN-US'><span style='mso-list:Ignore'>4.2.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US'>Sash
+Di Requirements for nested Editors<o:p></o:p></span></h2>
+
+<h2><![if !supportLists]><span lang=EN-US style='mso-fareast-font-family:Arial;
+mso-ansi-language:EN-US'><span style='mso-list:Ignore'>4.3.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US'>Core
+Requirements for nested Editors<o:p></o:p></span></h2>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US;mso-fareast-language:
+EN-US'>The Core provides some services helping to manage nested editors.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US;mso-fareast-language:
+EN-US'>To enable a nested editor in the multieditor, it is necessary to:<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;mso-list:l10 level1 lfo33'><![if !supportLists]><span
+lang=EN-US style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol;mso-ansi-language:EN-US;mso-fareast-language:EN-US'><span
+style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US;
+mso-fareast-language:EN-US'>Register the nested editor in the Core Editor
+Factory<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;mso-list:l10 level1 lfo33'><![if !supportLists]><span
+lang=EN-US style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol;mso-ansi-language:EN-US;mso-fareast-language:EN-US'><span
+style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US;
+mso-fareast-language:EN-US'>Enable an action creating an new instance of the
+editor<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US;mso-fareast-language:
+EN-US'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US;mso-fareast-language:
+EN-US'>You need to provide the following;<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;mso-list:l25 level1 lfo27'><![if !supportLists]><span
+lang=EN-US style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol;mso-ansi-language:EN-US;mso-fareast-language:EN-US'><span
+style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US;
+mso-fareast-language:EN-US'>An Editor (not covered here)<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;mso-list:l25 level1 lfo27'><![if !supportLists]><span
+lang=EN-US style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol;mso-ansi-language:EN-US;mso-fareast-language:EN-US'><span
+style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US;
+mso-fareast-language:EN-US'>An Action or an Handler allowing to create the
+EObject representing the editor and add this EObject to the SashContentProvider<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;mso-list:l25 level1 lfo27'><![if !supportLists]><span
+lang=EN-US style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol;mso-ansi-language:EN-US;mso-fareast-language:EN-US'><span
+style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US;
+mso-fareast-language:EN-US'>A factory that will receive as input the previously
+created EObject, and will create an IEditorModel for your editor.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;mso-list:l25 level1 lfo27'><![if !supportLists]><span
+lang=EN-US style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol;mso-ansi-language:EN-US;mso-fareast-language:EN-US'><span
+style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US;
+mso-fareast-language:EN-US'>A subclass of IEditorModel. This class is used as
+model by the SashEditor. It serves to create the instance of the Editor for the
+previously created EObject. <o:p></o:p></span></p>
+
+<h3><![if !supportLists]><span lang=EN-US style='mso-fareast-font-family:Arial;
+mso-ansi-language:EN-US'><span style='mso-list:Ignore'>4.3.1.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span></span><![endif]><span
+lang=EN-US style='mso-ansi-language:EN-US'>Environment Provided by Core<o:p></o:p></span></h3>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US;mso-fareast-language:
+EN-US'>The Core provide following services that can be helpful when enabling a
+nested editor:<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;mso-list:l18 level1 lfo34'><![if !supportLists]><span
+lang=EN-US style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol;mso-ansi-language:EN-US;mso-fareast-language:EN-US'><span
+style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US;
+mso-fareast-language:EN-US'>PageModelFactoryRegistry – Used to register a
+nested editor. Editors are registered with the help of the Eclipse extension
+mechanism.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;mso-list:l18 level1 lfo34'><![if !supportLists]><span
+lang=EN-US style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol;mso-ansi-language:EN-US;mso-fareast-language:EN-US'><span
+style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US;
+mso-fareast-language:EN-US'>ActionBarContributorRegistry – Used to share common
+ActionBarContributor between nested editor<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;mso-list:l18 level1 lfo34'><![if !supportLists]><span
+lang=EN-US style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol;mso-ansi-language:EN-US;mso-fareast-language:EN-US'><span
+style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US;
+mso-fareast-language:EN-US'>ServicesRegistry – Used to share services across
+nested editors.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;mso-list:l18 level1 lfo34'><![if !supportLists]><span
+lang=EN-US style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol;mso-ansi-language:EN-US;mso-fareast-language:EN-US'><span
+style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US;
+mso-fareast-language:EN-US'>IPageMngr – Used to add or open an editor instance<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;mso-list:l18 level1 lfo34'><![if !supportLists]><span
+lang=EN-US style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol;mso-ansi-language:EN-US;mso-fareast-language:EN-US'><span
+style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US;
+mso-fareast-language:EN-US'>DiResourceSet – Use to get the available models.<o:p></o:p></span></p>
+
+<h3><![if !supportLists]><span lang=EN-US style='mso-fareast-font-family:Arial;
+mso-ansi-language:EN-US'><span style='mso-list:Ignore'>4.3.2.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span></span><![endif]><span
+lang=EN-US style='mso-ansi-language:EN-US'>Registering Nested Editor<o:p></o:p></span></h3>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US;mso-fareast-language:
+EN-US'>You need an editor allowing <span class=GramE>to save</span> its
+representation as an EMF model. <span class=GramE>GMF editors falls</span> in
+this category, as well as EMF ones.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US;mso-fareast-language:
+EN-US'>Once you have such an editor, you need to:<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;mso-list:l13 level1 lfo37'><![if !supportLists]><span
+lang=EN-US style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol;mso-ansi-language:EN-US;mso-fareast-language:EN-US'><span
+style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US;
+mso-fareast-language:EN-US'>Provide an implementation of IPluggableEditorFactory<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;mso-list:l13 level1 lfo37'><![if !supportLists]><span
+lang=EN-US style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol;mso-ansi-language:EN-US;mso-fareast-language:EN-US'><span
+style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US;
+mso-fareast-language:EN-US'>Provide an implementation of IEditorModel<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;mso-list:l13 level1 lfo37'><![if !supportLists]><span
+lang=EN-US style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol;mso-ansi-language:EN-US;mso-fareast-language:EN-US'><span
+style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US;
+mso-fareast-language:EN-US'>Register your editor with the Eclipse extension
+mechanism<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US;mso-fareast-language:
+EN-US'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US;mso-fareast-language:
+EN-US'>The core impose some requirements on its nested editors: mainly, such
+editor should rely on an EMF model.<o:p></o:p></span></p>
+
+<h4><span lang=EN-US style='mso-ansi-language:EN-US'>Editor Requirements<o:p></o:p></span></h4>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;mso-list:l25 level1 lfo27'><![if !supportLists]><span
+lang=EN-US style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol;mso-ansi-language:EN-US;mso-fareast-language:EN-US'><span
+style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US'>Your
+</span><span lang=EN-US style='mso-ansi-language:EN-US;mso-fareast-language:
+EN-US'>Editor should answer to following requirements: <o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:72.0pt;text-indent:-18.0pt;mso-list:l25 level2 lfo27'><![if !supportLists]><span
+lang=EN-US style='font-family:"Courier New";mso-fareast-font-family:"Courier New";
+mso-ansi-language:EN-US;mso-fareast-language:EN-US'><span style='mso-list:Ignore'>o<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span
+lang=EN-US style='mso-ansi-language:EN-US;mso-fareast-language:EN-US'>Implements
+org.eclipse.ui.IEditorPart<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:72.0pt;text-indent:-18.0pt;mso-list:l25 level2 lfo27'><![if !supportLists]><span
+lang=EN-US style='font-family:"Courier New";mso-fareast-font-family:"Courier New";
+mso-ansi-language:EN-US;mso-fareast-language:EN-US'><span style='mso-list:Ignore'>o<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span
+lang=EN-US style='mso-ansi-language:EN-US;mso-fareast-language:EN-US'>Can be
+represented by an EObject. That is, it is possible to 1) Get an EObject
+representing the type and the content of the editor. 2) Reopen the editor from
+the EObject. GMF editors fall in this category.<o:p></o:p></span></p>
+
+<h4><span lang=EN-US style='mso-ansi-language:EN-US;mso-fareast-language:EN-US'>IPluggableEditorFactory<o:p></o:p></span></h4>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US;mso-fareast-language:
+EN-US'>You need to provide an implementation of this class for your editor.
+This class will be used to register your editor in the Core. <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US;mso-fareast-language:
+EN-US'>The sash editor will ask the PageModelFactoryRegistry for an editor
+factory suitable for a specified EObject.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US;mso-fareast-language:
+EN-US'>When found, the sash <span class=GramE>editor ask</span> for the
+IEditorModel for this EObject.<o:p></o:p></span></p>
+
+<h4><span lang=EN-US style='mso-ansi-language:EN-US;mso-fareast-language:EN-US'>IEditorModel<o:p></o:p></span></h4>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US;mso-fareast-language:
+EN-US'>Implementations of this interface are used to create instances of
+editors. <o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US;mso-fareast-language:
+EN-US'>The class provides methods to:<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;mso-list:l25 level1 lfo27'><![if !supportLists]><span
+lang=EN-US style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol;mso-ansi-language:EN-US;mso-fareast-language:EN-US'><span
+style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US;
+mso-fareast-language:EN-US'>Create the editor instance – Here you should
+instanciate your editor.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;mso-list:l25 level1 lfo27'><![if !supportLists]><span
+lang=EN-US style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol;mso-ansi-language:EN-US;mso-fareast-language:EN-US'><span
+style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US;
+mso-fareast-language:EN-US'>Get the ActionBarContributor associated to the
+editor<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;mso-list:l25 level1 lfo27'><![if !supportLists]><span
+lang=EN-US style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol;mso-ansi-language:EN-US;mso-fareast-language:EN-US'><span
+style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US;
+mso-fareast-language:EN-US'>Get the editor icon and name<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;mso-list:l25 level1 lfo27'><![if !supportLists]><span
+lang=EN-US style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol;mso-ansi-language:EN-US;mso-fareast-language:EN-US'><span
+style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US;
+mso-fareast-language:EN-US'>…<o:p></o:p></span></p>
+
+<h4><span lang=EN-US style='mso-ansi-language:EN-US;mso-fareast-language:EN-US'>Register
+as Eclipse Extension<o:p></o:p></span></h4>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US;mso-fareast-language:
+EN-US'>The core load all EditorFactories registered as Eclipse extension (<span
+style='mso-field-code:" REF _Ref251942612 \\h "'><span style='mso-fareast-language:
+FR'>Figure <span style='mso-no-proof:yes'>13</span></span><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003200350031003900340032003600310032000000</w:data>
+</xml><![endif]--></span>).<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US;mso-fareast-language:
+EN-US'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US;mso-fareast-language:
+EN-US'><!--[if gte vml 1]><v:shape id="_x0000_i1037" type="#_x0000_t75"
+ style='width:453pt;height:153.75pt'>
+ <v:imagedata src="sashAndCoreArchitecture_fichiers/image025.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=604 height=205
+src="sashAndCoreArchitecture_fichiers/image026.jpg" v:shapes="_x0000_i1037"><![endif]><o:p></o:p></span></p>
+
+<p class=MsoCaption><a name="_Ref251942612"><span lang=EN-GB style='mso-ansi-language:
+EN-GB'>Figure </span></a><!--[if supportFields]><span style='mso-bookmark:_Ref251942612'></span><span
+style='mso-element:field-begin'></span><span style='mso-bookmark:_Ref251942612'><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span
+style='mso-spacerun:yes'> </span>SEQ Figure \* ARABIC </span><span
+style='mso-element:field-separator'></span></span><![endif]--><span
+style='mso-bookmark:_Ref251942612'></span><span style='mso-bookmark:_Ref251942612'><span
+lang=EN-GB style='mso-ansi-language:EN-GB;mso-no-proof:yes'>13</span></span><!--[if supportFields]><span
+style='mso-bookmark:_Ref251942612'></span><span style='mso-element:field-end'></span><![endif]--><span
+style='mso-bookmark:_Ref251942612'></span><span style='mso-bookmark:_Ref251942612'></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> Registering an nested Editor</span><span
+lang=EN-US style='mso-ansi-language:EN-US;mso-fareast-language:EN-US'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span></p>
+
+<h3 style='mso-list:l17 level3 lfo35'><![if !supportLists]><span lang=EN-US
+style='mso-fareast-font-family:Arial;mso-ansi-language:EN-US'><span
+style='mso-list:Ignore'>4.3.1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US'>Create
+Editor Instance Action<o:p></o:p></span></h3>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>To add a
+nested editor to the core, following actions should be done:<o:p></o:p></span></p>
+
+<ol style='margin-top:0cm' start=1 type=1>
+ <li class=MsoNormal style='mso-list:l16 level1 lfo22;tab-stops:list 36.0pt'><span
+     lang=EN-US style='mso-ansi-language:EN-US'>Create the nested editor EMF
+     representation<o:p></o:p></span></li>
+</ol>
+
+<p class=MsoNormal style='margin-left:53.4pt;text-indent:-18.0pt;mso-list:l33 level1 lfo24;
+tab-stops:list 53.4pt'><![if !supportLists]><span lang=EN-US style='font-family:
+Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:Symbol;mso-ansi-language:
+EN-US'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US'>Method
+</span><span class=GramE><span lang=EN-US style='font-family:"Courier New";
+mso-ansi-language:EN-US'>org.eclipse.papyrus.core.adaptor.gmf.AbstractPapyrusGmfCreateDiagramCommandHandler.runAsTransaction(</span></span><span
+lang=EN-US style='font-family:"Courier New";mso-ansi-language:EN-US'>DiResourceSet,
+EObject, String) </span><span lang=EN-US style='mso-ansi-language:EN-US'>shows <span
+style='mso-spacerun:yes'> </span>an (complex) example of how a GMF diagram can
+be created.<o:p></o:p></span></p>
+
+<ol style='margin-top:0cm' start=2 type=1>
+ <li class=MsoNormal style='mso-list:l16 level1 lfo22;tab-stops:list 36.0pt'><span
+     lang=EN-US style='mso-ansi-language:EN-US'>Add the root EObject
+     representing the nested editor to the DiContentProvider by using the </span><span
+     class=GramE><span lang=EN-US style='font-family:"Courier New";mso-ansi-language:
+     EN-US'>IPageMngr.openPage(</span></span><span lang=EN-US style='font-family:
+     "Courier New";mso-ansi-language:EN-US'>eObject)</span><span lang=EN-US
+     style='mso-ansi-language:EN-US'> method.<o:p></o:p></span></li>
+</ol>
+
+<p class=MsoNormal style='margin-left:53.4pt;text-indent:-18.0pt;mso-list:l26 level1 lfo23;
+tab-stops:list 53.4pt'><![if !supportLists]><span lang=EN-US style='font-family:
+Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:Symbol;mso-ansi-language:
+EN-US'><span style='mso-list:Ignore'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US'>The
+</span><span lang=EN-US style='font-family:"Courier New";mso-ansi-language:
+EN-US'>IPageMngr</span><span lang=EN-US style='mso-ansi-language:EN-US'> can be
+obtained by calling </span><span lang=EN-US style='font-family:"Courier New";
+mso-ansi-language:EN-US'>org.eclipse.papyrus.core.utils.EditorUtils.getIPageMngr()</span><span
+lang=EN-US style='mso-ansi-language:EN-US'><o:p></o:p></span></p>
+
+<ol style='margin-top:0cm' start=3 type=1>
+ <li class=MsoNormal style='mso-list:l16 level1 lfo22;tab-stops:list 36.0pt'><span
+     lang=EN-US style='mso-ansi-language:EN-US'>The SashSystem should react
+     automatically and show the newly added nested editor (if it know how to
+     handle such <span class=GramE>editor )</span>.<o:p></o:p></span></li>
+</ol>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>To let the
+Core handle a nested editor, following things are required:<o:p></o:p></span></p>
+
+<ul style='margin-top:0cm' type=disc>
+ <li class=MsoNormal style='mso-list:l32 level1 lfo21;tab-stops:list 36.0pt'><span
+     lang=EN-US style='mso-ansi-language:EN-US'>An implementation of IPageModel
+     allowing to create the editor from its EObject (the object previously
+     provided to </span><span lang=EN-US style='font-family:"Courier New";
+     mso-ansi-language:EN-US'>IPageMngr.openPage(eObject)</span><span
+     lang=EN-US style='mso-ansi-language:EN-US'> )<o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-list:l32 level1 lfo21;tab-stops:list 36.0pt'><span
+     lang=EN-US style='mso-ansi-language:EN-US'>The PageModel is registered to
+     the PageModelFactory. This is done with the Eclipse extension<o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-list:l32 level1 lfo21;tab-stops:list 36.0pt'><span
+     lang=EN-US style='mso-ansi-language:EN-US'><!--[if gte vml 1]><v:shape
+      id="_x0000_i1038" type="#_x0000_t75" style='width:203.25pt;height:30.75pt'>
+      <v:imagedata src="sashAndCoreArchitecture_fichiers/image027.png" o:title=""/>
+     </v:shape><![endif]--><![if !vml]><img border=0 width=271 height=41
+     src="sashAndCoreArchitecture_fichiers/image028.jpg" v:shapes="_x0000_i1038"><![endif]><o:p></o:p></span></li>
+</ul>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>There can
+have several Action classes used to create a new editor. All the implementations
+should do what is described before (create a notation.Diagram and add it to the
+DiContentProvider). Example of implementation can be found for the class
+diagram:<o:p></o:p></span></p>
+
+<ul style='margin-top:0cm' type=disc>
+ <li class=MsoNormal style='mso-list:l19 level1 lfo26;tab-stops:list 36.0pt'><span
+     lang=EN-US style='mso-ansi-language:EN-US'>org.eclipse.papyrus.diagram.clazz.CreateClassDiagramCommand
+     <o:p></o:p></span></li>
+ <ul style='margin-top:0cm' type=circle>
+  <li class=MsoNormal style='mso-list:l19 level2 lfo26;tab-stops:list 72.0pt'><span
+      lang=EN-US style='mso-ansi-language:EN-US'>used by the creation wizard
+      (declared as extensions)<o:p></o:p></span></li>
+  <li class=MsoNormal style='mso-list:l19 level2 lfo26;tab-stops:list 72.0pt'><span
+      lang=EN-US style='mso-ansi-language:EN-US'>used by the toolbar and menu
+      actions (declared as another extensions)<o:p></o:p></span></li>
+  <li class=MsoNormal style='mso-list:l19 level2 lfo26;tab-stops:list 72.0pt'><span
+      lang=EN-US style='mso-ansi-language:EN-US'>This class is quite complex
+      because of old stuff (to be removed soon)<o:p></o:p></span></li>
+ </ul>
+</ul>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>I would
+like to provide a more general mechanism for the creation wizard. This
+mechanism will complete the Eclipse mechanism for declaring menus and toolbar
+actions. It will allow:<o:p></o:p></span></p>
+
+<ul style='margin-top:0cm' type=disc>
+ <li class=MsoNormal style='mso-list:l19 level1 lfo26;tab-stops:list 36.0pt'><span
+     class=GramE><span lang=EN-US style='mso-ansi-language:EN-US'>to</span></span><span
+     lang=EN-US style='mso-ansi-language:EN-US'> declare creation wizard
+     actions. <o:p></o:p></span></li>
+ <li class=MsoNormal style='mso-list:l19 level1 lfo26;tab-stops:list 36.0pt'><span
+     class=GramE><span lang=EN-US style='mso-ansi-language:EN-US'>to</span></span><span
+     lang=EN-US style='mso-ansi-language:EN-US'> declare custom creation actions
+     (for the creation wizard). Among this it will be possible to declare
+     actions creating a prepopulated diagram, or actions asking input data
+     before being executed. <o:p></o:p></span></li>
+</ul>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'>From the
+core point of view, <span class=GramE>an</span> nested editor can be added to
+the multieditor by adding the EObject representing the nested editor to the
+IPageMngr. <span style='mso-field-code:" REF _Ref248635576 \\h "'><span
+lang=EN-GB style='mso-ansi-language:EN-GB'>Figure <span style='mso-no-proof:
+yes'>13</span></span><!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000E0000005F005200650066003200340038003600330035003500370036000000</w:data>
+</xml><![endif]--></span> shows what happen when <span class=GramE>an</span>
+nested editor is added to the DiContentProvider.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US'><!--[if gte vml 1]><v:shape
+ id="_x0000_i1039" type="#_x0000_t75" style='width:453pt;height:259.5pt'>
+ <v:imagedata src="sashAndCoreArchitecture_fichiers/image029.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=604 height=346
+src="sashAndCoreArchitecture_fichiers/image030.jpg" v:shapes="_x0000_i1039"><![endif]><o:p></o:p></span></p>
+
+<p class=MsoCaption><a name="_Ref248635576"><span lang=EN-GB style='mso-ansi-language:
+EN-GB'>Figure </span></a><!--[if supportFields]><span style='mso-bookmark:_Ref248635576'></span><span
+style='mso-element:field-begin'></span><span style='mso-bookmark:_Ref248635576'><span
+lang=EN-GB style='mso-ansi-language:EN-GB'><span
+style='mso-spacerun:yes'> </span>SEQ Figure \* ARABIC </span><span
+style='mso-element:field-separator'></span></span><![endif]--><span
+style='mso-bookmark:_Ref248635576'></span><span style='mso-bookmark:_Ref248635576'><span
+lang=EN-GB style='mso-ansi-language:EN-GB;mso-no-proof:yes'>14</span></span><!--[if supportFields]><span
+style='mso-bookmark:_Ref248635576'></span><span style='mso-element:field-end'></span><![endif]--><span
+style='mso-bookmark:_Ref248635576'></span><span style='mso-bookmark:_Ref248635576'></span><span
+lang=EN-GB style='mso-ansi-language:EN-GB'> Adding nested Editor&nbsp;- Core
+Point of View</span><span lang=EN-US style='mso-ansi-language:EN-US'><o:p></o:p></span></p>
+
+<h3 style='mso-list:l17 level3 lfo36'><![if !supportLists]><span lang=EN-US
+style='mso-fareast-font-family:Arial;mso-ansi-language:EN-US'><span
+style='mso-list:Ignore'>4.3.1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=EN-US style='mso-ansi-language:EN-US'>Example<o:p></o:p></span></h3>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US;mso-fareast-language:
+EN-US'>A complete example can be found here:<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='mso-ansi-language:EN-US;mso-fareast-language:
+EN-US'>org.eclipse.papyrus.diagram.umltools.clazz<o:p></o:p></span></p>
+
+</div>
+
+</body>
+
+</html>

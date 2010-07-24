@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="ASCII"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.1/notation" type="PapyrusUMLClassDiagram" name="testcase1" measurementUnit="Pixel">
+  <eAnnotations source="org.eclipse.papyrus.diagram.common.Belongs_To_This_Diagram">
+    <references href="testcase1.uml#_cPjJUB_DEd6YoYo_qcjZ1A"/>
+    <references href="testcase1.uml#_CcNHEB_DEd6YoYo_qcjZ1A"/>
+    <references href="testcase1.uml#_Qqb1cR_FEd6shpq_sNxTJQ"/>
+    <references href="testcase1.uml#_Qqb1cB_FEd6shpq_sNxTJQ"/>
+    <references href="testcase1.uml#_OxbscB_FEd6shpq_sNxTJQ"/>
+    <references href="testcase1.uml#_aVkeAB_FEd6shpq_sNxTJQ"/>
+    <references href="testcase1.uml#_jHfmoR_FEd6shpq_sNxTJQ"/>
+    <references href="testcase1.uml#_jHfmoB_FEd6shpq_sNxTJQ"/>
+    <references href="testcase1.uml#_ooNdMB_FEd6shpq_sNxTJQ"/>
+    <references href="testcase1.uml#_d_hnQB_FEd6shpq_sNxTJQ"/>
+    <references href="testcase1.uml#_0R3A4B_FEd6shpq_sNxTJQ"/>
+    <references href="testcase1.uml#_j_IuYR_HEd6wzp0oZera5w"/>
+    <references href="testcase1.uml#_j_IuYB_HEd6wzp0oZera5w"/>
+    <references href="testcase1.uml#_RZw5QB_IEd6wzp0oZera5w"/>
+    <references href="testcase1.uml#_h9zIwB_HEd6wzp0oZera5w"/>
+    <references href="testcase1.uml#_jAtXQB_HEd6wzp0oZera5w"/>
+    <references href="testcase1.uml#_G1VjIR_GEd6shpq_sNxTJQ"/>
+    <references href="testcase1.uml#_G1VjIB_GEd6shpq_sNxTJQ"/>
+    <references href="testcase1.uml#_EptZEB_GEd6shpq_sNxTJQ"/>
+    <references href="testcase1.uml#_EPurcB_JEd6wzp0oZera5w"/>
+    <references href="testcase1.uml#_KbpbIB_JEd6wzp0oZera5w"/>
+    <references href="testcase1.uml#_j-_kcB_HEd6wzp0oZera5w"/>
+    <references href="testcase1.uml#_HztvkB_JEd6wzp0oZera5w"/>
+    <references href="testcase1.uml#_k1Oo4B_HEd6wzp0oZera5w"/>
+    <references href="testcase1.uml#_OvU20B_JEd6wzp0oZera5w"/>
+    <references href="testcase1.uml#_dobjoR_KEd6wzp0oZera5w"/>
+    <references href="testcase1.uml#_dobjoB_KEd6wzp0oZera5w"/>
+    <references href="testcase1.uml#_k1YZ4R_HEd6wzp0oZera5w"/>
+    <references href="testcase1.uml#_k1YZ4B_HEd6wzp0oZera5w"/>
+    <references href="testcase1.uml#_lxfx8B_JEd6wzp0oZera5w"/>
+    <references href="testcase1.uml#_OvU20h_JEd6wzp0oZera5w"/>
+    <references href="testcase1.uml#_OvU20R_JEd6wzp0oZera5w"/>
+  </eAnnotations>
+  <eAnnotations source="org.eclipse.papyrus.diagram.common.FilterViewsAndLabelsSource">
+    <details key="3002" value=""/>
+  </eAnnotations>
+  <children type="2008">
+    <children type="5029"/>
+    <children type="7017">
+      <children type="3012">
+        <element href="testcase1.uml#_OxbscB_FEd6shpq_sNxTJQ"/>
+        <layoutConstraint xsi:type="notation:Location"/>
+      </children>
+      <styles xsi:type="notation:DrawerStyle"/>
+      <styles xsi:type="notation:SortingStyle"/>
+      <styles xsi:type="notation:FilteringStyle"/>
+    </children>
+    <children type="7018">
+      <styles xsi:type="notation:DrawerStyle"/>
+      <styles xsi:type="notation:SortingStyle"/>
+      <styles xsi:type="notation:FilteringStyle"/>
+    </children>
+    <children type="7019">
+      <styles xsi:type="notation:DrawerStyle"/>
+      <styles xsi:type="notation:SortingStyle"/>
+      <styles xsi:type="notation:FilteringStyle"/>
+    </children>
+    <styles xsi:type="notation:ShapeStyle" fontHeight="8" lineColor="15060913"/>
+    <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+    <element href="testcase1.uml#_CcNHEB_DEd6YoYo_qcjZ1A"/>
+    <layoutConstraint xsi:type="notation:Bounds" x="36" y="127" width="183" height="115"/>
+  </children>
+  <children type="2008">
+    <children type="5029"/>
+    <children type="7017">
+      <children type="3012">
+        <element href="testcase1.uml#_d_hnQB_FEd6shpq_sNxTJQ"/>
+        <layoutConstraint xsi:type="notation:Location"/>
+      </children>
+      <styles xsi:type="notation:DrawerStyle"/>
+      <styles xsi:type="notation:SortingStyle"/>
+      <styles xsi:type="notation:FilteringStyle"/>
+    </children>
+    <children type="7018">
+      <styles xsi:type="notation:DrawerStyle"/>
+      <styles xsi:type="notation:SortingStyle"/>
+      <styles xsi:type="notation:FilteringStyle"/>
+    </children>
+    <children type="7019">
+      <styles xsi:type="notation:DrawerStyle"/>
+      <styles xsi:type="notation:SortingStyle"/>
+      <styles xsi:type="notation:FilteringStyle"/>
+    </children>
+    <styles xsi:type="notation:ShapeStyle" fontHeight="8" lineColor="15060913"/>
+    <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+    <element href="testcase1.uml#_aVkeAB_FEd6shpq_sNxTJQ"/>
+    <layoutConstraint xsi:type="notation:Bounds" x="431" y="131" width="207" height="116"/>
+  </children>
+  <children type="2008">
+    <children type="5029"/>
+    <children type="7017">
+      <children type="3012">
+        <element href="testcase1.uml#_EptZEB_GEd6shpq_sNxTJQ"/>
+        <layoutConstraint xsi:type="notation:Location"/>
+      </children>
+      <styles xsi:type="notation:DrawerStyle"/>
+      <styles xsi:type="notation:SortingStyle"/>
+      <styles xsi:type="notation:FilteringStyle"/>
+    </children>
+    <children type="7018">
+      <styles xsi:type="notation:DrawerStyle"/>
+      <styles xsi:type="notation:SortingStyle"/>
+      <styles xsi:type="notation:FilteringStyle"/>
+    </children>
+    <children type="7019">
+      <styles xsi:type="notation:DrawerStyle"/>
+      <styles xsi:type="notation:SortingStyle"/>
+      <styles xsi:type="notation:FilteringStyle"/>
+    </children>
+    <styles xsi:type="notation:ShapeStyle" fontHeight="8" lineColor="15060913"/>
+    <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+    <element href="testcase1.uml#_0R3A4B_FEd6shpq_sNxTJQ"/>
+    <layoutConstraint xsi:type="notation:Bounds" x="195" y="303" width="175" height="96"/>
+  </children>
+  <children type="2012">
+    <children type="5038"/>
+    <styles xsi:type="notation:ShapeStyle" fontHeight="8" lineColor="15060913"/>
+    <styles xsi:type="notation:HintedDiagramLinkStyle"/>
+    <element href="testcase1.uml#_Ro_LkB_JEd6wzp0oZera5w"/>
+    <layoutConstraint xsi:type="notation:Bounds" x="270" y="179"/>
+  </children>
+  <styles xsi:type="notation:DiagramStyle"/>
+  <element href="testcase1.uml#_1CpE8B_CEd6YoYo_qcjZ1A"/>
+  <edges type="4002" source="//@children.2" target="//@children.0">
+    <children type="6007">
+      <layoutConstraint xsi:type="notation:Location" y="40"/>
+    </children>
+    <styles xsi:type="notation:RoutingStyle"/>
+    <styles xsi:type="notation:FontStyle" fontHeight="8"/>
+    <element href="testcase1.uml#_h9zIwB_HEd6wzp0oZera5w"/>
+    <bendpoints xsi:type="notation:RelativeBendpoints" points="[-12, -21, 57, 108]$[-31, -116, 38, 13]"/>
+    <sourceAnchor xsi:type="notation:IdentityAnchor" id="(0.47428572,0.21875)"/>
+    <targetAnchor xsi:type="notation:IdentityAnchor" id="(0.79234976,0.6695652)"/>
+  </edges>
+  <edges type="4002" source="//@children.2" target="//@children.1">
+    <children type="6007">
+      <layoutConstraint xsi:type="notation:Location" y="40"/>
+    </children>
+    <styles xsi:type="notation:RoutingStyle"/>
+    <styles xsi:type="notation:FontStyle" fontHeight="8"/>
+    <element href="testcase1.uml#_jAtXQB_HEd6wzp0oZera5w"/>
+    <bendpoints xsi:type="notation:RelativeBendpoints" points="[33, -39, -68, 77]$[85, -101, -16, 15]"/>
+    <sourceAnchor xsi:type="notation:IdentityAnchor" id="(0.7771429,0.40625)"/>
+    <targetAnchor xsi:type="notation:IdentityAnchor" id="(0.28502417,0.87068963)"/>
+  </edges>
+  <edges type="4001" source="//@children.2" target="//@children.0">
+    <children type="6001">
+      <layoutConstraint xsi:type="notation:Location" y="40"/>
+    </children>
+    <children type="6002">
+      <layoutConstraint xsi:type="notation:Location" x="11" y="44"/>
+    </children>
+    <children type="6003">
+      <layoutConstraint xsi:type="notation:Location" x="1" y="-29"/>
+    </children>
+    <children type="6004">
+      <layoutConstraint xsi:type="notation:Location" x="-2" y="37"/>
+    </children>
+    <children type="6005">
+      <layoutConstraint xsi:type="notation:Location" x="9" y="-13"/>
+    </children>
+    <children type="6006">
+      <layoutConstraint xsi:type="notation:Location" x="-5" y="-32"/>
+    </children>
+    <styles xsi:type="notation:RoutingStyle"/>
+    <styles xsi:type="notation:FontStyle" fontHeight="8"/>
+    <element href="testcase1.uml#_j_IuYB_HEd6wzp0oZera5w"/>
+    <bendpoints xsi:type="notation:RelativeBendpoints" points="[-87, 0, 100, 127]$[-187, 0, 0, 127]$[-187, -110, 0, 17]"/>
+    <targetAnchor xsi:type="notation:IdentityAnchor" id="(0.30054644,0.8521739)"/>
+  </edges>
+  <edges type="4001" source="//@children.2" target="//@children.1">
+    <children type="6001">
+      <layoutConstraint xsi:type="notation:Location" y="40"/>
+    </children>
+    <children type="6002">
+      <layoutConstraint xsi:type="notation:Location" x="-38" y="-25"/>
+    </children>
+    <children type="6003">
+      <layoutConstraint xsi:type="notation:Location" x="-2" y="33"/>
+    </children>
+    <children type="6004">
+      <layoutConstraint xsi:type="notation:Location" x="-31" y="39"/>
+    </children>
+    <children type="6005">
+      <layoutConstraint xsi:type="notation:Location" x="-12" y="-17"/>
+    </children>
+    <children visible="false" type="6006">
+      <layoutConstraint xsi:type="notation:Location" x="-1" y="56"/>
+    </children>
+    <styles xsi:type="notation:RoutingStyle"/>
+    <styles xsi:type="notation:FontStyle" fontHeight="8"/>
+    <element href="testcase1.uml#_k1YZ4B_HEd6wzp0oZera5w"/>
+    <bendpoints xsi:type="notation:RelativeBendpoints" points="[15, 0, -228, 105]$[243, 0, 0, 105]$[243, -93, 0, 12]"/>
+    <sourceAnchor xsi:type="notation:IdentityAnchor" id="(0.9142857,0.38541666)"/>
+    <targetAnchor xsi:type="notation:IdentityAnchor" id="(0.7874396,0.9051724)"/>
+  </edges>
+  <edges type="4001" source="//@children.2" target="//@children.2">
+    <children visible="false" type="6001">
+      <layoutConstraint xsi:type="notation:Location" y="40"/>
+    </children>
+    <children visible="false" type="6002">
+      <layoutConstraint xsi:type="notation:Location" x="50" y="-22"/>
+    </children>
+    <children visible="false" type="6003">
+      <layoutConstraint xsi:type="notation:Location" y="80"/>
+    </children>
+    <children visible="false" type="6004">
+      <layoutConstraint xsi:type="notation:Location" y="100"/>
+    </children>
+    <children visible="false" type="6005">
+      <layoutConstraint xsi:type="notation:Location" y="120"/>
+    </children>
+    <children visible="false" type="6006">
+      <layoutConstraint xsi:type="notation:Location" y="140"/>
+    </children>
+    <styles xsi:type="notation:RoutingStyle"/>
+    <styles xsi:type="notation:FontStyle" fontHeight="8"/>
+    <element href="testcase1.uml#_OvU20R_JEd6wzp0oZera5w"/>
+    <bendpoints xsi:type="notation:RelativeBendpoints" points="[80, -1, 79, -16]$[142, -1, 141, -16]$[142, 85, 141, 70]$[1, 85, 0, 70]$[1, 23, 0, 8]"/>
+    <sourceAnchor xsi:type="notation:IdentityAnchor" id="(0.54285717,0.7604167)"/>
+    <targetAnchor xsi:type="notation:IdentityAnchor" id="(0.5542857,0.9270833)"/>
+  </edges>
+</notation:Diagram>

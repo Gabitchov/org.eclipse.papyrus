@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="vSL"
+    nsURI="http://www.eclipse.org/papyrus/marte/vsl/VSL" nsPrefix="vSL">
+  <eClassifiers xsi:type="ecore:EClass" name="Model">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="imports" eType="#//Import"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//Context"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Expression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Import">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="importURI" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Context">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="ecore:EClass ../../../../../../model/UML.ecore#//NamedElement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression" eSuperTypes="#//ValueSpecification">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exp" eType="#//AndOrXorExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AndOrXorExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exp" upperBound="-1" eType="#//EqualityExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="op" unique="false" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EqualityExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exp" upperBound="-1" eType="#//RelationalExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="op" unique="false" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RelationalExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exp" upperBound="-1" eType="#//ConditionalExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="op" unique="false" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConditionalExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exp" upperBound="-1" eType="#//AdditiveExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="op" unique="false" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AdditiveExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exp" upperBound="-1" eType="#//MultiplicativeExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="op" unique="false" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MultiplicativeExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exp" upperBound="-1" eType="#//UnaryExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="op" unique="false" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UnaryExpression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="op" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="unary" eType="#//UnaryExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exp" eType="#//PrimaryExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PrimaryExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="prefix" eType="#//ValueSpecification"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="suffix" eType="#//OperationCallExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ValueSpecification"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OperationCallExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operation" eType="ecore:EClass ../../../../../../model/UML.ecore#//Operation"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="arguments" eType="#//ListOfValues"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Literal" eSuperTypes="#//ValueSpecification">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Name" eSuperTypes="#//ValueSpecification">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="path" eType="#//QualifiedName"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="id" eType="ecore:EClass ../../../../../../model/UML.ecore#//NamedElement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="QualifiedName">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="path" eType="ecore:EClass ../../../../../../model/UML.ecore#//Namespace"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="remaining" eType="#//QualifiedName"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Interval" eSuperTypes="#//ValueSpecification">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isLowerIncluded" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lower" eType="#//Expression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="upper" eType="#//Expression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isUpperIncluded" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CollectionOrTuple" eSuperTypes="#//ValueSpecification">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="listOfValues" eType="#//ListOfValues"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Tuple" eSuperTypes="#//ValueSpecification">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="listOfValueNamePairs" eType="#//ListOfValueNamePairs"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Choice" eSuperTypes="#//ValueSpecification">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="chosenAlternative" eType="ecore:EClass ../../../../../../model/UML.ecore#//Property"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Expression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ListOfValues">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="values" upperBound="-1"
+        eType="#//Expression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ListOfValueNamePairs">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="valueNamePairs" upperBound="-1"
+        eType="#//ValueNamePair" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ValueNamePair">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="property" eType="ecore:EClass ../../../../../../model/UML.ecore#//Property"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Expression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TimeExpression" eSuperTypes="#//ValueSpecification"/>
+  <eClassifiers xsi:type="ecore:EClass" name="InstantObsExpression" eSuperTypes="#//TimeExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="id" eType="#//InstantObsName"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="index" eType="#//Expression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//Expression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InstantObsName">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="path" unique="false" upperBound="-1"
+        eType="ecore:EClass ../../../../../../model/UML.ecore#//Namespace"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="instantId" eType="ecore:EClass ../../../../../../model/UML.ecore#//TimeObservation"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DurationObsExpression" eSuperTypes="#//TimeExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="id" eType="#//DurationObsName"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="index" eType="#//Expression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//Expression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DurationObsName">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="path" unique="false" upperBound="-1"
+        eType="ecore:EClass ../../../../../../model/UML.ecore#//Namespace"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="durationId" eType="ecore:EClass ../../../../../../model/UML.ecore#//DurationObservation"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="JitterExp" eSuperTypes="#//TimeExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="firstInstant" eType="#//InstantObsExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="secondInstant" eType="#//InstantObsExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="VariableDeclaration" eSuperTypes="#//ValueSpecification">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="variableDeclaration" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//DataTypeName"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="initValue" eType="#//Expression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataTypeName">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="path" unique="false" upperBound="-1"
+        eType="ecore:EClass ../../../../../../model/UML.ecore#//Namespace"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass ../../../../../../model/UML.ecore#//DataType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NumberLiteralRule" eSuperTypes="#//Literal"/>
+  <eClassifiers xsi:type="ecore:EClass" name="IntegerLiteralRule" eSuperTypes="#//NumberLiteralRule"/>
+  <eClassifiers xsi:type="ecore:EClass" name="UnlimitedLiteralRule" eSuperTypes="#//NumberLiteralRule"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RealLiteralRule" eSuperTypes="#//NumberLiteralRule"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DateTimeLiteralRule" eSuperTypes="#//Literal"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BooleanLiteralRule" eSuperTypes="#//Literal"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NullLiteralRule" eSuperTypes="#//Literal"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DefaultLiteralRule" eSuperTypes="#//Literal"/>
+  <eClassifiers xsi:type="ecore:EClass" name="StringLiteralRule" eSuperTypes="#//Literal"/>
+</ecore:EPackage>
