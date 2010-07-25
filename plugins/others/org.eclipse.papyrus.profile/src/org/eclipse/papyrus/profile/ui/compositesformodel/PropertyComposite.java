@@ -26,6 +26,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.profile.Message;
 import org.eclipse.papyrus.profile.tree.ProfileElementContentProvider;
 import org.eclipse.papyrus.profile.tree.ProfileElementLabelProvider;
@@ -50,7 +51,8 @@ import org.eclipse.uml2.uml.Type;
 public class PropertyComposite extends DecoratedTreeComposite {
 
 	public TransactionalEditingDomain getDomain() {
-		return domain;
+		// return domain;
+		return EditorUtils.getTransactionalEditingDomain();
 	}
 
 	public void setDomain(TransactionalEditingDomain domain) {
@@ -211,22 +213,19 @@ public class PropertyComposite extends DecoratedTreeComposite {
 			// Update property value(s)
 			if(property.isMultivalued()) {
 				// If newValue was entered, add to tempValues (future values list)
-				if (!currentPropertyValues.contains(newValue)) {
-					currentPropertyValues.add(newValue);
-					// Update tree && Refresh
-					pTO.addChild(ValueTreeObject.createInstance(pTO, newValue, getDomain()));
-				}
+				currentPropertyValues.add (newValue);
 				setPropertiesValue(selectedElt, selectedSt, property, currentPropertyValues);
 			}
 			else {
 				// otherwise ([0..1] case)
 				setPropertiesValue(selectedElt, selectedSt, property, newValue);
-				pTO.addChild(ValueTreeObject.createInstance(pTO, newValue, getDomain()));
 			}
 		}
 		else {
 			Message.warning("Upper multiplicity of " + property.getName() + " is " + property.getUpper());
 		}
+		// Update tree && refresh
+		pTO.reInitChilds ();
 	}
 
 	/**
@@ -288,7 +287,7 @@ public class PropertyComposite extends DecoratedTreeComposite {
 			} else {
 				Message.warning("Lower multiplicity of " + property.getName() + " is " + lower);
 			}
-			pTO.removeChild(vTO);
+			pTO.reInitChilds ();
 		}
 	}
 
@@ -355,6 +354,9 @@ public class PropertyComposite extends DecoratedTreeComposite {
 	 */
 	public void setInput(AppliedStereotypePropertyTreeObject element) {
 		treeViewer.setInput(element);
+		if (element != null) {
+			element.reInitChilds ();
+		}
 		refresh();
 	}
 

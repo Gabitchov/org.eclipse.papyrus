@@ -67,6 +67,15 @@ public class AppliedStereotypePropertyTreeObject extends ParentTreeObject {
 	}
 
 	/**
+	 * Reinitialize the children from model, useful to reflect model changes in
+	 * the value tree. 
+	 */
+	public void reInitChilds () {
+		children.clear ();
+		createChildren ();
+	}
+	
+	/**
 	 * Creates the children.
 	 */
 	@Override

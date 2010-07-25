@@ -28,7 +28,7 @@ public abstract class ParentTreeObject extends TreeObject {
 	/**
 	 * The children.
 	 */
-	private ArrayList children;
+	protected ArrayList children;
 
 	/**
 	 * The Constructor.
