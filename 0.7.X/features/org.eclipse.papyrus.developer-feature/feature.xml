@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.papyrus.developer.feature"
       label="MDT Papyrus Developer Feature"
-      version="0.7.0.qualifier">
+      version="0.7.1.qualifier">
 
    <description url="http://www.example.com/description">
       The MDT Papyrus Developer feature. 
