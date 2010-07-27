@@ -813,7 +813,8 @@
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.communication.custom.policies.itemsemantic.CustomInteractionCompartmentSemanticEditPolicy"/>
       </compartments>
-      <palette>
+      <palette
+          factoryClassName="UMLPaletteFactory">
         <groups
             title="Nodes"
             description="Nodes"
@@ -828,7 +829,7 @@
               description="Create a Lifeline"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Lifeline.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Lifeline.gif"
-              createMethodName="createLifeline1CreationTool"
+              createMethodName="createLifelineComCreationTool"
               genNodes="/0/@diagram/@childNodes.0"/>
           <entries
               xsi:type="gmfgen:ToolEntry"

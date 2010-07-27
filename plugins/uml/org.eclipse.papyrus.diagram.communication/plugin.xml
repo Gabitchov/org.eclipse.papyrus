@@ -160,7 +160,7 @@
 					<entry
        defineOnly="true"
        description="Create a Lifeline"
-       id="createLifeline1CreationTool"
+       id="createLifelineComCreationTool"
        kind="tool"
        label="Lifeline"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Lifeline.gif"
@@ -257,7 +257,7 @@
  	</entry>
  	 
  	 	<predefinedEntry
-          id="createLifeline1CreationTool"
+          id="createLifelineComCreationTool"
           path="/communication.group.nodes">
     </predefinedEntry>
  	<predefinedEntry

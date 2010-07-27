@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
+ * Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.edit.parts;
@@ -67,6 +67,7 @@ implements ITreeBranchEditPart {
 		return false;
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -76,6 +77,7 @@ implements ITreeBranchEditPart {
 		}
 		super.addChildVisual(childEditPart, -1);
 	}
+
 
 	/**
 	 * @generated
@@ -90,6 +92,7 @@ implements ITreeBranchEditPart {
 		return false;
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -100,11 +103,12 @@ implements ITreeBranchEditPart {
 		super.removeChildVisual(childEditPart);
 	}
 
+
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model so
-	 * you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model
+	 * so you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */

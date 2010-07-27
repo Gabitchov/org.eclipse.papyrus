@@ -337,7 +337,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			if(getDroppableElementVisualId().contains(nodeVISUALID) || getDroppableElementVisualId().contains(linkVISUALID)) {
 				dropRequest.setLocation(location);
 				// TODO: add to composite command ?
-				if(nodeVISUALID == -1 && linkVISUALID == -1) {//if the dropped element is the diagram short cut
+				if(nodeVISUALID == -1 && linkVISUALID == -1 && (droppedObject instanceof Diagram)) {//if the dropped element is the diagram short cut
 					cc.add(new CommandProxy(dropShortCutDiagram(dropRequest, (Diagram)droppedObject, nodeVISUALID)));
 				} else {
 					cc.add(new CommandProxy(getSpecificDropCommand(dropRequest, (Element)droppedObject, nodeVISUALID, linkVISUALID)));

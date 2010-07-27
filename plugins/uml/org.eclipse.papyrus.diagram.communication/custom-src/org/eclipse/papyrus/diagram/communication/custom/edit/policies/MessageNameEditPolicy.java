@@ -144,6 +144,9 @@ public class MessageNameEditPolicy extends AbstractEditPolicy implements AnchorL
 
 
 		ConnectionEditPart connectionEditPart = (ConnectionEditPart)getHost().getParent();
+		//Style conStyle = ((View)connectionEditPart.getModel()).getStyle(NotationPackage.eINSTANCE.getLineStyle());
+		//((LineStyle)conStyle).setLineColor(777);
+
 
 		if(connectionEditPart.getModel() instanceof Edge) {
 			Edge edge = (Edge)connectionEditPart.getModel();

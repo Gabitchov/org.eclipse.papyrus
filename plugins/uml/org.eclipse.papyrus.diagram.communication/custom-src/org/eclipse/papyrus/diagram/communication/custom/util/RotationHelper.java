@@ -17,7 +17,9 @@ import java.awt.Graphics2D;
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
+import java.awt.RenderingHints;
 import java.awt.Transparency;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
 import java.awt.image.DirectColorModel;
@@ -30,15 +32,15 @@ import org.eclipse.swt.graphics.ImageData;
 import org.eclipse.swt.graphics.PaletteData;
 import org.eclipse.swt.graphics.RGB;
 
+// TODO: Auto-generated Javadoc
 /**
- * 
  * This is a helper for rotating swt figures, it provides a method for computing
- * an rotation angle provided two points, and methods for rotating an swt image
- * 
+ * an rotation angle provided two points, and methods for rotating an swt image.
  */
 public class RotationHelper {
 
 	/**
+	 * Gets the default configuration.
 	 * 
 	 * @return the GraphicsConfiguration
 	 */
@@ -95,12 +97,12 @@ public class RotationHelper {
 	}
 
 	/**
-	 * rotates an awt image
+	 * rotates an awt image.
 	 * 
 	 * @param image
 	 *        awt image
 	 * @param angle
-	 *        angle of rotation
+	 *        angle of rotation in radians
 	 * @return swt rotated image
 	 */
 	public static ImageData tilt(BufferedImage image, double angle) {
@@ -116,18 +118,17 @@ public class RotationHelper {
 			newh = (int)Math.floor(h * cos + w * sin);
 		}
 
+
 		GraphicsConfiguration gc = getDefaultConfiguration();
 		BufferedImage result = gc.createCompatibleImage(neww, newh, Transparency.TRANSLUCENT);
+
 		Graphics2D g = result.createGraphics();
 
 		g.translate((neww - w) / 2, (newh - h) / 2);
 
 		g.rotate(angle, w / 2, h / 2);
-		// System.out.format("Tilt angle %f\n", Math.toDegrees(angle));
-		// g.rotate(angle, w / 2, h / 2);
-		// java.awt.Shape oldClip = g.getClip();
-		// Rectangle e = new Rectangle().expand(50, 50);
-		// g.setClip((java.awt.Shape) e);
+
+		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g.drawRenderedImage(image, null);
 		g.dispose();
 
@@ -135,24 +136,69 @@ public class RotationHelper {
 	}
 
 	/**
-	 * Rotates the swt image
+	 * rotates an awt image using Affine Transform.
+	 * 
+	 * @param image
+	 *        awt image
+	 * @param degree
+	 *        angle of rotation in degrees
+	 * @return swt rotated image
+	 */
+	public static ImageData tiltBis(java.awt.Image image, double degree) {
+		int w = image.getWidth(null);
+		int h = image.getHeight(null);
+		double angle = Math.toRadians(degree);
+		double sin = Math.abs(Math.sin(angle));
+		double cos = Math.abs(Math.cos(angle));
+		int neww = (int)Math.floor(w * cos + h * sin);
+		int newh = (int)Math.floor(h * cos + w * sin);
+
+		AffineTransform at = new AffineTransform();
+
+		//at.scale((w + 0.0) / (neww + 0.0), (h + 0.0) / (newh + 0.0));
+		at.translate((neww - w) / 2, (newh - h) / 2);
+
+		at.rotate(angle, w / 2, h / 2);
+
+		BufferedImage b = new BufferedImage(neww, newh, Transparency.TRANSLUCENT);
+		Graphics2D g = b.createGraphics();
+		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR);
+		g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+		g.drawImage(image, at, null);
+		g.dispose();
+		return convertToSWT(b);
+
+	}
+
+
+
+
+
+	/**
+	 * Rotates the swt image.
 	 * 
 	 * @param img
+	 *        the img
 	 * @param degree
+	 *        the degree
 	 * @return the rotated image
 	 */
 	public static ImageData rotateImage(Image img, double degree) {
 		ImageData data = img.getImageData();
 		BufferedImage bufImg = convertToAWT(data);
-		double angle = Math.toRadians(degree);
-		// System.out.format("rotateImage angle %f\n", degree);
-		return tilt(bufImg, angle);
+		//double angle = Math.toRadians(degree);
+		//return tilt(bufImg, angle);
+		return tiltBis(bufImg, degree);
+
+
 	}
 
 	/**
-	 * convert awt BufferedImage to swt ImageData
+	 * convert awt BufferedImage to swt ImageData.
 	 * 
 	 * @param bufferedImage
+	 *        the buffered image
 	 * @return converted ImageData
 	 */
 	public static ImageData convertToSWT(BufferedImage bufferedImage) {
@@ -201,7 +247,7 @@ public class RotationHelper {
 	}
 
 	/**
-	 * converts swt image to awt
+	 * converts swt image to awt.
 	 * 
 	 * @param data
 	 *        swt ImageData

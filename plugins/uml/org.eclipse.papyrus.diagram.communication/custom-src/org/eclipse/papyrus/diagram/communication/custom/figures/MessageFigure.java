@@ -48,7 +48,8 @@ public class MessageFigure extends PolylineConnectionEx implements IPapyrusUMLEl
 	public MessageFigure() {
 		this.setLineWidth(1);
 		this.setLineStyle(Graphics.LINE_SOLID);
-		this.setForegroundColor(ColorConstants.black);
+		this.setForegroundColor(ColorConstants.white);
+		this.setBackgroundColor(ColorConstants.white);
 
 		createContents();
 
@@ -59,17 +60,15 @@ public class MessageFigure extends PolylineConnectionEx implements IPapyrusUMLEl
 		fFigureMessageCreateLabelFigure = new CustomWrappingLabel();
 		fFigureMessageCreateLabelFigure.setText("Message"); //$NON-NLS-1$
 
-		//fFigureMessageCreateLabelFigure.setFont(FFIGUREMESSAGECREATELABELFIGURE_FONT);
+
 		fFigureMessageCreateLabelFigure.setOpaque(false);
-		// fFigureMessageCreateLabelFigure.setTextAlignment(PositionConstants.CENTER);
-		//fFigureMessageCreateLabelFigure.setTextPlacement(PositionConstants.NORTH);
 		fFigureMessageCreateLabelFigure.setTextJustification(PositionConstants.CENTER);
 
 		this.add(fFigureMessageCreateLabelFigure);
 		appliedStereotypeLabelFigure = new CustomWrappingLabel();
 		appliedStereotypeLabelFigure.setText(""); //$NON-NLS-1$
 
-		//appliedStereotypeLabelFigure.setFont(FFIGUREMESSAGECREATELABELFIGURE_FONT);
+
 		appliedStereotypeLabelFigure.setTextWrap(true);
 		appliedStereotypeLabelFigure.setTextJustification(PositionConstants.CENTER);
 
