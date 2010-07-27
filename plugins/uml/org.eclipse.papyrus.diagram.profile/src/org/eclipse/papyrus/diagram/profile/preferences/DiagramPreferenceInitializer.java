@@ -51,6 +51,9 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 		EnumerationCNPreferencePage.initDefaults(store);
 
 
+		PrimitiveTypePreferencePage.initDefaults(store);
+
+
 		PackagePreferencePage.initDefaults(store);
 
 

@@ -51,6 +51,8 @@ import org.eclipse.papyrus.diagram.profile.edit.parts.PackageEditPartCN;
 import org.eclipse.papyrus.diagram.profile.edit.parts.PackageImportEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.PackagePackageableElementCompartmentEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.PackagePackageableElementCompartmentEditPartCN;
+import org.eclipse.papyrus.diagram.profile.edit.parts.PrimitiveTypeEditPart;
+import org.eclipse.papyrus.diagram.profile.edit.parts.PrimitiveTypeEditPartCN;
 import org.eclipse.papyrus.diagram.profile.edit.parts.ProfileApplicationEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.ProfileDiagramEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.ProfileEditPartCN;
@@ -206,6 +208,15 @@ public class UMLDiagramContentInitializer {
 	/**
 	 * @generated
 	 */
+	private void createPrimitiveType_2009Children(View view) {
+		myDomain2NotationMap.put(view.getElement(), view);
+		myLinkDescriptors.addAll(UMLDiagramUpdater.getPrimitiveType_2009OutgoingLinks(view));
+
+	}
+
+	/**
+	 * @generated
+	 */
 	private void createDataType_2010Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
 		myLinkDescriptors.addAll(UMLDiagramUpdater.getDataType_2010OutgoingLinks(view));
@@ -220,6 +231,15 @@ public class UMLDiagramContentInitializer {
 	private void createDiagram_2016Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
 		myLinkDescriptors.addAll(UMLDiagramUpdater.getDiagram_2016OutgoingLinks(view));
+
+	}
+
+	/**
+	 * @generated
+	 */
+	private void createPrimitiveType_3026Children(View view) {
+		myDomain2NotationMap.put(view.getElement(), view);
+		myLinkDescriptors.addAll(UMLDiagramUpdater.getPrimitiveType_3026OutgoingLinks(view));
 
 	}
 
@@ -558,11 +578,17 @@ public class UMLDiagramContentInitializer {
 		case EnumerationEditPart.VISUAL_ID:
 			createEnumeration_2006Children(node);
 			return;
+		case PrimitiveTypeEditPart.VISUAL_ID:
+			createPrimitiveType_2009Children(node);
+			return;
 		case DataTypeEditPart.VISUAL_ID:
 			createDataType_2010Children(node);
 			return;
 		case ShortCutDiagramEditPart.VISUAL_ID:
 			createDiagram_2016Children(node);
+			return;
+		case PrimitiveTypeEditPartCN.VISUAL_ID:
+			createPrimitiveType_3026Children(node);
 			return;
 		case DataTypeOperationEditPart.VISUAL_ID:
 			createOperation_3019Children(node);

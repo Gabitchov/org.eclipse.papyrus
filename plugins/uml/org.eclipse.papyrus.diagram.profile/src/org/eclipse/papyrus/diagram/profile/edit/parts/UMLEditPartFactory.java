@@ -92,6 +92,12 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case EnumerationNameEditPart.VISUAL_ID:
 				return new EnumerationNameEditPart(view);
 
+			case PrimitiveTypeEditPart.VISUAL_ID:
+				return new PrimitiveTypeEditPart(view);
+
+			case PrimitiveTypeNameEditPart.VISUAL_ID:
+				return new PrimitiveTypeNameEditPart(view);
+
 			case DataTypeEditPart.VISUAL_ID:
 				return new DataTypeEditPart(view);
 
@@ -103,6 +109,12 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case DiagramNameEditPart.VISUAL_ID:
 				return new DiagramNameEditPart(view);
+
+			case PrimitiveTypeEditPartCN.VISUAL_ID:
+				return new PrimitiveTypeEditPartCN(view);
+
+			case PrimitiveTypeNameEditPartCN.VISUAL_ID:
+				return new PrimitiveTypeNameEditPartCN(view);
 
 			case DataTypeOperationEditPart.VISUAL_ID:
 				return new DataTypeOperationEditPart(view);

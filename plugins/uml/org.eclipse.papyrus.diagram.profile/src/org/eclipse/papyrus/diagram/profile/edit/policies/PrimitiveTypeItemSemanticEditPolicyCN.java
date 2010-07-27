@@ -1,21 +1,17 @@
 package org.eclipse.papyrus.diagram.profile.edit.policies;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.command.DeleteCommand;
 import org.eclipse.gef.commands.Command;
-import org.eclipse.gmf.runtime.common.core.command.ICompositeCommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
-import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
-import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.command.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.diagram.profile.edit.commands.AssociationBranchCreateCommand;
@@ -32,39 +28,31 @@ import org.eclipse.papyrus.diagram.profile.edit.commands.DependencyCreateCommand
 import org.eclipse.papyrus.diagram.profile.edit.commands.DependencyReorientCommand;
 import org.eclipse.papyrus.diagram.profile.edit.commands.ElementImportCreateCommand;
 import org.eclipse.papyrus.diagram.profile.edit.commands.ElementImportReorientCommand;
-import org.eclipse.papyrus.diagram.profile.edit.commands.ExtensionCreateCommand;
-import org.eclipse.papyrus.diagram.profile.edit.commands.ExtensionReorientCommand;
 import org.eclipse.papyrus.diagram.profile.edit.commands.GeneralizationCreateCommand;
 import org.eclipse.papyrus.diagram.profile.edit.commands.GeneralizationReorientCommand;
 import org.eclipse.papyrus.diagram.profile.edit.commands.PackageImportCreateCommand;
 import org.eclipse.papyrus.diagram.profile.edit.commands.PackageImportReorientCommand;
 import org.eclipse.papyrus.diagram.profile.edit.parts.AssociationBranchEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.AssociationEditPart;
-import org.eclipse.papyrus.diagram.profile.edit.parts.ClassOperationEditPart;
-import org.eclipse.papyrus.diagram.profile.edit.parts.ClassPropertyEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.DependencyBranchEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.DependencyEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.ElementImportEditPart;
-import org.eclipse.papyrus.diagram.profile.edit.parts.ExtensionEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.GeneralizationEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.PackageImportEditPart;
-import org.eclipse.papyrus.diagram.profile.edit.parts.StereotypeAttributeCompartmentEditPartCN;
-import org.eclipse.papyrus.diagram.profile.edit.parts.StereotypeOperationCompartmentEditPartCN;
-import org.eclipse.papyrus.diagram.profile.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.profile.providers.UMLElementTypes;
 
 /**
  * @generated
  */
-public class StereotypeItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPolicy {
+public class PrimitiveTypeItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
-	public StereotypeItemSemanticEditPolicyCN() {
-		super(UMLElementTypes.Stereotype_1023);
+	public PrimitiveTypeItemSemanticEditPolicyCN() {
+		super(UMLElementTypes.PrimitiveType_3026);
 	}
 
 
@@ -79,7 +67,6 @@ public class StereotypeItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditP
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 		if(annotation == null) {
 			// there are indirectly referenced children, need extra commands: false
-			addDestroyChildNodesCommand(cmd);
 			addDestroyShortcutsCommand(cmd, view);
 			// delete host element
 			List<EObject> todestroy = new ArrayList<EObject>();
@@ -95,48 +82,6 @@ public class StereotypeItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditP
 	/**
 	 * @generated
 	 */
-	protected void addDestroyChildNodesCommand(ICompositeCommand cmd) {
-		View view = (View)getHost().getModel();
-		for(Iterator<?> nit = view.getChildren().iterator(); nit.hasNext();) {
-			Node node = (Node)nit.next();
-			switch(UMLVisualIDRegistry.getVisualID(node)) {
-			case StereotypeAttributeCompartmentEditPartCN.VISUAL_ID:
-				for(Iterator<?> cit = node.getChildren().iterator(); cit.hasNext();) {
-					Node cnode = (Node)cit.next();
-					switch(UMLVisualIDRegistry.getVisualID(cnode)) {
-					case ClassPropertyEditPart.VISUAL_ID:
-
-
-
-						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
-						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
-						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
-						break;
-					}
-				}
-				break;
-			case StereotypeOperationCompartmentEditPartCN.VISUAL_ID:
-				for(Iterator<?> cit = node.getChildren().iterator(); cit.hasNext();) {
-					Node cnode = (Node)cit.next();
-					switch(UMLVisualIDRegistry.getVisualID(cnode)) {
-					case ClassOperationEditPart.VISUAL_ID:
-
-
-
-						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
-						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
-						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
-						break;
-					}
-				}
-				break;
-			}
-		}
-	}
-
-	/**
-	 * @generated
-	 */
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
 		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req) : getCompleteCreateRelationshipCommand(req);
 		return command != null ? command : super.getCreateRelationshipCommand(req);
@@ -146,9 +91,6 @@ public class StereotypeItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditP
 	 * @generated
 	 */
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if(UMLElementTypes.Extension_1013 == req.getElementType()) {
-			return null;
-		}
 		if(UMLElementTypes.Association_4001 == req.getElementType()) {
 			return getGEFWrapper(new AssociationCreateCommand(req, req.getSource(), req.getTarget()));
 		}
@@ -183,9 +125,6 @@ public class StereotypeItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditP
 	 * @generated
 	 */
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if(UMLElementTypes.Extension_1013 == req.getElementType()) {
-			return getGEFWrapper(new ExtensionCreateCommand(req, req.getSource(), req.getTarget()));
-		}
 		if(UMLElementTypes.Association_4001 == req.getElementType()) {
 			return getGEFWrapper(new AssociationCreateCommand(req, req.getSource(), req.getTarget()));
 		}
@@ -224,8 +163,6 @@ public class StereotypeItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditP
 	 */
 	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 		switch(getVisualID(req)) {
-		case ExtensionEditPart.VISUAL_ID:
-			return getGEFWrapper(new ExtensionReorientCommand(req));
 		case AssociationEditPart.VISUAL_ID:
 			return getGEFWrapper(new AssociationReorientCommand(req));
 		case AssociationBranchEditPart.VISUAL_ID:

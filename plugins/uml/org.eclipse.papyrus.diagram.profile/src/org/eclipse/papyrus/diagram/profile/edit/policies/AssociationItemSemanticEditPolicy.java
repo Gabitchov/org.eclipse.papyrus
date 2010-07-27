@@ -1,14 +1,17 @@
 package org.eclipse.papyrus.diagram.profile.edit.policies;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.command.DeleteCommand;
 import org.eclipse.gef.commands.Command;
-import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
+import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
-import org.eclipse.papyrus.diagram.common.command.wrappers.EMFtoGEFCommandWrapper;
+import org.eclipse.papyrus.diagram.common.command.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.diagram.profile.edit.commands.AssociationBranchCreateCommand;
 import org.eclipse.papyrus.diagram.profile.edit.commands.AssociationBranchReorientCommand;
 import org.eclipse.papyrus.diagram.profile.edit.commands.AssociationCreateCommand;
@@ -54,9 +57,13 @@ public class AssociationItemSemanticEditPolicy extends UMLBaseItemSemanticEditPo
 	 * @generated
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
-		ArrayList todestroy = new ArrayList();
+		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
+		cmd.setTransactionNestingEnabled(true);
+		List<EObject> todestroy = new ArrayList<EObject>();
 		todestroy.add(req.getElementToDestroy());
-		return new EMFtoGEFCommandWrapper(new DeleteCommand(getEditingDomain(), todestroy));
+		//cmd.add(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(req));
+		cmd.add(new EMFtoGMFCommandWrapper(new DeleteCommand(getEditingDomain(), todestroy)));
+		return getGEFWrapper(cmd.reduce());
 		//return getGEFWrapper(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(req));
 	}
 
