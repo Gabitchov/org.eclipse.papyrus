@@ -2728,7 +2728,7 @@
         iD="org.eclipse.papyrus.diagram.usecase"
         name="Papyrus useCase editor Plugin"
         provider="Papyrus"
-        version="0.7.0.qualifier">
+        version="0.7.1.qualifier">
       <requiredPlugins>org.eclipse.draw2d</requiredPlugins>
       <requiredPlugins>org.eclipse.gmf.runtime.draw2d.ui</requiredPlugins>
     </plugin>

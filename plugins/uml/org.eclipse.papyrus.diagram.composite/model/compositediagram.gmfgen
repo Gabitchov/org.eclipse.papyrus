@@ -10516,7 +10516,7 @@
         iD="org.eclipse.papyrus.diagram.composite"
         name="Papyrus Composite Structure Diagram (incubation)"
         provider="Eclipse.org"
-        version="0.7.0.qualifier">
+        version="0.7.1.qualifier">
       <requiredPlugins>org.eclipse.draw2d</requiredPlugins>
       <requiredPlugins>org.eclipse.gmf.runtime.draw2d.ui</requiredPlugins>
     </plugin>
