@@ -18,13 +18,10 @@ package org.eclipse.papyrus.diagram.communication.custom.util;
  */
 public enum MessageDirection {
 	/**
-	 * in direction
+	 * in direction, out direction
 	 */
-	IN("in"), /**
-	 * //$NON-NLS-1$ //$NON-NLS-1$
-	 * out direction
-	 */
-	OUT("out"); //$NON-NLS-1$ //$NON-NLS-2$
+	IN("in"), //$NON-NLS-1$
+	OUT("out"); //$NON-NLS-2$
 
 	private String name;
 

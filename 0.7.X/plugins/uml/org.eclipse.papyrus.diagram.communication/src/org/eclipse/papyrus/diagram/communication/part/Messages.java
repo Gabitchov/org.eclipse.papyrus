@@ -278,12 +278,12 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String createLifeline1CreationTool_title;
+	public static String createLifelineComCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createLifeline1CreationTool_desc;
+	public static String createLifelineComCreationTool_desc;
 
 	/**
 	 * @generated

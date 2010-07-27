@@ -43,6 +43,8 @@ public class CustomWrappingLabel extends WrappingLabel
 
 	}
 
+
+
 	/**
 	 * 
 	 * Constructor.
@@ -86,14 +88,13 @@ public class CustomWrappingLabel extends WrappingLabel
 	 * 
 	 */
 	public void setRotation(double angle) {
-		// bounds = null;
-		// this.angle = angle;
+
 		this.rotation = Math.toDegrees(angle);
-		// System.out.format("SetRotation angle %f", this.rotation);
+
 
 	}
 
-	static final String PATH = "/icons/arrow.gif"; //$NON-NLS-1$
+	static final String PATH = "/icons/arrow1.gif"; //$NON-NLS-1$
 
 	/**
 	 * Paints the custom icon that has been rotated
@@ -116,7 +117,7 @@ public class CustomWrappingLabel extends WrappingLabel
 				// Image icon = getIcon(i);
 				Image icon = org.eclipse.papyrus.diagram.common.Activator.getPluginIconImage(UMLDiagramEditorPlugin.ID, PATH);
 				if(icon != null) {
-
+					icon.setBackground(getBackgroundColor());
 					Image image1 = new Image(PlatformUI.getWorkbench().getDisplay(), RotationHelper.rotateImage(icon, getRotation()));
 
 					graphics.setClip(graphics.getClip(new Rectangle()).expand(100, 100));
@@ -133,6 +134,8 @@ public class CustomWrappingLabel extends WrappingLabel
 		graphics.popState();
 	}
 
+
+
 	@Override
 	public void paintFigure(Graphics graphics) {
 		// super.paintFigure(graphics);
@@ -140,6 +143,7 @@ public class CustomWrappingLabel extends WrappingLabel
 		if(hasIcons()) {
 			// System.out.println("This Connection hasIcon \n");
 			CustomPaintIcons(graphics);
+
 		}
 	}
 
