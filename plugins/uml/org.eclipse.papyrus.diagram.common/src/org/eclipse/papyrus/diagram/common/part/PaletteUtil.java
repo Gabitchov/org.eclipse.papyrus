@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.diagram.common.part;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -31,6 +32,7 @@ import org.eclipse.gef.palette.PaletteContainer;
 import org.eclipse.gef.palette.PaletteEntry;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.ToolEntry;
+import org.eclipse.gmf.runtime.common.core.service.IProvider;
 import org.eclipse.gmf.runtime.common.core.service.ProviderPriority;
 import org.eclipse.gmf.runtime.diagram.ui.internal.services.palette.ContributeToPaletteOperation;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditorWithFlyOutPalette;
@@ -42,11 +44,13 @@ import org.eclipse.papyrus.core.utils.PapyrusTrace;
 import org.eclipse.papyrus.diagram.common.service.AspectUnspecifiedTypeConnectionTool;
 import org.eclipse.papyrus.diagram.common.service.AspectUnspecifiedTypeCreationTool;
 import org.eclipse.papyrus.diagram.common.service.IPapyrusPaletteConstant;
+import org.eclipse.papyrus.diagram.common.service.IProfileDependantPaletteProvider;
 import org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService;
 import org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService.ProviderDescriptor;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IMemento;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Profile;
 
 /**
@@ -297,6 +301,17 @@ public class PaletteUtil {
 	}
 
 	/**
+	 * Returns the name of the profile from the given stereotype qualified Name
+	 * 
+	 * @param stereotypeName
+	 *        the name of the stereotype to parse
+	 * @return the qualified name of the profile from the given stereotype qualified Name
+	 */
+	public static String findProfileNameFromStereotypeName(String stereotypeName) {
+		return stereotypeName.substring(0, stereotypeName.lastIndexOf(NamedElement.SEPARATOR));
+	}
+
+	/**
 	 * Returns the list of profile Qualified Names String under a serialized form
 	 * 
 	 * @param list
@@ -372,6 +387,28 @@ public class PaletteUtil {
 						}
 					}
 				}
+			}
+		} else {
+			IProvider provider = papyrusProviderDesc.getProvider();
+			if(provider instanceof IProfileDependantPaletteProvider) {
+				Diagram diagram = ((DiagramEditorWithFlyOutPalette)part).getDiagram();
+				EObject element = diagram.getElement();
+				if(element instanceof Element) {
+					org.eclipse.uml2.uml.Package package_ = ((Element)element).getNearestPackage();
+					List<Profile> appliedProfiles = package_.getAllAppliedProfiles();
+					List<String> appliedProfilesNames = new ArrayList<String>();
+					for(Profile profile : appliedProfiles) {
+						appliedProfilesNames.add(profile.getQualifiedName());
+					}
+					// not null also
+					Collection<String> requiredProfiles = ((IProfileDependantPaletteProvider)provider).getRequiredProfiles();
+					for(String requiredProfileName : requiredProfiles) {
+						if(!appliedProfilesNames.contains(requiredProfileName)) {
+							return false;
+						}
+					}
+				}
+				return true;
 			}
 		}
 		// by default, returns true if the descriptor is not a local descriptor, as they do not use

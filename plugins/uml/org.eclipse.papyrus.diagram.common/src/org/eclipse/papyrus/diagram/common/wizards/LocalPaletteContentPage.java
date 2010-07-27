@@ -111,7 +111,6 @@ import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.uml2.uml.Class;
-import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Stereotype;
@@ -1853,7 +1852,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 				for(String stereotypeQN : ((PaletteAspectToolEntryProxy)proxy).getStereotypesQNList()) {
 					// retrieve list of profiles from the stereotype QN (only remove last segment
 					// ?!)
-					String profileName = stereotypeQN.substring(0, stereotypeQN.lastIndexOf(NamedElement.SEPARATOR));
+					String profileName = PaletteUtil.findProfileNameFromStereotypeName(stereotypeQN);
 					requiredProfiles.add(profileName);
 				}
 			}
