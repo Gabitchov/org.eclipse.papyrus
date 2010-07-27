@@ -17,6 +17,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
@@ -25,16 +27,19 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.osgi.framework.Bundle;
+import org.w3c.dom.Node;
 
 
 /**
  * Provider extending the {@link LocalPaletteProvider} to reference xml-defined palettes into plugins, using the papyrus palette extension point
  */
-public class PluginPaletteProvider extends LocalPaletteProvider {
+public class PluginPaletteProvider extends LocalPaletteProvider implements IProfileDependantPaletteProvider {
 
 	/** id of the contributor */
 	private String providerID;
 
+	/** cached list of required profiles for this palette to be shown */
+	protected Collection<String> requiredProfiles;
 
 	/**
 	 * Return the provider ID that declares this provider
@@ -88,5 +93,29 @@ public class PluginPaletteProvider extends LocalPaletteProvider {
 	public void setContributions(IConfigurationElement configElement) {
 		providerID = configElement.getContributor().getName();
 		readXMLDocument(configElement.getAttribute(PATH));
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public Collection<String> getRequiredProfiles() {
+		if(requiredProfiles == null) {
+			requiredProfiles = new HashSet<String>();
+
+			try {
+				// parse the content of the file to discover the required profiles
+				// using safe computation
+				XMLDefinitionPaletteParser profileParser = new XMLDefinitionPaletteParser(new XMLRequiredProfileFactory(requiredProfiles));
+				for(int i = 0; i < contributions.getLength(); i++) {
+					Node node = contributions.item(i);
+					if(PALETTE_DEFINITION.equals(node.getNodeName())) {
+						profileParser.parsePaletteDefinition(node);
+					}
+				}
+			} catch (Throwable e) {
+				Activator.log.error(e);
+			}
+		}
+		return requiredProfiles;
 	}
 }

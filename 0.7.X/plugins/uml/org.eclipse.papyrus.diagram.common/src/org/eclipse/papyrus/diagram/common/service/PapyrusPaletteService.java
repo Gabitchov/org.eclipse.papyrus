@@ -148,6 +148,10 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 			if(operation instanceof ContributeToPaletteOperation) {
 				ContributeToPaletteOperation o = (ContributeToPaletteOperation)operation;
 
+				IEditorPart part = o.getEditor();
+				if(!(part instanceof DiagramEditorWithFlyOutPalette)) {
+					return false;
+				}
 				boolean supports = providerConfiguration.supports(o.getEditor(), o.getContent());
 
 				if(!supports) {
@@ -157,6 +161,11 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 				if(isHidden(o)) {
 					return false;
 				}
+				
+				if(!PaletteUtil.areRequiredProfileApplied(part, this)) {
+					return false;
+				}
+				
 				return true;
 			}
 
