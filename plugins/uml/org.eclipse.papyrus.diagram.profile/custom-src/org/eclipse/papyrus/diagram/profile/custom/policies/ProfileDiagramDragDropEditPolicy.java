@@ -51,6 +51,7 @@ import org.eclipse.papyrus.diagram.common.commands.CommonDeferredCreateConnectio
 import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.diagram.common.editpolicies.CommonDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
+import org.eclipse.papyrus.diagram.profile.custom.commands.SetStereotypeVisibleOnMetaclassCommand;
 import org.eclipse.papyrus.diagram.profile.custom.helper.ClassLinkMappingHelper;
 import org.eclipse.papyrus.diagram.profile.custom.helper.MultiAssociationHelper;
 import org.eclipse.papyrus.diagram.profile.custom.helper.MultiDependencyHelper;
@@ -342,16 +343,39 @@ public class ProfileDiagramDragDropEditPolicy extends CommonDiagramDragDropEditP
 				 * get the host's model
 				 */
 
-				Object model = getHost().getModel();
+				CompositeCommand cc = new CompositeCommand("Drop"); //$NON-NLS-1$
+				IAdaptable elementAdapter = new EObjectAdapter(metaclass);
 
+				ViewDescriptor descriptor;
+
+				//we create the view command
 				if(containerView.get(0).equals(getHost().getModel())) {//we are on the diagram
-					return new ICommandProxy(getDefaultDropNodeCommand(MetaclassEditPart.VISUAL_ID, dropRequest.getLocation(), metaclass));
+					descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType)getUMLElementType(MetaclassEditPart.VISUAL_ID)).getSemanticHint(), ViewUtil.APPEND, false, getDiagramPreferencesHint());
 				} else {
-					return new ICommandProxy(getDefaultDropNodeCommand(MetaclassEditPartCN.VISUAL_ID, dropRequest.getLocation(), metaclass));
+					descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType)getUMLElementType(MetaclassEditPartCN.VISUAL_ID)).getSemanticHint(), ViewUtil.APPEND, false, getDiagramPreferencesHint());
 				}
 
-			}
+				CreateCommand createCommand = new CreateCommand(getEditingDomain(), descriptor, ((View)(getHost().getModel())));
+				cc.compose(createCommand);
 
+				SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)createCommand.getCommandResult().getReturnValue(), dropRequest.getLocation()); //$NON-NLS-1$
+				cc.compose(setBoundsCommand);
+
+				/*
+				 * we set the stereotype <<metaclass>> visible
+				 * we can not call AppliedStereotypeHelper.getAddAppliedStereotypeCommand here,
+				 * because createCommand.getResult( ((ViewDescriptor)createCommand.getCommandResult().getReturnValue()).getAdapter(View.class) return
+				 * null :
+				 * the view is not yet created!!!
+				 */
+				if(createCommand.canExecute()) {
+					SetStereotypeVisibleOnMetaclassCommand stereotypeCommand = new SetStereotypeVisibleOnMetaclassCommand(getEditingDomain(), "Set Stereotype Visible", null, semanticLink, (ViewDescriptor)createCommand.getCommandResult().getReturnValue()); //$NON-NLS-1$
+					if(stereotypeCommand.canExecute()) {
+						cc.add(stereotypeCommand);
+					}
+				}
+				return new ICommandProxy(cc);
+			}
 		}
 
 		return UnexecutableCommand.INSTANCE;
