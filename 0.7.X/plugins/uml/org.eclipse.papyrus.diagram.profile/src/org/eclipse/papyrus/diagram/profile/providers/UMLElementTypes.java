@@ -46,6 +46,8 @@ import org.eclipse.papyrus.diagram.profile.edit.parts.ModelEditPartTN;
 import org.eclipse.papyrus.diagram.profile.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.PackageEditPartCN;
 import org.eclipse.papyrus.diagram.profile.edit.parts.PackageImportEditPart;
+import org.eclipse.papyrus.diagram.profile.edit.parts.PrimitiveTypeEditPart;
+import org.eclipse.papyrus.diagram.profile.edit.parts.PrimitiveTypeEditPartCN;
 import org.eclipse.papyrus.diagram.profile.edit.parts.ProfileApplicationEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.ProfileDiagramEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.ProfileEditPartCN;
@@ -141,12 +143,22 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
+	public static final IElementType PrimitiveType_2009 = getElementType("org.eclipse.papyrus.diagram.profile.PrimitiveType_2009"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	public static final IElementType DataType_2010 = getElementType("org.eclipse.papyrus.diagram.profile.DataType_2010"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
 	public static final IElementType Diagram_2016 = getElementType("org.eclipse.papyrus.diagram.profile.Diagram_2016"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType PrimitiveType_3026 = getElementType("org.eclipse.papyrus.diagram.profile.PrimitiveType_3026"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -412,10 +424,16 @@ public class UMLElementTypes {
 			elements.put(Enumeration_2006, UMLPackage.eINSTANCE.getEnumeration());
 
 
+			elements.put(PrimitiveType_2009, UMLPackage.eINSTANCE.getPrimitiveType());
+
+
 			elements.put(DataType_2010, UMLPackage.eINSTANCE.getDataType());
 
 
 			elements.put(Diagram_2016, NotationPackage.eINSTANCE.getDiagram());
+
+
+			elements.put(PrimitiveType_3026, UMLPackage.eINSTANCE.getPrimitiveType());
 
 
 			elements.put(Operation_3019, UMLPackage.eINSTANCE.getOperation());
@@ -517,8 +535,10 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(Profile_1030);
 			KNOWN_ELEMENT_TYPES.add(Package_2007);
 			KNOWN_ELEMENT_TYPES.add(Enumeration_2006);
+			KNOWN_ELEMENT_TYPES.add(PrimitiveType_2009);
 			KNOWN_ELEMENT_TYPES.add(DataType_2010);
 			KNOWN_ELEMENT_TYPES.add(Diagram_2016);
+			KNOWN_ELEMENT_TYPES.add(PrimitiveType_3026);
 			KNOWN_ELEMENT_TYPES.add(Operation_3019);
 			KNOWN_ELEMENT_TYPES.add(EnumerationLiteral_1037);
 			KNOWN_ELEMENT_TYPES.add(Property_3018);
@@ -575,10 +595,14 @@ public class UMLElementTypes {
 			return Package_2007;
 		case EnumerationEditPart.VISUAL_ID:
 			return Enumeration_2006;
+		case PrimitiveTypeEditPart.VISUAL_ID:
+			return PrimitiveType_2009;
 		case DataTypeEditPart.VISUAL_ID:
 			return DataType_2010;
 		case ShortCutDiagramEditPart.VISUAL_ID:
 			return Diagram_2016;
+		case PrimitiveTypeEditPartCN.VISUAL_ID:
+			return PrimitiveType_3026;
 		case DataTypeOperationEditPart.VISUAL_ID:
 			return Operation_3019;
 		case EnumerationLiteralEditPart.VISUAL_ID:

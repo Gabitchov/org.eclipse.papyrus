@@ -363,7 +363,13 @@ NamedElementEditPart {
 		if(targetEditPart instanceof EnumerationEditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
+		if(targetEditPart instanceof PrimitiveTypeEditPart) {
+			types.add(UMLElementTypes.Dependency_4008);
+		}
 		if(targetEditPart instanceof DataTypeEditPart) {
+			types.add(UMLElementTypes.Dependency_4008);
+		}
+		if(targetEditPart instanceof PrimitiveTypeEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
 		if(targetEditPart instanceof StereotypeEditPartCN) {
@@ -417,7 +423,13 @@ NamedElementEditPart {
 		if(targetEditPart instanceof EnumerationEditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
+		if(targetEditPart instanceof PrimitiveTypeEditPart) {
+			types.add(UMLElementTypes.Dependency_4018);
+		}
 		if(targetEditPart instanceof DataTypeEditPart) {
+			types.add(UMLElementTypes.Dependency_4018);
+		}
+		if(targetEditPart instanceof PrimitiveTypeEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
 		if(targetEditPart instanceof StereotypeEditPartCN) {
@@ -471,7 +483,13 @@ NamedElementEditPart {
 		if(targetEditPart instanceof EnumerationEditPart) {
 			types.add(UMLElementTypes.ElementImport_1064);
 		}
+		if(targetEditPart instanceof PrimitiveTypeEditPart) {
+			types.add(UMLElementTypes.ElementImport_1064);
+		}
 		if(targetEditPart instanceof DataTypeEditPart) {
+			types.add(UMLElementTypes.ElementImport_1064);
+		}
+		if(targetEditPart instanceof PrimitiveTypeEditPartCN) {
 			types.add(UMLElementTypes.ElementImport_1064);
 		}
 		if(targetEditPart instanceof StereotypeEditPartCN) {
@@ -537,7 +555,9 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.Profile_1030);
 			types.add(UMLElementTypes.Package_2007);
 			types.add(UMLElementTypes.Enumeration_2006);
+			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
+			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.Stereotype_1023);
 			types.add(UMLElementTypes.Class_3028);
 			types.add(UMLElementTypes.Model_1027);
@@ -556,7 +576,9 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.Profile_1030);
 			types.add(UMLElementTypes.Package_2007);
 			types.add(UMLElementTypes.Enumeration_2006);
+			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
+			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.Stereotype_1023);
 			types.add(UMLElementTypes.Class_3028);
 			types.add(UMLElementTypes.Model_1027);
@@ -575,7 +597,9 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.Profile_1030);
 			types.add(UMLElementTypes.Package_2007);
 			types.add(UMLElementTypes.Enumeration_2006);
+			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
+			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.Stereotype_1023);
 			types.add(UMLElementTypes.Class_3028);
 			types.add(UMLElementTypes.Model_1027);
@@ -624,7 +648,9 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.Profile_1030);
 			types.add(UMLElementTypes.Package_2007);
 			types.add(UMLElementTypes.Enumeration_2006);
+			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
+			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.Stereotype_1023);
 			types.add(UMLElementTypes.Class_3028);
 			types.add(UMLElementTypes.Model_1027);
@@ -643,7 +669,9 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.Profile_1030);
 			types.add(UMLElementTypes.Package_2007);
 			types.add(UMLElementTypes.Enumeration_2006);
+			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
+			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.Stereotype_1023);
 			types.add(UMLElementTypes.Class_3028);
 			types.add(UMLElementTypes.Model_1027);
@@ -660,7 +688,9 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.Profile_1030);
 			types.add(UMLElementTypes.Package_2007);
 			types.add(UMLElementTypes.Enumeration_2006);
+			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
+			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.Stereotype_1023);
 			types.add(UMLElementTypes.Class_3028);
 			types.add(UMLElementTypes.Model_1027);
@@ -676,7 +706,9 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.Profile_1030);
 			types.add(UMLElementTypes.Package_2007);
 			types.add(UMLElementTypes.Enumeration_2006);
+			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
+			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.Stereotype_1023);
 			types.add(UMLElementTypes.Class_3028);
 			types.add(UMLElementTypes.Model_1027);

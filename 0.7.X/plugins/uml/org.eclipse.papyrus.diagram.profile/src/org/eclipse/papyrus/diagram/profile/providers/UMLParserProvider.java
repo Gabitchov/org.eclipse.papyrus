@@ -184,6 +184,23 @@ public class UMLParserProvider {
 	/**
 	 * @generated
 	 */
+	private IParser primitiveTypeName_5032Parser;
+
+	/**
+	 * @generated
+	 */
+	public IParser getPrimitiveTypeName_5032Parser() {
+		if(primitiveTypeName_5032Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			primitiveTypeName_5032Parser = parser;
+		}
+		return primitiveTypeName_5032Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser dataTypeName_5035Parser;
 
 	/**
@@ -215,6 +232,23 @@ public class UMLParserProvider {
 		return diagramName_2Parser;
 	}
 
+
+	/**
+	 * @generated
+	 */
+	private IParser primitiveTypeName_5058Parser;
+
+	/**
+	 * @generated
+	 */
+	public IParser getPrimitiveTypeName_5058Parser() {
+		if(primitiveTypeName_5058Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			primitiveTypeName_5058Parser = parser;
+		}
+		return primitiveTypeName_5058Parser;
+	}
 
 	/**
 	 * @generated

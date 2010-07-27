@@ -76,6 +76,10 @@ import org.eclipse.papyrus.diagram.profile.edit.parts.PackageNameEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.PackageNameEditPartCN;
 import org.eclipse.papyrus.diagram.profile.edit.parts.PackagePackageableElementCompartmentEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.PackagePackageableElementCompartmentEditPartCN;
+import org.eclipse.papyrus.diagram.profile.edit.parts.PrimitiveTypeEditPart;
+import org.eclipse.papyrus.diagram.profile.edit.parts.PrimitiveTypeEditPartCN;
+import org.eclipse.papyrus.diagram.profile.edit.parts.PrimitiveTypeNameEditPart;
+import org.eclipse.papyrus.diagram.profile.edit.parts.PrimitiveTypeNameEditPartCN;
 import org.eclipse.papyrus.diagram.profile.edit.parts.ProfileApplicationEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.ProfileDiagramEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.ProfileEditPartCN;
@@ -247,6 +251,11 @@ public class UMLVisualIDRegistry {
 			) {
 				return EnumerationEditPart.VISUAL_ID;
 			}
+			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return PrimitiveTypeEditPart.VISUAL_ID;
+			}
 			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())
 
 			) {
@@ -296,6 +305,11 @@ public class UMLVisualIDRegistry {
 			) {
 				return EnumerationEditPartCN.VISUAL_ID;
 			}
+			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return PrimitiveTypeEditPartCN.VISUAL_ID;
+			}
 			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())
 
 			) {
@@ -333,6 +347,11 @@ public class UMLVisualIDRegistry {
 			) {
 				return EnumerationEditPartCN.VISUAL_ID;
 			}
+			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return PrimitiveTypeEditPartCN.VISUAL_ID;
+			}
 			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())
 
 			) {
@@ -369,6 +388,11 @@ public class UMLVisualIDRegistry {
 
 			) {
 				return EnumerationEditPartCN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return PrimitiveTypeEditPartCN.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())
 
@@ -417,6 +441,11 @@ public class UMLVisualIDRegistry {
 			) {
 				return EnumerationEditPartCN.VISUAL_ID;
 			}
+			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return PrimitiveTypeEditPartCN.VISUAL_ID;
+			}
 			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())
 
 			) {
@@ -462,6 +491,11 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case ModelPackageableElementCompartmentEditPartTN.VISUAL_ID:
+			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return CommentEditPartCN.VISUAL_ID;
+			}
 			if(UMLPackage.eINSTANCE.getModel().isSuperTypeOf(domainElement.eClass())
 
 			) {
@@ -486,19 +520,24 @@ public class UMLVisualIDRegistry {
 
 			) {
 				return EnumerationEditPartCN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return PrimitiveTypeEditPartCN.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())
 
 			) {
 				return DataTypeEditPartCN.VISUAL_ID;
 			}
+			break;
+		case ModelPackageableElementCompartmentEditPartCN.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())
 
 			) {
 				return CommentEditPartCN.VISUAL_ID;
 			}
-			break;
-		case ModelPackageableElementCompartmentEditPartCN.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getModel().isSuperTypeOf(domainElement.eClass())
 
 			) {
@@ -514,11 +553,6 @@ public class UMLVisualIDRegistry {
 			) {
 				return PackageEditPartCN.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return CommentEditPartCN.VISUAL_ID;
-			}
 			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
 
 			) {
@@ -528,6 +562,11 @@ public class UMLVisualIDRegistry {
 
 			) {
 				return EnumerationEditPartCN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return PrimitiveTypeEditPartCN.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())
 
@@ -631,6 +670,9 @@ public class UMLVisualIDRegistry {
 			if(EnumerationEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(PrimitiveTypeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			if(DataTypeEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -704,6 +746,11 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
+		case PrimitiveTypeEditPart.VISUAL_ID:
+			if(PrimitiveTypeNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		case DataTypeEditPart.VISUAL_ID:
 			if(DataTypeNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
@@ -717,6 +764,11 @@ public class UMLVisualIDRegistry {
 			break;
 		case ShortCutDiagramEditPart.VISUAL_ID:
 			if(DiagramNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case PrimitiveTypeEditPartCN.VISUAL_ID:
+			if(PrimitiveTypeNameEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -814,6 +866,9 @@ public class UMLVisualIDRegistry {
 			if(EnumerationEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(PrimitiveTypeEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			if(DataTypeEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -837,6 +892,9 @@ public class UMLVisualIDRegistry {
 			if(EnumerationEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(PrimitiveTypeEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			if(DataTypeEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -858,6 +916,9 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(EnumerationEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(PrimitiveTypeEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if(DataTypeEditPartCN.VISUAL_ID == nodeVisualID) {
@@ -887,6 +948,9 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(EnumerationEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(PrimitiveTypeEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if(DataTypeEditPartCN.VISUAL_ID == nodeVisualID) {
@@ -920,6 +984,9 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case ModelPackageableElementCompartmentEditPartTN.VISUAL_ID:
+			if(CommentEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			if(ModelEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -933,16 +1000,19 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(EnumerationEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(PrimitiveTypeEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if(DataTypeEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			break;
+		case ModelPackageableElementCompartmentEditPartCN.VISUAL_ID:
 			if(CommentEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			break;
-		case ModelPackageableElementCompartmentEditPartCN.VISUAL_ID:
 			if(ModelEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -952,13 +1022,13 @@ public class UMLVisualIDRegistry {
 			if(PackageEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if(CommentEditPartCN.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
 			if(ConstraintEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if(EnumerationEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(PrimitiveTypeEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if(DataTypeEditPartCN.VISUAL_ID == nodeVisualID) {
@@ -1186,6 +1256,9 @@ public class UMLVisualIDRegistry {
 		viewInfo = new BaseViewInfo(2006, ViewInfo.Node, "Enumeration");
 		root.addNode(1000, viewInfo);
 
+		viewInfo = new BaseViewInfo(2009, ViewInfo.Node, "PrimitiveType");
+		root.addNode(1000, viewInfo);
+
 		viewInfo = new BaseViewInfo(2010, ViewInfo.Node, "DataType");
 		root.addNode(1000, viewInfo);
 
@@ -1278,6 +1351,21 @@ public class UMLVisualIDRegistry {
 
 		viewInfo = new BaseViewInfo(4014, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3026, ViewInfo.Node, "PrimitiveType");
+
+		root.addNode(1005, viewInfo);
+
+		root.addNode(11, viewInfo);
+
+		root.addNode(1051, viewInfo);
+
+		root.addNode(1057, viewInfo);
+
+		root.addNode(1058, viewInfo);
+
+		root.addNode(1042, viewInfo);
 
 
 		viewInfo = new BaseViewInfo(3019, ViewInfo.Node, "Operation");

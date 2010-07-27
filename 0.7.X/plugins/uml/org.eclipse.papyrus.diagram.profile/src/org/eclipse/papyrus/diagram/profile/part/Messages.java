@@ -375,6 +375,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String createPrimitiveType6CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createPrimitiveType6CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String createExtension1CreationTool_title;
 
 	/**

@@ -159,6 +159,16 @@
  	</entry>
 	<entry
        defineOnly="true"
+       description="Create new PrimitiveType"
+       id="createPrimitiveType6CreationTool"
+       kind="tool"
+       label="PrimitiveType"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PrimitiveType.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PrimitiveType.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
        description="Add an Extension"
        id="createExtension1CreationTool"
        kind="tool"
@@ -378,6 +388,10 @@
           id="createDataType5CreationTool"
           path="/createClassifiers2Group">
     </predefinedEntry>
+ 	<predefinedEntry
+          id="createPrimitiveType6CreationTool"
+          path="/createClassifiers2Group">
+    </predefinedEntry>
 
 	<entry
        description="Links"
@@ -485,7 +499,7 @@
       <viewProvider class="org.eclipse.papyrus.diagram.profile.providers.UMLViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="PapyrusUMLProfileDiagram"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2014,2015,1026,1031,1002,1014,2005,1030,2007,2006,2010,2016,3019,1037,3018,3002,3020,1023,3028,1007,1027,1024,1012,1028,3025,3027"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2014,2015,1026,1031,1002,1014,2005,1030,2007,2006,2009,2010,2016,3026,3019,1037,3018,3002,3020,1023,3028,1007,1027,1024,1012,1028,3025,3027"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="1013,4001,1045,4019,4002,4008,4018,1064,1065,1022,4014"/>
       </viewProvider>
    </extension>
@@ -498,13 +512,13 @@
             <method name="getType()" value="PapyrusUMLProfileDiagram"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2014,2015,1026,1031,1002,1014,2005,1030,2007,2006,2010,2016,3019,1037,3018,3002,3020,1023,3028,1007,1027,1024,1012,1028,3025,3027"/>
+            <method name="getType()" value="2014,2015,1026,1031,1002,1014,2005,1030,2007,2006,2009,2010,2016,3026,3019,1037,3018,3002,3020,1023,3028,1007,1027,1024,1012,1028,3025,3027"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
             <method name="getType()" value="1013,4001,1045,4019,4002,4008,4018,1064,1065,1022,4014"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="1,1034,1084,3,1015,5063,5020,1047,5026,5023,5035,2,1046,5062,1008,1056,1050,1010,1059,5064,5055,5061"/>
+            <method name="getType()" value="1,1034,1084,3,1015,5063,5020,1047,5026,5023,5032,5035,2,5058,1046,5062,1008,1056,1050,1010,1059,5064,5055,5061"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
             <method name="getType()" value="1005,11,1042,1051,1071,1052,1019,1053,1057,1058,1062,1063,1067,1069,1068,1070"/>
@@ -581,9 +595,10 @@
          <object class="org.eclipse.papyrus.diagram.profile.edit.parts.ProfileEditPartTN" id="Profile_1030"/>
          <object class="org.eclipse.papyrus.diagram.profile.edit.parts.PackageEditPart" id="Package_2007"/>
          <object class="org.eclipse.papyrus.diagram.profile.edit.parts.EnumerationEditPart" id="Enumeration_2006"/>
+         <object class="org.eclipse.papyrus.diagram.profile.edit.parts.PrimitiveTypeEditPart" id="PrimitiveType_2009"/>
          <object class="org.eclipse.papyrus.diagram.profile.edit.parts.DataTypeEditPart" id="DataType_2010"/>
          <object class="org.eclipse.papyrus.diagram.profile.edit.parts.ShortCutDiagramEditPart" id="Diagram_2016"/>
-         <context elements="Profile_1000,Dependency_2014,Association_2015,Stereotype_1026,Class_1031,Comment_1002,Constraint_1014,Model_2005,Profile_1030,Package_2007,Enumeration_2006,DataType_2010,Diagram_2016"/>
+         <context elements="Profile_1000,Dependency_2014,Association_2015,Stereotype_1026,Class_1031,Comment_1002,Constraint_1014,Model_2005,Profile_1030,Package_2007,Enumeration_2006,PrimitiveType_2009,DataType_2010,Diagram_2016"/>
       </modelingAssistantProvider>
    </extension>
 
@@ -706,6 +721,15 @@
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.profile.PrimitiveType_2009"
+               name="%metatype.name.PrimitiveType_2009"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.profile.PrimitiveType_3026"/>
+            <param name="semanticHint" value="2009"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.diagram.profile.DataType_2010"
                name="%metatype.name.DataType_2010"
@@ -723,6 +747,16 @@
                eclass="Diagram"
                edithelper="org.eclipse.papyrus.diagram.profile.edit.helpers.ShortCutDiagramEditHelper">
             <param name="semanticHint" value="2016"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.profile.PrimitiveType_3026"
+               name="%metatype.name.PrimitiveType_3026"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="PrimitiveType"
+               edithelper="org.eclipse.papyrus.diagram.profile.edit.helpers.PrimitiveTypeEditHelper">
+            <param name="semanticHint" value="3026"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
@@ -988,8 +1022,10 @@
          <elementType ref="org.eclipse.papyrus.diagram.profile.Profile_1030"/>
          <elementType ref="org.eclipse.papyrus.diagram.profile.Package_1004"/>
          <elementType ref="org.eclipse.papyrus.diagram.profile.Enumeration_2006"/>
+         <elementType ref="org.eclipse.papyrus.diagram.profile.PrimitiveType_2009"/>
          <elementType ref="org.eclipse.papyrus.diagram.profile.DataType_2010"/>
          <elementType ref="org.eclipse.papyrus.diagram.profile.Diagram_2016"/>
+         <elementType ref="org.eclipse.papyrus.diagram.profile.PrimitiveType_3026"/>
          <elementType ref="org.eclipse.papyrus.diagram.profile.DataTypeOperation_3019"/>
          <elementType ref="org.eclipse.papyrus.diagram.profile.EnumerationLiteral_1037"/>
          <elementType ref="org.eclipse.papyrus.diagram.profile.DataTypeProperty_3018"/>
