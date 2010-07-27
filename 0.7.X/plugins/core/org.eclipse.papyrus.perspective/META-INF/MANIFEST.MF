@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Perspective
 Bundle-SymbolicName: org.eclipse.papyrus.perspective;singleton:=true
-Bundle-Version: 0.7.0.qualifier
+Bundle-Version: 0.7.1.qualifier
 Bundle-Activator: org.eclipse.papyrus.perspective.Activator
 Require-Bundle: org.eclipse.papyrus.diagram.common;bundle-version="0.7.0",
  org.eclipse.papyrus.wizards;bundle-version="0.7.0"

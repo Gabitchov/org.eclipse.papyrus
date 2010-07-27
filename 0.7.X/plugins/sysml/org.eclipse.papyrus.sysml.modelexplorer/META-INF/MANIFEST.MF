@@ -9,7 +9,7 @@ Require-Bundle: org.eclipse.core.runtime,
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .,bin
-Bundle-Version: 0.7.0.qualifier
+Bundle-Version: 0.7.1.qualifier
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.sysml.modelexplorer.Activator
 Bundle-ManifestVersion: 2

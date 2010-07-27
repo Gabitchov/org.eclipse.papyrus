@@ -6689,7 +6689,7 @@
     <plugin
         iD="org.eclipse.papyrus.diagram.clazz"
         name="PapyrusUMLClassDiagram"
-        version="0.7.0.vqualifier"/>
+        version="0.7.1.vqualifier"/>
     <editor/>
     <navigator/>
     <diagramUpdater/>

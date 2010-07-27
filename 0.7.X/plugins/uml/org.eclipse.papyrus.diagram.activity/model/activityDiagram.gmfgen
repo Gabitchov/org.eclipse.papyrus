@@ -6994,7 +6994,7 @@
         iD="org.eclipse.papyrus.diagram.activity"
         name="Papyrus activity editor Plugin"
         provider="Papyrus"
-        version="0.7.0.qualifier">
+        version="0.7.1.qualifier">
       <requiredPlugins>org.eclipse.draw2d</requiredPlugins>
       <requiredPlugins>org.eclipse.papyrus.diagram.common</requiredPlugins>
       <requiredPlugins>org.eclipse.gmf.runtime.draw2d.ui</requiredPlugins>
