@@ -38,11 +38,11 @@ public class CustomExtensionItemSemanticEditPolicy extends ExtensionItemSemantic
 		EObject elementToDestroy = req.getElementToDestroy();
 		if(elementToDestroy instanceof Extension) {
 
-			cc.add(StereotypeHelper.getRemovePropertyCommand((Extension)elementToDestroy));
-			if(cc.canExecute()) {
-				int dummy = 0;
-				dummy++;
+			Command steCmd = StereotypeHelper.getRemovePropertyCommand((Extension)elementToDestroy);
+			if(steCmd.canExecute()) {
+				cc.add(steCmd);
 			}
+			cc.add(super.getDestroyElementCommand(req));
 		}
 		return cc;
 	}
