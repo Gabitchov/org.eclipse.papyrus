@@ -200,7 +200,7 @@ public class ExtensionHelper extends ElementHelper {
 				oldName = oldName.substring(deducedName.length());
 				try {
 					Integer test = Integer.parseInt(oldName);
-					//if there is not exception, the name didn't edited by the user
+					//if there is not exception, the name has not been edited by the user
 					link.setName(getExtensionName((Element)link.eContainer(), newSource, (Class)targetType));
 				} catch (NumberFormatException e) {
 					//do nothing
