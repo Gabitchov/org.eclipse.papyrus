@@ -18,22 +18,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gef.commands.CompoundCommand;
-import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
-import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
-import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.papyrus.diagram.common.Activator;
-import org.eclipse.papyrus.diagram.profile.custom.helper.MetaclassHelper;
+import org.eclipse.papyrus.diagram.profile.custom.messages.Messages;
 import org.eclipse.papyrus.diagram.profile.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.profile.ui.dialogs.AlphabeticalViewerSorter;
 import org.eclipse.papyrus.profile.ui.dialogs.ChooseSetAssistedDialog;
-import org.eclipse.papyrus.profile.ui.dialogs.ElementList;
 import org.eclipse.papyrus.profile.ui.dialogs.IChooseDialog;
 import org.eclipse.papyrus.ui.toolbox.LookForElement;
 import org.eclipse.swt.SWT;
@@ -45,14 +39,14 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.uml2.uml.Class;
-import org.eclipse.uml2.uml.ElementImport;
 import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Profile;
-import org.eclipse.uml2.uml.UMLFactory;
-import org.eclipse.uml2.uml.UMLPackage;
 
 /**
+ * 
+ * This dialog allows to choose the metaclass to import in the profile.
+ * This dialog doesn't allow remove imported metaclass.
+ * This dialog doesn't show the metaclasses which are already imported in the profile
  * 
  */
 public class ChooseSetMetaclassDialog extends ChooseSetAssistedDialog implements IChooseDialog {
@@ -63,18 +57,12 @@ public class ChooseSetMetaclassDialog extends ChooseSetAssistedDialog implements
 	 */
 	protected Profile profile;
 
-	protected ArrayList<Object> addedMetaclasses;
-
-	protected ArrayList<Object> deletedMetaclasses;
-
 	/**
 	 * @param parentShell
 	 * @param profile
 	 */
 	public ChooseSetMetaclassDialog(Shell parentShell, Profile profile) {
 		this(parentShell, profile, true);
-		addedMetaclasses = new ArrayList<Object>();
-		deletedMetaclasses = new ArrayList<Object>();
 	}
 
 	/**
@@ -100,26 +88,13 @@ public class ChooseSetMetaclassDialog extends ChooseSetAssistedDialog implements
 
 		this.profile = (Profile)oldContainer;
 		selectedElementList = new ElementListWithComparator(new ClassElementComparator());
-
+		//		redrawedMetaclasses = new ArrayList<Object>();
 		labelProvider = new MetaclassLabelProvider();
 		decoratedContentProposalProvider = new MetaclassContentProposalProvider();
 
-		if(retrieveImported) {
-			Iterator metaclasses = this.profile.getReferencedMetaclasses().iterator();
-			while(metaclasses.hasNext()) {
-				selectedElementList.addElement(metaclasses.next());
-			}
-		}
-
-		Iterator metaclasses = LookForElement.getPossibleMetaclasses(this.profile).iterator();
+		Iterator<?> metaclasses = LookForElement.getPossibleMetaclasses(this.profile).iterator();
 		while(metaclasses.hasNext()) {
-			Object currentPossibleMetaclass = metaclasses.next();
-
-			// for each element in the metaclasses collection, check if this class is not already
-			// imported
-			if(!selectedElementList.contains(currentPossibleMetaclass)) {
-				possibleElementList.addElement(currentPossibleMetaclass);
-			}
+			possibleElementList.addElement(metaclasses.next());
 		}
 	}
 
@@ -183,7 +158,7 @@ public class ChooseSetMetaclassDialog extends ChooseSetAssistedDialog implements
 	protected void runAddElement(String name) {
 		// find the class in the list
 		Class theClass = null;
-		Iterator it = possibleElementList.getElements().iterator();
+		Iterator<?> it = possibleElementList.getElements().iterator();
 		while(it.hasNext()) {
 			Class current = (Class)it.next();
 			if(name.equalsIgnoreCase(current.getName()) || name.equalsIgnoreCase(current.getQualifiedName())) {
@@ -211,7 +186,7 @@ public class ChooseSetMetaclassDialog extends ChooseSetAssistedDialog implements
 	@Override
 	protected boolean isSelectableElement(String text) {
 		// iterate through all possibilities and return true if text corresponds
-		Iterator it = possibleElementList.getElements().iterator();
+		Iterator<?> it = possibleElementList.getElements().iterator();
 		while(it.hasNext()) {
 			Class element = (Class)it.next();
 			if(text.equalsIgnoreCase(element.getName()) || text.equalsIgnoreCase(element.getQualifiedName())) {
@@ -221,117 +196,6 @@ public class ChooseSetMetaclassDialog extends ChooseSetAssistedDialog implements
 		return false;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.cea.papyrus.core.utils.dialog.ChooseSetDialog#okPressed()
-	 */
-	/**
-	 * 
-	 */
-	@Override
-	protected void okPressed() {
-		applyModifications();
-		super.okPressed();
-	}
-
-	/**
-	 * Apply modification when the button ok is pressed.
-	 */
-	protected void applyModifications() {
-		//----Obtain the actual imported metaclasses
-		EList metaclassSet = profile.getReferencedMetaclasses();
-		CompoundCommand deletingCommand = new CompoundCommand();
-		CompoundCommand addingCommand = new CompoundCommand();
-
-		for(int i = 0; i < metaclassSet.size(); i++) {
-			//we verify if some metaclasses need to be removed
-			if(!selectedElementList.contains(metaclassSet.get(i))) {
-
-				//we delete the metaclass
-				org.eclipse.uml2.uml.Class theClass = (org.eclipse.uml2.uml.Class)metaclassSet.get(i);
-				EList<ElementImport> importSet = profile.getMetaclassReferences();
-
-				for(int j = 0; j < importSet.size(); j++) {
-					if((importSet.get(j)).getImportedElement() != null) {
-						org.eclipse.uml2.uml.Class importedClass = (org.eclipse.uml2.uml.Class)(importSet.get(j)).getImportedElement();
-						if(importedClass.equals(theClass)) {
-
-							//we need to destroy the extensions and remove the attribute in the stereotype
-							deletingCommand.add(MetaclassHelper.getDestroyMetaclassCommand(theClass, this.profile));
-						}
-					}
-				}
-
-
-
-			}
-
-		}
-
-		if(deletingCommand != null && deletingCommand.canExecute()) {
-			try {
-				LookForElement.getCommandStack().execute(deletingCommand);
-			} catch (Exception e) {
-
-				e.printStackTrace();
-			}
-		}
-
-		//we add the new metaclasses
-		for(int i = 0; i < selectedElementList.getElements().size(); i++) {
-			if(!metaclassSet.contains(selectedElementList.getElements().get(i))) {
-				//we create an ElementImport for the new metaclass
-				ElementImport ei = UMLFactory.eINSTANCE.createElementImport();
-				//we create the class		
-
-
-				ei.setImportedElement((PackageableElement)selectedElementList.getElements().get(i));
-
-				ei.setAlias(((NamedElement)selectedElementList.getElements().get(i)).getName());
-				addedMetaclasses.add(selectedElementList.getElements().get(i));
-				ElementImport added = ei;
-
-				//we need make the import only if it doesn't exist yet!
-				EList<ElementImport> list = profile.getElementImports();
-
-				//We search if this metaclass is imported yet
-				//ListIterator<ElementImport> iterator = list.listIterator();
-				for(int iter = 0; iter < list.size(); iter++) {
-					if(list.get(iter) != null) {
-						String qNameEI = ei.getImportedElement().getQualifiedName();
-						if(list.get(iter).getImportedElement() != null) {
-							String qNamelist = list.get(iter).getImportedElement().getQualifiedName();
-							if(ei.getImportedElement().getQualifiedName().equals(list.get(iter).getImportedElement().getQualifiedName())) {
-
-								//the metaclass is yet imported, we take it to put it in the metaclassReference
-								added = list.get(iter);//iterator.previous();
-								break;
-							}
-						}
-					}
-				}
-
-				//we add the metaclass in metaclassReference
-				SetRequest setRequest = new SetRequest(profile, UMLPackage.eINSTANCE.getProfile_MetaclassReference(), added);
-				SetValueCommand setValueCommand = new SetValueCommand(setRequest);
-				if(setValueCommand != null && setValueCommand.canExecute()) {
-					addingCommand.add(new ICommandProxy(setValueCommand));
-				}
-
-			}
-		}
-
-		if(addingCommand != null && addingCommand.canExecute()) {
-			try {
-				LookForElement.getCommandStack().execute(addingCommand);
-			} catch (Exception e) {
-
-				e.printStackTrace();
-			}
-		}
-
-	}
 
 	/**
 	 * 
@@ -358,7 +222,7 @@ public class ChooseSetMetaclassDialog extends ChooseSetAssistedDialog implements
 			ArrayList<DecoratedContentProposal> proposals = new ArrayList<DecoratedContentProposal>();
 
 			if(possibleElementList != null) {
-				Iterator it = possibleElementList.getElements().iterator();
+				Iterator<?> it = possibleElementList.getElements().iterator();
 				while(it.hasNext()) {
 					final NamedElement element = (NamedElement)it.next();
 					final String simpleName = element.getName();
@@ -542,24 +406,4 @@ public class ChooseSetMetaclassDialog extends ChooseSetAssistedDialog implements
 		}
 	}
 
-	public ElementList getElement() {
-		// TODO Auto-generated method stub
-		return selectedElementList;
-	}
-
-	/**
-	 * 
-	 * @return the added metaclasses
-	 */
-	public ArrayList<Object> getAddedMetaclasses() {
-		return addedMetaclasses;
-	}
-
-	/**
-	 * 
-	 * @return the deleted metaclasses
-	 */
-	public ArrayList<Object> getDeletedMetaclasses() {
-		return deletedMetaclasses;
-	}
 }
