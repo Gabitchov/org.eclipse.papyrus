@@ -56,6 +56,7 @@ import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.diagram.clazz.custom.edit.part.AbstractTemplateParameterEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.ClassifierTemplateParameterItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.UMLTextNonResizableEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.UMLTextSelectionEditPolicy;
@@ -85,7 +86,7 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class ClassifierTemplateParameterEditPart extends CompartmentEditPart implements ITextAwareEditPart, IPrimaryEditPart {
+public class ClassifierTemplateParameterEditPart extends AbstractTemplateParameterEditPart implements ITextAwareEditPart, IPrimaryEditPart {
 
 	/**
 	 * @generated

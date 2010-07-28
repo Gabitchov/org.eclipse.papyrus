@@ -6689,7 +6689,7 @@
     <plugin
         iD="org.eclipse.papyrus.diagram.clazz"
         name="PapyrusUMLClassDiagram"
-        version="0.7.1.vqualifier"/>
+        version="0.7.1.qualifier"/>
     <editor/>
     <navigator/>
     <diagramUpdater/>
@@ -6922,5 +6922,11 @@
         genView="/0/@diagram/@topLevelNodes.15/@labels.0"
         name="AbstractShortcutDiagramNameEditPart"
         superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.AbstractShortcutDiagramNameEditPart"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        comment="Extended Gen View For UML compartments child label nodes, like properties in classifier representation of class diagram"
+        genView="/0/@diagram/@childNodes.0 /0/@diagram/@childNodes.1 /0/@diagram/@childNodes.2 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26 /0/@diagram/@childNodes.29"
+        name="UMLCompartmentEditPart"
+        superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.UMLCompartmentEditPart"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>
 </xmi:XMI>
