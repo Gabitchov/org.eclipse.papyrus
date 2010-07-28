@@ -23,13 +23,11 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
@@ -41,16 +39,12 @@ import org.eclipse.papyrus.diagram.profile.providers.UMLViewProvider;
 import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.papyrus.umlutils.ui.helper.AppliedStereotypeHelper;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.util.UMLUtil.StereotypeApplicationHelper;
 
 /**
  * A custom creation view command for the metaclass that creates a <code>View</code>.
  */
 
 public class CustomMetaClassCreateCommand extends org.eclipse.gmf.runtime.diagram.ui.commands.CreateCommand {
-
-	/** height of a title package, approximatively */
-	final static private int HEIGHT_TITLE_PACKAGE = 35;
 
 	/** the height between two added metaclasses */
 	final static private int HEIGHT_BETWEEN_TWO_METACLASS = 80;
@@ -115,15 +109,7 @@ public class CustomMetaClassCreateCommand extends org.eclipse.gmf.runtime.diagra
 
 			UMLViewProvider viewProvider = new UMLViewProvider();
 
-
-			Iterator adapterIterator = myViewDescriptor.getRequestAdapters().iterator();
-			//-------------pour test
-			//creation of the node!
-			Iterator adapterIterator2 = myViewDescriptor.getRequestAdapters().iterator();
-			CreateElementRequestAdapter adapter2;
-			adapter2 = (CreateElementRequestAdapter)adapterIterator2.next();
-			CreateElementRequest req = (CreateElementRequest)adapter2.getAdapter(CreateElementRequest.class);
-			EObject container = req.getContainer();
+			Iterator<?> adapterIterator = myViewDescriptor.getRequestAdapters().iterator();
 
 			//creation of the nodes!
 			while(adapterIterator.hasNext()) {
