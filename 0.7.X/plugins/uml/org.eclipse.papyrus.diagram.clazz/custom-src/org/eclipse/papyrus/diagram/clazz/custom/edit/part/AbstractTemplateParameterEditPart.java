@@ -14,13 +14,13 @@
 package org.eclipse.papyrus.diagram.clazz.custom.edit.part;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
+import org.eclipse.papyrus.diagram.common.editparts.UMLCompartmentEditPart;
 import org.eclipse.uml2.uml.TemplateParameter;
 
 /**
  * this a abstract editpart use to add listeners
  */
-public class AbstractTemplateParameterEditPart extends CompartmentEditPart {
+public class AbstractTemplateParameterEditPart extends UMLCompartmentEditPart {
 
 	protected static final String LISTEN_OWNED_PARAM = "ListenOwnedParam";
 

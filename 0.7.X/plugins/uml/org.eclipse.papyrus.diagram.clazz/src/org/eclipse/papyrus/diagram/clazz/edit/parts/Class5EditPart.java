@@ -64,6 +64,7 @@ import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLParserProvider;
 import org.eclipse.papyrus.diagram.common.directedit.MultilineLabelDirectEditManager;
+import org.eclipse.papyrus.diagram.common.editparts.UMLCompartmentEditPart;
 import org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure;
@@ -89,7 +90,7 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class Class5EditPart extends CompartmentEditPart implements ITextAwareEditPart, IPrimaryEditPart {
+public class Class5EditPart extends UMLCompartmentEditPart implements ITextAwareEditPart, IPrimaryEditPart {
 
 	/**
 	 * @generated
