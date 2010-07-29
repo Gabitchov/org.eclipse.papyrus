@@ -16,7 +16,9 @@ package org.eclipse.papyrus.diagram.common.service;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.gmf.runtime.common.core.service.AbstractProviderConfiguration;
+import org.eclipse.gmf.runtime.common.core.service.ProviderPriority;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditorWithFlyOutPalette;
+import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.ui.IEditorPart;
 
 /**
@@ -32,6 +34,9 @@ public class XMLPaletteProviderConfiguration extends AbstractProviderConfigurati
 
 	/** ID of this palette contribution */
 	private String id;
+
+	/** priority of the provider */
+	private ProviderPriority priority = ProviderPriority.LOWEST;
 
 	/**
 	 * boolean set to true if the {@link XMLPaletteProviderConfiguration} creates new entries or
@@ -73,6 +78,16 @@ public class XMLPaletteProviderConfiguration extends AbstractProviderConfigurati
 			id = configElement.getDeclaringExtension().getContributor().getName();
 		}
 
+		configChildren = configElement.getChildren(IPapyrusPaletteConstant.PRIORITY);
+		// sometimes, there is a confusion between priority and Priority... 
+		if(configChildren.length > 0) {
+			configChildren = configElement.getChildren("Priority");
+		}
+		if(configChildren.length > 0) {
+			priority = ProviderPriority.parse(configChildren[0].getAttribute(NAME));
+		} else {
+			Activator.log.error("Impossible to find the priority for this configuration:" + this.getName() + " (" + this.getID() + ")", null);
+		}
 	}
 
 	/**
@@ -175,6 +190,15 @@ public class XMLPaletteProviderConfiguration extends AbstractProviderConfigurati
 	 */
 	public boolean hasOnlyEntriesDefinition() {
 		return !displayEntries;
+	}
+
+	/**
+	 * returns the priority for this configuration
+	 * 
+	 * @return the priority for this configuration
+	 */
+	public ProviderPriority getPriority() {
+		return priority;
 	}
 
 }

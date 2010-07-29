@@ -251,17 +251,58 @@ public class PaletteUtil {
 		Set<? extends PaletteEntry> entries = new HashSet<PaletteEntry>();
 
 		// retrieve all provider for the given editor ID
-		List<? extends PapyrusPaletteService.ProviderDescriptor> providers = (List<? extends ProviderDescriptor>)PapyrusPaletteService.getInstance().getProviders();
-		ContributeToPaletteOperation operation = new ContributeToPaletteOperation(part, part.getEditorInput(), new PaletteRoot(), new HashMap<Object, Object>());
 		PaletteRoot root = new PaletteRoot();
+		List<? extends PapyrusPaletteService.ProviderDescriptor> providers = (List<? extends ProviderDescriptor>)PapyrusPaletteService.getInstance().getProviders();
+		ContributeToPaletteOperation operation = new ContributeToPaletteOperation(part, part.getEditorInput(), root, new HashMap<Object, Object>());
 
-		for(PapyrusPaletteService.ProviderDescriptor descriptor : providers) {
-			if(descriptor.providesWithVisibility(operation)) {
-				((IPaletteProvider)descriptor.getProvider()).contributeToPalette(part, part.getEditorInput(), root, new HashMap<Object, Object>());
+
+		// generate for each provider, according to priority
+		@SuppressWarnings("unchecked")
+		List<PapyrusPaletteService.ProviderDescriptor> providerList = (List<PapyrusPaletteService.ProviderDescriptor>)PapyrusPaletteService.getInstance().getProviders();
+		for(PapyrusPaletteService.ProviderDescriptor descriptor : providerList) {
+			int compare = descriptor.getPriority().compareTo(priority);
+			if(compare < 0) {
+				if(descriptor.providesWithVisibility(operation)) {
+					((IPaletteProvider)descriptor.getProvider()).contributeToPalette(part, part.getEditorInput(), root, new HashMap<Object, Object>());
+				}
 			}
-
 		}
+		return entries;
+	}
 
+	/**
+	 * Returns all available entries for the given editor ID
+	 * 
+	 * @param editorID
+	 *        the editor to be contributed
+	 * @param priority
+	 *        the priority max for the entries
+	 * @return the set of available entries
+	 */
+	public static Map<String, PaletteEntry> getAvailableEntriesSet(IEditorPart part, ProviderPriority priority) {
+		Map<String, PaletteEntry> entries = new HashMap<String, PaletteEntry>();
+
+		// retrieve all provider for the given editor ID
+		PaletteRoot root = new PaletteRoot();
+		List<? extends PapyrusPaletteService.ProviderDescriptor> providers = (List<? extends ProviderDescriptor>)PapyrusPaletteService.getInstance().getProviders();
+		ContributeToPaletteOperation operation = new ContributeToPaletteOperation(part, part.getEditorInput(), root, entries);
+
+
+		// generate for each provider, according to priority
+		@SuppressWarnings("unchecked")
+		List<PapyrusPaletteService.ProviderDescriptor> providerList = (List<PapyrusPaletteService.ProviderDescriptor>)PapyrusPaletteService.getInstance().getProviders();
+		System.err.println("---------------------------------------");
+		for(PapyrusPaletteService.ProviderDescriptor descriptor : providerList) {
+			int compare = descriptor.getPriority().compareTo(priority);
+			System.err.println("Descriptor: " + descriptor.getPriority() + " for " + descriptor.getContributionName() + " from " + descriptor.getContributionID());
+			System.err.println("reference: " + priority);
+			System.err.println("added: " + (compare <= 0));
+			if(compare <= 0) {
+				if(descriptor.providesWithVisibility(operation)) {
+					((IPaletteProvider)descriptor.getProvider()).contributeToPalette(part, part.getEditorInput(), root, entries);
+				}
+			}
+		}
 		return entries;
 	}
 
