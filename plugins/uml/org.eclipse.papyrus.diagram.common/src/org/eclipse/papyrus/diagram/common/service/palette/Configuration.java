@@ -110,8 +110,8 @@ public class Configuration {
 
 			NodeList configurationChildren = configurationNode.getChildNodes();//stereotypesToApply Node
 			Node stereotypesToApplyNode = null;
-			
-			for (int i = 0 ; i < configurationChildren.getLength() ; i++) {
+
+			for(int i = 0; i < configurationChildren.getLength(); i++) {
 				Node configurationChild = configurationChildren.item(i);
 				if(IPapyrusPaletteConstant.STEREOTYPES_TO_APPLY.equals(configurationChild.getLocalName())) {
 					stereotypesToApplyNode = configurationChild;
@@ -208,7 +208,7 @@ public class Configuration {
 				EList<Property> attributs = ste.getAllAttributes();
 				for(Property prop : attributs) {
 					if(prop != null) {
-						if((prop.getAssociation() == null) || ((prop.getAssociation() != null) && (!prop.getName().startsWith("base_")))) { //$NON-NLS-1$
+						if((prop.getAssociation() == null && !prop.isDerived()) || ((prop.getAssociation() != null) && (!prop.getName().startsWith("base_")) && !prop.isDerived())) { //$NON-NLS-1$
 							if(currentSte.getPropertyRepresentation(ste.getQualifiedName(), prop.getQualifiedName()) == null) {
 								PropertyRepresentation myProp = new PropertyRepresentation(ste.getQualifiedName(), prop.getQualifiedName());
 								myProp.setUMLProperty(prop);
