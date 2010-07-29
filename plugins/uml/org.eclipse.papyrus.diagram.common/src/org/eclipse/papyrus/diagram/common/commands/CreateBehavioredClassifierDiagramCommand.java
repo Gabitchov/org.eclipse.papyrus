@@ -137,6 +137,13 @@ public abstract class CreateBehavioredClassifierDiagramCommand extends AbstractP
 		return name;
 	}
 
+	public Behavior getBehavior() {
+		return behavior;
+	}
+
+	public void setBehavior(Behavior behavior) {
+		this.behavior = behavior;
+	}
 
 	//	@Override
 	//	protected void runAsTransaction(DiResourceSet diResourceSet, EObject container, String name) {
