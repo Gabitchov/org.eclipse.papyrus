@@ -419,19 +419,6 @@
 <extension
       point="org.eclipse.papyrus.diagram.common.aspectToolProvider">
    <aspectToolProvider
-         class="org.eclipse.papyrus.diagram.common.service.palette.GraphicalAspectActionProvider"
-         description="This action modifies graphical representation of the specified element"
-         icon="icons/change_display.gif"
-         id="org.eclipse.papyrus.postaction.graphicalactionprovider"
-         name="Set graphical properties">
-      <Priority
-            name="Lowest">
-      </Priority>
-   </aspectToolProvider>
-</extension>
-<extension
-      point="org.eclipse.papyrus.diagram.common.aspectToolProvider">
-   <aspectToolProvider
          class="org.eclipse.papyrus.diagram.common.service.palette.DisplayAppliedStereotypeAspectActionProvider"
          description="This action modifies the list of stereotype that will be displayed for the specified element, and if they are displayed using qualified name or simple name"
          icon="icons/stereotype_display.gif"
