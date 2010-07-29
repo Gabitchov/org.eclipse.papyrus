@@ -15,17 +15,26 @@ package org.eclipse.papyrus.diagram.communication.custom.messages;
 
 import org.eclipse.osgi.util.NLS;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Messages.
+ */
 public class Messages extends NLS {
 
+	/** The Constant BUNDLE_NAME. */
 	private static final String BUNDLE_NAME = "org.eclipse.papyrus.diagram.communication.custom.messages.messages"; //$NON-NLS-1$
 
 
+	/** The Message parser. */
 	public static String MessageParser_undefined;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);
 	}
 
+	/**
+	 * Instantiates a new messages.
+	 */
 	private Messages() {
 	}
 }

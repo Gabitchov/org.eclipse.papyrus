@@ -35,7 +35,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private final static String CREATELIFELINE1CREATIONTOOL = "createLifeline1CreationTool"; //$NON-NLS-1$
+	private final static String CREATELIFELINECOMCREATIONTOOL = "createLifelineComCreationTool"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -82,8 +82,8 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	public Tool createTool(String toolId) {
-		if(toolId.equals(CREATELIFELINE1CREATIONTOOL)) {
-			return createLifeline1CreationTool();
+		if(toolId.equals(CREATELIFELINECOMCREATIONTOOL)) {
+			return createLifelineComCreationTool();
 		}
 		if(toolId.equals(CREATECOMMENT7CREATIONTOOL)) {
 			return createComment7CreationTool();
@@ -125,13 +125,15 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createLifeline1CreationTool() {
+	private Tool createLifelineComCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Lifeline_8001);
 
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
 	}
+
+
 
 	/**
 	 * @generated
