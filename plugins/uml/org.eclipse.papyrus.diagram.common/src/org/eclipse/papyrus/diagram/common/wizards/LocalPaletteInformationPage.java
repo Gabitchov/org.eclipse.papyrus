@@ -18,6 +18,7 @@ import java.util.Arrays;
 import org.eclipse.gmf.runtime.common.core.service.ProviderPriority;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditorWithFlyOutPalette;
 import org.eclipse.jface.dialogs.Dialog;
+import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.Messages;
@@ -98,6 +99,20 @@ public class LocalPaletteInformationPage extends WizardPage implements Listener 
 	public LocalPaletteInformationPage(IEditorPart part) {
 		super(Messages.Local_Palette_InfoPage_Name, Messages.Local_Palette_InfoPage_Title, Activator.getImageDescriptor(WIZARD_ICON));
 		this.editorPart = part;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public IWizardPage getNextPage() {
+		LocalPaletteContentPage contentPage = (LocalPaletteContentPage)super.getNextPage();
+		if(priority != null) {
+			contentPage.setPriority(priority);
+			contentPage.profileCombo.deselectAll();
+			contentPage.profileCombo.select(contentPage.profileCombo.getItems().length - 1); // select the last one (UML)
+		}
+		return contentPage;
 	}
 
 	/**

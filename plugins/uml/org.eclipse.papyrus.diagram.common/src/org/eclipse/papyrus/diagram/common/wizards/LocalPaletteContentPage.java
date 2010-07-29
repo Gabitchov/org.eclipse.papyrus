@@ -50,6 +50,7 @@ import org.eclipse.gef.palette.PaletteStack;
 import org.eclipse.gef.palette.PaletteToolbar;
 import org.eclipse.gef.palette.ToolEntry;
 import org.eclipse.gef.ui.palette.PaletteCustomizer;
+import org.eclipse.gmf.runtime.common.core.service.ProviderPriority;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditorWithFlyOutPalette;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -90,6 +91,8 @@ import org.eclipse.swt.dnd.DropTargetEvent;
 import org.eclipse.swt.dnd.DropTargetListener;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.dnd.TreeDropTargetEffect;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.events.SelectionEvent;
@@ -231,6 +234,9 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 
 	/** validator key for toolbar items */
 	protected final static String VALIDATOR = "validator";
+
+	/** priority of the current edited palette */
+	protected ProviderPriority priority;
 
 
 	/**
@@ -637,7 +643,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 				Activator.log.error("Impossible to load file: " + file, null);
 			} else {
 				Document document = documentBuilder.parse(file);
-				Map<String, PaletteEntry> entries = PapyrusPaletteService.getInstance().getAllContributionsIds(editorPart, editorPart.getEditorInput(), new PaletteRoot());
+				Map<String, PaletteEntry> entries = PaletteUtil.getAvailableEntriesSet(editorPart, ProviderPriority.HIGHEST);
 				XMLDefinitionPaletteProxyFactory factory = new XMLDefinitionPaletteProxyFactory(entries);
 				XMLDefinitionPaletteParser parser = new XMLDefinitionPaletteParser(factory);
 				for(int i = 0; i < document.getChildNodes().getLength(); i++) {
@@ -1205,7 +1211,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		availableToolsViewer.addFilter(new DrawerFilter());
 		// add drag support
 		addAvailableToolsDragSupport();
-		availableToolsViewer.setInput(getAllVisibleStandardEntries());
+		// availableToolsViewer.setInput(getAllVisibleStandardEntries());
 	}
 
 	/**
@@ -1233,8 +1239,10 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		profileCombo.setItems(profileComboList.toArray(new String[]{}));
 
 		// add selection listener for the combo. selects the "UML tools" item
-		profileCombo.addSelectionListener(new ProfileComboSelectionListener());
-		profileCombo.select(profileNumber);
+		ProfileComboSelectionListener listener = new ProfileComboSelectionListener();
+		profileCombo.addSelectionListener(listener);
+		profileCombo.addModifyListener(listener);
+		// profileCombo.select(profileNumber);
 
 		return profileCombo;
 	}
@@ -2044,7 +2052,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	/**
 	 * Listener for the profile combo. It changes the input of the following viewer.
 	 */
-	public class ProfileComboSelectionListener implements SelectionListener {
+	public class ProfileComboSelectionListener implements SelectionListener, ModifyListener {
 
 		/**
 		 * {@inheritDoc}
@@ -2057,7 +2065,24 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		 * {@inheritDoc}
 		 */
 		public void widgetSelected(SelectionEvent e) {
+			handleSelectionChanged();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public void modifyText(ModifyEvent e) {
+			handleSelectionChanged();
+		}
+
+		/**
+		 * handles the change selection for the combo
+		 */
+		protected void handleSelectionChanged() {
 			int index = profileCombo.getSelectionIndex();
+			if(index < 0 || index >= profileCombo.getItems().length) {
+				return;
+			}
 			String name = profileComboList.get(index);
 
 			Collection<PaletteEntry> standardEntries = getAllVisibleStandardEntries();
@@ -2082,60 +2107,8 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 
 				// generate tools for given profile
 				availableToolsViewer.setInput(profile);
-				// generateAvailableToolsViewerInput(profile, standardEntries);
 			}
 		}
-
-		//		/**
-		//		 * generates the input for the available tools viewer, given the profile
-		//		 * 
-		//		 * @param profile
-		//		 *        the profile for which tools are computed
-		//		 * @param standardEntries
-		//		 *        the list of standard entries
-		//		 */
-		//		@SuppressWarnings("unchecked")
-		//		protected void generateAvailableToolsViewerInput(Profile profile, Collection<PaletteEntry> standardEntries) {
-		//			List<PaletteEntry> entries = new ArrayList<PaletteEntry>();
-		//			// for each tool in the palette entry, checks which stereotypes can be applied ...
-		//			for(PaletteEntry entry : standardEntries) {
-		//				// retrieve the element type created by the tool.
-		//				if(entry instanceof CombinedTemplateCreationEntry) {
-		//					EClass toolMetaclass = PaletteUtil.getToolMetaclass((CombinedTemplateCreationEntry)entry);
-		//					// checks the tool entry really creates a UML element (for example, constraint
-		//					// link
-		//					// does not create a stereotype
-		//					if(toolMetaclass != null) {
-		//						// for each stereotype, checks if it can be applied to the kind of element
-		//						// created
-		//						for(Stereotype stereotype : profile.getOwnedStereotypes()) {
-		//							// checks if the stereotype can be applied to the tool metaclass
-		//							List<Class> metaclasses = stereotype.getAllExtendedMetaclasses();
-		//							for(Class stMetaclass : metaclasses) {
-		//								// get Eclass
-		//								java.lang.Class metaclassClass = stMetaclass.getClass();
-		//								if(metaclassClass != null) {
-		//									java.lang.Class toolMetaClassInstanceClass = (java.lang.Class)toolMetaclass.getInstanceClass();
-		//									EClassifier metaClassifier = UMLPackage.eINSTANCE.getEClassifier(stMetaclass.getName());
-		//									if(((EClass)metaClassifier).isSuperTypeOf(toolMetaclass)) {
-		//										// should create the palette entry
-		//										HashMap properties = new HashMap();
-		//										ArrayList<String> stereotypesQNToApply = new ArrayList<String>();
-		//										stereotypesQNToApply.add(stereotype.getQualifiedName());
-		//										properties.put(IPapyrusPaletteConstant.STEREOTYPES_TO_APPLY_KEY, stereotypesQNToApply);
-		//										AspectCreationEntry aspectEntry = new AspectCreationEntry(stereotype.getName() + " (" + entry.getLabel() + ")", "Create an element with a stereotype", entry.getId() + "." + stereotype.getName(), Activator.getImageDescriptor("/icons/papyrus/PapyrusLogo16x16.gif"), (CombinedTemplateCreationEntry)entry, properties);
-		//										entries.add((PaletteEntry)aspectEntry);
-		//									}
-		//								}
-		//							}
-		//						}
-		//					}
-		//				}
-		//				availableToolsViewer.setInput(entries);
-		//			}
-		//
-		//		}
-
 	}
 
 	/**
@@ -2364,24 +2337,13 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	}
 
 	/**
-	 * Returns the list of all palette entries
-	 * 
-	 * @return the list of all palette entries
-	 */
-	protected Collection<PaletteEntry> getAllStandardEntries() {
-		PaletteRoot root = new PaletteRoot();
-		Map<String, PaletteEntry> entries = PapyrusPaletteService.getInstance().getAllContributionsIds(editorPart, editorPart.getEditorInput(), root);
-		return entries.values();
-	}
-
-	/**
 	 * Returns the list of all visible palette entries
 	 * 
 	 * @return the list of all visible palette entries
 	 */
 	protected Collection<PaletteEntry> getAllVisibleStandardEntries() {
 		HashSet<PaletteEntry> result = new HashSet<PaletteEntry>();
-		for(PaletteEntry entry : getAllStandardEntries()) {
+		for(PaletteEntry entry : PaletteUtil.getAvailableEntriesSet(editorPart, priority).values()) {
 			// the entry is not just a defineOnly entry but a visible one
 			if(getRootParent(entry) != null) {
 				result.add(entry);
@@ -2479,5 +2441,15 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 			}
 			return false;
 		}
+	}
+
+	/**
+	 * Sets the priority of the current edited palette
+	 * 
+	 * @param priority
+	 *        the priority of the current edited palette
+	 */
+	public void setPriority(ProviderPriority priority) {
+		this.priority = priority;
 	}
 }
