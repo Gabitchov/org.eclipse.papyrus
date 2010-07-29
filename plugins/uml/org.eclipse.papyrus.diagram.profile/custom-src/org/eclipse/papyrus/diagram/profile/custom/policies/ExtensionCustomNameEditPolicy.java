@@ -31,6 +31,7 @@ import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.profile.custom.helper.ExtensionHelper;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Extension;
 import org.eclipse.uml2.uml.ExtensionEnd;
 import org.eclipse.uml2.uml.Stereotype;
@@ -53,6 +54,18 @@ public class ExtensionCustomNameEditPolicy extends AbstractEditPolicy implements
 	/** stores the host associated semantic element */
 	protected EObject hostSemanticElement;
 
+	/**
+	 * This field contains the name of the extension.
+	 * It is not modified when the user edit the extension name, so this field is used to know if we can
+	 * modify the extension name or not when we edit the stereotype name.
+	 */
+	protected String systemExtensionName;
+
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 */
 	public ExtensionCustomNameEditPolicy() {
 		super();
 	}
@@ -70,6 +83,7 @@ public class ExtensionCustomNameEditPolicy extends AbstractEditPolicy implements
 		if(hostSemanticElement instanceof Extension) {
 			Stereotype stereotype = ((Extension)hostSemanticElement).getStereotype();
 			getDiagramEventBroker().addNotificationListener(stereotype, this);
+			this.systemExtensionName = ((Extension)hostSemanticElement).getName();
 		}
 	}
 
@@ -124,6 +138,8 @@ public class ExtensionCustomNameEditPolicy extends AbstractEditPolicy implements
 
 								Display.getCurrent().asyncExec(new Runnable() {
 
+
+
 									public void run() {
 										String oldName = ((Extension)hostSemanticElement).getName();
 										String deducedName = ExtensionHelper.deduceExtensionNameFromProperties(((Extension)hostSemanticElement));
@@ -131,20 +147,22 @@ public class ExtensionCustomNameEditPolicy extends AbstractEditPolicy implements
 										CompositeCommand cc = new CompositeCommand("Change Extension Name"); //$NON-NLS-1$
 										Extension ext = ((Extension)hostSemanticElement);
 										Stereotype ste = ((Extension)hostSemanticElement).getStereotype();
-										String newName = ExtensionHelper.EXTENSION + ste.getName();
+										String newExtEndName = ExtensionHelper.EXTENSION + ste.getName();
 
 										//Command to change the Extension's name
 										//only if the used doesn't have modify its name
-										if(oldName.equals(deducedName)) {
-											SetRequest setRequestExt = new SetRequest(domain, ext, UMLPackage.eINSTANCE.getNamedElement_Name(), newName);
+										String newExtensionName = ExtensionHelper.getExtensionName((Element)hostSemanticElement, ((Extension)hostSemanticElement).getStereotype(), ((Extension)hostSemanticElement).getMetaclass());
+										if(systemExtensionName.equals(((Extension)hostSemanticElement).getName())) {
+											SetRequest setRequestExt = new SetRequest(domain, ext, UMLPackage.eINSTANCE.getNamedElement_Name(), newExtensionName);
 											SetValueCommand setValueCommandExt = new SetValueCommand(setRequestExt);
 											cc.add(setValueCommandExt);
+											systemExtensionName = newExtensionName;
 										}
 										//command to change the ExtensionEnd's name 
 
 										//There is only ONE ExtensionEnd
 										ExtensionEnd extEnd = (ExtensionEnd)((Extension)hostSemanticElement).getOwnedEnds().get(0);
-										SetRequest setRequestExtEnd = new SetRequest(domain, extEnd, UMLPackage.eINSTANCE.getNamedElement_Name(), newName.replaceFirst("E", "e")); //$NON-NLS-1$ //$NON-NLS-2$
+										SetRequest setRequestExtEnd = new SetRequest(domain, extEnd, UMLPackage.eINSTANCE.getNamedElement_Name(), newExtEndName.replaceFirst("E", "e")); //$NON-NLS-1$ //$NON-NLS-2$
 										SetValueCommand setValueCommandExtEnd = new SetValueCommand(setRequestExtEnd);
 										cc.add(setValueCommandExtEnd);
 										((IGraphicalEditPart)getHost()).getDiagramEditDomain().getDiagramCommandStack().execute(new ICommandProxy(cc));

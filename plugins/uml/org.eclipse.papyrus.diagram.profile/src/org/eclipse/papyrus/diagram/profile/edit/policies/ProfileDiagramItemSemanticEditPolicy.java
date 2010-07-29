@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.profile.edit.policies;
 
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -16,6 +29,7 @@ import org.eclipse.papyrus.diagram.profile.edit.commands.EnumerationCreateComman
 import org.eclipse.papyrus.diagram.profile.edit.commands.MetaclassCreateCommand;
 import org.eclipse.papyrus.diagram.profile.edit.commands.ModelCreateCommandTN;
 import org.eclipse.papyrus.diagram.profile.edit.commands.PackageCreateCommand;
+import org.eclipse.papyrus.diagram.profile.edit.commands.PrimitiveTypeCreateCommand;
 import org.eclipse.papyrus.diagram.profile.edit.commands.ProfileCreateCommandTN;
 import org.eclipse.papyrus.diagram.profile.edit.commands.ShortCutDiagramCreateCommand;
 import org.eclipse.papyrus.diagram.profile.edit.commands.StereotypeCreateCommand;
@@ -67,6 +81,9 @@ public class ProfileDiagramItemSemanticEditPolicy extends UMLBaseItemSemanticEdi
 		}
 		if(UMLElementTypes.Enumeration_2006 == req.getElementType()) {
 			return getGEFWrapper(new EnumerationCreateCommand(req));
+		}
+		if(UMLElementTypes.PrimitiveType_2009 == req.getElementType()) {
+			return getGEFWrapper(new PrimitiveTypeCreateCommand(req));
 		}
 		if(UMLElementTypes.DataType_2010 == req.getElementType()) {
 			return getGEFWrapper(new DataTypeCreateCommand(req));

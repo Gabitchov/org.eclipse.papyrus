@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.profile.providers;
 
 import java.util.ArrayList;
@@ -37,6 +50,8 @@ import org.eclipse.papyrus.diagram.profile.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.PackageEditPartCN;
 import org.eclipse.papyrus.diagram.profile.edit.parts.PackagePackageableElementCompartmentEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.PackagePackageableElementCompartmentEditPartCN;
+import org.eclipse.papyrus.diagram.profile.edit.parts.PrimitiveTypeEditPart;
+import org.eclipse.papyrus.diagram.profile.edit.parts.PrimitiveTypeEditPartCN;
 import org.eclipse.papyrus.diagram.profile.edit.parts.ProfileDiagramEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.ProfileEditPartCN;
 import org.eclipse.papyrus.diagram.profile.edit.parts.ProfileEditPartTN;
@@ -61,7 +76,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 	public List getTypesForPopupBar(IAdaptable host) {
 		IGraphicalEditPart editPart = (IGraphicalEditPart)host.getAdapter(IGraphicalEditPart.class);
 		if(editPart instanceof ProfileDiagramEditPart) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(12);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(13);
 			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.Association_2015);
 			types.add(UMLElementTypes.Stereotype_1026);
@@ -72,6 +87,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.Profile_1030);
 			types.add(UMLElementTypes.Package_2007);
 			types.add(UMLElementTypes.Enumeration_2006);
+			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
 			types.add(UMLElementTypes.Diagram_2016);
 			return types;
@@ -116,72 +132,78 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if(editPart instanceof PackagePackageableElementCompartmentEditPart) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(7);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(8);
 			types.add(UMLElementTypes.Comment_1007);
 			types.add(UMLElementTypes.Model_1027);
 			types.add(UMLElementTypes.Profile_1024);
 			types.add(UMLElementTypes.Package_1012);
 			types.add(UMLElementTypes.Constraint_1028);
 			types.add(UMLElementTypes.Enumeration_3025);
+			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
 			return types;
 		}
 		if(editPart instanceof PackagePackageableElementCompartmentEditPartCN) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(7);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(8);
 			types.add(UMLElementTypes.Comment_1007);
 			types.add(UMLElementTypes.Model_1027);
 			types.add(UMLElementTypes.Profile_1024);
 			types.add(UMLElementTypes.Package_1012);
 			types.add(UMLElementTypes.Constraint_1028);
 			types.add(UMLElementTypes.Enumeration_3025);
+			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
 			return types;
 		}
 		if(editPart instanceof ProfilePackageableElementCompartmentEditPartTN) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(9);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(10);
 			types.add(UMLElementTypes.Stereotype_1023);
 			types.add(UMLElementTypes.Model_1027);
 			types.add(UMLElementTypes.Profile_1024);
 			types.add(UMLElementTypes.Package_1012);
 			types.add(UMLElementTypes.Constraint_1028);
 			types.add(UMLElementTypes.Enumeration_3025);
+			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Comment_1007);
 			types.add(UMLElementTypes.Class_3028);
 			return types;
 		}
 		if(editPart instanceof ProfilePackageableElementCompartmentEditPartCN) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(9);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(10);
 			types.add(UMLElementTypes.Stereotype_1023);
 			types.add(UMLElementTypes.Model_1027);
 			types.add(UMLElementTypes.Profile_1024);
 			types.add(UMLElementTypes.Package_1012);
 			types.add(UMLElementTypes.Constraint_1028);
 			types.add(UMLElementTypes.Enumeration_3025);
+			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Comment_1007);
 			types.add(UMLElementTypes.Class_3028);
 			return types;
 		}
 		if(editPart instanceof ModelPackageableElementCompartmentEditPartTN) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(7);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(8);
+			types.add(UMLElementTypes.Comment_1007);
 			types.add(UMLElementTypes.Model_1027);
 			types.add(UMLElementTypes.Profile_1024);
 			types.add(UMLElementTypes.Package_1012);
 			types.add(UMLElementTypes.Constraint_1028);
 			types.add(UMLElementTypes.Enumeration_3025);
+			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
-			types.add(UMLElementTypes.Comment_1007);
 			return types;
 		}
 		if(editPart instanceof ModelPackageableElementCompartmentEditPartCN) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(7);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(8);
+			types.add(UMLElementTypes.Comment_1007);
 			types.add(UMLElementTypes.Model_1027);
 			types.add(UMLElementTypes.Profile_1024);
 			types.add(UMLElementTypes.Package_1012);
-			types.add(UMLElementTypes.Comment_1007);
 			types.add(UMLElementTypes.Constraint_1028);
 			types.add(UMLElementTypes.Enumeration_3025);
+			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
 			return types;
 		}
@@ -223,8 +245,14 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof EnumerationEditPart) {
 			return ((EnumerationEditPart)sourceEditPart).getMARelTypesOnSource();
 		}
+		if(sourceEditPart instanceof PrimitiveTypeEditPart) {
+			return ((PrimitiveTypeEditPart)sourceEditPart).getMARelTypesOnSource();
+		}
 		if(sourceEditPart instanceof DataTypeEditPart) {
 			return ((DataTypeEditPart)sourceEditPart).getMARelTypesOnSource();
+		}
+		if(sourceEditPart instanceof PrimitiveTypeEditPartCN) {
+			return ((PrimitiveTypeEditPartCN)sourceEditPart).getMARelTypesOnSource();
 		}
 		if(sourceEditPart instanceof StereotypeEditPartCN) {
 			return ((StereotypeEditPartCN)sourceEditPart).getMARelTypesOnSource();
@@ -291,8 +319,14 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof EnumerationEditPart) {
 			return ((EnumerationEditPart)targetEditPart).getMARelTypesOnTarget();
 		}
+		if(targetEditPart instanceof PrimitiveTypeEditPart) {
+			return ((PrimitiveTypeEditPart)targetEditPart).getMARelTypesOnTarget();
+		}
 		if(targetEditPart instanceof DataTypeEditPart) {
 			return ((DataTypeEditPart)targetEditPart).getMARelTypesOnTarget();
+		}
+		if(targetEditPart instanceof PrimitiveTypeEditPartCN) {
+			return ((PrimitiveTypeEditPartCN)targetEditPart).getMARelTypesOnTarget();
 		}
 		if(targetEditPart instanceof StereotypeEditPartCN) {
 			return ((StereotypeEditPartCN)targetEditPart).getMARelTypesOnTarget();
@@ -360,8 +394,14 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof EnumerationEditPart) {
 			return ((EnumerationEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
+		if(sourceEditPart instanceof PrimitiveTypeEditPart) {
+			return ((PrimitiveTypeEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
 		if(sourceEditPart instanceof DataTypeEditPart) {
 			return ((DataTypeEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
+		if(sourceEditPart instanceof PrimitiveTypeEditPartCN) {
+			return ((PrimitiveTypeEditPartCN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		if(sourceEditPart instanceof StereotypeEditPartCN) {
 			return ((StereotypeEditPartCN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
@@ -428,8 +468,14 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof EnumerationEditPart) {
 			return ((EnumerationEditPart)targetEditPart).getMATypesForSource(relationshipType);
 		}
+		if(targetEditPart instanceof PrimitiveTypeEditPart) {
+			return ((PrimitiveTypeEditPart)targetEditPart).getMATypesForSource(relationshipType);
+		}
 		if(targetEditPart instanceof DataTypeEditPart) {
 			return ((DataTypeEditPart)targetEditPart).getMATypesForSource(relationshipType);
+		}
+		if(targetEditPart instanceof PrimitiveTypeEditPartCN) {
+			return ((PrimitiveTypeEditPartCN)targetEditPart).getMATypesForSource(relationshipType);
 		}
 		if(targetEditPart instanceof StereotypeEditPartCN) {
 			return ((StereotypeEditPartCN)targetEditPart).getMATypesForSource(relationshipType);
@@ -496,8 +542,14 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof EnumerationEditPart) {
 			return ((EnumerationEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
+		if(sourceEditPart instanceof PrimitiveTypeEditPart) {
+			return ((PrimitiveTypeEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
+		}
 		if(sourceEditPart instanceof DataTypeEditPart) {
 			return ((DataTypeEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if(sourceEditPart instanceof PrimitiveTypeEditPartCN) {
+			return ((PrimitiveTypeEditPartCN)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
 		if(sourceEditPart instanceof StereotypeEditPartCN) {
 			return ((StereotypeEditPartCN)sourceEditPart).getMATypesForTarget(relationshipType);

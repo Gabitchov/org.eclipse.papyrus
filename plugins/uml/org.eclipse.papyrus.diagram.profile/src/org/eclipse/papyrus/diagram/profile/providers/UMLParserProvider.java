@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.profile.providers;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -184,6 +197,23 @@ public class UMLParserProvider {
 	/**
 	 * @generated
 	 */
+	private IParser primitiveTypeName_5032Parser;
+
+	/**
+	 * @generated
+	 */
+	public IParser getPrimitiveTypeName_5032Parser() {
+		if(primitiveTypeName_5032Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			primitiveTypeName_5032Parser = parser;
+		}
+		return primitiveTypeName_5032Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser dataTypeName_5035Parser;
 
 	/**
@@ -215,6 +245,23 @@ public class UMLParserProvider {
 		return diagramName_2Parser;
 	}
 
+
+	/**
+	 * @generated
+	 */
+	private IParser primitiveTypeName_5058Parser;
+
+	/**
+	 * @generated
+	 */
+	public IParser getPrimitiveTypeName_5058Parser() {
+		if(primitiveTypeName_5058Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			primitiveTypeName_5058Parser = parser;
+		}
+		return primitiveTypeName_5058Parser;
+	}
 
 	/**
 	 * @generated

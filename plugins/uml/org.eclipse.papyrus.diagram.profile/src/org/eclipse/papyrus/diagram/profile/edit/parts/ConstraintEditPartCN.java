@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.profile.edit.parts;
 
 import java.util.ArrayList;
@@ -331,7 +344,13 @@ AbstractConstraintEditPart {
 		if(targetEditPart instanceof EnumerationEditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
+		if(targetEditPart instanceof PrimitiveTypeEditPart) {
+			types.add(UMLElementTypes.Dependency_4008);
+		}
 		if(targetEditPart instanceof DataTypeEditPart) {
+			types.add(UMLElementTypes.Dependency_4008);
+		}
+		if(targetEditPart instanceof PrimitiveTypeEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
 		if(targetEditPart instanceof StereotypeEditPartCN) {
@@ -385,7 +404,13 @@ AbstractConstraintEditPart {
 		if(targetEditPart instanceof EnumerationEditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
+		if(targetEditPart instanceof PrimitiveTypeEditPart) {
+			types.add(UMLElementTypes.Dependency_4018);
+		}
 		if(targetEditPart instanceof DataTypeEditPart) {
+			types.add(UMLElementTypes.Dependency_4018);
+		}
+		if(targetEditPart instanceof PrimitiveTypeEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
 		if(targetEditPart instanceof StereotypeEditPartCN) {
@@ -442,7 +467,13 @@ AbstractConstraintEditPart {
 		if(targetEditPart instanceof EnumerationEditPart) {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		}
+		if(targetEditPart instanceof PrimitiveTypeEditPart) {
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
+		}
 		if(targetEditPart instanceof DataTypeEditPart) {
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
+		}
+		if(targetEditPart instanceof PrimitiveTypeEditPartCN) {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		}
 		if(targetEditPart instanceof StereotypeEditPartCN) {
@@ -490,7 +521,9 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.Profile_1030);
 			types.add(UMLElementTypes.Package_2007);
 			types.add(UMLElementTypes.Enumeration_2006);
+			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
+			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.Stereotype_1023);
 			types.add(UMLElementTypes.Class_3028);
 			types.add(UMLElementTypes.Model_1027);
@@ -509,7 +542,9 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.Profile_1030);
 			types.add(UMLElementTypes.Package_2007);
 			types.add(UMLElementTypes.Enumeration_2006);
+			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
+			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.Stereotype_1023);
 			types.add(UMLElementTypes.Class_3028);
 			types.add(UMLElementTypes.Model_1027);
@@ -529,7 +564,9 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.Profile_1030);
 			types.add(UMLElementTypes.Package_2007);
 			types.add(UMLElementTypes.Enumeration_2006);
+			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
+			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.Stereotype_1023);
 			types.add(UMLElementTypes.Class_3028);
 			types.add(UMLElementTypes.Comment_1007);
@@ -571,7 +608,9 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.Profile_1030);
 			types.add(UMLElementTypes.Package_2007);
 			types.add(UMLElementTypes.Enumeration_2006);
+			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
+			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.Stereotype_1023);
 			types.add(UMLElementTypes.Class_3028);
 			types.add(UMLElementTypes.Model_1027);
@@ -590,7 +629,9 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.Profile_1030);
 			types.add(UMLElementTypes.Package_2007);
 			types.add(UMLElementTypes.Enumeration_2006);
+			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
+			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.Stereotype_1023);
 			types.add(UMLElementTypes.Class_3028);
 			types.add(UMLElementTypes.Model_1027);
@@ -607,7 +648,9 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.Profile_1030);
 			types.add(UMLElementTypes.Package_2007);
 			types.add(UMLElementTypes.Enumeration_2006);
+			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
+			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.Stereotype_1023);
 			types.add(UMLElementTypes.Class_3028);
 			types.add(UMLElementTypes.Model_1027);

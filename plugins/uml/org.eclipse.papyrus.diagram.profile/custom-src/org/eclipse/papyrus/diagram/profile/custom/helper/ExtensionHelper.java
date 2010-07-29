@@ -19,6 +19,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.command.IdentityCommand;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.commands.Command;
@@ -29,20 +30,24 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.core.editor.CoreMultiDiagramEditor;
 import org.eclipse.papyrus.diagram.common.command.wrappers.EMFtoGEFCommandWrapper;
 import org.eclipse.papyrus.diagram.common.helper.ElementHelper;
 import org.eclipse.papyrus.diagram.common.helper.NamedElementHelper;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.diagram.common.util.MDTUtil;
+import org.eclipse.papyrus.diagram.common.util.Util;
 import org.eclipse.papyrus.diagram.profile.custom.policies.ExtensionCustomNameEditPolicy;
 import org.eclipse.papyrus.diagram.profile.edit.parts.ExtensionEditPart;
 import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Extension;
 import org.eclipse.uml2.uml.ExtensionEnd;
+import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.Type;
@@ -79,34 +84,43 @@ public class ExtensionHelper extends ElementHelper {
 	static public Command getDestroyExtensionCommand(Class metaclass) {
 		CompoundCommand cc = new CompoundCommand("Destroy Extension"); //$NON-NLS-1$
 
-		/**
-		 * get all the extension of the metaclass
-		 * /!\ some of them comes from the metamodel UML
-		 */
 
+		/* get all the profile and sub-profile for the diagram */
+		CoreMultiDiagramEditor editor = (CoreMultiDiagramEditor)PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+		DiagramEditPart rootProfileEP = editor.getDiagramEditPart();
+		Profile rootProfile = (Profile)((View)rootProfileEP.getModel()).getElement();
+		List<?> profileList = Util.getInstancesFilteredByType(rootProfile, rootProfile.getClass(), null);
+
+		/*
+		 * get all the extension of the metaclass
+		 * /!\ some of them comes from the UML MetaModel
+		 */
 		EList<Extension> extensionList = metaclass.getExtensions();
 
 
-		/**
-		 * get the extension to destroy
+		/*
+		 * get the extensions to destroy
 		 * 
-		 * All the user's extension have this name : Extension_xxx
+		 * All the user's extension are owned by the rootProfile or a sub-profile
 		 */
+
 		ArrayList<Extension> extensionsToDestroy = new ArrayList<Extension>();
 		for(Extension extension : extensionList) {
-			if(extension.getName().contains(ExtensionHelper.EXTENSION)) {
+			EObject containerExt = extension.eContainer();
+			//test if it's a user extension or a metamodel extension
+			if(profileList.contains(containerExt) || containerExt == rootProfile) {
 				extensionsToDestroy.add(extension);
-
 			}
+
 		}
 
-		/**
+		/*
 		 * Destroy the property in the stereotypes
 		 */
 		for(int iterExt = 0; iterExt < extensionsToDestroy.size(); iterExt++) {
 			cc.add(StereotypeHelper.getRemovePropertyCommand(extensionsToDestroy.get(iterExt)));
 		}
-		/**
+		/*
 		 * Destroy the extensions
 		 */
 		for(Extension extension : extensionsToDestroy) {
@@ -116,7 +130,7 @@ public class ExtensionHelper extends ElementHelper {
 
 		}
 		if(cc.isEmpty()) {
-			//this command do nothing!
+			//this command does nothing!
 			cc.add(new EMFtoGEFCommandWrapper(new IdentityCommand()));
 		}
 		return cc;
@@ -137,7 +151,7 @@ public class ExtensionHelper extends ElementHelper {
 		EditPolicy policy = null;
 
 		//find the ExtensionEditPart
-		List view = DiagramEditPartsUtil.getEObjectViews(link);
+		List<?> view = DiagramEditPartsUtil.getEObjectViews(link);
 		if(!view.isEmpty()) {
 			IEditorPart editor = MDTUtil.getActiveEditor();
 			DiagramEditPart diagram = ((PapyrusMultiDiagramEditor)editor).getDiagramEditPart();
@@ -200,7 +214,7 @@ public class ExtensionHelper extends ElementHelper {
 				oldName = oldName.substring(deducedName.length());
 				try {
 					Integer test = Integer.parseInt(oldName);
-					//if there is not exception, the name didn't edited by the user
+					//if there is not exception, the name has not been edited by the user
 					link.setName(getExtensionName((Element)link.eContainer(), newSource, (Class)targetType));
 				} catch (NumberFormatException e) {
 					//do nothing

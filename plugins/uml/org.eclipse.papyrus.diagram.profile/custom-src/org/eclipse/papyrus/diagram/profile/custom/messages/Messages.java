@@ -24,6 +24,15 @@ public class Messages extends NLS {
 	public static String CustomSemanticCreateCommand_MetaclassImport0;
 
 	public static String CustomSemanticCreateCommand_FetchingMetaclasses;
+
+	public static String ChooseSetMetaclassDialog_Metaclasses;
+
+	public static String ChooseSetMetaclassDialog_ImportedMetaclasses;
+
+	public static String ChooseSetMetaclassDialog_Metaclass;
+
+	public static String ChooseSetMetaclassDialog_Information;
+
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

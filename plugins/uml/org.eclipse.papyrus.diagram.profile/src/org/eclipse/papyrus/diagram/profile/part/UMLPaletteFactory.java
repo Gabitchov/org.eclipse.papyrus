@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.profile.part;
 
 import java.util.ArrayList;
@@ -63,6 +76,11 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	private final static String CREATEDATATYPE5CREATIONTOOL = "createDataType5CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CREATEPRIMITIVETYPE6CREATIONTOOL = "createPrimitiveType6CreationTool"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -175,6 +193,9 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		}
 		if(toolId.equals(CREATEDATATYPE5CREATIONTOOL)) {
 			return createDataType5CreationTool();
+		}
+		if(toolId.equals(CREATEPRIMITIVETYPE6CREATIONTOOL)) {
+			return createPrimitiveType6CreationTool();
 		}
 		if(toolId.equals(CREATEEXTENSION1CREATIONTOOL)) {
 			return createExtension1CreationTool();
@@ -340,6 +361,20 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		List<IElementType> types = new ArrayList<IElementType>(2);
 		types.add(UMLElementTypes.DataType_2010);
 		types.add(UMLElementTypes.DataType_3027);
+
+		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		return tool;
+	}
+
+
+
+	/**
+	 * @generated
+	 */
+	private Tool createPrimitiveType6CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(2);
+		types.add(UMLElementTypes.PrimitiveType_2009);
+		types.add(UMLElementTypes.PrimitiveType_3026);
 
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;

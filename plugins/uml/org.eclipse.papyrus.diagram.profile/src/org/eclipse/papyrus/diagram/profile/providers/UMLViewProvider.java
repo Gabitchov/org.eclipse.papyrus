@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.profile.providers;
 
 import java.util.ArrayList;
@@ -110,6 +123,10 @@ import org.eclipse.papyrus.diagram.profile.edit.parts.PackageNameEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.PackageNameEditPartCN;
 import org.eclipse.papyrus.diagram.profile.edit.parts.PackagePackageableElementCompartmentEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.PackagePackageableElementCompartmentEditPartCN;
+import org.eclipse.papyrus.diagram.profile.edit.parts.PrimitiveTypeEditPart;
+import org.eclipse.papyrus.diagram.profile.edit.parts.PrimitiveTypeEditPartCN;
+import org.eclipse.papyrus.diagram.profile.edit.parts.PrimitiveTypeNameEditPart;
+import org.eclipse.papyrus.diagram.profile.edit.parts.PrimitiveTypeNameEditPartCN;
 import org.eclipse.papyrus.diagram.profile.edit.parts.ProfileApplicationEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.ProfileDiagramEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.ProfileEditPartCN;
@@ -223,6 +240,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				case EnumerationEditPart.VISUAL_ID:
 				case DataTypeEditPart.VISUAL_ID:
 				case ShortCutDiagramEditPart.VISUAL_ID:
+				case PrimitiveTypeEditPartCN.VISUAL_ID:
 				case DataTypeOperationEditPart.VISUAL_ID:
 				case EnumerationLiteralEditPart.VISUAL_ID:
 				case DataTypePropertyEditPart.VISUAL_ID:
@@ -234,6 +252,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				case PackageEditPartCN.VISUAL_ID:
 				case ConstraintEditPartCN.VISUAL_ID:
 				case MetaclassEditPart.VISUAL_ID:
+				case PrimitiveTypeEditPart.VISUAL_ID:
 				case ModelEditPartCN.VISUAL_ID:
 				case ProfileEditPartCN.VISUAL_ID:
 				case EnumerationEditPartCN.VISUAL_ID:
@@ -247,7 +266,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				}
 			}
 		}
-		return DependencyNodeEditPart.VISUAL_ID == visualID || AssociationNodeEditPart.VISUAL_ID == visualID || StereotypeEditPart.VISUAL_ID == visualID || MetaclassEditPart.VISUAL_ID == visualID || CommentEditPart.VISUAL_ID == visualID || ConstraintEditPart.VISUAL_ID == visualID || ModelEditPartTN.VISUAL_ID == visualID || ProfileEditPartTN.VISUAL_ID == visualID || PackageEditPart.VISUAL_ID == visualID || EnumerationEditPart.VISUAL_ID == visualID || DataTypeEditPart.VISUAL_ID == visualID || ShortCutDiagramEditPart.VISUAL_ID == visualID || DataTypeOperationEditPart.VISUAL_ID == visualID || EnumerationLiteralEditPart.VISUAL_ID == visualID || DataTypePropertyEditPart.VISUAL_ID == visualID || ClassPropertyEditPart.VISUAL_ID == visualID || ClassOperationEditPart.VISUAL_ID == visualID || StereotypeEditPartCN.VISUAL_ID == visualID || MetaclassEditPartCN.VISUAL_ID == visualID || CommentEditPartCN.VISUAL_ID == visualID || ModelEditPartCN.VISUAL_ID == visualID || ProfileEditPartCN.VISUAL_ID == visualID || PackageEditPartCN.VISUAL_ID == visualID || ConstraintEditPartCN.VISUAL_ID == visualID || EnumerationEditPartCN.VISUAL_ID == visualID || DataTypeEditPartCN.VISUAL_ID == visualID;
+		return DependencyNodeEditPart.VISUAL_ID == visualID || AssociationNodeEditPart.VISUAL_ID == visualID || StereotypeEditPart.VISUAL_ID == visualID || MetaclassEditPart.VISUAL_ID == visualID || CommentEditPart.VISUAL_ID == visualID || ConstraintEditPart.VISUAL_ID == visualID || ModelEditPartTN.VISUAL_ID == visualID || ProfileEditPartTN.VISUAL_ID == visualID || PackageEditPart.VISUAL_ID == visualID || EnumerationEditPart.VISUAL_ID == visualID || PrimitiveTypeEditPart.VISUAL_ID == visualID || DataTypeEditPart.VISUAL_ID == visualID || ShortCutDiagramEditPart.VISUAL_ID == visualID || PrimitiveTypeEditPartCN.VISUAL_ID == visualID || DataTypeOperationEditPart.VISUAL_ID == visualID || EnumerationLiteralEditPart.VISUAL_ID == visualID || DataTypePropertyEditPart.VISUAL_ID == visualID || ClassPropertyEditPart.VISUAL_ID == visualID || ClassOperationEditPart.VISUAL_ID == visualID || StereotypeEditPartCN.VISUAL_ID == visualID || MetaclassEditPartCN.VISUAL_ID == visualID || CommentEditPartCN.VISUAL_ID == visualID || ModelEditPartCN.VISUAL_ID == visualID || ProfileEditPartCN.VISUAL_ID == visualID || PackageEditPartCN.VISUAL_ID == visualID || ConstraintEditPartCN.VISUAL_ID == visualID || EnumerationEditPartCN.VISUAL_ID == visualID || DataTypeEditPartCN.VISUAL_ID == visualID;
 	}
 
 	/**
@@ -314,10 +333,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			return createPackage_2007(domainElement, containerView, index, persisted, preferencesHint);
 		case EnumerationEditPart.VISUAL_ID:
 			return createEnumeration_2006(domainElement, containerView, index, persisted, preferencesHint);
+		case PrimitiveTypeEditPart.VISUAL_ID:
+			return createPrimitiveType_2009(domainElement, containerView, index, persisted, preferencesHint);
 		case DataTypeEditPart.VISUAL_ID:
 			return createDataType_2010(domainElement, containerView, index, persisted, preferencesHint);
 		case ShortCutDiagramEditPart.VISUAL_ID:
 			return createDiagram_2016(domainElement, containerView, index, persisted, preferencesHint);
+		case PrimitiveTypeEditPartCN.VISUAL_ID:
+			return createPrimitiveType_3026(domainElement, containerView, index, persisted, preferencesHint);
 		case DataTypeOperationEditPart.VISUAL_ID:
 			return createOperation_3019(domainElement, containerView, index, persisted, preferencesHint);
 		case EnumerationLiteralEditPart.VISUAL_ID:
@@ -657,6 +680,33 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
+	public Node createPrimitiveType_2009(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry.getType(PrimitiveTypeEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		stampShortcut(containerView, node);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+
+
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "PrimitiveType");
+
+
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "PrimitiveType");
+
+
+
+		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "PrimitiveType");
+
+		Node label5032 = createLabel(node, UMLVisualIDRegistry.getType(PrimitiveTypeNameEditPart.VISUAL_ID));
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
 	public Node createDataType_2010(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
@@ -712,6 +762,32 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location2 = (Location)label2.getLayoutConstraint();
 		location2.setX(0);
 		location2.setY(5);
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createPrimitiveType_3026(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry.getType(PrimitiveTypeEditPartCN.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+
+
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "PrimitiveType");
+
+
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "PrimitiveType");
+
+
+
+		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "PrimitiveType");
+
+		Node label5058 = createLabel(node, UMLVisualIDRegistry.getType(PrimitiveTypeNameEditPartCN.VISUAL_ID));
 		return node;
 	}
 
