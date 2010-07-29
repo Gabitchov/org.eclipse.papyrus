@@ -16,8 +16,6 @@
 
 package org.eclipse.papyrus.diagram.profile.custom.helper;
 
-import java.util.List;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
@@ -28,13 +26,13 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Node;
-import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.papyrus.diagram.common.helper.ElementHelper;
-import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.diagram.profile.edit.parts.ProfileDiagramEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.ProfilePackageableElementCompartmentEditPartCN;
 import org.eclipse.papyrus.diagram.profile.edit.parts.ProfilePackageableElementCompartmentEditPartTN;
 import org.eclipse.uml2.uml.ElementImport;
+import org.eclipse.uml2.uml.Extension;
+import org.eclipse.uml2.uml.ExtensionEnd;
 import org.eclipse.uml2.uml.Profile;
 
 /**
@@ -78,12 +76,24 @@ public class MetaclassHelper extends ElementHelper {
 		return parentProfile;
 	}
 
+	/**
+	 * Returns the command to destroy the metaclass view and the associated {@link ElementImport}.
+	 * 
+	 * @param metaclass
+	 *        the metaclass to destroy
+	 * @param parentProfile
+	 *        the parent Profile
+	 * @return
+	 *         the command to destroy the metaclass view, the corresponding {@link ElementImport}, the {@link Extension}, the {@link ExtensionEnd} and
+	 *         the associated properties
+	 * 
+	 */
 	static public Command getDestroyMetaclassCommand(org.eclipse.uml2.uml.Class metaclass, EObject parentProfile) {
 		CompoundCommand cc = new CompoundCommand("Destroy Metaclass"); //$NON-NLS-1$
 
 		String qName = metaclass.getQualifiedName();
 
-		/**
+		/*
 		 * get the root profile
 		 */
 
@@ -93,26 +103,7 @@ public class MetaclassHelper extends ElementHelper {
 			parentProfile = parentProfile.eContainer();
 		}
 
-		/**
-		 * All EditPart for the metaclass to destroy
-		 */
-		List<Shape> allMetaclassEP = DiagramEditPartsUtil.getEObjectViews(metaclass);
-		cc.add(ExtensionHelper.getDestroyExtensionCommand(metaclass));
-
-		/**
-		 * Destroy the metaclass's views!
-		 */
-		for(int iterEP = 0; iterEP < allMetaclassEP.size(); iterEP++) {
-			DestroyElementRequest destroyImportedElementRequest = new DestroyElementRequest(allMetaclassEP.get(iterEP), false);
-			DestroyElementCommand destroyImportedElementCommand = new DestroyElementCommand(destroyImportedElementRequest);
-			if(destroyImportedElementCommand != null && destroyImportedElementCommand.canExecute()) {
-				cc.add(new ICommandProxy(destroyImportedElementCommand));
-			}
-
-		}
-
-
-		/**
+		/*
 		 * Destroy the ElementImport
 		 */
 		EList<ElementImport> importedElements = ((Profile)rootProfile).getElementImports();
@@ -126,6 +117,11 @@ public class MetaclassHelper extends ElementHelper {
 				}
 			}
 		}
+
+		/*
+		 * Destroy the extensions
+		 */
+		cc.add(ExtensionHelper.getDestroyExtensionCommand(metaclass));
 
 		return cc;
 	}
