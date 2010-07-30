@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.papyrus.core.feature"
       label="%featureName"
-      version="0.7.1.vqualifier"
+      version="0.7.1.qualifier"
       provider-name="%providerName">
 
    <description url="http://www.eclipse.org/modeling/mdt/?project=papyrus">
