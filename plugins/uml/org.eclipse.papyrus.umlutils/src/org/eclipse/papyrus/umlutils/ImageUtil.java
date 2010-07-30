@@ -85,8 +85,7 @@ public class ImageUtil {
 			image.setContent(rawImageData);
 
 		} catch (Exception ex) {
-			Activator.getDefault().getLog().log(
-					new Status(IStatus.ERROR, Activator.PLUGIN_ID, ex.getLocalizedMessage(), ex));
+			Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, ex.getLocalizedMessage(), ex));
 		}
 	}
 
@@ -98,7 +97,7 @@ public class ImageUtil {
 	 * 
 	 * @return {@link org.eclipse.swt.graphics.Image} content
 	 */
-	public static org.eclipse.swt.graphics.Image getContent(Image image) {
+	public static org.eclipse.swt.graphics.Image getContent(Image image) throws Exception {
 
 		if(image == null) {
 			// null parameter
@@ -122,8 +121,7 @@ public class ImageUtil {
 			j++;
 		}
 
-		org.eclipse.swt.graphics.Image decodedImage = new org.eclipse.swt.graphics.Image(null,
-				new ByteArrayInputStream(target));
+		org.eclipse.swt.graphics.Image decodedImage = new org.eclipse.swt.graphics.Image(null, new ByteArrayInputStream(target));
 
 		return decodedImage;
 	}
@@ -156,9 +154,7 @@ public class ImageUtil {
 				swtImage = imageDescriptor.createImage();
 
 			} catch (Exception e) {
-				Activator.getDefault().getLog().log(
-						new Status(IStatus.WARNING, Activator.PLUGIN_ID, "Could not create image from location : "
-						+ location, e));
+				Activator.getDefault().getLog().log(new Status(IStatus.WARNING, Activator.PLUGIN_ID, "Could not create image from location : " + location, e));
 			}
 		}
 
@@ -236,8 +232,7 @@ public class ImageUtil {
 			ea_Image.getDetails().put(ImageUtil.IMAGE_EXPR_KEY, expression);
 		}
 
-		if(!(ea_Image.getDetails().containsKey(IMAGE_EXPR_KEY))
-				&& !(ea_Image.getDetails().containsKey(IMAGE_KIND_KEY))) {
+		if(!(ea_Image.getDetails().containsKey(IMAGE_EXPR_KEY)) && !(ea_Image.getDetails().containsKey(IMAGE_KIND_KEY))) {
 			ea_Image.setEModelElement(null);
 		}
 	}
@@ -284,8 +279,7 @@ public class ImageUtil {
 			ea_Image.getDetails().put(ImageUtil.IMAGE_KIND_KEY, kind);
 		}
 
-		if(!(ea_Image.getDetails().containsKey(IMAGE_EXPR_KEY))
-				&& !(ea_Image.getDetails().containsKey(IMAGE_KIND_KEY))) {
+		if(!(ea_Image.getDetails().containsKey(IMAGE_EXPR_KEY)) && !(ea_Image.getDetails().containsKey(IMAGE_KIND_KEY))) {
 			ea_Image.setEModelElement(null);
 		}
 	}

@@ -15,6 +15,14 @@ package org.eclipse.papyrus.properties.tabbed.profile.imagesection;
 
 import java.io.File;
 
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.commands.operations.OperationHistoryFactory;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.properties.tabbed.profile.AbstractViewSection;
 import org.eclipse.papyrus.properties.tabbed.profile.Activator;
 import org.eclipse.papyrus.umlutils.ImageUtil;
@@ -55,12 +63,12 @@ public class ImageContentSection extends AbstractViewSection {
 	/**
 	 * 
 	 */
-	private final org.eclipse.swt.graphics.Image remove_img = Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,"icons/delete.gif").createImage();
+	private final org.eclipse.swt.graphics.Image remove_img = Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/delete.gif").createImage();
 
 	/**
 	 * 
 	 */
-	private final org.eclipse.swt.graphics.Image add_img_32 =Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,"icons/Add_32x32.gif").createImage();
+	private final org.eclipse.swt.graphics.Image add_img_32 = Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/Add_32x32.gif").createImage();
 
 	/**
 	 * 
@@ -114,20 +122,37 @@ public class ImageContentSection extends AbstractViewSection {
 				String iconSelected = fd.open();
 
 				// No image selected
-				if (iconSelected == null) {
+				if(iconSelected == null) {
 					return;
 				}
 
-				if (getElement() instanceof Image) {
+				if(getElement() instanceof Image) {
 
-					File imgFile = new File(iconSelected);
+					final File imgFile = new File(iconSelected);
+
+					AbstractTransactionalCommand operation = new AbstractTransactionalCommand(EditorUtils.getTransactionalEditingDomain(), "Set Image content", null) {
+
+						/**
+						 * {@inheritDoc}
+						 */
+						@Override
+						protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+							try {
+								ImageUtil.setContent((Image)getElement(), imgFile);
+							} catch (Exception ex) {
+								return CommandResult.newErrorCommandResult(ex);
+							}
+							return CommandResult.newOKCommandResult();
+						}
+					};
 
 					try {
-						ImageUtil.setContent((Image) getElement(), imgFile);
-						refresh();
-					} catch (Exception ex) {
-						System.err.println("Could not import image: "+ex);
+						OperationHistoryFactory.getOperationHistory().execute(operation, new NullProgressMonitor(), null);
+					} catch (ExecutionException e1) {
+						Activator.log.error(e1);
 					}
+
+					refresh();
 				}
 			}
 		});
@@ -142,14 +167,31 @@ public class ImageContentSection extends AbstractViewSection {
 
 			public void mouseUp(MouseEvent e) {
 				// Erase image content
-				if (getElement() instanceof Image) {
+				if(getElement() instanceof Image) {
+
+					AbstractTransactionalCommand operation = new AbstractTransactionalCommand(EditorUtils.getTransactionalEditingDomain(), "Remove Image content", null) {
+
+						/**
+						 * {@inheritDoc}
+						 */
+						@Override
+						protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+							try {
+								ImageUtil.setContent((Image)getElement(), null);
+							} catch (Exception ex) {
+								return CommandResult.newErrorCommandResult(ex);
+							}
+							return CommandResult.newOKCommandResult();
+						}
+					};
 
 					try {
-						ImageUtil.setContent((Image) getElement(), null);
-						refresh();
-					} catch (Exception ex) {
-						System.err.println("Could not import image: "+ex);
+						OperationHistoryFactory.getOperationHistory().execute(operation, new NullProgressMonitor(), null);
+					} catch (ExecutionException e1) {
+						Activator.log.error(e1);
 					}
+
+					refresh();
 				}
 			}
 		});
@@ -158,24 +200,29 @@ public class ImageContentSection extends AbstractViewSection {
 	/**
 	 * 
 	 * @see org.eclipse.ui.views.properties.tabbed.AbstractPropertySection#refresh()
-	 *
+	 * 
 	 */
 	public void refresh() {
-		if (!browseButton.isDisposed()) {
+		if(!browseButton.isDisposed()) {
 
 			/* initialization of buttons enabling */
-			if (!(getElement() instanceof Image)) {
+			if(!(getElement() instanceof Image)) {
 				return;
 			}
 
 			// Get Image content
-			org.eclipse.swt.graphics.Image image = ImageUtil.getContent((Image) getElement());
+			org.eclipse.swt.graphics.Image image = null;
+
+			try {
+				image = ImageUtil.getContent((Image)getElement());
+			} catch (Exception e) {
+				Activator.log.error(e);
+			}
 
 			// Refresh text
-			if (image != null) {
+			if(image != null) {
 				// Resize icon to 32x32
-				org.eclipse.swt.graphics.Image resizedIcon = new org.eclipse.swt.graphics.Image(image.getDevice(),
-						image.getImageData().scaledTo(32, 32));
+				org.eclipse.swt.graphics.Image resizedIcon = new org.eclipse.swt.graphics.Image(image.getDevice(), image.getImageData().scaledTo(32, 32));
 				browseButton.setImage(resizedIcon);
 				removeButton.setEnabled(true);
 
@@ -189,13 +236,13 @@ public class ImageContentSection extends AbstractViewSection {
 	/**
 	 * 
 	 * @see org.eclipse.ui.views.properties.tabbed.AbstractPropertySection#dispose()
-	 *
+	 * 
 	 */
 	public void dispose() {
 		super.dispose();
-		if (browseButton != null && !browseButton.isDisposed())
+		if(browseButton != null && !browseButton.isDisposed())
 			browseButton.removeMouseListener(browseButtonListener);
-		if (removeButton != null && !removeButton.isDisposed())
+		if(removeButton != null && !removeButton.isDisposed())
 			removeButton.removeMouseListener(removeButtonListener);
 	}
 
