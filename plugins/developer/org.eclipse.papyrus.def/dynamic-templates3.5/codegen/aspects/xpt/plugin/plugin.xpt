@@ -292,6 +292,9 @@
        large_icon="«largeIconPath»"
        path="/"
        small_icon="«smallIconPath»">
+       <expand
+              force="true">
+       </expand>
  	</entry>
  	«REM» TODO: call sub entries...«ENDREM» 
  	«EXPAND toolUsage(self) FOREACH self.entries»
