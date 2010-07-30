@@ -18,7 +18,6 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.gmf.runtime.common.core.service.AbstractProviderConfiguration;
 import org.eclipse.gmf.runtime.common.core.service.ProviderPriority;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditorWithFlyOutPalette;
-import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.ui.IEditorPart;
 
 /**
@@ -85,8 +84,6 @@ public class XMLPaletteProviderConfiguration extends AbstractProviderConfigurati
 		}
 		if(configChildren.length > 0) {
 			priority = ProviderPriority.parse(configChildren[0].getAttribute(NAME));
-		} else {
-			Activator.log.error("Impossible to find the priority for this configuration:" + this.getName() + " (" + this.getID() + ")", null);
 		}
 	}
 

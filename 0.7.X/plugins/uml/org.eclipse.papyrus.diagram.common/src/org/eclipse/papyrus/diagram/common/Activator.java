@@ -341,7 +341,7 @@ public class Activator extends AbstractUIPlugin {
 		}
 	}
 
-	
+
 	public static Image getShape(Element elt, Stereotype stereotype, boolean withVisibilityDecorator) {
 
 		VisibilityKind vis = null;
@@ -358,6 +358,7 @@ public class Activator extends AbstractUIPlugin {
 			return null;
 		}
 	}
+
 	/**
 	 * Find the image (SWT) in registry Store image in registry if it is not
 	 * found
@@ -383,8 +384,12 @@ public class Activator extends AbstractUIPlugin {
 		// try to find an image and to update registry
 		if(image == null) {
 
-			// Try to retrieve image from UML Image content property
-			image = ImageUtil.getContent(umlImage);
+			try {
+				// Try to retrieve image from UML Image content property
+				image = ImageUtil.getContent(umlImage);
+			} catch (Exception e) {
+				// Activator.log.error(e);
+			}
 
 			// If no image was found in Content
 			// Try to retrieve image from UML Image location property

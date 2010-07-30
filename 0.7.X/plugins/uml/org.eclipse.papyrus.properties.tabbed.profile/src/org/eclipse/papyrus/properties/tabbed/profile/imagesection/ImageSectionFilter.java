@@ -18,22 +18,22 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.jface.viewers.IFilter;
 import org.eclipse.uml2.uml.Image;
+
+
 /**
- * filter in order to display property view only for the element IMAGE of UML 
- *
+ * filter in order to display property view only for the element IMAGE of UML
  */
+public class ImageSectionFilter implements IFilter {
 
-public class ImageSectionFilter  implements IFilter {
-
+	/**
+	 * {@inheritDoc}
+	 */
 	public boolean select(Object object) {
-		if(object instanceof GraphicalEditPart
-			&& ((GraphicalEditPart)object).getNotationView().getElement() instanceof Image){
-			return true;}
+		if(object instanceof GraphicalEditPart && ((GraphicalEditPart)object).getNotationView().getElement() instanceof Image) {
+			return true;
+		}
 
-		if(object instanceof IAdaptable
-			&& ((IAdaptable)object).getAdapter(EObject.class) instanceof Image){
-			return true;}
-		if(object instanceof EObject){
+		if(object instanceof IAdaptable && ((IAdaptable)object).getAdapter(EObject.class) instanceof Image) {
 			return true;
 		}
 		return false;
