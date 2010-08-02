@@ -246,17 +246,9 @@ implements ITreeBranchEditPart {
 		private RotatableDecoration createTargetDecoration() {
 			EllipseDecoration df = new EllipseDecoration();
 
-
-
-
 			df.setAlwaysFill(true);
 
-
-
-
 			df.setPreferredSize(new Dimension(10, 10));
-
-
 
 			return df;
 		}

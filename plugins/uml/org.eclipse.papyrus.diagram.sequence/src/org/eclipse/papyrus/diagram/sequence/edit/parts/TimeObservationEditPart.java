@@ -164,7 +164,6 @@ AbstractBorderItemEditPart {
 			return true;
 		}
 
-
 		return false;
 	}
 
@@ -214,7 +213,6 @@ AbstractBorderItemEditPart {
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
 
 		//FIXME: workaround for #154536
 		result.getBounds().setSize(result.getPreferredSize());
@@ -1048,18 +1046,14 @@ AbstractBorderItemEditPart {
 		 */
 		private void createContents() {
 
-
 			fTimeMark = new PolylineShape();
 			fTimeMark.addPoint(new Point(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0)));
 			fTimeMark.addPoint(new Point(getMapMode().DPtoLP(10), getMapMode().DPtoLP(0)));
 
 			this.add(fTimeMark);
 
-
-
 			fTimeMarkElementLabel = new WrappingLabel();
 			fTimeMarkElementLabel.setText("");
-
 
 			GridData constraintFTimeMarkElementLabel = new GridData();
 			constraintFTimeMarkElementLabel.verticalAlignment = GridData.CENTER;
@@ -1070,8 +1064,6 @@ AbstractBorderItemEditPart {
 			constraintFTimeMarkElementLabel.grabExcessHorizontalSpace = false;
 			constraintFTimeMarkElementLabel.grabExcessVerticalSpace = false;
 			this.add(fTimeMarkElementLabel, constraintFTimeMarkElementLabel);
-
-
 
 		}
 

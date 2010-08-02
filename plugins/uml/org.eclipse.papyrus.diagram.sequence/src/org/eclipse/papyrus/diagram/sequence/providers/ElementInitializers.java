@@ -392,7 +392,6 @@ public class ElementInitializers {
 		return cached;
 	}
 
-
 	/**
 	 * @generated NOT
 	 *            Initialize the name of a namedElement

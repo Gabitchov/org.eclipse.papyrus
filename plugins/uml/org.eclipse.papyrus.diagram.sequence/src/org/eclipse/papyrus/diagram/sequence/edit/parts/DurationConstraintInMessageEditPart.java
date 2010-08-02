@@ -785,21 +785,13 @@ public class DurationConstraintInMessageEditPart extends LabelEditPart implement
 		 */
 		public DurationObservationConstraint() {
 
-
-
-
 			this.setTextWrap(true);
 
-
-
-
 			this.setTextJustification(PositionConstants.CENTER);
-
 
 			this.setForegroundColor(ColorConstants.black);
 
 			this.setFont(THIS_FONT);
-
 
 		}
 

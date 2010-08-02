@@ -756,7 +756,7 @@
       <sourceEnd
           body="self.oclIsKindOf(uml::InteractionFragment)"/>
       <targetEnd
-          body="self.oclIsKindOf(uml::InteractionFragment)"/>
+          body="self.oclIsKindOf(uml::InteractionFragment) or self.oclIsKindOf(uml::Lifeline)"/>
     </creationConstraints>
   </links>
   <links

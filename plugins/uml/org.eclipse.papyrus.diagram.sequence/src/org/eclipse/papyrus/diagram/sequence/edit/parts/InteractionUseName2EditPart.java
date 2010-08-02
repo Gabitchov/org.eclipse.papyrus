@@ -709,7 +709,6 @@ public class InteractionUseName2EditPart extends CompartmentEditPart implements 
 			}
 		}
 
-
 		super.handleNotificationEvent(event);
 	}
 
