@@ -60,7 +60,7 @@ public class ElementCreationWithMessageEditPolicy extends LifelineChildGraphical
 				EditPart targetEP = getTargetEditPart(viewRequest);
 				EObject target = ViewUtil.resolveSemanticElement((View)getHost().getModel());
 
-				if(getSyncMessageHint().equals(viewRequest.getConnectionViewDescriptor().getSemanticHint())) {
+				if(getSyncMessageHint().equals(viewRequest.getConnectionViewDescriptor().getSemanticHint()) || getReplyMessageHint().equals(viewRequest.getConnectionViewDescriptor().getSemanticHint())) {
 					if(target instanceof Lifeline) {
 						InteractionFragment ift = SequenceUtil.findInteractionFragmentAt(viewRequest.getLocation(), getHost());
 
@@ -91,6 +91,11 @@ public class ElementCreationWithMessageEditPolicy extends LifelineChildGraphical
 
 	private static String getSyncMessageHint() {
 		IHintedType message = (IHintedType)UMLElementTypes.Message_4003;
+		return message.getSemanticHint();
+	}
+
+	private static String getReplyMessageHint() {
+		IHintedType message = (IHintedType)UMLElementTypes.Message_4005;
 		return message.getSemanticHint();
 	}
 

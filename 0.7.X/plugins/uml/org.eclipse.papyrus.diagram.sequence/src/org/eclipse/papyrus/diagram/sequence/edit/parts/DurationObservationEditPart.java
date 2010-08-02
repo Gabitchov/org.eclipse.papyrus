@@ -785,21 +785,13 @@ public class DurationObservationEditPart extends LabelEditPart implements ITextA
 		 */
 		public DurationObservationConstraint() {
 
-
-
-
 			this.setTextWrap(true);
 
-
-
-
 			this.setTextJustification(PositionConstants.CENTER);
-
 
 			this.setForegroundColor(ColorConstants.black);
 
 			this.setFont(THIS_FONT);
-
 
 		}
 

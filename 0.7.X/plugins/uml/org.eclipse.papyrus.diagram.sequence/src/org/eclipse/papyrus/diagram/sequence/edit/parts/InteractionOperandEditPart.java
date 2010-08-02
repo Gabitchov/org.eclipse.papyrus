@@ -378,21 +378,11 @@ AbstractBorderedShapeEditPart {
 		public CustomInteractionOperandFigure() {
 			this.setLayoutManager(new XYLayout());
 
-
-
-
 			this.setLineStyle(Graphics.LINE_DASH);
-
-
-
 
 			this.setBorder(null);
 
-
-
-
 			this.setLineSeparator(!firstOperand);
-
 
 			createContents();
 		}

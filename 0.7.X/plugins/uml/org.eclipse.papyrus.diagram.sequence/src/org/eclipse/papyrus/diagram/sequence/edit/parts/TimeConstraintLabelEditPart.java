@@ -708,7 +708,6 @@ public class TimeConstraintLabelEditPart extends CompartmentEditPart implements 
 			}
 		}
 
-
 		super.handleNotificationEvent(event);
 	}
 

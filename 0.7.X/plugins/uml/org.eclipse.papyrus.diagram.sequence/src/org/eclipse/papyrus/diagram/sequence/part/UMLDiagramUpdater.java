@@ -1632,10 +1632,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			List targets = link.getOwnedElements();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
 			if(false == theTarget instanceof Element) {
@@ -1644,7 +1640,6 @@ public class UMLDiagramUpdater {
 			Element dst = (Element)theTarget;
 			Element src = link.getOwner();
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_4003, MessageEditPart.VISUAL_ID));
-
 
 		}
 		return result;
@@ -1665,10 +1660,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			List targets = link.getOwnedElements();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
 			if(false == theTarget instanceof Element) {
@@ -1677,7 +1668,6 @@ public class UMLDiagramUpdater {
 			Element dst = (Element)theTarget;
 			Element src = link.getOwner();
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_4004, Message2EditPart.VISUAL_ID));
-
 
 		}
 		return result;
@@ -1698,10 +1688,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			List targets = link.getOwnedElements();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
 			if(false == theTarget instanceof Element) {
@@ -1710,7 +1696,6 @@ public class UMLDiagramUpdater {
 			Element dst = (Element)theTarget;
 			Element src = link.getOwner();
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_4005, Message3EditPart.VISUAL_ID));
-
 
 		}
 		return result;
@@ -1731,10 +1716,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			List targets = link.getOwnedElements();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
 			if(false == theTarget instanceof Element) {
@@ -1743,7 +1724,6 @@ public class UMLDiagramUpdater {
 			Element dst = (Element)theTarget;
 			Element src = link.getOwner();
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_4006, Message4EditPart.VISUAL_ID));
-
 
 		}
 		return result;
@@ -1764,10 +1744,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			List targets = link.getOwnedElements();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
 			if(false == theTarget instanceof Element) {
@@ -1776,7 +1752,6 @@ public class UMLDiagramUpdater {
 			Element dst = (Element)theTarget;
 			Element src = link.getOwner();
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_4007, Message5EditPart.VISUAL_ID));
-
 
 		}
 		return result;
@@ -1797,10 +1772,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			List targets = link.getOwnedElements();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
 			if(false == theTarget instanceof Element) {
@@ -1809,7 +1780,6 @@ public class UMLDiagramUpdater {
 			Element dst = (Element)theTarget;
 			Element src = link.getOwner();
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_4008, Message6EditPart.VISUAL_ID));
-
 
 		}
 		return result;
@@ -1830,10 +1800,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			List targets = link.getOwnedElements();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
 			if(false == theTarget instanceof Element) {
@@ -1842,7 +1808,6 @@ public class UMLDiagramUpdater {
 			Element dst = (Element)theTarget;
 			Element src = link.getOwner();
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_4009, Message7EditPart.VISUAL_ID));
-
 
 		}
 		return result;
@@ -2043,10 +2008,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			List targets = link.getOwnedElements();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
 			if(false == theTarget instanceof Element) {
@@ -2058,7 +2019,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_4003, MessageEditPart.VISUAL_ID));
-
 
 		}
 		return result;
@@ -2091,10 +2051,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			List targets = link.getOwnedElements();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
 			if(false == theTarget instanceof Element) {
@@ -2106,7 +2062,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_4004, Message2EditPart.VISUAL_ID));
-
 
 		}
 		return result;
@@ -2139,10 +2094,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			List targets = link.getOwnedElements();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
 			if(false == theTarget instanceof Element) {
@@ -2154,7 +2105,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_4005, Message3EditPart.VISUAL_ID));
-
 
 		}
 		return result;
@@ -2187,10 +2137,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			List targets = link.getOwnedElements();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
 			if(false == theTarget instanceof Element) {
@@ -2202,7 +2148,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_4006, Message4EditPart.VISUAL_ID));
-
 
 		}
 		return result;
@@ -2235,10 +2180,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			List targets = link.getOwnedElements();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
 			if(false == theTarget instanceof Element) {
@@ -2250,7 +2191,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_4007, Message5EditPart.VISUAL_ID));
-
 
 		}
 		return result;
@@ -2283,10 +2223,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			List targets = link.getOwnedElements();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
 			if(false == theTarget instanceof Element) {
@@ -2298,7 +2234,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_4008, Message6EditPart.VISUAL_ID));
-
 
 		}
 		return result;
@@ -2331,10 +2266,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
-
-
-
-
 			List targets = link.getOwnedElements();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
 			if(false == theTarget instanceof Element) {
@@ -2346,7 +2277,6 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_4009, Message7EditPart.VISUAL_ID));
-
 
 		}
 		return result;

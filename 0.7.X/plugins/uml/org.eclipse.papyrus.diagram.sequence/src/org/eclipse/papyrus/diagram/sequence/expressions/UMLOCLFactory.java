@@ -68,7 +68,7 @@ public class UMLOCLFactory {
 			"(self.oclIsKindOf(uml::InteractionFragment) or self.oclIsKindOf(uml::Lifeline)) and (self.owner = oppositeEnd.owner or self.owner = oppositeEnd or self = oppositeEnd.owner)", //$NON-NLS-1$
 			"self.messageSort=MessageSort::reply and self.sendEvent<>null and self.receiveEvent<>null", //$NON-NLS-1$
 			"self.oclIsKindOf(uml::InteractionFragment)", //$NON-NLS-1$
-			"self.oclIsKindOf(uml::InteractionFragment)", //$NON-NLS-1$
+			"self.oclIsKindOf(uml::InteractionFragment) or self.oclIsKindOf(uml::Lifeline)", //$NON-NLS-1$
 			"self.messageSort=MessageSort::createMessage and self.sendEvent<>null and self.receiveEvent<>null", //$NON-NLS-1$
 			"self.oclIsKindOf(uml::InteractionFragment) or self.oclIsKindOf(uml::Lifeline)", //$NON-NLS-1$
 			"self.oclIsKindOf(uml::Lifeline)", //$NON-NLS-1$
