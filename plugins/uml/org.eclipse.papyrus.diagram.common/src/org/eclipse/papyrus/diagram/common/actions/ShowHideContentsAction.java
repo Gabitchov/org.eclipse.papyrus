@@ -71,7 +71,6 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 	 */
 	public ShowHideContentsAction() {
 		super(title, message, ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY);
-
 	}
 
 
@@ -680,7 +679,4 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 			return this.representedClassifier;
 		}
 	}
-
-
-
 }
