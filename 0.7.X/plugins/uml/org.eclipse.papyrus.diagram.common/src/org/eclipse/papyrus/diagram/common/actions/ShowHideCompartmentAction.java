@@ -18,7 +18,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
@@ -143,6 +142,9 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 	@Override
 	protected void initAction() {
 		super.initAction();
+		if(this.selectedElements.size() < 1) {
+			return;
+		}
 		setContentProvider(new ContentProvider());
 		this.setEditorLabelProvider(new CustomEditorLabelProvider());
 		this.domain = ((IGraphicalEditPart)this.selectedElements.get(0)).getEditingDomain();
@@ -443,11 +445,11 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 			List<?> graphicalChildren = ((GraphicalEditPart)representedEditPart).getNotationView().getChildren();
 			for(Object child : graphicalChildren) {
 				// Only add compartment
-				if (child instanceof BasicCompartment) {
+				if(child instanceof BasicCompartment) {
 					this.possibleCompartments.add((View)child);
-				}				
+				}
 			}
-			
+
 
 			//fill this.initialSelection
 			if(this.possibleCompartments != null && !this.possibleCompartments.isEmpty()) {
