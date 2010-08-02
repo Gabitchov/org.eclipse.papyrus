@@ -168,7 +168,7 @@ public abstract class AbstractShowHideAction implements IActionDelegate, IWorkbe
 	 * @return
 	 *         if the action can be run or not
 	 */
-	protected boolean canRun() {
+	public boolean canRun() {
 
 		if(this.selectedElements.isEmpty()) {
 			return false;
@@ -215,7 +215,9 @@ public abstract class AbstractShowHideAction implements IActionDelegate, IWorkbe
 			}
 
 		}
-		action.setEnabled(enabled);
+		if(action != null) {
+			action.setEnabled(enabled);
+		}
 	}
 
 	/**
@@ -298,6 +300,29 @@ public abstract class AbstractShowHideAction implements IActionDelegate, IWorkbe
 	 */
 	protected void setContentProvider(ITreeContentProvider provider) {
 		this.contentProvider = provider;
+	}
+
+	/**
+	 * Setter for {@link #selectedElements}.
+	 * When this action is called by a popup menu, {@link #selectedElements} is filled by {@link #selectionChanged(IAction, ISelection)} When this
+	 * action is called by a Handler, {@link #selectedElements} is filled with this method
+	 * 
+	 * @param selection
+	 *        the current selection
+	 */
+	public void setSelection(List<EditPart> selection) {
+		this.selectedElements = selection;
+	}
+
+	/**
+	 * Getter for {@link AbstractShowHideAction#editPolicyKey}
+	 * 
+	 * @return
+	 * 
+	 *         {@link AbstractShowHideAction#editPolicyKey}
+	 */
+	public String getEditPolicyKey() {
+		return this.editPolicyKey;
 	}
 
 	/**
