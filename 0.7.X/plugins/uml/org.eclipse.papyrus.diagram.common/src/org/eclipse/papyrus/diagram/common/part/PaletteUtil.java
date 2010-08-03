@@ -291,12 +291,8 @@ public class PaletteUtil {
 		// generate for each provider, according to priority
 		@SuppressWarnings("unchecked")
 		List<PapyrusPaletteService.ProviderDescriptor> providerList = (List<PapyrusPaletteService.ProviderDescriptor>)PapyrusPaletteService.getInstance().getProviders();
-		System.err.println("---------------------------------------");
 		for(PapyrusPaletteService.ProviderDescriptor descriptor : providerList) {
 			int compare = descriptor.getPriority().compareTo(priority);
-			System.err.println("Descriptor: " + descriptor.getPriority() + " for " + descriptor.getContributionName() + " from " + descriptor.getContributionID());
-			System.err.println("reference: " + priority);
-			System.err.println("added: " + (compare <= 0));
 			if(compare <= 0) {
 				if(descriptor.providesWithVisibility(operation)) {
 					((IPaletteProvider)descriptor.getProvider()).contributeToPalette(part, part.getEditorInput(), root, entries);
