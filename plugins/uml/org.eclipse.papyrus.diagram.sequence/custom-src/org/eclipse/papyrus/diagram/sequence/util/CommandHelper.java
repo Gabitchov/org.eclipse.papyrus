@@ -296,7 +296,10 @@ public class CommandHelper {
 		if(parentsOwner instanceof InteractionFragment) {
 			EList<Lifeline> lifelines = ((InteractionFragment)parentsOwner).getCovereds();
 			for(Lifeline l : lifelines) {
-				existingParent = existingParent || addParentsFromLifeline(l, mapTypesPossibleParents);
+				boolean result = addParentsFromLifeline(l, mapTypesPossibleParents);
+				if (result) {
+					existingParent = true;
+				}
 			}
 		} else if(parentsOwner instanceof Lifeline) {
 			existingParent = addParentsFromLifeline((Lifeline)parentsOwner, mapTypesPossibleParents);
@@ -411,9 +414,11 @@ public class CommandHelper {
 		if(possibleClassifier != null) {
 			if(type instanceof Classifier) {
 				Classifier classifier = (Classifier)type;
-				existingParent = possibleClassifier.add(classifier);
+				possibleClassifier.add(classifier);
+
 				// add the supertypes of the class
 				possibleClassifier.addAll(classifier.allParents());
+				existingParent = true;
 			}
 		}
 
@@ -421,9 +426,11 @@ public class CommandHelper {
 		List<EObject> possiblePackages = mapTypesPossibleParents.get(UMLPackage.eINSTANCE.getSignal());
 		if(possiblePackages != null) {
 			Package package_ = type.getPackage();
-			existingParent = existingParent || possiblePackages.add(package_);
+			possiblePackages.add(package_);
+
 			// add the owners of the package
 			possiblePackages.addAll(package_.allOwningPackages());
+			existingParent = true;
 		}
 
 		return existingParent;
