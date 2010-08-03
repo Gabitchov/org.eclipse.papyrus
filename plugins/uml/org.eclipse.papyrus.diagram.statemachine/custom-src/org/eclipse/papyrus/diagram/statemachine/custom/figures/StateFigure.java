@@ -37,7 +37,7 @@ public class StateFigure extends NodeNamedElementFigure implements IPapyrusNodeF
 		informationLabel = new WrappingLabel();
 
 		informationLabel.setOpaque(false);
-		informationLabel.setAlignment(PositionConstants.MIDDLE);
+		informationLabel.setAlignment(PositionConstants.LEFT);
 		informationLabel.setVisible(false);
 		informationLabel.setTextWrap(true);
 		getInformationLabelContainer().add(informationLabel, getInformationLabelConstraint(), -1);
