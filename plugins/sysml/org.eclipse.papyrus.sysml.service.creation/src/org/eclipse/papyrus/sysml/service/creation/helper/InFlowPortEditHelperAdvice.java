@@ -11,7 +11,7 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.sysml.service.creation.advice;
+package org.eclipse.papyrus.sysml.service.creation.helper;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -19,42 +19,43 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
-import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
-import org.eclipse.papyrus.sysml.service.creation.Messages;
+import org.eclipse.papyrus.sysml.portandflows.FlowDirection;
+import org.eclipse.papyrus.sysml.portandflows.FlowPort;
 import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Stereotype;
 
-/**
- *this advice helper is used to add the stereotype FLOW PORT with the direction IN OUT 
- *
- */
-public class InOutFlowPortAdviceBinding extends AbstractEditHelperAdvice {
+/** SysML FlowPort#In edit helper advice */
+public class InFlowPortEditHelperAdvice extends AbstractStereotypedElementEditHelperAdvice {
 
+	/** Default constructor */
+	public InFlowPortEditHelperAdvice() {
+		requiredProfileIDs.add(SysmlResource.PORT_AND_FLOWS_ID);
+	}
+
+	/** Complete creation process by applying the expected stereotype */
+	@Override
 	protected ICommand getAfterConfigureCommand(final ConfigureRequest request) {
 
 		return new ConfigureElementCommand(request) {
 
-			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
+			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info)
+					throws ExecutionException {
 
-				// get the new part
-				Port type = (Port)request.getElementToConfigure();
-				if(type != null) {
-					if(type.getNearestPackage().getAppliedProfile(SysmlResource.PORT_AND_FLOWS_ID) == null || type.getOwner().getAppliedStereotype(SysmlResource.BLOCK_ID) == null) {
-						org.eclipse.papyrus.sysml.service.creation.Activator.getDefault().log.info(Messages.ERROR_MESSAGE_PROFILE_BEGIN + SysmlResource.PORT_AND_FLOWS_ID + Messages.ERROR_MESSAGE_PROFILE_END);
-					}
-					Stereotype partStereotype = type.getApplicableStereotype(SysmlResource.FLOW_PORT_ID); // $NON-NSL-1$
+				Port type = (Port) request.getElementToConfigure();
+				if (type != null) {
+					Stereotype partStereotype = type.getApplicableStereotype(SysmlResource.FLOW_PORT_ID);
 
-					if(partStereotype != null) {
-						// apply the part stereotype
-						type.applyStereotype(partStereotype);
+					if (partStereotype != null) {
+						FlowPort flowportApplication = (FlowPort) type.applyStereotype(partStereotype);
+						flowportApplication.setDirection(FlowDirection.IN);
 					}
 				}
-
 
 				return CommandResult.newOKCommandResult();
 			}
 		};
 	}
+
 }

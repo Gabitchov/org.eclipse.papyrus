@@ -25,14 +25,10 @@ import org.eclipse.papyrus.diagram.common.command.wrappers.GMFtoEMFCommandWrappe
 import org.eclipse.papyrus.sysml.service.creation.element.SysMLElementTypes;
 import org.eclipse.papyrus.sysml.service.creation.element.SysMLTypeContext;
 
-/**
- ** The Class ReplyActionCreateCommand in charge to create a element Reply
- **/
+/** Command handler for Block creation */
 public class BlockHandler extends UMLHandler implements IHandler {
 
-	/**
-	 ** The Class ReplyActionCreateCommand in charge to create a element Reply
-	 **/
+	/** Returns the creation command */
 	protected Command getCommand() throws ExecutionException {
 		CreateElementRequest request = new CreateElementRequest(SysMLElementTypes.BLOCK);
 		request.setContainer(getSelectedElement());

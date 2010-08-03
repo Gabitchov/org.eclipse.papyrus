@@ -27,14 +27,10 @@ import org.eclipse.papyrus.sysml.service.creation.element.SysMLTypeContext;
 import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.uml2.uml.Classifier;
 
-/**
- ** The Class ReplyActionCreateCommand in charge to create a element Reply
- **/
+/** Command handler for "In" FlowPort creation */
 public class InFlowPortHandler extends UMLHandler implements IHandler {
 
-	/**
-	 ** The Class ReplyActionCreateCommand in charge to create a element Reply
-	 **/
+	/** Returns the creation command */
 	protected Command getCommand() throws ExecutionException {
 		CreateElementRequest request = new CreateElementRequest(SysMLElementTypes.INFLOWPORT);
 		request.setContainer(getSelectedElement());
@@ -58,13 +54,14 @@ public class InFlowPortHandler extends UMLHandler implements IHandler {
 
 	@Override
 	public boolean isEnabled() {
+		
+		// Disable the command if the parent is not a Block
 		if(getSelectedElement() instanceof org.eclipse.uml2.uml.Classifier) {
 			if(((Classifier)getSelectedElement()).getAppliedStereotype(SysmlResource.BLOCK_ID) == null) {
 				return false;
 			}
 		}
 
-		// TODO Auto-generated method stub
 		return super.isEnabled();
 	}
 }
