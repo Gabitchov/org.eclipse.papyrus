@@ -574,50 +574,51 @@
             </visibleWhen>
          </command>
       </menuContribution>
-      <menuContribution
-            locationURI="menu:org.eclipse.papyrus.ui.menu">
-         <menu
-               id="org.eclipse.papyrus.diagram.ui.menu.diagrams"
-               label="Diagrams">
-            <command
-                  commandId="org.eclipse.papyrus.sysml.diagram.parametric.CreateParametricDiagramCommand"
-                  icon="icons/obj16/Diagram_Parametric.gif"
-                  label="Create a new Parametric Diagram"
-                  style="push"
-                  tooltip="Create a new Parametric Diagram">
-               <visibleWhen>
-                  <with
-                        variable="activeEditorId">
-                     <equals
-                           value="org.eclipse.papyrus.core.papyrusEditor">
-                     </equals>
-                  </with>
-               </visibleWhen>
-            </command>
-         </menu>
-      </menuContribution>
-      <menuContribution
-            locationURI="toolbar:org.eclipse.ui.main.toolbar">
-         <toolbar
-               id="org.eclipse.papyrus.diagram.ui.toolbar">
-            <command
-                  commandId="org.eclipse.papyrus.sysml.diagram.parametric.CreateParametricDiagramCommand"
-                  icon="icons/obj16/Diagram_Parametric.gif"
-                  label="Create a new Parametric Diagram"
-                  style="push"
-                  tooltip="Create a new Parametric Diagram">
-               <visibleWhen>
-                  <with
-                        variable="activeEditorId">
-                     <equals
-                           value="org.eclipse.papyrus.core.papyrusEditor">
-                     </equals>
-                  </with>
-               </visibleWhen>
-            </command>
-         </toolbar>
-      </menuContribution>
-   </extension>
+      
+      
+	<menuContribution locationURI="menu:org.eclipse.papyrus.ui.menu">
+		<menu id="org.eclipse.papyrus.diagram.ui.menu.diagrams"
+			label="Diagrams">
+			<command commandId="org.eclipse.papyrus.sysml.diagram.parametric.CreateParametricDiagramCommand"
+				icon="icons/obj16/Diagram_Parametric.gif"
+				label="Create a new Parametric Diagram"
+				style="push"
+				tooltip="Create a new Parametric Diagram">
+				<visibleWhen>
+					<reference definitionId="org.eclipse.papyrus.sysml.diagram.common.IsPapyrusActiveWithSysML"/>
+				</visibleWhen>
+			</command>
+		</menu>
+	</menuContribution>
+	
+	<menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar">
+		<toolbar id="org.eclipse.papyrus.diagram.ui.toolbar">
+			<command commandId="org.eclipse.papyrus.sysml.diagram.parametric.CreateParametricDiagramCommand"
+				icon="icons/obj16/Diagram_Parametric.gif"
+				label="Create a new Parametric Diagram"
+				style="push"
+				tooltip="Create a new Parametric Diagram">
+				<visibleWhen>
+					<reference definitionId="org.eclipse.papyrus.sysml.diagram.common.IsPapyrusActiveWithSysML"/>
+				</visibleWhen>
+			</command>
+		</toolbar>
+	</menuContribution>
+
+	<menuContribution
+		locationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.creatediagram">
+	    <command commandId="org.eclipse.papyrus.sysml.diagram.parametric.CreateParametricDiagramCommand"
+			icon="icons/obj16/Diagram_Parametric.gif"
+			label="Create a new Parametric Diagram"
+			style="push"
+			tooltip="Create a new Parametric Diagram">
+	       <visibleWhen>
+				<reference definitionId="org.eclipse.papyrus.sysml.diagram.common.IsPapyrusActiveWithSysML"/>
+	       </visibleWhen>
+	    </command>
+	</menuContribution>
+
+</extension>
 
    <extension point="org.eclipse.ui.commands" id="menu-commands">
       <?gmfgen generated="true"?>

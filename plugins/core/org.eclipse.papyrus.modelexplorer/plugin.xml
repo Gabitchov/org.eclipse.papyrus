@@ -76,22 +76,6 @@
                </or>
             </enablement>
          </actionProvider>
-          <actionProvider
-               class="org.eclipse.papyrus.modelexplorer.actionprovider.CreateDiagramActionProvider"
-               id="org.eclipse.papyrus.modelexplorer.actionprovider.CreateDiagramActionProvider">
-                 <enablement>
-               <and>
-                  <not>
-                     <instanceof
-                           value="org.eclipse.gmf.runtime.notation.Diagram">
-                     </instanceof>
-                  </not>
-                  <adapt
-                        type="org.eclipse.emf.ecore.EObject">
-                  </adapt>
-               </and>
-            </enablement>
-         </actionProvider>
           
          <actionProvider
                class="org.eclipse.papyrus.modelexplorer.actionprovider.EditingDomainActionProvider"
@@ -161,33 +145,43 @@
             needSeparator="true">
       </customAction>
    </extension>
-    <extension
-          point="org.eclipse.ui.menus">
-       <menuContribution
-             allPopups="false"
-             locationURI="toolbar:org.eclipse.papyrus.modelexplorer.modelexplorer">
-          <command
-                commandId="org.eclipse.papyrus.modelexplorer.LoadBrowserCustomization"
-                icon="icons/etool16/uiCustom.gif"
-                label="Load browser customization"
-                style="push">
-          </command>
-          <command
-                commandId="org.eclipse.papyrus.modelexplorer.searchelement"
-                icon="icons/etool16/search.gif"
-                label="Search element"
-                style="push">
-          </command>
-       </menuContribution>
-       <menuContribution
-             allPopups="false"
-             locationURI="popup:org.eclipse.papyrus.modelexplorer.modelexplorer.popup">
-          <menu
-                id="org.eclipse.papyrus.modelexplorer.popupmenu.createchild"
-                label="New Child">
-          </menu>
-       </menuContribution>
-    </extension>
+
+<extension point="org.eclipse.ui.menus">
+	
+	<menuContribution locationURI="toolbar:org.eclipse.papyrus.modelexplorer.modelexplorer"
+			allPopups="false">
+		
+		<command 
+			commandId="org.eclipse.papyrus.modelexplorer.LoadBrowserCustomization"
+			icon="icons/etool16/uiCustom.gif"
+			label="Load browser customization"
+			style="push">
+		</command>
+
+		<command
+			commandId="org.eclipse.papyrus.modelexplorer.searchelement"
+			icon="icons/etool16/search.gif"
+			label="Search element"
+			style="push">
+		</command>
+	</menuContribution>
+       
+	<menuContribution locationURI="popup:org.eclipse.papyrus.modelexplorer.modelexplorer.popup"
+			allPopups="false">
+		<menu
+			id="org.eclipse.papyrus.modelexplorer.popupmenu.createchild"
+			label="New Child">
+		</menu>
+
+		<menu
+			id="org.eclipse.papyrus.modelexplorer.popupmenu.creatediagram"
+			label="New Diagram">
+		</menu>
+	</menuContribution>
+       
+</extension>
+
+
     <extension
           point="org.eclipse.ui.commands">
        <command

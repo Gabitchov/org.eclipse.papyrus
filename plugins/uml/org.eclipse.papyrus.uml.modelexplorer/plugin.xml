@@ -55,22 +55,6 @@
             </enablement>
          </actionProvider>
          <actionProvider
-               class="org.eclipse.papyrus.modelexplorer.actionprovider.CreateDiagramActionProvider"
-               id="org.eclipse.papyrus.modelexplorer.actionprovider.CreateDiagramActionProvider">
-            <enablement>
-               <and>
-                  <not>
-                     <instanceof
-                           value="org.eclipse.gmf.runtime.notation.Diagram">
-                     </instanceof>
-                  </not>
-                  <adapt
-                        type="org.eclipse.emf.ecore.EObject">
-                  </adapt>
-               </and>
-            </enablement>
-         </actionProvider>
-         <actionProvider
                class="org.eclipse.papyrus.modelexplorer.actionprovider.EditingDomainActionProvider"
                id="org.eclipse.papyrus.modelexplorer.actionprovider.EditingDomainActionProvider">
             <enablement>
