@@ -118,7 +118,7 @@ public class CommandHelper {
 	 *        the messageSort.
 	 * @return the created message
 	 */
-	public static Message doCreateMessage(Interaction interaction, MessageSort messageSort) {
+	public static Message doCreateMessage(Interaction interaction, MessageSort messageSort, NamedElement signature) {
 		Message message = interaction.createMessage(null);
 
 		// Set the interaction that will contain the message
@@ -127,8 +127,12 @@ public class CommandHelper {
 		// Set MessageSort
 		message.setMessageSort(messageSort);
 
-		// Init Name 
-		ElementInitializers.init_NamedElement(message);
+		// Init Name
+		if (signature == null) {
+			ElementInitializers.init_NamedElement(message);
+		} else {
+			message.setName(signature.getName());
+		}
 
 		return message;
 	}
@@ -909,7 +913,7 @@ public class CommandHelper {
 		messageSort = getMessageSort(signature, messageSort);
 
 		// Create the message
-		Message message = doCreateMessage(container, messageSort);
+		Message message = doCreateMessage(container, messageSort, signature);
 
 		// Create the two message ends
 		if(sendMessageEnd == null && source != null) {
