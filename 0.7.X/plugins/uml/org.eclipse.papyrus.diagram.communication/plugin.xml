@@ -30,52 +30,52 @@
          </activeWhen>
       </handler>
    </extension>
-   <extension
-         point="org.eclipse.ui.menus">
-      <menuContribution
-            locationURI="toolbar:org.eclipse.ui.main.toolbar">
-         <toolbar
-               id="org.eclipse.papyrus.diagram.ui.toolbar">
-            <command
-                  commandId="org.eclipse.papyrus.diagram.communication.CreateCommunicationDiagramCommand"
-                  icon="icons/obj16/Diagram_Communication.gif"
-                  label="Create a new Communication Diagram"
-                  style="push"
-                  tooltip="Create a new Communication Diagram">
-               <visibleWhen>
-                  <with
-                        variable="activeEditorId">
-                     <equals
-                           value="org.eclipse.papyrus.core.papyrusEditor">
-                     </equals>
-                  </with>
-               </visibleWhen>
-            </command>
-         </toolbar>
-      </menuContribution>
-      <menuContribution
-            locationURI="menu:org.eclipse.papyrus.ui.menu">
-         <menu
-               id="org.eclipse.papyrus.diagram.ui.menu.diagrams"
-               label="Diagrams">
-            <command
-                  commandId="org.eclipse.papyrus.diagram.communication.CreateCommunicationDiagramCommand"
-                  icon="icons/obj16/Diagram_Communication.gif"
-                  label="Create a new Communication Diagram"
-                  style="push"
-                  tooltip="Create a new Communication Diagram">
-                  <visibleWhen>
-                  <with
-                        variable="activeEditorId">
-                     <equals
-                           value="org.eclipse.papyrus.core.papyrusEditor">
-                     </equals>
-                  </with>
-               </visibleWhen>
-            </command>
-         </menu>
-      </menuContribution>
-   </extension>
+   
+<extension
+		point="org.eclipse.ui.menus">
+		
+	<menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar">
+	<toolbar id="org.eclipse.papyrus.diagram.ui.toolbar">
+		<command commandId="org.eclipse.papyrus.diagram.communication.CreateCommunicationDiagramCommand"
+			icon="icons/obj16/Diagram_Communication.gif"
+			label="Create a new Communication Diagram"
+			style="push"
+			tooltip="Create a new Communication Diagram">
+			<visibleWhen>
+				<reference definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLModel"/>
+			</visibleWhen>
+		</command>
+	</toolbar>
+	</menuContribution>
+	
+	<menuContribution locationURI="menu:org.eclipse.papyrus.ui.menu">
+	<menu id="org.eclipse.papyrus.diagram.ui.menu.diagrams"
+		label="Diagrams">
+		<command commandId="org.eclipse.papyrus.diagram.communication.CreateCommunicationDiagramCommand"
+			icon="icons/obj16/Diagram_Communication.gif"
+			label="Create a new Communication Diagram"
+			style="push"
+			tooltip="Create a new Communication Diagram">
+			<visibleWhen>
+				<reference definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLModel"/>
+			</visibleWhen>
+		</command>
+	</menu>
+	</menuContribution>
+
+	<menuContribution locationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.creatediagram">
+		<command commandId="org.eclipse.papyrus.diagram.communication.CreateCommunicationDiagramCommand"
+			icon="icons/obj16/Diagram_Communication.gif"
+			label="Create a new Communication Diagram"
+			style="push"
+			tooltip="Create a new Communication Diagram">
+			<visibleWhen>
+				<reference definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLModel"/>
+			</visibleWhen>
+		</command>
+	</menuContribution>
+
+</extension>
    
    <extension
          point="org.eclipse.papyrus.core.papyrusDiagram">

@@ -16,7 +16,7 @@
          point="org.eclipse.ui.commands">
       <command
             categoryId="org.eclipse.papyrus.editor.category"
-            description="Create a new UseCase Diagram (Papyrus II)"
+            description="Create a new UseCase Diagram"
             id="org.eclipse.papyrus.diagram.usecase.CreateUseCaseDiagramCommand"
             name="Create a new UseCase Diagram">
       </command>
@@ -42,6 +42,7 @@
    
    <extension
          point="org.eclipse.ui.menus">
+      
       <menuContribution
             locationURI="toolbar:org.eclipse.ui.main.toolbar">
          <toolbar
@@ -53,16 +54,12 @@
                   style="push"
                   tooltip="Create a new UseCase Diagram">
                   <visibleWhen>
-                  <with
-                        variable="activeEditorId">
-                     <equals
-                           value="org.eclipse.papyrus.core.papyrusEditor">
-                     </equals>
-                  </with>
-               </visibleWhen>
+                  	<reference definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLModel"/>
+                  </visibleWhen>
             </command>
          </toolbar>
       </menuContribution>
+      
       <menuContribution
             locationURI="menu:org.eclipse.papyrus.ui.menu">
          <menu
@@ -73,10 +70,26 @@
                   icon="icons/obj16/Diagram_UseCase.gif"
                   label="Create a new UseCase Diagram"
                   style="push"
-                  tooltip="Create a new UML2 UseCase Diagram  (Papyrus II)">
+                  tooltip="Create a new UseCase Diagram">
+                  <visibleWhen>
+                  	<reference definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLModel"/>
+                  </visibleWhen>                  
             </command>
          </menu>
       </menuContribution>
+      
+	<menuContribution locationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.creatediagram">
+		<command commandId="org.eclipse.papyrus.diagram.usecase.CreateUseCaseDiagramCommand"
+			icon="icons/obj16/Diagram_UseCase.gif"
+			label="Create a new UseCase Diagram"
+			style="push"
+			tooltip="Create a new UseCase Diagram">
+			<visibleWhen>
+				<reference definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLModel"/>
+			</visibleWhen>
+		</command>
+	</menuContribution>      
+      
    </extension>
    
    <extension

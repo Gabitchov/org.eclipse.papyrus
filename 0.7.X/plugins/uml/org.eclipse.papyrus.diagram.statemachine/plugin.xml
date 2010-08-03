@@ -523,10 +523,8 @@
 			icon="icons/obj16/Diagram_StateMachine.gif" label="Create a new StateMachine Diagram"
 			style="push" tooltip="Create a new StateMachine Diagram">
 			<visibleWhen>
-				<with variable="activeEditorId">
-					<equals value="org.eclipse.papyrus.core.papyrusEditor" />
-				</with>
-			</visibleWhen>
+				<reference definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLModel"/>
+			</visibleWhen> 
 		</command>
 	</menu>
 	</menuContribution>
@@ -537,13 +535,24 @@
 			icon="icons/obj16/Diagram_StateMachine.gif" label="Create a new StateMachine Diagram"
 			style="push" tooltip="Create a new StateMachine Diagram">
 			<visibleWhen>
-				<with variable="activeEditorId">
-					<equals value="org.eclipse.papyrus.core.papyrusEditor" />
-				</with>
-			</visibleWhen>
+				<reference definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLModel"/>
+			</visibleWhen> 
 		</command>
 	</toolbar>
 	</menuContribution>
+
+	<menuContribution locationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.creatediagram">
+		<command commandId="org.eclipse.papyrus.diagram.statemachine.CreationCommand"
+			icon="icons/obj16/Diagram_StateMachine.gif"
+			label="Create a new StateMachine Diagram"
+			style="push"
+			tooltip="Create a new StateMachine Diagram">
+			<visibleWhen>
+				<reference definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLModel"/>
+			</visibleWhen>
+		</command>
+	</menuContribution>	
+	
 </extension>
    
    <extension

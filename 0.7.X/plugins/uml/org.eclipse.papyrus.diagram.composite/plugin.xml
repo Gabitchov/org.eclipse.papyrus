@@ -1608,51 +1608,53 @@
             label="UML Composite Structure Diagram">
       </creationCommand>
    </extension>
-   <extension
-         point="org.eclipse.ui.menus">
-      <menuContribution
-            locationURI="toolbar:org.eclipse.ui.main.toolbar">
-         <toolbar
-               id="org.eclipse.papyrus.diagram.ui.toolbar">
-            <command
-                  commandId="org.eclipse.papyrus.diagram.composite.createCompositeDiagram"
-                  icon="icons/obj16/Diagram_CompositeStructure.gif"
-                  label="Create a new Composite Structure Diagram"
-                  style="push"
-                  tooltip="Create a new Composite Structure Diagram">
-					<visibleWhen>
-						<with variable="activeEditorId">
-							<equals value="org.eclipse.papyrus.core.papyrusEditor" />
-						</with>
-					</visibleWhen>
-            </command>
-         </toolbar>
-      </menuContribution>
-      <menuContribution
-            locationURI="menu:org.eclipse.papyrus.ui.menu">
-         <menu
-               id="org.eclipse.papyrus.diagram.ui.menu.diagrams"
-               label="Diagrams">
-            <command
-                  commandId="org.eclipse.papyrus.diagram.composite.createCompositeDiagram"
-                  icon="icons/obj16/Diagram_CompositeStructure.gif"
-                  label="Create a new Composite Structure Diagram"
-                  style="push"
-                  tooltip="Create a new Composite Structure Diagram">
-					<visibleWhen>
-						<and>
-						<with variable="activeEditorId">
-							<equals value="org.eclipse.papyrus.core.papyrusEditor" />
-						</with>
-						<with variable="activeWorkbenchWindow.activePerspective">
-							<equals value="org.eclipse.papyrus.core.perspective" />
-						</with>
-						</and>
-					</visibleWhen>
-            </command>
-         </menu>
-      </menuContribution>
-   </extension>
+   
+<extension
+		point="org.eclipse.ui.menus">
+
+	<menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar">
+	<toolbar id="org.eclipse.papyrus.diagram.ui.toolbar">
+		<command commandId="org.eclipse.papyrus.diagram.composite.createCompositeDiagram"
+			icon="icons/obj16/Diagram_CompositeStructure.gif"
+			label="Create a new Composite Structure Diagram"
+			style="push"
+			tooltip="Create a new Composite Structure Diagram">
+			<visibleWhen>
+				<reference definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLModel"/>
+			</visibleWhen>
+		</command>
+	</toolbar>
+	</menuContribution>
+
+	<menuContribution locationURI="menu:org.eclipse.papyrus.ui.menu">
+	<menu id="org.eclipse.papyrus.diagram.ui.menu.diagrams"
+		label="Diagrams">
+		<command commandId="org.eclipse.papyrus.diagram.composite.createCompositeDiagram"
+			icon="icons/obj16/Diagram_CompositeStructure.gif"
+			label="Create a new Composite Structure Diagram"
+			style="push"
+			tooltip="Create a new Composite Structure Diagram">
+			<visibleWhen>
+				<reference definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLModel"/>
+			</visibleWhen>
+		</command>
+	</menu>
+	</menuContribution>
+
+	<menuContribution locationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.creatediagram">
+		<command commandId="org.eclipse.papyrus.diagram.composite.createCompositeDiagram"
+			icon="icons/obj16/Diagram_CompositeStructure.gif"
+			label="Create a new Composite Structure Diagram"
+			style="push"
+			tooltip="Create a new Composite Structure Diagram">
+			<visibleWhen>
+				<reference definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLModel"/>
+			</visibleWhen>
+		</command>
+	</menuContribution>
+
+</extension>
+
    <extension
          point="org.eclipse.ui.commands">
       <command
@@ -2791,9 +2793,5 @@
          </or></visibility>
    </objectContribution>
    </extension>
-
-
-   
-
    
 </plugin>

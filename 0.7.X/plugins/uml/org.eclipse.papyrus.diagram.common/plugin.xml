@@ -1070,4 +1070,55 @@
         </command>
      </menuContribution>
   </extension>
+
+<!-- Property tester to check the nature (UML Model or Profile) of currently opened project -->  
+<extension
+		point="org.eclipse.core.expressions.propertyTesters">
+	<propertyTester
+		class="org.eclipse.papyrus.diagram.common.util.UMLSelectionTester"
+		id="org.eclipse.papyrus.UMLSelectionTester"
+		namespace="org.eclipse.papyrus.UMLSelectionTester"
+		properties="isUMLModel, isUMLProfile"
+		type="org.eclipse.jface.viewers.ISelection">
+	</propertyTester>
+</extension>
+
+<!-- Reusable test definitions verifying:
+	- Papyrus is the active editor
+	- The model root element is a UML Model or Profile 
+  -->
+<extension
+		point="org.eclipse.core.expressions.definitions">
+	
+	<definition id="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLModel">
+		<and>
+		
+		<with variable="activeEditorId">
+			<equals value="org.eclipse.papyrus.core.papyrusEditor"/>
+		</with>
+
+		<with variable="selection">
+			<test property="org.eclipse.papyrus.UMLSelectionTester.isUMLModel" value="true"
+				forcePluginActivation="true"/>
+		</with>
+		
+		</and>
+	</definition>
+	
+	<definition id="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLProfile">
+		<and>
+		
+		<with variable="activeEditorId">
+			<equals value="org.eclipse.papyrus.core.papyrusEditor"/>
+		</with>
+
+		<with variable="selection">
+			<test property="org.eclipse.papyrus.UMLSelectionTester.isUMLProfile" value="true"
+				forcePluginActivation="true"/>
+		</with>
+		
+		</and>
+	</definition>	
+</extension>   
+
 </plugin>

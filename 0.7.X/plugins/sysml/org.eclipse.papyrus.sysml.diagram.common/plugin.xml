@@ -2,15 +2,43 @@
 <?eclipse version="3.4"?>
 <plugin>
 
-   <extension
-         point="org.eclipse.papyrus.core.papyrusDiagram">
-      <diagramCategory
-            class="org.eclipse.papyrus.sysml.diagram.common.commands.CreateSysMLModelCommand"
-            description="SysML diagrams"
-            icon="icons/category_sysml.gif"
-            id="sysml"
-            label="SysML">
-      </diagramCategory>      
-   </extension>
+<extension
+	point="org.eclipse.papyrus.core.papyrusDiagram">
+	<diagramCategory
+		class="org.eclipse.papyrus.sysml.diagram.common.commands.CreateSysMLModelCommand"
+		description="SysML diagrams"
+		icon="icons/category_sysml.gif"
+		id="sysml"
+		label="SysML">
+	</diagramCategory>      
+</extension>
+   
+<extension
+	point="org.eclipse.core.expressions.propertyTesters">
+	<propertyTester
+		class="org.eclipse.papyrus.sysml.diagram.common.utils.SysMLSelectionTester"
+		id="org.eclipse.papyrus.SysMLSelectionTester"
+		namespace="org.eclipse.papyrus.SysMLSelectionTester"
+		properties="isSysMLModel"
+		type="org.eclipse.jface.viewers.ISelection">
+	</propertyTester>
+</extension>
+
+<extension
+	point="org.eclipse.core.expressions.definitions">
+	<definition id="org.eclipse.papyrus.sysml.diagram.common.IsPapyrusActiveWithSysML">
+		<and>
+			<with variable="activeEditorId">
+				<equals value="org.eclipse.papyrus.core.papyrusEditor"/>
+			</with>
+			<with variable="selection">
+				<test
+          forcePluginActivation="true"
+          property="org.eclipse.papyrus.SysMLSelectionTester.isSysMLModel"
+          value="true"/>
+			</with>
+		</and>
+	</definition>
+</extension>   
 
 </plugin>
