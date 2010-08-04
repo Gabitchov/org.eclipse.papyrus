@@ -13,10 +13,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.commands;
 
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
-import org.eclipse.gmf.runtime.notation.BasicCompartment;
+import org.eclipse.gmf.runtime.notation.View;
 
 /**
  * 
@@ -28,14 +29,23 @@ public class ShowHideElementsRequest extends Request {
 	/** type of this request */
 	public static final String SHOW_HIDE_ELEMENTS = "Show/Hide elements";
 
+	/** value to hide the object */
+	public static final boolean HIDE = false;
+
+	/** value to show the object */
+	public static final boolean SHOW = true;
+
 	/** EditPart to hide */
 	protected EditPart hidedEditPart = null;
 
 	/** the container which the view will be created */
-	protected BasicCompartment container = null;
+	protected View container = null;
 
 	/** the semantic element to create */
 	protected EObject semanticElement = null;
+
+	/** the location for the element to show */
+	protected Point location = null;
 
 	/**
 	 * 
@@ -58,7 +68,7 @@ public class ShowHideElementsRequest extends Request {
 	 * @param semanticElement
 	 *        the element to create
 	 */
-	public ShowHideElementsRequest(BasicCompartment container, EObject semanticElement) {
+	public ShowHideElementsRequest(View container, EObject semanticElement) {
 		super(SHOW_HIDE_ELEMENTS);
 		this.container = container;
 		this.semanticElement = semanticElement;
@@ -79,7 +89,7 @@ public class ShowHideElementsRequest extends Request {
 	 * @return
 	 *         {@link #container}
 	 */
-	public BasicCompartment getContainer() {
+	public View getContainer() {
 		return this.container;
 	}
 
@@ -91,5 +101,25 @@ public class ShowHideElementsRequest extends Request {
 	 */
 	public EObject getSemanticElement() {
 		return this.semanticElement;
+	}
+
+	/**
+	 * Setter for {@link #location}
+	 * 
+	 * @param location
+	 *        the location for the EditPart to show
+	 */
+	public void setLocation(Point location) {
+		this.location = location;
+	}
+
+	/**
+	 * Getter for {@link #location}
+	 * 
+	 * @return
+	 *         The location for the EditPart to show
+	 */
+	public Point getLocation() {
+		return this.location;
 	}
 }

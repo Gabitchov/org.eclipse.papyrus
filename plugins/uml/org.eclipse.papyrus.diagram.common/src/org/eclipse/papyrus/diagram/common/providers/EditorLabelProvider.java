@@ -21,16 +21,25 @@ import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.Messages;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.Collaboration;
+import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.DataType;
+import org.eclipse.uml2.uml.FunctionBehavior;
+import org.eclipse.uml2.uml.InformationItem;
+import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.OpaqueBehavior;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.ProtocolStateMachine;
 import org.eclipse.uml2.uml.Reception;
+import org.eclipse.uml2.uml.StateMachine;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.Type;
 
@@ -82,6 +91,33 @@ public class EditorLabelProvider implements ILabelProvider {
 
 	/** icon for a port */
 	public static final String ICON_PORT = "/icons/Port.gif"; //$NON-NLS-1$
+
+	/** icon for an activity */
+	public static final String ICON_ACTIVITY = "/icons/Activity.gif"; //$NON-NLS-1$
+
+	/** icon for a collaboration */
+	public static final String ICON_COLLABORATION = "/icons/Collaboration.gif"; //$NON-NLS-1$
+
+	/** icon for function behavior */
+	public static final String ICON_FUNCTION_BEHAVIOR = "/icons/obj16/FunctionBehavior.gif"; //$NON-NLS-1$
+
+	/** icon for an information item */
+	public static final String ICON_INFORMATION_ITEM = "/icons/obj16/InformationItem.gif"; //$NON-NLS-1$
+
+	/** icon for an interaction */
+	public static final String ICON_INTERACTION = "/icons/obj16/Interaction.gif"; //$NON-NLS-1$
+
+	/** icon for an opaque behavior */
+	public static final String ICON_OPAQUE_BEHAVIOR = "/icons/obj16/OpaqueBehavior.gif"; //$NON-NLS-1$
+
+	/** icon for a protocol state machine */
+	public static final String ICON_PROTOCOL_STATE_MACHINE = "/icons/obj16/ProtocolStateMachine.gif"; //$NON-NLS-1$
+
+	/** icon for a state machine */
+	public static final String ICON_STATE_MACHINE = "/icons/obj16/StateMachine.gif"; //$NON-NLS-1$
+
+	/** icon for a constraint */
+	public static final String ICON_CONSTRAINT = "/icons/obj16/Constraint.gif"; //$NON-NLS-1$
 
 	/**
 	 * 
@@ -142,6 +178,24 @@ public class EditorLabelProvider implements ILabelProvider {
 			return Activator.getPluginIconImage(Activator.ID, ICON_STEREOTYPE);
 		} else if(element instanceof Interface) {
 			return Activator.getPluginIconImage(Activator.ID, ICON_INTERFACE);
+		} else if(element instanceof Interaction) {
+			return Activator.getPluginIconImage(Activator.ID, ICON_INTERACTION);
+		} else if(element instanceof Constraint) {
+			return Activator.getPluginIconImage(Activator.ID, ICON_CONSTRAINT);
+		} else if(element instanceof Activity) {
+			return Activator.getPluginIconImage(Activator.ID, ICON_ACTIVITY);
+		} else if(element instanceof Collaboration) {
+			return Activator.getPluginIconImage(Activator.ID, ICON_COLLABORATION);
+		} else if(element instanceof InformationItem) {
+			return Activator.getPluginIconImage(Activator.ID, ICON_INFORMATION_ITEM);
+		} else if(element instanceof FunctionBehavior) {
+			return Activator.getPluginIconImage(Activator.ID, ICON_FUNCTION_BEHAVIOR);
+		} else if(element instanceof OpaqueBehavior) {
+			return Activator.getPluginIconImage(Activator.ID, ICON_OPAQUE_BEHAVIOR);
+		} else if(element instanceof ProtocolStateMachine) {
+			return Activator.getPluginIconImage(Activator.ID, ICON_PROTOCOL_STATE_MACHINE);
+		} else if(element instanceof StateMachine) {
+			return Activator.getPluginIconImage(Activator.ID, ICON_STATE_MACHINE);
 		} else if(element instanceof Class) {
 			if(org.eclipse.papyrus.diagram.common.util.Util.isMetaclass((Type)element)) {
 				return Activator.getPluginIconImage(Activator.ID, ICON_METACLASS);

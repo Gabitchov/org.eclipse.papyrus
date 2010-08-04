@@ -31,6 +31,7 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.command.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.papyrus.diagram.common.providers.EditorLabelProvider;
+import org.eclipse.papyrus.diagram.common.util.ViewServiceUtil;
 import org.eclipse.ui.IActionDelegate;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
@@ -87,6 +88,8 @@ public abstract class AbstractShowHideAction implements IActionDelegate, IWorkbe
 		this.editPolicyKey = editPolicyKey;
 		this.title = title;
 		this.message = message;
+		/* for further information, see bug 302555 */
+		ViewServiceUtil.forceLoad();
 	}
 
 	/**
@@ -123,8 +126,6 @@ public abstract class AbstractShowHideAction implements IActionDelegate, IWorkbe
 		}
 		initAction();
 		buildInitialSelection();
-
-
 
 		CheckedTreeSelectionDialog selectionDialog = new CheckedTreeSelectionDialog(DisplayUtils.getDisplay().getActiveShell(), labelProvider, contentProvider);
 		selectionDialog.setTitle(title);
@@ -339,7 +340,7 @@ public abstract class AbstractShowHideAction implements IActionDelegate, IWorkbe
 		protected List<Object> initialSelection;
 
 		/** the possible element to show/hide */
-		protected List<Object> possibleElement;
+		protected List<Object> elementsToSelect;
 
 		public EditPartRepresentation(EditPart representedEditPart) {
 			this.representedEditPart = representedEditPart;
@@ -370,22 +371,22 @@ public abstract class AbstractShowHideAction implements IActionDelegate, IWorkbe
 		 * initialize the following fields
 		 * <ul>
 		 * <li> {@link #initialSelection}</li>
-		 * <li>{@link #possibleElement}</li>
+		 * <li>{@link #elementsToSelect}</li>
 		 * </ul>
 		 */
 		protected void initRepresentation() {
 			this.initialSelection = new ArrayList<Object>();
-			this.possibleElement = new ArrayList<Object>();
+			this.elementsToSelect = new ArrayList<Object>();
 		}
 
 		/**
-		 * Setter for {@link #possibleElement}
+		 * Setter for {@link #elementsToSelect}
 		 * 
 		 * @return
-		 *         {@link #possibleElement}
+		 *         {@link #elementsToSelect}
 		 */
 		public List<Object> getPossibleElement() {
-			return this.possibleElement;
+			return this.elementsToSelect;
 		}
 	}
 }
