@@ -23,17 +23,12 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.edit.command.SetCommand;
-import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.papyrus.profile.Activator;
 import org.eclipse.papyrus.profile.Message;
 import org.eclipse.papyrus.profile.definition.IPapyrusVersionConstants;
 import org.eclipse.papyrus.profile.definition.PapyrusDefinitionAnnotation;
 import org.eclipse.papyrus.profile.definition.Version;
-import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Element;
@@ -45,151 +40,25 @@ import org.eclipse.uml2.uml.LiteralBoolean;
 import org.eclipse.uml2.uml.LiteralInteger;
 import org.eclipse.uml2.uml.LiteralString;
 import org.eclipse.uml2.uml.LiteralUnlimitedNatural;
-import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageImport;
 import org.eclipse.uml2.uml.PrimitiveType;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.ProfileApplication;
-import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Slot;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.StructuralFeature;
 import org.eclipse.uml2.uml.Type;
-import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.ValueSpecification;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
 
-// TODO: Auto-generated Javadoc
 /**
  * Some utils extracted from com.cea.utils classes (package and element)
+ * TODO: not all are used, cleanup with respect to types
  */
 public class Util {
-
-	/**
-	 * Retrieve value or default for property
-	 * If one or more value are required they are
-	 * filled with default.
-	 * If value supposed is inconsistent with value
-	 * stored, the model is updated
-	 * 
-	 * @param element
-	 *        owner of stereotype
-	 * @param stereotype
-	 *        owner of property
-	 * @param property
-	 *        owner of value
-	 * 
-	 * @return value Object
-	 */
-	public static Object getValueOrDefault(Element element, Stereotype stereotype, Property property) {
-		Object value = null; // Object
-		Object initialValue = null;
-		List values = null; // List of Object
-		Object defaultValue = null;
-
-		String propertyName = property.getName();
-		Type type = property.getType();
-		String typeName = type.getQualifiedName();
-		int lower = property.getLower();
-
-		// Retrieve default value when defined
-		if(!property.isSetDefault()) {
-			// No default value
-			if(type instanceof PrimitiveType) {
-				if(typeName.equals("UMLPrimitiveTypes::Boolean")) {
-					// Boolean have an implicit default value : false
-					defaultValue = false;
-
-				} else if(typeName.equals("UMLPrimitiveTypes::String")) {
-					// Boolean have an implicit default value : false
-					defaultValue = "";
-
-				} else if(typeName.equals("UMLPrimitiveTypes::Integer")) {
-					// Boolean have an implicit default value : false
-					defaultValue = 0;
-
-				} else if(typeName.equals("UMLPrimitiveTypes::UnlimitedNatural")) {
-					// Boolean have an implicit default value : false
-					defaultValue = 0;
-				} else {
-					defaultValue = "";
-				}
-			}
-
-
-			if(type instanceof Enumeration) {
-				Enumeration enumType = (Enumeration)type;
-				if(enumType.getOwnedLiterals().size() > 0) {
-					// First element
-					defaultValue = enumType.getOwnedLiterals().get(0);
-				}
-			}
-
-		} else {
-			// Has default value
-			defaultValue = property.getDefault();
-		}
-
-		// Retrieve value
-		if(element.hasValue(stereotype, propertyName)) {
-			value = element.getValue(stereotype, propertyName);
-			initialValue = value;
-		}
-
-		// Update value if null or empty
-		if(property.isMultivalued()) {
-			// Multiple values
-			values = (List)value;
-
-			if(values == null) {
-				// Create a new list
-				values = new ArrayList();
-			}
-
-			if(values.size() < lower) {
-				// Add default value for each missing value
-				if(defaultValue != null) {
-					for(int i = values.size(); i == lower; i++) {
-						values.add(defaultValue);
-					}
-				} else {
-					Message.error(
-							propertyName + " property has a lower multiplicity > 0"
-							+ " and does not have a default value.\n"
-							+ " The profile is ill formed !");
-				}
-			}
-
-			// Update value
-			value = values;
-
-		} else {
-			// Single value
-			if((lower > 0) && (value == null)) {
-
-				if(defaultValue != null) {
-					// Set value as default
-					value = defaultValue;
-				} else {
-					Message.error(
-							propertyName + " property has a lower multiplicity > 0"
-							+ " and does not have a default value.\n"
-							+ " The profile is ill formed !");
-				}
-
-			}
-		}
-
-		// If found value != from value stored... update the model
-		if(value != initialValue) {
-			element.setValue(stereotype, propertyName, value);
-		}
-
-		return value;
-	}
 
 	/**
 	 * Return a usable string label for passed object.
@@ -292,53 +161,6 @@ public class Util {
 	}
 
 	/**
-	 * When dealing with profiles, stereotypes, and properties
-	 * the model modifications are not systematically taken into
-	 * account.
-	 * This method force a no-op model modifications to make model
-	 * posibble to be saved.
-	 * This method will be deleted as soon as the problem will be
-	 * fixed in UML2 plugin
-	 * 
-	 * The "modification" must be done through a SetCommand so that
-	 * it is recognized by UML2 editor
-	 * 
-	 * @param element
-	 *        the element
-	 */
-	@Deprecated
-	public static void touchModel(Element element) {
-		NamedElement namedElement;
-		if(element instanceof NamedElement) {
-			namedElement = (NamedElement)element;
-		} else {
-			namedElement = element.getModel();
-		}
-
-		// Element name
-		String name = "";
-		if(namedElement.isSetName()) {
-			name = namedElement.getName();
-		}
-
-		// Retrieve current editing domain
-		try {
-			IEditingDomainProvider activeEditor =
-					(IEditingDomainProvider)PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
-			EditingDomain editingDomain = activeEditor.getEditingDomain();
-
-			// Retrieve "Name" EStructuralFeature of NamedElement
-			EStructuralFeature eNameSF = UMLPackage.eINSTANCE.getNamedElement().getEStructuralFeature(UMLPackage.NAMED_ELEMENT__NAME);
-			editingDomain.getCommandStack().execute(
-					SetCommand.create(editingDomain, namedElement, eNameSF, name));
-		}
-
-		catch (ClassCastException e) {
-			return;
-		}
-	}
-
-	/**
 	 * Convert the list of element in a list of string after some basic checks.
 	 * 
 	 * @param elements
@@ -346,7 +168,7 @@ public class Util {
 	 * 
 	 * @return the string array from list
 	 */
-	public static String[] getStringArrayFromList(List elements) {
+	public static String[] getStringArrayFromList(List<Element> elements) {
 
 		ArrayList<String> tmp = new ArrayList<String>();
 
@@ -439,124 +261,91 @@ public class Util {
 	}
 
 	/**
-	 * Retrieve an arraylist of all instances in the model that
-	 * are instances of the java.lang.Class metaType or with a
-	 * stereotype applied
-	 * 
-	 * @param metaType
-	 *        selected classes
-	 * @param model
-	 *        to check
-	 * @param appliedStereotype
-	 *        may be null, metatype is ignored if not null
-	 * 
-	 * @return an arraylist containing the selected instances
-	 * @deprecated use getInstancesFilteredByType(Element, Class, Stereotype) instead
+	 * Helper function used by getInstancesFilteredByType
 	 */
-	public static ArrayList getInstancesFilteredByType(Model model, Class metaType, Stereotype appliedStereotype) {
-		return getInstancesFilteredByType((Element)model, metaType, appliedStereotype);
-	}
+	private static void checkAndAddElement (EObject currentEObj, @SuppressWarnings("rawtypes") Class metaType, Stereotype appliedStereotype, ArrayList<Element> filteredElements)
+	{
+		if (currentEObj instanceof Element) {
+			Element piCurrentElt = (Element) currentEObj;
+			if (appliedStereotype != null) {
 
-	/**
-	 * Retrieve an arraylist of all instances in the model that
-	 * are instances of the java.lang.Class metaType or with a
-	 * stereotype applied
-	 * 
-	 * @param metaType
-	 *        selected classes
-	 * @param model
-	 *        to check
-	 * @param appliedStereotype
-	 *        may be null, metatype is ignored if not null
-	 * @return an arraylist containing the selected instances
-	 */
-	public static ArrayList getInstancesFilteredByType(Element element, Class metaType, Stereotype appliedStereotype) {
-		// retrieve parent element
-		Package topPackage = Util.topPackage(element);
-		Assert.isNotNull(topPackage, "Top package should not be null for element " + element);
-		Iterator iter = topPackage.eAllContents();
-		ArrayList filteredElements = new ArrayList();
-
-		while(iter.hasNext()) {
-			Object currentElt = iter.next();
-
-			// If currentElt is an ElementImport, it is replaced by the imported 
-			// Element.
-			if(currentElt instanceof ElementImport) {
-				ElementImport elementImport = (ElementImport)currentElt;
-				currentElt = elementImport.getImportedElement();
-			}
-
-			/* package imports treatment */
-			else if(currentElt instanceof PackageImport) {
-				Iterator piIter = ((PackageImport)currentElt).getImportedPackage().eAllContents();
-				while(piIter.hasNext()) {
-					Object piCurrentElt = piIter.next();
-					if(piCurrentElt instanceof Element) {
-						if(appliedStereotype != null) {
-
-							Iterator appStIter = ((Element)piCurrentElt).getAppliedStereotypes().iterator();
-							while(appStIter.hasNext()) {
-								Stereotype currentSt = (Stereotype)appStIter.next();
-
-								if(currentSt.conformsTo(appliedStereotype)) {
-									filteredElements.add(piCurrentElt);
-								}
-							}
-
-						} else { // if (appliedStereotype == null)
-							if(metaType.isInstance(piCurrentElt)) {
-								filteredElements.add(piCurrentElt);
-							}
-
-							/** add imported meta elements */
-							else if(piCurrentElt instanceof ElementImport) {
-								Iterator eIter = ((ElementImport)piCurrentElt).getImportedElement().eAllContents();
-								while(eIter.hasNext()) {
-									Object currentEIelt = eIter.next();
-									if(metaType.isInstance(currentEIelt))
-										filteredElements.add(currentEIelt);
-								}
-							}
-						}
-					}
-
+				// It is not sufficient to call getAppliedStereotypes, since we also want to
+				// retrieve elements that apply a sub-stereotype
+				if (piCurrentElt.getAppliedSubstereotype(appliedStereotype, null) != null) {
+					filteredElements.add(piCurrentElt);
 				}
-			}
+				Iterator<Stereotype> appStIter = ((Element)piCurrentElt).getAppliedStereotypes().iterator();
+				while(appStIter.hasNext()) {
+					Stereotype currentSt = appStIter.next();
 
-
-			// Filtering elements
-			if(currentElt instanceof Element) {
-
-				if(appliedStereotype != null) {
-
-					Iterator appStIter = ((Element)currentElt).getAppliedStereotypes().iterator();
-					while(appStIter.hasNext()) {
-						Stereotype currentSt = (Stereotype)appStIter.next();
-
-						if(currentSt.conformsTo(appliedStereotype)) {
-							filteredElements.add(currentElt);
-						}
+					if(currentSt.conformsTo(appliedStereotype)) {
+						filteredElements.add(piCurrentElt);
 					}
+				}
 
-				} else { // if (appliedStereotype == null)
-					if(metaType.isInstance(currentElt)) {
-						filteredElements.add(currentElt);
-					}
+			} else { // if (appliedStereotype == null)
+				if(metaType.isInstance(piCurrentElt)) {
+					filteredElements.add(piCurrentElt);
+				}
 
-					/** add imported meta elements */
-					else if(currentElt instanceof ElementImport) {
-						Iterator eIter = ((ElementImport)currentElt).getImportedElement().eAllContents();
-						while(eIter.hasNext()) {
-							Object currentEIelt = eIter.next();
-							if(metaType.isInstance(currentEIelt))
-								filteredElements.add(currentEIelt);
-						}
+				/** add imported meta elements */
+				else if(piCurrentElt instanceof ElementImport) {
+					Iterator<EObject> eIter = ((ElementImport)piCurrentElt).getImportedElement().eAllContents();
+					while(eIter.hasNext()) {
+						EObject currentEIelt = eIter.next();
+						if ((currentEIelt instanceof Element) && (metaType.isInstance(currentEIelt)))
+							filteredElements.add((Element) currentEIelt);
 					}
 				}
 			}
 		}
+	}
+	
+	/**
+	 * Retrieve an ArrayList of all instances in the model that
+	 * are instances of the java.lang.Class metaType or with a
+	 * stereotype applied
+	 * 
+	 * @param metaType
+	 *        selected classes
+	 * @param model
+	 *        to check
+	 * @param appliedStereotype
+	 *        may be null, metatype is ignored if not null
+	 * @return an arraylist containing the selected instances
+	 */
+	public static ArrayList<Element> getInstancesFilteredByType(Element element, @SuppressWarnings("rawtypes") Class metaType, Stereotype appliedStereotype) {
+		// retrieve parent element
+		Package topPackage = Util.topPackage(element);
+		Assert.isNotNull(topPackage, "Top package should not be null for element " + element);
+		Iterator<EObject> iter = topPackage.eAllContents();
+		ArrayList<Element> filteredElements = new ArrayList<Element>();
 
+		while(iter.hasNext()) {
+			EObject currentEObj = iter.next();
+
+			// If currentElt is an ElementImport, it is replaced by the imported 
+			// Element.
+			if(currentEObj instanceof ElementImport) {
+				ElementImport elementImport = (ElementImport) currentEObj;
+				currentEObj = elementImport.getImportedElement();
+			}
+
+			/* package imports treatment */
+			else if(currentEObj instanceof PackageImport) {
+				Package importedPkg = ((PackageImport) currentEObj).getImportedPackage();
+				if (importedPkg != null) {
+					Iterator<EObject> piIter = importedPkg.eAllContents();
+					while(piIter.hasNext()) {
+						EObject piCurrentEObj = piIter.next();
+						checkAndAddElement (piCurrentEObj, metaType, appliedStereotype, filteredElements);
+					}
+				}
+			}
+
+			// Filtering elements
+			checkAndAddElement (currentEObj, metaType, appliedStereotype, filteredElements);
+		}
 
 		return filteredElements;
 	}
@@ -569,15 +358,15 @@ public class Util {
 	 * @param stereotypes
 	 *        the stereotypes
 	 */
-	public static void reorderStereotypeApplications(Element element, EList stereotypes) {
-		for(Iterator s = stereotypes.iterator(); s.hasNext();) {
+	public static void reorderStereotypeApplications(Element element, EList<Stereotype> stereotypes) {
+		for(Iterator<Stereotype> s = stereotypes.iterator(); s.hasNext();) {
 			EObject stereotypeApplication = element.getStereotypeApplication((Stereotype)s.next());
 			if(stereotypeApplication != null) {
 				UMLUtil.setBaseElement(stereotypeApplication, null);
 				UMLUtil.setBaseElement(stereotypeApplication, element);
 				Resource eResource = stereotypeApplication.eResource();
 				if(eResource != null) {
-					EList contents = eResource.getContents();
+					EList<EObject> contents = eResource.getContents();
 					contents.move(contents.size() - 1, stereotypeApplication);
 				}
 			}

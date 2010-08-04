@@ -16,8 +16,6 @@ package org.eclipse.papyrus.profile.ui.section;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.domain.IEditingDomainProvider;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ISelection;
@@ -30,7 +28,6 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.views.properties.tabbed.AbstractPropertySection;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Package;
 
 /**
  * This section is used to apply stereotype on uml Element.
@@ -43,8 +40,6 @@ public class AppliedStereotypeSectionWithView extends AbstractPropertySection {
 	/** The property composite. */
 	private AppliedStereotypePropertyCompositeWithView propertyComposite;
 
-	private TransactionalEditingDomain editingDomain;
-
 	/**
 	 * Creates the controls.
 	 * 
@@ -56,7 +51,7 @@ public class AppliedStereotypeSectionWithView extends AbstractPropertySection {
 	@Override
 	public void createControls(Composite parent, TabbedPropertySheetPage tabbedPropertySheetPage) {
 		super.createControls(parent, tabbedPropertySheetPage);
-		appliedStereotypeComposite = new AppliedStereotypeCompositeWithView(parent, editingDomain);
+		appliedStereotypeComposite = new AppliedStereotypeCompositeWithView(parent);
 		appliedStereotypeComposite.createContent(parent, getWidgetFactory());
 
 		propertyComposite = new AppliedStereotypePropertyCompositeWithView(parent, appliedStereotypeComposite);
@@ -94,12 +89,6 @@ public class AppliedStereotypeSectionWithView extends AbstractPropertySection {
 		if(selection instanceof IStructuredSelection) {
 			Object input = ((IStructuredSelection)selection).getFirstElement();
 
-			if(part instanceof IEditingDomainProvider) {
-				this.editingDomain = (TransactionalEditingDomain)((IEditingDomainProvider)part).getEditingDomain();
-				appliedStereotypeComposite.setDomain(editingDomain);
-				propertyComposite.setDomain(editingDomain);
-			}
-
 			if(input instanceof GraphicalEditPart && ((GraphicalEditPart)input).getModel() instanceof View) {
 				GraphicalEditPart graphicalEditPart = (GraphicalEditPart)input;
 				View view = (View)graphicalEditPart.getModel();
@@ -108,7 +97,7 @@ public class AppliedStereotypeSectionWithView extends AbstractPropertySection {
 					appliedStereotypeComposite.setDiagramElement(view);
 					propertyComposite.setDiagramElement(view);
 					appliedStereotypeComposite.setElement(UMLElement);
-					appliedStereotypeComposite.setInput(new StereotypedElementTreeObject(UMLElement, editingDomain));
+					appliedStereotypeComposite.setInput(new StereotypedElementTreeObject(UMLElement));
 				}
 			} 
 			else{
@@ -118,7 +107,7 @@ public class AppliedStereotypeSectionWithView extends AbstractPropertySection {
 					Element UMLElement = (Element)eobject;
 					appliedStereotypeComposite.setDiagramElement(null);
 					appliedStereotypeComposite.setElement(UMLElement);
-					appliedStereotypeComposite.setInput(new StereotypedElementTreeObject(UMLElement, editingDomain));
+					appliedStereotypeComposite.setInput(new StereotypedElementTreeObject(UMLElement));
 				}
 			}
 

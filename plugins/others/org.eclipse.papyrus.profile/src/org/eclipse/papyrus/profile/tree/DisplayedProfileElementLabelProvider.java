@@ -286,7 +286,8 @@ public class DisplayedProfileElementLabelProvider extends LabelProvider {
 		} else { // Multiplicity > 1
 
 			// retrieve the base element from the stereotype application
-			List values = (List)currentPropValue;
+			@SuppressWarnings("unchecked")
+			List<Object> values = (List<Object>) currentPropValue;
 			ArrayList<String> baseElements = new ArrayList<String>();
 
 			for(int i = 0; i < values.size(); i++) {
@@ -325,7 +326,8 @@ public class DisplayedProfileElementLabelProvider extends LabelProvider {
 
 			} else { // Multiplicity > 1
 
-				List values = (List)currentPropValue;
+				@SuppressWarnings("unchecked")
+				List<Object> values = (List<Object>) currentPropValue;
 				ArrayList<String> elementNames = new ArrayList<String>();
 				if(values != null) {
 					for(int i = 0; i < values.size(); i++) {

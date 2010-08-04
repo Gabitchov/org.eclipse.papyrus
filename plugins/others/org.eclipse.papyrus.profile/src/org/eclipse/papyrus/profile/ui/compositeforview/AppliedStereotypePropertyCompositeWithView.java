@@ -88,7 +88,6 @@ public class AppliedStereotypePropertyCompositeWithView extends org.eclipse.papy
 		} catch (Exception e) {
 			e.printStackTrace ();
 		}
-
 	}
 
 	/**
@@ -97,10 +96,9 @@ public class AppliedStereotypePropertyCompositeWithView extends org.eclipse.papy
 	@Override
 	public void addButtonPressed() {
 		super.addButtonPressed();
-		// stereotypeComposite.refresh();
 		touchModel();
 		stereotypeComposite.refreshTreeViewer ();
-		}
+	}
 
 	/**
 	 * Removes the button pressed.
@@ -128,8 +126,8 @@ public class AppliedStereotypePropertyCompositeWithView extends org.eclipse.papy
 	@Override
 	public void downButtonPressed() {
 		super.downButtonPressed();
+		touchModel();
 		stereotypeComposite.refreshTreeViewer ();
-		// touchModel();
 	}
 
 	/**

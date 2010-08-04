@@ -15,9 +15,8 @@
 package org.eclipse.papyrus.profile.tree.objects;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.profile.Message;
 import org.eclipse.papyrus.profile.tree.ProfileElementLabelProvider;
 import org.eclipse.papyrus.profile.ui.dialogs.ComboSelectionDialog;
@@ -41,8 +40,8 @@ public class MetaclassValueTreeObject extends ValueTreeObject {
 	 * @param parent
 	 *        the parent
 	 */
-	public MetaclassValueTreeObject(AppliedStereotypePropertyTreeObject parent, Object value, TransactionalEditingDomain domain) {
-		super(parent, value, domain);
+	public MetaclassValueTreeObject(AppliedStereotypePropertyTreeObject parent, Object value) {
+		super(parent, value);
 		this.value = value;
 	}
 
@@ -51,12 +50,13 @@ public class MetaclassValueTreeObject extends ValueTreeObject {
 	 */
 	@Override
 	public void editMe() {
-		AppliedStereotypePropertyTreeObject pTO = (AppliedStereotypePropertyTreeObject)getParent();
-		Element elt = ((StereotypedElementTreeObject)getParent().getParent().getParent()).getElement();
+		AppliedStereotypePropertyTreeObject pTO = (AppliedStereotypePropertyTreeObject) getParent();
+		Element elt = ((StereotypedElementTreeObject) pTO.getParent().getParent()).getElement();
 		Property property = pTO.getProperty();
 		Type type = property.getType();
 
 		// Try to retrieve type of the metaclass
+		@SuppressWarnings("rawtypes")
 		Class metaType = null;
 		try {
 			metaType = Class.forName("org.eclipse.uml2.uml." + type.getName());
@@ -66,37 +66,30 @@ public class MetaclassValueTreeObject extends ValueTreeObject {
 		}
 
 		// Fetching all instances in the model applicable to this property value
-		final ArrayList filteredElements = Util.getInstancesFilteredByType(elt, metaType, null);
+		final ArrayList<Element> filteredElements = Util.getInstancesFilteredByType(elt, metaType, null);
 		// No element : error !!!
 		if(filteredElements.size() <= 0) {
 			Message.warning("No element of type " + type.getName() + " found in the model.");
 			return;
 		}
 
-		// Removed already added elements from selection list
-		// Except current selection which is default one !!!
-		if(property.isMultivalued()) {
-			List values = (List)pTO.getValue();
-			if(values != null) {
-				filteredElements.removeAll(values);
-			}
-			filteredElements.add(value);
-		}
+		pTO.removeSelected (filteredElements, (Element) value);
 
-		String[] elementsNames = Util.getStringArrayFromList(filteredElements);
+		String[] elementNames = Util.getStringArrayFromList(filteredElements);
 
 		// if no possible selection : abort
-		if(elementsNames == null) {
+		if (elementNames == null) {
 			Message.warning("No element of type " + type.getName() + " found in the model.");
 			return;
 		}
 
 		ProfileElementLabelProvider labelProvider = new ProfileElementLabelProvider();
-		ComboSelectionDialog valueDialog = new ComboSelectionDialog(new Shell(), "New value:", elementsNames, labelProvider.getText(this));
+		String initialValue = (value != null ? labelProvider.getText(this) : elementNames[0]);
+		ComboSelectionDialog valueDialog = new ComboSelectionDialog(new Shell(), "New value:", elementNames, initialValue);
 		int val = valueDialog.open();
 		if((val == ComboSelectionDialog.OK) && (valueDialog.indexOfSelection != -1)) {
 			Object newValue = filteredElements.get(valueDialog.indexOfSelection);
-			updateValue(newValue);
+			pTO.updateValue(pTO.appendMV(newValue));
 		}
 
 		// Close dialog box and refresh table

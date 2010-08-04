@@ -63,21 +63,8 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 		return EditorUtils.getTransactionalEditingDomain();
 	}
 
-	/**
-	 * Sets the domain.
-	 * 
-	 * @param domain
-	 *        the new domain
-	 */
-	public void setDomain(TransactionalEditingDomain domain) {
-		this.domain = domain;
-	}
-
 	/** The panel that display applied stereotypes. */
 	private AppliedStereotypePanel appliedStereotypePanel;
-
-	/** The domain. */
-	private TransactionalEditingDomain domain;
 
 	/** The label. */
 	protected CLabel label;
@@ -295,7 +282,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 			treeViewer.setInput(null);
 			treeViewer.refresh();
 			if(element != null) {
-				treeViewer.setInput(new StereotypedElementTreeObject(element, getDomain()));
+				treeViewer.setInput(new StereotypedElementTreeObject(element));
 			}
 			StereotypedElementTreeObject rTO = (StereotypedElementTreeObject)treeViewer.getInput();
 			if(rTO == null) {

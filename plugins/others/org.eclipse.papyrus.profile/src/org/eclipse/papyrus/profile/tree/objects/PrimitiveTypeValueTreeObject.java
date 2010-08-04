@@ -14,7 +14,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.profile.tree.objects;
 
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.profile.ui.dialogs.InputDialogPrimitiveType;
 import org.eclipse.papyrus.profile.utils.Util;
 import org.eclipse.swt.widgets.Shell;
@@ -36,8 +35,8 @@ public abstract class PrimitiveTypeValueTreeObject extends ValueTreeObject {
 	 * @param parent
 	 *        the parent
 	 */
-	protected PrimitiveTypeValueTreeObject(AppliedStereotypePropertyTreeObject parent, Object value, TransactionalEditingDomain domain) {
-		super(parent, value, domain);
+	protected PrimitiveTypeValueTreeObject(AppliedStereotypePropertyTreeObject parent, Object value) {
+		super(parent, value);
 	}
 
 	/**
@@ -50,7 +49,7 @@ public abstract class PrimitiveTypeValueTreeObject extends ValueTreeObject {
 	 * 
 	 * @return the primitive type value tree object
 	 */
-	public static PrimitiveTypeValueTreeObject createInstance(AppliedStereotypePropertyTreeObject parent, Object newValue, TransactionalEditingDomain domain) {
+	public static PrimitiveTypeValueTreeObject createInstance(AppliedStereotypePropertyTreeObject parent, Object newValue) {
 
 		Property property = parent.getProperty();
 		Type type = property.getType();
@@ -60,15 +59,15 @@ public abstract class PrimitiveTypeValueTreeObject extends ValueTreeObject {
 		if(type instanceof PrimitiveType) {
 			String typeName = type.getQualifiedName();
 			if(typeName.equals("UMLPrimitiveTypes::Boolean")) {
-				newVTO = new BooleanValueTreeObject(parent, newValue, domain);
+				newVTO = new BooleanValueTreeObject(parent, newValue);
 			} else if(typeName.equals("UMLPrimitiveTypes::String")) {
-				newVTO = new StringValueTreeObject(parent, newValue, domain);
+				newVTO = new StringValueTreeObject(parent, newValue);
 			} else if(typeName.equals("UMLPrimitiveTypes::Integer")) {
-				newVTO = new IntegerValueTreeObject(parent, newValue, domain);
+				newVTO = new IntegerValueTreeObject(parent, newValue);
 			} else if(typeName.equals("UMLPrimitiveTypes::UnlimitedNatural")) {
-				newVTO = new UnlimitedNaturalValueTreeObject(parent, newValue, domain);
+				newVTO = new UnlimitedNaturalValueTreeObject(parent, newValue);
 			} else {
-				newVTO = new UserPrimitiveTypeValueTreeObject(parent, newValue, domain);
+				newVTO = new UserPrimitiveTypeValueTreeObject(parent, newValue);
 			}
 		}
 
@@ -100,7 +99,7 @@ public abstract class PrimitiveTypeValueTreeObject extends ValueTreeObject {
 		// Treat dialogValue
 		Object newValue = Util.getValueObjectFromString(dialogValue, type);
 
-		updateValue(newValue);
+		pTO.updateValue(pTO.appendMV(newValue));
 
 		// Close dialog box and refresh table
 		valueDialog.close();

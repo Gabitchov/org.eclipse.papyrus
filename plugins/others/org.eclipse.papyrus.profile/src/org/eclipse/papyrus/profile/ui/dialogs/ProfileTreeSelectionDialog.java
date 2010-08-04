@@ -43,6 +43,7 @@ public class ProfileTreeSelectionDialog extends ElementImportTreeSelectionDialog
 	 */
 	public ProfileTreeSelectionDialog(Shell parent, Package model) {
 		super(parent, model);
+		subSelection = true;
 		subProfilesList = new ArrayList<String>();
 	}
 
@@ -56,6 +57,7 @@ public class ProfileTreeSelectionDialog extends ElementImportTreeSelectionDialog
 	 */
 	public ProfileTreeSelectionDialog(Shell parent, List<Package> model) {
 		this(parent, model, new ArrayList<String>());
+		subSelection = true;
 	}
 
 	/**
@@ -69,6 +71,7 @@ public class ProfileTreeSelectionDialog extends ElementImportTreeSelectionDialog
 	 */
 	public ProfileTreeSelectionDialog(Shell parent, List<Package> model, List<String> subprofiles) {
 		super(parent, model);
+		subSelection = true;
 		subProfilesList = subprofiles;
 	}
 

@@ -124,8 +124,6 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 	 */
 	protected MouseListener displayButtonListener;
 
-	private TransactionalEditingDomain domain;
-
 	/**
 	 * The selection.
 	 */
@@ -137,11 +135,10 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 	 * @param parent
 	 *        the parent
 	 */
-	public AppearanceForAppliedStereotypeComposite(Composite parent, TransactionalEditingDomain domain) {
+	public AppearanceForAppliedStereotypeComposite(Composite parent) {
 		super(parent);
 		this.setBackground(JFaceColors.getBannerBackground(parent.getDisplay()));
 		this.displayButtonListener = new DisplayButtonListener();
-		this.domain = domain;
 	}
 
 	/**
@@ -282,7 +279,7 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 						public void run() {
 
 							String appliedStereotypeListToAdd = stereotype.getQualifiedName() + "." + prop.getName();
-							RecordingCommand command = AppliedStereotypeHelper.getAddAppliedStereotypePropertiesCommand(domain, diagramElement, appliedStereotypeListToAdd);
+							RecordingCommand command = AppliedStereotypeHelper.getAddAppliedStereotypePropertiesCommand(getDomain(), diagramElement, appliedStereotypeListToAdd);
 							getDomain().getCommandStack().execute(command);
 							// refresh();
 						}
@@ -384,8 +381,8 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 			return;
 		}
 		String presentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind(diagramElement);
-		RecordingCommand command = AppliedStereotypeHelper.getRemoveAppliedStereotypeCommand(domain, diagramElement, st.getQualifiedName(), presentationKind);
-		domain.getCommandStack().execute(command);
+		RecordingCommand command = AppliedStereotypeHelper.getRemoveAppliedStereotypeCommand(getDomain(), diagramElement, st.getQualifiedName(), presentationKind);
+		getDomain().getCommandStack().execute(command);
 
 	}
 
@@ -409,10 +406,6 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 	public void setDiagramElement(EModelElement diagramElement) {
 		this.diagramElement = diagramElement;
 		((ProfileElementWithDisplayContentProvider)treeViewer.getContentProvider()).setDiagramElement(diagramElement);
-	}
-
-	public void setDomain(TransactionalEditingDomain domain) {
-		this.domain = domain;
 	}
 
 	/**
@@ -649,7 +642,7 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 
 						public void run() {
 							String stringToRemove = st.getQualifiedName() + "." + property.getName();
-							RecordingCommand command = AppliedStereotypeHelper.getRemoveAppliedStereotypePropertiesCommand(domain, diagramElement, stringToRemove);
+							RecordingCommand command = AppliedStereotypeHelper.getRemoveAppliedStereotypePropertiesCommand(getDomain(), diagramElement, stringToRemove);
 							getDomain().getCommandStack().execute(command);
 							// refresh();
 						}

@@ -14,7 +14,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.profile.tree.objects;
 
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
+
 
 // TODO: Auto-generated Javadoc
 /**
@@ -30,8 +30,8 @@ public class UnlimitedNaturalValueTreeObject extends PrimitiveTypeValueTreeObjec
 	 * @param parent
 	 *        the parent
 	 */
-	public UnlimitedNaturalValueTreeObject(AppliedStereotypePropertyTreeObject parent, Object value, TransactionalEditingDomain domain) {
-		super(parent, value, domain);
+	public UnlimitedNaturalValueTreeObject(AppliedStereotypePropertyTreeObject parent, Object value) {
+		super(parent, value);
 		this.value = value;
 	}
 }

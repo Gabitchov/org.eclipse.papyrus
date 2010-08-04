@@ -14,10 +14,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.profile.ui.dialogs;
 
-import java.util.List;
-
 import org.eclipse.jface.dialogs.InputDialog;
-import org.eclipse.papyrus.profile.Message;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.Property;
 
@@ -65,18 +62,11 @@ public class InputDialogPrimitiveType {
 	 * @param initialValue
 	 *        the initial value
 	 */
-	public InputDialogPrimitiveType(Shell shell, Property property, Object initialValue, int index) {
+	public InputDialogPrimitiveType(Shell shell, Property property, Object initialValue) {
 
 		if(initialValue != null) {
-			Object value = initialValue;
-
-			// Multivalue case
-			if(initialValue instanceof List) {
-				List values = (List)initialValue;
-				value = values.get(index);
-			}
 			// Call dialog constructor
-			iDialog = new InputDialog(shell, TITLE, LABEL, value.toString(), null);
+			iDialog = new InputDialog(shell, TITLE, LABEL, initialValue.toString(), null);
 
 		} else if(property.isSetDefault()) {
 			iDialog = new InputDialog(shell, TITLE, LABEL, property.getDefault(), null);
@@ -87,26 +77,6 @@ public class InputDialogPrimitiveType {
 		} else {
 			iDialog = new InputDialog(shell, TITLE, LABEL, null, null);
 		}
-	}
-
-	/**
-	 * The Constructor.
-	 * 
-	 * @param property
-	 *        the property
-	 * @param shell
-	 *        the shell
-	 * @param initialValue
-	 *        the initial value
-	 */
-	public InputDialogPrimitiveType(Shell shell, Property property, Object initialValue) {
-
-		if(initialValue == null) {
-			Message.error("Method used for edition only, should have a non null initialValue");
-			return;
-		}
-
-		iDialog = new InputDialog(shell, TITLE, LABEL, initialValue.toString(), null);
 	}
 
 	/**
