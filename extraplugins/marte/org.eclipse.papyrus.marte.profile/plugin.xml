@@ -14,8 +14,11 @@
    <extension
          point="org.eclipse.papyrus.extensionpoints.uml2.UMLLibrary">
       <library
+            description="MARTE Types Library"
+            iconpath="resources/icons/MARTE_16x16.gif"
             name="MARTE_Library"
-            path="pathmap://Papyrus_LIBRARIES/MARTE_Library.library.uml">
+            path="pathmap://Papyrus_LIBRARIES/MARTE_Library.library.uml"
+            provider="CEA LIST">
       </library>
    </extension>
    <extension
