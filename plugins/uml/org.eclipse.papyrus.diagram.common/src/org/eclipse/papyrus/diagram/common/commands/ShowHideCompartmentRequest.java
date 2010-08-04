@@ -45,11 +45,17 @@ public class ShowHideCompartmentRequest extends ChangePropertyValueRequest {
 	 * Constructor.
 	 * 
 	 * @param value
+	 *        This parameter can be :
+	 *        <ul>
+	 *        <li> {@link ShowHideCompartmentRequest#SHOW}</li>
+	 *        <li> {@link ShowHideCompartmentRequest#HIDE}</li>
+	 *        </ul>
 	 * @param semanticHint
+	 *        the semanticHint for the compartment
 	 */
-	public ShowHideCompartmentRequest(Object value, String compartmentType) {
+	public ShowHideCompartmentRequest(Object value, String semanticHint) {
 		super(propertyName, propertyID, value);
-		this.compartmentType = compartmentType;
+		this.compartmentType = semanticHint;
 	}
 
 	/**
