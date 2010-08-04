@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -50,10 +51,8 @@ import org.eclipse.papyrus.diagram.common.helper.DurationConstraintHelper;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
-import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragment2EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DestructionEventEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
-import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.uml2.common.util.CacheAdapter;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.DestructionEvent;
@@ -95,19 +94,26 @@ public class SequenceUtil {
 			return null;
 		}
 
-		List<IFigure> exclusionSet = new ArrayList<IFigure>();
+		HashSet<IFigure> exclusionSet = new HashSet<IFigure>();
 
 		InteractionFragment interactionFragment = null;
+
 		EditPart ep = host.getRoot().getViewer().findObjectAtExcluding(location, exclusionSet);
-		while(ep instanceof LifelineEditPart || ep instanceof BehaviorExecutionSpecificationEditPart || ep instanceof ActionExecutionSpecificationEditPart || ep instanceof StateInvariantEditPart || ep instanceof DestructionEventEditPart || ep instanceof CombinedFragment2EditPart) {
-			exclusionSet.add(((GraphicalEditPart)ep).getFigure());
-			ep = host.getRoot().getViewer().findObjectAtExcluding(location, exclusionSet);
-		}
-		// Get the rootEditpart Content
-		if(ep != null && ep.getModel() instanceof View) {
-			EObject eObject = ViewUtil.resolveSemanticElement((View)ep.getModel());
-			if(eObject instanceof InteractionOperand || eObject instanceof Interaction) {
-				interactionFragment = (InteractionFragment)eObject;
+
+		while(interactionFragment == null && ep != null) {
+			if(ep.getModel() instanceof View) {
+				EObject eObject = ViewUtil.resolveSemanticElement((View)ep.getModel());
+				if(eObject instanceof Interaction || eObject instanceof InteractionOperand) {
+					interactionFragment = (InteractionFragment)eObject;
+				}
+			}
+
+			if (ep instanceof org.eclipse.gef.GraphicalEditPart) {
+				exclusionSet.add(((org.eclipse.gef.GraphicalEditPart)ep).getFigure());
+				ep = host.getRoot().getViewer().findObjectAtExcluding(location, exclusionSet);
+			} else {
+				// we can't add the figure to the exclusion set so stop the while to avoid an infinite loop
+				ep = null;
 			}
 		}
 

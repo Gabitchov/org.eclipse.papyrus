@@ -87,7 +87,7 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 				request.getExtendedData().put(SequenceRequestConstant.TARGET_MODEL_CONTAINER, SequenceUtil.findInteractionFragmentAt(pointList.getLastPoint(), getHost()));
 				// In case we are creating a connection to/from a CoRegion, we will need the lifeline element where is drawn the CoRegion later in the process.
 				EditPart targetEditPart = getTargetEditPart(request);
-				if(getTargetEditPart(request) instanceof CombinedFragment2EditPart) {
+				if(targetEditPart instanceof CombinedFragment2EditPart) {
 					request.getExtendedData().put(SequenceRequestConstant.LIFELINE_GRAPHICAL_CONTAINER, ((CombinedFragment2EditPart)targetEditPart).getAttachedLifeline());
 				}
 			}
