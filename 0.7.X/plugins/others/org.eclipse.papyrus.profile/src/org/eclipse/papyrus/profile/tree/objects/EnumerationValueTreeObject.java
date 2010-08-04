@@ -14,10 +14,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.profile.tree.objects;
 
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.profile.ui.dialogs.InputDialogEnumeration;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.Enumeration;
+import org.eclipse.uml2.uml.EnumerationLiteral;
 import org.eclipse.uml2.uml.Property;
 
 // TODO: Auto-generated Javadoc
@@ -34,8 +34,8 @@ public class EnumerationValueTreeObject extends ValueTreeObject {
 	 * @param parent
 	 *        the parent
 	 */
-	public EnumerationValueTreeObject(AppliedStereotypePropertyTreeObject parent, Object value, TransactionalEditingDomain domain) {
-		super(parent, value, domain);
+	public EnumerationValueTreeObject(AppliedStereotypePropertyTreeObject parent, Object value) {
+		super(parent, value);
 		this.value = value;
 	}
 
@@ -56,8 +56,8 @@ public class EnumerationValueTreeObject extends ValueTreeObject {
 		if((val == InputDialogEnumeration.OK) && (valueDialog.getSelectionIndex() != -1)) {
 			literalIdx = valueDialog.getSelectionIndex();
 			// Treat dialogValue
-			Object selectedLiteral = enumeration.getOwnedLiterals().get(literalIdx);
-			updateValue(selectedLiteral);
+			EnumerationLiteral selectedLiteral = enumeration.getOwnedLiterals().get(literalIdx);
+			pTO.updateValue(pTO.appendMV(selectedLiteral));
 		}
 
 		// Close dialog box and refresh table

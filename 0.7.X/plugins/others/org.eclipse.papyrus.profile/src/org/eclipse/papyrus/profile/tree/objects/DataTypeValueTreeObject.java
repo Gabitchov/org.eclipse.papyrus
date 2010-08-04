@@ -14,7 +14,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.profile.tree.objects;
 
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.profile.ui.dialogs.InputDialogPrimitiveType;
 import org.eclipse.papyrus.profile.utils.Util;
 import org.eclipse.swt.widgets.Shell;
@@ -23,8 +22,8 @@ import org.eclipse.uml2.uml.Type;
 
 public class DataTypeValueTreeObject extends ValueTreeObject {
 
-	public DataTypeValueTreeObject(AppliedStereotypePropertyTreeObject parent, Object value, TransactionalEditingDomain domain) {
-		super(parent, value, domain);
+	public DataTypeValueTreeObject(AppliedStereotypePropertyTreeObject parent, Object value) {
+		super(parent, value);
 		this.value = value;
 	}
 
@@ -54,11 +53,9 @@ public class DataTypeValueTreeObject extends ValueTreeObject {
 		// Treat dialogValue
 		Object newValue = Util.getValueObjectFromString(dialogValue, type);
 
-		updateValue(newValue);
+		pTO.updateValue(pTO.appendMV(newValue));
 
 		// Close dialog box and refresh table
 		valueDialog.close();
 	}
-
 }
-

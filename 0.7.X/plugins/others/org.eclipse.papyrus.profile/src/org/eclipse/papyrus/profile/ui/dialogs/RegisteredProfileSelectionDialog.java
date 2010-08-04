@@ -22,17 +22,16 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.papyrus.extensionpoints.uml2.profile.RegisteredProfile;
-import org.eclipse.papyrus.extensionpoints.uml2.standard.ExtensionLabelProvider;
+import org.eclipse.papyrus.extensionpoints.uml2.standard.FilteredRegisteredElementsSelectionDialog;
 import org.eclipse.papyrus.extensionpoints.uml2.utils.Util;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
 
 /**
  * 
  */
-public class RegisteredProfileSelectionDialog extends ElementListSelectionDialog {
+public class RegisteredProfileSelectionDialog extends FilteredRegisteredElementsSelectionDialog {
 
 	/**
 	 * 
@@ -51,16 +50,9 @@ public class RegisteredProfileSelectionDialog extends ElementListSelectionDialog
 	 * @param parent
 	 */
 	public RegisteredProfileSelectionDialog(Composite parent, Package umlPackage) {
-		super(parent.getShell(), new ExtensionLabelProvider());
-
+		super(parent.getShell(), true, RegisteredProfile.getRegisteredProfiles(),
+					new ArrayList<Object>(), "Apply profiles from Papyrus repository :", "");  
 		currentPackage = umlPackage;
-
-		// Retrieve registered profiles
-		regProfiles = RegisteredProfile.getRegisteredProfiles();
-
-		this.setTitle("Apply profiles from Papyrus repository :");
-		this.setElements(regProfiles);
-		this.setMultipleSelection(true);
 	}
 
 	/**

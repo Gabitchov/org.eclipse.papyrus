@@ -61,65 +61,6 @@ public class InputDialogEnumeration {
 	/**
 	 * The Constructor.
 	 * 
-	 * @param index
-	 *        the index
-	 * @param value
-	 *        the value
-	 * @param property
-	 *        the property
-	 * @param shell
-	 *        the shell
-	 */
-	public InputDialogEnumeration(Shell shell, Property property, Object value, int index) {
-		// Create literals list
-		createLiterals(property);
-
-		// Create Combo
-		if(literals != null) {
-			if(value == null) {
-				iDialog = new ComboSelectionDialog(shell, LABEL, literals, literals[0]);
-
-			} else {
-				String initialValue = literals[0];
-				EnumerationLiteral eLiteral = null;
-
-				// Search current value or default
-				if(value instanceof List) {
-					value = ((List)value).get(index);
-				}
-
-				// Prepare Item data
-				if(value instanceof EnumerationLiteral) {
-					eLiteral = (EnumerationLiteral)value;
-
-				} else if(value instanceof EEnumLiteral) {
-					EEnumLiteral eEnumLiteral = (EEnumLiteral)value;
-					Object tmp = Util.getValueObjectFromString(eEnumLiteral.getName(), property.getType());
-					eLiteral = ((EnumerationLiteral)tmp);
-
-				} else if(value instanceof String) {
-					String literalString = (String)value;
-					Object tmp = Util.getValueObjectFromString(literalString, property.getType());
-					eLiteral = ((EnumerationLiteral)tmp);
-
-				} else { // Error
-					String err = "Value " + value.toString() + " of Property " + property.getName() + " is not an EnumerationLiteral.";
-					Message.error(err);
-				}
-
-				if((eLiteral != null) && (eLiteral.isSetName())) {
-					initialValue = eLiteral.getQualifiedName();
-				}
-
-				// Create Combo
-				iDialog = new ComboSelectionDialog(shell, LABEL, literals, initialValue);
-			}
-		}
-	}
-
-	/**
-	 * The Constructor.
-	 * 
 	 * @param value
 	 *        the value
 	 * @param property
@@ -151,7 +92,10 @@ public class InputDialogEnumeration {
 				Object tmp = Util.getValueObjectFromString(literalString, property.getType());
 				eLiteral = ((EnumerationLiteral)tmp);
 
-			} else { // Error
+			} else if (value == null) {
+				initialValue = literals[0];
+			}
+			else { // Error
 				String err = "Value " + value.toString() + " of Property " + property.getName() + " is not an EnumerationLiteral.";
 				Message.error(err);
 			}

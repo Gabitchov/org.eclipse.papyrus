@@ -14,15 +14,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.profile.tree.objects;
 
-import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.uml2.uml.Element;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class TreeObject.
  */
-public class TreeObject implements IAdaptable {
+public class TreeObject {
 
 	/**
 	 * The parent.
@@ -30,23 +27,9 @@ public class TreeObject implements IAdaptable {
 	protected ParentTreeObject parent;
 
 	/**
-	 * The element.
-	 */
-	protected Element element;
-
-	/**
 	 * 
 	 */
 	protected boolean isDisplay = false;
-
-	/**
-	 * Editing domain used to modify the editing domain
-	 */
-	protected TransactionalEditingDomain domain;
-
-	/**
-	 * Editing domain used to modify the given property
-	 */
 
 	/**
 	 * The Constructor.
@@ -56,10 +39,8 @@ public class TreeObject implements IAdaptable {
 	 * @param parent
 	 *        the parent
 	 */
-	public TreeObject(ParentTreeObject parent, Element element, TransactionalEditingDomain domain) {
+	public TreeObject(ParentTreeObject parent) {
 		this.parent = parent;
-		this.element = element;
-		this.domain = domain;
 	}
 
 	/**
@@ -69,32 +50,6 @@ public class TreeObject implements IAdaptable {
 	 */
 	public ParentTreeObject getParent() {
 		return parent;
-	}
-
-	/**
-	 * Gets the adapter.
-	 * 
-	 * @param key
-	 *        the key
-	 * 
-	 * @return the adapter
-	 */
-	public Object getAdapter(Class key) {
-		if(key == Element.class) {
-			return getElement();
-		}
-
-		return getElement();
-		// return null;
-	}
-
-	/**
-	 * Gets the element.
-	 * 
-	 * @return the element
-	 */
-	public Element getElement() {
-		return element;
 	}
 
 	/**

@@ -14,8 +14,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.profile.ui.actions;
 
+import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.action.IAction;
+import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.uml2.common.edit.command.ChangeCommand;
 import org.eclipse.uml2.uml.Package;
@@ -85,7 +87,9 @@ public abstract class AbstractPackageImportAction extends AbstractViewActionDele
 	 */
 	@Override
 	public void run(IAction action) {
-		getCommand().execute();
+		
+		CommandStack stack = EditorUtils.getTransactionalEditingDomain().getCommandStack ();
+		stack.execute (getCommand());
 	}
 
 	/**

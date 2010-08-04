@@ -16,9 +16,6 @@ package org.eclipse.papyrus.profile.tree.objects;
 
 import java.util.ArrayList;
 
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.uml2.uml.Element;
-
 // TODO: Auto-generated Javadoc
 /**
  * The Class ParentTreeObject.
@@ -28,7 +25,7 @@ public abstract class ParentTreeObject extends TreeObject {
 	/**
 	 * The children.
 	 */
-	protected ArrayList children;
+	protected ArrayList<TreeObject> children;
 
 	/**
 	 * The Constructor.
@@ -38,8 +35,8 @@ public abstract class ParentTreeObject extends TreeObject {
 	 * @param parent
 	 *        the parent
 	 */
-	public ParentTreeObject(ParentTreeObject parent, Element element, TransactionalEditingDomain domain) {
-		super(parent, element, domain);
+	public ParentTreeObject(ParentTreeObject parent) {
+		super(parent);
 	}
 
 	/**
@@ -113,7 +110,7 @@ public abstract class ParentTreeObject extends TreeObject {
 	 */
 	public TreeObject[] getChildren() {
 		if (children == null) {
-			children = new ArrayList();
+			children = new ArrayList<TreeObject> ();
 			createChildren();
 		}
 		return (TreeObject[])children.toArray(new TreeObject[children.size()]);
