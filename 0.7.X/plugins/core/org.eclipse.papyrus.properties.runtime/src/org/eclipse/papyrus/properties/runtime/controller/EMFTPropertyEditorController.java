@@ -21,6 +21,7 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.papyrus.properties.runtime.modelhandler.emf.TransactionUtil;
 
 
 /**
@@ -45,7 +46,7 @@ public abstract class EMFTPropertyEditorController extends EMFPropertyEditorCont
 	@Override
 	public void updateModel() {
 		AbstractTransactionalCommand command = new EMFTControllerCommand();
-		if(command.canExecute()) {
+		if(command.canExecute() && !(TransactionUtil.isReadTransactionInProgress(editingDomain, true, true))) {
 			try {
 				OperationHistoryFactory.getOperationHistory().execute(command, new NullProgressMonitor(), null);
 			} catch (ExecutionException e) {
