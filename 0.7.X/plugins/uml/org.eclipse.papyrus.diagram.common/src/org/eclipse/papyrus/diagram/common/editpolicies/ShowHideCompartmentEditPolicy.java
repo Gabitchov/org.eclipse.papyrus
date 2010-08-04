@@ -36,7 +36,7 @@ import org.eclipse.papyrus.diagram.common.commands.ShowHideCompartmentRequest;
 
 /**
  * 
- * This editpolicy provides the same commands that {@link PropertyHandlerEditPolicy},
+ * This EditPolicy provides the same commands that {@link PropertyHandlerEditPolicy},
  * more the command to Show/Hide a given compartment
  * 
  */
@@ -70,8 +70,8 @@ public class ShowHideCompartmentEditPolicy extends AbstractEditPolicy {
 	 */
 	protected Command getShowHideCompartmentCommand(ShowHideCompartmentRequest request) {
 		if(getHost() instanceof TopGraphicEditPart) {
-			List views = getAllNotationViews((TopGraphicEditPart)getHost());
-			for(Iterator iter = views.iterator(); iter.hasNext();) {
+			List<?> views = getAllNotationViews((TopGraphicEditPart)getHost());
+			for(Iterator<?> iter = views.iterator(); iter.hasNext();) {
 				View childView = (View)iter.next();
 				if(ViewUtil.isPropertySupported(childView, request.getPropertyID())) {
 					if(childView.getType().equals(request.getCompartmentType())) {
@@ -91,11 +91,11 @@ public class ShowHideCompartmentEditPolicy extends AbstractEditPolicy {
 	 * @return
 	 *         all the views associated to this editpart
 	 */
-	public List getAllNotationViews(TopGraphicEditPart ep) {
+	public List<?> getAllNotationViews(TopGraphicEditPart ep) {
 		View view = ep.getNotationView();
 		if(view != null) {
-			List views = new ArrayList();
-			Iterator childrenIterator = view.getChildren().iterator();
+			List<View> views = new ArrayList<View>();
+			Iterator<?> childrenIterator = view.getChildren().iterator();
 			while(childrenIterator.hasNext()) {
 				View child = (View)childrenIterator.next();
 				if(child instanceof Node) {

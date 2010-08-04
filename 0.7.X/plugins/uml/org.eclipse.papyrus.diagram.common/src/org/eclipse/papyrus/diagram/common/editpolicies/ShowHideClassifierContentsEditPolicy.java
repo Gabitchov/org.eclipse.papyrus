@@ -13,22 +13,25 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.editpolicies;
 
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.editpolicies.AbstractEditPolicy;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CreateCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.PropertyHandlerEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
-import org.eclipse.gmf.runtime.notation.BasicCompartment;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.commands.ShowHideElementsRequest;
@@ -54,11 +57,10 @@ public class ShowHideClassifierContentsEditPolicy extends AbstractEditPolicy {
 	public Command getCommand(Request request) {
 		if(request.getType().equals(ShowHideElementsRequest.SHOW_HIDE_ELEMENTS)) {
 			ShowHideElementsRequest req = (ShowHideElementsRequest)request;
-			EditPart hidedEditPart = req.getHidedEditPart();
 			if(req.getHidedEditPart() != null) {
 				return getDestroyViewCommand(req.getHidedEditPart());
 			} else if(req.getContainer() != null && req.getSemanticElement() != null) {
-				return getCreateViewCommand(req.getContainer(), req.getSemanticElement());
+				return getCreateViewCommand(req.getContainer(), req.getSemanticElement(), req.getLocation());
 			}
 		}
 		return null;
@@ -73,13 +75,24 @@ public class ShowHideClassifierContentsEditPolicy extends AbstractEditPolicy {
 	 * @return
 	 *         The command to create the view
 	 */
-	protected Command getCreateViewCommand(BasicCompartment container, EObject semanticElement) {
+	protected Command getCreateViewCommand(View container, EObject semanticElement, Point location) {
 
 		// creation of the node
 		ViewDescriptor viewDescriptor = new ViewDescriptor(new EObjectAdapter(semanticElement), Node.class, null, ViewUtil.APPEND, false, ((IGraphicalEditPart)this.getHost()).getDiagramPreferencesHint());
-
+		CompoundCommand compositeCmd = new CompoundCommand("Create View");//$NON-NLS-1$
 		CreateCommand cmd = new CreateCommand(getEditingDomain(), viewDescriptor, container);
-		return new ICommandProxy(cmd);
+		if(cmd.canExecute()) {
+			compositeCmd.add(new ICommandProxy(cmd));
+		}
+		//set the location
+		if(location != null) {
+			SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)cmd.getCommandResult().getReturnValue(), location); //$NON-NLS-1$
+			if(setBoundsCommand.canExecute()) {
+				compositeCmd.add(new ICommandProxy(setBoundsCommand));
+			}
+		}
+
+		return compositeCmd;
 	}
 
 	/**

@@ -14,13 +14,17 @@
 package org.eclipse.papyrus.diagram.common.actions;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
@@ -28,9 +32,9 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.CreateCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.XYLayoutEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
-import org.eclipse.gmf.runtime.notation.BasicCompartment;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.action.IAction;
@@ -42,7 +46,7 @@ import org.eclipse.papyrus.diagram.common.Messages;
 import org.eclipse.papyrus.diagram.common.commands.ShowHideElementsRequest;
 import org.eclipse.papyrus.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy;
 import org.eclipse.papyrus.diagram.common.providers.EditorLabelProvider;
-import org.eclipse.papyrus.diagram.common.util.ViewServiceUtil;
+import org.eclipse.papyrus.diagram.common.util.Util;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IActionDelegate;
 import org.eclipse.ui.IWorkbenchWindow;
@@ -50,6 +54,7 @@ import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 import org.eclipse.ui.dialogs.CheckedTreeSelectionDialog;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Type;
 
 /**
  * 
@@ -63,6 +68,9 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 
 	/** title for the message */
 	private final static String message = Messages.ShowHideContentsAction_Message;
+
+	/** increment for the location of the elements to show(ports and properties) */
+	private int increment = 10;
 
 	/**
 	 * 
@@ -147,6 +155,24 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 		this.setContentProvider(new ContentProvider());
 	}
 
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.diagram.common.actions.AbstractShowHideAction#getInput()
+	 * 
+	 * @return
+	 */
+	@Override
+	protected List<Object> getInput() {
+		List<Object> list = new ArrayList<Object>();
+		list.addAll(representations);
+		for(EditPartRepresentation current : representations) {
+			list.addAll(((CustomEditPartRepresentation)current).getSuperClasses());
+		}
+		return list;
+	}
+
+
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.diagram.common.actions.AbstractShowHideAction#getActionCommand()
@@ -155,14 +181,12 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 	 */
 	@Override
 	protected Command getActionCommand() {
-		/* for further information, see bug 302555 */
-		ViewServiceUtil.forceLoad();
 
 		ShowHideElementsRequest req = null;
 		CompoundCommand completeCmd = new CompoundCommand("Show/Hide Inherited Elements Command"); //$NON-NLS-1$
 
 		/*
-		 * the command to hide element
+		 * the command to hide elements
 		 * we need the corresponding editpart
 		 */
 		for(Object current : this.viewsToDestroy) {
@@ -181,6 +205,8 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 		}
 
 		//the command to show element
+		Point propertyLocation = new Point(increment, increment);
+		Point portLocation = new Point(0, -2 * increment + 1);
 		for(Object current : this.viewsToCreate) {
 			EditPartRepresentation rep = findEditPartRepresentation(current);
 			if(rep == null) {
@@ -188,28 +214,97 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 			}
 			EditPart ep = findEditPartRepresentation(current).getRepresentedEditPart();
 			if(ep != null) {
-				BasicCompartment compartment = getCompartmentToCreate(ep, (EObject)current);
-				if(compartment != null && ep != null) {
+				View compartment = getCompartmentForCreation(ep, (EObject)current);
+				if(compartment != null) {
 					req = new ShowHideElementsRequest(compartment, (EObject)current);
-					Command cmd = ep.getCommand(req);
+					if(isXYLayout(compartment, ep)) {
+						propertyLocation.x += increment;
+						propertyLocation.y += increment;
+						req.setLocation(new Point(propertyLocation));
 
+					} else if(isAffixedChildNode(ep, (EObject)current)) {
+						portLocation.y += increment;
+						req.setLocation(new Point(portLocation));
+					}
+					Command cmd = ep.getCommand(req);
 					if(cmd != null && cmd.canExecute()) {
 						completeCmd.add(cmd);
 					}
 				}
 			}
-
 		}
 		return completeCmd;
 	}
 
 	/**
+	 * Test if the child is represented by an affixed child node
+	 * TODO
+	 * This method will not work if we have an UML element E1 which inherits from another element E2 and if E2 is represented by an affixed child node
+	 * and not E1!
+	 * 
+	 * @param ep
+	 *        the parent EditPart
+	 * @param child
+	 *        the child to show
+	 * @return
+	 *         <ul>
+	 *         <li><code>true</code> if child is represented by an affixed child node</li>
+	 *         <li> <code>false</code> if not</li>
+	 *         </ul>
+	 */
+	protected boolean isAffixedChildNode(EditPart ep, EObject child) {
+		TransactionalEditingDomain domain = ((IGraphicalEditPart)ep).getEditingDomain();
+		ViewDescriptor viewDescriptor = new ViewDescriptor(new EObjectAdapter(child), Node.class, null, ViewUtil.APPEND, false, ((IGraphicalEditPart)ep).getDiagramPreferencesHint());
+		CreateCommand cmd = new CreateCommand(domain, viewDescriptor, (View)ep.getModel());
+		if(cmd.canExecute()) {
+			/*
+			 * the EditPart can own the child -> it's maybe an affixed child node
+			 */
+			return true;
+		}
+		return false;
+	}
+
+
+	/**
+	 * Test if the layout for this compartment is a XYLayout
+	 * 
+	 * @param compartment
+	 *        the compartment to test
+	 * @param ep
+	 *        the editpart owning this compartment
+	 * @return
+	 *         <ul>
+	 *         <li><code>true</code> if the layout for this compartment is a XYLayout</li>
+	 *         <li> <code>false</code> if not</li>
+	 *         </ul>
+	 */
+	protected boolean isXYLayout(View compartment, EditPart ep) {
+		List<?> children = ep.getChildren();
+		for(Object current : children) {
+			if(current instanceof EditPart) {
+				if(((EditPart)current).getModel() == compartment) {
+					EditPolicy editpolicy = ((EditPart)current).getEditPolicy(XYLayoutEditPolicy.LAYOUT_ROLE);
+					if(editpolicy != null) {
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
+
+
+	/**
+	 * Return the EditParts owned by this EditPart.
+	 * When the owned EditPart is a CompartmentEditPart, we return its containing EditPart
+	 * 
 	 * 
 	 * @param ep
 	 *        an editpart
 	 * @return
-	 *         the EditParts owned by this EditParts.
-	 *         When the owned EditPart are CompartmentEditPart, we return their contents
+	 *         The EditParts owned by this EditPart.
+	 *         When the owned EditPart is a CompartmentEditPart, we return its containing EditPart
 	 */
 	protected List<EditPart> getChildrenEditPart(EditPart ep) {
 		List<EditPart> children = new ArrayList<EditPart>();
@@ -231,20 +326,24 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 	}
 
 	/**
-	 * Return the compartment which allows the creation of this object
+	 * Return the compartment which allows the creation of the EObject
 	 * 
 	 * @param editPart
 	 *        an editpart
 	 * @param child
 	 *        an object to create
 	 * @return
-	 *         the compartment which allows the creation of this object
+	 *         the compartment which allows the creation of this EObject or <code>null</code>
 	 */
-	protected BasicCompartment getCompartmentToCreate(EditPart editPart, EObject child) {
+	protected View getCompartmentForCreation(EditPart editPart, EObject child) {
+		if(isAffixedChildNode(editPart, child)) {
+			return (View)editPart.getModel();
+		}
 		TransactionalEditingDomain domain = ((IGraphicalEditPart)editPart).getEditingDomain();
 		ViewDescriptor viewDescriptor = new ViewDescriptor(new EObjectAdapter(child), Node.class, null, ViewUtil.APPEND, false, ((IGraphicalEditPart)editPart).getDiagramPreferencesHint());
-		List<BasicCompartment> visibleCompartments = getVisibleCompartment(editPart);
-		for(BasicCompartment currentComp : visibleCompartments) {
+
+		List<View> visibleCompartments = ((IGraphicalEditPart)editPart).getNotationView().getVisibleChildren();
+		for(View currentComp : visibleCompartments) {
 			CreateCommand cmd = new CreateCommand(domain, viewDescriptor, currentComp);
 			if(cmd.canExecute()) {
 				return currentComp;
@@ -253,8 +352,14 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 		return null;
 	}
 
-
-	private EditPart findEditPart(Object obj) {
+	/**
+	 * Return the EditPart owning the Object or <code>null</code>
+	 * 
+	 * @param obj
+	 * @return
+	 *         the EditPart owning the Object or <code>null</code>
+	 */
+	protected EditPart findEditPart(Object obj) {
 		EditPart ep = null;
 		Iterator<EditPartRepresentation> it = representations.iterator();
 		while(ep == null && it.hasNext()) {
@@ -268,6 +373,17 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 		return null;
 	}
 
+	/**
+	 * Fill the following fields :
+	 * <ul>
+	 * <li> {@link AbstractShowHideAction#viewsToDestroy}</li>
+	 * <li> {@link AbstractShowHideAction#viewsToCreate}</li>
+	 * </ul>
+	 * 
+	 * @see org.eclipse.papyrus.diagram.common.actions.AbstractShowHideAction#buildShowHideElementsList(java.lang.Object[])
+	 * 
+	 * @param results
+	 */
 	@Override
 	protected void buildShowHideElementsList(Object[] results) {
 		super.buildShowHideElementsList(results);
@@ -282,7 +398,7 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 			}
 		}
 
-		//we are looking for the object to show
+		//we are looking for the objects to show
 		for(Object element : result) {
 			if(initialSelection.contains(element)) {
 				//we do nothing
@@ -292,7 +408,6 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 			}
 		}
 
-
 		//we are looking for the view to destroy
 		for(Object current : this.initialSelection) {
 			if(!result.contains(current)) {
@@ -301,137 +416,25 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 		}
 	}
 
-	/**
-	 * 
-	 * @param ep
-	 * @return
-	 */
-	protected List<Object> getSemanticChildren(EditPart ep) {
-		List<EditPart> childrenEP = new ArrayList<EditPart>();
-		List<Object> semanticChildren = new ArrayList<Object>();
-		List<?> tmp = ep.getChildren();
-		for(Object current : tmp) {
-			//we don't want the compartment used for the name
-			if(current instanceof ITextAwareEditPart) {
-				continue;
-				//if it's a compartment, we want it's children
-			} else if(current instanceof CompartmentEditPart) {
-				childrenEP.addAll(((CompartmentEditPart)current).getChildren());
-				//it's an affixed child node?!
-			} else {
-				childrenEP.add((EditPart)current);
-			}
-		}
-		Iterator<EditPart> it = childrenEP.iterator();
-		while(it.hasNext()) {
-			semanticChildren.add(((View)it.next().getModel()).getElement());
-		}
-
-		return semanticChildren;
-	}
-
-
 
 
 	/**
-	 * Return the list containing the elements which can effectively be displayed
-	 * 
-	 * @param possibleChildren
-	 *        a list containing elements which could be displayed
-	 * @param editpart
-	 *        the editpart which owns the possibleChildren
-	 * @return
-	 *         the list containing the elements which can effectively be displayed
-	 */
-	public List<Object> getPossibleChildren(List<Object> possibleChildren, EditPart editpart) {
-		ViewServiceUtil.forceLoad();
-		List<Object> children = new ArrayList<Object>();
-		List<BasicCompartment> visibleCompartments = getVisibleCompartment(editpart);
-		TransactionalEditingDomain domain = ((IGraphicalEditPart)editpart).getEditingDomain();
-
-		//we test each semantic children to know if we can draw it on the diagram
-		for(Object child : possibleChildren) {
-			ViewDescriptor viewDescriptor = new ViewDescriptor(new EObjectAdapter((EObject)child), Node.class, null, ViewUtil.APPEND, false, ((IGraphicalEditPart)editpart).getDiagramPreferencesHint());
-			for(BasicCompartment currentComp : visibleCompartments) {
-				CreateCommand cmd = new CreateCommand(domain, viewDescriptor, currentComp);
-				if(cmd.canExecute()) {
-					children.add(child);
-					break;
-				}
-			}
-		}
-		return children;
-	}
-
-	/**
-	 * 
-	 * @see org.eclipse.papyrus.diagram.common.actions.AbstractShowHideAction#getInput()
-	 * 
-	 * @return
-	 */
-	@Override
-	protected List<Object> getInput() {
-		List<Object> list = new ArrayList<Object>();
-		list.addAll(representations);
-		for(EditPartRepresentation current : representations) {
-			list.addAll(((CustomEditPartRepresentation)current).getSuperClasses());
-		}
-
-
-		return list;
-	}
-
-
-	/**
-	 * Return the visible compartments for this EditParts
-	 * 
-	 * @param ep
-	 *        an EditPart
-	 * @return
-	 *         the visible compartments for this EditPart
-	 */
-	public List<BasicCompartment> getVisibleCompartment(EditPart ep) {
-		List<BasicCompartment> visibleCompartments = new ArrayList<BasicCompartment>();
-		for(Object current : ep.getChildren()) {
-			if(current instanceof CompartmentEditPart && !(current instanceof ITextAwareEditPart)) {
-				visibleCompartments.add((BasicCompartment)((EditPart)current).getModel());
-			}
-		}
-		return visibleCompartments;
-	}
-
-	/**
-	 * Return a list containing the semantic element owned by the EditPart
-	 * 
-	 * @param representedEditPart
-	 * @return
-	 *         a list containing the semantic element owned by the EditPart
-	 */
-	public List<Object> getAllSemanticChildren(EditPart editpart) {
-		List<Object> semanticChildren = new ArrayList<Object>();
-		EObject eobject = ((View)editpart.getModel()).getElement();
-		if(eobject instanceof Classifier) {
-			EList<NamedElement> members = ((Classifier)eobject).getMembers();
-			Iterator<?> it = members.iterator();
-			while(it.hasNext()) {
-				semanticChildren.add(it.next());
-			}
-		}
-		return semanticChildren;
-	}
-
-	/**
-	 * Return the editpart represention owning the element
+	 * Return the editpart representation owning the element
 	 * 
 	 * @param element
 	 *        the element which we are looking for
 	 * @return
-	 *         the editpart represention owning the element
+	 *         the editpart representation owning the element
 	 */
 	protected EditPartRepresentation findEditPartRepresentation(Object element) {
 		for(EditPartRepresentation current : representations) {
 			if(current.getPossibleElement().contains(element)) {
 				return current;
+			} else {
+				EList<?> views = ((IGraphicalEditPart)current.getRepresentedEditPart()).getNotationView().getChildren();
+				if(views.contains(element)) {
+					return current;
+				}
 			}
 		}
 		return null;
@@ -533,16 +536,96 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 		 * @return
 		 */
 		public Object[] getChildren(Object parentElement) {
-			EList<NamedElement> members = null;
+			List<NamedElement> members = new ArrayList<NamedElement>();
+			EList<NamedElement> localMembers = null;
 			if(parentElement instanceof EditPartRepresentation) {
 				EObject myClassifier = ((View)((EditPartRepresentation)parentElement).getRepresentedEditPart().getModel()).getElement();
 				if(myClassifier instanceof Classifier) {
-					members = ((Classifier)myClassifier).getOwnedMembers();
+					localMembers = ((Classifier)myClassifier).getOwnedMembers();
 				}
 			} else if(parentElement instanceof ClassifierRepresentation) {
-				members = ((ClassifierRepresentation)parentElement).getRepresentedClassifier().getOwnedMembers();
+				localMembers = ((ClassifierRepresentation)parentElement).getRepresentedClassifier().getOwnedMembers();
 			}
-			return (members == null) ? null : members.toArray();
+			if(localMembers != null) {
+				for(NamedElement namedElement : localMembers) {
+					if(((EditPartRepresentation)parentElement).getPossibleElement().contains(namedElement)) {
+						members.add(namedElement);
+					}
+				}
+			}
+			Collections.sort(members, new CustomComparator(members));
+			return members.toArray();
+
+		}
+
+		public class CustomComparator implements Comparator<Object> {
+
+			/** this list contains the name of all the classes which want sort */
+			private List<String> classesList;
+
+			/**
+			 * 
+			 * Constructor.
+			 * 
+			 * @param members
+			 *        the elements to sort
+			 */
+			public CustomComparator(List<NamedElement> elements) {
+				buildList(elements);
+			}
+
+			/**
+			 * Fill {@link #classesList} with the class name of each element to sort
+			 * 
+			 * @param elements
+			 *        the elements to sort
+			 */
+			public void buildList(List<NamedElement> elements) {
+				this.classesList = new ArrayList<String>();
+				for(NamedElement namedElement : elements) {
+					this.classesList.add(new String(namedElement.getClass().getSimpleName()));
+				}
+				Collections.sort(classesList);
+			}
+
+			/**
+			 * 
+			 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
+			 * 
+			 * @param o1
+			 * @param o2
+			 * @return
+			 */
+			public int compare(Object o1, Object o2) {
+
+				String name1 = o1.getClass().getSimpleName();
+				String name2 = o2.getClass().getSimpleName();
+				int index1 = classesList.indexOf(name1);
+				int index2 = classesList.indexOf(name2);
+				int classIndex = classesList.indexOf("ClassImpl");
+				if(index1 == index2 && index1 == classIndex) {
+					boolean metaclassO1 = Util.isMetaclass((Type)o1);
+					boolean metaclassO2 = Util.isMetaclass((Type)o2);
+					if(metaclassO1 && !metaclassO2) {
+						return 1;
+					} else if(!metaclassO1 && metaclassO2) {
+						return -1;
+					}
+					return 0;
+				}
+				if(index1 == -1) {
+					System.out.println(name1);
+					return -1;
+				} else if(index1 == index2) {
+					return 0;
+				} else if(index1 > index2) {
+					return 1;
+				} else if(index1 < index2) {
+					return -1;
+				}
+				return 0;
+			}
+
 
 		}
 
@@ -556,13 +639,15 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 		public Object getParent(Object element) {
 			if(!(element instanceof EditPartRepresentation)) {
 				EditPartRepresentation rep = findEditPartRepresentation(element);
-				Classifier classifier = (Classifier)((View)rep.getRepresentedEditPart().getModel()).getElement();
-				if(classifier.getOwnedMembers().contains(element)) {
-					return rep;
-				} else {
-					for(ClassifierRepresentation classRep : ((CustomEditPartRepresentation)rep).getSuperClasses()) {
-						if(classRep.ownsElement(element)) {
-							return classRep;
+				if(rep != null) {
+					Classifier classifier = (Classifier)((View)rep.getRepresentedEditPart().getModel()).getElement();
+					if(classifier.getOwnedMembers().contains(element)) {
+						return rep;
+					} else {
+						for(ClassifierRepresentation classRep : ((CustomEditPartRepresentation)rep).getSuperClasses()) {
+							if(classRep.ownsElement(element)) {
+								return classRep;
+							}
 						}
 					}
 				}
@@ -615,20 +700,40 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 		@Override
 		protected void initRepresentation() {
 			super.initRepresentation();
-			this.initialSelection.addAll(getSemanticChildren(this.representedEditPart));
-			List<Object> possibleChildren = getAllSemanticChildren(this.representedEditPart);
-
-			this.possibleElement.addAll(getPossibleChildren(possibleChildren, this.representedEditPart));
 			this.superClasses = new ArrayList<ShowHideContentsAction.ClassifierRepresentation>();
 			EObject myClassifier = ((View)representedEditPart.getModel()).getElement();
 			if(myClassifier instanceof Classifier) {
 				EList<Classifier> parents = ((Classifier)myClassifier).allParents();
 				for(Classifier classifier : parents) {
-					superClasses.add(new ClassifierRepresentation(classifier));
+					superClasses.add(new ClassifierRepresentation(classifier, this));
 				}
 			}
 
+			/*
+			 * build the list of the elements to select
+			 * we suggest only the elements which can be displayed in the shown compartments
+			 */
+			this.elementsToSelect = new ArrayList<Object>();
+			EList<NamedElement> members = ((Classifier)myClassifier).getOwnedMembers();
+			for(NamedElement namedElement : members) {
+				View compartment = getCompartmentForCreation(this.representedEditPart, namedElement);
+				if(compartment != null) {
+					this.elementsToSelect.add(namedElement);
+
+					//build the initial selection
+					EList<?> childrenView = compartment.getVisibleChildren();
+					for(Object object : childrenView) {
+						if(object instanceof View) {
+							if(((View)object).getElement() == namedElement) {
+								this.initialSelection.add(namedElement);
+								break;
+							}
+						}
+					}
+				}
+			}
 		}
+
 
 		/**
 		 * 
@@ -638,17 +743,21 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 		public List<ClassifierRepresentation> getSuperClasses() {
 			return this.superClasses;
 		}
+
 	}
 
 	/**
 	 * 
-	 * This class is used to do easily the difference between the nested classifiers and the mother class of the selected class in the Tree
-	 * 
+	 * This class is used to do easily the difference between the nested classifiers and the superclass of the selected class in the Tree
+	 * The superclass are represented with this class
 	 */
 	protected class ClassifierRepresentation {
 
 		/** the represented classifier */
 		protected Classifier representedClassifier;
+
+		/** the CustomEditPartRepresentation owning this classifier */
+		protected CustomEditPartRepresentation rep;
 
 		/**
 		 * 
@@ -657,8 +766,9 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 		 * @param representedClassifier
 		 *        the represented classifier
 		 */
-		public ClassifierRepresentation(Classifier representedClassifier) {
+		public ClassifierRepresentation(Classifier representedClassifier, CustomEditPartRepresentation rep) {
 			this.representedClassifier = representedClassifier;
+			this.rep = rep;
 		}
 
 		public boolean ownsElement(Object element) {
@@ -678,5 +788,7 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 		public Classifier getRepresentedClassifier() {
 			return this.representedClassifier;
 		}
+
+
 	}
 }
