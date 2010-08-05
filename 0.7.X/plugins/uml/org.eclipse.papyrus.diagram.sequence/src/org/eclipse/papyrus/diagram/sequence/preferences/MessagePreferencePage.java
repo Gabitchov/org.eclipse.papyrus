@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.preferences;
 
+import org.eclipse.gmf.runtime.notation.Routing;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
@@ -40,10 +41,10 @@ public class MessagePreferencePage extends AbstractPapyrusLinkPreferencePage {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT use rectilinear as default routing style
 	 */
 	public static void initDefaults(IPreferenceStore store) {
-
+		store.setDefault("ELEMENT_PapyrusUMLSequenceDiagram_Message.routing.style", Routing.RECTILINEAR);
 	}
 
 }
