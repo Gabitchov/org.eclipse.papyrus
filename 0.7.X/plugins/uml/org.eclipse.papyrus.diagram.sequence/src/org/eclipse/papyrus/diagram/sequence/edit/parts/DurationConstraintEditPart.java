@@ -1126,6 +1126,8 @@ AbstractBorderItemEditPart {
 				points.addPoint(figureWidth / 2, figureHeight - getLineWidth() * 2);
 				points.addPoint(figureWidth / 2 + ARROW_SEMI_WIDTH, figureHeight - getLineWidth() * 2 - ARROW_HEIGHT);
 				getDurationArrow().setPoints(points);
+				Point topLeft = getLocation().getTranslated(getInsets().left, getInsets().top);
+				getDurationArrow().setBounds(new Rectangle(topLeft, new Dimension(figureWidth, figureHeight)));
 			}
 		}
 
