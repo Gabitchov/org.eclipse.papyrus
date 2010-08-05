@@ -36,7 +36,6 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.Routing;
 import org.eclipse.gmf.runtime.notation.RoutingStyle;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.edge.UMLEdgeFigure;
 import org.eclipse.papyrus.diagram.sequence.draw2d.routers.MessageRouter;
@@ -44,12 +43,12 @@ import org.eclipse.papyrus.diagram.sequence.edit.policies.CreationOnMessageEditP
 import org.eclipse.papyrus.diagram.sequence.edit.policies.LifelineChildGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.Message5ItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.MessageConnectionEditPolicy;
+import org.eclipse.papyrus.diagram.sequence.util.SequenceUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageSort;
-import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
@@ -62,21 +61,6 @@ implements ITreeBranchEditPart {
 	 * @generated
 	 */
 	public static final int VISUAL_ID = 4007;
-
-	/**
-	 * Title for dialog of block message sort modification error
-	 */
-	private static final String BLOCK_SORT_MODIFICATION_TITLE = "Forbidden action"; //$NON-NLS-1$
-
-	/**
-	 * Message for dialog of block message sort modification error
-	 */
-	private static final String BLOCK_SORT_MODIFICATION_MSG = "It's impossible to change the message sort"; //$NON-NLS-1$
-
-	/**
-	 * The current message sort
-	 */
-	private MessageSort messageSort;
 
 	/**
 	 * @generated
@@ -285,19 +269,7 @@ implements ITreeBranchEditPart {
 	 */
 	@Override
 	protected void handleNotificationEvent(Notification notification) {
-		Object feature = notification.getFeature();
-
-		if(UMLPackage.eINSTANCE.getMessage_MessageSort().equals(feature) && (messageSort == null || !messageSort.equals(notification.getNewValue()))) {
-			Object oldValue = notification.getOldValue();
-			if(oldValue instanceof MessageSort) {
-				Message message = (Message)resolveSemanticElement();
-				MessageDialog.openWarning(Display.getCurrent().getActiveShell(), BLOCK_SORT_MODIFICATION_TITLE, BLOCK_SORT_MODIFICATION_MSG);
-				// TODO Improve cancelation method
-				message.setMessageSort((MessageSort)oldValue);
-				messageSort = (MessageSort)oldValue;
-				return;
-			}
-		}
+		SequenceUtil.handleMessageSortChange(getEditingDomain(), notification, (Message)resolveSemanticElement(), MessageSort.ASYNCH_CALL_LITERAL);
 		super.handleNotificationEvent(notification);
 	}
 

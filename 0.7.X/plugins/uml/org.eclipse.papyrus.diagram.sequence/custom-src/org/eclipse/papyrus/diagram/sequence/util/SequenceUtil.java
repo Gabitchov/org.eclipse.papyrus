@@ -28,8 +28,11 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
+import org.eclipse.emf.edit.command.SetCommand;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
@@ -47,12 +50,14 @@ import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.diagram.common.helper.DurationConstraintHelper;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DestructionEventEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.common.util.CacheAdapter;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.DestructionEvent;
@@ -73,11 +78,22 @@ import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
 import org.eclipse.uml2.uml.TimeConstraint;
 import org.eclipse.uml2.uml.TimeObservation;
+import org.eclipse.uml2.uml.UMLPackage;
 
 
 public class SequenceUtil {
 
 	private static final double MAXIMAL_DISTANCE_FROM_EVENT = 10;
+	
+	/**
+	 * Title for dialog of block message sort modification error
+	 */
+	private static final String BLOCK_SORT_MODIFICATION_TITLE = "Forbidden action"; //$NON-NLS-1$
+
+	/**
+	 * Message for dialog of block message sort modification error
+	 */
+	private static final String BLOCK_SORT_MODIFICATION_MSG = "It's impossible to change the message sort."; //$NON-NLS-1$
 
 	/**
 	 * Find the container interaction fragment at the given location.
@@ -750,5 +766,17 @@ public class SequenceUtil {
 		}
 		return elements;
 	}
+	
+	public static void handleMessageSortChange(EditingDomain editingDomain, Notification notification, Message message, MessageSort expectedMessageSort) {
+		Object feature = notification.getFeature();
 
+		if(UMLPackage.eINSTANCE.getMessage_MessageSort().equals(feature) && !expectedMessageSort.equals(notification.getNewValue())) {
+			Object oldValue = notification.getOldValue();
+			if(oldValue instanceof MessageSort) {
+				MessageDialog.openWarning(Display.getCurrent().getActiveShell(), BLOCK_SORT_MODIFICATION_TITLE, BLOCK_SORT_MODIFICATION_MSG);
+				CommandHelper.executeCommandWithoutHistory(editingDomain, SetCommand.create(editingDomain, message, feature, notification.getOldValue()));
+				return;
+			}
+		}
+	}
 }
