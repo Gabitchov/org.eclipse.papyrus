@@ -164,6 +164,12 @@
 			label="Search element"
 			style="push">
 		</command>
+  <command
+        commandId="org.eclipse.papyrus.modelexplorer.sortelement"
+        icon="icons/etool16/sort.gif"
+        label="sort"
+        style="toggle">
+  </command>
 	</menuContribution>
        
 	<menuContribution locationURI="popup:org.eclipse.papyrus.modelexplorer.modelexplorer.popup"
@@ -197,6 +203,13 @@
              description="Search an element in the model explorer"
              id="org.eclipse.papyrus.modelexplorer.searchelement"
              name="searchelement">
+       </command>
+       <command
+             categoryId="org.eclipse.papyrus.editor.category"
+             defaultHandler="org.eclipse.papyrus.modelexplorer.handler.SortElementHandler"
+             description="Sort elements"
+             id="org.eclipse.papyrus.modelexplorer.sortelement"
+             name="SortElement">
        </command>
     </extension>
      <extension point="org.eclipse.core.runtime.preferences">
