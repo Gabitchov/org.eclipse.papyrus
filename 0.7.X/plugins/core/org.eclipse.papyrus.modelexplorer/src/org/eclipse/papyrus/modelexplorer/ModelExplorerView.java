@@ -30,6 +30,7 @@ import org.eclipse.papyrus.core.lifecycleevents.SaveAndDirtyService;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.core.utils.ServiceUtils;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorPart;
@@ -129,7 +130,12 @@ public class ModelExplorerView extends CommonNavigator {
 			e.printStackTrace();
 		}
 	}
-
+@Override
+public void createPartControl(Composite aParent) {
+	// TODO Auto-generated method stub
+	super.createPartControl(aParent);
+	getCommonViewer().setSorter(null);
+}
 	/**
 	 * Return the control used to render this View
 	 * 
@@ -153,7 +159,7 @@ public class ModelExplorerView extends CommonNavigator {
 		activate();
 
 	}
-
+	
 	/**
 	 * Hook the global undo/redi actions.
 	 */
