@@ -485,6 +485,77 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 
 	}
 
+	public class CustomComparator implements Comparator<Object> {
+
+		/** this list contains the name of all the classes which want sort */
+		private List<String> classesList;
+
+		/**
+		 * 
+		 * Constructor.
+		 * 
+		 * @param members
+		 *        the elements to sort
+		 */
+		public CustomComparator(List<NamedElement> elements) {
+			buildList(elements);
+		}
+
+		/**
+		 * Fill {@link #classesList} with the class name of each element to sort
+		 * 
+		 * @param elements
+		 *        the elements to sort
+		 */
+		public void buildList(List<NamedElement> elements) {
+			this.classesList = new ArrayList<String>();
+			for(NamedElement namedElement : elements) {
+				this.classesList.add(new String(namedElement.getClass().getSimpleName()));
+			}
+			Collections.sort(classesList);
+		}
+
+		/**
+		 * 
+		 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
+		 * 
+		 * @param o1
+		 * @param o2
+		 * @return
+		 */
+		public int compare(Object o1, Object o2) {
+
+			String name1 = o1.getClass().getSimpleName();
+			String name2 = o2.getClass().getSimpleName();
+			int index1 = classesList.indexOf(name1);
+			int index2 = classesList.indexOf(name2);
+			int classIndex = classesList.indexOf("ClassImpl"); //$NON-NLS-1$
+			if(index1 == index2 && index1 == classIndex) {
+				boolean metaclassO1 = Util.isMetaclass((Type)o1);
+				boolean metaclassO2 = Util.isMetaclass((Type)o2);
+				if(metaclassO1 && !metaclassO2) {
+					return 1;
+				} else if(!metaclassO1 && metaclassO2) {
+					return -1;
+				}
+				return 0;
+			}
+			if(index1 == -1) {
+				System.out.println(name1);
+				return -1;
+			} else if(index1 == index2) {
+				return 0;
+			} else if(index1 > index2) {
+				return 1;
+			} else if(index1 < index2) {
+				return -1;
+			}
+			return 0;
+		}
+
+
+	}
+
 	/**
 	 * 
 	 * Content provider for the {@link CheckedTreeSelectionDialog}
@@ -542,90 +613,22 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 				EObject myClassifier = ((View)((EditPartRepresentation)parentElement).getRepresentedEditPart().getModel()).getElement();
 				if(myClassifier instanceof Classifier) {
 					localMembers = ((Classifier)myClassifier).getOwnedMembers();
+					for(NamedElement namedElement : localMembers) {
+						if(((EditPartRepresentation)parentElement).getPossibleElement().contains(namedElement)) {
+							members.add(namedElement);
+						}
+					}
 				}
 			} else if(parentElement instanceof ClassifierRepresentation) {
-				localMembers = ((ClassifierRepresentation)parentElement).getRepresentedClassifier().getOwnedMembers();
-			}
-			if(localMembers != null) {
+				localMembers = ((ClassifierRepresentation)parentElement).getRepresentedClassifier().getMembers();
 				for(NamedElement namedElement : localMembers) {
-					if(((EditPartRepresentation)parentElement).getPossibleElement().contains(namedElement)) {
+					if(((ClassifierRepresentation)parentElement).getEditPartRepresentation().getPossibleElement().contains(namedElement)) {
 						members.add(namedElement);
 					}
 				}
 			}
 			Collections.sort(members, new CustomComparator(members));
 			return members.toArray();
-
-		}
-
-		public class CustomComparator implements Comparator<Object> {
-
-			/** this list contains the name of all the classes which want sort */
-			private List<String> classesList;
-
-			/**
-			 * 
-			 * Constructor.
-			 * 
-			 * @param members
-			 *        the elements to sort
-			 */
-			public CustomComparator(List<NamedElement> elements) {
-				buildList(elements);
-			}
-
-			/**
-			 * Fill {@link #classesList} with the class name of each element to sort
-			 * 
-			 * @param elements
-			 *        the elements to sort
-			 */
-			public void buildList(List<NamedElement> elements) {
-				this.classesList = new ArrayList<String>();
-				for(NamedElement namedElement : elements) {
-					this.classesList.add(new String(namedElement.getClass().getSimpleName()));
-				}
-				Collections.sort(classesList);
-			}
-
-			/**
-			 * 
-			 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
-			 * 
-			 * @param o1
-			 * @param o2
-			 * @return
-			 */
-			public int compare(Object o1, Object o2) {
-
-				String name1 = o1.getClass().getSimpleName();
-				String name2 = o2.getClass().getSimpleName();
-				int index1 = classesList.indexOf(name1);
-				int index2 = classesList.indexOf(name2);
-				int classIndex = classesList.indexOf("ClassImpl");
-				if(index1 == index2 && index1 == classIndex) {
-					boolean metaclassO1 = Util.isMetaclass((Type)o1);
-					boolean metaclassO2 = Util.isMetaclass((Type)o2);
-					if(metaclassO1 && !metaclassO2) {
-						return 1;
-					} else if(!metaclassO1 && metaclassO2) {
-						return -1;
-					}
-					return 0;
-				}
-				if(index1 == -1) {
-					System.out.println(name1);
-					return -1;
-				} else if(index1 == index2) {
-					return 0;
-				} else if(index1 > index2) {
-					return 1;
-				} else if(index1 < index2) {
-					return -1;
-				}
-				return 0;
-			}
-
 
 		}
 
@@ -714,7 +717,7 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 			 * we suggest only the elements which can be displayed in the shown compartments
 			 */
 			this.elementsToSelect = new ArrayList<Object>();
-			EList<NamedElement> members = ((Classifier)myClassifier).getOwnedMembers();
+			EList<NamedElement> members = ((Classifier)myClassifier).getMembers();
 			for(NamedElement namedElement : members) {
 				View compartment = getCompartmentForCreation(this.representedEditPart, namedElement);
 				if(compartment != null) {
@@ -757,7 +760,7 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 		protected Classifier representedClassifier;
 
 		/** the CustomEditPartRepresentation owning this classifier */
-		protected CustomEditPartRepresentation rep;
+		protected EditPartRepresentation rep;
 
 		/**
 		 * 
@@ -789,6 +792,15 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 			return this.representedClassifier;
 		}
 
+		/**
+		 * Getter for {@link #rep}
+		 * 
+		 * @return
+		 *         {@link #rep}
+		 */
+		public EditPartRepresentation getEditPartRepresentation() {
+			return this.rep;
+		}
 
 	}
 }
