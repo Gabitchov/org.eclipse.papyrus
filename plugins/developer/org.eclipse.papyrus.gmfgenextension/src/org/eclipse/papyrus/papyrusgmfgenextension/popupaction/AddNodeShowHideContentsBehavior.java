@@ -20,17 +20,13 @@ import org.eclipse.gmf.codegen.gmfgen.GenNode;
 import org.eclipse.jface.action.IAction;
 
 
-/**
- * This class is used to add a behavior for node which have compartments.
- * This behavior allows to show or hide the compartments
- */
-public class AddNodeShowHideCompartmentBehavior extends Action {
+public class AddNodeShowHideContentsBehavior extends Action {
 
-	/** the key for the EditPolicy to add */
-	public static final String SHOW_HIDE_COMPARTMENT_POLICY_KEY = "org.eclipse.papyrus.diagram.common.editpolicies.ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY"; //$NON-NLS-1$
+	/** the key for the EditPolicy to add. */
+	public static final String SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY_KEY = "org.eclipse.papyrus.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY"; //$NON-NLS-1$
 
 	/** the path for the EditPolicy */
-	public static final String SHOW_HIDE_COMPARTMENT_POLICY_CLASS = "org.eclipse.papyrus.diagram.common.editpolicies.ShowHideCompartmentEditPolicy"; //$NON-NLS-1$
+	public static final String SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY_CLASS = "org.eclipse.papyrus.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy"; //$NON-NLS-1$
 
 
 	/*
@@ -45,11 +41,10 @@ public class AddNodeShowHideCompartmentBehavior extends Action {
 			EObject eObject = it.next();
 			if(eObject instanceof GenNode) {
 				//test if it has got a external node to display applied stereotype
-				if(!hasCustomBehavior(((GenNode)eObject), SHOW_HIDE_COMPARTMENT_POLICY_KEY)) {
-					addCustomBehavior((GenNode)eObject, SHOW_HIDE_COMPARTMENT_POLICY_KEY, SHOW_HIDE_COMPARTMENT_POLICY_CLASS);
+				if(!hasCustomBehavior(((GenNode)eObject), SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY_KEY)) {
+					addCustomBehavior((GenNode)eObject, SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY_KEY, SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY_CLASS);
 				}
 			}
 		}
 	}
-
 }

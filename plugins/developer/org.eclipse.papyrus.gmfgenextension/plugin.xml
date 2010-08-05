@@ -65,6 +65,18 @@
                        </objectClass>
                     </enablement>
                  </action>
+                 <action
+                       class="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddNodeShowHideContentsBehavior"
+                       enablesFor="*"
+                       id="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddNodeShowHideBehavior"
+                       label="Add behavior to show/hide classifiers contents"
+                       menubarPath="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus/AddNodeShowHideBehavior">
+                    <enablement>
+                       <objectClass
+                             name="org.eclipse.gmf.codegen.gmfgen.GenNode">
+                       </objectClass>
+                    </enablement>
+                 </action>
                
                  <action
                class="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddGenLinkStereotypeDisplayBehavior"
