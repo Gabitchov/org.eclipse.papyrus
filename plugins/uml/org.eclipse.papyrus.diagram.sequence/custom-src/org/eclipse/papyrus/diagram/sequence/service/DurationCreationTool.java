@@ -17,12 +17,14 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.FigureCanvas;
 import org.eclipse.draw2d.Viewport;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartListener;
 import org.eclipse.gef.EditPartViewer;
+import org.eclipse.gef.NodeEditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.SharedCursors;
@@ -32,6 +34,7 @@ import org.eclipse.gef.tools.AbstractConnectionCreationTool;
 import org.eclipse.gef.tools.AbstractTool;
 import org.eclipse.gef.tools.TargetingTool;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.papyrus.diagram.common.helper.DurationConstraintHelper;
@@ -424,6 +427,24 @@ public class DurationCreationTool extends AspectUnspecifiedTypeCreationTool {
 				return null;
 			}
 			Request req = getTargetRequest();
+			if(targetPart instanceof ConnectionNodeEditPart) {
+				// a message part is targeted. Instead, we must take the nearby lifeline part.
+				// redirect to the message part will be performed later in case we really want to draw a duration on a message
+				ConnectionNodeEditPart conn = (ConnectionNodeEditPart)targetPart;
+				EditPart source = ((ConnectionNodeEditPart)targetPart).getSource();
+				EditPart target = ((ConnectionNodeEditPart)targetPart).getTarget();
+				if(source instanceof NodeEditPart && target instanceof NodeEditPart) {
+					ConnectionAnchor sourceAnch = ((NodeEditPart)source).getSourceConnectionAnchor(conn);
+					ConnectionAnchor targetAnch = ((NodeEditPart)target).getSourceConnectionAnchor(conn);
+					double sourceDist = getLocation().getDistance(sourceAnch.getReferencePoint());
+					double targetDist = getLocation().getDistance(targetAnch.getReferencePoint());
+					if(sourceDist > targetDist) {
+						targetPart = target;
+					} else {
+						targetPart = source;
+					}
+				}
+			}
 			LifelineEditPart lifelinePart = SequenceUtil.getParentLifelinePart(targetPart);
 			if(lifelinePart instanceof LifelineEditPart) {
 				Object paramOcc1 = req.getExtendedData().get(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION);
