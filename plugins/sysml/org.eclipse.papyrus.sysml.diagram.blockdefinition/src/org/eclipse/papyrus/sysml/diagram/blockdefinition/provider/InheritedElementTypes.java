@@ -251,6 +251,10 @@ public class InheritedElementTypes extends AbstractElementTypeEnumerator {
 
 	public static final String ASSOCIATION_ROLE_TARGET_LABEL_HINT = "6005";
 
+	public static final String ASSOCIATION_MULT_SOURCE_LABEL_HINT = "6033";
+
+	public static final String ASSOCIATION_MULT_TARGET_LABEL_HINT = "6034";
+
 	/** Class Diagram :: AssociationClass */
 	public static final IHintedType ASSOCIATION_CLASS_EDGE = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.AssociationClass_4017"); //$NON-NLS-1$
 

@@ -160,7 +160,7 @@ public class InheritedClassDiagramElementEditPartProvider extends CUMLEditPartPr
 			}
 
 			/** Association */
-			if(InheritedElementTypes.ASSOCIATION.getSemanticHint().equals(hint) || InheritedElementTypes.ASSOCIATION_NAME_LABEL_HINT.equals(hint) || InheritedElementTypes.ASSOCIATION_STEREOTYPE_LABEL_HINT.equals(hint) || InheritedElementTypes.ASSOCIATION_ROLE_SOURCE_LABEL_HINT.equals(hint) || InheritedElementTypes.ASSOCIATION_ROLE_TARGET_LABEL_HINT.equals(hint)) {
+			if(InheritedElementTypes.ASSOCIATION.getSemanticHint().equals(hint) || InheritedElementTypes.ASSOCIATION_NAME_LABEL_HINT.equals(hint) || InheritedElementTypes.ASSOCIATION_STEREOTYPE_LABEL_HINT.equals(hint) || InheritedElementTypes.ASSOCIATION_ROLE_SOURCE_LABEL_HINT.equals(hint) || InheritedElementTypes.ASSOCIATION_ROLE_TARGET_LABEL_HINT.equals(hint) || InheritedElementTypes.ASSOCIATION_MULT_SOURCE_LABEL_HINT.equals(hint) || InheritedElementTypes.ASSOCIATION_MULT_TARGET_LABEL_HINT.equals(hint)) {
 				return true;
 			}
 

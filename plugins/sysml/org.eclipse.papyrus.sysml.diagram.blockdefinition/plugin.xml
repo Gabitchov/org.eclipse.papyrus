@@ -367,7 +367,9 @@
 			"6002" = Association name label
 			"6001" = Association applied stereotype label
 			"6003" = Association role source label
-			"6005" = Association role target label		
+			"6005" = Association role target label
+			"6033" = Association multiplicity source label
+			"6034" = Association multiplicity target label						
 			"4017" = AssociationClass	
 			"6031" = AssociationClass role source label
 			"6032" = AssociationClass role target label
@@ -410,7 +412,7 @@
 		<object
 			id="Association"
 			class="org.eclipse.gmf.runtime.notation.Edge">
-			<method name="getType()" value="4001, 6002, 6001, 6003, 6005"/>
+			<method name="getType()" value="4001, 6002, 6001, 6003, 6005, 6033, 6034"/>
 		</object>
 				
 		<object
