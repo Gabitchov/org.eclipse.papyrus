@@ -13,7 +13,6 @@ package org.eclipse.papyrus.diagram.common.service.palette;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.gmf.runtime.common.core.service.IProvider;
-import org.eclipse.papyrus.diagram.common.wizards.PaletteEntryProxy;
 import org.eclipse.swt.graphics.Image;
 import org.w3c.dom.Node;
 
@@ -60,7 +59,7 @@ public interface IAspectActionProvider extends IProvider {
 	 * 
 	 * @return <code>true</code> if this factory is enabled
 	 */
-	public boolean isEnable(PaletteEntryProxy entryProxy);
+	public boolean isEnable(IPaletteEntryProxy entryProxy);
 
 	/**
 	 * Sets the configuration for this provider, given the configuration element

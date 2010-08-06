@@ -27,7 +27,6 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.Tool;
-import org.eclipse.gef.palette.CombinedTemplateCreationEntry;
 import org.eclipse.gef.palette.PaletteContainer;
 import org.eclipse.gef.palette.PaletteEntry;
 import org.eclipse.gef.palette.PaletteRoot;
@@ -91,7 +90,7 @@ public class PaletteUtil {
 	 *        the entry for which metaclass created is searched
 	 * @return the type of metaclasses created by the toolentry or <code>null</code>.
 	 */
-	public static EClass getToolMetaclass(CombinedTemplateCreationEntry entry) {
+	public static EClass getToolMetaclass(ToolEntry entry) {
 		Tool tool = entry.createTool();
 		List<IElementType> types = null;
 		if(tool instanceof AspectUnspecifiedTypeCreationTool) {

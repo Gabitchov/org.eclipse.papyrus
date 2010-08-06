@@ -42,7 +42,6 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.part.PaletteUtil;
 import org.eclipse.papyrus.diagram.common.service.palette.AssociationEndPostAction.PropertyEndConfiguration;
-import org.eclipse.papyrus.diagram.common.wizards.PaletteEntryProxy;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -66,7 +65,7 @@ public class PseudostatePostAction extends ModelPostAction {
 	protected List<PropertyEndConfiguration> configurations;
 
 	/** entry proxy "parent" of this action when configuring the action */
-	protected PaletteEntryProxy entryProxy;
+	protected IPaletteEntryProxy entryProxy;
 
 	/** list of applied profiles */
 	protected List<Profile> appliedProfiles;
@@ -92,7 +91,7 @@ public class PseudostatePostAction extends ModelPostAction {
 	/**
 	 * @{inheritDoc
 	 */
-	public Control createConfigurationComposite(Composite parent, PaletteEntryProxy entryProxy, List<Profile> appliedProfiles) {
+	public Control createConfigurationComposite(Composite parent, IPaletteEntryProxy entryProxy, List<Profile> appliedProfiles) {
 		this.appliedProfiles = appliedProfiles;
 		this.entryProxy = entryProxy;
 
@@ -117,7 +116,7 @@ public class PseudostatePostAction extends ModelPostAction {
 	public String getNewPseudostateName(Pseudostate pseudo) {
 
 		String baseString = pseudo.getKind().getLiteral();
-		baseString = baseString.substring(0, 1).toUpperCase()+baseString.substring(1);
+		baseString = baseString.substring(0, 1).toUpperCase() + baseString.substring(1);
 		String name = ""; //$NON-NLS-1$
 
 		org.eclipse.uml2.uml.Element umlParent = pseudo.getOwner();
@@ -160,7 +159,7 @@ public class PseudostatePostAction extends ModelPostAction {
 			String newName = getNewPseudostateName((Pseudostate)objectToEdit);
 			// operation to change the name
 			EStructuralFeature feature = UMLPackage.eINSTANCE.getNamedElement_Name();
-			SetRequest setRequest = new SetRequest((Pseudostate) objectToEdit, feature, newName);
+			SetRequest setRequest = new SetRequest((Pseudostate)objectToEdit, feature, newName);
 			final SetValueCommand setValueCommand = new SetValueCommand(setRequest);
 
 			if(setValueCommand.canExecute()) {

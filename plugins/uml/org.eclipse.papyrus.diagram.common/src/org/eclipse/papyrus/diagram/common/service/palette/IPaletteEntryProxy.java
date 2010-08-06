@@ -9,28 +9,21 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.ui.toolbox;
+package org.eclipse.papyrus.diagram.common.service.palette;
 
-import org.eclipse.osgi.util.NLS;
+import org.eclipse.gef.palette.PaletteEntry;
+
 
 /**
- * Messages for the plugin
+ * Interface implemented by all proxies for the palette customization dialog
  */
-public class Messages extends NLS {
+public interface IPaletteEntryProxy {
 
-	private static final String BUNDLE_NAME = "org.eclipse.papyrus.ui.toolbox.messages"; //$NON-NLS-1$
+	/**
+	 * Returns the entry managed by this proxy
+	 * 
+	 * @return the entry managed by this proxy
+	 */
+	public PaletteEntry getEntry();
 
-	public static String BundleIconExplorerDialog_Message;
-
-	public static String BundleIconExplorerDialog_Title;
-
-	public static String BundleIconExplorerDialog_UnknownFileName;
-
-	static {
-		// initialize resource bundle
-		NLS.initializeMessages(BUNDLE_NAME, Messages.class);
-	}
-
-	private Messages() {
-	}
 }

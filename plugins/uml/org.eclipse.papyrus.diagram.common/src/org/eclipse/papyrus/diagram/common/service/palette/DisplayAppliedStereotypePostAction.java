@@ -48,8 +48,6 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.command.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.diagram.common.service.IPapyrusPaletteConstant;
-import org.eclipse.papyrus.diagram.common.wizards.PaletteAspectToolEntryProxy;
-import org.eclipse.papyrus.diagram.common.wizards.PaletteEntryProxy;
 import org.eclipse.papyrus.umlutils.ui.helper.AppliedStereotypeHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
@@ -77,7 +75,7 @@ public class DisplayAppliedStereotypePostAction extends GraphicalPostAction {
 	protected List<String> stereotypesQNToDisplay = new ArrayList<String>();
 
 	/** entry proxy "parent" of this action when configuring the action */
-	protected PaletteEntryProxy entryProxy;
+	protected IPaletteEntryProxy entryProxy;
 
 	/** list of applied profiles */
 	protected List<Profile> appliedProfiles;
@@ -231,13 +229,13 @@ public class DisplayAppliedStereotypePostAction extends GraphicalPostAction {
 	 * @{inheritDoc
 	 */
 	@Override
-	public Control createConfigurationComposite(Composite parent, PaletteEntryProxy entryProxy, List<Profile> appliedProfiles) {
+	public Control createConfigurationComposite(Composite parent, IPaletteEntryProxy entryProxy, List<Profile> appliedProfiles) {
 		this.appliedProfiles = appliedProfiles;
 		this.entryProxy = entryProxy;
 
 		//retrieve displayable stereotypes
-		if(entryProxy instanceof PaletteAspectToolEntryProxy) {
-			for(IPostAction postAction : ((PaletteAspectToolEntryProxy)entryProxy).getPostActions()) {
+		if(entryProxy instanceof IPaletteAspectToolEntryProxy) {
+			for(IPostAction postAction : ((IPaletteAspectToolEntryProxy)entryProxy).getPostActions()) {
 				if(postAction instanceof StereotypePostAction) {
 					for(String stereotype : ((StereotypePostAction)postAction).getStereotypesToApply()) {
 						if(!listOfDisplayableStereotypes.containsKey(stereotype)) {
