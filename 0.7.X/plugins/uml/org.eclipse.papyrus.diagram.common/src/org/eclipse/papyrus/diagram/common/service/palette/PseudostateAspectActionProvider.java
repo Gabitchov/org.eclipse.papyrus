@@ -17,8 +17,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.gef.palette.CombinedTemplateCreationEntry;
 import org.eclipse.gef.palette.PaletteEntry;
 import org.eclipse.papyrus.diagram.common.part.PaletteUtil;
-import org.eclipse.papyrus.diagram.common.wizards.PaletteAspectToolEntryProxy;
-import org.eclipse.papyrus.diagram.common.wizards.PaletteEntryProxy;
 import org.w3c.dom.Node;
 
 /**
@@ -51,12 +49,12 @@ public class PseudostateAspectActionProvider extends AbstractAspectActionProvide
 	/**
 	 * @{inheritDoc
 	 */
-	public boolean isEnable(PaletteEntryProxy entryProxy) {
+	public boolean isEnable(IPaletteEntryProxy entryProxy) {
 		PaletteEntry entry = entryProxy.getEntry();
 
 		// check unicity
-		if(entryProxy instanceof PaletteAspectToolEntryProxy) {
-			List<IPostAction> postActions = ((PaletteAspectToolEntryProxy)entryProxy).getPostActions();
+		if(entryProxy instanceof IPaletteAspectToolEntryProxy) {
+			List<IPostAction> postActions = ((IPaletteAspectToolEntryProxy)entryProxy).getPostActions();
 			for(IPostAction action : postActions) {
 				if(action instanceof PseudostatePostAction) {
 					return false;

@@ -11,7 +11,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.service.palette;
 
-import org.eclipse.papyrus.diagram.common.wizards.PaletteEntryProxy;
 import org.w3c.dom.Node;
 
 /**
@@ -40,7 +39,7 @@ public class ChangeStereotypeDisplayAspectActionProvider extends AbstractAspectA
 	/**
 	 * @{inheritDoc
 	 */
-	public boolean isEnable(PaletteEntryProxy entryProxy) {
+	public boolean isEnable(IPaletteEntryProxy entryProxy) {
 		return true;
 	}
 

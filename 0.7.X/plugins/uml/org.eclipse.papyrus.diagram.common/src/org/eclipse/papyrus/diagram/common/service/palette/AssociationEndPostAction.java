@@ -42,7 +42,6 @@ import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.helper.AssociationHelper;
 import org.eclipse.papyrus.diagram.common.part.PaletteUtil;
-import org.eclipse.papyrus.diagram.common.wizards.PaletteEntryProxy;
 import org.eclipse.papyrus.umlutils.MultiplicityElementUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.FocusEvent;
@@ -75,7 +74,7 @@ public class AssociationEndPostAction extends ModelPostAction {
 	protected List<PropertyEndConfiguration> configurations;
 
 	/** entry proxy "parent" of this action when configuring the action */
-	protected PaletteEntryProxy entryProxy;
+	protected IPaletteEntryProxy entryProxy;
 
 	/** list of applied profiles */
 	protected List<Profile> appliedProfiles;
@@ -285,7 +284,7 @@ public class AssociationEndPostAction extends ModelPostAction {
 	/**
 	 * @{inheritDoc
 	 */
-	public Control createConfigurationComposite(Composite parent, PaletteEntryProxy entryProxy, List<Profile> appliedProfiles) {
+	public Control createConfigurationComposite(Composite parent, IPaletteEntryProxy entryProxy, List<Profile> appliedProfiles) {
 		this.appliedProfiles = appliedProfiles;
 		this.entryProxy = entryProxy;
 

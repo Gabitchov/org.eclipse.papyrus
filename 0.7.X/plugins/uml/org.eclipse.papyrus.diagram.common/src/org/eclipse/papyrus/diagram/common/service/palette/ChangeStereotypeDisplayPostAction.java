@@ -38,7 +38,6 @@ import org.eclipse.gmf.runtime.diagram.ui.util.EditPartUtil;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.command.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.diagram.common.service.IPapyrusPaletteConstant;
-import org.eclipse.papyrus.diagram.common.wizards.PaletteEntryProxy;
 import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.papyrus.umlutils.ui.helper.AppliedStereotypeHelper;
 import org.eclipse.swt.SWT;
@@ -112,7 +111,7 @@ public class ChangeStereotypeDisplayPostAction extends GraphicalPostAction {
 	protected static final List<String> PLACE_LIST = Arrays.asList(COMMENT, COMPARTMENT, BRACE);
 
 	/** entry proxy "parent" of this action when configuring the action */
-	protected PaletteEntryProxy entryProxy;
+	protected IPaletteEntryProxy entryProxy;
 
 	/** list of applied profiles */
 	protected List<Profile> appliedProfiles;
@@ -221,7 +220,7 @@ public class ChangeStereotypeDisplayPostAction extends GraphicalPostAction {
 	 * @{inheritDoc
 	 */
 	@Override
-	public Control createConfigurationComposite(Composite parent, PaletteEntryProxy entryProxy, List<Profile> appliedProfiles) {
+	public Control createConfigurationComposite(Composite parent, IPaletteEntryProxy entryProxy, List<Profile> appliedProfiles) {
 		this.appliedProfiles = appliedProfiles;
 		this.entryProxy = entryProxy;
 		Composite mainComposite = new Composite(parent, SWT.BORDER);

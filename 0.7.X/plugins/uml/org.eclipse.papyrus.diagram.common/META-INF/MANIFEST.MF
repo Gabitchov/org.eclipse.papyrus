@@ -3,7 +3,8 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.diagram.common;singleton:=true
 Bundle-Version: 0.7.1.qualifier
-Bundle-ClassPath: .
+Bundle-ClassPath: .,
+ paletteExtension.jar
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Export-Package: org.eclipse.papyrus.diagram.common,
@@ -42,8 +43,7 @@ Export-Package: org.eclipse.papyrus.diagram.common,
  org.eclipse.papyrus.diagram.common.ui.dialogs,
  org.eclipse.papyrus.diagram.common.ui.helper,
  org.eclipse.papyrus.diagram.common.ui.hyperlinkshell,
- org.eclipse.papyrus.diagram.common.util,
- org.eclipse.papyrus.diagram.common.wizards
+ org.eclipse.papyrus.diagram.common.util
 Require-Bundle: org.eclipse.uml2.uml.edit;visibility:=reexport,
  org.eclipse.papyrus.core;bundle-version="0.7.0";visibility:=reexport,
  org.eclipse.gmf.runtime.diagram.ui.resources.editor,

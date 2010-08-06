@@ -17,7 +17,6 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.service.IPapyrusPaletteConstant;
-import org.eclipse.papyrus.diagram.common.wizards.PaletteEntryProxy;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -85,7 +84,7 @@ public class StereotypeAspectActionProvider extends AbstractAspectActionProvider
 	/**
 	 * @{inheritDoc
 	 */
-	public boolean isEnable(PaletteEntryProxy entryProxy) {
+	public boolean isEnable(IPaletteEntryProxy entryProxy) {
 		return true;
 	}
 
