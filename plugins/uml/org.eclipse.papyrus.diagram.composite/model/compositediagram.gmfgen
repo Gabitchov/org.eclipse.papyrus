@@ -340,6 +340,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.composite.custom.edit.policies.PartEditPolicy.CLEAN_PART_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.PartEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;REMOVE_ORPHAN_VIEW&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy"/>
         <modelFacet
             modelElementSelector="/0/@expressionProviders/@providers.0/@expressions.2">
           <metaClass
@@ -587,6 +591,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.BehaviorLayoutEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;REMOVE_ORPHAN_VIEW&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Activity"/>
@@ -669,6 +677,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.BehaviorLayoutEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;REMOVE_ORPHAN_VIEW&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction"/>
@@ -751,6 +763,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.BehaviorLayoutEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;REMOVE_ORPHAN_VIEW&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ProtocolStateMachine"/>
@@ -833,6 +849,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.BehaviorLayoutEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;REMOVE_ORPHAN_VIEW&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/StateMachine"/>
@@ -915,6 +935,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.BehaviorLayoutEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;REMOVE_ORPHAN_VIEW&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/FunctionBehavior"/>
@@ -997,6 +1021,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.BehaviorLayoutEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;REMOVE_ORPHAN_VIEW&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/OpaqueBehavior"/>
@@ -1083,6 +1111,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.StructuredClassifierLayoutEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;REMOVE_ORPHAN_VIEW&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Component"/>
@@ -1165,6 +1197,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.StructuredClassifierLayoutEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;REMOVE_ORPHAN_VIEW&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Device"/>
@@ -1247,6 +1283,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.StructuredClassifierLayoutEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;REMOVE_ORPHAN_VIEW&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ExecutionEnvironment"/>
@@ -1333,6 +1373,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.StructuredClassifierLayoutEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;REMOVE_ORPHAN_VIEW&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Node"/>
@@ -1423,6 +1467,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.AffixedNodeAlignmentEditPolicy.PORT_ALIGNMENT_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AffixedNodeAlignmentEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;REMOVE_ORPHAN_VIEW&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class"/>
@@ -3588,6 +3636,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.BehaviorLayoutEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;REMOVE_ORPHAN_VIEW&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Activity"/>
@@ -3669,6 +3721,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.BehaviorLayoutEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;REMOVE_ORPHAN_VIEW&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction"/>
@@ -3750,6 +3806,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.BehaviorLayoutEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;REMOVE_ORPHAN_VIEW&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ProtocolStateMachine"/>
@@ -3831,6 +3891,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.BehaviorLayoutEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;REMOVE_ORPHAN_VIEW&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/StateMachine"/>
@@ -3912,6 +3976,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.BehaviorLayoutEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;REMOVE_ORPHAN_VIEW&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/FunctionBehavior"/>
@@ -3993,6 +4061,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.BehaviorLayoutEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;REMOVE_ORPHAN_VIEW&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/OpaqueBehavior"/>
@@ -4078,6 +4150,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.StructuredClassifierLayoutEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;REMOVE_ORPHAN_VIEW&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Component"/>
@@ -4159,6 +4235,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.StructuredClassifierLayoutEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;REMOVE_ORPHAN_VIEW&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Device"/>
@@ -4240,6 +4320,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.StructuredClassifierLayoutEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;REMOVE_ORPHAN_VIEW&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ExecutionEnvironment"/>
@@ -4325,6 +4409,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.StructuredClassifierLayoutEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;REMOVE_ORPHAN_VIEW&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Node"/>
@@ -4414,6 +4502,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.AffixedNodeAlignmentEditPolicy.PORT_ALIGNMENT_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AffixedNodeAlignmentEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;REMOVE_ORPHAN_VIEW&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class"/>
