@@ -87,6 +87,7 @@ plugin@org.eclipse.papyrus.diagram.activity=SVN,,svn://dev.eclipse.org/svnroot/m
 plugin@org.eclipse.papyrus.diagram.clazz=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/branches/0.7.X/plugins/uml,,org.eclipse.papyrus.diagram.clazz
 plugin@org.eclipse.papyrus.diagram.common=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/branches/0.7.X/plugins/uml,,org.eclipse.papyrus.diagram.common
 plugin@org.eclipse.papyrus.diagram.common.groups=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/branches/0.7.X/plugins/uml,,org.eclipse.papyrus.diagram.common.groups
+fragment@org.eclipse.papyrus.diagram.common.palette.customization=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/branches/0.7.X/plugins/uml,,org.eclipse.papyrus.diagram.common.palette.customization
 plugin@org.eclipse.papyrus.diagram.communication=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/branches/0.7.X/plugins/uml,,org.eclipse.papyrus.diagram.communication
 plugin@org.eclipse.papyrus.diagram.composite=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/branches/0.7.X/plugins/uml,,org.eclipse.papyrus.diagram.composite
 plugin@org.eclipse.papyrus.diagram.emftree=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/branches/0.7.X/plugins/uml,,org.eclipse.papyrus.diagram.emftree
