@@ -26,6 +26,7 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
+import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.papyrus.diagram.common.locator.AdvancedBorderItemLocator;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DestructionEventEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintEditPart;
@@ -130,7 +131,6 @@ public class TimeMarkElementPositionLocator extends AdvancedBorderItemLocator {
 		}
 		return recommendedLocation;
 	}
-
 
 	/**
 	 * Utility to calculate the bounds of the dot line to use as parent with consideration for the handle
@@ -383,6 +383,8 @@ public class TimeMarkElementPositionLocator extends AdvancedBorderItemLocator {
 				((TimeObservationEditPart.TimeMarkElementFigure)child).setCurrentSideOfFigure(getCurrentSideOfParent(), location);
 			} else if(child instanceof DurationConstraintEditPart.DurationConstraintFigure) {
 				((DurationConstraintEditPart.DurationConstraintFigure)child).updateArrow(location.width, location.height);
+			} else if(child instanceof DefaultSizeNodeFigure) {
+				redrawTimeMarks((IFigure)child, location);
 			}
 		}
 	}
