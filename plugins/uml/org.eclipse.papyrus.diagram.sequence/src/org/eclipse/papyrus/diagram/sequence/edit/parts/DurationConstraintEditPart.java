@@ -37,13 +37,13 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderItemEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.BorderedBorderItemEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
@@ -54,8 +54,10 @@ import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.common.draw2d.CenterLayout;
 import org.eclipse.papyrus.diagram.common.draw2d.LinesBorder;
 import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
+import org.eclipse.papyrus.diagram.common.locator.ExternalLabelPositionLocator;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.DeleteTimeElementWithoutEventPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.DurationConstraintItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.sequence.edit.policies.ExternalLabelPrimaryDragRoleEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.TimeRelatedSelectionEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
@@ -69,7 +71,7 @@ import org.eclipse.swt.graphics.Color;
  */
 public class DurationConstraintEditPart extends
 
-AbstractBorderItemEditPart {
+BorderedBorderItemEditPart {
 
 	/**
 	 * @generated
@@ -120,12 +122,18 @@ AbstractBorderItemEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT use ExternalLabelPrimaryDragRoleEditPolicy
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
+				View childView = (View)child.getModel();
+				switch(UMLVisualIDRegistry.getVisualID(childView)) {
+				case DurationConstraintLabelEditPart.VISUAL_ID:
+					// use ExternalLabelPrimaryDragRoleEditPolicy
+					return new ExternalLabelPrimaryDragRoleEditPolicy();
+				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if(result == null) {
 					result = new NonResizableEditPolicy();
@@ -159,52 +167,16 @@ AbstractBorderItemEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT use ExternalLabelPositionLocator
 	 */
-	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof DurationConstraintLabelEditPart) {
-			((DurationConstraintLabelEditPart)childEditPart).setLabel(getPrimaryShape().getDurationConstraintLabel());
-			return true;
+	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
+		if(borderItemEditPart instanceof DurationConstraintLabelEditPart) {
+			//use ExternalLabelPositionLocator
+			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
+			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
+		} else {
+			super.addBorderItem(borderItemContainer, borderItemEditPart);
 		}
-
-		return false;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof DurationConstraintLabelEditPart) {
-			return true;
-		}
-		return false;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
-			return;
-		}
-		super.addChildVisual(childEditPart, -1);
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
-			return;
-		}
-		super.removeChildVisual(childEditPart);
-	}
-
-	/**
-	 * @generated
-	 */
-	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		return getContentPane();
 	}
 
 	/**
@@ -230,7 +202,7 @@ AbstractBorderItemEditPart {
 	 * 
 	 * @generated
 	 */
-	protected NodeFigure createNodeFigure() {
+	protected NodeFigure createMainFigure() {
 		NodeFigure figure = createNodePlate();
 		figure.setLayoutManager(new StackLayout());
 		IFigure shape = createNodeShape();
@@ -248,11 +220,6 @@ AbstractBorderItemEditPart {
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
-		if(nodeShape.getLayoutManager() == null) {
-			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
-			layout.setSpacing(5);
-			nodeShape.setLayoutManager(layout);
-		}
 		return nodeShape; // use nodeShape itself as contentPane
 	}
 
@@ -1070,11 +1037,6 @@ AbstractBorderItemEditPart {
 		/**
 		 * @generated
 		 */
-		private WrappingLabel fDurationConstraintLabel;
-
-		/**
-		 * @generated
-		 */
 		public DurationConstraintFigure() {
 
 			CenterLayout layoutThis = new CenterLayout();
@@ -1142,20 +1104,6 @@ AbstractBorderItemEditPart {
 
 			this.add(fDurationArrow);
 
-			fDurationConstraintLabel = new WrappingLabel();
-
-			fDurationConstraintLabel.setTextAlignment(PositionConstants.CENTER);
-
-			fDurationConstraintLabel.setAlignment(PositionConstants.CENTER);
-
-			fDurationConstraintLabel.setBackgroundColor(getBackgroundColor());
-
-			fDurationConstraintLabel.setTextWrap(true);
-
-			fDurationConstraintLabel.setTextJustification(PositionConstants.CENTER);
-
-			this.add(fDurationConstraintLabel);
-
 		}
 
 		/**
@@ -1174,13 +1122,6 @@ AbstractBorderItemEditPart {
 		 */
 		public PolylineShape getDurationArrow() {
 			return fDurationArrow;
-		}
-
-		/**
-		 * @generated
-		 */
-		public WrappingLabel getDurationConstraintLabel() {
-			return fDurationConstraintLabel;
 		}
 
 	}

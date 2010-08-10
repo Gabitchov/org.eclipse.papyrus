@@ -41,6 +41,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.XYLayoutEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
@@ -64,11 +65,14 @@ import org.eclipse.uml2.uml.OccurrenceSpecification;
  */
 public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 
-	/** Initialisation width of Execution Specification. */
+	/** Initialization width of Execution Specification. */
 	private final static int EXECUTION_INIT_WIDTH = 16;
 
-	/** Initialisation height of Execution Specification. */
+	/** Initialization height of Execution Specification. */
 	private final static int EXECUTION_INIT_HEIGHT = 50;
+
+	/** Initialization height of a time bar figure. */
+	private static final int TIME_BAR_HEIGHT = 1;
 
 	/** The default spacing used between Execution Specification */
 	private final static int SPACING_HEIGHT = 5;
@@ -118,7 +122,6 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 							// Horizontally, the figure is placed at the center of the lifeline
 							newLocation.x = dotLineFigureBounds.x + dotLineFigureBounds.width / 2 - EXECUTION_INIT_WIDTH / 2;
 						}
-
 
 						// Get the height of the Execution specification
 						int newHeight = getFigureHeight(cvr);
@@ -175,7 +178,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 			// Get the height of the element
 			int newHeight = getFigureHeight(cvr);
 			// Define the bounds of the new time element
-			Rectangle newBounds = new Rectangle(referencePoint.x, referencePoint.y + SPACING_HEIGHT - newHeight / 2, -1, newHeight);
+			Rectangle newBounds = new Rectangle(referencePoint.x, referencePoint.y - newHeight / 2, -1, newHeight);
 			TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
 			return new ICommandProxy(new SetBoundsCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, viewDescriptor, newBounds));
 		}
@@ -220,15 +223,25 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 	}
 
 	/**
-	 * Get the execution specification height
+	 * Get the adapted height, taking in account the represented figure
 	 * 
 	 * @param cr
 	 *        the create request
-	 * @return the height defined in the create request or a default value
+	 * @return the height defined in the create request or a default value depending on the created figure
 	 */
 	private int getFigureHeight(CreateRequest cr) {
+		final String timeObsHint = ((IHintedType)UMLElementTypes.TimeObservation_3020).getSemanticHint();
+		final String timeCstHint = ((IHintedType)UMLElementTypes.TimeConstraint_3019).getSemanticHint();
+		String semHint = null;
+		if(cr instanceof CreateViewAndElementRequest) {
+			semHint = ((CreateViewAndElementRequest)cr).getViewAndElementDescriptor().getSemanticHint();
+		}
 		int newHeight;
-		if(cr.getSize() != null) {
+		if(timeObsHint.equals(semHint) || timeCstHint.equals(semHint)) {
+			// height for a time bar (takes precedence on request's size)
+			newHeight = TIME_BAR_HEIGHT;
+		} else if(cr.getSize() != null) {
+			// heigh from request
 			newHeight = cr.getSize().height;
 		} else {
 			newHeight = EXECUTION_INIT_HEIGHT;
