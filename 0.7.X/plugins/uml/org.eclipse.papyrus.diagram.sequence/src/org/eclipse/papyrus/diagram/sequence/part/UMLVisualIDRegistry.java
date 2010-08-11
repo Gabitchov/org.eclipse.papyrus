@@ -38,6 +38,7 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DestructionEventEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintAppliedStereotypeEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInMessageEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintLabelEditPart;
@@ -75,8 +76,10 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageSyncAppliedStereot
 import org.eclipse.papyrus.diagram.sequence.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantNameEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeConstraintAppliedStereotypeEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeConstraintEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeConstraintLabelEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeObservationAppliedStereotypeEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeObservationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeObservationLabelEditPart;
 import org.eclipse.papyrus.diagram.sequence.expressions.UMLOCLFactory;
@@ -190,6 +193,13 @@ public class UMLVisualIDRegistry {
 			}
 		}
 		switch(containerVisualID) {
+		case PackageEditPart.VISUAL_ID:
+			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return InteractionEditPart.VISUAL_ID;
+			}
+			break;
 		case InteractionEditPart.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())
 
@@ -330,13 +340,6 @@ public class UMLVisualIDRegistry {
 				return InteractionOperandEditPart.VISUAL_ID;
 			}
 			break;
-		case PackageEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return InteractionEditPart.VISUAL_ID;
-			}
-			break;
 		// handle duration constraint/observation on message
 		case MessageEditPart.VISUAL_ID:
 		case Message2EditPart.VISUAL_ID:
@@ -464,14 +467,23 @@ public class UMLVisualIDRegistry {
 			if(TimeConstraintLabelEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(TimeConstraintAppliedStereotypeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case TimeObservationEditPart.VISUAL_ID:
 			if(TimeObservationLabelEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(TimeObservationAppliedStereotypeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case DurationConstraintEditPart.VISUAL_ID:
 			if(DurationConstraintLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(DurationConstraintAppliedStereotypeEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;

@@ -131,6 +131,7 @@ BorderedBorderItemEditPart {
 				View childView = (View)child.getModel();
 				switch(UMLVisualIDRegistry.getVisualID(childView)) {
 				case DurationConstraintLabelEditPart.VISUAL_ID:
+				case DurationConstraintAppliedStereotypeEditPart.VISUAL_ID:
 					// use ExternalLabelPrimaryDragRoleEditPolicy
 					return new ExternalLabelPrimaryDragRoleEditPolicy();
 				}
@@ -170,7 +171,7 @@ BorderedBorderItemEditPart {
 	 * @generated NOT use ExternalLabelPositionLocator
 	 */
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
-		if(borderItemEditPart instanceof DurationConstraintLabelEditPart) {
+		if(borderItemEditPart instanceof DurationConstraintLabelEditPart || borderItemEditPart instanceof DurationConstraintAppliedStereotypeEditPart) {
 			//use ExternalLabelPositionLocator
 			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);

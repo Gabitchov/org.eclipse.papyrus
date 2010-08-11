@@ -133,6 +133,7 @@ BorderedBorderItemEditPart {
 				View childView = (View)child.getModel();
 				switch(UMLVisualIDRegistry.getVisualID(childView)) {
 				case TimeObservationLabelEditPart.VISUAL_ID:
+				case TimeObservationAppliedStereotypeEditPart.VISUAL_ID:
 					// use ExternalLabelPrimaryDragRoleEditPolicy
 					return new ExternalLabelPrimaryDragRoleEditPolicy();
 				}
@@ -172,7 +173,7 @@ BorderedBorderItemEditPart {
 	 * @generated NOT use ExternalLabelPositionLocator
 	 */
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
-		if(borderItemEditPart instanceof TimeObservationLabelEditPart) {
+		if(borderItemEditPart instanceof TimeObservationLabelEditPart || borderItemEditPart instanceof TimeObservationAppliedStereotypeEditPart) {
 			//use ExternalLabelPositionLocator
 			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);

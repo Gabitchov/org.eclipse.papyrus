@@ -518,6 +518,13 @@
             value="PositionConstants.CENTER"/>
       </actualFigure>
     </descriptors>
+    <descriptors
+        name="AppliedStereotypeWrappingLabelFigure">
+      <actualFigure
+          xsi:type="gmfgraph:CustomFigure"
+          name="AppliedStereotypeWrappingLabel"
+          qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.AppliedStereotypeWrappingLabelFigure"/>
+    </descriptors>
   </figures>
   <nodes
       name="InteractionNode"
@@ -859,4 +866,7 @@
         x="1"
         y="13"/>
   </labels>
+  <labels
+      name="AppliedStereotypeExternalLabel"
+      figure="AppliedStereotypeWrappingLabelFigure"/>
 </gmfgraph:Canvas>

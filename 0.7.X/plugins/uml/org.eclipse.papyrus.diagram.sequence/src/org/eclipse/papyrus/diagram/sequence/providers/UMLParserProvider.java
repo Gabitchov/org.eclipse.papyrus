@@ -32,6 +32,7 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.CommentBodyEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.Constraint2EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationNameEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintAppliedStereotypeEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInMessageEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintLabelEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationObservationEditPart;
@@ -54,7 +55,9 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageReplyAppliedStereotypeEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageSyncAppliedStereotypeEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantNameEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeConstraintAppliedStereotypeEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeConstraintLabelEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeObservationAppliedStereotypeEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeObservationLabelEditPart;
 import org.eclipse.papyrus.diagram.sequence.parser.custom.DurationObservationParser;
 import org.eclipse.papyrus.diagram.sequence.parser.custom.InteractionUseCustomParsers;
@@ -141,6 +144,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private AppliedStereotypeParser timeConstraintLabel_5013Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getTimeConstraintLabel_5013Parser() {
+		if(timeConstraintLabel_5013Parser == null) {
+			timeConstraintLabel_5013Parser = new AppliedStereotypeParser();
+		}
+		return timeConstraintLabel_5013Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private TimeObservationParser timeObservationLabel_5010Parser;
 
 	/**
@@ -156,6 +174,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private AppliedStereotypeParser timeObservationLabel_5014Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getTimeObservationLabel_5014Parser() {
+		if(timeObservationLabel_5014Parser == null) {
+			timeObservationLabel_5014Parser = new AppliedStereotypeParser();
+		}
+		return timeObservationLabel_5014Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private TimeConstraintParser durationConstraintLabel_5011Parser;
 
 	/**
@@ -166,6 +199,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			durationConstraintLabel_5011Parser = new TimeConstraintParser();
 		}
 		return durationConstraintLabel_5011Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser durationConstraintLabel_5015Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDurationConstraintLabel_5015Parser() {
+		if(durationConstraintLabel_5015Parser == null) {
+			durationConstraintLabel_5015Parser = new AppliedStereotypeParser();
+		}
+		return durationConstraintLabel_5015Parser;
 	}
 
 	/**
@@ -526,10 +574,16 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getStateInvariantName_5008Parser();
 		case TimeConstraintLabelEditPart.VISUAL_ID:
 			return getTimeConstraintLabel_5009Parser();
+		case TimeConstraintAppliedStereotypeEditPart.VISUAL_ID:
+			return getTimeConstraintLabel_5013Parser();
 		case TimeObservationLabelEditPart.VISUAL_ID:
 			return getTimeObservationLabel_5010Parser();
+		case TimeObservationAppliedStereotypeEditPart.VISUAL_ID:
+			return getTimeObservationLabel_5014Parser();
 		case DurationConstraintLabelEditPart.VISUAL_ID:
 			return getDurationConstraintLabel_5011Parser();
+		case DurationConstraintAppliedStereotypeEditPart.VISUAL_ID:
+			return getDurationConstraintLabel_5015Parser();
 		case ConstraintNameEditPart.VISUAL_ID:
 			return getConstraintName_5005Parser();
 		case Constraint2EditPart.VISUAL_ID:
