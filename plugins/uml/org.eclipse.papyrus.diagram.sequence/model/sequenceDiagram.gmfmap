@@ -315,6 +315,11 @@
                 <diagramLabel
                     href="sequenceDiagram.gmfgraph#TimeMarkElementLabel"/>
               </labelMappings>
+              <labelMappings
+                  readOnly="true">
+                <diagramLabel
+                    href="sequenceDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
+              </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
                   href="sequenceDiagram.gmftool#//@palette/@tools.0/@tools.12"/>
@@ -344,6 +349,11 @@
               <labelMappings>
                 <diagramLabel
                     href="sequenceDiagram.gmfgraph#TimeMarkElementLabel"/>
+              </labelMappings>
+              <labelMappings
+                  readOnly="true">
+                <diagramLabel
+                    href="sequenceDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
               </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
@@ -393,6 +403,11 @@
               <labelMappings>
                 <diagramLabel
                     href="sequenceDiagram.gmfgraph#DurationConstraintLabel"/>
+              </labelMappings>
+              <labelMappings
+                  readOnly="true">
+                <diagramLabel
+                    href="sequenceDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
               </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"

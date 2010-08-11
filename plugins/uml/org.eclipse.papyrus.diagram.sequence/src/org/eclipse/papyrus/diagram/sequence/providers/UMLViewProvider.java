@@ -69,6 +69,7 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DestructionEventEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintAppliedStereotypeEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInMessageEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintLabelEditPart;
@@ -106,8 +107,10 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageSyncAppliedStereot
 import org.eclipse.papyrus.diagram.sequence.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantNameEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeConstraintAppliedStereotypeEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeConstraintEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeConstraintLabelEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeObservationAppliedStereotypeEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeObservationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeObservationLabelEditPart;
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
@@ -147,10 +150,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	 */
 	protected boolean provides(CreateViewForKindOperation op) {
 		/*
-		 if (op.getViewKind() == Node.class)
-		 return getNodeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
-		 if (op.getViewKind() == Edge.class)
-		 return getEdgeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
+		 * if (op.getViewKind() == Node.class)
+		 * return getNodeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
+		 * if (op.getViewKind() == Edge.class)
+		 * return getEdgeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
 		 */
 		return true;
 	}
@@ -457,7 +460,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	public Node createTimeConstraint_3019(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
@@ -478,9 +481,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		label5009.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 
 		Location location5009 = (Location)label5009.getLayoutConstraint();
-		// set correct location
 		location5009.setX(22);
 		location5009.setY(-7);
+		Node label5013 = createLabel(node, UMLVisualIDRegistry.getType(TimeConstraintAppliedStereotypeEditPart.VISUAL_ID));
+		label5013.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+
+		Location location5013 = (Location)label5013.getLayoutConstraint();
+		location5013.setX(0);
+		location5013.setY(-22);
 		return node;
 	}
 
@@ -508,6 +516,12 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5010 = (Location)label5010.getLayoutConstraint();
 		location5010.setX(22);
 		location5010.setY(-7);
+		Node label5014 = createLabel(node, UMLVisualIDRegistry.getType(TimeObservationAppliedStereotypeEditPart.VISUAL_ID));
+		label5014.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+
+		Location location5014 = (Location)label5014.getLayoutConstraint();
+		location5014.setX(0);
+		location5014.setY(-22);
 		return node;
 	}
 
@@ -535,6 +549,12 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5011 = (Location)label5011.getLayoutConstraint();
 		location5011.setX(25);
 		location5011.setY(45);
+		Node label5015 = createLabel(node, UMLVisualIDRegistry.getType(DurationConstraintAppliedStereotypeEditPart.VISUAL_ID));
+		label5015.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+
+		Location location5015 = (Location)label5015.getLayoutConstraint();
+		location5015.setX(0);
+		location5015.setY(-22);
 		return node;
 	}
 

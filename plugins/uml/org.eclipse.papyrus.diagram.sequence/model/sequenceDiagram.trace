@@ -88,6 +88,9 @@
     <nodeLabelTraces
         visualID="5009"
         queryText="true"/>
+    <nodeLabelTraces
+        visualID="5013"
+        queryText="true"/>
   </childNodeTraces>
   <childNodeTraces
       visualID="3020"
@@ -95,12 +98,18 @@
     <nodeLabelTraces
         visualID="5010"
         queryText="true"/>
+    <nodeLabelTraces
+        visualID="5014"
+        queryText="true"/>
   </childNodeTraces>
   <childNodeTraces
       visualID="3021"
       queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'DurationConstraint') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Namespace') and _containmentMF_.name = 'ownedRule')">
     <nodeLabelTraces
         visualID="5011"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5015"
         queryText="true"/>
   </childNodeTraces>
   <childNodeTraces

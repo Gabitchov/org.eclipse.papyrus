@@ -111,19 +111,6 @@ BorderedBorderItemEditPart {
 	}
 
 	/**
-	 * This method creates a specific edit policy for time realted elements
-	 * 
-	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderItemEditPart#getPrimaryDragEditPolicy()
-	 * 
-	 * @return <code>EditPolicy</code>
-	 * @generated NOT
-	 */
-	@Override
-	public EditPolicy getPrimaryDragEditPolicy() {
-		return new TimeRelatedSelectionEditPolicy();
-	}
-
-	/**
 	 * @generated NOT use ExternalLabelPrimaryDragRoleEditPolicy
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
@@ -133,6 +120,7 @@ BorderedBorderItemEditPart {
 				View childView = (View)child.getModel();
 				switch(UMLVisualIDRegistry.getVisualID(childView)) {
 				case TimeConstraintLabelEditPart.VISUAL_ID:
+				case TimeConstraintAppliedStereotypeEditPart.VISUAL_ID:
 					// use ExternalLabelPrimaryDragRoleEditPolicy
 					return new ExternalLabelPrimaryDragRoleEditPolicy();
 				}
@@ -155,6 +143,19 @@ BorderedBorderItemEditPart {
 	}
 
 	/**
+	 * This method creates a specific edit policy for time realted elements
+	 * 
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderItemEditPart#getPrimaryDragEditPolicy()
+	 * 
+	 * @return <code>EditPolicy</code>
+	 * @generated NOT
+	 */
+	@Override
+	public EditPolicy getPrimaryDragEditPolicy() {
+		return new TimeRelatedSelectionEditPolicy();
+	}
+
+	/**
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
@@ -172,7 +173,7 @@ BorderedBorderItemEditPart {
 	 * @generated NOT use ExternalLabelPositionLocator
 	 */
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
-		if(borderItemEditPart instanceof TimeConstraintLabelEditPart) {
+		if(borderItemEditPart instanceof TimeConstraintLabelEditPart || borderItemEditPart instanceof TimeConstraintAppliedStereotypeEditPart) {
 			//use ExternalLabelPositionLocator
 			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
