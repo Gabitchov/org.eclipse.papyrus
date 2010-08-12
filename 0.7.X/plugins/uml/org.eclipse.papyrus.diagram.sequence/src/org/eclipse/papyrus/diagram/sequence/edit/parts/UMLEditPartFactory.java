@@ -144,8 +144,20 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case DurationConstraintInMessageEditPart.VISUAL_ID:
 				return new DurationConstraintInMessageEditPart(view);
 
+			case DurationConstraintInMessageLabelEditPart.VISUAL_ID:
+				return new DurationConstraintInMessageLabelEditPart(view);
+
+			case DurationConstraintInMessageAppliedStereotypeEditPart.VISUAL_ID:
+				return new DurationConstraintInMessageAppliedStereotypeEditPart(view);
+
 			case DurationObservationEditPart.VISUAL_ID:
 				return new DurationObservationEditPart(view);
+
+			case DurationObservationLabelEditPart.VISUAL_ID:
+				return new DurationObservationLabelEditPart(view);
+
+			case DurationObservationAppliedStereotypeEditPart.VISUAL_ID:
+				return new DurationObservationAppliedStereotypeEditPart(view);
 
 			case InteractionInteractionCompartmentEditPart.VISUAL_ID:
 				return new InteractionInteractionCompartmentEditPart(view);

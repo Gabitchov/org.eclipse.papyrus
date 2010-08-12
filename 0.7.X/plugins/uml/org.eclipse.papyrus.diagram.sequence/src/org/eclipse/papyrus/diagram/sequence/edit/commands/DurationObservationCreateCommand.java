@@ -33,6 +33,8 @@ import org.eclipse.papyrus.diagram.sequence.providers.ElementInitializers;
 import org.eclipse.papyrus.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.papyrus.diagram.sequence.util.SequenceUtil;
 import org.eclipse.uml2.uml.DurationObservation;
+import org.eclipse.uml2.uml.Message;
+import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -107,7 +109,17 @@ public class DurationObservationCreateCommand extends EditElementCommand {
 		}
 		// check second occurrence specification
 		if(!getRequest().getParameters().containsKey(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION_2)) {
-			return true; // duration creation is in progress; target is not defined yet
+			// duration creation is in progress; target is not defined yet
+			// enable duration observation only on a message
+			for(OccurrenceSpecification occurrence : occ1List) {
+				if(occurrence instanceof MessageOccurrenceSpecification) {
+					Message mess = ((MessageOccurrenceSpecification)occurrence).getMessage();
+					if(mess != null) {
+						return true;
+					}
+				}
+			}
+			return false;
 		}
 		Object paramOccurrence2 = getRequest().getParameter(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION_2);
 		List<OccurrenceSpecification> occ2List = SequenceUtil.getAsOccSpecList(paramOccurrence2);

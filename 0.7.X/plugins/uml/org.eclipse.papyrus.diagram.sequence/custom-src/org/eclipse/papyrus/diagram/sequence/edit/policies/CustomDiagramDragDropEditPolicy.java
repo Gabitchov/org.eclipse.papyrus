@@ -34,6 +34,7 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
@@ -95,7 +96,6 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPolicy {
 
-
 	public CustomDiagramDragDropEditPolicy() {
 		super(SequenceLinkMappingHelper.getInstance());
 	}
@@ -156,8 +156,8 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 
 	@Override
 	protected Command getSpecificDropCommand(DropObjectsRequest dropRequest, Element semanticLink, int nodeVISUALID, int linkVISUALID) {
-		// handle specifically the case when node is a label on a message
-		Command cmd = handleMessageLabelNode(semanticLink, nodeVISUALID, linkVISUALID);
+		// handle specifically the case when node is on a message
+		Command cmd = handleNodeOnMessage(semanticLink, nodeVISUALID, linkVISUALID);
 		if(cmd != null) {
 			return cmd;
 		}
@@ -182,7 +182,6 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 				return UnexecutableCommand.INSTANCE;
 			}
 		}
-
 
 		if(linkVISUALID != -1) {
 			switch(linkVISUALID) {
@@ -221,7 +220,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	}
 
 	/**
-	 * Get the drop command in case the element can be handled as a label on a message
+	 * Get the drop command in case the element can be handled as a node on a message
 	 * 
 	 * @param semanticElement
 	 *        the element being dropped from the model
@@ -231,14 +230,14 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 *        link visual id or -1
 	 * @return the drop command if the element can be dropped as a message label node, or null otherwise
 	 */
-	private Command handleMessageLabelNode(Element semanticElement, int nodeVISUALID, int linkVISUALID) {
+	private Command handleNodeOnMessage(Element semanticElement, int nodeVISUALID, int linkVISUALID) {
 
 		if(nodeVISUALID == -1 && linkVISUALID == -1) {
 			// detect duration observation on a message
 			if(semanticElement instanceof DurationObservation) {
 				List<NamedElement> events = ((DurationObservation)semanticElement).getEvents();
 				if(events.size() >= 2) {
-					return dropMessageLabelNodeBetweenEvents(semanticElement, events.get(0), events.get(1));
+					return dropMessageNodeBetweenEvents(semanticElement, events.get(0), events.get(1));
 				}
 			}
 		}
@@ -247,7 +246,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			if(semanticElement instanceof DurationConstraint) {
 				List<Element> events = ((DurationConstraint)semanticElement).getConstrainedElements();
 				if(events.size() >= 2) {
-					return dropMessageLabelNodeBetweenEvents(semanticElement, events.get(0), events.get(1));
+					return dropMessageNodeBetweenEvents(semanticElement, events.get(0), events.get(1));
 				}
 			}
 		}
@@ -266,13 +265,16 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * @param element
 	 * @return the command or false if the elements can not be dropped as message label
 	 */
-	private Command dropMessageLabelNodeBetweenEvents(Element droppedElement, Element event1, Element event2) {
+	private Command dropMessageNodeBetweenEvents(Element droppedElement, Element event1, Element event2) {
 		if(event1 instanceof MessageOccurrenceSpecification && event2 instanceof MessageOccurrenceSpecification) {
 			if(!event1.equals(event2)) {
 				boolean endsOfSameMessage = false;
+				int visualId = -1;
 				if(droppedElement instanceof DurationConstraint) {
+					visualId = DurationConstraintInMessageEditPart.VISUAL_ID;
 					endsOfSameMessage = DurationConstraintHelper.endsOfSameMessage((OccurrenceSpecification)event1, (OccurrenceSpecification)event2);
 				} else if(droppedElement instanceof DurationObservation) {
+					visualId = DurationObservationEditPart.VISUAL_ID;
 					endsOfSameMessage = DurationObservationHelper.endsOfSameMessage((OccurrenceSpecification)event1, (OccurrenceSpecification)event2);
 				}
 				if(endsOfSameMessage) {
@@ -283,7 +285,16 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 						if(conn instanceof ConnectionNodeEditPart) {
 							EObject connElt = ((ConnectionNodeEditPart)conn).resolveSemanticElement();
 							if(message.equals(connElt)) {
-								return dropMessageLabelNode((PackageableElement)droppedElement, (ConnectionNodeEditPart)conn, DurationConstraintInMessageEditPart.VISUAL_ID);
+								// check that node isn't already represented, or dropping is impossible
+								for(Object child : ((ConnectionNodeEditPart)conn).getChildren()) {
+									if(child instanceof GraphicalEditPart) {
+										EObject childElt = ((GraphicalEditPart)child).resolveSemanticElement();
+										if(droppedElement.equals(childElt)) {
+											return null;
+										}
+									}
+								}
+								return dropNodeOnMessage((PackageableElement)droppedElement, (ConnectionNodeEditPart)conn, visualId);
 							}
 						}
 					}
@@ -321,7 +332,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 *        the label node visual id
 	 * @return the command or UnexecutableCommand
 	 */
-	private Command dropMessageLabelNode(PackageableElement durationLabelElement, ConnectionNodeEditPart messageEditPart, int nodeVISUALID) {
+	private Command dropNodeOnMessage(PackageableElement durationLabelElement, ConnectionNodeEditPart messageEditPart, int nodeVISUALID) {
 		CompositeCommand cc = new CompositeCommand("Drop");
 		IAdaptable elementAdapter = new EObjectAdapter(durationLabelElement);
 
@@ -471,7 +482,6 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			// Update the ES covered lifeline
 			updateCoveredLifeline(stateInvariant, cc, oldCoveredLifeline);
 
-
 			return new ICommandProxy(cc);
 		}
 		return UnexecutableCommand.INSTANCE;
@@ -562,7 +572,6 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			AddCommand addCommand = new AddCommand(getEditingDomain(), new EObjectAdapter((View)getHost().getModel()), new EObjectAdapter(existingViews.get(0)));
 			cc.add(addCommand);
 
-
 			Lifeline oldCoveredLifeline = (Lifeline)ViewUtil.resolveSemanticElement((View)existingViews.get(0).eContainer());
 
 			// Update the ES covered lifeline
@@ -579,7 +588,6 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 
 			return new ICommandProxy(cc);
 		}
-
 
 		return UnexecutableCommand.INSTANCE;
 	}
