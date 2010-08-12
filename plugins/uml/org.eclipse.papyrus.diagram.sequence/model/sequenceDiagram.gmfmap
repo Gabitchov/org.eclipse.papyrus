@@ -613,11 +613,16 @@
             <diagramLabel
                 href="sequenceDiagram.gmfgraph#DurationConstraintOnMessage"/>
           </labelMappings>
+          <labelMappings
+              readOnly="true">
+            <diagramLabel
+                href="sequenceDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
+          </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
               href="sequenceDiagram.gmftool#//@palette/@tools.0/@tools.14"/>
           <diagramNode
-              href="sequenceDiagram.gmfgraph#DurationConstraintOnMessage"/>
+              href="sequenceDiagram.gmfgraph#DurationObservationConstraintNode"/>
         </ownedChild>
       </children>
       <children>
@@ -642,11 +647,16 @@
             <diagramLabel
                 href="sequenceDiagram.gmfgraph#DurationObservationLabel"/>
           </labelMappings>
+          <labelMappings
+              readOnly="true">
+            <diagramLabel
+                href="sequenceDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
+          </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
               href="sequenceDiagram.gmftool#//@palette/@tools.0/@tools.11"/>
           <diagramNode
-              href="sequenceDiagram.gmfgraph#DurationObservationLabel"/>
+              href="sequenceDiagram.gmfgraph#DurationObservationConstraintNode"/>
         </ownedChild>
       </children>
       <compartments

@@ -444,6 +444,9 @@
             name="TextJustification"
             value="PositionConstants.CENTER"/>
       </actualFigure>
+      <accessors
+          accessor="getDurationLabel"
+          figure="//@figures.0/@descriptors.15/@actualFigure"/>
     </descriptors>
     <descriptors
         name="TimeMarkElementFigure">
@@ -581,6 +584,9 @@
       figure="DestructionEventFigureDesc"
       resizeConstraint="NONE"
       affixedParentSide="SOUTH"/>
+  <nodes
+      name="DurationObservationConstraintNode"
+      figure="DurationObservationConstraint"/>
   <connections
       name="CallSynLink"
       figure="MessageSync"/>
@@ -821,7 +827,8 @@
   <labels
       name="DurationObservationLabel"
       figure="DurationObservationConstraint"
-      elementIcon="false">
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.15/@accessors.0">
     <facets
         xsi:type="gmfgraph:AlignmentFacet"
         alignment="CENTER"/>
@@ -857,7 +864,8 @@
   <labels
       name="DurationConstraintOnMessage"
       figure="DurationObservationConstraint"
-      elementIcon="false">
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.15/@accessors.0">
     <facets
         xsi:type="gmfgraph:AlignmentFacet"
         alignment="CENTER"/>

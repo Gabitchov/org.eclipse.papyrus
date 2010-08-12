@@ -68,6 +68,7 @@ import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Continuation;
 import org.eclipse.uml2.uml.DestructionEvent;
 import org.eclipse.uml2.uml.DurationConstraint;
+import org.eclipse.uml2.uml.DurationObservation;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.InteractionFragment;
@@ -1053,14 +1054,38 @@ public class UMLDiagramUpdater {
 	 * @generated
 	 */
 	public static List<UMLLinkDescriptor> getDurationConstraint_3023IncomingLinks(View view) {
-		return Collections.emptyList();
+		DurationConstraint modelElement = (DurationConstraint)view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4003(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4005(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4006(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4007(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4008(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4009(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4010(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement, crossReferences));
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
 	public static List<UMLLinkDescriptor> getDurationObservation_3024IncomingLinks(View view) {
-		return Collections.emptyList();
+		DurationObservation modelElement = (DurationObservation)view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4003(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4005(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4006(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4007(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4008(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4009(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4010(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement, crossReferences));
+		return result;
 	}
 
 	/**
@@ -1479,14 +1504,33 @@ public class UMLDiagramUpdater {
 	 * @generated
 	 */
 	public static List<UMLLinkDescriptor> getDurationConstraint_3023OutgoingLinks(View view) {
-		return Collections.emptyList();
+		DurationConstraint modelElement = (DurationConstraint)view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4003(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4004(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4005(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4006(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4007(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4008(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4009(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement));
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
 	public static List<UMLLinkDescriptor> getDurationObservation_3024OutgoingLinks(View view) {
-		return Collections.emptyList();
+		DurationObservation modelElement = (DurationObservation)view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4003(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4004(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4005(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4006(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4007(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4008(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4009(modelElement));
+		return result;
 	}
 
 	/**

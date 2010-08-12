@@ -44,6 +44,7 @@ import org.eclipse.papyrus.diagram.sequence.edit.commands.ConstraintConstrainedE
 import org.eclipse.papyrus.diagram.sequence.edit.commands.ConstraintConstrainedElementReorientCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.DestructionEventCreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.DurationConstraintCreateCommand;
+import org.eclipse.papyrus.diagram.sequence.edit.commands.DurationObservationCreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.LifelineCreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.Message2CreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.Message2ReorientCommand;
@@ -101,7 +102,7 @@ public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 	/**
 	 * Generated not for add lifelines on lifeline
 	 * 
-	 * @generated NOT (update at each lifeline modification) add lifelines
+	 * @generated NOT (update at each lifeline modification) add lifelines, add DurationObservation/Constraint
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
 		if(UMLElementTypes.ActionExecutionSpecification_3006 == req.getElementType()) {
@@ -136,6 +137,13 @@ public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 				cmd.setAvailableProperties(lifelineEditPart.getAvailableProperties());
 				return getGEFWrapper(cmd);
 			}
+		}
+		//add DurationObservation/Constraint
+		if(UMLElementTypes.DurationConstraint_3023 == req.getElementType()) {
+			return getGEFWrapper(new DurationConstraintCreateCommand(req));
+		}
+		if(UMLElementTypes.DurationObservation_3024 == req.getElementType()) {
+			return getGEFWrapper(new DurationObservationCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}
