@@ -35,6 +35,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.core.modelsetquery.ModelSetQuery;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.diagram.common.actions.LabelHelper;
 import org.eclipse.papyrus.diagram.common.util.MessageDirection;
@@ -426,11 +427,7 @@ public class CommandHelper {
 		// and the packages to signal
 		List<EObject> possiblePackages = mapTypesPossibleParents.get(UMLPackage.eINSTANCE.getSignal());
 		if(possiblePackages != null) {
-			Package package_ = type.getPackage();
-			possiblePackages.add(package_);
-
-			// add the owners of the package
-			possiblePackages.addAll(package_.allOwningPackages());
+		    possiblePackages.addAll(ModelSetQuery.getObjectsOfType(type, UMLPackage.eINSTANCE.getPackage()));
 			existingParent = true;
 		}
 
