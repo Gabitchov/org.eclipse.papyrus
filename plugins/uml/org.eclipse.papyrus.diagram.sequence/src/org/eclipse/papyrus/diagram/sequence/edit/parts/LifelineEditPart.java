@@ -33,6 +33,7 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.EList;
@@ -64,6 +65,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.Bounds;
+import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.datatype.GradientData;
@@ -72,12 +74,12 @@ import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.common.draw2d.anchors.LifelineAnchor;
 import org.eclipse.papyrus.diagram.common.editparts.NamedElementEditPart;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
-import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.BorderItemResizableEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.NodeNamedElementFigure;
 import org.eclipse.papyrus.diagram.common.providers.UIAdapterImpl;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.CustomDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.ElementCreationWithMessageEditPolicy;
+import org.eclipse.papyrus.diagram.sequence.edit.policies.LifelineAppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.LifelineCreationEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.LifelineItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.LifelineXYLayoutEditPolicy;
@@ -178,7 +180,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new LifelineCreationEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new ElementCreationWithMessageEditPolicy());
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new LifelineAppliedStereotypeNodeLabelDisplayEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -1176,6 +1178,10 @@ public class LifelineEditPart extends NamedElementEditPart {
 			//createContents();
 		}
 
+		public int getNameContainerPreferredHeight(int wHint) {
+			return fFigureLifelineNameContainerFigure.getPreferredSize(wHint, -1).height;
+		}
+
 		/**
 		 * Get the rectangle which contains all labels
 		 * 
@@ -1418,6 +1424,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 
 	/**
 	 * Handle lifeline covered by and destruction event
+	 * 
 	 */
 	@Override
 	protected void handleNotificationEvent(Notification notification) {
@@ -1527,6 +1534,103 @@ public class LifelineEditPart extends NamedElementEditPart {
 		if(rect.height == 0) {
 			rect.height = getFigure().getPreferredSize().height;
 		}
+	}
+
+	/**
+	 * set the bounds of the lifeline.
+	 * 
+	 * @param rect
+	 *        the rectangle corresponding to the bounds.
+	 */
+	public void updateLifelineBounds(final Rectangle rect) {
+	
+		final Bounds bounds = getBounds();
+		if(bounds != null) {
+			AbstractCommand cmd = new AbstractCommand() {
+
+				/**
+				 * {@inheritDoc}
+				 */
+				public boolean canExecute() {
+					return true;
+				}
+
+				/**
+				 * {@inheritDoc}
+				 */
+				public void execute() {
+					bounds.setX(rect.x);
+					bounds.setY(rect.y);
+					bounds.setWidth(rect.width);
+					bounds.setHeight(rect.height);
+				}
+
+				/**
+				 * {@inheritDoc}
+				 */
+				public void redo() {
+					execute();
+				}
+
+				/**
+				 * This command is undoable.
+				 */
+				@Override
+				public boolean canUndo() {
+					return false;
+				}
+			};
+
+			CommandHelper.executeCommandWithoutHistory(getEditingDomain(), cmd);
+
+		}
+	}
+
+	private Bounds getBounds() {
+		if(getModel() instanceof Node) {
+			Node node = (Node)getModel();
+			if(node.getLayoutConstraint() instanceof Bounds) {
+				return (Bounds)node.getLayoutConstraint();
+			}
+		}
+		return null;
+	}
+
+	private int oldNameContainerHeight = 0;
+
+	/**
+	 * This method automatically moves a lifeline according to the change of the size of the name and stereotypes container.
+	 * This avoids the move of the dash line and its ES.
+	 */
+	public void updateLifelinePosition() {
+		Bounds bounds = getBounds();
+		if(bounds != null) {
+			Rectangle rect = new Rectangle(bounds.getX(), bounds.getY(), bounds.getWidth(), bounds.getHeight());
+
+			// retrieve the real bounds in updatedRect because we need the real width
+			Rectangle updatedRect = rect.getCopy();
+			updateRectangleBounds(updatedRect);
+
+			// use the real width to compute the preferred height which will be used during the layout
+			int newNameContainerHeight = getPrimaryShape().getNameContainerPreferredHeight(updatedRect.width);
+
+			if(oldNameContainerHeight != newNameContainerHeight) {
+
+				if(oldNameContainerHeight != 0) {
+					int heightDiff = oldNameContainerHeight - newNameContainerHeight;
+
+					if(rect.height != -1) {
+						rect.height -= heightDiff;
+					}
+
+					rect.y += heightDiff;
+					updateLifelineBounds(rect);
+				}
+
+				oldNameContainerHeight = newNameContainerHeight;
+			}
+		}
+
 	}
 
 	/**
