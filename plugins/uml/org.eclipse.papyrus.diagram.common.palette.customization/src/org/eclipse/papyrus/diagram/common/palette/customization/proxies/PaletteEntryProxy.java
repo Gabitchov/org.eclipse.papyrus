@@ -1,4 +1,4 @@
-package org.eclipse.papyrus.diagram.common.palette.customization.dialog;
+package org.eclipse.papyrus.diagram.common.palette.customization.proxies;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -10,6 +10,7 @@ import org.eclipse.gef.palette.PaletteSeparator;
 import org.eclipse.gef.palette.PaletteStack;
 import org.eclipse.gef.palette.ToolEntry;
 import org.eclipse.papyrus.diagram.common.Activator;
+import org.eclipse.papyrus.diagram.common.palette.customization.dialog.LocalPaletteContentPage;
 import org.eclipse.papyrus.diagram.common.palette.customization.dialog.LocalPaletteContentPage.EntryType;
 import org.eclipse.papyrus.diagram.common.service.AspectCreationEntry;
 import org.eclipse.papyrus.diagram.common.service.palette.IPaletteEntryProxy;

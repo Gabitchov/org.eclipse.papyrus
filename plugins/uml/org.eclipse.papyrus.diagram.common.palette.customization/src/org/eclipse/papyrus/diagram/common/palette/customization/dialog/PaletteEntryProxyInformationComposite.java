@@ -20,6 +20,8 @@ import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.Messages;
 import org.eclipse.papyrus.diagram.common.palette.customization.dialog.LocalPaletteContentPage.EntryType;
+import org.eclipse.papyrus.diagram.common.palette.customization.proxies.PaletteAspectToolEntryProxy;
+import org.eclipse.papyrus.diagram.common.palette.customization.proxies.PaletteEntryProxy;
 import org.eclipse.papyrus.diagram.common.part.PaletteUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.FocusEvent;

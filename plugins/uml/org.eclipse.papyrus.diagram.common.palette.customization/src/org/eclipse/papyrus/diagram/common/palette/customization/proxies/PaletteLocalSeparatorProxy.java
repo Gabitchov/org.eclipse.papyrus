@@ -11,27 +11,28 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.diagram.common.palette.customization.dialog;
+package org.eclipse.papyrus.diagram.common.palette.customization.proxies;
 
 import org.eclipse.papyrus.diagram.common.Activator;
+import org.eclipse.papyrus.diagram.common.palette.customization.dialog.LocalPaletteContentPage;
 import org.eclipse.papyrus.diagram.common.palette.customization.dialog.LocalPaletteContentPage.EntryType;
 import org.eclipse.swt.graphics.Image;
 
 /**
- * proxy for a local stack
+ * proxy for a local separator
  */
-public class PaletteLocalStackProxy extends PaletteContainerProxy {
+public class PaletteLocalSeparatorProxy extends PaletteEntryProxy {
 
 	/** id of this separator */
 	protected String id;
 
 	/** icon for separators */
-	public static String STACK_ICON = "/icons/stack.gif";
+	public static String SEPARATOR_ICON = "/icons/separator.gif";
 
 	/**
 	 * Creates a new PaletteLocalEntryProxy
 	 */
-	public PaletteLocalStackProxy(String id) {
+	public PaletteLocalSeparatorProxy(String id) {
 		super(null);
 		this.id = id;
 	}
@@ -41,7 +42,7 @@ public class PaletteLocalStackProxy extends PaletteContainerProxy {
 	 */
 	@Override
 	public EntryType getType() {
-		return EntryType.STACK;
+		return EntryType.SEPARATOR;
 	}
 
 	/**
@@ -49,7 +50,7 @@ public class PaletteLocalStackProxy extends PaletteContainerProxy {
 	 */
 	@Override
 	public String getLabel() {
-		return "> Stack";
+		return "-------------";
 	}
 
 	/**
@@ -65,22 +66,7 @@ public class PaletteLocalStackProxy extends PaletteContainerProxy {
 	 */
 	@Override
 	public Image getImage() {
-		return Activator.getPluginIconImage(Activator.ID, STACK_ICON);
+		return Activator.getPluginIconImage(Activator.ID, SEPARATOR_ICON);
 	}
 
-	/**
-	 * @{inheritDoc
-	 */
-	@Override
-	public String getDescription() {
-		return "<unused element>";
-	}
-
-	/**
-	 * @{inheritDoc
-	 */
-	@Override
-	public String getImagePath() {
-		return "<unused element>";
-	}
 }
