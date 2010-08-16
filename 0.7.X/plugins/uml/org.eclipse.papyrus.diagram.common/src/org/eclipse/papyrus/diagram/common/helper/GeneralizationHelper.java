@@ -21,6 +21,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.ui.actions.EditorPartAction;
 import org.eclipse.gef.util.EditPartUtilities;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
@@ -95,7 +96,9 @@ public class GeneralizationHelper {
 				List<?> views = DiagramEditPartsUtil.getEObjectViews(current);
 				for(Object currentView : views) {
 					if(currentView instanceof View) {
-						classifierEP.add(DiagramEditPartsUtil.getEditPartFromView((View)currentView, diagramEP));
+						EditPart editPart=DiagramEditPartsUtil.getEditPartFromView((View)currentView, diagramEP);
+						if (editPart!= null){
+						classifierEP.add(editPart);}
 					}
 				}
 			}
@@ -107,7 +110,9 @@ public class GeneralizationHelper {
 				List<?> membersView = DiagramEditPartsUtil.getEObjectViews(namedElement);
 				for(Object view : membersView) {
 					if(view instanceof View) {
-						membersEP.add(DiagramEditPartsUtil.getEditPartFromView((View)view, diagramEP));
+						EditPart editPart=DiagramEditPartsUtil.getEditPartFromView((View)view, diagramEP);
+						if (editPart!= null){
+						membersEP.add(editPart);}
 					}
 				}
 			}
