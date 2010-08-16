@@ -11,7 +11,7 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.diagram.common.palette.customization.dialog;
+package org.eclipse.papyrus.diagram.common.palette.customization.proxies;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,7 +80,7 @@ public class PaletteAspectToolEntryProxy extends PaletteEntryProxy {
 	 * 
 	 * @return the list of pre actions attached to this {@link PaletteAspectToolEntryProxy}
 	 */
-	protected List<IPreAction> getPreActions() {
+	public List<IPreAction> getPreActions() {
 		return preActions;
 	}
 
@@ -92,7 +92,7 @@ public class PaletteAspectToolEntryProxy extends PaletteEntryProxy {
 	 * @param preActions
 	 *        the preActions to set
 	 */
-	protected void setPreActions(List<IPreAction> preActions) {
+	public void setPreActions(List<IPreAction> preActions) {
 		this.preActions = preActions;
 	}
 

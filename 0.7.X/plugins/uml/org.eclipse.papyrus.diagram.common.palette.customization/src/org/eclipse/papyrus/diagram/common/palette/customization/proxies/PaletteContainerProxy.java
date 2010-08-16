@@ -1,9 +1,10 @@
-package org.eclipse.papyrus.diagram.common.palette.customization.dialog;
+package org.eclipse.papyrus.diagram.common.palette.customization.proxies;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.gef.palette.PaletteContainer;
+import org.eclipse.papyrus.diagram.common.palette.customization.dialog.LocalPaletteContentPage;
 import org.eclipse.papyrus.diagram.common.palette.customization.dialog.LocalPaletteContentPage.EntryType;
 
 /**

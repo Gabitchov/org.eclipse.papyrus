@@ -1,4 +1,4 @@
-package org.eclipse.papyrus.diagram.common.palette.customization.dialog;
+package org.eclipse.papyrus.diagram.common.palette.customization.proxies;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;

@@ -14,6 +14,8 @@
 package org.eclipse.papyrus.diagram.common.palette.customization.dialog;
 
 import org.eclipse.jface.wizard.Wizard;
+import org.eclipse.papyrus.diagram.common.palette.customization.proxies.PaletteContainerProxy;
+import org.eclipse.papyrus.diagram.common.palette.customization.proxies.PaletteLocalDrawerProxy;
 
 /**
  * Wizard to create a new Drawer from scratch

@@ -18,12 +18,6 @@ import java.util.Map;
 
 import org.eclipse.gef.palette.PaletteEntry;
 import org.eclipse.papyrus.diagram.common.Activator;
-import org.eclipse.papyrus.diagram.common.palette.customization.dialog.PaletteAspectToolEntryProxy;
-import org.eclipse.papyrus.diagram.common.palette.customization.dialog.PaletteContainerProxy;
-import org.eclipse.papyrus.diagram.common.palette.customization.dialog.PaletteEntryProxy;
-import org.eclipse.papyrus.diagram.common.palette.customization.dialog.PaletteLocalDrawerProxy;
-import org.eclipse.papyrus.diagram.common.palette.customization.dialog.PaletteLocalSeparatorProxy;
-import org.eclipse.papyrus.diagram.common.palette.customization.dialog.PaletteLocalStackProxy;
 import org.eclipse.papyrus.diagram.common.service.AbstractXMLDefinitionPaletteFactory;
 import org.eclipse.papyrus.diagram.common.service.AspectCreationEntry;
 import org.eclipse.papyrus.diagram.common.service.IPapyrusPaletteConstant;
