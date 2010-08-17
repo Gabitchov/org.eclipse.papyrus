@@ -30,6 +30,7 @@ import org.eclipse.papyrus.core.lifecycleevents.SaveAndDirtyService;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.core.utils.ServiceUtils;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.IActionBars;
@@ -41,6 +42,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.navigator.CommonNavigator;
+import org.eclipse.ui.navigator.CommonViewer;
 import org.eclipse.ui.operations.RedoActionHandler;
 import org.eclipse.ui.operations.UndoActionHandler;
 import org.eclipse.ui.part.FileEditorInput;
@@ -65,7 +67,7 @@ public class ModelExplorerView extends CommonNavigator {
 	 * The save aservice associated to the editor.
 	 */
 	private ISaveAndDirtyService saveAndDirtyService;
-	
+
 	private TransactionalEditingDomain editingDomain;
 
 	/**
@@ -97,7 +99,7 @@ public class ModelExplorerView extends CommonNavigator {
 			firePropertyChange(IEditorPart.PROP_DIRTY);
 		}
 	};
-	
+
 
 	/**
 	 * Undo action handler
@@ -130,12 +132,20 @@ public class ModelExplorerView extends CommonNavigator {
 			e.printStackTrace();
 		}
 	}
-@Override
-public void createPartControl(Composite aParent) {
-	// TODO Auto-generated method stub
-	super.createPartControl(aParent);
-	getCommonViewer().setSorter(null);
-}
+
+
+	protected CommonViewer createCommonViewerObject(Composite aParent) {
+		return new CustomCommonViewer(getViewSite().getId(), aParent,
+				SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
+	}
+	@Override
+	public void createPartControl(Composite aParent) {
+		// TODO Auto-generated method stub
+		super.createPartControl(aParent);
+		getCommonViewer().setSorter(null);
+		((CustomCommonViewer)getCommonViewer()).getDropAdapter().setFeedbackEnabled(true);
+	
+	}
 	/**
 	 * Return the control used to render this View
 	 * 
@@ -159,7 +169,7 @@ public void createPartControl(Composite aParent) {
 		activate();
 
 	}
-	
+
 	/**
 	 * Hook the global undo/redi actions.
 	 */
@@ -245,10 +255,10 @@ public void createPartControl(Composite aParent) {
 	private void activate() {
 
 		if(editorPart != null) {
-			
+
 			try {
 				this.editingDomain = ServiceUtils.getInstance().getTransactionalEditingDomain(editorPart.getServicesRegistry());
-//			this.editingDomain = EditorUtils.getTransactionalEditingDomain(editorPart.getServicesRegistry());
+				//			this.editingDomain = EditorUtils.getTransactionalEditingDomain(editorPart.getServicesRegistry());
 				// Set Viewer input if it already exist
 				if(getCommonViewer() != null) {
 					getCommonViewer().setInput(editorPart.getServicesRegistry());
@@ -260,7 +270,7 @@ public void createPartControl(Composite aParent) {
 
 			// Listen to isDirty flag
 			saveAndDirtyService.addInputChangedListener(editorInputChangedListener);
-			
+
 			// Hook 
 			//			if(undoHandler != null){
 			//				IUndoContext undoContext = getUndoContext(part);
@@ -294,8 +304,8 @@ public void createPartControl(Composite aParent) {
 
 		// deactivate global handler
 		if(editorPart != null) {
-            Activator.log.debug("deactivate " + editorPart.getTitle());
-			
+			Activator.log.debug("deactivate " + editorPart.getTitle());
+
 			// Stop Listenning to isDirty flag
 			saveAndDirtyService.removeInputChangedListener(editorInputChangedListener);
 
@@ -358,12 +368,12 @@ public void createPartControl(Composite aParent) {
 
 			// Let the parent return the adapter.
 		}
-		
+
 		if( ISaveablePart.class.equals(adapter)) {
-			
+
 			return saveAndDirtyService;
 		}
-		
+
 		return super.getAdapter(adapter);
 	}
 
