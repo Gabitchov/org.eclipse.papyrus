@@ -24,13 +24,16 @@ import org.eclipse.gmt.modisco.infra.browser.uicore.CustomizationManager;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.papyrus.core.ui.pagebookview.MultiViewPageBookView;
 import org.eclipse.papyrus.modelexplorer.Activator;
+import org.eclipse.papyrus.modelexplorer.CustomCommonViewer;
 import org.eclipse.papyrus.modelexplorer.ModelExplorerView;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.navigator.CommonViewer;
 import org.eclipse.ui.navigator.CommonViewerSorter;
+import org.eclipse.ui.navigator.INavigatorContentService;
 /**
  * this handler is used to set a sorter on the model explorer
  *
@@ -46,9 +49,16 @@ public class SortElementHandler extends AbstractHandler {
 			.getCustomizationManager();
 			if(((ToolItem)((Event)event.getTrigger()).widget).getSelection()){
 				getSelectedTreeViewer(event).setSorter(new CommonViewerSorter());
+				if(getSelectedTreeViewer(event) instanceof CustomCommonViewer){
+					((CustomCommonViewer)getSelectedTreeViewer(event)).getDropAdapter().setFeedbackEnabled(false);
+				}
 			}
 			else{
 				getSelectedTreeViewer(event).setSorter(null);
+				if(getSelectedTreeViewer(event) instanceof CustomCommonViewer){
+					((CustomCommonViewer)getSelectedTreeViewer(event)).getDropAdapter().setFeedbackEnabled(true);
+				}
+			
 			}
 			getSelectedTreeViewer(event).refresh();
 		}
