@@ -64,7 +64,7 @@ public class SelectDiagramKindPage extends WizardPage {
 
 	private CheckboxTableViewer diagramKindTableViewer;
 
-	private SettingsUtils mySettingsHelper;
+	private SettingsHelper mySettingsHelper;
 
 	/** The select template composite. */
 	private SelectModelTemplateComposite selectTemplateComposite;
@@ -112,7 +112,7 @@ public class SelectDiagramKindPage extends WizardPage {
 	@Override
 	public void setWizard(IWizard newWizard) {
 		super.setWizard(newWizard);
-		mySettingsHelper = new SettingsUtils(getDialogSettings());
+		mySettingsHelper = new SettingsHelper(getDialogSettings());
 	}
 
 	/**

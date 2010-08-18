@@ -24,7 +24,7 @@ import org.eclipse.jface.dialogs.IDialogSettings;
 /**
  * The Class SettingsUtils.
  */
-public class SettingsUtils {
+public class SettingsHelper {
 
 	private static final String DIAGRAM_KIND_SEPARATOR = ",";
 
@@ -46,7 +46,7 @@ public class SettingsUtils {
 	 * @param settings
 	 *        the settings
 	 */
-	public SettingsUtils(IDialogSettings settings) {
+	public SettingsHelper(IDialogSettings settings) {
 		mySettings = settings;
 	}
 
