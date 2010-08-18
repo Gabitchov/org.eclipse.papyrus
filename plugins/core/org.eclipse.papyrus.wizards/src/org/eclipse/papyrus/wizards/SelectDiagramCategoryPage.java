@@ -82,8 +82,7 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	@Override
 	public void setWizard(IWizard newWizard) {
 		super.setWizard(newWizard);
-		mySettingsHelper = new SettingsHelper(getDialogSettings());
-		initSelectedCategory();
+		setSettingsHelper(new SettingsHelper(getDialogSettings()));
 	}
 
 	/**
@@ -145,12 +144,19 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	public void saveSettings(IDialogSettings settings) {
 		mySettingsHelper.saveDefaultDiagramCategory(getDiagramCategory());
 	}
+	
+	/**
+	 * Sets the settings helper.
+	 *
+	 * @param helper the new settings helper
+	 */
+	protected void setSettingsHelper(SettingsHelper helper) {
+		mySettingsHelper = helper;
+		initSelectedCategory();
+	}
 
 	private void initSelectedCategory() {
-		IDialogSettings settings = getDialogSettings();
-		if(settings != null) {
-			mySelectedDiagramCategoryId = mySettingsHelper.getDefaultDiagramCategory();
-		}
+		mySelectedDiagramCategoryId = mySettingsHelper.getDefaultDiagramCategory();
 	}
 
 	/**

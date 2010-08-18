@@ -112,7 +112,17 @@ public class SelectDiagramKindPage extends WizardPage {
 	@Override
 	public void setWizard(IWizard newWizard) {
 		super.setWizard(newWizard);
-		mySettingsHelper = new SettingsHelper(getDialogSettings());
+		setSettingsHelper(new SettingsHelper(getDialogSettings()));
+	}
+
+	/**
+	 * Sets the settings helper.
+	 * 
+	 * @param helper
+	 *        the new settings helper
+	 */
+	protected void setSettingsHelper(SettingsHelper helper) {
+		mySettingsHelper = helper;
 	}
 
 	/**
