@@ -55,6 +55,8 @@ public class SelectDiagramCategoryPage extends WizardPage {
 
 	/** The diagram category. */
 	private String mySelectedDiagramCategoryId;
+	
+	private SettingsUtils mySettingsHelper;
 
 	/** The Constant PAGE_ID. */
 	public static final String PAGE_ID = "SelectDiagramCategory";
@@ -80,6 +82,7 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	@Override
 	public void setWizard(IWizard newWizard) {
 		super.setWizard(newWizard);
+		mySettingsHelper = new SettingsUtils(getDialogSettings());
 		initSelectedCategory();
 	}
 
@@ -140,13 +143,13 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	 *        the settings
 	 */
 	public void saveSettings(IDialogSettings settings) {
-		SettingsUtils.saveDefaultDiagramCategory(settings, getDiagramCategory());
+		mySettingsHelper.saveDefaultDiagramCategory(getDiagramCategory());
 	}
 
 	private void initSelectedCategory() {
 		IDialogSettings settings = getDialogSettings();
 		if(settings != null) {
-			mySelectedDiagramCategoryId = SettingsUtils.getDefaultDiagramCategory(settings);
+			mySelectedDiagramCategoryId = mySettingsHelper.getDefaultDiagramCategory();
 		}
 	}
 
