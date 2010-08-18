@@ -12,7 +12,9 @@ package org.eclipse.papyrus.sysml.diagram.requirement.edit.part;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.ModelItemSemanticEditPolicy;
+import org.eclipse.papyrus.sysml.diagram.requirement.edit.policy.CustomDragDropEditPolicy;
 
 /**
  * Edit Part for the SysML Requirement Diagram
@@ -41,6 +43,7 @@ public class RequirementDiagramEditPart extends DiagramEditPart {
 		// This edit policy reuses the edit policy from Class Diagram, but in not perfectly
 		// consistent with GMF Runtime as it tends to break the extensible type framework.
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ModelItemSemanticEditPolicy());
-		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new RequirementDiagramDragDropEditPolicy());
+		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDragDropEditPolicy());
 	}
 }

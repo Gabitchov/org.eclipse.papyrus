@@ -1,4 +1,4 @@
-package org.eclipse.papyrus.sysml.diagram.requirement.edit.part;
+package org.eclipse.papyrus.sysml.diagram.requirement.edit.policy;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
@@ -8,12 +8,7 @@ import org.eclipse.papyrus.sysml.diagram.requirement.provider.RequirementDiagram
 import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.uml2.uml.Abstraction;
 
-
-/**
- * 
- * 
- */
-public class RequirementDiagramDragDropEditPolicy extends ClassDiagramDragDropEditPolicy {
+public class CustomDragDropEditPolicy extends ClassDiagramDragDropEditPolicy {
 
 	@Override
 	public int getLinkWithClassVisualID(EObject domainElement) {
@@ -39,22 +34,20 @@ public class RequirementDiagramDragDropEditPolicy extends ClassDiagramDragDropEd
 			if((domainElement instanceof org.eclipse.uml2.uml.Class)) {
 				org.eclipse.uml2.uml.Class domainElementClass = (org.eclipse.uml2.uml.Class)domainElement;
 				if(domainElementClass.getAppliedStereotype(SysmlResource.REQUIREMENT_ID) != null) {
-					semanticHint = RequirementDiagramElementTypes.CLASS_TOP_NODE.getSemanticHint();
+					semanticHint = RequirementDiagramElementTypes.CLASS.getSemanticHint();
 				}
 			}
 		}
 
 		// Fill the semantic hint during the drop when the top level is the an element in the Requirement Diagram  (a Package for instance)
 		else {
-			if(containerView instanceof View) {
-				if(domainElement instanceof org.eclipse.uml2.uml.Package) {
-					semanticHint = RequirementDiagramElementTypes.PACKAGE.getSemanticHint();
-				}
-				if((domainElement instanceof org.eclipse.uml2.uml.Class)) {
-					org.eclipse.uml2.uml.Class domainElementClass = (org.eclipse.uml2.uml.Class)domainElement;
-					if(domainElementClass.getAppliedStereotype(SysmlResource.REQUIREMENT_ID) != null) {
-						semanticHint = RequirementDiagramElementTypes.CLASS_CHILD_NODE.getSemanticHint();
-					}
+			if(domainElement instanceof org.eclipse.uml2.uml.Package) {
+				semanticHint = RequirementDiagramElementTypes.PACKAGE_CN.getSemanticHint();
+			}
+			if((domainElement instanceof org.eclipse.uml2.uml.Class)) {
+				org.eclipse.uml2.uml.Class domainElementClass = (org.eclipse.uml2.uml.Class)domainElement;
+				if(domainElementClass.getAppliedStereotype(SysmlResource.REQUIREMENT_ID) != null) {
+					semanticHint = RequirementDiagramElementTypes.CLASS_CN.getSemanticHint();
 				}
 			}
 		}

@@ -18,12 +18,11 @@ import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.CreateEditPolicies
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.IEditPolicyProvider;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackagePackageableElementCompartment2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackagePackageableElementCompartmentEditPart;
-import org.eclipse.papyrus.sysml.diagram.requirement.edit.part.RequirementDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.requirement.edit.part.RequirementDiagramEditPart;
+import org.eclipse.papyrus.sysml.diagram.requirement.edit.policy.CustomDragDropEditPolicy;
 
 /**
- * SysML Requirement diagram provider
- * 
+ * Requirement Diagram edit policy provider
  */
 public class EditPolicyProvider extends AbstractProvider implements IEditPolicyProvider {
 
@@ -49,7 +48,7 @@ public class EditPolicyProvider extends AbstractProvider implements IEditPolicyP
 	}
 
 	public void createEditPolicies(EditPart editPart) {
-		editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new RequirementDiagramDragDropEditPolicy());
+		editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDragDropEditPolicy());
 
 	}
 

@@ -20,7 +20,7 @@ import org.eclipse.papyrus.sysml.diagram.requirement.edit.part.RequirementDiagra
 public class RequirementDiagramEditPartProvider extends AbstractEditPartProvider {
 
 	@Override
-	protected Class getDiagramEditPartClass(View view) {
+	protected Class<?> getDiagramEditPartClass(View view) {
 		if(RequirementDiagramEditPart.DIAGRAM_ID.equals(view.getType())) {
 			return RequirementDiagramEditPart.class;
 		}

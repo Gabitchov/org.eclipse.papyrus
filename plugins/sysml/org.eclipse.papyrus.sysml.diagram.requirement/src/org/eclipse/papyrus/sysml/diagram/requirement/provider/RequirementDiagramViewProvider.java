@@ -22,7 +22,7 @@ import org.eclipse.papyrus.sysml.diagram.requirement.factory.RequirementDiagramV
 public class RequirementDiagramViewProvider extends AbstractViewProvider {
 
 	@Override
-	protected Class getDiagramViewClass(IAdaptable semanticAdapter, String diagramKind) {
+	protected Class<?> getDiagramViewClass(IAdaptable semanticAdapter, String diagramKind) {
 		if(RequirementDiagramEditPart.DIAGRAM_ID.equals(diagramKind)) {
 			return RequirementDiagramViewFactory.class;
 		}

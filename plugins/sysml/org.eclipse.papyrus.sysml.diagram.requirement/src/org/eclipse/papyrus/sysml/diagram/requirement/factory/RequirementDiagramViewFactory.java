@@ -13,8 +13,7 @@ import org.eclipse.gmf.runtime.diagram.ui.view.factories.DiagramViewFactory;
 import org.eclipse.gmf.runtime.notation.MeasurementUnit;
 
 /**
- * Creation of the SysML Requirement Diagram view Factory
- * 
+ * Requirement Diagram view Factory
  */
 public class RequirementDiagramViewFactory extends DiagramViewFactory {
 
