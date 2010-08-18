@@ -108,7 +108,7 @@ public class SelectDiagramKindPage extends WizardPage {
 		fillInTables();
 
 	}
-	
+
 	@Override
 	public void setWizard(IWizard newWizard) {
 		super.setWizard(newWizard);
@@ -139,7 +139,7 @@ public class SelectDiagramKindPage extends WizardPage {
 
 	private void fillInTables() {
 		String category = getDiagramCategory();
-		if (category == null) {
+		if(category == null) {
 			return;
 		}
 		diagramKindTableViewer.setInput(category);
@@ -403,17 +403,17 @@ public class SelectDiagramKindPage extends WizardPage {
 	 */
 	public void saveSettings() {
 		IDialogSettings settings = getDialogSettings();
-		if(rememberCurrentSelection()) {
+		if(isRememberCurrentSelection()) {
 			saveDefaultDiagramKinds(settings);
 			saveDefaultTemplates(settings);
 		} else {
-			resetDefaultDiagramKinds(settings);
-			resetDefaultTemplates(settings);
+			mySettingsHelper.saveDefaultDiagramKinds(getDiagramCategory(), Collections.<String> emptyList());
+			mySettingsHelper.saveDefaultTemplates(getDiagramCategory(), Collections.<String> emptyList());
 		}
-		saveRememberCurrentSelection(settings);
+		mySettingsHelper.saveRememberCurrentSelection(isRememberCurrentSelection());
 	}
 
-	private boolean rememberCurrentSelection() {
+	private boolean isRememberCurrentSelection() {
 		return rememberCurrentSelection.getSelection();
 	}
 
@@ -424,10 +424,10 @@ public class SelectDiagramKindPage extends WizardPage {
 		}
 		mySettingsHelper.saveDefaultDiagramKinds(getDiagramCategory(), kinds);
 	}
-	
+
 	/**
 	 * Gets the selected diagram kinds.
-	 *
+	 * 
 	 * @return the selected diagram kinds
 	 */
 	protected CreationCommandDescriptor[] getSelectedDiagramKinds() {
@@ -443,18 +443,6 @@ public class SelectDiagramKindPage extends WizardPage {
 		}
 		String path = selectTemplateComposite.getTemplatePath();
 		mySettingsHelper.saveDefaultTemplates(getDiagramCategory(), Collections.singletonList(path));
-	}
-
-	private void resetDefaultDiagramKinds(IDialogSettings settings) {
-		mySettingsHelper.saveDefaultDiagramKinds(getDiagramCategory(), Collections.<String> emptyList());
-	}
-
-	private void resetDefaultTemplates(IDialogSettings settings) {
-		mySettingsHelper.saveDefaultTemplates(getDiagramCategory(), Collections.<String> emptyList());
-	}
-
-	private void saveRememberCurrentSelection(IDialogSettings settings) {
-		mySettingsHelper.saveRememberCurrentSelection(rememberCurrentSelection());
 	}
 
 	private void selectDefaultDiagramKinds(String category) {
