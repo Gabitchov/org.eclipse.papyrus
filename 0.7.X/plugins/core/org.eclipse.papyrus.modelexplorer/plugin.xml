@@ -62,7 +62,10 @@
             </or></triggerPoints>
          <possibleChildren>
             <or>
-               <instanceof value="org.eclipse.gmt.modisco.infra.browser.uicore.internal.model.ModelElementItem"/> 
+               <instanceof
+                     value="org.eclipse.gmf.runtime.notation.impl.DiagramImpl">
+               </instanceof>
+               <instanceof value="org.eclipse.gmt.modisco.infra.browser.uicore.internal.model.ModelElementItem"/>
             </or>
          </possibleChildren>
          <actionProvider
@@ -107,7 +110,15 @@
          <dropAssistant
                class="org.eclipse.papyrus.modelexplorer.dnd.CommonDropAdapterAssistant"
                id="org.eclipse.papyrus.modelexplorer.dnd.CommonDropAdapterAssistant">
-            <possibleDropTargets></possibleDropTargets>
+            <possibleDropTargets>
+               <or>
+                  <instanceof
+                        value="org.eclipse.gmf.runtime.notation.impl.DiagramImpl">
+                  </instanceof>
+                  <instanceof
+                        value="org.eclipse.gmt.modisco.infra.browser.uicore.internal.model.ModelElementItem">
+                  </instanceof>
+               </or></possibleDropTargets>
          </dropAssistant>
     
       </navigatorContent>

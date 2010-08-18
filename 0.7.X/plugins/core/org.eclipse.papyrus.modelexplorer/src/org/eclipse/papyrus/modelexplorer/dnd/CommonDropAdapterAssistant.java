@@ -32,6 +32,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmt.modisco.infra.browser.core.LinkItemEx;
 import org.eclipse.gmt.modisco.infra.browser.uicore.internal.model.LinkItem;
 import org.eclipse.gmt.modisco.infra.browser.uicore.internal.model.ModelElementItem;
@@ -120,6 +122,29 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 
 			}
 		}
+		return commandList;
+	}
+	
+	/**
+	 * get a list that contains command to move a diagram into a new element
+	 * @param domain the transactionnal edit domain, cannot be null
+	 * @param targetOwner the target of the drop, cannot be null
+	 * @param childElement the diagram that will move, cannot be null
+	 * @return a list that contains one command to move the diagram
+	 */
+	protected List<Command> getDropDiagramIntoCommand(TransactionalEditingDomain domain,EObject targetOwner, Diagram childElement){
+		ArrayList<Command> commandList= new ArrayList<Command>();
+		EReference eref= NotationPackage.eINSTANCE.getView_Element();
+		if(eref!=null){
+			ArrayList<EObject> tmp=new ArrayList<EObject>();
+			tmp.add(childElement);
+			if(targetOwner.eGet(eref) instanceof Collection<?>){
+				tmp.addAll((Collection<EObject>)targetOwner.eGet(eref));}
+
+			commandList.add( SetCommand.create(domain, childElement, eref, targetOwner));
+		}
+
+		
 		return commandList;
 	}
 	/**
@@ -300,16 +325,26 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 			Iterator<?> it=selectedElements.iterator();
 			while (it.hasNext()) {
 				Object object =  it.next();
+				EObject eObjectchild=null;
 				if (object instanceof IAdaptable) {
-					EObject eObjectchild = (EObject) ((IAdaptable) object).getAdapter(EObject.class);
-					//test if object is an eobject
-					if(eObjectchild!=null){
-
-						result.addAll(getDropIntoCommand(getEditingDomain(), targetEObject, eObjectchild, eref));
-					}
+					eObjectchild = (EObject) ((IAdaptable) object).getAdapter(EObject.class);
 				}
+				else if(object instanceof EObject){
+					eObjectchild=(EObject)object;
+				}
+				
+				if(eObjectchild instanceof Diagram){
+					result.addAll(getDropDiagramIntoCommand(getEditingDomain(), targetEObject,(Diagram) eObjectchild));
+				}
+				//test if object is an eobject
+				else if(eObjectchild!=null){
+
+					result.addAll(getDropIntoCommand(getEditingDomain(), targetEObject, eObjectchild, eref));
+				}
+				
 			}
 		}
+
 		return result;
 	}
 
