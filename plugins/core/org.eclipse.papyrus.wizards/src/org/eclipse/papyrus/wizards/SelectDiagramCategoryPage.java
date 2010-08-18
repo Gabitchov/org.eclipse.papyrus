@@ -62,8 +62,6 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	/** The Constant DEFAULT_EXTENSION. */
 	public static final String DEFAULT_EXTENSION = "uml";
 
-	private static final String LAST_SELECTED_CATEGORY = "diagramCategory";
-
 	/**
 	 * Instantiates a new select diagram category page.
 	 * 
@@ -142,14 +140,13 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	 *        the settings
 	 */
 	public void saveSettings(IDialogSettings settings) {
-		String category = getDiagramCategory();
-		settings.put(LAST_SELECTED_CATEGORY, category);
+		SettingsUtils.saveDefaultDiagramCategory(settings, getDiagramCategory());
 	}
 
 	private void initSelectedCategory() {
 		IDialogSettings settings = getDialogSettings();
 		if(settings != null) {
-			mySelectedDiagramCategoryId = settings.get(LAST_SELECTED_CATEGORY);
+			mySelectedDiagramCategoryId = SettingsUtils.getDefaultDiagramCategory(settings);
 		}
 	}
 

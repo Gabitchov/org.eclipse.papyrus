@@ -34,6 +34,27 @@ public class SettingsUtils {
 	
 	private static final String SETTINGS_KEY_DIAGRAM_TEMPLATES = "DiagramTemplatesFor_";
 	
+	private static final String LAST_SELECTED_CATEGORY = "diagramCategory";
+	
+	/**
+	 * Gets the default diagram category.
+	 *
+	 * @param settings the settings
+	 * @return the default diagram category
+	 */
+	public static String getDefaultDiagramCategory(IDialogSettings settings) {
+		return settings.get(LAST_SELECTED_CATEGORY);
+	}
+	
+	/**
+	 * Save default diagram category.
+	 *
+	 * @param settings the settings
+	 * @param category the category
+	 */
+	public static void saveDefaultDiagramCategory(IDialogSettings settings, String category) {
+		settings.put(LAST_SELECTED_CATEGORY, category);
+	}
 	/**
 	 * Gets the default diagram kinds.
 	 *
