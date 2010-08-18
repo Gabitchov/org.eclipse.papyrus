@@ -9,6 +9,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.requirement.provider;
 
+import static org.eclipse.papyrus.core.Activator.log;
+
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
@@ -17,14 +19,15 @@ import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateEdgeViewOperation;
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateNodeViewOperation;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLViewProvider;
-import org.eclipse.papyrus.sysml.diagram.requirement.Activator;
 import org.eclipse.papyrus.sysml.diagram.requirement.Messages;
 import org.eclipse.papyrus.sysml.diagram.requirement.edit.part.RequirementDiagramEditPart;
+import org.eclipse.uml2.uml.NamedElement;
 
 /**
  * SysML Requirement diagram inherited elements view providers from UML Class diagram view providers
@@ -46,28 +49,15 @@ public class InheritedElementViewProvider extends UMLViewProvider {
 			return false;
 		}
 
-		// This provider is registered for Requirement Diagram for Abstraction usage (Satisfy, Verify, Copy links)
 		IElementType elementType = (IElementType)op.getSemanticAdapter().getAdapter(IElementType.class);
 		if(elementType == RequirementDiagramElementTypes.ABSTRACTION) {
 			return true;
 		}
 
-		// This provider is registered for Requirement Diagram for Added Link (for containment) usage
-		if(elementType == RequirementDiagramElementTypes.ADDED_LINK) {
+		if((elementType == RequirementDiagramElementTypes.CONTAINMENT_ADDED_LINK) || (elementType == RequirementDiagramElementTypes.CONTAINMENT_LINK)) {
 			return true;
 		}
 
-		// This provider is registered for Requirement Diagram for any Named Element usage in the diagram
-		if(elementType == RequirementDiagramElementTypes.NAMED_ELEMENT) {
-			return true;
-		}
-
-		// This provider is registered for Requirement Diagram for Abstraction usage (Satisfy, Verify, Copy links)
-		if(elementType == RequirementDiagramElementTypes.CONTAINMENT_LINK) {
-			return true;
-		}
-
-		// else : unknown element
 		return false;
 	}
 
@@ -88,23 +78,25 @@ public class InheritedElementViewProvider extends UMLViewProvider {
 		// This provider is registered for Imported Elements from Class Diagram only
 		IElementType elementType = (IElementType)op.getSemanticAdapter().getAdapter(IElementType.class);
 
-		if(elementType == RequirementDiagramElementTypes.PACKAGE) {
+		if((elementType == RequirementDiagramElementTypes.PACKAGE) || (elementType == RequirementDiagramElementTypes.PACKAGE_CN)) {
 			return true;
 		}
 
-		if(elementType == RequirementDiagramElementTypes.CLASS_TOP_NODE) {
+		if((elementType == RequirementDiagramElementTypes.CLASS) || (elementType == RequirementDiagramElementTypes.CLASS_CN)) {
 			return true;
 		}
-		if(elementType == RequirementDiagramElementTypes.CLASS_CHILD_NODE) {
+
+		if((elementType == RequirementDiagramElementTypes.NAMED_ELEMENT)) {
 			return true;
 		}
+
 		if(elementType == RequirementDiagramElementTypes.CONTAINMENT_CIRCLE) {
 			return true;
 		}
 
 		// SemanticHint may be null (especially when drop from ModelExplorer)
 		EObject eobject = (EObject)op.getSemanticAdapter().getAdapter(EObject.class);
-		if((eobject instanceof org.eclipse.uml2.uml.Class) || (eobject instanceof org.eclipse.uml2.uml.Package)) {
+		if(eobject instanceof NamedElement) {
 			return true;
 		}
 
@@ -125,27 +117,47 @@ public class InheritedElementViewProvider extends UMLViewProvider {
 		// DND (Drag And Drop) from model explorer
 		EObject eobject = (EObject)semanticAdapter.getAdapter(EObject.class);
 		if(eobject instanceof org.eclipse.uml2.uml.Package) {
-			return super.createNode(semanticAdapter, containerView, RequirementDiagramElementTypes.PACKAGE.getSemanticHint(), index, persisted, preferencesHint);
+			if(containerView instanceof Diagram) {
+				return super.createNode(semanticAdapter, containerView, RequirementDiagramElementTypes.PACKAGE.getSemanticHint(), index, persisted, preferencesHint);
+			} else {
+				return super.createNode(semanticAdapter, containerView, RequirementDiagramElementTypes.PACKAGE_CN.getSemanticHint(), index, persisted, preferencesHint);
+			}
+
 		} else if(eobject instanceof org.eclipse.uml2.uml.Class) {
-			return super.createNode(semanticAdapter, containerView, RequirementDiagramElementTypes.CLASS_TOP_NODE.getSemanticHint(), index, persisted, preferencesHint);
+			if(containerView instanceof Diagram) {
+				return super.createNode(semanticAdapter, containerView, RequirementDiagramElementTypes.CLASS.getSemanticHint(), index, persisted, preferencesHint);
+			} else {
+				return super.createNode(semanticAdapter, containerView, RequirementDiagramElementTypes.CLASS_CN.getSemanticHint(), index, persisted, preferencesHint);
+			}
+
+		} else if(eobject instanceof NamedElement) {
+			if(containerView instanceof Diagram) {
+				return super.createNode(semanticAdapter, containerView, RequirementDiagramElementTypes.NAMED_ELEMENT.getSemanticHint(), index, persisted, preferencesHint);
+			}
 		}
 
-		// Log a warning here when the DND is done on elements that are not allowed in the selected diagram/view
-		Activator.log.warn(Messages.No_View_Can_Be_Created);
+		log.error(new Exception(Messages.No_View_Can_Be_Created));
 		return null;
 
 	}
 
 	@Override
 	public Edge createEdge(IAdaptable semanticAdapter, View containerView, String semanticHint, int index, boolean persisted, PreferencesHint preferencesHint) {
-		return super.createEdge(semanticAdapter, containerView, semanticHint, index, persisted, preferencesHint);
+		Edge createdEdge = super.createEdge(semanticAdapter, containerView, semanticHint, index, persisted, preferencesHint);
+
+		if(createdEdge == null) {
+			log.error(new Exception(Messages.No_View_Can_Be_Created));
+		}
+
+		return createdEdge;
 	}
 
+	@Override
 	protected void stampShortcut(View containerView, Node target) {
 		if(!RequirementDiagramEditPart.DIAGRAM_ID.equals(UMLVisualIDRegistry.getModelID(containerView))) {
 			EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
-			shortcutAnnotation.setSource(Messages.Short_Cut);
-			shortcutAnnotation.getDetails().put(Messages.Model_ID, RequirementDiagramEditPart.DIAGRAM_ID);
+			shortcutAnnotation.setSource("Shortcut"); //$NON-NLS-1$
+			shortcutAnnotation.getDetails().put("modelID", RequirementDiagramEditPart.DIAGRAM_ID); //$NON-NLS-1$
 			target.getEAnnotations().add(shortcutAnnotation);
 		}
 	}

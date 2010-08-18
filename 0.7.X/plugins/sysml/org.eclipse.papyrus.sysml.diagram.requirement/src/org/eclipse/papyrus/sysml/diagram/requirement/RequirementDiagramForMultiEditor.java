@@ -40,8 +40,7 @@ public class RequirementDiagramForMultiEditor extends RequirementDiagramEditor {
 	/**
 	 * The image descriptor of the diagram icon
 	 */
-	private static final ImageDescriptor DIAG_IMG_DESC = Activator
-			.getBundledImageDescriptor(RequirementDiagramForMultiEditor.DIAG_IMG_PATH);
+	private static final ImageDescriptor DIAG_IMG_DESC = Activator.getBundledImageDescriptor(RequirementDiagramForMultiEditor.DIAG_IMG_PATH);
 
 	/** The editor splitter. */
 	private Composite splitter;
@@ -57,8 +56,7 @@ public class RequirementDiagramForMultiEditor extends RequirementDiagramEditor {
 	 * @throws ServiceException
 	 * 
 	 */
-	public RequirementDiagramForMultiEditor(ServicesRegistry servicesRegistry, Diagram diagram)
-			throws BackboneException, ServiceException {
+	public RequirementDiagramForMultiEditor(ServicesRegistry servicesRegistry, Diagram diagram) throws BackboneException, ServiceException {
 		super(servicesRegistry, diagram);
 	}
 

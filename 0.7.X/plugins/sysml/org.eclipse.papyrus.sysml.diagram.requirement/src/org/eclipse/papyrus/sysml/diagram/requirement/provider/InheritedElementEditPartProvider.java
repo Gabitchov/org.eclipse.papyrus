@@ -15,23 +15,14 @@ import org.eclipse.gmf.runtime.diagram.ui.services.editpart.CreateGraphicEditPar
 import org.eclipse.gmf.runtime.diagram.ui.services.editpart.IEditPartOperation;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.providers.CUMLEditPartProvider;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.UMLEditPartFactory;
 import org.eclipse.papyrus.sysml.diagram.requirement.edit.part.RequirementDiagramEditPart;
+import org.eclipse.uml2.uml.NamedElement;
 
 /**
  * SysML Requirement Diagram inherited elements providers from UML Class Diagram providers
  * 
  */
 public class InheritedElementEditPartProvider extends CUMLEditPartProvider {
-
-	/**
-	 * Constructor.
-	 * 
-	 */
-	public InheritedElementEditPartProvider() {
-		setFactory(new UMLEditPartFactory());
-		setAllowCaching(true);
-	}
 
 	@Override
 	public synchronized boolean provides(IOperation operation) {
@@ -45,10 +36,51 @@ public class InheritedElementEditPartProvider extends CUMLEditPartProvider {
 
 			// Test for supported inherited types for related accepted nodes and edges
 			EObject eobject = view.getElement();
-			if((eobject instanceof org.eclipse.uml2.uml.Class) || (eobject instanceof org.eclipse.uml2.uml.Package) || (eobject instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.ContainmentCircleEditPart)) {
+			if((eobject instanceof NamedElement)) {
 				return true;
 			}
-			if((eobject instanceof org.eclipse.uml2.uml.Association) || (eobject instanceof org.eclipse.uml2.uml.Abstraction) || (eobject instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.ContainmentLinkEditPart) || (eobject instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.AddedLinkEditPart) || (eobject instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.AbstractionEditPart)) {
+
+			// Test supported inherited types
+			String hint = view.getType();
+
+			/** Nodes *********** */
+
+			/** Package */
+			if(RequirementDiagramElementTypes.PACKAGE.getSemanticHint().equals(hint) || RequirementDiagramElementTypes.PACKAGE_NAME_LABEL_HINT.equals(hint) || RequirementDiagramElementTypes.PACKAGE_COMPARTMENT_HINT.equals(hint)) {
+				return true;
+			}
+
+			if(RequirementDiagramElementTypes.PACKAGE_CN.getSemanticHint().equals(hint) || RequirementDiagramElementTypes.PACKAGE_CN_NAME_LABEL_HINT.equals(hint) || RequirementDiagramElementTypes.PACKAGE_CN_COMPARTMENT_HINT.equals(hint)) {
+				return true;
+			}
+			/** Class */
+			if(RequirementDiagramElementTypes.CLASS.getSemanticHint().equals(hint) || RequirementDiagramElementTypes.CLASS_NAME_LABEL_HINT.equals(hint) || RequirementDiagramElementTypes.CLASS_COMPARTMENT_PROP_HINT.equals(hint) || RequirementDiagramElementTypes.CLASS_COMPARTMENT_OPER_HINT.equals(hint) || RequirementDiagramElementTypes.CLASS_COMPARTMENT_NEST_HINT.equals(hint) || RequirementDiagramElementTypes.CLASS_PROP_CLN.getSemanticHint().equals(hint) || RequirementDiagramElementTypes.CLASS_OPER_CLN.getSemanticHint().equals(hint) || RequirementDiagramElementTypes.CLASS_RECP_CLN.getSemanticHint().equals(hint) || RequirementDiagramElementTypes.CLASS_NEST_CLN.getSemanticHint().equals(hint)) {
+				return true;
+			}
+
+			if(RequirementDiagramElementTypes.CLASS_CN.getSemanticHint().equals(hint) || RequirementDiagramElementTypes.CLASS_CN_NAME_LABEL_HINT.equals(hint) || RequirementDiagramElementTypes.CLASS_CN_COMPARTMENT_PROP_HINT.equals(hint) || RequirementDiagramElementTypes.CLASS_CN_COMPARTMENT_OPER_HINT.equals(hint) || RequirementDiagramElementTypes.CLASS_CN_COMPARTMENT_NEST_HINT.equals(hint)) {
+				return true;
+			}
+
+			/** NamedElement */
+			if(RequirementDiagramElementTypes.NAMED_ELEMENT.getSemanticHint().equals(hint) || RequirementDiagramElementTypes.NAMED_ELEMENT_NAME_LABEL_HINT.equals(hint)) {
+				return true;
+			}
+
+			/** Containment */
+			if(RequirementDiagramElementTypes.CONTAINMENT_CIRCLE.getSemanticHint().equals(hint)) {
+				return true;
+			}
+
+			/** Edges *********** */
+
+			/** Abstraction */
+			if(RequirementDiagramElementTypes.ABSTRACTION.getSemanticHint().equals(hint) || RequirementDiagramElementTypes.ABSTRACTION_NAME_LABEL_HINT.equals(hint) || RequirementDiagramElementTypes.ABSTRACTION_STEREOTYPE_LABEL_HINT.equals(hint)) {
+				return true;
+			}
+
+			/** ContainmentLink */
+			if((RequirementDiagramElementTypes.CONTAINMENT_LINK.getSemanticHint().equals(hint)) || (RequirementDiagramElementTypes.CONTAINMENT_ADDED_LINK.getSemanticHint().equals(hint))) {
 				return true;
 			}
 
