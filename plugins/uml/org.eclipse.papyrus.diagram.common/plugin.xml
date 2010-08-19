@@ -262,19 +262,6 @@
    </command>
    <command
          categoryId="org.eclipse.papyrus.editor.category"
-         defaultHandler="org.eclipse.papyrus.diagram.common.handlers.DeleteFromModelHandler"
-         description="Call the delete from model action"
-         id="org.eclipse.papyrus.diagram.common.commands.DeleteFromModelCommand"
-         name="Delete From Model Command">
-   </command>
-   <command
-         categoryId="org.eclipse.papyrus.editor.category"
-         description="Call the delete from diagram action"
-         id="org.eclipse.papyrus.diagram.common.commands.DeleteFromDiagramCommand"
-         name="Delete From Diagram Command">
-   </command>
-   <command
-         categoryId="org.eclipse.papyrus.editor.category"
          defaultHandler="org.eclipse.papyrus.diagram.common.actions.handlers.ShowHideCompartmentHandler"
          description="Call the Show/Hide Compartments Action"
          id="org.eclipse.papyrus.diagram.common.commands.ShowHideCompartmentCommand"
@@ -326,7 +313,7 @@
             definitionId="org.eclipse.papyrus.diagram.common.commands.DeleteFromModelCommand"
             icon="icons/delete.gif"
             id="org.eclipse.papyrus.diagram.common.objectContribution.deletefrommodelaction"
-            label="Delete Selected Element"
+            label="Delete Selected Element (deprecated)"
             menubarPath="editMenu">
       </action>
    </objectContribution>
@@ -339,7 +326,7 @@
             definitionId="org.eclipse.papyrus.diagram.common.commands.DeleteFromDiagramCommand"
             icon="icons/obj16/eraser.gif"
             id="org.eclipse.papyrus.diagram.common.objectContribution.deletefromdiagramaction"
-            label="Hide Selected Element"
+            label="Hide Selected Element (deprecated)"
             menubarPath="editMenu">
       </action>
    </objectContribution>
@@ -519,21 +506,21 @@
       </parameter>
    </key>
    <key
-         commandId="org.eclipse.papyrus.diagram.common.commands.DeleteFromModelCommand"
+         commandId="org.eclipse.papyrus.diagram.common.commands.DeleteFromModel"
          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
          sequence="CTRL+DEL">
+   </key>
+   <key
+         commandId="org.eclipse.papyrus.diagram.common.commands.DeleteFromDiagram"
+         contextId="org.eclipse.gmf.runtime.diagram.ui.diagramContext"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="DEL">
    </key>
    <key
          commandId="org.eclipse.papyrus.diagram.common.commands.ShowHideContentsCommand"
          contextId="org.eclipse.gmf.runtime.diagram.ui.diagramContext"
          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
          sequence="F4">
-   </key>
-   <key
-         commandId="org.eclipse.papyrus.diagram.common.commands.DeleteFromDiagramCommand"
-         contextId="org.eclipse.gmf.runtime.diagram.ui.diagramContext"
-         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-         sequence="DEL">
    </key>
 </extension>
 <extension
@@ -1120,5 +1107,93 @@
 		</and>
 	</definition>	
 </extension>   
+
+<!-- The location is based on menu id defined in GMF runtime 
+	 (see org.eclipse.gmf.runtime.diagram.ui.actions.ActionIds and
+	 org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContributionItemProvider) -->
+<extension point="org.eclipse.ui.menus">
+
+	<menuContribution locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu?endof=editMenu"
+		allPopups="false">
+
+		<command commandId="org.eclipse.papyrus.diagram.common.commands.DeleteFromModel"
+			icon="icons/delete.gif"
+			label="Delete Selected Element"
+			style="push">
+			<visibleWhen>
+				<and>
+					<with variable="activeEditorId">
+                        <equals value="org.eclipse.papyrus.core.papyrusEditor"/>
+					</with>
+					<with variable="selection">
+						<iterate
+							ifEmpty="false"
+							operator="and">
+							<instanceof value="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart"/>
+						</iterate>
+					</with>
+				</and>
+			</visibleWhen>			
+		</command>
+
+		<command commandId="org.eclipse.papyrus.diagram.common.commands.DeleteFromDiagram"
+			icon="icons/obj16/eraser.gif"
+			label="Hide Selected Element"
+			style="push">
+			<visibleWhen>
+				<and>
+					<with variable="activeEditorId">
+                        <equals value="org.eclipse.papyrus.core.papyrusEditor"/>
+					</with>
+					<with variable="selection">
+						<iterate
+							ifEmpty="false"
+							operator="and">
+							<instanceof value="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart"/>
+						</iterate>
+					</with>
+				</and>
+			</visibleWhen>			
+		</command>
+
+	</menuContribution>
+</extension>
+
+<extension point="org.eclipse.ui.commands">
+	
+	<command
+		categoryId="org.eclipse.papyrus.editor.category"
+		defaultHandler="org.eclipse.papyrus.diagram.common.handlers.DeleteFromModelCommandHandler"
+		description="Delete the selection from model"
+		id="org.eclipse.papyrus.diagram.common.commands.DeleteFromModel"
+		name="Delete From Model Command">
+	</command>
+	
+	<command
+		categoryId="org.eclipse.papyrus.editor.category"
+		defaultHandler="org.eclipse.papyrus.diagram.common.handlers.DeleteFromDiagramCommandHandler"
+		description="Delete the selection from diagram"
+		id="org.eclipse.papyrus.diagram.common.commands.DeleteFromDiagram"
+		name="Delete From Diagram Command">
+	</command>
+
+	<!-- Deprecated command -->	
+	<command
+		categoryId="org.eclipse.papyrus.editor.category"
+		defaultHandler="org.eclipse.papyrus.diagram.common.handlers.DeleteFromModelHandler"
+		description="Delete the selection from model (deprecated)"
+		id="org.eclipse.papyrus.diagram.common.commands.DeleteFromModelCommand"
+		name="Delete From Model Command">
+	</command>
+	
+	<!-- Deprecated command -->	
+	<command
+		categoryId="org.eclipse.papyrus.editor.category"
+		description="Delete the selection from diagram (deprecated)"
+		id="org.eclipse.papyrus.diagram.common.commands.DeleteFromDiagramCommand"
+		name="Delete From Diagram Command">
+	</command>
+			
+</extension>
 
 </plugin>

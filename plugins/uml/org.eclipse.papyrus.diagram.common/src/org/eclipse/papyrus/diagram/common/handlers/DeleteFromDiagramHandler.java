@@ -27,6 +27,7 @@ import org.eclipse.ui.PlatformUI;
  * 
  * This class provides the "Delete From Diagram" for the popup menu
  * 
+ * @deprecated
  */
 public class DeleteFromDiagramHandler implements IActionDelegate {
 

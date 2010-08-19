@@ -32,7 +32,7 @@ import org.eclipse.ui.PlatformUI;
  * <li>the "Delete From Model" action for the popup menu</li>
  * </ul>
  * 
- * 
+ * @deprecated
  */
 public class DeleteFromModelHandler extends AbstractHandler implements IObjectActionDelegate {
 
