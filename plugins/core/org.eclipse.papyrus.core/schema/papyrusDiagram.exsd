@@ -64,8 +64,7 @@ The &lt;code&gt;org.eclipse.papyrus.core.papyrusDiagram&lt;/code&gt; extension p
    <element name="editorDiagram">
       <annotation>
          <documentation>
-            A diagram suitable for Papyrus backbone.
-Such diagram is a Eclipse Editor.
+            A diagram editor that can be used in the Papyrus multi-page diagram editor.
          </documentation>
       </annotation>
       <complexType>
@@ -102,8 +101,7 @@ Such diagram is a Eclipse Editor.
    <element name="actionBarContributor">
       <annotation>
          <documentation>
-            An ActionBarContributor that can be associated to Editors or Views.
-An ActionBarContributor can be shared among several Editors or Views.
+            A ActionBarContributor defines the actions for one or more editors or Views.
          </documentation>
       </annotation>
       <complexType>
@@ -305,7 +303,7 @@ As Requirement diagram belongs to SysML category it will be created with a SysML
          &lt;p&gt;The value of the &lt;code&gt;class&lt;/code&gt; attribute of &lt;code&gt;diagramCategory&lt;/code&gt; must represent a class that implements the &lt;code&gt;org.eclipse.papyrus.core.extension.commands.IModelCreationCommand&lt;/code&gt; interface. There are a few default implementations of &lt;code&gt;IModelCreationCommand&lt;/code&gt; that may be useful to users of this extension point: 
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;org.eclipse.papyrus.core.extension.commands.ModelCreationCommandBase&lt;/code&gt; - an abstract implementation of a basic &lt;code&gt;IModelCreationCommand&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;org.eclipse.papyrus.diagram.common.commands.CreateUMLModelCommand&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;org.eclipse.papyrus.diagram.common.commands.CreateUMLModelCommand&lt;/code&gt;&lt;/li&gt; - implementation of IModelCreationCommand that creates a UML model.
 &lt;li&gt;&lt;code&gt;org.eclipse.papyrus.diagram.profile.CreateProfileModelCommand&lt;/code&gt; - a subclass of CreateUMLModelCommand which creates Profile as a root element&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;org.eclipse.papyrus.sysml.diagram.common.commands.CreateSysMLModelCommand&lt;/code&gt; - a subclass of CreateUMLModelCommand which applies SysML profile to the root element&lt;/li&gt;
 &lt;/ul&gt;
