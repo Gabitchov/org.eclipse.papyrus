@@ -40,6 +40,7 @@ import org.eclipse.ui.PlatformUI;
  * This code is a copy of the generated code for each diagram before
  * we add this action in the common. (@see Bug 267163)
  * 
+ * @deprecated
  */
 public class DeleteFromModelAction extends AbstractDeleteFromAction {
 
