@@ -141,7 +141,7 @@ An ActionBarContributor can be shared among several Editors or Views.
          <attribute name="id" type="string" use="required">
             <annotation>
                <documentation>
-                  Id of the creation command.
+                  a unique identifier used as a reference for this creation command.
                </documentation>
                <appInfo>
                   <meta.attribute kind="identifier" basedOn="org.eclipse.ui.commands/command/@id"/>
@@ -151,14 +151,14 @@ An ActionBarContributor can be shared among several Editors or Views.
          <attribute name="label" type="string" use="required">
             <annotation>
                <documentation>
-                  Label of the creation command.
+                  a translatable name of the creation command, it is displayed in the toolbar as a CreateDiagramAction or in the New Papyrus Model Wizard as an item in the Diagram Kind check-box list.
                </documentation>
             </annotation>
          </attribute>
          <attribute name="creationCommandClass" type="string" use="required">
             <annotation>
                <documentation>
-                  The class implementing the context.
+                  a name of the fully qualified class that implements &lt;samp&gt;org.eclipse.papyrus.core.extension.commands.ICreationCommand&lt;/samp&gt;.
                </documentation>
                <appInfo>
                   <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.core.extension.commands.ICreationCommand"/>
@@ -168,7 +168,7 @@ An ActionBarContributor can be shared among several Editors or Views.
          <attribute name="icon" type="string">
             <annotation>
                <documentation>
-                  The icon representing the command.
+                  a relative path of an icon used to visually represent the command. The path is relative to the location of the plugin.xml file of the contributing plug-in.
                </documentation>
                <appInfo>
                   <meta.attribute kind="resource"/>
@@ -178,7 +178,7 @@ An ActionBarContributor can be shared among several Editors or Views.
          <attribute name="creationCondition" type="string">
             <annotation>
                <documentation>
-                  this condition is evaluated at diagram creation menu and if the method returning boolean in the interface returns false then the diagram will not be available
+                  this condition is evaluated at diagram creation menu and if the method returning boolean in the interface returns false then the diagram will not be available.
                </documentation>
                <appInfo>
                   <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.core.extension.commands.ICreationCondition"/>
@@ -188,7 +188,7 @@ An ActionBarContributor can be shared among several Editors or Views.
          <attribute name="language" type="string" use="required">
             <annotation>
                <documentation>
-                  
+                  the id of a diagramCategory the creation command belongs to.
                </documentation>
                <appInfo>
                   <meta.attribute kind="identifier" basedOn="org.eclipse.papyrus.core.papyrusDiagram/@id"/>
@@ -208,14 +208,14 @@ An ActionBarContributor can be shared among several Editors or Views.
          <attribute name="id" type="string" use="required">
             <annotation>
                <documentation>
-                  The id of the diagram category. It is used to filter model templates and diagram kinds.
+                  a unique identifier used as a reference for this diagram category. It is used to filter model templates and diagram kinds.
                </documentation>
             </annotation>
          </attribute>
          <attribute name="class" type="string" use="required">
             <annotation>
                <documentation>
-                  A creation command class used to create a newdomain model for the given category.
+                  a name of the fully qualified class that implements &lt;samp&gt;org.eclipse.papyrus.core.extension.commands.IModelCreationCommand&lt;/samp&gt;.
                </documentation>
                <appInfo>
                   <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.core.extension.commands.IModelCreationCommand"/>
@@ -225,28 +225,28 @@ An ActionBarContributor can be shared among several Editors or Views.
          <attribute name="extensionPrefix" type="string">
             <annotation>
                <documentation>
-                  The file extension
+                  the file extension.
                </documentation>
             </annotation>
          </attribute>
          <attribute name="label" type="string" use="required">
             <annotation>
                <documentation>
-                  
+                  a translatable name of the diagram category, it is displayed inthe New Papyrus Model Wizard as an item in the Diagram Category check-box list.
                </documentation>
             </annotation>
          </attribute>
          <attribute name="description" type="string">
             <annotation>
                <documentation>
-                  Description of the diagram category is to be displayed next ti its label in UI.
+                  a description of the diagram category is to be displayed next ti its label in UI.
                </documentation>
             </annotation>
          </attribute>
          <attribute name="icon" type="string">
             <annotation>
                <documentation>
-                  The icon representing the diagram category.
+                  a relative path of an icon used to visually represent the diagram category. The path is relative to the location of the plugin.xml file of the contributing plug-in.
                </documentation>
                <appInfo>
                   <meta.attribute kind="resource"/>
