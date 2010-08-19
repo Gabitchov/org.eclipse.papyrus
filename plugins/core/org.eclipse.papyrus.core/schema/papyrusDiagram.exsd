@@ -325,16 +325,12 @@ As Requirement diagram belongs to SysML category it will be created with a SysML
          <meta.section type="copyright"/>
       </appInfo>
       <documentation>
-         /*******************************************************************************
- * Copyright (c) 2008, 2010 CEA List.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *     CEA List - initial API and implementation
- *******************************************************************************/
+         Copyright (c) 2008, 2010 CEA List.&lt;br&gt;
+All rights reserved. This program and the accompanying materials are made
+available under the terms of the Eclipse Public License v1.0 which accompanies
+this distribution, and is available at &lt;a 
+href=&quot;http://www.eclipse.org/legal/epl-v10.html&quot;&gt;http://www.eclipse.org/legal/epl-v10.html&lt;/a&gt;
+
       </documentation>
    </annotation>
 
