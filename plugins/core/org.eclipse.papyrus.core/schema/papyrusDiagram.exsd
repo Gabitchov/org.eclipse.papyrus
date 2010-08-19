@@ -7,18 +7,17 @@
       </appInfo>
       <documentation>
          &lt;p&gt;
-The &lt;code&gt;org.eclipse.papyrus.core.papyrusDiagram&lt;/code&gt; extension point is used to register a new diagram editor within Papyrus. Once diagram editor is registered it can be used in Papyrus multi-page diagram editor. The editor can have its own icon and label, creation action in the toolbar and possibility to be created using new Papyrus Model wizard.
+The &lt;code&gt;org.eclipse.papyrus.core.papyrusDiagram&lt;/code&gt; extension point is used to register a new diagram editor within Papyrus. Once diagram editor is registered it can be used in the Papyrus multi-page diagram editor. The editor can have its own icon, label, a button for the creation action in the toolbar, and the possibility to be created using new Papyrus Model wizard.
 &lt;/p&gt;
 
-&lt;p&gt;Papyrus uses  a term &quot;&lt;b&gt;Diagram Category&lt;/b&gt;&quot; in order to categorize domain models and a term &quot;&lt;b&gt;Diagram Kind&lt;/b&gt;&quot; to specialize a diagram editor for a domain model. Diagram Kind should belong to a particular Diagram Category. Papyrus supports &lt;b&gt;UML&lt;/b&gt;, &lt;b&gt;Profile&lt;/b&gt; and &lt;b&gt;SysML&lt;/b&gt; model types. 
+&lt;p&gt;Papyrus uses the term &quot;&lt;b&gt;Diagram Category&lt;/b&gt;&quot; to categorize domain models and the term &quot;&lt;b&gt;Diagram Kind&lt;/b&gt;&quot; to specialize a diagram editor for a domain model. Each Diagram Kind belongs to exactly one Diagram Category, Diagram Category can contains many Diagram Kinds. Papyrus supports &lt;b&gt;UML&lt;/b&gt;, &lt;b&gt;Profile&lt;/b&gt; and &lt;b&gt;SysML&lt;/b&gt; diagram categories. 
 &lt;/p&gt;
 
-&lt;p&gt;Besides, for the given diagram category the user can specify template models - a predefined model which content is copied and thus serves as a template for a newly created diagram. Templates can be registered using &lt;code&gt;org.eclipse.papyrus.wizards.templates&lt;/code&gt; extension point. Diagram kinds and available templates are filtered in accordance with the chosen category. For example, if the user choses &lt;i&gt;Profile&lt;/i&gt; category, then only Profile diagram kind are available on DiagramKindPage and only ProfileWithBasicTypes template is displayed in the list of available templates.
+&lt;p&gt;Besides, for a given diagram category the user can specify template models - a predefined model whose content is copied into a newly created diagram. Templates can be registered using &lt;code&gt;org.eclipse.papyrus.wizards.templates&lt;/code&gt; extension point. Diagram kinds and available templates are filtered in the wizard in accordance with the chosen category. For example, if the user choses &lt;i&gt;Profile&lt;/i&gt; category, then only Profile diagram kind are available on DiagramKindPage and only ProfileWithBasicTypes template is displayed in the list of available templates.
 &lt;/p&gt;
 
 &lt;p&gt;The user is free to use the already existing diagram categories as well as implement his own. 
 &lt;/p&gt;
-
       </documentation>
    </annotation>
 
@@ -131,7 +130,7 @@ An ActionBarContributor can be shared among several Editors or Views.
    <element name="creationCommand">
       <annotation>
          <documentation>
-            A creation command used to create a new diagram.
+            A &quot;creationCommand&quot; is a command used to create a new diagram.
          </documentation>
       </annotation>
       <complexType>
@@ -148,7 +147,7 @@ An ActionBarContributor can be shared among several Editors or Views.
          <attribute name="label" type="string" use="required">
             <annotation>
                <documentation>
-                  a translatable name of the creation command, it is displayed in the toolbar as a CreateDiagramAction or in the New Papyrus Model Wizard as an item in the Diagram Kind check-box list.
+                  a translatable name of the creation command. It is displayed in the toolbar as a button text of CreateDiagramAction, this label is also i the New Wizard while selecting the Diagram Kind.
                </documentation>
             </annotation>
          </attribute>
@@ -175,7 +174,7 @@ An ActionBarContributor can be shared among several Editors or Views.
          <attribute name="creationCondition" type="string">
             <annotation>
                <documentation>
-                  this condition is evaluated at diagram creation menu and if the method returning boolean in the interface returns false then the diagram will not be available.
+                  the action in the diagram creation menu is disabled if this condition is evaluated to false.
                </documentation>
                <appInfo>
                   <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.core.extension.commands.ICreationCondition"/>
@@ -198,7 +197,7 @@ An ActionBarContributor can be shared among several Editors or Views.
    <element name="diagramCategory">
       <annotation>
          <documentation>
-            The category of a domain model. A registered category is available in New papyrus Model Wizard, it customizes creation of a model. Diagram category is also used to filter diagram kinds and model templates.
+            The category of a domain model. The registered category is available in New papyrus Model Wizard and it customizes creation of a domain model. It is also used to filter diagram kinds and model templates.
          </documentation>
       </annotation>
       <complexType>
@@ -229,14 +228,14 @@ An ActionBarContributor can be shared among several Editors or Views.
          <attribute name="label" type="string" use="required">
             <annotation>
                <documentation>
-                  a translatable name of the diagram category, it is displayed inthe New Papyrus Model Wizard as an item in the Diagram Category check-box list.
+                  a translatable name of the diagram category, it is displayed in the New Papyrus Model Wizard to select a Diagram Category.
                </documentation>
             </annotation>
          </attribute>
          <attribute name="description" type="string">
             <annotation>
                <documentation>
-                  a description of the diagram category is to be displayed next ti its label in UI.
+                  a description of the diagram category is to be displayed as a tooltip next ti its label.
                </documentation>
             </annotation>
          </attribute>
@@ -269,33 +268,32 @@ An ActionBarContributor can be shared among several Editors or Views.
       <documentation>
          &lt;pre&gt;
 &lt;extension point=&quot;org.eclipse.papyrus.core.papyrusDiagram&quot;&gt;
-	&lt;diagramCategory
+ &lt;diagramCategory
         id=&quot;sysml&quot;
-    	class=&quot;org.eclipse.papyrus.sysml.diagram.common.commands.CreateSysMLModelCommand&quot;
+     class=&quot;org.eclipse.papyrus.sysml.diagram.common.commands.CreateSysMLModelCommand&quot;
         label=&quot;SysML&quot;
         description=&quot;SysML diagrams&quot;
         icon=&quot;icons/category_sysml.gif&quot;&gt;
-	&lt;/diagramCategory&gt; 
+ &lt;/diagramCategory&gt; 
 
-	&lt;editorDiagram
-    	actionBarContributorId=&quot;org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor&quot;
+ &lt;editorDiagram
+     actionBarContributorId=&quot;org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor&quot;
         factoryClass=&quot;org.eclipse.papyrus.sysml.diagram.requirement.RequirementDiagramEditorFactory&quot;
         icon=&quot;icons/obj16/Diagram_Requirement.gif&quot;&gt;
-	&lt;/editorDiagram&gt;
+ &lt;/editorDiagram&gt;
 
-	&lt;creationCommand
+ &lt;creationCommand
         id=&quot;org.eclipse.papyrus.sysml.diagram.requirement.CreateCommand&quot;
-    	creationCommandClass=&quot;org.eclipse.papyrus.sysml.diagram.requirement.RequirementDiagramCreateCommand&quot;
+     creationCommandClass=&quot;org.eclipse.papyrus.sysml.diagram.requirement.RequirementDiagramCreateCommand&quot;
         icon=&quot;icons/obj16/Diagram_Requirement.gif&quot;
         label=&quot;SysML Requirement Diagram&quot;
-		language=&quot;sysml&quot;&gt;
-	&lt;/creationCommand&gt;
+  language=&quot;sysml&quot;&gt;
+ &lt;/creationCommand&gt;
 &lt;/extension&gt;
 &lt;/pre&gt;  
 In this example, a specific editor for SysML Requirement diagram is registered. 
 Besides, a diagram category for SysML diagrams is defined, it has &lt;code&gt;sysml&lt;/code&gt; id. The category specifies a customized creation command &lt;code&gt;org.eclipse.papyrus.sysml.diagram.common.commands.CreateSysMLModelCommand&lt;/code&gt; which applies a profile to the newly-created model. In this example, the category &lt;code&gt;sysml&lt;/code&gt; containes only one diagram kind - Requirement diagram created with &lt;code&gt;org.eclipse.papyrus.sysml.diagram.requirement.CreateCommand&lt;/code&gt;, but it can be used by other diagrams as well.  
-As Requirement diagram belongs to SysML category it will be created with a SysML profile applied to its root.  
-
+As Requirement diagram belongs to SysML category it will be created with a SysML profile applied to its root.
       </documentation>
    </annotation>
 
@@ -333,7 +331,6 @@ All rights reserved. This program and the accompanying materials are made
 available under the terms of the Eclipse Public License v1.0 which accompanies
 this distribution, and is available at &lt;a 
 href=&quot;http://www.eclipse.org/legal/epl-v10.html&quot;&gt;http://www.eclipse.org/legal/epl-v10.html&lt;/a&gt;
-
       </documentation>
    </annotation>
 
