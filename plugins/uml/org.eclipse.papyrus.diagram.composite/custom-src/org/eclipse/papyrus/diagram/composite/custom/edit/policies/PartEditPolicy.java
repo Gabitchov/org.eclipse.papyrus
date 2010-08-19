@@ -170,9 +170,10 @@ public class PartEditPolicy extends AbstractEditPolicy implements NotificationLi
 					//remove the listener on the old type
 					getDiagramEventBroker().removeNotificationListener((Type)oldValue, this);
 
-					//add the listener on the new type
-					getDiagramEventBroker().addNotificationListener(type, this);
-
+					if(type != null) {
+						//add the listener on the new type
+						getDiagramEventBroker().addNotificationListener(type, this);
+					}
 					//updateView
 					updateView();
 				}
