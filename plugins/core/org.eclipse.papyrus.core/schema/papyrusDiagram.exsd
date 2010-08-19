@@ -7,13 +7,13 @@
       </appInfo>
       <documentation>
          &lt;p&gt;
-The &lt;code&gt;org.eclipse.papyrus.core.papyrusDiagram&lt;/code&gt; extension point is used to register a new diagram editor within Papyrus. Once diagram editor is registered it can be used in Papyrus multi-page diagram editor, the editor can have its own icon and label, creation action in the toolbar and possibility to be created using new Papyrus Model wizard.
+The &lt;code&gt;org.eclipse.papyrus.core.papyrusDiagram&lt;/code&gt; extension point is used to register a new diagram editor within Papyrus. Once diagram editor is registered it can be used in Papyrus multi-page diagram editor. The editor can have its own icon and label, creation action in the toolbar and possibility to be created using new Papyrus Model wizard.
 &lt;/p&gt;
 
-&lt;p&gt;Papyrus uses  a term &quot;&lt;b&gt;Diagram Category&lt;/b&gt;&quot; in order to categorize domain models and a term &quot;&lt;b&gt;Diagram Kind&lt;/b&gt;&quot; to specialize a diagram editor for a domain model. Diagram Kind belongs to a particular Diagram Category. Papyrus supports &lt;b&gt;UML&lt;/b&gt;, &lt;b&gt;Profile&lt;/b&gt; and &lt;b&gt;SysML&lt;/b&gt; model types. 
+&lt;p&gt;Papyrus uses  a term &quot;&lt;b&gt;Diagram Category&lt;/b&gt;&quot; in order to categorize domain models and a term &quot;&lt;b&gt;Diagram Kind&lt;/b&gt;&quot; to specialize a diagram editor for a domain model. Diagram Kind should belong to a particular Diagram Category. Papyrus supports &lt;b&gt;UML&lt;/b&gt;, &lt;b&gt;Profile&lt;/b&gt; and &lt;b&gt;SysML&lt;/b&gt; model types. 
 &lt;/p&gt;
 
-&lt;p&gt;Besides, for the given diagram category the user can specify template models - a predefined model which content is copied and thus serves as a template for a newly created diagram, templates can be registered using &lt;code&gt;org.eclipse.papyrus.wizards.templates&lt;/code&gt; extension point. Diagram kinds and available templates are filtered in accordance with the chosen category. For example, if the user choses Profile category, then only Profile diagram kind are available on DiagramKindPage and only ProfileWithBasicTypes template are displayed in the list of available templates.
+&lt;p&gt;Besides, for the given diagram category the user can specify template models - a predefined model which content is copied and thus serves as a template for a newly created diagram. Templates can be registered using &lt;code&gt;org.eclipse.papyrus.wizards.templates&lt;/code&gt; extension point. Diagram kinds and available templates are filtered in accordance with the chosen category. For example, if the user choses &lt;i&gt;Profile&lt;/i&gt; category, then only Profile diagram kind are available on DiagramKindPage and only ProfileWithBasicTypes template is displayed in the list of available templates.
 &lt;/p&gt;
 
 &lt;p&gt;The user is free to use the already existing diagram categories as well as implement his own. 
@@ -83,9 +83,7 @@ Such diagram is a Eclipse Editor.
          <attribute name="actionBarContributorId" type="string">
             <annotation>
                <documentation>
-                  a unique identifier used as a reference for this diagram category. of the ActionBarContributor requested by the editor.
-The ID must match a declared ActionBarContributor.
-If no ID is set, the main ActionBarContributor is used (the one associated to the MultiEditor).
+                  The ID of an ActionBarContributor. If no ID is set, the main ActionBarContributor is used (the one associated to the MultiEditor).
                </documentation>
             </annotation>
          </attribute>
@@ -200,7 +198,7 @@ An ActionBarContributor can be shared among several Editors or Views.
    <element name="diagramCategory">
       <annotation>
          <documentation>
-            The category of a domain model. A registered category is available in New papyrus Model Wizard, it can have a customized creation of a model. Diagram category is also used to filter diagram kinds and model templates.
+            The category of a domain model. A registered category is available in New papyrus Model Wizard, it customizes creation of a model. Diagram category is also used to filter diagram kinds and model templates.
          </documentation>
       </annotation>
       <complexType>
