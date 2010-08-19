@@ -9,9 +9,15 @@
          &lt;p&gt;
 The &lt;code&gt;org.eclipse.papyrus.core.papyrusDiagram&lt;/code&gt; extension point is used to register a new diagram editor within Papyrus. Once diagram editor is registered it can be used in Papyrus multi-page diagram editor, the editor can have its own icon and label, creation action in the toolbar and possibility to be created using new Papyrus Model wizard.
 &lt;/p&gt;
-&lt;p&gt;Diagram category - model level&lt;/p&gt;
-&lt;p&gt;Diagram kind - diagram level&lt;/p&gt;
 
+&lt;p&gt;Papyrus uses  a term &quot;&lt;b&gt;Diagram Category&lt;/b&gt;&quot; in order to categorize domain models and a term &quot;&lt;b&gt;Diagram Kind&lt;/b&gt;&quot; to specialize a diagram editor for a domain model. Diagram Kind belongs to a particular Diagram Category. Papyrus supports &lt;b&gt;UML&lt;/b&gt;, &lt;b&gt;Profile&lt;/b&gt; and &lt;b&gt;SysML&lt;/b&gt; model types. 
+&lt;/p&gt;
+
+&lt;p&gt;Besides, for the given diagram category the user can specify template models - a predefined model which content is copied and thus serves as a template for a newly created diagram, templates can be registered using &lt;code&gt;org.eclipse.papyrus.wizards.templates&lt;/code&gt; extension point. Diagram kinds and available templates are filtered in accordance with the chosen category. For example, if the user choses Profile category, then only Profile diagram kind are available on DiagramKindPage and only ProfileWithBasicTypes template are displayed in the list of available templates.
+&lt;/p&gt;
+
+&lt;p&gt;The user is free to use the already existing diagram categories as well as implement his own. 
+&lt;/p&gt;
 
       </documentation>
    </annotation>
