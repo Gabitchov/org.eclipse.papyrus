@@ -41,10 +41,10 @@ public class MessagePreferencePage extends AbstractPapyrusLinkPreferencePage {
 	}
 
 	/**
-	 * @generated NOT use rectilinear as default routing style
+	 * @generated
 	 */
 	public static void initDefaults(IPreferenceStore store) {
-		store.setDefault("ELEMENT_PapyrusUMLSequenceDiagram_Message.routing.style", Routing.RECTILINEAR);
+
 	}
 
 }
