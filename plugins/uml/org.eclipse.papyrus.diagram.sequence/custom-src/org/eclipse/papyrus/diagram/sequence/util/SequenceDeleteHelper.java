@@ -27,14 +27,12 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
-import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
-import org.eclipse.gmf.runtime.notation.Edge;
-import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.common.commands.DestroyElementPapyrusCommand;
 import org.eclipse.papyrus.diagram.common.helper.DurationConstraintHelper;
 import org.eclipse.papyrus.diagram.common.helper.DurationObservationHelper;
 import org.eclipse.papyrus.diagram.common.helper.TimeConstraintHelper;
@@ -230,8 +228,8 @@ public class SequenceDeleteHelper {
 	 * @param start
 	 * @return
 	 */
-	private static DestroyElementCommand createDestroyElementCommand(EObject eObject) {
-		return new DestroyElementCommand(new DestroyElementRequest(eObject, false));
+	private static ICommand createDestroyElementCommand(EObject eObject) {
+		return new DestroyElementPapyrusCommand(new DestroyElementRequest(eObject, false));
 	}
 
 
@@ -245,8 +243,8 @@ public class SequenceDeleteHelper {
 	 *        the message edit part on which the request is called
 	 */
 	public static void completeDestroyMessageCommand(CompositeTransactionalCommand cmd, EditPart messagePart) {
-		if(messagePart instanceof GraphicalEditPart) {
-			EObject eObject = ((GraphicalEditPart)messagePart).resolveSemanticElement();
+		if(messagePart instanceof IGraphicalEditPart) {
+			EObject eObject = ((IGraphicalEditPart)messagePart).resolveSemanticElement();
 			if(eObject instanceof Message) {
 				completeDestroyMessageCommand((Message)eObject, cmd);
 			}
@@ -266,9 +264,8 @@ public class SequenceDeleteHelper {
 	 * @return the deletion command deleteViewsCmd for convenience
 	 */
 	public static CompoundCommand completeDeleteDestructionEventViewCommand(CompoundCommand deleteViewsCmd, TransactionalEditingDomain editingDomain, EditPart destructionEventPart) {
-		Object model = destructionEventPart.getModel();
-		if(model instanceof Node) {
-			EObject obj = ((Node)model).getElement();
+		if(destructionEventPart instanceof IGraphicalEditPart) {
+			EObject obj = ((IGraphicalEditPart)destructionEventPart).resolveSemanticElement();
 
 			if(obj instanceof DestructionEvent) {
 				LifelineEditPart lifelinePart = SequenceUtil.getParentLifelinePart(destructionEventPart);
@@ -304,35 +301,28 @@ public class SequenceDeleteHelper {
 	 * @return the deletion command deleteViewsCmd for convenience
 	 */
 	public static CompoundCommand completeDeleteMessageViewCommand(CompoundCommand deleteViewsCmd, TransactionalEditingDomain editingDomain, EditPart messagePart) {
-		Object model = messagePart.getModel();
-		if(messagePart instanceof ConnectionNodeEditPart && model instanceof Edge) {
-			EObject obj = ((Edge)model).getElement();
+		if(messagePart instanceof IGraphicalEditPart) {
+			EObject obj = ((IGraphicalEditPart)messagePart).resolveSemanticElement();
 			if(obj instanceof Message) {
 				Message message = (Message)obj;
 				LifelineEditPart srcLifelinePart = SequenceUtil.getParentLifelinePart(((ConnectionNodeEditPart)messagePart).getSource());
 				MessageEnd send = message.getSendEvent();
-				a(deleteViewsCmd, editingDomain, srcLifelinePart, send);
+				addDeleteRelatedTimePartsToCommand(deleteViewsCmd, editingDomain, srcLifelinePart, send);
 
 				LifelineEditPart tgtLifelinePart = SequenceUtil.getParentLifelinePart(((ConnectionNodeEditPart)messagePart).getTarget());
 				MessageEnd receive = message.getReceiveEvent();
-				a(deleteViewsCmd, editingDomain, tgtLifelinePart, receive);
+				addDeleteRelatedTimePartsToCommand(deleteViewsCmd, editingDomain, tgtLifelinePart, receive);
 			}
 		}
 		return deleteViewsCmd;
 	}
 
-	/**
-	 * @param deleteViewsCmd
-	 * @param editingDomain
-	 * @param lifelineEP
-	 * @param send
-	 */
-	private static void a(CompoundCommand deleteViewsCmd, TransactionalEditingDomain editingDomain, LifelineEditPart lifelineEP, MessageEnd send) {
-		if(lifelineEP != null && send instanceof OccurrenceSpecification) {
+	private static void addDeleteRelatedTimePartsToCommand(CompoundCommand deleteViewsCmd, TransactionalEditingDomain editingDomain, LifelineEditPart lifelineEP, MessageEnd messageEnd) {
+		if(lifelineEP != null && messageEnd instanceof OccurrenceSpecification) {
 			for(Object lifelineChild : lifelineEP.getChildren()) {
 				if(lifelineChild instanceof IBorderItemEditPart) {
 					final IBorderItemEditPart timePart = (IBorderItemEditPart)lifelineChild;
-					int positionForEvent = SequenceUtil.positionWhereEventIsLinkedToPart((OccurrenceSpecification)send, timePart);
+					int positionForEvent = SequenceUtil.positionWhereEventIsLinkedToPart((OccurrenceSpecification)messageEnd, timePart);
 					if(positionForEvent != PositionConstants.NONE) {
 						// time part is linked, delete the view
 						Command deleteTimeViewCommand = new ICommandProxy(new DeleteCommand(editingDomain, (View)timePart.getModel()));
@@ -358,9 +348,8 @@ public class SequenceDeleteHelper {
 	 * @return the deletion command deleteViewsCmd for convenience
 	 */
 	public static CompoundCommand completeDeleteExecutionSpecificationViewCommand(CompoundCommand deleteViewsCmd, TransactionalEditingDomain editingDomain, EditPart executionPart) {
-		Object model = executionPart.getModel();
-		if(model instanceof Node) {
-			EObject obj = ((Node)model).getElement();
+		if(executionPart instanceof IGraphicalEditPart) {
+			EObject obj = ((IGraphicalEditPart)executionPart).resolveSemanticElement();
 
 			if(obj instanceof ExecutionSpecification) {
 				ExecutionSpecification execution = (ExecutionSpecification)obj;
@@ -397,9 +386,8 @@ public class SequenceDeleteHelper {
 	 * @return the deletion ICommand cmd for convenience
 	 */
 	public static ICommand completeDestroyExecutionSpecificationCommand(CompositeTransactionalCommand cmd, EditPart executionPart) {
-		Object model = executionPart.getModel();
-		if(model instanceof Node) {
-			EObject obj = ((Node)model).getElement();
+		if(executionPart instanceof IGraphicalEditPart) {
+			EObject obj = ((IGraphicalEditPart)executionPart).resolveSemanticElement();
 
 			if(obj instanceof ExecutionSpecification) {
 				ExecutionSpecification execution = (ExecutionSpecification)obj;
