@@ -18,16 +18,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.draw2d.AutomaticRouter;
-import org.eclipse.draw2d.ConnectionLayer;
 import org.eclipse.draw2d.ConnectionRouter;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.Polyline;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gef.EditPart;
-import org.eclipse.gef.LayerConstants;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.requests.CreateConnectionRequest;
@@ -37,13 +33,10 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
-import org.eclipse.gmf.runtime.draw2d.ui.internal.figures.ConnectionLayerEx;
-import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.gmf.runtime.notation.Routing;
-import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.diagram.sequence.draw2d.routers.MessageRouter;
+import org.eclipse.papyrus.diagram.sequence.draw2d.routers.MessageHorizontalStickRouter;
+import org.eclipse.papyrus.diagram.sequence.draw2d.routers.SelfMessageRouter;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.sequence.util.SequenceRequestConstant;
@@ -67,7 +60,9 @@ public class LifelineChildGraphicalNodeEditPolicy extends SequenceGraphicalNodeE
 	private Polyline durationCreationFeedback = null;
 
 	/** the router to use for messages */
-	public static MessageRouter messageRouter;
+	public static ConnectionRouter selfMessageRouter = new SelfMessageRouter();
+
+	public static ConnectionRouter messageHorizontalStickRouter = new MessageHorizontalStickRouter();
 
 	/**
 	 * Get the command to reconnect the source and move associated time/duration constraints/observation.
@@ -213,43 +208,14 @@ public class LifelineChildGraphicalNodeEditPolicy extends SequenceGraphicalNodeE
 	 * 
 	 * @see org.eclipse.gef.editpolicies.GraphicalNodeEditPolicy#getDummyConnectionRouter(org.eclipse.gef.requests.CreateConnectionRequest)
 	 */
-	protected ConnectionRouter getDummyConnectionRouter(CreateConnectionRequest arg0) {
-		EditPart ep = getHost();
-		if(ep instanceof IGraphicalEditPart) {
-			IGraphicalEditPart gep = ((IGraphicalEditPart)ep);
-			Routing routingVal = Routing.MANUAL_LITERAL;
-			if(gep.getNotationView() != null) {
-				Diagram dgrm = gep.getNotationView().getDiagram();
-				EditPart epfromReg = (EditPart)gep.getViewer().getEditPartRegistry().get(dgrm);
-				if(epfromReg != null)
-					routingVal = (Routing)epfromReg.getAdapter(Routing.class);
-			} else {
-				IPreferenceStore store = (IPreferenceStore)((IGraphicalEditPart)ep).getDiagramPreferencesHint().getPreferenceStore();
-				routingVal = Routing.get(store.getInt(IPreferenceConstants.PREF_LINE_STYLE));
-			}
-
-			ConnectionLayer cLayer = (ConnectionLayer)getLayer(LayerConstants.CONNECTION_LAYER);
-			if(cLayer instanceof ConnectionLayerEx) {
-				ConnectionLayerEx cLayerEx = (ConnectionLayerEx)cLayer;
-				if(routingVal == Routing.MANUAL_LITERAL) {
-					ConnectionRouter router = cLayerEx.getObliqueRouter();
-					// replace the oblique router by the message router
-					if(router instanceof AutomaticRouter) {
-						if(messageRouter == null) {
-
-							messageRouter = new MessageRouter();
-						}
-						((AutomaticRouter)router).setNextRouter(messageRouter);
-					}
-					return router;
-				} else if(routingVal == Routing.RECTILINEAR_LITERAL) {
-					return cLayerEx.getRectilinearRouter();
-				} else if(routingVal == Routing.TREE_LITERAL) {
-					return cLayerEx.getTreeRouter();
-				}
+	@SuppressWarnings("rawtypes")
+	protected ConnectionRouter getDummyConnectionRouter(CreateConnectionRequest req) {
+		if(req instanceof CreateUnspecifiedTypeConnectionRequest) {
+			List types = ((CreateUnspecifiedTypeConnectionRequest)req).getElementTypes();
+			if(types.contains(UMLElementTypes.Message_4004)) {
+				return messageHorizontalStickRouter;
 			}
 		}
-
-		return super.getDummyConnectionRouter(arg0);
+		return selfMessageRouter;
 	}
 }

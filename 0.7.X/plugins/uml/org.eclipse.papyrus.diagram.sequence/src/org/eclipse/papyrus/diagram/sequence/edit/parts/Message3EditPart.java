@@ -13,11 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.edit.parts;
 
-import org.eclipse.draw2d.AutomaticRouter;
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Connection;
-import org.eclipse.draw2d.ConnectionLayer;
-import org.eclipse.draw2d.ConnectionRouter;
+import org.eclipse.draw2d.Cursors;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.PolylineDecoration;
 import org.eclipse.draw2d.RotatableDecoration;
@@ -25,25 +23,20 @@ import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
-import org.eclipse.gef.LayerConstants;
 import org.eclipse.gef.Request;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
-import org.eclipse.gmf.runtime.draw2d.ui.internal.figures.ConnectionLayerEx;
-import org.eclipse.gmf.runtime.notation.NotationPackage;
-import org.eclipse.gmf.runtime.notation.Routing;
-import org.eclipse.gmf.runtime.notation.RoutingStyle;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.edge.UMLEdgeFigure;
-import org.eclipse.papyrus.diagram.sequence.draw2d.routers.MessageRouter;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.CreationOnMessageEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.LifelineChildGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.Message3ItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.MessageConnectionEditPolicy;
+import org.eclipse.papyrus.diagram.sequence.edit.policies.MessageConnectionLineSegEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.util.SequenceUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Font;
@@ -71,39 +64,20 @@ implements ITreeBranchEditPart {
 	}
 
 	/**
-	 * Installs a router on the edit part, depending on the <code>RoutingStyle</code> Use the specific message router rather than the default oblique
-	 * one.
+	 * Installs a specific message router on the edit part.
 	 * 
 	 * @generated NOT
 	 */
 	protected void installRouter() {
-		ConnectionLayer cLayer = (ConnectionLayer)getLayer(LayerConstants.CONNECTION_LAYER);
-		RoutingStyle style = (RoutingStyle)((View)getModel()).getStyle(NotationPackage.Literals.ROUTING_STYLE);
+		getConnectionFigure().setConnectionRouter(LifelineChildGraphicalNodeEditPolicy.selfMessageRouter);
+		getConnectionFigure().setCursor(Cursors.ARROW);
+		refreshBendpoints();
+	}
 
-		if(style != null && cLayer instanceof ConnectionLayerEx) {
-
-			ConnectionLayerEx cLayerEx = (ConnectionLayerEx)cLayer;
-			Routing routing = style.getRouting();
-			if(Routing.MANUAL_LITERAL == routing) {
-				ConnectionRouter router = cLayerEx.getObliqueRouter();
-				// replace the oblique router by the message router
-				if(router instanceof AutomaticRouter) {
-					if(LifelineChildGraphicalNodeEditPolicy.messageRouter == null) {
-
-						LifelineChildGraphicalNodeEditPolicy.messageRouter = new MessageRouter();
-					}
-					((AutomaticRouter)router).setNextRouter(LifelineChildGraphicalNodeEditPolicy.messageRouter);
-				}
-				getConnectionFigure().setConnectionRouter(router);
-			} else if(Routing.RECTILINEAR_LITERAL == routing) {
-				getConnectionFigure().setConnectionRouter(cLayerEx.getRectilinearRouter());
-			} else if(Routing.TREE_LITERAL == routing) {
-				getConnectionFigure().setConnectionRouter(cLayerEx.getTreeRouter());
-			}
-
-		}
-
-		refreshRouterChange();
+	/**
+	 * Ignore routing style since we are using a custom router and a custom ConnectionBendpointEditPolicy.
+	 */
+	protected void refreshRoutingStyles() {
 	}
 
 	/**
@@ -115,6 +89,7 @@ implements ITreeBranchEditPart {
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationOnMessageEditPolicy());
 		installEditPolicy(EditPolicy.CONNECTION_ROLE, new MessageConnectionEditPolicy());
 		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(EditPolicy.CONNECTION_BENDPOINTS_ROLE, new MessageConnectionLineSegEditPolicy());
 	}
 
 	/**
