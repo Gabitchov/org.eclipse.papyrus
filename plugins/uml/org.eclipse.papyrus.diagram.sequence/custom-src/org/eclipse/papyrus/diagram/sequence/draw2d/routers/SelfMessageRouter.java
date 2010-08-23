@@ -25,10 +25,41 @@ import org.eclipse.gmf.runtime.draw2d.ui.internal.routers.ObliqueRouter;
  * 
  * @author vhemery
  */
-public class MessageRouter extends ObliqueRouter {
+@SuppressWarnings("restriction")
+public class SelfMessageRouter extends ObliqueRouter {
+
+	@Override
+	protected void getSelfRelVertices(Connection conn, PointList newLine) {
+		// the only way of accessing to selfRelConnections is to make a fake call to super
+		super.getSelfRelVertices(conn, newLine.getCopy());
+
+		computeSelfRelVertices(conn, newLine);
+	}
+
+	@Override
+	protected boolean checkSelfRelConnection(Connection conn, PointList newLine) {
+		if((conn.getSourceAnchor().getOwner() == conn.getTargetAnchor().getOwner())) {
+			getSelfRelVertices(conn, newLine);
+			return true;
+		} else {
+			return super.checkSelfRelConnection(conn, newLine);
+		}
+	}
 
 	/**
-	 * Method insertSelfRelVertices.
+	 * @param conn
+	 *        the <code>Connection</code> that is to be check if it is a feedback
+	 *        connection or not.
+	 * @return <code>true</code> is it is a feedback connection, <code>false</code> otherwise.
+	 */
+	public static boolean isFeedback(Connection conn) {
+		Dimension dim = new Dimension(100, 100);
+		Dimension dimCheck = dim.getCopy();
+		conn.translateToRelative(dimCheck);
+		return dim.equals(dimCheck);
+	}
+
+	/**
 	 * This method will create a routed line that routes from and to the same figure.
 	 * 
 	 * @param conn
@@ -36,12 +67,7 @@ public class MessageRouter extends ObliqueRouter {
 	 * @param newLine
 	 *        the point list line
 	 */
-	protected void getSelfRelVertices(Connection conn, PointList newLine) {
-		if(conn.getSourceAnchor().getOwner() == null) {
-			return;
-		}
-		// the only way of accessing to selfRelConnections is to make a fake call to super
-		super.getSelfRelVertices(conn, newLine.getCopy());
+	public static void computeSelfRelVertices(Connection conn, PointList newLine) {
 
 		IFigure owner = conn.getSourceAnchor().getOwner();
 		Point middle = owner.getBounds().getCenter();
@@ -87,20 +113,6 @@ public class MessageRouter extends ObliqueRouter {
 		newLine.addPoint(extraPoint1);
 		newLine.addPoint(extraPoint2);
 
-
 		newLine.addPoint(ptE1);
-	}
-
-	/**
-	 * @param conn
-	 *        the <code>Connection</code> that is to be check if it is a feedback
-	 *        connection or not.
-	 * @return <code>true</code> is it is a feedback connection, <code>false</code> otherwise.
-	 */
-	public boolean isFeedback(Connection conn) {
-		Dimension dim = new Dimension(100, 100);
-		Dimension dimCheck = dim.getCopy();
-		conn.translateToRelative(dimCheck);
-		return dim.equals(dimCheck);
 	}
 }
