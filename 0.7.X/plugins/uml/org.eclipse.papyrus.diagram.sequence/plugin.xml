@@ -81,7 +81,7 @@
 	<menuContribution
 			locationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.creatediagram">
 		<command 
-			commandId="org.eclipse.papyrus.diagram.activity.CreateActivityDiagramCommand"
+			commandId="org.eclipse.papyrus.diagram.sequence.CreateSequenceDiagramCommand"
 			icon="icons/obj16/Diagram_Sequence.gif"
 			label="Create a new Sequence Diagram"
 			style="push"
