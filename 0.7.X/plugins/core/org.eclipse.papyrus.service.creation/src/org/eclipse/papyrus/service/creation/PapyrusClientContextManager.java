@@ -35,7 +35,7 @@ public class PapyrusClientContextManager {
 	 */
 	public static Set<IElementType> getAllElementTypes(){
 		HashSet<IElementType> allElementTypes= new HashSet<IElementType>();
-		Iterator<IClientContext>iterator=getAllCreationContext().iterator();
+		Iterator<IClientContext>iterator=getAllPapyrusContext().iterator();
 		while (iterator.hasNext()) {
 			IClientContext iClientContext = (IClientContext) iterator.next();
 			IElementType[] elementTypes=ElementTypeRegistry.getInstance().getMetamodelTypes(iClientContext);
@@ -50,7 +50,7 @@ public class PapyrusClientContextManager {
  * 
  * @return the list of IClientContext which the matcher is an instance of IPapyrusContextMatcher
  */
-	public static Set<IClientContext> getAllCreationContext(){
+	public static Set<IClientContext> getAllPapyrusContext(){
 		Set<IClientContext> result=new HashSet<IClientContext>();
 		Set<IClientContext> contextSet=ClientContextManager.getInstance().getClientContexts();
 		Iterator<IClientContext> iterContext= contextSet.iterator();
