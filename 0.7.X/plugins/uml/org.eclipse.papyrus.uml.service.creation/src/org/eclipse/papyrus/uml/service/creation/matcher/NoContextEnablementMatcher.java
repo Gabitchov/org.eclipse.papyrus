@@ -2,6 +2,7 @@ package org.eclipse.papyrus.uml.service.creation.matcher;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
+import org.eclipse.papyrus.service.creation.IPapyrusContextMatcher;
 
 /**
  * This matcher is used to always disable the context where the semantic
@@ -10,7 +11,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
  * context specification.
  * 
  */
-public class NoContextEnablementMatcher implements IElementMatcher {
+public class NoContextEnablementMatcher implements IPapyrusContextMatcher {
 
 	public boolean matches(EObject eObject) {
 		return false;
