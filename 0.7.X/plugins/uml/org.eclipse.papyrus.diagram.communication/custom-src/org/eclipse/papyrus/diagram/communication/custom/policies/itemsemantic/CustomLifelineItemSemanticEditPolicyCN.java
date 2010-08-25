@@ -16,11 +16,14 @@ package org.eclipse.papyrus.diagram.communication.custom.policies.itemsemantic;
 
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.papyrus.diagram.communication.custom.commands.CustomMessageCreateCommand;
+import org.eclipse.papyrus.diagram.communication.custom.commands.CustomMessageReorientCommand;
 import org.eclipse.papyrus.diagram.communication.edit.commands.CommentAnnotatedElementCreateCommand;
 import org.eclipse.papyrus.diagram.communication.edit.commands.ConnectorDurationObservationCreateCommand;
 import org.eclipse.papyrus.diagram.communication.edit.commands.ConnectorTimeObservationCreateCommand;
 import org.eclipse.papyrus.diagram.communication.edit.commands.ConstraintConstrainedElementCreateCommand;
+import org.eclipse.papyrus.diagram.communication.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.diagram.communication.edit.policies.LifelineItemSemanticEditPolicyCN;
 import org.eclipse.papyrus.diagram.communication.providers.UMLElementTypes;
 
@@ -65,5 +68,16 @@ public class CustomLifelineItemSemanticEditPolicyCN extends LifelineItemSemantic
 
 		return null;
 	}
+
+	@Override
+	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
+
+		switch(getVisualID(req)) {
+		case MessageEditPart.VISUAL_ID:
+			return getGEFWrapper(new CustomMessageReorientCommand(req));
+		}
+		return super.getReorientRelationshipCommand(req);
+	}
+
 
 }

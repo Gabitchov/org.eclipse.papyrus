@@ -68,17 +68,44 @@ public class LifelineItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPol
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		View view = (View)getHost().getModel();
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
-		cmd.setTransactionNestingEnabled(true);
+		cmd.setTransactionNestingEnabled(false);
 
+
+		for(Iterator<?> it = view.getTargetEdges().iterator(); it.hasNext();) {
+			Edge incomingLink = (Edge)it.next();
+			switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
+			case CommentAnnotatedElementEditPart.VISUAL_ID:
+			case ConstraintConstrainedElementEditPart.VISUAL_ID:
+			case ConnectorDurationObservationEditPart.VISUAL_ID:
+			case ConnectorTimeObservationEditPart.VISUAL_ID:
+				DestroyReferenceRequest destroyRefReq = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+				cmd.add(new DestroyReferenceCommand(destroyRefReq));
+				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+				break;
+			case MessageEditPart.VISUAL_ID:
+				DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
+				cmd.add(new DestroyElementCommand(destroyEltReq));
+				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+				break;
+			}
+		}
+
+		for(Iterator<?> it = view.getSourceEdges().iterator(); it.hasNext();) {
+			Edge outgoingLink = (Edge)it.next();
+			switch(UMLVisualIDRegistry.getVisualID(outgoingLink)) {
+			case MessageEditPart.VISUAL_ID:
+				DestroyElementRequest destroyEltReq = new DestroyElementRequest(outgoingLink.getElement(), false);
+				cmd.add(new DestroyElementCommand(destroyEltReq));
+				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+				break;
+			}
+		}
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 		if(annotation == null) {
 			// there are indirectly referenced children, need extra commands: false
 			addDestroyShortcutsCommand(cmd, view);
 			// delete host element
-			List<EObject> todestroy = new ArrayList<EObject>();
-			todestroy.add(req.getElementToDestroy());
-			//cmd.add(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(req));
-			cmd.add(new EMFtoGMFCommandWrapper(new org.eclipse.emf.edit.command.DeleteCommand(getEditingDomain(), todestroy)));
+			cmd.add(new DestroyElementCommand(req));
 		} else {
 			cmd.add(new DeleteCommand(getEditingDomain(), view));
 		}

@@ -68,10 +68,6 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.communication.custom.policies.itemsemantic.CustomLifelineItemSemanticEditPolicyCN"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.communication.custom.edit.policies.LifelineCreationEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy"/>
         <behaviour

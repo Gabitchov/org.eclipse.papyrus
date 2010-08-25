@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.custom.util;
 
+
 /**
  * Enum for message direction (in or out)
  */

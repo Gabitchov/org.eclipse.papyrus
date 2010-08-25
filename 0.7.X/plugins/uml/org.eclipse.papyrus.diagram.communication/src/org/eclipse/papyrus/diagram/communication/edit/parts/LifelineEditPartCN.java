@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
+ *  Saadia Dhouib saadia.dhouib@cea.fr  - Adapted from Composite Structure Diagram
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.edit.parts;
@@ -47,7 +47,6 @@ import org.eclipse.papyrus.diagram.common.editpolicies.QualifiedNameDisplayEditP
 import org.eclipse.papyrus.diagram.common.figure.node.NodeNamedElementFigure;
 import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.diagram.communication.custom.edit.policies.CommunicationGraphicalNodeEditPolicy;
-import org.eclipse.papyrus.diagram.communication.custom.edit.policies.LifelineCreationEditPolicy;
 import org.eclipse.papyrus.diagram.communication.custom.policies.itemsemantic.CustomLifelineItemSemanticEditPolicyCN;
 import org.eclipse.papyrus.diagram.communication.edit.policies.LifelineItemSemanticEditPolicyCN;
 import org.eclipse.papyrus.diagram.communication.part.UMLDiagramEditorPlugin;
@@ -96,7 +95,6 @@ NamedElementEditPart {
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CommunicationGraphicalNodeEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomLifelineItemSemanticEditPolicyCN());
-		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new LifelineCreationEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
