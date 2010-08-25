@@ -103,7 +103,7 @@ public class CustomMessageCreateCommand extends MessageCreateCommand {
 	 * Create a MessageOccurenceSpecification and the call event when a message
 	 * is created
 	 * 
-	 * @generated NOT
+	 * 
 	 */
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
@@ -116,19 +116,18 @@ public class CustomMessageCreateCommand extends MessageCreateCommand {
 		//InteractionFragment targetContainer = (InteractionFragment)getRequest().getParameters().get(CommunicationRequestConstant.SOURCE_MODEL_CONTAINER);
 
 		Message message = CommandHelper.doCreateMessage(container, MessageSort.CREATE_MESSAGE_LITERAL, getSource(), getTarget());
+		//Message message = CommunicationCommandHelper.doCreateMessage(container, getSource(), getTarget());
 		if(message != null) {
 			doConfigure(message, monitor, info);
 			((CreateElementRequest)getRequest()).setNewElement(message);
 			return CommandResult.newOKCommandResult(message);
 		}
 
-		return CommandResult.newErrorCommandResult("There is now valid container for events"); //$NON-NLS-1$
+		return CommandResult.newErrorCommandResult("There is no valid container for events"); //$NON-NLS-1$
 
 	}
 
-	/**
-	 * @generated
-	 */
+
 	@Override
 	protected void doConfigure(Message newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
