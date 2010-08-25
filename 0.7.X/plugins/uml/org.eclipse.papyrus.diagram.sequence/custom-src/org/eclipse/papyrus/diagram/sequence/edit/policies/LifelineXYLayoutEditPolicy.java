@@ -267,8 +267,10 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 			// Check if height is within the limits of the figure
 			Dimension newSizeDelta = adaptSizeDeltaToMaxHeight(executionSpecificationEP.getFigure(), request.getSizeDelta());
 
+			Rectangle oldBounds = executionSpecificationEP.getFigure().getBounds().getCopy();
+
 			// Current bounds of the ExecutionSpecification
-			Rectangle newBounds = executionSpecificationEP.getFigure().getBounds().getCopy();
+			Rectangle newBounds = oldBounds.getCopy();
 
 			// According to the parameters, the new bounds would be the following
 			newBounds.x += request.getMoveDelta().x;
@@ -283,7 +285,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 			// Add also current ExecutionSpecification EditPart
 			notToCheckExecutionSpecificationList.add(executionSpecificationEP);
 
-			newBounds = getExecutionSpecificationNewBoundsForResize(lifelineEP, newBounds, notToCheckExecutionSpecificationList);
+			newBounds = getExecutionSpecificationNewBoundsForResize(lifelineEP, oldBounds, newBounds, notToCheckExecutionSpecificationList);
 			if(newBounds == null) {
 				return null; // UnexecutableCommand.INSTANCE
 			}
@@ -319,6 +321,8 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 	 * 
 	 * @param lifelineEP
 	 *        the lifeline ep
+	 * @param oldBounds
+	 *        The old bounds of the ES
 	 * @param newBounds
 	 *        The new initial bounds
 	 * @param notToCheckExecutionSpecificationList
@@ -326,17 +330,31 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 	 * 
 	 * @return The new bounds of the executionSpecificationEP figure
 	 */
-	protected final static Rectangle getExecutionSpecificationNewBoundsForResize(LifelineEditPart lifelineEP, Rectangle newBounds, List<ShapeNodeEditPart> notToCheckExecutionSpecificationList) {
+	protected final static Rectangle getExecutionSpecificationNewBoundsForResize(LifelineEditPart lifelineEP, Rectangle oldBounds, Rectangle newBounds, List<ShapeNodeEditPart> notToCheckExecutionSpecificationList) {
 		// Lifeline's figure where the child is drawn
 		Rectangle dotLineBounds = lifelineEP.getPrimaryShape().getFigureLifelineDotLineFigure().getBounds();
 
-		// if ExecutionSpecification is move before the lifeline
-		if(newBounds.y < dotLineBounds.y || newBounds.x < dotLineBounds.x || newBounds.x > dotLineBounds.right()) {
+		// if ExecutionSpecification is resize outside of the lifeline up bound
+		if(newBounds.y <= dotLineBounds.y) {
 			return null;
 		}
 
 		List<ShapeNodeEditPart> toCheckExecutionSpecificationList = lifelineEP.getChildShapeNodeEditPart();
 		toCheckExecutionSpecificationList.removeAll(notToCheckExecutionSpecificationList);
+
+		ShapeNodeEditPart parent = getParent(oldBounds, toCheckExecutionSpecificationList);
+
+		// forbid resize if the new bounds exceed Y-wise the bounds of a non-parent ES
+		for(ShapeNodeEditPart esPart : toCheckExecutionSpecificationList) {
+			Rectangle esBounds = esPart.getFigure().getBounds();
+			int esYBottom = esBounds.y + esBounds.height;
+			if(esPart != parent) {
+				if(((oldBounds.y + oldBounds.height) <= esBounds.y && (newBounds.y + newBounds.height) >= esBounds.y) || 
+					(oldBounds.y >= esYBottom && newBounds.y <= esYBottom)) {
+					return null;
+				}
+			}
+		}
 
 		// Change to relative bounds of the LifelineEP
 		newBounds.x -= dotLineBounds.x;
@@ -491,14 +509,14 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 		toCheckExecutionSpecificationList.removeAll(notToCheckExecutionSpecificationList);
 
 		// Check first if there is contact with any of the existing ExecutionSpecification
-		Rectangle parentBounds = getParent(newBounds, toCheckExecutionSpecificationList);
+		ShapeNodeEditPart parent = getParent(newBounds, toCheckExecutionSpecificationList);
 
-		if(parentBounds == null) {
+		if(parent == null) {
 			// No mother, center position
 			int width = newBounds.width > 0 ? newBounds.width : EXECUTION_INIT_WIDTH;
 			newBounds.x = dotLineBounds.x + dotLineBounds.width / 2 - width / 2;
 		} else {
-
+			Rectangle parentBounds = parent.getFigure().getBounds();
 			int width = parentBounds.width > 0 ? parentBounds.width : EXECUTION_INIT_WIDTH;
 			newBounds.x = parentBounds.x + width / 2 + 1;
 		}
@@ -517,10 +535,10 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 	 *        the child bounds
 	 * @param toCheckExecutionSpecificationList
 	 *        List of EditPart to check
-	 * @return The parent bounds
+	 * @return The parent
 	 */
-	protected final static Rectangle getParent(Rectangle childBounds, List<ShapeNodeEditPart> toCheckExecutionSpecificationList) {
-		Rectangle parentBounds = null;
+	protected final static ShapeNodeEditPart getParent(Rectangle childBounds, List<ShapeNodeEditPart> toCheckExecutionSpecificationList) {
+		ShapeNodeEditPart parent = null;
 		// Loop through the ExecutionSpecification list and try to find the most to the right
 		// ExecutionSpecification within the executionSpecificationEP Y-axis bounds
 		Rectangle externalBounds = childBounds.getCopy();
@@ -529,12 +547,12 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 			externalBounds.x = externalExecutionSpecificationBounds.x;
 			externalBounds.width = externalExecutionSpecificationBounds.width;
 			if(externalExecutionSpecificationBounds.touches(externalBounds)) {
-				if(parentBounds == null || externalExecutionSpecificationBounds.x > parentBounds.x) {
-					parentBounds = externalExecutionSpecificationBounds;
+				if(parent == null || externalExecutionSpecificationBounds.x > parent.getFigure().getBounds().x) {
+					parent = externalExecutionSpecificationEP;
 				}
 			}
 		}
-		return parentBounds;
+		return parent;
 	}
 
 	/**
