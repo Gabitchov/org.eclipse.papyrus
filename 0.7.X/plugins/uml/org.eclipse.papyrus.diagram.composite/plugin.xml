@@ -2753,12 +2753,12 @@
          id="org.eclipse.papyrus.diagram.composite.relatedviewer"
          objectClass="org.eclipse.papyrus.diagram.common.editparts.NamedElementEditPart">
       <action
-            class="org.eclipse.papyrus.diagram.composite.custom.actions.ShowElementAction"
-            definitionId="View Related"
+            class="org.eclipse.papyrus.diagram.composite.custom.actions.ShowHideRelatedContentsAction"
+            definitionId="org.eclipse.papyrus.diagram.composite.commands.ShowHideRelatedContentsCommand"
             enablesFor="1"
-            icon="icons/fantom.gif"
+            icon="icons/fantomRelated.gif"
             id="org.eclipse.papyrus.diagram.composite.setview"
-            label="Show/Hide &amp;Related Properties/Ports"
+            label="Show/Hide &amp;Related Contents"
             menubarPath="filtersMenu/expandFilterGroup">
       </action>
       <visibility>
@@ -2769,35 +2769,33 @@
          </or>
       </visibility>
    </objectContribution>
-   <objectContribution
-         adaptable="false"
-         id="org.eclipse.papyrus.diagram.composite.inheritedviewer"
-         objectClass="org.eclipse.papyrus.diagram.common.editparts.NamedElementEditPart">
-      <action
-            class="org.eclipse.papyrus.diagram.composite.custom.actions.ShowElementAction"
-            definitionId="View Inherited"
-            enablesFor="1"
-            icon="icons/fantom.gif"
-            id="org.eclipse.papyrus.diagram.composite.setview"
-            label="Show/Hide &amp;Inherited Properties/Ports"
-            menubarPath="filtersMenu/expandFilterGroup">
-      </action>
-      <visibility>
-         <or>
-            <objectClass
-                  name="org.eclipse.papyrus.diagram.composite.edit.parts.ClassCompositeEditPart">
-            </objectClass>
-            <objectClass
-                  name="org.eclipse.papyrus.diagram.composite.edit.parts.ClassCompositeEditPartCN">
-            </objectClass>
-            <objectClass
-                  name="org.eclipse.papyrus.diagram.composite.edit.parts.DataTypeEditPart">
-            </objectClass>
-            <objectClass
-                  name="org.eclipse.papyrus.diagram.composite.edit.parts.DataTypeEditPartCN">
-            </objectClass>
-         </or></visibility>
-   </objectContribution>
    </extension>
+<extension
+      point="org.eclipse.ui.commands">
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         defaultHandler="org.eclipse.papyrus.diagram.composite.custom.actions.ShowHideRelatedContentsHandler"
+         description="Call the Show/Hide Related Contents Command"
+         id="org.eclipse.papyrus.diagram.composite.commands.ShowHideRelatedContentsCommand"
+         name="Show/Hide Related Contents Command">
+   </command>
+</extension>
+<extension
+      point="org.eclipse.ui.menus">
+   <menuContribution
+         locationURI="menu:org.eclipse.papyrus.common.showhide.toolbar.command">
+      <command
+            commandId="org.eclipse.papyrus.diagram.composite.commands.ShowHideRelatedContentsCommand"
+            icon="icons/fantomRelated.gif"
+            label="Show/Hide Related Contents"
+            mnemonic="&amp;R"
+            style="push"
+            tooltip="The Show/Hide Related Contents Action">
+         <visibleWhen
+               checkEnabled="true">
+         </visibleWhen>
+      </command>
+   </menuContribution>
+</extension>
    
 </plugin>

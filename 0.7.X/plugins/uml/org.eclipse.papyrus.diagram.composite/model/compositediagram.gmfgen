@@ -352,6 +352,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;REMOVE_ORPHAN_VIEW&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideRelatedContentsEditPolicy.SHOW_HIDE_RELATED_CONTENTS_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideRelatedContentsEditPolicy"/>
         <modelFacet
             modelElementSelector="/0/@expressionProviders/@providers.0/@expressions.2">
           <metaClass

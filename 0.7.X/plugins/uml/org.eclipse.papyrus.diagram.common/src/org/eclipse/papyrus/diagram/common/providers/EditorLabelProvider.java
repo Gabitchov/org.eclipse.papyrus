@@ -26,6 +26,8 @@ import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Collaboration;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.DataType;
+import org.eclipse.uml2.uml.Enumeration;
+import org.eclipse.uml2.uml.EnumerationLiteral;
 import org.eclipse.uml2.uml.FunctionBehavior;
 import org.eclipse.uml2.uml.InformationItem;
 import org.eclipse.uml2.uml.Interaction;
@@ -39,9 +41,11 @@ import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.ProtocolStateMachine;
 import org.eclipse.uml2.uml.Reception;
+import org.eclipse.uml2.uml.Signal;
 import org.eclipse.uml2.uml.StateMachine;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.Type;
+import org.eclipse.uml2.uml.UseCase;
 
 
 /**
@@ -56,7 +60,13 @@ public class EditorLabelProvider implements ILabelProvider {
 	/** icon for a class */
 	public static final String ICON_CLASS = "/icons/Class.gif"; //$NON-NLS-1$
 
-	/** icon for a datatype */
+	/** icon for an Enumeration */
+	public static final String ICON_ENUMERATION = "/icons/Enumeration.gif"; //$NON-NLS-1$
+
+	/** icon for an EnumerationLiteral */
+	public static final String ICON_ENUMERATION_LITERAL = "/icons/EnumerationLiteral.gif"; //$NON-NLS-1$
+
+	/** icon for a DataType */
 	public static final String ICON_DATATYPE = "/icons/DataType.gif"; //$NON-NLS-1$
 
 	/** icon for a stereotype */
@@ -119,6 +129,12 @@ public class EditorLabelProvider implements ILabelProvider {
 	/** icon for a constraint */
 	public static final String ICON_CONSTRAINT = "/icons/obj16/Constraint.gif"; //$NON-NLS-1$
 
+	/** icon for a constraint */
+	public static final String ICON_SIGNAL = "/icons/obj16/Signal.gif"; //$NON-NLS-1$
+
+	/** icon for a constraint */
+	public static final String ICON_USECASE = "/icons/obj16/Usecase.gif"; //$NON-NLS-1$
+
 	/**
 	 * 
 	 * @see org.eclipse.jface.viewers.IBaseLabelProvider#addListener(org.eclipse.jface.viewers.ILabelProviderListener)
@@ -174,7 +190,16 @@ public class EditorLabelProvider implements ILabelProvider {
 			element = ((View)((EditPart)element).getModel()).getElement();
 		}
 
-		if(element instanceof Stereotype) {
+
+		if(element instanceof UseCase) {
+			return Activator.getPluginIconImage(Activator.ID, ICON_USECASE);
+		} else if(element instanceof Signal) {
+			return Activator.getPluginIconImage(Activator.ID, ICON_SIGNAL);
+		} else if(element instanceof Enumeration) {
+			return Activator.getPluginIconImage(Activator.ID, ICON_ENUMERATION);
+		} else if(element instanceof EnumerationLiteral) {
+			return Activator.getPluginIconImage(Activator.ID, ICON_ENUMERATION_LITERAL);
+		} else if(element instanceof Stereotype) {
 			return Activator.getPluginIconImage(Activator.ID, ICON_STEREOTYPE);
 		} else if(element instanceof Interface) {
 			return Activator.getPluginIconImage(Activator.ID, ICON_INTERFACE);
@@ -221,7 +246,7 @@ public class EditorLabelProvider implements ILabelProvider {
 		} else if(element instanceof Operation) {
 			return Activator.getPluginIconImage(Activator.ID, ICON_OPERATION);
 		} else if(element instanceof BasicCompartment) {
-			return Activator.getPluginIconImage(Activator.ID, ICON_COMPARTMENT);
+			Activator.getPluginIconImage(Activator.ID, ICON_COMPARTMENT);
 		}
 		return null;
 	}

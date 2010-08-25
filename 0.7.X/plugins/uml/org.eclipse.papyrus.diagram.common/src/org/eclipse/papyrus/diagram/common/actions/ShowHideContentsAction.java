@@ -78,7 +78,22 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 	 * 
 	 */
 	public ShowHideContentsAction() {
-		super(title, message, ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY);
+		this(Messages.ShowHideContentsAction_Title, Messages.ShowHideContentsAction_Message, ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY);
+	}
+
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param title
+	 *        title for the dialog
+	 * @param message
+	 *        message for the dialog
+	 * @param editPolicyKey
+	 *        EditPolicy used for this action
+	 */
+	public ShowHideContentsAction(String title, String message, String editPolicyKey) {
+		super(title, message, editPolicyKey);
 	}
 
 
@@ -148,7 +163,7 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 		for(EditPart current : this.selectedElements) {
 			//the selected elements which aren't Classifier are ignored
 			if(((View)current.getModel()).getElement() instanceof Classifier) {
-				this.representations.add(new CustomEditPartRepresentation(current));
+				this.representations.add(new CustomEditPartRepresentation(current, (Classifier)((View)current.getModel()).getElement()));
 			}
 		}
 		this.setEditorLabelProvider(new CustomEditorLabelProvider());
@@ -205,7 +220,7 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 		}
 
 		//the command to show element
-		Point propertyLocation = new Point(increment, increment);
+		Point propertyLocation = new Point();
 		Point portLocation = new Point(0, -2 * increment + 1);
 		for(Object current : this.viewsToCreate) {
 			EditPartRepresentation rep = findEditPartRepresentation(current);
@@ -445,7 +460,7 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 	 * EditorLabelProvider for the {@link CheckedTreeSelectionDialog}
 	 * 
 	 */
-	protected class CustomEditorLabelProvider extends EditorLabelProvider {
+	public class CustomEditorLabelProvider extends EditorLabelProvider {
 
 		/**
 		 * 
@@ -457,7 +472,7 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 		@Override
 		public Image getImage(Object element) {
 			if(element instanceof EditPartRepresentation) {
-				element = ((View)((EditPartRepresentation)element).getRepresentedEditPart().getModel()).getElement();
+				element = ((EditPartRepresentation)element).getUMLElement();
 			} else if(element instanceof ClassifierRepresentation) {
 				element = ((ClassifierRepresentation)element).getRepresentedClassifier();
 			}
@@ -474,7 +489,7 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 		@Override
 		public String getText(Object element) {
 			if(element instanceof EditPartRepresentation) {
-				element = ((View)((EditPartRepresentation)element).getRepresentedEditPart().getModel()).getElement();
+				element = ((EditPartRepresentation)element).getUMLElement();
 			} else if(element instanceof ClassifierRepresentation) {
 				element = ((ClassifierRepresentation)element).getRepresentedClassifier();
 			}
@@ -561,7 +576,7 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 	 * Content provider for the {@link CheckedTreeSelectionDialog}
 	 * 
 	 */
-	protected class ContentProvider implements ITreeContentProvider {
+	public class ContentProvider implements ITreeContentProvider {
 
 		/**
 		 * 
@@ -610,7 +625,7 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 			List<NamedElement> members = new ArrayList<NamedElement>();
 			EList<NamedElement> localMembers = null;
 			if(parentElement instanceof EditPartRepresentation) {
-				EObject myClassifier = ((View)((EditPartRepresentation)parentElement).getRepresentedEditPart().getModel()).getElement();
+				EObject myClassifier = ((EditPartRepresentation)parentElement).getUMLElement();
 				if(myClassifier instanceof Classifier) {
 					localMembers = ((Classifier)myClassifier).getOwnedMembers();
 					for(NamedElement namedElement : localMembers) {
@@ -643,7 +658,8 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 			if(!(element instanceof EditPartRepresentation)) {
 				EditPartRepresentation rep = findEditPartRepresentation(element);
 				if(rep != null) {
-					Classifier classifier = (Classifier)((View)rep.getRepresentedEditPart().getModel()).getElement();
+
+					Classifier classifier = (Classifier)((EditPartRepresentation)element).getUMLElement();
 					if(classifier.getOwnedMembers().contains(element)) {
 						return rep;
 					} else {
@@ -656,7 +672,6 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 				}
 			}
 			return null;
-
 		}
 
 		/**
@@ -690,9 +705,10 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 		 * Constructor.
 		 * 
 		 * @param representedEditPart
+		 * @param classifier
 		 */
-		public CustomEditPartRepresentation(EditPart representedEditPart) {
-			super(representedEditPart);
+		public CustomEditPartRepresentation(EditPart representedEditPart, Classifier classifier) {
+			super(representedEditPart, classifier);
 		}
 
 		/**
@@ -704,32 +720,32 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 		protected void initRepresentation() {
 			super.initRepresentation();
 			this.superClasses = new ArrayList<ShowHideContentsAction.ClassifierRepresentation>();
-			EObject myClassifier = ((View)representedEditPart.getModel()).getElement();
-			if(myClassifier instanceof Classifier) {
-				EList<Classifier> parents = ((Classifier)myClassifier).allParents();
+			if(this.UMLElement instanceof Classifier) {
+				EList<Classifier> parents = ((Classifier)UMLElement).allParents();
 				for(Classifier classifier : parents) {
 					superClasses.add(new ClassifierRepresentation(classifier, this));
 				}
-			}
 
-			/*
-			 * build the list of the elements to select
-			 * we suggest only the elements which can be displayed in the shown compartments
-			 */
-			this.elementsToSelect = new ArrayList<Object>();
-			EList<NamedElement> members = ((Classifier)myClassifier).getMembers();
-			for(NamedElement namedElement : members) {
-				View compartment = getCompartmentForCreation(this.representedEditPart, namedElement);
-				if(compartment != null) {
-					this.elementsToSelect.add(namedElement);
 
-					//build the initial selection
-					EList<?> childrenView = compartment.getVisibleChildren();
-					for(Object object : childrenView) {
-						if(object instanceof View) {
-							if(((View)object).getElement() == namedElement) {
-								this.initialSelection.add(namedElement);
-								break;
+				/*
+				 * build the list of the elements to select
+				 * we suggest only the elements which can be displayed in the shown compartments
+				 */
+				this.elementsToSelect = new ArrayList<Object>();
+				EList<NamedElement> members = ((Classifier)UMLElement).getMembers();
+				for(NamedElement namedElement : members) {
+					View compartment = getCompartmentForCreation(this.representedEditPart, namedElement);
+					if(compartment != null) {
+						this.elementsToSelect.add(namedElement);
+
+						//build the initial selection
+						EList<?> childrenView = compartment.getVisibleChildren();
+						for(Object object : childrenView) {
+							if(object instanceof View) {
+								if(((View)object).getElement() == namedElement) {
+									this.initialSelection.add(namedElement);
+									break;
+								}
 							}
 						}
 					}

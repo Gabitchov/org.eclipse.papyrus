@@ -37,6 +37,7 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.CheckedTreeSelectionDialog;
+import org.eclipse.uml2.uml.Element;
 
 /**
  * 
@@ -81,8 +82,12 @@ public abstract class AbstractShowHideAction implements IActionDelegate, IWorkbe
 	 * 
 	 * Constructor.
 	 * 
+	 * @param title
+	 *        title for the dialog
+	 * @param message
+	 *        message for the dialog
 	 * @param editPolicyKey
-	 *        the editpolicy used to do the action
+	 *        the EditPolicy used for this action
 	 */
 	public AbstractShowHideAction(String title, String message, String editPolicyKey) {
 		this.editPolicyKey = editPolicyKey;
@@ -342,8 +347,21 @@ public abstract class AbstractShowHideAction implements IActionDelegate, IWorkbe
 		/** the possible element to show/hide */
 		protected List<Object> elementsToSelect;
 
-		public EditPartRepresentation(EditPart representedEditPart) {
+		/** the UML element represented by the EditPart */
+		protected Element UMLElement;
+
+		/**
+		 * 
+		 * Constructor.
+		 * 
+		 * @param representedEditPart
+		 *        the represented EditPart
+		 * @param umlElement
+		 *        the UMLElement represented by EditPartRepresentation
+		 */
+		public EditPartRepresentation(EditPart representedEditPart, Element umlElement) {
 			this.representedEditPart = representedEditPart;
+			this.UMLElement = umlElement;
 			initRepresentation();
 		}
 
@@ -355,6 +373,16 @@ public abstract class AbstractShowHideAction implements IActionDelegate, IWorkbe
 		 */
 		public EditPart getRepresentedEditPart() {
 			return this.representedEditPart;
+		}
+
+		/**
+		 * Getter for {@link #UMLElement}
+		 * 
+		 * @return
+		 *         {@link #UMLElement}
+		 */
+		public Element getUMLElement() {
+			return this.UMLElement;
 		}
 
 		/**
