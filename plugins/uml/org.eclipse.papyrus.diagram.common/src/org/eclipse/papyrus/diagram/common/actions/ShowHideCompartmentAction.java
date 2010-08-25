@@ -88,7 +88,12 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 
 	}
 
-
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.diagram.common.actions.AbstractShowHideAction#buildShowHideElementsList(java.lang.Object[])
+	 * 
+	 * @param results
+	 */
 	@Override
 	protected void buildShowHideElementsList(Object[] results) {
 		super.buildShowHideElementsList(results);
@@ -266,7 +271,7 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 		@Override
 		public Image getImage(Object element) {
 			if(element instanceof EditPartRepresentation) {
-				element = ((View)((EditPartRepresentation)element).getRepresentedEditPart().getModel()).getElement();
+				element = ((EditPartRepresentation)element).getUMLElement();
 			}
 			return super.getImage(element);
 		}
@@ -282,7 +287,7 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 		@Override
 		public String getText(Object element) {
 			if(element instanceof EditPartRepresentation) {
-				element = ((View)((EditPartRepresentation)element).getRepresentedEditPart().getModel()).getElement();
+				element = ((EditPartRepresentation)element).getUMLElement();
 			}
 
 			if(element instanceof BasicCompartment) {
@@ -418,7 +423,7 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 		 * @param editpart
 		 */
 		public CustomEditPartRepresentation(EditPart editpart) {
-			super(editpart);
+			super(editpart, (Element)((View)editpart.getModel()).getElement());
 			init();
 
 		}

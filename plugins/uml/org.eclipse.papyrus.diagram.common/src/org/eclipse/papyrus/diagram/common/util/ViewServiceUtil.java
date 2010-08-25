@@ -37,17 +37,19 @@ public class ViewServiceUtil {
 	 */
 	public static void forceLoad() {
 		IEditorPart activeEditor = MDTUtil.getActiveEditor();
-		Diagram diagram = ((PapyrusMultiDiagramEditor)activeEditor).getDiagram();
-		String diagramSemanticHint = diagram.getType();
-		DiagramEditPart host = ((PapyrusMultiDiagramEditor)activeEditor).getDiagramEditPart();
+		if(activeEditor != null) {
+			Diagram diagram = ((PapyrusMultiDiagramEditor)activeEditor).getDiagram();
+			String diagramSemanticHint = diagram.getType();
+			DiagramEditPart host = ((PapyrusMultiDiagramEditor)activeEditor).getDiagramEditPart();
 
-		//When we don't have the semanticHint, the command can't be executed, if the ViewService is not started
-		//The goal of this class is to launch the view service
-		ViewDescriptor descriptor = new ViewDescriptor(new EObjectAdapter(diagram), Diagram.class, diagramSemanticHint, ViewUtil.APPEND, false, ((IGraphicalEditPart)host).getDiagramPreferencesHint());
-		CreateCommand dummyCommand = new CreateCommand(((IGraphicalEditPart)host).getEditingDomain(), descriptor, ((View)host.getModel()));
+			//When we don't have the semanticHint, the command can't be executed, if the ViewService is not started
+			//The goal of this class is to launch the view service
+			ViewDescriptor descriptor = new ViewDescriptor(new EObjectAdapter(diagram), Diagram.class, diagramSemanticHint, ViewUtil.APPEND, false, ((IGraphicalEditPart)host).getDiagramPreferencesHint());
+			CreateCommand dummyCommand = new CreateCommand(((IGraphicalEditPart)host).getEditingDomain(), descriptor, ((View)host.getModel()));
 
-		//this action force the load of the ViewService
-		dummyCommand.canExecute();
+			//this action force the load of the ViewService
+			dummyCommand.canExecute();
+		}
 	}
 
 }
