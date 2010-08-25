@@ -13,6 +13,7 @@ package org.eclipse.papyrus.properties.runtime.controller;
 
 import java.util.List;
 
+import org.eclipse.core.commands.operations.IUndoableOperation;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.papyrus.properties.runtime.controller.descriptor.IPropertyEditorControllerDescriptor;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
@@ -80,5 +81,85 @@ public interface IPropertyEditorController {
 	 * Refresh the content of the editor, given values in the model.
 	 */
 	public void refreshDisplay();
+
+	/**
+	 * Moves the given list of Objects in the list
+	 * 
+	 * @param indexes
+	 *        the indexes of objects to move
+	 * @param move
+	 *        the delta for the index (0: stays at the same place, -1: everything move upper, +2: everything moves 2 index further)
+	 * @return the operation that moves the elements or <code>null</code>
+	 */
+	public IUndoableOperation getMoveCurrentValuesOperation(List<Integer> indexes, int move);
+
+	/**
+	 * Indicates if the values can be moved in the feature
+	 * 
+	 * @param indexes
+	 *        the indexes of objects to move
+	 * @param move
+	 *        the delta for the index (0: stays at the same place, -1: everything move upper, +2: everything moves 2 index further)
+	 * @return <code>true</code> if the values can be moved, else <code>false</code>
+	 */
+	public boolean canMoveValues(List<Integer> indexes, int move);
+
+	/**
+	 * Returns the operation to create a new value for this property
+	 * 
+	 * @return the operation to create a new value for this property
+	 */
+	public List<IUndoableOperation> getCreateValueOperations();
+
+	/**
+	 * Returns <code>true</code> if the controller can create a new value for the property
+	 * 
+	 * @return <code>true</code> if the controller can create a new value for the property
+	 */
+	public boolean canCreateValueOperations();
+
+	/**
+	 * Returns the operation to delete a value for this property
+	 * 
+	 * @param indexes
+	 *        list of indexes for values to delete (not used in case of single valued proeprty)
+	 * @return the operation to delete a value for this property
+	 */
+	public IUndoableOperation getDeleteValueOperation(List<Integer> indexes);
+
+	/**
+	 * Returns <code>true</code> if the controller can delete a value for the property
+	 * 
+	 * @return <code>true</code> if the controller can delete a value for the property
+	 */
+	public boolean canDeleteValueOperation();
+
+	/**
+	 * Returns the operation to edit a value for this property
+	 * 
+	 * @param index
+	 *        the index of the value to set
+	 * @param parent
+	 *        the composite parent used for user interface
+	 * @param value
+	 *        the value to set
+	 * 
+	 * @return the operation to edit a value for this property
+	 */
+	public IUndoableOperation getEditValueOperation(int index, Composite parent, Object value);
+
+	/**
+	 * Returns <code>true</code> if the controller can edit a value for the property
+	 * 
+	 * @param index
+	 *        the index of the value to set
+	 * @param parent
+	 *        the composite parent used for user interface
+	 * @param value
+	 *        the value to set
+	 * 
+	 * @return <code>true</code> if the controller can edit a value for the property
+	 */
+	public boolean canCreateEditOperation(int index, Composite parent, Object value);
 
 }

@@ -68,6 +68,14 @@
             id="org.eclipse.papyrus.properties.runtime.multipleStructuralFeaturesPropertyEditor"
             typeValidator="org.eclipse.papyrus.properties.runtime.propertyeditor.MultipleStructuralFeaturesPropertyEditorValidator">
       </PropertyEditor>
+      <PropertyEditor
+            allowMultiValue="true"
+            class="org.eclipse.papyrus.properties.runtime.propertyeditor.MultiplePrimitiveTypedPropertyEditor"
+            description="This is a basic editor for multiple primitive typed values"
+            factory="org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.MultiplePrimitiveTypedPropertyEditorDescriptorFactory"
+            id="org.eclipse.papyrus.properties.runtime.multiplePrimitiveTypedPropertyEditor"
+            typeValidator="org.eclipse.papyrus.properties.runtime.propertyeditor.MultiplePrimitiveTypedPropertyEditorValidator">
+      </PropertyEditor>
    </propertyEditorProvider>
 </extension>
 <extension

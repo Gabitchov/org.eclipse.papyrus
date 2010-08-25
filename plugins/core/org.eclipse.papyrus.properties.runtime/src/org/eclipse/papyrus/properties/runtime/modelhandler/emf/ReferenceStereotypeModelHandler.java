@@ -11,9 +11,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.runtime.modelhandler.emf;
 
+import java.util.List;
+
+import org.eclipse.core.commands.operations.IUndoableOperation;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.properties.runtime.Activator;
+import org.eclipse.swt.widgets.Composite;
 
 
 /**
@@ -56,5 +60,14 @@ public class ReferenceStereotypeModelHandler extends EMFStereotypeFeatureModelHa
 	 */
 	public String getId() {
 		return ID;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public List<IUndoableOperation> getCreateValueOperations(List<? extends EObject> objectsToEdit, Composite parent) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
