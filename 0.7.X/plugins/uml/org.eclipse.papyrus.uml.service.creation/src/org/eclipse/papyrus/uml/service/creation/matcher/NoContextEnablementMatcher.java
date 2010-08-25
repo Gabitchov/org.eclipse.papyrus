@@ -1,7 +1,6 @@
 package org.eclipse.papyrus.uml.service.creation.matcher;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
 import org.eclipse.papyrus.service.creation.IPapyrusContextMatcher;
 
 /**
