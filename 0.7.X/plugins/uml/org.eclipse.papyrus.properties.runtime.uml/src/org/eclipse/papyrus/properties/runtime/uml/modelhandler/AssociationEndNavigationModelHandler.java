@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.eclipse.core.commands.operations.IUndoableOperation;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -24,6 +25,7 @@ import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IBounded
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
 import org.eclipse.papyrus.properties.runtime.uml.Activator;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -209,5 +211,61 @@ public class AssociationEndNavigationModelHandler implements IEMFModelHandler {
 			}
 		}
 
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public List<IUndoableOperation> getCreateValueOperations(List<? extends EObject> objectsToEdit, Composite parent) {
+		return null;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public boolean canCreateValueOperations(List<? extends EObject> objectsToEdit) {
+		return false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public IUndoableOperation getDeleteValueOperation(List<? extends EObject> objectsToEdit, Composite parent, List<Integer> indexes) {
+		return null;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public boolean canCreateDeleteValueOperation(List<? extends EObject> objectsToEdit) {
+		return false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public IUndoableOperation getEditValueOperation(List<? extends EObject> objectsToEdit, int index, Composite parent, Object value) {
+		return null;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public boolean canCreateEditValueOperation(List<? extends EObject> objectsToEdit) {
+		return false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public IUndoableOperation getMoveValueOperation(List<? extends EObject> objectsToEdit, List<Integer> indexes, Composite parent, int delta) {
+		return null;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public boolean canCreateMoveValueOperation(List<? extends EObject> objectsToEdit, List<Integer> indexes, Composite parent, int delta) {
+		return false;
 	}
 }

@@ -5,7 +5,6 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.core.commands.operations.IUndoableOperation;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
@@ -282,18 +281,5 @@ public class ReferenceStateBeanPropertyEditorController extends StateBeanPropert
 		return labelProvider;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public IUndoableOperation getMoveCurrentValuesOperation(List<Object> objects, int move) {
-		return null;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public boolean canMoveValues() {
-		return false;
-	}
 
 }

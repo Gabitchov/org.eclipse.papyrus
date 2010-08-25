@@ -13,7 +13,6 @@ package org.eclipse.papyrus.properties.runtime.controller;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.core.commands.operations.IUndoableOperation;
@@ -37,7 +36,6 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.IEditHelper;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.Viewer;
@@ -308,153 +306,5 @@ public class EMFTEReferenceController extends EMFTStructuralFeatureController im
 			Activator.log.error(e);
 		}
 		return undoableOperation.reduce();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public IUndoableOperation getMoveCurrentValuesOperation(List<Object> objects, int move) {
-		IUndoableOperation undoableOperation = null;
-		EClass eClass = retrieveEClass();
-		if(eClass == null || getObjectsToEdit() == null || getObjectsToEdit().size() == 0 || !(getModelHandler() instanceof EMFFeatureModelHandler)) {
-			return undoableOperation;
-		}
-		EObject eObject = getObjectsToEdit().get(0);
-		// retrieve the current value (should be a list)
-		EStructuralFeature feature = ((EMFFeatureModelHandler)getModelHandler()).getFeatureByName(eObject);
-		Object currentValue = eObject.eGet(feature);
-		if(currentValue instanceof List<?>) {
-			@SuppressWarnings("unchecked")
-			List<EObject> values = (List<EObject>)currentValue;
-			List<EObject> copy = new ArrayList<EObject>(values);
-			// make modification in copy list
-			// check indices
-			int min = copy.size();
-			int max = 0;
-
-			for(Object object : objects) {
-				int index = copy.indexOf(object);
-				if(index == -1) {
-					Activator.log.debug("Impossible to find the index for object :" + object);
-				}
-				if(index < min) {
-					min = index;
-				}
-				if(index > max) {
-					max = index;
-				}
-			}
-
-			// check that min and max are in the bounds of the list, with the
-			// delta applied
-			min += move;
-			max += move;
-			// check the bounds of the list
-			if(min < 0) {
-				Activator.log.debug("Trying to move up the elements, with a move which will cause an IndexOutOfBound exception");
-				return undoableOperation;
-			} else if(max >= copy.size()) {
-				Activator.log.debug("Trying to move down the elements, with a move which will cause an IndexOutOfBound exception");
-				return undoableOperation;
-			}
-
-			// now, do the move in the copy
-			if(move < 0) {
-				moveUpElementsInCollection(copy, objects, move);
-			} else {
-				moveDownElementsOperation(copy, objects, move);
-			}
-
-			// now, apply the new value
-			IClientContext context;
-			try {
-				context = UMLTypeContext.getContext();
-				IElementType type = ElementTypeRegistry.getInstance().getElementType(eObject, context);
-				IEditHelper helper = type.getEditHelper();
-
-				SetRequest request = new SetRequest(getEditingDomain(), eObject, feature, copy);
-				IUndoableOperation operation = helper.getEditCommand(request);
-				if(operation != null && operation.canExecute()) {
-					undoableOperation = operation;
-				}
-			} catch (Exception e) {
-				Activator.log.error(e);
-			}
-		}
-
-		return undoableOperation;
-	}
-
-	/**
-	 * Moves the element in the specified list, when the elements are moved down
-	 * in the list
-	 * 
-	 * @param modifiedElements
-	 *        list of elements modified
-	 * @param objectsToMove
-	 *        list of objects to move
-	 * @param move
-	 *        delta for the move. should be positive integer
-	 */
-	protected void moveDownElementsOperation(List<EObject> modifiedElements, List<Object> objectsToMove, int move) {
-		// if moving down, starting from the end to move elements, assuming they
-		// are in the increasing order by default
-		Collections.reverse(objectsToMove);
-		for(Object objectToMove : objectsToMove) {
-			// retrieve index
-			int index = modifiedElements.indexOf(objectToMove);
-			// remove element
-			modifiedElements.remove(index);
-			// change index
-			if(index == -1) {
-				return;
-			}
-			index += move;
-			// add the element to the new index
-			modifiedElements.add(index, (EObject)objectToMove);
-		}
-	}
-
-	/**
-	 * Moves the element in the specified list, when the elements are moved up
-	 * in the list
-	 * 
-	 * @param modifiedElements
-	 *        list of elements modified
-	 * @param objectsToMove
-	 *        list of objects to move
-	 * @param move
-	 *        delta for the move. should be positive integer
-	 */
-	protected void moveUpElementsInCollection(List<EObject> modifiedElements, List<Object> objectsToMove, int move) {
-		for(Object objectToMove : objectsToMove) {
-			// retrieve index
-			int index = modifiedElements.indexOf(objectToMove);
-			// remove element
-			modifiedElements.remove(index);
-			// change index
-			if(index == -1) {
-				return;
-			}
-			index += move;
-			// add the element to the new index
-			modifiedElements.add(index, (EObject)objectToMove);
-		}
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public boolean canMoveValues() {
-		EClass eClass = retrieveEClass();
-		if(eClass == null || getObjectsToEdit() == null || getObjectsToEdit().size() == 0 || !(getModelHandler() instanceof EMFFeatureModelHandler)) {
-			return false;
-		}
-		EObject eObject = getObjectsToEdit().get(0);
-		EStructuralFeature feature = ((EMFFeatureModelHandler)getModelHandler()).getFeatureByName(eObject);
-		if(feature == null) {
-			return false;
-		}
-		return feature.isOrdered();
 	}
 }

@@ -11,24 +11,26 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.runtime.propertyeditor;
 
-import org.eclipse.jface.viewers.EditingSupport;
-
-
-
 /**
- * Property editor for structural features that have multiplicity [n..*]
+ * Validator for {@link MultiplePrimitiveTypedPropertyEditor}
  */
-public class MultipleStructuralFeaturesPropertyEditor extends AbstractTablePropertyEditor {
+public class MultiplePrimitiveTypedPropertyEditorValidator implements IPropertyEditorTypeValidator {
 
-	/** id of this editor */
-	public static final String ID = "org.eclipse.papyrus.properties.runtime.multipleStructuralFeaturesPropertyEditor";
+	/** editor fo which this validator is installed */
+	protected AbstractPropertyEditor editor;
 
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
-	protected EditingSupport createEditingSupport() {
-		return null;
+	public boolean isValidForValue(Object valueToEdit) {
+		return true;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void setPropertyEditor(AbstractPropertyEditor editor) {
+		this.editor = editor;
 	}
 
 }

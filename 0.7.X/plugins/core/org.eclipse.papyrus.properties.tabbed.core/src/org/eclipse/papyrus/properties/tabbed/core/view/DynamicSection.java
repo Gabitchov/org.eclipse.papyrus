@@ -124,6 +124,7 @@ public class DynamicSection extends AbstractPropertySection {
 
 		// force the parent to layout
 		parent.layout(true, true);
+		parent.pack(true);
 	}
 
 	/**
