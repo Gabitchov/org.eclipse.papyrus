@@ -792,6 +792,37 @@
          parentId="org.eclipse.gmf.runtime.diagram.ui.diagramContext">
       </context>
    </extension>
+<extension
+      point="org.eclipse.ui.popupMenus">
+   <objectContribution
+         adaptable="false"
+         id="org.eclipse.papyrus.diagram.communication.objectContribution.messageReorient"
+         objectClass="org.eclipse.papyrus.diagram.communication.edit.parts.MessageEditPart">
+      <action
+            class="org.eclipse.papyrus.diagram.communication.custom.commands.MessageInverseOrientation"
+            definitionId="org.eclipse.papyrus.diagram.communication.messagereorientID"
+            enablesFor="1"
+            icon="icons/arrow-rotate.gif"
+            id="org.eclipse.papyrus.diagram.communication.MessagereorientID"
+            label="Inverse message orientation"
+            menubarPath="editGroup">
+      </action>
+   </objectContribution>
+   <objectContribution
+         adaptable="false"
+         id="org.eclipse.papyrus.diagram.communication.objectContribution.messageLabelReorient"
+         objectClass="org.eclipse.papyrus.diagram.communication.edit.parts.MessageNameEditPart">
+      <action
+            class="org.eclipse.papyrus.diagram.communication.custom.commands.MessageLabelInverseOrientation"
+            definitionId="org.eclipse.papyrus.diagram.communication.messagelabelreorientID"
+            enablesFor="1"
+            icon="icons/arrow-rotate.gif"
+            id="org.eclipse.papyrus.diagram.communication.MessagelabelreorientID"
+            label="Inverse message orientation"
+            menubarPath="editGroup">
+      </action>
+   </objectContribution>
+</extension>
 
 
 

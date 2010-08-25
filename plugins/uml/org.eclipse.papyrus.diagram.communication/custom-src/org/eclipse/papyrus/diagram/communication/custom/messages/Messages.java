@@ -24,6 +24,33 @@ public class Messages extends NLS {
 	/** The Constant BUNDLE_NAME. */
 	private static final String BUNDLE_NAME = "org.eclipse.papyrus.diagram.communication.custom.messages.messages"; //$NON-NLS-1$
 
+	/**
+	 * 
+	 */
+	public static String CommandHelper_PropertySelection;
+
+	/**
+	 * 
+	 */
+	public static String CommandHelper_SelectProperty;
+
+	/**
+	 * 
+	 */
+	public static String CommandHelper_SelectSignature;
+
+	/**
+	 * 
+	 */
+	public static String CommandHelper_signatureslection;
+
+	public static String MessageInverseOrientation_setconnectionends;
+
+	public static String MessageInverseOrientation_setconnectionanchors;
+
+	public static String MessageLabelInverseOrientation_setconnectionends;
+
+	public static String MessageLabelInverseOrientation_setconnectionanchors;
 
 	/** The Message parser. */
 	public static String MessageParser_undefined;

@@ -28,6 +28,7 @@ import org.eclipse.emf.transaction.TransactionalCommandStack;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.diagram.communication.custom.messages.Messages;
 import org.eclipse.papyrus.diagram.communication.custom.providers.ElementInitializers;
 import org.eclipse.papyrus.diagram.communication.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.widgets.Display;
