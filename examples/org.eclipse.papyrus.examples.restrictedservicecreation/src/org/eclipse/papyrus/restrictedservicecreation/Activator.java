@@ -22,7 +22,7 @@ import org.osgi.framework.BundleContext;
 public class Activator extends AbstractUIPlugin implements org.eclipse.ui.IStartup{
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "org.eclipse.papyrus.restrictedservicecreation"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.example.restrictedservicecreation"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;
