@@ -60,6 +60,7 @@ public class PackageEditPart extends DiagramEditPart {
 	public PackageEditPart(View view) {
 		super(view);
 
+
 		getFigure().setClippingStrategy(new IClippingStrategy() {
 
 			public Rectangle[] getClip(IFigure childFigure) {

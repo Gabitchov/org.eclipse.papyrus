@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.preferences;
 
-import org.eclipse.gmf.runtime.notation.Routing;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;

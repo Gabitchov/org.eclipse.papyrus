@@ -142,6 +142,7 @@ AbstractBorderItemEditPart {
 			return true;
 		}
 
+
 		return false;
 	}
 
@@ -191,6 +192,7 @@ AbstractBorderItemEditPart {
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
+
 
 		//FIXME: workaround for #154536
 		result.getBounds().setSize(result.getPreferredSize());
@@ -1036,6 +1038,7 @@ AbstractBorderItemEditPart {
 
 			CenterLayout layoutThis = new CenterLayout();
 
+
 			this.setLayoutManager(layoutThis);
 
 			this.setCornerDimensions(new Dimension(getMapMode().DPtoLP(50), getMapMode().DPtoLP(50)));
@@ -1047,9 +1050,13 @@ AbstractBorderItemEditPart {
 		 */
 		private void createContents() {
 
+
 			fFigureContinuationNameLabel = new CenteredWrappedLabel();
 
+
+
 			this.add(fFigureContinuationNameLabel);
+
 
 		}
 

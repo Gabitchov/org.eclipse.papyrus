@@ -189,6 +189,7 @@ public class DurationConstraintInMessageEditPart extends AbstractBorderedShapeEd
 			return true;
 		}
 
+
 		return false;
 	}
 
@@ -1175,13 +1176,21 @@ public class DurationConstraintInMessageEditPart extends AbstractBorderedShapeEd
 		 */
 		public DurationObservationConstraint() {
 
+
+
+
 			this.setTextWrap(true);
 
+
+
+
 			this.setTextJustification(PositionConstants.CENTER);
+
 
 			this.setForegroundColor(ColorConstants.black);
 
 			this.setFont(THIS_FONT);
+
 
 		}
 

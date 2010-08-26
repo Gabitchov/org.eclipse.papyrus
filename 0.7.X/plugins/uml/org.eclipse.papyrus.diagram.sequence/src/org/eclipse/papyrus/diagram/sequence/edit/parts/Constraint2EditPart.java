@@ -707,6 +707,7 @@ public class Constraint2EditPart extends CompartmentEditPart implements ITextAwa
 			}
 		}
 
+
 		super.handleNotificationEvent(event);
 	}
 
