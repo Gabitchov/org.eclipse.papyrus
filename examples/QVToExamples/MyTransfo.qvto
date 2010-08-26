@@ -1,0 +1,16 @@
+modeltype UML uses 'http://www.eclipse.org/uml2/3.0.0/UML';
+transformation MyTransformation(inout model : UML){
+
+	main() {
+		//Get the root of the model
+		var root := model.rootObjects()![UML::Model];
+		//Get all the classes in this model
+		var clazzes := model.objectsOfType(Class)->asSequence();
+		
+		//Prefix all of them
+		clazzes->forEach(el){
+			el.name := "MySystem-"+el.name;
+		}
+	}
+
+}
