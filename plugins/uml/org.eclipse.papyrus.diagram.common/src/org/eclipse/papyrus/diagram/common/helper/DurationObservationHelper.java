@@ -30,7 +30,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class DurationObservationHelper {
 
 	/** The label to display for the duration observation */
-	private static final String DURATION_OBSERVATION_LABEL_FORMAT = "%s=duration";
+	private static final String DURATION_OBSERVATION_LABEL_FORMAT = "&%s";
 
 	/**
 	 * Get the list of all DurationObservation observing duration between the two elements (order of parameters does not matter)
