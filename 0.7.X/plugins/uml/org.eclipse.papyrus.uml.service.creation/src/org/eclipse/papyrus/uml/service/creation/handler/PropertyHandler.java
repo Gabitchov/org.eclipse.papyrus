@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.service.creation.handler;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IHandler;
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
@@ -35,17 +36,28 @@ public class PropertyHandler extends UMLHandler implements IHandler {
 	 ** The Class ReplyActionCreateCommand in charge to create a element Reply
 	 **/
 	protected Command getCommand() throws ExecutionException {
-		CreateElementRequest request = new CreateElementRequest(UMLElementTypes.PROPERTY);
-		request.setContainer(getSelectedElement());
+		CreateElementRequest request;
+		EObject container= null;
+		if(getSelectedEFeature()!=null){
+			container= getContainerpOfEFeature();
+			request = new CreateElementRequest(container,UMLElementTypes.PROPERTY,getSelectedEFeature());
+			
+		}
+		else{
+			container=getSelectedElement();
+			request = new CreateElementRequest(UMLElementTypes.PROPERTY);
+			request.setContainer(container);
+		}
+		
 		IClientContext context;
 		try {
 			context = UMLTypeContext.getContext();
 		} catch (Exception e) {
 			throw new ExecutionException(e.getMessage());
 		}
-		IElementType type = ElementTypeRegistry.getInstance().getElementType(getSelectedElement(), context);
+		IElementType type = ElementTypeRegistry.getInstance().getElementType(container, context);
 		if(type == null) {
-			throw new ExecutionException("Could not retrieve IElementType for : " + getSelectedElement());
+			throw new ExecutionException("Could not retrieve IElementType for : " + container);
 		}
 		ICommand gmfCommand = type.getEditCommand(request);
 		if(gmfCommand == null) {

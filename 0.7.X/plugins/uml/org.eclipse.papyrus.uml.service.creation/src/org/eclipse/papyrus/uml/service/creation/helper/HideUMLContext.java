@@ -24,32 +24,30 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.papyrus.diagram.common.helper.NamedElementHelper;
 import org.eclipse.papyrus.service.creation.PapyrusClientContextManager;
+import org.eclipse.papyrus.service.creation.PapyrusEditHelperFilter;
 import org.eclipse.uml2.uml.NamedElement;
 
 
 /**
  * This is an advice helper use to initialize namedElement
  */
-public class NamedElementInitializerHelperAdvice extends AbstractEditHelperAdvice {
+public class HideUMLContext extends PapyrusEditHelperFilter {
 	
 
 	@Override
 	protected ICommand getAfterConfigureCommand(final ConfigureRequest request) {
 		return new ConfigureElementCommand(request) {
-
 			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 
-				if(request.getElementToConfigure() instanceof NamedElement) {
-					NamedElement element = (NamedElement)request.getElementToConfigure();
-
-					// Initialize the element name based on the created IElementType
-					String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(), element.eClass());
-					element.setName(initializedName);
-				}
-
-				return CommandResult.newOKCommandResult();
+			return CommandResult.newOKCommandResult();
 			}
 		};
+	}
+
+	@Override
+	public boolean validateRequest(IEditCommandRequest request) {
+		
+		return true;
 	}
 
 }

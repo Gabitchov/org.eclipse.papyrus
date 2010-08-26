@@ -1377,11 +1377,27 @@
 
 
 			</metamodelType>
+   <metamodelType
+         eclass="Element"
+         id="org.eclipse.papyrus.uml.Element"
+         kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+         name="UML::Element">
+      <param
+            name="semanticHint"
+            value="UML::Element">
+      </param>
+   </metamodelType>
 			<adviceBinding
 				class="org.eclipse.papyrus.uml.service.creation.helper.NamedElementInitializerHelperAdvice"
 				id="org.eclipse.papyrus.uml.advice.NameElementInitializer"
 				inheritance="all" typeId="org.eclipse.papyrus.uml.NamedElement">
 			</adviceBinding>
+   <adviceBinding
+         class="org.eclipse.papyrus.uml.service.creation.helper.HideUMLContext"
+         id="org.eclipse.papyrus.uml.advice.HideUMLContext"
+         inheritance="all"
+         typeId="org.eclipse.papyrus.uml.Element">
+   </adviceBinding>
 		</metamodel>
 	</extension>
 
@@ -1398,6 +1414,9 @@
 		<binding context="org.eclipse.papyrus.uml.service.creation.TypeContext">
 			<elementType pattern="org.eclipse.papyrus.uml.*" />
 			<advice ref="org.eclipse.papyrus.uml.advice.NameElementInitializer" />
+   <advice
+         ref="org.eclipse.papyrus.uml.advice.HideUMLContext">
+   </advice>
 		</binding>
 	</extension>
 	<extension point="org.eclipse.ui.commands">
