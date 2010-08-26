@@ -17,6 +17,7 @@ import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropert
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.PropertyEditorDescriptor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 
 
@@ -34,6 +35,7 @@ public class NullPropertyEditor extends AbstractPropertyEditor {
 	@Override
 	public Composite createContent(Composite parent) {
 		composite = getWidgetFactory().createComposite(parent, SWT.NONE);
+		composite.setLayout(new GridLayout());
 		GridData data = new GridData(SWT.FILL, SWT.FILL, true, false);
 		composite.setLayoutData(data);
 		return composite;
