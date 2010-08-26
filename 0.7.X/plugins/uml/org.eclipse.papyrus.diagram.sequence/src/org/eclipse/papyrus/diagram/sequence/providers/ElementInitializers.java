@@ -22,7 +22,6 @@ import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Continuation;
 import org.eclipse.uml2.uml.DestructionEvent;
 import org.eclipse.uml2.uml.DurationConstraint;
-import org.eclipse.uml2.uml.DurationInterval;
 import org.eclipse.uml2.uml.DurationObservation;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.InteractionUse;
@@ -175,13 +174,8 @@ public class ElementInitializers {
 	 */
 	public void init_DurationConstraint_3021(DurationConstraint instance) {
 		try {
-			DurationInterval newInstance_0_0 = UMLFactory.eINSTANCE.createDurationInterval();
-			instance.setSpecification(newInstance_0_0);
-			Object value_0_0_0 = name_specification_DurationConstraint_3021(newInstance_0_0);
-			newInstance_0_0.setName((String)value_0_0_0);
-
-			Object value_1 = name_DurationConstraint_3021(instance);
-			instance.setName((String)value_1);
+			Object value_0 = name_DurationConstraint_3021(instance);
+			instance.setName((String)value_0);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
@@ -231,13 +225,8 @@ public class ElementInitializers {
 	 */
 	public void init_DurationConstraint_3023(DurationConstraint instance) {
 		try {
-			DurationInterval newInstance_0_0 = UMLFactory.eINSTANCE.createDurationInterval();
-			instance.setSpecification(newInstance_0_0);
-			Object value_0_0_0 = name_specification_DurationConstraint_3023(newInstance_0_0);
-			newInstance_0_0.setName((String)value_0_0_0);
-
-			Object value_1 = name_DurationConstraint_3023(instance);
-			instance.setName((String)value_1);
+			Object value_0 = name_DurationConstraint_3023(instance);
+			instance.setName((String)value_0);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
@@ -335,13 +324,6 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	private String name_specification_DurationConstraint_3021(DurationInterval self) {
-		return getNamedElement(self, "", self.eClass().getName(), "");
-	}
-
-	/**
-	 * @generated
-	 */
 	private String name_DurationConstraint_3021(DurationConstraint self) {
 		return getNamedElement(self, "", self.eClass().getName(), "");
 	}
@@ -364,13 +346,6 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	private String name_DurationConstraint_3023(DurationConstraint self) {
-		return getNamedElement(self, "", self.eClass().getName(), "");
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_specification_DurationConstraint_3023(DurationInterval self) {
 		return getNamedElement(self, "", self.eClass().getName(), "");
 	}
 

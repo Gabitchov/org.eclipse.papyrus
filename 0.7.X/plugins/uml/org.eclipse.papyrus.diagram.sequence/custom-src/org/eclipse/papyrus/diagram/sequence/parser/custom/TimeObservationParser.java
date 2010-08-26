@@ -34,7 +34,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class TimeObservationParser extends MessageFormatParser implements ISemanticParser {
 
 	/** The String for displaying a time observation */
-	private static final String FORMAT = "%s=now";
+	private static final String FORMAT = "@%s=now";
 
 	public TimeObservationParser() {
 		super(new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() });
