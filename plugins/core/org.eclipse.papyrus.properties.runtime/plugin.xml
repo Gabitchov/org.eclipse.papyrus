@@ -18,7 +18,7 @@
             description="This editor allows edition of String-valued properties"
             factory="org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.PropertyEditorDescriptorFactory"
             id="org.eclipse.papyrus.properties.runtime.textPropertyEditor"
-            typeValidator="org.eclipse.papyrus.properties.runtime.propertyeditor.TextPropertyEditorValidator">
+            typeValidator="org.eclipse.papyrus.properties.runtime.propertyeditor.NullPropertyEditorTypeValidator">
       </PropertyEditor>
       <PropertyEditor
             allowMultiValue="false"
@@ -76,6 +76,14 @@
             id="org.eclipse.papyrus.properties.runtime.multiplePrimitiveTypedPropertyEditor"
             typeValidator="org.eclipse.papyrus.properties.runtime.propertyeditor.MultiplePrimitiveTypedPropertyEditorValidator">
       </PropertyEditor>
+      <PropertyEditor
+            allowMultiValue="true"
+            class="org.eclipse.papyrus.properties.runtime.propertyeditor.NullPropertyEditor"
+            description="Property Editor that displays no information, only an empty composite"
+            factory="org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.PropertyEditorDescriptorFactory"
+            id="org.eclipse.papyrus.properties.runtime.nullPropertyEditor"
+            typeValidator="org.eclipse.papyrus.properties.runtime.propertyeditor.NullPropertyEditorTypeValidator">
+      </PropertyEditor>
    </propertyEditorProvider>
 </extension>
 <extension
@@ -110,6 +118,11 @@
             description="Controller for structural features with a label provider"
             factory="org.eclipse.papyrus.properties.runtime.controller.descriptor.EMFTPropertyEditorControllerDescriptorFactory"
             id="emftLabelProviderStructuralFeatureController">
+      </PropertyEditorController>
+      <PropertyEditorController
+            class="org.eclipse.papyrus.properties.runtime.controller.NullPropertyEditorController"
+            factory="org.eclipse.papyrus.properties.runtime.controller.descriptor.NullPropertyEditorControllerDescriptorFactory"
+            id="nullPropertyEditorController">
       </PropertyEditorController>
       </propertyEditorControllerProvider>
 </extension>
