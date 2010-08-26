@@ -43,6 +43,7 @@ plugin@org.eclipse.papyrus.perspective=SVN,,svn://dev.eclipse.org/svnroot/modeli
 plugin@org.eclipse.papyrus.preferences=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/branches/0.7.X/plugins/core,,org.eclipse.papyrus.preferences
 plugin@org.eclipse.papyrus.properties.runtime=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/branches/0.7.X/plugins/core,,org.eclipse.papyrus.properties.runtime
 plugin@org.eclipse.papyrus.properties.tabbed.core=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/branches/0.7.X/plugins/core,,org.eclipse.papyrus.properties.tabbed.core
+plugin@org.eclipse.papyrus.service.creation=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/branches/0.7.X/plugins/core,,org.eclipse.papyrus.service.creation
 plugin@org.eclipse.papyrus.sasheditor=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/branches/0.7.X/plugins/core,,org.eclipse.papyrus.sasheditor
 plugin@org.eclipse.papyrus.sasheditor.di=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/branches/0.7.X/plugins/core,,org.eclipse.papyrus.sasheditor.di
 plugin@org.eclipse.papyrus.tabbedproperties.core=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/branches/0.7.X/plugins/core,,org.eclipse.papyrus.tabbedproperties.core
