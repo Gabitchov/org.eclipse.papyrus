@@ -190,6 +190,7 @@ BorderedBorderItemEditPart {
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
 
+
 		//FIXME: workaround for #154536
 		result.getBounds().setSize(result.getPreferredSize());
 		return result;
@@ -1121,6 +1122,7 @@ BorderedBorderItemEditPart {
 
 			CenterLayout layoutThis = new CenterLayout();
 
+
 			this.setLayoutManager(layoutThis);
 
 			this.setFill(false);
@@ -1178,11 +1180,13 @@ BorderedBorderItemEditPart {
 		 */
 		private void createContents() {
 
+
 			fDurationArrow = new PolylineShape();
 			fDurationArrow.addPoint(new Point(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0)));
 			fDurationArrow.addPoint(new Point(getMapMode().DPtoLP(10), getMapMode().DPtoLP(0)));
 
 			this.add(fDurationArrow);
+
 
 		}
 
@@ -1192,7 +1196,12 @@ BorderedBorderItemEditPart {
 		private Border createBorder0() {
 			LinesBorder result = new LinesBorder();
 
+
+
+
 			result.setSides(PositionConstants.TOP | PositionConstants.BOTTOM);
+
+
 
 			return result;
 		}

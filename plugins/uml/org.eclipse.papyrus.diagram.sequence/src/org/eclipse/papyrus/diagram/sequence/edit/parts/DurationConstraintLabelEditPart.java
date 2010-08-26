@@ -752,15 +752,31 @@ public class DurationConstraintLabelEditPart extends LabelEditPart implements IT
 		 */
 		public MultilineLabelFigure() {
 
+
+
+
 			this.setTextAlignment(PositionConstants.CENTER);
+
+
+
 
 			this.setAlignment(PositionConstants.CENTER);
 
+
+
+
 			this.setBackgroundColor(getBackgroundColor());
+
+
+
 
 			this.setTextWrap(true);
 
+
+
+
 			this.setTextJustification(PositionConstants.CENTER);
+
 
 		}
 

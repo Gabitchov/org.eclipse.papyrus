@@ -717,6 +717,9 @@ public class MessageAsyncAppliedStereotypeEditPart extends LabelEditPart impleme
 			}
 		}
 
+
+
+
 		super.handleNotificationEvent(event);
 	}
 
