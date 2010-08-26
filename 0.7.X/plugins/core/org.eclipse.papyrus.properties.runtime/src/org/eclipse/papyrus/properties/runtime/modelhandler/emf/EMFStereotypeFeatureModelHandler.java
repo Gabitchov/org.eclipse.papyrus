@@ -104,7 +104,7 @@ public abstract class EMFStereotypeFeatureModelHandler extends EMFFeatureModelHa
 		if(stereotype != null) {
 			return getValueForElement(elementToEdit, stereotype);
 		} else {
-			Activator.log.warn("Impossible to set value to the stereotype: " + stereotypeName + " on the element: " + elementToEdit);
+			Activator.log.warn("Impossible to get the stereotype: " + stereotypeName + " on the element: " + elementToEdit);
 		}
 		return null;
 	}

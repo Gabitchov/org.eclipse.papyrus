@@ -38,7 +38,7 @@ import org.eclipse.papyrus.core.utils.DisplayUtils;
 import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.Messages;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
-import org.eclipse.papyrus.uml.service.creation.element.UMLTypeContext;
+import org.eclipse.papyrus.service.creation.PapyrusClientContextManager;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
@@ -113,17 +113,13 @@ public class ReferenceEMFModelHandler extends EMFFeatureModelHandler {
 			if(eClass == null) {
 				return undoableOperations;
 			}
-			IClientContext context;
-			try {
-				context = UMLTypeContext.getContext();
-
+			for(IClientContext clientContext : PapyrusClientContextManager.getAllPapyrusContext()) {
 				// Use UML service creation context and look for element types that are possible types of 
 				// the selected EReference
-				IElementType[] featureTypes = ElementTypeRegistry.getInstance().getContainedTypes(eObject, (EReference)feature, context);
+				IElementType[] featureTypes = ElementTypeRegistry.getInstance().getContainedTypes(eObject, (EReference)feature, clientContext);
 				if(featureTypes != null) {
 					for(int i = 0; i < featureTypes.length; i++) {
 						IElementType nextFeatureType = featureTypes[i];
-
 						CreateElementRequest request = new CreateElementRequest(EMFUtils.getTransactionalEditingDomain(objectsToEdit), eObject, nextFeatureType, (EReference)feature);
 						request.setLabel(Messages.bind(Messages.EMFTEReferenceController_CreationOperationMenuLabel, nextFeatureType.getDisplayName()));
 						ICommand command = nextFeatureType.getEditCommand(request);
@@ -134,8 +130,6 @@ public class ReferenceEMFModelHandler extends EMFFeatureModelHandler {
 						}
 					}
 				}
-			} catch (Exception e) {
-				Activator.log.error(e);
 			}
 			return undoableOperations;
 		} else {
