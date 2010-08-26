@@ -23,6 +23,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.properties.runtime.view.IFragmentDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.content.AbstractContainerDescriptor;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IWorkbenchPart;
@@ -81,10 +82,17 @@ public class DynamicSection extends AbstractPropertySection {
 	 */
 	public void createControls(Composite parent, TabbedPropertySheetPage tabbedPropertySheetPage) {
 		super.createControls(parent, tabbedPropertySheetPage);
+		// force new layout to grid layout, not fill layout
+		parent.setLayout(new GridLayout(1, true));
 		this.tabbedPropertySheetPage = tabbedPropertySheetPage;
 		// creates a composite that has a grid layout
 		this.parent = tabbedPropertySheetPage.getWidgetFactory().createComposite(parent);
-		this.parent.setLayout(new GridLayout(1, false));
+		GridData data = new GridData(GridData.FILL_BOTH);
+		this.parent.setLayoutData(data);
+		GridLayout layout = new GridLayout(1, true);
+		layout.marginHeight = 0;
+		layout.marginWidth = 0;
+		this.parent.setLayout(layout);
 	}
 
 	/**
@@ -123,8 +131,7 @@ public class DynamicSection extends AbstractPropertySection {
 		refreshDisplay(newObjects);
 
 		// force the parent to layout
-		parent.layout(true, true);
-		parent.pack(true);
+		parent.layout(false, true);
 	}
 
 	/**

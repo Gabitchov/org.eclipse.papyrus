@@ -203,18 +203,19 @@ public abstract class AbstractTablePropertyEditor extends AbstractPropertyEditor
 			}
 		}
 
-		Composite tableComposite = new Composite(composite, SWT.NONE);
+		Composite tableComposite = getWidgetFactory().createComposite(composite, SWT.NONE);
 		data = new GridData(SWT.FILL, SWT.FILL, true, true, columnNu, 1);
 		data.heightHint = 80;
+		data.widthHint = 200;
 		tableComposite.setLayoutData(data);
-		TableColumnLayout tableCompositeLayout = new TableColumnLayout();
-		tableComposite.setLayout(tableCompositeLayout);
 		// creates table for the display of references
-		viewer = new TableViewer(tableComposite, SWT.BORDER | SWT.MULTI);
-		table = viewer.getTable();
+		table = new Table(tableComposite, SWT.BORDER | SWT.MULTI);
+		viewer = new TableViewer(table);
+		TableColumnLayout tableLayout = new TableColumnLayout();
+		tableComposite.setLayout(tableLayout);
 		final TableViewerColumn tableViewerColumn = new TableViewerColumn(viewer, SWT.NONE);
 		TableColumn tableColumn = tableViewerColumn.getColumn();
-		tableCompositeLayout.setColumnData(tableColumn, new ColumnWeightData(1, ColumnWeightData.MINIMUM_WIDTH, true));
+		tableLayout.setColumnData(tableColumn, new ColumnWeightData(100, 0, true));
 		tableColumn.setText("Value");
 		tableViewerColumn.setEditingSupport(createEditingSupport());
 		viewer.setUseHashlookup(true);
