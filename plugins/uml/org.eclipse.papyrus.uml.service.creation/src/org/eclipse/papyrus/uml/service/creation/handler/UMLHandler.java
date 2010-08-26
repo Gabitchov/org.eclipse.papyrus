@@ -19,6 +19,8 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.gmt.modisco.infra.browser.uicore.internal.model.LinkItem;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.core.utils.BusinessModelResolver;
@@ -48,6 +50,7 @@ public abstract class UMLHandler extends AbstractHandler {
 			if(selection instanceof IAdaptable) {
 				selection = ((IAdaptable)selection).getAdapter(EObject.class);
 			}
+			
 
 			Object businessObject = BusinessModelResolver.getInstance().getBusinessModel(selection);
 			if(businessObject instanceof EObject) {
@@ -57,6 +60,38 @@ public abstract class UMLHandler extends AbstractHandler {
 		return eObject;
 	}
 
+
+	/**
+	 * get the selected element
+	 * 
+	 * @return
+	 */
+	protected EReference getSelectedEFeature() {
+		EReference eref = null;
+		Object selection = getCurrentSelection();
+
+		if(selection != null) {
+
+			if(selection instanceof LinkItem) {
+				eref = ((LinkItem)selection).getReference();
+			}
+		}
+		return eref;
+	}
+	
+	
+	protected EObject getContainerpOfEFeature() {
+		EObject eObject = null;
+		Object selection = getCurrentSelection();
+
+		if(selection != null) {
+
+			if(selection instanceof LinkItem) {
+				eObject = ((LinkItem)selection).getParent();
+			}
+		}
+		return eObject;
+	}
 	private Object getCurrentSelection() {
 		ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().getSelection();
 		if(selection instanceof IStructuredSelection) {

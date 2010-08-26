@@ -418,4 +418,7 @@ public static final IHintedType ASSOCIATIONCLASS = (IHintedType)getElementType("
 /** IHintedType of UML currentEClass.getName()**/
 public static final IHintedType NAMEDELEMENT = (IHintedType)getElementType("org.eclipse.papyrus.uml.NamedElement");
 
+/** IHintedType of UML currentEClass.getName()**/
+public static final IHintedType ELEMENT = (IHintedType)getElementType("org.eclipse.papyrus.uml.Element");
+
 }
