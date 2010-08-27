@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.papyrus.properties.runtime.Activator;
+import org.eclipse.papyrus.properties.runtime.controller.EMFPropertyEditorController;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Property;
@@ -34,6 +35,22 @@ public abstract class EMFStereotypeFeatureModelHandler extends EMFFeatureModelHa
 
 	/** name of the stereotype to edit */
 	private final String stereotypeName;
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void addListenersToModel(List<? extends EObject> objectsToEdit, EMFPropertyEditorController controller) {
+		super.addListenersToModel(objectsToEdit, controller);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void removeListenersFromModel(List<? extends EObject> objectsToEdit, EMFPropertyEditorController controller) {
+		super.removeListenersFromModel(objectsToEdit, controller);
+	}
 
 	/**
 	 * Creates a new EMFStereotypeFeatureModelHandler.
@@ -104,7 +121,7 @@ public abstract class EMFStereotypeFeatureModelHandler extends EMFFeatureModelHa
 		if(stereotype != null) {
 			return getValueForElement(elementToEdit, stereotype);
 		} else {
-			Activator.log.warn("Impossible to get the stereotype: " + stereotypeName + " on the element: " + elementToEdit);
+			Activator.log.warn("Impossible to get the stereotype: " + stereotypeName + " on the element: " + elementToEdit + " for feature " + getFeatureName());
 		}
 		return null;
 	}
