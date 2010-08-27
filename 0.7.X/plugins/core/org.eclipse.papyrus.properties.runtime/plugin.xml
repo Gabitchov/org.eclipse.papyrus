@@ -177,4 +177,20 @@
          name="Reference Stereotype Model Handler">
    </propertyModelHandler>
 </extension>
+<extension
+      point="org.eclipse.papyrus.properties.runtime.propertyEditorControllerProvider">
+   <propertyEditorControllerProvider
+         class="org.eclipse.papyrus.properties.runtime.controller.predefined.PredefinedPropertyControllerProvider"
+         description="These are the basic predefined controllers for all runtime views"
+         id="org.eclipse.papyrus.properties.runtime.predefinedControllers">
+      <Priority
+            name="Lowest">
+      </Priority>
+      <PredefinedControllers
+            id="org.eclipse.papyrus.properties.runtime.predefinedControllers"
+            name="Standard Controllers"
+            path="resources/predefined_controllers.xml">
+      </PredefinedControllers>
+   </propertyEditorControllerProvider>
+</extension>
 </plugin>
