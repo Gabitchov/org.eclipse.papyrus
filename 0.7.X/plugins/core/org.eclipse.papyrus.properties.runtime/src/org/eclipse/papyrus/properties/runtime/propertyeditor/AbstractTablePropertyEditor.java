@@ -464,8 +464,10 @@ public abstract class AbstractTablePropertyEditor extends AbstractPropertyEditor
 		}
 		if(valueToEdit instanceof List<?>) {
 			currentValue = (List<Object>)valueToEdit;
+		} else if(valueToEdit == null) {
+			currentValue = null;
 		} else {
-			Activator.log.error("Waiting for a list of Object", null);
+			Activator.log.error(valueToEdit + " is not a list of Object for current table: " + getDescriptor().getLabel(), null);
 		}
 		viewer.setInput((currentValue != null) ? currentValue : Collections.emptyList());
 	}

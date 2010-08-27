@@ -65,7 +65,8 @@ public class EMFUtils {
 		EObject eObject = elementToEdit.getStereotypeApplication(stereotype);
 
 		if(eObject == null) {
-			throw new IllegalArgumentException(String.valueOf(stereotype));
+			Activator.log.error("Impossible to find stereotype application", null);
+			return null;
 		}
 
 		EClass eClass = eObject.eClass();
@@ -81,7 +82,8 @@ public class EMFUtils {
 		}
 
 		if(eStructuralFeature == null) {
-			throw new IllegalArgumentException(String.valueOf(featureName));
+			Activator.log.error("Impossible to find structural feature", null);
+			return null;
 		}
 
 		return eStructuralFeature;
