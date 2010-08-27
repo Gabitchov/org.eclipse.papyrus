@@ -471,7 +471,7 @@ public abstract class EMFFeatureModelHandler implements IEMFModelHandler {
 				objectToEdit.eUnset(featureToEdit);
 			} else {
 				@SuppressWarnings("unchecked")
-				List<Object> values = new ArrayList<Object>((List<Object>)objectToEdit.eGet(featureToEdit));
+				List<Object> values = new ArrayList<Object>((List<Object>)getValueToEdit(objectToEdit));
 				for(int index : indexes) {
 					values.remove(index);
 				}
