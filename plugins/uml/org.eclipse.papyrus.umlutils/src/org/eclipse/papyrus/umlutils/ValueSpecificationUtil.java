@@ -14,6 +14,8 @@
 
 package org.eclipse.papyrus.umlutils;
 
+import java.util.Collection;
+
 import org.eclipse.uml2.uml.Duration;
 import org.eclipse.uml2.uml.Expression;
 import org.eclipse.uml2.uml.InstanceValue;
@@ -24,6 +26,7 @@ import org.eclipse.uml2.uml.LiteralNull;
 import org.eclipse.uml2.uml.LiteralString;
 import org.eclipse.uml2.uml.LiteralUnlimitedNatural;
 import org.eclipse.uml2.uml.OpaqueExpression;
+import org.eclipse.uml2.uml.StringExpression;
 import org.eclipse.uml2.uml.TimeExpression;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.ValueSpecification;
@@ -276,6 +279,38 @@ public class ValueSpecificationUtil {
 	 */
 	public static void restoreOpaqueExpression(org.eclipse.uml2.uml.OpaqueExpression specification, String language, String value) {
 		OpaqueExpressionUtil.setBodyForLanguage(specification, language, value);
+	}
+
+	/**
+	 * Add to the collection the value specification and all its related value specifications, like min and max of an interval for example.
+	 * 
+	 * @param spec
+	 *        the value specification to add
+	 * @param collection
+	 *        the collection
+	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public static void addEnclosedValueSpecificationToCollection(ValueSpecification spec, Collection collection) {
+		if(!collection.contains(spec)) {
+			collection.add(spec);
+			if(spec instanceof Interval) {
+				addEnclosedValueSpecificationToCollection(((Interval)spec).getMin(), collection);
+				addEnclosedValueSpecificationToCollection(((Interval)spec).getMax(), collection);
+			} else if(spec instanceof Duration) {
+				addEnclosedValueSpecificationToCollection(((Duration)spec).getExpr(), collection);
+			} else if(spec instanceof TimeExpression) {
+				addEnclosedValueSpecificationToCollection(((TimeExpression)spec).getExpr(), collection);
+			} else if(spec instanceof Expression) {
+				for(ValueSpecification vs : ((Expression)spec).getOperands()) {
+					addEnclosedValueSpecificationToCollection(vs, collection);
+				}
+				if(spec instanceof StringExpression) {
+					for(StringExpression se : ((StringExpression)spec).getSubExpressions()) {
+						addEnclosedValueSpecificationToCollection(se, collection);
+					}
+				}
+			}
+		}
 	}
 
 }

@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.diagram.sequence.parser.custom;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import org.eclipse.core.runtime.IAdaptable;
@@ -25,6 +26,7 @@ import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.papyrus.diagram.common.helper.DurationConstraintHelper;
 import org.eclipse.papyrus.diagram.sequence.parsers.MessageFormatParser;
 import org.eclipse.papyrus.umlutils.ValueSpecificationUtil;
+import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.DurationConstraint;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Message;
@@ -124,15 +126,12 @@ public class TimeConstraintParser extends MessageFormatParser implements ISemant
 	/**
 	 * {@inheritDoc}
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List getSemanticElementsBeingParsed(EObject element) {
-		List<Element> semanticElementsBeingParsed = new ArrayList<Element>();
-		if(element instanceof TimeConstraint) {
-			TimeConstraint constraint = (TimeConstraint)element;
-			semanticElementsBeingParsed.add(constraint);
-		} else if(element instanceof DurationConstraint) {
-			DurationConstraint constraint = (DurationConstraint)element;
-			semanticElementsBeingParsed.add(constraint);
+		HashSet<Element> semanticElementsBeingParsed = new HashSet<Element>();
+		if(element instanceof Constraint) {
+			Constraint constraint = (Constraint)element;
+			ValueSpecificationUtil.addEnclosedValueSpecificationToCollection(constraint.getSpecification(), semanticElementsBeingParsed);
 		} else if(element instanceof Message) {
 			Message message = (Message)element;
 			semanticElementsBeingParsed.add(message);
@@ -147,7 +146,7 @@ public class TimeConstraintParser extends MessageFormatParser implements ISemant
 				semanticElementsBeingParsed.add(constraint.getOwner());
 			}
 		}
-		return semanticElementsBeingParsed;
+		return new ArrayList(semanticElementsBeingParsed);
 	}
 
 	/**
