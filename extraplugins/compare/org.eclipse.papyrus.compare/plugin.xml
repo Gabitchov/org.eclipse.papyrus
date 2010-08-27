@@ -9,5 +9,13 @@
             label="Papyrus Matching Engine"
             priority="highest"/>
    </extension>
+  <extension
+         point="org.eclipse.emf.compare.diff.engine">
+      <diffengine
+            engineClass="org.eclipse.papyrus.compare.PapyrusDiffEngine"
+            priority="highest"
+            icon="icons/DiffEngine.gif"
+            label="Papyrus Differencing Engine"/>
+   </extension>
 
 </plugin>
