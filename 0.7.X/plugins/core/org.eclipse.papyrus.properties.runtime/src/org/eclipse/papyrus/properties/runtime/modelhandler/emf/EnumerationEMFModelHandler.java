@@ -194,7 +194,7 @@ public class EnumerationEMFModelHandler extends EMFFeatureModelHandler {
 				indexOfNewValue = -1;
 			} else {
 				@SuppressWarnings("unchecked")
-				List<Object> values = new ArrayList<Object>((List<Object>)objectToEdit.eGet(featureToEdit));
+				List<Object> values = new ArrayList<Object>((List<Object>)getValueToEdit(objectToEdit));
 				indexOfNewValue = values.size();
 			}
 		}
@@ -225,7 +225,7 @@ public class EnumerationEMFModelHandler extends EMFFeatureModelHandler {
 				newValue = getInitialValue(objectToEdit);
 			} else {
 				@SuppressWarnings("unchecked")
-				List<Object> values = new ArrayList<Object>((List<Object>)objectToEdit.eGet(featureToEdit));
+				List<Object> values = new ArrayList<Object>((List<Object>)getValueToEdit(objectToEdit));
 				values.add(indexOfNewValue, getInitialValue(objectToEdit));
 				newValue = values;
 			}
@@ -248,11 +248,11 @@ public class EnumerationEMFModelHandler extends EMFFeatureModelHandler {
 		if(featureToEdit.getUpperBound() == 1) {
 			return featureName;
 		} else {
-			for(int suffix = 0; suffix < 1000; suffix++) {
-				EClassifier eClassifier = featureToEdit.getEType();
-				if(eClassifier instanceof EEnum) {
-					return ((EEnum)eClassifier).getDefaultValue();
-				}
+			EClassifier eClassifier = featureToEdit.getEType();
+			if(eClassifier instanceof EEnum) {
+				return ((EEnum)eClassifier).getDefaultValue();
+			} else if(Boolean.TYPE.isAssignableFrom(eClassifier.getInstanceClass())) {
+				return Boolean.TRUE;
 			}
 			Activator.log.error("Impossible to find a default value", null);
 			return null;
