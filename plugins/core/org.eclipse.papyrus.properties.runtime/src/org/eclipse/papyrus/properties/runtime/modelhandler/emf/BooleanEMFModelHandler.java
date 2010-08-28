@@ -56,6 +56,7 @@ public class BooleanEMFModelHandler extends EnumerationEMFModelHandler {
 	/**
 	 * {@inheritDoc}
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void setValueInModel(EObject objectToEdit, Object newValue) {
 		EStructuralFeature featureToEdit = getFeatureByName(objectToEdit);
@@ -69,6 +70,16 @@ public class BooleanEMFModelHandler extends EnumerationEMFModelHandler {
 			objectToEdit.eSet(featureToEdit, Boolean.parseBoolean((String)newValue));
 		} else if(newValue instanceof Boolean) {
 			objectToEdit.eSet(featureToEdit, (Boolean)newValue);
+		} else if(newValue instanceof List<?>) {
+			List<Object> newValues = new ArrayList<Object>();
+			for(Object value : (List<Object>)newValue) {
+				if(value instanceof String) {
+					newValues.add(Boolean.parseBoolean((String)value));
+				} else if(value instanceof Boolean) {
+					newValues.add((Boolean)value);
+				}
+			}
+			objectToEdit.eSet(featureToEdit, newValues);
 		}
 	}
 
@@ -97,7 +108,7 @@ public class BooleanEMFModelHandler extends EnumerationEMFModelHandler {
 		if(descriptor instanceof IBoundedValuesPropertyEditorDescriptor) {
 			((IBoundedValuesPropertyEditorDescriptor)descriptor).setAvailableValues(values);
 		} else {
-			Activator.log.error("Warning: " + descriptor + "could not be completed.", null);
+			Activator.log.debug("Warning: " + descriptor + "could not be completed.");
 		}
 	}
 

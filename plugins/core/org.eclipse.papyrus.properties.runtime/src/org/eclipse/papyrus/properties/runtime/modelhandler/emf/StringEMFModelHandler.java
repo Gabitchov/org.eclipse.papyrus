@@ -19,6 +19,7 @@ import org.eclipse.core.commands.operations.IUndoableOperation;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -56,7 +57,26 @@ public class StringEMFModelHandler extends EMFFeatureModelHandler {
 		if(featureToEdit == null) {
 			return;
 		}
-		objectToEdit.eSet(featureToEdit, newValue);
+		
+		// check the type of the feature to set
+		EClassifier type = featureToEdit.getEType();
+		if(type == null) {
+			Activator.log.debug("Impossible to find the type of the feature: "+getFeatureName());
+		} else {
+			if(String.class.isAssignableFrom(type.getInstanceClass())) {
+				objectToEdit.eSet(featureToEdit, newValue);
+			} else if(Integer.TYPE.isAssignableFrom(type.getInstanceClass())) {
+				try {
+					int value = Integer.parseInt(newValue.toString());
+					objectToEdit.eSet(featureToEdit, value);
+				} catch (NumberFormatException e) {
+					Activator.log.debug(newValue+ " can not be parsed as an integer");
+				}
+			} else {
+				Activator.log.error("Feature: "+getFeatureName()+". Impossible to understand the value for the type: "+featureToEdit.getEType().getInstanceClass(), null);
+			}
+		} 
+		
 	}
 
 	/**
