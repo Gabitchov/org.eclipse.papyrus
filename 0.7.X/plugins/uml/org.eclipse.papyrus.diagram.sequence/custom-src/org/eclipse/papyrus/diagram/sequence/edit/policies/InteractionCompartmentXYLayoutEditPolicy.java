@@ -30,7 +30,9 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.XYLayoutEditPolicy;
 import org.eclipse.papyrus.diagram.common.commands.PreserveAnchorsPositionCommand;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
+import org.eclipse.papyrus.diagram.sequence.util.SequenceUtil;
 
 /**
  * The customn XYLayoutEditPolicy for InteractionCompartmentEditPart.
@@ -38,22 +40,23 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
 public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy {
 
 	/**
-	 * Handle lifeline resize
+	 * Handle lifeline and combined fragment resize
 	 */
 	@Override
 	protected Command getResizeChildrenCommand(ChangeBoundsRequest request) {
 		CompoundCommand compoundCmd = new CompoundCommand();
-		compoundCmd.setLabel("Movement or Resize of a Lifeline EditPart");
-		compoundCmd.setDebugLabel("Debug: Movement or Resize of a Lifeline EditPart");
+		compoundCmd.setLabel("Move or Resize");
 
 		for(Object o : request.getEditParts()) {
 			GraphicalEditPart child = (GraphicalEditPart)o;
 			Object constraintFor = getConstraintFor(request, child);
 			if(constraintFor != null) {
-				int width = request.getSizeDelta().width;
-				if(child instanceof LifelineEditPart && width != 0) {
-					compoundCmd = getResizeChildrenCommand(compoundCmd, width, (LifelineEditPart)child, 1);
+				if(child instanceof LifelineEditPart) {
+					addLifelineResizeChildrenCommand(compoundCmd, request, (LifelineEditPart)child, 1);
+				} else if(child instanceof CombinedFragmentEditPart) {
+					SequenceUtil.addCombinedFragmentResizeChildrenCommand(compoundCmd, request.getMoveDelta(), request.getSizeDelta(), (CombinedFragmentEditPart)child);
 				}
+
 				Command changeConstraintCommand = createChangeConstraintCommand(request, child, translateToModelConstraint(constraintFor));
 				compoundCmd.add(changeConstraintCommand);
 			}
@@ -67,17 +70,17 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 	 * 
 	 * @param compoundCmd
 	 *        The command
-	 * @param width
-	 *        The new width
+	 * @param request
+	 *        The request
 	 * @param lifelineEditPart
 	 *        The lifelineEditPart to resize
 	 * @param number
 	 *        The number of brother of the LifelineEditPart
-	 * @return The command
 	 */
-	private CompoundCommand getResizeChildrenCommand(CompoundCommand compoundCmd, int width, LifelineEditPart lifelineEditPart, int number) {
+	private static void addLifelineResizeChildrenCommand(CompoundCommand compoundCmd, ChangeBoundsRequest request, LifelineEditPart lifelineEditPart, int number) {
 		// If the width increases or decreases, ExecutionSpecification elements need to
 		// be moved
+		int widthDelta;
 		for(ShapeNodeEditPart executionSpecificationEP : lifelineEditPart.getChildShapeNodeEditPart()) {
 			// Lifeline's figure where the child is drawn
 			Rectangle rDotLine = lifelineEditPart.getContentPane().getBounds();
@@ -85,27 +88,37 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 			// The new bounds will be calculated from the current bounds
 			Rectangle newBounds = executionSpecificationEP.getFigure().getBounds().getCopy();
 
-			if(rDotLine.getSize().width + width < newBounds.width * 2) {
-				compoundCmd.add(UnexecutableCommand.INSTANCE);
+			widthDelta = request.getSizeDelta().width;
+
+			if(widthDelta != 0) {
+
+				if(rDotLine.getSize().width + widthDelta < newBounds.width * 2) {
+					compoundCmd.add(UnexecutableCommand.INSTANCE);
+				}
+
+				// Apply SizeDelta to the children
+				newBounds.x += Math.round(widthDelta / ((float)2 * number));
+
+				// Convert to relative
+				newBounds.x -= rDotLine.x;
+				newBounds.y -= rDotLine.y;
+
+				SetBoundsCommand setBoundsCmd = new SetBoundsCommand(executionSpecificationEP.getEditingDomain(), "Re-location of a ExecutionSpecification due to a Lifeline movement", executionSpecificationEP, newBounds);
+				compoundCmd.add(new ICommandProxy(setBoundsCmd));
 			}
 
-			// Apply SizeDelta to the children
-			newBounds.x += Math.round(width / ((float)2 * number));
+			executionSpecificationEP.getFigure().getParent().translateToAbsolute(newBounds);
 
-			// Convert to relative
-			newBounds.x -= rDotLine.x;
-			newBounds.y -= rDotLine.y;
+			newBounds.x += request.getMoveDelta().x;
+			newBounds.y += request.getMoveDelta().y;
 
-			SetBoundsCommand setBoundsCmd = new SetBoundsCommand(executionSpecificationEP.getEditingDomain(), "Re-location of a ExecutionSpecification due to a Lifeline movement", executionSpecificationEP, newBounds);
-			compoundCmd.add(new ICommandProxy(setBoundsCmd));
+			compoundCmd.add(SequenceUtil.createUpdateEnclosingInteractionCommand(executionSpecificationEP, newBounds));
 		}
 
 		List<LifelineEditPart> innerConnectableElementList = lifelineEditPart.getInnerConnectableElementList();
 		for(LifelineEditPart lifelineEP : innerConnectableElementList) {
-			getResizeChildrenCommand(compoundCmd, width, lifelineEP, number * innerConnectableElementList.size());
+			addLifelineResizeChildrenCommand(compoundCmd, request, lifelineEP, number * innerConnectableElementList.size());
 		}
-
-		return compoundCmd;
 	}
 
 	/**
@@ -253,7 +266,7 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 	 *        request
 	 * @return The SetBoundsCommand
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	protected Command getSetBoundsCommand(LifelineEditPart lifelineEP, ChangeBoundsRequest cbr, Dimension newSizeDelta) {
 		// Modify request
 		List epList = cbr.getEditParts();
