@@ -31,10 +31,10 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 
 /**
- * this is an abstract class used to display an element as a shape. it looks for image in the associated stereotype 
- *
+ * this is an abstract class used to display an element as a shape. it looks for image in the associated stereotype
+ * 
  */
-public  abstract class AbstractShapeEditPart extends AbstractBorderedShapeEditPart implements IPapyrusEditPart{
+public abstract class AbstractShapeEditPart extends AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 
 
 	private static final String SHAPE_CONSTANT = "shape";
@@ -43,6 +43,7 @@ public  abstract class AbstractShapeEditPart extends AbstractBorderedShapeEditPa
 	public AbstractShapeEditPart(View view) {
 		super(view);
 	}
+
 	@Override
 	protected NodeFigure createMainFigure() {
 		return null;
@@ -64,8 +65,7 @@ public  abstract class AbstractShapeEditPart extends AbstractBorderedShapeEditPa
 		} catch (ServiceException e) {
 			// Not found, return an empty one which return null for each request.
 			return new PageIconsRegistry();
-		}
-		catch ( NullPointerException e) {
+		} catch (NullPointerException e) {
 			//if the editor is null null pointer exception is raised
 			// Not found, return an empty one which return null for each request.
 			return new PageIconsRegistry();
@@ -118,14 +118,13 @@ public  abstract class AbstractShapeEditPart extends AbstractBorderedShapeEditPa
 			String firstStereotypeName = tokenizer.nextToken();
 			Stereotype stereotype = getUMLElement().getAppliedStereotype(firstStereotypeName);
 			org.eclipse.uml2.uml.Image icon = ElementUtil.getStereotypeImage(getUMLElement(), stereotype, SHAPE_CONSTANT);
-			if(icon.getLocation()!=""&&icon.getLocation()!=null){
+			if(icon.getLocation() != "" && icon.getLocation() != null) {
 				try {
 					getPrimaryShape().setIcon(icon.getLocation());
 				} catch (MalformedURLException e) {
-					Activator.log.error(icon.getLocation()+" "+e.getLocalizedMessage(), e);
+					Activator.log.error(icon.getLocation() + " " + e.getLocalizedMessage(), e);
 				}
-			}
-			else{
+			} else {
 				getPrimaryShape().setIcon(Activator.getShape(getUMLElement(), stereotype, false));
 			}
 		}

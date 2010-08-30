@@ -240,7 +240,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 				cc.add(new CommandProxy(getSpecificDropCommand(dropRequest, (Element)droppedObject, nodeVISUALID, linkVISUALID)));
 				continue;
 			}
- 
+
 			if(linkVISUALID == -1 && nodeVISUALID != -1) {
 				// The element to drop is a node
 				// Retrieve it's expected graphical parent

@@ -50,8 +50,20 @@ public class LayoutUtils {
 	/** the parameter for the center alignment */
 	final public static String CENTER = "parameter_center"; //$NON-NLS-1$
 
-	/** the parameter for the middle alignment */
+	/** the parameter for the horizontal distribution */
 	final public static String MIDDLE = "parameter_middle"; //$NON-NLS-1$
+
+	/** the parameter for the horizontal distribution */
+	final public static String HORIZONTALLY = "parameter_horizontally"; //$NON-NLS-1$
+
+	/** the parameter for the horizontal distribution between nodes */
+	final public static String HORIZONTALLY_BETWEEN_NODES = "parameter_horizontally_between_nodes"; //$NON-NLS-1$
+
+	/** the parameter for the vertical distribution */
+	final public static String VERTICALLY = "parameter_vertically"; //$NON-NLS-1$
+
+	/** the parameter for the vertical distribution between nodes */
+	final public static String VERTICALLY_BETWEEN_NODES = "parameter_vertically_between_nodes"; //$NON-NLS-1$
 
 	/**
 	 * the shift to avoid the scrollbar
@@ -90,7 +102,7 @@ public class LayoutUtils {
 	 *         <li>{@linkplain PositionConstants#NONE}
 	 *         <ul>
 	 *         <li>if the figure is not not known. (This algorithm depends on the figure form).</li>
-	 *         <li>You forgot translate the anchor in absolute coordinate</li>
+	 *         <li>Maybe you forgot to translate the anchor in absolute coordinate or the anchor is not attached to the figure</li>
 	 *         </ul>
 	 *         </li>
 	 *         <li>{@linkplain PositionConstants#NORTH}</li>

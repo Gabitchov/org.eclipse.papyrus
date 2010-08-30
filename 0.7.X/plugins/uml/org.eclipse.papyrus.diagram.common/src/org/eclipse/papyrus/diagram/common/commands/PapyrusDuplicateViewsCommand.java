@@ -42,7 +42,7 @@ public class PapyrusDuplicateViewsCommand extends DuplicateViewsCommand implemen
 	// the new container
 	protected View container = null;
 
-	
+
 	@SuppressWarnings("rawtypes")
 	public PapyrusDuplicateViewsCommand(TransactionalEditingDomain editingDomain, String label, DuplicateRequest request, List viewsToDuplicate, Map duplicatedElements, Point offset, View container) {
 		super(editingDomain, label, request, viewsToDuplicate, duplicatedElements, offset);
@@ -71,16 +71,18 @@ public class PapyrusDuplicateViewsCommand extends DuplicateViewsCommand implemen
 		}
 		return true;
 	}
-/**
- * 
- * @see org.eclipse.gmf.runtime.diagram.ui.internal.commands.DuplicateViewsCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor, org.eclipse.core.runtime.IAdaptable)
- *
- * @param progressMonitor
- * @param info
- * @return
- * @throws ExecutionException
- */
-	@SuppressWarnings( "rawtypes")
+
+	/**
+	 * 
+	 * @see org.eclipse.gmf.runtime.diagram.ui.internal.commands.DuplicateViewsCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor,
+	 *      org.eclipse.core.runtime.IAdaptable)
+	 * 
+	 * @param progressMonitor
+	 * @param info
+	 * @return
+	 * @throws ExecutionException
+	 */
+	@SuppressWarnings("rawtypes")
 	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 		CommandResult result = super.doExecuteWithResult(progressMonitor, info);
 		//reassociation to the new container

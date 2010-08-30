@@ -27,7 +27,7 @@ public class UnapplyAllStereotypesCommand extends CompositeCommand {
 
 	public UnapplyAllStereotypesCommand(TransactionalEditingDomain domain, String label, Element element) {
 		super(label);
-		for (EObject stereotypeApplication : element.getStereotypeApplications()) {
+		for(EObject stereotypeApplication : element.getStereotypeApplications()) {
 			DestroyElementRequest stereoReq = new DestroyElementRequest(domain, stereotypeApplication, false);
 			add(new DestroyElementCommand(stereoReq));
 		}

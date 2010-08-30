@@ -20,7 +20,7 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.ImageData;
 
 
-public class ShapeNamedElementFigure extends PapyrusNodeFigure  implements IPapyrusNodeUMLElementFigure{
+public class ShapeNamedElementFigure extends PapyrusNodeFigure implements IPapyrusNodeUMLElementFigure {
 
 
 	public class ShapeLayoutManager extends AbstractLayout {
@@ -47,34 +47,33 @@ public class ShapeNamedElementFigure extends PapyrusNodeFigure  implements IPapy
 			Rectangle imageBound = new Rectangle(container.getBounds());
 			Rectangle compartmentBound = new Rectangle(container.getBounds());
 
-			if(stereotypePropertiesContent!=null && stereotypePropertiesContent.getChildren().size()>0){
-				Dimension dim=stereotypePropertiesContent.getPreferredSize();
-				imageBound.height=imageBound.height-dim.height;
-				compartmentBound.y=compartmentBound.y+compartmentBound.height-dim.height;
-				compartmentBound.height=dim.height;
+			if(stereotypePropertiesContent != null && stereotypePropertiesContent.getChildren().size() > 0) {
+				Dimension dim = stereotypePropertiesContent.getPreferredSize();
+				imageBound.height = imageBound.height - dim.height;
+				compartmentBound.y = compartmentBound.y + compartmentBound.height - dim.height;
+				compartmentBound.height = dim.height;
 				stereotypePropertiesContent.setBounds(compartmentBound);
 			}
-			
-			if(stereotypePropertiesBrace!=null && stereotypePropertiesBrace.getChildren().size()>0){
-				Dimension dim=stereotypePropertiesBrace.getPreferredSize();
-				imageBound.height=imageBound.height-dim.height;
-				compartmentBound.y=compartmentBound.y+compartmentBound.height-dim.height;
-				compartmentBound.height=dim.height;
+
+			if(stereotypePropertiesBrace != null && stereotypePropertiesBrace.getChildren().size() > 0) {
+				Dimension dim = stereotypePropertiesBrace.getPreferredSize();
+				imageBound.height = imageBound.height - dim.height;
+				compartmentBound.y = compartmentBound.y + compartmentBound.height - dim.height;
+				compartmentBound.height = dim.height;
 				stereotypePropertiesBrace.setBounds(compartmentBound);
 			}
-			if(scalableImageFigure!=null){
+			if(scalableImageFigure != null) {
 				scalableImageFigure.setBounds(imageBound);
-			}
-			else if (originalimage!=null){
+			} else if(originalimage != null) {
 
 				label.setBounds(imageBound);
 				String key = "icon" + this.hashCode();
 				ImageData imdata = null;
-				imdata = (ImageData) originalimage.getImageData().scaledTo(imageBound.width, imageBound.height).clone();
+				imdata = (ImageData)originalimage.getImageData().scaledTo(imageBound.width, imageBound.height).clone();
 				Image imm = Activator.getDefault().getImageRegistry().get(key);
 
 				// no image in the registry
-				if (imm == null) {
+				if(imm == null) {
 					Activator.getDefault().getImageRegistry().put(key, ImageDescriptor.createFromImageData(imdata));
 					imm = Activator.getDefault().getImageRegistry().get(key);
 				}
@@ -86,7 +85,7 @@ public class ShapeNamedElementFigure extends PapyrusNodeFigure  implements IPapy
 					imm = Activator.getDefault().getImageRegistry().get(key);
 				}
 				// in the case where the image was not disposed
-				if (adaptedImage != null) {
+				if(adaptedImage != null) {
 					adaptedImage.dispose();
 					adaptedImage = null;
 				}
@@ -94,29 +93,32 @@ public class ShapeNamedElementFigure extends PapyrusNodeFigure  implements IPapy
 				adaptedImage = imm;
 				label.setIcon(adaptedImage);
 			}
-			
+
 
 		}
 	}
-	protected Label label=null;
+
+	protected Label label = null;
+
 	/**
 	 * 
 	 */
-	
+
 	protected String name = "";
-	
-	protected ScalableImageFigure scalableImageFigure=null;
+
+	protected ScalableImageFigure scalableImageFigure = null;
 
 	/**
 	 * Added for stereptypes properties
 	 */
 	private RectangleFigure stereotypePropertiesContent;
-	
-	
+
+
 	/**
 	 * Added for stereptypes properties
 	 */
 	private RectangleFigure stereotypePropertiesBrace;
+
 	/**
 	 * 
 	 */
@@ -137,10 +139,10 @@ public class ShapeNamedElementFigure extends PapyrusNodeFigure  implements IPapy
 	 * create an icon figure.
 	 * 
 	 * @param numberNode
-	 *            is used to spcify a unique identfier tha t is associated to the image thanks to
-	 *            the graphNode.hashCode()
+	 *        is used to spcify a unique identfier tha t is associated to the image thanks to
+	 *        the graphNode.hashCode()
 	 * @param image
-	 *            the image (GIF) that we want to see
+	 *        the image (GIF) that we want to see
 	 */
 	public ShapeNamedElementFigure(Image image) {
 		super();
@@ -153,49 +155,55 @@ public class ShapeNamedElementFigure extends PapyrusNodeFigure  implements IPapy
 		label.setIconTextGap(2);
 		this.add(label);
 		//the image can be null, if we display a SVG file
-		if(image!=null){
+		if(image != null) {
 			label.setIcon(image);
 		}
 		this.setLayoutManager(new ShapeLayoutManager());
 
 	}
+
 	public ShapeNamedElementFigure() {
 		this(null);
 	}
 
 	/**
 	 * display image from a svg file
-	 * @param path of the svg file
-	 * @throws MalformedURLException 
+	 * 
+	 * @param path
+	 *        of the svg file
+	 * @throws MalformedURLException
 	 */
 	public void setIcon(String path) throws MalformedURLException {
-		this.originalimage=null;
+		this.originalimage = null;
 		URL url = new URL(path);//$NON-NLS-1$
-		scalableImageFigure= new ScalableImageFigure(RenderedImageFactory.getInstance(url), true, true, true);
+		scalableImageFigure = new ScalableImageFigure(RenderedImageFactory.getInstance(url), true, true, true);
 		this.add(scalableImageFigure);
 	}
 
 
 	/**
 	 * display icon from an image
+	 * 
 	 * @param image
 	 */
 	public void setIcon(Image image) {
-		if(scalableImageFigure!=null){
+		if(scalableImageFigure != null) {
 			this.remove(scalableImageFigure);
-			scalableImageFigure=null;
+			scalableImageFigure = null;
 		}
-		this.originalimage=image;
+		this.originalimage = image;
 		label.setIcon(originalimage);
 	}
+
 	public void setStereotypeDisplay(String stereotypes, Image image) {
 		//do nothing
-		
+
 	}
+
 	public void setStereotypePropertiesInBrace(String stereotypeProperties) {
 		if(stereotypeProperties == null) {
 			// remove figure of stereotype properties compartment
-			if(this.stereotypePropertiesBrace!= null) {
+			if(this.stereotypePropertiesBrace != null) {
 				this.remove(this.stereotypePropertiesBrace);
 				this.stereotypePropertiesBrace = null;
 			}
@@ -209,6 +217,7 @@ public class ShapeNamedElementFigure extends PapyrusNodeFigure  implements IPapy
 
 		fillStereotypePropertiesInBrace(stereotypeProperties);
 	}
+
 	public void setStereotypePropertiesInCompartment(String stereotypeProperties) {
 		if(stereotypeProperties == null) {
 			// remove figure of stereotype properties compartment
@@ -225,8 +234,9 @@ public class ShapeNamedElementFigure extends PapyrusNodeFigure  implements IPapy
 		}
 
 		fillStereotypePropertiesInCompartment(stereotypeProperties);
-		
+
 	}
+
 	public Label getStereotypesLabel() {
 		// TODO Auto-generated method stub
 		return null;
@@ -247,20 +257,21 @@ public class ShapeNamedElementFigure extends PapyrusNodeFigure  implements IPapy
 		}
 
 	}
-	
+
 	private void fillStereotypePropertiesInBrace(String stereotypeProperties) {
 		stereotypePropertiesBrace.getChildren().clear();
-			Label label = new Label("{" + stereotypeProperties + "}");
-			label.setLabelAlignment(PositionConstants.CENTER);
-			label.setBorder(null);
-			stereotypePropertiesBrace.add(label);
+		Label label = new Label("{" + stereotypeProperties + "}");
+		label.setLabelAlignment(PositionConstants.CENTER);
+		label.setBorder(null);
+		stereotypePropertiesBrace.add(label);
 
 	}
-	
+
 	protected int getStereotypePropertiesCompartmentPosition() {
-		
+
 		return 1;
 	}
+
 	protected void createStereotypePropertiesContent() {
 		stereotypePropertiesContent = new StereotypePropertiesCompartment();
 		stereotypePropertiesContent.setFill(false);
@@ -269,7 +280,7 @@ public class ShapeNamedElementFigure extends PapyrusNodeFigure  implements IPapy
 		stereotypePropertiesContent.setLayoutManager(new PropertiesCompartmentLayoutManager());
 		this.add(stereotypePropertiesContent, getStereotypePropertiesCompartmentPosition());
 	}
-	
+
 	protected void createStereotypePropertiesBrace() {
 		stereotypePropertiesBrace = new StereotypePropertiesCompartment();
 		stereotypePropertiesBrace.setFill(false);

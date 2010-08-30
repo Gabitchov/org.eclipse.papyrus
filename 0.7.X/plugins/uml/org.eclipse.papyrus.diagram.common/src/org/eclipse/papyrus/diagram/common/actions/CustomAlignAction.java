@@ -14,9 +14,7 @@
 package org.eclipse.papyrus.diagram.common.actions;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Enumeration;
-import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.draw2d.PositionConstants;
@@ -24,21 +22,19 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
-import org.eclipse.gef.Request;
+import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.editparts.AbstractConnectionEditPart;
 import org.eclipse.gef.requests.AlignmentRequest;
 import org.eclipse.gef.tools.ToolUtilities;
-import org.eclipse.gmf.runtime.diagram.ui.actions.AlignAction;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.papyrus.diagram.common.helper.AlignmentLinkHelper;
 import org.eclipse.papyrus.diagram.common.layout.AlignmentTree;
 import org.eclipse.papyrus.diagram.common.layout.EditPartTree;
 import org.eclipse.papyrus.diagram.common.layout.LayoutUtils;
-import org.eclipse.ui.IWorkbenchPage;
 
 
 
@@ -58,7 +54,7 @@ import org.eclipse.ui.IWorkbenchPage;
  * 
  * With this class, we can align nodes, by selecting them, or by selecting the link between them, thanks to {@link AlignmentLinkHelper}
  */
-public class CustomAlignAction extends AlignAction {
+public class CustomAlignAction {
 
 	/**
 	 * the Tree used to sort editparts
@@ -70,140 +66,33 @@ public class CustomAlignAction extends AlignAction {
 	/** The alignment. */
 	private int alignment;
 
-	/** The request type */
-	private Object requestType = null;
-
-	/** Indicates if this action is a toolabr item */
-	private boolean isToolbarItem = true;
-
-	/**
-	 * Constructs a CustomAlignAction with the given part and alignment ID. The alignment ID
-	 * must by one of:
-	 * <UL>
-	 * <LI>GEFActionConstants.ALIGN_LEFT
-	 * <LI>GEFActionConstants.ALIGN_RIGHT
-	 * <LI>GEFActionConstants.ALIGN_CENTER
-	 * <LI>GEFActionConstants.ALIGN_TOP
-	 * <LI>GEFActionConstants.ALIGN_BOTTOM
-	 * <LI>GEFActionConstants.ALIGN_MIDDLE
-	 * </UL>
-	 * 
-	 * @param part
-	 *        the workbench part used to obtain context
-	 * @param id
-	 *        the action ID.
-	 * @param align
-	 *        the aligment ID.
-	 */
-	public CustomAlignAction(IWorkbenchPage workbenchPage, String id, int align) {
-		super(workbenchPage, id, align);
-		this.alignment = align;
-		if(isToolbarItem) {
-			this.setAccelerator();
-		}
-	}
-
-	/**
-	 * Instantiates a new custom align action.
-	 * 
-	 * @param workbenchPage
-	 *        the workbench page
-	 * @param id
-	 *        the id
-	 * @param align
-	 *        the alignment
-	 * @param isToolbarItem
-	 *        indicates if this action is an item of a toolbar
-	 */
-	public CustomAlignAction(IWorkbenchPage workbenchPage, String id, int align, boolean isToolbarItem) {
-		super(workbenchPage, id, align, isToolbarItem);
-		this.isToolbarItem = isToolbarItem;
-		this.alignment = align;
-		if(isToolbarItem) {
-			this.setAccelerator();
-		}
-	}
-
-	/**
-	 * Adds the accelerators in the menu message {@link CustomAlignAction#setAccelerator()} seems doesn't work. keyBinding is done with the
-	 * org.eclipse.ui.binding extension point
-	 */
-	protected void setAccelerator() {
-		String text = getText();
-		switch(alignment) {
-		case PositionConstants.LEFT:
-			text += "\t Ctrl+Arrow Left"; //$NON-NLS-1$
-			break;
-		case PositionConstants.RIGHT:
-			text += "\t Ctrl+Arrow Right"; //$NON-NLS-1$
-			break;
-		case PositionConstants.TOP:
-			text += "\t Ctrl+Arrow Up"; //$NON-NLS-1$
-			break;
-		case PositionConstants.BOTTOM:
-			text += "\t Ctrl+Arrow Bottom"; //$NON-NLS-1$
-			break;
-		default:
-			break;
-
-		}
-		setText(text);
-	}
+	/** the selected elements */
+	private List<IGraphicalEditPart> selectedElements;
 
 	/**
 	 * 
-	 * @see org.eclipse.gmf.runtime.diagram.ui.actions.AlignAction#createOperationSet()
+	 * Constructor.
+	 * 
+	 * @param alignment
+	 * @param selectedElements
+	 */
+	public CustomAlignAction(int alignment, List<IGraphicalEditPart> selectedElements) {
+		this.alignment = alignment;
+		this.selectedElements = selectedElements;
+	}
+
+
+	/**
+	 * Returns the command for this action
 	 * 
 	 * @return
-	 *         all the edit part to align
+	 *         the command for this action
 	 */
-	@Override
-	protected List createOperationSet() {
-
-		List selection = getSelectedObjects();
-		if(selection.isEmpty() || !(selection.get(0) instanceof IGraphicalEditPart))
-			return Collections.EMPTY_LIST;
-		Iterator selectedEPs = selection.iterator();
-		List editparts = new ArrayList();
-		while(selectedEPs.hasNext()) {
-			EditPart selectedEP = (EditPart)selectedEPs.next();
-			List targetEP = getTargetEditParts(selectedEP);
-			editparts.addAll(targetEP);
+	public Command getCommand() {
+		List<EditPart> editparts = new ArrayList<EditPart>();
+		for(IGraphicalEditPart current : this.selectedElements) {
+			editparts.add(current);
 		}
-		return editparts;
-	}
-
-	/**
-	 * 
-	 * @see org.eclipse.gmf.runtime.diagram.ui.actions.DiagramAction#getTargetEditParts(org.eclipse.gef.EditPart)
-	 * 
-	 * @param editpart
-	 * @return
-	 */
-	@Override
-	protected List getTargetEditParts(EditPart editpart) {
-		EditPart targetEP = editpart.getTargetEditPart(getTargetRequest());
-		if(targetEP == null) {//the selected editpart doesn't support the request 
-			if(editpart instanceof AbstractConnectionEditPart) {
-				targetEP = editpart;
-			}
-		}
-		return (targetEP == null) ? Collections.EMPTY_LIST : Collections.singletonList(targetEP);
-
-	}
-
-	/**
-	 * Gets a command to execute on the operation set based on a given request
-	 * 
-	 * @param request
-	 *        request to use to get the command
-	 * @return a command
-	 */
-	@Override
-	protected Command getCommand(Request request) {
-		this.requestType = request.getType();
-		List editparts = getOperationSet();
-
 		if(!isMixedSelection(editparts)) {//if selection contains links and nodes, we do nothing
 			if(isLinkSelection(editparts)) {
 				AlignmentLinkHelper helper = new AlignmentLinkHelper(editparts, alignment);
@@ -214,9 +103,9 @@ public class CustomAlignAction extends AlignAction {
 			if(editparts.size() >= 2) {
 				rootTree = new AlignmentTree(editparts);
 
-				createRequests(editparts, (AlignmentRequest)request);
+				createRequests(editparts);
 
-				CompoundCommand command = new CompoundCommand(getCommandLabel());
+				CompoundCommand command = new CompoundCommand("Alignment Command"); //$NON-NLS-1$
 				Enumeration eptEnum = rootTree.breadthFirstEnumeration();
 				while(eptEnum.hasMoreElements()) {
 					EditPartTree ept = (EditPartTree)eptEnum.nextElement();
@@ -237,8 +126,6 @@ public class CustomAlignAction extends AlignAction {
 		return UnexecutableCommand.INSTANCE;
 	}
 
-
-
 	/**
 	 * <ul>
 	 * <li>Calculates the initial conditions to align each nodes owned by {@link #rootTree}</li>
@@ -251,7 +138,7 @@ public class CustomAlignAction extends AlignAction {
 	 * @param request
 	 *        the initial request
 	 */
-	protected void createRequests(List editparts, AlignmentRequest request) {
+	protected void createRequests(List<?> editparts) {
 
 		EditPart refEP = (EditPart)editparts.get(editparts.size() - 1);
 		PrecisionRectangle boundsRef = LayoutUtils.getAbsolutePosition(refEP);
@@ -491,7 +378,7 @@ public class CustomAlignAction extends AlignAction {
 
 		//1-we determine the bounds!
 		if(dontCross == null && containerBounds.equals(LayoutUtils.getAbsolutePosition(tree.getEditPart().getRoot()))) {
-			AlignmentRequest newRequest = new AlignmentRequest(requestType);
+			AlignmentRequest newRequest = new AlignmentRequest(RequestConstants.REQ_ALIGN);
 			PrecisionRectangle newPrecisionRectangle = new PrecisionRectangle(ref);
 			newRequest.setAlignment(this.alignment);
 			newRequest.setAlignmentRectangle(newPrecisionRectangle);
@@ -570,7 +457,7 @@ public class CustomAlignAction extends AlignAction {
 		Point translationPoint = null;
 
 		/* the new request */
-		AlignmentRequest newRequest = new AlignmentRequest(requestType);
+		AlignmentRequest newRequest = new AlignmentRequest(RequestConstants.REQ_ALIGN);
 		newRequest.setAlignment(this.alignment);
 		switch(alignment) {
 		case PositionConstants.LEFT:
@@ -716,7 +603,7 @@ public class CustomAlignAction extends AlignAction {
 	 *         </ul>
 	 * 
 	 */
-	protected boolean isMixedSelection(List<EditPart> editparts) {
+	protected boolean isMixedSelection(List<?> editparts) {
 		boolean node = false;
 		boolean link = false;
 		for(Object editPart : editparts) {
@@ -740,7 +627,7 @@ public class CustomAlignAction extends AlignAction {
 	 *         <li>{@code false}</li> if not
 	 *         </ul>
 	 */
-	protected boolean isLinkSelection(List<EditPart> editparts) {
+	protected boolean isLinkSelection(List<?> editparts) {
 		if(editparts.size() == 0) {
 			return false;
 		}

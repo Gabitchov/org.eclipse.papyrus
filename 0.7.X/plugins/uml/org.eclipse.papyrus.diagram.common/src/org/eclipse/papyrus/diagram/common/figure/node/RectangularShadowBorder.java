@@ -90,10 +90,11 @@ public class RectangularShadowBorder extends LineBorder {
 		plt.addPoint(tempRect.x + tempRect.width + borderwidth, tempRect.y + tempRect.height + borderwidth);
 		plt.addPoint(tempRect.x + tempRect.width + borderwidth, tempRect.y + borderwidth);
 		plt.addPoint(tempRect.x + tempRect.width, tempRect.y + borderwidth);
-		if(getColor()!=null){
-		graphics.setBackgroundColor(getColor());
+		if(getColor() != null) {
+			graphics.setBackgroundColor(getColor());
+		} else {
+			graphics.setBackgroundColor(ColorConstants.black);
 		}
-		else{graphics.setBackgroundColor(ColorConstants.black);}
 		graphics.fillPolygon(plt);
 		graphics.popState();
 	}

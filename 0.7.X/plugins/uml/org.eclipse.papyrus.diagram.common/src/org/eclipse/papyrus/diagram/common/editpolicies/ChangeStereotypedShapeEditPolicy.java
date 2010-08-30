@@ -65,10 +65,10 @@ public abstract class ChangeStereotypedShapeEditPolicy extends GraphicalEditPoli
 	 * Returns the uml element controlled by the host edit part
 	 * 
 	 * @return the uml element controlled by the host edit part
-	 * can return null if this semantic element is not an uml element
+	 *         can return null if this semantic element is not an uml element
 	 */
 	protected Element getUMLElement() {
-		if(getView().getElement() instanceof Element){
+		if(getView().getElement() instanceof Element) {
 			return (Element)getView().getElement();
 		}
 		return null;
@@ -100,16 +100,16 @@ public abstract class ChangeStereotypedShapeEditPolicy extends GraphicalEditPoli
 			if(VisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION == ((EAnnotation)notification.getNotifier()).getSource()) {
 				// stereotype annotation has changed => refresh label display
 				//add a test about kind old value 
-				if (!(getHost() instanceof AbstractShapeEditPart) &&AppliedStereotypeHelper.getAppliedStereotypePresentationKind(getView())== VisualInformationPapyrusConstant.IMAGE_STEREOTYPE_PRESENTATION){
-					if(notification.getNewValue() instanceof Map.Entry<?, ?>){
-						if(((Map.Entry<?, ?>)notification.getNewValue()).getKey().equals(VisualInformationPapyrusConstant.STEREOTYPE_PRESENTATION_KIND)){
+				if(!(getHost() instanceof AbstractShapeEditPart) && AppliedStereotypeHelper.getAppliedStereotypePresentationKind(getView()) == VisualInformationPapyrusConstant.IMAGE_STEREOTYPE_PRESENTATION) {
+					if(notification.getNewValue() instanceof Map.Entry<?, ?>) {
+						if(((Map.Entry<?, ?>)notification.getNewValue()).getKey().equals(VisualInformationPapyrusConstant.STEREOTYPE_PRESENTATION_KIND)) {
 							transformIntoShape(getHost());
 						}
 					}
 				}
-				if ((getHost() instanceof AbstractShapeEditPart) && AppliedStereotypeHelper.getAppliedStereotypePresentationKind(getView())!= VisualInformationPapyrusConstant.IMAGE_STEREOTYPE_PRESENTATION){
-					if(notification.getNewValue() instanceof Map.Entry<?, ?>){
-						if(((Map.Entry<?, ?>)notification.getNewValue()).getKey().equals(VisualInformationPapyrusConstant.STEREOTYPE_PRESENTATION_KIND)){
+				if((getHost() instanceof AbstractShapeEditPart) && AppliedStereotypeHelper.getAppliedStereotypePresentationKind(getView()) != VisualInformationPapyrusConstant.IMAGE_STEREOTYPE_PRESENTATION) {
+					if(notification.getNewValue() instanceof Map.Entry<?, ?>) {
+						if(((Map.Entry<?, ?>)notification.getNewValue()).getKey().equals(VisualInformationPapyrusConstant.STEREOTYPE_PRESENTATION_KIND)) {
 							transformIntoNormalShape(getHost());
 						}
 					}
@@ -117,6 +117,7 @@ public abstract class ChangeStereotypedShapeEditPolicy extends GraphicalEditPoli
 			}
 		}
 	}
+
 	/**
 	 * 
 	 * {@inheritDoc}
@@ -174,16 +175,21 @@ public abstract class ChangeStereotypedShapeEditPolicy extends GraphicalEditPoli
 		// removes the reference to the semantic element
 		hostSemanticElement = null;
 	}
+
 	/**
 	 * implementation to transform this editpart into shape from the stereotype
-	 * @param part the graphical editpart to change
+	 * 
+	 * @param part
+	 *        the graphical editpart to change
 	 */
-	public  abstract void transformIntoShape(EditPart part);
+	public abstract void transformIntoShape(EditPart part);
 
 
 	/**
 	 * implementation to transform a shape editpart into normal editpart
-	 * @param part the graphical editpart to change
+	 * 
+	 * @param part
+	 *        the graphical editpart to change
 	 */
 	public abstract void transformIntoNormalShape(EditPart part);
 }

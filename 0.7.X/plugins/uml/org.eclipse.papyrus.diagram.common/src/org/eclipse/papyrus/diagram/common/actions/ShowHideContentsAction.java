@@ -47,6 +47,7 @@ import org.eclipse.papyrus.diagram.common.commands.ShowHideElementsRequest;
 import org.eclipse.papyrus.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy;
 import org.eclipse.papyrus.diagram.common.providers.EditorLabelProvider;
 import org.eclipse.papyrus.diagram.common.util.Util;
+import org.eclipse.papyrus.wizards.Activator;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IActionDelegate;
 import org.eclipse.ui.IWorkbenchWindow;
@@ -556,7 +557,7 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 				return 0;
 			}
 			if(index1 == -1) {
-				System.out.println(name1);
+				Activator.log.debug("The class " + name1 + " is unknown by " + this.getClass());//$NON-NLS-1$ //$NON-NLS-2$
 				return -1;
 			} else if(index1 == index2) {
 				return 0;

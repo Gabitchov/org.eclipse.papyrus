@@ -24,17 +24,20 @@ import org.eclipse.swt.graphics.Image;
 
 /**
  * this class is used to display the a constraint with the possibility of gradient qualified name
- *
+ * 
  */
-public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNamedElementFigure, ILabelFigure, IMultilineEditableFigure{
+public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNamedElementFigure, ILabelFigure, IMultilineEditableFigure {
+
 	protected static final String LEFT_BRACE = "{";
 
 	protected static final String RIGHT_BRACE = "}";
 
-	protected TextFlowEx textFlow ;
+	protected TextFlowEx textFlow;
 
 	private WrappingLabel nameLabel;
+
 	private Label qualifiedLabel;
+
 	/** the depth of the qualified name **/
 	private int depth = 0;
 
@@ -71,11 +74,11 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 		}
 
 	}
-	
+
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.diagram.common.figure.node.IPapyrusNodeNamedElementFigure#setQualifiedName(java.lang.String)
-	 *
+	 * 
 	 * @param qualifiedName
 	 */
 	public void setQualifiedName(String qualifiedName) {
@@ -83,7 +86,7 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 		// two raisons to remove label!
 		// null
 		// or the qualified name is equal to 1
-		if(qualifiedName == null ||tmpQualifiedName==null|| !tmpQualifiedName.contains("::")) { // Remove
+		if(qualifiedName == null || tmpQualifiedName == null || !tmpQualifiedName.contains("::")) { // Remove
 			// label
 			// if
 			// any
@@ -111,7 +114,7 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.diagram.common.figure.node.IPapyrusNodeNamedElementFigure#getQualifiedNameLabel()
-	 *
+	 * 
 	 * @return
 	 */
 
@@ -132,14 +135,15 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 
 		this.add(page);
 
-		textFlow= new TextFlowEx("");
+		textFlow = new TextFlowEx("");
 		page.add(textFlow);
 
 	}
+
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.diagram.common.figure.node.IPapyrusNodeNamedElementFigure#getTaggedLabel()
-	 *
+	 * 
 	 * @return
 	 */
 	public Label getTaggedLabel() {
@@ -150,7 +154,7 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.diagram.common.figure.node.IPapyrusNodeNamedElementFigure#setDepth(int)
-	 *
+	 * 
 	 * @param depth
 	 */
 	public void setDepth(int depth) {
@@ -161,7 +165,7 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.diagram.common.figure.node.IPapyrusNodeNamedElementFigure#getNameLabel()
-	 *
+	 * 
 	 * @return
 	 */
 	public WrappingLabel getNameLabel() {
@@ -171,7 +175,7 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.diagram.common.figure.node.IPapyrusNodeNamedElementFigure#setNameLabelIcon(boolean)
-	 *
+	 * 
 	 * @param displayNameLabelIcon
 	 */
 	public void setNameLabelIcon(boolean displayNameLabelIcon) {
@@ -202,28 +206,32 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 	/**
 	 * use to obtain the reference of this figure
 	 * (use in order to launch an edit request)
+	 * 
 	 * @return the constraintfigure
 	 */
-	public ConstraintFigure getConstraintFigure(){
+	public ConstraintFigure getConstraintFigure() {
 		return this;
 	}
+
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure#setText(java.lang.String)
-	 *
+	 * 
 	 * @param text
 	 */
 	public void setText(String text) {
 		// generates new ones
-		textFlow.setText(LEFT_BRACE +text+RIGHT_BRACE);
+		textFlow.setText(LEFT_BRACE + text + RIGHT_BRACE);
 	}
+
 	/**
 	 * 
 	 * @return the textflow of the constraint that contain the string of the specification
 	 */
-	public TextFlowEx getTextFlow(){
+	public TextFlowEx getTextFlow() {
 		return textFlow;
 	}
+
 	/**
 	 * 
 	 * @return the container of the text flow
@@ -232,49 +240,54 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 		return page;
 
 	}
+
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure#getText()
-	 *
-	 * @return the display string that  represents the specification
+	 * 
+	 * @return the display string that represents the specification
 	 */
 	public String getText() {
 		return textFlow.getText();
 	}
+
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure#setIcon(org.eclipse.swt.graphics.Image)
-	 *
+	 * 
 	 * @param icon
 	 */
 	public void setIcon(Image icon) {
 		// TODO Auto-generated method stub
 
 	}
+
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure#getIcon()
-	 *
+	 * 
 	 * @return
 	 */
 	public Image getIcon() {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 	/**
-	 * 	
+	 * 
 	 * @see org.eclipse.draw2d.Figure#getMinimumSize(int, int)
-	 *
+	 * 
 	 * 
 	 */
 	public Dimension getMinimumSize(int wHint, int hHint) {
 		// TODO Auto-generated method stub
-		return new Dimension(20,20);
+		return new Dimension(20, 20);
 	}
+
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.diagram.common.figure.node.IMultilineEditableFigure#getEditionLocation()
-	 *
+	 * 
 	 */
 	public Point getEditionLocation() {
 		return page.getLocation();

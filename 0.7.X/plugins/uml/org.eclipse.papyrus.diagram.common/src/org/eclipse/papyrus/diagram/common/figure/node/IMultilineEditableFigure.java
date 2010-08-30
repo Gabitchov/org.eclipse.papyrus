@@ -21,18 +21,18 @@ import org.eclipse.draw2d.geometry.Point;
  * This interface is used to indicate that this kind of figure contains a multiline field.
  * It provides method to edit and the position to edit this field.
  */
-public interface IMultilineEditableFigure extends IFigure{
-	
+public interface IMultilineEditableFigure extends IFigure {
+
 	/**
 	 * Gets the text of the multi-line field
-	 *
+	 * 
 	 * @return the text
 	 */
 	public String getText();
-	
+
 	/**
 	 * Gets the location of the multi-line field
-	 *
+	 * 
 	 * @return the edition location
 	 */
 	public Point getEditionLocation();

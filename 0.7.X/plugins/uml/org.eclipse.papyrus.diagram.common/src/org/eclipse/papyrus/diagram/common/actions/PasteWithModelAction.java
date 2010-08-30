@@ -18,20 +18,20 @@ import org.eclipse.ui.IWorkbenchPart;
 
 public class PasteWithModelAction implements IObjectActionDelegate {
 
-	protected GraphicalEditPart targetEditPart=null;
+	protected GraphicalEditPart targetEditPart = null;
 
 	public void run(IAction action) {
 
 		/* Get the selected edit parts */
 
-		if(targetEditPart != null){
+		if(targetEditPart != null) {
 			//get the paste command with model form the service
-			ICommand pastecommand=PasteCommandService.getInstance().getPasteWithModelCommand(targetEditPart, Toolkit.getDefaultToolkit().getSystemClipboard(), targetEditPart.getEditingDomain().getClipboard());
+			ICommand pastecommand = PasteCommandService.getInstance().getPasteWithModelCommand(targetEditPart, Toolkit.getDefaultToolkit().getSystemClipboard(), targetEditPart.getEditingDomain().getClipboard());
 
-			if(pastecommand.canExecute() ){
+			if(pastecommand.canExecute()) {
 				targetEditPart.getEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(pastecommand));
-				RootEditPart topEditPart=targetEditPart.getRoot();
-				if(topEditPart.getChildren().get(0) instanceof DiagramEditPart){
+				RootEditPart topEditPart = targetEditPart.getRoot();
+				if(topEditPart.getChildren().get(0) instanceof DiagramEditPart) {
 					CleanDiagramHelper.getInstance().run((DiagramEditPart)topEditPart.getChildren().get(0));
 				}
 			}
@@ -40,10 +40,10 @@ public class PasteWithModelAction implements IObjectActionDelegate {
 
 
 	public void selectionChanged(IAction action, ISelection selection) {
-		if (selection instanceof IStructuredSelection){
-			Object selectedElement=((IStructuredSelection)selection).getFirstElement();
-			if (selectedElement instanceof GraphicalEditPart){
-				targetEditPart=(GraphicalEditPart)selectedElement;
+		if(selection instanceof IStructuredSelection) {
+			Object selectedElement = ((IStructuredSelection)selection).getFirstElement();
+			if(selectedElement instanceof GraphicalEditPart) {
+				targetEditPart = (GraphicalEditPart)selectedElement;
 			}
 		}
 

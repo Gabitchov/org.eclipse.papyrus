@@ -75,7 +75,7 @@ public class CommonDeferredCreateConnectionViewCommand extends DeferredCreateCon
 	 * 
 	 * @param editingDomain
 	 *        the editing domain
-	 *@param semanticHint
+	 * @param semanticHint
 	 *        the semantic of the graphical element
 	 * @param sourceViewAdapter
 	 *        the source of the link

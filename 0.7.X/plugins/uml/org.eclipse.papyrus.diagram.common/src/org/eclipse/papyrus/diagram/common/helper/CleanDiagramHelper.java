@@ -51,18 +51,20 @@ import org.eclipse.papyrus.diagram.common.editpolicies.OrphanViewPolicy;
 
 @SuppressWarnings("restriction")
 public class CleanDiagramHelper {
-	
+
 	protected static CleanDiagramHelper cleanDiagramHelper;
+
 	/** The view to remove. */
 	protected ArrayList<View> viewToRemove = new ArrayList<View>();
-	protected  DiagramEditPart selectedElement;
+
+	protected DiagramEditPart selectedElement;
 
 
 
-	
-	public static CleanDiagramHelper getInstance(){
-		if( cleanDiagramHelper==null){
-			cleanDiagramHelper= new CleanDiagramHelper();
+
+	public static CleanDiagramHelper getInstance() {
+		if(cleanDiagramHelper == null) {
+			cleanDiagramHelper = new CleanDiagramHelper();
 		}
 		return cleanDiagramHelper;
 	}
@@ -71,7 +73,7 @@ public class CleanDiagramHelper {
 	 * {@inheritDoc}
 	 */
 	public void run(DiagramEditPart diagramEditPart) {
-		this.selectedElement=diagramEditPart;
+		this.selectedElement = diagramEditPart;
 		OrphanViewPolicy removeOrphanViewPolicy = (OrphanViewPolicy)diagramEditPart.getEditPolicy("RemoveOrphanView");
 		if(removeOrphanViewPolicy != null) {
 			removeOrphanViewPolicy.forceRefresh();
@@ -86,7 +88,7 @@ public class CleanDiagramHelper {
 	 */
 	protected void deleteUnknownViews() {
 		for(int i = 0; i < viewToRemove.size(); i++) {
-			Activator.getDefault().logInfo( "Remove " + viewToRemove.get(i));
+			Activator.getDefault().logInfo("Remove " + viewToRemove.get(i));
 			executeCommand(getDeleteViewCommand(viewToRemove.get(i)));
 		}
 	}

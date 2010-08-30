@@ -43,45 +43,44 @@ public class ConstraintParser implements IParser, ISemanticParser {
 
 	/**
 	 * @see org.eclipse.gmf.runtime.common.ui.services.parser.IParser#getEditString(org.eclipse.core.runtime.IAdaptable, int)
-	 *
+	 * 
 	 */
-	
+
 	public String getEditString(IAdaptable element, int flags) {
 		Constraint constraint = doAdapt(element);
-		if(constraint == null||constraint.getSpecification()==null) {
+		if(constraint == null || constraint.getSpecification() == null) {
 			return "<NULL Constraint>"; //$NON-NLS-1$
 		}
-		if( constraint.getSpecification() instanceof LiteralString){
-			return ((LiteralString)constraint.getSpecification()).getValue();}
+		if(constraint.getSpecification() instanceof LiteralString) {
+			return ((LiteralString)constraint.getSpecification()).getValue();
+		}
 		return "";
 	}
 
 	/**
 	 * @see org.eclipse.gmf.runtime.common.ui.services.parser.IParser#isValidEditString(org.eclipse.core.runtime.IAdaptable, java.lang.String)
-	 *
+	 * 
 	 */
-	
-	public IParserEditStatus isValidEditString(IAdaptable element,
-		String editString) {
+
+	public IParserEditStatus isValidEditString(IAdaptable element, String editString) {
 		return ParserEditStatus.EDITABLE_STATUS;
 	}
 
 	/**
 	 * @see org.eclipse.gmf.runtime.common.ui.services.parser.IParser#getParseCommand(org.eclipse.core.runtime.IAdaptable, java.lang.String, int)
-	 *
+	 * 
 	 */
-	
-	public ICommand getParseCommand(IAdaptable element, String newString,
-		int flags) {
+
+	public ICommand getParseCommand(IAdaptable element, String newString, int flags) {
 		Constraint constraint = doAdapt(element);
-		if(constraint == null ||constraint.getSpecification()==null) {
+		if(constraint == null || constraint.getSpecification() == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(constraint);
-		if(editingDomain == null||constraint.getSpecification()==null) {
+		if(editingDomain == null || constraint.getSpecification() == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
-		LiteralString specif= (LiteralString)constraint.getSpecification();
+		LiteralString specif = (LiteralString)constraint.getSpecification();
 		CompositeTransactionalCommand command = new CompositeTransactionalCommand(editingDomain, "Set Value Constraint"); //$NON-NLS-1$
 		SetRequest request = new SetRequest(specif, UMLPackage.eINSTANCE.getLiteralString_Value(), newString);
 		command.compose(new SetValueCommand(request));
@@ -90,24 +89,25 @@ public class ConstraintParser implements IParser, ISemanticParser {
 
 	/**
 	 * @see org.eclipse.gmf.runtime.common.ui.services.parser.IParser#getPrintString(org.eclipse.core.runtime.IAdaptable, int)
-	 *
+	 * 
 	 */
-	
+
 	public String getPrintString(IAdaptable element, int flags) {
 		Constraint constraint = doAdapt(element);
-		if(constraint == null||constraint.getSpecification()==null) {
+		if(constraint == null || constraint.getSpecification() == null) {
 			return "";
 		}
-		if( constraint.getSpecification() instanceof LiteralString){
-			return ((LiteralString)constraint.getSpecification()).getValue();}
+		if(constraint.getSpecification() instanceof LiteralString) {
+			return ((LiteralString)constraint.getSpecification()).getValue();
+		}
 		return "";
 	}
 
 	/**
 	 * @see org.eclipse.gmf.runtime.common.ui.services.parser.IParser#isAffectingEvent(java.lang.Object, int)
-	 *
+	 * 
 	 */
-	
+
 	public boolean isAffectingEvent(Object event, int flags) {
 		// TODO Auto-generated method stub
 		return false;
@@ -115,14 +115,16 @@ public class ConstraintParser implements IParser, ISemanticParser {
 
 	/**
 	 * @see org.eclipse.gmf.runtime.common.ui.services.parser.IParser#getCompletionProcessor(org.eclipse.core.runtime.IAdaptable)
-	 *
+	 * 
 	 */
-	
+
 	public IContentAssistProcessor getCompletionProcessor(IAdaptable element) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	/**used to obtain the constraint element.
+
+	/**
+	 * used to obtain the constraint element.
 	 * 
 	 * @param element
 	 *        the given IAdaptable
@@ -138,15 +140,15 @@ public class ConstraintParser implements IParser, ISemanticParser {
 
 	/**
 	 * @see org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser#getSemanticElementsBeingParsed(org.eclipse.emf.ecore.EObject)
-	 *
+	 * 
 	 */
-	
+
 	public List getSemanticElementsBeingParsed(EObject element) {
 		Element umlElement = (Element)element;
 		List<EObject> result = new LinkedList<EObject>();
 		if(umlElement instanceof Constraint) {
 			Constraint constraint = (Constraint)umlElement;
-			if(constraint.getSpecification()!=null) {
+			if(constraint.getSpecification() != null) {
 				ValueSpecification value = constraint.getSpecification();
 				result.add(value);
 			}
@@ -155,10 +157,11 @@ public class ConstraintParser implements IParser, ISemanticParser {
 	}
 
 	/**
-	 * @see org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser#areSemanticElementsAffected(org.eclipse.emf.ecore.EObject, java.lang.Object)
-	 *
+	 * @see org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser#areSemanticElementsAffected(org.eclipse.emf.ecore.EObject,
+	 *      java.lang.Object)
+	 * 
 	 */
-	
+
 	public boolean areSemanticElementsAffected(EObject listener, Object notification) {
 		return true;
 	}

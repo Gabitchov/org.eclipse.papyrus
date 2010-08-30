@@ -32,7 +32,7 @@ import org.eclipse.papyrus.diagram.common.Messages;
 
 /**
  * parser to display the name of diagram in the case of a short cut
- *
+ * 
  */
 public class ShortcutDiagramParser implements IParser {
 
@@ -42,12 +42,13 @@ public class ShortcutDiagramParser implements IParser {
 	 */
 	public String getEditString(IAdaptable element, int flags) {
 		Diagram diagram = doAdapt(element);
-		if(diagram == null||diagram.eResource()==null) {
-			return Messages.DiagramNotFound; 
+		if(diagram == null || diagram.eResource() == null) {
+			return Messages.DiagramNotFound;
 		}
-		
+
 		return diagram.getName();
 	}
+
 	/**
 	 * 
 	 * {@inheritDoc}
@@ -55,13 +56,14 @@ public class ShortcutDiagramParser implements IParser {
 	public IParserEditStatus isValidEditString(IAdaptable element, String editString) {
 		return ParserEditStatus.EDITABLE_STATUS;
 	}
+
 	/**
 	 * 
 	 * {@inheritDoc}
 	 */
 	public ICommand getParseCommand(IAdaptable element, String newString, int flags) {
 		Diagram diagram = doAdapt(element);
-		if(diagram == null||diagram.eResource()==null) {
+		if(diagram == null || diagram.eResource() == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(diagram);
@@ -73,18 +75,20 @@ public class ShortcutDiagramParser implements IParser {
 		command.compose(new SetValueCommand(request));
 		return command;
 	}
+
 	/**
 	 * 
 	 * {@inheritDoc}
 	 */
 	public String getPrintString(IAdaptable element, int flags) {
 		Diagram diagram = doAdapt(element);
-		if(diagram == null||diagram.eResource()==null) {
-			return Messages.DiagramNotFound; 
+		if(diagram == null || diagram.eResource() == null) {
+			return Messages.DiagramNotFound;
 		}
-		
+
 		return diagram.getName();
 	}
+
 	/**
 	 * 
 	 * {@inheritDoc}
@@ -93,6 +97,7 @@ public class ShortcutDiagramParser implements IParser {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
 	/**
 	 * 
 	 * {@inheritDoc}
@@ -102,7 +107,8 @@ public class ShortcutDiagramParser implements IParser {
 		return null;
 	}
 
-	/**used to obtain the diagram element.
+	/**
+	 * used to obtain the diagram element.
 	 * 
 	 * @param element
 	 *        the given IAdaptable

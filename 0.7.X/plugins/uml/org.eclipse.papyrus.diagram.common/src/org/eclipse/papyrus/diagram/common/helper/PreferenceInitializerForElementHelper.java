@@ -38,27 +38,32 @@ import org.eclipse.swt.graphics.FontData;
 
 /**
  * this is an helper that contains method use to intialize font color etc in the view provider
- *
+ * 
  */
 public class PreferenceInitializerForElementHelper {
 
 
-	public static String getpreferenceKey(View view,String elementName, int pref){
-		return PreferenceConstantHelper.getElementConstant(view.getDiagram().getType()+"_"+elementName, pref);
+	public static String getpreferenceKey(View view, String elementName, int pref) {
+		return PreferenceConstantHelper.getElementConstant(view.getDiagram().getType() + "_" + elementName, pref);
 	}
+
 	/**
 	 * init the background for a graphical element
-	 * @param view the element to initialize
-	 * @param store the preference store
-	 * @param elementName the name to the element
+	 * 
+	 * @param view
+	 *        the element to initialize
+	 * @param store
+	 *        the preference store
+	 * @param elementName
+	 *        the name to the element
 	 */
 	public static void initBackgroundFromPrefs(View view, final IPreferenceStore store, String elementName) {
-		String fillColorConstant = getpreferenceKey(view,elementName, PreferenceConstantHelper.COLOR_FILL);
-		String gradientColorConstant =getpreferenceKey(view,elementName, PreferenceConstantHelper.COLOR_GRADIENT);
-		String gradientPolicyConstant = getpreferenceKey(view,elementName,PreferenceConstantHelper.GRADIENT_POLICY);
-		String shadowConstant= getpreferenceKey(view,elementName, PreferenceConstantHelper.SHADOW);
-		String elementIcon= getpreferenceKey(view,elementName, PreferenceConstantHelper.ELEMENTICON);
-		String qualifiedName= getpreferenceKey(view,elementName, PreferenceConstantHelper.QUALIFIEDNAME);
+		String fillColorConstant = getpreferenceKey(view, elementName, PreferenceConstantHelper.COLOR_FILL);
+		String gradientColorConstant = getpreferenceKey(view, elementName, PreferenceConstantHelper.COLOR_GRADIENT);
+		String gradientPolicyConstant = getpreferenceKey(view, elementName, PreferenceConstantHelper.GRADIENT_POLICY);
+		String shadowConstant = getpreferenceKey(view, elementName, PreferenceConstantHelper.SHADOW);
+		String elementIcon = getpreferenceKey(view, elementName, PreferenceConstantHelper.ELEMENTICON);
+		String qualifiedName = getpreferenceKey(view, elementName, PreferenceConstantHelper.QUALIFIEDNAME);
 
 
 		org.eclipse.swt.graphics.RGB fillRGB = PreferenceConverter.getColor(store, fillColorConstant);
@@ -73,35 +78,40 @@ public class PreferenceInitializerForElementHelper {
 			fillStyle.setTransparency(gradientPreferenceConverter.getTransparency());
 		}
 
-		if(EditorUtils.getTransactionalEditingDomain()!=null){
+		if(EditorUtils.getTransactionalEditingDomain() != null) {
 			//shadow
-			RecordingCommand shadowcommand=ShadowFigureHelper.getShadowColorCommand(EditorUtils.getTransactionalEditingDomain(), view, store.getBoolean(shadowConstant));
-			if(shadowcommand.canExecute()){
+			RecordingCommand shadowcommand = ShadowFigureHelper.getShadowColorCommand(EditorUtils.getTransactionalEditingDomain(), view, store.getBoolean(shadowConstant));
+			if(shadowcommand.canExecute()) {
 				shadowcommand.execute();
 			}
 			//icon label
-			RecordingCommand namelabelIconCommand=NameLabelIconHelper.getNameLabelIconCommand(EditorUtils.getTransactionalEditingDomain(), view, store.getBoolean(elementIcon));
-			if(namelabelIconCommand.canExecute()){
+			RecordingCommand namelabelIconCommand = NameLabelIconHelper.getNameLabelIconCommand(EditorUtils.getTransactionalEditingDomain(), view, store.getBoolean(elementIcon));
+			if(namelabelIconCommand.canExecute()) {
 				namelabelIconCommand.execute();
 			}
 			//qualified name
-			if(!store.getBoolean(qualifiedName)){
-				RecordingCommand qualifiedNameCommand=QualifiedNameHelper.getSetQualifedNameDepthCommand(EditorUtils.getTransactionalEditingDomain(), view, 1000);
-				if(qualifiedNameCommand.canExecute()){
+			if(!store.getBoolean(qualifiedName)) {
+				RecordingCommand qualifiedNameCommand = QualifiedNameHelper.getSetQualifedNameDepthCommand(EditorUtils.getTransactionalEditingDomain(), view, 1000);
+				if(qualifiedNameCommand.canExecute()) {
 					qualifiedNameCommand.execute();
 				}
 			}
 		}
 	}
+
 	/**
 	 * init the font for a graphical element
-	 * @param view the element to initialize
-	 * @param store the preference store
-	 * @param elementName the name to the element
+	 * 
+	 * @param view
+	 *        the element to initialize
+	 * @param store
+	 *        the preference store
+	 * @param elementName
+	 *        the name to the element
 	 */
 	public static void initFontStyleFromPrefs(View view, final IPreferenceStore store, String elementName) {
-		String fontConstant =getpreferenceKey(view,elementName,PreferenceConstantHelper.FONT);
-		String fontColorConstant = getpreferenceKey(view,elementName,PreferenceConstantHelper.COLOR_FONT);
+		String fontConstant = getpreferenceKey(view, elementName, PreferenceConstantHelper.FONT);
+		String fontColorConstant = getpreferenceKey(view, elementName, PreferenceConstantHelper.COLOR_FONT);
 
 		FontStyle viewFontStyle = (FontStyle)view.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if(viewFontStyle != null) {
@@ -118,48 +128,56 @@ public class PreferenceInitializerForElementHelper {
 
 	/**
 	 * init the foreground for a graphical element
-	 * @param view the element to initialize
-	 * @param store the preference store
-	 * @param elementName the name to the element
+	 * 
+	 * @param view
+	 *        the element to initialize
+	 * @param store
+	 *        the preference store
+	 * @param elementName
+	 *        the name to the element
 	 */
 	public static void initForegroundFromPrefs(View view, final IPreferenceStore store, String elementName) {
-		String lineColorConstant = getpreferenceKey(view,elementName, PreferenceConstantHelper.COLOR_LINE);
+		String lineColorConstant = getpreferenceKey(view, elementName, PreferenceConstantHelper.COLOR_LINE);
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(store, lineColorConstant);
 		ViewUtil.setStructuralFeatureValue(view, NotationPackage.eINSTANCE.getLineStyle_LineColor(), FigureUtilities.RGBToInteger(lineRGB));
 	}
 
 	/**
 	 * init the routing for a graphical element
-	 * @param view the element to initialize
-	 * @param store the preference store
-	 * @param elementName the name to the element
+	 * 
+	 * @param view
+	 *        the element to initialize
+	 * @param store
+	 *        the preference store
+	 * @param elementName
+	 *        the name to the element
 	 */
 
 	public static void initRountingFromPrefs(View view, final IPreferenceStore store, String elementName) {
-		Routing routing = Routing.get(store.getInt(getpreferenceKey(view,elementName, PreferenceConstantHelper.ROUTING_STYLE)));
+		Routing routing = Routing.get(store.getInt(getpreferenceKey(view, elementName, PreferenceConstantHelper.ROUTING_STYLE)));
 		if(routing != null) {
 			ViewUtil.setStructuralFeatureValue(view, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
 		}
-		Smoothness smoothness= Smoothness.get(store.getInt(getpreferenceKey(view,elementName, PreferenceConstantHelper.SMOOTHNESS)));
+		Smoothness smoothness = Smoothness.get(store.getInt(getpreferenceKey(view, elementName, PreferenceConstantHelper.SMOOTHNESS)));
 		if(routing != null) {
 			ViewUtil.setStructuralFeatureValue(view, NotationPackage.eINSTANCE.getRoutingStyle_Smoothness(), smoothness);
 		}
-		JumpLinkStatus jumpLinkStatus= JumpLinkStatus.get(getpreferenceKey(view,elementName,PreferenceConstantHelper.JUMPLINK_STATUS));
+		JumpLinkStatus jumpLinkStatus = JumpLinkStatus.get(getpreferenceKey(view, elementName, PreferenceConstantHelper.JUMPLINK_STATUS));
 		if(routing != null) {
 			ViewUtil.setStructuralFeatureValue(view, NotationPackage.eINSTANCE.getRoutingStyle_JumpLinkStatus(), jumpLinkStatus);
 		}
 
-		JumpLinkType jumpLinkType= JumpLinkType.get(getpreferenceKey(view,elementName,PreferenceConstantHelper.JUMPLINK_TYPE));
+		JumpLinkType jumpLinkType = JumpLinkType.get(getpreferenceKey(view, elementName, PreferenceConstantHelper.JUMPLINK_TYPE));
 		if(routing != null) {
 			ViewUtil.setStructuralFeatureValue(view, NotationPackage.eINSTANCE.getRoutingStyle_JumpLinkType(), jumpLinkType);
 		}
-		boolean jumpLinksReverse= store.getBoolean(getpreferenceKey(view,elementName,PreferenceConstantHelper.JUMPLINK_REVERSE));
+		boolean jumpLinksReverse = store.getBoolean(getpreferenceKey(view, elementName, PreferenceConstantHelper.JUMPLINK_REVERSE));
 		ViewUtil.setStructuralFeatureValue(view, NotationPackage.eINSTANCE.getRoutingStyle_JumpLinksReverse(), jumpLinksReverse);
 
-		boolean routingObstruction= store.getBoolean(getpreferenceKey(view,elementName,PreferenceConstantHelper.ROUTING_POLICY_OBSTRUCTION));
+		boolean routingObstruction = store.getBoolean(getpreferenceKey(view, elementName, PreferenceConstantHelper.ROUTING_POLICY_OBSTRUCTION));
 		ViewUtil.setStructuralFeatureValue(view, NotationPackage.eINSTANCE.getRoutingStyle_AvoidObstructions(), routingObstruction);
 
-		boolean routingDistance= store.getBoolean(getpreferenceKey(view,elementName,PreferenceConstantHelper.ROUTING_POLICY_DISTANCE));
+		boolean routingDistance = store.getBoolean(getpreferenceKey(view, elementName, PreferenceConstantHelper.ROUTING_POLICY_DISTANCE));
 		ViewUtil.setStructuralFeatureValue(view, NotationPackage.eINSTANCE.getRoutingStyle_ClosestDistance(), routingDistance);
 
 
@@ -168,10 +186,10 @@ public class PreferenceInitializerForElementHelper {
 	}
 
 	public static Dimension getDimensionFromPref(View view, final IPreferenceStore store, String elementName) {
-		Dimension dim= new Dimension();
-		String width = getpreferenceKey(view,elementName, PreferenceConstantHelper.WIDTH);
-		String height = getpreferenceKey(view,elementName, PreferenceConstantHelper.HEIGHT);
-		dim= new Dimension(store.getInt(width),store.getInt(height));
+		Dimension dim = new Dimension();
+		String width = getpreferenceKey(view, elementName, PreferenceConstantHelper.WIDTH);
+		String height = getpreferenceKey(view, elementName, PreferenceConstantHelper.HEIGHT);
+		dim = new Dimension(store.getInt(width), store.getInt(height));
 		return dim;
 	}
 }

@@ -32,33 +32,40 @@ import org.eclipse.swt.graphics.Image;
  * @author Patrick Tessier
  * 
  */
-public class CornerBentFigure extends NoteFigure implements IPapyrusNodeUMLElementFigure, IPapyrusNodeFigure{
+public class CornerBentFigure extends NoteFigure implements IPapyrusNodeUMLElementFigure, IPapyrusNodeFigure {
 
 	protected NoteShadowBorder shadowborder;
-	protected NoteFigureBorder noteBorder=null;
+
+	protected NoteFigureBorder noteBorder = null;
+
 	/**
 	 * Added for stereptypes properties
 	 */
 	protected StereotypePropertiesCompartment stereotypePropertiesContent;
+
 	/**
 	 * Added for stereotypes properties, displayed in the InBrace location
 	 */
 	protected Label stereotypePropertiesInBraceContent;
+
 	protected Label stereotypesLabel;
+
 	/**
 	 * The icon label.
 	 */
 	protected Label iconLabel;
-	protected Color borderColor=ColorConstants.black;
-	protected  boolean shadow= true;
+
+	protected Color borderColor = ColorConstants.black;
+
+	protected boolean shadow = true;
 
 	public CornerBentFigure() {
 		super(100, 60, new Insets(5, 5, 5, 14));
-		setLayoutManager( new ToolbarLayout());
-		if( this.getBorder() instanceof NoteFigureBorder){
-			noteBorder=(NoteFigureBorder)this.getBorder();
+		setLayoutManager(new ToolbarLayout());
+		if(this.getBorder() instanceof NoteFigureBorder) {
+			noteBorder = (NoteFigureBorder)this.getBorder();
 		}
-		shadowborder = new NoteShadowBorder(3, getForegroundColor(),new Dimension(10, 10), noteBorder);
+		shadowborder = new NoteShadowBorder(3, getForegroundColor(), new Dimension(10, 10), noteBorder);
 		setBorder(shadowborder);
 	}
 
@@ -189,7 +196,7 @@ public class CornerBentFigure extends NoteFigure implements IPapyrusNodeUMLEleme
 	 *        the string to be displayed.
 	 */
 	public void setStereotypePropertiesInCompartment(String stereotypeProperties) {
-		if(stereotypeProperties == null||stereotypeProperties=="") {
+		if(stereotypeProperties == null || stereotypeProperties == "") {
 			// remove figure of stereotype properties compartment
 			if(this.stereotypePropertiesContent != null) {
 				this.remove(this.stereotypePropertiesContent);
@@ -320,10 +327,10 @@ public class CornerBentFigure extends NoteFigure implements IPapyrusNodeUMLEleme
 		this.shadow = shadow;
 		if(shadow == true) {
 			this.setBorder(shadowborder);
-		}
-		else{
-			if (noteBorder !=null){
-				this.setBorder(noteBorder);}
+		} else {
+			if(noteBorder != null) {
+				this.setBorder(noteBorder);
+			}
 		}
 		revalidate();
 		repaint();

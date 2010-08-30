@@ -17,14 +17,15 @@ import org.eclipse.gmf.runtime.diagram.ui.services.palette.IPaletteProvider;
 
 
 /**
- * Interface implemented by all palette providers that requires some profiles applied to be shown 
+ * Interface implemented by all palette providers that requires some profiles applied to be shown
  */
 public interface IProfileDependantPaletteProvider extends IPaletteProvider {
 
 	/**
 	 * Returns the list of required profiles for the palette to be shown
+	 * 
 	 * @return the list of required profiles for the palette to be shown
 	 */
-	public Collection<String>getRequiredProfiles();
-	
+	public Collection<String> getRequiredProfiles();
+
 }
