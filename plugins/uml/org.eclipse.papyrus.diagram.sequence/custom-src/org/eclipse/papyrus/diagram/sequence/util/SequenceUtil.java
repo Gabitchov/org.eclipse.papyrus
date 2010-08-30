@@ -21,11 +21,17 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.Map.Entry;
 
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.draw2d.AbstractPointListShape;
+import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
+import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
@@ -34,19 +40,24 @@ import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.figures.BorderedNodeFigure;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
+import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
@@ -55,7 +66,10 @@ import org.eclipse.papyrus.diagram.common.helper.DurationConstraintHelper;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DestructionEventEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.common.util.CacheAdapter;
@@ -72,6 +86,7 @@ import org.eclipse.uml2.uml.InteractionOperand;
 import org.eclipse.uml2.uml.IntervalConstraint;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
+import org.eclipse.uml2.uml.MessageEnd;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 import org.eclipse.uml2.uml.MessageSort;
 import org.eclipse.uml2.uml.NamedElement;
@@ -84,7 +99,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class SequenceUtil {
 
 	private static final double MAXIMAL_DISTANCE_FROM_EVENT = 10;
-	
+
 	/**
 	 * Title for dialog of block message sort modification error
 	 */
@@ -124,7 +139,7 @@ public class SequenceUtil {
 				}
 			}
 
-			if (ep instanceof org.eclipse.gef.GraphicalEditPart) {
+			if(ep instanceof org.eclipse.gef.GraphicalEditPart) {
 				exclusionSet.add(((org.eclipse.gef.GraphicalEditPart)ep).getFigure());
 				ep = host.getRoot().getViewer().findObjectAtExcluding(location, exclusionSet);
 			} else {
@@ -600,7 +615,7 @@ public class SequenceUtil {
 						} else if(event.equals(message.getReceiveEvent())) {
 							lifelineChild = ((ConnectionEditPart)part).getTarget();
 						}
-						LifelineEditPart parentLifeline = SequenceUtil.getParentLifelinePart(lifelineChild);
+						LifelineEditPart parentLifeline = getParentLifelinePart(lifelineChild);
 						if(lifelinePart.equals(parentLifeline)) {
 							return part;
 						}
@@ -620,7 +635,7 @@ public class SequenceUtil {
 					EditPart part = DiagramEditPartsUtil.getEditPartFromView(view, lifelinePart);
 					// the execution part must be on the lifeline
 					EditPart lifelineChild = part;
-					LifelineEditPart parentLifeline = SequenceUtil.getParentLifelinePart(lifelineChild);
+					LifelineEditPart parentLifeline = getParentLifelinePart(lifelineChild);
 					if(lifelinePart.equals(parentLifeline)) {
 						return part;
 					}
@@ -766,7 +781,7 @@ public class SequenceUtil {
 		}
 		return elements;
 	}
-	
+
 	public static void handleMessageSortChange(EditingDomain editingDomain, Notification notification, Message message, MessageSort expectedMessageSort) {
 		Object feature = notification.getFeature();
 
@@ -777,6 +792,396 @@ public class SequenceUtil {
 				CommandHelper.executeCommandWithoutHistory(editingDomain, SetCommand.create(editingDomain, message, feature, notification.getOldValue()));
 				return;
 			}
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	public static Set<Lifeline> getCoveredLifelines(Rectangle selectionRect, EditPart hostEditPart) {
+		Set<Lifeline> coveredLifelines = new HashSet<Lifeline>();
+
+		// retrieve all the edit parts in the registry
+		Set<Entry<Object, EditPart>> allEditPartEntries = hostEditPart.getViewer().getEditPartRegistry().entrySet();
+		for(Entry<Object, EditPart> epEntry : allEditPartEntries) {
+			EditPart ep = epEntry.getValue();
+
+			if(ep instanceof ShapeEditPart) {
+				ShapeEditPart sep = (ShapeEditPart)ep;
+				EObject elem = sep.getNotationView().getElement();
+
+				if(elem instanceof Lifeline) {
+					IFigure figure = sep.getFigure();
+
+					Rectangle figureBounds = figure.getBounds().getCopy();
+					figure.getParent().translateToAbsolute(figureBounds);
+
+					if(selectionRect.intersects(figureBounds)) {
+						coveredLifelines.add((Lifeline)elem);
+					}
+				}
+			}
+		}
+		return coveredLifelines;
+	}
+
+	/**
+	 * retrieve all the interaction fragments and their related ift at least partially covered by the rectangle, including sub ift like
+	 * interaction operands in combined fragment.
+	 * 
+	 * @param selectionRect
+	 *        the rectangle where to look for ift.
+	 * @param hostEditPart
+	 *        the host edit part used to retrieve all the edit parts in the registry.
+	 * @param coveredRatio
+	 *        the minimum covering ratio of a figure to be included in the set.
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public static Set<InteractionFragment> getCoveredInteractionFragments(Rectangle selectionRect, EditPart hostEditPart, double coveredRatio) {
+		Set<InteractionFragment> coveredInteractionFragments = new HashSet<InteractionFragment>();
+
+		// retrieve all the edit parts in the registry
+		Set<Entry<Object, EditPart>> allEditPartEntries = hostEditPart.getViewer().getEditPartRegistry().entrySet();
+		for(Entry<Object, EditPart> epEntry : allEditPartEntries) {
+			EditPart ep = epEntry.getValue();
+
+			if(ep instanceof ShapeEditPart) {
+				ShapeEditPart sep = (ShapeEditPart)ep;
+				EObject elem = sep.getNotationView().getElement();
+
+				if(elem instanceof InteractionFragment) {
+					IFigure figure = sep.getFigure();
+
+					Rectangle figureBounds = figure.getBounds().getCopy();
+					figure.getParent().translateToAbsolute(figureBounds);
+
+					if(isCovered(selectionRect, figureBounds, coveredRatio)) {
+						addInteractionFragmentAndRelatedToSet((InteractionFragment)elem, coveredInteractionFragments);
+					}
+				}
+
+			} else if(ep instanceof ConnectionEditPart) {
+				ConnectionEditPart cep = (ConnectionEditPart)ep;
+				EObject elem = cep.getNotationView().getElement();
+
+				// for connections, messages have ends that are ift but don't have theirs own edit parts
+				// => use anchors to determine if they should be included in the set
+				if(elem instanceof Message) {
+					Message msg = (Message)elem;
+					Connection msgFigure = cep.getConnectionFigure();
+
+					Point sourcePoint = msgFigure.getSourceAnchor().getReferencePoint();
+					sourcePoint = msgFigure.getSourceAnchor().getLocation(sourcePoint);
+					Point targetPoint = msgFigure.getTargetAnchor().getReferencePoint();
+					targetPoint = msgFigure.getTargetAnchor().getLocation(targetPoint);
+
+					if(selectionRect.contains(sourcePoint)) {
+						MessageEnd msgSendEnd = msg.getSendEvent();
+						if(msgSendEnd instanceof InteractionFragment) {
+							addInteractionFragmentAndRelatedToSet((InteractionFragment)msgSendEnd, coveredInteractionFragments);
+						}
+					}
+					if(selectionRect.contains(targetPoint)) {
+						MessageEnd msgReceiveEnd = msg.getReceiveEvent();
+						if(msgReceiveEnd instanceof InteractionFragment) {
+							addInteractionFragmentAndRelatedToSet((InteractionFragment)msgReceiveEnd, coveredInteractionFragments);
+						}
+					}
+				}
+			}
+		}
+		return coveredInteractionFragments;
+	}
+
+	public static boolean isCovered(Rectangle rect, Rectangle figureBounds, double coveredRatio) {
+		// compute the percentage of the figure covered by the rectangle
+		Rectangle intersection = rect.getIntersection(figureBounds);
+		double figureArea = figureBounds.height * figureBounds.width;
+		double intersectionArea = intersection.height * intersection.width;
+
+		if(figureArea != 0.0) {
+			double areaRatio = intersectionArea / figureArea;
+
+			// also exclude figures that are bigger than the rectangle
+			if(areaRatio >= coveredRatio && areaRatio <= 1.0) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * add the interaction fragment and its related ifts to the set.
+	 * 
+	 * @param ift
+	 * @param iftSet
+	 */
+	public static void addInteractionFragmentAndRelatedToSet(InteractionFragment ift, Set<InteractionFragment> iftSet) {
+		boolean result = iftSet.add(ift);
+		// don't process again if it is already inside the set to avoid infinite loop
+		// between cross referenced objects
+		if(result) {
+			if(ift instanceof ExecutionSpecification) {
+				// include both ends of an execution specification in the set
+				ExecutionSpecification es = ((ExecutionSpecification)ift);
+				addInteractionFragmentAndRelatedToSet(es.getStart(), iftSet);
+				addInteractionFragmentAndRelatedToSet(es.getFinish(), iftSet);
+			} else if(ift instanceof ExecutionOccurrenceSpecification) {
+				// include the execution specification associated with the occurence
+				ExecutionOccurrenceSpecification eos = (ExecutionOccurrenceSpecification)ift;
+				addInteractionFragmentAndRelatedToSet(eos.getExecution(), iftSet);
+			}
+		}
+	}
+
+	/**
+	 * Handle the owning of interaction fragments when moving or resizing a CF.
+	 * Also handle covered lifelines.
+	 * 
+	 * @param compoundCmd
+	 *        The command
+	 * @param moveDelta
+	 *        The move delta (given by the request).
+	 * @param sizeDelta
+	 *        The size delta (given by the request).
+	 * @param combinedFragmentEditPart
+	 *        The CF edit part.
+	 */
+	@SuppressWarnings("unchecked")
+	public static void addCombinedFragmentResizeChildrenCommand(CompoundCommand compoundCmd, Point moveDelta, Dimension sizeDelta, CombinedFragmentEditPart combinedFragmentEditPart) {
+		Rectangle origCFBounds = combinedFragmentEditPart.getFigure().getBounds().getCopy();
+
+		// calculate the new CF bounds
+		Rectangle newBoundsCF = origCFBounds.getCopy();
+		combinedFragmentEditPart.getFigure().translateToAbsolute(newBoundsCF);
+		newBoundsCF.translate(moveDelta);
+		newBoundsCF.resize(sizeDelta);
+
+		CombinedFragment cf = (CombinedFragment)((CombinedFragmentEditPart)combinedFragmentEditPart).resolveSemanticElement();
+
+		if(combinedFragmentEditPart.getChildren().size() > 0 && combinedFragmentEditPart.getChildren().get(0) instanceof CombinedFragmentCombinedFragmentCompartmentEditPart) {
+
+			CombinedFragmentCombinedFragmentCompartmentEditPart compartment = (CombinedFragmentCombinedFragmentCompartmentEditPart)combinedFragmentEditPart.getChildren().get(0);
+			List<EditPart> interactionOperandEditParts = compartment.getChildren();
+
+			InteractionOperand firstOperand = null;
+
+			for(EditPart ep : interactionOperandEditParts) {
+				if(ep instanceof InteractionOperandEditPart) {
+					InteractionOperandEditPart ioEP = (InteractionOperandEditPart)ep;
+					InteractionOperand io = (InteractionOperand)ioEP.resolveSemanticElement();
+
+					Rectangle newBoundsIO = ioEP.getFigure().getBounds().getCopy();
+
+					// used to compensate the height of the "header" where the OperandKind is stored
+					if(firstOperand == null) {
+						firstOperand = io;
+						int heightDiff = newBoundsIO.y - origCFBounds.y;
+						newBoundsIO.y = origCFBounds.y;
+						newBoundsIO.height += heightDiff;
+					}
+
+					// calculate the new bounds of the interaction operand
+					// this is currently wrong for a resize of a CF with multiple IO
+					ioEP.getFigure().translateToAbsolute(newBoundsIO);
+					newBoundsIO.translate(moveDelta);
+					newBoundsIO.resize(sizeDelta);
+
+					Set<InteractionFragment> coveredInteractionFragments = getCoveredInteractionFragments(newBoundsIO, combinedFragmentEditPart, 0.50001);
+
+					// retrieve fragments currently owned by the interaction operand so we can remove fragments that are not covered anymore
+					Set<InteractionFragment> notCoveredAnymoreInteractionFragments = new HashSet<InteractionFragment>(io.getFragments());
+					notCoveredAnymoreInteractionFragments.removeAll(coveredInteractionFragments);
+
+					for(InteractionFragment ift : notCoveredAnymoreInteractionFragments) {
+						if(cf.getEnclosingOperand() != null) {
+							compoundCmd.add(new ICommandProxy(getSetEnclosingOperandCommand(ioEP.getEditingDomain(), ift, cf.getEnclosingOperand())));
+						} else {
+							compoundCmd.add(new ICommandProxy(getSetEnclosingInteractionCommand(ioEP.getEditingDomain(), ift, cf.getEnclosingInteraction())));
+						}
+					}
+
+					// set the enclosing operand to the moved/resized one if the current enclosing interaction is the enclosing interaction
+					// of the moved/resized operand.
+					// => the interaction fragment that are inside an other container (like an enclosed CF) are not modified
+					for(InteractionFragment ift : coveredInteractionFragments) {
+						if(!cf.equals(ift)) {
+							if((cf.getEnclosingOperand() != null && cf.getEnclosingOperand().equals(ift.getEnclosingOperand())) || (cf.getEnclosingInteraction() != null && cf.getEnclosingInteraction().equals(ift.getEnclosingInteraction()))) {
+								compoundCmd.add(new ICommandProxy(getSetEnclosingOperandCommand(ioEP.getEditingDomain(), ift, io)));
+							}
+						}
+					}
+
+					Set<Lifeline> coveredIOLifelines = getCoveredLifelines(newBoundsIO, combinedFragmentEditPart);
+
+					Set<Lifeline> notCoveredAnymoreIOLifelines = new HashSet<Lifeline>(io.getCovereds());
+					notCoveredAnymoreIOLifelines.removeAll(coveredIOLifelines);
+
+					for(Lifeline lifeline : coveredIOLifelines) {
+						compoundCmd.add(new ICommandProxy(getAddCoveredLifelineCommand(ioEP.getEditingDomain(), io, lifeline)));
+					}
+
+					for(Lifeline lifeline : notCoveredAnymoreIOLifelines) {
+						compoundCmd.add(new ICommandProxy(getRemoveCoveredLifelineCommand(ioEP.getEditingDomain(), io, lifeline)));
+					}
+				}
+			}
+
+			Set<Lifeline> coveredCFLifelines = getCoveredLifelines(newBoundsCF, combinedFragmentEditPart);
+
+			Set<Lifeline> notCoveredAnymoreCFLifelines = new HashSet<Lifeline>(cf.getCovereds());
+			notCoveredAnymoreCFLifelines.removeAll(coveredCFLifelines);
+
+			for(Lifeline lifeline : coveredCFLifelines) {
+				compoundCmd.add(new ICommandProxy(getAddCoveredLifelineCommand(combinedFragmentEditPart.getEditingDomain(), cf, lifeline)));
+			}
+
+			for(Lifeline lifeline : notCoveredAnymoreCFLifelines) {
+				compoundCmd.add(new ICommandProxy(getRemoveCoveredLifelineCommand(combinedFragmentEditPart.getEditingDomain(), cf, lifeline)));
+			}
+		}
+	}
+
+	/**
+	 * return a command to set the enclosing operand of an interaction fragment.
+	 * 
+	 * @param ed
+	 *        The transactional editing domain.
+	 * @param ift
+	 *        The interaction fragment.
+	 * @param io
+	 *        the new enclosing interaction operand.
+	 * @return The command.
+	 */
+	public static ICommand getSetEnclosingOperandCommand(final TransactionalEditingDomain ed, final InteractionFragment ift, final InteractionOperand io) {
+		return new AbstractTransactionalCommand(ed, "Set enclosing operand command", null) {
+
+			@Override
+			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+				ift.setEnclosingInteraction(null);
+				ift.setEnclosingOperand(io);
+				return CommandResult.newOKCommandResult();
+			}
+		};
+	}
+
+	/**
+	 * return a command to set the enclosing interaction of an interaction fragment.
+	 * 
+	 * @param ed
+	 *        The transactional editing domain.
+	 * @param ift
+	 *        The interaction fragment.
+	 * @param io
+	 *        the new enclosing interaction.
+	 * @return The command.
+	 */
+	public static ICommand getSetEnclosingInteractionCommand(final TransactionalEditingDomain ed, final InteractionFragment ift, final Interaction i) {
+		return new AbstractTransactionalCommand(ed, "Set enclosing interaction command", null) {
+
+			@Override
+			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+				ift.setEnclosingOperand(null);
+				ift.setEnclosingInteraction(i);
+				return CommandResult.newOKCommandResult();
+			}
+		};
+	}
+
+	/**
+	 * return a command to add a covered lifeline to an interaction fragment.
+	 * 
+	 * @param ed
+	 *        The transactional editing domain.
+	 * @param ift
+	 *        The interaction fragment.
+	 * @param lifeline
+	 *        the lifeline.
+	 * @return The command.
+	 */
+	public static ICommand getAddCoveredLifelineCommand(final TransactionalEditingDomain ed, final InteractionFragment ift, final Lifeline lifeline) {
+		return new AbstractTransactionalCommand(ed, "Add covered lifeline command", null) {
+
+			@Override
+			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+				ift.getCovereds().add(lifeline);
+				return CommandResult.newOKCommandResult();
+			}
+		};
+	}
+
+	/**
+	 * return a command to remove a previously covered lifeline of an interaction fragment.
+	 * 
+	 * @param ed
+	 *        The transactional editing domain.
+	 * @param ift
+	 *        The interaction fragment.
+	 * @param lifeline
+	 *        the lifeline.
+	 * @return The command.
+	 */
+	public static ICommand getRemoveCoveredLifelineCommand(final TransactionalEditingDomain ed, final InteractionFragment ift, final Lifeline lifeline) {
+		return new AbstractTransactionalCommand(ed, "Add covered lifeline command", null) {
+
+			@Override
+			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+				ift.getCovereds().remove(lifeline);
+				return CommandResult.newOKCommandResult();
+			}
+		};
+	}
+
+	@SuppressWarnings("unchecked")
+	public static Command createUpdateEnclosingInteractionCommand(ShapeNodeEditPart interactionFragmentEP, Rectangle absoluteNewBounds) {
+
+		EObject interaction = null;
+		int area = Integer.MAX_VALUE;
+
+		// retrieve all the edit parts in the registry
+		Set<Entry<Object, EditPart>> allEditPartEntries = interactionFragmentEP.getViewer().getEditPartRegistry().entrySet();
+		for(Entry<Object, EditPart> epEntry : allEditPartEntries) {
+			EditPart ep = epEntry.getValue();
+
+			if(ep instanceof ShapeEditPart) {
+				ShapeEditPart sep = (ShapeEditPart)ep;
+				EObject elem = sep.getNotationView().getElement();
+
+				if(elem instanceof InteractionOperand || elem instanceof Interaction) {
+					Rectangle interactionBounds = new Rectangle(sep.getLocation(), sep.getSize());
+					sep.getFigure().getParent().translateToAbsolute(interactionBounds);
+
+					if(SequenceUtil.isCovered(interactionBounds, absoluteNewBounds, 0.5001)) {
+						int interactionArea = interactionBounds.height * interactionBounds.width;
+						if(interactionArea < area) {
+							area = interactionArea;
+							interaction = elem;
+						}
+					}
+				}
+			}
+		}
+
+		Set<InteractionFragment> iftAndRelated = new HashSet<InteractionFragment>();
+
+		addInteractionFragmentAndRelatedToSet((InteractionFragment)interactionFragmentEP.resolveSemanticElement(), iftAndRelated);
+
+		CompoundCommand cmd = new CompoundCommand();
+
+		if(interaction instanceof Interaction) {
+			for(InteractionFragment ift : iftAndRelated) {
+				cmd.add(new ICommandProxy(SequenceUtil.getSetEnclosingInteractionCommand(interactionFragmentEP.getEditingDomain(), ift, (Interaction)interaction)));
+			}
+		} else if(interaction instanceof InteractionOperand) {
+			for(InteractionFragment ift : iftAndRelated) {
+				cmd.add(new ICommandProxy(SequenceUtil.getSetEnclosingOperandCommand(interactionFragmentEP.getEditingDomain(), ift, (InteractionOperand)interaction)));
+			}
+		}
+
+		if(!cmd.isEmpty()) {
+			return cmd;
+		} else {
+			return null;
 		}
 	}
 }
