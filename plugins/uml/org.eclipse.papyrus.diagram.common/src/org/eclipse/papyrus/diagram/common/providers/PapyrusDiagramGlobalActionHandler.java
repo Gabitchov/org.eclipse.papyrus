@@ -50,84 +50,84 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPart;
 
 /**
- * this class has in charge to launch command for cut copy paste (graphically) it is also used to launch the copy into bmp like as writer software 
- *
+ * this class has in charge to launch command for cut copy paste (graphically) it is also used to launch the copy into bmp like as writer software
+ * 
  */
 @SuppressWarnings("restriction")
 public class PapyrusDiagramGlobalActionHandler extends ImageSupportGlobalActionHandler {
 
-	
+
 	protected boolean canPaste(IGlobalActionContext cntxt) {
 		/* Get the selected edit parts */
-		Object[] objectsArray = ((IStructuredSelection) cntxt.getSelection())
-		.toArray();
+		Object[] objectsArray = ((IStructuredSelection)cntxt.getSelection()).toArray();
 
-		if(objectsArray.length>0 && objectsArray[0] instanceof GraphicalEditPart){
-			ICommand pastecommand=PasteCommandService.getInstance().getPasteViewCommand(((GraphicalEditPart)objectsArray[0]), Toolkit.getDefaultToolkit().getSystemClipboard(), ((GraphicalEditPart)objectsArray[0]).getEditingDomain().getClipboard());
+		if(objectsArray.length > 0 && objectsArray[0] instanceof GraphicalEditPart) {
+			ICommand pastecommand = PasteCommandService.getInstance().getPasteViewCommand(((GraphicalEditPart)objectsArray[0]), Toolkit.getDefaultToolkit().getSystemClipboard(), ((GraphicalEditPart)objectsArray[0]).getEditingDomain().getClipboard());
 			return pastecommand.canExecute();
 		}
-		
-		if (!AWTClipboardHelper.getInstance().isImageCopySupported()) {
+
+		if(!AWTClipboardHelper.getInstance().isImageCopySupported()) {
 			return super.canPaste(cntxt);
 		}
-		
+
 		/* Check if the clipboard has data for the drawing surface */
 		return AWTClipboardHelper.getInstance().hasCustomData();
 	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.gmf.runtime.common.ui.services.action.global.IGlobalActionHandler#getCommand(org.eclipse.gmf.runtime.common.ui.services.action.global.IGlobalActionContext)
+	 * @see
+	 * org.eclipse.gmf.runtime.common.ui.services.action.global.IGlobalActionHandler#getCommand(org.eclipse.gmf.runtime.common.ui.services.action.
+	 * global.IGlobalActionContext)
 	 */
 	public ICommand getCommand(IGlobalActionContext cntxt) {
 		/* Check if the active part is a IDiagramWorkbenchPart */
 		IWorkbenchPart part = cntxt.getActivePart();
-		if (!(part instanceof IDiagramWorkbenchPart)) {
+		if(!(part instanceof IDiagramWorkbenchPart)) {
 			return null;
 		}
 
 		/* Get the model operation context */
-		IDiagramWorkbenchPart diagramPart = (IDiagramWorkbenchPart) part;
+		IDiagramWorkbenchPart diagramPart = (IDiagramWorkbenchPart)part;
 
 		/* Create a command */
 		ICommand command = null;
 
 		/* Check the action id */
 		String actionId = cntxt.getActionId();
-		if (actionId.equals(GlobalActionId.DELETE)) {
+		if(actionId.equals(GlobalActionId.DELETE)) {
 			CompoundCommand deleteCC = getDeleteCommand(diagramPart, cntxt);
 			/* Set the command */
-			if (deleteCC != null && deleteCC.canExecute())
+			if(deleteCC != null && deleteCC.canExecute())
 				command = new CommandProxy(deleteCC);
-		} else if (actionId.equals(GlobalActionId.COPY)) {
+		} else if(actionId.equals(GlobalActionId.COPY)) {
 			command = getCopyCommand(cntxt, diagramPart, false);
-		} else if (actionId.equals(GlobalActionId.CUT)) {
+		} else if(actionId.equals(GlobalActionId.CUT)) {
 			command = getCutCommand(cntxt, diagramPart);
-		} else if (actionId.equals(GlobalActionId.PASTE)) {
+		} else if(actionId.equals(GlobalActionId.PASTE)) {
 
 			/* Get the selected edit parts */
-			Object[] objectsArray = ((IStructuredSelection) cntxt.getSelection())
-			.toArray();
+			Object[] objectsArray = ((IStructuredSelection)cntxt.getSelection()).toArray();
 
-			if(objectsArray.length>0 && objectsArray[0] instanceof GraphicalEditPart){
-				
-				ICommand pastecommand=PasteCommandService.getInstance().getPasteViewCommand(((GraphicalEditPart)objectsArray[0]), Toolkit.getDefaultToolkit().getSystemClipboard(), ((GraphicalEditPart)objectsArray[0]).getEditingDomain().getClipboard());
-				
-				if(pastecommand.canExecute() ){
+			if(objectsArray.length > 0 && objectsArray[0] instanceof GraphicalEditPart) {
+
+				ICommand pastecommand = PasteCommandService.getInstance().getPasteViewCommand(((GraphicalEditPart)objectsArray[0]), Toolkit.getDefaultToolkit().getSystemClipboard(), ((GraphicalEditPart)objectsArray[0]).getEditingDomain().getClipboard());
+
+				if(pastecommand.canExecute()) {
 					((GraphicalEditPart)objectsArray[0]).getEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(pastecommand));
-					RootEditPart topEditPart=((GraphicalEditPart)objectsArray[0]).getRoot();
-					if(topEditPart.getChildren().get(0) instanceof DiagramEditPart){
+					RootEditPart topEditPart = ((GraphicalEditPart)objectsArray[0]).getRoot();
+					if(topEditPart.getChildren().get(0) instanceof DiagramEditPart) {
 						CleanDiagramHelper.getInstance().run((DiagramEditPart)topEditPart.getChildren().get(0));
 					}
-					
+
 				}
 				return null;
 			}
 
-		} else if (actionId.equals(GlobalActionId.SAVE)) {
-			part.getSite().getPage().saveEditor((IEditorPart) diagramPart,
-				false);
-		} else if (actionId.equals(GlobalActionId.PROPERTIES)) {
+		} else if(actionId.equals(GlobalActionId.SAVE)) {
+			part.getSite().getPage().saveEditor((IEditorPart)diagramPart, false);
+		} else if(actionId.equals(GlobalActionId.PROPERTIES)) {
 			new PropertyPageViewAction().run();
 		}
 
@@ -135,31 +135,33 @@ public class PapyrusDiagramGlobalActionHandler extends ImageSupportGlobalActionH
 	}
 
 	/**
-	 * @see org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandler#getCopyCommand(org.eclipse.gmf.runtime.common.ui.services.action.global.IGlobalActionContext, org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart, boolean)
-	 *this class also copy in the clipboard of the editing domain selected elements
+	 * @see org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandler#getCopyCommand(org.eclipse.gmf.runtime.common.ui.services.action.global.IGlobalActionContext,
+	 *      org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart, boolean)
+	 *      this class also copy in the clipboard of the editing domain selected elements
 	 * 
 	 */
 
 	@Override
 	protected ICommand getCopyCommand(IGlobalActionContext cntxt, IDiagramWorkbenchPart diagramPart, boolean isUndoable) {
 		/* Get the selected edit parts */
-		Object[] objectsArray = ((IStructuredSelection) cntxt.getSelection()).toArray();
-		CompositeCommand compositeCommand= new CompositeCommand(GlobalActionId.COPY);
-		if(objectsArray.length>0 && objectsArray[0] instanceof GraphicalEditPart){
+		Object[] objectsArray = ((IStructuredSelection)cntxt.getSelection()).toArray();
+		CompositeCommand compositeCommand = new CompositeCommand(GlobalActionId.COPY);
+		if(objectsArray.length > 0 && objectsArray[0] instanceof GraphicalEditPart) {
 			//((GraphicalEditPart)objectsArray[0]).getEditingDomain().setClipboard(((IStructuredSelection) cntxt.getSelection()).toList());
-			compositeCommand.add(new EMFtoGMFCommandWrapper(CopyToClipboardCommand.create(((GraphicalEditPart)objectsArray[0]).getEditingDomain(), getNotation(((IStructuredSelection) cntxt.getSelection()).toList()))));
+			compositeCommand.add(new EMFtoGMFCommandWrapper(CopyToClipboardCommand.create(((GraphicalEditPart)objectsArray[0]).getEditingDomain(), getNotation(((IStructuredSelection)cntxt.getSelection()).toList()))));
 		}
-		if(objectsArray.length>0 && objectsArray[0] instanceof ConnectionEditPart){
+		if(objectsArray.length > 0 && objectsArray[0] instanceof ConnectionEditPart) {
 			//((GraphicalEditPart)objectsArray[0]).getEditingDomain().setClipboard(((IStructuredSelection) cntxt.getSelection()).toList());
-			compositeCommand.add(new EMFtoGMFCommandWrapper(CopyToClipboardCommand.create(((ConnectionEditPart)objectsArray[0]).getEditingDomain(), getNotation(((IStructuredSelection) cntxt.getSelection()).toList()))));
+			compositeCommand.add(new EMFtoGMFCommandWrapper(CopyToClipboardCommand.create(((ConnectionEditPart)objectsArray[0]).getEditingDomain(), getNotation(((IStructuredSelection)cntxt.getSelection()).toList()))));
 		}
-		compositeCommand.add( super.getCopyCommand(cntxt, diagramPart, isUndoable));
+		compositeCommand.add(super.getCopyCommand(cntxt, diagramPart, isUndoable));
 		return compositeCommand;
 	}
 
 	/**
-	 * @see org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandler#getCutCommand(org.eclipse.gmf.runtime.common.ui.services.action.global.IGlobalActionContext, org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart)
-	 *
+	 * @see org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandler#getCutCommand(org.eclipse.gmf.runtime.common.ui.services.action.global.IGlobalActionContext,
+	 *      org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart)
+	 * 
 	 * @param cntxt
 	 * @param diagramPart
 	 * @return
@@ -167,19 +169,19 @@ public class PapyrusDiagramGlobalActionHandler extends ImageSupportGlobalActionH
 
 	@Override
 	protected ICommand getCutCommand(IGlobalActionContext cntxt, IDiagramWorkbenchPart diagramPart) {
-		Object[] objectsArray = ((IStructuredSelection) cntxt.getSelection()).toArray();
-		CompositeCommand compositeCommand= new CompositeCommand(GlobalActionId.CUT);
-		if(objectsArray.length>0 && objectsArray[0] instanceof GraphicalEditPart){
+		Object[] objectsArray = ((IStructuredSelection)cntxt.getSelection()).toArray();
+		CompositeCommand compositeCommand = new CompositeCommand(GlobalActionId.CUT);
+		if(objectsArray.length > 0 && objectsArray[0] instanceof GraphicalEditPart) {
 			//((GraphicalEditPart)objectsArray[0]).getEditingDomain().setClipboard(((IStructuredSelection) cntxt.getSelection()).toList());
-			compositeCommand.add(new EMFtoGMFCommandWrapper(CopyToClipboardCommand.create(((GraphicalEditPart)objectsArray[0]).getEditingDomain(), getNotation(((IStructuredSelection) cntxt.getSelection()).toList()))));
+			compositeCommand.add(new EMFtoGMFCommandWrapper(CopyToClipboardCommand.create(((GraphicalEditPart)objectsArray[0]).getEditingDomain(), getNotation(((IStructuredSelection)cntxt.getSelection()).toList()))));
 
 		}
-		if(objectsArray.length>0 && objectsArray[0] instanceof ConnectionEditPart){
+		if(objectsArray.length > 0 && objectsArray[0] instanceof ConnectionEditPart) {
 			//((GraphicalEditPart)objectsArray[0]).getEditingDomain().setClipboard(((IStructuredSelection) cntxt.getSelection()).toList());
-			compositeCommand.add(new EMFtoGMFCommandWrapper(CopyToClipboardCommand.create(((ConnectionEditPart)objectsArray[0]).getEditingDomain(), getNotation(((IStructuredSelection) cntxt.getSelection()).toList()))));
+			compositeCommand.add(new EMFtoGMFCommandWrapper(CopyToClipboardCommand.create(((ConnectionEditPart)objectsArray[0]).getEditingDomain(), getNotation(((IStructuredSelection)cntxt.getSelection()).toList()))));
 		}
-		ICommand cutCommand=super.getCutCommand(cntxt, diagramPart);
-		if(cutCommand!=null){
+		ICommand cutCommand = super.getCutCommand(cntxt, diagramPart);
+		if(cutCommand != null) {
 			compositeCommand.add(cutCommand);
 		}
 		return compositeCommand;
@@ -190,14 +192,14 @@ public class PapyrusDiagramGlobalActionHandler extends ImageSupportGlobalActionH
 	/**
 	 * Returns appropriate delete command for this context.
 	 * 
-	 * @param part the workbench part
+	 * @param part
+	 *        the workbench part
 	 * @param cntxt
-	 *            the <code>IGlobalActionContext</code> holding the necessary
-	 *            information needed by this action handler
+	 *        the <code>IGlobalActionContext</code> holding the necessary
+	 *        information needed by this action handler
 	 * @return CompoundCommand command
 	 */
-	private CompoundCommand getDeleteCommand(IDiagramWorkbenchPart part,
-		IGlobalActionContext cntxt) {
+	private CompoundCommand getDeleteCommand(IDiagramWorkbenchPart part, IGlobalActionContext cntxt) {
 		/* Create the delete request */
 		GroupRequest deleteReq = new GroupRequest(RequestConstants.REQ_DELETE);
 
@@ -205,53 +207,50 @@ public class PapyrusDiagramGlobalActionHandler extends ImageSupportGlobalActionH
 
 		TransactionalEditingDomain editingDomain = getEditingDomain(part);
 
-		if (editingDomain == null) {
+		if(editingDomain == null) {
 			return deleteCC;
 		}
 
-		CompositeTransactionalCommand compositeCommand = new CompositeTransactionalCommand(editingDomain, 
-			cntxt.getLabel());
+		CompositeTransactionalCommand compositeCommand = new CompositeTransactionalCommand(editingDomain, cntxt.getLabel());
 		/* Get the selected edit parts */
-		Object[] objects = ((IStructuredSelection) cntxt.getSelection())
-		.toArray();
-		for (int i = 0; i < objects.length; i++) {
+		Object[] objects = ((IStructuredSelection)cntxt.getSelection()).toArray();
+		for(int i = 0; i < objects.length; i++) {
 			/* Get the next part */
-			EditPart editPart = (EditPart) objects[i];
+			EditPart editPart = (EditPart)objects[i];
 
 			/* Send the request to the edit part */
 			org.eclipse.gef.commands.Command command = editPart.getCommand(deleteReq);
-			if (command != null)
+			if(command != null)
 				compositeCommand.compose(new CommandProxy(command));
 			// deleteCC.add(editPart.getCommand(deleteReq));
 		}
-		if (!compositeCommand.isEmpty()) {
+		if(!compositeCommand.isEmpty()) {
 			deleteCC.add(new ICommandProxy(compositeCommand));
 		}
 
 		return deleteCC;
 	}
+
 	/**
-	 * Gets the transactional editing domain associated with the workbench
-	 * <code>part</code>.
+	 * Gets the transactional editing domain associated with the workbench <code>part</code>.
 	 * 
 	 * @param part
-	 *            the diagram workbench part
+	 *        the diagram workbench part
 	 * @return the editing domain, or <code>null</code> if there is none.
 	 */
-	private TransactionalEditingDomain getEditingDomain(
-		IDiagramWorkbenchPart part) {
+	private TransactionalEditingDomain getEditingDomain(IDiagramWorkbenchPart part) {
 
 		TransactionalEditingDomain result = null;
 
-		IEditingDomainProvider provider = (IEditingDomainProvider) part
-		.getAdapter(IEditingDomainProvider.class);
+		IEditingDomainProvider provider = (IEditingDomainProvider)part.getAdapter(IEditingDomainProvider.class);
 
-		if (provider != null) {
+		if(provider != null) {
 			EditingDomain domain = provider.getEditingDomain();
 
-			if (domain != null && domain instanceof TransactionalEditingDomain) {
-				result = (TransactionalEditingDomain) domain;
-			}        }
+			if(domain != null && domain instanceof TransactionalEditingDomain) {
+				result = (TransactionalEditingDomain)domain;
+			}
+		}
 
 		return result;
 	}
@@ -259,16 +258,18 @@ public class PapyrusDiagramGlobalActionHandler extends ImageSupportGlobalActionH
 
 	/**
 	 * get the list of notation element from the a list of editpart
-	 * @param editPartList the list of editpart
+	 * 
+	 * @param editPartList
+	 *        the list of editpart
 	 * @return the list of notation element
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	protected List getNotation(List editPartList){
-		ArrayList notationList= new ArrayList();
-		Iterator iterator=editPartList.iterator();
+	protected List getNotation(List editPartList) {
+		ArrayList notationList = new ArrayList();
+		Iterator iterator = editPartList.iterator();
 		while(iterator.hasNext()) {
 			Object object = (Object)iterator.next();
-			if( object instanceof EditPart){
+			if(object instanceof EditPart) {
 				notationList.add(((EditPart)object).getModel());
 			}
 		}

@@ -23,10 +23,11 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.core.Activator;
 
 /**
- * this edit part has in charge to display the name of a diagram for a short cut 
- *
+ * this edit part has in charge to display the name of a diagram for a short cut
+ * 
  */
-public abstract class AbstractShortcutDiagramNameEditPart extends LabelEditPart implements Adapter{
+public abstract class AbstractShortcutDiagramNameEditPart extends LabelEditPart implements Adapter {
+
 	public AbstractShortcutDiagramNameEditPart(View view) {
 		super(view);
 	}
@@ -34,20 +35,22 @@ public abstract class AbstractShortcutDiagramNameEditPart extends LabelEditPart 
 	/**
 	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#activate()
-	 *
+	 * 
 	 */
 	public void activate() {
 		// TODO Auto-generated method stub
 		super.activate();
-		EObject eObject=resolveSemanticElement();
-		resourceToListen= eObject.eResource();
+		EObject eObject = resolveSemanticElement();
+		resourceToListen = eObject.eResource();
 		resourceToListen.eAdapters().add(this);
-		
+
 	}
+
 	/**
 	 * the resouce that contains the diagram
 	 */
 	protected Resource resourceToListen;
+
 	/**
 	 * notifier
 	 */
@@ -56,7 +59,7 @@ public abstract class AbstractShortcutDiagramNameEditPart extends LabelEditPart 
 	/**
 	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#notifyChanged(org.eclipse.emf.common.notify.Notification)
-	 *
+	 * 
 	 * @param notification
 	 */
 	public void notifyChanged(Notification notification) {
@@ -68,37 +71,40 @@ public abstract class AbstractShortcutDiagramNameEditPart extends LabelEditPart 
 	/**
 	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#deactivate()
-	 *
+	 * 
 	 */
 	public void deactivate() {
 		// TODO Auto-generated method stub
 		super.deactivate();
 		resourceToListen.eAdapters().remove(this);
 	}
+
 	/**
 	 * 
 	 * @see org.eclipse.emf.common.notify.Adapter#setTarget(org.eclipse.emf.common.notify.Notifier)
-	 *
+	 * 
 	 */
-	public void setTarget(Notifier target) { 
-	    this.target = target; 
-	  } 
-	 /**
-	  * 
-	  * @see org.eclipse.emf.common.notify.Adapter#getTarget()
-	  *
-	  */
-	  public Notifier getTarget() { 
-	    return target; 
-	  } 
-	 /**
-	  * 
-	  * @see org.eclipse.emf.common.notify.Adapter#isAdapterForType(java.lang.Object)
-	  *
-	  */
-	  public boolean isAdapterForType(Object type) { 
-		  Activator.log.debug(type.toString());
-		  return (getModel().getClass() == type); 
-	  } 
-	
+	public void setTarget(Notifier target) {
+		this.target = target;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.emf.common.notify.Adapter#getTarget()
+	 * 
+	 */
+	public Notifier getTarget() {
+		return target;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.emf.common.notify.Adapter#isAdapterForType(java.lang.Object)
+	 * 
+	 */
+	public boolean isAdapterForType(Object type) {
+		Activator.log.debug(type.toString());
+		return (getModel().getClass() == type);
+	}
+
 }

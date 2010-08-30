@@ -374,7 +374,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 		stereotypePropertiesContent = new StereotypePropertiesCompartment();
 		stereotypePropertiesContent.setFill(false);
 		stereotypePropertiesContent.setLineWidth(0);
-		stereotypePropertiesContent.setBorder( null);
+		stereotypePropertiesContent.setBorder(null);
 		stereotypePropertiesContent.setLayoutManager(getPropertiesCompartmentLayout());
 		getStereotypePropertiesCompartmentContainer().add(stereotypePropertiesContent, getStereotypePropertiesCompartmentConstraint(), getStereotypePropertiesCompartmentPosition());
 	}
@@ -883,7 +883,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	 *        the string to be displayed.
 	 */
 	public void setStereotypePropertiesInCompartment(String stereotypeProperties) {
-		if(stereotypeProperties == null||stereotypeProperties.trim()=="") {
+		if(stereotypeProperties == null || stereotypeProperties.trim() == "") {
 			// remove figure of stereotype properties compartment
 			if(this.stereotypePropertiesContent != null) {
 				getStereotypePropertiesCompartmentContainer().remove(this.stereotypePropertiesContent);
@@ -961,5 +961,5 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 		this.iconLabel.setIcon(image);
 	}
 
-	
+
 }

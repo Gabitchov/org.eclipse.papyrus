@@ -31,7 +31,7 @@ import org.eclipse.gmf.runtime.diagram.ui.internal.handles.CompartmentResizeHand
 
 /**
  * 
- *this class is used to display an handle and command to make a compartment resizable by the user
+ * this class is used to display an handle and command to make a compartment resizable by the user
  */
 // @unused
 public class CResizableCompartmentEditPolicy extends ResizableCompartmentEditPolicy {

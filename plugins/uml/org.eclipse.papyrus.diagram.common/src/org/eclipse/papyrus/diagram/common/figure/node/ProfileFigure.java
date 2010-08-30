@@ -25,6 +25,6 @@ public class ProfileFigure extends PackageFigure {
 		super();
 		initTagLabel(PROFILE_TAG);
 	}
-	
+
 
 }

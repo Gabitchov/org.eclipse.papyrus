@@ -24,41 +24,43 @@ import org.eclipse.draw2d.geometry.Point;
  */
 public class StereotypePropertiesCompartment extends RectangleFigure {
 
-	protected boolean upperLine=true;
+	protected boolean upperLine = true;
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public void paint(Graphics graphics) {
 		paintChildren(graphics);
-		IFigure parentFigure=getParent();
-		if(parentFigure instanceof PapyrusNodeFigure){
+		IFigure parentFigure = getParent();
+		if(parentFigure instanceof PapyrusNodeFigure) {
 			graphics.setForegroundColor(((PapyrusNodeFigure)parentFigure).getBorderColor());
 			graphics.setBackgroundColor(((PapyrusNodeFigure)parentFigure).getBorderColor());
 		}
-		if (upperLine){
-		for(int i = 0; i < getChildren().size(); i++) {
-			Point source= new Point(parentFigure.getBounds().x, ((IFigure)getChildren().get(i)).getBounds().getTopLeft().y);
-			Point target=null;
-			if( parentFigure instanceof PackageFigure){
-				target=new Point(((PackageFigure)(parentFigure)).getHeader().x+((PackageFigure)(parentFigure)).getHeader().width, ((IFigure)getChildren().get(i)).getBounds().getTopRight().y);
-				
-			}
-			else{	
-				target=new Point(parentFigure.getBounds().x+parentFigure.getBounds().width, ((IFigure)getChildren().get(i)).getBounds().getTopRight().y);
-			}
-			//graphics.setForegroundColor(ColorConstants.black);
-			graphics.setLineWidth(1);
+		if(upperLine) {
+			for(int i = 0; i < getChildren().size(); i++) {
+				Point source = new Point(parentFigure.getBounds().x, ((IFigure)getChildren().get(i)).getBounds().getTopLeft().y);
+				Point target = null;
+				if(parentFigure instanceof PackageFigure) {
+					target = new Point(((PackageFigure)(parentFigure)).getHeader().x + ((PackageFigure)(parentFigure)).getHeader().width, ((IFigure)getChildren().get(i)).getBounds().getTopRight().y);
+
+				} else {
+					target = new Point(parentFigure.getBounds().x + parentFigure.getBounds().width, ((IFigure)getChildren().get(i)).getBounds().getTopRight().y);
+				}
+				//graphics.setForegroundColor(ColorConstants.black);
+				graphics.setLineWidth(1);
 				graphics.drawLine(source, target);
-		}
+			}
 		}
 	}
+
 	/**
 	 * used to display or not line upper the compartment stereotype
-	 * @param upperLine true if we want to display
+	 * 
+	 * @param upperLine
+	 *        true if we want to display
 	 */
-	public void setUpperLine(boolean upperLine){
-		this.upperLine= upperLine;
+	public void setUpperLine(boolean upperLine) {
+		this.upperLine = upperLine;
 	}
 
 }

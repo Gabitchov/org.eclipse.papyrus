@@ -150,9 +150,9 @@ public class HyperlinkHelper {
 			if(currentAnnotation.getSource().equals(hyperlinkKind)) {
 				if(hyperlinkKind.equals(VisualInformationPapyrusConstant.HYPERLINK_DIAGRAM)) {
 					HyperLinkDiagram hyperLinkDiagram = new HyperLinkDiagram();
-					EList<EObject>list=currentAnnotation.getReferences();
-					if(list.size()>0){
-						if(currentAnnotation.getReferences().get(0).eResource()!=null){
+					EList<EObject> list = currentAnnotation.getReferences();
+					if(list.size() > 0) {
+						if(currentAnnotation.getReferences().get(0).eResource() != null) {
 							hyperLinkDiagram.setDiagram((Diagram)currentAnnotation.getReferences().get(0));
 							hyperLinkDiagram.setTooltipText(currentAnnotation.getDetails().get(VisualInformationPapyrusConstant.HYPERLINK_TOOLTYPE_TEXT));
 							result.add(hyperLinkDiagram);

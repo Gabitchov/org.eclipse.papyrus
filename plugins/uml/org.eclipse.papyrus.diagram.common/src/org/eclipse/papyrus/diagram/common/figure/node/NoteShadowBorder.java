@@ -25,23 +25,25 @@ import org.eclipse.swt.graphics.Color;
 
 /**
  * this class is used to test the shadow for a a note figure
- *
+ * 
  */
 
 public class NoteShadowBorder extends RectangularShadowBorder {
 
 	protected Dimension cornerDim;
+
 	private NoteFigureBorder noteBorder;
 
-	public NoteShadowBorder(int borderwidth, Color color,Dimension cornerDim, NoteFigureBorder noteBorder) {
+	public NoteShadowBorder(int borderwidth, Color color, Dimension cornerDim, NoteFigureBorder noteBorder) {
 		super(borderwidth, color);
-		this.cornerDim= cornerDim;
-		this.noteBorder= noteBorder;
+		this.cornerDim = cornerDim;
+		this.noteBorder = noteBorder;
 		// TODO Auto-generated constructor stub
 	}
 
 	/**
 	 * Returns margin for this border
+	 * 
 	 * @return margin as Insets
 	 */
 	public Insets getMargin() {
@@ -51,6 +53,7 @@ public class NoteShadowBorder extends RectangularShadowBorder {
 	public Insets getInsets(IFigure figure) {
 		return noteBorder.getInsets(figure);
 	}
+
 	/**
 	 * @see org.eclipse.draw2d.Border#paint(IFigure, Graphics, Insets)
 	 */
@@ -68,17 +71,18 @@ public class NoteShadowBorder extends RectangularShadowBorder {
 		graphics.setClip(newRect);
 		// paint the shadow
 		PointList plt = new PointList();
-		plt.addPoint(figureRect.x + figureRect.width, figureRect.y + borderwidth+ cornerDim.height);
+		plt.addPoint(figureRect.x + figureRect.width, figureRect.y + borderwidth + cornerDim.height);
 		plt.addPoint(figureRect.x + figureRect.width, figureRect.y + figureRect.height);
 		plt.addPoint(figureRect.x + borderwidth, figureRect.y + figureRect.height);
 		plt.addPoint(figureRect.x + borderwidth, figureRect.y + figureRect.height + borderwidth);
 		plt.addPoint(figureRect.x + figureRect.width + borderwidth, figureRect.y + figureRect.height + borderwidth);
-		plt.addPoint(figureRect.x + figureRect.width + borderwidth, figureRect.y + borderwidth+ cornerDim.height+ borderwidth);
-		plt.addPoint(figureRect.x + figureRect.width, figureRect.y + borderwidth+ cornerDim.height);
-		if(getColor()!=null){
-		graphics.setBackgroundColor(getColor());
+		plt.addPoint(figureRect.x + figureRect.width + borderwidth, figureRect.y + borderwidth + cornerDim.height + borderwidth);
+		plt.addPoint(figureRect.x + figureRect.width, figureRect.y + borderwidth + cornerDim.height);
+		if(getColor() != null) {
+			graphics.setBackgroundColor(getColor());
+		} else {
+			graphics.setBackgroundColor(ColorConstants.black);
 		}
-		else{graphics.setBackgroundColor(ColorConstants.black);}
 		graphics.fillPolygon(plt);
 		graphics.popState();
 	}

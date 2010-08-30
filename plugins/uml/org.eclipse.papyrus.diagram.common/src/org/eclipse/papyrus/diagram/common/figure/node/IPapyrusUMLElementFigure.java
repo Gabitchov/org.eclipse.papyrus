@@ -16,7 +16,7 @@ package org.eclipse.papyrus.diagram.common.figure.node;
 import org.eclipse.swt.graphics.Image;
 
 /**
- *declaration of figure that can manage stereotype display
+ * declaration of figure that can manage stereotype display
  */
 public interface IPapyrusUMLElementFigure {
 

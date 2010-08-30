@@ -17,10 +17,7 @@ import org.eclipse.uml2.uml.edit.providers.UMLResourceItemProviderAdapterFactory
 
 public class UMLComposedAdapterFactory extends ComposedAdapterFactory {
 
-	private static final AdapterFactory[] factories = {
-		new UMLResourceItemProviderAdapterFactory(),
-		new UMLItemProviderAdapterFactory()
-	};
+	private static final AdapterFactory[] factories = { new UMLResourceItemProviderAdapterFactory(), new UMLItemProviderAdapterFactory() };
 
 	public UMLComposedAdapterFactory() {
 		super(factories);

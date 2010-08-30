@@ -79,12 +79,11 @@ public class PackageFigure extends NodeNamedElementFigure {
 			for(int i = 0; i < container.getChildren().size(); i++) {
 				Rectangle bound = new Rectangle(((IFigure)childrenList.get(i)).getBounds());
 				bound.setSize(((IFigure)childrenList.get(i)).getPreferredSize());
-				if(((IFigure)childrenList.get(i)).equals(iconPackage) ){
-					Rectangle boundName=getNameLabel().getBounds().getCopy();
-					boundName.x+=GAP_X/2;
+				if(((IFigure)childrenList.get(i)).equals(iconPackage)) {
+					Rectangle boundName = getNameLabel().getBounds().getCopy();
+					boundName.x += GAP_X / 2;
 					iconPackage.setBounds(new Rectangle(boundName.getTopRight(), new Dimension(16, 16)));
-				}
-				else{
+				} else {
 					if(i > 0) {
 						bound.y = ((IFigure)childrenList.get(i - 1)).getBounds().getBottomLeft().y + 1;
 						bound.x = getBounds().x + GAP_X;
@@ -108,8 +107,10 @@ public class PackageFigure extends NodeNamedElementFigure {
 		}
 
 	}
-	/** this is a label used to display a specific icon for this element**/
-	protected Label iconPackage= null;
+
+	/** this is a label used to display a specific icon for this element **/
+	protected Label iconPackage = null;
+
 	/**
 	 * Creates a new PackageFigure.
 	 */
@@ -124,17 +125,18 @@ public class PackageFigure extends NodeNamedElementFigure {
 
 		setBorder(null);
 		getPackageableElementFigure().setFill(false);
-		
+
 
 
 	}
 
 	/**
 	 * this method is used to display a symabol image for an element package as triangle for the model
+	 * 
 	 * @param image
 	 */
-	public void setTagIcon(Image image){
-		iconPackage= new Label();
+	public void setTagIcon(Image image) {
+		iconPackage = new Label();
 		iconPackage.setIcon(image);
 		add(iconPackage);
 
@@ -177,8 +179,8 @@ public class PackageFigure extends NodeNamedElementFigure {
 		headerBound.x = this.getBounds().x;
 		headerBound.y = this.getBounds().y;
 		headerBound.height = getPackageableElementFigure().getBounds().y - headerBound.y;
-		if(iconPackage!=null){
-			headerBound.width+=iconPackage.getBounds().width;
+		if(iconPackage != null) {
+			headerBound.width += iconPackage.getBounds().width;
 		}
 		return headerBound;
 	}

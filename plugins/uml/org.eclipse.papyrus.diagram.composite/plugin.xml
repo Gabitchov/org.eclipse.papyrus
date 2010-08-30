@@ -2747,30 +2747,6 @@
 			
 	</extension>
 <extension
-      point="org.eclipse.ui.popupMenus">
-   <objectContribution
-         adaptable="false"
-         id="org.eclipse.papyrus.diagram.composite.relatedviewer"
-         objectClass="org.eclipse.papyrus.diagram.common.editparts.NamedElementEditPart">
-      <action
-            class="org.eclipse.papyrus.diagram.composite.custom.actions.ShowHideRelatedContentsAction"
-            definitionId="org.eclipse.papyrus.diagram.composite.commands.ShowHideRelatedContentsCommand"
-            enablesFor="1"
-            icon="icons/fantomRelated.gif"
-            id="org.eclipse.papyrus.diagram.composite.setview"
-            label="Show/Hide &amp;Related Contents"
-            menubarPath="filtersMenu/expandFilterGroup">
-      </action>
-      <visibility>
-         <or>
-            <objectClass
-                  name="org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN">
-            </objectClass>
-         </or>
-      </visibility>
-   </objectContribution>
-   </extension>
-<extension
       point="org.eclipse.ui.commands">
    <command
          categoryId="org.eclipse.papyrus.editor.category"
@@ -2784,6 +2760,36 @@
       point="org.eclipse.ui.menus">
    <menuContribution
          locationURI="menu:org.eclipse.papyrus.common.showhide.toolbar.command">
+      <command
+            commandId="org.eclipse.papyrus.diagram.composite.commands.ShowHideRelatedContentsCommand"
+            icon="icons/fantomRelated.gif"
+            label="Show/Hide Related Contents"
+            mnemonic="&amp;R"
+            style="push"
+            tooltip="The Show/Hide Related Contents Action">
+         <visibleWhen
+               checkEnabled="true">
+         </visibleWhen>
+      </command>
+   </menuContribution>
+   <menuContribution
+         allPopups="false"
+         locationURI="popup:org.eclipse.papyrus.diagram.ui.popupmenu.filters?after=showhidecompartments.popup">
+      <command
+            commandId="org.eclipse.papyrus.diagram.composite.commands.ShowHideRelatedContentsCommand"
+            icon="icons/fantomRelated.gif"
+            label="Show/Hide Related Contents"
+            mnemonic="&amp;R"
+            style="push"
+            tooltip="The Show/Hide Related Contents Action">
+         <visibleWhen
+               checkEnabled="true">
+         </visibleWhen>
+      </command>
+   </menuContribution>
+   <menuContribution
+         allPopups="false"
+         locationURI="menu:org.eclipse.papyrus.diagram.ui.menu.filtersMenu">
       <command
             commandId="org.eclipse.papyrus.diagram.composite.commands.ShowHideRelatedContentsCommand"
             icon="icons/fantomRelated.gif"

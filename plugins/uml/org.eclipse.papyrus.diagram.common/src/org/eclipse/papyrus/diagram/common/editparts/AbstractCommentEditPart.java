@@ -47,42 +47,45 @@ public class AbstractCommentEditPart extends NodeEditPart {
 		// set the figure active when the feature of the of a class is true
 		if(resolveSemanticElement() != null) {
 			refreshFontColor();
-			
+
 		}
 	}
-	
+
 	/**
-     * Refresh figure's background transparency.
-     * @since 1.2
-     */
-    protected void refreshTransparency() {
-        FillStyle style = (FillStyle)getPrimaryView().getStyle(NotationPackage.Literals.FILL_STYLE);
-        if (style.getGradient() != null) {   	
-        	setTransparency(style.getTransparency());
-        }
-        else{
-        	setTransparency(0);
-        }
-    }
+	 * Refresh figure's background transparency.
+	 * 
+	 * @since 1.2
+	 */
+	protected void refreshTransparency() {
+		FillStyle style = (FillStyle)getPrimaryView().getStyle(NotationPackage.Literals.FILL_STYLE);
+		if(style.getGradient() != null) {
+			setTransparency(style.getTransparency());
+		} else {
+			setTransparency(0);
+		}
+	}
+
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshFontColor();
-		
+
 	}
 
 	/** Refresh the editpart's figure font color. */
 	protected void refreshFontColor() {
-		FontStyle style = (FontStyle)  getPrimaryView().getStyle(NotationPackage.Literals.FONT_STYLE);
-		if ( style != null ) {
+		FontStyle style = (FontStyle)getPrimaryView().getStyle(NotationPackage.Literals.FONT_STYLE);
+		if(style != null) {
 			setFontColor(DiagramColorRegistry.getInstance().getColor(new Integer(style.getFontColor())));
 		}
 	}
+
 	/**
 	 * @generated
 	 */
 	protected void setFontColor(Color color) {
 		getFigure().setForegroundColor(color);
 	}
+
 	protected void setForegroundColor(Color color) {
 		getPrimaryShape().setBorderColor(color);
 	}

@@ -30,67 +30,71 @@ import org.eclipse.ui.IWorkbenchPart;
 
 /**
  * A set of utility methods to get the Services from the core.
+ * 
  * @author cedric dumoulin
  * @deprecated Use {@link ServiceUtilsForGMF}
  */
 public class DiagramCoreServiceUtils {
 
 	/**
-	 * Get the {@link ServiceRegistry} from the {@link IDiagramEditDomain}. 
-	 * This method can be used from EditParts and EditPolicies to retrieve the {@link ServicesRegistry}.
-	 * <br>
+	 * Get the {@link ServiceRegistry} from the {@link IDiagramEditDomain}.
+	 * This method can be used from EditParts and EditPolicies to retrieve the {@link ServicesRegistry}. <br>
 	 * The IDiagramEditDomain can be found :
 	 * <ul>
-	 *  <li>EditParts - getDiagramEditDomain()</li>
-	 *  <li>EditPolicies - getHost().getDiagramEditDomain()</li>
+	 * <li>EditParts - getDiagramEditDomain()</li>
+	 * <li>EditPolicies - getHost().getDiagramEditDomain()</li>
 	 * </ul>
-	 * @param domain or null if not found
+	 * 
+	 * @param domain
+	 *        or null if not found
 	 * @return
 	 */
-	static ServicesRegistry getServiceRegistry( IDiagramEditDomain domain ) {
-		
-		if( domain instanceof DiagramEditDomain){
-			IWorkbenchPart part=((DiagramEditDomain)domain).getEditorPart().getEditorSite().getPart();
-			if (part instanceof UmlGmfDiagramEditor){
+	static ServicesRegistry getServiceRegistry(IDiagramEditDomain domain) {
+
+		if(domain instanceof DiagramEditDomain) {
+			IWorkbenchPart part = ((DiagramEditDomain)domain).getEditorPart().getEditorSite().getPart();
+			if(part instanceof UmlGmfDiagramEditor) {
 				return ((UmlGmfDiagramEditor)part).getServicesRegistry();
 			}
 		}
 		return null;
 
 	}
+
 	/**
-	 * Get the {@link ServiceRegistry} from the {@link IDiagramEditDomain}. 
-	 * This method can be used from EditParts and EditPolicies to retrieve the {@link ServicesRegistry}.
-	 * <br>
+	 * Get the {@link ServiceRegistry} from the {@link IDiagramEditDomain}.
+	 * This method can be used from EditParts and EditPolicies to retrieve the {@link ServicesRegistry}. <br>
 	 * The IDiagramEditDomain can be found :
 	 * <ul>
-	 *  <li>EditParts - getDiagramEditDomain()</li>
-	 *  <li>EditPolicies - getHost().getDiagramEditDomain()</li>
+	 * <li>EditParts - getDiagramEditDomain()</li>
+	 * <li>EditPolicies - getHost().getDiagramEditDomain()</li>
 	 * </ul>
-	 * @param domain or null if not found
+	 * 
+	 * @param domain
+	 *        or null if not found
 	 * @return
 	 */
-	static ServicesRegistry getServiceRegistryChecked( IDiagramEditDomain domain ) throws ServiceNotFoundException{
-		
-		if( domain instanceof DiagramEditDomain){
-			IWorkbenchPart part=((DiagramEditDomain)domain).getEditorPart().getEditorSite().getPart();
-			if (part instanceof UmlGmfDiagramEditor){
+	static ServicesRegistry getServiceRegistryChecked(IDiagramEditDomain domain) throws ServiceNotFoundException {
+
+		if(domain instanceof DiagramEditDomain) {
+			IWorkbenchPart part = ((DiagramEditDomain)domain).getEditorPart().getEditorSite().getPart();
+			if(part instanceof UmlGmfDiagramEditor) {
 				return ((UmlGmfDiagramEditor)part).getServicesRegistry();
 			}
 		}
 		throw new ServiceNotFoundException("Can't get the ServiceRegistry.");
 
 	}
-	
+
 	/**
-	 * Gets the {@link TransactionalEditingDomain} registered in the {@link ServicesRegistry}. 
+	 * Gets the {@link TransactionalEditingDomain} registered in the {@link ServicesRegistry}.
 	 * 
 	 * @param domain
 	 * @return
 	 */
 	public static TransactionalEditingDomain getTransactionalEditingDomain(IDiagramEditDomain domain) {
 
-		
+
 		try {
 			return getServiceRegistryChecked(domain).getService(TransactionalEditingDomain.class);
 		} catch (IllegalStateException e) {
@@ -102,14 +106,15 @@ public class DiagramCoreServiceUtils {
 	}
 
 	/**
-	 * Gets the {@link TransactionalEditingDomain} registered in the {@link ServicesRegistry}. 
+	 * Gets the {@link TransactionalEditingDomain} registered in the {@link ServicesRegistry}.
 	 * 
 	 * @param domain
 	 * @return
-	 * @throws ServiceException If the TransactionalEditingDomain can not be found.
+	 * @throws ServiceException
+	 *         If the TransactionalEditingDomain can not be found.
 	 */
 	public static TransactionalEditingDomain getTransactionalEditingDomainChecked(IDiagramEditDomain domain) throws ServiceException {
-			return getServiceRegistryChecked(domain).getService(TransactionalEditingDomain.class);
+		return getServiceRegistryChecked(domain).getService(TransactionalEditingDomain.class);
 	}
 
 

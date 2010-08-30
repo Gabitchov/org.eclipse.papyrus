@@ -13,106 +13,78 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.handlers;
 
-import org.eclipse.core.commands.AbstractHandler;
-import org.eclipse.core.commands.ExecutionEvent;
+import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.draw2d.PositionConstants;
-import org.eclipse.gef.ui.actions.GEFActionConstants;
-import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.papyrus.diagram.common.actions.CustomAlignAction;
 import org.eclipse.papyrus.diagram.common.layout.LayoutUtils;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.PlatformUI;
 
 
 /**
  * 
- * This class provides keybinding for the alignment actions. The allowed parameters are :
- * <ul>
- * <li> {@link AlignementHandler#LEFT}</li>
- * <li> {@link AlignementHandler#CENTER}</li>
- * <li> {@link AlignementHandler#RIGHT}</li>
- * <li> {@link AlignementHandler#BOTTOM}</li>
- * <li> {@link AlignementHandler#MIDDLE}</li>
- * <li> {@link AlignementHandler#TOP}</li>
- * 
- * </ul>
+ * Handler for the AlignmentAction
  * 
  */
-public class AlignementHandler extends AbstractHandler {
+public class AlignementHandler extends ParametricAndListeningHandler {
 
-
-	/** the alignment */
-	private int alignment = PositionConstants.NONE;
-
-	/** the id for this alignment */
-	private String id = null;
-
-	/** the workbenchpage */
-	private IWorkbenchPage workbenchPage = null;
-
-	/** the selected elements */
-	private ISelection selection = null;
+	/** the action executed by this handler */
+	protected CustomAlignAction action = null;
 
 	/**
 	 * 
-	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
-	 * 
-	 * @param event
-	 * @return
+	 * Constructor.
 	 * 
 	 */
-	public Object execute(ExecutionEvent event) {
-		init(event);
-		if(this.alignment != PositionConstants.NONE && workbenchPage != null && ((StructuredSelection)this.selection).size() >= 1) {
-			CustomAlignAction action = new CustomAlignAction(workbenchPage, id, alignment, false);
-			action.init();
-			if(action.isEnabled()) {
-				action.run();
-			}
-		}
-		return null;
+	public AlignementHandler() {
+		super("org.eclipse.papyrus.diagram.common.commandAlignmentParameter"); //$NON-NLS-1$
 	}
 
 	/**
-	 * This function initializes the following fields :
-	 * <ul>
-	 * <li>{@link #alignment}</li>
-	 * <li> {@link #id}</li>
-	 * <li> {@link #selection}</li>
-	 * <li> {@link #workbenchPage}</li>
-	 * </ul>
 	 * 
-	 * @param evt
-	 *        the received event
+	 * @see org.eclipse.papyrus.diagram.common.handlers.GraphicalCommandHandler#getCommand()
+	 * 
+	 * @return
+	 * @throws ExecutionException
 	 */
-	protected void init(ExecutionEvent evt) {
-		workbenchPage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-		this.selection = workbenchPage.getSelection();
-		String param = evt.getParameter("org.eclipse.papyrus.diagram.common.commandAlignmentParameter");
+	@Override
+	protected Command getCommand() throws ExecutionException {
+		super.getCommand();
+		this.action = new CustomAlignAction(getAlignment(this.parameter), this.getSelectedElements());
+		Command cmd = action.getCommand();
+		return (cmd == null) ? UnexecutableCommand.INSTANCE : cmd;
+	}
+
+	/**
+	 * 
+	 * @param param
+	 *        the parameter for the alignment action
+	 * @return
+	 *         the value represented by this parameter, this valu can be :
+	 *         <ul>
+	 *         <li> {@link PositionConstants#NONE}</li>
+	 *         <li> {@link PositionConstants#TOP}</li>
+	 *         <li> {@link PositionConstants#BOTTOM}</li>
+	 *         <li> {@link PositionConstants#MIDDLE}</li>
+	 *         <li> {@link PositionConstants#LEFT}</li>
+	 *         <li> {@link PositionConstants#RIGHT}</li>
+	 *         <li> {@link PositionConstants#CENTER}</li>
+	 *         </ul>
+	 */
+	public int getAlignment(String param) {
 		if(param.equals(LayoutUtils.LEFT)) {
-			this.alignment = PositionConstants.LEFT;
-			this.id = GEFActionConstants.ALIGN_LEFT;
-
+			return PositionConstants.LEFT;
 		} else if(param.equals(LayoutUtils.CENTER)) {
-			this.alignment = PositionConstants.CENTER;
-			this.id = GEFActionConstants.ALIGN_CENTER;
-
+			return PositionConstants.CENTER;
 		} else if(param.equals(LayoutUtils.RIGHT)) {
-			this.alignment = PositionConstants.RIGHT;
-			this.id = GEFActionConstants.ALIGN_RIGHT;
-
+			return PositionConstants.RIGHT;
 		} else if(param.equals(LayoutUtils.BOTTOM)) {
-			this.alignment = PositionConstants.BOTTOM;
-			this.id = GEFActionConstants.ALIGN_BOTTOM;
-
+			return PositionConstants.BOTTOM;
 		} else if(param.equals(LayoutUtils.MIDDLE)) {
-			this.alignment = PositionConstants.MIDDLE;
-			this.id = GEFActionConstants.ALIGN_MIDDLE;
-
+			return PositionConstants.MIDDLE;
 		} else if(param.equals(LayoutUtils.TOP)) {
-			this.alignment = PositionConstants.TOP;
-			this.id = GEFActionConstants.ALIGN_TOP;
+			return PositionConstants.TOP;
 		}
+		return PositionConstants.NONE;
 	}
 }

@@ -31,12 +31,12 @@ import org.eclipse.ui.IWorkbenchPart;
  * 
  * 
  * @author cedric dumoulin
- *
+ * 
  */
 public class ServiceUtilsForGMF extends AbstractServiceUtils<IDiagramEditDomain> {
 
 	private final static ServiceUtils instance = new ServiceUtils();
-	
+
 	/**
 	 * Get the singleton instance of the class.
 	 * 
@@ -45,34 +45,36 @@ public class ServiceUtilsForGMF extends AbstractServiceUtils<IDiagramEditDomain>
 	public static final ServiceUtils getInstance() {
 		return instance;
 	}
-	
+
 	/**
 	 * Get the {@link ServicesRegistry} from an {@link IDiagramEditDomain}.
-	 * Throw an exception if the ServiceRegistry can't be found.
-	 * <br>
+	 * Throw an exception if the ServiceRegistry can't be found. <br>
 	 * This method get the ServiceRegistry from the IDiagramEditDomain associated to an GMF EditPart.
 	 * This IDiagramEditDomain can be obtained by calling:
 	 * <ul>
-	 *  <li>from EditParts - editpart.getDiagramEditDomain()</li>
-	 *  <li>from EditPolicies - policy.getHost().getDiagramEditDomain()</li>
+	 * <li>from EditParts - editpart.getDiagramEditDomain()</li>
+	 * <li>from EditPolicies - policy.getHost().getDiagramEditDomain()</li>
 	 * </ul>
-
+	 * 
 	 * @see org.eclipse.papyrus.core.utils.AbstractServiceUtils#getServiceRegistry(java.lang.Object)
-	 *
-	 * @param domain The domain associated to an EditPart.
+	 * 
+	 * @param domain
+	 *        The domain associated to an EditPart.
 	 * @return
-	 * @throws ServiceException If an error occurs
-	 * @throws ServiceNotFoundException If the ServiceRegistry can't be found from the domain
+	 * @throws ServiceException
+	 *         If an error occurs
+	 * @throws ServiceNotFoundException
+	 *         If the ServiceRegistry can't be found from the domain
 	 */
 	@Override
 	public ServicesRegistry getServiceRegistry(IDiagramEditDomain domain) throws ServiceException {
-		if( domain instanceof DiagramEditDomain){
-			IWorkbenchPart part=((DiagramEditDomain)domain).getEditorPart().getEditorSite().getPart();
-			if (part instanceof UmlGmfDiagramEditor){
+		if(domain instanceof DiagramEditDomain) {
+			IWorkbenchPart part = ((DiagramEditDomain)domain).getEditorPart().getEditorSite().getPart();
+			if(part instanceof UmlGmfDiagramEditor) {
 				return ((UmlGmfDiagramEditor)part).getServicesRegistry();
 			}
 		}
-		
+
 		throw new ServiceNotFoundException("Can't find ServiceRegistry from '" + domain + "'");
 	}
 

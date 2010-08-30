@@ -11,9 +11,10 @@ import org.eclipse.ui.IWorkbenchPart;
 
 /**
  * this is the provider is charge to give the handler in order to have the functionnality cut copy paste
- *
+ * 
  */
 public class PapyrusGlobalActionHandlerProvider extends AbstractGlobalActionHandlerProvider {
+
 	/**
 	 * List that contains all the IGlobalActionHandlers mapped to the
 	 * IWorkbenchParts
@@ -31,69 +32,65 @@ public class PapyrusGlobalActionHandlerProvider extends AbstractGlobalActionHand
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.gmf.runtime.common.ui.services.action.global.IGlobalActionHandlerProvider#getGlobalActionHandler(org.eclipse.gmf.runtime.common.ui.services.action.global.IGlobalActionHandlerContext)
+	 * @see
+	 * org.eclipse.gmf.runtime.common.ui.services.action.global.IGlobalActionHandlerProvider#getGlobalActionHandler(org.eclipse.gmf.runtime.common
+	 * .ui.services.action.global.IGlobalActionHandlerContext)
 	 */
 	@SuppressWarnings("unchecked")
-	public IGlobalActionHandler getGlobalActionHandler(
-			final IGlobalActionHandlerContext context) {
+	public IGlobalActionHandler getGlobalActionHandler(final IGlobalActionHandlerContext context) {
 		/* create the handler */
-		if (!getHandlerList().containsKey(context.getActivePart())) {
-			getHandlerList().put(context.getActivePart(),
-				new PapyrusDiagramGlobalActionHandler());
+		if(!getHandlerList().containsKey(context.getActivePart())) {
+			getHandlerList().put(context.getActivePart(), new PapyrusDiagramGlobalActionHandler());
 			/*
 			 * register as a part listener so that the cache can be cleared when
 			 * the part is disposed
 			 */
-			context.getActivePart().getSite().getPage().addPartListener(
-				new IPartListener() {
+			context.getActivePart().getSite().getPage().addPartListener(new IPartListener() {
 
-					private IWorkbenchPart localPart = context.getActivePart();
+				private IWorkbenchPart localPart = context.getActivePart();
 
-					/**
-					 * @see org.eclipse.ui.IPartListener#partActivated(IWorkbenchPart)
-					 */
-					public void partActivated(IWorkbenchPart part) {
-						// NULL implementation
+				/**
+				 * @see org.eclipse.ui.IPartListener#partActivated(IWorkbenchPart)
+				 */
+				public void partActivated(IWorkbenchPart part) {
+					// NULL implementation
+				}
+
+				/**
+				 * @see org.eclipse.ui.IPartListener#partBroughtToTop(IWorkbenchPart)
+				 */
+				public void partBroughtToTop(IWorkbenchPart part) {
+					// NULL implementation
+				}
+
+				/**
+				 * @see org.eclipse.ui.IPartListener#partClosed(IWorkbenchPart)
+				 */
+				public void partClosed(IWorkbenchPart part) {
+					/* remove the cache associated with the part */
+					if(part != null && part == localPart && getHandlerList().containsKey(part)) {
+						getHandlerList().remove(part);
+						localPart.getSite().getPage().removePartListener(this);
+						localPart = null;
 					}
+				}
 
-					/**
-					 * @see org.eclipse.ui.IPartListener#partBroughtToTop(IWorkbenchPart)
-					 */
-					public void partBroughtToTop(IWorkbenchPart part) {
-						// NULL implementation
-					}
+				/**
+				 * @see org.eclipse.ui.IPartListener#partDeactivated(IWorkbenchPart)
+				 */
+				public void partDeactivated(IWorkbenchPart part) {
+					// NULL implementation
+				}
 
-					/**
-					 * @see org.eclipse.ui.IPartListener#partClosed(IWorkbenchPart)
-					 */
-					public void partClosed(IWorkbenchPart part) {
-						/* remove the cache associated with the part */
-						if (part != null && part == localPart
-							&& getHandlerList().containsKey(part)) {
-							getHandlerList().remove(part);
-							localPart.getSite().getPage().removePartListener(
-								this);
-							localPart = null;
-						}
-					}
-
-					/**
-					 * @see org.eclipse.ui.IPartListener#partDeactivated(IWorkbenchPart)
-					 */
-					public void partDeactivated(IWorkbenchPart part) {
-						// NULL implementation
-					}
-
-					/**
-					 * @see org.eclipse.ui.IPartListener#partOpened(IWorkbenchPart)
-					 */
-					public void partOpened(IWorkbenchPart part) {
-						// NULL implementation
-					}
-				});
+				/**
+				 * @see org.eclipse.ui.IPartListener#partOpened(IWorkbenchPart)
+				 */
+				public void partOpened(IWorkbenchPart part) {
+					// NULL implementation
+				}
+			});
 		}
-		return (DiagramGlobalActionHandler) getHandlerList().get(
-			context.getActivePart());
+		return (DiagramGlobalActionHandler)getHandlerList().get(context.getActivePart());
 	}
 
 	/**

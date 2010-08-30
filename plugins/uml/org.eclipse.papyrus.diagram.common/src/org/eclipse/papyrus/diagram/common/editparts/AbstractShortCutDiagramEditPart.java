@@ -40,33 +40,36 @@ import org.eclipse.ui.IWorkbenchPart;
 /**
  * this class is used to constraint the behavior of a node to obtain the behavior a short cut
  */
-public abstract class AbstractShortCutDiagramEditPart extends AbstractBorderedShapeEditPart implements Adapter{
+public abstract class AbstractShortCutDiagramEditPart extends AbstractBorderedShapeEditPart implements Adapter {
 
 	protected static final String DELETE_ICON = "icons/delete.gif";
 
 	private IPageIconsRegistry editorRegistry;
 
 	private Notifier target;
+
 	protected Resource resourceToListen;
 
 	public AbstractShortCutDiagramEditPart(View view) {
 		super(view);
 	}
+
 	/**
 	 * 
 	 * @return the service registry from the backbone.
-	 * it can return null if it does not found the {@link DiagramEditDomain}
+	 *         it can return null if it does not found the {@link DiagramEditDomain}
 	 */
-	public ServicesRegistry getServicesRegistry(){
-		IDiagramEditDomain domain=	getDiagramEditDomain();
-		if( domain instanceof DiagramEditDomain){
-			IWorkbenchPart part=((DiagramEditDomain)domain).getEditorPart().getEditorSite().getPart();
-			if (part instanceof UmlGmfDiagramEditor){
+	public ServicesRegistry getServicesRegistry() {
+		IDiagramEditDomain domain = getDiagramEditDomain();
+		if(domain instanceof DiagramEditDomain) {
+			IWorkbenchPart part = ((DiagramEditDomain)domain).getEditorPart().getEditorSite().getPart();
+			if(part instanceof UmlGmfDiagramEditor) {
 				return ((UmlGmfDiagramEditor)part).getServicesRegistry();
 			}
 		}
 		return null;
 	}
+
 	/**
 	 * Return the EditorRegistry for nested editor descriptors. Subclass should implements this
 	 * method in order to return the registry associated to the extension point namespace.
@@ -76,19 +79,17 @@ public abstract class AbstractShortCutDiagramEditPart extends AbstractBorderedSh
 	 */
 	protected IPageIconsRegistry createEditorRegistry() {
 		try {
-			ServicesRegistry servicesRegistry= getServicesRegistry();
+			ServicesRegistry servicesRegistry = getServicesRegistry();
 
-			if(servicesRegistry!=null){
+			if(servicesRegistry != null) {
 				return servicesRegistry.getService(IPageIconsRegistry.class);
-			}
-			else{
+			} else {
 				return EditorUtils.getServiceRegistry().getService(IPageIconsRegistry.class);
 			}
 		} catch (ServiceException e) {
 			// Not found, return an empty one which return null for each request.
 			return new PageIconsRegistry();
-		}
-		catch ( NullPointerException e) {
+		} catch (NullPointerException e) {
 			//if the editor is null null pointer exception is raised
 			// Not found, return an empty one which return null for each request.
 			return new PageIconsRegistry();
@@ -99,12 +100,13 @@ public abstract class AbstractShortCutDiagramEditPart extends AbstractBorderedSh
 	public void activate() {
 		// TODO Auto-generated method stub
 		super.activate();
-		EObject eObject=resolveSemanticElement();
-		resourceToListen= eObject.eResource();
+		EObject eObject = resolveSemanticElement();
+		resourceToListen = eObject.eResource();
 		resourceToListen.eAdapters().add(this);
-		
-	
+
+
 	}
+
 	/**
 	 * Get the EditorRegistry used to create editor instances. This default implementation return
 	 * the singleton eINSTANCE. This method can be subclassed to return another registry.
@@ -142,6 +144,7 @@ public abstract class AbstractShortCutDiagramEditPart extends AbstractBorderedSh
 		super.notifyChanged(notification);
 		refreshIcons();
 	}
+
 	/**
 	 * 
 	 * {@inheritDoc}
@@ -160,28 +163,29 @@ public abstract class AbstractShortCutDiagramEditPart extends AbstractBorderedSh
 	 * refresh the icon by taking in account the type of the diagram
 	 */
 	private void refreshIcons() {
-		if(resolveSemanticElement() instanceof Diagram&& resolveSemanticElement().eResource()!=null){
+		if(resolveSemanticElement() instanceof Diagram && resolveSemanticElement().eResource() != null) {
 			getPrimaryShape().setIcon(getEditorRegistry().getEditorIcon((Diagram)resolveSemanticElement()));
-		}
-		else{
+		} else {
 			getPrimaryShape().setIcon(org.eclipse.papyrus.diagram.common.Activator.getPluginIconImage(org.eclipse.papyrus.diagram.common.Activator.ID, DELETE_ICON));
 		}
 	}
+
 	@Override
 	public void deactivate() {
 		// TODO Auto-generated method stub
 		super.deactivate();
 		resourceToListen.eAdapters().remove(this);
 	}
-	public void setTarget(Notifier target) { 
-	    this.target = target; 
-	  } 
-	 
-	  public Notifier getTarget() { 
-	    return target; 
-	  } 
-	 
-	  public boolean isAdapterForType(Object type) { 
-		  return (getModel().getClass() == type); 
-	  } 
+
+	public void setTarget(Notifier target) {
+		this.target = target;
+	}
+
+	public Notifier getTarget() {
+		return target;
+	}
+
+	public boolean isAdapterForType(Object type) {
+		return (getModel().getClass() == type);
+	}
 }

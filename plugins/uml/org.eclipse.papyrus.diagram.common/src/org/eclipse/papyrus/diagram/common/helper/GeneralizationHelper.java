@@ -96,9 +96,10 @@ public class GeneralizationHelper {
 				List<?> views = DiagramEditPartsUtil.getEObjectViews(current);
 				for(Object currentView : views) {
 					if(currentView instanceof View) {
-						EditPart editPart=DiagramEditPartsUtil.getEditPartFromView((View)currentView, diagramEP);
-						if (editPart!= null){
-						classifierEP.add(editPart);}
+						EditPart editPart = DiagramEditPartsUtil.getEditPartFromView((View)currentView, diagramEP);
+						if(editPart != null) {
+							classifierEP.add(editPart);
+						}
 					}
 				}
 			}
@@ -110,9 +111,10 @@ public class GeneralizationHelper {
 				List<?> membersView = DiagramEditPartsUtil.getEObjectViews(namedElement);
 				for(Object view : membersView) {
 					if(view instanceof View) {
-						EditPart editPart=DiagramEditPartsUtil.getEditPartFromView((View)view, diagramEP);
-						if (editPart!= null){
-						membersEP.add(editPart);}
+						EditPart editPart = DiagramEditPartsUtil.getEditPartFromView((View)view, diagramEP);
+						if(editPart != null) {
+							membersEP.add(editPart);
+						}
 					}
 				}
 			}

@@ -23,23 +23,25 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 
 /**
- * this is an abstract editpart to manage  a constraint 
- *
+ * this is an abstract editpart to manage a constraint
+ * 
  */
 public class AbstractConstraintEditPart extends NamedElementEditPart {
 
 	protected static final String CONSTRAINT_VALUE_SPECIFICATION_LISTENER = "Constraint_valueSpecification_Listener";
+
 	public AbstractConstraintEditPart(View view) {
 		super(view);
 		// TODO Auto-generated constructor stub
 	}
+
 	/**
 	 * this methods add listeners on targets and sources
 	 */
 	protected void addAssociationEndListeners() {
-		
+
 	}
-	
+
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.diagram.common.editparts.NodeEditPart#getPrimaryShape()
@@ -47,6 +49,7 @@ public class AbstractConstraintEditPart extends NamedElementEditPart {
 	public IPapyrusNodeFigure getPrimaryShape() {
 		return new ConstraintFigure();
 	}
+
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.diagram.common.editparts.NamedElementEditPart#refreshLabelsFont(org.eclipse.swt.graphics.Font)
@@ -54,34 +57,36 @@ public class AbstractConstraintEditPart extends NamedElementEditPart {
 	protected void refreshLabelsFont(Font font) {
 		// TODO Auto-generated method stub
 		super.refreshLabelsFont(font);
-		if(getPrimaryShape() instanceof ConstraintFigure){
+		if(getPrimaryShape() instanceof ConstraintFigure) {
 			((ConstraintFigure)getPrimaryShape()).getTextFlow().setFont(font);
 		}
 	}
-	 protected void refreshBackgroundColor() {
-	        FillStyle style = (FillStyle)getPrimaryView().getStyle(NotationPackage.Literals.FILL_STYLE);
-	        if ( style != null ) {
-	        	if (style.getGradient() == null || !supportsGradient()) { 
-	        		setBackgroundColor(DiagramColorRegistry.getInstance().getColor(new Integer(style.getFillColor())));
-	        	} else {
-	        		setGradient(style.getGradient());
-	        	}        	
-	        }
-	    }
-	    
-	    /**
-	     * Refresh figure's background transparency.
-	     * @since 1.2
-	     */
-	    protected void refreshTransparency() {
-	        FillStyle style = (FillStyle)getPrimaryView().getStyle(NotationPackage.Literals.FILL_STYLE);
-	        if (style.getGradient() != null) {   	
-	        	setTransparency(style.getTransparency());
-	        }
-	        else{
-	        	setTransparency(0);
-	        }
-	    }
+
+	protected void refreshBackgroundColor() {
+		FillStyle style = (FillStyle)getPrimaryView().getStyle(NotationPackage.Literals.FILL_STYLE);
+		if(style != null) {
+			if(style.getGradient() == null || !supportsGradient()) {
+				setBackgroundColor(DiagramColorRegistry.getInstance().getColor(new Integer(style.getFillColor())));
+			} else {
+				setGradient(style.getGradient());
+			}
+		}
+	}
+
+	/**
+	 * Refresh figure's background transparency.
+	 * 
+	 * @since 1.2
+	 */
+	protected void refreshTransparency() {
+		FillStyle style = (FillStyle)getPrimaryView().getStyle(NotationPackage.Literals.FILL_STYLE);
+		if(style.getGradient() != null) {
+			setTransparency(style.getTransparency());
+		} else {
+			setTransparency(0);
+		}
+	}
+
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.diagram.common.editparts.NamedElementEditPart#setFontColor(org.eclipse.swt.graphics.Color)
@@ -89,8 +94,8 @@ public class AbstractConstraintEditPart extends NamedElementEditPart {
 	protected void setFontColor(Color color) {
 		// TODO Auto-generated method stub
 		super.setFontColor(color);
-		if(getPrimaryShape() instanceof ConstraintFigure){
+		if(getPrimaryShape() instanceof ConstraintFigure) {
 			((ConstraintFigure)getPrimaryShape()).getPageFlow().setForegroundColor(color);
 		}
-	} 
+	}
 }
