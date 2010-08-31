@@ -112,6 +112,7 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 			newBounds.x += request.getMoveDelta().x;
 			newBounds.y += request.getMoveDelta().y;
 
+			// update the enclosing interaction of a moved execution specification
 			compoundCmd.add(SequenceUtil.createUpdateEnclosingInteractionCommand(executionSpecificationEP, newBounds));
 		}
 
