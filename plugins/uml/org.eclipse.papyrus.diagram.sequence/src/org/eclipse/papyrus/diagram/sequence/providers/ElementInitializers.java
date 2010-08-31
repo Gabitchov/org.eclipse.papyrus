@@ -30,7 +30,6 @@ import org.eclipse.uml2.uml.LiteralString;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.StateInvariant;
 import org.eclipse.uml2.uml.TimeConstraint;
-import org.eclipse.uml2.uml.TimeInterval;
 import org.eclipse.uml2.uml.TimeObservation;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -145,13 +144,8 @@ public class ElementInitializers {
 	 */
 	public void init_TimeConstraint_3019(TimeConstraint instance) {
 		try {
-			TimeInterval newInstance_0_0 = UMLFactory.eINSTANCE.createTimeInterval();
-			instance.setSpecification(newInstance_0_0);
-			Object value_0_0_0 = name_specification_TimeConstraint_3019(newInstance_0_0);
-			newInstance_0_0.setName((String)value_0_0_0);
-
-			Object value_1 = name_TimeConstraint_3019(instance);
-			instance.setName((String)value_1);
+			Object value_0 = name_TimeConstraint_3019(instance);
+			instance.setName((String)value_0);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
@@ -297,13 +291,6 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	private String name_CombinedFragment_3018(CombinedFragment self) {
-		return getNamedElement(self, "", self.eClass().getName(), "");
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_specification_TimeConstraint_3019(TimeInterval self) {
 		return getNamedElement(self, "", self.eClass().getName(), "");
 	}
 

@@ -605,21 +605,6 @@
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
-                xsi:type="gmfgen:GenReferenceNewElementSpec">
-              <feature
-                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint/specification"/>
-              <newElementInitializers>
-                <initializers
-                    xsi:type="gmfgen:GenFeatureValueSpec"
-                    value="/0/@expressionProviders/@providers.0/@expressions.8">
-                  <feature
-                      href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-                </initializers>
-                <elementClass
-                    href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/TimeInterval"/>
-              </newElementInitializers>
-            </initializers>
-            <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.9">
               <feature
