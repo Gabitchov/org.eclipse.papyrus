@@ -2706,9 +2706,21 @@
 					<visibleWhen checkEnabled="true">
 					</visibleWhen>
 				</command>
+				<command commandId="org.eclipse.papyrus.uml.service.creation.duration.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Duration.gif"
+					label="Create a new Duration" style="push" tooltip="Create a new Duration.gif">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
 				<command commandId="org.eclipse.papyrus.uml.service.creation.durationconstraint.Handler"
 					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationConstraint.gif"
 					label="Create a new DurationConstraint" style="push" tooltip="Create a new DurationConstraint.gif">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command commandId="org.eclipse.papyrus.uml.service.creation.durationinterval.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationInterval.gif"
+					label="Create a new DurationInterval" style="push" tooltip="Create a new DurationInterval.gif">
 					<visibleWhen checkEnabled="true">
 					</visibleWhen>
 				</command>
@@ -2756,6 +2768,14 @@
 					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExpansionRegion.gif"
 					label="Create a new ExpansionRegion" style="push"
 					tooltip="Create a new ExpansionRegion">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.expression.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Expression.gif"
+					label="Create a new Expression" style="push"
+					tooltip="Create a new Expression">
 					<visibleWhen checkEnabled="true">
 					</visibleWhen>
 				</command>
@@ -2868,6 +2888,13 @@
 					</visibleWhen>
 				</command>
 				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.interval.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interval.gif"
+					label="Create a new Interval" style="push" tooltip="Create a new Interval">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
 					commandId="org.eclipse.papyrus.uml.service.creation.intervalconstraint.Handler"
 					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/IntervalConstraint.gif"
 					label="Create a new IntervalConstraint" style="push" tooltip="Create a new IntervalConstraint">
@@ -2890,6 +2917,42 @@
 					commandId="org.eclipse.papyrus.uml.service.creation.linkenddata.Handler"
 					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LinkEndData.gif"
 					label="Create a new LinkEndData" style="push" tooltip="Create a new LinkEndData">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.literalboolean.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LiteralBoolean.gif"
+					label="Create a new LiteralBoolean" style="push" tooltip="Create a new LiteralBoolean">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.literalinteger.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LiteralInteger.gif"
+					label="Create a new LiteralInteger" style="push" tooltip="Create a new LiteralInteger">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.literalnull.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LiteralNull.gif"
+					label="Create a new LiteralNull" style="push" tooltip="Create a new LiteralNull">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.literalunlimitednatural.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LiteralUnlimitedNatural.gif"
+					label="Create a new LiteralUnlimitedNatural" style="push" tooltip="Create a new LiteralUnlimitedNatural">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.literalstring.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LiteralString.gif"
+					label="Create a new LiteralString" style="push" tooltip="Create a new LiteralString">
 					<visibleWhen checkEnabled="true">
 					</visibleWhen>
 				</command>
@@ -2922,6 +2985,13 @@
 					commandId="org.eclipse.papyrus.uml.service.creation.opaqueaction.Handler"
 					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OpaqueAction.gif"
 					label="Create a new OpaqueAction" style="push" tooltip="Create a new OpaqueAction">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.opaqueexpression.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OpaqueExpression.gif"
+					label="Create a new OpaqueExpression" style="push" tooltip="Create a new OpaqueExpression">
 					<visibleWhen checkEnabled="true">
 					</visibleWhen>
 				</command>
@@ -3216,6 +3286,14 @@
 					</visibleWhen>
 				</command>
 				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.stringexpression.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StringExpression.gif"
+					label="Create a new StringExpression" style="push"
+					tooltip="Create a new StringExpression">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
 					commandId="org.eclipse.papyrus.uml.service.creation.structuredactivitynode.Handler"
 					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StructuredActivityNode.gif"
 					label="Create a new StructuredActivityNode" style="push"
@@ -3260,6 +3338,22 @@
 					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeConstraint.gif"
 					label="Create a new TimeConstraint" style="push"
 					tooltip="Create a new TimeConstraint">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.timeexpression.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeExpression.gif"
+					label="Create a new TimeExpression" style="push"
+					tooltip="Create a new TimeExpression">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.timeinterval.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeInterval.gif"
+					label="Create a new TimeInterval" style="push"
+					tooltip="Create a new TimeInterval">
 					<visibleWhen checkEnabled="true">
 					</visibleWhen>
 				</command>
