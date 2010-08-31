@@ -1132,6 +1132,15 @@ public class SequenceUtil {
 		};
 	}
 
+	/**
+	 * Create a command to update the enclosing interaction of an interaction fragment according to its new bounds.
+	 * 
+	 * @param interactionFragmentEP
+	 *        the edit part of the interaction fragment
+	 * @param absoluteNewBounds
+	 *        the new absolute bounds
+	 * @return the command or null if nothing changes
+	 */
 	@SuppressWarnings("unchecked")
 	public static Command createUpdateEnclosingInteractionCommand(ShapeNodeEditPart interactionFragmentEP, Rectangle absoluteNewBounds) {
 
@@ -1153,6 +1162,7 @@ public class SequenceUtil {
 
 					if(SequenceUtil.isCovered(interactionBounds, absoluteNewBounds, 0.5001)) {
 						int interactionArea = interactionBounds.height * interactionBounds.width;
+						// keep the covered interaction if it is smaller than the previous
 						if(interactionArea < area) {
 							area = interactionArea;
 							interaction = elem;
@@ -1164,6 +1174,7 @@ public class SequenceUtil {
 
 		Set<InteractionFragment> iftAndRelated = new HashSet<InteractionFragment>();
 
+		// add related ift like start and end of an execution specification
 		addInteractionFragmentAndRelatedToSet((InteractionFragment)interactionFragmentEP.resolveSemanticElement(), iftAndRelated);
 
 		CompoundCommand cmd = new CompoundCommand();

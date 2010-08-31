@@ -385,6 +385,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 			// translateToAbsolute only does half of the work, I don't know why
 			newBounds.translate(parentFigure.getBounds().getLocation());
 
+			// update the enclosing interaction of a moved execution specification
 			compoundCmd.add(SequenceUtil.createUpdateEnclosingInteractionCommand(executionSpecificationEP, newBounds));
 
 			if(!compoundCmd.isEmpty()) {

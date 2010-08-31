@@ -19,7 +19,6 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.commands.Command;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
@@ -28,7 +27,13 @@ import org.eclipse.papyrus.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.papyrus.diagram.sequence.util.SequenceUtil;
 import org.eclipse.uml2.uml.InteractionFragment;
 
-
+/**
+ * This creation policy is used to move covered interaction fragments into the interaction operand
+ * when creating a new combined fragment.
+ * 
+ * @author mvelten
+ * 
+ */
 public class CombinedFragmentCreationEditPolicy extends CreationEditPolicy {
 
 	@SuppressWarnings("unchecked")
@@ -36,9 +41,9 @@ public class CombinedFragmentCreationEditPolicy extends CreationEditPolicy {
 	protected Command getCreateElementAndViewCommand(CreateViewAndElementRequest request) {
 		String elementId = getElementIdFromHint(request.getViewAndElementDescriptor().getSemanticHint());
 
-		if(elementId != null && getHost() instanceof IGraphicalEditPart) {
+		if(elementId != null) {
 
-			Rectangle selectionRect = getSelectionRectangle(request, elementId, (IGraphicalEditPart)getHost());
+			Rectangle selectionRect = getSelectionRectangle(request, elementId);
 
 			Set<InteractionFragment> coveredInteractionFragments = SequenceUtil.getCoveredInteractionFragments(selectionRect, getHost(), 0.5);
 
@@ -47,7 +52,16 @@ public class CombinedFragmentCreationEditPolicy extends CreationEditPolicy {
 		return super.getCreateElementAndViewCommand(request);
 	}
 
-	private Rectangle getSelectionRectangle(CreateViewAndElementRequest request, String elementId, IGraphicalEditPart gep) {
+	/**
+	 * Retrieve the selection rectangle associated with the request.
+	 * 
+	 * @param request
+	 *        the request
+	 * @param elementId
+	 *        the element id of the element to be created.
+	 * @return
+	 */
+	private Rectangle getSelectionRectangle(CreateViewAndElementRequest request, String elementId) {
 		Rectangle selectionRect = new Rectangle();
 
 		Point location = request.getLocation();
@@ -74,6 +88,13 @@ public class CombinedFragmentCreationEditPolicy extends CreationEditPolicy {
 		return selectionRect;
 	}
 
+	/**
+	 * Retrieve the element id from the hint or return null if it this policy is not usefull for the element being created.
+	 * 
+	 * @param hint
+	 *        the semantic hint
+	 * @return the lement id or null
+	 */
 	private static String getElementIdFromHint(String hint) {
 		if(((IHintedType)UMLElementTypes.InteractionOperand_3005).getSemanticHint().equals(hint)) {
 			return "InteractionOperand";
