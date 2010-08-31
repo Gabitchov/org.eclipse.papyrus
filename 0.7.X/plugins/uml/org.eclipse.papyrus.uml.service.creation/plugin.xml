@@ -2706,6 +2706,12 @@
 					<visibleWhen checkEnabled="true">
 					</visibleWhen>
 				</command>
+				<command commandId="org.eclipse.papyrus.uml.service.creation.durationconstraint.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationConstraint.gif"
+					label="Create a new DurationConstraint" style="push" tooltip="Create a new DurationConstraint.gif">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
 				<command
 					commandId="org.eclipse.papyrus.uml.service.creation.enumeration.Handler"
 					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Enumeration.gif"
@@ -2839,6 +2845,13 @@
 					<visibleWhen checkEnabled="true">
 					</visibleWhen>
 				</command>
+					<command
+					commandId="org.eclipse.papyrus.uml.service.creation.interactionconstraint.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionConstraint.gif"
+					label="Create a new InteractionConstraint" style="push" tooltip="Create a new InteractionConstraint">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
 				<command
 					commandId="org.eclipse.papyrus.uml.service.creation.interface.Handler"
 					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interface.gif"
@@ -2851,6 +2864,13 @@
 					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InterruptibleActivityRegion.gif"
 					label="Create a new InterruptibleActivityRegion" style="push"
 					tooltip="Create a new InterruptibleActivityRegion">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.intervalconstraint.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/IntervalConstraint.gif"
+					label="Create a new IntervalConstraint" style="push" tooltip="Create a new IntervalConstraint">
 					<visibleWhen checkEnabled="true">
 					</visibleWhen>
 				</command>
@@ -3232,6 +3252,14 @@
 					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TestIdentityAction.gif"
 					label="Create a new TestIdentityAction" style="push"
 					tooltip="Create a new TestIdentityAction">
+					<visibleWhen checkEnabled="true">
+					</visibleWhen>
+				</command>
+				<command
+					commandId="org.eclipse.papyrus.uml.service.creation.timeconstraint.Handler"
+					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeConstraint.gif"
+					label="Create a new TimeConstraint" style="push"
+					tooltip="Create a new TimeConstraint">
 					<visibleWhen checkEnabled="true">
 					</visibleWhen>
 				</command>
