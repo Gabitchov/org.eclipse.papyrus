@@ -21,7 +21,6 @@ import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
-import org.eclipse.papyrus.diagram.common.actions.DistributeAction;
 
 /**
  * 
