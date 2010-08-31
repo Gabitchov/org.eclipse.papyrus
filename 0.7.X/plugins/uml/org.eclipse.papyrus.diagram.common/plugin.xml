@@ -460,6 +460,12 @@
          sequence="F4">
    </key>
    <key
+         commandId="org.eclipse.papyrus.diagram.common.commands.ShowHideCompartmentCommand"
+         contextId="org.eclipse.gmf.runtime.diagram.ui.diagramContext"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="CTRL+F5">
+   </key>
+   <key
          commandId="org.eclipse.papyrus.diagram.common.command.routing.left"
          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
          sequence="CTRL+SHIFT+ARROW_LEFT">
@@ -876,7 +882,7 @@
                icon="icons/alignleft.gif"
                id="org.eclipse.papyrus.common.alignment.toolbar.command"
                style="pulldown"
-               tooltip="Show/Hide Actions">
+               tooltip="Alignment Actions">
             <visibleWhen>
                <and>
                   <with
