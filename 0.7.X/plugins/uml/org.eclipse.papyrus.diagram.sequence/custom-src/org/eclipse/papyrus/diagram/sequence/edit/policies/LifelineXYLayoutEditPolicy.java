@@ -697,7 +697,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 	 *        the change bounds request which originated this move
 	 * @return the command to move linked time &elements or null
 	 */
-	protected Command createMoveTimeElementsCommands(ShapeNodeEditPart executionSpecificationEP, Rectangle newBounds, ChangeBoundsRequest request) {
+	protected static Command createMoveTimeElementsCommands(ShapeNodeEditPart executionSpecificationEP, Rectangle newBounds, ChangeBoundsRequest request) {
 		List<IBorderItemEditPart> notToMoveEditPartList = Collections.emptyList();
 		Object editPartNotToMove = request.getExtendedData().get(SequenceRequestConstant.DO_NOT_MOVE_TIME_ELEMENT);
 		if(editPartNotToMove instanceof IBorderItemEditPart) {
