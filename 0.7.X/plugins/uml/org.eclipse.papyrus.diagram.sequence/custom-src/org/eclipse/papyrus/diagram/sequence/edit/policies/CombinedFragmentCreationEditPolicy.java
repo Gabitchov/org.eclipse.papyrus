@@ -39,11 +39,10 @@ public class CombinedFragmentCreationEditPolicy extends CreationEditPolicy {
 	@SuppressWarnings("unchecked")
 	@Override
 	protected Command getCreateElementAndViewCommand(CreateViewAndElementRequest request) {
-		String elementId = getElementIdFromHint(request.getViewAndElementDescriptor().getSemanticHint());
 
-		if(elementId != null) {
+		if(isDerivedCombinedFragment(request.getViewAndElementDescriptor().getSemanticHint())) {
 
-			Rectangle selectionRect = getSelectionRectangle(request, elementId);
+			Rectangle selectionRect = getSelectionRectangle(request);
 
 			Set<InteractionFragment> coveredInteractionFragments = SequenceUtil.getCoveredInteractionFragments(selectionRect, getHost(), 0.5);
 
@@ -57,11 +56,9 @@ public class CombinedFragmentCreationEditPolicy extends CreationEditPolicy {
 	 * 
 	 * @param request
 	 *        the request
-	 * @param elementId
-	 *        the element id of the element to be created.
 	 * @return
 	 */
-	private Rectangle getSelectionRectangle(CreateViewAndElementRequest request, String elementId) {
+	private Rectangle getSelectionRectangle(CreateViewAndElementRequest request) {
 		Rectangle selectionRect = new Rectangle();
 
 		Point location = request.getLocation();
@@ -89,19 +86,22 @@ public class CombinedFragmentCreationEditPolicy extends CreationEditPolicy {
 	}
 
 	/**
-	 * Retrieve the element id from the hint or return null if it this policy is not usefull for the element being created.
+	 * Check if it is a combined fragment or something similar which needs this policy to move ift in the correct container.
 	 * 
 	 * @param hint
 	 *        the semantic hint
-	 * @return the lement id or null
+	 * @return
 	 */
-	private static String getElementIdFromHint(String hint) {
+	private static boolean isDerivedCombinedFragment(String hint) {
 		if(((IHintedType)UMLElementTypes.InteractionOperand_3005).getSemanticHint().equals(hint)) {
-			return "InteractionOperand";
+			return true;
 		}
 		if(((IHintedType)UMLElementTypes.CombinedFragment_3004).getSemanticHint().equals(hint)) {
-			return "CombinedFragment";
+			return true;
 		}
-		return null;
+		if(((IHintedType)UMLElementTypes.ConsiderIgnoreFragment_3007).getSemanticHint().equals(hint)) {
+			return true;
+		}
+		return false;
 	}
 }
