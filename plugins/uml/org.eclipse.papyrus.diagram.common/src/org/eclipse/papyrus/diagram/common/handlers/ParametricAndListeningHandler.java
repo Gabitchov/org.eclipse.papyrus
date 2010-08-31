@@ -57,7 +57,7 @@ public abstract class ParametricAndListeningHandler extends GraphicalCommandHand
 	 * Constructor.
 	 * 
 	 */
-	protected ParametricAndListeningHandler() {
+	public ParametricAndListeningHandler() {
 		this.thisHandler = this;
 	}
 
@@ -66,7 +66,7 @@ public abstract class ParametricAndListeningHandler extends GraphicalCommandHand
 	 * Constructor.
 	 * 
 	 */
-	protected ParametricAndListeningHandler(String parameterID) {
+	public ParametricAndListeningHandler(String parameterID) {
 		this.thisHandler = this;
 		this.parametedID = parameterID;
 	}
