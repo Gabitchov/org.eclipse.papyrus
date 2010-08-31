@@ -52,7 +52,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.figures.BorderedNodeFigure;
@@ -485,9 +484,9 @@ public class SequenceUtil {
 	public static Command getTimeRelatedElementsMoveCommands(LifelineEditPart lifelinePart, OccurrenceSpecification event, Point referencePoint, List<IBorderItemEditPart> editPartsNotToMove, Map<IBorderItemEditPart, Rectangle> updatedBounds) {
 		CompoundCommand command = new CompoundCommand();
 		referencePoint = referencePoint.getCopy();
-		IFigure parentFigure = lifelinePart.getFigure();
-		parentFigure.translateToRelative(referencePoint);
-		referencePoint.translate(parentFigure.getBounds().getLocation().getCopy().negate());
+		IFigure lifelineFigure = lifelinePart.getFigure();
+		lifelineFigure.translateToRelative(referencePoint);
+		referencePoint.translate(lifelineFigure.getBounds().getLocation().getCopy().negate());
 		// relocate each linked time element contained within the lifeline part
 		for(Object lifelineChild : lifelinePart.getChildren()) {
 			if(lifelineChild instanceof IBorderItemEditPart && !editPartsNotToMove.contains(lifelineChild)) {
@@ -500,7 +499,7 @@ public class SequenceUtil {
 					int oldHeight = 0;
 					if(!updatedBounds.containsKey(timePart) || updatedBounds.get(timePart) == null) {
 						// consult old figure
-						oldY = timePart.getFigure().getBounds().getLocation().y - parentFigure.getBounds().getLocation().y;
+						oldY = timePart.getFigure().getBounds().getLocation().y - lifelineFigure.getBounds().getLocation().y;
 						oldHeight = timePart.getFigure().getSize().height;
 					} else {
 						// take updated bounds rather than obsolete information
@@ -511,7 +510,7 @@ public class SequenceUtil {
 					Rectangle newBounds = null;
 					if(position == PositionConstants.CENTER) {
 						newBounds = new Rectangle(referencePoint.x, referencePoint.y - oldHeight / 2, -1, oldHeight);
-					} else if(position == PositionConstants.TOP || position == PositionConstants.BOTTOM) {
+					} else {
 						int top = oldY;
 						int bottom = oldY + oldHeight;
 						EObject timeElement = timePart.resolveSemanticElement();
@@ -535,11 +534,11 @@ public class SequenceUtil {
 							}
 						}
 						if(position == PositionConstants.TOP) {
-							top = referencePoint.y;
+							newBounds = new Rectangle(referencePoint.x, referencePoint.y, -1, Math.abs(bottom - referencePoint.y));
 						} else {
-							bottom = referencePoint.y;
+							newBounds = new Rectangle(referencePoint.x, top, -1, Math.abs(referencePoint.y - top));
 						}
-						newBounds = new Rectangle(referencePoint.x, Math.min(top, bottom), -1, Math.abs(bottom - top));
+
 					}
 					if(newBounds != null) {
 						updatedBounds.put(timePart, newBounds);
@@ -551,12 +550,18 @@ public class SequenceUtil {
 				}
 			}
 		}
-		// refresh layout
-		if(!command.isEmpty()) {
-			Command relayout = getReLayoutCmd(lifelinePart);
-			if(relayout != null) {
-				command.add(relayout);
-				return command;
+
+		// refresh layout commands :
+		// one before the commands for the undo and one after for classic execution
+		if(!command.isEmpty() && lifelineFigure instanceof BorderedNodeFigure) {
+			Command relayout = getReLayoutCmd((BorderedNodeFigure)lifelineFigure, false);
+			Command relayoutUndo = getReLayoutCmd((BorderedNodeFigure)lifelineFigure, true);
+			if(relayout != null && relayoutUndo != null) {
+				CompoundCommand commandWithRelayout = new CompoundCommand();
+				commandWithRelayout.add(relayoutUndo);
+				commandWithRelayout.add(command);
+				commandWithRelayout.add(relayout);
+				return commandWithRelayout;
 			}
 		}
 		return null;
@@ -566,24 +571,32 @@ public class SequenceUtil {
 	 * Get a command which refreshes the bordered layout of the node.
 	 * 
 	 * @param node
-	 *        the node with bordered items
-	 * @return the refresh command or null
+	 *        the node figure with bordered items
+	 * @param onUndo
+	 *        if true the relayout will be done on undo only, if false it will be done on classic execute only
+	 * @return the refresh command
 	 */
-	public static Command getReLayoutCmd(INodeEditPart node) {
+	public static Command getReLayoutCmd(BorderedNodeFigure node, boolean onUndo) {
 		// relayout the border container figure so that time elements are refreshed
-		IFigure fig = node.getFigure();
-		if(fig instanceof BorderedNodeFigure) {
-			final IFigure container = ((BorderedNodeFigure)fig).getBorderItemContainer();
-			Command cmd = new Command() {
+		final IFigure container = node.getBorderItemContainer();
+
+		if(onUndo) {
+			return new Command() {
+
+				@Override
+				public void undo() {
+					container.getLayoutManager().layout(container);
+				}
+			};
+		} else {
+			return new Command() {
 
 				@Override
 				public void execute() {
 					container.getLayoutManager().layout(container);
 				}
 			};
-			return cmd;
 		}
-		return null;
 	}
 
 	/**
