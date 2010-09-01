@@ -34,8 +34,8 @@ public class AllTests extends TestSuite {
 		TestSuite suite = new TestSuite("Test for org.eclipse.papyrus.diagram.clazz");
 		//$JUnit-BEGIN$
 		
-		suite.addTestSuite(TestClassDiagramTopNode.class);
-		suite.addTestSuite(TestClassDiagramChildNode.class);
+		//suite.addTestSuite(TestClassDiagramTopNode.class);
+		//suite.addTestSuite(TestClassDiagramChildNode.class);
 		suite.addTestSuite(TestClassDiagramChildLabel.class);
 		//$JUnit-END$
 		return suite;

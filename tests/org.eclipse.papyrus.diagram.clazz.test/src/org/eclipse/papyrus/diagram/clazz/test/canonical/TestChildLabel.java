@@ -357,10 +357,10 @@ public class TestChildLabel extends AbstractPapyrusTestCase {
 	public void testToManageTopNode(IElementType topNodeType,IElementType type, int containerType) {
 		testToCreateATopNode(topNodeType);
 		testToCreateANode(type,containerType);
-		testViewDeletion(type,containerType);
-		diagramEditor.getEditingDomain().getCommandStack().undo();
 		testDestroy(type,containerType);
 		diagramEditor.getEditingDomain().getCommandStack().undo();
+		testViewDeletion(type,containerType);
+		//diagramEditor.getEditingDomain().getCommandStack().undo();
 		testDrop(type,containerType);
 		testChangeContainer(topNodeType,type, containerType);
 	}
