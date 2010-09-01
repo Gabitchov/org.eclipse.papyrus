@@ -144,7 +144,7 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends CommonDiagramDr
 		GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart)getHost();
 		EObject graphicalParentObject = graphicalParentEditPart.resolveSemanticElement();
 
-		if((graphicalParentObject instanceof org.eclipse.uml2.uml.Package)){
+		if((graphicalParentObject instanceof org.eclipse.uml2.uml.StateMachine)){
 			CompositeCommand cc = new CompositeCommand("Drop");
 			IAdaptable elementAdapter = new EObjectAdapter(droppedElement);
 
