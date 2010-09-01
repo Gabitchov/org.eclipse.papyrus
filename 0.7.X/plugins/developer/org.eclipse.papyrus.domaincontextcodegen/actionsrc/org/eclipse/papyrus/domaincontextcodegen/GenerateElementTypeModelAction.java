@@ -25,12 +25,15 @@ import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
-
+/**
+ * this action is used to generate all elementype from the doamin model
+ *
+ */
 public class GenerateElementTypeModelAction implements IObjectActionDelegate {
 
+	protected static final String I_HINTED_TYPE = "org.eclipse.gmf.runtime.emf.type.core.IHintedType";
 	protected DomainContext selectedContext=null;
 	public GenerateElementTypeModelAction() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public void run(IAction action) {
@@ -43,7 +46,7 @@ public class GenerateElementTypeModelAction implements IObjectActionDelegate {
 					if(eClassifier instanceof EClass){
 						ElementType elemenType= DomaincontextcodegenFactory.eINSTANCE.createElementType();
 						elemenType.setEdithelper_EditHelperAdvicePath(selectedContext.getDefaultHelperPath());
-						elemenType.setKind("org.eclipse.gmf.runtime.emf.type.core.IHintedType");
+						elemenType.setKind(I_HINTED_TYPE);
 						elemenType.setMetaClass((EClass)eClassifier);
 						elemenType.setSpecificName(selectedContext.getElementTypeNamePrefix()+"::"+eClassifier.getName().toUpperCase());
 						result.add(elemenType);
@@ -56,6 +59,7 @@ public class GenerateElementTypeModelAction implements IObjectActionDelegate {
 				
 			}
 		}
+		//to Do in the case of specialization with a profile
 		
 	}
 
