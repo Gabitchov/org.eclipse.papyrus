@@ -1,0 +1,24 @@
+[comment encoding = UTF-8 /]
+[module generateElementTypeClass('http://www.eclipse.org/papyrus/2010/domaincontextcodegen','http://www.eclipse.org/emf/2002/Ecore')/]
+
+[template public generateElementTypeClass(domain : DomainContext)]
+		[comment @main /]
+		[comment this template is used to generate an enumeration of all elementtypes/]
+	[file (domain.projectName.substituteAll('.', '/').concat('/element/'+domain.elementTypeNamePrefix.concat('ElementTypes.java')), false, 'UTF-8')]
+	
+	package [ domain.projectName.concat('.element')/];
+	import org.eclipse.gmf.runtime.emf.type.core.AbstractElementTypeEnumerator;
+	import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
+	
+	
+	/** this class defined all IHintedType of UML**/
+	public class [domain.elementTypeNamePrefix/]ElementTypes extends AbstractElementTypeEnumerator {
+	[for (type:ElementType|domain.elementTypes)]
+	
+		/** IHintedType of [domain.elementTypeNamePrefix /] [ type.metaClass.name/]**/
+		public static final IHintedType [ type.metaClass.name.toUpper()/] = (IHintedType)getElementType("[domain.elementTypeIDPrefix.concat('.'+type.metaClass.name)/]");
+	[/for ]
+	}
+	[/file]
+	
+[/template]

@@ -1,0 +1,201 @@
+[comment encoding = UTF-8 /]
+[module generateElementHandler('http://www.eclipse.org/papyrus/2010/domaincontextcodegen','http://www.eclipse.org/emf/2002/Ecore')/]
+
+[template public generateElementHandler(domain : DomainContext)]
+	[comment this template is used to generate an enumeration of all handlers + an abstract handler/]
+	[file (domain.projectName.substituteAll('.', '/').concat('/handler/'+domain.elementTypeNamePrefix.concat('Handler.java')), false, 'UTF-8')]
+	package [domain.projectName/].handler;
+
+	import org.eclipse.core.commands.AbstractHandler;
+	import org.eclipse.core.commands.ExecutionEvent;
+	import org.eclipse.core.commands.ExecutionException;
+	import org.eclipse.core.runtime.IAdaptable;
+	import org.eclipse.emf.common.command.Command;
+	import org.eclipse.emf.ecore.EObject;
+	import org.eclipse.emf.ecore.EReference;
+	import org.eclipse.gmt.modisco.infra.browser.uicore.internal.model.LinkItem;
+	import org.eclipse.jface.viewers.ISelection;
+	import org.eclipse.jface.viewers.IStructuredSelection;
+	import org.eclipse.papyrus.core.utils.BusinessModelResolver;
+	import org.eclipse.papyrus.core.utils.EditorUtils;
+	import org.eclipse.ui.PlatformUI;
+
+	/**
+ 	* this is an abstract Handler used to create element.
+ 	* It remains only to put the elementType to manage
+ 	* 
+ 	*/
+	public abstract class [domain.elementTypeNamePrefix/]Handler extends AbstractHandler {
+
+	protected abstract Command getCommand() throws ExecutionException;
+
+	/**
+	 * get the selected element
+	 * 
+	 * @return
+	 */
+	protected EObject getSelectedElement() {
+		EObject eObject = null;
+		Object selection = getCurrentSelection();
+
+		if(selection != null) {
+
+			if(selection instanceof IAdaptable) {
+				selection = ((IAdaptable)selection).getAdapter(EObject.class);
+			}
+			
+
+			Object businessObject = BusinessModelResolver.getInstance().getBusinessModel(selection);
+			if(businessObject instanceof EObject) {
+				eObject = (EObject)businessObject;
+			}
+		}
+		return eObject;
+	}
+
+
+	/**
+	 * get the selected element
+	 * 
+	 * @return
+	 */
+	protected EReference getSelectedEFeature() {
+		EReference eref = null;
+		Object selection = getCurrentSelection();
+
+		if(selection != null) {
+
+			if(selection instanceof LinkItem) {
+				eref = ((LinkItem)selection).getReference();
+			}
+		}
+		return eref;
+	}
+	
+	
+	protected EObject getContainerpOfEFeature() {
+		EObject eObject = null;
+		Object selection = getCurrentSelection();
+
+		if(selection != null) {
+
+			if(selection instanceof LinkItem) {
+				eObject = ((LinkItem)selection).getParent();
+			}
+		}
+		return eObject;
+	}
+	private Object getCurrentSelection() {
+		ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().getSelection();
+		if(selection instanceof IStructuredSelection) {
+			IStructuredSelection structuredSelection = (IStructuredSelection)selection;
+			return structuredSelection.getFirstElement();
+		}
+
+		return null;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
+	 * 
+	 * @param event
+	 * @return null
+	 * @throws ExecutionException
+	 */
+	public Object execute(ExecutionEvent event) throws ExecutionException {
+
+		EditorUtils.getTransactionalEditingDomain().getCommandStack().execute(getCommand());
+		return null;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.core.commands.AbstractHandler#isEnabled()
+	 * 
+	 * @return true is the command can be executed
+	 */
+	public boolean isEnabled() {
+		try {
+			if(getCommand().canExecute()) {
+				return true;
+			}
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+		}
+
+		return false;
+	}
+
+	/**
+	 * 
+	 * @return true if the command can be executed
+	 */
+	public boolean isVisible() {
+		try {
+			if(getCommand().canExecute()) {
+				return true;
+			}
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+		}
+
+		return false;
+	}
+	}
+	
+	[/file]
+	
+	
+	[for (type:ElementType |domain.elementTypes)]
+	[file (domain.projectName.substituteAll('.', '/').concat('/handler/'+type.metaClass.name.concat('Handler.java')), false, 'UTF-8')]
+	package [domain.projectName.concat('.handler')/];
+	
+	import org.eclipse.core.commands.ExecutionException;
+	import org.eclipse.core.commands.IHandler;
+	import org.eclipse.emf.common.command.Command;
+	import org.eclipse.gmf.runtime.common.core.command.ICommand;
+	import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
+	import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
+	import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+	import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+	import [domain.projectName/].handler.[domain.elementTypeNamePrefix/]Handler;
+	import org.eclipse.papyrus.diagram.common.command.wrappers.GMFtoEMFCommandWrapper;
+	import [ domain.projectName.concat('.element')/].[domain.elementTypeNamePrefix/]ElementTypes;
+	import [ domain.projectName.concat('.element')/].[domain.elementTypeNamePrefix/]TypeContext;
+
+/**
+ ** The Class [type.metaClass.name/]Handler in charge to create a element [type.metaClass.name/]
+ **/
+public class [type.metaClass.name/]Handler extends [domain.elementTypeNamePrefix/]Handler implements IHandler {
+
+	/**
+	 ** The Class [type.metaClass.name/]CreateCommand in charge to create a element Reply
+	 **/
+	protected Command getCommand() throws ExecutionException {
+		CreateElementRequest request = new CreateElementRequest([domain.elementTypeNamePrefix/]ElementTypes.[type.metaClass.name.toUpper()/]);
+		request.setContainer(getSelectedElement());
+		IClientContext context;
+		try {
+			context = [domain.elementTypeNamePrefix/]TypeContext.getContext();
+		} catch (Exception e) {
+			throw new ExecutionException(e.getMessage());
+		}
+		IElementType type = ElementTypeRegistry.getInstance().getElementType(getSelectedElement(), context);
+		if(type == null) {
+			throw new ExecutionException("Could not retrieve IElementType for : " + getSelectedElement());
+		}
+		ICommand gmfCommand = type.getEditCommand(request);
+		if(gmfCommand == null) {
+			throw new ExecutionException("Could not retrieve EditCommand for : " + type.getDisplayName());
+		}
+		Command emfCommand = new GMFtoEMFCommandWrapper(gmfCommand);
+		return emfCommand;
+	}
+}
+	
+	
+	[/file]
+	[/for]
+	
+[/template]
