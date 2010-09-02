@@ -38,7 +38,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.IBorderItemLocator;
 import org.eclipse.papyrus.diagram.common.editparts.BorderNamedElementEditPart;
 import org.eclipse.papyrus.diagram.common.layout.DistributionConstants;
 import org.eclipse.papyrus.diagram.common.layout.LayoutUtils;
-import org.eclipse.papyrus.diagram.common.layout.LinkRepresentationForDistributeAction;
+import org.eclipse.papyrus.diagram.common.layout.LinkRepresentationForLayoutAction;
 import org.eclipse.papyrus.wizards.Activator;
 
 /**
@@ -104,7 +104,7 @@ public class DistributeAffixedChildNodeLinkAction extends AbstractDistributeActi
 				case DISTRIBUTE_ON_ONE_END: //the link representation is owned by only one NodeRepresentation
 					NodeRepresentation representation = getCorrespondingRepresentation((EditPart)current);
 					if(representation != null) {
-						LinkRepresentationForDistributeAction link = new LinkRepresentationForDistributeAction((ConnectionEditPart)current);
+						LinkRepresentationForLayoutAction link = new LinkRepresentationForLayoutAction((ConnectionEditPart)current);
 						representation.addElements(link);
 					} else {//no source and no target are in the selection, this link will no be managed
 					}
@@ -112,7 +112,7 @@ public class DistributeAffixedChildNodeLinkAction extends AbstractDistributeActi
 				case DISTRIBUTE_ON_TWO_END://the link representation is owned by two NodeRepresentation
 					NodeRepresentation representationSource = getCorrespondingRepresentation(((ConnectionEditPart)current).getSource());
 					NodeRepresentation representationTarget = getCorrespondingRepresentation(((ConnectionEditPart)current).getTarget());
-					LinkRepresentationForDistributeAction linkRep = new LinkRepresentationForDistributeAction((ConnectionEditPart)current);
+					LinkRepresentationForLayoutAction linkRep = new LinkRepresentationForLayoutAction((ConnectionEditPart)current);
 
 					//we add the source and the target of the link in the commonParentRepresentations
 					if(representationSource == null) {
@@ -254,7 +254,7 @@ public class DistributeAffixedChildNodeLinkAction extends AbstractDistributeActi
 
 	/**
 	 * This class provides facilities to represent a parent with its children that we want to distribute.
-	 * The element to distribute should be {@link LinkRepresentationForDistributeAction} of {@link AffixedChildNodeRepresentation}
+	 * The element to distribute should be {@link LinkRepresentationForLayoutAction} of {@link AffixedChildNodeRepresentation}
 	 * 
 	 */
 	protected class NodeRepresentation {
@@ -278,7 +278,7 @@ public class DistributeAffixedChildNodeLinkAction extends AbstractDistributeActi
 		}
 
 		/**
-		 * Test if the element to distribute an on a correct side.
+		 * Test if the elements to distribute are on a correct side.
 		 * 
 		 * @return <code>true</code>, if successful, <code>false</code> if not
 		 */
@@ -295,9 +295,9 @@ public class DistributeAffixedChildNodeLinkAction extends AbstractDistributeActi
 							return false;
 						}
 					}
-				} else if(current instanceof LinkRepresentationForDistributeAction) {
-					int sourceSide = ((LinkRepresentationForDistributeAction)current).getSideOnSource();
-					int targetSide = ((LinkRepresentationForDistributeAction)current).getSideOnTarget();
+				} else if(current instanceof LinkRepresentationForLayoutAction) {
+					int sourceSide = ((LinkRepresentationForLayoutAction)current).getSideOnSource();
+					int targetSide = ((LinkRepresentationForLayoutAction)current).getSideOnTarget();
 					if(distribution == DistributionConstants.DISTRIBUTE_H_CONTAINER_INT || distribution == DistributionConstants.DISTRIBUTE_H_NODES_INT) {
 						if(!DistributionConstants.horizontalValuesList.contains(sourceSide) && !DistributionConstants.horizontalValuesList.contains(targetSide)) {
 							return false;
@@ -353,9 +353,9 @@ public class DistributeAffixedChildNodeLinkAction extends AbstractDistributeActi
 				PrecisionRectangle absolutePosition = null;
 				//the new location for the editpart
 				PrecisionPoint ptLocation = null;
-				if(current instanceof LinkRepresentationForDistributeAction) {
-					side = ((LinkRepresentationForDistributeAction)current).getCurrentSideOn(representedNode);
-					absolutePosition = ((LinkRepresentationForDistributeAction)current).getAbsolutePositionOn(representedNode);
+				if(current instanceof LinkRepresentationForLayoutAction) {
+					side = ((LinkRepresentationForLayoutAction)current).getCurrentSideOn(representedNode);
+					absolutePosition = ((LinkRepresentationForLayoutAction)current).getAbsolutePositionOn(representedNode);
 				} else if(current instanceof AffixedChildNodeRepresentation) {
 					side = ((AffixedChildNodeRepresentation)current).getSideOnParent();
 					absolutePosition = ((AffixedChildNodeRepresentation)current).getAbsolutePosition();
@@ -407,8 +407,8 @@ public class DistributeAffixedChildNodeLinkAction extends AbstractDistributeActi
 					break;
 				}
 
-				if(current instanceof LinkRepresentationForDistributeAction) {
-					((LinkRepresentationForDistributeAction)current).setNewLocationFor(representedNode, ptLocation);
+				if(current instanceof LinkRepresentationForLayoutAction) {
+					((LinkRepresentationForLayoutAction)current).setNewLocationFor(representedNode, ptLocation);
 				} else if(current instanceof AffixedChildNodeRepresentation) {
 					((AffixedChildNodeRepresentation)current).setNewLocation(ptLocation);
 				}
@@ -423,8 +423,8 @@ public class DistributeAffixedChildNodeLinkAction extends AbstractDistributeActi
 				Command cmd = null;
 				if(obj instanceof AffixedChildNodeRepresentation) {
 					cmd = ((AffixedChildNodeRepresentation)obj).getCommand();
-				} else if(obj instanceof LinkRepresentationForDistributeAction) {
-					cmd = ((LinkRepresentationForDistributeAction)obj).getCommand();
+				} else if(obj instanceof LinkRepresentationForLayoutAction) {
+					cmd = ((LinkRepresentationForLayoutAction)obj).getCommand();
 				}
 				if(cmd != null && cmd.canExecute()) {
 					command.add(cmd);
@@ -454,14 +454,14 @@ public class DistributeAffixedChildNodeLinkAction extends AbstractDistributeActi
 				bounds = LayoutUtils.getAbsolutePosition(node);
 				break;
 			case DistributionConstants.DISTRIBUTE_H_NODES_INT:
-				if(first instanceof LinkRepresentationForDistributeAction) {
-					locStart = ((LinkRepresentationForDistributeAction)first).getAbsoluteLocationOn(representedNode);
+				if(first instanceof LinkRepresentationForLayoutAction) {
+					locStart = ((LinkRepresentationForLayoutAction)first).getAbsoluteLocationOn(representedNode);
 				} else if(first instanceof AffixedChildNodeRepresentation) {
 					locStart = ((AffixedChildNodeRepresentation)first).getAbsoluteLocation();
 				}
 
-				if(last instanceof LinkRepresentationForDistributeAction) {
-					locEnd = ((LinkRepresentationForDistributeAction)last).getAbsolutePositionOn(representedNode);
+				if(last instanceof LinkRepresentationForLayoutAction) {
+					locEnd = ((LinkRepresentationForLayoutAction)last).getAbsolutePositionOn(representedNode);
 				} else if(last instanceof AffixedChildNodeRepresentation) {
 					locEnd = ((AffixedChildNodeRepresentation)last).getAbsolutePosition();
 				}
@@ -470,14 +470,14 @@ public class DistributeAffixedChildNodeLinkAction extends AbstractDistributeActi
 				bounds.setWidth(locEnd.getRight().preciseX() - locStart.preciseX());
 				break;
 			case DistributionConstants.DISTRIBUTE_V_NODES_INT:
-				if(first instanceof LinkRepresentationForDistributeAction) {
-					locStart = ((LinkRepresentationForDistributeAction)first).getAbsoluteLocationOn(representedNode);
+				if(first instanceof LinkRepresentationForLayoutAction) {
+					locStart = ((LinkRepresentationForLayoutAction)first).getAbsoluteLocationOn(representedNode);
 				} else if(first instanceof AffixedChildNodeRepresentation) {
 					locStart = ((AffixedChildNodeRepresentation)first).getAbsoluteLocation();
 				}
 
-				if(last instanceof LinkRepresentationForDistributeAction) {
-					locEnd = ((LinkRepresentationForDistributeAction)last).getAbsolutePositionOn(representedNode);
+				if(last instanceof LinkRepresentationForLayoutAction) {
+					locEnd = ((LinkRepresentationForLayoutAction)last).getAbsolutePositionOn(representedNode);
 				} else if(last instanceof AffixedChildNodeRepresentation) {
 					locEnd = ((AffixedChildNodeRepresentation)last).getAbsolutePosition();
 				}
@@ -501,7 +501,7 @@ public class DistributeAffixedChildNodeLinkAction extends AbstractDistributeActi
 		 */
 		public void addElements(Object obj) {
 			if(!(obj instanceof AffixedChildNodeRepresentation)) {
-				if(!(obj instanceof LinkRepresentationForDistributeAction)) {
+				if(!(obj instanceof LinkRepresentationForLayoutAction)) {
 					Activator.log.debug("The added element has not a correct type");
 				}
 			}
@@ -556,9 +556,9 @@ public class DistributeAffixedChildNodeLinkAction extends AbstractDistributeActi
 			for(Object current : nodeChild) {
 				PrecisionRectangle rect = new PrecisionRectangle();
 				int side = 0;
-				if(current instanceof LinkRepresentationForDistributeAction) {
-					rect = ((LinkRepresentationForDistributeAction)current).getAbsolutePositionOn(node);
-					side = ((LinkRepresentationForDistributeAction)current).getCurrentSideOn(node);
+				if(current instanceof LinkRepresentationForLayoutAction) {
+					rect = ((LinkRepresentationForLayoutAction)current).getAbsolutePositionOn(node);
+					side = ((LinkRepresentationForLayoutAction)current).getCurrentSideOn(node);
 
 				} else if(current instanceof AffixedChildNodeRepresentation) {
 					rect = ((AffixedChildNodeRepresentation)current).getAbsolutePosition();
@@ -703,13 +703,13 @@ public class DistributeAffixedChildNodeLinkAction extends AbstractDistributeActi
 		public int compare(Object o1, Object o2) {
 			Point location1 = new Point();
 			Point location2 = new Point();
-			if(o1 instanceof LinkRepresentationForDistributeAction) {
-				location1 = ((LinkRepresentationForDistributeAction)o1).getAbsoluteLocationOn(reference);
+			if(o1 instanceof LinkRepresentationForLayoutAction) {
+				location1 = ((LinkRepresentationForLayoutAction)o1).getAbsoluteLocationOn(reference);
 			} else if(o1 instanceof AffixedChildNodeRepresentation) {
 				location1 = ((AffixedChildNodeRepresentation)o1).getAbsoluteLocation();
 			}
-			if(o2 instanceof LinkRepresentationForDistributeAction) {
-				location2 = ((LinkRepresentationForDistributeAction)o2).getAbsoluteLocationOn(reference);
+			if(o2 instanceof LinkRepresentationForLayoutAction) {
+				location2 = ((LinkRepresentationForLayoutAction)o2).getAbsoluteLocationOn(reference);
 			} else if(o2 instanceof AffixedChildNodeRepresentation) {
 				location2 = ((AffixedChildNodeRepresentation)o2).getAbsoluteLocation();
 			}
