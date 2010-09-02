@@ -64,7 +64,7 @@ public class UMLOCLFactory {
 			"self.messageSort=MessageSort::createMessage and self.sendEvent<>null and self.receiveEvent<>null", //$NON-NLS-1$
 			"self.oclIsKindOf(uml::Lifeline)", //$NON-NLS-1$
 			"self.oclIsKindOf(uml::InteractionFragment) or self.oclIsKindOf(uml::Lifeline)", //$NON-NLS-1$
-			"self.messageSort=MessageSort::createMessage and self.sendEvent<>null and self.receiveEvent<>null", //$NON-NLS-1$
+			"self.sendEvent<>null and self.receiveEvent<>null", //$NON-NLS-1$
 			"\'OpaqueExpression\'", //$NON-NLS-1$
 			"\' \'", //$NON-NLS-1$
 			};
