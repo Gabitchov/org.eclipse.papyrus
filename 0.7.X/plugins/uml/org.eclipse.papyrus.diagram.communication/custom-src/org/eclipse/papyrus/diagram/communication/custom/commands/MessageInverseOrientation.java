@@ -8,9 +8,10 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Saadia Dhouib saadia.dhouib@cea.fr  - Adapted from Composite Structure Diagram
+ *  Saadia Dhouib saadia.dhouib@cea.fr  - Initial API and implementation
  *
  *****************************************************************************/
+
 package org.eclipse.papyrus.diagram.communication.custom.commands;
 
 import org.eclipse.emf.ecore.EObject;
@@ -42,8 +43,6 @@ public class MessageInverseOrientation implements IObjectActionDelegate {
 	/** The selected element. */
 	private MessageEditPart selectedElement;
 
-
-
 	/** The source. */
 	private EObject source;
 
@@ -73,9 +72,9 @@ public class MessageInverseOrientation implements IObjectActionDelegate {
 		TransactionalEditingDomain domain = selectedElement.getEditingDomain();
 
 		//The source Lifeline of the message
-		source = (EObject)((LifelineEditPartCN)selectedElement.getSource()).resolveSemanticElement();
+		source = ((LifelineEditPartCN)selectedElement.getSource()).resolveSemanticElement();
 		//The target Lifeline of the message
-		target = (EObject)((LifelineEditPartCN)selectedElement.getTarget()).resolveSemanticElement();
+		target = ((LifelineEditPartCN)selectedElement.getTarget()).resolveSemanticElement();
 
 		//request to change the source by the target (semantically)
 		ReorientRelationshipRequest req = new ReorientRelationshipRequest(domain, getLink(), target, source, 1);
@@ -133,6 +132,7 @@ public class MessageInverseOrientation implements IObjectActionDelegate {
 	 */
 	protected Message getLink() {
 		return (Message)selectedElement.resolveSemanticElement();
+
 	}
 
 	/**

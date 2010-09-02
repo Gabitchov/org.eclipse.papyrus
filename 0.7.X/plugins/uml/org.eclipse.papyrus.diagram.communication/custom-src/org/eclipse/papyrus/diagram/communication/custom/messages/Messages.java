@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Saadia Dhouib saadia.dhouib@cea.fr  - Adapted from Composite Structure Diagram
+ *  Saadia Dhouib saadia.dhouib@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.custom.messages;

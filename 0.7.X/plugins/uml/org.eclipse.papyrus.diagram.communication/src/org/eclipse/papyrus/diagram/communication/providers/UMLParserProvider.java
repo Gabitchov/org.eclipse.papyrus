@@ -30,6 +30,7 @@ import org.eclipse.papyrus.diagram.common.parser.ConstraintParser;
 import org.eclipse.papyrus.diagram.common.parser.ShortcutDiagramParser;
 import org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser;
 import org.eclipse.papyrus.diagram.communication.custom.parser.LifelineCustomParsers;
+import org.eclipse.papyrus.diagram.communication.custom.parser.MessageParser;
 import org.eclipse.papyrus.diagram.communication.edit.parts.AppliedStereotypeMessageEditPart;
 import org.eclipse.papyrus.diagram.communication.edit.parts.CommentBodyEditPartCN;
 import org.eclipse.papyrus.diagram.communication.edit.parts.ConstraintBodyEditPartCN;
@@ -224,6 +225,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		if(messageName_6001Parser == null) {
 			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
 			messageName_6001Parser = parser;
 		}
 		return messageName_6001Parser;

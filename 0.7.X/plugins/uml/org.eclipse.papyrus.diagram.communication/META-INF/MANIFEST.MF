@@ -68,3 +68,4 @@ Export-Package: org.eclipse.papyrus.diagram.communication,
  org.eclipse.papyrus.diagram.communication.preferences,
  org.eclipse.papyrus.diagram.communication.providers
 Eclipse-LazyStart: true
+Import-Package: org.eclipse.papyrus.diagram.communication.custom.edit.policies

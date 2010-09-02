@@ -212,7 +212,7 @@
        description="MessageCreate"
        id="createMessageCreateCreationTool"
        kind="tool"
-       label="Create a Message"
+       label="Message"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message_createMessage.gif"
        path=""
        small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message_createMessage.gif">
