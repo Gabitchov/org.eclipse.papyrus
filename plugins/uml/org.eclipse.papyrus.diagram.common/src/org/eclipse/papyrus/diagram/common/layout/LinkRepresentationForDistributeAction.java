@@ -14,30 +14,52 @@
 package org.eclipse.papyrus.diagram.common.layout;
 
 import org.eclipse.core.runtime.Assert;
-import org.eclipse.draw2d.PositionConstants;
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
+import org.eclipse.emf.common.command.IdentityCommand;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.Request;
+import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.CompoundCommand;
+import org.eclipse.gef.commands.UnexecutableCommand;
+import org.eclipse.gef.editparts.AbstractConnectionEditPart;
+import org.eclipse.gef.editpolicies.GraphicalNodeEditPolicy;
+import org.eclipse.gef.requests.ReconnectRequest;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
+import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.common.command.wrappers.EMFtoGEFCommandWrapper;
+import org.eclipse.papyrus.wizards.Activator;
 
 /**
  * 
  * This class allow to represent easily a link for the {@link DistributeAction}
  * 
  */
-public class LinkRepresentationForDistributeAction extends LinkRepresentationForLayoutAction {
+public class LinkRepresentationForDistributeAction {
 
-	/**
-	 * the new location for the moving anchor
-	 */
-	private PrecisionPoint newLocation;
+	/** the source of the link */
+	private EditPart source = null;
 
-	/**
-	 * distribution for the {@link DistributeAction}
-	 */
-	private int distribution;
+	/** the target of the link */
+	private EditPart target = null;
+
+	/** new source position */
+	private Point newSourcePosition = null;
+
+	/** old source position */
+	private Point oldSourcePosition = null;
+
+	/** new target position */
+	private Point newTargetPosition = null;
+
+	/** old target position */
+	private Point oldTargetPosition = null;
+
+	/** the link represented by this class */
+	private ConnectionEditPart link;
 
 	/**
 	 * 
@@ -45,80 +67,232 @@ public class LinkRepresentationForDistributeAction extends LinkRepresentationFor
 	 * 
 	 * @param link
 	 *        the represented link
-	 * @param anchorMovesOnThisEP
-	 *        the node on which we move an anchor
+	 * 
 	 */
-	public LinkRepresentationForDistributeAction(ConnectionEditPart link, EditPart anchorMovesOnThisEP, int distribution) {
-		super(link);
-		this.distribution = distribution;
-		this.movedEP = anchorMovesOnThisEP;
-		init();
+	public LinkRepresentationForDistributeAction(ConnectionEditPart link) {
+		this.link = link;
+		this.source = link.getSource();
+		this.target = link.getTarget();
+		IFigure fig = ((AbstractConnectionEditPart)link).getFigure();
+		Assert.isTrue(fig instanceof PolylineConnectionEx);
+		PolylineConnectionEx linkFigure = (PolylineConnectionEx)fig;
+
+		Point start = linkFigure.getStart();//source
+		Point end = linkFigure.getEnd();//target
+		linkFigure.translateToAbsolute(start);
+		linkFigure.translateToAbsolute(end);
+		oldSourcePosition = start;
+		oldTargetPosition = end;
 	}
 
 
 
-	public PrecisionRectangle getAbsolutePosition() {
+	/**
+	 * 
+	 * @see java.lang.Object#toString()
+	 * 
+	 * @return
+	 */
+	@Override
+	public String toString() {
+		return ((View)(link.getModel())).getElement().toString();
+	}
+
+
+
+	/**
+	 * Return the command to move this link, following {@link #newSourcePosition} and {@link #newTargetPosition}
+	 * 
+	 * @return
+	 *         the command to move this link, following {@link #newSourcePosition} and {@link #newTargetPosition}
+	 */
+	public Command getCommand() {
+		/*
+		 * Sometimes, the anchors of the link move on the diagram, even if the location is the same!
+		 * see GMF bug 324208
+		 */
+		if((newSourcePosition == null && newTargetPosition == null) || (oldSourcePosition.equals(newSourcePosition)) && oldTargetPosition.equals(newTargetPosition)) {
+			return new EMFtoGEFCommandWrapper(new IdentityCommand());
+		} else {
+			CompoundCommand command = new CompoundCommand();
+			command.add(source.getCommand(getRequestForSource()));
+			command.add(target.getCommand(getRequestForTarget()));
+			return command.canExecute() ? command : UnexecutableCommand.INSTANCE;
+		}
+	}
+
+	/**
+	 * Returns the request to move the source anchor.
+	 * 
+	 * @return
+	 *         the request to move the source anchor.
+	 */
+	public Request getRequestForSource() {
+		ReconnectRequest request = new ReconnectRequest(GraphicalNodeEditPolicy.REQ_RECONNECT_SOURCE);
+		request.setConnectionEditPart(this.link);
+		request.setTargetEditPart(this.source);
+		request.setLocation(getNewSourceLocation());
+		return request;
+	}
+
+	/**
+	 * Return the source location to move this link
+	 * 
+	 * @return
+	 *         the source location to move this link
+	 *         <ul>
+	 *         <li> {@link #newSourcePosition} if not <code>null</code></li>
+	 *         <li>{@link #oldSourcePosition} if {@link #newSourcePosition} is <code>null</code></li>
+	 *         </ul>
+	 */
+	protected Point getNewSourceLocation() {
+		if(this.newSourcePosition != null) {
+			return this.newSourcePosition;
+		} else {
+			return this.oldSourcePosition;
+		}
+	}
+
+	/**
+	 * Return the target location to move this link
+	 * 
+	 * @return
+	 *         the target location to move this link
+	 *         <ul>
+	 *         <li> {@link #newTargetPosition} if not <code>null</code></li>
+	 *         <li>{@link #oldTargetPosition} if {@link #newTargetPosition} is <code>null</code></li>
+	 *         </ul>
+	 */
+	protected Point getNewTargetLocation() {
+		if(this.newTargetPosition != null) {
+			return this.newTargetPosition;
+		} else {
+			return this.oldTargetPosition;
+		}
+	}
+
+	/**
+	 * Setter for {@link #newSourcePosition} and {@link #newTargetPosition}
+	 * 
+	 * @param node
+	 *        a node, should be the source or the target of the link
+	 * @param location
+	 *        the neuw location on this node
+	 */
+	public void setNewLocationFor(EditPart node, Point location) {
+		if(source == node) {
+			newSourcePosition = location;
+		} else if(target == node) {
+			newTargetPosition = location;
+		} else {
+			Activator.log.error("Can't find the EditPart " + node + " (from " + this.getClass().getName() + ")", null);
+		}
+	}
+
+
+
+	/**
+	 * Returns the request to relocate the fixed anchor.
+	 * 
+	 * @return
+	 *         The request to locate the fixed anchor.
+	 */
+	public Request getRequestForTarget() {
+		ReconnectRequest request = new ReconnectRequest(GraphicalNodeEditPolicy.REQ_RECONNECT_TARGET);
+		request.setConnectionEditPart(this.link);
+		request.setTargetEditPart(this.target);
+		request.setLocation(getNewTargetLocation());
+		return request;
+	}
+
+	/**
+	 * Return the current position of the link on the node
+	 * 
+	 * @param node
+	 *        node should be the source or the target of the link
+	 * @return
+	 * @see LayoutUtils#getAnchorPosition(EditPart, Point)
+	 */
+	public int getCurrentSideOn(EditPart node) {
+		if(node == source) {
+			return LayoutUtils.getAnchorPosition(source, oldSourcePosition);
+		} else if(node == target) {
+			return LayoutUtils.getAnchorPosition(target, oldTargetPosition);
+		} else {
+			Activator.log.error("Can't find the EditPart " + node + " (from " + this.getClass().getName() + ")", null);
+		}
+		return 0;
+	}
+
+
+	/**
+	 * Gets the represented link.
+	 * 
+	 * @return the represented link
+	 */
+	public ConnectionEditPart getRepresentedLink() {
+		return this.link;
+	}
+
+
+	/**
+	 * Return a PrecisionRectangle representing the current position of the anchor on this node (with width=height=1)
+	 * 
+	 * @param node
+	 *        node should be the source or the target of the link
+	 * @return
+	 *         A PrecisionRectangle representing the current position of the anchor on this node (with width=height=1)
+	 */
+	public PrecisionRectangle getAbsolutePositionOn(EditPart node) {
 		PrecisionRectangle rect = new PrecisionRectangle();
 		rect.setSize(new Dimension(1, 1));
-		rect.setX(getMovingAnchorLocation().x);
-		rect.setY(getMovingAnchorLocation().y);
+		if(source == node) {
+			rect.setX(oldSourcePosition.x);
+			rect.setY(oldSourcePosition.y);
+		} else if(target == node) {
+			rect.setX(oldTargetPosition.x);
+			rect.setY(oldTargetPosition.y);
+		} else {
+			Activator.log.error("Can't find the EditPart " + node + " (from " + this.getClass().getName() + ")", null);
+		}
 		return rect;
 	}
 
 
-
 	/**
+	 * Return the current absolute location of the anchor on this node
 	 * 
-	 * @see org.eclipse.papyrus.diagram.common.layout.LinkRepresentationForLayoutAction#findMovedAnchor(org.eclipse.draw2d.geometry.Point,
-	 *      org.eclipse.draw2d.geometry.Point)
-	 * 
-	 * @param start
-	 * @param end
+	 * @param node
+	 *        node should be the source or the target of the link
 	 * @return
+	 *         the current absolute location of the anchor on this node
 	 */
-	@Override
-	protected Point findMovedAnchor(Point start, Point end) {
-		Assert.isNotNull(this.movedEP);
-		int position = LayoutUtils.getAnchorPosition(movedEP, start);
-		if(position != PositionConstants.NONE) {
-			this.movedAnchor = start;
-			this.fixedAnchor = end;
+	public Point getAbsoluteLocationOn(EditPart node) {
+		if(source == node) {
+			return oldSourcePosition;
+		} else if(target == node) {
+			return oldTargetPosition;
 		} else {
-			position = LayoutUtils.getAnchorPosition(movedEP, end);
-			if(position != PositionConstants.NONE) {
-				this.movedAnchor = end;
-				this.fixedAnchor = start;
-			}
+			Activator.log.error("Can't find the EditPart " + node + " (from " + this.getClass().getName() + ")", null);
 		}
-
-		Assert.isLegal(position != PositionConstants.NONE);
-		return movedAnchor;
+		return new Point();
 	}
-
 
 	/**
-	 * Calculates the shift between the source and the target following the direction of the action.
+	 * Gets the side on source.
 	 * 
-	 * @return
-	 *         the shift between the source and the target following the direction of the action.
+	 * @return the side on source
 	 */
-	@Override
-	protected Point getDelta() {
-		Point delta = new Point();
-		//return movedAnchor.getTranslated(this.newLocation.getNegated());
-		if(distribution == DistributionConstants.DISTRIBUTE_H_CONTAINER_INT || distribution == DistributionConstants.DISTRIBUTE_H_NODES_INT) {//routing == PositionConstants.LEFT || routing == PositionConstants.RIGHT) {
-			delta.setLocation(this.newLocation.x - this.movedAnchor.x, 0);
-		} else if(distribution == DistributionConstants.DISTRIBUTE_V_CONTAINER_INT || distribution == DistributionConstants.DISTRIBUTE_V_NODES_INT) {
-			delta.setLocation(0, this.newLocation.y - this.movedAnchor.y);
-		}
-		return delta;
+	public int getSideOnSource() {
+		return getCurrentSideOn(source);
 	}
 
-	public Point getMovingAnchorLocation() {
-		return this.movedAnchor;
-	}
-
-	public void setNewPosition(PrecisionPoint ptLocation) {
-		this.newLocation = ptLocation;
+	/**
+	 * Gets the side on target.
+	 * 
+	 * @return the side on target
+	 */
+	public int getSideOnTarget() {
+		return getCurrentSideOn(target);
 	}
 }

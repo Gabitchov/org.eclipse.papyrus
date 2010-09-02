@@ -345,7 +345,7 @@ public class Util {
 						break;
 					}
 				} else {
-					//TODO for the element which don't are NamedElement
+					//TODO for the element which aren't NamedElement
 				}
 			}
 		}

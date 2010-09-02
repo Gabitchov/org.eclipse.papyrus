@@ -155,8 +155,6 @@ public class PortPositionLocator implements IBorderItemLocator {
 	public int getCurrentSideOfParent() {
 		int position = PositionConstants.NONE;
 
-		System.out.println("parentsBounds = " + parentFigure.getBounds());
-
 		//we are not on EAST, not on WEST, but we are on the NORTH
 		if((constraint.x != parentFigure.getBounds().width - borderItemOffset) && (constraint.x != -this.borderItemOffset) && (constraint.y == -this.borderItemOffset)) {
 			position = PositionConstants.NORTH;
