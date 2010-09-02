@@ -21,6 +21,7 @@ import java.util.List;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.gef.ConnectionEditPart;
@@ -34,6 +35,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
+import org.eclipse.gmf.runtime.diagram.ui.requests.SetAllBendpointRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.IBorderItemLocator;
 import org.eclipse.papyrus.diagram.common.editparts.BorderNamedElementEditPart;
 import org.eclipse.papyrus.diagram.common.layout.DistributionConstants;
@@ -415,16 +417,25 @@ public class DistributeAffixedChildNodeLinkAction extends AbstractDistributeActi
 			}
 		}
 
-
+		/**
+		 * Return the command for this aciton
+		 * 
+		 * @return
+		 *         the command for this action
+		 */
 		public Command getCommand() {
 			calculateNewLocations();
-			CompoundCommand command = new CompoundCommand("Distribute Command");
+			CompoundCommand command = new CompoundCommand("Distribute Command"); //$NON-NLS-1$
 			for(Object obj : elementsToDistribute) {
 				Command cmd = null;
 				if(obj instanceof AffixedChildNodeRepresentation) {
 					cmd = ((AffixedChildNodeRepresentation)obj).getCommand();
 				} else if(obj instanceof LinkRepresentationForLayoutAction) {
-					cmd = ((LinkRepresentationForLayoutAction)obj).getCommand();
+					cmd = new CompoundCommand("Move Link and remove bendpoints"); //$NON-NLS-1$
+					((CompoundCommand)cmd).add(((LinkRepresentationForLayoutAction)obj).getCommand());
+					//we remove the bendpoints
+					Request noBendpoints = new SetAllBendpointRequest(RequestConstants.REQ_SET_ALL_BENDPOINT, new PointList(), null, null);
+					((CompoundCommand)cmd).add(((LinkRepresentationForLayoutAction)obj).getRepresentedLink().getCommand(noBendpoints));
 				}
 				if(cmd != null && cmd.canExecute()) {
 					command.add(cmd);
@@ -502,7 +513,7 @@ public class DistributeAffixedChildNodeLinkAction extends AbstractDistributeActi
 		public void addElements(Object obj) {
 			if(!(obj instanceof AffixedChildNodeRepresentation)) {
 				if(!(obj instanceof LinkRepresentationForLayoutAction)) {
-					Activator.log.debug("The added element has not a correct type");
+					Activator.log.debug("The added element has not a correct type"); //$NON-NLS-1$
 				}
 			}
 			this.elementsToDistribute.add(obj);

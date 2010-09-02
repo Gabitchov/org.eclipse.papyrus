@@ -185,7 +185,7 @@ public class LinkRepresentationForLayoutAction {
 		} else if(target == node) {
 			newTargetPosition = location;
 		} else {
-			Activator.log.error("Can't find the EditPart " + node + " (from " + this.getClass().getName() + ")", null);
+			Activator.log.error("Can't find the EditPart " + node + " (from " + this.getClass().getName() + ")", null); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		}
 	}
 
@@ -219,7 +219,7 @@ public class LinkRepresentationForLayoutAction {
 		} else if(node == target) {
 			return LayoutUtils.getAnchorPosition(target, oldTargetPosition);
 		} else {
-			Activator.log.error("Can't find the EditPart " + node + " (from " + this.getClass().getName() + ")", null);
+			Activator.log.error("Can't find the EditPart " + node + " (from " + this.getClass().getName() + ")", null); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		}
 		return 0;
 	}
@@ -253,7 +253,7 @@ public class LinkRepresentationForLayoutAction {
 			rect.setX(oldTargetPosition.x);
 			rect.setY(oldTargetPosition.y);
 		} else {
-			Activator.log.error("Can't find the EditPart " + node + " (from " + this.getClass().getName() + ")", null);
+			Activator.log.error("Can't find the EditPart " + node + " (from " + this.getClass().getName() + ")", null); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		}
 		return rect;
 	}
@@ -273,7 +273,7 @@ public class LinkRepresentationForLayoutAction {
 		} else if(target == node) {
 			return oldTargetPosition;
 		} else {
-			Activator.log.error("Can't find the EditPart " + node + " (from " + this.getClass().getName() + ")", null);
+			Activator.log.error("Can't find the EditPart " + node + " (from " + this.getClass().getName() + ")", null); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		}
 		return new Point();
 	}
