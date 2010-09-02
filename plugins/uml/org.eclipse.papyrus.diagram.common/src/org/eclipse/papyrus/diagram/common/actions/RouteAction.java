@@ -178,7 +178,7 @@ public class RouteAction {
 		} else if(sideTarget != PositionConstants.NONE) {
 			return target;
 		} else {
-			Activator.log.debug("I can't find the EditPart on which moves the anchor");
+			Activator.log.debug("I can't find the EditPart on which moves the anchor"); //$NON-NLS-1$
 			return null;
 		}
 	}
@@ -269,7 +269,7 @@ public class RouteAction {
 			break;
 		}
 		if(movingAnchor == null) {
-			Activator.log.debug("I can't find the moving anchor");
+			Activator.log.debug("I can't find the moving anchor"); //$NON-NLS-1$
 		}
 		return movingAnchor;
 	}
