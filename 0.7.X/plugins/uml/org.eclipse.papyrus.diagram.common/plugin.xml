@@ -676,6 +676,42 @@
                   toolbarPath="/compartmentMenu/allCompartmentsGroup">
             </partPredefinedItem>
          </partContribution>
+         <partContribution
+               class="org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart">
+            <partPredefinedItem
+                  id="autoSizeAction"
+                  menubarPath="/diagramMenu/sizeGroup"
+                  removeFromMenubar="true"
+                  removeFromToolbar="true"
+                  toolbarPath="/toolbarFormatGroup">
+            </partPredefinedItem>
+            <partPredefinedItem
+                  id="makeSameWidthAction"
+                  menubarPath="/diagramMenu/makeSameSizeMenu/sameSizeGroup"
+                  removeFromMenubar="true"
+                  removeFromToolbar="true">
+            </partPredefinedItem>
+            <partPredefinedItem
+                  id="makeSameHeightAction"
+                  menubarPath="/diagramMenu/makeSameSizeMenu/sameSizeGroup"
+                  removeFromMenubar="true"
+                  removeFromToolbar="true">
+            </partPredefinedItem>
+            <partPredefinedItem
+                  id="makeSameSizeBothAction"
+                  menubarPath="/diagramMenu/makeSameSizeMenu/sameSizeGroup"
+                  removeFromMenubar="true"
+                  removeFromToolbar="false">
+            </partPredefinedItem>
+         </partContribution>
+         <popupContribution
+               class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+            <popupPredefinedItem
+                  id="autoSizeAction"
+                  path="/formatMenu/sizeGroup"
+                  remove="true">
+            </popupPredefinedItem>
+         </popupContribution>
       </contributionItemProvider>
    </extension>
 
@@ -945,6 +981,44 @@
                </and>
             </visibleWhen>
          </command>
+         <separator
+               name="org.eclipse.papyrus.diagram.common.toolbar.separator1"
+               visible="true">
+         </separator>
+         <command
+               commandId="org.eclipse.papyrus.diagram.common.command.autosize"
+               icon="icons/autosize.gif"
+               mnemonic="&amp;A"
+               style="push"
+               tooltip="Auto Size">
+            <visibleWhen>
+               <and>
+                  <with
+                        variable="activeEditorId">
+                     <equals
+                           value="org.eclipse.papyrus.core.papyrusEditor">
+                     </equals>
+                  </with>
+               </and>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.diagram.common.toolbar.command"
+               icon="icons/size_to_control.gif"
+               id="org.eclipse.papyrus.common.size.toolbar.command"
+               style="pulldown"
+               tooltip="Make Same Size">
+            <visibleWhen>
+               <and>
+                  <with
+                        variable="activeEditorId">
+                     <equals
+                           value="org.eclipse.papyrus.core.papyrusEditor">
+                     </equals>
+                  </with>
+               </and>
+            </visibleWhen>
+         </command>
       </toolbar>
    </menuContribution>
 </extension>
@@ -1108,6 +1182,33 @@
             style="push">
       </command>
    </menuContribution>
+   <menuContribution
+         locationURI="menu:org.eclipse.papyrus.common.size.toolbar.command">
+      <command
+            commandId="org.eclipse.papyrus.diagram.common.command.sameSize.both"
+            icon="icons/size_to_control.gif"
+            label="Both"
+            mnemonic="&amp;B"
+            style="push"
+            tooltip="Set the dimension of the last selected element">
+      </command>
+      <command
+            commandId="org.eclipse.papyrus.diagram.common.command.sameSize.height"
+            icon="icons/size_to_control_height.gif"
+            label="Height"
+            mnemonic="&amp;H"
+            style="push"
+            tooltip="Set the height of the last selected element">
+      </command>
+      <command
+            commandId="org.eclipse.papyrus.diagram.common.command.sameSize.width"
+            icon="icons/size_to_control_width.gif"
+            label="Width"
+            mnemonic="&amp;W"
+            style="push"
+            tooltip="Set the width of the last selected element">
+      </command>
+   </menuContribution>
 </extension>
    <extension
          point="org.eclipse.ui.menus">
@@ -1247,6 +1348,59 @@
          </menu>
          <separator
                name="org.eclipse.papyrus.diagram.common.separator1"
+               visible="true">
+         </separator>
+         <command
+               commandId="org.eclipse.papyrus.diagram.common.command.autosize"
+               icon="icons/autosize.gif"
+               label="Auto Size"
+               mnemonic="&amp;A"
+               style="push"
+               tooltip="Auto Size">
+            <visibleWhen>
+               <and>
+                  <with
+                        variable="activeEditorId">
+                     <equals
+                           value="org.eclipse.papyrus.core.papyrusEditor">
+                     </equals>
+                  </with>
+               </and>
+            </visibleWhen>
+         </command>
+         <menu
+               icon="icons/size_to_control.gif"
+               id="org.eclipse.papyrus.diagram.ui.menu.sameSizeMenu"
+               label="Make Same Size"
+               mnemonic="&amp;M"
+               tooltip="Make Same Size Menu">
+            <command
+                  commandId="org.eclipse.papyrus.diagram.common.command.sameSize.both"
+                  icon="icons/size_to_control.gif"
+                  label="Both"
+                  mnemonic="&amp;B"
+                  style="push"
+                  tooltip="Set the dimension of the last selected element">
+            </command>
+            <command
+                  commandId="org.eclipse.papyrus.diagram.common.command.sameSize.height"
+                  icon="icons/size_to_control_height.gif"
+                  label="Height"
+                  mnemonic="&amp;H"
+                  style="push"
+                  tooltip="Set the height of the last selected element">
+            </command>
+            <command
+                  commandId="org.eclipse.papyrus.diagram.common.command.sameSize.width"
+                  icon="icons/size_to_control_width.gif"
+                  label="Width"
+                  mnemonic="&amp;W"
+                  style="push"
+                  tooltip="Set the width of the last selected element">
+            </command>
+         </menu>
+         <separator
+               name="org.eclipse.papyrus.diagram.common.separator2"
                visible="true">
          </separator>
          <menu
@@ -1409,6 +1563,58 @@
                   label="Distribute Nodes/Links Vertically Between 2 Nodes"
                   mnemonic="&amp;V"
                   style="push">
+            </command>
+         </menu>
+         <separator
+               name="org.eclipse.papyrus.diagram.common.popup.separator1"
+               visible="true">
+         </separator>
+         <command
+               commandId="org.eclipse.papyrus.diagram.common.command.autosize"
+               icon="icons/autosize.gif"
+               mnemonic="&amp;A"
+               style="push"
+               tooltip="Auto Size">
+            <visibleWhen>
+               <and>
+                  <with
+                        variable="activeEditorId">
+                     <equals
+                           value="org.eclipse.papyrus.core.papyrusEditor">
+                     </equals>
+                  </with>
+               </and>
+            </visibleWhen>
+         </command>
+         <menu
+               icon="icons/size_to_control.gif"
+               id="org.eclipse.papyrus.diagram.ui.popupmenu.format.sameSizeMenu"
+               label="Make Same Size"
+               mnemonic="&amp;M"
+               tooltip="Make Same Size Menu">
+            <command
+                  commandId="org.eclipse.papyrus.diagram.common.command.sameSize.both"
+                  icon="icons/size_to_control.gif"
+                  label="Both"
+                  mnemonic="&amp;B"
+                  style="push"
+                  tooltip="Set the dimension of the last selected element">
+            </command>
+            <command
+                  commandId="org.eclipse.papyrus.diagram.common.command.sameSize.height"
+                  icon="icons/size_to_control_height.gif"
+                  label="Height"
+                  mnemonic="&amp;H"
+                  style="push"
+                  tooltip="Set the height of the last selected element">
+            </command>
+            <command
+                  commandId="org.eclipse.papyrus.diagram.common.command.sameSize.width"
+                  icon="icons/size_to_control_width.gif"
+                  label="Width"
+                  mnemonic="&amp;W"
+                  style="push"
+                  tooltip="Set the width of the last selected element">
             </command>
          </menu>
       </menuContribution>
@@ -1622,6 +1828,58 @@
             <parameter
                   name="org.eclipse.papyrus.diagram.common.commandAlignmentParameter"
                   value="parameter_top">
+            </parameter>
+         </defaultHandler>
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            description="Call the Make Same Size Both Action"
+            id="org.eclipse.papyrus.diagram.common.command.sameSize.both"
+            name="Make Same Size Both">
+         <defaultHandler
+               class="org.eclipse.papyrus.diagram.common.handlers.SizeHandler">
+            <parameter
+                  name="org.eclipse.papyrus.diagram.common.commandSizeParameter"
+                  value="parameter_both">
+            </parameter>
+         </defaultHandler>
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            description="Call the Make Same Size Height Action"
+            id="org.eclipse.papyrus.diagram.common.command.sameSize.height"
+            name="Make Same Height">
+         <defaultHandler
+               class="org.eclipse.papyrus.diagram.common.handlers.SizeHandler">
+            <parameter
+                  name="org.eclipse.papyrus.diagram.common.commandSizeParameter"
+                  value="parameter_height">
+            </parameter>
+         </defaultHandler>
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            description="Call the Make Width Size Action"
+            id="org.eclipse.papyrus.diagram.common.command.sameSize.width"
+            name="Make Same Width Both">
+         <defaultHandler
+               class="org.eclipse.papyrus.diagram.common.handlers.SizeHandler">
+            <parameter
+                  name="org.eclipse.papyrus.diagram.common.commandSizeParameter"
+                  value="parameter_width">
+            </parameter>
+         </defaultHandler>
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            description="Call the Auto Size Action"
+            id="org.eclipse.papyrus.diagram.common.command.autosize"
+            name="Auto Size">
+         <defaultHandler
+               class="org.eclipse.papyrus.diagram.common.handlers.SizeHandler">
+            <parameter
+                  name="org.eclipse.papyrus.diagram.common.commandSizeParameter"
+                  value="parameter_autosize">
             </parameter>
          </defaultHandler>
       </command>

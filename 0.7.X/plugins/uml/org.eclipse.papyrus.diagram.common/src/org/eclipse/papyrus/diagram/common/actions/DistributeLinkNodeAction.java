@@ -49,7 +49,7 @@ public class DistributeLinkNodeAction {
 	 */
 	public DistributeLinkNodeAction(String parameter, List<IGraphicalEditPart> selectedElements) {
 		this.selectedElements = selectedElements;
-		this.distribution = getDitributionValue(parameter);
+		this.distribution = getDistributionValue(parameter);
 	}
 
 	/**
@@ -60,7 +60,7 @@ public class DistributeLinkNodeAction {
 	 * @return
 	 *         the distribution type
 	 */
-	private int getDitributionValue(String param) {
+	protected int getDistributionValue(String param) {
 		if(param.equals(LayoutUtils.HORIZONTALLY)) {
 			return DistributionConstants.DISTRIBUTE_H_CONTAINER_INT;
 		} else if(param.equals(LayoutUtils.HORIZONTALLY_BETWEEN_NODES)) {
@@ -86,6 +86,7 @@ public class DistributeLinkNodeAction {
 		switch(selectionType) {
 		case 1: //affixed child nodes and links selection
 			action = new DistributeAffixedChildNodeLinkAction(distribution, selectedElements);
+			//action = new DistributeAffixedChildNodeLinkActionV2(distribution, selectedElements);
 			command = action.getCommand();
 			break;
 		case 2: //others nodes selection
@@ -108,7 +109,7 @@ public class DistributeLinkNodeAction {
 	 *        a list of element
 	 * @return
 	 *         <ul>
-	 *         <li>1</li> the list contains links and affixed Child Nodes
+	 *         <li>1</li> the list contains links and affixed Child Nodes and editparts
 	 *         <li>2</li> the contains others elements
 	 *         <li>3</li> the list is a mised between affixed Child Node/Link and others elements
 	 *         </ul>
@@ -138,7 +139,7 @@ public class DistributeLinkNodeAction {
 				return 2;
 			}
 
-		} else {//TODO refaire ces tests !
+		} else {
 			return 1;
 		}
 		return 3;

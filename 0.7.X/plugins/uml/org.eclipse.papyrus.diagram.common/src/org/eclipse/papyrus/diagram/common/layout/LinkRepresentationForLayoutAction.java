@@ -151,7 +151,7 @@ public abstract class LinkRepresentationForLayoutAction {
 	 * @return
 	 *         The request to locate the moved anchor.
 	 */
-	protected Request getRequestForMovedEditPart() {
+	public Request getRequestForMovedEditPart() {
 		Point delta = getDelta();
 		ReconnectRequest request = new ReconnectRequest(movedType);
 		request.setConnectionEditPart(this.link);
@@ -166,7 +166,7 @@ public abstract class LinkRepresentationForLayoutAction {
 	 * @return
 	 *         The request to locate the fixed anchor.
 	 */
-	protected Request getRequestForFixedEditPart() {
+	public Request getRequestForFixedEditPart() {
 		ReconnectRequest request = new ReconnectRequest(fixedType);
 		request.setConnectionEditPart(this.link);
 		request.setTargetEditPart(this.fixedEP);
@@ -211,5 +211,27 @@ public abstract class LinkRepresentationForLayoutAction {
 	 */
 	public ConnectionEditPart getRepresentedLink() {
 		return this.link;
+	}
+
+	/**
+	 * Gets the fixed anchor.
+	 * 
+	 * @return the fixed anchor
+	 */
+	public Point getFixedAnchor() {
+		return this.fixedAnchor;
+	}
+
+	/**
+	 * Gets the moved anchor.
+	 * 
+	 * @return the moved anchor
+	 */
+	public Point getMovedAnchor() {
+		return this.movedAnchor;
+	}
+
+	public Command getMovingCommand() {
+		return movedEP.getCommand(getRequestForMovedEditPart());
 	}
 }
