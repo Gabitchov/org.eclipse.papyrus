@@ -35,6 +35,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.diagram.common.Activator;
+import org.eclipse.papyrus.diagram.common.layout.LayoutUtils;
 import org.eclipse.papyrus.diagram.common.service.palette.AspectToolService;
 import org.eclipse.papyrus.diagram.common.service.palette.IAspectAction;
 import org.eclipse.papyrus.diagram.common.service.palette.IAspectActionProvider;
@@ -79,10 +80,11 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 			IGraphicalEditPart targetEditPart = selectedEditParts.size() == 2 ? (IGraphicalEditPart)selectedEditParts.get(1) : sourceEditPart;
 
 			CreateConnectionRequest connectionRequest = (CreateConnectionRequest)createTargetRequest();
-
+			//get the anchors locations
+			Point[] newLocation = LayoutUtils.getLinkAnchor(sourceEditPart, targetEditPart);
 			connectionRequest.setTargetEditPart(sourceEditPart);
 			connectionRequest.setType(RequestConstants.REQ_CONNECTION_START);
-			connectionRequest.setLocation(new Point(0, 0));
+			connectionRequest.setLocation(newLocation[0]);
 
 			// only if the connection is supported will we get a non null
 			// command from the sourceEditPart
@@ -91,7 +93,8 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 				connectionRequest.setSourceEditPart(sourceEditPart);
 				connectionRequest.setTargetEditPart(targetEditPart);
 				connectionRequest.setType(RequestConstants.REQ_CONNECTION_END);
-				connectionRequest.setLocation(new Point(0, 0));
+				//connectionRequest.setLocation(new Point(0, 0));
+				connectionRequest.setLocation(newLocation[1]);
 
 				// inits the listener
 				View eObject = (View)targetEditPart.getAdapter(View.class);

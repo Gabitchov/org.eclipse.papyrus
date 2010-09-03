@@ -31,8 +31,6 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.diagram.ui.requests.SetAllBendpointRequest;
@@ -41,6 +39,7 @@ import org.eclipse.papyrus.diagram.common.editparts.BorderNamedElementEditPart;
 import org.eclipse.papyrus.diagram.common.layout.DistributionConstants;
 import org.eclipse.papyrus.diagram.common.layout.LayoutUtils;
 import org.eclipse.papyrus.diagram.common.layout.LinkRepresentationForLayoutAction;
+import org.eclipse.papyrus.diagram.common.util.Util;
 import org.eclipse.papyrus.wizards.Activator;
 
 /**
@@ -131,7 +130,7 @@ public class DistributeAffixedChildNodeLinkAction extends AbstractDistributeActi
 				default:
 					break;
 				}
-			} else if(isAffixedChildNode((EditPart)current)) {
+			} else if(Util.isAffixedChildNode((EditPart)current)) {
 				NodeRepresentation representation = getCorrespondingRepresentation((EditPart)current);
 				if(representation != null) {
 					representation.addElements(new AffixedChildNodeRepresentation((EditPart)current));
@@ -220,7 +219,7 @@ public class DistributeAffixedChildNodeLinkAction extends AbstractDistributeActi
 					return current;
 				}
 			}
-		} else if(isAffixedChildNode(ep)) {
+		} else if(Util.isAffixedChildNode(ep)) {
 			EditPart parent = ep.getParent();
 			for(NodeRepresentation current : commonParentRepresentations) {
 				if(current.getRepresentedNode() == parent) {
@@ -238,21 +237,22 @@ public class DistributeAffixedChildNodeLinkAction extends AbstractDistributeActi
 		return null;
 	}
 
-	/**
-	 * Test if the EditPart is an Affixed Child Node.
-	 * 
-	 * @param ep
-	 *        an EditPart
-	 * @return true, if is affixed child node <code>true</code> if the {@link EditPart} is an affixed child node and <code>false</code> if not
-	 */
-	protected boolean isAffixedChildNode(EditPart ep) {
-		if(ep.getParent() instanceof CompartmentEditPart) {
-			return false;
-		} else if(ep.getParent() instanceof DiagramEditPart) {
-			return false;
-		}
-		return true;
-	}
+	//Replaced by a new method in util.Util
+	//	/**
+	//	 * Test if the EditPart is an Affixed Child Node.
+	//	 * 
+	//	 * @param ep
+	//	 *        an EditPart
+	//	 * @return true, if is affixed child node <code>true</code> if the {@link EditPart} is an affixed child node and <code>false</code> if not
+	//	 */
+	//	protected boolean isAffixedChildNode(EditPart ep) {
+	//		if(ep.getParent() instanceof CompartmentEditPart) {
+	//			return false;
+	//		} else if(ep.getParent() instanceof DiagramEditPart) {
+	//			return false;
+	//		}
+	//		return true;
+	//	}
 
 	/**
 	 * This class provides facilities to represent a parent with its children that we want to distribute.
@@ -797,7 +797,7 @@ public class DistributeAffixedChildNodeLinkAction extends AbstractDistributeActi
 		protected int getIndex(EditPart ep) {
 			if(ep instanceof ConnectionEditPart) {
 				return 2;
-			} else if(isAffixedChildNode(ep)) {
+			} else if(Util.isAffixedChildNode(ep)) {
 				return 3;
 			} else {
 				return 1;
