@@ -19,11 +19,11 @@ import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.papyrus.diagram.common.layout.DistributionConstants;
 import org.eclipse.papyrus.diagram.common.layout.LayoutUtils;
+import org.eclipse.papyrus.diagram.common.util.Util;
 
 /**
  * 
@@ -123,7 +123,7 @@ public class DistributeLinkNodeAction {
 				badSelection = true;
 			} else if(current instanceof ConnectionEditPart) {
 				affixedChildNodeAndLink = true;
-			} else if(isAffixedChildNode(current)) {
+			} else if(Util.isAffixedChildNode(current)) {
 				affixedChildNodeAndLink = true;
 			} else {
 				otherElement = true;
@@ -145,26 +145,25 @@ public class DistributeLinkNodeAction {
 		return 3;
 	}
 
-	/**
-	 * Test if the element is an Affixed Child Node
-	 * 
-	 * @param editpart
-	 * @return
-	 *         <ul>
-	 *         <li> <code>true</code> if the editpart is an Affixed Child Node</li>
-	 *         <li> <code>false</code>if not</li>
-	 *         </ul>
-	 */
-	private boolean isAffixedChildNode(IGraphicalEditPart editpart) {
-		if(editpart.getParent() instanceof CompartmentEditPart) {
-			return false;
-		} else if(editpart.getParent() instanceof DiagramEditPart) {
-			return false;
-		}
-		return true;
-
-
-	}
+	//Replaced by a new method in util.Util
+	//	/**
+	//	 * Test if the element is an Affixed Child Node
+	//	 * 
+	//	 * @param editpart
+	//	 * @return
+	//	 *         <ul>
+	//	 *         <li> <code>true</code> if the editpart is an Affixed Child Node</li>
+	//	 *         <li> <code>false</code>if not</li>
+	//	 *         </ul>
+	//	 */
+	//	private boolean isAffixedChildNode(IGraphicalEditPart editpart) {
+	//		if(editpart.getParent() instanceof CompartmentEditPart) {
+	//			return false;
+	//		} else if(editpart.getParent() instanceof DiagramEditPart) {
+	//			return false;
+	//		}
+	//		return true;
+	//	}
 
 
 }

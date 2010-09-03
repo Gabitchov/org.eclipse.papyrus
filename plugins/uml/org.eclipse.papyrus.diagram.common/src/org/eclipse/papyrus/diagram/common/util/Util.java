@@ -19,6 +19,10 @@ import java.util.Iterator;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gef.EditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.BorderedBorderItemEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ElementImport;
@@ -402,5 +406,28 @@ public class Util {
 			return returnedValues.get(0);
 		}
 		return null;
+	}
+
+	/**
+	 * Test if an EditPart is an Affixed Child Node or not
+	 * 
+	 * @param ep
+	 *        an editpart
+	 * @return
+	 *         <ul>
+	 *         <li> <code>true</code> if the editpart is an Affixed Child Node</li>
+	 *         <li> <code>false</code>if not</li>
+	 *         </ul>
+	 */
+	public static boolean isAffixedChildNode(EditPart ep) {
+		if(ep instanceof BorderedBorderItemEditPart) {
+			if(ep.getParent() instanceof CompartmentEditPart) {
+				return false;
+			} else if(ep.getParent() instanceof DiagramEditPart) {
+				return false;
+			}
+			return true;
+		}
+		return false;
 	}
 }
