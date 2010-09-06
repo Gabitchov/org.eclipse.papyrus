@@ -229,6 +229,7 @@ public class ControlCommand extends AbstractTransactionalCommand {
 		child.setResourceURL(newURLResolved);
 
 		ControledResource resource = model.getModelRoot();
+		Resource parentResource = null;
 
 		// create the controled resource according to the control action
 		ControledResource parent = null;
@@ -236,7 +237,8 @@ public class ControlCommand extends AbstractTransactionalCommand {
 			parent = historyFactory.eINSTANCE.createControledResource();
 			parent.setResourceURL(currentURLResolved);
 			parent.getChildren().add(child);
-			compoundCommand.append(new AddCommand(domain, model.getResource().getContents(), Collections.singleton(parent)));
+			parentResource = model.getResource();
+			compoundCommand.append(new AddCommand(domain, parentResource.getContents(), Collections.singleton(parent)));
 		} else {
 			if(isCurrentURL(currentURLResolved, resource)) {
 				parent = resource;
@@ -256,22 +258,27 @@ public class ControlCommand extends AbstractTransactionalCommand {
 			if(parent == null) {
 				parent = historyFactory.eINSTANCE.createControledResource();
 				parent.setResourceURL(currentURLResolved);
-				resource.eResource().getContents().add(parent);
+				parentResource = resource.eResource();
+				compoundCommand.append(new AddCommand(domain, parentResource.getContents(), Collections.singleton(parent)));
 			}
 			if(parent != null) {
 				compoundCommand.append(AddCommand.create(domain, parent, historyPackage.Literals.CONTROLED_RESOURCE__CHILDREN, Collections.singleton(child)));
 			}
 		}
 		List<ControledResource> controledFromParent = new LinkedList<ControledResource>();
-		Resource parentResource = parent.eResource();
-		for(EObject e : parentResource.getContents()) {
-			if(e instanceof ControledResource) {
-				ControledResource aControled = (ControledResource)e;
-				controledFromParent.add(aControled);
-				for(Iterator<EObject> i = aControled.eAllContents(); i.hasNext();) {
-					EObject tmp = i.next();
-					if(tmp instanceof ControledResource) {
-						controledFromParent.add((ControledResource)tmp);
+		if(parentResource == null) {
+			parentResource = parent.eResource();
+		}
+		if(parentResource != null) {
+			for(EObject e : parentResource.getContents()) {
+				if(e instanceof ControledResource) {
+					ControledResource aControled = (ControledResource)e;
+					controledFromParent.add(aControled);
+					for(Iterator<EObject> i = aControled.eAllContents(); i.hasNext();) {
+						EObject tmp = i.next();
+						if(tmp instanceof ControledResource) {
+							controledFromParent.add((ControledResource)tmp);
+						}
 					}
 				}
 			}
