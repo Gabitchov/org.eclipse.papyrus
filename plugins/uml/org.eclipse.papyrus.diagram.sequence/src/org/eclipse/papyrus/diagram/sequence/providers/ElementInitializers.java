@@ -28,6 +28,7 @@ import org.eclipse.uml2.uml.InteractionUse;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.LiteralString;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.StateInvariant;
 import org.eclipse.uml2.uml.TimeConstraint;
 import org.eclipse.uml2.uml.TimeObservation;
@@ -419,14 +420,36 @@ public class ElementInitializers {
 	 * 
 	 */
 	private static String getNamedElement(NamedElement namedElement, String prefix, String body, String suffix) {
-		StringBuffer sb = new StringBuffer();
-		sb.append("let base : String = \'"); //$NON-NLS-1$
-		sb.append(prefix);
-		sb.append(body);
-		sb.append(suffix);
-		sb.append("\' in\r\nlet suffixes : Sequence(String) = Sequence {\'\', \'1\', \'2\', \'3\', \'4\', \'5\', \'6\', \'7\', \'8\', \'9\', \'10\'} in \r\nlet space : Namespace = self.namespace in\r\nlet allMissed : Sequence(String) = suffixes->\r\n    select(s : String | not space.member->exists(e : NamedElement | e.name = base.concat(s))\r\n    ) in\r\nlet firstMissed : String = allMissed->first() in \r\nlet noMisses : Boolean = firstMissed.oclIsUndefined() in\r\nlet allNames : Set(String) = \r\n    if noMisses \r\n    then \r\n    space.member->collect(e : NamedElement | \r\n         if e = self or e.name.oclIsUndefined() or e.name.substring(1, e.name.size().min(base.size())) <> base\r\n         then \'\' \r\n         else e.name \r\n         endif)->asSet()->excluding(\'\') else Set{\'not in use\'} \r\n    endif in \r\nlet longestName : String = \r\n    if noMisses\r\n    then allNames->select(n : String | not allNames->exists(nn : String | nn.size() > n.size()))->asSequence()->first() \r\n    else \'not in use\' \r\n    endif in \r\nif noMisses then \r\n    if longestName.oclIsUndefined() \r\n    then base \r\n    else longestName.concat(\'1\') \r\n    endif \r\nelse \r\n    base.concat(firstMissed) \r\nendif "); //$NON-NLS-1$
+		String base = prefix + body + suffix;
+		Integer nextNumber = -1;
 
-		Object name = UMLOCLFactory.getExpression(sb.toString(), namedElement.eClass()).evaluate(namedElement);
-		return (String)name;
+		Namespace namespace = namedElement.getNamespace();
+		for(NamedElement e : namespace.getMembers()) {
+			String name = e.getName();
+			if(name != null && name.startsWith(base)) {
+				String end = name.substring(base.length());
+				int nextNumberTmp = -1;
+
+				if(end.trim().equals("")) {
+					nextNumberTmp = 0;
+				} else {
+					try {
+						nextNumberTmp = Integer.parseInt(end) + 1;
+					} catch (NumberFormatException ex) {
+						nextNumberTmp = -1;
+					}
+				}
+
+				if(nextNumberTmp > nextNumber) {
+					nextNumber = nextNumberTmp;
+				}
+			}
+		}
+
+		if(nextNumber == -1) {
+			return base;
+		} else {
+			return base + nextNumber;
+		}
 	}
 }
