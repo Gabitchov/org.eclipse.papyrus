@@ -23,7 +23,7 @@ import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.sequence.command.ChangeEdgeTargetCommand;
@@ -56,8 +56,8 @@ public class ElementCreationWithMessageEditPolicy extends LifelineChildGraphical
 		if(command != null && command.canExecute()) {
 			compound.add(command);
 
-			if(request instanceof CreateConnectionViewRequest) {
-				CreateConnectionViewRequest viewRequest = (CreateConnectionViewRequest)request;
+			if(request instanceof CreateConnectionViewAndElementRequest) {
+				CreateConnectionViewAndElementRequest viewRequest = (CreateConnectionViewAndElementRequest)request;
 				EditPart targetEP = getTargetEditPart(viewRequest);
 				EObject target = ViewUtil.resolveSemanticElement((View)targetEP.getModel());
 				EditPart sourceEP = viewRequest.getSourceEditPart();
