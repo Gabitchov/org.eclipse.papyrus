@@ -9,6 +9,7 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.papyrus.sasheditor.contentprovider.di,
  org.eclipse.papyrus.sasheditor.contentprovider.di.commands,
+ org.eclipse.papyrus.sasheditor.contentprovider.di.utils,
  org.eclipse.papyrus.sashwindows.di,
  org.eclipse.papyrus.sashwindows.di.exception,
  org.eclipse.papyrus.sashwindows.di.impl,
