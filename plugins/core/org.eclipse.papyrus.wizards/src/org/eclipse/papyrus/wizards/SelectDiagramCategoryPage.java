@@ -24,9 +24,11 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.papyrus.core.editor.BackboneException;
+import org.eclipse.papyrus.core.extension.commands.IModelCreationCommand;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.wizards.category.DiagramCategoryDescriptor;
 import org.eclipse.papyrus.wizards.category.DiagramCategoryRegistry;
@@ -49,11 +51,12 @@ import org.eclipse.swt.widgets.Group;
 public class SelectDiagramCategoryPage extends WizardPage {
 
 	/** The my diagram kind buttons. */
-	final List<Button> myDiagramKindButtons = new ArrayList<Button>();
-
+	final private List<Button> myDiagramKindButtons = new ArrayList<Button>();
 
 	/** The diagram category. */
-	private DiagramCategoryDescriptor mySelectedDiagramCategory;
+	private String mySelectedDiagramCategoryId;
+	
+	private SettingsHelper mySettingsHelper;
 
 	/** The Constant PAGE_ID. */
 	public static final String PAGE_ID = "SelectDiagramCategory";
@@ -61,11 +64,9 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	/** The Constant DEFAULT_EXTENSION. */
 	public static final String DEFAULT_EXTENSION = "uml";
 
-	private static final String LAST_SELECTED_CATEGORY = "diagramCategory";
-
 	/**
 	 * Instantiates a new select diagram category page.
-	 *
+	 * 
 	 */
 	public SelectDiagramCategoryPage() {
 		super(PAGE_ID);
@@ -74,11 +75,21 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	}
 
 	/**
+	 * @see org.eclipse.jface.wizard.WizardPage#setWizard(org.eclipse.jface.wizard.IWizard)
+	 * 
+	 * @param newWizard
+	 */
+	@Override
+	public void setWizard(IWizard newWizard) {
+		super.setWizard(newWizard);
+		setSettingsHelper(new SettingsHelper(getDialogSettings()));
+	}
+
+	/**
 	 * @see org.eclipse.jface.dialogs.IDialogPage#createControl(org.eclipse.swt.widgets.Composite)
 	 * 
 	 * @param parent
 	 */
-
 	public void createControl(Composite parent) {
 		Composite plate = new Composite(parent, SWT.NONE);
 		plate.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
@@ -87,34 +98,9 @@ public class SelectDiagramCategoryPage extends WizardPage {
 		plate.setLayout(gridLayout);
 		setControl(plate);
 
-		createDiagramLanguageForm(plate);
-
-		IDialogSettings settings = getDialogSettings();
-		if(settings != null) {
-			String category = settings.get(LAST_SELECTED_CATEGORY);
-			setDiagramCategory(category);
-		}
-
+		createDiagramCategoryForm(plate);
 
 		setPageComplete(validatePage());
-	}
-
-	private void setDiagramCategory(String category) {
-		if(category == null) {
-			return;
-		}
-		for(DiagramCategoryDescriptor descriptor : DiagramCategoryRegistry.getInstance().getDiagramCategories()) {
-			if(category.equals(descriptor.getId())) {
-				mySelectedDiagramCategory = descriptor;
-			}
-		}
-
-		for(Button button : myDiagramKindButtons) {
-			// we take categories from the same registry, so we can use here for performance reasons  "==" instead of "equals" 
-			if(mySelectedDiagramCategory == (DiagramCategoryDescriptor)button.getData()) {
-				button.setSelection(true);
-			}
-		}
 	}
 
 	/**
@@ -123,7 +109,7 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	 * @return the diagram category
 	 */
 	public String getDiagramCategory() {
-		return mySelectedDiagramCategory != null ? mySelectedDiagramCategory.getId() : null;
+		return mySelectedDiagramCategoryId;
 	}
 
 	/**
@@ -141,7 +127,8 @@ public class SelectDiagramCategoryPage extends WizardPage {
 		diResourceSet.getTransactionalEditingDomain().getCommandStack().execute(command);
 		if(root == null && !useTemplate()) {
 			try {
-				mySelectedDiagramCategory.getCommand().createModel(diResourceSet);
+				IModelCreationCommand creationCommand = DiagramCategoryRegistry.getInstance().getDiagramCategoryMap().get(mySelectedDiagramCategoryId).getCommand();
+				creationCommand.createModel(diResourceSet);
 			} catch (BackboneException e) {
 				log.error(e);
 			}
@@ -150,12 +137,26 @@ public class SelectDiagramCategoryPage extends WizardPage {
 
 	/**
 	 * Save settings.
-	 *
-	 * @param settings the settings
+	 * 
+	 * @param settings
+	 *        the settings
 	 */
 	public void saveSettings(IDialogSettings settings) {
-		String category = getDiagramCategory();
-		settings.put(LAST_SELECTED_CATEGORY, category);
+		mySettingsHelper.saveDefaultDiagramCategory(getDiagramCategory());
+	}
+	
+	/**
+	 * Sets the settings helper.
+	 *
+	 * @param helper the new settings helper
+	 */
+	protected void setSettingsHelper(SettingsHelper helper) {
+		mySettingsHelper = helper;
+		initSelectedCategory();
+	}
+
+	private void initSelectedCategory() {
+		mySelectedDiagramCategoryId = mySettingsHelper.getDefaultDiagramCategory();
 	}
 
 	/**
@@ -190,7 +191,8 @@ public class SelectDiagramCategoryPage extends WizardPage {
 				newModelFilePage.setFileName(newFileName);
 				newModelFilePage.setFileExtension(newExtension);
 
-				String message = String.format("The %s diagram category requires a specific diagram file extension. " + "Thus, the diagram file has been renamed from %s to %s ", mySelectedDiagramCategory.getLabel(), oldFileName, newFileName);
+				String categoryLabel = DiagramCategoryRegistry.getInstance().getDiagramCategoryMap().get(mySelectedDiagramCategoryId).getLabel();
+				String message = String.format("The %s diagram category requires a specific diagram file extension. " + "Thus, the diagram file has been renamed from %s to %s ", categoryLabel, oldFileName, newFileName);
 				setMessage(message, IMessageProvider.INFORMATION);
 
 				String errorMessage = newModelFilePage.getErrorMessage();
@@ -201,7 +203,7 @@ public class SelectDiagramCategoryPage extends WizardPage {
 				setMessage(null);
 			}
 		}
-		return mySelectedDiagramCategory != null;
+		return mySelectedDiagramCategoryId != null;
 	}
 
 	private NewModelFilePage getNewModelFilePage() {
@@ -222,7 +224,8 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	 * @return the diagram file extension
 	 */
 	public String getDiagramFileExtension() {
-		String extensionPrefix = mySelectedDiagramCategory != null ? mySelectedDiagramCategory.getExtensionPrefix() : null;
+		DiagramCategoryDescriptor diagramCategory = DiagramCategoryRegistry.getInstance().getDiagramCategoryMap().get(mySelectedDiagramCategoryId);
+		String extensionPrefix = diagramCategory != null ? diagramCategory.getExtensionPrefix() : null;
 		return (extensionPrefix != null) ? extensionPrefix + "." + NewModelFilePage.DEFAULT_DIAGRAM_EXTENSION : NewModelFilePage.DEFAULT_DIAGRAM_EXTENSION;
 	}
 
@@ -233,7 +236,7 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	 * @param composite
 	 *        the composite
 	 */
-	private void createDiagramLanguageForm(Composite composite) {
+	private void createDiagramCategoryForm(Composite composite) {
 		Group group = createGroup(composite, "Diagram Language:");
 
 		SelectionListener listener = new SelectionListener() {
@@ -243,7 +246,7 @@ public class SelectDiagramCategoryPage extends WizardPage {
 					button.setSelection(false);
 				}
 				((Button)e.widget).setSelection(true);
-				mySelectedDiagramCategory = (DiagramCategoryDescriptor)((Button)e.widget).getData();
+				mySelectedDiagramCategoryId = (String)((Button)e.widget).getData();
 				setPageComplete(validatePage());
 			}
 
@@ -252,18 +255,25 @@ public class SelectDiagramCategoryPage extends WizardPage {
 		};
 
 		for(DiagramCategoryDescriptor diagramCategoryDescriptor : DiagramCategoryRegistry.getInstance().getDiagramCategories()) {
-			Button button = new Button(group, SWT.CHECK);
+			Button button = createCategoryButton(diagramCategoryDescriptor, group);
 			button.addSelectionListener(listener);
-			button.setText(diagramCategoryDescriptor.getLabel());
-			button.setData(diagramCategoryDescriptor);
-			Image image = getImage(diagramCategoryDescriptor.getIcon());
-			if(image != null) {
-				button.setImage(image);
-			}
-			button.setToolTipText(diagramCategoryDescriptor.getDescription());
 			myDiagramKindButtons.add(button);
+			if(mySelectedDiagramCategoryId != null && mySelectedDiagramCategoryId.equals(button.getData())) {
+				button.setSelection(true);
+			}
 		}
+	}
 
+	private Button createCategoryButton(DiagramCategoryDescriptor diagramCategoryDescriptor, Group group) {
+		Button button = new Button(group, SWT.CHECK);
+		button.setText(diagramCategoryDescriptor.getLabel());
+		button.setData(diagramCategoryDescriptor.getId());
+		Image image = getImage(diagramCategoryDescriptor.getIcon());
+		if(image != null) {
+			button.setImage(image);
+		}
+		button.setToolTipText(diagramCategoryDescriptor.getDescription());
+		return button;
 	}
 
 	private static Image getImage(ImageDescriptor imageDescriptor) {
