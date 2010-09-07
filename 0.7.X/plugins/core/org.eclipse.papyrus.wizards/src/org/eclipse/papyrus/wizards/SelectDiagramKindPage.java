@@ -15,6 +15,7 @@ import static org.eclipse.papyrus.wizards.Activator.log;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -22,6 +23,7 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.viewers.CheckboxTableViewer;
+import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.papyrus.core.extension.commands.CreationCommandDescriptor;
@@ -61,6 +63,8 @@ public class SelectDiagramKindPage extends WizardPage {
 	private Text nameText;
 
 	private CheckboxTableViewer diagramKindTableViewer;
+
+	private SettingsHelper mySettingsHelper;
 
 	/** The select template composite. */
 	private SelectModelTemplateComposite selectTemplateComposite;
@@ -105,6 +109,22 @@ public class SelectDiagramKindPage extends WizardPage {
 
 	}
 
+	@Override
+	public void setWizard(IWizard newWizard) {
+		super.setWizard(newWizard);
+		setSettingsHelper(new SettingsHelper(getDialogSettings()));
+	}
+
+	/**
+	 * Sets the settings helper.
+	 * 
+	 * @param helper
+	 *        the new settings helper
+	 */
+	protected void setSettingsHelper(SettingsHelper helper) {
+		mySettingsHelper = helper;
+	}
+
 	/**
 	 * Sets the disable templates.
 	 */
@@ -129,7 +149,7 @@ public class SelectDiagramKindPage extends WizardPage {
 
 	private void fillInTables() {
 		String category = getDiagramCategory();
-		if (category == null) {
+		if(category == null) {
 			return;
 		}
 		diagramKindTableViewer.setInput(category);
@@ -225,13 +245,13 @@ public class SelectDiagramKindPage extends WizardPage {
 	 * @return the creation command
 	 */
 	private List<ICreationCommand> getCreationCommands() {
-		Object[] selected = diagramKindTableViewer.getCheckedElements();
+		CreationCommandDescriptor[] selected = getSelectedDiagramKinds();
 		List<ICreationCommand> commands = new ArrayList<ICreationCommand>();
 		for(int i = 0; i < selected.length; i++) {
 
 			ICreationCommand command;
 			try {
-				command = ((CreationCommandDescriptor)selected[i]).getCommand();
+				command = (selected[i]).getCommand();
 				commands.add(command);
 			} catch (Exception e) {
 				log.error(e);
@@ -355,7 +375,7 @@ public class SelectDiagramKindPage extends WizardPage {
 		rememberCurrentSelection.setText("Remember current selection");
 		rememberCurrentSelection.setToolTipText("The current selection will be used when you open the wizard next time");
 
-		rememberCurrentSelection.setSelection(SettingsUtils.rememberCurrentSelection(getDialogSettings()));
+		rememberCurrentSelection.setSelection(mySettingsHelper.rememberCurrentSelection(getDialogSettings()));
 	}
 
 	/**
@@ -393,27 +413,38 @@ public class SelectDiagramKindPage extends WizardPage {
 	 */
 	public void saveSettings() {
 		IDialogSettings settings = getDialogSettings();
-		if(rememberCurrentSelection()) {
+		if(isRememberCurrentSelection()) {
 			saveDefaultDiagramKinds(settings);
 			saveDefaultTemplates(settings);
 		} else {
-			resetDefaultDiagramKinds(settings);
-			resetDefaultTemplates(settings);
+			mySettingsHelper.saveDefaultDiagramKinds(getDiagramCategory(), Collections.<String> emptyList());
+			mySettingsHelper.saveDefaultTemplates(getDiagramCategory(), Collections.<String> emptyList());
 		}
-		saveRememberCurrentSelection(settings);
+		mySettingsHelper.saveRememberCurrentSelection(isRememberCurrentSelection());
 	}
 
-	private boolean rememberCurrentSelection() {
+	private boolean isRememberCurrentSelection() {
 		return rememberCurrentSelection.getSelection();
 	}
 
 	private void saveDefaultDiagramKinds(IDialogSettings settings) {
 		List<String> kinds = new ArrayList<String>();
-		for(Object selected : diagramKindTableViewer.getCheckedElements()) {
-			CreationCommandDescriptor element = (CreationCommandDescriptor)selected;
-			kinds.add(element.getCommandId());
+		for(CreationCommandDescriptor selected : getSelectedDiagramKinds()) {
+			kinds.add(selected.getCommandId());
 		}
-		SettingsUtils.saveDefaultDiagramKinds(settings, getDiagramCategory(), kinds);
+		mySettingsHelper.saveDefaultDiagramKinds(getDiagramCategory(), kinds);
+	}
+
+	/**
+	 * Gets the selected diagram kinds.
+	 * 
+	 * @return the selected diagram kinds
+	 */
+	protected CreationCommandDescriptor[] getSelectedDiagramKinds() {
+		Object[] checked = diagramKindTableViewer.getCheckedElements();
+		// as Object is not a subclass of String we cannot cast Object[] to String[] 
+		CreationCommandDescriptor[] result = Arrays.asList(checked).toArray(new CreationCommandDescriptor[checked.length]);
+		return result;
 	}
 
 	private void saveDefaultTemplates(IDialogSettings settings) {
@@ -421,23 +452,11 @@ public class SelectDiagramKindPage extends WizardPage {
 			return;
 		}
 		String path = selectTemplateComposite.getTemplatePath();
-		SettingsUtils.saveDefaultTemplates(settings, getDiagramCategory(), Collections.singletonList(path));
-	}
-
-	private void resetDefaultDiagramKinds(IDialogSettings settings) {
-		SettingsUtils.saveDefaultDiagramKinds(settings, getDiagramCategory(), Collections.<String> emptyList());
-	}
-
-	private void resetDefaultTemplates(IDialogSettings settings) {
-		SettingsUtils.saveDefaultTemplates(settings, getDiagramCategory(), Collections.<String> emptyList());
-	}
-
-	private void saveRememberCurrentSelection(IDialogSettings settings) {
-		SettingsUtils.saveRememberCurrentSelection(settings, rememberCurrentSelection());
+		mySettingsHelper.saveDefaultTemplates(getDiagramCategory(), Collections.singletonList(path));
 	}
 
 	private void selectDefaultDiagramKinds(String category) {
-		List<String> kinds = SettingsUtils.getDefaultDiagramKinds(getDialogSettings(), category);
+		List<String> kinds = mySettingsHelper.getDefaultDiagramKinds(category);
 		List<CreationCommandDescriptor> result = new ArrayList<CreationCommandDescriptor>();
 		for(Object next : ((DiagramKindContentProvider)diagramKindTableViewer.getContentProvider()).getElements(category)) {
 			CreationCommandDescriptor desc = (CreationCommandDescriptor)next;
@@ -450,7 +469,7 @@ public class SelectDiagramKindPage extends WizardPage {
 	}
 
 	private void selectDefaultDiagramTemplates(String category) {
-		List<String> templates = SettingsUtils.getDefaultTemplates(getDialogSettings(), category);
+		List<String> templates = mySettingsHelper.getDefaultTemplates(category);
 		for(Object next : selectTemplateComposite.getContentProvider().getElements(category)) {
 			ModelTemplateDescription desc = (ModelTemplateDescription)next;
 			if(templates.contains(desc.getPath())) {
