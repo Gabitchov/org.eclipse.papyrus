@@ -67,7 +67,7 @@ implements ITreeBranchEditPart {
 	 * @generated NOT
 	 */
 	protected void installRouter() {
-		getConnectionFigure().setConnectionRouter(LifelineChildGraphicalNodeEditPolicy.messageHorizontalStickRouter);
+		getConnectionFigure().setConnectionRouter(LifelineChildGraphicalNodeEditPolicy.messageRouter);
 		getConnectionFigure().setCursor(org.eclipse.gmf.runtime.gef.ui.internal.l10n.Cursors.CURSOR_SEG_MOVE);
 		refreshBendpoints();
 	}

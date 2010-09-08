@@ -69,7 +69,7 @@ implements ITreeBranchEditPart {
 	 * @generated NOT
 	 */
 	protected void installRouter() {
-		getConnectionFigure().setConnectionRouter(LifelineChildGraphicalNodeEditPolicy.selfMessageRouter);
+		getConnectionFigure().setConnectionRouter(LifelineChildGraphicalNodeEditPolicy.messageRouter);
 		getConnectionFigure().setCursor(Cursors.ARROW);
 		refreshBendpoints();
 	}

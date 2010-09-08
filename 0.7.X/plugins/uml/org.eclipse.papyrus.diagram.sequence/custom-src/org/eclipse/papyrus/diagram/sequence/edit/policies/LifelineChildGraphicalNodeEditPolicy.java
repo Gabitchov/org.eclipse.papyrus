@@ -35,8 +35,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
-import org.eclipse.papyrus.diagram.sequence.draw2d.routers.MessageHorizontalStickRouter;
-import org.eclipse.papyrus.diagram.sequence.draw2d.routers.SelfMessageRouter;
+import org.eclipse.papyrus.diagram.sequence.draw2d.routers.MessageRouter;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.sequence.util.SequenceRequestConstant;
@@ -60,9 +59,7 @@ public class LifelineChildGraphicalNodeEditPolicy extends SequenceGraphicalNodeE
 	private Polyline durationCreationFeedback = null;
 
 	/** the router to use for messages */
-	public static ConnectionRouter selfMessageRouter = new SelfMessageRouter();
-
-	public static ConnectionRouter messageHorizontalStickRouter = new MessageHorizontalStickRouter();
+	public static ConnectionRouter messageRouter = new MessageRouter();
 
 	/**
 	 * Get the command to reconnect the source and move associated time/duration constraints/observation.
@@ -208,14 +205,7 @@ public class LifelineChildGraphicalNodeEditPolicy extends SequenceGraphicalNodeE
 	 * 
 	 * @see org.eclipse.gef.editpolicies.GraphicalNodeEditPolicy#getDummyConnectionRouter(org.eclipse.gef.requests.CreateConnectionRequest)
 	 */
-	@SuppressWarnings("rawtypes")
 	protected ConnectionRouter getDummyConnectionRouter(CreateConnectionRequest req) {
-		if(req instanceof CreateUnspecifiedTypeConnectionRequest) {
-			List types = ((CreateUnspecifiedTypeConnectionRequest)req).getElementTypes();
-			if(types.contains(UMLElementTypes.Message_4004)) {
-				return messageHorizontalStickRouter;
-			}
-		}
-		return selfMessageRouter;
+		return messageRouter;
 	}
 }
