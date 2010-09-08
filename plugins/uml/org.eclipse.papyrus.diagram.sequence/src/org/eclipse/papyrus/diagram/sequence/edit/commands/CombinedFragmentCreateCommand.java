@@ -110,8 +110,6 @@ public class CombinedFragmentCreateCommand extends EditElementCommand {
 
 		CombinedFragment newElement = UMLFactory.eINSTANCE.createCombinedFragment();
 
-		ElementInitializers.getInstance().init_CombinedFragment_3004(newElement);
-
 		// START GENERATED NOT CODE
 		EObject elementToEdit = getElementToEdit();
 		InteractionFragment owner = null;
@@ -125,9 +123,13 @@ public class CombinedFragmentCreateCommand extends EditElementCommand {
 			i.getFragments().add(newElement);
 		}
 
+		ElementInitializers.getInstance().init_CombinedFragment_3004(newElement);
+
 		// Create an interaction operand with the CombinedFragment (multiplicy 1...*)
 		InteractionOperand createInteractionOperand = UMLFactory.eINSTANCE.createInteractionOperand();
 		newElement.getOperands().add(createInteractionOperand);
+
+		ElementInitializers.init_NamedElement(createInteractionOperand);
 
 		Set<InteractionFragment> coveredInteractionFragments = (Set<InteractionFragment>)getRequest().getParameters().get(SequenceRequestConstant.COVERED_INTERACTIONFRAGMENTS);
 
