@@ -27,7 +27,6 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElemen
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
-import org.eclipse.papyrus.diagram.sequence.util.SequenceUtil;
 
 /**
  * The customn LayoutEditPolicy for InteractionOperandEditPart.
@@ -89,7 +88,7 @@ public class InteractionOperandLayoutEditPolicy extends XYLayoutEditPolicy {
 			Object constraintFor = getConstraintFor(request, child);
 			if(constraintFor != null) {
 				if(child instanceof CombinedFragmentEditPart) {
-					SequenceUtil.addCombinedFragmentResizeChildrenCommand(compoundCmd, request.getMoveDelta(), request.getSizeDelta(), (CombinedFragmentEditPart)child);
+					InteractionCompartmentXYLayoutEditPolicy.addCombinedFragmentResizeChildrenCommand(compoundCmd, request.getMoveDelta(), request.getSizeDelta(), (CombinedFragmentEditPart)child);
 				}
 
 				Command changeConstraintCommand = createChangeConstraintCommand(request, child, translateToModelConstraint(constraintFor));
