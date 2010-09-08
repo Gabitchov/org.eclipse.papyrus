@@ -44,7 +44,7 @@ public class CombinedFragmentCreationEditPolicy extends CreationEditPolicy {
 
 			Rectangle selectionRect = getSelectionRectangle(request);
 
-			Set<InteractionFragment> coveredInteractionFragments = SequenceUtil.getCoveredInteractionFragments(selectionRect, getHost(), 0.5);
+			Set<InteractionFragment> coveredInteractionFragments = SequenceUtil.getCoveredInteractionFragments(selectionRect, getHost());
 
 			request.getExtendedData().put(SequenceRequestConstant.COVERED_INTERACTIONFRAGMENTS, coveredInteractionFragments);
 		}
