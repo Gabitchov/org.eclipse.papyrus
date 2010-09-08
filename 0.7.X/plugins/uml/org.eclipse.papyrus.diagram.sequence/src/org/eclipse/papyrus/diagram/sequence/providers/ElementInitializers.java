@@ -424,24 +424,26 @@ public class ElementInitializers {
 		Integer nextNumber = -1;
 
 		Namespace namespace = namedElement.getNamespace();
-		for(NamedElement e : namespace.getMembers()) {
-			String name = e.getName();
-			if(name != null && name.startsWith(base)) {
-				String end = name.substring(base.length());
-				int nextNumberTmp = -1;
+		if (namespace != null) {
+			for(NamedElement e : namespace.getMembers()) {
+				String name = e.getName();
+				if(name != null && name.startsWith(base)) {
+					String end = name.substring(base.length());
+					int nextNumberTmp = -1;
 
-				if(end.trim().equals("")) {
-					nextNumberTmp = 0;
-				} else {
-					try {
-						nextNumberTmp = Integer.parseInt(end) + 1;
-					} catch (NumberFormatException ex) {
-						nextNumberTmp = -1;
+					if(end.trim().equals("")) {
+						nextNumberTmp = 0;
+					} else {
+						try {
+							nextNumberTmp = Integer.parseInt(end) + 1;
+						} catch (NumberFormatException ex) {
+							nextNumberTmp = -1;
+						}
 					}
-				}
 
-				if(nextNumberTmp > nextNumber) {
-					nextNumber = nextNumberTmp;
+					if(nextNumberTmp > nextNumber) {
+						nextNumber = nextNumberTmp;
+					}
 				}
 			}
 		}

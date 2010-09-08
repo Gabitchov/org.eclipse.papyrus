@@ -27,6 +27,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.sequence.providers.ElementInitializers;
 import org.eclipse.papyrus.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.InteractionFragment;
@@ -112,6 +113,8 @@ public class InteractionOperandCreateCommand extends EditElementCommand {
 
 		CombinedFragment owner = (CombinedFragment)getElementToEdit();
 		owner.getOperands().add(newElement);
+
+		ElementInitializers.init_NamedElement(newElement);
 
 		// Add all combined fragment's covered lifelines on interaction operand
 		for(InteractionOperand operand : owner.getOperands()) {
