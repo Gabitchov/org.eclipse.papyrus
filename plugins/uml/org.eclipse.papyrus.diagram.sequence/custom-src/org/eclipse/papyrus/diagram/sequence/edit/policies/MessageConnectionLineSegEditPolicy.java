@@ -34,8 +34,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.BaseSlidableAnchor;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.gef.ui.internal.editpolicies.LineMode;
 import org.eclipse.gmf.runtime.notation.Edge;
-import org.eclipse.papyrus.diagram.sequence.draw2d.routers.MessageHorizontalStickRouter;
-import org.eclipse.papyrus.diagram.sequence.edit.parts.Message2EditPart;
+import org.eclipse.papyrus.diagram.sequence.draw2d.routers.MessageRouter.RouterKind;
 
 /**
  * This bendpoint edit policy is used to allow drag of horizontal messages and forbid drag otherwise.
@@ -120,16 +119,10 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 
 	private boolean isHorizontal() {
 		Connection connection = getConnection();
-		if(getHost() instanceof Message2EditPart) {
-			PointList points = connection.getPoints();
-			Point sourcePoint = points.getFirstPoint().getCopy();
-			Point targetPoint = points.getLastPoint().getCopy();
-			connection.translateToAbsolute(sourcePoint);
-			connection.translateToAbsolute(targetPoint);
+		RouterKind kind = RouterKind.getKind(connection, connection.getPoints());
 
-			if(Math.abs(sourcePoint.y - targetPoint.y) <= MessageHorizontalStickRouter.MAX_HORIZONTAL_DELTA) {
-				return true;
-			}
+		if (kind.equals(RouterKind.HORIZONTAL)) {
+			return true;
 		}
 		return false;
 	}
