@@ -14,15 +14,15 @@ import java.util.Iterator;
 
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.papyrus.diagram.common.figure.node.AffixedNamedElementFigure;
 
 /**
  * PseudostateEntryPointFigure.
  * 
  */
-public class PseudostateEntryPointFigure extends Shape {
+public class PseudostateEntryPointFigure extends AffixedNamedElementFigure {
 
 	/**
 	 * Default Constructor.
@@ -37,20 +37,9 @@ public class PseudostateEntryPointFigure extends Shape {
 
 	}
 
-	/**
-	 * Does nothing.
-	 * 
-	 * @see org.eclipse.draw2d.Shape#fillShape(org.eclipse.draw2d.Graphics)
-	 */
-	@Override
-	protected void fillShape(Graphics graphics) {
-	}
 
-	/**
-	 * @see org.eclipse.draw2d.Shape#outlineShape(org.eclipse.draw2d.Graphics)
-	 */
 	@Override
-	protected void outlineShape(Graphics graphics) {
+	public void paint(Graphics graphics) {
 		graphics.pushState();
 
 		IFigure ancestor = getParent();
@@ -77,11 +66,11 @@ public class PseudostateEntryPointFigure extends Shape {
 					graphics.setBackgroundColor(((StateMachineFigure)ancestor).getBackgroundColor());
 			}
 		}
+		graphics.setLineWidth(1);
 		Rectangle r = Rectangle.SINGLETON;
 		r.setBounds(getBounds());
-		r.width--;
-		r.height--;
-		r.shrink((lineWidth - 1) / 2, (lineWidth - 1) / 2);
+		r.width -= 2;
+		r.height -= 2;
 		graphics.drawOval(r);
 		r.shrink(1, 1);
 		graphics.fillOval(r);

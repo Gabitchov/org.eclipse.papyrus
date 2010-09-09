@@ -7,7 +7,7 @@ import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateEditPart;
 
 public class CustomFinalStateEditPart extends FinalStateEditPart {
 
-	
+
 	public CustomFinalStateEditPart(View view) {
 		super(view);
 		// TODO Auto-generated constructor stub

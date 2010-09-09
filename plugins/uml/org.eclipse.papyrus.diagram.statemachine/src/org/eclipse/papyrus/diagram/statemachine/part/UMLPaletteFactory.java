@@ -18,11 +18,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private final static String CREATESTATEMACHINECREATIONTOOL = "createStateMachineCreationTool"; //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
 	private final static String CREATEREGIONCREATIONTOOL = "createRegionCreationTool"; //$NON-NLS-1$
 
 	/**
@@ -102,7 +97,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 */
 	private Tool createChoiceCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.Pseudostate_4000);
+		types.add(UMLElementTypes.Pseudostate_11000);
 
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
@@ -113,7 +108,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 */
 	private Tool createDeepHistoryCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.Pseudostate_4000);
+		types.add(UMLElementTypes.Pseudostate_14000);
 
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
@@ -124,7 +119,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 */
 	private Tool createEntryPointCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.Pseudostate_4000);
+		types.add(UMLElementTypes.Pseudostate_16000);
 
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
@@ -135,7 +130,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 */
 	private Tool createExitPointCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.Pseudostate_4000);
+		types.add(UMLElementTypes.Pseudostate_17000);
 
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
@@ -157,7 +152,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 */
 	private Tool createForkCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.Pseudostate_4000);
+		types.add(UMLElementTypes.Pseudostate_10000);
 
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
@@ -168,7 +163,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 */
 	private Tool createInitialCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.Pseudostate_4000);
+		types.add(UMLElementTypes.Pseudostate_8000);
 
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
@@ -179,7 +174,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 */
 	private Tool createJoinCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.Pseudostate_4000);
+		types.add(UMLElementTypes.Pseudostate_9000);
 
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
@@ -190,7 +185,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 */
 	private Tool createJunctionCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.Pseudostate_4000);
+		types.add(UMLElementTypes.Pseudostate_12000);
 
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
@@ -212,7 +207,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 */
 	private Tool createShallowHistoryCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.Pseudostate_4000);
+		types.add(UMLElementTypes.Pseudostate_13000);
 
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
@@ -232,20 +227,9 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createStateMachineCreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.StateMachine_2000);
-
-		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
-		return tool;
-	}
-
-	/**
-	 * @generated
-	 */
 	private Tool createTerminateCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.Pseudostate_4000);
+		types.add(UMLElementTypes.Pseudostate_15000);
 
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
@@ -255,49 +239,46 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	public Tool createTool(String toolId) {
-		if (toolId.equals(CREATESTATEMACHINECREATIONTOOL)) {
-			return createStateMachineCreationTool();
-		}
-		if (toolId.equals(CREATEREGIONCREATIONTOOL)) {
+		if(toolId.equals(CREATEREGIONCREATIONTOOL)) {
 			return createRegionCreationTool();
 		}
-		if (toolId.equals(CREATESTATECREATIONTOOL)) {
+		if(toolId.equals(CREATESTATECREATIONTOOL)) {
 			return createStateCreationTool();
 		}
-		if (toolId.equals(CREATEINITIALCREATIONTOOL)) {
+		if(toolId.equals(CREATEINITIALCREATIONTOOL)) {
 			return createInitialCreationTool();
 		}
-		if (toolId.equals(CREATEFINALSTATECREATIONTOOL)) {
+		if(toolId.equals(CREATEFINALSTATECREATIONTOOL)) {
 			return createFinalStateCreationTool();
 		}
-		if (toolId.equals(CREATESHALLOWHISTORYCREATIONTOOL)) {
+		if(toolId.equals(CREATESHALLOWHISTORYCREATIONTOOL)) {
 			return createShallowHistoryCreationTool();
 		}
-		if (toolId.equals(CREATEDEEPHISTORYCREATIONTOOL)) {
+		if(toolId.equals(CREATEDEEPHISTORYCREATIONTOOL)) {
 			return createDeepHistoryCreationTool();
 		}
-		if (toolId.equals(CREATEFORKCREATIONTOOL)) {
+		if(toolId.equals(CREATEFORKCREATIONTOOL)) {
 			return createForkCreationTool();
 		}
-		if (toolId.equals(CREATEJOINCREATIONTOOL)) {
+		if(toolId.equals(CREATEJOINCREATIONTOOL)) {
 			return createJoinCreationTool();
 		}
-		if (toolId.equals(CREATECHOICECREATIONTOOL)) {
+		if(toolId.equals(CREATECHOICECREATIONTOOL)) {
 			return createChoiceCreationTool();
 		}
-		if (toolId.equals(CREATEJUNCTIONCREATIONTOOL)) {
+		if(toolId.equals(CREATEJUNCTIONCREATIONTOOL)) {
 			return createJunctionCreationTool();
 		}
-		if (toolId.equals(CREATEENTRYPOINTCREATIONTOOL)) {
+		if(toolId.equals(CREATEENTRYPOINTCREATIONTOOL)) {
 			return createEntryPointCreationTool();
 		}
-		if (toolId.equals(CREATEEXITPOINTCREATIONTOOL)) {
+		if(toolId.equals(CREATEEXITPOINTCREATIONTOOL)) {
 			return createExitPointCreationTool();
 		}
-		if (toolId.equals(CREATETERMINATECREATIONTOOL)) {
+		if(toolId.equals(CREATETERMINATECREATIONTOOL)) {
 			return createTerminateCreationTool();
 		}
-		if (toolId.equals(CREATETRANSITIONCREATIONTOOL)) {
+		if(toolId.equals(CREATETRANSITIONCREATIONTOOL)) {
 			return createTransitionCreationTool();
 		}
 

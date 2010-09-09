@@ -16,7 +16,16 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PackageEditPart;
-import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateChoiceEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateDeepHistoryEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateEntryPointEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateExitPointEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateForkEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateInitialEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateJoinEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateJunctionEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateShallowHistoryEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateTerminateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineEditPart;
@@ -63,17 +72,62 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType Pseudostate_4000 = getElementType("org.eclipse.papyrus.diagram.statemachine.Pseudostate_4000"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
 	public static final IElementType FinalState_5000 = getElementType("org.eclipse.papyrus.diagram.statemachine.FinalState_5000"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
 	public static final IElementType State_6000 = getElementType("org.eclipse.papyrus.diagram.statemachine.State_6000"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Pseudostate_8000 = getElementType("org.eclipse.papyrus.diagram.statemachine.Pseudostate_8000"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Pseudostate_9000 = getElementType("org.eclipse.papyrus.diagram.statemachine.Pseudostate_9000"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Pseudostate_10000 = getElementType("org.eclipse.papyrus.diagram.statemachine.Pseudostate_10000"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Pseudostate_11000 = getElementType("org.eclipse.papyrus.diagram.statemachine.Pseudostate_11000"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Pseudostate_12000 = getElementType("org.eclipse.papyrus.diagram.statemachine.Pseudostate_12000"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Pseudostate_13000 = getElementType("org.eclipse.papyrus.diagram.statemachine.Pseudostate_13000"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Pseudostate_14000 = getElementType("org.eclipse.papyrus.diagram.statemachine.Pseudostate_14000"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Pseudostate_15000 = getElementType("org.eclipse.papyrus.diagram.statemachine.Pseudostate_15000"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Pseudostate_16000 = getElementType("org.eclipse.papyrus.diagram.statemachine.Pseudostate_16000"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Pseudostate_17000 = getElementType("org.eclipse.papyrus.diagram.statemachine.Pseudostate_17000"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -87,45 +141,79 @@ public class UMLElementTypes {
 	 */
 	public static ENamedElement getElement(IAdaptable hint) {
 		Object type = hint.getAdapter(IElementType.class);
-		if (elements == null) {
+		if(elements == null) {
 			elements = new IdentityHashMap<IElementType, ENamedElement>();
 
 			elements.put(Package_1000, UMLPackage.eINSTANCE.getPackage());
 
-			elements.put(StateMachine_2000,
-					UMLPackage.eINSTANCE.getStateMachine());
+			elements.put(StateMachine_2000, UMLPackage.eINSTANCE.getStateMachine());
 
 			elements.put(Region_3000, UMLPackage.eINSTANCE.getRegion());
-
-			elements.put(Pseudostate_4000,
-					UMLPackage.eINSTANCE.getPseudostate());
 
 			elements.put(FinalState_5000, UMLPackage.eINSTANCE.getFinalState());
 
 			elements.put(State_6000, UMLPackage.eINSTANCE.getState());
 
+			elements.put(Pseudostate_8000, UMLPackage.eINSTANCE.getPseudostate());
+
+			elements.put(Pseudostate_9000, UMLPackage.eINSTANCE.getPseudostate());
+
+			elements.put(Pseudostate_10000, UMLPackage.eINSTANCE.getPseudostate());
+
+			elements.put(Pseudostate_11000, UMLPackage.eINSTANCE.getPseudostate());
+
+			elements.put(Pseudostate_12000, UMLPackage.eINSTANCE.getPseudostate());
+
+			elements.put(Pseudostate_13000, UMLPackage.eINSTANCE.getPseudostate());
+
+			elements.put(Pseudostate_14000, UMLPackage.eINSTANCE.getPseudostate());
+
+			elements.put(Pseudostate_15000, UMLPackage.eINSTANCE.getPseudostate());
+
+			elements.put(Pseudostate_16000, UMLPackage.eINSTANCE.getPseudostate());
+
+			elements.put(Pseudostate_17000, UMLPackage.eINSTANCE.getPseudostate());
+
 			elements.put(Transition_7000, UMLPackage.eINSTANCE.getTransition());
 		}
-		return (ENamedElement) elements.get(type);
+		return (ENamedElement)elements.get(type);
 	}
 
 	/**
 	 * @generated
 	 */
 	public static IElementType getElementType(int visualID) {
-		switch (visualID) {
+		switch(visualID) {
 		case PackageEditPart.VISUAL_ID:
 			return Package_1000;
 		case StateMachineEditPart.VISUAL_ID:
 			return StateMachine_2000;
 		case RegionEditPart.VISUAL_ID:
 			return Region_3000;
-		case PseudostateEditPart.VISUAL_ID:
-			return Pseudostate_4000;
 		case FinalStateEditPart.VISUAL_ID:
 			return FinalState_5000;
 		case StateEditPart.VISUAL_ID:
 			return State_6000;
+		case PseudostateInitialEditPart.VISUAL_ID:
+			return Pseudostate_8000;
+		case PseudostateJoinEditPart.VISUAL_ID:
+			return Pseudostate_9000;
+		case PseudostateForkEditPart.VISUAL_ID:
+			return Pseudostate_10000;
+		case PseudostateChoiceEditPart.VISUAL_ID:
+			return Pseudostate_11000;
+		case PseudostateJunctionEditPart.VISUAL_ID:
+			return Pseudostate_12000;
+		case PseudostateShallowHistoryEditPart.VISUAL_ID:
+			return Pseudostate_13000;
+		case PseudostateDeepHistoryEditPart.VISUAL_ID:
+			return Pseudostate_14000;
+		case PseudostateTerminateEditPart.VISUAL_ID:
+			return Pseudostate_15000;
+		case PseudostateEntryPointEditPart.VISUAL_ID:
+			return Pseudostate_16000;
+		case PseudostateExitPointEditPart.VISUAL_ID:
+			return Pseudostate_17000;
 		case TransitionEditPart.VISUAL_ID:
 			return Transition_7000;
 		}
@@ -145,9 +233,9 @@ public class UMLElementTypes {
 	public static Image getImage(ENamedElement element) {
 		String key = getImageRegistryKey(element);
 		Image image = getImageRegistry().get(key);
-		if (image == null) {
+		if(image == null) {
 			ImageDescriptor imageDescriptor = getProvidedImageDescriptor(element);
-			if (imageDescriptor == null) {
+			if(imageDescriptor == null) {
 				imageDescriptor = ImageDescriptor.getMissingImageDescriptor();
 			}
 			getImageRegistry().put(key, imageDescriptor);
@@ -161,7 +249,7 @@ public class UMLElementTypes {
 	 */
 	public static Image getImage(IAdaptable hint) {
 		ENamedElement element = getElement(hint);
-		if (element == null) {
+		if(element == null) {
 			return null;
 		}
 		return getImage(element);
@@ -173,9 +261,9 @@ public class UMLElementTypes {
 	public static ImageDescriptor getImageDescriptor(ENamedElement element) {
 		String key = getImageRegistryKey(element);
 		ImageDescriptor imageDescriptor = getImageRegistry().getDescriptor(key);
-		if (imageDescriptor == null) {
+		if(imageDescriptor == null) {
 			imageDescriptor = getProvidedImageDescriptor(element);
-			if (imageDescriptor == null) {
+			if(imageDescriptor == null) {
 				imageDescriptor = ImageDescriptor.getMissingImageDescriptor();
 			}
 			getImageRegistry().put(key, imageDescriptor);
@@ -188,7 +276,7 @@ public class UMLElementTypes {
 	 */
 	public static ImageDescriptor getImageDescriptor(IAdaptable hint) {
 		ENamedElement element = getElement(hint);
-		if (element == null) {
+		if(element == null) {
 			return null;
 		}
 		return getImageDescriptor(element);
@@ -198,7 +286,7 @@ public class UMLElementTypes {
 	 * @generated
 	 */
 	private static ImageRegistry getImageRegistry() {
-		if (imageRegistry == null) {
+		if(imageRegistry == null) {
 			imageRegistry = new ImageRegistry();
 		}
 		return imageRegistry;
@@ -214,26 +302,21 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	private static ImageDescriptor getProvidedImageDescriptor(
-			ENamedElement element) {
-		if (element instanceof EStructuralFeature) {
-			EStructuralFeature feature = ((EStructuralFeature) element);
+	private static ImageDescriptor getProvidedImageDescriptor(ENamedElement element) {
+		if(element instanceof EStructuralFeature) {
+			EStructuralFeature feature = ((EStructuralFeature)element);
 			EClass eContainingClass = feature.getEContainingClass();
 			EClassifier eType = feature.getEType();
-			if (eContainingClass != null && !eContainingClass.isAbstract()) {
+			if(eContainingClass != null && !eContainingClass.isAbstract()) {
 				element = eContainingClass;
-			} else if (eType instanceof EClass
-					&& !((EClass) eType).isAbstract()) {
+			} else if(eType instanceof EClass && !((EClass)eType).isAbstract()) {
 				element = eType;
 			}
 		}
-		if (element instanceof EClass) {
-			EClass eClass = (EClass) element;
-			if (!eClass.isAbstract()) {
-				return UMLDiagramEditorPlugin.getInstance()
-						.getItemImageDescriptor(
-								eClass.getEPackage().getEFactoryInstance()
-										.create(eClass));
+		if(element instanceof EClass) {
+			EClass eClass = (EClass)element;
+			if(!eClass.isAbstract()) {
+				return UMLDiagramEditorPlugin.getInstance().getItemImageDescriptor(eClass.getEPackage().getEFactoryInstance().create(eClass));
 			}
 		}
 		// TODO : support structural features
@@ -244,14 +327,23 @@ public class UMLElementTypes {
 	 * @generated
 	 */
 	public static boolean isKnownElementType(IElementType elementType) {
-		if (KNOWN_ELEMENT_TYPES == null) {
+		if(KNOWN_ELEMENT_TYPES == null) {
 			KNOWN_ELEMENT_TYPES = new HashSet<IElementType>();
 			KNOWN_ELEMENT_TYPES.add(Package_1000);
 			KNOWN_ELEMENT_TYPES.add(StateMachine_2000);
 			KNOWN_ELEMENT_TYPES.add(Region_3000);
-			KNOWN_ELEMENT_TYPES.add(Pseudostate_4000);
 			KNOWN_ELEMENT_TYPES.add(FinalState_5000);
 			KNOWN_ELEMENT_TYPES.add(State_6000);
+			KNOWN_ELEMENT_TYPES.add(Pseudostate_8000);
+			KNOWN_ELEMENT_TYPES.add(Pseudostate_9000);
+			KNOWN_ELEMENT_TYPES.add(Pseudostate_10000);
+			KNOWN_ELEMENT_TYPES.add(Pseudostate_11000);
+			KNOWN_ELEMENT_TYPES.add(Pseudostate_12000);
+			KNOWN_ELEMENT_TYPES.add(Pseudostate_13000);
+			KNOWN_ELEMENT_TYPES.add(Pseudostate_14000);
+			KNOWN_ELEMENT_TYPES.add(Pseudostate_15000);
+			KNOWN_ELEMENT_TYPES.add(Pseudostate_16000);
+			KNOWN_ELEMENT_TYPES.add(Pseudostate_17000);
 			KNOWN_ELEMENT_TYPES.add(Transition_7000);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);

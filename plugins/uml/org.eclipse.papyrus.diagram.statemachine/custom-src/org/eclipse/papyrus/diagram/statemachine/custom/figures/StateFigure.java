@@ -43,16 +43,9 @@ public class StateFigure extends NodeNamedElementFigure implements IPapyrusNodeF
 		getInformationLabelContainer().add(informationLabel, getInformationLabelConstraint(), -1);
 	}
 
-	/**
-	 * Get the container for the information label.
-	 * Children should override and implement this method in case the label must not be drawn in the overall figure. The returned figure shall be
-	 * created in the method {@link #createCompositeFigureStructure()}.
-	 * 
-	 * @return figure containing the name label
-	 * @see #getDefaultLabelsContainer()
-	 */
-	protected IFigure getInformationLabelContainer() {
-		return getDefaultLabelsContainer();
+	public void fillInformation(String text) {
+		informationLabel.setText(text);
+		refreshInformationToShow();
 	}
 
 	/**
@@ -67,23 +60,16 @@ public class StateFigure extends NodeNamedElementFigure implements IPapyrusNodeF
 		return getDefaultLabelsConstraint();
 	}
 
-	public void fillInformation(String text) {
-		informationLabel.setText(text);
-		refreshInformationToShow();
-	}
-
 	/**
-	 * Refreshes the status of the label that displays information, depending on the text to display
+	 * Get the container for the information label.
+	 * Children should override and implement this method in case the label must not be drawn in the overall figure. The returned figure shall be
+	 * created in the method {@link #createCompositeFigureStructure()}.
+	 * 
+	 * @return figure containing the name label
+	 * @see #getDefaultLabelsContainer()
 	 */
-	protected void refreshInformationToShow() {
-		String text = informationLabel.getText();
-		if(text == null || text.length() == 0 || text.equalsIgnoreCase("\n")) {
-			informationLabel.setVisible(false);
-			isInformationShown = false;
-		} else {
-			informationLabel.setVisible(true);
-			isInformationShown = true;
-		}
+	protected IFigure getInformationLabelContainer() {
+		return getDefaultLabelsContainer();
 	}
 
 	public void paintFigure(Graphics graphics) {
@@ -102,6 +88,20 @@ public class StateFigure extends NodeNamedElementFigure implements IPapyrusNodeF
 
 		}
 
+	}
+
+	/**
+	 * Refreshes the status of the label that displays information, depending on the text to display
+	 */
+	protected void refreshInformationToShow() {
+		String text = informationLabel.getText();
+		if(text == null || text.length() == 0 || text.equalsIgnoreCase("\n")) {
+			informationLabel.setVisible(false);
+			isInformationShown = false;
+		} else {
+			informationLabel.setVisible(true);
+			isInformationShown = true;
+		}
 	}
 
 	public void setShadow(boolean shadow) {

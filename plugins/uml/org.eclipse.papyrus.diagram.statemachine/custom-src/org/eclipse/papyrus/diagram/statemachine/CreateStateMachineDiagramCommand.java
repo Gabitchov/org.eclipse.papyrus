@@ -52,16 +52,21 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class CreateStateMachineDiagramCommand extends CreateBehavioredClassifierDiagramCommand {
 
 	private StateMachine stateMachine = null;
-	
+
 	public final static int defaultX = 30;
 
 	public final static int defaultY = 30;
-	
+
 	public final static int defaultWidth = 700;
 
 	public final static int defaultHeight = 300;
 
 	public final static int defaultHeader = 13;
+
+	@Override
+	protected EClass getBehaviorEClass() {
+		return UMLPackage.eINSTANCE.getStateMachine();
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -86,6 +91,7 @@ public class CreateStateMachineDiagramCommand extends CreateBehavioredClassifier
 	protected PreferencesHint getPreferenceHint() {
 		return UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT;
 	}
+
 
 	@Override
 	protected void initializeDiagram(EObject diagram) {
@@ -141,18 +147,12 @@ public class CreateStateMachineDiagramCommand extends CreateBehavioredClassifier
 
 
 	@Override
-	protected EClass getBehaviorEClass() {
-		return UMLPackage.eINSTANCE.getStateMachine();
-	}
-
-
-	@Override
 	protected void initializeModel(EObject owner) {
 		if(owner.eClass() == getBehaviorEClass()) {
 			stateMachine = (StateMachine)owner;
 
 		} else {
-			stateMachine  = UMLFactory.eINSTANCE.createStateMachine();
+			stateMachine = UMLFactory.eINSTANCE.createStateMachine();
 
 			if(owner instanceof BehavioredClassifier) {
 				BehavioredClassifier behaviorClassifier = (BehavioredClassifier)owner;

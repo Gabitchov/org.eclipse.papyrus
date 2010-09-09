@@ -585,19 +585,6 @@
       </diagramCategory>      
    </extension>
    <extension
-         point="org.eclipse.papyrus.diagram.common.aspectToolProvider">
-      <aspectToolProvider
-            class="org.eclipse.papyrus.diagram.common.service.palette.PseudostateAspectActionProvider"
-            description="This Provider handles actions taken after pseudostate creation. It modifies the name according to the PseudostateKind of the element."
-            icon="icons/obj16/Pseudostate.gif"
-            id="org.eclipse.papyrus.postaction.pseudostateactionprovider"
-            name="Rename pseudostate according to its kind">
-         <Priority
-               name="Lowest">
-         </Priority>
-      </aspectToolProvider>
-   </extension>
-   <extension
          point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
       <contributionItemProvider
             checkPluginLoaded="true"
