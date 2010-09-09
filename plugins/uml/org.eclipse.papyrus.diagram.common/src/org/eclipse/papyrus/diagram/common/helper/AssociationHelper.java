@@ -53,7 +53,6 @@ public class AssociationHelper {
 	 * @return the CommandResult
 	 */
 	public static CommandResult reconnect(int end, Association association, Type newType) {
-
 		((Property)association.getMemberEnds().get(end)).setType(newType);
 
 		return CommandResult.newOKCommandResult(association);

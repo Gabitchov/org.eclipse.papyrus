@@ -49,6 +49,45 @@ import org.eclipse.uml2.uml.Element;
 public abstract class AbstractPapyrusTestCase extends TestCase {
 
 
+	/** The Constant CREATION. */
+	protected static final String CREATION = "CREATION:";
+
+	/** The Constant CONTAINER_CREATION. */
+	protected static final String CONTAINER_CREATION = "CONTAINER CREATION: ";
+
+	/** The Constant DROP. */
+	protected static final String DROP = "DROP: ";
+
+	/** The Constant DESTROY_DELETION. */
+	protected static final String DESTROY_DELETION = "DESTROY DELETION: ";
+
+	/** The Constant COMMAND_NULL. */
+	protected static final String COMMAND_NULL = " command null";
+
+	/** The Constant VIEW_DELETION. */
+	protected static final String VIEW_DELETION = "VIEW DELETION: ";
+
+	/** The Constant TEST_THE_REDO. */
+	protected static final String TEST_THE_REDO = "test the redo";
+
+	/** The Constant TEST_THE_UNDO. */
+	protected static final String TEST_THE_UNDO = "test the undo";
+
+	/** The Constant TEST_THE_EXECUTION. */
+	protected static final String TEST_THE_EXECUTION = "test the execution";
+
+	/** The Constant TEST_IF_THE_COMMAND_CAN_BE_EXECUTED. */
+	protected static final String TEST_IF_THE_COMMAND_CAN_BE_EXECUTED = "test if the command can be executed";
+
+	/** The Constant TEST_IF_THE_COMMAND_IS_CREATED. */
+	protected static final String TEST_IF_THE_COMMAND_IS_CREATED = "test if the command is created";
+
+	/** The Constant INITIALIZATION_TEST. */
+	protected static final String INITIALIZATION_TEST = "Intitial State";
+
+	/** The Constant CHANGE_CONTAINER. */
+	protected static final String CHANGE_CONTAINER = "CHANGE CONTAINER";
+	
 	/** The papyrus editor. */
 	protected PapyrusMultiDiagramEditor papyrusEditor;
 	

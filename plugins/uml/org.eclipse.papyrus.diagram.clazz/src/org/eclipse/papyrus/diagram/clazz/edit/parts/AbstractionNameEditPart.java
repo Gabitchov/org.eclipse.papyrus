@@ -705,9 +705,6 @@ public class AbstractionNameEditPart extends LabelEditPart implements ITextAware
 			}
 		}
 
-
-
-
 		super.handleNotificationEvent(event);
 	}
 

@@ -91,7 +91,8 @@ AbstractBorderItemEditPart {
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomContainmentCircleItemSemanticEditPolicy());
 		installEditPolicy(CustomListenerContainmentCircleEditPolicy.CUSTOM_DISPLAY, new CustomListenerContainmentCircleEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that
+		// would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -152,13 +153,17 @@ AbstractBorderItemEditPart {
 		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
-		// CircleFigure will allow connections to be attached directly to the circle, not to the surrounding rectangle
-		//		CircleFigure result = new CircleFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-		// there are no prefs for Requirements diagram, so default dimention(100x100) is returned
+		// CircleFigure will allow connections to be attached directly to the
+		// circle, not to the surrounding rectangle
+		// CircleFigure result = new
+		// CircleFigure(store.getInt(preferenceConstantWitdh),
+		// store.getInt(preferenceConstantHeight));
+		// there are no prefs for Requirements diagram, so default
+		// dimention(100x100) is returned
 		// we overide it here
 		CircleFigure result = new CircleFigure(20, 20);
 
-		//FIXME: workaround for #154536
+		// FIXME: workaround for #154536
 		result.getBounds().setSize(result.getPreferredSize());
 		return result;
 	}

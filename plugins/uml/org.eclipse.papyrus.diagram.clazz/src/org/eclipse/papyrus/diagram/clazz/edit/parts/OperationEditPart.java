@@ -764,7 +764,6 @@ public class OperationEditPart extends UMLCompartmentEditPart implements ITextAw
 
 			this.setFont(THIS_FONT);
 
-
 		}
 
 	}

@@ -705,9 +705,6 @@ public class WrappingLabelEditPart extends LabelEditPart implements ITextAwareEd
 			}
 		}
 
-
-
-
 		super.handleNotificationEvent(event);
 	}
 

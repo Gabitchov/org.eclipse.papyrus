@@ -32,9 +32,11 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.clazz.custom.command.BranchDependenctReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.command.CAssociationClassCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.command.CAssociationReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.command.ContainmentLinkReorientCommand;
+import org.eclipse.papyrus.diagram.clazz.custom.command.CustomAssociationBranchReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.helper.ContainmentHelper;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.CommentAnnotatedElementReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.ConstraintConstrainedElementReorientCommand;
@@ -86,6 +88,10 @@ public class CustomClassItemSemanticEditPolicyCN extends ClassItemSemanticEditPo
 			return getGEFWrapper(new CAssociationReorientCommand(req));
 		case AssociationEditPart.VISUAL_ID:
 			return getGEFWrapper(new CAssociationReorientCommand(req));
+		case DependencyBranchEditPart.VISUAL_ID:
+			return getGEFWrapper(new BranchDependenctReorientCommand(req));
+		case AssociationBranchEditPart.VISUAL_ID:
+			return getGEFWrapper(new CustomAssociationBranchReorientCommand(req));
 		}
 
 		return super.getReorientRelationshipCommand(req);

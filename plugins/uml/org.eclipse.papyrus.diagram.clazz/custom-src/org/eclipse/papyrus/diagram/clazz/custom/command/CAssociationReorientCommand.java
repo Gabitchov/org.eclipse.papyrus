@@ -95,6 +95,8 @@ public class CAssociationReorientCommand extends AssociationReorientCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
+	
+		
 		return AssociationHelper.reconnect(AssociationHelper.target, getLink(), getNewTarget());
 
 	}

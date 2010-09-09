@@ -74,7 +74,6 @@ public class ContainmentCircleCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -90,10 +89,7 @@ public class ContainmentCircleCreateCommand extends EditElementCommand {
 	 */
 	public boolean canExecute() {
 
-
 		return true;
-
-
 
 	}
 
@@ -102,14 +98,10 @@ public class ContainmentCircleCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
-
 		Port newElement = UMLFactory.eINSTANCE.createPort();
 
 		EncapsulatedClassifier owner = (EncapsulatedClassifier)getElementToEdit();
 		owner.getOwnedPorts().add(newElement);
-
-
 
 		doConfigure(newElement, monitor, info);
 

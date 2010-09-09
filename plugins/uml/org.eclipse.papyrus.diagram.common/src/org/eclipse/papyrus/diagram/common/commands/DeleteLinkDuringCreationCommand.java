@@ -104,8 +104,10 @@ public class DeleteLinkDuringCreationCommand extends DeleteCommand {
 				}
 			}
 		}
-		//Finally we remove the listner
-		editPart.removeEditPartListener(listenerToRemove);
+		if(listenerToRemove!=null){
+			//Finally we remove the listener
+			editPart.removeEditPartListener(listenerToRemove);
+		}
 
 		//we can do now the job
 		CommandResult commandResult = super.doExecuteWithResult(progressMonitor, info);
