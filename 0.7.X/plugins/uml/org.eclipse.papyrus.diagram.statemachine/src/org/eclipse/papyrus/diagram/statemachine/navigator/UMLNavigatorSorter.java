@@ -11,14 +11,14 @@ public class UMLNavigatorSorter extends ViewerSorter {
 	/**
 	 * @generated
 	 */
-	private static final int GROUP_CATEGORY = 7002;
+	private static final int GROUP_CATEGORY = 17002;
 
 	/**
 	 * @generated
 	 */
 	public int category(Object element) {
-		if (element instanceof UMLNavigatorItem) {
-			UMLNavigatorItem item = (UMLNavigatorItem) element;
+		if(element instanceof UMLNavigatorItem) {
+			UMLNavigatorItem item = (UMLNavigatorItem)element;
 			return UMLVisualIDRegistry.getVisualID(item.getView());
 		}
 		return GROUP_CATEGORY;

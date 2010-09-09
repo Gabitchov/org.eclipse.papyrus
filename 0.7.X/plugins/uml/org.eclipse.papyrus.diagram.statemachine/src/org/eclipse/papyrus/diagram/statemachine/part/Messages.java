@@ -247,16 +247,6 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String createStateMachineCreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String createStateMachineCreationTool_desc;
-
-	/**
-	 * @generated
-	 */
 	public static String createRegionCreationTool_title;
 
 	/**

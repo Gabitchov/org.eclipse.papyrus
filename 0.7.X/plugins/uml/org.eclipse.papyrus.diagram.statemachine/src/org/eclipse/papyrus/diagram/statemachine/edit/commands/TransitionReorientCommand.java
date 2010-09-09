@@ -46,13 +46,13 @@ public class TransitionReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-		if (false == getElementToEdit() instanceof Transition) {
+		if(false == getElementToEdit() instanceof Transition) {
 			return false;
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return canReorientSource();
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return canReorientTarget();
 		}
 		return false;
@@ -62,49 +62,43 @@ public class TransitionReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientSource() {
-		if (!(oldEnd instanceof Vertex && newEnd instanceof Vertex)) {
+		if(!(oldEnd instanceof Vertex && newEnd instanceof Vertex)) {
 			return false;
 		}
 		Vertex target = getLink().getTarget();
-		if (!(getLink().eContainer() instanceof Region)) {
+		if(!(getLink().eContainer() instanceof Region)) {
 			return false;
 		}
-		Region container = (Region) getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistTransition_7000(container, getLink(), getNewSource(),
-						target);
+		Region container = (Region)getLink().eContainer();
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistTransition_7000(container, getLink(), getNewSource(), target);
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean canReorientTarget() {
-		if (!(oldEnd instanceof Vertex && newEnd instanceof Vertex)) {
+		if(!(oldEnd instanceof Vertex && newEnd instanceof Vertex)) {
 			return false;
 		}
 		Vertex source = getLink().getSource();
-		if (!(getLink().eContainer() instanceof Region)) {
+		if(!(getLink().eContainer() instanceof Region)) {
 			return false;
 		}
-		Region container = (Region) getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistTransition_7000(container, getLink(), source,
-						getNewTarget());
+		Region container = (Region)getLink().eContainer();
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistTransition_7000(container, getLink(), source, getNewTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
-		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in reorient link command"); //$NON-NLS-1$
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		if(!canExecute()) {
+			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return reorientTarget();
 		}
 		throw new IllegalStateException();
@@ -114,35 +108,35 @@ public class TransitionReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected Transition getLink() {
-		return (Transition) getElementToEdit();
+		return (Transition)getElementToEdit();
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Vertex getNewSource() {
-		return (Vertex) newEnd;
+		return (Vertex)newEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Vertex getNewTarget() {
-		return (Vertex) newEnd;
+		return (Vertex)newEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Vertex getOldSource() {
-		return (Vertex) oldEnd;
+		return (Vertex)oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Vertex getOldTarget() {
-		return (Vertex) oldEnd;
+		return (Vertex)oldEnd;
 	}
 
 	/**

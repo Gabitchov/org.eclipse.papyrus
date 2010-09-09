@@ -49,16 +49,14 @@ public class UMLEditPartFactory implements EditPartFactory {
 		 * @generated
 		 */
 		public void relocate(CellEditor celleditor) {
-			Text text = (Text) celleditor.getControl();
+			Text text = (Text)celleditor.getControl();
 			Rectangle rect = getLabel().getTextBounds().getCopy();
 			getLabel().translateToAbsolute(rect);
-			if (!text.getFont().isDisposed()) {
-				int avr = FigureUtilities.getFontMetrics(text.getFont())
-						.getAverageCharWidth();
-				rect.setSize(new Dimension(text.computeSize(SWT.DEFAULT,
-						SWT.DEFAULT)).expand(avr * 2, 0));
+			if(!text.getFont().isDisposed()) {
+				int avr = FigureUtilities.getFontMetrics(text.getFont()).getAverageCharWidth();
+				rect.setSize(new Dimension(text.computeSize(SWT.DEFAULT, SWT.DEFAULT)).expand(avr * 2, 0));
 			}
-			if (!rect.equals(new Rectangle(text.getBounds()))) {
+			if(!rect.equals(new Rectangle(text.getBounds()))) {
 				text.setBounds(rect.x, rect.y, rect.width, rect.height);
 			}
 		}
@@ -67,8 +65,7 @@ public class UMLEditPartFactory implements EditPartFactory {
 	/**
 	 * @generated
 	 */
-	static private class MultilineCellEditorLocator implements
-			CellEditorLocator {
+	static private class MultilineCellEditorLocator implements CellEditorLocator {
 
 		/**
 		 * @generated
@@ -93,16 +90,15 @@ public class UMLEditPartFactory implements EditPartFactory {
 		 * @generated
 		 */
 		public void relocate(CellEditor celleditor) {
-			Text text = (Text) celleditor.getControl();
+			Text text = (Text)celleditor.getControl();
 			Rectangle rect = getMultilineEditableFigure().getBounds().getCopy();
 			rect.x = getMultilineEditableFigure().getEditionLocation().x;
 			rect.y = getMultilineEditableFigure().getEditionLocation().y;
 			getMultilineEditableFigure().translateToAbsolute(rect);
-			if (getMultilineEditableFigure().getText().length() > 0) {
-				rect.setSize(new Dimension(text.computeSize(rect.width,
-						SWT.DEFAULT)));
+			if(getMultilineEditableFigure().getText().length() > 0) {
+				rect.setSize(new Dimension(text.computeSize(rect.width, SWT.DEFAULT)));
 			}
-			if (!rect.equals(new Rectangle(text.getBounds()))) {
+			if(!rect.equals(new Rectangle(text.getBounds()))) {
 				text.setBounds(rect.x, rect.y, rect.width, rect.height);
 			}
 		}
@@ -136,22 +132,18 @@ public class UMLEditPartFactory implements EditPartFactory {
 		 * @generated
 		 */
 		public void relocate(CellEditor celleditor) {
-			Text text = (Text) celleditor.getControl();
+			Text text = (Text)celleditor.getControl();
 			Rectangle rect = getWrapLabel().getTextBounds().getCopy();
 			getWrapLabel().translateToAbsolute(rect);
-			if (!text.getFont().isDisposed()) {
-				if (getWrapLabel().isTextWrapOn()
-						&& getWrapLabel().getText().length() > 0) {
-					rect.setSize(new Dimension(text.computeSize(rect.width,
-							SWT.DEFAULT)));
+			if(!text.getFont().isDisposed()) {
+				if(getWrapLabel().isTextWrapOn() && getWrapLabel().getText().length() > 0) {
+					rect.setSize(new Dimension(text.computeSize(rect.width, SWT.DEFAULT)));
 				} else {
-					int avr = FigureUtilities.getFontMetrics(text.getFont())
-							.getAverageCharWidth();
-					rect.setSize(new Dimension(text.computeSize(SWT.DEFAULT,
-							SWT.DEFAULT)).expand(avr * 2, 0));
+					int avr = FigureUtilities.getFontMetrics(text.getFont()).getAverageCharWidth();
+					rect.setSize(new Dimension(text.computeSize(SWT.DEFAULT, SWT.DEFAULT)).expand(avr * 2, 0));
 				}
 			}
-			if (!rect.equals(new Rectangle(text.getBounds()))) {
+			if(!rect.equals(new Rectangle(text.getBounds()))) {
 				text.setBounds(rect.x, rect.y, rect.width, rect.height);
 			}
 		}
@@ -160,15 +152,13 @@ public class UMLEditPartFactory implements EditPartFactory {
 	/**
 	 * @generated
 	 */
-	public static CellEditorLocator getTextCellEditorLocator(
-			ITextAwareEditPart source) {
-		if (source.getFigure() instanceof IMultilineEditableFigure)
-			return new MultilineCellEditorLocator(
-					(IMultilineEditableFigure) source.getFigure());
-		else if (source.getFigure() instanceof WrappingLabel)
-			return new TextCellEditorLocator((WrappingLabel) source.getFigure());
+	public static CellEditorLocator getTextCellEditorLocator(ITextAwareEditPart source) {
+		if(source.getFigure() instanceof IMultilineEditableFigure)
+			return new MultilineCellEditorLocator((IMultilineEditableFigure)source.getFigure());
+		else if(source.getFigure() instanceof WrappingLabel)
+			return new TextCellEditorLocator((WrappingLabel)source.getFigure());
 		else {
-			return new LabelCellEditorLocator((Label) source.getFigure());
+			return new LabelCellEditorLocator((Label)source.getFigure());
 		}
 	}
 
@@ -176,9 +166,9 @@ public class UMLEditPartFactory implements EditPartFactory {
 	 * @generated
 	 */
 	public EditPart createEditPart(EditPart context, Object model) {
-		if (model instanceof View) {
-			View view = (View) model;
-			switch (UMLVisualIDRegistry.getVisualID(view)) {
+		if(model instanceof View) {
+			View view = (View)model;
+			switch(UMLVisualIDRegistry.getVisualID(view)) {
 
 			case PackageEditPart.VISUAL_ID:
 				return new PackageEditPart(view);
@@ -191,15 +181,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case RegionEditPart.VISUAL_ID:
 				return new RegionEditPart(view);
-
-			case PseudostateEditPart.VISUAL_ID:
-				return new PseudostateEditPart(view);
-
-			case PseudostateNameEditPart.VISUAL_ID:
-				return new PseudostateNameEditPart(view);
-
-			case PseudostateStereotypeEditPart.VISUAL_ID:
-				return new PseudostateStereotypeEditPart(view);
 
 			case FinalStateEditPart.VISUAL_ID:
 				return new FinalStateEditPart(view);
@@ -215,6 +196,96 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case StateNameEditPart.VISUAL_ID:
 				return new StateNameEditPart(view);
+
+			case PseudostateInitialEditPart.VISUAL_ID:
+				return new PseudostateInitialEditPart(view);
+
+			case PseudostateInitialNameEditPart.VISUAL_ID:
+				return new PseudostateInitialNameEditPart(view);
+
+			case PseudostateInitialStereotypeEditPart.VISUAL_ID:
+				return new PseudostateInitialStereotypeEditPart(view);
+
+			case PseudostateJoinEditPart.VISUAL_ID:
+				return new PseudostateJoinEditPart(view);
+
+			case PseudostateJoinNameEditPart.VISUAL_ID:
+				return new PseudostateJoinNameEditPart(view);
+
+			case PseudostateJoinStereotypeEditPart.VISUAL_ID:
+				return new PseudostateJoinStereotypeEditPart(view);
+
+			case PseudostateForkEditPart.VISUAL_ID:
+				return new PseudostateForkEditPart(view);
+
+			case PseudostateForkNameEditPart.VISUAL_ID:
+				return new PseudostateForkNameEditPart(view);
+
+			case PseudostateForkStereotypeEditPart.VISUAL_ID:
+				return new PseudostateForkStereotypeEditPart(view);
+
+			case PseudostateChoiceEditPart.VISUAL_ID:
+				return new PseudostateChoiceEditPart(view);
+
+			case PseudostateChoiceNameEditPart.VISUAL_ID:
+				return new PseudostateChoiceNameEditPart(view);
+
+			case PseudostateChoiceStereotypeEditPart.VISUAL_ID:
+				return new PseudostateChoiceStereotypeEditPart(view);
+
+			case PseudostateJunctionEditPart.VISUAL_ID:
+				return new PseudostateJunctionEditPart(view);
+
+			case PseudostateJunctionNameEditPart.VISUAL_ID:
+				return new PseudostateJunctionNameEditPart(view);
+
+			case PseudostateJunctionStereotypeEditPart.VISUAL_ID:
+				return new PseudostateJunctionStereotypeEditPart(view);
+
+			case PseudostateShallowHistoryEditPart.VISUAL_ID:
+				return new PseudostateShallowHistoryEditPart(view);
+
+			case PseudostateShallowHistoryNameEditPart.VISUAL_ID:
+				return new PseudostateShallowHistoryNameEditPart(view);
+
+			case PseudostateShallowHistoryStereotypeEditPart.VISUAL_ID:
+				return new PseudostateShallowHistoryStereotypeEditPart(view);
+
+			case PseudostateDeepHistoryEditPart.VISUAL_ID:
+				return new PseudostateDeepHistoryEditPart(view);
+
+			case PseudostateDeepHistoryNameEditPart.VISUAL_ID:
+				return new PseudostateDeepHistoryNameEditPart(view);
+
+			case PseudostateDeepHistoryStereotypeEditPart.VISUAL_ID:
+				return new PseudostateDeepHistoryStereotypeEditPart(view);
+
+			case PseudostateTerminateEditPart.VISUAL_ID:
+				return new PseudostateTerminateEditPart(view);
+
+			case PseudostateTerminateNameEditPart.VISUAL_ID:
+				return new PseudostateTerminateNameEditPart(view);
+
+			case PseudostateTerminateStereotypeEditPart.VISUAL_ID:
+				return new PseudostateTerminateStereotypeEditPart(view);
+
+			case PseudostateEntryPointEditPart.VISUAL_ID:
+				return new PseudostateEntryPointEditPart(view);
+
+			case PseudostateEntryPointNameEditPart.VISUAL_ID:
+				return new PseudostateEntryPointNameEditPart(view);
+
+			case PseudostateEntryPointStereotypeEditPart.VISUAL_ID:
+				return new PseudostateEntryPointStereotypeEditPart(view);
+
+			case PseudostateExitPointEditPart.VISUAL_ID:
+				return new PseudostateExitPointEditPart(view);
+
+			case PseudostateExitPointNameEditPart.VISUAL_ID:
+				return new PseudostateExitPointNameEditPart(view);
+
+			case PseudostateExitPointStereotypeEditPart.VISUAL_ID:
+				return new PseudostateExitPointStereotypeEditPart(view);
 
 			case RegionCompartmentEditPart.VISUAL_ID:
 				return new RegionCompartmentEditPart(view);

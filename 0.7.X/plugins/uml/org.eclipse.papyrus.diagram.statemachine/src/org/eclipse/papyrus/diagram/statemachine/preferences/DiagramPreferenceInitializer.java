@@ -22,6 +22,8 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = getPreferenceStore();
 
+		PseudostatePreferencePage.initDefaults(store);
+
 		RegionPreferencePage.initDefaults(store);
 
 		StatePreferencePage.initDefaults(store);
@@ -29,8 +31,6 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 		FinalStatePreferencePage.initDefaults(store);
 
 		StateMachinePreferencePage.initDefaults(store);
-
-		PseudostatePreferencePage.initDefaults(store);
 
 		TransitionPreferencePage.initDefaults(store);
 

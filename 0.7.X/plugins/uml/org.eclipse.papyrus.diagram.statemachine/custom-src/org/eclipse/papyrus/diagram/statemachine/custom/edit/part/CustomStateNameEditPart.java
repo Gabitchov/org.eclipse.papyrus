@@ -2,7 +2,6 @@ package org.eclipse.papyrus.diagram.statemachine.custom.edit.part;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.statemachine.custom.figures.StateFigure;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateEditPart;
@@ -20,15 +19,6 @@ public class CustomStateNameEditPart extends StateNameEditPart {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	protected void createDefaultEditPolicies() {
-		// TODO Auto-generated method stub
-		super.createDefaultEditPolicies();
-		removeEditPolicy(EditPolicyRoles.CONNECTION_HANDLES_ROLE);
-		removeEditPolicy(EditPolicyRoles.POPUPBAR_ROLE);
-
-	}
-
 	private String behaviorKindAsString(Behavior b) {
 		if(b instanceof Activity)
 			return "Activity";
@@ -37,6 +27,15 @@ public class CustomStateNameEditPart extends StateNameEditPart {
 		if(b instanceof OpaqueBehavior)
 			return "OpaqueBehavior";
 		return "";
+	}
+
+	@Override
+	protected void createDefaultEditPolicies() {
+		// TODO Auto-generated method stub
+		super.createDefaultEditPolicies();
+		removeEditPolicy(EditPolicyRoles.CONNECTION_HANDLES_ROLE);
+		removeEditPolicy(EditPolicyRoles.POPUPBAR_ROLE);
+
 	}
 
 	public String getInformationFromState(State state) {
@@ -69,7 +68,7 @@ public class CustomStateNameEditPart extends StateNameEditPart {
 		// TODO Auto-generated method stub
 		super.handleNotificationEvent(notification);
 
-		
+
 		refreshVisuals();
 	}
 
