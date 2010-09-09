@@ -92,13 +92,15 @@ public class RedefinableTemplateSignatureItemSemanticEditPolicy extends UMLBaseI
 
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 		if(annotation == null) {
-			// there are indirectly referenced children, need extra commands: false
+			// there are indirectly referenced children, need extra commands:
+			// false
 			addDestroyChildNodesCommand(cmd);
 			addDestroyShortcutsCommand(cmd, view);
 			// delete host element
 			List<EObject> todestroy = new ArrayList<EObject>();
 			todestroy.add(req.getElementToDestroy());
-			//cmd.add(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(req));
+			// cmd.add(new
+			// org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(req));
 			cmd.add(new EMFtoGMFCommandWrapper(new org.eclipse.emf.edit.command.DeleteCommand(getEditingDomain(), todestroy)));
 		} else {
 			cmd.add(new DeleteCommand(getEditingDomain(), view));
@@ -120,19 +122,23 @@ public class RedefinableTemplateSignatureItemSemanticEditPolicy extends UMLBaseI
 					switch(UMLVisualIDRegistry.getVisualID(cnode)) {
 					case ClassifierTemplateParameterEditPart.VISUAL_ID:
 
-
-
-						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
-						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
-						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
+						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned:
+																																		// true
+						// don't need explicit deletion of cnode as parent's
+						// view deletion would clean child views as well
+						// cmd.add(new
+						// org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(),
+						// cnode));
 						break;
 					case TemplateParameterEditPart.VISUAL_ID:
 
-
-
-						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
-						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
-						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
+						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned:
+																																		// true
+						// don't need explicit deletion of cnode as parent's
+						// view deletion would clean child views as well
+						// cmd.add(new
+						// org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(),
+						// cnode));
 						break;
 					}
 				}

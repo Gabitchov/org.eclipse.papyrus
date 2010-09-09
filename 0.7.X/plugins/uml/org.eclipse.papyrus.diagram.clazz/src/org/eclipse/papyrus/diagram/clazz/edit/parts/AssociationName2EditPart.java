@@ -721,11 +721,9 @@ public class AssociationName2EditPart extends LabelEditPart implements ITextAwar
 			}
 		}
 
-
 		if(event.getNewValue() instanceof EAnnotation && VisualInformationPapyrusConstant.DISPLAY_NAMELABELICON.equals(((EAnnotation)event.getNewValue()).getSource())) {
 			refreshLabel();
 		}
-
 
 		super.handleNotificationEvent(event);
 	}

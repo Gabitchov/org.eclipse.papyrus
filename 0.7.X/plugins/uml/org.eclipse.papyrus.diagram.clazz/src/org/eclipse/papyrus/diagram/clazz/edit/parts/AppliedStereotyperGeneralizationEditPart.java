@@ -705,9 +705,6 @@ public class AppliedStereotyperGeneralizationEditPart extends LabelEditPart impl
 			}
 		}
 
-
-
-
 		super.handleNotificationEvent(event);
 	}
 

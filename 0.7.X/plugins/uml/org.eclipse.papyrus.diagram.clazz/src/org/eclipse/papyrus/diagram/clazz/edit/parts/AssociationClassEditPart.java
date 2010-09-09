@@ -109,24 +109,26 @@ ClassifierEditPart {
 			return true;
 		}
 
-
 		if(childEditPart instanceof AssociationClassAttributeCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			setupContentPane(pane); // FIXME each comparment should handle his
+									// content pane in his own way
 			pane.add(((AssociationClassAttributeCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
 
 		if(childEditPart instanceof AssociationClassOperationCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getOperationCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			setupContentPane(pane); // FIXME each comparment should handle his
+									// content pane in his own way
 			pane.add(((AssociationClassOperationCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
 
 		if(childEditPart instanceof AssociationClassNestedClassifierCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getNestedClassifierFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			setupContentPane(pane); // FIXME each comparment should handle his
+									// content pane in his own way
 			pane.add(((AssociationClassNestedClassifierCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
@@ -148,7 +150,8 @@ ClassifierEditPart {
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
 		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
 		installEditPolicy(ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY, new ShowHideClassifierContentsEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that
+		// would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -2083,19 +2086,22 @@ ClassifierEditPart {
 		}
 		if(childEditPart instanceof AssociationClassAttributeCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			setupContentPane(pane); // FIXME each comparment should handle his
+									// content pane in his own way
 			pane.remove(((AssociationClassAttributeCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
 		if(childEditPart instanceof AssociationClassOperationCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getOperationCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			setupContentPane(pane); // FIXME each comparment should handle his
+									// content pane in his own way
 			pane.remove(((AssociationClassOperationCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
 		if(childEditPart instanceof AssociationClassNestedClassifierCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getNestedClassifierFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			setupContentPane(pane); // FIXME each comparment should handle his
+									// content pane in his own way
 			pane.remove(((AssociationClassNestedClassifierCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}

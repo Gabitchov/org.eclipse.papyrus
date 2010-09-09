@@ -46,6 +46,7 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.clazz.custom.edit.part.AbstractRedefinableTemplateSignatureEditPart;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.CustomGraphicalNodeEditPolicy;
+import org.eclipse.papyrus.diagram.clazz.custom.policies.itemsemantic.CustomRedefinableTemplateSignatureItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.RedefinableTemplateSignatureItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
@@ -90,12 +91,10 @@ public class RedefinableTemplateSignatureEditPart extends AbstractRedefinableTem
 		 */
 		private void createContents() {
 
-
 			fTemplateParameterRectangle = new RectangleFigure();
 
 			this.add(fTemplateParameterRectangle);
 			fTemplateParameterRectangle.setLayoutManager(new StackLayout());
-
 
 		}
 
@@ -159,10 +158,10 @@ public class RedefinableTemplateSignatureEditPart extends AbstractRedefinableTem
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 
-
 		if(childEditPart instanceof RedefinableTemplateSignatureTemplateParameterCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getTemplateParameterRectangle();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			setupContentPane(pane); // FIXME each comparment should handle his
+									// content pane in his own way
 			pane.add(((RedefinableTemplateSignatureTemplateParameterCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
@@ -180,7 +179,9 @@ public class RedefinableTemplateSignatureEditPart extends AbstractRedefinableTem
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new RedefinableTemplateSignatureItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomRedefinableTemplateSignatureItemSemanticEditPolicy());
+		// XXX need an SCR to runtime to have another abstract superclass that
+		// would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -236,8 +237,7 @@ public class RedefinableTemplateSignatureEditPart extends AbstractRedefinableTem
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
 
-
-		//FIXME: workaround for #154536
+		// FIXME: workaround for #154536
 		result.getBounds().setSize(result.getPreferredSize());
 		return result;
 	}
@@ -1385,7 +1385,8 @@ public class RedefinableTemplateSignatureEditPart extends AbstractRedefinableTem
 	protected boolean removeFixedChild(EditPart childEditPart) {
 		if(childEditPart instanceof RedefinableTemplateSignatureTemplateParameterCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getTemplateParameterRectangle();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			setupContentPane(pane); // FIXME each comparment should handle his
+									// content pane in his own way
 			pane.remove(((RedefinableTemplateSignatureTemplateParameterCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}

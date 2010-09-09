@@ -407,9 +407,6 @@ public class AssociationBranchRoleEditPart extends LabelEditPart implements ITex
 			}
 		}
 
-
-
-
 		super.handleNotificationEvent(event);
 	}
 

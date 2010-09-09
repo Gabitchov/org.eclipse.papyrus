@@ -709,9 +709,6 @@ public class AssociationClassRoleSourceEditPart extends LabelEditPart implements
 			}
 		}
 
-
-
-
 		super.handleNotificationEvent(event);
 	}
 

@@ -50,6 +50,7 @@ import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.ClazzDiagramChangeStereotypedShapeEditpolicy;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.CustomGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.ShapeNamedElementLayoutEditPolicy;
+import org.eclipse.papyrus.diagram.clazz.custom.policies.itemsemantic.CustomShapeNamedElementItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.ShapeNamedElementItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
@@ -108,7 +109,9 @@ AbstractShapeEditPart {
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new ShapeNamedElementLayoutEditPolicy());
 		installEditPolicy(ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY, new ClazzDiagramChangeStereotypedShapeEditpolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomShapeNamedElementItemSemanticEditPolicy());
+		// XXX need an SCR to runtime to have another abstract superclass that
+		// would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 

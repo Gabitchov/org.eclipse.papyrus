@@ -23,10 +23,12 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalC
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
+import org.eclipse.papyrus.diagram.clazz.custom.command.BranchDependenctReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.command.CAssociationClassCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.command.CAssociationReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClass2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyBranchEditPart;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.common.command.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.uml2.uml.Association;
@@ -57,6 +59,8 @@ public class CustomAssociationItemSemanticEditPolicy extends org.eclipse.papyrus
 			return getGEFWrapper(new CAssociationReorientCommand(req));
 		case AssociationEditPart.VISUAL_ID:
 			return getGEFWrapper(new CAssociationReorientCommand(req));
+		case DependencyBranchEditPart.VISUAL_ID:
+			return getGEFWrapper(new BranchDependenctReorientCommand(req));
 		}
 		return super.getReorientRelationshipCommand(req);
 	}

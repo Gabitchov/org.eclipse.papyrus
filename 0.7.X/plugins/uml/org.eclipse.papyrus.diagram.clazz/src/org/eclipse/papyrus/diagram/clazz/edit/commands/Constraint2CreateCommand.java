@@ -76,7 +76,6 @@ public class Constraint2CreateCommand extends EditElementCommand {
 	@Override
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -93,10 +92,7 @@ public class Constraint2CreateCommand extends EditElementCommand {
 	@Override
 	public boolean canExecute() {
 
-
 		return true;
-
-
 
 	}
 
@@ -106,13 +102,10 @@ public class Constraint2CreateCommand extends EditElementCommand {
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
-
 		Constraint newElement = UMLFactory.eINSTANCE.createConstraint();
 
 		Package owner = (Package)getElementToEdit();
 		owner.getPackagedElements().add(newElement);
-
 
 		ElementInitializers.getInstance().init_Constraint_3029(newElement);
 

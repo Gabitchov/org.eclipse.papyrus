@@ -407,9 +407,6 @@ public class AssociationName3EditPart extends LabelEditPart implements ITextAwar
 			}
 		}
 
-
-
-
 		super.handleNotificationEvent(event);
 	}
 
