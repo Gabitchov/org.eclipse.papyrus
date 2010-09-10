@@ -1,6 +1,9 @@
 [comment encoding = UTF-8 /]
 [module generateReport('http://www.eclipse.org/emf/compare/diff/1.1','http://www.eclipse.org/emf/2002/Ecore','http://www.eclipse.org/uml2/3.0.0/UML')/]
+
 [import common/]
+[import attributeChange/]
+[import referenceChange/]
 
 [template public generateReport(d : DiffModel)]
 	
@@ -62,18 +65,6 @@
 [/for]
 [/template]
 
-[template public processAttributeChange(el : AttributeChange)]
-[if not el.attribute.oclIsInvalid() and not el.attribute.oclIsUndefined()]
-<tr><td>[el.attribute.name/]</td><td>[el.leftElement.eGet(el.attribute)/]</td><td>[el.rightElement.eGet(el.attribute)/]</td></tr>
-[/if]
-[/template]
-
-[template public processReferenceChange(el : ReferenceChange)]
-[if not el.reference.oclIsUndefined() and not el.reference.oclIsInvalid()]
-<tr><td>[el.reference.name/]</td><td>[elementName(el.leftElement.eGet(el.reference))/]</td><td>[elementName(el.rightElement.eGet(el.reference))/]</td></tr>
-[/if]
-[/template]
-
 [template public processConflictingDiffElement(el : ConflictingDiffElement)]
 <tr>
 <td>[el.kind/]</td><td>ConflictingDiffElement</td><td>[el.originElement/]</td><td>[el.leftParent/]</td><td>[el.rightParent/]</td>
@@ -91,7 +82,3 @@
 <td>[el.kind/]</td><td>ResourceDiff</td>
 </tr>
 [/template]
-
-[query public attributeChanges(element : DiffElement) : Sequence(AttributeChange) = element.subDiffElements->select(attr: DiffElement| attr.oclIsKindOf(AttributeChange))/]
-
-[query public referenceChanges(element : DiffElement) : Sequence(ReferenceChange) = element.subDiffElements->select(attr: DiffElement| attr.oclIsKindOf(ReferenceChange))/]

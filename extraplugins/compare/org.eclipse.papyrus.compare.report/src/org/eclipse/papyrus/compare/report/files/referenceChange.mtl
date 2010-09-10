@@ -1,0 +1,11 @@
+[comment encoding = UTF-8 /]
+[module referenceChange('http://www.eclipse.org/emf/compare/diff/1.1')/]
+[import common/]
+
+[template public processReferenceChange(el : ReferenceChange)]
+[if not el.reference.oclIsUndefined() and not el.reference.oclIsInvalid()]
+<tr><td>[el.reference.name/]</td><td>[elementName(el.leftElement.eGet(el.reference))/]</td><td>[elementName(el.rightElement.eGet(el.reference))/]</td></tr>
+[/if]
+[/template]
+
+[query public referenceChanges(element : DiffElement) : Sequence(ReferenceChange) = element.subDiffElements->select(attr: DiffElement| attr.oclIsKindOf(ReferenceChange))/]
