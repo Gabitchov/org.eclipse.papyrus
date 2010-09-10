@@ -1,11 +1,113 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?eclipse version="3.4"?>
 
+<!-- SysML ModelExplorer customization -->
 <plugin>
-   <extension point="org.eclipse.gmt.modisco.infra.browser.custom.core.registration">
-      <browserCustomization file="resources/SysMLDefaultExplorerCustomization.uiCustom"/>
-   </extension>
-   <extension point="org.eclipse.gmt.modisco.infra.query.registration">
-      <modelqueryset file="resources/SysMLDefaultExplorerQueries.querySet"/>
-   </extension>
+
+<extension point="org.eclipse.gmt.modisco.infra.browser.custom.core.registration">
+	<browserCustomization file="resources/SysMLDefaultExplorerCustomization.uiCustom"/>
+</extension>
+   
+<extension point="org.eclipse.gmt.modisco.infra.query.registration">
+	<modelqueryset file="resources/SysMLDefaultExplorerQueries.querySet"/>
+</extension>
+
+<!-- This declaration is added in order command (DeleteCommandHandler) status to be
+     verified (isVisible and isEnabled) before any attempt to execute the command, 
+     and to mask the command in case it is not supported or executable.
+  -->
+<extension point="org.eclipse.ui.startup">
+	<startup class="org.eclipse.papyrus.sysml.modelexplorer.Activator"/>
+</extension>
+
+<!-- Creation command declarations -->
+<extension point="org.eclipse.ui.commands">
+
+	<!-- Creation command : Block -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		name="Create a new Block" description="Create a new Block"
+		defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.BlockHandler"
+		id="org.eclipse.papyrus.sysml.modelexplorer.BlockCreateCommand">
+	</command>
+	
+	<!-- Creation command : InOut FlowPort -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		name="Create a new InOut FlowPort" description="Create a new InOut FlowPort"
+		defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.InOutFlowPortHandler"
+		id="org.eclipse.papyrus.sysml.modelexplorer.InOutFlowPortCreateCommand">
+	</command>
+
+	<!-- Creation command : In FlowPort -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		name="Create a new InFlowPort" description="Create a new In FlowPort"
+		defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.InFlowPortHandler"
+		id="org.eclipse.papyrus.sysml.modelexplorer.InFlowPortCreateCommand">
+	</command>
+
+	<!-- Creation command : Out FlowPort -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		name="Create a new out FlowPort" description="Create a new Out FlowPort"
+		defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.OutFlowPortHandler"
+		id="org.eclipse.papyrus.sysml.modelexplorer.OutFlowPortCreateCommand">
+	</command>
+
+</extension>
+
+<!-- Creation command menu -->
+<extension point="org.eclipse.ui.menus">
+
+	<!-- Sub-menu declaration -->	 
+	<menuContribution locationURI="popup:org.eclipse.papyrus.modelexplorer.modelexplorer.popup" allPopups="false">
+		<menu id="org.eclipse.papyrus.modelexplorer.popupmenu.createsysmlchild"
+			label="New SysML Child">
+		</menu>
+	</menuContribution>
+	
+	<!-- Create SysML element menu content -->
+	<menuContribution locationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.createsysmlchild" allPopups="false">
+    
+		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.BlockCreateCommand"
+			icon="platform:/plugin/org.eclipse.papyrus.sysml.edit/icons/full/obj16/Block.gif"
+			label="Create a new Block" tooltip="Create a new Block" style="push">
+			<visibleWhen checkEnabled="true"/>
+		</command>
+
+		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.InOutFlowPortCreateCommand"
+			icon="platform:/plugin/org.eclipse.papyrus.sysml.edit/icons/full/obj16/FlowPort.gif"
+			label="Create a new InOut FlowPort" tooltip="Create a new InOut FlowPort" style="push">
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.InFlowPortCreateCommand"
+			icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_IN_A.gif"
+			label="Create a new In FlowPort" tooltip="Create a new In FlowPort" style="push">
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.OutFlowPortCreateCommand"
+			icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_OUT_A.gif"
+			label="Create a new Out FlowPort" tooltip="Create a new Out FlowPort" style="push">
+			<visibleWhen checkEnabled="true"/>
+		</command>		
+	
+	</menuContribution>
+</extension>
+
+<!-- Key bindings associated to creation commands -->
+<extension point="org.eclipse.ui.bindings">
+
+	<!-- "CTRL+I" : Create In FlowPort -->
+	<key commandId="org.eclipse.papyrus.sysml.modelexplorer.InFlowPortCreateCommand"
+		schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+		sequence="CTRL+I">
+	</key>
+
+	<!-- "CTRL+O" : Create Out FlowPort -->	
+	<key commandId="org.eclipse.papyrus.sysml.modelexplorer.OutFlowPortCreateCommand"
+		schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+		sequence="CTRL+O">
+   </key>
+   
+</extension>
+
 </plugin>
