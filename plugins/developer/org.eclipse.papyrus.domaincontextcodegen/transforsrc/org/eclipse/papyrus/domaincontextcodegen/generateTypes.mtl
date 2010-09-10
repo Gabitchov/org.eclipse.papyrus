@@ -1,5 +1,5 @@
 [comment encoding = UTF-8 /]
-[module generate('http://www.eclipse.org/papyrus/2010/domaincontextcodegen','http://www.eclipse.org/emf/2002/Ecore')/]
+[module generateTypes('http://www.eclipse.org/papyrus/2010/domaincontextcodegen','http://www.eclipse.org/emf/2002/Ecore')/]
 
 [import org::eclipse::papyrus::domaincontextcodegen::generateElementTypeClass/]
 [import org::eclipse::papyrus::domaincontextcodegen::generateContextTypeClass /]
@@ -13,9 +13,9 @@
 	[comment @main /]
 	[comment this template is used to generate all the plugin/]
 	
-	[domain.generateElementTypeClass()/]
-	[domain.generateContextTypeClass()/]
-	[domain.generateElementHandler()/]
-	[domain.generateHideDomainContext()/]
+	[domain.generateElementTypeClass()/]	
+	[comment domain.generateContextTypeClass()/]
+	[comment domain.generateElementHandler()/]
+	[comment domain.generateHideDomainContext()/]
 	[domain.generateXMLElementType()/]
 [/template]

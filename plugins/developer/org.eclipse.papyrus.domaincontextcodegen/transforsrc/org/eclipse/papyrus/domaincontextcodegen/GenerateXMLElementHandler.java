@@ -25,25 +25,25 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 /**
- * Entry point of the 'GenerateElementTypeClass' generation module.
+ * Entry point of the 'GenerateXMLElementHandlers' generation module.
  * 
  * @generated
  */
-public class GenerateElementTypeClass extends AbstractAcceleoGenerator {
+public class GenerateXMLElementHandler extends AbstractAcceleoGenerator {
 
 	/**
 	 * The name of the module.
 	 * 
 	 * @generated
 	 */
-	public static final String MODULE_FILE_NAME = "generateElementTypeClass";
+	public static final String MODULE_FILE_NAME = "generateXMLElementHandler";
 
 	/**
 	 * The name of the templates that are to be generated.
 	 * 
 	 * @generated
 	 */
-	public static final String[] TEMPLATE_NAMES = { "generateElementTypeClass", };
+	public static final String[] TEMPLATE_NAMES = { "generateXMLElementHandler", };
 
 	/**
 	 * Allows the public constructor to be used. Note that a generator created
@@ -56,7 +56,7 @@ public class GenerateElementTypeClass extends AbstractAcceleoGenerator {
 	 * 
 	 * @generated
 	 */
-	public GenerateElementTypeClass() {
+	public GenerateXMLElementHandler() {
 		// Empty implementation
 	}
 
@@ -76,7 +76,7 @@ public class GenerateElementTypeClass extends AbstractAcceleoGenerator {
 	 *         the model cannot be loaded.
 	 * @generated
 	 */
-	public GenerateElementTypeClass(URI modelURI, File targetFolder, List<? extends Object> arguments) throws IOException {
+	public GenerateXMLElementHandler(URI modelURI, File targetFolder, List<? extends Object> arguments) throws IOException {
 		initialize(modelURI, targetFolder, arguments);
 	}
 
@@ -96,7 +96,7 @@ public class GenerateElementTypeClass extends AbstractAcceleoGenerator {
 	 *         This can be thrown in two scenarios : the module cannot be found, or it cannot be loaded.
 	 * @generated
 	 */
-	public GenerateElementTypeClass(EObject model, File targetFolder, List<? extends Object> arguments) throws IOException {
+	public GenerateXMLElementHandler(EObject model, File targetFolder, List<? extends Object> arguments) throws IOException {
 		initialize(model, targetFolder, arguments);
 	}
 
@@ -118,7 +118,7 @@ public class GenerateElementTypeClass extends AbstractAcceleoGenerator {
 				for(int i = 2; i < args.length; i++) {
 					arguments.add(args[i]);
 				}
-				GenerateElementTypeClass generator = new GenerateElementTypeClass(modelURI, folder, arguments);
+				GenerateXMLElementHandler generator = new GenerateXMLElementHandler(modelURI, folder, arguments);
 				generator.doGenerate(new BasicMonitor());
 			}
 		} catch (IOException e) {

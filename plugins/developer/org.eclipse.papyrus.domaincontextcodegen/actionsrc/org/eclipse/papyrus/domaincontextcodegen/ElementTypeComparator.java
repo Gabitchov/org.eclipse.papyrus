@@ -12,17 +12,19 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.domaincontextcodegen;
+
 import java.util.Comparator;
+
 /**
  * Comparator for element type in order to sort them
- *
+ * 
  */
 public class ElementTypeComparator implements Comparator<ElementType> {
-   
-	public int compare(ElementType o1, ElementType o2) {        
-		String name1=o1.getSpecificName();
-		String name2=o2.getSpecificName();
-        name1.compareTo(name2);
-        return  name1.compareTo(name2);
+
+	public int compare(ElementType o1, ElementType o2) {
+		String name1 = o1.getSpecificName();
+		String name2 = o2.getSpecificName();
+		name1.compareTo(name2);
+		return name1.compareTo(name2);
 	}
 }

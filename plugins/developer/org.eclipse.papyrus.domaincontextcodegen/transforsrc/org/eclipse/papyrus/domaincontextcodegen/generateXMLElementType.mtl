@@ -5,94 +5,46 @@
 	[comment @main /]
 	[comment this template is used to generate the plugin.xml /]
 	
-[file ('xmlElementTypes.xml', false, 'UTF-8')]
+[file (domain.typeProjectName+'/'+'xmlElementTypes.xml', false, 'UTF-8')]
 <?xml version="1.0" encoding="UTF-8"?>
-	<?eclipse version="3.4"?>
-	<plugin>
+<?eclipse version="3.4"?>
+<plugin>
 	
-	[comment generation of all elementType/]
-	<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
-		<metamodel nsURI="[domain.metamodel.nsURI/]">
-	<!-- declaration of elementTypes-->
-	[for (type:ElementType|domain.elementTypes)]
-			<metamodelType eclass="[type.metaClass.name/]" id="[domain.elementTypeIDPrefix+'.'+type.metaClass.name/]"
-				edithelper="[domain.defaultHelperPath/]"
-				kind="[type.kind/]" name="[domain.elementTypeNamePrefix+'::'+type.metaClass.name/]">
-				<param name="semanticHint" value="[domain.elementTypeNamePrefix+'::'+type.metaClass.name/]">
-				</param>
-			</metamodelType>
-	[/for ]
-	[comment generation of all advicebindings/]
-	[for (advice: AdviceBinding|domain.advicebindings)]
-		<!-- declaration of advice-->
-			<adviceBinding
-         		class="[advice.advicePath/]"
-         		id="[advice.adviceID/]"
-         		inheritance="[advice.inheritance/]"
-         		typeId="[domain.elementTypeIDPrefix+'.'+advice.elementTypeRef.metaClass.name/]">
-   			</adviceBinding>	
-   [/for]
-		</metamodel>
-	</extension>
+[comment generation of all elementType/]
+<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
+
+	<metamodel nsURI="[domain.metamodel.nsURI/]">
 	
-	[comment declare the context /]
-	<!-- Creating a default binding -->
-	<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
-		<!-- Context declaration -->
-		<clientContext id="[domain.IClientContextID/]">
-     		<matcher
-           		class="[domain.matcherPatch/]">
-    		</matcher>
-		</clientContext>
-		[comment generation of all bindings/]
-	[for (binding: Binding|domain.bindings)]
-		<!-- Bindings declaration -->
-		<binding context="[domain.IClientContextID/]">
-			<elementType pattern="[binding.elementTypePattern/]" />
-   			<advice
-   			[if ]
-      
-         		ref="[binding.advice.adviceID/]">
- 		[else]
- 	[/if]
-   			</advice>
-		</binding>
-	[/for ]
-	</extension>
+	<!-- Declaration of IElementTypes -->
 	
-	[comment generation of all command attached to an handler /]
-	<!-- declaration of all command attached to a handler-->
-	<extension point="org.eclipse.ui.commands">
-	[for (type:ElementType|domain.elementTypes)]
-		[if (type.metaClass.abstract=false)]
-		<command categoryId="org.eclipse.papyrus.editor.category"
-			defaultHandler="[domain.projectName.concat('.handler.')+type.metaClass.name/]Handler"
-			description="Create a new [type.metaClass.name/]"
-			id="[domain.projectName+'.'+type.metaClass.name+'.handler'/]" name="Create a new [type.metaClass.name/]" />
-		[/if]
-	[/for ]
+[for (type:ElementType|domain.elementTypes.types)]
+	<!-- IElementTypes for [type.metaClass.name/] -->
+	<metamodelType eclass="[type.metaClass.name/]" id="[domain.elementTypeIDPrefix+'.'+type.metaClass.name/]"
+		edithelper="[type.edithelper_EditHelperAdvicePath/]"
+		kind="[type.kind/]" name="[domain.elementTypeNamePrefix+'::'+type.metaClass.name/]">
+		<param name="semanticHint" value="[domain.elementTypeNamePrefix+'::'+type.metaClass.name/]"/>
+	</metamodelType>
 	
-	</extension>
-		[comment generation of all menus /]
+[/for]
+
+[comment generation of all advicebindings/]
+	<!-- Declaration of AdviceBindings -->
+	
+[for (advice: AdviceBinding|domain.advicebindings)]
+	<!-- AdviceBinding for [advice.adviceID/] -->		
+	<adviceBinding id="[advice.adviceID/]"
+		class="[advice.advicePath/]" inheritance="[advice.inheritance/]"
+		typeId="[domain.elementTypeIDPrefix+'.'+advice.elementTypeRef.metaClass.name/]">
+	</adviceBinding>
 		
-		<!-- declaration of all menus attached to a handler-->
-	<extension point="org.eclipse.ui.menus">
-       <menuContribution
-          allPopups="false"
-          locationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.createchild">
-          [for (type:ElementType|domain.elementTypes)]
-          [if (type.metaClass.abstract=false)]
-          <command commandId="[domain.projectName+'.'+type.metaClass.name+'.handler'/]"
-					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/[type.metaClass.name/].gif"
-					label="Create a new [type.metaClass.name/]" style="push" tooltip="Create a new [type.metaClass.name/]">
-					<visibleWhen checkEnabled="true">
-					</visibleWhen>
-		 </command>
-		 [/if]
-		 [/for ]
-       </menuContribution>
-	</extension>
-    </plugin>
-	[/file]
+[/for]
+   
+	</metamodel>
+
+</extension>
+
+</plugin>
+
+[/file]
 	
 [/template]

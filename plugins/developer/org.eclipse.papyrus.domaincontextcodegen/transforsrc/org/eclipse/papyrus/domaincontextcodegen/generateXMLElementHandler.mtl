@@ -1,0 +1,54 @@
+[comment encoding = UTF-8 /]
+[module generateXMLElementHandler('http://www.eclipse.org/papyrus/2010/domaincontextcodegen','http://www.eclipse.org/emf/2002/Ecore')/]
+
+[template public generateXMLElementHandler(domain : DomainContext)]
+	[comment @main /]
+	[comment this template is used to generate the plugin.xml /]
+	
+[file (domain.handlerProjectName+'/'+'xmlElementHandlers.xml', false, 'UTF-8')]
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+[comment generation of all command attached to an handler /]
+<!-- Creation command declarations -->
+<extension point="org.eclipse.ui.commands">
+[for (type:ElementType|domain.elementTypes.types)]
+	[if (type.metaClass.abstract=false)]
+	<!-- Creation command for [type.metaClass.name/] -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="[domain.handlerProjectName+'.'+type.metaClass.name+'CreateCommand'/]"
+		name="Create a new [type.metaClass.name/]" description="Create a new [type.metaClass.name/]"
+		defaultHandler="[domain.handlerProjectName.concat('.handler.')+type.metaClass.name/]Handler">
+	</command>
+	
+	[/if]
+[/for ]
+</extension>
+
+[comment generation of all menus /]
+	
+<!-- UI Menu declaration for creation commands -->
+<extension point="org.eclipse.ui.menus">
+
+	<menuContribution locationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.createchild"
+		allPopups="false">
+	
+	[for (type:ElementType|domain.elementTypes.types)]
+	[if (type.metaClass.abstract=false)]
+		<!-- Creation menu action for [type.metaClass.name/] -->
+		<command commandId="[domain.handlerProjectName+'.'+type.metaClass.name+'CreateCommand'/]"
+			label="Create a new [type.metaClass.name/]" tooltip="Create a new [type.metaClass.name/]" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/[type.metaClass.name/].gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+	[/if]
+	[/for ]
+	</menuContribution>
+	
+</extension>
+</plugin>
+[/file]
+
+[/template]
