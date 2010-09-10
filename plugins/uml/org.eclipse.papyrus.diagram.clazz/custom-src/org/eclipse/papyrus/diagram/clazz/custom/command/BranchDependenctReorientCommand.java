@@ -20,26 +20,30 @@ import org.eclipse.papyrus.diagram.clazz.edit.commands.Dependency2ReorientComman
 import org.eclipse.papyrus.diagram.clazz.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
+
 /**
- * because of the nature of this relation the test about can execute has to be change 
- *
+ * because of the nature of this relation the test about can execute has to be change
+ * 
  */
 public class BranchDependenctReorientCommand extends Dependency2ReorientCommand {
 
 	private EObject oldNamedElementEnd;
+
 	private EObject newNamedElementEnd;
+
 	public BranchDependenctReorientCommand(ReorientRelationshipRequest request) {
 		super(request);
 		oldNamedElementEnd = request.getOldRelationshipEnd();
 		newNamedElementEnd = request.getNewRelationshipEnd();
 	}
+
 	@Override
 	protected boolean canReorientSource() {
 		if(!(oldNamedElementEnd instanceof NamedElement && newNamedElementEnd instanceof NamedElement)) {
 			return false;
 		}
 		//modification from the generated code
-		if(getLink().getSuppliers().size() <1) {
+		if(getLink().getSuppliers().size() < 1) {
 			return false;
 		}
 		NamedElement target = (NamedElement)getLink().getSuppliers().get(0);
@@ -50,6 +54,7 @@ public class BranchDependenctReorientCommand extends Dependency2ReorientCommand 
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistDependency_4018(container, getLink(), getNewSource(), target);
 
 	}
+
 	@Override
 	protected boolean canReorientTarget() {
 		if(!(oldNamedElementEnd instanceof NamedElement && newNamedElementEnd instanceof NamedElement)) {

@@ -21,11 +21,11 @@ import org.eclipse.papyrus.diagram.clazz.edit.policies.DurationObservationItemSe
 
 
 /**
- * this class has been specialized in order to manage reconnection of multidependency 
- *
+ * this class has been specialized in order to manage reconnection of multidependency
+ * 
  */
-public class CustomDurationObservationItemSemanticEditPolicy extends
-		DurationObservationItemSemanticEditPolicy {
+public class CustomDurationObservationItemSemanticEditPolicy extends DurationObservationItemSemanticEditPolicy {
+
 	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 		switch(getVisualID(req)) {
 		case DependencyBranchEditPart.VISUAL_ID:

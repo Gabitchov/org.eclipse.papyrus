@@ -284,10 +284,10 @@ public class MultiAssociationHelper extends ElementHelper {
 
 		// ---------------------------------------------------------
 		// help to debug
-//		System.err.println("\n+ 0. creation of variables");
-//		System.err.println("+-> editting domain"+ getEditingDomain());
-//		System.err.println("+-> sourceEditpart:" + sourceEditPart);
-//		System.err.println("+-> targetEditPart:" + targetEditPart);
+		//		System.err.println("\n+ 0. creation of variables");
+		//		System.err.println("+-> editting domain"+ getEditingDomain());
+		//		System.err.println("+-> sourceEditpart:" + sourceEditPart);
+		//		System.err.println("+-> targetEditPart:" + targetEditPart);
 		// ---------------------------------------------------------
 
 		// 1. initialization
@@ -327,29 +327,29 @@ public class MultiAssociationHelper extends ElementHelper {
 			parentView = (View)associationView.eContainer();
 			// ---------------------------------------------------------
 			// help to debug
-//			System.err.println("+ 1. initialization");
-//			System.err.println("+-> sourceLocation:" + sourceLocation);
-//			System.err.println("+-> targetLocation:" + targetLocation);
-//			System.err.println("+-> AssociationView:" + associationView);
-//			System.err.println("+-> association:" + association);
-//			System.err.println("+-> nodeLocation:" + nodeLocation);
-//			System.err.println("+-> newSemanticElement:" + newSemanticElement);
-//			System.err.println("+-> feature:" + feature);
-//			System.err.println("+-> parentView:" + parentView);
+			//			System.err.println("+ 1. initialization");
+			//			System.err.println("+-> sourceLocation:" + sourceLocation);
+			//			System.err.println("+-> targetLocation:" + targetLocation);
+			//			System.err.println("+-> AssociationView:" + associationView);
+			//			System.err.println("+-> association:" + association);
+			//			System.err.println("+-> nodeLocation:" + nodeLocation);
+			//			System.err.println("+-> newSemanticElement:" + newSemanticElement);
+			//			System.err.println("+-> feature:" + feature);
+			//			System.err.println("+-> parentView:" + parentView);
 			// ---------------------------------------------------------
 			// 2. Remove the view of the association
-			DeleteCommand deleteCommand=new DeleteLinkDuringCreationCommand(getEditingDomain(), (Edge)associationView, sourceEditPart.getViewer());
+			DeleteCommand deleteCommand = new DeleteLinkDuringCreationCommand(getEditingDomain(), (Edge)associationView, sourceEditPart.getViewer());
 			deleteCommand.setReuseParentTransaction(true);
 			Command removecommand = new ICommandProxy(deleteCommand);
 			//to execute
 			((CompoundCommand)command).add(removecommand);
-			
+
 			//((CompoundCommand)command).add(removecommand);
 
 			// ---------------------------------------------------------
 			// help to debug
-//			System.err.println("+ 2. Remove the view of the association");
-//			System.err.println("+-> command:" + command.canExecute());
+			//			System.err.println("+ 2. Remove the view of the association");
+			//			System.err.println("+-> command:" + command.canExecute());
 			// ---------------------------------------------------------
 
 
@@ -396,11 +396,11 @@ public class MultiAssociationHelper extends ElementHelper {
 			((CustomDeferredCreateConnectionViewCommand)thirdBranchCommand).setElement(association);
 			((CompoundCommand)command).add(new ICommandProxy(thirdBranchCommand));
 
-			
+
 
 		}
 		return command;
-		
+
 	}
 
 	/**
@@ -453,7 +453,7 @@ public class MultiAssociationHelper extends ElementHelper {
 			((CompoundCommand)command).add(new ICommandProxy(aBranchCommand));
 			//System.err.println("1. add the branch graphically, can execute?" + command.canExecute());
 			return command;
-			
+
 		}
 		return UnexecutableCommand.INSTANCE;
 	}

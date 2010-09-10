@@ -72,7 +72,7 @@ public class CustomAssociationNodeItemSemanticEditPolicy extends AssociationNode
 		if(UMLElementTypes.AssociationClass_4017 == req.getElementType()) {
 			return UnexecutableCommand.INSTANCE;
 		}
-		
+
 		return super.getStartCreateRelationshipCommand(req);
 	}
 }

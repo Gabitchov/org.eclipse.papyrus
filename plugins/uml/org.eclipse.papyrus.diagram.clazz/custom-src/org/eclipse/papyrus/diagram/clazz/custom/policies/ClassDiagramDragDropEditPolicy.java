@@ -261,7 +261,7 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 		CompositeCommand cc = new CompositeCommand(CONTAINED_CLASS_DROP_TO_COMPARTMENT);
 		cc = getDefaultDropNodeCommand(nodeVISUALID, dropRequest.getLocation(), droppedElement);
 
-		if((View)containmentHelper.findEditPartFor(getViewer().getEditPartRegistry(), droppedElement)!=null){
+		if((View)containmentHelper.findEditPartFor(getViewer().getEditPartRegistry(), droppedElement) != null) {
 			View droppedView = (View)containmentHelper.findEditPartFor(getViewer().getEditPartRegistry(), droppedElement).getModel();
 
 			containmentHelper.deleteIncomingContainmentLinksFor(cc, droppedView);

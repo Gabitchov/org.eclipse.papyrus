@@ -18,12 +18,13 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import org.eclipse.papyrus.diagram.clazz.custom.command.BranchDependenctReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyBranchEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.InstanceSpecificationItemSemanticEditPolicy;
+
 /**
- * this class has been specialized in order to manage reconnection of multidependency 
- *
+ * this class has been specialized in order to manage reconnection of multidependency
+ * 
  */
-public class CustomInstanceSpecificationItemSemanticEditPolicy extends
-		InstanceSpecificationItemSemanticEditPolicy {
+public class CustomInstanceSpecificationItemSemanticEditPolicy extends InstanceSpecificationItemSemanticEditPolicy {
+
 	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 		switch(getVisualID(req)) {
 		case DependencyBranchEditPart.VISUAL_ID:

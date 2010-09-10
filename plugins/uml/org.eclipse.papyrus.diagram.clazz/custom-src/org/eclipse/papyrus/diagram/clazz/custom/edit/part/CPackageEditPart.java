@@ -40,7 +40,7 @@ public class CPackageEditPart extends PackageEditPart {
 		DefaultSizeNodeFigure result = new PackageNodePlateFigure(200, 100);
 		return result;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */

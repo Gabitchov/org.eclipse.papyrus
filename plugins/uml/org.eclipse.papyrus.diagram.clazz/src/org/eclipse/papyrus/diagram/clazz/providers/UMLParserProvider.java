@@ -41,6 +41,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeRealization
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeSubstitutionEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeUsageEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotyperGeneralizationEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationBranchMutliplicityEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassName2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassRoleSourceEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassRoleTargetEditPart;
@@ -599,6 +600,26 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			associationName_6034Parser = parser;
 		}
 		return associationName_6034Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser associationName_6035Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getAssociationName_6035Parser() {
+		if(associationName_6035Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("srcRole{0}"); //$NON-NLS-1$
+			parser.setEditorPattern("srcRole{0}"); //$NON-NLS-1$
+			parser.setEditPattern("srcRole{0}"); //$NON-NLS-1$
+			associationName_6035Parser = parser;
+		}
+		return associationName_6035Parser;
 	}
 
 	/**
@@ -1391,6 +1412,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getAssociationName_6033Parser();
 		case AssociationMultiplictyTargetEditPart.VISUAL_ID:
 			return getAssociationName_6034Parser();
+		case AssociationBranchMutliplicityEditPart.VISUAL_ID:
+			return getAssociationName_6035Parser();
 		case AppliedStereotyperGeneralizationEditPart.VISUAL_ID:
 			return getGeneralizationIsSubstitutable_6007Parser();
 		case AppliedStereotypeInterfaceRealizationEditPart.VISUAL_ID:

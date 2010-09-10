@@ -460,10 +460,14 @@ public class ContainmentHelper extends ElementHelper {
 			}
 		}
 	}
+
 	/**
 	 * look for a editpart from the semantic element
-	 * @param editPartRegistry the map of editpart
-	 * @param droppedElement the semantic element
+	 * 
+	 * @param editPartRegistry
+	 *        the map of editpart
+	 * @param droppedElement
+	 *        the semantic element
 	 * @return can return null if nothing is found
 	 */
 	public EditPart findEditPartFor(Map editPartRegistry, Element droppedElement) {

@@ -115,8 +115,7 @@ NamedElementEditPart
 
 		if(childEditPart instanceof InstanceSpecificationSlotCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getSlotCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his
-									// content pane in his own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((InstanceSpecificationSlotCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
@@ -139,8 +138,7 @@ NamedElementEditPart
 		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
 		installEditPolicy(ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY, new ShowHideClassifierContentsEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomInstanceSpecificationItemSemanticEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that
-		// would let children add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -1371,8 +1369,7 @@ NamedElementEditPart
 		}
 		if(childEditPart instanceof InstanceSpecificationSlotCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getSlotCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his
-									// content pane in his own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.remove(((InstanceSpecificationSlotCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}

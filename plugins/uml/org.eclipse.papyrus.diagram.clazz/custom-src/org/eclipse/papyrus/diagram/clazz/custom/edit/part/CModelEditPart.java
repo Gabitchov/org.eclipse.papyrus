@@ -28,7 +28,7 @@ import org.eclipse.papyrus.diagram.common.figure.node.PackageNodePlateFigure;
 public class CModelEditPart extends ModelEditPartTN {
 
 	protected static final String ICONS_PATH = "icons/Triangle.gif"; //$NON-NLS-1$
-	
+
 	public CModelEditPart(View view) {
 		super(view);
 	}
@@ -41,12 +41,13 @@ public class CModelEditPart extends ModelEditPartTN {
 		DefaultSizeNodeFigure result = new PackageNodePlateFigure(200, 100);
 		return result;
 	}
+
 	/**
 	 * {@inheritDoc}
 	 */
 	protected IFigure createNodeShape() {
-	 primaryShape = new PackageFigure();
-	 ((PackageFigure)primaryShape).setTagIcon(Activator.getPluginIconImage(Activator.ID,ICONS_PATH));
-	 return primaryShape;
+		primaryShape = new PackageFigure();
+		((PackageFigure)primaryShape).setTagIcon(Activator.getPluginIconImage(Activator.ID, ICONS_PATH));
+		return primaryShape;
 	}
 }

@@ -78,6 +78,6 @@ public class CustomAssociationBranchItemSemanticEditPolicy extends AssociationBr
 
 		return super.getStartCreateRelationshipCommand(req);
 	}
-	
-	
+
+
 }

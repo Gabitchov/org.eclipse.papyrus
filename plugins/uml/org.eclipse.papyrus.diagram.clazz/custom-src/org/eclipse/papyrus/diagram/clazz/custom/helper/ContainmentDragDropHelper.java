@@ -37,8 +37,9 @@ public class ContainmentDragDropHelper extends ContainmentHelper {
 
 	/**
 	 * Instantiates a new containment drag drop helper.
-	 *
-	 * @param editDomain the edit domain
+	 * 
+	 * @param editDomain
+	 *        the edit domain
 	 */
 	public ContainmentDragDropHelper(TransactionalEditingDomain editDomain) {
 		super(editDomain);

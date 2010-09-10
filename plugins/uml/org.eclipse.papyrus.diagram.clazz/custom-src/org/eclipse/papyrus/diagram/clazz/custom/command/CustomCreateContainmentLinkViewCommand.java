@@ -115,11 +115,11 @@ public class CustomCreateContainmentLinkViewCommand extends CommonDeferredCreate
 		EditPart sourceEP = sourceContainmentCircleEP.getParent();
 
 		//only top level classes can serve as a source
-//		if(sourceEP instanceof ClassEdiart) {
-		if (sourceElement instanceof org.eclipse.uml2.uml.Class) {
+		//		if(sourceEP instanceof ClassEdiart) {
+		if(sourceElement instanceof org.eclipse.uml2.uml.Class) {
 			org.eclipse.uml2.uml.Class container = (org.eclipse.uml2.uml.Class)sourceElement;
 			container.getNestedClassifiers().add((Classifier)targetElement);
-//		} else if(sourceEP instanceof PackageEditPart && !(sourceEP instanceof ModelEditPart)) {
+			//		} else if(sourceEP instanceof PackageEditPart && !(sourceEP instanceof ModelEditPart)) {
 		} else if(sourceElement instanceof org.eclipse.uml2.uml.Package) {
 			org.eclipse.uml2.uml.Package container = (org.eclipse.uml2.uml.Package)sourceElement;
 			container.getPackagedElements().add((PackageableElement)targetElement);
@@ -130,7 +130,7 @@ public class CustomCreateContainmentLinkViewCommand extends CommonDeferredCreate
 	}
 
 	private boolean containsLoop(Element sourceElement, Element targetElement) {
-		
+
 		if(sourceElement.equals(targetElement)) {
 			return true;
 		}

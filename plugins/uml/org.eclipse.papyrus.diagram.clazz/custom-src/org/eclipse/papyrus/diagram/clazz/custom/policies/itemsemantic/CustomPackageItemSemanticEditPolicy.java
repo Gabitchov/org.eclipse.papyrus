@@ -125,7 +125,7 @@ public class CustomPackageItemSemanticEditPolicy extends PackageItemSemanticEdit
 			case PackageImportEditPart.VISUAL_ID:
 			case PackageMergeEditPart.VISUAL_ID:
 			case TemplateBindingEditPart.VISUAL_ID:
-//			case AddedLinkEditPart.VISUAL_ID:
+				//			case AddedLinkEditPart.VISUAL_ID:
 				DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(destroyEltReq));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
@@ -146,7 +146,7 @@ public class CustomPackageItemSemanticEditPolicy extends PackageItemSemanticEdit
 			case PackageMergeEditPart.VISUAL_ID:
 			case ProfileApplicationEditPart.VISUAL_ID:
 			case TemplateBindingEditPart.VISUAL_ID:
-//			case AddedLinkEditPart.VISUAL_ID:
+				//			case AddedLinkEditPart.VISUAL_ID:
 				DestroyElementRequest destroyEltReq = new DestroyElementRequest(outgoingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(destroyEltReq));
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
@@ -171,20 +171,21 @@ public class CustomPackageItemSemanticEditPolicy extends PackageItemSemanticEdit
 	 * {@inheritDoc}
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
-		
+
 		ICommandProxy command = (ICommandProxy)getDestroyElementCommandGen(req);
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.add(command.getICommand());
-		
+
 		addDestroyIncomingContainmentLinksCommand(cmd);
 		ContainmentHelper.addDeleteOutgoingContainmentLinkViewCommands(getEditingDomain(), (View)getHost().getModel(), cmd);
 		return getGEFWrapper(cmd.reduce());
 	}
-	
+
 	/**
 	 * Adds the destroy incoming containment links command.
-	 *
-	 * @param cmd the cmd
+	 * 
+	 * @param cmd
+	 *        the cmd
 	 */
 	private void addDestroyIncomingContainmentLinksCommand(ICompositeCommand cmd) {
 		View view = (View)getHost().getModel();

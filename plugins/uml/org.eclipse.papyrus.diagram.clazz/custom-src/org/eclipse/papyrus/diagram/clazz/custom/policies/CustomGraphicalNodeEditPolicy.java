@@ -70,7 +70,7 @@ public class CustomGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 				} else {
 					return c;
 				}
-			}else if(request instanceof CreateConnectionViewRequest) {
+			} else if(request instanceof CreateConnectionViewRequest) {
 				Command c = getConnectionCompleteCommand((CreateConnectionViewRequest)request);
 				if((((CreateConnectionViewRequest)request).getConnectionViewDescriptor().getSemanticHint().equals(((IHintedType)UMLElementTypes.Link_4023).getSemanticHint()))) {
 

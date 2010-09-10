@@ -31,7 +31,7 @@ import org.eclipse.swt.widgets.Display;
 
 /**
  * the goal of this class is to allow changing the aspect of an element by taking in account its stereotype
- *
+ * 
  */
 public class ClazzDiagramChangeStereotypedShapeEditpolicy extends ChangeStereotypedShapeEditPolicy {
 
@@ -45,18 +45,20 @@ public class ClazzDiagramChangeStereotypedShapeEditpolicy extends ChangeStereoty
 					Display.getCurrent().asyncExec(new Runnable() {
 
 						public void run() {
-							if( part instanceof GraphicalEditPart){
+							if(part instanceof GraphicalEditPart) {
 
-								GraphicalEditPart gmfpart=( GraphicalEditPart)part;
-								ElementToStereotypedShape command= new ElementToStereotypedShape(gmfpart.getEditingDomain(), gmfpart);
+								GraphicalEditPart gmfpart = (GraphicalEditPart)part;
+								ElementToStereotypedShape command = new ElementToStereotypedShape(gmfpart.getEditingDomain(), gmfpart);
 								gmfpart.getEditingDomain().getCommandStack().execute(command);
 								Request deleteViewRequest = new GroupRequest(RequestConstants.REQ_DELETE);
-								Command deleteCommand= gmfpart.getCommand(deleteViewRequest);
+								Command deleteCommand = gmfpart.getCommand(deleteViewRequest);
 								gmfpart.getDiagramEditDomain().getDiagramCommandStack().execute(deleteCommand);
 							}
 
-						}});
-				}});
+						}
+					});
+				}
+			});
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -72,28 +74,28 @@ public class ClazzDiagramChangeStereotypedShapeEditpolicy extends ChangeStereoty
 					Display.getCurrent().asyncExec(new Runnable() {
 
 						public void run() {
-							if( part instanceof GraphicalEditPart){
+							if(part instanceof GraphicalEditPart) {
 
-								GraphicalEditPart gmfpart=( GraphicalEditPart)part;
-								DropObjectsRequest dropObjectsRequest= new DropObjectsRequest();
+								GraphicalEditPart gmfpart = (GraphicalEditPart)part;
+								DropObjectsRequest dropObjectsRequest = new DropObjectsRequest();
 								ArrayList<EObject> list = new ArrayList<EObject>();
 								list.add(gmfpart.resolveSemanticElement());
 								dropObjectsRequest.setObjects(list);
 								dropObjectsRequest.setLocation(gmfpart.getFigure().getBounds().getLocation());
-								Command command= gmfpart.getParent().getCommand(dropObjectsRequest);
+								Command command = gmfpart.getParent().getCommand(dropObjectsRequest);
 								gmfpart.getEditingDomain().getCommandStack().execute(new GEFtoEMFCommandWrapper(command));
 								Request deleteViewRequest = new GroupRequest(RequestConstants.REQ_DELETE);
-								Command deleteCommand= gmfpart.getCommand(deleteViewRequest);
+								Command deleteCommand = gmfpart.getCommand(deleteViewRequest);
 								gmfpart.getDiagramEditDomain().getDiagramCommandStack().execute(deleteCommand);
 							}
 
-						}});
-				}});
+						}
+					});
+				}
+			});
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 	}
 
 }
-
-

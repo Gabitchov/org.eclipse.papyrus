@@ -15,7 +15,6 @@ package org.eclipse.papyrus.diagram.clazz.edit.parts;
 
 import java.util.Collections;
 import java.util.List;
-
 import org.eclipse.draw2d.ConnectionLocator;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
@@ -79,12 +78,12 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class AssociationMultiplictyTargetEditPart extends LabelEditPart implements ITextAwareEditPart {
+public class AssociationBranchMutliplicityEditPart extends LabelEditPart implements ITextAwareEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 6034;
+	public static final int VISUAL_ID = 6035;
 
 	/**
 	 * @generated
@@ -124,13 +123,13 @@ public class AssociationMultiplictyTargetEditPart extends LabelEditPart implemen
 	 * @generated
 	 */
 	static {
-		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationMultiplictyTargetEditPart.VISUAL_ID), new Point(0, -20));
+		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationBranchMutliplicityEditPart.VISUAL_ID), new Point(0, 20));
 	}
 
 	/**
 	 * @generated
 	 */
-	public AssociationMultiplictyTargetEditPart(View view) {
+	public AssociationBranchMutliplicityEditPart(View view) {
 		super(view);
 	}
 
@@ -341,7 +340,7 @@ public class AssociationMultiplictyTargetEditPart extends LabelEditPart implemen
 	 */
 	public IParser getParser() {
 		if(parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.Association_4001, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationMultiplictyTargetEditPart.VISUAL_ID));
+			parser = UMLParserProvider.getParser(UMLElementTypes.Association_4019, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationBranchMutliplicityEditPart.VISUAL_ID));
 		}
 		return parser;
 	}
@@ -589,8 +588,7 @@ public class AssociationMultiplictyTargetEditPart extends LabelEditPart implemen
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
-	 * @return an <code>int</code> corresponding to the kind of direct editor, @see
-	 *         org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
+	 * @return an <code>int</code> corresponding to the kind of direct editor, @see org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
 	 * @generated
 	 */
 	public int getDirectEditionType() {
