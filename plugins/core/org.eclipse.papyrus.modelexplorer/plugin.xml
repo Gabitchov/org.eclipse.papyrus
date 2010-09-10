@@ -158,10 +158,12 @@
    </extension>
 
 <extension point="org.eclipse.ui.menus">
-	
+
+	<!-- ModelExplorer toolbar -->       	
 	<menuContribution locationURI="toolbar:org.eclipse.papyrus.modelexplorer.modelexplorer"
 			allPopups="false">
-		
+
+		<!-- Load modisco browser customization command -->		
 		<command 
 			commandId="org.eclipse.papyrus.modelexplorer.LoadBrowserCustomization"
 			icon="icons/etool16/uiCustom.gif"
@@ -169,60 +171,106 @@
 			style="push">
 		</command>
 
+		<!-- Search element command -->	
 		<command
 			commandId="org.eclipse.papyrus.modelexplorer.searchelement"
 			icon="icons/etool16/search.gif"
 			label="Search element"
 			style="push">
 		</command>
-  <command
-        commandId="org.eclipse.papyrus.modelexplorer.sortelement"
-        icon="icons/etool16/sort.gif"
-        label="sort"
-        style="toggle">
-  </command>
+		
+		<!-- Sort elements command -->	
+		<command
+	        commandId="org.eclipse.papyrus.modelexplorer.sortelement"
+	        icon="icons/etool16/sort.gif"
+	        label="sort"
+	        style="toggle">
+		</command>
 	</menuContribution>
-       
+
+	<!-- ModelExplorer Contextual menu -->       
 	<menuContribution locationURI="popup:org.eclipse.papyrus.modelexplorer.modelexplorer.popup"
 			allPopups="false">
+		
+		<!-- Create child sub menu declaration -->
 		<menu
 			id="org.eclipse.papyrus.modelexplorer.popupmenu.createchild"
 			label="New Child">
 		</menu>
-
+		
+		<!-- Create diagram sub menu declaration -->
 		<menu
 			id="org.eclipse.papyrus.modelexplorer.popupmenu.creatediagram"
 			label="New Diagram">
 		</menu>
+		
+		<!-- Delete element command
+		
+		     Note : ISharedImage constants are used to select the command icon.
+		            A warning may be shown (icon not found) while editing this 
+		            plugin.xml file, but should be ignored (the platform supports
+		            this notation and should be able to retrieve the icon). 
+		  -->
+		<command
+			commandId="org.eclipse.papyrus.uml.service.creation.DeleteCommand"
+			disabledIcon="IMG_TOOL_DELETE_DISABLED"
+			icon="IMG_TOOL_DELETE"
+			label="Delete"
+			style="push"
+			tooltip="Delete">
+     <visibleWhen
+           checkEnabled="true">
+        <and>
+           <with
+                 variable="selection">
+              <iterate>
+                 <adapt
+                       type="org.eclipse.emf.ecore.EObject">
+                 </adapt>
+              </iterate>
+           </with>
+        </and>
+     </visibleWhen>			
+		</command>
+		<!-- <visibleWhen checkEnabled="true"/> -->		
 	</menuContribution>
        
 </extension>
 
+<!-- Command declarations (for model explorer toolbar and contextual menu -->
+<extension point="org.eclipse.ui.commands">
 
-    <extension
-          point="org.eclipse.ui.commands">
-       <command
-             categoryId="org.eclipse.papyrus.editor.category"
-             defaultHandler="org.eclipse.papyrus.modelexplorer.handler.LoadBrowserCustomization"
-             description="Load a customization for the papyrus browser"
-             id="org.eclipse.papyrus.modelexplorer.LoadBrowserCustomization"
-             name="loadBrowserCustomization">
-       </command>
-       <command
-             categoryId="org.eclipse.papyrus.editor.category"
-             defaultHandler="org.eclipse.papyrus.modelexplorer.handler.SearchElementHandler"
-             description="Search an element in the model explorer"
-             id="org.eclipse.papyrus.modelexplorer.searchelement"
-             name="searchelement">
-       </command>
-       <command
-             categoryId="org.eclipse.papyrus.editor.category"
-             defaultHandler="org.eclipse.papyrus.modelexplorer.handler.SortElementHandler"
-             description="Sort elements"
-             id="org.eclipse.papyrus.modelexplorer.sortelement"
-             name="SortElement">
-       </command>
-    </extension>
+	<!-- Command declaration : Load modisco browser customization command -->			
+	<command id="org.eclipse.papyrus.modelexplorer.LoadBrowserCustomization"
+		name="loadBrowserCustomization" description="Load a customization for the papyrus browser"
+		categoryId="org.eclipse.papyrus.editor.category"
+		defaultHandler="org.eclipse.papyrus.modelexplorer.handler.LoadBrowserCustomization">
+	</command>
+	
+	<!-- Command declaration : Search element command -->			
+	<command id="org.eclipse.papyrus.modelexplorer.searchelement"
+		name="searchelement" description="Search an element in the model explorer"
+		categoryId="org.eclipse.papyrus.editor.category"
+		defaultHandler="org.eclipse.papyrus.modelexplorer.handler.SearchElementHandler">
+	</command>
+	
+	<!-- Command declaration : Sort elements command -->			
+	<command id="org.eclipse.papyrus.modelexplorer.sortelement"
+		name="SortElement" description="Sort elements"
+		categoryId="org.eclipse.papyrus.editor.category"
+		defaultHandler="org.eclipse.papyrus.modelexplorer.handler.SortElementHandler">
+	</command>
+       
+	<!-- Command declaration : Delete element command -->
+	<command id="org.eclipse.papyrus.uml.service.creation.DeleteCommand"
+		name="Delete" description="Delete"	
+		categoryId="org.eclipse.papyrus.editor.category"
+		defaultHandler="org.eclipse.papyrus.modelexplorer.handler.DeleteCommandHandler">
+	</command>
+	       
+</extension>
+    
+    
      <extension point="org.eclipse.core.runtime.preferences">
 		<?gmfgen generated="false"?>
 		<initializer class="org.eclipse.papyrus.modelexplorer.preferences.NavigatorPreferenceInitializer"/>
@@ -236,5 +284,13 @@
             name="Papyrus Model Explorer">
       </page>
    </extension>
+
+<!-- This declaration is added in order command (DeleteCommandHandler) status to be
+     verified (isVisible and isEnabled) before any attempt to execute the command, 
+     and to mask the command in case it is not supported or executable.
+  -->
+<extension point="org.eclipse.ui.startup">
+	<startup class="org.eclipse.papyrus.modelexplorer.Activator"/>
+</extension>
 
 </plugin>
