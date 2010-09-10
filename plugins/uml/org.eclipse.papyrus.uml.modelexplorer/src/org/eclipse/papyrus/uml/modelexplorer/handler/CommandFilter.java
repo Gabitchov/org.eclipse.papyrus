@@ -47,13 +47,12 @@ public class CommandFilter {
 			visibleCommands.add(UMLElementTypes.PARAMETER);
 			visibleCommands.add(UMLElementTypes.CONNECTABLE_ELEMENT_TEMPLATE_PARAMETER);
 			visibleCommands.add(UMLElementTypes.PROPERTY);
-			visibleCommands.add(UMLElementTypes.DEPLOYMENT);
+			//			visibleCommands.add(UMLElementTypes.DEPLOYMENT);
 			visibleCommands.add(UMLElementTypes.DEPLOYMENT_SPECIFICATION);
 			visibleCommands.add(UMLElementTypes.ARTIFACT);
 			//			visibleCommands.add(UMLElementTypes.MANIFESTATION);
 			visibleCommands.add(UMLElementTypes.OPERATION);
 			//			visibleCommands.add(UMLElementTypes.INTERFACE_REALIZATION);
-
 			visibleCommands.add(UMLElementTypes.INTERFACE);
 			visibleCommands.add(UMLElementTypes.RECEPTION);
 			visibleCommands.add(UMLElementTypes.SIGNAL);
@@ -67,7 +66,6 @@ public class CommandFilter {
 			//			visibleCommands.add(UMLElementTypes.CONNECTION_POINT_REFERENCE);
 			//			visibleCommands.add(UMLElementTypes.PSEUDOSTATE);
 			//			visibleCommands.add(UMLElementTypes.PROTOCOL_CONFORMANCE);
-
 			//			visibleCommands.add(UMLElementTypes.CONNECTOR);
 			//			visibleCommands.add(UMLElementTypes.CONNECTOR_END);
 			//			visibleCommands.add(UMLElementTypes.EXTENSION);
@@ -126,7 +124,6 @@ public class CommandFilter {
 			//			visibleCommands.add(UMLElementTypes.MESSAGE);
 			visibleCommands.add(UMLElementTypes.INTERACTION);
 			visibleCommands.add(UMLElementTypes.LIFELINE);
-
 			visibleCommands.add(UMLElementTypes.PART_DECOMPOSITION);
 			visibleCommands.add(UMLElementTypes.INTERACTION_USE);
 			visibleCommands.add(UMLElementTypes.GATE);
@@ -139,7 +136,6 @@ public class CommandFilter {
 			visibleCommands.add(UMLElementTypes.BEHAVIOR_EXECUTION_SPECIFICATION);
 			visibleCommands.add(UMLElementTypes.EXECUTION_EVENT);
 			visibleCommands.add(UMLElementTypes.CREATION_EVENT);
-
 			visibleCommands.add(UMLElementTypes.DESTRUCTION_EVENT);
 			visibleCommands.add(UMLElementTypes.SEND_OPERATION_EVENT);
 			visibleCommands.add(UMLElementTypes.SEND_SIGNAL_EVENT);
@@ -149,24 +145,21 @@ public class CommandFilter {
 			visibleCommands.add(UMLElementTypes.RECEIVE_SIGNAL_EVENT);
 			visibleCommands.add(UMLElementTypes.ACTOR);
 			visibleCommands.add(UMLElementTypes.CALL_EVENT);
-
 			visibleCommands.add(UMLElementTypes.CHANGE_EVENT);
 			visibleCommands.add(UMLElementTypes.SIGNAL_EVENT);
 			visibleCommands.add(UMLElementTypes.ANY_RECEIVE_EVENT);
 			visibleCommands.add(UMLElementTypes.FORK_NODE);
 			visibleCommands.add(UMLElementTypes.FLOW_FINAL_NODE);
-
 			visibleCommands.add(UMLElementTypes.CENTRAL_BUFFER_NODE);
 			visibleCommands.add(UMLElementTypes.MERGE_NODE);
 			visibleCommands.add(UMLElementTypes.DECISION_NODE);
 			visibleCommands.add(UMLElementTypes.ACTIVITY_FINAL_NODE);
-
-			visibleCommands.add(UMLElementTypes.COMPONENT_REALIZATION);
+			//			visibleCommands.add(UMLElementTypes.COMPONENT_REALIZATION);
 			visibleCommands.add(UMLElementTypes.COMPONENT);
 			visibleCommands.add(UMLElementTypes.NODE);
 			visibleCommands.add(UMLElementTypes.DEVICE);
 			visibleCommands.add(UMLElementTypes.EXECUTION_ENVIRONMENT);
-			visibleCommands.add(UMLElementTypes.COMMUNICATION_PATH);
+			//			visibleCommands.add(UMLElementTypes.COMMUNICATION_PATH);
 			visibleCommands.add(UMLElementTypes.COMBINED_FRAGMENT);
 			visibleCommands.add(UMLElementTypes.CONTINUATION);
 			visibleCommands.add(UMLElementTypes.CONSIDER_IGNORE_FRAGMENT);
@@ -174,7 +167,6 @@ public class CommandFilter {
 			visibleCommands.add(UMLElementTypes.DESTROY_OBJECT_ACTION);
 			visibleCommands.add(UMLElementTypes.TEST_IDENTITY_ACTION);
 			visibleCommands.add(UMLElementTypes.READ_SELF_ACTION);
-
 			visibleCommands.add(UMLElementTypes.READ_STRUCTURAL_FEATURE_ACTION);
 			visibleCommands.add(UMLElementTypes.CLEAR_STRUCTURAL_FEATURE_ACTION);
 			visibleCommands.add(UMLElementTypes.REMOVE_STRUCTURAL_FEATURE_VALUE_ACTION);
@@ -187,7 +179,6 @@ public class CommandFilter {
 			visibleCommands.add(UMLElementTypes.DESTROY_LINK_ACTION);
 			visibleCommands.add(UMLElementTypes.LINK_END_DESTRUCTION_DATA);
 			visibleCommands.add(UMLElementTypes.CLEAR_ASSOCIATION_ACTION);
-
 			visibleCommands.add(UMLElementTypes.BROADCAST_SIGNAL_ACTION);
 			visibleCommands.add(UMLElementTypes.SEND_OBJECT_ACTION);
 			visibleCommands.add(UMLElementTypes.VALUE_SPECIFICATION);
@@ -203,7 +194,6 @@ public class CommandFilter {
 			visibleCommands.add(UMLElementTypes.DURATION_OBSERVATION);
 			visibleCommands.add(UMLElementTypes.FINAL_STATE);
 			visibleCommands.add(UMLElementTypes.TIME_EVENT);
-
 			visibleCommands.add(UMLElementTypes.READ_VARIABLE_ACTION);
 			visibleCommands.add(UMLElementTypes.CLEAR_VARIABLE_ACTION);
 			visibleCommands.add(UMLElementTypes.ADD_VARIABLE_VALUE_ACTION);
@@ -211,9 +201,8 @@ public class CommandFilter {
 			visibleCommands.add(UMLElementTypes.RAISE_EXCEPTION_ACTION);
 			visibleCommands.add(UMLElementTypes.ACTION_INPUT_PIN);
 			visibleCommands.add(UMLElementTypes.INFORMATION_ITEM);
-			visibleCommands.add(UMLElementTypes.INFORMATION_FLOW);
+			//			visibleCommands.add(UMLElementTypes.INFORMATION_FLOW);
 			visibleCommands.add(UMLElementTypes.READ_EXTENT_ACTION);
-
 			visibleCommands.add(UMLElementTypes.RECLASSIFY_OBJECT_ACTION);
 			visibleCommands.add(UMLElementTypes.READ_IS_CLASSIFIED_OBJECT_ACTION);
 			visibleCommands.add(UMLElementTypes.START_CLASSIFIER_BEHAVIOR_ACTION);
@@ -224,7 +213,6 @@ public class CommandFilter {
 			visibleCommands.add(UMLElementTypes.ACCEPT_CALL_ACTION);
 			visibleCommands.add(UMLElementTypes.REPLY_ACTION);
 			visibleCommands.add(UMLElementTypes.UNMARSHALL_ACTION);
-
 			visibleCommands.add(UMLElementTypes.REDUCE_ACTION);
 			visibleCommands.add(UMLElementTypes.JOIN_NODE);
 			visibleCommands.add(UMLElementTypes.DATA_STORE_NODE);

@@ -27,9 +27,9 @@ public class SysMLElementTypes extends AbstractElementTypeEnumerator {
 	public static final IHintedType FLOWPORT = (IHintedType)getElementType("org.eclipse.papyrus.sysml.FlowPort");
 
 	/** IHintedType of SysML FlowPort (direction = #IN) */
-	public static final IHintedType INFLOWPORT = (IHintedType)getElementType("org.eclipse.papyrus.sysml.InFlowPort");
+	public static final IHintedType IN_FLOWPORT = (IHintedType)getElementType("org.eclipse.papyrus.sysml.InFlowPort");
 
 	/** IHintedType of SysML FlowPort (direction = #OUT) */
-	public static final IHintedType OUTFLOWPORT = (IHintedType)getElementType("org.eclipse.papyrus.sysml.OutFlowPort");
+	public static final IHintedType OUT_FLOWPORT = (IHintedType)getElementType("org.eclipse.papyrus.sysml.OutFlowPort");
 
 }
