@@ -5,13 +5,15 @@
 	
 	[comment @main /]
 	[file ('Report.html', false, 'UTF-8')]
+[d.header()/]
+[for (diffElement : DiffElement | d.ownedElements)]
+[diffElement.processDiffElement()/]
+[/for]
+[/file]
+[/template]
+
+[template public header(d : DiffModel)]
 <h1>Difference report between (1) and (2)</h1>
-<table border="1">
-		[for (diffElement : DiffElement | d.ownedElements)]
-			[diffElement.processDiffElement()/]
-		[/for]
-	[/file]
-</table> 	
 [/template]
 
 [template public processDiffElement(el : DiffElement)]
@@ -32,22 +34,34 @@
 <td>[el.kind/]</td><td>Unknown diff</td>
 </tr>
 [/if]
-
-[for (diffElement : DiffElement | el.subDiffElements)]
-	[diffElement.processDiffElement()/]
-[/for]
 [/template]
 
 [template public processDiffGroup(el : DiffGroup)]
-<tr>
-<td>[el.kind/]</td><td>DiffGroup</td><td>[elementName(el.rightParent)/]</td><td>[el.subchanges/]</td>
-</tr>
+<h3>[el.subchanges/] changes in [elementMetaclass(el.rightParent)/] [elementName(el.rightParent)/]</h3>
+<table border="1">
+<tr><th>Changed</th><th>(1)</th><th>(2)</th></tr>
+[for (diffElement : DiffElement | el.subDiffElements) ? (diffElement.oclIsKindOf(AttributeChange))]
+[diffElement.oclAsType(AttributeChange).processAttributeChange()/]
+[/for]
+[for (diffElement : DiffElement | el.subDiffElements) ? (diffElement.oclIsKindOf(ReferenceChange))]
+[diffElement.oclAsType(ReferenceChange).processReferenceChange()/]
+[/for]
+</table>
+[for (diffElement : DiffElement | el.subDiffElements) ? (diffElement.oclIsKindOf(DiffGroup))]
+	[diffElement.oclAsType(DiffGroup).processDiffGroup()/]
+[/for]
 [/template]
 
 [template public processAttributeChange(el : AttributeChange)]
-<tr>
-<td>[el.kind/]</td><td>AttributeChange</td><td>[el.attribute.name/]</td><td>[el.leftElement.eGet(el.attribute)/]</td><td>[el.rightElement.eGet(el.attribute)/]</td>
-</tr>
+[if not el.attribute.oclIsInvalid() and not el.attribute.oclIsUndefined()]
+<tr><td>[el.attribute.name/]</td><td>[el.leftElement.eGet(el.attribute)/]</td><td>[el.rightElement.eGet(el.attribute)/]</td></tr>
+[/if]
+[/template]
+
+[template public processReferenceChange(el : ReferenceChange)]
+[if not el.reference.oclIsUndefined() and not el.reference.oclIsInvalid()]
+<tr><td>[el.reference.name/]</td><td>[elementName(el.leftElement.eGet(el.reference))/]</td><td>[elementName(el.rightElement.eGet(el.reference))/]</td></tr>
+[/if]
 [/template]
 
 [template public processConflictingDiffElement(el : ConflictingDiffElement)]
@@ -62,11 +76,6 @@
 </tr>
 [/template]
 
-[template public processReferenceChange(el : ReferenceChange)]
-<tr>
-<td>[el.kind/]</td><td>ReferenceChange</td><td>[el.reference.name/]</td><td>[elementName(el.leftElement.eGet(el.reference))/]</td><td>[elementName(el.rightElement.eGet(el.reference))/]</td></tr>
-[/template]
-
 [template public processResourceDiff(el : ResourceDiff)]
 <tr>
 <td>[el.kind/]</td><td>ResourceDiff</td>
@@ -74,3 +83,4 @@
 [/template]
 
 [query public elementName(element : OclAny) : String = if (not element.oclIsUndefined() and element.oclIsKindOf(NamedElement)) then element.oclAsType(NamedElement).name else 'null' endif/]
+[query public elementMetaclass(element : OclAny) : String = if (not element.oclIsUndefined()) then element.eClass().name else '' endif/]
