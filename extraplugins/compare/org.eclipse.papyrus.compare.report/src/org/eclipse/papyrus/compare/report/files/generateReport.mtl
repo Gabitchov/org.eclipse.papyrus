@@ -1,0 +1,76 @@
+[comment encoding = UTF-8 /]
+[module generateReport('http://www.eclipse.org/emf/compare/diff/1.1','http://www.eclipse.org/emf/2002/Ecore','http://www.eclipse.org/uml2/3.0.0/UML')/]
+
+[template public generateReport(d : DiffModel)]
+	
+	[comment @main /]
+	[file ('Report.html', false, 'UTF-8')]
+<h1>Difference report between (1) and (2)</h1>
+<table border="1">
+		[for (diffElement : DiffElement | d.ownedElements)]
+			[diffElement.processDiffElement()/]
+		[/for]
+	[/file]
+</table> 	
+[/template]
+
+[template public processDiffElement(el : DiffElement)]
+[if (el.oclIsKindOf(AttributeChange))]
+	[el.oclAsType(AttributeChange).processAttributeChange()/]
+[elseif (el.oclIsKindOf(ConflictingDiffElement))]
+	[el.oclAsType(ConflictingDiffElement).processConflictingDiffElement()/]
+[elseif (el.oclIsKindOf(DiffGroup))]
+	[el.oclAsType(DiffGroup).processDiffGroup()/]
+[elseif (el.oclIsKindOf(ModelElementChange))]
+	[el.oclAsType(ModelElementChange).processModelElementChange()/]
+[elseif (el.oclIsKindOf(ReferenceChange))]
+	[el.oclAsType(ReferenceChange).processReferenceChange()/]
+[elseif (el.oclIsKindOf(ResourceDiff))]
+	[el.oclAsType(ResourceDiff).processResourceDiff()/]
+[else]
+<tr>
+<td>[el.kind/]</td><td>Unknown diff</td>
+</tr>
+[/if]
+
+[for (diffElement : DiffElement | el.subDiffElements)]
+	[diffElement.processDiffElement()/]
+[/for]
+[/template]
+
+[template public processDiffGroup(el : DiffGroup)]
+<tr>
+<td>[el.kind/]</td><td>DiffGroup</td><td>[elementName(el.rightParent)/]</td><td>[el.subchanges/]</td>
+</tr>
+[/template]
+
+[template public processAttributeChange(el : AttributeChange)]
+<tr>
+<td>[el.kind/]</td><td>AttributeChange</td><td>[el.attribute.name/]</td><td>[el.leftElement.eGet(el.attribute)/]</td><td>[el.rightElement.eGet(el.attribute)/]</td>
+</tr>
+[/template]
+
+[template public processConflictingDiffElement(el : ConflictingDiffElement)]
+<tr>
+<td>[el.kind/]</td><td>ConflictingDiffElement</td><td>[el.originElement/]</td><td>[el.leftParent/]</td><td>[el.rightParent/]</td>
+</tr>
+[/template]
+
+[template public processModelElementChange(el : ModelElementChange)]
+<tr>
+<td>[el.kind/]</td><td>ModelElementChange</td>
+</tr>
+[/template]
+
+[template public processReferenceChange(el : ReferenceChange)]
+<tr>
+<td>[el.kind/]</td><td>ReferenceChange</td><td>[el.reference.name/]</td><td>[elementName(el.leftElement.eGet(el.reference))/]</td><td>[elementName(el.rightElement.eGet(el.reference))/]</td></tr>
+[/template]
+
+[template public processResourceDiff(el : ResourceDiff)]
+<tr>
+<td>[el.kind/]</td><td>ResourceDiff</td>
+</tr>
+[/template]
+
+[query public elementName(element : OclAny) : String = if (not element.oclIsUndefined() and element.oclIsKindOf(NamedElement)) then element.oclAsType(NamedElement).name else 'null' endif/]
