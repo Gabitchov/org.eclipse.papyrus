@@ -27,7 +27,6 @@ import org.eclipse.uml2.uml.Vertex;
 
 public class RegionCompartmentDiagramUpdater implements ICustomDiagramUpdater {
 
-	@Override
 	public List<?> getSemanticChildren(View view) {
 		if(false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
