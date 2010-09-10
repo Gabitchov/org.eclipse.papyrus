@@ -40,15 +40,14 @@ public class InOutFlowPortEditHelperAdvice extends AbstractStereotypedElementEdi
 
 		return new ConfigureElementCommand(request) {
 
-			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info)
-					throws ExecutionException {
+			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 
-				Port type = (Port) request.getElementToConfigure();
-				if (type != null) {
+				Port type = (Port)request.getElementToConfigure();
+				if(type != null) {
 					Stereotype partStereotype = type.getApplicableStereotype(SysmlResource.FLOW_PORT_ID);
 
-					if (partStereotype != null) {
-						FlowPort flowportApplication = (FlowPort) type.applyStereotype(partStereotype);
+					if(partStereotype != null) {
+						FlowPort flowportApplication = (FlowPort)type.applyStereotype(partStereotype);
 						flowportApplication.setDirection(FlowDirection.INOUT);
 					}
 				}

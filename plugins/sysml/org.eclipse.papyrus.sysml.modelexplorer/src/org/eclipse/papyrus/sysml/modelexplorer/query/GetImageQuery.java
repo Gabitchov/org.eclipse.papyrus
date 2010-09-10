@@ -12,21 +12,20 @@ public class GetImageQuery implements IJavaModelQuery<Element, String> {
 
 	public static final String sysml_plugin_path = "/org.eclipse.papyrus.sysml/";
 
-	public String evaluate(final Element context, final ParameterValueList parameterValues)
-			throws ModelQueryExecutionException {
+	public String evaluate(final Element context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
 
 		String icon_relative_path = "";
-		if (!context.getAppliedStereotypes().isEmpty()) {
+		if(!context.getAppliedStereotypes().isEmpty()) {
 			Stereotype first_stereotype = context.getAppliedStereotypes().get(0);
 
-			if (!first_stereotype.getIcons().isEmpty()) {
+			if(!first_stereotype.getIcons().isEmpty()) {
 				org.eclipse.uml2.uml.Image icon = ElementUtil.getStereotypeImage(context, first_stereotype, "icon");
 				icon_relative_path = icon.getLocation();
 			}
 		}
 
 		String image_path = "";
-		if (!"".equals(icon_relative_path)) {
+		if(!"".equals(icon_relative_path)) {
 			image_path = sysml_plugin_path + icon_relative_path;
 		}
 		return image_path;
