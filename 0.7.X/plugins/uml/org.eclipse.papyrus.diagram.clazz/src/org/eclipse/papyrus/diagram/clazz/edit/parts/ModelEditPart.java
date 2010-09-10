@@ -63,14 +63,10 @@ public class ModelEditPart extends DiagramEditPart {
 		getFigure().setClippingStrategy(new IClippingStrategy() {
 
 			public Rectangle[] getClip(IFigure childFigure) {
-				// very inefficient, since it implies several tree traversals.
-				// Bit handles modifications of the tree structure
-				// It's a workaround instead of the better solution to fix
-				// BorderedNodeFigure (overload and let it return
+				// very inefficient, since it implies several tree traversals. Bit handles modifications of the tree structure
+				// It's a workaround instead of the better solution to fix BorderedNodeFigure (overload and let it return
 				// getExtendedBounds)
-				// See bug 313985
-				// (https://bugs.eclipse.org/bugs/show_bug.cgi?id=313985) for
-				// more details
+				// See bug 313985 (https://bugs.eclipse.org/bugs/show_bug.cgi?id=313985) for more details
 				applyClippingStrategy(childFigure);
 				if(childFigure instanceof BorderedNodeFigure) {
 					return new Rectangle[]{ ((BorderedNodeFigure)childFigure).getExtendedBounds() };
@@ -119,10 +115,8 @@ public class ModelEditPart extends DiagramEditPart {
 
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ModelItemSemanticEditPolicy());
 
-		// in Papyrus diagrams are not strongly synchronised
-		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE,
-		// new
-		// org.eclipse.papyrus.diagram.clazz.edit.policies.ModelCanonicalEditPolicy());
+		//in Papyrus diagrams are not strongly synchronised
+		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.clazz.edit.policies.ModelCanonicalEditPolicy());
 
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new ClassDiagramDragDropEditPolicy());
@@ -195,8 +189,7 @@ public class ModelEditPart extends DiagramEditPart {
 		if(event.getNotifier() instanceof EAnnotation) {
 			EAnnotation eAnnotation = (EAnnotation)event.getNotifier();
 			if(eAnnotation.getSource() != null && eAnnotation.getSource().equals(MDTUtil.FilterViewAndLabelsSource)) {
-				// modification form MOSKitt approach, canonical policies are
-				// not called
+				//modification form MOSKitt approach, canonical policies are not called
 				MDTUtil.filterDiagramViews(this.getDiagramView());
 			}
 		}

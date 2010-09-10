@@ -23,27 +23,28 @@ import org.eclipse.papyrus.diagram.common.helper.AssociationHelper;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
+
 /**
  * this class is used to allow reconnecting a association branch on elements
- *
+ * 
  */
-public class CustomAssociationBranchReorientCommand extends
-		AssociationBranchReorientCommand {
+public class CustomAssociationBranchReorientCommand extends AssociationBranchReorientCommand {
 
 	private EObject oldNamedElementEnd;
+
 	private EObject newNamedElementEnd;
-	public CustomAssociationBranchReorientCommand(
-			ReorientRelationshipRequest request) {
+
+	public CustomAssociationBranchReorientCommand(ReorientRelationshipRequest request) {
 		super(request);
 		oldNamedElementEnd = request.getOldRelationshipEnd();
 		newNamedElementEnd = request.getNewRelationshipEnd();
 	}
 
 	/**
-	 *  it is impossible to retarget the source ( remove the association node)
+	 * it is impossible to retarget the source ( remove the association node)
 	 */
 	protected boolean canReorientSource() {
-	return false;	
+		return false;
 	}
 
 	/**
@@ -63,21 +64,21 @@ public class CustomAssociationBranchReorientCommand extends
 		Package container = (Package)getLink().eContainer();
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistAssociation_4019(container, getLink(), source, getNewTarget());
 	}
-	
+
 	/**
 	 * @generated
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
-		
-		/*look for end for the given type*/
-		int i=0;
-		Property end=getLink().getMemberEnds().get(i);
-		while(!end.getType().equals(getOldTarget())){
+
+		/* look for end for the given type */
+		int i = 0;
+		Property end = getLink().getMemberEnds().get(i);
+		while(!end.getType().equals(getOldTarget())) {
 			i++;
-			end=getLink().getMemberEnds().get(i);
-			
+			end = getLink().getMemberEnds().get(i);
+
 		}
-		
+
 		return AssociationHelper.reconnect(i, getLink(), getNewTarget());
 
 	}

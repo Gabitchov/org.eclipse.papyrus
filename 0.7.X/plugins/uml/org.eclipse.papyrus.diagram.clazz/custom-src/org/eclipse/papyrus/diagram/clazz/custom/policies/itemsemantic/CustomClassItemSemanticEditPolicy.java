@@ -91,7 +91,7 @@ public class CustomClassItemSemanticEditPolicy extends ClassItemSemanticEditPoli
 			return getGEFWrapper(new BranchDependenctReorientCommand(req));
 		case AssociationBranchEditPart.VISUAL_ID:
 			return getGEFWrapper(new CustomAssociationBranchReorientCommand(req));
-			
+
 		}
 		return super.getReorientRelationshipCommand(req);
 	}
@@ -161,8 +161,9 @@ public class CustomClassItemSemanticEditPolicy extends ClassItemSemanticEditPoli
 
 	/**
 	 * Gets the destroy element command gen.
-	 *
-	 * @param req the req
+	 * 
+	 * @param req
+	 *        the req
 	 * @return the destroy element command gen
 	 */
 	protected Command getDestroyElementCommandGen(DestroyElementRequest req) {
@@ -197,7 +198,7 @@ public class CustomClassItemSemanticEditPolicy extends ClassItemSemanticEditPoli
 			case DependencyBranchEditPart.VISUAL_ID:
 			case ElementImportEditPart.VISUAL_ID:
 			case TemplateBindingEditPart.VISUAL_ID:
-//			case AddedLinkEditPart.VISUAL_ID:
+				//			case AddedLinkEditPart.VISUAL_ID:
 				DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(destroyEltReq));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
@@ -222,7 +223,7 @@ public class CustomClassItemSemanticEditPolicy extends ClassItemSemanticEditPoli
 			case ElementImportEditPart.VISUAL_ID:
 			case PackageImportEditPart.VISUAL_ID:
 			case TemplateBindingEditPart.VISUAL_ID:
-//			case AddedLinkEditPart.VISUAL_ID:
+				//			case AddedLinkEditPart.VISUAL_ID:
 				DestroyElementRequest destroyEltReq = new DestroyElementRequest(outgoingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(destroyEltReq));
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));

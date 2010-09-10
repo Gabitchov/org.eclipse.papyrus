@@ -115,7 +115,7 @@ ShapeNodeEditPart {
 		private Rectangle getTemplateBounds() {
 			if(myTemplateBounds == null) {
 				myTemplateBounds = myTemplate.getBounds().getCopy().union(0, 0);
-				// just safety -- we are going to use this as divider
+				//just safety -- we are going to use this as divider 
 				if(myTemplateBounds.width < 1) {
 					myTemplateBounds.width = 1;
 				}
@@ -225,8 +225,7 @@ ShapeNodeEditPart {
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomAssociationNodeItemSemanticEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that
-		// would let children add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 

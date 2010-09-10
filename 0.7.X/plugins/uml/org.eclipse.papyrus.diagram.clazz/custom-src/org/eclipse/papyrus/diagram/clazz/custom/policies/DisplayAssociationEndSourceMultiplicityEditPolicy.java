@@ -16,19 +16,19 @@ package org.eclipse.papyrus.diagram.clazz.custom.policies;
 import org.eclipse.papyrus.umlutils.ICustomAppearence;
 
 /**
- * this class enables to refresh the multiplicity label of the association end (source) 
- *
+ * this class enables to refresh the multiplicity label of the association end (source)
+ * 
  */
 public class DisplayAssociationEndSourceMultiplicityEditPolicy extends DisplayAssociationEndSourceEditPolicy {
 
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.diagram.clazz.custom.policies.DisplayAssociationEndEditPolicy#getDefaultDisplayValue()
-	 *
+	 * 
 	 */
 	@Override
 	public int getDefaultDisplayValue() {
 		return ICustomAppearence.DISP_MULTIPLICITY;
 	}
-	
+
 }

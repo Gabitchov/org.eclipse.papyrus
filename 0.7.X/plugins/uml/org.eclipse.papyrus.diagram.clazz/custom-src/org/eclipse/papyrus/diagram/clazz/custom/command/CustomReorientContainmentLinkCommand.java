@@ -38,7 +38,7 @@ public class CustomReorientContainmentLinkCommand extends AbstractTransactionalC
 		req = request;
 
 	}
-	
+
 	@Override
 	public boolean canExecute() {
 		return false;

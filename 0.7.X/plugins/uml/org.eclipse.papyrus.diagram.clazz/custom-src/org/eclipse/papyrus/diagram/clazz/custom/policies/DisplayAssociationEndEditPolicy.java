@@ -53,6 +53,7 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 	protected Element initSemanticElement() {
 		return (Property)propertyLabelHelper.getUMLElement(((GraphicalEditPart)getHost()));
 	}
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -130,7 +131,7 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 	 */
 	@Override
 	public Property getUMLElement() {
-		return (Property) super.getUMLElement();
+		return (Property)super.getUMLElement();
 	}
 
 	/**
@@ -151,8 +152,9 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 		}
 
 		//in order to find the role to display we need to now target of the edge, so it is important to have a notification about the change of the target
-		if((notification.getFeature().equals(NotationPackage.eINSTANCE.getEdge_Target()))||(notification.getFeature().equals(NotationPackage.eINSTANCE.getEdge_Source()))) {
-			refreshDisplay();}
+		if((notification.getFeature().equals(NotationPackage.eINSTANCE.getEdge_Target())) || (notification.getFeature().equals(NotationPackage.eINSTANCE.getEdge_Source()))) {
+			refreshDisplay();
+		}
 
 		if(object == null) {
 			return;
@@ -239,8 +241,8 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 				}
 				refreshDisplay();
 				break;
-				// if it is set, remove the old one and adds the new one. this is the method use when
-				// the type is set or removed...
+			// if it is set, remove the old one and adds the new one. this is the method use when
+			// the type is set or removed...
 			case Notification.SET:
 				if(notification.getNewValue() != null) {
 					getDiagramEventBroker().addNotificationListener((EObject)notification.getNewValue(), this);

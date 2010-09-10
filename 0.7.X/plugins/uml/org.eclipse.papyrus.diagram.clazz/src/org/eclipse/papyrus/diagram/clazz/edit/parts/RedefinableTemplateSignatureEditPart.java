@@ -160,8 +160,7 @@ public class RedefinableTemplateSignatureEditPart extends AbstractRedefinableTem
 
 		if(childEditPart instanceof RedefinableTemplateSignatureTemplateParameterCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getTemplateParameterRectangle();
-			setupContentPane(pane); // FIXME each comparment should handle his
-									// content pane in his own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((RedefinableTemplateSignatureTemplateParameterCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
@@ -180,8 +179,7 @@ public class RedefinableTemplateSignatureEditPart extends AbstractRedefinableTem
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomRedefinableTemplateSignatureItemSemanticEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that
-		// would let children add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -237,7 +235,7 @@ public class RedefinableTemplateSignatureEditPart extends AbstractRedefinableTem
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
 
-		// FIXME: workaround for #154536
+		//FIXME: workaround for #154536
 		result.getBounds().setSize(result.getPreferredSize());
 		return result;
 	}
@@ -1385,8 +1383,7 @@ public class RedefinableTemplateSignatureEditPart extends AbstractRedefinableTem
 	protected boolean removeFixedChild(EditPart childEditPart) {
 		if(childEditPart instanceof RedefinableTemplateSignatureTemplateParameterCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getTemplateParameterRectangle();
-			setupContentPane(pane); // FIXME each comparment should handle his
-									// content pane in his own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.remove(((RedefinableTemplateSignatureTemplateParameterCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}

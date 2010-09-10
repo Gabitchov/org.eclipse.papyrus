@@ -52,7 +52,7 @@ public class ContainmentLinkReorientCommand extends AbstractTransactionalCommand
 
 	/** The new end. */
 	private final EObject newEnd;
-	
+
 	/** The my target edit part. */
 	private EditPart myTargetEditPart;
 
@@ -61,9 +61,11 @@ public class ContainmentLinkReorientCommand extends AbstractTransactionalCommand
 
 	/**
 	 * Instantiates a new containment link reorient command.
-	 *
-	 * @param req the req
-	 * @param editPartTarget the edit part target
+	 * 
+	 * @param req
+	 *        the req
+	 * @param editPartTarget
+	 *        the edit part target
 	 */
 	public ContainmentLinkReorientCommand(ReorientReferenceRelationshipRequest req, EditPart editPartTarget) {
 		super(req.getEditingDomain(), req.getLabel(), null);
@@ -72,7 +74,7 @@ public class ContainmentLinkReorientCommand extends AbstractTransactionalCommand
 		final EObject oldEndView;
 		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			oldEndView = ((Edge)req.getParameter(ContainmentHelper.KEY_CONNECTION_VIEW)).getSource();
-		} else 	if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		} else if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			oldEndView = ((Edge)req.getParameter(ContainmentHelper.KEY_CONNECTION_VIEW)).getTarget();
 		} else {
 			throw new IllegalStateException();
@@ -82,10 +84,11 @@ public class ContainmentLinkReorientCommand extends AbstractTransactionalCommand
 		oldEnd = req.getOldRelationshipEnd();
 		newEnd = req.getNewRelationshipEnd();
 	}
-	
+
 	/**
-	 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor, org.eclipse.core.runtime.IAdaptable)
-	 *
+	 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor,
+	 *      org.eclipse.core.runtime.IAdaptable)
+	 * 
 	 * @param monitor
 	 * @param info
 	 * @return
@@ -107,7 +110,7 @@ public class ContainmentLinkReorientCommand extends AbstractTransactionalCommand
 
 	/**
 	 * @see org.eclipse.core.commands.operations.AbstractOperation#canExecute()
-	 *
+	 * 
 	 * @return
 	 */
 	public boolean canExecute() {
@@ -122,7 +125,7 @@ public class ContainmentLinkReorientCommand extends AbstractTransactionalCommand
 
 	/**
 	 * Can reorient source.
-	 *
+	 * 
 	 * @return true, if successful
 	 */
 	protected boolean canReorientSource() {
@@ -131,17 +134,17 @@ public class ContainmentLinkReorientCommand extends AbstractTransactionalCommand
 
 	/**
 	 * Can reorient target.
-	 *
+	 * 
 	 * @return true, if successful
 	 */
 	protected boolean canReorientTarget() {
 		if(!(oldEnd instanceof PackageableElement && newEnd instanceof PackageableElement)) {
 			return false;
 		}
-		if (getNewTarget().equals(getOldTarget().getOwner())) {
+		if(getNewTarget().equals(getOldTarget().getOwner())) {
 			return false;
 		}
-		if (EcoreUtil.isAncestor(getNewTarget(), getOldTarget())) {
+		if(EcoreUtil.isAncestor(getNewTarget(), getOldTarget())) {
 			return false;
 		}
 		return newEnd != null;
@@ -149,43 +152,45 @@ public class ContainmentLinkReorientCommand extends AbstractTransactionalCommand
 
 	/**
 	 * Reorient source.
-	 *
+	 * 
 	 * @return the command result
-	 * @throws ExecutionException the execution exception
+	 * @throws ExecutionException
+	 *         the execution exception
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
-		throw new ExecutionException("Cannot reorient a source of Containment link"); 
+		throw new ExecutionException("Cannot reorient a source of Containment link");
 	}
-	
+
 	/**
 	 * Reorient target.
-	 *
+	 * 
 	 * @return the command result
-	 * @throws ExecutionException the execution exception
+	 * @throws ExecutionException
+	 *         the execution exception
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
 		EObject source = getOldTarget().getOwner();
 		EObject moveOldTargetTo = getOldTargetOwner();
 		EObject moveNewTargetTo = source;
-		
+
 		ContainmentHelper helper = new ContainmentHelper(getEditingDomain());
-		
+
 		helper.move(getOldTarget(), moveOldTargetTo);
 		helper.move(getNewTarget(), moveNewTargetTo);
-		
+
 		deleteOldLinkEditPart();
 		return CommandResult.newOKCommandResult();
 	}
-	
+
 	/**
 	 * Delete old link edit part.
-	 *
+	 * 
 	 * @return true, if successful
 	 */
 	private boolean deleteOldLinkEditPart() {
 		if(myTargetEditPart instanceof ClassEditPart || myTargetEditPart instanceof PackageEditPart) {
 			CompoundCommand cc = new CompoundCommand();
-			for (Object currentLink: ((AbstractGraphicalEditPart)myTargetEditPart).getTargetConnections()) {
+			for(Object currentLink : ((AbstractGraphicalEditPart)myTargetEditPart).getTargetConnections()) {
 				if(currentLink instanceof AddedLinkEditPart) {
 					AddedLinkEditPart addedLinkEP = (AddedLinkEditPart)currentLink;
 					if((addedLinkEP.getSource() instanceof CContainmentCircleEditPart)) {
@@ -200,12 +205,12 @@ public class ContainmentLinkReorientCommand extends AbstractTransactionalCommand
 		}
 		return true;
 	}
-	
+
 
 
 	/**
 	 * Gets the old source.
-	 *
+	 * 
 	 * @return the old source
 	 */
 	private PackageableElement getOldSource() {
@@ -214,7 +219,7 @@ public class ContainmentLinkReorientCommand extends AbstractTransactionalCommand
 
 	/**
 	 * Gets the new source.
-	 *
+	 * 
 	 * @return the new source
 	 */
 	private PackageableElement getNewSource() {
@@ -223,7 +228,7 @@ public class ContainmentLinkReorientCommand extends AbstractTransactionalCommand
 
 	/**
 	 * Gets the old target.
-	 *
+	 * 
 	 * @return the old target
 	 */
 	private PackageableElement getOldTarget() {
@@ -232,16 +237,16 @@ public class ContainmentLinkReorientCommand extends AbstractTransactionalCommand
 
 	/**
 	 * Gets the new target.
-	 *
+	 * 
 	 * @return the new target
 	 */
 	private PackageableElement getNewTarget() {
 		return (PackageableElement)newEnd;
 	}
-	
+
 	/**
 	 * Gets the old target owner.
-	 *
+	 * 
 	 * @return the old target owner
 	 */
 	private EObject getOldTargetOwner() {

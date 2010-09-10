@@ -261,7 +261,7 @@ public class CustomContainmentCircleItemSemanticEditPolicy extends ContainmentCi
 		return cc;
 
 	}
-	
+
 	public static class AskToDeleteContainmentCommand extends AbstractOperation {
 
 		private List<String> myTargetNames;
@@ -282,13 +282,13 @@ public class CustomContainmentCircleItemSemanticEditPolicy extends ContainmentCi
 			}
 			return Status.CANCEL_STATUS;
 		}
-		
+
 		private String getNamesString() {
 			String namesString = "";
 			Iterator<String> namesIterator = myTargetNames.iterator();
-			while (namesIterator.hasNext()) {
-				namesString+="'" + namesIterator.next() + "'";
-				if (namesIterator.hasNext()) {
+			while(namesIterator.hasNext()) {
+				namesString += "'" + namesIterator.next() + "'";
+				if(namesIterator.hasNext()) {
 					namesString += ", ";
 				}
 			}
