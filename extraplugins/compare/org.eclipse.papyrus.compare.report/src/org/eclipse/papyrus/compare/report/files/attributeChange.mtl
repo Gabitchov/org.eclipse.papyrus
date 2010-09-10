@@ -1,10 +1,27 @@
 [comment encoding = UTF-8 /]
 [module attributeChange('http://www.eclipse.org/emf/compare/diff/1.1')/]
 
+[template public processAttributeChanges(el : DiffElement)]
+[if not attributeChanges(el)->isEmpty()]
+<p>
+<table border="1">
+[el.tableHeader()/]
+[for (diffElement : AttributeChange | attributeChanges(el))]
+[diffElement.processAttributeChange()/]
+[/for]
+</table>
+<p/>
+[/if]
+[/template]
+
 [template public processAttributeChange(el : AttributeChange)]
 [if not el.attribute.oclIsInvalid() and not el.attribute.oclIsUndefined()]
 <tr><td>[el.attribute.name/]</td><td>[el.leftElement.eGet(el.attribute)/]</td><td>[el.rightElement.eGet(el.attribute)/]</td></tr>
 [/if]
+[/template]
+
+[template private tableHeader(el : DiffElement)]
+<tr><th>Attributes Changed</th><th>(1)</th><th>(2)</th></tr>
 [/template]
 
 [query public attributeChanges(element : DiffElement) : Sequence(AttributeChange) = element.subDiffElements->select(attr: DiffElement| attr.oclIsKindOf(AttributeChange))/]
