@@ -43,7 +43,8 @@ plugin@org.eclipse.papyrus.perspective=SVN,,svn://dev.eclipse.org/svnroot/modeli
 plugin@org.eclipse.papyrus.preferences=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/branches/0.7.X/plugins/core,,org.eclipse.papyrus.preferences
 plugin@org.eclipse.papyrus.properties.runtime=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/branches/0.7.X/plugins/core,,org.eclipse.papyrus.properties.runtime
 plugin@org.eclipse.papyrus.properties.tabbed.core=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/branches/0.7.X/plugins/core,,org.eclipse.papyrus.properties.tabbed.core
-plugin@org.eclipse.papyrus.service.creation=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/branches/0.7.X/plugins/core,,org.eclipse.papyrus.service.creation
+#plugin@org.eclipse.papyrus.service.creation=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/branches/0.7.X/plugins/core,,org.eclipse.papyrus.service.creation
+plugin@org.eclipse.papyrus.service.edit=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/branches/0.7.X/plugins/core,,org.eclipse.papyrus.service.edit
 plugin@org.eclipse.papyrus.sasheditor=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/branches/0.7.X/plugins/core,,org.eclipse.papyrus.sasheditor
 plugin@org.eclipse.papyrus.sasheditor.di=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/branches/0.7.X/plugins/core,,org.eclipse.papyrus.sasheditor.di
 plugin@org.eclipse.papyrus.tabbedproperties.core=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/branches/0.7.X/plugins/core,,org.eclipse.papyrus.tabbedproperties.core
@@ -81,7 +82,8 @@ plugin@org.eclipse.papyrus.sysml.diagram.requirement=SVN,,svn://dev.eclipse.org/
 plugin@org.eclipse.papyrus.sysml.diagram.ui=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/branches/0.7.X/plugins/sysml,,org.eclipse.papyrus.sysml.diagram.ui
 plugin@org.eclipse.papyrus.sysml.edit=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/branches/0.7.X/plugins/sysml,,org.eclipse.papyrus.sysml.edit
 plugin@org.eclipse.papyrus.sysml.modelexplorer=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/branches/0.7.X/plugins/sysml,,org.eclipse.papyrus.sysml.modelexplorer
-plugin@org.eclipse.papyrus.sysml.service.creation=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/branches/0.7.X/plugins/sysml,,org.eclipse.papyrus.sysml.service.creation
+plugin@org.eclipse.papyrus.sysml.service.types=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/branches/0.7.X/plugins/sysml,,org.eclipse.papyrus.sysml.service.types
+#plugin@org.eclipse.papyrus.sysml.service.creation=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/branches/0.7.X/plugins/sysml,,org.eclipse.papyrus.sysml.service.creation
 
 # uml
 plugin@org.eclipse.papyrus.diagram.activity=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/branches/0.7.X/plugins/uml,,org.eclipse.papyrus.diagram.activity
@@ -130,7 +132,8 @@ plugin@org.eclipse.papyrus.uml.ui.perspectiveconfiguration=SVN,,svn://dev.eclips
 plugin@org.eclipse.papyrus.uml.standard=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/branches/0.7.X/plugins/uml,,org.eclipse.papyrus.uml.standard
 plugin@org.eclipse.papyrus.uml.standard.edit=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/branches/0.7.X/plugins/uml,,org.eclipse.papyrus.uml.standard.edit
 plugin@org.eclipse.papyrus.umlutils=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/branches/0.7.X/plugins/uml,,org.eclipse.papyrus.umlutils
-plugin@org.eclipse.papyrus.uml.service.creation=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/branches/0.7.X/plugins/uml,,org.eclipse.papyrus.uml.service.creation
+#plugin@org.eclipse.papyrus.uml.service.creation=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/branches/0.7.X/plugins/uml,,org.eclipse.papyrus.uml.service.creation
+plugin@org.eclipse.papyrus.uml.service.types=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/branches/0.7.X/plugins/uml,,org.eclipse.papyrus.uml.service.types
 
 
 #extraplugins/autolayout
