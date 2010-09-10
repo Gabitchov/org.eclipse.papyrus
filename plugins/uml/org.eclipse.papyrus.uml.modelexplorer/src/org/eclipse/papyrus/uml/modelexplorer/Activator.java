@@ -1,22 +1,24 @@
 package org.eclipse.papyrus.uml.modelexplorer;
 
+import org.eclipse.papyrus.log.LogHelper;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
 /**
  * The activator class controls the plug-in life cycle
  */
-public class Activator extends AbstractUIPlugin {
+public class Activator extends AbstractUIPlugin implements org.eclipse.ui.IStartup {
 
-	// The plug-in ID
+	/** The plug-in ID */
 	public static final String PLUGIN_ID = "org.eclipse.papyrus.uml.modelexplorer"; //$NON-NLS-1$
 
-	// The shared instance
+	/** The plug-in shared instance */
 	private static Activator plugin;
 
-	/**
-	 * The constructor
-	 */
+	/** The log service */
+	public static LogHelper log;
+
+	/** Default constructor */
 	public Activator() {
 	}
 
@@ -30,6 +32,7 @@ public class Activator extends AbstractUIPlugin {
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
+		log = new LogHelper(plugin);
 	}
 
 	/*
@@ -53,4 +56,12 @@ public class Activator extends AbstractUIPlugin {
 		return plugin;
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.ui.IStartup#earlyStartup()
+	 * 
+	 */
+	public void earlyStartup() {
+
+	}
 }
