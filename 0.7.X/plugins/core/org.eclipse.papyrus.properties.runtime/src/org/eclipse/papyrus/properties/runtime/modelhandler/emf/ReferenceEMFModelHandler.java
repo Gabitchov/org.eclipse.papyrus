@@ -29,16 +29,16 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
-import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
-import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.jface.dialogs.Dialog;
+import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.utils.DisplayUtils;
 import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.Messages;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
-import org.eclipse.papyrus.service.creation.PapyrusClientContextManager;
+import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.service.edit.service.IElementEditService;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
@@ -113,24 +113,26 @@ public class ReferenceEMFModelHandler extends EMFFeatureModelHandler {
 			if(eClass == null) {
 				return undoableOperations;
 			}
-			for(IClientContext clientContext : PapyrusClientContextManager.getAllPapyrusContext()) {
-				// Use UML service creation context and look for element types that are possible types of 
-				// the selected EReference
-				IElementType[] featureTypes = ElementTypeRegistry.getInstance().getContainedTypes(eObject, (EReference)feature, clientContext);
-				if(featureTypes != null) {
-					for(int i = 0; i < featureTypes.length; i++) {
-						IElementType nextFeatureType = featureTypes[i];
-						CreateElementRequest request = new CreateElementRequest(EMFUtils.getTransactionalEditingDomain(objectsToEdit), eObject, nextFeatureType, (EReference)feature);
-						request.setLabel(Messages.bind(Messages.EMFTEReferenceController_CreationOperationMenuLabel, nextFeatureType.getDisplayName()));
-						ICommand command = nextFeatureType.getEditCommand(request);
-						if(command.canExecute()) {
-							// adds it to the list of command that can be
-							// executed
-							undoableOperations.add(command);
-						}
-					}
+			// Use edit service and look for element types that are possible types of the selected EReference
+			List<IElementEditService> featureTypeServices;
+			try {
+				featureTypeServices = ElementEditServiceUtils.getEditServiceProvider().getContainedTypeEditServices(eObject, (EReference)feature);
+			} catch (ServiceException e) {
+				e.printStackTrace();
+				return undoableOperations;
+			}
+
+			for(IElementEditService featureTypeService : featureTypeServices) {
+				CreateElementRequest request = new CreateElementRequest(EMFUtils.getTransactionalEditingDomain(objectsToEdit), eObject, (IElementType)featureTypeService.getAdapter(IElementType.class), (EReference)feature);
+				request.setLabel(Messages.bind(Messages.EMFTEReferenceController_CreationOperationMenuLabel, featureTypeService.getDisplayName()));
+				ICommand command = featureTypeService.getEditCommand(request);
+				if(command.canExecute()) {
+					// adds it to the list of command that can be
+					// executed
+					undoableOperations.add(command);
 				}
 			}
+
 			return undoableOperations;
 		} else {
 			IUndoableOperation operation = new FindReferenceCommand(EMFUtils.getTransactionalEditingDomain(objectsToEdit), "Find and Add references", objectsToEdit);

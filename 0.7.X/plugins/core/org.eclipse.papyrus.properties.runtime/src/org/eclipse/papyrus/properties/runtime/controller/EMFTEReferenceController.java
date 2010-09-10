@@ -13,6 +13,7 @@ package org.eclipse.papyrus.properties.runtime.controller;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.core.commands.operations.IUndoableOperation;
@@ -30,12 +31,10 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
-import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
-import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.gmf.runtime.emf.type.core.edithelper.IEditHelper;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.Viewer;
@@ -44,7 +43,8 @@ import org.eclipse.papyrus.core.utils.DisplayUtils;
 import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.Messages;
 import org.eclipse.papyrus.properties.runtime.modelhandler.emf.EMFFeatureModelHandler;
-import org.eclipse.papyrus.service.creation.PapyrusClientContextManager;
+import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.service.edit.service.IElementEditService;
 import org.eclipse.swt.widgets.Shell;
 
 /**
@@ -225,26 +225,28 @@ public class EMFTEReferenceController extends EMFTStructuralFeatureController im
 		if(!(feature instanceof EReference)) {
 			return undoableOperations;
 		}
+		//IClientContext context;
+		try {
+			//context = UMLTypeContext.getContext();
 
 
-		for(IClientContext clientContext : PapyrusClientContextManager.getAllPapyrusContext()) {
+
 			// Use UML service creation context and look for element types that are possible types of 
 			// the selected EReference
-			IElementType[] featureTypes = ElementTypeRegistry.getInstance().getContainedTypes(eObject, (EReference)feature, clientContext);
-			if(featureTypes != null) {
-				for(int i = 0; i < featureTypes.length; i++) {
-					IElementType nextFeatureType = featureTypes[i];
-
-					CreateElementRequest request = new CreateElementRequest(getEditingDomain(), eObject, nextFeatureType, (EReference)feature);
-					request.setLabel(Messages.bind(Messages.EMFTEReferenceController_CreationOperationMenuLabel, nextFeatureType.getDisplayName()));
-					ICommand command = nextFeatureType.getEditCommand(request);
-					if(command.canExecute()) {
-						// adds it to the list of command that can be
-						// executed
-						undoableOperations.add(command);
-					}
+			List<IElementEditService> containedTypeServices = ElementEditServiceUtils.getEditServiceProvider().getContainedTypeEditServices(eObject, (EReference)feature);
+			for(IElementEditService service : containedTypeServices) {
+				CreateElementRequest request = new CreateElementRequest(getEditingDomain(), eObject, (IElementType)service.getAdapter(IElementType.class), (EReference)feature);
+				request.setLabel(Messages.bind(Messages.EMFTEReferenceController_CreationOperationMenuLabel, service.getDisplayName()));
+				ICommand command = service.getEditCommand(request);
+				if(command.canExecute()) {
+					// adds it to the list of command that can be
+					// executed
+					undoableOperations.add(command);
 				}
 			}
+
+		} catch (Exception e) {
+			Activator.log.error(e);
 		}
 		return undoableOperations;
 	}
@@ -283,25 +285,18 @@ public class EMFTEReferenceController extends EMFTStructuralFeatureController im
 			return undoableOperation;
 		}
 		EObject eObject = getObjectsToEdit().get(0);
-		for(IClientContext context : PapyrusClientContextManager.getAllPapyrusContext()) {
-			try {
-				IElementType type = ElementTypeRegistry.getInstance().getElementType(eObject, context);
-				IEditHelper helper = type.getEditHelper();
-				for(Object objectToDelete : objectsToDelete) {
-					if(objectToDelete instanceof EObject) {
-						DestroyElementRequest request = new DestroyElementRequest(getEditingDomain(), (EObject)objectToDelete, false);
-						IUndoableOperation operation = helper.getEditCommand(request);
-						if(operation != null && operation.canExecute()) {
-							undoableOperation.add(operation);
-						}
-					} else {
-						Activator.log.debug("the object to delete was not an EObject: " + objectToDelete);
-					}
+		for(Object objectToDelete : objectsToDelete) {
+			if(objectToDelete instanceof EObject) {
+				DestroyElementRequest request = new DestroyElementRequest(getEditingDomain(), (EObject)objectToDelete, false);
+				IUndoableOperation operation = ElementEditServiceUtils.getCommandProvider(objectToDelete).getEditCommand(request);
+				if(operation != null && operation.canExecute()) {
+					undoableOperation.add(operation);
 				}
-			} catch (Exception e) {
-				Activator.log.error(e);
+			} else {
+				Activator.log.debug("the object to delete was not an EObject: " + objectToDelete);
 			}
 		}
+
 		return undoableOperation.reduce();
 	}
 }
