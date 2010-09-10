@@ -38,12 +38,11 @@ public class BlockEditHelperAdvice extends AbstractStereotypedElementEditHelperA
 
 		return new ConfigureElementCommand(request) {
 
-			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info)
-					throws ExecutionException {
-				Element type = (Element) request.getElementToConfigure();
-				if (type != null) {
+			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
+				Element type = (Element)request.getElementToConfigure();
+				if(type != null) {
 					Stereotype blockSt = type.getApplicableStereotype(SysmlResource.BLOCK_ID);
-					if (blockSt != null) {
+					if(blockSt != null) {
 						type.applyStereotype(blockSt);
 					}
 				}

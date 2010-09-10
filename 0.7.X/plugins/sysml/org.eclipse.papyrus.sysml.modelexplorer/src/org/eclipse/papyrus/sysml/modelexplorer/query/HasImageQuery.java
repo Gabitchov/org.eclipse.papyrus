@@ -8,12 +8,11 @@ import org.eclipse.uml2.uml.Element;
 /** Check is the element has a stereotype icon that can be used */
 public class HasImageQuery implements IJavaModelQuery<Element, Boolean> {
 
-	public Boolean evaluate(final Element context, final ParameterValueList parameterValues)
-			throws ModelQueryExecutionException {
+	public Boolean evaluate(final Element context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
 
 		IJavaModelQuery<Element, String> ImgageGetter = new GetImageQuery();
 		String temp_img_path = ImgageGetter.evaluate(context, parameterValues);
-		if (!"".equals(temp_img_path)) {
+		if(!"".equals(temp_img_path)) {
 			return true;
 		}
 
