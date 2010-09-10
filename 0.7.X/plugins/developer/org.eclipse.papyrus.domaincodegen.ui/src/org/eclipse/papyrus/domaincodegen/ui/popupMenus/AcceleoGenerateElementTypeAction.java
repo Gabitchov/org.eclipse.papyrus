@@ -12,12 +12,12 @@ package org.eclipse.papyrus.domaincodegen.ui.popupMenus;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.ArrayList;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IContainer;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -29,7 +29,7 @@ import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.domaincodegen.ui.Activator;
-import org.eclipse.papyrus.domaincodegen.ui.common.GenerateAll;
+import org.eclipse.papyrus.domaincodegen.ui.common.GenerateTypes;
 import org.eclipse.ui.IActionDelegate;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.ActionDelegate;
@@ -37,42 +37,47 @@ import org.eclipse.ui.actions.ActionDelegate;
 /**
  * DomainCodegen code generation.
  */
-public class AcceleoGenerateDomainCodegenAction extends ActionDelegate implements IActionDelegate {
-	
+public class AcceleoGenerateElementTypeAction extends ActionDelegate implements IActionDelegate {
+
 	/**
 	 * Selected model files.
 	 */
 	protected List<IFile> files;
 
-	/**{@inheritDoc}
-	 *
+	/**
+	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.ui.actions.ActionDelegate#selectionChanged(org.eclipse.jface.action.IAction, org.eclipse.jface.viewers.ISelection)
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	public void selectionChanged(IAction action, ISelection selection) {
-		if (selection instanceof IStructuredSelection) {
-			files = ((IStructuredSelection) selection).toList();
+		if(selection instanceof IStructuredSelection) {
+			files = ((IStructuredSelection)selection).toList();
 		}
 	}
 
-	/**{@inheritDoc}
-	 *
+	/**
+	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.ui.actions.ActionDelegate#run(org.eclipse.jface.action.IAction)
 	 * @generated
 	 */
 	public void run(IAction action) {
-		if (files != null) {
+		if(files != null) {
 			IRunnableWithProgress operation = new IRunnableWithProgress() {
+
 				public void run(IProgressMonitor monitor) {
 					try {
 						Iterator<IFile> filesIt = files.iterator();
-						while (filesIt.hasNext()) {
+						while(filesIt.hasNext()) {
 							IFile model = (IFile)filesIt.next();
 							URI modelURI = URI.createPlatformResourceURI(model.getFullPath().toString(), true);
 							try {
-								IContainer target = model.getProject().getFolder("src-gen");
-								GenerateAll generator = new GenerateAll(modelURI, target.getLocation().toFile(), getArguments());
+
+								//IContainer target = model.getProject().getFolder("src-gen");
+								IContainer target = model.getProject().getParent(); // target = Workspace location
+								GenerateTypes generator = new GenerateTypes(modelURI, target.getLocation().toFile(), getArguments());
 								generator.doGenerate(monitor);
 							} catch (IOException e) {
 								IStatus status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getMessage(), e);

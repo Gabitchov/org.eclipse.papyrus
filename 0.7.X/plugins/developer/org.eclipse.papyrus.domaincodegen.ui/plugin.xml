@@ -11,12 +11,20 @@
                <groupMarker name="acceleo"/> 
          </menu>
          <action
-               class="org.eclipse.papyrus.domaincodegen.ui.popupMenus.AcceleoGenerateDomainCodegenAction"
+               class="org.eclipse.papyrus.domaincodegen.ui.popupMenus.AcceleoGenerateElementTypeAction"
                enablesFor="+"
                id="org.eclipse.papyrus.domaincodegen.ui.popupMenus.acceleoGenerateDomainCodegenAction"
                icon="icons/default.gif"
-               label="Generate DomainCodegen"
+               label="Generate ElementType declarations"
                menubarPath="org.eclipse.acceleo.module.menu/acceleo"/>
+         <action
+               class="org.eclipse.papyrus.domaincodegen.ui.popupMenus.AcceleoGenerateCreationHandlersAction"
+               enablesFor="+"
+               icon="icons/default.gif"
+               id="org.eclipse.papyrus.domaincodegen.ui.popupMenus.acceleoGenerateHandlersCodegenAction"
+               label="Generate Creation handlers"
+               menubarPath="org.eclipse.acceleo.module.menu/acceleo">
+         </action>
       </objectContribution>
    </extension>
 </plugin>

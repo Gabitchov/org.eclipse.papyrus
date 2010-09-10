@@ -4,7 +4,9 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="domaincontextcodegen"
     nsURI="http://www.eclipse.org/papyrus/2010/domaincontextcodegen" nsPrefix="domaincontextcodegen">
   <eClassifiers xsi:type="ecore:EClass" name="DomainContext">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="projectName" lowerBound="1"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="typeProjectName" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="handlerProjectName" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="IClientContextID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="metamodel" lowerBound="1"
@@ -16,14 +18,22 @@
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="matcherPatch" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="elementTypes" upperBound="-1"
-        eType="#//ElementType" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elementTypes" eType="#//ElementTypes"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultHelperPath" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="advicebindings" upperBound="-1"
         eType="#//AdviceBinding" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="bindings" upperBound="-1"
         eType="#//Binding" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="genHandlers" eType="#//GenHandlers"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="generatedSourceFolder"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ElementTypes">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="types" upperBound="-1"
+        eType="#//ElementType" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ElementType">
     <eStructuralFeatures xsi:type="ecore:EReference" name="metaClass" lowerBound="1"
@@ -50,5 +60,14 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="advice" eType="#//AdviceBinding"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="elementTypePattern" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="adviceID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GenHandlers">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="handlerPackage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="superClass" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="superClassPackage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="elementTypeEnumerator"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="elementTypeEnumeratorPackage"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>

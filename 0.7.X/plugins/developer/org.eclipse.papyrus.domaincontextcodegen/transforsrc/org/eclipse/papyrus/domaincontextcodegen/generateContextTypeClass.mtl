@@ -1,11 +1,12 @@
+[comment deprecated /]
 [comment encoding = UTF-8 /]
 [module generateContextTypeClass('http://www.eclipse.org/papyrus/2010/domaincontextcodegen','http://www.eclipse.org/emf/2002/Ecore')/]
 
 [template public generateContextTypeClass(domain : DomainContext)]
 	[comment this template is used to generate a class to obtain the client context/]
-	[file (domain.projectName.substituteAll('.', '/').concat('/element/'+domain.elementTypeNamePrefix.concat('TypeContext.java')), false, 'UTF-8')]
+	[file (domain.typeProjectName.substituteAll('.', '/').concat('/element/'+domain.elementTypeNamePrefix.concat('TypeContext.java')), false, 'UTF-8')]
 	
-	package [ domain.projectName.concat('.element')/];
+	package [ domain.typeProjectName.concat('.element')/];
 
 	import org.eclipse.gmf.runtime.emf.type.core.ClientContextManager;
 	import org.eclipse.gmf.runtime.emf.type.core.IClientContext;

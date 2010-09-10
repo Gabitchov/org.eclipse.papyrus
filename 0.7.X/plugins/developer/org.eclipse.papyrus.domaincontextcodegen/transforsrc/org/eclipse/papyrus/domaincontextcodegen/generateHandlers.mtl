@@ -1,0 +1,12 @@
+[comment encoding = UTF-8 /]
+[module generateHandlers('http://www.eclipse.org/papyrus/2010/domaincontextcodegen','http://www.eclipse.org/emf/2002/Ecore')/]
+
+[import org::eclipse::papyrus::domaincontextcodegen::generateElementHandler/]
+[import org::eclipse::papyrus::domaincontextcodegen::generateXMLElementHandler/]
+
+[template public generateHandlers(domain : DomainContext)]
+	
+	[domain.generateElementHandler()/]
+	[domain.generateXMLElementHandler()/]
+	
+[/template]

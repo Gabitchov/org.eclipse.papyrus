@@ -1,12 +1,13 @@
+[comment deprecated /]
 [comment encoding = UTF-8 /]
 [module generateHideDomainContext('http://www.eclipse.org/papyrus/2010/domaincontextcodegen','http://www.eclipse.org/emf/2002/Ecore')/]
 
 [template public generateHideDomainContext(domain : DomainContext)]
 	[comment this template is used to generate a filter to hide element type attached to the context
 	to finish/]
-	[file (domain.projectName.substituteAll('.', '/').concat('/helper/Hide'+domain.elementTypeNamePrefix.concat('Context.java')), false, 'UTF-8')]
+	[file (domain.typeProjectName.substituteAll('.', '/').concat('/helper/Hide'+domain.elementTypeNamePrefix.concat('Context.java')), false, 'UTF-8')]
 	
-	package [domain.projectName/].helper;
+	package [domain.typeProjectName/].helper;
 
 	import org.eclipse.core.commands.ExecutionException;
 	import org.eclipse.core.runtime.IAdaptable;
