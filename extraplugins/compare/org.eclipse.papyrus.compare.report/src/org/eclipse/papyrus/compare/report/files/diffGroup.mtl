@@ -1,0 +1,19 @@
+[comment encoding = UTF-8 /]
+[module diffGroup('http://www.eclipse.org/emf/compare/diff/1.1')/]
+[import common/]
+[import attributeChange/]
+[import referenceChange/]
+
+[template public processDiffGroup(el : DiffGroup)]
+[el.header()/]
+[el.processAttributeChanges()/]
+[el.processReferenceChanges()/]
+[for (diffElement : DiffElement | el.subDiffElements) ? (diffElement.oclIsKindOf(DiffGroup))]
+	[diffElement.oclAsType(DiffGroup).processDiffGroup()/]
+[/for]
+<hr/>
+[/template]
+
+[template private header(el : DiffGroup)]
+<h3>[el.subchanges/] changes in [elementMetaclass(el.rightParent)/] [elementName(el.rightParent)/]</h3>
+[/template]
