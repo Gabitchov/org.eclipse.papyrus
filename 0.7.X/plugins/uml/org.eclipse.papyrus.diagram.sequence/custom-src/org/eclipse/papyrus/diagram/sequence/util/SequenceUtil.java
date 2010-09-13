@@ -31,6 +31,7 @@ import org.eclipse.draw2d.AbstractPointListShape;
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
+import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
@@ -864,7 +865,22 @@ public class SequenceUtil {
 					figure.getParent().translateToAbsolute(figureBounds);
 
 					if(selectionRect.contains(figureBounds)) {
-						addInteractionFragmentAndRelatedToSet((InteractionFragment)elem, coveredInteractionFragments);
+						coveredInteractionFragments.add((InteractionFragment)elem);
+					}
+					if(elem instanceof ExecutionSpecification) {
+						Point center = figureBounds.getCenter();
+						Point top = center.getCopy();
+						top.y = figureBounds.y;
+
+						if(selectionRect.contains(top)) {
+							coveredInteractionFragments.add(((ExecutionSpecification)elem).getStart());
+						}
+
+						Point bottom = center.getCopy();
+						bottom.y = figureBounds.bottom();
+						if(selectionRect.contains(bottom)) {
+							coveredInteractionFragments.add(((ExecutionSpecification)elem).getFinish());
+						}
 					}
 				}
 
@@ -886,13 +902,13 @@ public class SequenceUtil {
 					if(selectionRect.contains(sourcePoint)) {
 						MessageEnd msgSendEnd = msg.getSendEvent();
 						if(msgSendEnd instanceof InteractionFragment) {
-							addInteractionFragmentAndRelatedToSet((InteractionFragment)msgSendEnd, coveredInteractionFragments);
+							coveredInteractionFragments.add((InteractionFragment)msgSendEnd);
 						}
 					}
 					if(selectionRect.contains(targetPoint)) {
 						MessageEnd msgReceiveEnd = msg.getReceiveEvent();
 						if(msgReceiveEnd instanceof InteractionFragment) {
-							addInteractionFragmentAndRelatedToSet((InteractionFragment)msgReceiveEnd, coveredInteractionFragments);
+							coveredInteractionFragments.add((InteractionFragment)msgReceiveEnd);
 						}
 					}
 				}
@@ -902,54 +918,7 @@ public class SequenceUtil {
 	}
 
 	/**
-	 * add the interaction fragment and its related ifts to the set.
-	 * 
-	 * @param ift
-	 * @param iftSet
-	 */
-	public static void addInteractionFragmentAndRelatedToSet(InteractionFragment ift, Set<InteractionFragment> iftSet) {
-		boolean result = iftSet.add(ift);
-		// don't process again if it is already inside the set to avoid infinite loop
-		// between cross referenced objects
-		if(result) {
-			if(ift instanceof ExecutionSpecification) {
-				// include both ends of an execution specification in the set
-				ExecutionSpecification es = ((ExecutionSpecification)ift);
-				addInteractionFragmentAndRelatedToSet(es.getStart(), iftSet);
-				addInteractionFragmentAndRelatedToSet(es.getFinish(), iftSet);
-			} else if(ift instanceof ExecutionOccurrenceSpecification) {
-				// include the execution specification associated with the occurence
-				ExecutionOccurrenceSpecification eos = (ExecutionOccurrenceSpecification)ift;
-				addInteractionFragmentAndRelatedToSet(eos.getExecution(), iftSet);
-			}
-		}
-	}
-
-	/**
-	 * return a command to set the enclosing operand of an interaction fragment.
-	 * 
-	 * @param ed
-	 *        The transactional editing domain.
-	 * @param ift
-	 *        The interaction fragment.
-	 * @param io
-	 *        the new enclosing interaction operand.
-	 * @return The command.
-	 */
-	public static ICommand getSetEnclosingOperandCommand(final TransactionalEditingDomain ed, final InteractionFragment ift, final InteractionOperand io) {
-		return new AbstractTransactionalCommand(ed, "Set enclosing operand command", null) {
-
-			@Override
-			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-				ift.setEnclosingInteraction(null);
-				ift.setEnclosingOperand(io);
-				return CommandResult.newOKCommandResult();
-			}
-		};
-	}
-
-	/**
-	 * return a command to set the enclosing interaction of an interaction fragment.
+	 * return a command to set the enclosing interaction or interaction operand of an interaction fragment.
 	 * 
 	 * @param ed
 	 *        The transactional editing domain.
@@ -959,13 +928,20 @@ public class SequenceUtil {
 	 *        the new enclosing interaction.
 	 * @return The command.
 	 */
-	public static ICommand getSetEnclosingInteractionCommand(final TransactionalEditingDomain ed, final InteractionFragment ift, final Interaction i) {
+	public static ICommand getSetEnclosingInteractionCommand(final TransactionalEditingDomain ed, final InteractionFragment ift, final EObject interaction) {
 		return new AbstractTransactionalCommand(ed, "Set enclosing interaction command", null) {
 
 			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-				ift.setEnclosingOperand(null);
-				ift.setEnclosingInteraction(i);
+				if(ift != null) {
+					if(interaction instanceof Interaction) {
+						ift.setEnclosingOperand(null);
+						ift.setEnclosingInteraction((Interaction)interaction);
+					} else if(interaction instanceof InteractionOperand) {
+						ift.setEnclosingInteraction(null);
+						ift.setEnclosingOperand((InteractionOperand)interaction);
+					}
+				}
 				return CommandResult.newOKCommandResult();
 			}
 		};
@@ -1016,22 +992,113 @@ public class SequenceUtil {
 	}
 
 	/**
-	 * Create a command to update the enclosing interaction of an interaction fragment according to its new bounds.
+	 * Internal class used as a data structure
+	 * @author mvelten
+	 *
+	 */
+	private static class InteractionFragmentState {
+		// the interaction fragment
+		public InteractionFragment ift;
+		// its bounds
+		public Rectangle bounds;
+		// the interaction currently associated with this ift
+		public EObject currentInteraction = null;
+		// the area of the current interaction
+		// this is used to keep the smallest interaction which owns the ift
+		public int currentInteractionArea = Integer.MAX_VALUE;
+
+		public InteractionFragmentState(InteractionFragment ift, Rectangle bounds) {
+			this.ift = ift;
+			this.bounds = bounds;
+		}
+	}
+
+	/**
+	 * Create a command to update the enclosing interaction of an execution specification according to its new bounds.
 	 * 
-	 * @param interactionFragmentEP
-	 *        the edit part of the interaction fragment
+	 * @param executionSpecificationEP
+	 *        the edit part of the execution specification
 	 * @param absoluteNewBounds
 	 *        the new absolute bounds
 	 * @return the command or null if nothing changes
 	 */
 	@SuppressWarnings("unchecked")
-	public static Command createUpdateEnclosingInteractionCommand(ShapeNodeEditPart interactionFragmentEP, Rectangle absoluteNewBounds) {
+	public static Command createUpdateEnclosingInteractionCommand(ShapeNodeEditPart executionSpecificationEP, Point moveDelta, Dimension sizeDelta) {
 
-		EObject interaction = null;
-		int area = Integer.MAX_VALUE;
+		// calculate new bounds for the execution specification
+		Rectangle absoluteNewBounds = executionSpecificationEP.getFigure().getBounds().getCopy();
+
+		executionSpecificationEP.getFigure().getParent().translateToAbsolute(absoluteNewBounds);
+
+		absoluteNewBounds.x += moveDelta.x;
+		absoluteNewBounds.y += moveDelta.y;
+		absoluteNewBounds.height += sizeDelta.height;
+		absoluteNewBounds.width += sizeDelta.height;
+
+		int xCenter = absoluteNewBounds.getCenter().x;
+
+		Rectangle top = new Rectangle(xCenter, absoluteNewBounds.y, 0, 0);
+		Rectangle bottom = new Rectangle(xCenter, absoluteNewBounds.bottom(), 0, 0);
+
+		// associate es with its bounds, and start and finish event with the top and bottom of the bounds
+		List<InteractionFragmentState> interactionFragmentStates = new ArrayList<InteractionFragmentState>();
+
+		ExecutionSpecification es = (ExecutionSpecification)executionSpecificationEP.resolveSemanticElement();
+
+		InteractionFragmentState stateES = new InteractionFragmentState(es, absoluteNewBounds);
+		interactionFragmentStates.add(stateES);
+
+		InteractionFragmentState stateStart = new InteractionFragmentState(es.getStart(), top);
+		interactionFragmentStates.add(stateStart);
+
+		InteractionFragmentState stateFinish = new InteractionFragmentState(es.getFinish(), bottom);
+		interactionFragmentStates.add(stateFinish);
+
+		List<ConnectionEditPart> sourceConnectionEPs = executionSpecificationEP.getSourceConnections();
+
+		// find possible ifts associated with messages connected to the moved es
+		for(ConnectionEditPart sourceConnectionEP : sourceConnectionEPs) {
+			EObject elem = sourceConnectionEP.getNotationView().getElement();
+
+			// for connections, messages have ends that can be ift but don't have theirs own edit parts
+			// => use anchors to determine position
+			if(elem instanceof Message) {
+				Message msg = (Message)elem;
+				MessageEnd sendEvent = msg.getSendEvent();
+				if(sendEvent instanceof InteractionFragment) {
+					Connection msgFigure = sourceConnectionEP.getConnectionFigure();
+
+					Point sourcePoint = msgFigure.getSourceAnchor().getLocation(msgFigure.getTargetAnchor().getReferencePoint());
+
+					InteractionFragmentState state = new InteractionFragmentState((InteractionFragment)sendEvent, new Rectangle(sourcePoint.x + moveDelta.x, sourcePoint.y + moveDelta.y, 0, 0));
+
+					interactionFragmentStates.add(state);
+				}
+			}
+		}
+
+		List<ConnectionEditPart> targetConnectionEPs = executionSpecificationEP.getTargetConnections();
+
+		for(ConnectionEditPart targetConnectionEP : targetConnectionEPs) {
+			EObject elem = targetConnectionEP.getNotationView().getElement();
+
+			if(elem instanceof Message) {
+				Message msg = (Message)elem;
+				MessageEnd receiveEvent = msg.getReceiveEvent();
+				if(receiveEvent instanceof InteractionFragment) {
+					Connection msgFigure = targetConnectionEP.getConnectionFigure();
+
+					Point targetPoint = msgFigure.getTargetAnchor().getLocation(msgFigure.getSourceAnchor().getReferencePoint());
+
+					InteractionFragmentState state = new InteractionFragmentState((InteractionFragment)receiveEvent, new Rectangle(targetPoint.x + moveDelta.x, targetPoint.y + moveDelta.y, 0, 0));
+
+					interactionFragmentStates.add(state);
+				}
+			}
+		}
 
 		// retrieve all the edit parts in the registry
-		Set<Entry<Object, EditPart>> allEditPartEntries = interactionFragmentEP.getViewer().getEditPartRegistry().entrySet();
+		Set<Entry<Object, EditPart>> allEditPartEntries = executionSpecificationEP.getViewer().getEditPartRegistry().entrySet();
 		for(Entry<Object, EditPart> epEntry : allEditPartEntries) {
 			EditPart ep = epEntry.getValue();
 
@@ -1043,33 +1110,24 @@ public class SequenceUtil {
 					Rectangle interactionBounds = new Rectangle(sep.getLocation(), sep.getSize());
 					sep.getFigure().getParent().translateToAbsolute(interactionBounds);
 
-					if(interactionBounds.contains(absoluteNewBounds)) {
-						int interactionArea = interactionBounds.height * interactionBounds.width;
-						// keep the covered interaction if it is smaller than the previous
-						if(interactionArea < area) {
-							area = interactionArea;
-							interaction = elem;
+					int interactionArea = interactionBounds.height * interactionBounds.width;
+
+					// keep the covered interaction if it is smaller than the previous
+					for(InteractionFragmentState state : interactionFragmentStates) {
+						if(interactionBounds.contains(state.bounds) && interactionArea < state.currentInteractionArea) {
+
+							state.currentInteractionArea = interactionArea;
+							state.currentInteraction = elem;
 						}
 					}
 				}
 			}
 		}
 
-		Set<InteractionFragment> iftAndRelated = new HashSet<InteractionFragment>();
-
-		// add related ift like start and end of an execution specification
-		addInteractionFragmentAndRelatedToSet((InteractionFragment)interactionFragmentEP.resolveSemanticElement(), iftAndRelated);
-
 		CompoundCommand cmd = new CompoundCommand();
 
-		if(interaction instanceof Interaction) {
-			for(InteractionFragment ift : iftAndRelated) {
-				cmd.add(new ICommandProxy(SequenceUtil.getSetEnclosingInteractionCommand(interactionFragmentEP.getEditingDomain(), ift, (Interaction)interaction)));
-			}
-		} else if(interaction instanceof InteractionOperand) {
-			for(InteractionFragment ift : iftAndRelated) {
-				cmd.add(new ICommandProxy(SequenceUtil.getSetEnclosingOperandCommand(interactionFragmentEP.getEditingDomain(), ift, (InteractionOperand)interaction)));
-			}
+		for(InteractionFragmentState state : interactionFragmentStates) {
+			cmd.add(new ICommandProxy(SequenceUtil.getSetEnclosingInteractionCommand(executionSpecificationEP.getEditingDomain(), state.ift, state.currentInteraction)));
 		}
 
 		if(!cmd.isEmpty()) {
