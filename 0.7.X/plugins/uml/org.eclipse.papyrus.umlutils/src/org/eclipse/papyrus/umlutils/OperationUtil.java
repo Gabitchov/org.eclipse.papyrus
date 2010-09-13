@@ -55,7 +55,9 @@ public class OperationUtil {
 		buffer.append(")");
 
 		// return type
-		buffer.append(OperationUtil.getReturnTypeAsString(operation, style));
+		if((style & ICustomAppearence.DISP_RT_TYPE) != 0) {
+			buffer.append(OperationUtil.getReturnTypeAsString(operation, style));
+		}
 
 		// modifiers
 		if((style & ICustomAppearence.DISP_MOFIFIERS) != 0) {
@@ -111,16 +113,22 @@ public class OperationUtil {
 	private static String getParametersAsString(Operation operation, int style) {
 		StringBuffer paramString = new StringBuffer();
 		Iterator<Parameter> paramIterator = operation.getOwnedParameters().iterator();
+		boolean firstParameter = true;
 		while(paramIterator.hasNext()) {
 			Parameter parameter = paramIterator.next();
 			// Do not include return parameters
 			if(!parameter.getDirection().equals(ParameterDirectionKind.RETURN_LITERAL)) {
 
-				// get the label for this parameter
-				paramString.append(ParameterUtil.getCustomLabel(parameter, style));
 
-				if(paramIterator.hasNext()) {
-					paramString.append(", ");
+
+				// get the label for this parameter
+				String parameterString = ParameterUtil.getCustomLabel(parameter, style);
+				if (!parameterString.trim().equals("")) {
+					if (!firstParameter) {
+						paramString.append(", ");
+					}
+					paramString.append(parameterString);
+					firstParameter = false;
 				}
 			}
 		}

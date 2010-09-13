@@ -61,6 +61,7 @@ public class OperationLabelHelper extends StereotypedElementLabelHelper {
 		masks.put(ICustomAppearence.DISP_PARAMETER_NAME, "Parameters Name");
 		masks.put(ICustomAppearence.DISP_PARAMETER_DIRECTION, "Parameters Direction");
 		masks.put(ICustomAppearence.DISP_PARAMETER_TYPE, "Parameters Type");
+		masks.put(ICustomAppearence.DISP_RT_TYPE, "Return Type");
 		masks.put(ICustomAppearence.DISP_PARAMETER_MULTIPLICITY, "Parameters Multiplicity");
 		masks.put(ICustomAppearence.DISP_PARAMETER_DEFAULT, "Parameters Default Value");
 		masks.put(ICustomAppearence.DISP_PARAMETER_MODIFIERS, "Parameters Modifiers");

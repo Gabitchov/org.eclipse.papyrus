@@ -277,10 +277,13 @@ public class CommandHelper {
 
 		// according to the type of the message
 		// choose which types we should care of
-		if(MessageSort.SYNCH_CALL_LITERAL.equals(messageSort) || MessageSort.REPLY_LITERAL.equals(messageSort)) {
+		if(MessageSort.SYNCH_CALL_LITERAL.equals(messageSort)) {
 			useSignals = false;
 		} else if(MessageSort.CREATE_MESSAGE_LITERAL.equals(messageSort) || MessageSort.DELETE_MESSAGE_LITERAL.equals(messageSort)) {
 			useOperations = false;
+		} else if(MessageSort.REPLY_LITERAL.equals(messageSort)) {
+			parentsOwner = source;
+			useSignals = false;
 		}
 
 		LinkedHashMap<EClass, List<EObject>> mapTypesPossibleParents = new LinkedHashMap<EClass, List<EObject>>();
