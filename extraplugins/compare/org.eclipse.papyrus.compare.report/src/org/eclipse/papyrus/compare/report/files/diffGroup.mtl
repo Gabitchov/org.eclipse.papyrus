@@ -3,6 +3,7 @@
 [import common/]
 [import attributeChange/]
 [import referenceChange/]
+[import modelElementChange/]
 
 [template public processDiffGroup(el : DiffGroup)]
 [el.header()/]
@@ -11,7 +12,9 @@
 [for (diffElement : DiffElement | el.subDiffElements) ? (diffElement.oclIsKindOf(DiffGroup))]
 	[diffElement.oclAsType(DiffGroup).processDiffGroup()/]
 [/for]
-<hr/>
+[for (diffElement : DiffElement | el.subDiffElements) ? (diffElement.oclIsKindOf(ModelElementChange))]
+	[diffElement.oclAsType(ModelElementChange).processModelElementChange()/]
+[/for]
 [/template]
 
 [template private header(el : DiffGroup)]

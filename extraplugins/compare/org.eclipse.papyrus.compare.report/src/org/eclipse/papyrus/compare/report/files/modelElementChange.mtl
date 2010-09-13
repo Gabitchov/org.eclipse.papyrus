@@ -1,0 +1,36 @@
+[comment encoding = UTF-8 /]
+[module modelElementChange('http://www.eclipse.org/emf/compare/diff/1.1')/]
+[import common/]
+
+[template public processModelElementChange(el : ModelElementChange)]
+<tr>
+<td>[el.kind/]</td><td>ModelElementChange</td>
+</tr>
+[if (el.oclIsKindOf(ModelElementChangeLeftTarget))]
+	[el.oclAsType(ModelElementChangeLeftTarget).processModelElementChangeLeftTarget()/]
+[elseif (el.oclIsKindOf(ModelElementChangeRightTarget))]
+	[el.oclAsType(ModelElementChangeRightTarget).processModelElementChangeRightTarget()/]
+[/if]
+[/template]
+
+[template public processModelElementChangeLeftTarget(el : ModelElementChangeLeftTarget)]
+[elementName(el.leftElement)/] has been added
+<table border="1">
+[el.tableHeader()/]
+<tr><th>[elementName(el.leftElement)/]</th><th>-</th></tr>
+</table>
+[/template]
+
+[template public processModelElementChangeRightTarget(el : ModelElementChangeRightTarget)]
+[elementName(el.rightElement)/] has been removed
+<table border="1">
+[el.tableHeader()/]
+<tr><th>-</th><th>[elementName(el.rightElement)/]</th></tr>
+</table>
+[/template]
+
+[template private tableHeader(el : DiffElement)]
+<tr><th>(1)</th><th>(2)</th></tr>
+[/template]
+
+
