@@ -60,7 +60,7 @@ public class PapyrusNodeFigure extends NodeFigure implements IPapyrusNodeFigure 
 		this.customDash = dash;
 	}
 
-	protected RectangularShadowBorder shadowborder;
+	protected LineBorder shadowborder;
 
 	public PapyrusNodeFigure() {
 		super();
