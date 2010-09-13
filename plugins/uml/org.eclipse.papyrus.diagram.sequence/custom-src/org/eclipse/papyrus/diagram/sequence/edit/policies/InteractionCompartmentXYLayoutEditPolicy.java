@@ -105,7 +105,9 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 				}
 
 				// Apply SizeDelta to the children
-				newBounds.x += Math.round(widthDelta / ((float)2 * number));
+				widthDelta = Math.round(widthDelta / ((float)2 * number));
+
+				newBounds.x += widthDelta;
 
 				// Convert to relative
 				newBounds.x -= rDotLine.x;
@@ -121,7 +123,7 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 			newBounds.y += request.getMoveDelta().y;
 
 			// update the enclosing interaction of a moved execution specification
-			compoundCmd.add(SequenceUtil.createUpdateEnclosingInteractionCommand(executionSpecificationEP, newBounds));
+			compoundCmd.add(SequenceUtil.createUpdateEnclosingInteractionCommand(executionSpecificationEP, request.getMoveDelta(), new Dimension(widthDelta, request.getSizeDelta().height)));
 		}
 
 		List<LifelineEditPart> innerConnectableElementList = lifelineEditPart.getInnerConnectableElementList();
@@ -190,7 +192,7 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 
 					for(InteractionFragment ift : notCoveredAnymoreInteractionFragments) {
 						if(cf.getEnclosingOperand() != null) {
-							compoundCmd.add(new ICommandProxy(SequenceUtil.getSetEnclosingOperandCommand(ioEP.getEditingDomain(), ift, cf.getEnclosingOperand())));
+							compoundCmd.add(new ICommandProxy(SequenceUtil.getSetEnclosingInteractionCommand(ioEP.getEditingDomain(), ift, cf.getEnclosingOperand())));
 						} else {
 							compoundCmd.add(new ICommandProxy(SequenceUtil.getSetEnclosingInteractionCommand(ioEP.getEditingDomain(), ift, cf.getEnclosingInteraction())));
 						}
@@ -202,7 +204,7 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 					for(InteractionFragment ift : coveredInteractionFragments) {
 						if(!cf.equals(ift)) {
 							if((cf.getEnclosingOperand() != null && cf.getEnclosingOperand().equals(ift.getEnclosingOperand())) || (cf.getEnclosingInteraction() != null && cf.getEnclosingInteraction().equals(ift.getEnclosingInteraction()))) {
-								compoundCmd.add(new ICommandProxy(SequenceUtil.getSetEnclosingOperandCommand(ioEP.getEditingDomain(), ift, io)));
+								compoundCmd.add(new ICommandProxy(SequenceUtil.getSetEnclosingInteractionCommand(ioEP.getEditingDomain(), ift, io)));
 							}
 						}
 					}

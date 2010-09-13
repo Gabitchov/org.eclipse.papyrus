@@ -392,7 +392,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 					newBounds.translate(parentFigure.getBounds().getLocation());
 
 					// update the enclosing interaction of a moved execution specification
-					compoundCmd.add(SequenceUtil.createUpdateEnclosingInteractionCommand(executionSpecificationEP, newBounds));
+					compoundCmd.add(SequenceUtil.createUpdateEnclosingInteractionCommand(executionSpecificationEP, request.getMoveDelta(), newSizeDelta));
 
 					// keep absolute position of anchors
 					compoundCmd.add(new ICommandProxy(
@@ -647,7 +647,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 				newBounds.translate(parentFigure.getBounds().getLocation());
 
 				// change the enclosing interaction of the moved affixed child if necessary
-				compoundCmd.add(SequenceUtil.createUpdateEnclosingInteractionCommand(childExecutionSpecificationEP, childBounds));
+				compoundCmd.add(SequenceUtil.createUpdateEnclosingInteractionCommand(childExecutionSpecificationEP, moveDelta.getLocation(), moveDelta.getSize()));
 
 				// Move it's children as well
 				if(!getAffixedExecutionSpecificationEditParts(childExecutionSpecificationEP).isEmpty()) {
