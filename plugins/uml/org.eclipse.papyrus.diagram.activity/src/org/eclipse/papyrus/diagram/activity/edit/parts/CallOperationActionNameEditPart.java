@@ -183,7 +183,7 @@ public class CallOperationActionNameEditPart extends CompartmentEditPart impleme
 	/**
 	 * @generated
 	 */
-	public void setLabel(CenteredWrappedLabel figure) {
+	public void setLabel(WrappingLabel figure) {
 		unregisterVisuals();
 		setFigure(figure);
 		defaultText = getLabelTextHelper(figure);
@@ -708,7 +708,6 @@ public class CallOperationActionNameEditPart extends CompartmentEditPart impleme
 				}
 			}
 		}
-
 
 		super.handleNotificationEvent(event);
 	}

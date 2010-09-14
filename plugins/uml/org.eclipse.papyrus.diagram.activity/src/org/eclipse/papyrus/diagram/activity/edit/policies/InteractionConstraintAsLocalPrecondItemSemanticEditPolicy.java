@@ -13,8 +13,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.activity.edit.policies;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
+import java.util.List;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -41,6 +43,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ActionLocalPostconditionE
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionLocalPreconditionEditPart;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.common.command.wrappers.EMFtoGMFCommandWrapper;
 
 /**
  * @generated
@@ -60,50 +63,17 @@ public class InteractionConstraintAsLocalPrecondItemSemanticEditPolicy extends U
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		View view = (View)getHost().getModel();
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
-		cmd.setTransactionNestingEnabled(false);
-		for(Iterator<?> it = view.getTargetEdges().iterator(); it.hasNext();) {
-			Edge incomingLink = (Edge)it.next();
-			if(UMLVisualIDRegistry.getVisualID(incomingLink) == ActionLocalPreconditionEditPart.VISUAL_ID) {
-				DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
-				cmd.add(new DestroyReferenceCommand(r) {
+		cmd.setTransactionNestingEnabled(true);
 
-					protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
-						EObject referencedObject = getReferencedObject();
-						Resource resource = referencedObject.eResource();
-						CommandResult result = super.doExecuteWithResult(progressMonitor, info);
-						if(resource != null) {
-							resource.getContents().add(referencedObject);
-						}
-						return result;
-					}
-				});
-				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
-				continue;
-			}
-			if(UMLVisualIDRegistry.getVisualID(incomingLink) == ActionLocalPostconditionEditPart.VISUAL_ID) {
-				DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
-				cmd.add(new DestroyReferenceCommand(r) {
-
-					protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
-						EObject referencedObject = getReferencedObject();
-						Resource resource = referencedObject.eResource();
-						CommandResult result = super.doExecuteWithResult(progressMonitor, info);
-						if(resource != null) {
-							resource.getContents().add(referencedObject);
-						}
-						return result;
-					}
-				});
-				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
-				continue;
-			}
-		}
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 		if(annotation == null) {
 			// there are indirectly referenced children, need extra commands: false
 			addDestroyShortcutsCommand(cmd, view);
 			// delete host element
-			cmd.add(new DestroyElementCommand(req));
+			List<EObject> todestroy = new ArrayList<EObject>();
+			todestroy.add(req.getElementToDestroy());
+			//cmd.add(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(req));
+			cmd.add(new EMFtoGMFCommandWrapper(new org.eclipse.emf.edit.command.DeleteCommand(getEditingDomain(), todestroy)));
 		} else {
 			cmd.add(new DeleteCommand(getEditingDomain(), view));
 		}

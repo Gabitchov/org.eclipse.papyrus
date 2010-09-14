@@ -28,122 +28,81 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = getPreferenceStore();
 
-		InteractionConstraintPreferencePage.initDefaults(store);
-
-
-		ValueSpecificationActionPreferencePage.initDefaults(store);
-
-
-		SendObjectActionPreferencePage.initDefaults(store);
-
-
-		SequenceNodePreferencePage.initDefaults(store);
-
-
-		SendSignalActionPreferencePage.initDefaults(store);
-
-
-		DataStoreNodePreferencePage.initDefaults(store);
-
-
-		LoopNodePreferencePage.initDefaults(store);
-
-
-		CallBehaviorActionPreferencePage.initDefaults(store);
-
-
-		FlowFinalNodePreferencePage.initDefaults(store);
-
-
-		AcceptEventActionPreferencePage.initDefaults(store);
-
-
-		ConditionalNodePreferencePage.initDefaults(store);
-
-
-		DecisionNodePreferencePage.initDefaults(store);
-
-
-		ActivityFinalNodePreferencePage.initDefaults(store);
-
-
-		ActivityPreferencePage.initDefaults(store);
-
-
-		ActivityPartitionPreferencePage.initDefaults(store);
-
-
-		ForkNodePreferencePage.initDefaults(store);
-
-
-		ValuePinPreferencePage.initDefaults(store);
-
-
-		CallOperationActionPreferencePage.initDefaults(store);
-
-
-		ActionInputPinPreferencePage.initDefaults(store);
-
-
-		StructuredActivityNodePreferencePage.initDefaults(store);
-
-
-		IntervalConstraintPreferencePage.initDefaults(store);
-
-
-		OpaqueActionPreferencePage.initDefaults(store);
-
-
-		InitialNodePreferencePage.initDefaults(store);
-
-
-		DurationConstraintPreferencePage.initDefaults(store);
-
-
-		ExpansionRegionPreferencePage.initDefaults(store);
-
-
-		OutputPinPreferencePage.initDefaults(store);
-
-
-		MergeNodePreferencePage.initDefaults(store);
-
-
-		ConstraintPreferencePage.initDefaults(store);
-
-
-		InputPinPreferencePage.initDefaults(store);
-
+		TimeConstraintPreferencePage.initDefaults(store);
 
 		ExpansionNodePreferencePage.initDefaults(store);
 
+		ValuePinPreferencePage.initDefaults(store);
+
+		LoopNodePreferencePage.initDefaults(store);
+
+		MergeNodePreferencePage.initDefaults(store);
+
+		ActionInputPinPreferencePage.initDefaults(store);
+
+		CallOperationActionPreferencePage.initDefaults(store);
+
+		CallBehaviorActionPreferencePage.initDefaults(store);
+
+		ActivityPartitionPreferencePage.initDefaults(store);
+
+		InputPinPreferencePage.initDefaults(store);
+
+		SendObjectActionPreferencePage.initDefaults(store);
+
+		InitialNodePreferencePage.initDefaults(store);
+
+		OutputPinPreferencePage.initDefaults(store);
+
+		DurationConstraintPreferencePage.initDefaults(store);
+
+		StructuredActivityNodePreferencePage.initDefaults(store);
+
+		SequenceNodePreferencePage.initDefaults(store);
 
 		ActivityParameterNodePreferencePage.initDefaults(store);
 
+		ActivityPreferencePage.initDefaults(store);
 
-		TimeConstraintPreferencePage.initDefaults(store);
+		OpaqueActionPreferencePage.initDefaults(store);
 
+		DecisionNodePreferencePage.initDefaults(store);
 
-		InterruptibleActivityRegionPreferencePage.initDefaults(store);
-
+		ValueSpecificationActionPreferencePage.initDefaults(store);
 
 		JoinNodePreferencePage.initDefaults(store);
 
+		ConstraintPreferencePage.initDefaults(store);
+
+		SendSignalActionPreferencePage.initDefaults(store);
+
+		FlowFinalNodePreferencePage.initDefaults(store);
+
+		InterruptibleActivityRegionPreferencePage.initDefaults(store);
+
+		InteractionConstraintPreferencePage.initDefaults(store);
+
+		IntervalConstraintPreferencePage.initDefaults(store);
+
+		DataStoreNodePreferencePage.initDefaults(store);
+
+		ActivityFinalNodePreferencePage.initDefaults(store);
 
 		ParameterPreferencePage.initDefaults(store);
 
+		ExpansionRegionPreferencePage.initDefaults(store);
 
+		AcceptEventActionPreferencePage.initDefaults(store);
 
+		ForkNodePreferencePage.initDefaults(store);
 
-		ObjectFlowPreferencePage.initDefaults(store);
-
-
+		ConditionalNodePreferencePage.initDefaults(store);
 
 		ControlFlowPreferencePage.initDefaults(store);
 
-
 		ExceptionHandlerPreferencePage.initDefaults(store);
 
+		ObjectFlowPreferencePage.initDefaults(store);
 
 	}
 

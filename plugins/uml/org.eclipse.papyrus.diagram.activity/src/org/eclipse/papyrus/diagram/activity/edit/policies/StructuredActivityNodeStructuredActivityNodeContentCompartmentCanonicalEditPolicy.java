@@ -89,7 +89,6 @@ public class StructuredActivityNodeStructuredActivityNodeContentCompartmentCanon
 	 */
 	private Set<EStructuralFeature> myFeaturesToSynchronize;
 
-
 	/**
 	 * @generated
 	 */

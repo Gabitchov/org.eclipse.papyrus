@@ -93,10 +93,6 @@ AbstractBorderItemEditPart {
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */
@@ -136,8 +132,6 @@ AbstractBorderItemEditPart {
 		return (ExpansionNodeDescriptor)primaryShape;
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -148,12 +142,10 @@ AbstractBorderItemEditPart {
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
 
-
 		//FIXME: workaround for #154536
 		result.getBounds().setSize(result.getPreferredSize());
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -220,7 +212,6 @@ AbstractBorderItemEditPart {
 			((Shape)primaryShape).setLineStyle(style);
 		}
 	}
-
 
 	/**
 	 * @generated
@@ -806,17 +797,10 @@ AbstractBorderItemEditPart {
 		return types;
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */
 	public class ExpansionNodeDescriptor extends ScalablePolygonShape {
-
-
-
 
 		/**
 		 * @generated
@@ -839,12 +823,7 @@ AbstractBorderItemEditPart {
 			this.setMaximumSize(new Dimension(getMapMode().DPtoLP(48), getMapMode().DPtoLP(16)));
 		}
 
-
-
 	}
-
-
-
 
 	/**
 	 * @generated

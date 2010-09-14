@@ -18,6 +18,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.draw2d.Graphics;
+import org.eclipse.draw2d.GridData;
+import org.eclipse.draw2d.GridLayout;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.MarginBorder;
@@ -120,7 +122,6 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new SendSignalActionItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 
-
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.activity.edit.policies.SendSignalActionCanonicalEditPolicy());
 
@@ -195,20 +196,12 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 			return true;
 		}
 
-
-
-
-
 		//Papyrus Gencode :Affixed Pin locator for Actions
 		if(childEditPart instanceof ActionInputPinInSendSigActEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
 			getBorderedFigure().getBorderItemContainer().add(((ActionInputPinInSendSigActEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
 
 		//Papyrus Gencode :Affixed Pin locator for Actions
 		if(childEditPart instanceof ValuePinInSendSigActEditPart) {
@@ -217,20 +210,12 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 			return true;
 		}
 
-
-
-
-
 		//Papyrus Gencode :Affixed Pin locator for Actions
 		if(childEditPart instanceof InputPinInSendSigActEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
 			getBorderedFigure().getBorderItemContainer().add(((InputPinInSendSigActEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
 
 		//Papyrus Gencode :Affixed Pin locator for Actions
 		if(childEditPart instanceof ValuePinInSendSigActAsTargetEditPart) {
@@ -239,10 +224,6 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 			return true;
 		}
 
-
-
-
-
 		//Papyrus Gencode :Affixed Pin locator for Actions
 		if(childEditPart instanceof ActionInputPinInSendSigActAsTargetEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NORTH);
@@ -250,19 +231,12 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 			return true;
 		}
 
-
-
-
-
 		//Papyrus Gencode :Affixed Pin locator for Actions
 		if(childEditPart instanceof InputPinInSendSigActAsTargetEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NORTH);
 			getBorderedFigure().getBorderItemContainer().add(((InputPinInSendSigActAsTargetEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
 
 		return false;
 	}
@@ -1268,7 +1242,6 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 		 */
 		private void createContents() {
 
-
 			RectangleFigure labelRect0 = new RectangleFigure();
 			labelRect0.setFill(false);
 			labelRect0.setOutline(false);
@@ -1278,23 +1251,15 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 			CenteredColumnConstraint constraintLabelRect0 = new CenteredColumnConstraint(true);
 			this.add(labelRect0, constraintLabelRect0);
 
-
 			CenterLayout layoutLabelRect0 = new CenterLayout();
-
 
 			labelRect0.setLayoutManager(layoutLabelRect0);
 
-
-
 			fSendSignalActionLabel = new CenteredWrappedLabel();
-
-
 
 			fSendSignalActionLabel.setBorder(new MarginBorder(getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
 
 			labelRect0.add(fSendSignalActionLabel);
-
-
 
 		}
 

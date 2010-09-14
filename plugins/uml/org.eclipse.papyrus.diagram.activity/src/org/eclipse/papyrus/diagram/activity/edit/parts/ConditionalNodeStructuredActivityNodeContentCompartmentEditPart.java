@@ -39,8 +39,6 @@ import org.eclipse.papyrus.diagram.common.groups.edit.policies.CreateInReferenci
  */
 public class ConditionalNodeStructuredActivityNodeContentCompartmentEditPart
 
-
-
 extends ShapeCompartmentEditPart
 
 {
@@ -56,7 +54,6 @@ extends ShapeCompartmentEditPart
 	public ConditionalNodeStructuredActivityNodeContentCompartmentEditPart(View view) {
 		super(view);
 	}
-
 
 	/**
 	 * @generated
@@ -86,7 +83,6 @@ extends ShapeCompartmentEditPart
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new DuplicatePasteEditPolicy());
 
-
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.activity.edit.policies.ConditionalNodeStructuredActivityNodeContentCompartmentCanonicalEditPolicy());
 
@@ -94,9 +90,6 @@ extends ShapeCompartmentEditPart
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 	}
-
-
-
 
 	/**
 	 * @generated
@@ -106,8 +99,6 @@ extends ShapeCompartmentEditPart
 			super.setRatio(ratio);
 		}
 	}
-
-
 
 	/**
 	 * @generated

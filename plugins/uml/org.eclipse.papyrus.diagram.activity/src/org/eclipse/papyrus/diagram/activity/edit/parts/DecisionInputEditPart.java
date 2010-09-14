@@ -73,8 +73,10 @@ import org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.extensionpoints.editors.Activator;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IAdvancedEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration;
+import org.eclipse.papyrus.extensionpoints.editors.configuration.IPopupEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.ui.ExtendedDirectEditionDialog;
 import org.eclipse.papyrus.extensionpoints.editors.ui.ILabelEditorDialog;
+import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
 import org.eclipse.swt.SWT;
@@ -819,7 +821,6 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 		 * @generated
 		 */
 		public LinkAndCornerBentWithTextFigure() {
-
 
 			this.setBackgroundColor(THIS_BACK);
 			createContents();

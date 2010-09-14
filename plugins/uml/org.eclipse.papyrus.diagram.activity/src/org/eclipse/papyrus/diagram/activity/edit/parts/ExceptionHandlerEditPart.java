@@ -59,7 +59,6 @@ implements ITreeBranchEditPart {
 		return false;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -70,14 +69,12 @@ implements ITreeBranchEditPart {
 		super.addChildVisual(childEditPart, -1);
 	}
 
-
 	/**
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
 		return false;
 	}
-
 
 	/**
 	 * @generated
@@ -88,7 +85,6 @@ implements ITreeBranchEditPart {
 		}
 		super.removeChildVisual(childEditPart);
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -110,14 +106,10 @@ implements ITreeBranchEditPart {
 		return (ExceptionHandlerDescriptor)getFigure();
 	}
 
-
 	/**
 	 * @generated
 	 */
 	public class ExceptionHandlerDescriptor extends PolylineConnectionEx {
-
-
-
 
 		/**
 		 * @generated
@@ -141,11 +133,6 @@ implements ITreeBranchEditPart {
 			return df;
 		}
 
-
-
-
 	}
-
-
 
 }

@@ -79,7 +79,6 @@ public class DiagramGeneralPreferencePage extends DiagramPreferencePage {
 
 	}
 
-
 	/**
 	 * Initializes the default preference values for this preference store.
 	 * 

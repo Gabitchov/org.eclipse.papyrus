@@ -56,8 +56,10 @@ import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.activity.edit.policies.FlowFinalNodeItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.ResizableSquareEditPolicy;
+import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.graphics.Color;
@@ -881,21 +883,17 @@ AbstractBorderedShapeEditPart {
 		 */
 		private void createContents() {
 
-
 			fFigureAntislash = new PolylineShape();
 			fFigureAntislash.addPoint(new Point(getMapMode().DPtoLP(4), getMapMode().DPtoLP(4)));
 			fFigureAntislash.addPoint(new Point(getMapMode().DPtoLP(18), getMapMode().DPtoLP(18)));
 
 			this.add(fFigureAntislash);
 
-
-
 			fFigureSlash = new PolylineShape();
 			fFigureSlash.addPoint(new Point(getMapMode().DPtoLP(4), getMapMode().DPtoLP(18)));
 			fFigureSlash.addPoint(new Point(getMapMode().DPtoLP(18), getMapMode().DPtoLP(4)));
 
 			this.add(fFigureSlash);
-
 
 		}
 

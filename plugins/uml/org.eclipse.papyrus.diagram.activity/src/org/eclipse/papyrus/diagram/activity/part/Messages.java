@@ -263,7 +263,6 @@ public class Messages extends NLS {
 	 */
 	public static String CreateActivityParameterNodeDialog_ParameterSelectionLabel;
 
-
 	/**
 	 * @generated NOT
 	 */

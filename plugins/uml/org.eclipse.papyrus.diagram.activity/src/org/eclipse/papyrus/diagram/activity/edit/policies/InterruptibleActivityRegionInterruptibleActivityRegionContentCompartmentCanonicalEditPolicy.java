@@ -89,7 +89,6 @@ public class InterruptibleActivityRegionInterruptibleActivityRegionContentCompar
 	 */
 	private Set<EStructuralFeature> myFeaturesToSynchronize;
 
-
 	/**
 	 * @generated
 	 */

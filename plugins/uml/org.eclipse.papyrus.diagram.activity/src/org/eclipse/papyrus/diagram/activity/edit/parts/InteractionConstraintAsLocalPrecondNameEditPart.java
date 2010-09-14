@@ -709,7 +709,6 @@ public class InteractionConstraintAsLocalPrecondNameEditPart extends Compartment
 			}
 		}
 
-
 		super.handleNotificationEvent(event);
 	}
 

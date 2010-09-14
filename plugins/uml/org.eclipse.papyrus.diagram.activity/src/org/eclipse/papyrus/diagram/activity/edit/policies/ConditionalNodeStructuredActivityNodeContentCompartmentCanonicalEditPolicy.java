@@ -89,7 +89,6 @@ public class ConditionalNodeStructuredActivityNodeContentCompartmentCanonicalEdi
 	 */
 	private Set<EStructuralFeature> myFeaturesToSynchronize;
 
-
 	/**
 	 * @generated
 	 */

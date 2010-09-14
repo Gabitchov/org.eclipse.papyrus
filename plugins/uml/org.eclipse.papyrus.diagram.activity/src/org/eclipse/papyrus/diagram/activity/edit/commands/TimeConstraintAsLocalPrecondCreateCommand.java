@@ -75,7 +75,6 @@ public class TimeConstraintAsLocalPrecondCreateCommand extends EditElementComman
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -91,10 +90,7 @@ public class TimeConstraintAsLocalPrecondCreateCommand extends EditElementComman
 	 */
 	public boolean canExecute() {
 
-
 		return true;
-
-
 
 	}
 
@@ -103,13 +99,10 @@ public class TimeConstraintAsLocalPrecondCreateCommand extends EditElementComman
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
-
 		TimeConstraint newElement = UMLFactory.eINSTANCE.createTimeConstraint();
 
 		Action owner = (Action)getElementToEdit();
 		owner.getLocalPreconditions().add(newElement);
-
 
 		ElementInitializers.getInstance().init_TimeConstraint_3036(newElement);
 

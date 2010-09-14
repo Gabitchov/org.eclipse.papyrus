@@ -156,7 +156,6 @@ AbstractBorderItemEditPart implements IPapyrusEditPart {
 			return true;
 		}
 
-
 		return false;
 	}
 
@@ -206,7 +205,6 @@ AbstractBorderItemEditPart implements IPapyrusEditPart {
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
 
 		//FIXME: workaround for #154536
 		result.getBounds().setSize(result.getPreferredSize());
@@ -929,11 +927,9 @@ AbstractBorderItemEditPart implements IPapyrusEditPart {
 		 */
 		private void createContents() {
 
-
 			RectangleFigure labelRect0 = new RectangleFigure();
 			labelRect0.setFill(false);
 			labelRect0.setOutline(false);
-
 
 			GridData constraintLabelRect0 = new GridData();
 			constraintLabelRect0.verticalAlignment = GridData.FILL;
@@ -945,23 +941,15 @@ AbstractBorderItemEditPart implements IPapyrusEditPart {
 			constraintLabelRect0.grabExcessVerticalSpace = true;
 			this.add(labelRect0, constraintLabelRect0);
 
-
 			CenterLayout layoutLabelRect0 = new CenterLayout();
-
 
 			labelRect0.setLayoutManager(layoutLabelRect0);
 
-
-
 			fActivityParameterNodeLabel = new CenteredWrappedLabel();
-
-
 
 			fActivityParameterNodeLabel.setBorder(new MarginBorder(getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
 
 			labelRect0.add(fActivityParameterNodeLabel);
-
-
 
 		}
 

@@ -87,7 +87,6 @@ public class CallBehaviorActionEditPart extends
 
 AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 
-
 	/**
 	 * @generated
 	 */
@@ -119,7 +118,6 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CallBehaviorActionItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 
-
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.activity.edit.policies.CallBehaviorActionCanonicalEditPolicy());
 
@@ -141,19 +139,6 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
 
-		//Refresh the RakeFigure if an Activity is selected as behavior when figure is resized
-		if(resolveSemanticElement() != null) {
-			if(event.getNotifier() instanceof Bounds && resolveSemanticElement() instanceof CallBehaviorAction) {
-				CallBehaviorAction action = (CallBehaviorAction)resolveSemanticElement();
-				AbstractPointListShape rake = getPrimaryShape().getOptionalRakeFigure();
-				if(action.getBehavior() instanceof Activity) {
-					Dimension size = ActivityFigureDrawer.getNodeSize(this, event);
-					ActivityFigureDrawer.redrawRake(rake, getMapMode(), size);
-				};
-				refreshVisuals();
-			}
-		}
-
 		//Add/Remove the RakeFigure when an Activity is selected as behavior or deselected
 		if(resolveSemanticElement() != null) {
 			if(resolveSemanticElement() instanceof CallBehaviorAction && resolveSemanticElement().equals(event.getNotifier()) && event.getFeature().equals(UMLPackage.eINSTANCE.getCallBehaviorAction_Behavior())) {
@@ -164,6 +149,19 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 					ActivityFigureDrawer.redrawRake(rake, getMapMode(), size);
 				} else {
 					ActivityFigureDrawer.undrawFigure(rake);
+				};
+				refreshVisuals();
+			}
+		}
+
+		//Refresh the RakeFigure if an Activity is selected as behavior when figure is resized
+		if(resolveSemanticElement() != null) {
+			if(event.getNotifier() instanceof Bounds && resolveSemanticElement() instanceof CallBehaviorAction) {
+				CallBehaviorAction action = (CallBehaviorAction)resolveSemanticElement();
+				AbstractPointListShape rake = getPrimaryShape().getOptionalRakeFigure();
+				if(action.getBehavior() instanceof Activity) {
+					Dimension size = ActivityFigureDrawer.getNodeSize(this, event);
+					ActivityFigureDrawer.redrawRake(rake, getMapMode(), size);
 				};
 				refreshVisuals();
 			}
@@ -228,20 +226,12 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 			return true;
 		}
 
-
-
-
-
 		//Papyrus Gencode :Affixed Pin locator for Actions
 		if(childEditPart instanceof ValuePinInCallBeActEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
 			getBorderedFigure().getBorderItemContainer().add(((ValuePinInCallBeActEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
 
 		//Papyrus Gencode :Affixed Pin locator for Actions
 		if(childEditPart instanceof ActionInputPinInCallBeActEditPart) {
@@ -250,10 +240,6 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 			return true;
 		}
 
-
-
-
-
 		//Papyrus Gencode :Affixed Pin locator for Actions
 		if(childEditPart instanceof InputPinInCallBeActEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
@@ -261,19 +247,12 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 			return true;
 		}
 
-
-
-
-
 		//Papyrus Gencode :Affixed Pin locator for Actions
 		if(childEditPart instanceof OutputPinInCallBeActEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.EAST);
 			getBorderedFigure().getBorderItemContainer().add(((OutputPinInCallBeActEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
 
 		return false;
 	}
@@ -1238,7 +1217,6 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 	 */
 	public class ActionFigureDescriptor extends AbstractActionFigure {
 
-
 		/**
 		 * @generated
 		 */
@@ -1248,7 +1226,6 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 		 * @generated
 		 */
 		private PolylineShape fOptionalRakeFigure;
-
 
 		/**
 		 * @generated NOT call super
@@ -1274,14 +1251,11 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 		 */
 		private void createContents() {
 
-
 			fOptionalRakeFigure = new PolylineShape();
 			fOptionalRakeFigure.setFill(false);
 			fOptionalRakeFigure.setLineWidth(2);
 
 			this.add(fOptionalRakeFigure);
-
-
 
 			RectangleFigure labelRect0 = new RectangleFigure();
 			labelRect0.setFill(false);
@@ -1301,25 +1275,15 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 
 			CenterLayout layoutLabelRect0 = new CenterLayout();
 
-
 			labelRect0.setLayoutManager(layoutLabelRect0);
 
-
-
 			fActionLabel = new CenteredWrappedLabel();
-
-
 
 			fActionLabel.setBorder(new MarginBorder(getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
 
 			labelRect0.add(fActionLabel);
 
-
-
 		}
-
-
-
 
 		/**
 		 * @generated
@@ -1343,7 +1307,6 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 			//ask the edit part
 			return CallBehaviorActionEditPart.this.getMapMode();
 		}
-
 
 	}
 

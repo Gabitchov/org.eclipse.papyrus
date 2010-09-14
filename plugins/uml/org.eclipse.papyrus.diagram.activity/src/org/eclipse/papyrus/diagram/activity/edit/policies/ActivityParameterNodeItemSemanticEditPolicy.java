@@ -13,9 +13,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.activity.edit.policies;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
+import java.util.List;
 import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
@@ -36,6 +39,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ExceptionHandlerEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowEditPart;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.common.command.wrappers.EMFtoGMFCommandWrapper;
 
 /**
  * @generated
@@ -55,49 +59,17 @@ public class ActivityParameterNodeItemSemanticEditPolicy extends UMLBaseItemSema
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		View view = (View)getHost().getModel();
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
-		cmd.setTransactionNestingEnabled(false);
-		for(Iterator<?> it = view.getTargetEdges().iterator(); it.hasNext();) {
-			Edge incomingLink = (Edge)it.next();
-			if(UMLVisualIDRegistry.getVisualID(incomingLink) == ObjectFlowEditPart.VISUAL_ID) {
-				DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
-				cmd.add(new DestroyElementCommand(r));
-				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
-				continue;
-			}
-			if(UMLVisualIDRegistry.getVisualID(incomingLink) == ControlFlowEditPart.VISUAL_ID) {
-				DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
-				cmd.add(new DestroyElementCommand(r));
-				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
-				continue;
-			}
-			if(UMLVisualIDRegistry.getVisualID(incomingLink) == ExceptionHandlerEditPart.VISUAL_ID) {
-				DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
-				cmd.add(new DestroyElementCommand(r));
-				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
-				continue;
-			}
-		}
-		for(Iterator<?> it = view.getSourceEdges().iterator(); it.hasNext();) {
-			Edge outgoingLink = (Edge)it.next();
-			if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ObjectFlowEditPart.VISUAL_ID) {
-				DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
-				cmd.add(new DestroyElementCommand(r));
-				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
-				continue;
-			}
-			if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ControlFlowEditPart.VISUAL_ID) {
-				DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
-				cmd.add(new DestroyElementCommand(r));
-				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
-				continue;
-			}
-		}
+		cmd.setTransactionNestingEnabled(true);
+
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 		if(annotation == null) {
 			// there are indirectly referenced children, need extra commands: false
 			addDestroyShortcutsCommand(cmd, view);
 			// delete host element
-			cmd.add(new DestroyElementCommand(req));
+			List<EObject> todestroy = new ArrayList<EObject>();
+			todestroy.add(req.getElementToDestroy());
+			//cmd.add(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(req));
+			cmd.add(new EMFtoGMFCommandWrapper(new org.eclipse.emf.edit.command.DeleteCommand(getEditingDomain(), todestroy)));
 		} else {
 			cmd.add(new DeleteCommand(getEditingDomain(), view));
 		}

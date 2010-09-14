@@ -90,7 +90,6 @@ public class ActivityPartitionActivityPartitionContentCompartmentCanonicalEditPo
 	 */
 	private Set<EStructuralFeature> myFeaturesToSynchronize;
 
-
 	/**
 	 * @generated
 	 */

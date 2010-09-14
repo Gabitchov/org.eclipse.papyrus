@@ -86,9 +86,7 @@ import org.eclipse.ui.PlatformUI;
  */
 public class AcceptTimeEventActionAppliedStereotypeEditPart
 
-
 extends LabelEditPart
-
 
 implements ITextAwareEditPart, IBorderItemEditPart, IPapyrusEditPart {
 
@@ -117,15 +115,11 @@ implements ITextAwareEditPart, IBorderItemEditPart, IPapyrusEditPart {
 	 */
 	private String defaultText;
 
-
-
 	/** direct edition mode (default, undefined, registered editor, etc.) */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
 	/** configuration from a registered edit dialog */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -616,8 +610,6 @@ implements ITextAwareEditPart, IBorderItemEditPart, IPapyrusEditPart {
 		return getPrimaryView();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -717,8 +709,6 @@ implements ITextAwareEditPart, IBorderItemEditPart, IPapyrusEditPart {
 			e.printStackTrace();
 		}
 	}
-
-
 
 	/**
 	 * @generated
