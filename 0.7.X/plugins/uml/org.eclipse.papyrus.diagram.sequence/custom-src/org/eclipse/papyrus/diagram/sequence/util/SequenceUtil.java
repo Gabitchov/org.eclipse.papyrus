@@ -45,7 +45,6 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
@@ -108,43 +107,92 @@ public class SequenceUtil {
 
 	/**
 	 * Find the container interaction fragment at the given location.
-	 * The elements are drawn under the lifeline, but their model container is an interaction fragment.
-	 * It can be of type Interaction or InteractionOperand
+	 * The elements are drawn under the lifeline, but their model container is an interaction.
+	 * It can be of type Interaction or InteractionOperand.
 	 * 
 	 * @param location
 	 *        the location
-	 * @return the interaction fragment or null
+	 * @return the interaction or null
 	 */
-	public static InteractionFragment findInteractionFragmentAt(Point location, EditPart host) {
+	public static InteractionFragment findInteractionFragmentContainerAt(Point location, EditPart hostEditPart) {
+		Rectangle bounds = new Rectangle();
+		bounds.setLocation(location);
+		return findInteractionFragmentContainerAt(bounds, hostEditPart);
+	}
 
-		if(host == null) {
+	/**
+	 * Find the container interaction fragment for the given bounds.
+	 * The elements are drawn under the lifeline, but their model container is an interaction.
+	 * It can be of type Interaction or InteractionOperand.
+	 * 
+	 * @param bounds
+	 *        the bounds
+	 * @return the interaction or null
+	 */
+	@SuppressWarnings("unchecked")
+	public static InteractionFragment findInteractionFragmentContainerAt(Rectangle bounds, EditPart hostEditPart) {
+
+		if(hostEditPart == null) {
 			return null;
 		}
 
-		HashSet<IFigure> exclusionSet = new HashSet<IFigure>();
+		InteractionFragment container = null;
+		HashSet<InteractionFragment> coveredInteractions = new HashSet<InteractionFragment>();
 
-		InteractionFragment interactionFragment = null;
+		Set<Entry<Object, EditPart>> allEditPartEntries = hostEditPart.getViewer().getEditPartRegistry().entrySet();
+		for(Entry<Object, EditPart> epEntry : allEditPartEntries) {
+			EditPart ep = epEntry.getValue();
 
-		EditPart ep = host.getRoot().getViewer().findObjectAtExcluding(location, exclusionSet);
+			if(ep instanceof ShapeEditPart) {
+				ShapeEditPart sep = (ShapeEditPart)ep;
+				EObject eObject = sep.resolveSemanticElement();
 
-		while(interactionFragment == null && ep != null) {
-			if(ep.getModel() instanceof View) {
-				EObject eObject = ViewUtil.resolveSemanticElement((View)ep.getModel());
 				if(eObject instanceof Interaction || eObject instanceof InteractionOperand) {
-					interactionFragment = (InteractionFragment)eObject;
-				}
-			}
+					IFigure figure = sep.getFigure();
 
-			if(ep instanceof org.eclipse.gef.GraphicalEditPart) {
-				exclusionSet.add(((org.eclipse.gef.GraphicalEditPart)ep).getFigure());
-				ep = host.getRoot().getViewer().findObjectAtExcluding(location, exclusionSet);
-			} else {
-				// we can't add the figure to the exclusion set so stop the while to avoid an infinite loop
-				ep = null;
+					Rectangle figureBounds = figure.getBounds().getCopy();
+					figure.getParent().translateToAbsolute(figureBounds);
+
+					if(figureBounds.contains(bounds)) {
+						coveredInteractions.add((InteractionFragment)eObject);
+					}
+				}
 			}
 		}
 
-		return interactionFragment;
+		// for each interaction verify if its children list does not contain an other covered interaction
+		// if it doesn't we have found the top-level interaction
+		for(InteractionFragment ift : coveredInteractions) {
+			boolean subiftFounded = false;
+			if(ift instanceof Interaction) {
+				for(InteractionFragment subift : ((Interaction)ift).getFragments()) {
+					if(subift instanceof CombinedFragment) {
+						for(InteractionOperand io : ((CombinedFragment)subift).getOperands()) {
+							if(coveredInteractions.contains(io)) {
+								subiftFounded = true;
+							}
+						}
+					}
+				}
+			}
+			if(!subiftFounded && ift instanceof InteractionOperand) {
+				for(InteractionFragment subift : ((InteractionOperand)ift).getFragments()) {
+					if(subift instanceof CombinedFragment) {
+						for(InteractionOperand io : ((CombinedFragment)subift).getOperands()) {
+							if(coveredInteractions.contains(io)) {
+								subiftFounded = true;
+							}
+						}
+					}
+				}
+			}
+			if(!subiftFounded) {
+				container = ift;
+				break;
+			}
+		}
+
+		return container;
 	}
 
 	/**
@@ -997,33 +1045,6 @@ public class SequenceUtil {
 	}
 
 	/**
-	 * Internal class used as a data structure
-	 * 
-	 * @author mvelten
-	 * 
-	 */
-	private static class InteractionFragmentState {
-
-		// the interaction fragment
-		public InteractionFragment ift;
-
-		// its bounds
-		public Rectangle bounds;
-
-		// the interaction currently associated with this ift
-		public EObject currentInteraction = null;
-
-		// the area of the current interaction
-		// this is used to keep the smallest interaction which owns the ift
-		public int currentInteractionArea = Integer.MAX_VALUE;
-
-		public InteractionFragmentState(InteractionFragment ift, Rectangle bounds) {
-			this.ift = ift;
-			this.bounds = bounds;
-		}
-	}
-
-	/**
 	 * Create a command to update the enclosing interaction of an execution specification according to its new bounds.
 	 * 
 	 * @param executionSpecificationEP
@@ -1049,18 +1070,15 @@ public class SequenceUtil {
 		Rectangle bottom = new Rectangle(xCenter, absoluteNewBounds.bottom(), 0, 0);
 
 		// associate es with its bounds, and start and finish event with the top and bottom of the bounds
-		List<InteractionFragmentState> interactionFragmentStates = new ArrayList<InteractionFragmentState>();
+		HashMap<InteractionFragment, Rectangle> iftToCheckForUpdate = new HashMap<InteractionFragment, Rectangle>();
 
 		ExecutionSpecification es = (ExecutionSpecification)executionSpecificationEP.resolveSemanticElement();
 
-		InteractionFragmentState stateES = new InteractionFragmentState(es, absoluteNewBounds);
-		interactionFragmentStates.add(stateES);
+		iftToCheckForUpdate.put(es, absoluteNewBounds);
 
-		InteractionFragmentState stateStart = new InteractionFragmentState(es.getStart(), top);
-		interactionFragmentStates.add(stateStart);
+		iftToCheckForUpdate.put(es.getStart(), top);
 
-		InteractionFragmentState stateFinish = new InteractionFragmentState(es.getFinish(), bottom);
-		interactionFragmentStates.add(stateFinish);
+		iftToCheckForUpdate.put(es.getFinish(), bottom);
 
 		List<ConnectionEditPart> sourceConnectionEPs = executionSpecificationEP.getSourceConnections();
 
@@ -1078,9 +1096,7 @@ public class SequenceUtil {
 
 					Point sourcePoint = msgFigure.getSourceAnchor().getLocation(msgFigure.getTargetAnchor().getReferencePoint());
 
-					InteractionFragmentState state = new InteractionFragmentState((InteractionFragment)sendEvent, new Rectangle(sourcePoint.x + moveDelta.x, sourcePoint.y + moveDelta.y, 0, 0));
-
-					interactionFragmentStates.add(state);
+					iftToCheckForUpdate.put((InteractionFragment)sendEvent, new Rectangle(sourcePoint.x + moveDelta.x, sourcePoint.y + moveDelta.y, 0, 0));
 				}
 			}
 		}
@@ -1098,44 +1114,18 @@ public class SequenceUtil {
 
 					Point targetPoint = msgFigure.getTargetAnchor().getLocation(msgFigure.getSourceAnchor().getReferencePoint());
 
-					InteractionFragmentState state = new InteractionFragmentState((InteractionFragment)receiveEvent, new Rectangle(targetPoint.x + moveDelta.x, targetPoint.y + moveDelta.y, 0, 0));
-
-					interactionFragmentStates.add(state);
-				}
-			}
-		}
-
-		// retrieve all the edit parts in the registry
-		Set<Entry<Object, EditPart>> allEditPartEntries = executionSpecificationEP.getViewer().getEditPartRegistry().entrySet();
-		for(Entry<Object, EditPart> epEntry : allEditPartEntries) {
-			EditPart ep = epEntry.getValue();
-
-			if(ep instanceof ShapeEditPart) {
-				ShapeEditPart sep = (ShapeEditPart)ep;
-				EObject elem = sep.getNotationView().getElement();
-
-				if(elem instanceof InteractionOperand || elem instanceof Interaction) {
-					Rectangle interactionBounds = new Rectangle(sep.getLocation(), sep.getSize());
-					sep.getFigure().getParent().translateToAbsolute(interactionBounds);
-
-					int interactionArea = interactionBounds.height * interactionBounds.width;
-
-					// keep the covered interaction if it is smaller than the previous
-					for(InteractionFragmentState state : interactionFragmentStates) {
-						if(interactionBounds.contains(state.bounds) && interactionArea < state.currentInteractionArea) {
-
-							state.currentInteractionArea = interactionArea;
-							state.currentInteraction = elem;
-						}
-					}
+					iftToCheckForUpdate.put((InteractionFragment)receiveEvent, new Rectangle(targetPoint.x + moveDelta.x, targetPoint.y + moveDelta.y, 0, 0));
 				}
 			}
 		}
 
 		CompoundCommand cmd = new CompoundCommand();
 
-		for(InteractionFragmentState state : interactionFragmentStates) {
-			cmd.add(new ICommandProxy(SequenceUtil.getSetEnclosingInteractionCommand(executionSpecificationEP.getEditingDomain(), state.ift, state.currentInteraction)));
+		for(Map.Entry<InteractionFragment, Rectangle> entry : iftToCheckForUpdate.entrySet()) {
+			InteractionFragment newEnclosingInteraction = findInteractionFragmentContainerAt(entry.getValue(), executionSpecificationEP);
+			if(newEnclosingInteraction != null) {
+				cmd.add(new ICommandProxy(getSetEnclosingInteractionCommand(executionSpecificationEP.getEditingDomain(), entry.getKey(), newEnclosingInteraction)));
+			}
 		}
 
 		if(!cmd.isEmpty()) {

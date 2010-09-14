@@ -77,7 +77,7 @@ public class LifelineCreationEditPolicy extends CreationEditPolicy {
 			createElementRequest.setContainer(hostElement);
 		}
 
-		InteractionFragment ift = SequenceUtil.findInteractionFragmentAt(request.getLocation(), getHost());
+		InteractionFragment ift = SequenceUtil.findInteractionFragmentContainerAt(request.getLocation(), getHost());
 
 		Map<String, Object> extendedData = request.getExtendedData();
 		extendedData.put(SequenceRequestConstant.INTERACTIONFRAGMENT_CONTAINER, ift);

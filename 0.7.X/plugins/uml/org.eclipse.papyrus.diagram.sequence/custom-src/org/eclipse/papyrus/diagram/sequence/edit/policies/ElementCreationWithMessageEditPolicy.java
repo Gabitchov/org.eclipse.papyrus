@@ -67,7 +67,7 @@ public class ElementCreationWithMessageEditPolicy extends LifelineChildGraphical
 					if(target instanceof Lifeline ||
 					// handle reflexive synch message by creating a new ES
 					(target instanceof ExecutionSpecification && target.equals(source))) {
-						InteractionFragment ift = SequenceUtil.findInteractionFragmentAt(viewRequest.getLocation(), getHost());
+						InteractionFragment ift = SequenceUtil.findInteractionFragmentContainerAt(viewRequest.getLocation(), getHost());
 
 						// retrieve the good execution specification type using the source of the message
 						IHintedType elementType = null;
