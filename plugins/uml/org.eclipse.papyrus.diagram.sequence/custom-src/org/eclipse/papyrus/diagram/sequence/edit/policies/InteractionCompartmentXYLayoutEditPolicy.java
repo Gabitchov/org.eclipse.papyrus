@@ -171,7 +171,7 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 					request.setEditParts(sep);
 					request.setMoveDelta(moveDelta);
 
-					Command moveESCommand = LifelineXYLayoutEditPolicy.getResizeOrMoveChildrenCommand((LifelineEditPart)parentEP, request, true, false);
+					Command moveESCommand = LifelineXYLayoutEditPolicy.getResizeOrMoveChildrenCommand((LifelineEditPart)parentEP, request, true, false, true);
 
 					if(moveESCommand == null || !moveESCommand.canExecute()) {
 						// forbid move if the es can't be moved correctly

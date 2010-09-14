@@ -130,7 +130,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 						// Define the bounds of the new Execution specification
 						Rectangle newBounds = new Rectangle(newLocation.x, newLocation.y, -1, newHeight);
 
-						newBounds = getExecutionSpecificationNewBounds(true, editPart, new Rectangle(), newBounds, new ArrayList<ShapeNodeEditPart>(0));
+						newBounds = getExecutionSpecificationNewBounds(true, editPart, new Rectangle(), newBounds, new ArrayList<ShapeNodeEditPart>(0), false);
 
 						if(newBounds == null) {
 							return UnexecutableCommand.INSTANCE;
@@ -267,7 +267,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 	 * 
 	 * @return The new bounds of the executionSpecificationEP figure
 	 */
-	protected final static Rectangle getExecutionSpecificationNewBounds(boolean isMove, LifelineEditPart lifelineEP, Rectangle oldBounds, Rectangle newBounds, List<ShapeNodeEditPart> notToCheckExecutionSpecificationList) {
+	protected final static Rectangle getExecutionSpecificationNewBounds(boolean isMove, LifelineEditPart lifelineEP, Rectangle oldBounds, Rectangle newBounds, List<ShapeNodeEditPart> notToCheckExecutionSpecificationList, boolean useFixedXPos) {
 		// Lifeline's figure where the child is drawn
 		Rectangle dotLineBounds = lifelineEP.getPrimaryShape().getFigureLifelineDotLineFigure().getBounds();
 
@@ -281,7 +281,10 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 
 		if(isMove) {
 			ShapeNodeEditPart parent = getParent(newBounds, toCheckExecutionSpecificationList);
-			if(parent == null) {
+
+			if(useFixedXPos) {
+				newBounds.x = oldBounds.x;
+			} else if(parent == null) {
 				// No mother, center position
 				int width = newBounds.width > 0 ? newBounds.width : EXECUTION_INIT_WIDTH;
 				newBounds.x = dotLineBounds.x + dotLineBounds.width / 2 - width / 2;
@@ -318,7 +321,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 	protected Command getResizeChildrenCommand(ChangeBoundsRequest request) {
 		// This policy is hosted in a LifelineEditPart
 		LifelineEditPart lifelineEP = (LifelineEditPart)getHost();
-		Command command = getResizeOrMoveChildrenCommand(lifelineEP, request, false, true);
+		Command command = getResizeOrMoveChildrenCommand(lifelineEP, request, false, true, false);
 
 		if(command == null) {
 			command = super.getResizeChildrenCommand(request);
@@ -332,7 +335,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 	protected Command getMoveChildrenCommand(Request request) {
 		// This policy is hosted in a LifelineEditPart
 		LifelineEditPart lifelineEP = (LifelineEditPart)getHost();
-		Command command = getResizeOrMoveChildrenCommand(lifelineEP, (ChangeBoundsRequest)request, true, true);
+		Command command = getResizeOrMoveChildrenCommand(lifelineEP, (ChangeBoundsRequest)request, true, true, false);
 
 		if(command == null) {
 			command = super.getMoveChildrenCommand(request);
@@ -341,7 +344,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 	}
 
 	@SuppressWarnings("unchecked")
-	public static Command getResizeOrMoveChildrenCommand(LifelineEditPart lifelineEP, ChangeBoundsRequest request, boolean isMove, boolean updateEnclosingInteraction) {
+	public static Command getResizeOrMoveChildrenCommand(LifelineEditPart lifelineEP, ChangeBoundsRequest request, boolean isMove, boolean updateEnclosingInteraction, boolean useFixedXPos) {
 		List<EditPart> editParts = request.getEditParts();
 
 		if(editParts != null) {
@@ -376,7 +379,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 					// Add also current ExecutionSpecification EditPart
 					notToCheckExecutionSpecificationList.add(executionSpecificationEP);
 
-					newBounds = getExecutionSpecificationNewBounds(isMove, lifelineEP, oldBounds, newBounds, notToCheckExecutionSpecificationList);
+					newBounds = getExecutionSpecificationNewBounds(isMove, lifelineEP, oldBounds, newBounds, notToCheckExecutionSpecificationList, useFixedXPos);
 					if(newBounds == null) {
 						return null; // UnexecutableCommand.INSTANCE
 					}
