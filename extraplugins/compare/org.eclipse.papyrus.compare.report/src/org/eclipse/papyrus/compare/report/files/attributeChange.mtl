@@ -1,4 +1,9 @@
 [comment encoding = UTF-8 /]
+
+[comment]
+A representation of the model object 'Attribute Change'. Superclass of elements describing difference between the values of a given attribute. 
+[/comment]
+
 [module attributeChange('http://www.eclipse.org/emf/compare/diff/1.1')/]
 
 [template public genAttributeChanges(el : DiffElement) {attributeChanges: Sequence(AttributeChange) = attributeChanges(el); }]
@@ -32,4 +37,4 @@
 <p/>
 [/template]
 
-[query public attributeChanges(element : DiffElement) : Sequence(AttributeChange) = element.subDiffElements->select(attr: DiffElement| attr.oclIsKindOf(AttributeChange))/]
+[query private attributeChanges(element : DiffElement) : Sequence(AttributeChange) = element.subDiffElements->select(attr: DiffElement| attr.oclIsKindOf(AttributeChange))/]
