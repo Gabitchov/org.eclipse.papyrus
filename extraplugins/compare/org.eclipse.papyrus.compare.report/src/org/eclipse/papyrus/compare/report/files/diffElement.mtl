@@ -5,6 +5,8 @@
 [import referenceChange/]
 [import diffGroup/]
 [import modelElementChange/]
+[import conflictingDiffElement/]
+[import resourceDiff/]
 
 [template public processDiffElement(el : DiffGroup)]
 [el.processDiffGroup('', 1)/]
@@ -19,7 +21,7 @@
 [/template]
 
 [template public processDiffElement(el : ConflictingDiffElement)]
-[el.processConflictingDiffElement()/]
+[el.genConflictingDiffElement()/]
 [/template]
 
 [template public processDiffElement(el : ModelElementChange)]
@@ -27,23 +29,11 @@
 [/template]
 
 [template public processDiffElement(el : ResourceDiff)]
-[el.processResourceDiff()/]
+[el.genResourceDiff()/]
 [/template]
 
 [template public processDiffElement(el : DiffElement)]
 <tr>
 <td>[el.kind/]</td><td>Unknown diff</td>
-</tr>
-[/template]
-
-[template public processConflictingDiffElement(el : ConflictingDiffElement)]
-<tr>
-<td>[el.kind/]</td><td>ConflictingDiffElement</td><td>[el.originElement/]</td><td>[el.leftParent/]</td><td>[el.rightParent/]</td>
-</tr>
-[/template]
-
-[template public processResourceDiff(el : ResourceDiff)]
-<tr>
-<td>[el.kind/]</td><td>ResourceDiff</td>
 </tr>
 [/template]

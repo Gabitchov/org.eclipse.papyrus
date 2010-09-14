@@ -1,0 +1,8 @@
+[comment encoding = UTF-8 /]
+[module conflictingDiffElement('http://www.eclipse.org/emf/compare/diff/1.1')/]
+
+[template public genConflictingDiffElement(el : ConflictingDiffElement)]
+<tr>
+<td>[el.kind/]</td><td>ConflictingDiffElement</td><td>[el.originElement/]</td><td>[el.leftParent/]</td><td>[el.rightParent/]</td>
+</tr>
+[/template]

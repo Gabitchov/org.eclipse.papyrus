@@ -1,0 +1,8 @@
+[comment encoding = UTF-8 /]
+[module resourceDiff('http://www.eclipse.org/emf/compare/diff/1.1')/]
+
+[template public genResourceDiff(el : ResourceDiff)]
+<tr>
+<td>[el.kind/]</td><td>ResourceDiff</td>
+</tr>
+[/template]
