@@ -868,18 +868,19 @@ public class SequenceUtil {
 						coveredInteractionFragments.add((InteractionFragment)elem);
 					}
 					if(elem instanceof ExecutionSpecification) {
+						ExecutionSpecification es = (ExecutionSpecification)elem;
 						Point center = figureBounds.getCenter();
 						Point top = center.getCopy();
 						top.y = figureBounds.y;
 
-						if(selectionRect.contains(top)) {
-							coveredInteractionFragments.add(((ExecutionSpecification)elem).getStart());
+						if(selectionRect.contains(top) && es.getStart() != null) {
+							coveredInteractionFragments.add(es.getStart());
 						}
 
 						Point bottom = center.getCopy();
 						bottom.y = figureBounds.bottom();
-						if(selectionRect.contains(bottom)) {
-							coveredInteractionFragments.add(((ExecutionSpecification)elem).getFinish());
+						if(selectionRect.contains(bottom) && es.getFinish() != null) {
+							coveredInteractionFragments.add(es.getFinish());
 						}
 					}
 				}
@@ -935,11 +936,15 @@ public class SequenceUtil {
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 				if(ift != null) {
 					if(interaction instanceof Interaction) {
-						ift.setEnclosingOperand(null);
-						ift.setEnclosingInteraction((Interaction)interaction);
+						if(!interaction.equals(ift.getEnclosingInteraction())) {
+							ift.setEnclosingOperand(null);
+							ift.setEnclosingInteraction((Interaction)interaction);
+						}
 					} else if(interaction instanceof InteractionOperand) {
-						ift.setEnclosingInteraction(null);
-						ift.setEnclosingOperand((InteractionOperand)interaction);
+						if(!interaction.equals(ift.getEnclosingOperand())) {
+							ift.setEnclosingInteraction(null);
+							ift.setEnclosingOperand((InteractionOperand)interaction);
+						}
 					}
 				}
 				return CommandResult.newOKCommandResult();
@@ -993,16 +998,21 @@ public class SequenceUtil {
 
 	/**
 	 * Internal class used as a data structure
+	 * 
 	 * @author mvelten
-	 *
+	 * 
 	 */
 	private static class InteractionFragmentState {
+
 		// the interaction fragment
 		public InteractionFragment ift;
+
 		// its bounds
 		public Rectangle bounds;
+
 		// the interaction currently associated with this ift
 		public EObject currentInteraction = null;
+
 		// the area of the current interaction
 		// this is used to keep the smallest interaction which owns the ift
 		public int currentInteractionArea = Integer.MAX_VALUE;
@@ -1030,10 +1040,8 @@ public class SequenceUtil {
 
 		executionSpecificationEP.getFigure().getParent().translateToAbsolute(absoluteNewBounds);
 
-		absoluteNewBounds.x += moveDelta.x;
-		absoluteNewBounds.y += moveDelta.y;
-		absoluteNewBounds.height += sizeDelta.height;
-		absoluteNewBounds.width += sizeDelta.height;
+		absoluteNewBounds.translate(moveDelta);
+		absoluteNewBounds.resize(sizeDelta);
 
 		int xCenter = absoluteNewBounds.getCenter().x;
 
