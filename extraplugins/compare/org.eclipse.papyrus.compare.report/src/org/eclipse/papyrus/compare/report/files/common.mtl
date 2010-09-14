@@ -7,3 +7,13 @@ This will return the name of the given element
 [query public elementName(element : OclAny) : String = if (not element.oclIsUndefined() and element.oclIsKindOf(NamedElement)) then element.oclAsType(NamedElement).name else 'null' endif/]
 
 [query public elementMetaclass(element : OclAny) : String = if (not element.oclIsUndefined()) then element.eClass().name else '' endif/]
+
+[query public leftRootName(model: DiffModel) : String = model.leftRoots->first().elementName()/]
+
+[query public rightRootName(model: DiffModel) : String = model.rightRoots->first().elementName()/]
+
+[query public appendLevelToIndex(index: Sequence(Integer)) : Sequence(Integer) = index->append(0)/]
+
+[query public nextIndex(index: Sequence(Integer)) : Sequence(Integer) = index->subSequence(1, (index->size()-1))->append(index->last() + 1)/]
+
+

@@ -7,19 +7,19 @@
 [import diffGroup/]
 [import modelElementChange/]
 
-[template public generateReport(d : DiffModel)]
+[template public generateReport(model : DiffModel)]
 	
 	[comment @main /]
-	[file ('Report.html', false, 'UTF-8')]
-[d.header()/]
-[for (diffElement : DiffElement | d.ownedElements)]
+	[file ('CompareReport.html', false, 'UTF-8')]
+[model.header()/]
+[for (diffElement : DiffElement | model.ownedElements)]
 [diffElement.processDiffElement()/]
 [/for]
 [/file]
 [/template]
 
-[template public header(d : DiffModel)]
-<h1>Difference report between (1) and (2)</h1>
+[template public header(model : DiffModel)]
+<h1>Difference report between (1)[leftRootName(model)/] and (2)[rightRootName(model)/]</h1>
 [/template]
 
 [template public processDiffElement(el : DiffElement)]
