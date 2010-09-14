@@ -6,22 +6,24 @@
 [import modelElementChange/]
 
 [template public processDiffGroup(el : DiffGroup)]
-[processDiffGroup2(el, Sequence{0,0,0})/]
+[processDiffGroup2(el, '', 1)/]
 [/template]
 
-[template public processDiffGroup2(el : DiffGroup, index: Sequence(Integer)) {nextIndex : Sequence(Integer)= appendLevelToIndex(index); }]
-[header(el, nextIndex)/]
+[template public processDiffGroup2(el : DiffGroup, prefix : String , index: Integer) ]
+[let groupPrefix : String = prefix.concat(index.toString())]
+[header(el, groupPrefix)/]
 [el.processAttributeChanges()/]
 [el.processReferenceChanges()/]
 [for (diffElement : DiffElement | el.subDiffElements) ? (diffElement.oclIsKindOf(DiffGroup))]
-	[processDiffGroup2(diffElement.oclAsType(DiffGroup), nextIndex)/]
+	[processDiffGroup2(diffElement.oclAsType(DiffGroup), groupPrefix.concat('.'), i)/]
 [/for]
 [for (diffElement : DiffElement | el.subDiffElements) ? (diffElement.oclIsKindOf(ModelElementChange))]
 	[diffElement.oclAsType(ModelElementChange).processModelElementChange()/]
 [/for]
+[/let]
 [/template]
 
 
-[template private header(el : DiffGroup, index: Sequence(Integer))]
+[template private header(el : DiffGroup, index: String)]
 <h3>[index/] [el.subchanges/] changes in [elementMetaclass(el.rightParent)/] [elementName(el.rightParent)/]</h3>
 [/template]
