@@ -7,11 +7,11 @@
 [import modelElementChange/]
 
 [template public processDiffElement(el : DiffGroup)]
-[el.processDiffGroup()/]
+[el.processDiffGroup('', 1)/]
 [/template]
 
 [template public processDiffElement(el : AttributeChange)]
-[el.processAttributeChange()/]
+[el.genAttributeChange()/]
 [/template]
 
 [template public processDiffElement(el : ReferenceChange)]

@@ -7,15 +7,15 @@
 [template public generateReport(model : DiffModel)]
 	[comment @main /]
 	[file (model.fileName().concat('.html'), false, 'UTF-8')]
-[model.header()/]
+[model.reportHeader()/]
 [for (diffElement : DiffElement | model.ownedElements)]
 [diffElement.processDiffElement()/]
 [/for]
 [/file]
 [/template]
 
-[template private header(model : DiffModel)]
+[template private reportHeader(model : DiffModel)]
 <h1>Difference report between (1)[leftRootName(model)/] and (2)[rightRootName(model)/]</h1>
 [/template]
 
-[query private fileName(model: DiffModel) : String = model.leftRootName().concat('_').concat(model.rightRootName()).concat('DiffReport')/]
+[query private fileName(model: DiffModel) : String = model.leftRootName().concat('_diff_').concat(model.rightRootName())/]

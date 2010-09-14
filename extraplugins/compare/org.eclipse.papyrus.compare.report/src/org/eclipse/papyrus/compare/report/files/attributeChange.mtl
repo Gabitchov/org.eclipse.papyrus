@@ -1,27 +1,35 @@
 [comment encoding = UTF-8 /]
 [module attributeChange('http://www.eclipse.org/emf/compare/diff/1.1')/]
 
-[template public processAttributeChanges(el : DiffElement)]
-[if not attributeChanges(el)->isEmpty()]
-<p>
-<table border="1">
-[el.tableHeader()/]
-[for (diffElement : AttributeChange | attributeChanges(el))]
-[diffElement.processAttributeChange()/]
+[template public genAttributeChanges(el : DiffElement) {attributeChanges: Sequence(AttributeChange) = attributeChanges(el); }]
+[if not attributeChanges->isEmpty()]
+[openTable()/]
+[tableHeader()/]
+[for (attributeChanges)]
+[genAttributeChange()/]
 [/for]
-</table>
-<p/>
+[closeTable()/]
 [/if]
 [/template]
 
-[template public processAttributeChange(el : AttributeChange)]
+[template public genAttributeChange(el : AttributeChange)]
 [if not el.attribute.oclIsInvalid() and not el.attribute.oclIsUndefined()]
 <tr><td>[el.attribute.name/]</td><td>[el.leftElement.eGet(el.attribute)/]</td><td>[el.rightElement.eGet(el.attribute)/]</td></tr>
 [/if]
 [/template]
 
-[template private tableHeader(el : DiffElement)]
+[template private tableHeader()]
 <tr><th>Attributes Changed</th><th>(1)</th><th>(2)</th></tr>
+[/template]
+
+[template private openTable()]
+<p>
+<table border="1">
+[/template]
+
+[template private closeTable()]
+</table>
+<p/>
 [/template]
 
 [query public attributeChanges(element : DiffElement) : Sequence(AttributeChange) = element.subDiffElements->select(attr: DiffElement| attr.oclIsKindOf(AttributeChange))/]
