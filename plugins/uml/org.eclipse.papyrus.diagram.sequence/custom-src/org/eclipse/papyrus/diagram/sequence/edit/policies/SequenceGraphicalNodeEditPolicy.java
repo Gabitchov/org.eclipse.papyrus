@@ -57,6 +57,7 @@ import org.eclipse.uml2.uml.Message;
  * - Message feedback on creation is always drawn in black (to avoid invisible feedback)
  * 
  */
+@SuppressWarnings({ "restriction", "unchecked", "rawtypes" })
 public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 
 	/** A static margin to allow drawing of straight message */
@@ -65,7 +66,6 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 	/**
 	 * Overrides to disable uphill message
 	 */
-	@SuppressWarnings({ "unchecked", "restriction" })
 	@Override
 	protected Command getConnectionCompleteCommand(CreateConnectionRequest request) {
 		Command command = super.getConnectionCompleteCommand(request);
@@ -83,8 +83,8 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 				if(pointList.getFirstPoint().y >= pointList.getLastPoint().y + MARGIN) {
 					return UnexecutableCommand.INSTANCE;
 				}
-				request.getExtendedData().put(SequenceRequestConstant.SOURCE_MODEL_CONTAINER, SequenceUtil.findInteractionFragmentAt(pointList.getFirstPoint(), getHost()));
-				request.getExtendedData().put(SequenceRequestConstant.TARGET_MODEL_CONTAINER, SequenceUtil.findInteractionFragmentAt(pointList.getLastPoint(), getHost()));
+				request.getExtendedData().put(SequenceRequestConstant.SOURCE_MODEL_CONTAINER, SequenceUtil.findInteractionFragmentContainerAt(pointList.getFirstPoint(), getHost()));
+				request.getExtendedData().put(SequenceRequestConstant.TARGET_MODEL_CONTAINER, SequenceUtil.findInteractionFragmentContainerAt(pointList.getLastPoint(), getHost()));
 				// In case we are creating a connection to/from a CoRegion, we will need the lifeline element where is drawn the CoRegion later in the process.
 				EditPart targetEditPart = getTargetEditPart(request);
 				if(targetEditPart instanceof CombinedFragment2EditPart) {
@@ -176,7 +176,6 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 	 *        The relevant create connection request.
 	 * @return the command to popup up the menu and create the connection
 	 */
-	@SuppressWarnings("rawtypes")
 	protected ICommand getPromptAndCreateConnectionCommand(List content, CreateConnectionRequest request) {
 		return new SequencePromptAndCreateConnectionCommand(content, request);
 	}
