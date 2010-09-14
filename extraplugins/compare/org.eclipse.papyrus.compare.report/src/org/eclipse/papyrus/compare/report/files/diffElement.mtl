@@ -1,0 +1,49 @@
+[comment encoding = UTF-8 /]
+[module diffElement('http://www.eclipse.org/emf/compare/diff/1.1')/]
+
+[import attributeChange/]
+[import referenceChange/]
+[import diffGroup/]
+[import modelElementChange/]
+
+[template public processDiffElement(el : DiffGroup)]
+[el.processDiffGroup()/]
+[/template]
+
+[template public processDiffElement(el : AttributeChange)]
+[el.processAttributeChange()/]
+[/template]
+
+[template public processDiffElement(el : ReferenceChange)]
+[el.processReferenceChange()/]
+[/template]
+
+[template public processDiffElement(el : ConflictingDiffElement)]
+[el.processConflictingDiffElement()/]
+[/template]
+
+[template public processDiffElement(el : ModelElementChange)]
+[el.processModelElementChange()/]
+[/template]
+
+[template public processDiffElement(el : ResourceDiff)]
+[el.processResourceDiff()/]
+[/template]
+
+[template public processDiffElement(el : DiffElement)]
+<tr>
+<td>[el.kind/]</td><td>Unknown diff</td>
+</tr>
+[/template]
+
+[template public processConflictingDiffElement(el : ConflictingDiffElement)]
+<tr>
+<td>[el.kind/]</td><td>ConflictingDiffElement</td><td>[el.originElement/]</td><td>[el.leftParent/]</td><td>[el.rightParent/]</td>
+</tr>
+[/template]
+
+[template public processResourceDiff(el : ResourceDiff)]
+<tr>
+<td>[el.kind/]</td><td>ResourceDiff</td>
+</tr>
+[/template]

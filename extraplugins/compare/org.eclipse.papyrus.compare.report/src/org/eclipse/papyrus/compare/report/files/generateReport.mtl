@@ -2,15 +2,11 @@
 [module generateReport('http://www.eclipse.org/emf/compare/diff/1.1','http://www.eclipse.org/emf/2002/Ecore','http://www.eclipse.org/uml2/3.0.0/UML')/]
 
 [import common/]
-[import attributeChange/]
-[import referenceChange/]
-[import diffGroup/]
-[import modelElementChange/]
+[import diffElement/]
 
 [template public generateReport(model : DiffModel)]
-	
 	[comment @main /]
-	[file ('CompareReport.html', false, 'UTF-8')]
+	[file (model.fileName().concat('.html'), false, 'UTF-8')]
 [model.header()/]
 [for (diffElement : DiffElement | model.ownedElements)]
 [diffElement.processDiffElement()/]
@@ -18,39 +14,8 @@
 [/file]
 [/template]
 
-[template public header(model : DiffModel)]
+[template private header(model : DiffModel)]
 <h1>Difference report between (1)[leftRootName(model)/] and (2)[rightRootName(model)/]</h1>
 [/template]
 
-[template public processDiffElement(el : DiffElement)]
-[if (el.oclIsKindOf(AttributeChange))]
-	[el.oclAsType(AttributeChange).processAttributeChange()/]
-[elseif (el.oclIsKindOf(ConflictingDiffElement))]
-	[el.oclAsType(ConflictingDiffElement).processConflictingDiffElement()/]
-[elseif (el.oclIsKindOf(DiffGroup))]
-	[el.oclAsType(DiffGroup).processDiffGroup()/]
-[elseif (el.oclIsKindOf(ModelElementChange))]
-	[el.oclAsType(ModelElementChange).processModelElementChange()/]
-[elseif (el.oclIsKindOf(ReferenceChange))]
-	[el.oclAsType(ReferenceChange).processReferenceChange()/]
-[elseif (el.oclIsKindOf(ResourceDiff))]
-	[el.oclAsType(ResourceDiff).processResourceDiff()/]
-[else]
-<tr>
-<td>[el.kind/]</td><td>Unknown diff</td>
-</tr>
-[/if]
-[/template]
-
-
-[template public processConflictingDiffElement(el : ConflictingDiffElement)]
-<tr>
-<td>[el.kind/]</td><td>ConflictingDiffElement</td><td>[el.originElement/]</td><td>[el.leftParent/]</td><td>[el.rightParent/]</td>
-</tr>
-[/template]
-
-[template public processResourceDiff(el : ResourceDiff)]
-<tr>
-<td>[el.kind/]</td><td>ResourceDiff</td>
-</tr>
-[/template]
+[query private fileName(model: DiffModel) : String = model.leftRootName().concat('_').concat(model.rightRootName()).concat('DiffReport')/]
