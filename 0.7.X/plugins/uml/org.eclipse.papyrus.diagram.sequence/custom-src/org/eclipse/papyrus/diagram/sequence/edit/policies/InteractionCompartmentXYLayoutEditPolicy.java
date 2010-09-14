@@ -15,12 +15,15 @@ package org.eclipse.papyrus.diagram.sequence.edit.policies;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.Set;
 
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
@@ -30,8 +33,10 @@ import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.XYLayoutEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.papyrus.diagram.common.commands.PreserveAnchorsPositionCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentEditPart;
@@ -62,7 +67,13 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 				if(child instanceof LifelineEditPart) {
 					addLifelineResizeChildrenCommand(compoundCmd, request, (LifelineEditPart)child, 1);
 				} else if(child instanceof CombinedFragmentEditPart) {
-					addCombinedFragmentResizeChildrenCommand(compoundCmd, request.getMoveDelta(), request.getSizeDelta(), (CombinedFragmentEditPart)child);
+					Command resizeChildrenCommand = getCombinedFragmentResizeChildrenCommand(request.getMoveDelta(), request.getSizeDelta(), (CombinedFragmentEditPart)child);
+					if(resizeChildrenCommand == null) {
+						return null;
+					}
+					if(resizeChildrenCommand.canExecute()) {
+						compoundCmd.add(resizeChildrenCommand);
+					}
 				}
 
 				Command changeConstraintCommand = createChangeConstraintCommand(request, child, translateToModelConstraint(constraintFor));
@@ -117,13 +128,8 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 				compoundCmd.add(new ICommandProxy(setBoundsCmd));
 			}
 
-			executionSpecificationEP.getFigure().getParent().translateToAbsolute(newBounds);
-
-			newBounds.x += request.getMoveDelta().x;
-			newBounds.y += request.getMoveDelta().y;
-
 			// update the enclosing interaction of a moved execution specification
-			compoundCmd.add(SequenceUtil.createUpdateEnclosingInteractionCommand(executionSpecificationEP, request.getMoveDelta(), new Dimension(widthDelta, request.getSizeDelta().height)));
+			compoundCmd.add(SequenceUtil.createUpdateEnclosingInteractionCommand(executionSpecificationEP, request.getMoveDelta(), new Dimension(widthDelta, 0)));
 		}
 
 		List<LifelineEditPart> innerConnectableElementList = lifelineEditPart.getInnerConnectableElementList();
@@ -145,72 +151,131 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 	 *        The CF edit part.
 	 */
 	@SuppressWarnings("unchecked")
-	public static void addCombinedFragmentResizeChildrenCommand(CompoundCommand compoundCmd, Point moveDelta, Dimension sizeDelta, CombinedFragmentEditPart combinedFragmentEditPart) {
+	public static Command getCombinedFragmentResizeChildrenCommand(Point moveDelta, Dimension sizeDelta, CombinedFragmentEditPart combinedFragmentEditPart) {
 		Rectangle origCFBounds = combinedFragmentEditPart.getFigure().getBounds().getCopy();
 
-		// calculate the new CF bounds
-		Rectangle newBoundsCF = origCFBounds.getCopy();
-		combinedFragmentEditPart.getFigure().translateToAbsolute(newBoundsCF);
-		newBoundsCF.translate(moveDelta);
-		newBoundsCF.resize(sizeDelta);
+		combinedFragmentEditPart.getFigure().translateToAbsolute(origCFBounds);
 
-		CombinedFragment cf = (CombinedFragment)((CombinedFragmentEditPart)combinedFragmentEditPart).resolveSemanticElement();
+		CompoundCommand compoundCmd = new CompoundCommand();
 
-		if(combinedFragmentEditPart.getChildren().size() > 0 && combinedFragmentEditPart.getChildren().get(0) instanceof CombinedFragmentCombinedFragmentCompartmentEditPart) {
+		// specific case for move :
+		// we want the execution specifications graphically owned by the lifeline to move with the combined fragment
+		if(sizeDelta.equals(0, 0)) {
+			Set<ShapeEditPart> interactionFragmentEPs = getCoveredInteractionFragmentEditParts(origCFBounds, combinedFragmentEditPart);
 
-			CombinedFragmentCombinedFragmentCompartmentEditPart compartment = (CombinedFragmentCombinedFragmentCompartmentEditPart)combinedFragmentEditPart.getChildren().get(0);
-			List<EditPart> interactionOperandEditParts = compartment.getChildren();
+			for(ShapeEditPart sep : interactionFragmentEPs) {
+				EditPart parentEP = sep.getParent();
 
-			InteractionOperand firstOperand = null;
+				if(parentEP instanceof LifelineEditPart) {
+					ChangeBoundsRequest request = new ChangeBoundsRequest(RequestConstants.REQ_MOVE);
+					request.setEditParts(sep);
+					request.setMoveDelta(moveDelta);
 
-			for(EditPart ep : interactionOperandEditParts) {
-				if(ep instanceof InteractionOperandEditPart) {
-					InteractionOperandEditPart ioEP = (InteractionOperandEditPart)ep;
-					InteractionOperand io = (InteractionOperand)ioEP.resolveSemanticElement();
+					Command moveESCommand = LifelineXYLayoutEditPolicy.getResizeOrMoveChildrenCommand((LifelineEditPart)parentEP, request, true, false);
 
-					Rectangle newBoundsIO = ioEP.getFigure().getBounds().getCopy();
-
-					// used to compensate the height of the "header" where the OperandKind is stored
-					if(firstOperand == null) {
-						firstOperand = io;
-						int heightDiff = newBoundsIO.y - origCFBounds.y;
-						newBoundsIO.y = origCFBounds.y;
-						newBoundsIO.height += heightDiff;
+					if(moveESCommand == null || !moveESCommand.canExecute()) {
+						// forbid move if the es can't be moved correctly
+						return null;
 					}
+					compoundCmd.add(moveESCommand);
+				}
+			}
+		} else {
+			// calculate the new CF bounds
+			Rectangle newBoundsCF = origCFBounds.getCopy();
+			newBoundsCF.translate(moveDelta);
+			newBoundsCF.resize(sizeDelta);
 
-					// calculate the new bounds of the interaction operand
-					// this is currently wrong for a resize of a CF with multiple IO
-					ioEP.getFigure().translateToAbsolute(newBoundsIO);
-					newBoundsIO.translate(moveDelta);
-					newBoundsIO.resize(sizeDelta);
+			CombinedFragment cf = (CombinedFragment)((CombinedFragmentEditPart)combinedFragmentEditPart).resolveSemanticElement();
 
-					Set<InteractionFragment> coveredInteractionFragments = SequenceUtil.getCoveredInteractionFragments(newBoundsIO, combinedFragmentEditPart);
+			if(combinedFragmentEditPart.getChildren().size() > 0 && combinedFragmentEditPart.getChildren().get(0) instanceof CombinedFragmentCombinedFragmentCompartmentEditPart) {
 
-					// retrieve fragments currently owned by the interaction operand so we can remove fragments that are not covered anymore
-					Set<InteractionFragment> notCoveredAnymoreInteractionFragments = new HashSet<InteractionFragment>(io.getFragments());
-					notCoveredAnymoreInteractionFragments.removeAll(coveredInteractionFragments);
+				CombinedFragmentCombinedFragmentCompartmentEditPart compartment = (CombinedFragmentCombinedFragmentCompartmentEditPart)combinedFragmentEditPart.getChildren().get(0);
+				List<EditPart> interactionOperandEditParts = compartment.getChildren();
 
-					for(InteractionFragment ift : notCoveredAnymoreInteractionFragments) {
-						if(cf.getEnclosingOperand() != null) {
-							compoundCmd.add(new ICommandProxy(SequenceUtil.getSetEnclosingInteractionCommand(ioEP.getEditingDomain(), ift, cf.getEnclosingOperand())));
-						} else {
-							compoundCmd.add(new ICommandProxy(SequenceUtil.getSetEnclosingInteractionCommand(ioEP.getEditingDomain(), ift, cf.getEnclosingInteraction())));
+				InteractionOperand firstOperand = null;
+
+				for(EditPart ep : interactionOperandEditParts) {
+					if(ep instanceof InteractionOperandEditPart) {
+						InteractionOperandEditPart ioEP = (InteractionOperandEditPart)ep;
+						InteractionOperand io = (InteractionOperand)ioEP.resolveSemanticElement();
+
+						Rectangle newBoundsIO = ioEP.getFigure().getBounds().getCopy();
+
+						// used to compensate the height of the "header" where the OperandKind is stored
+						if(firstOperand == null) {
+							firstOperand = io;
+							int heightDiff = newBoundsIO.y - origCFBounds.y;
+							newBoundsIO.y = origCFBounds.y;
+							newBoundsIO.height += heightDiff;
 						}
-					}
 
-					// set the enclosing operand to the moved/resized one if the current enclosing interaction is the enclosing interaction
-					// of the moved/resized operand.
-					// => the interaction fragment that are inside an other container (like an enclosed CF) are not modified
-					for(InteractionFragment ift : coveredInteractionFragments) {
-						if(!cf.equals(ift)) {
-							if((cf.getEnclosingOperand() != null && cf.getEnclosingOperand().equals(ift.getEnclosingOperand())) || (cf.getEnclosingInteraction() != null && cf.getEnclosingInteraction().equals(ift.getEnclosingInteraction()))) {
-								compoundCmd.add(new ICommandProxy(SequenceUtil.getSetEnclosingInteractionCommand(ioEP.getEditingDomain(), ift, io)));
+						// calculate the new bounds of the interaction operand
+						// this is currently wrong for a resize of a CF with multiple IO
+						ioEP.getFigure().translateToAbsolute(newBoundsIO);
+						newBoundsIO.translate(moveDelta);
+						newBoundsIO.resize(sizeDelta);
+
+						Set<InteractionFragment> coveredInteractionFragments = SequenceUtil.getCoveredInteractionFragments(newBoundsIO, combinedFragmentEditPart);
+
+						// retrieve fragments currently owned by the interaction operand so we can remove fragments that are not covered anymore
+						Set<InteractionFragment> notCoveredAnymoreInteractionFragments = new HashSet<InteractionFragment>(io.getFragments());
+						notCoveredAnymoreInteractionFragments.removeAll(coveredInteractionFragments);
+
+						for(InteractionFragment ift : notCoveredAnymoreInteractionFragments) {
+							if(cf.getEnclosingOperand() != null) {
+								compoundCmd.add(new ICommandProxy(SequenceUtil.getSetEnclosingInteractionCommand(ioEP.getEditingDomain(), ift, cf.getEnclosingOperand())));
+							} else {
+								compoundCmd.add(new ICommandProxy(SequenceUtil.getSetEnclosingInteractionCommand(ioEP.getEditingDomain(), ift, cf.getEnclosingInteraction())));
+							}
+						}
+
+						// set the enclosing operand to the moved/resized one if the current enclosing interaction is the enclosing interaction
+						// of the moved/resized operand.
+						// => the interaction fragment that are inside an other container (like an enclosed CF) are not modified
+						for(InteractionFragment ift : coveredInteractionFragments) {
+							if(!cf.equals(ift)) {
+								if((cf.getEnclosingOperand() != null && cf.getEnclosingOperand().equals(ift.getEnclosingOperand())) || (cf.getEnclosingInteraction() != null && cf.getEnclosingInteraction().equals(ift.getEnclosingInteraction()))) {
+									compoundCmd.add(new ICommandProxy(SequenceUtil.getSetEnclosingInteractionCommand(ioEP.getEditingDomain(), ift, io)));
+								}
 							}
 						}
 					}
 				}
 			}
 		}
+
+		return compoundCmd;
+	}
+
+	@SuppressWarnings("unchecked")
+	private static Set<ShapeEditPart> getCoveredInteractionFragmentEditParts(Rectangle selectionRect, EditPart hostEditPart) {
+		Set<ShapeEditPart> coveredInteractionFragmentEPs = new HashSet<ShapeEditPart>();
+
+		// retrieve all the edit parts in the registry
+		Set<Entry<Object, EditPart>> allEditPartEntries = hostEditPart.getViewer().getEditPartRegistry().entrySet();
+		for(Entry<Object, EditPart> epEntry : allEditPartEntries) {
+			EditPart ep = epEntry.getValue();
+
+			if(ep instanceof ShapeEditPart) {
+				ShapeEditPart sep = (ShapeEditPart)ep;
+				EObject elem = sep.getNotationView().getElement();
+
+				if(elem instanceof InteractionFragment) {
+					IFigure figure = sep.getFigure();
+
+					Rectangle figureBounds = figure.getBounds().getCopy();
+					figure.getParent().translateToAbsolute(figureBounds);
+
+					if(selectionRect.contains(figureBounds)) {
+						coveredInteractionFragmentEPs.add(sep);
+					}
+
+				}
+
+			}
+		}
+		return coveredInteractionFragmentEPs;
 	}
 
 	/**

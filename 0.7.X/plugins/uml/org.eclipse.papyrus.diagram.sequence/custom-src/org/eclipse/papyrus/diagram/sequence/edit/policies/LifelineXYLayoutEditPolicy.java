@@ -316,31 +316,42 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 	 */
 	@Override
 	protected Command getResizeChildrenCommand(ChangeBoundsRequest request) {
-		return getResizeOrMoveChildrenCommand(request, false);
+		// This policy is hosted in a LifelineEditPart
+		LifelineEditPart lifelineEP = (LifelineEditPart)getHost();
+		Command command = getResizeOrMoveChildrenCommand(lifelineEP, request, false, true);
+
+		if(command == null) {
+			command = super.getResizeChildrenCommand(request);
+		}
+		return command;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	protected Command getMoveChildrenCommand(Request request) {
-		return getResizeOrMoveChildrenCommand((ChangeBoundsRequest)request, true);
+		// This policy is hosted in a LifelineEditPart
+		LifelineEditPart lifelineEP = (LifelineEditPart)getHost();
+		Command command = getResizeOrMoveChildrenCommand(lifelineEP, (ChangeBoundsRequest)request, true, true);
+
+		if(command == null) {
+			command = super.getMoveChildrenCommand(request);
+		}
+		return command;
 	}
 
 	@SuppressWarnings("unchecked")
-	protected Command getResizeOrMoveChildrenCommand(ChangeBoundsRequest request, boolean isMove) {
+	public static Command getResizeOrMoveChildrenCommand(LifelineEditPart lifelineEP, ChangeBoundsRequest request, boolean isMove, boolean updateEnclosingInteraction) {
 		List<EditPart> editParts = request.getEditParts();
-
-		// This policy is hosted in a LifelineEditPart
-		LifelineEditPart lifelineEP = (LifelineEditPart)getHost();
 
 		if(editParts != null) {
 			CompoundCommand compoundCmd = new CompoundCommand();
 			compoundCmd.setLabel("Move or resize");
 			compoundCmd.setDebugLabel("Debug: Move or resize of an ExecutionSpecification");
 
-			for (EditPart ep : editParts) {
+			for(EditPart ep : editParts) {
 
-				if (ep instanceof ActionExecutionSpecificationEditPart || ep instanceof BehaviorExecutionSpecificationEditPart) {
+				if(ep instanceof ActionExecutionSpecificationEditPart || ep instanceof BehaviorExecutionSpecificationEditPart) {
 
 					// an execution specification have been moved or resized
 					ShapeNodeEditPart executionSpecificationEP = (ShapeNodeEditPart)ep;
@@ -391,22 +402,22 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 					// translateToAbsolute only does half of the work, I don't know why
 					newBounds.translate(parentFigure.getBounds().getLocation());
 
-					// update the enclosing interaction of a moved execution specification
-					compoundCmd.add(SequenceUtil.createUpdateEnclosingInteractionCommand(executionSpecificationEP, request.getMoveDelta(), newSizeDelta));
+					if(updateEnclosingInteraction) {
+						// update the enclosing interaction of a moved execution specification
+						compoundCmd.add(SequenceUtil.createUpdateEnclosingInteractionCommand(executionSpecificationEP, request.getMoveDelta(), newSizeDelta));
+					}
 
 					// keep absolute position of anchors
-					compoundCmd.add(new ICommandProxy(
-						new PreserveAnchorsPositionCommand(executionSpecificationEP, new Dimension(realMoveDelta.width, realMoveDelta.height), PreserveAnchorsPositionCommand.PRESERVE_Y, executionSpecificationEP.getFigure(), request.getResizeDirection())
-					));
+					compoundCmd.add(new ICommandProxy(new PreserveAnchorsPositionCommand(executionSpecificationEP, new Dimension(realMoveDelta.width, realMoveDelta.height), PreserveAnchorsPositionCommand.PRESERVE_Y, executionSpecificationEP.getFigure(), request.getResizeDirection())));
 				}
 			}
 
-			if (!compoundCmd.isEmpty()) {
+			if(!compoundCmd.isEmpty()) {
 				return compoundCmd;
 			}
 		}
 
-		return super.getResizeChildrenCommand(request);
+		return null;
 	}
 
 	/**

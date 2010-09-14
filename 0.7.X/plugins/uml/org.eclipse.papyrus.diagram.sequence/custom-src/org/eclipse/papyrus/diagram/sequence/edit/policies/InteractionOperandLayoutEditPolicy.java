@@ -88,7 +88,13 @@ public class InteractionOperandLayoutEditPolicy extends XYLayoutEditPolicy {
 			Object constraintFor = getConstraintFor(request, child);
 			if(constraintFor != null) {
 				if(child instanceof CombinedFragmentEditPart) {
-					InteractionCompartmentXYLayoutEditPolicy.addCombinedFragmentResizeChildrenCommand(compoundCmd, request.getMoveDelta(), request.getSizeDelta(), (CombinedFragmentEditPart)child);
+					Command resizeChildrenCommand = InteractionCompartmentXYLayoutEditPolicy.getCombinedFragmentResizeChildrenCommand(request.getMoveDelta(), request.getSizeDelta(), (CombinedFragmentEditPart)child);
+					if(resizeChildrenCommand == null) {
+						return null;
+					}
+					if(resizeChildrenCommand.canExecute()) {
+						compoundCmd.add(resizeChildrenCommand);
+					}
 				}
 
 				Command changeConstraintCommand = createChangeConstraintCommand(request, child, translateToModelConstraint(constraintFor));
