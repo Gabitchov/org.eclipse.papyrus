@@ -1,0 +1,16 @@
+[comment encoding = UTF-8 /]
+[module tableUtils('http://www.eclipse.org/emf/2002/Ecore')/]
+
+[template public openTable()]
+<p>
+<table border="1">
+[/template]
+
+[template public closeTable()]
+</table>
+<p/>
+[/template]
+
+[template public addHeader(name: String, leftRoot: String, rightRoot: String)]
+<tr><th>[name/]</th><th>(1) [leftRoot/]</th><th>(2)[rightRoot/]</th></tr>
+[/template]

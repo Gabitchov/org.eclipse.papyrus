@@ -8,31 +8,31 @@
 [import conflictingDiffElement/]
 [import resourceDiff/]
 
-[template public processDiffElement(el : DiffGroup)]
-[el.processDiffGroup('', 1)/]
+[template public processDiffElement(el : DiffGroup, leftRoot: String, rightRoot: String)]
+[el.processDiffGroup('', 1, leftRoot, rightRoot)/]
 [/template]
 
-[template public processDiffElement(el : AttributeChange)]
+[template public processDiffElement(el : AttributeChange, leftRoot: String, rightRoot: String)]
 [el.genAttributeChange()/]
 [/template]
 
-[template public processDiffElement(el : ReferenceChange)]
+[template public processDiffElement(el : ReferenceChange, leftRoot: String, rightRoot: String)]
 [el.processReferenceChange()/]
 [/template]
 
-[template public processDiffElement(el : ConflictingDiffElement)]
+[template public processDiffElement(el : ConflictingDiffElement, leftRoot: String, rightRoot: String)]
 [el.genConflictingDiffElement()/]
 [/template]
 
-[template public processDiffElement(el : ModelElementChange)]
+[template public processDiffElement(el : ModelElementChange, leftRoot: String, rightRoot: String)]
 [el.processModelElementChange()/]
 [/template]
 
-[template public processDiffElement(el : ResourceDiff)]
+[template public processDiffElement(el : ResourceDiff, leftRoot: String, rightRoot: String)]
 [el.genResourceDiff()/]
 [/template]
 
-[template public processDiffElement(el : DiffElement)]
+[template public processDiffElement(el : DiffElement, leftRoot: String, rightRoot: String)]
 <tr>
 <td>[el.kind/]</td><td>Unknown diff</td>
 </tr>

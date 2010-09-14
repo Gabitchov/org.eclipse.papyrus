@@ -9,7 +9,7 @@
 	[file (model.fileName().concat('.html'), false, 'UTF-8')]
 [model.reportHeader()/]
 [for (diffElement : DiffElement | model.ownedElements)]
-[diffElement.processDiffElement()/]
+[diffElement.processDiffElement(model.leftRootName(), model.rightRootName())/]
 [/for]
 [/file]
 [/template]
