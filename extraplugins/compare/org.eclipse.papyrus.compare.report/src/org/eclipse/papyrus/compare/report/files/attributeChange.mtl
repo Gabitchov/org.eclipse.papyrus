@@ -7,6 +7,7 @@ A representation of the model object 'Attribute Change'. Superclass of elements 
 [module attributeChange('http://www.eclipse.org/emf/compare/diff/1.1')/]
 
 [import tableUtils/]
+[import common/]
 
 [template public genAttributeChanges(el : DiffElement, leftRoot: String, rightRoot: String) {attributeChanges: Sequence(AttributeChange) = attributeChanges(el); }]
 [if not attributeChanges->isEmpty()]
@@ -21,7 +22,7 @@ A representation of the model object 'Attribute Change'. Superclass of elements 
 
 [template public genAttributeChange(el : AttributeChange)]
 [if not el.attribute.oclIsInvalid() and not el.attribute.oclIsUndefined()]
-<tr><td>[el.attribute.name/]</td><td>[el.leftElement.eGet(el.attribute)/]</td><td>[el.rightElement.eGet(el.attribute)/]</td></tr>
+[addRow(el.attribute.name, el.leftElement.eGet(el.attribute), el.rightElement.eGet(el.attribute))/]
 [/if]
 [/template]
 

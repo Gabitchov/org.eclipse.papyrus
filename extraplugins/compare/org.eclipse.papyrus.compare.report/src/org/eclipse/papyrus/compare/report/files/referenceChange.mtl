@@ -1,28 +1,25 @@
 [comment encoding = UTF-8 /]
 [module referenceChange('http://www.eclipse.org/emf/compare/diff/1.1')/]
+
 [import common/]
+[import tableUtils/]
 
-[template public processReferenceChanges(el : DiffElement)]
-[if not referenceChanges(el)->isEmpty()]
-<p>
-<table border="1">
-[el.tableHeader()/]
-[for (diffElement : ReferenceChange | referenceChanges(el))]
-[diffElement.processReferenceChange()/]
+[template public processReferenceChanges(el : DiffElement, leftRoot: String, rightRoot: String) {referenceChanges: Sequence(ReferenceChange) = referenceChanges(el); }]
+[if not referenceChanges->isEmpty()]
+[openTable()/]
+[addHeader('References Changed', leftRoot, rightRoot)/]
+[for (referenceChanges)]
+[genReferenceChange()/]
 [/for]
-</table>
-<p/>
+[closeTable()/]
 [/if]
 [/template]
 
-[template public processReferenceChange(el : ReferenceChange)]
+[template public genReferenceChange(el : ReferenceChange)]
 [if not el.reference.oclIsUndefined() and not el.reference.oclIsInvalid()]
-<tr><td>[el.reference.name/]</td><td>[elementName(el.leftElement.eGet(el.reference))/]</td><td>[elementName(el.rightElement.eGet(el.reference))/]</td></tr>
+[addRow(el.reference.name, el.leftElement.eGet(el.reference), el.rightElement.eGet(el.reference))/]
 [/if]
 [/template]
 
-[template private tableHeader(el : DiffElement)]
-<tr><th>References Changed</th><th>(1)</th><th>(2)</th></tr>
-[/template]
+[query private referenceChanges(element : DiffElement) : Sequence(ReferenceChange) = element.subDiffElements->select(attr: DiffElement| attr.oclIsKindOf(ReferenceChange))/]
 
-[query public referenceChanges(element : DiffElement) : Sequence(ReferenceChange) = element.subDiffElements->select(attr: DiffElement| attr.oclIsKindOf(ReferenceChange))/]

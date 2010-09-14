@@ -9,7 +9,7 @@
 [let groupPrefix : String = prefix.concat(index.toString())]
 [header(el, groupPrefix)/]
 [el.genAttributeChanges(leftRoot, rightRoot)/]
-[el.processReferenceChanges()/]
+[el.processReferenceChanges(leftRoot, rightRoot)/]
 [for (diffElement : DiffElement | el.subDiffElements) ? (diffElement.oclIsKindOf(DiffGroup))]
 	[processDiffGroup(diffElement.oclAsType(DiffGroup), groupPrefix.concat('.'), i, leftRoot, rightRoot)/]
 [/for]

@@ -17,7 +17,7 @@
 [/template]
 
 [template public processDiffElement(el : ReferenceChange, leftRoot: String, rightRoot: String)]
-[el.processReferenceChange()/]
+[el.genReferenceChange()/]
 [/template]
 
 [template public processDiffElement(el : ConflictingDiffElement, leftRoot: String, rightRoot: String)]
