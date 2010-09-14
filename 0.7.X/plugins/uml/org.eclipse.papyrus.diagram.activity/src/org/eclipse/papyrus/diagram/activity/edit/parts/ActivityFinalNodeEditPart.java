@@ -56,8 +56,10 @@ import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.activity.edit.policies.ActivityFinalNodeItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.ResizableSquareEditPolicy;
+import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.graphics.Color;
@@ -875,14 +877,12 @@ AbstractBorderedShapeEditPart {
 		 */
 		private void createContents() {
 
-
 			fFigureDisc = new Ellipse();
 			fFigureDisc.setBackgroundColor(ColorConstants.black);
 			fFigureDisc.setLocation(new Point(getMapMode().DPtoLP(3), getMapMode().DPtoLP(3)));
 			fFigureDisc.setSize(getMapMode().DPtoLP(16), getMapMode().DPtoLP(16));
 
 			this.add(fFigureDisc);
-
 
 		}
 

@@ -93,9 +93,7 @@ import org.eclipse.uml2.uml.ObjectNode;
  */
 public class DataStoreSelectionEditPart
 
-
 extends LabelEditPart
-
 
 implements ITextAwareEditPart, IBorderItemEditPart {
 
@@ -124,8 +122,6 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -139,8 +135,6 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -670,8 +664,6 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 		return getPrimaryView();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -775,8 +767,6 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 		}
 	}
 
-
-
 	/**
 	 * @generated NOT refresh the visibility in case the selection assignment changed
 	 */
@@ -827,12 +817,10 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 		return new LinkAndCornerBentWithTextFigure();
 	}
 
-
 	/**
 	 * @generated
 	 */
 	public class LinkAndCornerBentWithTextFigure extends CornerBentFigure {
-
 
 		/**
 		 * @generated
@@ -844,12 +832,10 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 		 */
 		private PolylineShape fLinkToBehaviorProperty;
 
-
 		/**
 		 * @generated
 		 */
 		public LinkAndCornerBentWithTextFigure() {
-
 
 			this.setBackgroundColor(THIS_BACK);
 			createContents();
@@ -860,14 +846,9 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 		 */
 		private void createContents() {
 
-
 			fCornerBentContent = new WrappedLabel();
 
-
-
 			this.add(fCornerBentContent);
-
-
 
 			fLinkToBehaviorProperty = new PolylineShape();
 			fLinkToBehaviorProperty.setLineWidth(1);
@@ -881,11 +862,7 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 				}
 			});
 
-
 		}
-
-
-
 
 		/**
 		 * @see org.eclipse.draw2d.Figure#setVisible(boolean)
@@ -949,14 +926,11 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 			return fLinkToBehaviorProperty;
 		}
 
-
 	}
 
 	/**
 	 * @generated
 	 */
 	static final Color THIS_BACK = new Color(null, 248, 249, 214);
-
-
 
 }

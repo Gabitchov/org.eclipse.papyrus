@@ -709,7 +709,6 @@ public class IntervalConstraintAsLocalPostcondNameEditPart extends CompartmentEd
 			}
 		}
 
-
 		super.handleNotificationEvent(event);
 	}
 

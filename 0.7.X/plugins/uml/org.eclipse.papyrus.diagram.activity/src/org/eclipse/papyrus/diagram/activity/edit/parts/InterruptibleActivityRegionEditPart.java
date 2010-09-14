@@ -86,10 +86,6 @@ NodeEditPart {
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
-
-
-
-
 	/**
 	 * Papyrus codeGen
 	 * 
@@ -151,7 +147,6 @@ NodeEditPart {
 
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -230,10 +225,6 @@ NodeEditPart {
 			((Shape)primaryShape).setLineStyle(style);
 		}
 	}
-
-
-
-
 
 	/**
 	 * @generated

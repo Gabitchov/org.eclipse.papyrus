@@ -89,7 +89,6 @@ public class LoopNodeStructuredActivityNodeContentCompartmentCanonicalEditPolicy
 	 */
 	private Set<EStructuralFeature> myFeaturesToSynchronize;
 
-
 	/**
 	 * @generated
 	 */

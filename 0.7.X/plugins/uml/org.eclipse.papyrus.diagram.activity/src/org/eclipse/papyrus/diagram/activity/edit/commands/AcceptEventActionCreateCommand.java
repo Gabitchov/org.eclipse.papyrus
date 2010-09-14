@@ -28,6 +28,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.activity.edit.commands.util.CreateCommandUtil;
 import org.eclipse.papyrus.diagram.activity.providers.ElementInitializers;
 import org.eclipse.uml2.uml.AcceptEventAction;
+import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
@@ -75,7 +76,6 @@ public class AcceptEventActionCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -99,8 +99,6 @@ public class AcceptEventActionCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
-
 		AcceptEventAction newElement = UMLFactory.eINSTANCE.createAcceptEventAction();
 
 		// set appropriate parents
@@ -110,7 +108,6 @@ public class AcceptEventActionCreateCommand extends EditElementCommand {
 		//		Activity owner = (Activity)getElementToEdit();
 		//		owner.getNodes().add(newElement);
 
-
 		ElementInitializers.getInstance().init_AcceptEventAction_3063(newElement);
 
 		doConfigure(newElement, monitor, info);
@@ -118,9 +115,6 @@ public class AcceptEventActionCreateCommand extends EditElementCommand {
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
-
-
-
 
 	/**
 	 * @generated

@@ -624,10 +624,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ActionLocalPreconditionEditPart.VISUAL_ID:
 				return new ActionLocalPreconditionEditPart(view);
 
-
 			case ActionLocalPostconditionEditPart.VISUAL_ID:
 				return new ActionLocalPostconditionEditPart(view);
-
 
 			case ObjectFlowEditPart.VISUAL_ID:
 				return new ObjectFlowEditPart(view);
@@ -653,7 +651,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ObjectFlowAppliedStereotypeEditPart.VISUAL_ID:
 				return new ObjectFlowAppliedStereotypeEditPart(view);
 
-
 			case ControlFlowEditPart.VISUAL_ID:
 				return new ControlFlowEditPart(view);
 
@@ -668,7 +665,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case ControlFlowAppliedStereotypeEditPart.VISUAL_ID:
 				return new ControlFlowAppliedStereotypeEditPart(view);
-
 
 			case ExceptionHandlerEditPart.VISUAL_ID:
 				return new ExceptionHandlerEditPart(view);

@@ -45,7 +45,6 @@ public class ExceptionHandlerCreateCommand extends EditElementCommand {
 	 */
 	private final EObject target;
 
-
 	/**
 	 * @generated
 	 */
@@ -84,7 +83,6 @@ public class ExceptionHandlerCreateCommand extends EditElementCommand {
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateExceptionHandler_4005(getContainer(), getSource(), getTarget());
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -102,7 +100,6 @@ public class ExceptionHandlerCreateCommand extends EditElementCommand {
 		return CommandResult.newOKCommandResult(newElement);
 
 	}
-
 
 	/**
 	 * @generated

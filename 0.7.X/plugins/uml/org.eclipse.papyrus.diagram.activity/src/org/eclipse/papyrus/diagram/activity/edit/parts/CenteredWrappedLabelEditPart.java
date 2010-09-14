@@ -709,7 +709,6 @@ public class CenteredWrappedLabelEditPart extends CompartmentEditPart implements
 			}
 		}
 
-
 		super.handleNotificationEvent(event);
 	}
 

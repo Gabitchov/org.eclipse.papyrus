@@ -3078,21 +3078,15 @@ public class UMLVisualIDRegistry {
 		}
 		if(UMLPackage.eINSTANCE.getObjectFlow().isSuperTypeOf(domainElement.eClass())
 
-
-
 		) {
 			return ObjectFlowEditPart.VISUAL_ID;
 		}
 		if(UMLPackage.eINSTANCE.getControlFlow().isSuperTypeOf(domainElement.eClass())
 
-
-
 		) {
 			return ControlFlowEditPart.VISUAL_ID;
 		}
 		if(UMLPackage.eINSTANCE.getExceptionHandler().isSuperTypeOf(domainElement.eClass())
-
-
 
 		) {
 			return ExceptionHandlerEditPart.VISUAL_ID;
@@ -3379,85 +3373,65 @@ public class UMLVisualIDRegistry {
 		viewInfo = new BaseViewInfo(4001, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(4002, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(4003, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
-
 		labelInfo = new BaseViewInfo(6001, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
-
 
 		labelInfo = new BaseViewInfo(6002, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
-
 		labelInfo = new BaseViewInfo(6005, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
-
 
 		labelInfo = new BaseViewInfo(6006, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
-
 		labelInfo = new BaseViewInfo(6007, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
-
 
 		labelInfo = new BaseViewInfo(6008, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
-
 		labelInfo = new BaseViewInfo(6010, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
-
 
 		viewInfo = new BaseViewInfo(4004, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
-
 		labelInfo = new BaseViewInfo(6003, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
-
 
 		labelInfo = new BaseViewInfo(6004, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
-
 		labelInfo = new BaseViewInfo(6009, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
-
 
 		labelInfo = new BaseViewInfo(6011, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
-
 		viewInfo = new BaseViewInfo(4005, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
-
 		labelInfo = new BaseViewInfo(6012, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
-
 
 		viewInfo = new BaseViewInfo(3001, ViewInfo.Node, "Parameter");
 
 		root.addNode(7001, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3002, ViewInfo.Node, "Constraint");
 
 		root.addNode(7002, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3003, ViewInfo.Node, "Constraint");
 
 		root.addNode(7003, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(3004, ViewInfo.Node, "InitialNode");
 
@@ -3477,7 +3451,6 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7009, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3005, ViewInfo.Node, "ActivityFinalNode");
 
 		root.addNode(7004, viewInfo);
@@ -3495,7 +3468,6 @@ public class UMLVisualIDRegistry {
 		root.addNode(7007, viewInfo);
 
 		root.addNode(7009, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(3006, ViewInfo.Node, "FlowFinalNode");
 
@@ -3515,7 +3487,6 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7009, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3007, ViewInfo.Node, "OpaqueAction");
 
 		root.addNode(7004, viewInfo);
@@ -3534,26 +3505,21 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7009, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3015, ViewInfo.Node, "ValuePin");
 
 		root.addNode(3007, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(3016, ViewInfo.Node, "ActionInputPin");
 
 		root.addNode(3007, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3013, ViewInfo.Node, "InputPin");
 
 		root.addNode(3007, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3014, ViewInfo.Node, "OutputPin");
 
 		root.addNode(3007, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(3008, ViewInfo.Node, "CallBehaviorAction");
 
@@ -3573,26 +3539,21 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7009, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3017, ViewInfo.Node, "ValuePin");
 
 		root.addNode(3008, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(3018, ViewInfo.Node, "ActionInputPin");
 
 		root.addNode(3008, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3019, ViewInfo.Node, "InputPin");
 
 		root.addNode(3008, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3020, ViewInfo.Node, "OutputPin");
 
 		root.addNode(3008, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(3010, ViewInfo.Node, "CallOperationAction");
 
@@ -3612,41 +3573,33 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7009, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3021, ViewInfo.Node, "ActionInputPin");
 
 		root.addNode(3010, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(3022, ViewInfo.Node, "ValuePin");
 
 		root.addNode(3010, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3023, ViewInfo.Node, "InputPin");
 
 		root.addNode(3010, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(3024, ViewInfo.Node, "OutputPin");
 
 		root.addNode(3010, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3025, ViewInfo.Node, "ValuePin");
 
 		root.addNode(3010, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(3026, ViewInfo.Node, "ActionInputPin");
 
 		root.addNode(3010, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3027, ViewInfo.Node, "InputPin");
 
 		root.addNode(3010, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(3034, ViewInfo.Node, "DurationConstraint");
 
@@ -3666,7 +3619,6 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7009, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3035, ViewInfo.Node, "DurationConstraint");
 
 		root.addNode(7004, viewInfo);
@@ -3684,7 +3636,6 @@ public class UMLVisualIDRegistry {
 		root.addNode(7007, viewInfo);
 
 		root.addNode(7009, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(3036, ViewInfo.Node, "TimeConstraint");
 
@@ -3704,7 +3655,6 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7009, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3037, ViewInfo.Node, "TimeConstraint");
 
 		root.addNode(7004, viewInfo);
@@ -3722,7 +3672,6 @@ public class UMLVisualIDRegistry {
 		root.addNode(7007, viewInfo);
 
 		root.addNode(7009, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(3030, ViewInfo.Node, "InteractionConstraint");
 
@@ -3742,7 +3691,6 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7009, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3031, ViewInfo.Node, "InteractionConstraint");
 
 		root.addNode(7004, viewInfo);
@@ -3760,7 +3708,6 @@ public class UMLVisualIDRegistry {
 		root.addNode(7007, viewInfo);
 
 		root.addNode(7009, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(3032, ViewInfo.Node, "IntervalConstraint");
 
@@ -3780,7 +3727,6 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7009, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3033, ViewInfo.Node, "IntervalConstraint");
 
 		root.addNode(7004, viewInfo);
@@ -3798,7 +3744,6 @@ public class UMLVisualIDRegistry {
 		root.addNode(7007, viewInfo);
 
 		root.addNode(7009, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(3011, ViewInfo.Node, "Constraint");
 
@@ -3818,7 +3763,6 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7009, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3012, ViewInfo.Node, "Constraint");
 
 		root.addNode(7004, viewInfo);
@@ -3836,7 +3780,6 @@ public class UMLVisualIDRegistry {
 		root.addNode(7007, viewInfo);
 
 		root.addNode(7009, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(3038, ViewInfo.Node, "DecisionNode");
 
@@ -3856,7 +3799,6 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7009, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3039, ViewInfo.Node, "MergeNode");
 
 		root.addNode(7004, viewInfo);
@@ -3874,7 +3816,6 @@ public class UMLVisualIDRegistry {
 		root.addNode(7007, viewInfo);
 
 		root.addNode(7009, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(3040, ViewInfo.Node, "ForkNode");
 
@@ -3894,7 +3835,6 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7009, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3041, ViewInfo.Node, "JoinNode");
 
 		root.addNode(7004, viewInfo);
@@ -3912,7 +3852,6 @@ public class UMLVisualIDRegistry {
 		root.addNode(7007, viewInfo);
 
 		root.addNode(7009, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(3078, ViewInfo.Node, "DataStoreNode");
 
@@ -3932,7 +3871,6 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7009, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3042, ViewInfo.Node, "SendObjectAction");
 
 		root.addNode(7004, viewInfo);
@@ -3951,36 +3889,29 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7009, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3046, ViewInfo.Node, "ValuePin");
 
 		root.addNode(3042, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(3047, ViewInfo.Node, "ActionInputPin");
 
 		root.addNode(3042, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3048, ViewInfo.Node, "InputPin");
 
 		root.addNode(3042, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(3049, ViewInfo.Node, "ValuePin");
 
 		root.addNode(3042, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3050, ViewInfo.Node, "ActionInputPin");
 
 		root.addNode(3042, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3051, ViewInfo.Node, "InputPin");
 
 		root.addNode(3042, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(3052, ViewInfo.Node, "SendSignalAction");
 
@@ -4000,41 +3931,33 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7009, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3053, ViewInfo.Node, "ActionInputPin");
 
 		root.addNode(3052, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(3054, ViewInfo.Node, "ValuePin");
 
 		root.addNode(3052, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3055, ViewInfo.Node, "InputPin");
 
 		root.addNode(3052, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(3060, ViewInfo.Node, "ValuePin");
 
 		root.addNode(3052, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3061, ViewInfo.Node, "ActionInputPin");
 
 		root.addNode(3052, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(3062, ViewInfo.Node, "InputPin");
 
 		root.addNode(3052, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3059, ViewInfo.Node, "ActivityParameterNode");
 
 		root.addNode(2001, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(3063, ViewInfo.Node, "AcceptEventAction");
 
@@ -4054,11 +3977,9 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7009, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3064, ViewInfo.Node, "OutputPin");
 
 		root.addNode(3063, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(3076, ViewInfo.Node, "ValueSpecificationAction");
 
@@ -4078,11 +3999,9 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7009, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3077, ViewInfo.Node, "OutputPin");
 
 		root.addNode(3076, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(3069, ViewInfo.Node, "ConditionalNode");
 
@@ -4102,7 +4021,6 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7009, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3070, ViewInfo.Node, "ExpansionRegion");
 
 		root.addNode(7004, viewInfo);
@@ -4121,16 +4039,13 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7009, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3074, ViewInfo.Node, "ExpansionNode");
 
 		root.addNode(3070, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3075, ViewInfo.Node, "ExpansionNode");
 
 		root.addNode(3070, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(3071, ViewInfo.Node, "LoopNode");
 
@@ -4150,7 +4065,6 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7009, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3073, ViewInfo.Node, "SequenceNode");
 
 		root.addNode(7004, viewInfo);
@@ -4168,7 +4082,6 @@ public class UMLVisualIDRegistry {
 		root.addNode(7007, viewInfo);
 
 		root.addNode(7009, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(3065, ViewInfo.Node, "StructuredActivityNode");
 
@@ -4188,13 +4101,11 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7009, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3067, ViewInfo.Node, "ActivityPartition");
 
 		root.addNode(7004, viewInfo);
 
 		root.addNode(7006, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(3068, ViewInfo.Node, "InterruptibleActivityRegion");
 

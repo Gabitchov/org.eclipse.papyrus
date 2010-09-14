@@ -708,7 +708,6 @@ public class ActivityIsSingleExecutionEditPart extends CompartmentEditPart imple
 			}
 		}
 
-
 		super.handleNotificationEvent(event);
 	}
 

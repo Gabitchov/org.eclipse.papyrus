@@ -104,10 +104,6 @@ BorderedBorderItemEditPart {
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */
@@ -160,7 +156,6 @@ BorderedBorderItemEditPart {
 		return (PinDescriptor)primaryShape;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -184,12 +179,10 @@ BorderedBorderItemEditPart {
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
 
-
 		//FIXME: workaround for #154536
 		result.getBounds().setSize(result.getPreferredSize());
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -848,21 +841,15 @@ BorderedBorderItemEditPart {
 		return types;
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */
 	public class PinDescriptor extends RectangleFigure {
 
-
 		/**
 		 * @generated
 		 */
 		private PolylineShape fOptionalArrowFigure;
-
 
 		/**
 		 * @generated
@@ -877,16 +864,11 @@ BorderedBorderItemEditPart {
 		 */
 		private void createContents() {
 
-
 			fOptionalArrowFigure = new PolylineShape();
 
 			this.add(fOptionalArrowFigure);
 
-
 		}
-
-
-
 
 		/**
 		 * @generated
@@ -895,11 +877,7 @@ BorderedBorderItemEditPart {
 			return fOptionalArrowFigure;
 		}
 
-
 	}
-
-
-
 
 	/**
 	 * @generated

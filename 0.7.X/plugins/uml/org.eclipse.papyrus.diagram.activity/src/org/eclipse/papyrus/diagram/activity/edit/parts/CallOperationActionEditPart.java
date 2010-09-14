@@ -25,6 +25,7 @@ import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -63,21 +64,23 @@ import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.common.draw2d.CenterLayout;
 import org.eclipse.papyrus.diagram.common.editparts.IPapyrusEditPart;
+import org.eclipse.papyrus.diagram.common.editparts.NamedElementEditPart;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.BorderItemResizableEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel;
+import org.eclipse.papyrus.diagram.common.figure.node.PapyrusRoundedNodeFigure;
 import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.graphics.Color;
 
 /**
- * @generated NOT implements IPapyrusEditPart
+ * @generated
  */
 public class CallOperationActionEditPart extends
 
-AbstractBorderedShapeEditPart implements IPapyrusEditPart {
+NamedElementEditPart {
 
 	/**
 	 * @generated
@@ -110,7 +113,6 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CallOperationActionItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 
-
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.activity.edit.policies.CallOperationActionCanonicalEditPolicy());
 
@@ -122,6 +124,16 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
+	}
+
+	/**
+	 * Papyrus codeGen
+	 * 
+	 * @generated
+	 **/
+	protected void handleNotificationEvent(Notification event) {
+		super.handleNotificationEvent(event);
+
 	}
 
 	/**
@@ -166,14 +178,14 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		return primaryShape = new ActionFigureDescriptor();
+		return primaryShape = new PapyrusRoundedNodeFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public ActionFigureDescriptor getPrimaryShape() {
-		return (ActionFigureDescriptor)primaryShape;
+	public PapyrusRoundedNodeFigure getPrimaryShape() {
+		return (PapyrusRoundedNodeFigure)primaryShape;
 	}
 
 	/**
@@ -181,13 +193,9 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if(childEditPart instanceof CallOperationActionNameEditPart) {
-			((CallOperationActionNameEditPart)childEditPart).setLabel(getPrimaryShape().getActionLabel());
+			((CallOperationActionNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-
-
-
-
 
 		//Papyrus Gencode :Affixed Pin locator for Actions
 		if(childEditPart instanceof ActionInputPinInCallOpActEditPart) {
@@ -196,20 +204,12 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 			return true;
 		}
 
-
-
-
-
 		//Papyrus Gencode :Affixed Pin locator for Actions
 		if(childEditPart instanceof ValuePinInCallOpActEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
 			getBorderedFigure().getBorderItemContainer().add(((ValuePinInCallOpActEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
 
 		//Papyrus Gencode :Affixed Pin locator for Actions
 		if(childEditPart instanceof InputPinInCallOpActEditPart) {
@@ -218,20 +218,12 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 			return true;
 		}
 
-
-
-
-
 		//Papyrus Gencode :Affixed Pin locator for Actions
 		if(childEditPart instanceof OutputPinInCallOpActEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.EAST);
 			getBorderedFigure().getBorderItemContainer().add(((OutputPinInCallOpActEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
 
 		//Papyrus Gencode :Affixed Pin locator for Actions
 		if(childEditPart instanceof ValuePinInCallOpActAsTargetEditPart) {
@@ -240,10 +232,6 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 			return true;
 		}
 
-
-
-
-
 		//Papyrus Gencode :Affixed Pin locator for Actions
 		if(childEditPart instanceof ActionInputPinInCallOpActAsTargetEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NORTH);
@@ -251,19 +239,12 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 			return true;
 		}
 
-
-
-
-
 		//Papyrus Gencode :Affixed Pin locator for Actions
 		if(childEditPart instanceof InputPinInCallOpActAsTargetEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NORTH);
 			getBorderedFigure().getBorderItemContainer().add(((InputPinInCallOpActAsTargetEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
 
 		return false;
 	}
@@ -1213,110 +1194,6 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
 		}
 		return types;
-	}
-
-	/**
-	 * @generated
-	 */
-	public class ActionFigureDescriptor extends AbstractActionFigure {
-
-
-		/**
-		 * @generated
-		 */
-		private CenteredWrappedLabel fActionLabel;
-
-		/**
-		 * @generated
-		 */
-		private PolylineShape fOptionalRakeFigure;
-
-
-		/**
-		 * @generated NOT call super
-		 */
-		public ActionFigureDescriptor() {
-			super();
-
-			createContents();
-		}
-
-		/**
-		 * @generated NOT add constraint on label rectangle
-		 */
-		private void createContents() {
-
-
-			fOptionalRakeFigure = new PolylineShape();
-			fOptionalRakeFigure.setFill(false);
-			fOptionalRakeFigure.setLineWidth(2);
-
-			this.add(fOptionalRakeFigure);
-
-
-
-			RectangleFigure labelRect0 = new RectangleFigure();
-			labelRect0.setFill(false);
-			labelRect0.setOutline(false);
-			labelRect0.setLineWidth(1);
-
-			// add constraint on label rectangle
-			GridData constraintLabelRect0 = new GridData();
-			constraintLabelRect0.verticalAlignment = GridData.FILL;
-			constraintLabelRect0.horizontalAlignment = GridData.FILL;
-			constraintLabelRect0.horizontalIndent = 0;
-			constraintLabelRect0.horizontalSpan = 1;
-			constraintLabelRect0.verticalSpan = 1;
-			constraintLabelRect0.grabExcessHorizontalSpace = true;
-			constraintLabelRect0.grabExcessVerticalSpace = true;
-			this.add(labelRect0, constraintLabelRect0);
-
-			CenterLayout layoutLabelRect0 = new CenterLayout();
-
-
-			labelRect0.setLayoutManager(layoutLabelRect0);
-
-
-
-			fActionLabel = new CenteredWrappedLabel();
-
-
-
-			fActionLabel.setBorder(new MarginBorder(getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
-
-			labelRect0.add(fActionLabel);
-
-
-
-		}
-
-
-
-
-		/**
-		 * @generated
-		 */
-		public CenteredWrappedLabel getActionLabel() {
-			return fActionLabel;
-		}
-
-		/**
-		 * @generated
-		 */
-		public PolylineShape getOptionalRakeFigure() {
-			return fOptionalRakeFigure;
-		}
-
-		/**
-		 * @generated NOT ask the edit part
-		 */
-		@Override
-		public IMapMode getMapMode() {
-			//ask the edit part
-			return CallOperationActionEditPart.this.getMapMode();
-		}
-
-
 	}
 
 	/**

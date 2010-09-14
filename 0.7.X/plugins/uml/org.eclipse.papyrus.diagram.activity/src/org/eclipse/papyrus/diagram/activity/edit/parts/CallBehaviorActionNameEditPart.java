@@ -709,7 +709,6 @@ public class CallBehaviorActionNameEditPart extends CompartmentEditPart implemen
 			}
 		}
 
-
 		super.handleNotificationEvent(event);
 	}
 

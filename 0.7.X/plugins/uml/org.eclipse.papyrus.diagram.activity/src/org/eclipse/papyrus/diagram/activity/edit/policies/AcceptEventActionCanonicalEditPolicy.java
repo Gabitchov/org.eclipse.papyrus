@@ -46,7 +46,6 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class AcceptEventActionCanonicalEditPolicy extends CanonicalEditPolicy {
 
-
 	/**
 	 * @generated
 	 */

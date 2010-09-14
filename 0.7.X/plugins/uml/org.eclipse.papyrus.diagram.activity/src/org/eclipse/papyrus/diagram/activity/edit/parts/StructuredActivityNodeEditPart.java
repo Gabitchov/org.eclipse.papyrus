@@ -99,10 +99,6 @@ ShapeNodeEditPart {
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */
@@ -151,7 +147,6 @@ ShapeNodeEditPart {
 			return true;
 		}
 
-
 		if(childEditPart instanceof StructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getStructuredActivityNodeCompartment();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
@@ -161,7 +156,6 @@ ShapeNodeEditPart {
 
 		return false;
 	}
-
 
 	/**
 	 * @generated
@@ -209,7 +203,6 @@ ShapeNodeEditPart {
 		return getContentPane();
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -222,7 +215,6 @@ ShapeNodeEditPart {
 
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -294,7 +286,6 @@ ShapeNodeEditPart {
 			((Shape)primaryShape).setLineStyle(style);
 		}
 	}
-
 
 	/**
 	 * @generated
@@ -1091,24 +1082,20 @@ ShapeNodeEditPart {
 		return types;
 	}
 
-
 	/**
 	 * @generated
 	 */
 	public class StructuredActivityNodeDescriptor extends RoundedRectangle {
-
 
 		/**
 		 * @generated
 		 */
 		private RectangleFigure fStructuredActivityNodeCompartment;
 
-
 		/**
 		 * @generated
 		 */
 		private CenteredWrappedLabel fKeyword;
-
 
 		/**
 		 * @generated
@@ -1135,13 +1122,9 @@ ShapeNodeEditPart {
 		 */
 		private void createContents() {
 
-
 			fKeyword = new CenteredWrappedLabel();
 
-
-
 			fKeyword.setBorder(new MarginBorder(getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
-
 
 			GridData constraintFKeyword = new GridData();
 			constraintFKeyword.verticalAlignment = GridData.CENTER;
@@ -1153,13 +1136,9 @@ ShapeNodeEditPart {
 			constraintFKeyword.grabExcessVerticalSpace = false;
 			this.add(fKeyword, constraintFKeyword);
 
-
-
-
 			fStructuredActivityNodeCompartment = new RectangleFigure();
 			fStructuredActivityNodeCompartment.setFill(false);
 			fStructuredActivityNodeCompartment.setOutline(false);
-
 
 			GridData constraintFStructuredActivityNodeCompartment = new GridData();
 			constraintFStructuredActivityNodeCompartment.verticalAlignment = GridData.FILL;
@@ -1171,12 +1150,7 @@ ShapeNodeEditPart {
 			constraintFStructuredActivityNodeCompartment.grabExcessVerticalSpace = true;
 			this.add(fStructuredActivityNodeCompartment, constraintFStructuredActivityNodeCompartment);
 
-
-
 		}
-
-
-
 
 		/**
 		 * @generated
@@ -1192,11 +1166,7 @@ ShapeNodeEditPart {
 			return fKeyword;
 		}
 
-
 	}
-
-
-
 
 	/**
 	 * @generated

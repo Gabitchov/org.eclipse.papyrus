@@ -141,7 +141,6 @@ ShapeNodeEditPart {
 			return true;
 		}
 
-
 		return false;
 	}
 
@@ -333,7 +332,6 @@ ShapeNodeEditPart {
 		 */
 		public CornerBentWithTextFigure() {
 
-
 			this.setBackgroundColor(THIS_BACK);
 			createContents();
 		}
@@ -343,13 +341,9 @@ ShapeNodeEditPart {
 		 */
 		private void createContents() {
 
-
 			fCornerBentContent = new WrappedLabel();
 
-
-
 			this.add(fCornerBentContent);
-
 
 		}
 

@@ -43,7 +43,6 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class ValueSpecificationActionCanonicalEditPolicy extends CanonicalEditPolicy {
 
-
 	/**
 	 * @generated
 	 */

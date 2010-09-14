@@ -107,7 +107,6 @@ AbstractBorderedShapeEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ActivityItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 
-
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.activity.edit.policies.ActivityCanonicalEditPolicy());
 
@@ -179,7 +178,6 @@ AbstractBorderedShapeEditPart {
 			return true;
 		}
 
-
 		if(childEditPart instanceof ActivityActivityParametersCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getActivityParametersCompartment();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
@@ -208,19 +206,12 @@ AbstractBorderedShapeEditPart {
 			return true;
 		}
 
-
-
-
-
 		//Papyrus Gencode :Affixed Activity Parameter Node locator for Activity
 		if(childEditPart instanceof ActivityParameterNodeEditPart) {
 			IBorderItemLocator locator = new ActivityParameterNodePositionLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((ActivityParameterNodeEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
 
 		return false;
 	}
@@ -477,7 +468,6 @@ AbstractBorderedShapeEditPart {
 		 */
 		private void createContents() {
 
-
 			RoundedRectangle activityBorderFigure0 = new RoundedRectangle();
 			activityBorderFigure0.setCornerDimensions(new Dimension(getMapMode().DPtoLP(8), getMapMode().DPtoLP(8)));
 
@@ -492,13 +482,10 @@ AbstractBorderedShapeEditPart {
 			layoutActivityBorderFigure0.marginHeight = 0;
 			activityBorderFigure0.setLayoutManager(layoutActivityBorderFigure0);
 
-
-
 			RectangleFigure labelAndParameter1 = new RectangleFigure();
 			labelAndParameter1.setFill(false);
 			labelAndParameter1.setOutline(false);
 			labelAndParameter1.setLineWidth(0);
-
 
 			GridData constraintLabelAndParameter1 = new GridData();
 			constraintLabelAndParameter1.verticalAlignment = GridData.CENTER;
@@ -510,21 +497,15 @@ AbstractBorderedShapeEditPart {
 			constraintLabelAndParameter1.grabExcessVerticalSpace = false;
 			activityBorderFigure0.add(labelAndParameter1, constraintLabelAndParameter1);
 
-
 			GridLayout layoutLabelAndParameter1 = new GridLayout();
 			layoutLabelAndParameter1.numColumns = 1;
 			layoutLabelAndParameter1.makeColumnsEqualWidth = true;
 			labelAndParameter1.setLayoutManager(layoutLabelAndParameter1);
 
-
-
 			fHeaderLabel = new WrappingLabel();
 			fHeaderLabel.setText("ActivityName");
 
 			fHeaderLabel.setFont(FHEADERLABEL_FONT);
-
-
-
 
 			GridData constraintFHeaderLabel = new GridData();
 			constraintFHeaderLabel.verticalAlignment = GridData.CENTER;
@@ -536,14 +517,10 @@ AbstractBorderedShapeEditPart {
 			constraintFHeaderLabel.grabExcessVerticalSpace = false;
 			labelAndParameter1.add(fHeaderLabel, constraintFHeaderLabel);
 
-
-
-
 			fActivityParametersCompartment = new RectangleFigure();
 			fActivityParametersCompartment.setFill(false);
 			fActivityParametersCompartment.setOutline(false);
 			fActivityParametersCompartment.setLineWidth(0);
-
 
 			GridData constraintFActivityParametersCompartment = new GridData();
 			constraintFActivityParametersCompartment.verticalAlignment = GridData.CENTER;
@@ -557,14 +534,10 @@ AbstractBorderedShapeEditPart {
 
 			fActivityParametersCompartment.setLayoutManager(new StackLayout());
 
-
-
-
 			RectangleFigure prePostContions1 = new RectangleFigure();
 			prePostContions1.setFill(false);
 			prePostContions1.setOutline(false);
 			prePostContions1.setLineWidth(0);
-
 
 			GridData constraintPrePostContions1 = new GridData();
 			constraintPrePostContions1.verticalAlignment = GridData.CENTER;
@@ -576,19 +549,15 @@ AbstractBorderedShapeEditPart {
 			constraintPrePostContions1.grabExcessVerticalSpace = false;
 			activityBorderFigure0.add(prePostContions1, constraintPrePostContions1);
 
-
 			GridLayout layoutPrePostContions1 = new GridLayout();
 			layoutPrePostContions1.numColumns = 1;
 			layoutPrePostContions1.makeColumnsEqualWidth = true;
 			prePostContions1.setLayoutManager(layoutPrePostContions1);
 
-
-
 			fActivityPreconditionsCompartment = new RectangleFigure();
 			fActivityPreconditionsCompartment.setFill(false);
 			fActivityPreconditionsCompartment.setOutline(false);
 			fActivityPreconditionsCompartment.setLineWidth(0);
-
 
 			GridData constraintFActivityPreconditionsCompartment = new GridData();
 			constraintFActivityPreconditionsCompartment.verticalAlignment = GridData.CENTER;
@@ -602,13 +571,10 @@ AbstractBorderedShapeEditPart {
 
 			fActivityPreconditionsCompartment.setLayoutManager(new StackLayout());
 
-
-
 			fActivityPostconditionsCompartment = new RectangleFigure();
 			fActivityPostconditionsCompartment.setFill(false);
 			fActivityPostconditionsCompartment.setOutline(false);
 			fActivityPostconditionsCompartment.setLineWidth(0);
-
 
 			GridData constraintFActivityPostconditionsCompartment = new GridData();
 			constraintFActivityPostconditionsCompartment.verticalAlignment = GridData.CENTER;
@@ -622,13 +588,9 @@ AbstractBorderedShapeEditPart {
 
 			fActivityPostconditionsCompartment.setLayoutManager(new StackLayout());
 
-
-
-
 			fHeaderSingleExecution = new WrappingLabel();
 			fHeaderSingleExecution.setText("");
 			fHeaderSingleExecution.setBorder(new MarginBorder(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0), getMapMode().DPtoLP(0), getMapMode().DPtoLP(8)));
-
 
 			GridData constraintFHeaderSingleExecution = new GridData();
 			constraintFHeaderSingleExecution.verticalAlignment = GridData.CENTER;
@@ -640,15 +602,11 @@ AbstractBorderedShapeEditPart {
 			constraintFHeaderSingleExecution.grabExcessVerticalSpace = false;
 			activityBorderFigure0.add(fHeaderSingleExecution, constraintFHeaderSingleExecution);
 
-
-
-
 			fCompartmentFigure = new RectangleFigure();
 			fCompartmentFigure.setFill(false);
 			fCompartmentFigure.setOutline(false);
 			fCompartmentFigure.setLineWidth(0);
 			fCompartmentFigure.setBorder(new MarginBorder(getMapMode().DPtoLP(0), getMapMode().DPtoLP(4), getMapMode().DPtoLP(4), getMapMode().DPtoLP(4)));
-
 
 			GridData constraintFCompartmentFigure = new GridData();
 			constraintFCompartmentFigure.verticalAlignment = GridData.FILL;
@@ -659,9 +617,6 @@ AbstractBorderedShapeEditPart {
 			constraintFCompartmentFigure.grabExcessHorizontalSpace = true;
 			constraintFCompartmentFigure.grabExcessVerticalSpace = true;
 			activityBorderFigure0.add(fCompartmentFigure, constraintFCompartmentFigure);
-
-
-
 
 		}
 

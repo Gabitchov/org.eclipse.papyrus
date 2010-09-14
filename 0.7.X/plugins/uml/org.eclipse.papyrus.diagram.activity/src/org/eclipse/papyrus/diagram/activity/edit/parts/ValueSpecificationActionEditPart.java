@@ -102,7 +102,6 @@ AbstractBorderedShapeEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ValueSpecificationActionItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 
-
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.activity.edit.policies.ValueSpecificationActionCanonicalEditPolicy());
 
@@ -111,10 +110,6 @@ AbstractBorderedShapeEditPart {
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
-
-
-
-
 
 	/**
 	 * @generated
@@ -171,21 +166,14 @@ AbstractBorderedShapeEditPart {
 			return true;
 		}
 
-
-
-
-
 		if(childEditPart instanceof OutputPinInValSpecActEditPart) {
 			BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.EAST);
 			getBorderedFigure().getBorderItemContainer().add(((OutputPinInValSpecActEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
 
-
-
 		return false;
 	}
-
 
 	/**
 	 * @generated
@@ -231,7 +219,6 @@ AbstractBorderedShapeEditPart {
 		return getContentPane();
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -244,7 +231,6 @@ AbstractBorderedShapeEditPart {
 
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -1112,15 +1098,10 @@ AbstractBorderedShapeEditPart {
 		return types;
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */
 	public class ActionFigureDescriptor extends AbstractActionFigure {
-
 
 		/**
 		 * @generated
@@ -1131,7 +1112,6 @@ AbstractBorderedShapeEditPart {
 		 * @generated
 		 */
 		private PolylineShape fOptionalRakeFigure;
-
 
 		/**
 		 * @generated NOT call super
@@ -1147,14 +1127,11 @@ AbstractBorderedShapeEditPart {
 		 */
 		private void createContents() {
 
-
 			fOptionalRakeFigure = new PolylineShape();
 			fOptionalRakeFigure.setFill(false);
 			fOptionalRakeFigure.setLineWidth(2);
 
 			this.add(fOptionalRakeFigure);
-
-
 
 			RectangleFigure labelRect0 = new RectangleFigure();
 			labelRect0.setFill(false);
@@ -1174,25 +1151,15 @@ AbstractBorderedShapeEditPart {
 
 			CenterLayout layoutLabelRect0 = new CenterLayout();
 
-
 			labelRect0.setLayoutManager(layoutLabelRect0);
 
-
-
 			fActionLabel = new CenteredWrappedLabel();
-
-
 
 			fActionLabel.setBorder(new MarginBorder(getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
 
 			labelRect0.add(fActionLabel);
 
-
-
 		}
-
-
-
 
 		/**
 		 * @generated
@@ -1217,11 +1184,7 @@ AbstractBorderedShapeEditPart {
 			return ValueSpecificationActionEditPart.this.getMapMode();
 		}
 
-
 	}
-
-
-
 
 	/**
 	 * @generated

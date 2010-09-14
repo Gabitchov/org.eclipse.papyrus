@@ -89,7 +89,6 @@ public class ExpansionRegionStructuredActivityNodeContentCompartmentCanonicalEdi
 	 */
 	private Set<EStructuralFeature> myFeaturesToSynchronize;
 
-
 	/**
 	 * @generated
 	 */

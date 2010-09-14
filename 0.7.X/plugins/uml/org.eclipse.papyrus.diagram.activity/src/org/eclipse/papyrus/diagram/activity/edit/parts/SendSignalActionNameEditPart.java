@@ -709,7 +709,6 @@ public class SendSignalActionNameEditPart extends CompartmentEditPart implements
 			}
 		}
 
-
 		super.handleNotificationEvent(event);
 	}
 

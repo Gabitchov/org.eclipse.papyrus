@@ -75,7 +75,6 @@ public class OutputPinInValSpecActCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -95,10 +94,7 @@ public class OutputPinInValSpecActCreateCommand extends EditElementCommand {
 			return false;
 		}
 
-
 		return true;
-
-
 
 	}
 
@@ -107,13 +103,10 @@ public class OutputPinInValSpecActCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
-
 		OutputPin newElement = UMLFactory.eINSTANCE.createOutputPin();
 
 		ValueSpecificationAction owner = (ValueSpecificationAction)getElementToEdit();
 		owner.setResult(newElement);
-
 
 		ElementInitializers.getInstance().init_OutputPin_3077(newElement);
 
@@ -122,9 +115,6 @@ public class OutputPinInValSpecActCreateCommand extends EditElementCommand {
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
-
-
-
 
 	/**
 	 * @generated

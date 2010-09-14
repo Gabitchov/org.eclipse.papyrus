@@ -259,205 +259,9 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.InteractionConstraintPreferencePage"
-            id="org.eclipse.papyrus.diagram.activity.preferences.InteractionConstraintPreferencePage"
-            name="InteractionConstraint Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.ValueSpecificationActionPreferencePage"
-            id="org.eclipse.papyrus.diagram.activity.preferences.ValueSpecificationActionPreferencePage"
-            name="ValueSpecificationAction Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.SendObjectActionPreferencePage"
-            id="org.eclipse.papyrus.diagram.activity.preferences.SendObjectActionPreferencePage"
-            name="SendObjectAction Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.SequenceNodePreferencePage"
-            id="org.eclipse.papyrus.diagram.activity.preferences.SequenceNodePreferencePage"
-            name="SequenceNode Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.SendSignalActionPreferencePage"
-            id="org.eclipse.papyrus.diagram.activity.preferences.SendSignalActionPreferencePage"
-            name="SendSignalAction Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.DataStoreNodePreferencePage"
-            id="org.eclipse.papyrus.diagram.activity.preferences.DataStoreNodePreferencePage"
-            name="DataStoreNode Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.LoopNodePreferencePage"
-            id="org.eclipse.papyrus.diagram.activity.preferences.LoopNodePreferencePage"
-            name="LoopNode Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.CallBehaviorActionPreferencePage"
-            id="org.eclipse.papyrus.diagram.activity.preferences.CallBehaviorActionPreferencePage"
-            name="CallBehaviorAction Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.FlowFinalNodePreferencePage"
-            id="org.eclipse.papyrus.diagram.activity.preferences.FlowFinalNodePreferencePage"
-            name="FlowFinalNode Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.AcceptEventActionPreferencePage"
-            id="org.eclipse.papyrus.diagram.activity.preferences.AcceptEventActionPreferencePage"
-            name="AcceptEventAction Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.ConditionalNodePreferencePage"
-            id="org.eclipse.papyrus.diagram.activity.preferences.ConditionalNodePreferencePage"
-            name="ConditionalNode Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.DecisionNodePreferencePage"
-            id="org.eclipse.papyrus.diagram.activity.preferences.DecisionNodePreferencePage"
-            name="DecisionNode Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.ActivityFinalNodePreferencePage"
-            id="org.eclipse.papyrus.diagram.activity.preferences.ActivityFinalNodePreferencePage"
-            name="ActivityFinalNode Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.ActivityPreferencePage"
-            id="org.eclipse.papyrus.diagram.activity.preferences.ActivityPreferencePage"
-            name="Activity Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.ActivityPartitionPreferencePage"
-            id="org.eclipse.papyrus.diagram.activity.preferences.ActivityPartitionPreferencePage"
-            name="ActivityPartition Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.ForkNodePreferencePage"
-            id="org.eclipse.papyrus.diagram.activity.preferences.ForkNodePreferencePage"
-            name="ForkNode Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.ValuePinPreferencePage"
-            id="org.eclipse.papyrus.diagram.activity.preferences.ValuePinPreferencePage"
-            name="ValuePin Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.CallOperationActionPreferencePage"
-            id="org.eclipse.papyrus.diagram.activity.preferences.CallOperationActionPreferencePage"
-            name="CallOperationAction Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.ActionInputPinPreferencePage"
-            id="org.eclipse.papyrus.diagram.activity.preferences.ActionInputPinPreferencePage"
-            name="ActionInputPin Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.StructuredActivityNodePreferencePage"
-            id="org.eclipse.papyrus.diagram.activity.preferences.StructuredActivityNodePreferencePage"
-            name="StructuredActivityNode Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.IntervalConstraintPreferencePage"
-            id="org.eclipse.papyrus.diagram.activity.preferences.IntervalConstraintPreferencePage"
-            name="IntervalConstraint Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.OpaqueActionPreferencePage"
-            id="org.eclipse.papyrus.diagram.activity.preferences.OpaqueActionPreferencePage"
-            name="OpaqueAction Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.InitialNodePreferencePage"
-            id="org.eclipse.papyrus.diagram.activity.preferences.InitialNodePreferencePage"
-            name="InitialNode Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.DurationConstraintPreferencePage"
-            id="org.eclipse.papyrus.diagram.activity.preferences.DurationConstraintPreferencePage"
-            name="DurationConstraint Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.ExpansionRegionPreferencePage"
-            id="org.eclipse.papyrus.diagram.activity.preferences.ExpansionRegionPreferencePage"
-            name="ExpansionRegion Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.OutputPinPreferencePage"
-            id="org.eclipse.papyrus.diagram.activity.preferences.OutputPinPreferencePage"
-            name="OutputPin Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.MergeNodePreferencePage"
-            id="org.eclipse.papyrus.diagram.activity.preferences.MergeNodePreferencePage"
-            name="MergeNode Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.ConstraintPreferencePage"
-            id="org.eclipse.papyrus.diagram.activity.preferences.ConstraintPreferencePage"
-            name="Constraint Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.InputPinPreferencePage"
-            id="org.eclipse.papyrus.diagram.activity.preferences.InputPinPreferencePage"
-            name="InputPin Node" />
+			class="org.eclipse.papyrus.diagram.activity.preferences.TimeConstraintPreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.TimeConstraintPreferencePage"
+            name="TimeConstraint Node" />
 	
 		
 	<?gmfgen generated="true"?>
@@ -469,6 +273,104 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
+			class="org.eclipse.papyrus.diagram.activity.preferences.ValuePinPreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.ValuePinPreferencePage"
+            name="ValuePin Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
+			class="org.eclipse.papyrus.diagram.activity.preferences.LoopNodePreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.LoopNodePreferencePage"
+            name="LoopNode Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
+			class="org.eclipse.papyrus.diagram.activity.preferences.MergeNodePreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.MergeNodePreferencePage"
+            name="MergeNode Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
+			class="org.eclipse.papyrus.diagram.activity.preferences.ActionInputPinPreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.ActionInputPinPreferencePage"
+            name="ActionInputPin Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
+			class="org.eclipse.papyrus.diagram.activity.preferences.CallOperationActionPreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.CallOperationActionPreferencePage"
+            name="CallOperationAction Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
+			class="org.eclipse.papyrus.diagram.activity.preferences.CallBehaviorActionPreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.CallBehaviorActionPreferencePage"
+            name="CallBehaviorAction Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
+			class="org.eclipse.papyrus.diagram.activity.preferences.ActivityPartitionPreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.ActivityPartitionPreferencePage"
+            name="ActivityPartition Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
+			class="org.eclipse.papyrus.diagram.activity.preferences.InputPinPreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.InputPinPreferencePage"
+            name="InputPin Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
+			class="org.eclipse.papyrus.diagram.activity.preferences.SendObjectActionPreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.SendObjectActionPreferencePage"
+            name="SendObjectAction Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
+			class="org.eclipse.papyrus.diagram.activity.preferences.InitialNodePreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.InitialNodePreferencePage"
+            name="InitialNode Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
+			class="org.eclipse.papyrus.diagram.activity.preferences.OutputPinPreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.OutputPinPreferencePage"
+            name="OutputPin Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
+			class="org.eclipse.papyrus.diagram.activity.preferences.DurationConstraintPreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.DurationConstraintPreferencePage"
+            name="DurationConstraint Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
+			class="org.eclipse.papyrus.diagram.activity.preferences.StructuredActivityNodePreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.StructuredActivityNodePreferencePage"
+            name="StructuredActivityNode Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
+			class="org.eclipse.papyrus.diagram.activity.preferences.SequenceNodePreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.SequenceNodePreferencePage"
+            name="SequenceNode Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
 			class="org.eclipse.papyrus.diagram.activity.preferences.ActivityParameterNodePreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.ActivityParameterNodePreferencePage"
             name="ActivityParameterNode Node" />
@@ -476,16 +378,30 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.TimeConstraintPreferencePage"
-            id="org.eclipse.papyrus.diagram.activity.preferences.TimeConstraintPreferencePage"
-            name="TimeConstraint Node" />
+			class="org.eclipse.papyrus.diagram.activity.preferences.ActivityPreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.ActivityPreferencePage"
+            name="Activity Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.InterruptibleActivityRegionPreferencePage"
-            id="org.eclipse.papyrus.diagram.activity.preferences.InterruptibleActivityRegionPreferencePage"
-            name="InterruptibleActivityRegion Node" />
+			class="org.eclipse.papyrus.diagram.activity.preferences.OpaqueActionPreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.OpaqueActionPreferencePage"
+            name="OpaqueAction Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
+			class="org.eclipse.papyrus.diagram.activity.preferences.DecisionNodePreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.DecisionNodePreferencePage"
+            name="DecisionNode Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
+			class="org.eclipse.papyrus.diagram.activity.preferences.ValueSpecificationActionPreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.ValueSpecificationActionPreferencePage"
+            name="ValueSpecificationAction Node" />
 	
 		
 	<?gmfgen generated="true"?>
@@ -497,27 +413,98 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
+			class="org.eclipse.papyrus.diagram.activity.preferences.ConstraintPreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.ConstraintPreferencePage"
+            name="Constraint Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
+			class="org.eclipse.papyrus.diagram.activity.preferences.SendSignalActionPreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.SendSignalActionPreferencePage"
+            name="SendSignalAction Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
+			class="org.eclipse.papyrus.diagram.activity.preferences.FlowFinalNodePreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.FlowFinalNodePreferencePage"
+            name="FlowFinalNode Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
+			class="org.eclipse.papyrus.diagram.activity.preferences.InterruptibleActivityRegionPreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.InterruptibleActivityRegionPreferencePage"
+            name="InterruptibleActivityRegion Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
+			class="org.eclipse.papyrus.diagram.activity.preferences.InteractionConstraintPreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.InteractionConstraintPreferencePage"
+            name="InteractionConstraint Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
+			class="org.eclipse.papyrus.diagram.activity.preferences.IntervalConstraintPreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.IntervalConstraintPreferencePage"
+            name="IntervalConstraint Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
+			class="org.eclipse.papyrus.diagram.activity.preferences.DataStoreNodePreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.DataStoreNodePreferencePage"
+            name="DataStoreNode Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
+			class="org.eclipse.papyrus.diagram.activity.preferences.ActivityFinalNodePreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.ActivityFinalNodePreferencePage"
+            name="ActivityFinalNode Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
 			class="org.eclipse.papyrus.diagram.activity.preferences.ParameterPreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.ParameterPreferencePage"
             name="Parameter Node" />
 	
-
-
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.ObjectFlowPreferencePage"
-            id="org.eclipse.papyrus.diagram.activity.preferences.ObjectFlowPreferencePage"
-            name="ObjectFlow Link" />
-		
+			class="org.eclipse.papyrus.diagram.activity.preferences.ExpansionRegionPreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.ExpansionRegionPreferencePage"
+            name="ExpansionRegion Node" />
+	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.UndefinedPreferencePage"
-            id="org.eclipse.papyrus.diagram.activity.preferences.UndefinedPreferencePage"
-            name="Undefined Link" />
+			class="org.eclipse.papyrus.diagram.activity.preferences.AcceptEventActionPreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.AcceptEventActionPreferencePage"
+            name="AcceptEventAction Node" />
+	
 		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
+			class="org.eclipse.papyrus.diagram.activity.preferences.ForkNodePreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.ForkNodePreferencePage"
+            name="ForkNode Node" />
+	
 		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
+			class="org.eclipse.papyrus.diagram.activity.preferences.ConditionalNodePreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.ConditionalNodePreferencePage"
+            name="ConditionalNode Node" />
+	
+
+
+		
+
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
 			class="org.eclipse.papyrus.diagram.activity.preferences.ControlFlowPreferencePage"
@@ -525,11 +512,22 @@
             name="ControlFlow Link" />
 		
 		
+		
+		
+
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
 			class="org.eclipse.papyrus.diagram.activity.preferences.ExceptionHandlerPreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.ExceptionHandlerPreferencePage"
             name="ExceptionHandler Link" />
+		
+		
+
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
+			class="org.eclipse.papyrus.diagram.activity.preferences.ObjectFlowPreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.ObjectFlowPreferencePage"
+            name="ObjectFlow Link" />
 		
 
 </extension>
@@ -1430,7 +1428,7 @@
             priority="normal" 
             contentProvider="org.eclipse.papyrus.diagram.activity.navigator.UMLNavigatorContentProvider" 
             labelProvider="org.eclipse.papyrus.diagram.activity.navigator.UMLNavigatorLabelProvider"
-            icon="icons/obj16/Diagram_Activity.gif"
+            icon="icons/obj16/UMLDiagramFile.gif"
             activeByDefault="true">
          <triggerPoints>
             <or>
@@ -1466,7 +1464,7 @@
             priority="normal" 
             contentProvider="org.eclipse.papyrus.diagram.activity.navigator.UMLDomainNavigatorContentProvider" 
             labelProvider="org.eclipse.papyrus.diagram.activity.navigator.UMLDomainNavigatorLabelProvider"
-            icon="icons/obj16/Diagram_Activity.gif"
+            icon="icons/obj16/UMLDiagramFile.gif"
             activeByDefault="true">
          <triggerPoints>
             <or>
@@ -2780,6 +2778,9 @@ and self.decisionInput.ownedParameter->select(
        large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
        path="/"
        small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
+       <expand
+              force="true">
+       </expand>
  	</entry>
  	 
  	 	<predefinedEntry
@@ -2827,6 +2828,9 @@ and self.decisionInput.ownedParameter->select(
        large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
        path="/"
        small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
+       <expand
+              force="true">
+       </expand>
  	</entry>
  	 
  	 	<predefinedEntry
@@ -2866,6 +2870,9 @@ and self.decisionInput.ownedParameter->select(
        large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
        path="/"
        small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
+       <expand
+              force="true">
+       </expand>
  	</entry>
  	 
  	 	<predefinedEntry
@@ -2905,6 +2912,9 @@ and self.decisionInput.ownedParameter->select(
        large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
        path="/"
        small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
+       <expand
+              force="true">
+       </expand>
  	</entry>
  	 
  	 	<predefinedEntry
@@ -2940,6 +2950,9 @@ and self.decisionInput.ownedParameter->select(
        large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
        path="/"
        small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
+       <expand
+              force="true">
+       </expand>
  	</entry>
  	 
  	 	<predefinedEntry
@@ -2963,6 +2976,9 @@ and self.decisionInput.ownedParameter->select(
        large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
        path="/"
        small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
+       <expand
+              force="true">
+       </expand>
  	</entry>
  	 
  	 	<predefinedEntry

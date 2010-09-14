@@ -27,6 +27,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.activity.edit.commands.util.CreateCommandUtil;
 import org.eclipse.papyrus.diagram.activity.providers.ElementInitializers;
+import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.ForkNode;
 import org.eclipse.uml2.uml.UMLFactory;
 
@@ -75,7 +76,6 @@ public class ForkNodeCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -99,8 +99,6 @@ public class ForkNodeCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
-
 		ForkNode newElement = UMLFactory.eINSTANCE.createForkNode();
 
 		// set appropriate parents
@@ -109,7 +107,6 @@ public class ForkNodeCreateCommand extends EditElementCommand {
 		}
 		//		Activity owner = (Activity)getElementToEdit();
 		//		owner.getNodes().add(newElement);
-
 
 		ElementInitializers.getInstance().init_ForkNode_3040(newElement);
 
