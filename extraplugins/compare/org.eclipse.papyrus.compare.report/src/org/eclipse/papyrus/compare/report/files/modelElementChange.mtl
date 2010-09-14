@@ -1,31 +1,27 @@
 [comment encoding = UTF-8 /]
 [module modelElementChange('http://www.eclipse.org/emf/compare/diff/1.1')/]
+
 [import common/]
+[import tableUtils/]
 
-[template public processModelElementChange(el : ModelElementChangeLeftTarget)]
+[template public genModelElementChange(el : ModelElementChangeLeftTarget, leftRoot: String, rightRoot: String)]
 [elementName(el.leftElement)/] has been added
-<table border="1">
-[el.tableHeader()/]
-<tr><th>[elementName(el.leftElement)/]</th><th>-</th></tr>
-</table>
+[openTable()/]
+[addHeader(leftRoot, rightRoot)/]
+[addRow(elementName(el.leftElement), '-')/]
+[closeTable()/]
 [/template]
 
-[template public processModelElementChange(el : ModelElementChangeRightTarget)]
+[template public genModelElementChange(el : ModelElementChangeRightTarget, leftRoot: String, rightRoot: String)]
 [elementName(el.rightElement)/] has been removed
-<table border="1">
-[el.tableHeader()/]
-<tr><th>-</th><th>[elementName(el.rightElement)/]</th></tr>
-</table>
+[openTable()/]
+[addHeader(leftRoot, rightRoot)/]
+[addRow('-', elementName(el.rightElement))/]
+[closeTable()/]
 [/template]
 
-[template public processModelElementChange(el : ModelElementChange)]
-<tr>
-<td>[el.kind/]</td><td>ModelElementChange</td>
-</tr>
+[template public genModelElementChange(el : ModelElementChange, leftRoot: String, rightRoot: String)]
+Generic processModelElementChange for [el.kind/] kind 
 [/template]
 
-[template private tableHeader(el : DiffElement)]
-<tr><th>(1)</th><th>(2)</th></tr>
-[/template]
-
-
+[query public modelElementChanges(element : DiffElement) : Sequence(ModelElementChange) = element.subDiffElements->select(next: DiffElement| next.oclIsKindOf(ModelElementChange))/]

@@ -4,7 +4,7 @@
 [import common/]
 [import tableUtils/]
 
-[template public processReferenceChanges(el : DiffElement, leftRoot: String, rightRoot: String) {referenceChanges: Sequence(ReferenceChange) = referenceChanges(el); }]
+[template public genReferenceChanges(el : DiffElement, leftRoot: String, rightRoot: String) {referenceChanges: Sequence(ReferenceChange) = referenceChanges(el); }]
 [if not referenceChanges->isEmpty()]
 [openTable()/]
 [addHeader('References Changed', leftRoot, rightRoot)/]
@@ -16,10 +16,8 @@
 [/template]
 
 [template public genReferenceChange(el : ReferenceChange)]
-[if not el.reference.oclIsUndefined() and not el.reference.oclIsInvalid()]
-[addRow(el.reference.name, el.leftElement.eGet(el.reference), el.rightElement.eGet(el.reference))/]
-[/if]
+[addRow(el.reference.name, el.leftElement.eGet(el.reference).elementName(), el.rightElement.eGet(el.reference).elementName())/]
 [/template]
 
-[query private referenceChanges(element : DiffElement) : Sequence(ReferenceChange) = element.subDiffElements->select(attr: DiffElement| attr.oclIsKindOf(ReferenceChange))/]
+[query private referenceChanges(element : DiffElement) : Sequence(ReferenceChange) = element.subDiffElements->select(next: DiffElement| next.oclIsKindOf(ReferenceChange))/]
 

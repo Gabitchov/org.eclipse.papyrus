@@ -15,6 +15,10 @@
 <tr><th>[name/]</th><th>(1) [leftRoot/]</th><th>(2) [rightRoot/]</th></tr>
 [/template]
 
+[template public addHeader(leftRoot: String, rightRoot: String)]
+<tr><th>(1) [leftRoot/]</th><th>(2) [rightRoot/]</th></tr>
+[/template]
+
 [template public addRow(title: String, leftElement: OclAny, rightElement: OclAny)]
 [addRow(title, leftElement, rightElement)/]
 [/template]

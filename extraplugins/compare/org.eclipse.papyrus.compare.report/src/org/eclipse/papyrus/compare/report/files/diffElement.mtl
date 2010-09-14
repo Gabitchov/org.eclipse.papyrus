@@ -25,7 +25,7 @@
 [/template]
 
 [template public processDiffElement(el : ModelElementChange, leftRoot: String, rightRoot: String)]
-[el.processModelElementChange()/]
+[el.genModelElementChange(leftRoot, rightRoot)/]
 [/template]
 
 [template public processDiffElement(el : ResourceDiff, leftRoot: String, rightRoot: String)]
