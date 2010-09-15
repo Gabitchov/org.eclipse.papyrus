@@ -1599,9 +1599,8 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="CallBehaviorActionEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="ActionFigureDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ActionFigureDescriptor extends org.eclipse.papyrus.diagram.activity.figures.AbstractActionFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel fActionLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fOptionalRakeFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ActionFigureDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fOptionalRakeFigure = new org.eclipse.draw2d.PolylineShape();&#xA;fOptionalRakeFigure.setFill(false);&#xA;fOptionalRakeFigure.setLineWidth(2);&#xA;&#xA;this.add(fOptionalRakeFigure);&#xA;&#xA;&#xA;&#xA;org.eclipse.draw2d.RectangleFigure labelRect0 = new org.eclipse.draw2d.RectangleFigure();&#xA;labelRect0.setFill(false);&#xA;labelRect0.setOutline(false);&#xA;&#xA;this.add(labelRect0);&#xA;&#xA;&#x9;org.eclipse.papyrus.diagram.common.draw2d.CenterLayout layoutLabelRect0 = new org.eclipse.papyrus.diagram.common.draw2d.CenterLayout();&#xA;&#xA;&#xA;&#x9;labelRect0.setLayoutManager(layoutLabelRect0);&#xA;&#xA;&#xA;&#xA;fActionLabel = new org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel();&#xA;&#xA;&#xA;&#xA;fActionLabel.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;));&#xA;&#xA;labelRect0.add(fActionLabel);&#xA;&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel getActionLabel() {&#xA;&#x9;&#x9;return fActionLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getOptionalRakeFigure() {&#xA;&#x9;&#x9;return fOptionalRakeFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.CallBehaviorActionFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <behaviour
@@ -1646,8 +1645,8 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getActionLabel"
-              figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel"/>
+              getterName="getNameLabel"
+              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.5"/>
         </labels>
@@ -11299,22 +11298,13 @@
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="This extension enables to draw a rake on a CallBehaviorActionEditPart linked to an activity"
-        genView="/0/@diagram/@childNodes.11">
+        genView="/0/@diagram/@childNodes.11"
+        superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.NamedElementEditPart">
       <propRefreshHook
           comment="Add/Remove the RakeFigure when an Activity is selected as behavior or deselected"
           classpath=""
           triggeringCondition="resolveSemanticElement() instanceof CallBehaviorAction &amp;&amp; resolveSemanticElement().equals(event.getNotifier()) &amp;&amp; event.getFeature().equals(UMLPackage.eINSTANCE.getCallBehaviorAction_Behavior())"
-          action="CallBehaviorAction action = (CallBehaviorAction)resolveSemanticElement(); AbstractPointListShape rake = getPrimaryShape().getOptionalRakeFigure(); if(action.getBehavior() instanceof Activity) { Dimension size = ActivityFigureDrawer.getNodeSize(this, null); ActivityFigureDrawer.redrawRake(rake, getMapMode(), size); } else { ActivityFigureDrawer.undrawFigure(rake); }"/>
-    </extensionNodes>
-    <extensionNodes
-        xsi:type="papyrusgmfgenextension:ExtendedGenView"
-        comment="This extension enables to refresh the rake on a CallBehaviorActionEditPart linked to an activity"
-        genView="/0/@diagram/@childNodes.11">
-      <propRefreshHook
-          comment="Refresh the RakeFigure if an Activity is selected as behavior when figure is resized"
-          classpath=""
-          triggeringCondition="event.getNotifier() instanceof Bounds &amp;&amp; resolveSemanticElement() instanceof CallBehaviorAction"
-          action="CallBehaviorAction action = (CallBehaviorAction)resolveSemanticElement(); AbstractPointListShape rake = getPrimaryShape().getOptionalRakeFigure(); if(action.getBehavior() instanceof Activity) { Dimension size = ActivityFigureDrawer.getNodeSize(this, event); ActivityFigureDrawer.redrawRake(rake, getMapMode(), size); }"/>
+          action="CallBehaviorAction action = (CallBehaviorAction) resolveSemanticElement(); if (action.getBehavior() instanceof Activity) { getPrimaryShape().displayRake(true); } else { &#x9;getPrimaryShape().displayRake(false); }"/>
     </extensionNodes>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:SpecificLocator"

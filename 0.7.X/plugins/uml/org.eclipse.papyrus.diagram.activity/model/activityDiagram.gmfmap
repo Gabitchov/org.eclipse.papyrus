@@ -475,13 +475,13 @@
           </domainInitializer>
           <labelMappings>
             <diagramLabel
-                href="activityDiagram.gmfgraph#ActionName"/>
+                href="activityDiagram.gmfgraph#CallBehaviorFigureNameDiagramLabel"/>
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
               href="activityDiagram.gmftool#//@palette/@tools.1/@tools.1"/>
           <diagramNode
-              href="../../org.eclipse.papyrus.diagram.common/model/Action.gmfgraph#ActionFigureNode"/>
+              href="activityDiagram.gmfgraph#CallBehaviorActionFigureNode"/>
           <children
               referencedChild="//@nodes.0/@ownedChild/@children.7/@ownedChild/@children.0/@ownedChild">
             <containmentFeature

@@ -784,6 +784,23 @@
           accessor="getObjectNodeLabel"
           figure="//@figures.0/@descriptors.23/@actualFigure/@children.0"/>
     </descriptors>
+    <descriptors
+        name="CallBehaviorActionDescriptor">
+      <actualFigure
+          xsi:type="gmfgraph:CustomFigure"
+          name="CallBehaviorActionNodeFigure"
+          qualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.CallBehaviorActionFigure">
+        <customChildren
+            accessor="getNameLabel()">
+          <typedFigure
+              xsi:type="gmfgraph:Label"
+              name="nameLabel"/>
+        </customChildren>
+      </actualFigure>
+      <accessors
+          accessor="getNameLabel"
+          figure="//@figures.0/@descriptors.24/@actualFigure/@customChildren.0/@typedFigure"/>
+    </descriptors>
   </figures>
   <nodes
       name="ActivityNode"
@@ -846,6 +863,9 @@
   <nodes
       name="ObjectNode"
       figure="ObjectNodeDescriptor"/>
+  <nodes
+      name="CallBehaviorActionFigureNode"
+      figure="CallBehaviorActionDescriptor"/>
   <connections
       name="CornerBentWithTextLinkConnection"
       figure="DashedLinkDescriptor"/>
@@ -1104,4 +1124,11 @@
       name="ObjectNodeSelection"
       figure="LinkAndCornerBentWithTextFigure"
       elementIcon="false"/>
+  <labels
+      name="CallBehaviorFigureNameDiagramLabel"
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.24/@accessors.0">
+    <figure
+        href="../../org.eclipse.papyrus.diagram.common/model/Action.gmfgraph#ActionFigureDescriptor"/>
+  </labels>
 </gmfgraph:Canvas>
