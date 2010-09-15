@@ -1,7 +1,7 @@
 [comment encoding = UTF-8 /]
 [module modelElementChange('http://www.eclipse.org/emf/compare/diff/1.1')/]
 
-[import common/]
+[import modelUtils/]
 [import tableUtils/]
 
 [template public genModelElementChange(el : ModelElementChangeLeftTarget, leftRoot: String, rightRoot: String)]

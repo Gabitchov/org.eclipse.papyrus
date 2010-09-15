@@ -1,6 +1,7 @@
 [comment encoding = UTF-8 /]
 [module diffGroup('http://www.eclipse.org/emf/compare/diff/1.1')/]
-[import common/]
+
+[import modelUtils/]
 [import attributeChange/]
 [import referenceChange/]
 [import modelElementChange/]

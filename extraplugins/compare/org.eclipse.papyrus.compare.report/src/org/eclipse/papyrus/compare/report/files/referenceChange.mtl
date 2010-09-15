@@ -1,7 +1,7 @@
 [comment encoding = UTF-8 /]
 [module referenceChange('http://www.eclipse.org/emf/compare/diff/1.1')/]
 
-[import common/]
+[import modelUtils/]
 [import tableUtils/]
 
 [template public genReferenceChanges(el : DiffElement, leftRoot: String, rightRoot: String) {referenceChanges: Sequence(ReferenceChange) = referenceChanges(el); }]

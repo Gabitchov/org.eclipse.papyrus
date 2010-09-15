@@ -1,0 +1,13 @@
+[comment encoding = UTF-8 /]
+[module modelUtils('http://www.eclipse.org/emf/compare/diff/1.1','http://www.eclipse.org/uml2/3.0.0/UML')/]
+
+[comment]
+This will return the name of the given element
+[/comment]
+[query public elementName(element : OclAny) : String = if (not element.oclIsUndefined() and element.oclIsKindOf(NamedElement)) then element.oclAsType(NamedElement).name else 'null' endif/]
+
+[query public elementMetaclass(element : OclAny) : String = if (not element.oclIsUndefined()) then element.eClass().name else '' endif/]
+
+[query public leftRootName(model: DiffModel) : String = model.leftRoots->first().elementName()/]
+
+[query public rightRootName(model: DiffModel) : String = model.rightRoots->first().elementName()/]
