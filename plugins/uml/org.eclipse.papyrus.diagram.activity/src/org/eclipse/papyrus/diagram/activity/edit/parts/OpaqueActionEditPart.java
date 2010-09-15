@@ -25,6 +25,7 @@ import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -64,21 +65,23 @@ import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.common.draw2d.CenterLayout;
 import org.eclipse.papyrus.diagram.common.editparts.IPapyrusEditPart;
+import org.eclipse.papyrus.diagram.common.editparts.NamedElementEditPart;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.BorderItemResizableEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel;
+import org.eclipse.papyrus.diagram.common.figure.node.PapyrusRoundedNodeFigure;
 import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.graphics.Color;
 
 /**
- * @generated NOT implements IPapyrusEditPart
+ * @generated
  */
 public class OpaqueActionEditPart extends
 
-AbstractBorderedShapeEditPart implements IPapyrusEditPart {
+NamedElementEditPart {
 
 	/**
 	 * @generated
@@ -126,6 +129,16 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 	}
 
 	/**
+	 * Papyrus codeGen
+	 * 
+	 * @generated
+	 **/
+	protected void handleNotificationEvent(Notification event) {
+		super.handleNotificationEvent(event);
+
+	}
+
+	/**
 	 * @generated
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
@@ -164,14 +177,14 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		return primaryShape = new ActionFigureDescriptor();
+		return primaryShape = new PapyrusRoundedNodeFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public ActionFigureDescriptor getPrimaryShape() {
-		return (ActionFigureDescriptor)primaryShape;
+	public PapyrusRoundedNodeFigure getPrimaryShape() {
+		return (PapyrusRoundedNodeFigure)primaryShape;
 	}
 
 	/**
@@ -179,7 +192,7 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if(childEditPart instanceof OpaqueActionNameEditPart) {
-			((OpaqueActionNameEditPart)childEditPart).setLabel(getPrimaryShape().getActionLabel());
+			((OpaqueActionNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
 
@@ -1147,94 +1160,6 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
 		}
 		return types;
-	}
-
-	/**
-	 * @generated
-	 */
-	public class ActionFigureDescriptor extends AbstractActionFigure {
-
-		/**
-		 * @generated
-		 */
-		private CenteredWrappedLabel fActionLabel;
-
-		/**
-		 * @generated
-		 */
-		private PolylineShape fOptionalRakeFigure;
-
-		/**
-		 * @generated NOT call super
-		 */
-		public ActionFigureDescriptor() {
-			super();
-
-			createContents();
-		}
-
-		/**
-		 * @generated NOT add constraint on label rectangle
-		 */
-		private void createContents() {
-
-			fOptionalRakeFigure = new PolylineShape();
-			fOptionalRakeFigure.setFill(false);
-			fOptionalRakeFigure.setLineWidth(2);
-
-			this.add(fOptionalRakeFigure);
-
-			RectangleFigure labelRect0 = new RectangleFigure();
-			labelRect0.setFill(false);
-			labelRect0.setOutline(false);
-			labelRect0.setLineWidth(1);
-
-			// add constraint on label rectangle
-			GridData constraintLabelRect0 = new GridData();
-			constraintLabelRect0.verticalAlignment = GridData.FILL;
-			constraintLabelRect0.horizontalAlignment = GridData.FILL;
-			constraintLabelRect0.horizontalIndent = 0;
-			constraintLabelRect0.horizontalSpan = 1;
-			constraintLabelRect0.verticalSpan = 1;
-			constraintLabelRect0.grabExcessHorizontalSpace = true;
-			constraintLabelRect0.grabExcessVerticalSpace = true;
-			this.add(labelRect0, constraintLabelRect0);
-
-			CenterLayout layoutLabelRect0 = new CenterLayout();
-
-			labelRect0.setLayoutManager(layoutLabelRect0);
-
-			fActionLabel = new CenteredWrappedLabel();
-
-			fActionLabel.setBorder(new MarginBorder(getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
-
-			labelRect0.add(fActionLabel);
-
-		}
-
-		/**
-		 * @generated
-		 */
-		public CenteredWrappedLabel getActionLabel() {
-			return fActionLabel;
-		}
-
-		/**
-		 * @generated
-		 */
-		public PolylineShape getOptionalRakeFigure() {
-			return fOptionalRakeFigure;
-		}
-
-		/**
-		 * @generated NOT ask the edit part
-		 */
-		@Override
-		public IMapMode getMapMode() {
-			//ask the edit part
-			return OpaqueActionEditPart.this.getMapMode();
-		}
-
 	}
 
 	/**
