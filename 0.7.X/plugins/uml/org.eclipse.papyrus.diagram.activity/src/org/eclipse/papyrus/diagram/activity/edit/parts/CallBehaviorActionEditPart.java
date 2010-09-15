@@ -139,6 +139,19 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
 
+		//Refresh the RakeFigure if an Activity is selected as behavior when figure is resized
+		if(resolveSemanticElement() != null) {
+			if(event.getNotifier() instanceof Bounds && resolveSemanticElement() instanceof CallBehaviorAction) {
+				CallBehaviorAction action = (CallBehaviorAction)resolveSemanticElement();
+				AbstractPointListShape rake = getPrimaryShape().getOptionalRakeFigure();
+				if(action.getBehavior() instanceof Activity) {
+					Dimension size = ActivityFigureDrawer.getNodeSize(this, event);
+					ActivityFigureDrawer.redrawRake(rake, getMapMode(), size);
+				};
+				refreshVisuals();
+			}
+		}
+
 		//Add/Remove the RakeFigure when an Activity is selected as behavior or deselected
 		if(resolveSemanticElement() != null) {
 			if(resolveSemanticElement() instanceof CallBehaviorAction && resolveSemanticElement().equals(event.getNotifier()) && event.getFeature().equals(UMLPackage.eINSTANCE.getCallBehaviorAction_Behavior())) {
@@ -149,19 +162,6 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 					ActivityFigureDrawer.redrawRake(rake, getMapMode(), size);
 				} else {
 					ActivityFigureDrawer.undrawFigure(rake);
-				};
-				refreshVisuals();
-			}
-		}
-
-		//Refresh the RakeFigure if an Activity is selected as behavior when figure is resized
-		if(resolveSemanticElement() != null) {
-			if(event.getNotifier() instanceof Bounds && resolveSemanticElement() instanceof CallBehaviorAction) {
-				CallBehaviorAction action = (CallBehaviorAction)resolveSemanticElement();
-				AbstractPointListShape rake = getPrimaryShape().getOptionalRakeFigure();
-				if(action.getBehavior() instanceof Activity) {
-					Dimension size = ActivityFigureDrawer.getNodeSize(this, event);
-					ActivityFigureDrawer.redrawRake(rake, getMapMode(), size);
 				};
 				refreshVisuals();
 			}
