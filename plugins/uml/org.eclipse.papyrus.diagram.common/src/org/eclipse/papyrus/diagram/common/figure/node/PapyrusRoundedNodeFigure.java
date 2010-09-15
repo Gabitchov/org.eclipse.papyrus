@@ -14,12 +14,14 @@
 package org.eclipse.papyrus.diagram.common.figure.node;
 
 import org.eclipse.draw2d.AbstractBackground;
+import org.eclipse.draw2d.Border;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.RoundedRectangleBorder;
 import org.eclipse.gmf.runtime.notation.GradientStyle;
+import org.eclipse.swt.graphics.Color;
 /**
  * this class is used to display a rounded rectangle
  * with gradient and intherits from the hierarchy of papyrus nodes
@@ -30,11 +32,17 @@ public class PapyrusRoundedNodeFigure extends NodeNamedElementFigure {
 
 	public PapyrusRoundedNodeFigure(){
 		super();
-		corner=40;
+		corner=15;
 		this.shadowborder= new RoundedRectangleBorder(corner, corner);
+		setBorder(this.shadowborder);
 	}
-	public int corner=40;
+	public int corner=15;
 
+	
+	@Override
+	protected Border getDefaultBorder(Color borderColor) {
+		return new RoundedRectangleBorder(corner, corner);
+	}
 	/**
 	 * Paint figure.
 	 * 
