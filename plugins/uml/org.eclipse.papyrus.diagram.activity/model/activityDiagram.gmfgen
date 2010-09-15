@@ -11343,5 +11343,11 @@
         genView="/0/@diagram/@childNodes.66"
         name="NodeEditPart"
         superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.NodeEditPart"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        comment="link that to intherits from UML specificities"
+        genView="/0/@diagram/@links.3 /0/@diagram/@links.2"
+        name="UML link inheritance"
+        superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.UMLConnectionNodeEditPart"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>
 </xmi:XMI>
