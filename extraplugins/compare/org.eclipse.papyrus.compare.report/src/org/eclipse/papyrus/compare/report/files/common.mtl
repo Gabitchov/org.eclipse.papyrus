@@ -4,6 +4,8 @@
 
 [query public appendLevelToIndex(index: Sequence(Integer)) : Sequence(Integer) = index->append(0)/]
 
-[query public nextIndex(index: Sequence(Integer)) : Sequence(Integer) = index->subSequence(1, (index->size()-1))->append(index->last() + 1)/]
+[query private nextIndex(index: Sequence(Integer)) : Sequence(Integer) = index->subSequence(1, (index->size()-1))->append(index->last() + 1)/]
 
+[query public composeIndex(prefix: String , i : Integer) : String = prefix.concat('.').concat(i.toString())/]
 
+[query public hierarchyLevel(index: String) : Integer = index.tokenize('.')->size() + 1/]

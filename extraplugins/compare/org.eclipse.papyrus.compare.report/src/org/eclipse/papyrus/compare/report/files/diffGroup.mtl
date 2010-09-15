@@ -1,6 +1,7 @@
 [comment encoding = UTF-8 /]
 [module diffGroup('http://www.eclipse.org/emf/compare/diff/1.1')/]
 
+[import common/]
 [import modelUtils/]
 [import tableUtils/]
 
@@ -8,16 +9,18 @@
 [import referenceChange/]
 [import modelElementChange/]
 
-[template public processDiffGroup(el : DiffGroup, prefix : String , index: Integer, leftRoot: String, rightRoot: String) ]
-[let groupPrefix : String = prefix.concat(index.toString())]
-[elementHeading(el.rightParent, groupPrefix)/]
+[template public processDiffGroup(el : DiffGroup, prefix : String, leftRoot: String, rightRoot: String) {subgroups: Sequence(DiffGroup) = el.subDiffGroups();}]
+[elementHeading(el.rightParent, prefix)/]
 [el.genAttributeChanges(leftRoot, rightRoot)/]
 [el.genReferenceChanges(leftRoot, rightRoot)/]
-[for (diffElement : DiffElement | el.subDiffElements) ? (diffElement.oclIsKindOf(DiffGroup))]
-	[processDiffGroup(diffElement.oclAsType(DiffGroup), groupPrefix.concat('.'), i, leftRoot, rightRoot)/]
+[for (next : DiffGroup | subgroups)]
+[next.processDiffGroup(composeIndex(prefix, i), leftRoot, rightRoot)/]
 [/for]
+
 [for (next: ModelElementChange | el.modelElementChanges())]
-[next.genModelElementChange( groupPrefix.concat('.').concat(index.toString()), leftRoot, rightRoot)/]
+[next.genModelElementChange(composeIndex(prefix, subgroups->size() + 1), leftRoot, rightRoot)/]
 [/for]
-[/let]
+
 [/template]
+
+[query private subDiffGroups(element : DiffElement) : Sequence(DiffGroup) = element.subDiffElements->select(next: DiffElement| next.oclIsKindOf(DiffGroup))/]

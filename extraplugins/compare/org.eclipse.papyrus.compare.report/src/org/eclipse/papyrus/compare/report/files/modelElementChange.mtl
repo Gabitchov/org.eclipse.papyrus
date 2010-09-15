@@ -7,7 +7,7 @@
 [template public genModelElementChange(el : ModelElementChangeLeftTarget, prefix : String , leftRoot: String, rightRoot: String)]
 [elementHeading(el.leftElement, prefix)/]
 (1) [elementName(el.leftElement)/][lineBreak()/]
-Deleted in second model
+Deleted in the second model
 
 [openTable()/]
 [addHeader(leftRoot, rightRoot)/]
@@ -18,7 +18,7 @@ Deleted in second model
 [template public genModelElementChange(el : ModelElementChangeRightTarget, prefix : String , leftRoot: String, rightRoot: String)]
 [elementHeading(el.rightElement, prefix)/]
 (2) [elementName(el.rightElement)/][lineBreak()/]
-Added in second model
+Added in the second model
 
 [openTable()/]
 [addHeader(leftRoot, rightRoot)/]

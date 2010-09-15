@@ -2,6 +2,7 @@
 [module tableUtils('http://www.eclipse.org/emf/2002/Ecore')/]
 
 [import modelUtils/]
+[import common/]
 
 [template public openTable()]
 <TABLE ><TBODY>
@@ -28,19 +29,27 @@
 
 [template public addRow(title: String, leftElement: String, rightElement: String)]
 <tr><TD class="TableCell" style="width: 50mm;">[title/]</td>
-<TD class="TableCell" style="width: 50mm;">[leftElement/]</td>
-<TD class="TableCell" style="width: 50mm;">[rightElement/]</td></tr>
+<TD class="TableCell" style="width: 80mm;">[leftElement/]</td>
+<TD class="TableCell" style="width: 80mm;">[rightElement/]</td></tr>
 [/template]
 
 [template public addRow(leftElement: String, rightElement: String)]
-<tr><TD class="TableCell" style="width: 50mm;">[leftElement/]</td>
-<TD class="TableCell" style="width: 50mm;">[rightElement/]</td></tr>
+<tr><TD class="TableCell" style="width: 100mm;">[leftElement/]</td>
+<TD class="TableCell" style="width: 100mm;">[rightElement/]</td></tr>
 [/template]
 
 [template public elementHeading(el : EObject, index: String)]
-[index/] [elementMetaclass(el)/] [elementName(el)/][lineBreak()/]
+[heading(hierarchyLevel(index))/][index/] [elementMetaclass(el)/] [elementName(el)/][closeHeading()/]
 [/template]
 
 [template public lineBreak()]
 </br>
+[/template]
+
+[template public heading(level : Integer)]
+<DIV class="Heading[level/]">
+[/template]
+
+[template public closeHeading()]
+</DIV>
 [/template]
