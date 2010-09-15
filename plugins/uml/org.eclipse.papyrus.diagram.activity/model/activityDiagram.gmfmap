@@ -481,7 +481,7 @@
               xsi:type="gmftool:CreationTool"
               href="activityDiagram.gmftool#//@palette/@tools.1/@tools.1"/>
           <diagramNode
-              href="activityDiagram.gmfgraph#ActionNode"/>
+              href="../../org.eclipse.papyrus.diagram.common/model/Action.gmfgraph#ActionFigureNode"/>
           <children
               referencedChild="//@nodes.0/@ownedChild/@children.7/@ownedChild/@children.0/@ownedChild">
             <containmentFeature
