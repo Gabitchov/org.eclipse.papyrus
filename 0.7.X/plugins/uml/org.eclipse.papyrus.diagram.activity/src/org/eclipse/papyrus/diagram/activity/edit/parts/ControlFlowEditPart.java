@@ -18,20 +18,20 @@ import org.eclipse.draw2d.PolylineDecoration;
 import org.eclipse.draw2d.RotatableDecoration;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.gef.EditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.activity.edit.policies.ControlFlowItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.activity.figures.WrappedLabel;
+import org.eclipse.papyrus.diagram.common.editparts.UMLConnectionNodeEditPart;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.edge.UMLEdgeFigure;
 
 /**
  * @generated
  */
-public class ControlFlowEditPart extends ConnectionNodeEditPart
+public class ControlFlowEditPart extends UMLConnectionNodeEditPart
 
 implements ITreeBranchEditPart {
 
