@@ -2,25 +2,22 @@
 [module diffGroup('http://www.eclipse.org/emf/compare/diff/1.1')/]
 
 [import modelUtils/]
+[import tableUtils/]
+
 [import attributeChange/]
 [import referenceChange/]
 [import modelElementChange/]
 
 [template public processDiffGroup(el : DiffGroup, prefix : String , index: Integer, leftRoot: String, rightRoot: String) ]
 [let groupPrefix : String = prefix.concat(index.toString())]
-[header(el, groupPrefix)/]
+[elementHeading(el.rightParent, groupPrefix)/]
 [el.genAttributeChanges(leftRoot, rightRoot)/]
 [el.genReferenceChanges(leftRoot, rightRoot)/]
 [for (diffElement : DiffElement | el.subDiffElements) ? (diffElement.oclIsKindOf(DiffGroup))]
 	[processDiffGroup(diffElement.oclAsType(DiffGroup), groupPrefix.concat('.'), i, leftRoot, rightRoot)/]
 [/for]
 [for (next: ModelElementChange | el.modelElementChanges())]
-[next.genModelElementChange(leftRoot, rightRoot)/]
+[next.genModelElementChange( groupPrefix.concat('.').concat(index.toString()), leftRoot, rightRoot)/]
 [/for]
 [/let]
-[/template]
-
-
-[template private header(el : DiffGroup, index: String)]
-<h3>[index/] [el.subchanges/] changes in [elementMetaclass(el.rightParent)/] [elementName(el.rightParent)/]</h3>
 [/template]

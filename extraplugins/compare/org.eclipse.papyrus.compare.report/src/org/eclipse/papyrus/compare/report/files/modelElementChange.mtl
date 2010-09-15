@@ -1,27 +1,37 @@
 [comment encoding = UTF-8 /]
-[module modelElementChange('http://www.eclipse.org/emf/compare/diff/1.1')/]
+[module modelElementChange('http://www.eclipse.org/emf/compare/diff/1.1','http://www.eclipse.org/emf/2002/Ecore')/]
 
 [import modelUtils/]
 [import tableUtils/]
 
-[template public genModelElementChange(el : ModelElementChangeLeftTarget, leftRoot: String, rightRoot: String)]
-[elementName(el.leftElement)/] has been added
+[template public genModelElementChange(el : ModelElementChangeLeftTarget, prefix : String , leftRoot: String, rightRoot: String)]
+[elementHeading(el.leftElement, prefix)/]
+(1) [elementName(el.leftElement)/][lineBreak()/]
+Deleted in second model
+
 [openTable()/]
 [addHeader(leftRoot, rightRoot)/]
-[addRow(elementName(el.leftElement), '-')/]
+[addRow(elementContent(el.leftElement), noElement())/]
 [closeTable()/]
 [/template]
 
-[template public genModelElementChange(el : ModelElementChangeRightTarget, leftRoot: String, rightRoot: String)]
-[elementName(el.rightElement)/] has been removed
+[template public genModelElementChange(el : ModelElementChangeRightTarget, prefix : String , leftRoot: String, rightRoot: String)]
+[elementHeading(el.rightElement, prefix)/]
+(2) [elementName(el.rightElement)/][lineBreak()/]
+Added in second model
+
 [openTable()/]
 [addHeader(leftRoot, rightRoot)/]
-[addRow('-', elementName(el.rightElement))/]
+[addRow(noElement(), elementContent(el.rightElement))/]
 [closeTable()/]
 [/template]
 
-[template public genModelElementChange(el : ModelElementChange, leftRoot: String, rightRoot: String)]
+[template public genModelElementChange(el : ModelElementChange, prefix : String , leftRoot: String, rightRoot: String)]
 Generic processModelElementChange for [el.kind/] kind 
+[/template]
+
+[template private noElement()]
+-
 [/template]
 
 [query public modelElementChanges(element : DiffElement) : Sequence(ModelElementChange) = element.subDiffElements->select(next: DiffElement| next.oclIsKindOf(ModelElementChange))/]

@@ -1,22 +1,25 @@
 [comment encoding = UTF-8 /]
 [module tableUtils('http://www.eclipse.org/emf/2002/Ecore')/]
 
+[import modelUtils/]
+
 [template public openTable()]
-<p>
-<table border="1">
+<TABLE ><TBODY>
 [/template]
 
 [template public closeTable()]
-</table>
-<p/>
+</TBODY></TABLE>
 [/template]
 
 [template public addHeader(name: String, leftRoot: String, rightRoot: String)]
-<tr><th>[name/]</th><th>(1) [leftRoot/]</th><th>(2) [rightRoot/]</th></tr>
+<tr><th class="TableHeadingCell" style="width: 50mm;">[name/]</th>
+<th class="TableHeadingCell" style="width: 50mm;">(1) [leftRoot/]</th>
+<th class="TableHeadingCell" style="width: 50mm;">(2) [rightRoot/]</th></tr>
 [/template]
 
 [template public addHeader(leftRoot: String, rightRoot: String)]
-<tr><th>(1) [leftRoot/]</th><th>(2) [rightRoot/]</th></tr>
+<tr><th class="TableHeadingCell" style="width: 50mm;">(1) [leftRoot/]</th>
+<th class="TableHeadingCell" style="width: 50mm;">(2) [rightRoot/]</th></tr>
 [/template]
 
 [template public addRow(title: String, leftElement: OclAny, rightElement: OclAny)]
@@ -24,9 +27,20 @@
 [/template]
 
 [template public addRow(title: String, leftElement: String, rightElement: String)]
-<tr><td>[title/]</td><td>[leftElement/]</td><td>[rightElement/]</td></tr>
+<tr><TD class="TableCell" style="width: 50mm;">[title/]</td>
+<TD class="TableCell" style="width: 50mm;">[leftElement/]</td>
+<TD class="TableCell" style="width: 50mm;">[rightElement/]</td></tr>
 [/template]
 
 [template public addRow(leftElement: String, rightElement: String)]
-<tr><td>[leftElement/]</td><td>[rightElement/]</td></tr>
+<tr><TD class="TableCell" style="width: 50mm;">[leftElement/]</td>
+<TD class="TableCell" style="width: 50mm;">[rightElement/]</td></tr>
+[/template]
+
+[template public elementHeading(el : EObject, index: String)]
+[index/] [elementMetaclass(el)/] [elementName(el)/][lineBreak()/]
+[/template]
+
+[template public lineBreak()]
+</br>
 [/template]

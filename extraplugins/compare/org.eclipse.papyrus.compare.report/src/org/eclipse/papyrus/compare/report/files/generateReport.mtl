@@ -2,11 +2,15 @@
 [module generateReport('http://www.eclipse.org/emf/compare/diff/1.1','http://www.eclipse.org/emf/2002/Ecore','http://www.eclipse.org/uml2/3.0.0/UML')/]
 
 [import modelUtils/]
+[import css/]
 [import diffElement/]
 
 [template public generateReport(model : DiffModel)]
 	[comment @main /]
 	[file (model.fileName().concat('.html'), false, 'UTF-8')]
+<HEAD>
+[genCSS()/]
+</HEAD>
 [model.reportHeader()/]
 [for (diffElement : DiffElement | model.ownedElements)]
 [diffElement.processDiffElement(model.leftRootName(), model.rightRootName())/]
