@@ -3751,9 +3751,8 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="SendObjectActionEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="ActionFigureDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ActionFigureDescriptor extends org.eclipse.papyrus.diagram.activity.figures.AbstractActionFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel fActionLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fOptionalRakeFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ActionFigureDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fOptionalRakeFigure = new org.eclipse.draw2d.PolylineShape();&#xA;fOptionalRakeFigure.setFill(false);&#xA;fOptionalRakeFigure.setLineWidth(2);&#xA;&#xA;this.add(fOptionalRakeFigure);&#xA;&#xA;&#xA;&#xA;org.eclipse.draw2d.RectangleFigure labelRect0 = new org.eclipse.draw2d.RectangleFigure();&#xA;labelRect0.setFill(false);&#xA;labelRect0.setOutline(false);&#xA;&#xA;this.add(labelRect0);&#xA;&#xA;&#x9;org.eclipse.papyrus.diagram.common.draw2d.CenterLayout layoutLabelRect0 = new org.eclipse.papyrus.diagram.common.draw2d.CenterLayout();&#xA;&#xA;&#xA;&#x9;labelRect0.setLayoutManager(layoutLabelRect0);&#xA;&#xA;&#xA;&#xA;fActionLabel = new org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel();&#xA;&#xA;&#xA;&#xA;fActionLabel.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;));&#xA;&#xA;labelRect0.add(fActionLabel);&#xA;&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel getActionLabel() {&#xA;&#x9;&#x9;return fActionLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getOptionalRakeFigure() {&#xA;&#x9;&#x9;return fOptionalRakeFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.PapyrusRoundedNodeFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <behaviour
@@ -3802,8 +3801,8 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getActionLabel"
-              figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel"/>
+              getterName="getNameLabel"
+              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
               parser="/0/@labelParsers/@implementations.0">
@@ -5225,11 +5224,14 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="ValueSpecificationActionEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="ActionFigureDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ActionFigureDescriptor extends org.eclipse.papyrus.diagram.activity.figures.AbstractActionFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel fActionLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fOptionalRakeFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ActionFigureDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fOptionalRakeFigure = new org.eclipse.draw2d.PolylineShape();&#xA;fOptionalRakeFigure.setFill(false);&#xA;fOptionalRakeFigure.setLineWidth(2);&#xA;&#xA;this.add(fOptionalRakeFigure);&#xA;&#xA;&#xA;&#xA;org.eclipse.draw2d.RectangleFigure labelRect0 = new org.eclipse.draw2d.RectangleFigure();&#xA;labelRect0.setFill(false);&#xA;labelRect0.setOutline(false);&#xA;&#xA;this.add(labelRect0);&#xA;&#xA;&#x9;org.eclipse.papyrus.diagram.common.draw2d.CenterLayout layoutLabelRect0 = new org.eclipse.papyrus.diagram.common.draw2d.CenterLayout();&#xA;&#xA;&#xA;&#x9;labelRect0.setLayoutManager(layoutLabelRect0);&#xA;&#xA;&#xA;&#xA;fActionLabel = new org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel();&#xA;&#xA;&#xA;&#xA;fActionLabel.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;));&#xA;&#xA;labelRect0.add(fActionLabel);&#xA;&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel getActionLabel() {&#xA;&#x9;&#x9;return fActionLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getOptionalRakeFigure() {&#xA;&#x9;&#x9;return fOptionalRakeFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.PapyrusRoundedNodeFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ValueSpecificationAction"/>
@@ -5256,8 +5258,8 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getActionLabel"
-              figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel"/>
+              getterName="getNameLabel"
+              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
               parser="/0/@labelParsers/@implementations.0">
@@ -11332,7 +11334,7 @@
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="Node with label for named element"
-        genView="/0/@diagram/@childNodes.38 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.6"
+        genView="/0/@diagram/@childNodes.38 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.39 /0/@diagram/@childNodes.56"
         name="NamedElementEditPart"
         superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.NamedElementEditPart"/>
     <extensionNodes

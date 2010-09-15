@@ -279,7 +279,7 @@
           <labelMappings
               xsi:type="gmfmap:FeatureLabelMapping">
             <diagramLabel
-                href="activityDiagram.gmfgraph#ActionName"/>
+                href="../../org.eclipse.papyrus.diagram.common/model/Action.gmfgraph#ActionFigureNameDiagramLabel"/>
             <features
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
           </labelMappings>
@@ -1595,7 +1595,7 @@
           <labelMappings
               xsi:type="gmfmap:FeatureLabelMapping">
             <diagramLabel
-                href="activityDiagram.gmfgraph#ActionName"/>
+                href="../../org.eclipse.papyrus.diagram.common/model/Action.gmfgraph#ActionFigureNameDiagramLabel"/>
             <features
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
           </labelMappings>
@@ -1603,7 +1603,7 @@
               xsi:type="gmftool:CreationTool"
               href="activityDiagram.gmftool#//@palette/@tools.1/@tools.3"/>
           <diagramNode
-              href="activityDiagram.gmfgraph#ActionNode"/>
+              href="../../org.eclipse.papyrus.diagram.common/model/Action.gmfgraph#ActionFigureNode"/>
           <children
               referencedChild="//@nodes.0/@ownedChild/@children.24/@ownedChild/@children.0/@ownedChild">
             <containmentFeature
@@ -2268,7 +2268,7 @@
           <labelMappings
               xsi:type="gmfmap:FeatureLabelMapping">
             <diagramLabel
-                href="activityDiagram.gmfgraph#ActionName"/>
+                href="../../org.eclipse.papyrus.diagram.common/model/Action.gmfgraph#ActionFigureNameDiagramLabel"/>
             <features
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
           </labelMappings>
@@ -2276,7 +2276,7 @@
               xsi:type="gmftool:CreationTool"
               href="activityDiagram.gmftool#//@palette/@tools.1/@tools.6"/>
           <diagramNode
-              href="activityDiagram.gmfgraph#ActionNode"/>
+              href="../../org.eclipse.papyrus.diagram.common/model/Action.gmfgraph#ActionFigureNode"/>
           <children
               referencedChild="//@nodes.0/@ownedChild/@children.28/@ownedChild/@children.0/@ownedChild">
             <containmentFeature
