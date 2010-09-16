@@ -1,5 +1,5 @@
 [comment encoding = UTF-8 /]
-[module referenceChange('http://www.eclipse.org/emf/compare/diff/1.1')/]
+[module referenceChange('http://www.eclipse.org/emf/compare/diff/1.1', 'http://www.eclipse.org/emf/2002/Ecore')/]
 
 [import modelUtils/]
 [import tableUtils/]
@@ -32,9 +32,10 @@ Specifically, the addition of a value or the remote removal of a value (for thre
 [/template]
 
 [comment]
+A representation of the model object 'Reference Order Change'. 
 [/comment]
 [template public genReferenceChange(el : ReferenceOrderChange)]
-[addRow(el.reference.name.concat(' reference order change'), noElement(), noElement())/]
+[addRow(el.reference.name.concat(' reference order change'), elementNames(el.leftTarget), elementNames(el.rightTarget))/]
 [/template]
 
 [template public genReferenceChange(el : ReferenceChange)]
@@ -42,3 +43,7 @@ Specifically, the addition of a value or the remote removal of a value (for thre
 [/template]
 
 [query private referenceChanges(element : DiffElement) : Sequence(ReferenceChange) = element.subDiffElements->select(next: DiffElement| next.oclIsKindOf(ReferenceChange))/]
+
+[query private elementNames(elements : Collection(EObject)) : String = elements.elementName()->sep(',')/]
+
+
