@@ -104,7 +104,7 @@ public class DeleteLinkDuringCreationCommand extends DeleteCommand {
 				}
 			}
 		}
-		if(listenerToRemove != null) {
+		if(listenerToRemove!=null){
 			//Finally we remove the listener
 			editPart.removeEditPartListener(listenerToRemove);
 		}

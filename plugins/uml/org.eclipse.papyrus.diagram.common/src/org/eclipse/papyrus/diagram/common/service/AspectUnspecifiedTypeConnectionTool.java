@@ -15,16 +15,13 @@ package org.eclipse.papyrus.diagram.common.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.commands.Command;
-import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
 import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
@@ -68,215 +65,90 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 
 	}
 
-	//	/**
-	//	 * {@inheritDoc}
-	//	 */
-	//	@Override
-	//	protected void createConnection() {
-	//		List<?> selectedEditParts = getCurrentViewer().getSelectedEditParts();
-	//
-	//		// only attempt to create connection if there are two shapes selected
-	//		if(!selectedEditParts.isEmpty()) {
-	//
-	//			IGraphicalEditPart sourceEditPart = (IGraphicalEditPart)selectedEditParts.get(0);
-	//
-	//			IGraphicalEditPart targetEditPart = selectedEditParts.size() == 2 ? (IGraphicalEditPart)selectedEditParts.get(1) : sourceEditPart;
-	//
-	//			CreateConnectionRequest connectionRequest = (CreateConnectionRequest)createTargetRequest();
-	//			//get the anchors locations
-	//			Point[] newLocation = LayoutUtils.getLinkAnchor(sourceEditPart, targetEditPart);
-	//			connectionRequest.setTargetEditPart(sourceEditPart);
-	//			connectionRequest.setType(RequestConstants.REQ_CONNECTION_START);
-	//			connectionRequest.setLocation(newLocation[0]);
-	//
-	//			// only if the connection is supported will we get a non null
-	//			// command from the sourceEditPart
-	//			if(sourceEditPart.getCommand(connectionRequest) != null) {
-	//
-	//				connectionRequest.setSourceEditPart(sourceEditPart);
-	//				connectionRequest.setTargetEditPart(targetEditPart);
-	//				connectionRequest.setType(RequestConstants.REQ_CONNECTION_END);
-	//				//connectionRequest.setLocation(new Point(0, 0));
-	//				connectionRequest.setLocation(newLocation[1]);
-	//
-	//				// inits the listener
-	//				View eObject = (View)targetEditPart.getAdapter(View.class);
-	//				DiagramEventBroker eventBroker = null;
-	//				NotificationListener listener = null;
-	//				boolean requiresPostAction = requiresPostAction();
-	//
-	//				// adds the listener
-	//				if(requiresPostAction) {
-	//					// register a listener to have information about element creation
-	//					// retrieves editing domain
-	//					TransactionalEditingDomain domain;
-	//					try {
-	//						domain = EditorUtils.getServiceRegistry().getService(TransactionalEditingDomain.class);
-	//						eventBroker = DiagramEventBroker.getInstance(domain);
-	//
-	//						if(eventBroker == null) {
-	//							return;
-	//						}
-	//						listener = new NotificationListener() {
-	//
-	//							public void notifyChanged(Notification notification) {
-	//								Connector newValue = (Connector)notification.getNewValue();
-	//								EditPart editPart = (EditPart)getCurrentViewer().getEditPartRegistry().get(newValue);
-	//								for(IAspectAction action : postActions) {
-	//									action.run(editPart);
-	//								}
-	//							}
-	//						};
-	//
-	//						eventBroker.addNotificationListener(eObject, listener);
-	//					} catch (ServiceException e) {
-	//						Activator.log.error(e);
-	//					}
-	//				}
-	//
-	//				EditPartViewer viewer = getCurrentViewer();
-	//				Command command = targetEditPart.getCommand(connectionRequest);
-	//				setCurrentCommand(command);
-	//
-	//				executeCurrentCommand();
-	//
-	//				if(requiresPostAction) {
-	//					if(eventBroker != null) {
-	//						eventBroker.removeNotificationListener(eObject, listener);
-	//					}
-	//				}
-	//
-	//				selectAddedObject(viewer, DiagramCommandStack.getReturnValues(command));
-	//
-	//				setAvoidDeactivation(false);
-	//				eraseSourceFeedback();
-	//				deactivate();
-	//			}
-	//		}
-	//	}
-
-	static List<Connector> yetDone;
-
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	protected void createConnection() {
-		yetDone = new ArrayList<Connector>();
 		List<?> selectedEditParts = getCurrentViewer().getSelectedEditParts();
-		List<EObject> eobjects = new ArrayList<EObject>();
-		List<NotificationListener> listeners = new ArrayList<NotificationListener>();
-		CompoundCommand cmd = new CompoundCommand("Create Links");
-		DiagramEventBroker eventBroker = null;
-		final EditPartViewer viewer = getCurrentViewer();
+
 		// only attempt to create connection if there are two shapes selected
 		if(!selectedEditParts.isEmpty()) {
-			IGraphicalEditPart targetEditPart = (IGraphicalEditPart)selectedEditParts.get(selectedEditParts.size() - 1);
-			boolean done = false;
-			for(int i = 0; i < selectedEditParts.size(); i++) {
-				IGraphicalEditPart sourceEditPart = (IGraphicalEditPart)selectedEditParts.get(i);
-				if(i != 0) {
-					if(sourceEditPart == targetEditPart) {
-						break;
-					}
-				}
 
-				CreateConnectionRequest connectionRequest = (CreateConnectionRequest)createTargetRequest();
-				//get the anchors locations
-				Point[] newLocation = LayoutUtils.getLinkAnchor(sourceEditPart, targetEditPart);
-				connectionRequest.setTargetEditPart(sourceEditPart);
-				connectionRequest.setType(RequestConstants.REQ_CONNECTION_START);
-				connectionRequest.setLocation(newLocation[0]);
-				//				connectionRequest.setLocation(new Point(0, 0));
+			IGraphicalEditPart sourceEditPart = (IGraphicalEditPart)selectedEditParts.get(0);
 
-				// only if the connection is supported will we get a non null
-				// command from the sourceEditPart
+			IGraphicalEditPart targetEditPart = selectedEditParts.size() == 2 ? (IGraphicalEditPart)selectedEditParts.get(1) : sourceEditPart;
 
-				if(sourceEditPart.getCommand(connectionRequest) != null) {
+			CreateConnectionRequest connectionRequest = (CreateConnectionRequest)createTargetRequest();
+			//get the anchors locations
+			Point[] newLocation = LayoutUtils.getLinkAnchor(sourceEditPart, targetEditPart);
+			connectionRequest.setTargetEditPart(sourceEditPart);
+			connectionRequest.setType(RequestConstants.REQ_CONNECTION_START);
+			connectionRequest.setLocation(newLocation[0]);
 
-					connectionRequest.setSourceEditPart(sourceEditPart);
-					connectionRequest.setTargetEditPart(targetEditPart);
-					connectionRequest.setType(RequestConstants.REQ_CONNECTION_END);
+			// only if the connection is supported will we get a non null
+			// command from the sourceEditPart
+			if(sourceEditPart.getCommand(connectionRequest) != null) {
 
-					connectionRequest.setLocation(newLocation[1]);
+				connectionRequest.setSourceEditPart(sourceEditPart);
+				connectionRequest.setTargetEditPart(targetEditPart);
+				connectionRequest.setType(RequestConstants.REQ_CONNECTION_END);
+				//connectionRequest.setLocation(new Point(0, 0));
+				connectionRequest.setLocation(newLocation[1]);
 
-					// inits the listener
+				// inits the listener
+				View eObject = (View)targetEditPart.getAdapter(View.class);
+				DiagramEventBroker eventBroker = null;
+				NotificationListener listener = null;
+				boolean requiresPostAction = requiresPostAction();
 
-					//TODO : demander pourquoi c'est sur la  target et si on peut le mettre sur la source
-					//					View eObject = (View)targetEditPart.getAdapter(View.class);
-					View eObject = (View)targetEditPart.getAdapter(View.class);
+				// adds the listener
+				if(requiresPostAction) {
+					// register a listener to have information about element creation
+					// retrieves editing domain
+					TransactionalEditingDomain domain;
+					try {
+						domain = EditorUtils.getServiceRegistry().getService(TransactionalEditingDomain.class);
+						eventBroker = DiagramEventBroker.getInstance(domain);
 
-					NotificationListener listener = null;
-					boolean requiresPostAction = requiresPostAction();
-
-					// adds the listener
-					if(requiresPostAction) {
-						//						System.out.println("postAction required");
-						// register a listener to have information about element creation
-						// retrieves editing domain
-						TransactionalEditingDomain domain;
-						try {
-							domain = EditorUtils.getServiceRegistry().getService(TransactionalEditingDomain.class);
-							eventBroker = DiagramEventBroker.getInstance(domain);
-
-							if(eventBroker == null) {
-								return;
-							}
-							listener = new NotificationListener() {
-
-								public void notifyChanged(Notification notification) {
-									Connector newValue = (Connector)notification.getNewValue();
-									//									if(!yetDone.contains(newValue)) {
-									//										System.out.println(newValue);
-									EditPartViewer myCurrentViewer = getCurrentViewer();
-									//									if(myCurrentViewer != null) {
-									Map map = viewer.getEditPartRegistry();
-									EditPart editPart = (EditPart)map.get(newValue);
-									for(IAspectAction action : postActions) {
-										action.run(editPart);
-									}
-									//									}
-									yetDone.add(newValue);
-									//									}
-								}
-							};
-							if(!done) {
-								listeners.add(listener);
-								eobjects.add(eObject);
-								eventBroker.addNotificationListener(eObject, listener);
-							}
-							done = true;
-							//							eventBroker.
-						} catch (ServiceException e) {
-							Activator.log.error(e);
+						if(eventBroker == null) {
+							return;
 						}
-					}
+						listener = new NotificationListener() {
 
+							public void notifyChanged(Notification notification) {
+								Connector newValue = (Connector)notification.getNewValue();
+								EditPart editPart = (EditPart)getCurrentViewer().getEditPartRegistry().get(newValue);
+								for(IAspectAction action : postActions) {
+									action.run(editPart);
+								}
+							}
+						};
 
-					Command command = targetEditPart.getCommand(connectionRequest);
-					cmd.add(command);
-				}
-			}
-			//setCurrentCommand(command);
-			setCurrentCommand(cmd);
-
-			executeCurrentCommand();
-			//			EditPartViewer viewer = getCurrentViewer();
-
-			if(requiresPostAction()) {
-				if(eventBroker != null) {
-					for(int ii = 0; ii < eobjects.size(); ii++) {
-						eventBroker.removeNotificationListener(eobjects.get(ii), listeners.get(ii));
+						eventBroker.addNotificationListener(eObject, listener);
+					} catch (ServiceException e) {
+						Activator.log.error(e);
 					}
 				}
+
+				EditPartViewer viewer = getCurrentViewer();
+				Command command = targetEditPart.getCommand(connectionRequest);
+				setCurrentCommand(command);
+
+				executeCurrentCommand();
+
+				if(requiresPostAction) {
+					if(eventBroker != null) {
+						eventBroker.removeNotificationListener(eObject, listener);
+					}
+				}
+
+				selectAddedObject(viewer, DiagramCommandStack.getReturnValues(command));
+
+				setAvoidDeactivation(false);
+				eraseSourceFeedback();
+				deactivate();
 			}
-
-			selectAddedObject(viewer, DiagramCommandStack.getReturnValues(cmd));
-
-			setAvoidDeactivation(false);
-			eraseSourceFeedback();
-			deactivate();
-
 		}
 	}
 

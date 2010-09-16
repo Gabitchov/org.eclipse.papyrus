@@ -87,7 +87,7 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 		}
 
 		for(int i = 0; i < container.getChildren().size(); i++) {
-			if(notCompartmentList.contains((container.getChildren().get(i)))) {
+			if(notCompartmentList.contains(((IFigure)container.getChildren().get(i)))) {
 				Rectangle bound = new Rectangle(((IFigure)container.getChildren().get(i)).getBounds());
 				bound.setSize(getPreferedSize(((IFigure)container.getChildren().get(i))));
 				if(i > 0) {
@@ -168,15 +168,15 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 		double ratio = new Integer(compartmentsHeight).doubleValue() / new Integer(remainingspace).doubleValue();
 
 		for(int i = 0; i < compartmentList.size(); i++) {
-			Rectangle bound = new Rectangle((compartmentList.get(i)).getBounds());
+			Rectangle bound = new Rectangle(((IFigure)compartmentList.get(i)).getBounds());
 			int value = (int)(bound.height / ratio);
 			bound.height = value;
 			bound.x = container.getBounds().x;
 			if(i > 0) {
-				bound.y = (compartmentList.get(i - 1)).getBounds().getBottomLeft().y + 1;
+				bound.y = ((IFigure)compartmentList.get(i - 1)).getBounds().getBottomLeft().y + 1;
 
 			}
-			(compartmentList.get(i)).setBounds(bound);
+			((IFigure)compartmentList.get(i)).setBounds(bound);
 
 		}
 
