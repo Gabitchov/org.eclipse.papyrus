@@ -9,7 +9,7 @@
 [import resourceDiff/]
 
 [template public processDiffElement(el : DiffGroup, leftRoot: String, rightRoot: String)]
-[el.processDiffGroup('1', leftRoot, rightRoot)/]
+[el.processDiffGroup('', leftRoot, rightRoot)/]
 [/template]
 
 [template public processDiffElement(el : AttributeChange, leftRoot: String, rightRoot: String)]

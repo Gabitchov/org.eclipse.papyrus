@@ -13,7 +13,7 @@
 </HEAD>
 [model.reportHeader()/]
 [for (diffElement : DiffElement | model.ownedElements)]
-[diffElement.processDiffElement(model.leftRootName(), model.rightRootName())/]
+[diffElement.processDiffElement(leftRootName(model), rightRootName(model))/]
 [/for]
 [/file]
 [/template]
