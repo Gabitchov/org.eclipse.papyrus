@@ -75,15 +75,13 @@ public class LinkColorGroup extends AbstractGroup {
 		toolbar.setLayout(new GridLayout(3, false));
 
 		Composite fontColorEditorCompo = getEncapsulatedCompo(toolbar);
-		fontColorEditor = new ColorFieldEditor(getPreferenceConstant(PreferenceConstantHelper.COLOR_FONT),
-				DiagramUIPropertiesImages.get(DiagramUIPropertiesImages.IMG_FONT_COLOR), fontColorEditorCompo);
+		fontColorEditor = new ColorFieldEditor(getPreferenceConstant(PreferenceConstantHelper.COLOR_FONT), DiagramUIPropertiesImages.get(DiagramUIPropertiesImages.IMG_FONT_COLOR), fontColorEditorCompo);
 		fontColorEditor.setPage(dialogPage);
 
 		addFieldEditor(fontColorEditor);
 
 		Composite lineColorEditorCompo = getEncapsulatedCompo(toolbar);
-		lineColorEditor = new ColorFieldEditor(getPreferenceConstant(PreferenceConstantHelper.COLOR_LINE),
-				DiagramUIPropertiesImages.get(DiagramUIPropertiesImages.IMG_LINE_COLOR), lineColorEditorCompo);
+		lineColorEditor = new ColorFieldEditor(getPreferenceConstant(PreferenceConstantHelper.COLOR_LINE), DiagramUIPropertiesImages.get(DiagramUIPropertiesImages.IMG_LINE_COLOR), lineColorEditorCompo);
 
 		lineColorEditor.setPage(dialogPage);
 

@@ -26,16 +26,20 @@ public class EditorLinkColorGroup extends LinkColorGroup {
 	/**
 	 * Instantiates a new editor link color group.
 	 * 
-	 * @param parent the parent composite
-	 * @param key the title
-	 * @param dialogPage the dialog page
+	 * @param parent
+	 *        the parent composite
+	 * @param key
+	 *        the title
+	 * @param dialogPage
+	 *        the dialog page
 	 */
-	public EditorLinkColorGroup(Composite parent, String key,
-			DialogPage dialogPage) {
+	public EditorLinkColorGroup(Composite parent, String key, DialogPage dialogPage) {
 		super(parent, key, dialogPage);
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.papyrus.preferences.ui.AbstractGroup#getPreferenceConstant(int)
 	 */
 	protected String getPreferenceConstant(int preferenceType) {

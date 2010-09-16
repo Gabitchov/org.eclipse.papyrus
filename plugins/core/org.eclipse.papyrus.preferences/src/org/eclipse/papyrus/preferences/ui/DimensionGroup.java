@@ -30,27 +30,31 @@ public class DimensionGroup extends AbstractGroup {
 
 	/** The Constant HEIGHT_INTFIELDEDITOR_LABEL. */
 	private static final String HEIGHT_INTFIELDEDITOR_LABEL = "height";
-	
+
 	/** The Constant WIDTH_INTFIELDEDITOR_LABEL. */
 	private static final String WIDTH_INTFIELDEDITOR_LABEL = "width";
-	
+
 	/** The width fied editor. */
 	protected IntegerFieldEditor widthFiedEditor;
-	
+
 	/** The height fied editor. */
 	protected IntegerFieldEditor heightFiedEditor;
-	
+
 	/**
 	 * Instantiates a new dimension group.
 	 * 
-	 * @param parent the parent
-	 * @param key the key
-	 * @param dialogPage the dialog page
+	 * @param parent
+	 *        the parent
+	 * @param key
+	 *        the key
+	 * @param dialogPage
+	 *        the dialog page
 	 */
 	public DimensionGroup(Composite parent, String key, DialogPage dialogPage) {
 		super(parent, key, dialogPage);
 		createContent(parent);
 	}
+
 	/**
 	 * Creates the content.
 	 * 
@@ -62,16 +66,12 @@ public class DimensionGroup extends AbstractGroup {
 		decorationGroup.setLayout(new GridLayout());
 		decorationGroup.setText(Messages.DimensionGroupName);
 
-		widthFiedEditor = new IntegerFieldEditor(
-				getPreferenceConstant(PreferenceConstantHelper.WIDTH),
-				WIDTH_INTFIELDEDITOR_LABEL, decorationGroup);
+		widthFiedEditor = new IntegerFieldEditor(getPreferenceConstant(PreferenceConstantHelper.WIDTH), WIDTH_INTFIELDEDITOR_LABEL, decorationGroup);
 		widthFiedEditor.setPage(dialogPage);
 
 		addFieldEditor(widthFiedEditor);
-		
-		heightFiedEditor = new IntegerFieldEditor(
-				getPreferenceConstant(PreferenceConstantHelper.HEIGHT),
-				HEIGHT_INTFIELDEDITOR_LABEL, decorationGroup);
+
+		heightFiedEditor = new IntegerFieldEditor(getPreferenceConstant(PreferenceConstantHelper.HEIGHT), HEIGHT_INTFIELDEDITOR_LABEL, decorationGroup);
 		heightFiedEditor.setPage(dialogPage);
 
 		addFieldEditor(heightFiedEditor);

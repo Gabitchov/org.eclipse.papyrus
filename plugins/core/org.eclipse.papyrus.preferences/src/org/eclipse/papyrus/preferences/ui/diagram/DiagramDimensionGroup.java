@@ -22,20 +22,24 @@ import org.eclipse.swt.widgets.Composite;
  * The Class DiagramDimensionGroup specialized at the level diagra
  */
 public class DiagramDimensionGroup extends DimensionGroup {
-	
+
 	/**
 	 * Instantiates a new diagram dimension group.
 	 * 
-	 * @param parent the composite parent
-	 * @param key the key the kind of the diagram
-	 * @param dialogPage the dialog page
+	 * @param parent
+	 *        the composite parent
+	 * @param key
+	 *        the key the kind of the diagram
+	 * @param dialogPage
+	 *        the dialog page
 	 */
-	public DiagramDimensionGroup(Composite parent, String key,
-			DialogPage dialogPage) {
+	public DiagramDimensionGroup(Composite parent, String key, DialogPage dialogPage) {
 		super(parent, key, dialogPage);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.papyrus.preferences.ui.AbstractGroup#getPreferenceConstant(int)
 	 */
 	protected String getPreferenceConstant(int preferenceType) {

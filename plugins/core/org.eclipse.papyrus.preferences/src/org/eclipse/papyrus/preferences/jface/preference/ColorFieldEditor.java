@@ -69,8 +69,7 @@ public class ColorFieldEditor extends FieldEditor {
 	public void load() {
 		super.load();
 
-		buttonImage = new ColorOverlayImageDescriptor(backgroundImage.getImageData(), PreferenceConverter.getColor(
-				getPreferenceStore(), getPreferenceName())).createImage();
+		buttonImage = new ColorOverlayImageDescriptor(backgroundImage.getImageData(), PreferenceConverter.getColor(getPreferenceStore(), getPreferenceName())).createImage();
 		colorButton.setImage(buttonImage);
 	}
 
