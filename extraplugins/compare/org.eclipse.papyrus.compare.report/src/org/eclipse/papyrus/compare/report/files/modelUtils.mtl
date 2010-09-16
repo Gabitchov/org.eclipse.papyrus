@@ -15,3 +15,13 @@ This will return the name of the given element
 [query public leftRootName(model: DiffModel) : String = model.leftRoots->first().elementName()/]
 
 [query public rightRootName(model: DiffModel) : String = model.rightRoots->first().elementName()/]
+
+
+[query public label(element : OclAny) : String = if (not umlLabel().isEmpty()) then umlLabel() else 
+ valueSpecificationLabel() endif/]
+
+[query private umlLabel(element : OclAny) : String = if (not element.oclIsUndefined() and element.oclIsKindOf(Element)) then element.oclAsType(NamedElement).getLabel() else '' endif/]
+
+[query private valueSpecificationLabel(element : OclAny) : String = if (not element.oclIsUndefined() and element.oclIsKindOf(ValueSpecification)) then element.oclAsType(ValueSpecification).stringValue() else '' endif/]
+
+[query private isEmpty(str : String) : Boolean = str.oclIsUndefined() or str.size() = 0/]
