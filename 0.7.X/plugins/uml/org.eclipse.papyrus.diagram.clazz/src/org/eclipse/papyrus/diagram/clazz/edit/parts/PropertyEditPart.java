@@ -764,6 +764,7 @@ public class PropertyEditPart extends UMLCompartmentEditPart implements ITextAwa
 
 			this.setFont(THIS_FONT);
 
+
 		}
 
 	}

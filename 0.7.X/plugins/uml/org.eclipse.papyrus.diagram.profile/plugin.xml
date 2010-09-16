@@ -335,6 +335,9 @@
        large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
        path="/"
        small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
+       <expand
+              force="true">
+       </expand>
  	</entry>
  	 
  	 	<predefinedEntry
@@ -366,6 +369,9 @@
        large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
        path="/"
        small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
+       <expand
+              force="true">
+       </expand>
  	</entry>
  	 
  	 	<predefinedEntry
@@ -401,6 +407,9 @@
        large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
        path="/"
        small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
+       <expand
+              force="true">
+       </expand>
  	</entry>
  	 
  	 	<predefinedEntry
@@ -456,6 +465,9 @@
        large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
        path="/"
        small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
+       <expand
+              force="true">
+       </expand>
  	</entry>
  	 
  	 	<predefinedEntry
@@ -481,13 +493,6 @@
 
 
 <?gmfgen generated="true"?>
-<extension point="org.eclipse.ui.preferencePages">
-
-
-
-
-
-</extension>
 
 	<extension point="org.eclipse.core.runtime.preferences">
 		<?gmfgen generated="true"?>
@@ -1396,6 +1401,184 @@
        label="Profile">
 	</diagramCategory>      
 </extension>
+<extension point="org.eclipse.ui.preferencePages">
+
+
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
+			class="org.eclipse.papyrus.diagram.profile.preferences.OperationPreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.OperationPreferencePage"
+            name="Operation Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
+			class="org.eclipse.papyrus.diagram.profile.preferences.DataTypePreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.DataTypePreferencePage"
+            name="DataType Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
+			class="org.eclipse.papyrus.diagram.profile.preferences.ModelPreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.ModelPreferencePage"
+            name="Model Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
+			class="org.eclipse.papyrus.diagram.profile.preferences.AssociationPreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.AssociationPreferencePage"
+            name="Association Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
+			class="org.eclipse.papyrus.diagram.profile.preferences.ShortCutDiagramPreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.ShortCutDiagramPreferencePage"
+            name="ShortCutDiagram Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
+			class="org.eclipse.papyrus.diagram.profile.preferences.ConstraintPreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.ConstraintPreferencePage"
+            name="Constraint Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
+			class="org.eclipse.papyrus.diagram.profile.preferences.EnumerationLiteralPreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.EnumerationLiteralPreferencePage"
+            name="EnumerationLiteral Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
+			class="org.eclipse.papyrus.diagram.profile.preferences.PropertyPreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.PropertyPreferencePage"
+            name="Property Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
+			class="org.eclipse.papyrus.diagram.profile.preferences.StereotypePreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.StereotypePreferencePage"
+            name="Stereotype Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
+			class="org.eclipse.papyrus.diagram.profile.preferences.DependencyPreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.DependencyPreferencePage"
+            name="Dependency Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
+			class="org.eclipse.papyrus.diagram.profile.preferences.PrimitiveTypePreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.PrimitiveTypePreferencePage"
+            name="PrimitiveType Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
+			class="org.eclipse.papyrus.diagram.profile.preferences.PackagePreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.PackagePreferencePage"
+            name="Package Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
+			class="org.eclipse.papyrus.diagram.profile.preferences.CommentPreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.CommentPreferencePage"
+            name="Comment Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
+			class="org.eclipse.papyrus.diagram.profile.preferences.ProfilePreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.ProfilePreferencePage"
+            name="Profile Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
+			class="org.eclipse.papyrus.diagram.profile.preferences.EnumerationPreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.EnumerationPreferencePage"
+            name="Enumeration Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
+			class="org.eclipse.papyrus.diagram.profile.preferences.MetaclassPreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.MetaclassPreferencePage"
+            name="Metaclass Node" />
+	
+
+
+		
+
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
+			class="org.eclipse.papyrus.diagram.profile.preferences.PackageImportPreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.PackageImportPreferencePage"
+            name="PackageImport Link" />
+		
+		
+
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
+			class="org.eclipse.papyrus.diagram.profile.preferences.ExtensionPreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.ExtensionPreferencePage"
+            name="Extension Link" />
+		
+		
+
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
+			class="org.eclipse.papyrus.diagram.profile.preferences.AssociationPreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.AssociationPreferencePage"
+            name="Association Link" />
+		
+		
+
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
+			class="org.eclipse.papyrus.diagram.profile.preferences.GeneralizationPreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.GeneralizationPreferencePage"
+            name="Generalization Link" />
+		
+		
+
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
+			class="org.eclipse.papyrus.diagram.profile.preferences.ElementImportPreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.ElementImportPreferencePage"
+            name="ElementImport Link" />
+		
+		
+
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
+			class="org.eclipse.papyrus.diagram.profile.preferences.ProfileApplicationPreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.ProfileApplicationPreferencePage"
+            name="ProfileApplication Link" />
+		
+		
+		
+		
+
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
+			class="org.eclipse.papyrus.diagram.profile.preferences.DependencyPreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.DependencyPreferencePage"
+            name="Dependency Link" />
+		
+
+</extension>
+
 
 
 

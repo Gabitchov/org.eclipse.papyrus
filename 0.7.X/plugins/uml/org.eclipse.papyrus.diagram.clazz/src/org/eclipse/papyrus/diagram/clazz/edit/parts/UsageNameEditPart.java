@@ -705,6 +705,9 @@ public class UsageNameEditPart extends LabelEditPart implements ITextAwareEditPa
 			}
 		}
 
+
+
+
 		super.handleNotificationEvent(event);
 	}
 

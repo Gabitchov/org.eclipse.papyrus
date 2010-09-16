@@ -705,6 +705,9 @@ public class RealizationName2EditPart extends LabelEditPart implements ITextAwar
 			}
 		}
 
+
+
+
 		super.handleNotificationEvent(event);
 	}
 

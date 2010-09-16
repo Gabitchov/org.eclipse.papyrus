@@ -778,6 +778,7 @@ public class EnumerationLiteralEditPart extends UMLCompartmentEditPart implement
 
 			this.setFont(THIS_FONT);
 
+
 		}
 
 	}

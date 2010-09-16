@@ -157,6 +157,7 @@ AbstractCommentEditPart {
 			return true;
 		}
 
+
 		return false;
 	}
 

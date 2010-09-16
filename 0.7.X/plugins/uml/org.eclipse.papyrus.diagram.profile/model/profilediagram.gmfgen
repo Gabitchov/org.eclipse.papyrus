@@ -135,7 +135,7 @@
         <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.diagram.profile.DataTypeOperation_3019"
-            displayName="DataTypeOperation"
+            displayName="Operation"
             editHelperClassName="DataTypeOperationEditHelper"/>
         <viewmap
             xsi:type="gmfgen:InnerClassViewmap"
@@ -231,7 +231,7 @@
         <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.diagram.profile.DataTypeProperty_3018"
-            displayName="DataTypeProperty"
+            displayName="Property"
             editHelperClassName="DataTypePropertyEditHelper"/>
         <viewmap
             xsi:type="gmfgen:InnerClassViewmap"
@@ -289,7 +289,7 @@
         <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.diagram.profile.ClassProperty_3002"
-            displayName="ClassProperty"
+            displayName="Property"
             editHelperClassName="ClassPropertyEditHelper"/>
         <viewmap
             xsi:type="gmfgen:InnerClassViewmap"
@@ -347,7 +347,7 @@
         <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.diagram.profile.ClassOperation_3020"
-            displayName="ClassOperation"
+            displayName="Operation"
             editHelperClassName="ClassOperationEditHelper"/>
         <viewmap
             xsi:type="gmfgen:InnerClassViewmap"
@@ -562,7 +562,7 @@
         <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.diagram.profile.CommentCN_1007"
-            displayName="CommentCN"
+            displayName="Comment"
             editHelperClassName="CommentEditHelperCN"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -710,7 +710,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            displayName="ProfileCN"
+            displayName="Profile"
             metamodelType="/0/@diagram/@topLevelNodes.7/@elementType"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -798,7 +798,7 @@
         <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.diagram.profile.PackageCN_1012"
-            displayName="PackageCN"
+            displayName="Package"
             editHelperClassName="PackageEditHelperCN"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -883,7 +883,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
-            displayName="ConstraintCN"
+            displayName="Constraint"
             editHelperClassName="ConstraintEditHelperCN"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -961,7 +961,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            displayName="EnumerationCN"
+            displayName="Enumeration"
             metamodelType="/0/@diagram/@topLevelNodes.9/@elementType"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -2776,7 +2776,7 @@
           itemSemanticEditPolicyClassName="ProfilePackageableElementCompartmentItemSemanticEditPolicyTN"
           canonicalEditPolicyClassName="ProfilePackageableElementCompartmentCanonicalEditPolicyTN"
           childNodes="/0/@diagram/@childNodes.6 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.0 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.7"
-          title="ProfilePackageableElementCompartmentTN"
+          title="ProfilePackageableElementCompartment"
           canCollapse="false"
           needsTitle="false"
           node="/0/@diagram/@topLevelNodes.7"
@@ -2810,7 +2810,7 @@
           itemSemanticEditPolicyClassName="ProfilePackageableElementCompartmentItemSemanticEditPolicyCN"
           canonicalEditPolicyClassName="ProfilePackageableElementCompartmentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.6 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.0 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.7"
-          title="ProfilePackageableElementCompartmentTN"
+          title="ProfilePackageableElementCompartment"
           canCollapse="false"
           needsTitle="false"
           node="/0/@diagram/@childNodes.10"

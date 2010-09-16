@@ -13,10 +13,19 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.helper;
 
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.ENamedElement;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
+import org.eclipse.gmf.runtime.diagram.ui.services.editpart.EditPartService;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
+import org.eclipse.gmf.runtime.emf.core.util.PackageUtil;
 import org.eclipse.gmf.runtime.notation.FillStyle;
 import org.eclipse.gmf.runtime.notation.FontStyle;
 import org.eclipse.gmf.runtime.notation.JumpLinkStatus;
@@ -37,14 +46,14 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.FontData;
 
 /**
- * this is an helper that contains method use to intialize font color etc in the view provider
+ * this is an helper that contains method use to initialize font color etc in the view provider
  * 
  */
 public class PreferenceInitializerForElementHelper {
 
 
 	public static String getpreferenceKey(View view, String elementName, int pref) {
-		return PreferenceConstantHelper.getElementConstant(view.getDiagram().getType() + "_" + elementName, pref);
+		return PreferenceConstantHelper.getElementConstant(view.getDiagram().getType() + "_" + elementName, pref); //$NON-NLS-1$
 	}
 
 	/**
@@ -183,6 +192,43 @@ public class PreferenceInitializerForElementHelper {
 
 
 
+	}
+
+	/**
+	 * init the status of the compartment for the node (Showed or hided)
+	 * 
+	 * @param view
+	 *        the element to initialize
+	 * @param store
+	 *        the preference store
+	 * @param elementName
+	 *        the name to the element
+	 */
+	public static void initCompartmentsStatusFromPrefs(View view, final IPreferenceStore store, String elementName) {
+		EList<?> children = view.getPersistedChildren();
+		if(children != null) {
+			for(Object object : children) {
+
+				//we look for the name of the compartment for this view
+				EditPart dummyEP = EditPartService.getInstance().createGraphicEditPart((View)object);
+				IGraphicalEditPart epp = (IGraphicalEditPart)dummyEP;
+				IFigure fig1 = epp.getFigure();
+				if(fig1 instanceof ResizableCompartmentFigure) {
+					String compartmentName = ((ResizableCompartmentFigure)fig1).getCompartmentTitle();
+					if(compartmentName != null) {
+						String diagramKind = view.getDiagram().getType();
+						String preferenceKey = PreferenceConstantHelper.getCompartmentElementConstant(diagramKind + "_" + elementName, compartmentName, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
+						boolean value = store.getBoolean(preferenceKey);
+
+						if(!value) {//the default value is true : nothing to do
+							ENamedElement namedElement = PackageUtil.getElement("notation.View.visible"); //$NON-NLS-1$
+							ViewUtil.setStructuralFeatureValue((View)object, (EStructuralFeature)namedElement, value);
+						}
+					}
+				}
+				dummyEP = null;
+			}
+		}
 	}
 
 	public static Dimension getDimensionFromPref(View view, final IPreferenceStore store, String elementName) {

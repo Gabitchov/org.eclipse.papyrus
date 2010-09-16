@@ -76,6 +76,7 @@ public class CommentCreateCommand extends EditElementCommand {
 	@Override
 	protected EObject getElementToEdit() {
 
+
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -92,7 +93,10 @@ public class CommentCreateCommand extends EditElementCommand {
 	@Override
 	public boolean canExecute() {
 
+
 		return true;
+
+
 
 	}
 
@@ -102,10 +106,13 @@ public class CommentCreateCommand extends EditElementCommand {
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
+
+
 		Comment newElement = UMLFactory.eINSTANCE.createComment();
 
 		Element owner = (Element)getElementToEdit();
 		owner.getOwnedComments().add(newElement);
+
 
 		ElementInitializers.getInstance().init_Comment_2012(newElement);
 
