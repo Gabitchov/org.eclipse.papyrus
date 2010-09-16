@@ -764,6 +764,7 @@ public class Operation3EditPart extends UMLCompartmentEditPart implements ITextA
 
 			this.setFont(THIS_FONT);
 
+
 		}
 
 	}

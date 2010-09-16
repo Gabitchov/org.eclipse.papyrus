@@ -285,6 +285,8 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	private Object[] getViewChildren(View view, Object parentElement) {
 		switch(UMLVisualIDRegistry.getVisualID(view)) {
 
+
+
 		}
 		return EMPTY_ARRAY;
 	}

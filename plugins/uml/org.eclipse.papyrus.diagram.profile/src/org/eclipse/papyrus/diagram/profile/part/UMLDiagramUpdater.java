@@ -129,9 +129,9 @@ public class UMLDiagramUpdater {
 		case PackagePackageableElementCompartmentEditPartCN.VISUAL_ID:
 			return getPackagePackageableElementCompartmentCN_11SemanticChildren(view);
 		case ProfilePackageableElementCompartmentEditPartTN.VISUAL_ID:
-			return getProfileProfilePackageableElementCompartmentTN_1042SemanticChildren(view);
+			return getProfileProfilePackageableElementCompartment_1042SemanticChildren(view);
 		case ProfilePackageableElementCompartmentEditPartCN.VISUAL_ID:
-			return getProfileProfilePackageableElementCompartmentTN_1051SemanticChildren(view);
+			return getProfileProfilePackageableElementCompartment_1051SemanticChildren(view);
 		case StereotypeAttributeCompartmentEditPart.VISUAL_ID:
 			return getStereotypeAttributeCompartment_1071SemanticChildren(view);
 		case StereotypeAttributeCompartmentEditPartCN.VISUAL_ID:
@@ -393,7 +393,7 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<UMLNodeDescriptor> getProfileProfilePackageableElementCompartmentTN_1042SemanticChildren(View view) {
+	public static List<UMLNodeDescriptor> getProfileProfilePackageableElementCompartment_1042SemanticChildren(View view) {
 		if(false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
@@ -457,14 +457,13 @@ public class UMLDiagramUpdater {
 		}
 		return result;
 	}
-
 
 
 
 	/**
 	 * @generated
 	 */
-	public static List<UMLNodeDescriptor> getProfileProfilePackageableElementCompartmentTN_1051SemanticChildren(View view) {
+	public static List<UMLNodeDescriptor> getProfileProfilePackageableElementCompartment_1051SemanticChildren(View view) {
 		if(false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
@@ -528,7 +527,6 @@ public class UMLDiagramUpdater {
 		}
 		return result;
 	}
-
 
 
 

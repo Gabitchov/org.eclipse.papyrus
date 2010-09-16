@@ -680,11 +680,13 @@ public class StereotypePostAction extends ModelPostAction {
 		// pops-up a dialog window where users can select the additionnal stereotypes to apply
 		// it needs the metaclass information...
 		// for this, entry Proxy should be a Palette entry proxy
-		if(!(entryProxy instanceof IPaletteAspectToolEntryProxy)) {
+		//		if(!(entryProxy instanceof IPaletteAspectToolEntryProxy)) {
+		if(!(entryProxy instanceof IPaletteEntryProxy)) {
 			return;
 		}
 
-		PaletteEntry entry = ((IPaletteAspectToolEntryProxy)entryProxy).getEntry();
+		//PaletteEntry entry = ((IPaletteAspectToolEntryProxy)entryProxy).getEntry();
+		PaletteEntry entry = (entryProxy).getEntry();
 		if(!(entry instanceof ToolEntry)) {
 			return;
 		}

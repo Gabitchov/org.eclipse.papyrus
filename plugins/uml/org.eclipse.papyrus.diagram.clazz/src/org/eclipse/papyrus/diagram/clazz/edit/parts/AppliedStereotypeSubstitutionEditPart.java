@@ -705,6 +705,9 @@ public class AppliedStereotypeSubstitutionEditPart extends LabelEditPart impleme
 			}
 		}
 
+
+
+
 		super.handleNotificationEvent(event);
 	}
 

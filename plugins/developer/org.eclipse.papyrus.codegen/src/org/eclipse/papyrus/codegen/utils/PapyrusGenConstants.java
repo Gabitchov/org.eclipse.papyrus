@@ -46,7 +46,7 @@ public class PapyrusGenConstants {
 	 * </p>
 	 * 
 	 * @param diagramName
-	 *            the name of the Diagram
+	 *        the name of the Diagram
 	 * @return the name of the java class used for the diagram preference page
 	 */
 	@Operation(contextual = false, kind = Kind.HELPER)

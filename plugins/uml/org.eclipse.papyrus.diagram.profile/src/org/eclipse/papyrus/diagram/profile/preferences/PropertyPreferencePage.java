@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2009-2010 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -19,17 +19,22 @@ import org.eclipse.papyrus.diagram.profile.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.preferences.pages.AbstractPapyrusNodePreferencePage;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 
+
+
+
 /**
  * @generated
  */
-public class PackageCNPreferencePage extends AbstractPapyrusNodePreferencePage {
+public class PropertyPreferencePage extends AbstractPapyrusNodePreferencePage {
+
+
 
 	/**
 	 * @generated
 	 */
-	public PackageCNPreferencePage() {
+	public PropertyPreferencePage() {
 		super();
-		setPreferenceKey(ProfileDiagramEditPart.MODEL_ID + "_PackageCN");
+		setPreferenceKey(ProfileDiagramEditPart.MODEL_ID + "_Property");
 	}
 
 	/**
@@ -45,9 +50,11 @@ public class PackageCNPreferencePage extends AbstractPapyrusNodePreferencePage {
 	 */
 	public static void initDefaults(IPreferenceStore store) {
 
-		String key = ProfileDiagramEditPart.MODEL_ID + "_PackageCN";
-		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.WIDTH), 100);
-		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.HEIGHT), 50);
+		String key = ProfileDiagramEditPart.MODEL_ID + "_Property";
+		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.WIDTH), 40);
+		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.HEIGHT), 40);
+
+
 
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_FILL), new org.eclipse.swt.graphics.RGB(255, 255, 255));
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_LINE), new org.eclipse.swt.graphics.RGB(0, 0, 0));
@@ -60,5 +67,7 @@ public class PackageCNPreferencePage extends AbstractPapyrusNodePreferencePage {
 		//store.setDefault(org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_GRADIENT), gradientPreferenceConverter.getPreferenceValue());
 
 	}
+
+
 
 }

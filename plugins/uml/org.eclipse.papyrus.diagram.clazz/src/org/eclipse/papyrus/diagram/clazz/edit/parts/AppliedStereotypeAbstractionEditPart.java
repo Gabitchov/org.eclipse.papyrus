@@ -405,6 +405,9 @@ public class AppliedStereotypeAbstractionEditPart extends LabelEditPart implemen
 			}
 		}
 
+
+
+
 		super.handleNotificationEvent(event);
 	}
 
