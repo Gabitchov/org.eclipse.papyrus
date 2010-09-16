@@ -20,6 +20,14 @@ This will return the name of the given element
  (if (not element.oclIsUndefined() and element.oclIsKindOf(ValueSpecification)) then element.oclAsType(ValueSpecification).stringValue() else '' endif)
   endif/]
 
+[query public elementStereotypesAndKeywords(element : OclAny) : String = if (not element.oclIsUndefined() and element.oclIsKindOf(Element)) then elementStereotypes(element.oclAsType(Element)) else 'no' endif/]
+
+[query public elementStereotypes(element : Element) : String = if (not element.getAppliedStereotypes()->isEmpty()) then elementStereotypes2(element) else '' endif/]
+
+[query public elementStereotypes2(element : Element) : String = element.getAppliedStereotypes().elementName()->sep(', ')/]
+
+[query public elementKeywords(element : Element) : String = element.getKeywords()->sep(', ')/]
+
 [query private umlLabel(element : OclAny) : String = if (not element.oclIsUndefined() and element.oclIsKindOf(Element)) then element.oclAsType(NamedElement).getLabel() else '' endif/]
 
 [query private isEmpty(str : String) : Boolean = str.oclIsUndefined() or str.size() = 0/]

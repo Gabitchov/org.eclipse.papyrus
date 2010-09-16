@@ -35,7 +35,7 @@
 [/template]
 
 [template public elementHeading(el : EObject, index: String)]
-[heading(hierarchyLevel(index))/][index/] [elementMetaclass(el)/] [el.label()/][closeHeading()/]
+[heading(hierarchyLevel(index))/][index/] [elementMetaclass(el)/] [elementStereotypesAndKeywords(el)/] [el.label()/][closeHeading()/]
 [/template]
 
 [template public lineBreak()]
