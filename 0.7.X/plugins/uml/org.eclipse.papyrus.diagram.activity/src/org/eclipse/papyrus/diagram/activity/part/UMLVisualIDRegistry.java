@@ -2263,6 +2263,11 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
+		case ShapeNamedElementEditPart.VISUAL_ID:
+			if(ShapeNamedElementNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		case ActivityActivityParametersCompartmentEditPart.VISUAL_ID:
 			if(ParameterEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
@@ -4110,6 +4115,8 @@ public class UMLVisualIDRegistry {
 		viewInfo = new BaseViewInfo(3068, ViewInfo.Node, "InterruptibleActivityRegion");
 
 		root.addNode(7004, viewInfo);
+
+		viewInfo = new BaseViewInfo(3079, ViewInfo.Node, "NamedElement");
 
 		return root;
 	}

@@ -1574,6 +1574,23 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private IParser namedElementName_5129Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getNamedElementName_5129Parser() {
+		if(namedElementName_5129Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			namedElementName_5129Parser = parser;
+		}
+		return namedElementName_5129Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser valueSpecificationActionName_5126Parser;
 
 	/**
@@ -2289,6 +2306,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getStructuredActivityNodeLabel_5117Parser();
 		case ActivityPartitionNameEditPart.VISUAL_ID:
 			return getActivityPartitionName_5118Parser();
+		case ShapeNamedElementNameEditPart.VISUAL_ID:
+			return getNamedElementName_5129Parser();
 		case ObjectFlowNameEditPart.VISUAL_ID:
 			return getObjectFlowName_6001Parser();
 		case ObjectFlowWeightEditPart.VISUAL_ID:

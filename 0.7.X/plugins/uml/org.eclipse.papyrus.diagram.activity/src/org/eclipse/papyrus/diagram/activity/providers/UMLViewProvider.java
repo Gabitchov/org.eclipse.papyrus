@@ -183,6 +183,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				case StructuredActivityNodeEditPart.VISUAL_ID:
 				case ActivityPartitionEditPart.VISUAL_ID:
 				case InterruptibleActivityRegionEditPart.VISUAL_ID:
+				case ShapeNamedElementEditPart.VISUAL_ID:
 				case ConstraintInActivityAsPostcondEditPart.VISUAL_ID:
 				case ValuePinInCallBeActEditPart.VISUAL_ID:
 				case ActionInputPinInCallBeActEditPart.VISUAL_ID:
@@ -225,7 +226,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				}
 			}
 		}
-		return ActivityEditPart.VISUAL_ID == visualID || ParameterEditPart.VISUAL_ID == visualID || ConstraintInActivityAsPrecondEditPart.VISUAL_ID == visualID || ConstraintInActivityAsPostcondEditPart.VISUAL_ID == visualID || InitialNodeEditPart.VISUAL_ID == visualID || ActivityFinalNodeEditPart.VISUAL_ID == visualID || FlowFinalNodeEditPart.VISUAL_ID == visualID || OpaqueActionEditPart.VISUAL_ID == visualID || ValuePinInOpaqueActEditPart.VISUAL_ID == visualID || ActionInputPinInOpaqueActEditPart.VISUAL_ID == visualID || InputPinInOpaqueActEditPart.VISUAL_ID == visualID || OutputPinInOpaqueActEditPart.VISUAL_ID == visualID || CallBehaviorActionEditPart.VISUAL_ID == visualID || ValuePinInCallBeActEditPart.VISUAL_ID == visualID || ActionInputPinInCallBeActEditPart.VISUAL_ID == visualID || InputPinInCallBeActEditPart.VISUAL_ID == visualID || OutputPinInCallBeActEditPart.VISUAL_ID == visualID || CallOperationActionEditPart.VISUAL_ID == visualID || ActionInputPinInCallOpActEditPart.VISUAL_ID == visualID || ValuePinInCallOpActEditPart.VISUAL_ID == visualID || InputPinInCallOpActEditPart.VISUAL_ID == visualID || OutputPinInCallOpActEditPart.VISUAL_ID == visualID || ValuePinInCallOpActAsTargetEditPart.VISUAL_ID == visualID || ActionInputPinInCallOpActAsTargetEditPart.VISUAL_ID == visualID || InputPinInCallOpActAsTargetEditPart.VISUAL_ID == visualID || DurationConstraintAsLocalPrecondEditPart.VISUAL_ID == visualID || DurationConstraintAsLocalPostcondEditPart.VISUAL_ID == visualID || TimeConstraintAsLocalPrecondEditPart.VISUAL_ID == visualID || TimeConstraintAsLocalPostcondEditPart.VISUAL_ID == visualID || InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID == visualID || InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID == visualID || IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID == visualID || IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID == visualID || ConstraintAsLocalPrecondEditPart.VISUAL_ID == visualID || ConstraintAsLocalPostcondEditPart.VISUAL_ID == visualID || DecisionNodeEditPart.VISUAL_ID == visualID || MergeNodeEditPart.VISUAL_ID == visualID || ForkNodeEditPart.VISUAL_ID == visualID || JoinNodeEditPart.VISUAL_ID == visualID || DataStoreNodeEditPart.VISUAL_ID == visualID || SendObjectActionEditPart.VISUAL_ID == visualID || ValuePinInSendObjActAsReqEditPart.VISUAL_ID == visualID || ActionInputPinInSendObjActAsReqEditPart.VISUAL_ID == visualID || InputPinInSendObjActAsReqEditPart.VISUAL_ID == visualID || ValuePinInSendObjActAsTargetEditPart.VISUAL_ID == visualID || ActionInputPinInSendObjActAsTargetEditPart.VISUAL_ID == visualID || InputPinInSendObjActAsTargetEditPart.VISUAL_ID == visualID || SendSignalActionEditPart.VISUAL_ID == visualID || ActionInputPinInSendSigActEditPart.VISUAL_ID == visualID || ValuePinInSendSigActEditPart.VISUAL_ID == visualID || InputPinInSendSigActEditPart.VISUAL_ID == visualID || ValuePinInSendSigActAsTargetEditPart.VISUAL_ID == visualID || ActionInputPinInSendSigActAsTargetEditPart.VISUAL_ID == visualID || InputPinInSendSigActAsTargetEditPart.VISUAL_ID == visualID || ActivityParameterNodeEditPart.VISUAL_ID == visualID || AcceptEventActionEditPart.VISUAL_ID == visualID || OutputPinInAcceptEventActionEditPart.VISUAL_ID == visualID || ValueSpecificationActionEditPart.VISUAL_ID == visualID || OutputPinInValSpecActEditPart.VISUAL_ID == visualID || ConditionalNodeEditPart.VISUAL_ID == visualID || ExpansionRegionEditPart.VISUAL_ID == visualID || ExpansionNodeAsInEditPart.VISUAL_ID == visualID || ExpansionNodeAsOutEditPart.VISUAL_ID == visualID || LoopNodeEditPart.VISUAL_ID == visualID || SequenceNodeEditPart.VISUAL_ID == visualID || StructuredActivityNodeEditPart.VISUAL_ID == visualID || ActivityPartitionEditPart.VISUAL_ID == visualID || InterruptibleActivityRegionEditPart.VISUAL_ID == visualID;
+		return ActivityEditPart.VISUAL_ID == visualID || ParameterEditPart.VISUAL_ID == visualID || ConstraintInActivityAsPrecondEditPart.VISUAL_ID == visualID || ConstraintInActivityAsPostcondEditPart.VISUAL_ID == visualID || InitialNodeEditPart.VISUAL_ID == visualID || ActivityFinalNodeEditPart.VISUAL_ID == visualID || FlowFinalNodeEditPart.VISUAL_ID == visualID || OpaqueActionEditPart.VISUAL_ID == visualID || ValuePinInOpaqueActEditPart.VISUAL_ID == visualID || ActionInputPinInOpaqueActEditPart.VISUAL_ID == visualID || InputPinInOpaqueActEditPart.VISUAL_ID == visualID || OutputPinInOpaqueActEditPart.VISUAL_ID == visualID || CallBehaviorActionEditPart.VISUAL_ID == visualID || ValuePinInCallBeActEditPart.VISUAL_ID == visualID || ActionInputPinInCallBeActEditPart.VISUAL_ID == visualID || InputPinInCallBeActEditPart.VISUAL_ID == visualID || OutputPinInCallBeActEditPart.VISUAL_ID == visualID || CallOperationActionEditPart.VISUAL_ID == visualID || ActionInputPinInCallOpActEditPart.VISUAL_ID == visualID || ValuePinInCallOpActEditPart.VISUAL_ID == visualID || InputPinInCallOpActEditPart.VISUAL_ID == visualID || OutputPinInCallOpActEditPart.VISUAL_ID == visualID || ValuePinInCallOpActAsTargetEditPart.VISUAL_ID == visualID || ActionInputPinInCallOpActAsTargetEditPart.VISUAL_ID == visualID || InputPinInCallOpActAsTargetEditPart.VISUAL_ID == visualID || DurationConstraintAsLocalPrecondEditPart.VISUAL_ID == visualID || DurationConstraintAsLocalPostcondEditPart.VISUAL_ID == visualID || TimeConstraintAsLocalPrecondEditPart.VISUAL_ID == visualID || TimeConstraintAsLocalPostcondEditPart.VISUAL_ID == visualID || InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID == visualID || InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID == visualID || IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID == visualID || IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID == visualID || ConstraintAsLocalPrecondEditPart.VISUAL_ID == visualID || ConstraintAsLocalPostcondEditPart.VISUAL_ID == visualID || DecisionNodeEditPart.VISUAL_ID == visualID || MergeNodeEditPart.VISUAL_ID == visualID || ForkNodeEditPart.VISUAL_ID == visualID || JoinNodeEditPart.VISUAL_ID == visualID || DataStoreNodeEditPart.VISUAL_ID == visualID || SendObjectActionEditPart.VISUAL_ID == visualID || ValuePinInSendObjActAsReqEditPart.VISUAL_ID == visualID || ActionInputPinInSendObjActAsReqEditPart.VISUAL_ID == visualID || InputPinInSendObjActAsReqEditPart.VISUAL_ID == visualID || ValuePinInSendObjActAsTargetEditPart.VISUAL_ID == visualID || ActionInputPinInSendObjActAsTargetEditPart.VISUAL_ID == visualID || InputPinInSendObjActAsTargetEditPart.VISUAL_ID == visualID || SendSignalActionEditPart.VISUAL_ID == visualID || ActionInputPinInSendSigActEditPart.VISUAL_ID == visualID || ValuePinInSendSigActEditPart.VISUAL_ID == visualID || InputPinInSendSigActEditPart.VISUAL_ID == visualID || ValuePinInSendSigActAsTargetEditPart.VISUAL_ID == visualID || ActionInputPinInSendSigActAsTargetEditPart.VISUAL_ID == visualID || InputPinInSendSigActAsTargetEditPart.VISUAL_ID == visualID || ActivityParameterNodeEditPart.VISUAL_ID == visualID || AcceptEventActionEditPart.VISUAL_ID == visualID || OutputPinInAcceptEventActionEditPart.VISUAL_ID == visualID || ValueSpecificationActionEditPart.VISUAL_ID == visualID || OutputPinInValSpecActEditPart.VISUAL_ID == visualID || ConditionalNodeEditPart.VISUAL_ID == visualID || ExpansionRegionEditPart.VISUAL_ID == visualID || ExpansionNodeAsInEditPart.VISUAL_ID == visualID || ExpansionNodeAsOutEditPart.VISUAL_ID == visualID || LoopNodeEditPart.VISUAL_ID == visualID || SequenceNodeEditPart.VISUAL_ID == visualID || StructuredActivityNodeEditPart.VISUAL_ID == visualID || ActivityPartitionEditPart.VISUAL_ID == visualID || InterruptibleActivityRegionEditPart.VISUAL_ID == visualID || ShapeNamedElementEditPart.VISUAL_ID == visualID;
 	}
 
 	/**
@@ -408,6 +409,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			return createActivityPartition_3067(domainElement, containerView, index, persisted, preferencesHint);
 		case InterruptibleActivityRegionEditPart.VISUAL_ID:
 			return createInterruptibleActivityRegion_3068(domainElement, containerView, index, persisted, preferencesHint);
+		case ShapeNamedElementEditPart.VISUAL_ID:
+			return createNamedElement_3079(domainElement, containerView, index, persisted, preferencesHint);
 		}
 		// can't happen, provided #provides(CreateNodeViewOperation) is correct
 		return null;
@@ -460,6 +463,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		createCompartment(node, UMLVisualIDRegistry.getType(ActivityActivityPreConditionsCompartmentEditPart.VISUAL_ID), false, false, true, true);
 		createCompartment(node, UMLVisualIDRegistry.getType(ActivityActivityPostConditionsCompartmentEditPart.VISUAL_ID), false, false, true, true);
 		createCompartment(node, UMLVisualIDRegistry.getType(ActivityActivityContentCompartmentEditPart.VISUAL_ID), false, false, false, false);
+
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Activity");
+
 		return node;
 	}
 
@@ -546,6 +552,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5080 = (Location)label5080.getLayoutConstraint();
 		location5080.setX(0);
 		location5080.setY(5);
+
 		return node;
 	}
 
@@ -575,6 +582,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5081 = (Location)label5081.getLayoutConstraint();
 		location5081.setX(0);
 		location5081.setY(5);
+
 		return node;
 	}
 
@@ -603,6 +611,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5082 = (Location)label5082.getLayoutConstraint();
 		location5082.setX(0);
 		location5082.setY(5);
+
 		return node;
 	}
 
@@ -670,6 +679,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5083 = (Location)label5083.getLayoutConstraint();
 		location5083.setX(0);
 		location5083.setY(5);
+
 		return node;
 	}
 
@@ -710,6 +720,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5084 = (Location)label5084.getLayoutConstraint();
 		location5084.setX(0);
 		location5084.setY(5);
+
 		return node;
 	}
 
@@ -744,6 +755,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5085 = (Location)label5085.getLayoutConstraint();
 		location5085.setX(0);
 		location5085.setY(5);
+
 		return node;
 	}
 
@@ -778,6 +790,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5086 = (Location)label5086.getLayoutConstraint();
 		location5086.setX(0);
 		location5086.setY(5);
+
 		return node;
 	}
 
@@ -922,6 +935,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5087 = (Location)label5087.getLayoutConstraint();
 		location5087.setX(0);
 		location5087.setY(5);
+
 		return node;
 	}
 
@@ -962,6 +976,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5088 = (Location)label5088.getLayoutConstraint();
 		location5088.setX(0);
 		location5088.setY(5);
+
 		return node;
 	}
 
@@ -996,6 +1011,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5089 = (Location)label5089.getLayoutConstraint();
 		location5089.setX(0);
 		location5089.setY(5);
+
 		return node;
 	}
 
@@ -1030,6 +1046,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5090 = (Location)label5090.getLayoutConstraint();
 		location5090.setX(0);
 		location5090.setY(5);
+
 		return node;
 	}
 
@@ -1098,6 +1115,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5091 = (Location)label5091.getLayoutConstraint();
 		location5091.setX(0);
 		location5091.setY(5);
+
 		return node;
 	}
 
@@ -1138,6 +1156,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5092 = (Location)label5092.getLayoutConstraint();
 		location5092.setX(0);
 		location5092.setY(5);
+
 		return node;
 	}
 
@@ -1172,6 +1191,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5093 = (Location)label5093.getLayoutConstraint();
 		location5093.setX(0);
 		location5093.setY(5);
+
 		return node;
 	}
 
@@ -1206,6 +1226,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5094 = (Location)label5094.getLayoutConstraint();
 		location5094.setX(0);
 		location5094.setY(5);
+
 		return node;
 	}
 
@@ -1246,6 +1267,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5095 = (Location)label5095.getLayoutConstraint();
 		location5095.setX(0);
 		location5095.setY(5);
+
 		return node;
 	}
 
@@ -1286,6 +1308,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5096 = (Location)label5096.getLayoutConstraint();
 		location5096.setX(0);
 		location5096.setY(5);
+
 		return node;
 	}
 
@@ -1320,6 +1343,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5097 = (Location)label5097.getLayoutConstraint();
 		location5097.setX(0);
 		location5097.setY(5);
+
 		return node;
 	}
 
@@ -1344,6 +1368,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Constraint");
 
 		Node label5007 = createLabel(node, UMLVisualIDRegistry.getType(ConstraintAsLocalPrecondNameEditPart.VISUAL_ID));
+
 		return node;
 	}
 
@@ -1368,6 +1393,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Constraint");
 
 		Node label5008 = createLabel(node, UMLVisualIDRegistry.getType(ConstraintAsLocalPostcondNameEditPart.VISUAL_ID));
+
 		return node;
 	}
 
@@ -1402,6 +1428,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5098 = (Location)label5098.getLayoutConstraint();
 		location5098.setX(0);
 		location5098.setY(5);
+
 		return node;
 	}
 
@@ -1430,6 +1457,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5099 = (Location)label5099.getLayoutConstraint();
 		location5099.setX(0);
 		location5099.setY(5);
+
 		return node;
 	}
 
@@ -1459,6 +1487,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5100 = (Location)label5100.getLayoutConstraint();
 		location5100.setX(0);
 		location5100.setY(5);
+
 		return node;
 	}
 
@@ -1494,6 +1523,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5101 = (Location)label5101.getLayoutConstraint();
 		location5101.setX(0);
 		location5101.setY(5);
+
 		return node;
 	}
 
@@ -1517,6 +1547,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "SendObjectAction");
 
 		Node label5059 = createLabel(node, UMLVisualIDRegistry.getType(SendObjectActionNameEditPart.VISUAL_ID));
+
 		return node;
 	}
 
@@ -1557,6 +1588,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5102 = (Location)label5102.getLayoutConstraint();
 		location5102.setX(0);
 		location5102.setY(5);
+
 		return node;
 	}
 
@@ -1597,6 +1629,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5103 = (Location)label5103.getLayoutConstraint();
 		location5103.setX(0);
 		location5103.setY(5);
+
 		return node;
 	}
 
@@ -1631,6 +1664,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5104 = (Location)label5104.getLayoutConstraint();
 		location5104.setX(0);
 		location5104.setY(5);
+
 		return node;
 	}
 
@@ -1671,6 +1705,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5105 = (Location)label5105.getLayoutConstraint();
 		location5105.setX(0);
 		location5105.setY(5);
+
 		return node;
 	}
 
@@ -1711,6 +1746,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5106 = (Location)label5106.getLayoutConstraint();
 		location5106.setX(0);
 		location5106.setY(5);
+
 		return node;
 	}
 
@@ -1745,6 +1781,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5107 = (Location)label5107.getLayoutConstraint();
 		location5107.setX(0);
 		location5107.setY(5);
+
 		return node;
 	}
 
@@ -1768,6 +1805,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "SendSignalAction");
 
 		Node label5060 = createLabel(node, UMLVisualIDRegistry.getType(SendSignalActionNameEditPart.VISUAL_ID));
+
 		return node;
 	}
 
@@ -1808,6 +1846,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5108 = (Location)label5108.getLayoutConstraint();
 		location5108.setX(0);
 		location5108.setY(5);
+
 		return node;
 	}
 
@@ -1848,6 +1887,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5109 = (Location)label5109.getLayoutConstraint();
 		location5109.setX(0);
 		location5109.setY(5);
+
 		return node;
 	}
 
@@ -1882,6 +1922,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5110 = (Location)label5110.getLayoutConstraint();
 		location5110.setX(0);
 		location5110.setY(5);
+
 		return node;
 	}
 
@@ -1922,6 +1963,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5111 = (Location)label5111.getLayoutConstraint();
 		location5111.setX(0);
 		location5111.setY(5);
+
 		return node;
 	}
 
@@ -1962,6 +2004,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5112 = (Location)label5112.getLayoutConstraint();
 		location5112.setX(0);
 		location5112.setY(5);
+
 		return node;
 	}
 
@@ -1996,6 +2039,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5113 = (Location)label5113.getLayoutConstraint();
 		location5113.setX(0);
 		location5113.setY(5);
+
 		return node;
 	}
 
@@ -2019,6 +2063,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "ActivityParameterNode");
 
 		Node label5071 = createLabel(node, UMLVisualIDRegistry.getType(CenteredWrappedLabelEditPart.VISUAL_ID));
+
 		return node;
 	}
 
@@ -2054,6 +2099,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5115 = (Location)label5115.getLayoutConstraint();
 		location5115.setX(0);
 		location5115.setY(5);
+
 		return node;
 	}
 
@@ -2088,6 +2134,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5114 = (Location)label5114.getLayoutConstraint();
 		location5114.setX(0);
 		location5114.setY(5);
+
 		return node;
 	}
 
@@ -2112,6 +2159,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label5117 = createLabel(node, UMLVisualIDRegistry.getType(StructuredActivityNodeKeywordEditPart.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(StructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID), false, false, false, false);
+
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "StructuredActivityNode");
+
 		return node;
 	}
 
@@ -2136,6 +2186,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label5118 = createLabel(node, UMLVisualIDRegistry.getType(ActivityPartitionNameEditPart.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(ActivityPartitionActivityPartitionContentCompartmentEditPart.VISUAL_ID), false, false, false, false);
+
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "ActivityPartition");
+
 		return node;
 	}
 
@@ -2159,6 +2212,37 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "InterruptibleActivityRegion");
 
 		createCompartment(node, UMLVisualIDRegistry.getType(InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart.VISUAL_ID), false, false, false, false);
+
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "InterruptibleActivityRegion");
+
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createNamedElement_3079(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry.getType(ShapeNamedElementEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "ShapeNamedElement");
+
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ShapeNamedElement");
+
+		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "ShapeNamedElement");
+
+		Node label5129 = createLabel(node, UMLVisualIDRegistry.getType(ShapeNamedElementNameEditPart.VISUAL_ID));
+		label5129.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+
+		Location location5129 = (Location)label5129.getLayoutConstraint();
+		location5129.setX(25);
+		location5129.setY(3);
+
 		return node;
 	}
 
@@ -2182,6 +2266,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "ValueSpecificationAction");
 
 		Node label5126 = createLabel(node, UMLVisualIDRegistry.getType(ValueSpecificationActionNameEditPart.VISUAL_ID));
+
 		return node;
 	}
 
@@ -2216,6 +2301,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5125 = (Location)label5125.getLayoutConstraint();
 		location5125.setX(0);
 		location5125.setY(5);
+
 		return node;
 	}
 
@@ -2245,6 +2331,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5128 = (Location)label5128.getLayoutConstraint();
 		location5128.setX(0);
 		location5128.setY(5);
+
 		return node;
 	}
 
@@ -2269,6 +2356,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label5119 = createLabel(node, UMLVisualIDRegistry.getType(ConditionalNodeKeywordEditPart.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(ConditionalNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID), false, false, false, false);
+
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "ConditionalNode");
+
 		return node;
 	}
 
@@ -2293,6 +2383,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label5120 = createLabel(node, UMLVisualIDRegistry.getType(ExpansionRegionKeywordEditPart.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(ExpansionRegionStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID), false, false, false, false);
+
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "ExpansionRegion");
+
 		return node;
 	}
 
@@ -2361,6 +2454,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label5121 = createLabel(node, UMLVisualIDRegistry.getType(LoopNodeKeywordEditPart.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(LoopNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID), false, false, false, false);
+
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "LoopNode");
+
 		return node;
 	}
 
@@ -2385,6 +2481,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label5123 = createLabel(node, UMLVisualIDRegistry.getType(SequenceNodeKeywordEditPart.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(SequenceNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID), false, false, false, false);
+
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "SequenceNode");
+
 		return node;
 	}
 
@@ -2409,6 +2508,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InteractionConstraint");
 
 		Node label5034 = createLabel(node, UMLVisualIDRegistry.getType(InteractionConstraintAsLocalPrecondNameEditPart.VISUAL_ID));
+
 		return node;
 	}
 
@@ -2433,6 +2533,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InteractionConstraint");
 
 		Node label5035 = createLabel(node, UMLVisualIDRegistry.getType(InteractionConstraintAsLocalPostcondNameEditPart.VISUAL_ID));
+
 		return node;
 	}
 
@@ -2457,6 +2558,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "IntervalConstraint");
 
 		Node label5036 = createLabel(node, UMLVisualIDRegistry.getType(IntervalConstraintAsLocalPrecondNameEditPart.VISUAL_ID));
+
 		return node;
 	}
 
@@ -2481,6 +2583,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "IntervalConstraint");
 
 		Node label5037 = createLabel(node, UMLVisualIDRegistry.getType(IntervalConstraintAsLocalPostcondNameEditPart.VISUAL_ID));
+
 		return node;
 	}
 
@@ -2505,6 +2608,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "DurationConstraint");
 
 		Node label5038 = createLabel(node, UMLVisualIDRegistry.getType(DurationConstraintAsLocalPrecondNameEditPart.VISUAL_ID));
+
 		return node;
 	}
 
@@ -2529,6 +2633,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "DurationConstraint");
 
 		Node label5039 = createLabel(node, UMLVisualIDRegistry.getType(DurationConstraintAsLocalPostcondNameEditPart.VISUAL_ID));
+
 		return node;
 	}
 
@@ -2553,6 +2658,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "TimeConstraint");
 
 		Node label5040 = createLabel(node, UMLVisualIDRegistry.getType(TimeConstraintAsLocalPrecondNameEditPart.VISUAL_ID));
+
 		return node;
 	}
 
@@ -2577,6 +2683,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "TimeConstraint");
 
 		Node label5041 = createLabel(node, UMLVisualIDRegistry.getType(TimeConstraintAsLocalPostcondNameEditPart.VISUAL_ID));
+
 		return node;
 	}
 

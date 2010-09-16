@@ -89,6 +89,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ParameterEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SendObjectActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SendSignalActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SequenceNodeEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ShapeNamedElementEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.StructuredActivityNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPrecondEditPart;
@@ -390,6 +391,11 @@ public class UMLElementTypes {
 	 * @generated
 	 */
 	public static final IElementType InterruptibleActivityRegion_3068 = getElementType("org.eclipse.papyrus.diagram.activity.InterruptibleActivityRegion_3068"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType NamedElement_3079 = getElementType("org.eclipse.papyrus.diagram.activity.NamedElement_3079"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -745,6 +751,8 @@ public class UMLElementTypes {
 
 			elements.put(InterruptibleActivityRegion_3068, UMLPackage.eINSTANCE.getInterruptibleActivityRegion());
 
+			elements.put(NamedElement_3079, UMLPackage.eINSTANCE.getNamedElement());
+
 			elements.put(ActionLocalPrecondition_4001, UMLPackage.eINSTANCE.getAction_LocalPrecondition());
 
 			elements.put(ActionLocalPostcondition_4002, UMLPackage.eINSTANCE.getAction_LocalPostcondition());
@@ -840,6 +848,7 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(StructuredActivityNode_3065);
 			KNOWN_ELEMENT_TYPES.add(ActivityPartition_3067);
 			KNOWN_ELEMENT_TYPES.add(InterruptibleActivityRegion_3068);
+			KNOWN_ELEMENT_TYPES.add(NamedElement_3079);
 			KNOWN_ELEMENT_TYPES.add(ActionLocalPrecondition_4001);
 			KNOWN_ELEMENT_TYPES.add(ActionLocalPostcondition_4002);
 			KNOWN_ELEMENT_TYPES.add(ObjectFlow_4003);
@@ -992,6 +1001,8 @@ public class UMLElementTypes {
 			return ActivityPartition_3067;
 		case InterruptibleActivityRegionEditPart.VISUAL_ID:
 			return InterruptibleActivityRegion_3068;
+		case ShapeNamedElementEditPart.VISUAL_ID:
+			return NamedElement_3079;
 		case ActionLocalPreconditionEditPart.VISUAL_ID:
 			return ActionLocalPrecondition_4001;
 		case ActionLocalPostconditionEditPart.VISUAL_ID:
