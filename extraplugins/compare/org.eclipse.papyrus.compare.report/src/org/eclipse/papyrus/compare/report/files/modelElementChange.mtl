@@ -6,7 +6,7 @@
 
 [template public genModelElementChange(el : ModelElementChangeLeftTarget, prefix : String , leftRoot: String, rightRoot: String)]
 [elementHeading(el.leftElement, prefix)/]
-(1) [elementName(el.leftElement)/][lineBreak()/]
+(1) [elementQualifiedName(el.leftElement)/][lineBreak()/]
 Deleted in the second model
 
 [openTable()/]
@@ -17,7 +17,7 @@ Deleted in the second model
 
 [template public genModelElementChange(el : ModelElementChangeRightTarget, prefix : String , leftRoot: String, rightRoot: String)]
 [elementHeading(el.rightElement, prefix)/]
-(2) [elementName(el.rightElement)/][lineBreak()/]
+(2) [elementQualifiedName(el.rightElement)/][lineBreak()/]
 Added in the second model
 
 [openTable()/]
@@ -34,8 +34,8 @@ of a given element within the same container.
 [/comment]
 [template public genModelElementChange(el : UpdateContainmentFeature, prefix : String , leftRoot: String, rightRoot: String)]
 [elementHeading(el.leftElement, prefix)/]
-(1) [elementName(el.leftElement)/][lineBreak()/]
-(2) [elementName(el.rightElement)/][lineBreak()/]
+(1) [elementQualifiedName(el.leftElement)/][lineBreak()/]
+(2) [elementQualifiedName(el.rightElement)/][lineBreak()/]
 Containment Feature was changed:
 
 [openTable()/]
@@ -50,8 +50,8 @@ These describe a change of container for a given element.
 [/comment]
 [template public genModelElementChange(el : MoveModelElement, prefix : String , leftRoot: String, rightRoot: String)]
 [elementHeading(el.leftElement, prefix)/]
-(1) [elementName(el.leftElement)/][lineBreak()/]
-(2) [elementName(el.rightElement)/][lineBreak()/]
+(1) [elementQualifiedName(el.leftElement)/][lineBreak()/]
+(2) [elementQualifiedName(el.rightElement)/][lineBreak()/]
 The Element was moved:
 
 [openTable()/]

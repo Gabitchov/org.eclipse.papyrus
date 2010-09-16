@@ -4,7 +4,9 @@
 [comment]
 This will return the name of the given element
 [/comment]
-[query public elementName(element : OclAny) : String = if (not element.oclIsUndefined() and element.oclIsKindOf(NamedElement)) then element.oclAsType(NamedElement).name else 'null' endif/]
+[query public elementName(element : OclAny) : String = if (not element.oclIsUndefined() and element.oclIsKindOf(NamedElement)) then element.oclAsType(NamedElement).name else '<not a named element>' endif/]
+
+[query public elementQualifiedName(element : OclAny) : String = if (not element.oclIsUndefined() and element.oclIsKindOf(NamedElement)) then element.oclAsType(NamedElement).qualifiedName else '<not a named element>' endif/]
 
 [query public elementMetaclass(element : OclAny) : String = if (not element.oclIsUndefined()) then element.eClass().name else '' endif/]
 
