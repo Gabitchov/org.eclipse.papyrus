@@ -46,6 +46,14 @@ Specifically, the removal of a value or the remote addition of a value (for thre
 [addRow(el.attribute.name.concat(' value added'), noElement(), el.rightTarget.attributeToString())/]
 [/template]
 
+[comment]
+A representation of the model object 'Update Attribute'.   
+Differences of this kind represent modifications of the value of single-valued attributes.
+[/comment]
+[template public genAttributeChange(el :UpdateAttribute)]
+[addRow(el.attribute.name, el.leftElement.eGet(el.attribute).attributeToString(), el.rightElement.eGet(el.attribute).attributeToString())/]
+[/template]
+
 [query private attributeChanges(element : DiffElement) : Sequence(AttributeChange) = element.subDiffElements->select(attr: DiffElement| attr.oclIsKindOf(AttributeChange))/]
 
 [query private attributeToString(element : OclAny) : String = element.toString()/]

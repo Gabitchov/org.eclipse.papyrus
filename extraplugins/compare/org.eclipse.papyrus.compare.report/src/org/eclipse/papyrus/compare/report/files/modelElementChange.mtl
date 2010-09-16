@@ -26,6 +26,51 @@ Added in the second model
 [closeTable()/]
 [/template]
 
+
+[comment]
+A representation of the model object 'Update Containment Feature'.   
+This particular kind of move operation describe a change of containment reference 
+of a given element within the same container. 
+[/comment]
+[template public genModelElementChange(el : UpdateContainmentFeature, prefix : String , leftRoot: String, rightRoot: String)]
+(1) [elementHeading(el.leftElement, prefix)/]
+(2) [elementHeading(el.leftElement, prefix)/][lineBreak()/]
+Containment Feature was changed:
+
+[openTable()/]
+[addHeader('-', leftRoot, rightRoot)/]
+[addRow('Containment Feature', elementName(el.leftElement.eContainmentFeature()), elementName(el.rightElement.eContainmentFeature()))/]
+[closeTable()/]
+[/template]
+
+[comment]
+A representation of the model object 'Move Model Element'.   
+These describe a change of container for a given element. 
+[/comment]
+[template public genModelElementChange(el : MoveModelElement, prefix : String , leftRoot: String, rightRoot: String)]
+(1) [elementHeading(el.leftElement, prefix)/]
+(2) [elementHeading(el.leftElement, prefix)/][lineBreak()/]
+The Element was moved:
+
+[openTable()/]
+[addHeader('-', leftRoot, rightRoot)/]
+[addRow('Parent', elementName(el.leftTarget), elementName(el.rightTarget))/]
+[closeTable()/]
+[/template]
+
+[comment]
+A representation of the model object 'Update Model Element'.   
+Superclass of DiffElements used to describe "move" types of differences. 
+This includes both Moving from a container to another and changing the containment reference of an element. These changes imply both an addition and a removal. 
+[/comment]
+[template public genModelElementChange(el : UpdateModelElement, prefix : String , leftRoot: String, rightRoot: String)]
+Generic processModelElementChange for [el.kind/] kind 
+[/template]
+
+[comment]
+A representation of the model object 'Model Element Change'.   
+Superclass of DiffElements used to describe element additions or removals. 
+[/comment]
 [template public genModelElementChange(el : ModelElementChange, prefix : String , leftRoot: String, rightRoot: String)]
 Generic processModelElementChange for [el.kind/] kind 
 [/template]

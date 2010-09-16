@@ -38,6 +38,13 @@ A representation of the model object 'Reference Order Change'.
 [addRow(el.reference.name.concat(' reference order change'), elementNames(el.leftTarget), elementNames(el.rightTarget))/]
 [/template]
 
+[comment]
+Differences of this kind represent modifications of the value of single-valued references.
+[/comment]
+[template public genReferenceChange(el : UpdateReference)]
+[addRow(el.reference.name, el.leftElement.eGet(el.reference).elementName(), el.rightElement.eGet(el.reference).elementName())/]
+[/template]
+
 [template public genReferenceChange(el : ReferenceChange)]
 [addRow(el.reference.name, el.leftElement.eGet(el.reference).elementName(), el.rightElement.eGet(el.reference).elementName())/]
 [/template]

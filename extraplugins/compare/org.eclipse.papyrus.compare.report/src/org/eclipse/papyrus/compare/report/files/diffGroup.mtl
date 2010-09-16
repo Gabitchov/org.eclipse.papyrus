@@ -8,6 +8,7 @@
 [import attributeChange/]
 [import referenceChange/]
 [import modelElementChange/]
+[import conflictingDiffElement/]
 
 [template public processDiffGroup(el : DiffGroup, prefix : String, leftRoot: String, rightRoot: String) {subgroups: Sequence(DiffGroup) = el.subDiffGroups();}]
 [elementHeading(el.rightParent, prefix)/]
@@ -18,9 +19,15 @@
 [/for]
 
 [for (next: ModelElementChange | el.modelElementChanges())]
-[next.genModelElementChange(composeIndex(prefix, subgroups->size() + 1), leftRoot, rightRoot)/]
+[next.genModelElementChange(composeIndex(prefix, subgroups->size() + i + 1), leftRoot, rightRoot)/]
 [/for]
+[for (next: ConflictingDiffElement | el.conflictingDiffElements())]
+[next.genConflictingDiffElement(composeIndex(prefix, el.modelElementChanges()->size()+ i +1), leftRoot, rightRoot)/]
+[/for]
+
 
 [/template]
 
 [query private subDiffGroups(element : DiffElement) : Sequence(DiffGroup) = element.subDiffElements->select(next: DiffElement| next.oclIsKindOf(DiffGroup))/]
+
+[query private conflictingDiffElements(element : DiffElement) : Sequence(DiffGroup) = element.subDiffElements->filter(ConflictingDiffElement)/]

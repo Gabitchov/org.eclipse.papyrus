@@ -21,7 +21,7 @@
 [/template]
 
 [template public processDiffElement(el : ConflictingDiffElement, leftRoot: String, rightRoot: String)]
-[el.genConflictingDiffElement()/]
+[el.genConflictingDiffElement('', leftRoot, rightRoot)/]
 [/template]
 
 [template public processDiffElement(el : ModelElementChange, leftRoot: String, rightRoot: String)]
