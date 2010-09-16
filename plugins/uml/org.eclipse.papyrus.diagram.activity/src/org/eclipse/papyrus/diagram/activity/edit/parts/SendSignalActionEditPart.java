@@ -30,6 +30,7 @@ import org.eclipse.draw2d.geometry.Insets;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -70,11 +71,13 @@ import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.common.draw2d.CenterLayout;
 import org.eclipse.papyrus.diagram.common.editparts.IPapyrusEditPart;
+import org.eclipse.papyrus.diagram.common.editparts.NamedElementEditPart;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.BorderItemResizableEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel;
 import org.eclipse.papyrus.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
+import org.eclipse.papyrus.diagram.common.figure.node.PapyrusSendNodeFigure;
 import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.diagram.common.helper.StereotypeFigureHelper;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
@@ -83,11 +86,11 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 
 /**
- * @generated NOT implements IPapyrusEditPart
+ * @generated
  */
 public class SendSignalActionEditPart extends
 
-AbstractBorderedShapeEditPart implements IPapyrusEditPart {
+NamedElementEditPart {
 
 	/**
 	 * @generated
@@ -135,6 +138,16 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 	}
 
 	/**
+	 * Papyrus codeGen
+	 * 
+	 * @generated
+	 **/
+	protected void handleNotificationEvent(Notification event) {
+		super.handleNotificationEvent(event);
+
+	}
+
+	/**
 	 * @generated
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
@@ -175,14 +188,14 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		return primaryShape = new SendSignalActionFigure();
+		return primaryShape = new PapyrusSendNodeFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public SendSignalActionFigure getPrimaryShape() {
-		return (SendSignalActionFigure)primaryShape;
+	public PapyrusSendNodeFigure getPrimaryShape() {
+		return (PapyrusSendNodeFigure)primaryShape;
 	}
 
 	/**
@@ -190,7 +203,7 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if(childEditPart instanceof SendSignalActionNameEditPart) {
-			((SendSignalActionNameEditPart)childEditPart).setLabel(getPrimaryShape().getSendSignalActionLabel());
+			((SendSignalActionNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
 
@@ -1180,249 +1193,6 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
 		}
 		return types;
-	}
-
-	/**
-	 * @generated NOT implements IPapyrusNodeUMLElementFigure
-	 */
-	public class SendSignalActionFigure extends ScalablePolygonShape implements IPapyrusNodeUMLElementFigure {
-
-		/**
-		 * @generated
-		 */
-		private CenteredWrappedLabel fSendSignalActionLabel;
-
-		/**
-		 * @generated NOT
-		 */
-		private final Insets marginTemplate;
-
-		/** The helper which handles stereotype aspects */
-		private StereotypeFigureHelper stereotypeHelper;
-
-		/**
-		 * @generated NOT make margin border relative, use StereotypeFigureHelper
-		 */
-		public SendSignalActionFigure() {
-
-			CenteredColumnLayout layoutThis = new CenteredColumnLayout();
-			this.setLayoutManager(layoutThis);
-
-			this.addPoint(new Point(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0)));
-			this.addPoint(new Point(getMapMode().DPtoLP(150), getMapMode().DPtoLP(0)));
-			this.addPoint(new Point(getMapMode().DPtoLP(200), getMapMode().DPtoLP(25)));
-			this.addPoint(new Point(getMapMode().DPtoLP(150), getMapMode().DPtoLP(50)));
-			this.addPoint(new Point(getMapMode().DPtoLP(0), getMapMode().DPtoLP(50)));
-			this.setFill(true);
-			this.setLineWidth(1);
-			// make margin border relative
-			marginTemplate = new Insets(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0), getMapMode().DPtoLP(0), getMapMode().DPtoLP(50));
-			this.setBorder(new MarginBorder(marginTemplate));
-			createContents();
-			// use StereotypeFigureHelper
-			stereotypeHelper = new StereotypeFigureHelper(this) {
-
-				@Override
-				public IMapMode getMapMode() {
-					return SendSignalActionEditPart.this.getMapMode();
-				}
-
-				@Override
-				public Object getStereotypeRectangleConstraint() {
-					CenteredColumnConstraint constraintStereotypeRect0 = new CenteredColumnConstraint(false);
-					return constraintStereotypeRect0;
-				}
-			};
-		}
-
-		/**
-		 * @generated NOT use CenteredColumnConstraint
-		 */
-		private void createContents() {
-
-			RectangleFigure labelRect0 = new RectangleFigure();
-			labelRect0.setFill(false);
-			labelRect0.setOutline(false);
-			labelRect0.setLineWidth(1);
-
-			// use CenteredColumnConstraint
-			CenteredColumnConstraint constraintLabelRect0 = new CenteredColumnConstraint(true);
-			this.add(labelRect0, constraintLabelRect0);
-
-			CenterLayout layoutLabelRect0 = new CenterLayout();
-
-			labelRect0.setLayoutManager(layoutLabelRect0);
-
-			fSendSignalActionLabel = new CenteredWrappedLabel();
-
-			fSendSignalActionLabel.setBorder(new MarginBorder(getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
-
-			labelRect0.add(fSendSignalActionLabel);
-
-		}
-
-		/**
-		 * Refresh the layout of the figure
-		 */
-		protected void refreshLayout() {
-		}
-
-		/**
-		 * Sets the stereotypes for this figure.
-		 * 
-		 * @param stereotypes
-		 *        the string representing the stereotypes to be displayed
-		 * @param image
-		 *        the image representing the stereotypes to be displayed
-		 * @see org.eclipse.papyrus.diagram.common.figure.node.IPapyrusUMLElementFigure#setStereotypeDisplay(java.lang.String,
-		 *      org.eclipse.swt.graphics.Image)
-		 */
-		public void setStereotypeDisplay(String stereotypes, Image image) {
-			stereotypeHelper.setStereotypeDisplay(stereotypes, image);
-			refreshLayout();
-		}
-
-		/**
-		 * Sets the stereotypes properties for this figure.
-		 * 
-		 * @param stereotypeProperties
-		 *        the string representing the stereotype properties to be displayed
-		 */
-		public void setStereotypePropertiesInBrace(String stereotypeProperties) {
-			stereotypeHelper.setStereotypePropertiesInBrace(stereotypeProperties);
-			refreshLayout();
-		}
-
-		/**
-		 * displays the new string corresponding to the list of stereotypes.
-		 * 
-		 * @param stereotypeProperties
-		 *        the string to be displayed.
-		 */
-		public void setStereotypePropertiesInCompartment(String stereotypeProperties) {
-			stereotypeHelper.setStereotypePropertiesInCompartment(stereotypeProperties);
-			refreshLayout();
-		}
-
-		/**
-		 * Gets the stereotype label.
-		 * 
-		 * @return the stereotype label
-		 * @unused
-		 * @deprecated
-		 */
-		public Label getStereotypesLabel() {
-			return null;//fActionStereotypeLabel;
-		}
-
-		/**
-		 * @generated NOT refresh relative margin
-		 */
-		protected void fillShape(Graphics graphics) {
-			Rectangle bounds = getBounds();
-			graphics.pushState();
-			graphics.translate(bounds.x, bounds.y);
-			graphics.fillPolygon(scalePointList());
-			graphics.popState();
-			// refresh relative margin
-			this.setBorder(new MarginBorder(scaleMargin()));
-		}
-
-		/**
-		 * @generated NOT
-		 */
-		private final PointList myTemplate = new PointList();
-
-		/**
-		 * @generated NOT
-		 */
-		private Rectangle myTemplateBounds;
-
-		/**
-		 * @generated NOT
-		 */
-		public void addPoint(Point point) {
-			myTemplate.addPoint(point);
-			myTemplateBounds = null;
-		}
-
-		/**
-		 * @generated NOT
-		 */
-		protected void outlineShape(Graphics graphics) {
-			Rectangle bounds = getBounds();
-			graphics.pushState();
-			graphics.translate(bounds.x, bounds.y);
-			graphics.drawPolygon(scalePointList());
-			graphics.popState();
-		}
-
-		/**
-		 * @generated NOT
-		 */
-		private Rectangle getTemplateBounds() {
-			if(myTemplateBounds == null) {
-				myTemplateBounds = myTemplate.getBounds().getCopy().union(0, 0);
-				//just safety -- we are going to use this as divider 
-				if(myTemplateBounds.width < 1) {
-					myTemplateBounds.width = 1;
-				}
-				if(myTemplateBounds.height < 1) {
-					myTemplateBounds.height = 1;
-				}
-			}
-			return myTemplateBounds;
-		}
-
-		/**
-		 * @generated NOT
-		 */
-		private int[] scalePointList() {
-			Rectangle pointsBounds = getTemplateBounds();
-			Rectangle actualBounds = getBounds();
-
-			float xScale = ((float)actualBounds.width) / pointsBounds.width;
-			float yScale = ((float)actualBounds.height) / pointsBounds.height;
-
-			if(xScale == 1 && yScale == 1) {
-				return myTemplate.toIntArray();
-			}
-			int[] scaled = (int[])myTemplate.toIntArray().clone();
-			for(int i = 0; i < scaled.length; i += 2) {
-				scaled[i] = (int)Math.floor(scaled[i] * xScale);
-				scaled[i + 1] = (int)Math.floor(scaled[i + 1] * yScale);
-			}
-			return scaled;
-		}
-
-		/**
-		 * @generated NOT
-		 */
-		private Insets scaleMargin() {
-			Rectangle pointsBounds = getTemplateBounds();
-			Rectangle actualBounds = getBounds();
-
-			float xScale = ((float)actualBounds.width) / pointsBounds.width;
-			float yScale = ((float)actualBounds.height) / pointsBounds.height;
-
-			if(xScale == 1 && yScale == 1) {
-				return marginTemplate;
-			}
-			Insets scaled = new Insets(marginTemplate);
-			scaled.top = (int)Math.floor(scaled.top * yScale);
-			scaled.left = (int)Math.floor(scaled.left * xScale);
-			scaled.bottom = (int)Math.floor(scaled.bottom * yScale);
-			scaled.right = (int)Math.floor(scaled.right * xScale);
-			return scaled;
-		}
-
-		/**
-		 * @generated
-		 */
-		public CenteredWrappedLabel getSendSignalActionLabel() {
-			return fSendSignalActionLabel;
-		}
-
 	}
 
 	/**

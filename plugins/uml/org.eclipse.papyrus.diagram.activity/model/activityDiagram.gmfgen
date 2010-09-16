@@ -4362,9 +4362,8 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="SendSignalActionEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="SendSignalActionFigure"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class SendSignalActionFigure extends org.eclipse.draw2d.ScalablePolygonShape {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel fSendSignalActionLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public SendSignalActionFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.GridLayout layoutThis = new org.eclipse.draw2d.GridLayout();&#xA;&#x9;layoutThis.numColumns = 1;&#xA;&#x9;layoutThis.makeColumnsEqualWidth = true;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;this.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(150)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;this.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(200)&#xA;, getMapMode().DPtoLP(25)&#xA;));&#xA;this.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(150)&#xA;, getMapMode().DPtoLP(50)&#xA;));&#xA;this.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(50)&#xA;));&#xA;this.setFill(true);&#xA;this.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(50)&#xA;));&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;org.eclipse.draw2d.RectangleFigure labelRect0 = new org.eclipse.draw2d.RectangleFigure();&#xA;labelRect0.setFill(false);&#xA;labelRect0.setOutline(false);&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintLabelRect0 = new org.eclipse.draw2d.GridData();&#xA;constraintLabelRect0.verticalAlignment = org.eclipse.draw2d.GridData.FILL;&#xA;constraintLabelRect0.horizontalAlignment = org.eclipse.draw2d.GridData.FILL;&#xA;constraintLabelRect0.horizontalIndent = 0;&#xA;constraintLabelRect0.horizontalSpan = 1;&#xA;constraintLabelRect0.verticalSpan = 1;&#xA;constraintLabelRect0.grabExcessHorizontalSpace = true;&#xA;constraintLabelRect0.grabExcessVerticalSpace = true;&#xA;this.add(labelRect0, constraintLabelRect0);&#xA;&#xA;&#xA;&#x9;org.eclipse.papyrus.diagram.common.draw2d.CenterLayout layoutLabelRect0 = new org.eclipse.papyrus.diagram.common.draw2d.CenterLayout();&#xA;&#xA;&#xA;&#x9;labelRect0.setLayoutManager(layoutLabelRect0);&#xA;&#xA;&#xA;&#xA;fSendSignalActionLabel = new org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel();&#xA;&#xA;&#xA;&#xA;fSendSignalActionLabel.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;));&#xA;&#xA;labelRect0.add(fSendSignalActionLabel);&#xA;&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel getSendSignalActionLabel() {&#xA;&#x9;&#x9;return fSendSignalActionLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.PapyrusSendNodeFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <behaviour
@@ -4413,8 +4412,8 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getSendSignalActionLabel"
-              figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel"/>
+              getterName="getNameLabel"
+              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
               parser="/0/@labelParsers/@implementations.0">
@@ -11324,7 +11323,7 @@
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="Node with label for named element"
-        genView="/0/@diagram/@childNodes.38 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.39 /0/@diagram/@childNodes.56"
+        genView="/0/@diagram/@childNodes.38 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.39 /0/@diagram/@childNodes.56 /0/@diagram/@childNodes.46"
         name="NamedElementEditPart"
         superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.NamedElementEditPart"/>
     <extensionNodes

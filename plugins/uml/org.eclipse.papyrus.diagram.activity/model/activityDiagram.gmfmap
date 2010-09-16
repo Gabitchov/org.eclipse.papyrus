@@ -1870,7 +1870,7 @@
           <labelMappings
               xsi:type="gmfmap:FeatureLabelMapping">
             <diagramLabel
-                href="activityDiagram.gmfgraph#SendSignalActionName"/>
+                href="../../org.eclipse.papyrus.diagram.common/model/SendNodeFigure.gmfgraph#SendNodeFigureNameDiagramLabel"/>
             <features
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
           </labelMappings>
@@ -1878,7 +1878,7 @@
               xsi:type="gmftool:CreationTool"
               href="activityDiagram.gmftool#//@palette/@tools.1/@tools.4"/>
           <diagramNode
-              href="activityDiagram.gmfgraph#SendSignalActionNode"/>
+              href="../../org.eclipse.papyrus.diagram.common/model/SendNodeFigure.gmfgraph#SendNodeFigureNode"/>
           <children
               referencedChild="//@nodes.0/@ownedChild/@children.25/@ownedChild/@children.0/@ownedChild">
             <containmentFeature
