@@ -29,9 +29,10 @@
 [/template]
 
 [template public processDiffElement(el : ResourceDiff, leftRoot: String, rightRoot: String)]
-[el.genResourceDiff()/]
+[el.genResourceDiff('', leftRoot, rightRoot)/]
 [/template]
 
 [template public processDiffElement(el : DiffElement, leftRoot: String, rightRoot: String)]
 [el.kind/] Unknown diff
 [/template]
+

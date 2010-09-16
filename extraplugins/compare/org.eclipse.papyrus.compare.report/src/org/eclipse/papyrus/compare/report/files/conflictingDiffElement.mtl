@@ -10,6 +10,8 @@ A representation of the model object 'Conflicting Diff Element'.
 This will act as a container for conflictual changes. 
 [/comment]
 [template public genConflictingDiffElement(el : ConflictingDiffElement, prefix : String , leftRoot: String, rightRoot: String)]
+(1),(2) [elementHeading(el.originElement, prefix)/]
+Conflictual Change:
 [openTable()/]
 [addHeader('Origin Element', leftRoot, rightRoot)/]
 [addRow(el.originElement.elementName(), el.leftParent.elementName(), el.rightParent.elementName())/]

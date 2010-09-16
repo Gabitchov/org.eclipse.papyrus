@@ -33,8 +33,9 @@ This particular kind of move operation describe a change of containment referenc
 of a given element within the same container. 
 [/comment]
 [template public genModelElementChange(el : UpdateContainmentFeature, prefix : String , leftRoot: String, rightRoot: String)]
-(1) [elementHeading(el.leftElement, prefix)/]
-(2) [elementHeading(el.leftElement, prefix)/][lineBreak()/]
+[elementHeading(el.leftElement, prefix)/]
+(1) [elementName(el.leftElement)/][lineBreak()/]
+(2) [elementName(el.rightElement)/][lineBreak()/]
 Containment Feature was changed:
 
 [openTable()/]
@@ -48,8 +49,9 @@ A representation of the model object 'Move Model Element'.
 These describe a change of container for a given element. 
 [/comment]
 [template public genModelElementChange(el : MoveModelElement, prefix : String , leftRoot: String, rightRoot: String)]
-(1) [elementHeading(el.leftElement, prefix)/]
-(2) [elementHeading(el.leftElement, prefix)/][lineBreak()/]
+[elementHeading(el.leftElement, prefix)/]
+(1) [elementName(el.leftElement)/][lineBreak()/]
+(2) [elementName(el.rightElement)/][lineBreak()/]
 The Element was moved:
 
 [openTable()/]
