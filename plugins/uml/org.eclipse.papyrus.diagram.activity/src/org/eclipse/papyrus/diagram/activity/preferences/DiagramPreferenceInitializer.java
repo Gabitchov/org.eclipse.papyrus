@@ -28,6 +28,8 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = getPreferenceStore();
 
+		ShapeNamedElementPreferencePage.initDefaults(store);
+
 		TimeConstraintPreferencePage.initDefaults(store);
 
 		ExpansionNodePreferencePage.initDefaults(store);

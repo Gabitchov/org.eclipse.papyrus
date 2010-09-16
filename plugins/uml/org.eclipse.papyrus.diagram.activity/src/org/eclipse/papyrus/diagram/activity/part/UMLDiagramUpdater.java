@@ -96,6 +96,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.SendObjectActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SendSignalActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SequenceNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SequenceNodeStructuredActivityNodeContentCompartmentEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ShapeNamedElementEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.StructuredActivityNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.StructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPostcondEditPart;
@@ -1695,6 +1696,8 @@ public class UMLDiagramUpdater {
 			return getActivityPartition_3067ContainedLinks(view);
 		case InterruptibleActivityRegionEditPart.VISUAL_ID:
 			return getInterruptibleActivityRegion_3068ContainedLinks(view);
+		case ShapeNamedElementEditPart.VISUAL_ID:
+			return getNamedElement_3079ContainedLinks(view);
 		case ObjectFlowEditPart.VISUAL_ID:
 			return getObjectFlow_4003ContainedLinks(view);
 		case ControlFlowEditPart.VISUAL_ID:
@@ -1846,6 +1849,8 @@ public class UMLDiagramUpdater {
 			return getActivityPartition_3067IncomingLinks(view);
 		case InterruptibleActivityRegionEditPart.VISUAL_ID:
 			return getInterruptibleActivityRegion_3068IncomingLinks(view);
+		case ShapeNamedElementEditPart.VISUAL_ID:
+			return getNamedElement_3079IncomingLinks(view);
 		case ObjectFlowEditPart.VISUAL_ID:
 			return getObjectFlow_4003IncomingLinks(view);
 		case ControlFlowEditPart.VISUAL_ID:
@@ -1997,6 +2002,8 @@ public class UMLDiagramUpdater {
 			return getActivityPartition_3067OutgoingLinks(view);
 		case InterruptibleActivityRegionEditPart.VISUAL_ID:
 			return getInterruptibleActivityRegion_3068OutgoingLinks(view);
+		case ShapeNamedElementEditPart.VISUAL_ID:
+			return getNamedElement_3079OutgoingLinks(view);
 		case ObjectFlowEditPart.VISUAL_ID:
 			return getObjectFlow_4003OutgoingLinks(view);
 		case ControlFlowEditPart.VISUAL_ID:
@@ -2407,6 +2414,13 @@ public class UMLDiagramUpdater {
 	 * @generated
 	 */
 	public static List<UMLLinkDescriptor> getInterruptibleActivityRegion_3068ContainedLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getNamedElement_3079ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
@@ -3189,6 +3203,13 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	public static List<UMLLinkDescriptor> getNamedElement_3079IncomingLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
 	public static List<UMLLinkDescriptor> getValueSpecificationAction_3076IncomingLinks(View view) {
 		ValueSpecificationAction modelElement = (ValueSpecificationAction)view.getElement();
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
@@ -3962,6 +3983,13 @@ public class UMLDiagramUpdater {
 	 * @generated
 	 */
 	public static List<UMLLinkDescriptor> getInterruptibleActivityRegion_3068OutgoingLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getNamedElement_3079OutgoingLinks(View view) {
 		return Collections.emptyList();
 	}
 
