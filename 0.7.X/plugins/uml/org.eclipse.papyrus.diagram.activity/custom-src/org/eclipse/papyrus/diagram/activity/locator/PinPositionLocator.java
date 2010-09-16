@@ -44,7 +44,6 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInAcceptEventAct
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallBeActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallOpActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInOpaqueActEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.SendSignalActionEditPart.SendSignalActionFigure;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCallBeActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCallOpActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCallOpActEditPart;
@@ -54,6 +53,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInSendObjActAsTar
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInSendSigActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInSendSigActEditPart;
 import org.eclipse.papyrus.diagram.activity.helper.ActivityFigureDrawer;
+import org.eclipse.papyrus.diagram.common.figure.node.PapyrusSendNodeFigure;
 import org.eclipse.papyrus.diagram.common.locator.AdvancedBorderItemLocator;
 import org.eclipse.uml2.uml.Action;
 import org.eclipse.uml2.uml.CallOperationAction;
@@ -270,7 +270,7 @@ public class PinPositionLocator extends AdvancedBorderItemLocator {
 	private boolean isInSendSignalAction() {
 		IFigure parentFigure = getParentFigure();
 		for(Object child : parentFigure.getChildren()) {
-			if(child instanceof SendSignalActionFigure) {
+			if(child instanceof PapyrusSendNodeFigure) {
 				return true;
 			}
 		}

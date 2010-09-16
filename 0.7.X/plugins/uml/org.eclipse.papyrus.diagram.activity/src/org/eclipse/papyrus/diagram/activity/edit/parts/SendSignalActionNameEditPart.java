@@ -183,7 +183,7 @@ public class SendSignalActionNameEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
-	public void setLabel(CenteredWrappedLabel figure) {
+	public void setLabel(WrappingLabel figure) {
 		unregisterVisuals();
 		setFigure(figure);
 		defaultText = getLabelTextHelper(figure);
