@@ -33,7 +33,5 @@
 [/template]
 
 [template public processDiffElement(el : DiffElement, leftRoot: String, rightRoot: String)]
-<tr>
-<td>[el.kind/]</td><td>Unknown diff</td>
-</tr>
+[el.kind/] Unknown diff
 [/template]

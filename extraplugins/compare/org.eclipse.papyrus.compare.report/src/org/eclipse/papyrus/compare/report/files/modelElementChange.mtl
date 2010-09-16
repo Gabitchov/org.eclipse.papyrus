@@ -30,8 +30,4 @@ Added in the second model
 Generic processModelElementChange for [el.kind/] kind 
 [/template]
 
-[template private noElement()]
--
-[/template]
-
 [query public modelElementChanges(element : DiffElement) : Sequence(ModelElementChange) = element.subDiffElements->select(next: DiffElement| next.oclIsKindOf(ModelElementChange))/]

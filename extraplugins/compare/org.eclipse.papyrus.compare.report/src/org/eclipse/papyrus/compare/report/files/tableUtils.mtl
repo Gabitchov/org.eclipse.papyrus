@@ -9,7 +9,7 @@
 [/template]
 
 [template public closeTable()]
-</TBODY></TABLE>
+</TBODY></TABLE>[lineBreak()/]
 [/template]
 
 [template public addHeader(name: String, leftRoot: String, rightRoot: String)]
@@ -21,10 +21,6 @@
 [template public addHeader(leftRoot: String, rightRoot: String)]
 <tr><th class="TableHeadingCell" style="width: 50mm;">(1) [leftRoot/]</th>
 <th class="TableHeadingCell" style="width: 50mm;">(2) [rightRoot/]</th></tr>
-[/template]
-
-[template public addRow(title: String, leftElement: OclAny, rightElement: OclAny)]
-[addRow(title, leftElement, rightElement)/]
 [/template]
 
 [template public addRow(title: String, leftElement: String, rightElement: String)]
@@ -53,3 +49,6 @@
 [template public closeHeading()]
 </DIV>
 [/template]
+
+[query public noElement() : String = '-'/]
+
