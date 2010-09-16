@@ -41,45 +41,48 @@ public class AbstractPreferenceKeyDialog extends org.eclipse.jface.dialogs.Statu
 
 	/** The key table. */
 	protected Table keyTable;
-	
+
 	/** The table viewer. */
 	protected TableViewer tableViewer;
-	
+
 	/** The keys. */
 	protected String[] keys;
 
 	/**
 	 * Instantiates a new abstract preference key dialog.
 	 * 
-	 * @param keys the array of preference jy to display
+	 * @param keys
+	 *        the array of preference jy to display
 	 */
 	public AbstractPreferenceKeyDialog(String[] keys) {
 		super(new Shell());
-		this.keys=keys;
+		this.keys = keys;
 		setStatusLineAboveButtons(true);
-		updateStatus(new Status(IStatus.INFO,Activator.PLUGIN_ID,"Would you like to overload those preferences?"));
+		updateStatus(new Status(IStatus.INFO, Activator.PLUGIN_ID, "Would you like to overload those preferences?"));
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.jface.dialogs.Dialog#createDialogArea(org.eclipse.swt.widgets.Composite)
 	 */
 	@Override
 	protected Control createDialogArea(Composite parent) {
-		Composite composite= (Composite)super.createDialogArea(parent);
-		keyTable= new Table(composite, SWT.CHECK|SWT.BORDER);
-		tableViewer=new TableViewer(keyTable);
+		Composite composite = (Composite)super.createDialogArea(parent);
+		keyTable = new Table(composite, SWT.CHECK | SWT.BORDER);
+		tableViewer = new TableViewer(keyTable);
 		tableViewer.setLabelProvider(new KeyLabelProvider());
 		tableViewer.setContentProvider(new KeyContentProvider());
 
-		TableColumn column = new TableColumn(keyTable,SWT.NONE);
+		TableColumn column = new TableColumn(keyTable, SWT.NONE);
 		column.setWidth(150);
 		column.setText("Pref. kind ");
 
-		column = new TableColumn(keyTable,SWT.NONE);
+		column = new TableColumn(keyTable, SWT.NONE);
 		column.setWidth(90);
 		column.setText("Level");
 
-		column = new TableColumn(keyTable,SWT.NONE);
+		column = new TableColumn(keyTable, SWT.NONE);
 		column.setWidth(200);
 		column.setText("Localization");
 		tableViewer.setInput(keys);
@@ -96,64 +99,72 @@ public class AbstractPreferenceKeyDialog extends org.eclipse.jface.dialogs.Statu
 	protected class KeyLabelProvider extends LabelProvider implements ITableLabelProvider, ITableColorProvider {
 
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
+		 * 
 		 * @see org.eclipse.jface.viewers.ITableColorProvider#getForeground(java.lang.Object, int)
 		 */
 		public Color getForeground(Object element, int columnIndex) {
 			// TODO Auto-generated method stub
 			return null;
 		}
-		
-		/* (non-Javadoc)
+
+		/*
+		 * (non-Javadoc)
+		 * 
 		 * @see org.eclipse.jface.viewers.ITableColorProvider#getBackground(java.lang.Object, int)
 		 */
 		public Color getBackground(Object element, int columnIndex) {
 			// TODO Auto-generated method stub
 			return null;
 		}
-		
-		/* (non-Javadoc)
+
+		/*
+		 * (non-Javadoc)
+		 * 
 		 * @see org.eclipse.jface.viewers.ITableLabelProvider#getColumnImage(java.lang.Object, int)
 		 */
 		public Image getColumnImage(Object element, int columnIndex) {
-			if(columnIndex==0){
-				if( element.toString().startsWith(PreferenceConstantHelper.DIAGRAM_ELEMENT)){
-					return  Activator.getPluginIconImage(Activator.PLUGIN_ID, "/icons/pref.gif");
+			if(columnIndex == 0) {
+				if(element.toString().startsWith(PreferenceConstantHelper.DIAGRAM_ELEMENT)) {
+					return Activator.getPluginIconImage(Activator.PLUGIN_ID, "/icons/pref.gif");
 				}
-				if( element.toString().startsWith(PreferenceConstantHelper.DIAGRAM_PREFERENCE_PREFIX)){
-					return  Activator.getPluginIconImage(Activator.PLUGIN_ID, "/icons/diag.gif");
+				if(element.toString().startsWith(PreferenceConstantHelper.DIAGRAM_PREFERENCE_PREFIX)) {
+					return Activator.getPluginIconImage(Activator.PLUGIN_ID, "/icons/diag.gif");
 				}
 			}
 			return null;
 		}
-		
-		/* (non-Javadoc)
+
+		/*
+		 * (non-Javadoc)
+		 * 
 		 * @see org.eclipse.jface.viewers.ITableLabelProvider#getColumnText(java.lang.Object, int)
 		 */
 		public String getColumnText(Object element, int columnIndex) {
-			String initialKey= element.toString();
-			String out=initialKey.toString();
-			if(columnIndex==0){
-					out=out.substring(out.indexOf(".")+1, out.length()).toUpperCase();
+			String initialKey = element.toString();
+			String out = initialKey.toString();
+			if(columnIndex == 0) {
+				out = out.substring(out.indexOf(".") + 1, out.length()).toUpperCase();
 			}
-			if(columnIndex==1){
-				if( element.toString().startsWith(PreferenceConstantHelper.DIAGRAM_ELEMENT)){
-					return  "ELEMENT";
+			if(columnIndex == 1) {
+				if(element.toString().startsWith(PreferenceConstantHelper.DIAGRAM_ELEMENT)) {
+					return "ELEMENT";
 				}
-				if( element.toString().startsWith(PreferenceConstantHelper.DIAGRAM_PREFERENCE_PREFIX)){
-					return  "DIAGRAM";
+				if(element.toString().startsWith(PreferenceConstantHelper.DIAGRAM_PREFERENCE_PREFIX)) {
+					return "DIAGRAM";
 				}
 			}
-				if(columnIndex==2){
-					if( initialKey.startsWith(PreferenceConstantHelper.DIAGRAM_ELEMENT)){
-						out=initialKey.toString().replaceAll(PreferenceConstantHelper.DIAGRAM_ELEMENT, "");
-						out =out.substring( out.lastIndexOf("_")+1,out.indexOf("."))+" ("+initialKey.substring(8, initialKey.lastIndexOf("_"))+")";
-					}
-					if( initialKey.startsWith(PreferenceConstantHelper.DIAGRAM_PREFERENCE_PREFIX)){
-							out=initialKey.toString().replaceAll(PreferenceConstantHelper.DIAGRAM_PREFERENCE_PREFIX, "");
-							out =out.substring( 0,out.indexOf("."));
-					}
-		}
+			if(columnIndex == 2) {
+				if(initialKey.startsWith(PreferenceConstantHelper.DIAGRAM_ELEMENT)) {
+					out = initialKey.toString().replaceAll(PreferenceConstantHelper.DIAGRAM_ELEMENT, "");
+					out = out.substring(out.lastIndexOf("_") + 1, out.indexOf(".")) + " (" + initialKey.substring(8, initialKey.lastIndexOf("_")) + ")";
+				}
+				if(initialKey.startsWith(PreferenceConstantHelper.DIAGRAM_PREFERENCE_PREFIX)) {
+					out = initialKey.toString().replaceAll(PreferenceConstantHelper.DIAGRAM_PREFERENCE_PREFIX, "");
+					out = out.substring(0, out.indexOf("."));
+				}
+			}
 			return out;
 		}
 	}
@@ -162,30 +173,36 @@ public class AbstractPreferenceKeyDialog extends org.eclipse.jface.dialogs.Statu
 	/**
 	 * The Class KeyContentProvider.
 	 */
-	protected class KeyContentProvider implements  IStructuredContentProvider{
+	protected class KeyContentProvider implements IStructuredContentProvider {
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
+		 * 
 		 * @see org.eclipse.jface.viewers.IContentProvider#dispose()
 		 */
 		public void dispose() {
 		}
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
+		 * 
 		 * @see org.eclipse.jface.viewers.IContentProvider#inputChanged(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
 		 */
 		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 		}
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
+		 * 
 		 * @see org.eclipse.jface.viewers.IStructuredContentProvider#getElements(java.lang.Object)
 		 */
 		public Object[] getElements(Object inputElement) {
-			ArrayList<String> result= new ArrayList<String>();			
-			for( int i=0; i< keys.length;i++){
-				if( keys[i].startsWith(PreferenceConstantHelper.DIAGRAM_PREFERENCE_PREFIX)){
+			ArrayList<String> result = new ArrayList<String>();
+			for(int i = 0; i < keys.length; i++) {
+				if(keys[i].startsWith(PreferenceConstantHelper.DIAGRAM_PREFERENCE_PREFIX)) {
 					result.add(keys[i]);
 				}
-				if( keys[i].startsWith(PreferenceConstantHelper.DIAGRAM_ELEMENT)){
+				if(keys[i].startsWith(PreferenceConstantHelper.DIAGRAM_ELEMENT)) {
 					result.add(keys[i]);
 				}
 			}

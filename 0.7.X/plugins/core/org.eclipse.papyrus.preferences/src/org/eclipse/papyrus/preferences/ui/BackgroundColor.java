@@ -77,23 +77,22 @@ public class BackgroundColor extends AbstractGroup {
 		Composite useGradientFillEditorCompo = getEncapsulatedCompo(useGradientCompo);
 		useGradientFillEditor = new BooleanFieldEditor(getPreferenceConstant(PreferenceConstantHelper.GRADIENT_POLICY), "", useGradientFillEditorCompo); //$NON-NLS-1$
 		useGradientFillEditor.setPage(dialogPage);
-		
+
 		addFieldEditor(useGradientFillEditor);
 
-		 Composite gradientFillEditorCompo = getEncapsulatedCompo(fillColorGroup);
-		gradientFillEditor = new GradientFieldEditor(getPreferenceConstant(PreferenceConstantHelper.COLOR_GRADIENT),
-				gradientFillEditorCompo);
+		Composite gradientFillEditorCompo = getEncapsulatedCompo(fillColorGroup);
+		gradientFillEditor = new GradientFieldEditor(getPreferenceConstant(PreferenceConstantHelper.COLOR_GRADIENT), gradientFillEditorCompo);
 		gradientFillEditor.setPage(dialogPage);
 		gradientFillEditor.setEnabled(useGradientFillEditor.getBooleanValue());
 
 		addFieldEditor(gradientFillEditor);
 		useGradientFillEditor.setPropertyChangeListener(new IPropertyChangeListener() {
-			
+
 			public void propertyChange(PropertyChangeEvent event) {
-				
-					gradientFillEditor.setEnabled(useGradientFillEditor.getBooleanValue());
-				
-				
+
+				gradientFillEditor.setEnabled(useGradientFillEditor.getBooleanValue());
+
+
 			}
 		});
 	}

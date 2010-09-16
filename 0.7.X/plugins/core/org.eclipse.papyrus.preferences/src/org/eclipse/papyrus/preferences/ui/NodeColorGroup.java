@@ -59,8 +59,7 @@ public class NodeColorGroup extends LinkColorGroup {
 		super.createContent(parent);
 
 		Composite fillColorEditorCompo = getEncapsulatedCompo(getToolbar());
-		fillColorEditor = new ColorFieldEditor(getPreferenceConstant(PreferenceConstantHelper.COLOR_FILL),
-				DiagramUIPropertiesImages.get(DiagramUIPropertiesImages.IMG_FILL_COLOR), fillColorEditorCompo);
+		fillColorEditor = new ColorFieldEditor(getPreferenceConstant(PreferenceConstantHelper.COLOR_FILL), DiagramUIPropertiesImages.get(DiagramUIPropertiesImages.IMG_FILL_COLOR), fillColorEditorCompo);
 		fillColorEditor.setPage(dialogPage);
 
 		addFieldEditor(fillColorEditor);

@@ -50,8 +50,7 @@ import org.eclipse.ui.preferences.ScopedPreferenceStore;
  * </ul>
  * </p>
  */
-public abstract class AbstractPapyrusPreferencePage extends PreferencePage implements IWorkbenchPreferencePage,
-IWorkbenchPropertyPage {
+public abstract class AbstractPapyrusPreferencePage extends PreferencePage implements IWorkbenchPreferencePage, IWorkbenchPropertyPage {
 
 	private IProject project;
 
@@ -65,16 +64,19 @@ IWorkbenchPropertyPage {
 	public IAdaptable getElement() {
 		return project;
 	}
-	protected void setPreferenceKey(String aKey){
-		this.key=aKey;
+
+	protected void setPreferenceKey(String aKey) {
+		this.key = aKey;
 	}
-	protected String getPreferenceKey(){
+
+	protected String getPreferenceKey() {
 		return this.key;
 	}
 
 	public IPreferenceStore getPreferenceStore() {
 		return Activator.getDefault().getPreferenceStore();
 	}
+
 	/**
 	 * @see org.eclipse.ui.IWorkbenchPropertyPage#setElement(org.eclipse.core.runtime.IAdaptable)
 	 */
@@ -154,6 +156,7 @@ IWorkbenchPropertyPage {
 		VisiblePageSingleton.getInstance().store();
 		return super.performOk();
 	}
+
 	/**
 	 * Stores the values of the fields contained in this page into the preference store.
 	 */
@@ -164,6 +167,7 @@ IWorkbenchPropertyPage {
 			}
 		}
 	}
+
 	/**
 	 * Store all preferences
 	 */
@@ -171,6 +175,7 @@ IWorkbenchPropertyPage {
 		storePreferences();
 
 	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -216,16 +221,18 @@ IWorkbenchPropertyPage {
 
 
 	}
+
 	@Override
 	public void setVisible(boolean visible) {
 		// TODO Auto-generated method stub
-		if(visible==true){
+		if(visible == true) {
 			VisiblePageSingleton.getInstance().setVisiblePage(this);
 			initGroup();
 		}
 		super.setVisible(visible);
 
 	}
+
 	/**
 	 * The bundle ID used to defined the preference store
 	 * 

@@ -19,23 +19,27 @@ import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.widgets.Composite;
 
 /**
- * The Class EditorBackgroundColor is the back ground  group specailized at the papyrus editor level.
+ * The Class EditorBackgroundColor is the back ground group specailized at the papyrus editor level.
  */
 public class EditorBackgroundColor extends BackgroundColor {
 
 	/**
 	 * Instantiates a new editor background color.
 	 * 
-	 * @param parent the parent composite
-	 * @param key the key of the preference
-	 * @param dialogPage the dialog page
+	 * @param parent
+	 *        the parent composite
+	 * @param key
+	 *        the key of the preference
+	 * @param dialogPage
+	 *        the dialog page
 	 */
-	public EditorBackgroundColor(Composite parent, String key,
-			DialogPage dialogPage) {
+	public EditorBackgroundColor(Composite parent, String key, DialogPage dialogPage) {
 		super(parent, key, dialogPage);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.papyrus.preferences.ui.AbstractGroup#getPreferenceConstant(int)
 	 */
 	protected String getPreferenceConstant(int preferenceType) {

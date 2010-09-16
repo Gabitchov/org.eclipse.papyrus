@@ -68,11 +68,15 @@ public class GradientFieldEditor extends FieldEditor {
 	private int transparency = 0;
 
 	private int style = GradientStyle.HORIZONTAL;
-/**
- * create a field to display gradient preference
- * @param gradientPreferenceName the name of the gradient field
- * @param parent  the parent composite
- */
+
+	/**
+	 * create a field to display gradient preference
+	 * 
+	 * @param gradientPreferenceName
+	 *        the name of the gradient field
+	 * @param parent
+	 *        the parent composite
+	 */
 	public GradientFieldEditor(String gradientPreferenceName, Composite parent) {
 		super(gradientPreferenceName, "", parent); //$NON-NLS-1$
 	}
@@ -180,8 +184,7 @@ public class GradientFieldEditor extends FieldEditor {
 
 	@Override
 	protected void doStore() {
-		GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(color1, color2,
-				style, transparency);
+		GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(color1, color2, style, transparency);
 		getPreferenceStore().setValue(getPreferenceName(), gradientPreferenceConverter.getPreferenceValue());
 	}
 
@@ -252,8 +255,7 @@ public class GradientFieldEditor extends FieldEditor {
 	 * @see org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.ColorPalettePopup
 	 */
 	private RGB changeColor() {
-		ColorPalettePopup popup = new ColorPalettePopup(colorButton.getParent().getShell(),
-				IDialogConstants.BUTTON_BAR_HEIGHT);
+		ColorPalettePopup popup = new ColorPalettePopup(colorButton.getParent().getShell(), IDialogConstants.BUTTON_BAR_HEIGHT);
 		Rectangle r = colorButton.getBounds();
 		Point location = colorButton.getParent().toDisplay(r.x, r.y);
 		popup.open(new Point(location.x, location.y + r.height));
@@ -264,12 +266,14 @@ public class GradientFieldEditor extends FieldEditor {
 		setButtonImage(rgb);
 		return rgb;
 	}
-	
+
 	/**
 	 * used to set disable this field editor
-	 * @param enabled a boolean, ture to edit the field
+	 * 
+	 * @param enabled
+	 *        a boolean, ture to edit the field
 	 */
-	public void setEnabled(boolean  enabled){
+	public void setEnabled(boolean enabled) {
 		colorButton.setEnabled(enabled);
 		horizontalStyleButton.setEnabled(enabled);
 		transparencyValueSpinner.setEnabled(enabled);

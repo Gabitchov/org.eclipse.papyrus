@@ -20,22 +20,23 @@ import org.eclipse.papyrus.preferences.pages.internal.PapyrusPathmapsPreferenceP
 import org.eclipse.papyrus.preferences.pages.internal.PapyrusPrintingPreferencePage;
 import org.eclipse.papyrus.preferences.pages.internal.PapyrusRulersAndGridPreferencePage;
 import org.eclipse.papyrus.preferences.pages.internal.PapyrusUML2PreferencePage;
+
 /**
  * This class is use to initialize the preference at the level Papyrus editor
- *
+ * 
  */
 public class PapyrusPreferenceInitializer extends AbstractPreferenceInitializer {
 
 	private IPreferenceStore store;
 
-/**
- * constructor of this class
- */
+	/**
+	 * constructor of this class
+	 */
 	public PapyrusPreferenceInitializer() {
-		store= Activator.getDefault().getPreferenceStore();
+		store = Activator.getDefault().getPreferenceStore();
 	}
 
-	
+
 	@Override
 	public void initializeDefaultPreferences() {
 		PapyrusAllDiagramsPreferencePage.initDefaults(store);

@@ -80,9 +80,14 @@ public class Messages extends NLS {
 	public static String GradientFieldEditor_Transparency;
 
 	public static String GradientFieldEditor_Vertical;
+
 	public static String DecorationGroup_Name;
-	
-	public static String DimensionGroupName ;
+
+	public static String DimensionGroupName;
+
+
+
+	public static String NodeCompartmentGroup_Compartiments;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

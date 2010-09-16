@@ -27,16 +27,20 @@ public class DiagramDecorationGroup extends DecorationGroup {
 	/**
 	 * Instantiates a new diagram decoration group.
 	 * 
-	 * @param parent the parent
-	 * @param key the prefix preference key the kind of diagram
-	 * @param dialogPage the dialog page
+	 * @param parent
+	 *        the parent
+	 * @param key
+	 *        the prefix preference key the kind of diagram
+	 * @param dialogPage
+	 *        the dialog page
 	 */
-	public DiagramDecorationGroup(Composite parent, String key,
-			DialogPage dialogPage) {
+	public DiagramDecorationGroup(Composite parent, String key, DialogPage dialogPage) {
 		super(parent, key, dialogPage);
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.papyrus.preferences.ui.AbstractGroup#getPreferenceConstant(int)
 	 */
 	protected String getPreferenceConstant(int preferenceType) {

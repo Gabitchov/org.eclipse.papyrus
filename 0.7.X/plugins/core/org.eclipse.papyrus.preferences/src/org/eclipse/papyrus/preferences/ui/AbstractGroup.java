@@ -131,7 +131,7 @@ public abstract class AbstractGroup extends Composite {
 	 * 
 	 * @see org.eclipse.papyrus.preferences.ui.AbstractGroup#addFieldEditor(FieldEditor)
 	 */
-	public  void load() {
+	public void load() {
 		for(FieldEditor fe : fieldsEditor) {
 			fe.load();
 		}

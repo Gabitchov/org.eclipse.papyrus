@@ -26,16 +26,20 @@ public class EditorDecorationGroup extends DecorationGroup {
 	/**
 	 * Instantiates a new editor decoration group.
 	 * 
-	 * @param parent the parent composite
-	 * @param key the key
-	 * @param dialogPage the dialog page
+	 * @param parent
+	 *        the parent composite
+	 * @param key
+	 *        the key
+	 * @param dialogPage
+	 *        the dialog page
 	 */
-	public EditorDecorationGroup(Composite parent, String key,
-			DialogPage dialogPage) {
+	public EditorDecorationGroup(Composite parent, String key, DialogPage dialogPage) {
 		super(parent, key, dialogPage);
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.papyrus.preferences.ui.AbstractGroup#getPreferenceConstant(int)
 	 */
 	protected String getPreferenceConstant(int preferenceType) {

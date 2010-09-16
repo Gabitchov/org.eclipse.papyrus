@@ -18,20 +18,20 @@ import java.util.ArrayList;
 /**
  * The Class ApplyValueOnPreferenceKeyDialog display all the preference key and give all selected keys
  */
-public class ApplyValueOnPreferenceKeyDialog extends
-		AbstractPreferenceKeyDialog {
+public class ApplyValueOnPreferenceKeyDialog extends AbstractPreferenceKeyDialog {
 
 	/** The checked key. */
 	protected ArrayList<String> checkedKey;
-	
+
 	/**
 	 * Instantiates a new apply value on preference key dialog.
 	 * 
-	 * @param keys the keys
+	 * @param keys
+	 *        the keys
 	 */
 	public ApplyValueOnPreferenceKeyDialog(String[] keys) {
 		super(keys);
-		checkedKey= new ArrayList<String>();
+		checkedKey = new ArrayList<String>();
 		// TODO Auto-generated constructor stub
 	}
 
@@ -40,32 +40,36 @@ public class ApplyValueOnPreferenceKeyDialog extends
 	 * 
 	 * @return the key to remove
 	 */
-	public ArrayList<String> getKeyToRemove(){
+	public ArrayList<String> getKeyToRemove() {
 		return checkedKey;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.jface.dialogs.Dialog#okPressed()
 	 */
 	@Override
 	protected void okPressed() {
 
-	
-		
-		for( int i =0;i<keyTable.getItems().length;i++){
-			if(keyTable.getItems()[i].getChecked()){
+
+
+		for(int i = 0; i < keyTable.getItems().length; i++) {
+			if(keyTable.getItems()[i].getChecked()) {
 				checkedKey.add((String)keyTable.getItems()[i].getData());
 			}
 		}
 		super.okPressed();
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.jface.dialogs.Dialog#cancelPressed()
 	 */
 	@Override
 	protected void cancelPressed() {
 		super.cancelPressed();
-		checkedKey= new ArrayList<String>();
+		checkedKey = new ArrayList<String>();
 	}
 }

@@ -26,16 +26,20 @@ public class DiagramLinkColorGroup extends LinkColorGroup {
 	/**
 	 * Instantiates a new diagram link color group.
 	 * 
-	 * @param parent the parent composite
-	 * @param key the tkind of the diagram
-	 * @param dialogPage the dialog page
+	 * @param parent
+	 *        the parent composite
+	 * @param key
+	 *        the tkind of the diagram
+	 * @param dialogPage
+	 *        the dialog page
 	 */
-	public DiagramLinkColorGroup(Composite parent, String key,
-			DialogPage dialogPage) {
+	public DiagramLinkColorGroup(Composite parent, String key, DialogPage dialogPage) {
 		super(parent, key, dialogPage);
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.papyrus.preferences.ui.AbstractGroup#getPreferenceConstant(int)
 	 */
 	protected String getPreferenceConstant(int preferenceType) {

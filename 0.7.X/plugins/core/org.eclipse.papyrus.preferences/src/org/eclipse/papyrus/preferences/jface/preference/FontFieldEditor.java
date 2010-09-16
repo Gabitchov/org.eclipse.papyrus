@@ -35,7 +35,7 @@ import org.eclipse.swt.widgets.Composite;
  * <li>Bold</li>
  * <li>Italic</li>
  * </ul>
- *This field editor is inspired by the class {@link org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.ColorsAndFontsPropertySection
+ * This field editor is inspired by the class {@link org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.ColorsAndFontsPropertySection
  * <em>ColorsAndFontsPropertySection</em>}
  * 
  * @author tlandre
@@ -56,8 +56,7 @@ public class FontFieldEditor extends FieldEditor {
 
 	/** properties */
 	// @unused
-	protected static final String FONT_COMMAND_NAME = DiagramUIPropertiesMessages.Font_commandText
-			+ StringStatics.SPACE + VALUE_CHANGED_STRING;
+	protected static final String FONT_COMMAND_NAME = DiagramUIPropertiesMessages.Font_commandText + StringStatics.SPACE + VALUE_CHANGED_STRING;
 
 	// @unused
 	protected static final String FONTS_AND_COLORS_LABEL = DiagramUIPropertiesMessages.FontAndColor_nameLabel;

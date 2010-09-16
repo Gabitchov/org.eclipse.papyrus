@@ -56,31 +56,31 @@ public class PapyrusAllDiagramsPreferencePage extends AbstractPapyrusPreferenceP
 	protected void createPageContents(Composite parent) {
 		Group contentGroup = new Group(parent, 2);
 		contentGroup.setLayout(new GridLayout(4, false));
-		
+
 		//FontGroup
 		FontGroup fontGroupComposite = new EditorFontGroup(contentGroup, getTitle(), this);
 		addAbstractGroup(fontGroupComposite);
 		//color
 		NodeColorGroup colorGroupForNodeComposite = new EditorNodeColorGroup(contentGroup, getTitle(), this);
 		addAbstractGroup(colorGroupForNodeComposite);
-		
+
 
 		// router for links
 		ConnectionGroup connectionGroupComposite = new EditorConnectionGroup(contentGroup, getTitle(), this);
 		addAbstractGroup(connectionGroupComposite);
-	
+
 		//background
 		BackgroundColor backgroundColorGroup = new EditorBackgroundColor(contentGroup, getTitle(), this);
 		addAbstractGroup(backgroundColorGroup);
-		
+
 		DecorationGroup decorationGroupComposite = new EditorDecorationGroup(contentGroup, getTitle(), this);
 		addAbstractGroup(decorationGroupComposite);
-		
+
 		DimensionGroup dimensionGroup = new EditorDimensionGroup(contentGroup, getTitle(), this);
 		addAbstractGroup(dimensionGroup);
 	}
 
-	
+
 	@Override
 	protected String getBundleId() {
 		return Activator.PLUGIN_ID;
@@ -88,39 +88,41 @@ public class PapyrusAllDiagramsPreferencePage extends AbstractPapyrusPreferenceP
 
 	/**
 	 * use to init default preferences at the papyrus level
-	 * @param store the preference store
+	 * 
+	 * @param store
+	 *        the preference store
 	 */
 	public static void initDefaults(IPreferenceStore store) {
-		
+
 		//Nodes
-		PreferenceConverter.setDefault(store, PreferenceConstantHelper.getPapyrusEditorConstant( PreferenceConstantHelper.COLOR_FILL), new org.eclipse.swt.graphics.RGB(255, 255, 255));
-		PreferenceConverter.setDefault(store, PreferenceConstantHelper.getPapyrusEditorConstant(  PreferenceConstantHelper.COLOR_LINE), new org.eclipse.swt.graphics.RGB(0, 0, 0));
+		PreferenceConverter.setDefault(store, PreferenceConstantHelper.getPapyrusEditorConstant(PreferenceConstantHelper.COLOR_FILL), new org.eclipse.swt.graphics.RGB(255, 255, 255));
+		PreferenceConverter.setDefault(store, PreferenceConstantHelper.getPapyrusEditorConstant(PreferenceConstantHelper.COLOR_LINE), new org.eclipse.swt.graphics.RGB(0, 0, 0));
 
 		// Set the default for the gradient
-		store.setDefault(PreferenceConstantHelper.getPapyrusEditorConstant(  PreferenceConstantHelper.GRADIENT_POLICY), false);
+		store.setDefault(PreferenceConstantHelper.getPapyrusEditorConstant(PreferenceConstantHelper.GRADIENT_POLICY), false);
 		GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(new org.eclipse.swt.graphics.RGB(255, 255, 255), new org.eclipse.swt.graphics.RGB(0, 0, 0), 0, 0);
-		store.setDefault(PreferenceConstantHelper.getPapyrusEditorConstant(  PreferenceConstantHelper.COLOR_GRADIENT), gradientPreferenceConverter.getPreferenceValue());
+		store.setDefault(PreferenceConstantHelper.getPapyrusEditorConstant(PreferenceConstantHelper.COLOR_GRADIENT), gradientPreferenceConverter.getPreferenceValue());
 
 		// Links
-		store.setDefault(PreferenceConstantHelper.getPapyrusEditorConstant(  PreferenceConstantHelper.SMOOTHNESS), Smoothness.NONE);
-		store.setDefault(PreferenceConstantHelper.getPapyrusEditorConstant(  PreferenceConstantHelper.JUMPLINK_STATUS), JumpLinkStatus.NONE);
-		store.setDefault(PreferenceConstantHelper.getPapyrusEditorConstant(  PreferenceConstantHelper.JUMPLINK_TYPE), JumpLinkStatus.NONE);
-		store.setDefault(PreferenceConstantHelper.getPapyrusEditorConstant(  PreferenceConstantHelper.JUMPLINK_REVERSE),false );
+		store.setDefault(PreferenceConstantHelper.getPapyrusEditorConstant(PreferenceConstantHelper.SMOOTHNESS), Smoothness.NONE);
+		store.setDefault(PreferenceConstantHelper.getPapyrusEditorConstant(PreferenceConstantHelper.JUMPLINK_STATUS), JumpLinkStatus.NONE);
+		store.setDefault(PreferenceConstantHelper.getPapyrusEditorConstant(PreferenceConstantHelper.JUMPLINK_TYPE), JumpLinkStatus.NONE);
+		store.setDefault(PreferenceConstantHelper.getPapyrusEditorConstant(PreferenceConstantHelper.JUMPLINK_REVERSE), false);
 
-		store.setDefault(PreferenceConstantHelper.getPapyrusEditorConstant(  PreferenceConstantHelper.ROUTING_STYLE), Routing.MANUAL );
-		store.setDefault(PreferenceConstantHelper.getPapyrusEditorConstant(  PreferenceConstantHelper.ROUTING_POLICY_OBSTRUCTION), false);
-		store.setDefault(PreferenceConstantHelper.getPapyrusEditorConstant(  PreferenceConstantHelper.ROUTING_POLICY_DISTANCE), false);
-	
+		store.setDefault(PreferenceConstantHelper.getPapyrusEditorConstant(PreferenceConstantHelper.ROUTING_STYLE), Routing.MANUAL);
+		store.setDefault(PreferenceConstantHelper.getPapyrusEditorConstant(PreferenceConstantHelper.ROUTING_POLICY_OBSTRUCTION), false);
+		store.setDefault(PreferenceConstantHelper.getPapyrusEditorConstant(PreferenceConstantHelper.ROUTING_POLICY_DISTANCE), false);
+
 		//decoration
-		store.setDefault(PreferenceConstantHelper.getPapyrusEditorConstant(  PreferenceConstantHelper.SHADOW), false );
-		store.setDefault(PreferenceConstantHelper.getPapyrusEditorConstant(  PreferenceConstantHelper.ELEMENTICON), false);
-		store.setDefault(PreferenceConstantHelper.getPapyrusEditorConstant(  PreferenceConstantHelper.QUALIFIEDNAME), false);
-	//dimension
-		store.setDefault(PreferenceConstantHelper.getPapyrusEditorConstant(  PreferenceConstantHelper.WIDTH), 100 );
-		store.setDefault(PreferenceConstantHelper.getPapyrusEditorConstant(  PreferenceConstantHelper.HEIGHT), 100);
-		
+		store.setDefault(PreferenceConstantHelper.getPapyrusEditorConstant(PreferenceConstantHelper.SHADOW), false);
+		store.setDefault(PreferenceConstantHelper.getPapyrusEditorConstant(PreferenceConstantHelper.ELEMENTICON), false);
+		store.setDefault(PreferenceConstantHelper.getPapyrusEditorConstant(PreferenceConstantHelper.QUALIFIEDNAME), false);
+		//dimension
+		store.setDefault(PreferenceConstantHelper.getPapyrusEditorConstant(PreferenceConstantHelper.WIDTH), 100);
+		store.setDefault(PreferenceConstantHelper.getPapyrusEditorConstant(PreferenceConstantHelper.HEIGHT), 100);
+
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
