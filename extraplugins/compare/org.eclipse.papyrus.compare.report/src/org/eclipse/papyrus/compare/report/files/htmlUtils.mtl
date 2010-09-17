@@ -6,7 +6,11 @@
 [import modelUtils/]
 
 [template public elementHeading(el : EObject, index: String)]
-[heading(hierarchyLevel(index))/][index/] [elementMetaclass(el)/]&lt;[elementStereotypesAndKeywords(el)/] &gt; [el.label()/][closeHeading()/]
+[heading(hierarchyLevel(index))/][index/] [elementMetaclass(el)/]
+[if elementStereotypesAndKeywords(el) <> '']
+&lt;[elementStereotypesAndKeywords(el)/]&gt; 
+[/if]
+[el.label()/][closeHeading()/]
 [/template]
 
 [template public docHead()]
