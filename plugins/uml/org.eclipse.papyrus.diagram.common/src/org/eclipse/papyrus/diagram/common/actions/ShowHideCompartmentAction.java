@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.draw2d.IFigure;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
@@ -26,9 +25,10 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ResizableCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpart.EditPartService;
 import org.eclipse.gmf.runtime.notation.BasicCompartment;
+import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ITreeContentProvider;
@@ -290,8 +290,17 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 				element = ((EditPartRepresentation)element).getUMLElement();
 			}
 
-			if(element instanceof BasicCompartment) {
+			/*if(element instanceof BasicCompartment) {
 				CustomEditPartRepresentation rep = findRepresentation(element, representations);
+				if(rep != null) {
+					String name = rep.getName(element);
+					if(name != null) {
+						return name;
+					}
+				}
+			}*/
+			if(element instanceof BasicCompartment || element instanceof DecorationNode){
+			CustomEditPartRepresentation rep = findRepresentation(element, representations);
 				if(rep != null) {
 					String name = rep.getName(element);
 					if(name != null) {
@@ -452,6 +461,8 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 				// Only add compartment
 				if(child instanceof BasicCompartment) {
 					this.possibleCompartments.add((View)child);
+				} else if(child instanceof DecorationNode) {
+					this.possibleCompartments.add((View)child);
 				}
 			}
 
@@ -491,10 +502,14 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 				if(view != null) {
 					EditPart dummyEP = EditPartService.getInstance().createGraphicEditPart(view);
 					IGraphicalEditPart epp = (IGraphicalEditPart)dummyEP;
-					IFigure fig1 = epp.getFigure();
-					if(fig1 instanceof ResizableCompartmentFigure) {
-						name = ((ResizableCompartmentFigure)fig1).getCompartmentTitle();
+					//					IFigure fig1 = epp.getFigure();
+					//					if(fig1 instanceof ResizableCompartmentFigure) {//TODO not useful to use the figure?
+					//						name = ((ResizableCompartmentFigure)fig1).getCompartmentTitle();
+					//					} else if(fig1 == null) {
+					if(dummyEP instanceof ResizableCompartmentEditPart) {
+						name = ((ResizableCompartmentEditPart)dummyEP).getCompartmentName();
 					}
+					//					}
 					dummyEP = null;
 				}
 			}
