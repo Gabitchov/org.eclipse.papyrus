@@ -4,6 +4,7 @@
 [import common/]
 [import modelUtils/]
 [import tableUtils/]
+[import htmlUtils/]
 
 [import attributeChange/]
 [import referenceChange/]

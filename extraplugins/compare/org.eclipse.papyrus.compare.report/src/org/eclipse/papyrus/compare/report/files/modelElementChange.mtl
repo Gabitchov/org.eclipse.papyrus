@@ -3,6 +3,7 @@
 
 [import modelUtils/]
 [import tableUtils/]
+[import htmlUtils/]
 
 [template public genModelElementChange(el : ModelElementChangeLeftTarget, prefix : String , leftRoot: String, rightRoot: String)]
 [elementHeading(el.leftElement, prefix)/]

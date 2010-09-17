@@ -3,6 +3,7 @@
 
 [import modelUtils/]
 [import common/]
+[import htmlUtils/]
 
 [template public openTable()]
 <TABLE ><TBODY>
@@ -33,22 +34,4 @@
 <tr><TD class="TableCell" style="width: 100mm;">[leftElement/]</td>
 <TD class="TableCell" style="width: 100mm;">[rightElement/]</td></tr>
 [/template]
-
-[template public elementHeading(el : EObject, index: String)]
-[heading(hierarchyLevel(index))/][index/] [elementMetaclass(el)/] [elementStereotypesAndKeywords(el)/] [el.label()/][closeHeading()/]
-[/template]
-
-[template public lineBreak()]
-</br>
-[/template]
-
-[template public heading(level : Integer)]
-<DIV class="Heading[level/]">
-[/template]
-
-[template public closeHeading()]
-</DIV>
-[/template]
-
-[query public noElement() : String = '-'/]
 

@@ -22,7 +22,7 @@ This will return the name of the given element
 
 [query public elementStereotypesAndKeywords(element : OclAny) : String = if (not element.oclIsUndefined() and element.oclIsKindOf(Element)) then elementStereotypes(element.oclAsType(Element)) else 'no' endif/]
 
-[query public elementStereotypes(element : Element) : String = if (not element.getAppliedStereotypes()->isEmpty()) then elementStereotypes2(element) else '' endif/]
+[query public elementStereotypes(element : Element) : String = if (not element.getAppliedStereotypes()->isEmpty()) then elementStereotypes2() else '' endif/]
 
 [query public elementStereotypes2(element : Element) : String = element.getAppliedStereotypes().elementName()->sep(', ')/]
 
@@ -31,3 +31,6 @@ This will return the name of the given element
 [query private umlLabel(element : OclAny) : String = if (not element.oclIsUndefined() and element.oclIsKindOf(Element)) then element.oclAsType(NamedElement).getLabel() else '' endif/]
 
 [query private isEmpty(str : String) : Boolean = str.oclIsUndefined() or str.size() = 0/]
+
+[query public noElement() : String = '-'/]
+
