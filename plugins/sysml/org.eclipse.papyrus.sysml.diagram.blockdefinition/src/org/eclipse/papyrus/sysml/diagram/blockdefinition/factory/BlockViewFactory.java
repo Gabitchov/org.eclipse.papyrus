@@ -25,7 +25,7 @@ public class BlockViewFactory extends AbstractShapeViewFactory {
 	 */
 	@Override
 	protected void decorateView(View containerView, View view, IAdaptable element, String semanticHint, int index, boolean persisted) {
-		super.decorateView(containerView, view, element, semanticHint, index, persisted);
+
 
 		getViewService().createNode(element, view, BlockDefinitionDiagramElementTypes.BLOCK_NAME_LABEL_HINT, ViewUtil.APPEND, persisted, getPreferencesHint());
 		getViewService().createNode(element, view, BlockDefinitionDiagramElementTypes.BLOCK_PROPERTY_COMPARTMENT_HINT, ViewUtil.APPEND, persisted, getPreferencesHint());
@@ -34,6 +34,9 @@ public class BlockViewFactory extends AbstractShapeViewFactory {
 		getViewService().createNode(element, view, BlockDefinitionDiagramElementTypes.BLOCK_PART_COMPARTMENT_HINT, ViewUtil.APPEND, persisted, getPreferencesHint());
 		getViewService().createNode(element, view, BlockDefinitionDiagramElementTypes.BLOCK_REFERENCE_COMPARTMENT_HINT, ViewUtil.APPEND, persisted, getPreferencesHint());
 		getViewService().createNode(element, view, BlockDefinitionDiagramElementTypes.BLOCK_VALUE_COMPARTMENT_HINT, ViewUtil.APPEND, persisted, getPreferencesHint());
+
+		//this action needs to be done after the compartments creation
+		super.decorateView(containerView, view, element, semanticHint, index, persisted);
 	}
 
 	/**
@@ -51,6 +54,8 @@ public class BlockViewFactory extends AbstractShapeViewFactory {
 		PreferenceInitializerForElementHelper.initForegroundFromPrefs(view, store, elementName);
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(view, store, elementName);
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(view, store, elementName);
+
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(view, store, elementName);
 
 	}
 }
