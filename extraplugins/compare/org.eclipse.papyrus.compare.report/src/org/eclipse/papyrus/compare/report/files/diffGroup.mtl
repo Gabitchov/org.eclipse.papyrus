@@ -12,7 +12,9 @@
 [import conflictingDiffElement/]
 
 [template public processDiffGroup(el : DiffGroup, prefix : String, leftRoot: String, rightRoot: String) {subgroups: Sequence(DiffGroup) = el.subDiffGroups();}]
+[if prefix <> '']
 [elementHeading(el.rightParent, prefix)/]
+[/if]
 [el.genAttributeChanges(leftRoot, rightRoot)/]
 [el.genReferenceChanges(leftRoot, rightRoot)/]
 [for (next : DiffGroup | subgroups)]
@@ -25,7 +27,6 @@
 [for (next: ConflictingDiffElement | el.conflictingDiffElements())]
 [next.genConflictingDiffElement(composeIndex(prefix, el.modelElementChanges()->size()+ i +1), leftRoot, rightRoot)/]
 [/for]
-
 
 [/template]
 
