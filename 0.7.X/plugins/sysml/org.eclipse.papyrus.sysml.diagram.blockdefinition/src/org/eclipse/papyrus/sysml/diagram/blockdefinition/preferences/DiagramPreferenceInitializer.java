@@ -24,5 +24,24 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 		IPreferenceStore store = getPreferenceStore();
 
 		PortPreferencePage.initDefaults(store);
+
+		BlockPreferencePage.initDefaults(store);
+
+		AssociationClassNodePreferencePage.initDefaults(store);
+
+		ClassPreferencePage.initDefaults(store);
+
+		DataTypePreferencePage.initDefaults(store);
+
+		EnumerationPreferencePage.initDefaults(store);
+
+		InstanceSpecificationPreferencePage.initDefaults(store);
+
+		InterfacePreferencePage.initDefaults(store);
+
+		ModelPreferencePage.initDefaults(store);
+
+		PackagePreferencePage.initDefaults(store);
+
 	}
 }
