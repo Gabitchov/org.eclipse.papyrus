@@ -22,10 +22,10 @@
 [/for]
 
 [for (next: ModelElementChange | el.modelElementChanges())]
-[next.genModelElementChange(composeIndex(prefix, subgroups->size() + i + 1), leftRoot, rightRoot)/]
+[next.genModelElementChange(composeIndex(prefix, subgroups->size() + i), leftRoot, rightRoot)/]
 [/for]
 [for (next: ConflictingDiffElement | el.conflictingDiffElements())]
-[next.genConflictingDiffElement(composeIndex(prefix, el.modelElementChanges()->size()+ i +1), leftRoot, rightRoot)/]
+[next.genConflictingDiffElement(composeIndex(prefix, el.modelElementChanges()->size()+ i), leftRoot, rightRoot)/]
 [/for]
 
 [/template]
