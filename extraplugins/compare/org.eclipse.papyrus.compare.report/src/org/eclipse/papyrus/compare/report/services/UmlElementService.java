@@ -9,6 +9,7 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.uml2.uml.edit.providers.UMLItemProviderAdapterFactory;
 
 public class UmlElementService {
+	
 	private static  AdapterFactoryLabelProvider oursAdapterLabelProvider = new AdapterFactoryLabelProvider(
             new UMLItemProviderAdapterFactory());
 
