@@ -12,7 +12,7 @@ Deleted in the second model
 
 [openTable()/]
 [addHeader(leftRoot, rightRoot)/]
-[addRow(elementContent(el.leftElement), noElement())/]
+[addRow(elementContents(el.leftElement), noElement())/]
 [closeTable()/]
 [/template]
 
@@ -23,8 +23,12 @@ Added in the second model
 
 [openTable()/]
 [addHeader(leftRoot, rightRoot)/]
-[addRow(noElement(), elementContent(el.rightElement))/]
+[addRow(noElement(), elementContents(el.rightElement))/]
 [closeTable()/]
+[/template]
+
+[template public elementContents(obj: EObject)]
+[invoke('org.eclipse.papyrus.compare.report.services.UmlElementService', 'getContents(org.eclipse.emf.ecore.EObject)', Sequence{obj})/]
 [/template]
 
 

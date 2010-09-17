@@ -18,7 +18,7 @@
 [/template]
 
 [template public lineBreak()]
-</br>
+<br>
 [/template]
 
 [template public heading(level : Integer)]
@@ -29,4 +29,4 @@
 </DIV>
 [/template]
 
-[query private decode(name : OclAny) : String = name.oclAsType(String).replaceAll('<', '&lt;').replaceAll('>', '&gt;')/]
+[query public decode(name : OclAny) : String = name.oclAsType(String).replaceAll('<', '&lt;').replaceAll('>', '&gt;')/]
