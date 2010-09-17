@@ -2,20 +2,27 @@
 [module htmlUtils('http://www.eclipse.org/emf/2002/Ecore')/]
 
 [import common/]
+[import css/]
 [import modelUtils/]
 
 [template public elementHeading(el : EObject, index: String)]
 [heading(hierarchyLevel(index))/][index/] [elementMetaclass(el)/]&lt;[elementStereotypesAndKeywords(el)/] &gt; [el.label()/][closeHeading()/]
 [/template]
 
+[template public docHead()]
+<HEAD>
+[genCSS()/]
+</HEAD>
+[/template]
+
 [template public lineBreak()]
 </br>
 [/template]
 
-[template private heading(level : Integer)]
+[template public heading(level : Integer)]
 <DIV class="Heading[level/]">
 [/template]
 
-[template private closeHeading()]
+[template public closeHeading()]
 </DIV>
 [/template]
