@@ -13,7 +13,7 @@ A representation of the model object 'Attribute Change'. Superclass of elements 
 [template public genAttributeChanges(el : DiffElement, leftRoot: String, rightRoot: String) {attributeChanges: Sequence(AttributeChange) = attributeChanges(el); }]
 [if not attributeChanges->isEmpty()]
 [openTable()/]
-[addHeader('Attributes Changed', leftRoot, rightRoot)/]
+[addHeader('Changed Attributes', leftRoot, rightRoot)/]
 [for (attributeChanges)]
 [genAttributeChange()/]
 [/for]
