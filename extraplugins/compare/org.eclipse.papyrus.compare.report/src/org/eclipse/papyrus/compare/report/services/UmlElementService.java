@@ -29,7 +29,7 @@ public class UmlElementService {
             {
              EAttribute attr = (EAttribute)eStructuralFeature;
               result.append(attr.getName());
-              result.append('=');
+              result.append(" : ");
               result.append(eObject.eGet(attr));
               result.append("</br>");
             }
@@ -39,7 +39,7 @@ public class UmlElementService {
               if (eReference.isContainment())
               {
                   result.append(eReference.getName());
-                  result.append('=');
+                  result.append(" : ");
                   result.append(eObject.eGet(eReference));
                   result.append("</br>");
               }

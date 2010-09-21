@@ -51,6 +51,16 @@ font-family: Verdana;
 font-size: 11pt;
 padding-left: 1cm;
 padding-bottom: 6pt;}
+.Heading5 { 
+font-family: Verdana;
+font-size: 11pt;
+padding-left: 1.2cm;
+padding-bottom: 6pt;}
+.Heading6 { 
+font-family: Verdana;
+font-size: 11pt;
+padding-left: 1.4cm;
+padding-bottom: 6pt;}
 .TableCell { 
 text-align: left;
 vertical-align:middle;
