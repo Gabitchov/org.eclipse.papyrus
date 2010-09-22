@@ -47,7 +47,7 @@ public abstract class AbstractViewActionDelegate implements IViewActionDelegate 
 
 	/**
 	 * Returns <code>true</code> if the element is a selectableElement, i.e. if the action
-	 * should be enable
+	 * should be enabled
 	 * 
 	 * @param element
 	 *        the element to test
