@@ -28,83 +28,83 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = getPreferenceStore();
 
-		ShapeNamedElementPreferencePage.initDefaults(store);
-
-		TimeConstraintPreferencePage.initDefaults(store);
-
-		ExpansionNodePreferencePage.initDefaults(store);
-
-		ValuePinPreferencePage.initDefaults(store);
-
-		LoopNodePreferencePage.initDefaults(store);
-
-		MergeNodePreferencePage.initDefaults(store);
-
-		ActionInputPinPreferencePage.initDefaults(store);
-
-		CallOperationActionPreferencePage.initDefaults(store);
-
-		CallBehaviorActionPreferencePage.initDefaults(store);
-
-		ActivityPartitionPreferencePage.initDefaults(store);
-
-		InputPinPreferencePage.initDefaults(store);
-
-		SendObjectActionPreferencePage.initDefaults(store);
-
-		InitialNodePreferencePage.initDefaults(store);
-
-		OutputPinPreferencePage.initDefaults(store);
-
-		DurationConstraintPreferencePage.initDefaults(store);
-
-		StructuredActivityNodePreferencePage.initDefaults(store);
-
-		SequenceNodePreferencePage.initDefaults(store);
-
-		ActivityParameterNodePreferencePage.initDefaults(store);
-
-		ActivityPreferencePage.initDefaults(store);
-
-		OpaqueActionPreferencePage.initDefaults(store);
-
-		DecisionNodePreferencePage.initDefaults(store);
+		InteractionConstraintPreferencePage.initDefaults(store);
 
 		ValueSpecificationActionPreferencePage.initDefaults(store);
 
-		JoinNodePreferencePage.initDefaults(store);
+		SendObjectActionPreferencePage.initDefaults(store);
 
-		ConstraintPreferencePage.initDefaults(store);
+		SequenceNodePreferencePage.initDefaults(store);
 
 		SendSignalActionPreferencePage.initDefaults(store);
 
-		FlowFinalNodePreferencePage.initDefaults(store);
-
-		InterruptibleActivityRegionPreferencePage.initDefaults(store);
-
-		InteractionConstraintPreferencePage.initDefaults(store);
-
-		IntervalConstraintPreferencePage.initDefaults(store);
-
 		DataStoreNodePreferencePage.initDefaults(store);
 
-		ActivityFinalNodePreferencePage.initDefaults(store);
+		LoopNodePreferencePage.initDefaults(store);
 
-		ParameterPreferencePage.initDefaults(store);
+		CallBehaviorActionPreferencePage.initDefaults(store);
 
-		ExpansionRegionPreferencePage.initDefaults(store);
+		FlowFinalNodePreferencePage.initDefaults(store);
 
 		AcceptEventActionPreferencePage.initDefaults(store);
 
+		ConditionalNodePreferencePage.initDefaults(store);
+
+		DecisionNodePreferencePage.initDefaults(store);
+
+		ActivityFinalNodePreferencePage.initDefaults(store);
+
+		ActivityPreferencePage.initDefaults(store);
+
+		ShapeNamedElementPreferencePage.initDefaults(store);
+
+		ActivityPartitionPreferencePage.initDefaults(store);
+
 		ForkNodePreferencePage.initDefaults(store);
 
-		ConditionalNodePreferencePage.initDefaults(store);
+		ValuePinPreferencePage.initDefaults(store);
+
+		CallOperationActionPreferencePage.initDefaults(store);
+
+		ActionInputPinPreferencePage.initDefaults(store);
+
+		StructuredActivityNodePreferencePage.initDefaults(store);
+
+		IntervalConstraintPreferencePage.initDefaults(store);
+
+		OpaqueActionPreferencePage.initDefaults(store);
+
+		InitialNodePreferencePage.initDefaults(store);
+
+		DurationConstraintPreferencePage.initDefaults(store);
+
+		ExpansionRegionPreferencePage.initDefaults(store);
+
+		OutputPinPreferencePage.initDefaults(store);
+
+		MergeNodePreferencePage.initDefaults(store);
+
+		ConstraintPreferencePage.initDefaults(store);
+
+		InputPinPreferencePage.initDefaults(store);
+
+		ExpansionNodePreferencePage.initDefaults(store);
+
+		ActivityParameterNodePreferencePage.initDefaults(store);
+
+		TimeConstraintPreferencePage.initDefaults(store);
+
+		InterruptibleActivityRegionPreferencePage.initDefaults(store);
+
+		JoinNodePreferencePage.initDefaults(store);
+
+		ParameterPreferencePage.initDefaults(store);
+
+		ObjectFlowPreferencePage.initDefaults(store);
 
 		ControlFlowPreferencePage.initDefaults(store);
 
 		ExceptionHandlerPreferencePage.initDefaults(store);
-
-		ObjectFlowPreferencePage.initDefaults(store);
 
 	}
 

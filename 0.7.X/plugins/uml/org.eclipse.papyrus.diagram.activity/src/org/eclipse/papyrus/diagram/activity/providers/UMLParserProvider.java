@@ -48,6 +48,7 @@ import org.eclipse.papyrus.diagram.activity.parser.custom.PinValueParser;
 import org.eclipse.papyrus.diagram.activity.parser.custom.StructuredActivityNodeKeywordParser;
 import org.eclipse.papyrus.diagram.activity.parsers.MessageFormatParser;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
+import org.eclipse.papyrus.diagram.common.parser.ConstraintParser;
 import org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -1817,12 +1818,24 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		if(durationConstraintName_5038Parser == null) {
 			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			parser.setViewPattern("<<localPrecondition>>\n{0}"); //$NON-NLS-1$
-			parser.setEditorPattern("{0}"); //$NON-NLS-1$
-			parser.setEditPattern("{0}"); //$NON-NLS-1$
 			durationConstraintName_5038Parser = parser;
 		}
 		return durationConstraintName_5038Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ConstraintParser durationConstraintSpecification_5130Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDurationConstraintSpecification_5130Parser() {
+		if(durationConstraintSpecification_5130Parser == null) {
+			durationConstraintSpecification_5130Parser = new ConstraintParser();
+		}
+		return durationConstraintSpecification_5130Parser;
 	}
 
 	/**
@@ -2174,6 +2187,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getInputPinLabel_5097Parser();
 		case DurationConstraintAsLocalPrecondNameEditPart.VISUAL_ID:
 			return getDurationConstraintName_5038Parser();
+		case DurationConstraintAsLocalPrecondBodyEditPart.VISUAL_ID:
+			return getDurationConstraintSpecification_5130Parser();
 		case DurationConstraintAsLocalPostcondNameEditPart.VISUAL_ID:
 			return getDurationConstraintName_5039Parser();
 		case TimeConstraintAsLocalPrecondNameEditPart.VISUAL_ID:

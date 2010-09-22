@@ -2749,13 +2749,8 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="DurationConstraintEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="CornerBentWithTextFigure"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CornerBentWithTextFigure extends org.eclipse.papyrus.diagram.common.figure.node.CornerBentFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.papyrus.diagram.activity.figures.WrappedLabel fCornerBentContent; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CornerBentWithTextFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setBackgroundColor(THIS_BACK&#xA;);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fCornerBentContent = new org.eclipse.papyrus.diagram.activity.figures.WrappedLabel();&#xA;&#xA;&#xA;&#xA;this.add(fCornerBentContent);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.papyrus.diagram.activity.figures.WrappedLabel getCornerBentContent() {&#xA;&#x9;&#x9;return fCornerBentContent;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_BACK = new org.eclipse.swt.graphics.Color(null, 248, 249, 214);&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:StyleAttributes"
-              fixedBackground="true"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.LocalPreconditionConstraintFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet
@@ -2774,6 +2769,21 @@
               <feature
                   href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
+            <initializers
+                xsi:type="gmfgen:GenReferenceNewElementSpec">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint/specification"/>
+              <newElementInitializers>
+                <initializers
+                    xsi:type="gmfgen:GenFeatureValueSpec"
+                    value="/0/@expressionProviders/@providers.0/@expressions.58">
+                  <feature
+                      href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                </initializers>
+                <elementClass
+                    href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DurationInterval"/>
+              </newElementInitializers>
+            </initializers>
           </modelElementInitializer>
         </modelFacet>
         <labels
@@ -2785,16 +2795,33 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getCornerBentContent"
-              figureQualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.WrappedLabel"/>
+              getterName="getNameLabel"
+              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
               parser="/0/@labelParsers/@implementations.0"
-              viewPattern="&lt;&lt;localPrecondition>>\n{0}"
-              editorPattern="{0}"
-              editPattern="{0}">
+              viewPattern=""
+              editorPattern=""
+              editPattern="">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+          </modelFacet>
+        </labels>
+        <labels
+            visualID="5130"
+            editPartClassName="DurationConstraintAsLocalPrecondBodyEditPart"
+            itemSemanticEditPolicyClassName="DurationConstraintAsLocalPrecondBodyItemSemanticEditPolicy">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:ParentAssignedViewmap"
+              getterName="getConstraintFigure"
+              figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.ConstraintFigure"/>
+          <modelFacet
+              xsi:type="gmfgen:FeatureLabelModelFacet"
+              parser="/0/@labelParsers/@implementations.22">
+            <metaFeatures
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint/specification"/>
           </modelFacet>
         </labels>
       </childNodes>
@@ -11362,6 +11389,10 @@
           xsi:type="gmfgen:CustomParser"
           uses="/0/@diagram/@childNodes.38/@labels.1/@modelFacet"
           qualifiedName="org.eclipse.papyrus.diagram.activity.parser.custom.ObjectNodeSelectionParser"/>
+      <implementations
+          xsi:type="gmfgen:CustomParser"
+          uses="/0/@diagram/@childNodes.24/@labels.1/@modelFacet"
+          qualifiedName="org.eclipse.papyrus.diagram.common.parser.ConstraintParser"/>
     </labelParsers>
     <contextMenus
         iD="org.eclipse.papyrus.diagram.activity.part.LoadResourceAction"
@@ -11422,5 +11453,11 @@
         genView="/0/@diagram/@childNodes.67"
         name="AbstractShapeEditPart"
         superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.AbstractShapeEditPart"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        comment="this is an extension for constraint "
+        genView="/0/@diagram/@childNodes.24"
+        name="ConstraintEditPart extension"
+        superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.AbstractConstraintEditPart"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>
 </xmi:XMI>

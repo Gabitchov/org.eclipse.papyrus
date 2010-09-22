@@ -28,7 +28,9 @@ import org.eclipse.swt.graphics.Image;
  */
 public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNamedElementFigure, ILabelFigure, IMultilineEditableFigure {
 
+	private static final String CHEVRON = String.valueOf("\u00AB") + String.valueOf("\u00BB");
 	protected static final String LEFT_BRACE = "{";
+	private Label taggedLabel;
 
 	protected static final String RIGHT_BRACE = "}";
 
@@ -123,13 +125,18 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 		return null;
 	}
 
-	public ConstraintFigure() {
+	public ConstraintFigure( ) {
+		this(null);
+	}
+	public ConstraintFigure( String tagLabel) {
 		super();
+		
 		nameLabel = new WrappingLabel();
 
 		nameLabel.setOpaque(false);
 		nameLabel.setAlignment(PositionConstants.MIDDLE);
 		add(nameLabel);
+		initTagLabel(tagLabel);
 		page = new FlowPage();
 		page.setOpaque(false);
 
@@ -147,10 +154,26 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 	 * @return
 	 */
 	public Label getTaggedLabel() {
-		// TODO Auto-generated method stub
-		return null;
+		return taggedLabel;
 	}
 
+	/**
+	 * Create the tag label in the figure. The tag label is created if value is not null.
+	 * 
+	 * @param value
+	 *        the value to use
+	 */
+	protected void initTagLabel(String value) {
+		if(value != null && value.length() > 0) {
+			taggedLabel = new Label();
+			String textToDisplay = new StringBuffer(CHEVRON).insert(1, value).toString();
+			taggedLabel.setText(textToDisplay);
+			taggedLabel.setOpaque(false);
+			taggedLabel.setForegroundColor(getNameLabel().getForegroundColor());
+			taggedLabel.setFont(getNameLabel().getFont());
+			this.add(taggedLabel, null, 0);
+		}
+	}
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.diagram.common.figure.node.IPapyrusNodeNamedElementFigure#setDepth(int)

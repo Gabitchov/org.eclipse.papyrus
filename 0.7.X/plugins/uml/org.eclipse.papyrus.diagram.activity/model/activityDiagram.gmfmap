@@ -994,15 +994,19 @@
               editorPattern="{0}"
               editPattern="{0}">
             <diagramLabel
-                href="activityDiagram.gmfgraph#ActionLocalConditionContent"/>
+                href="../../org.eclipse.papyrus.diagram.common/model/Constraint.gmfgraph#ConstraintNameDiagramLabel"/>
             <features
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+          </labelMappings>
+          <labelMappings>
+            <diagramLabel
+                href="../../org.eclipse.papyrus.diagram.common/model/Constraint.gmfgraph#ConstraintBodyDiagramLabel"/>
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
               href="activityDiagram.gmftool#//@palette/@tools.5/@tools.3"/>
           <diagramNode
-              href="activityDiagram.gmfgraph#BehaviorProperty"/>
+              href="../../org.eclipse.papyrus.diagram.common/model/Constraint.gmfgraph#ConstraintNode"/>
         </ownedChild>
       </children>
       <children
