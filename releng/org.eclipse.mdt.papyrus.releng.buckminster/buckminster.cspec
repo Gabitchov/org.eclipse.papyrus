@@ -36,7 +36,7 @@
       	<cs:dependency name="org.eclipse.emf.transaction.sdk" componentType="eclipse.feature"/>
 		<cs:dependency name="org.eclipse.gmf.runtime.sdk" componentType="eclipse.feature"/>
 		<cs:dependency name="org.eclipse.gmf.sdk" componentType="eclipse.feature"/>
-  		<cs:dependency name="org.eclipse.xtext.sdk.feature.group" componentType="eclipse.feature"/>
+  		<cs:dependency name="org.eclipse.xtext.sdk" componentType="eclipse.feature"/>
         <cs:dependency name="org.apache.ant" componentType="osgi.bundle"/>
         <cs:dependency name="org.apache.derby" componentType="osgi.bundle"/>
   		
