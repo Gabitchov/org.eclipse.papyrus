@@ -1850,12 +1850,24 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		if(durationConstraintName_5039Parser == null) {
 			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			parser.setViewPattern("<<localPostcondition>>\n{0}"); //$NON-NLS-1$
-			parser.setEditorPattern("{0}"); //$NON-NLS-1$
-			parser.setEditPattern("{0}"); //$NON-NLS-1$
 			durationConstraintName_5039Parser = parser;
 		}
 		return durationConstraintName_5039Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ConstraintParser durationConstraintSpecification_5131Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDurationConstraintSpecification_5131Parser() {
+		if(durationConstraintSpecification_5131Parser == null) {
+			durationConstraintSpecification_5131Parser = new ConstraintParser();
+		}
+		return durationConstraintSpecification_5131Parser;
 	}
 
 	/**
@@ -2191,6 +2203,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getDurationConstraintSpecification_5130Parser();
 		case DurationConstraintAsLocalPostcondNameEditPart.VISUAL_ID:
 			return getDurationConstraintName_5039Parser();
+		case DurationConstraintAsLocalPostcondBodyEditPart.VISUAL_ID:
+			return getDurationConstraintSpecification_5131Parser();
 		case TimeConstraintAsLocalPrecondNameEditPart.VISUAL_ID:
 			return getTimeConstraintName_5040Parser();
 		case TimeConstraintAsLocalPostcondNameEditPart.VISUAL_ID:
