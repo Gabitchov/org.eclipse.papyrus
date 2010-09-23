@@ -4,18 +4,20 @@
 >
 	<locator pattern="^org\.eclipse\.mdt\.papyrus\.releng\.buckminster$" searchPathRef="local.releng" />
 	<locator pattern="^org\.eclipse\.team\.svn(?:\..+)?$" searchPathRef="subversive" />
-	<locator pattern="^org\.eclipse\.emf\.transaction(?:\..+)?$" searchPathRef="transaction" />
+	<locator pattern="^org\.eclipse\.emf\.transaction(?:\..+)?$" searchPathRef="emf.milestones" />
 	<locator pattern="^org\.eclipse\.emf\.cdo(?:\..+)?$" searchPathRef="cdo" />
-	<locator pattern="^org\.eclipse\.emf\.query(?:\..+)?$" searchPathRef="query" />
-	<locator pattern="^org\.eclipse\.emf\.validation(?:\..+)?$" searchPathRef="validation" />
+	<locator pattern="^org\.eclipse\.emf\.query(?:\..+)?$" searchPathRef="emf.milestones" />
+	<locator pattern="^org\.eclipse\.emf\.validation(?:\..+)?$" searchPathRef="emf.milestones" />
 	<locator pattern="^org\.eclipse\.emf(?:\..+)?$" searchPathRef="emf" />
 	<locator pattern="^org\.eclipse\.gmt(?:\..+)?$" searchPathRef="modisco" />
 	<locator pattern="^org\.eclipse\.gef(?:\..+)?$" searchPathRef="gef" />
 	<locator pattern="^org\.eclipse\.gmf(?:\..+)?$" searchPathRef="gmf" />
 	
-	<locator pattern="^org\.eclipse\.m2m(?:\..+)?$" searchPathRef="m2m" />
+	<locator pattern="^org\.eclipse\.m2m\.atl(?:\..+)?$" searchPathRef="m2m" />
+	<locator pattern="^org\.eclipse\.m2m\.qvt.oml(\..*)?" searchPathRef="qvtoml" failOnError="true" />
 	<locator pattern="^org\.eclipse\.uml2(?:\..+)?$" searchPathRef="uml2" />
-	<locator pattern="^org\.eclipse\.xtext(?:\..+)?$" searchPathRef="xtext" />
+	<locator pattern="^org\.eclipse\.xtext(?:\..+)?$" searchPathRef="tmf" />
+	<locator pattern="^org\.eclipse\.acceleo(?:\..+)?$" searchPathRef="m2t" />
 	<locator pattern="^org\.eclipse\.ocl(?:\..+)?$" searchPathRef="ocl" />
 	
 	<locator searchPathRef="platform" />
@@ -37,14 +39,6 @@
 		</provider>
 	</searchPath>
 	
-	<searchPath name="transaction">
-		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-			<uri format="{0}/modeling/emf/updates/releases/">
-				<bc:propertyRef key="eclipse.download" />
-			</uri>
-		</provider>
-	</searchPath>
-	
 	<searchPath name="m2m">
 		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
 			<uri format="{0}/modeling/m2m/updates/releases/">
@@ -53,43 +47,87 @@
 		</provider>
 	</searchPath>
 	
+	<!-- CDO -->
 	<searchPath name="cdo">
 		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-			<uri format="{0}/modeling/emf/updates/releases/">
-				<bc:propertyRef key="eclipse.download" />
-			</uri>
-		</provider>
-	</searchPath>
+			<uri format="http://download.eclipse.org/modeling/emf/cdo/updates/3.0-releases/" />
+		<provider>
+	<searchPath>
 	
-	<searchPath name="query">
+	<!-- EMF Query, EMF Validation -->
+	<searchPath name="emf.milestones">
 		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-			<uri format="{0}/modeling/emf/updates/releases/">
-				<bc:propertyRef key="eclipse.download" />
-			</uri>
+			<uri format="http://download.eclipse.org/modeling/emf/updates/milestones/" />
 		</provider>
 	</searchPath>
 	
-	<searchPath name="validation">
+	<!-- EMF Compare -->
+	<searchPath name="emf.compare">
 		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-			<uri format="{0}/modeling/emf/updates/releases/">
-				<bc:propertyRef key="eclipse.download" />
-			</uri>
+			<uri format="http://download.eclipse.org/modeling/emf/updates/releases/" />
 		</provider>
 	</searchPath>
-	
-	<searchPath name="xtext">
+
+	<!-- EMF -->
+	<searchPath name="emf">
 		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-			<uri format="{0}/modeling/tmf/updates/">
-				<bc:propertyRef key="eclipse.download" />
-			</uri>
+			<uri format="http://download.eclipse.org/modeling/emf/emf/updates/2.6" />
 		</provider>
 	</searchPath>
-	
+
+	<!-- ATL -->
+	<searchPath name="m2m">
+		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+			<uri format="http://download.eclipse.org/modeling/m2m/updates/releases/" />
+		</provider>
+	</searchPath>
+
+	<!-- QVT OML -->
+	<searchPath name="qvtoml">
+		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+			<uri format="http://download.eclipse.org/modeling/m2m/qvtoml/updates/releases/" />
+		</provider>
+	</searchPath>
+
+	<!-- Acceleo -->
+	<searchPath name="m2t">
+		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+			<uri format="http://download.eclipse.org/modeling/m2t/updates/milestones/" />
+		</provider>
+	</searchPath>
+
+	<!-- OCL -->
 	<searchPath name="ocl">
 		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-			<uri format="{0}/modeling/mdt/ocl/3_0/updates/releases/">
-				<bc:propertyRef key="eclipse.download" />
-			</uri>
+			<uri format="http://download.eclipse.org/modeling/mdt/ocl/3_0/updates/releases/" />
+		</provider>
+	</searchPath>
+
+	<!-- UML2 Tools -->
+	<searchPath name="mdt">
+		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+			<uri format="http://download.eclipse.org/modeling/mdt/updates/releases/" />
+		</provider>
+	</searchPath>
+
+	<!-- Mylyn (WikiText) -->
+	<searchPath name="mylyn">
+		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+			<uri format="http://download.eclipse.org/tools/mylyn/update/indigo/maintenance" />
+		</provider>
+	</searchPath>
+
+	<!-- Xtext -->
+	<searchPath name="tmf">
+		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+			<uri format="http://download.eclipse.org/modeling/tmf/updates/" />
+		</provider>
+	</searchPath>
+
+	<!-- Orbit -->
+	<searchPath name="orbit">
+		<provider componentTypes="osgi.bundle" readerType="p2" source="false" mutable="false">
+			<uri format="http://download.eclipse.org/tools/orbit/downloads/drops/R20100519200754/repository/" />
 		</provider>
 	</searchPath>
 	
@@ -135,7 +173,7 @@
 
 	<searchPath name="platform">
 		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-			<uri format="{0}/eclipse/updates/3.6milestones">
+			<uri format="{0}/eclipse/updates/3.7milestones">
 				<bc:propertyRef key="eclipse.download" />
 			</uri>
 		</provider>
