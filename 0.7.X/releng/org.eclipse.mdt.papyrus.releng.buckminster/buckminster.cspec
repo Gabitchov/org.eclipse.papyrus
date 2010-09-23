@@ -19,8 +19,8 @@
       	<cs:dependency name="org.eclipse.emf.transaction.sdk.feature.group" componentType="eclipse.feature"/>
       	<cs:dependency name="org.eclipse.emf.validation.sdk.feature.group" componentType="eclipse.feature"/>
       	<cs:dependency name="org.eclipse.ocl.all.sdk.feature.group" componentType="eclipse.feature"/>
-		<cs:dependency name="org.eclipse.gmf.runtime.sdk.feature.group" componentType="eclipse.feature"/>
-		<cs:dependency name="org.eclipse.gmf.sdk.feature.group" componentType="eclipse.feature"/>
+		<cs:dependency name="org.eclipse.gmf.runtime.sdk" componentType="eclipse.feature"/>
+		<cs:dependency name="org.eclipse.gmf.sdk" componentType="eclipse.feature"/>
   		<cs:dependency name="org.eclipse.gmt.modisco.sdk.feature.group" componentType="eclipse.feature"/>
   		<cs:dependency name="org.eclipse.xtext.sdk.feature.group" componentType="eclipse.feature"/>
 	</cs:dependencies>
