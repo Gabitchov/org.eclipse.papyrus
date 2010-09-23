@@ -29,7 +29,7 @@
 
 	<searchPath name="emf">
 		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-			<uri format="{0}/modeling/emf/updates">
+			<uri format="{0}/modeling/emf/updates/releases/">
 				<bc:propertyRef key="eclipse.download" />
 			</uri>
 		</provider>
@@ -37,7 +37,7 @@
 	
 	<searchPath name="emft">
 		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-			<uri format="{0}/modeling/emft/updates">
+			<uri format="{0}/modeling/emft/updates/releases/">
 				<bc:propertyRef key="eclipse.download" />
 			</uri>
 		</provider>
@@ -53,7 +53,7 @@
 	
 	<searchPath name="query">
 		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-			<uri format="{0}/releases/helios/">
+			<uri format="{0}/modeling/emft/updates/releases/">
 				<bc:propertyRef key="eclipse.download" />
 			</uri>
 		</provider>
@@ -61,7 +61,7 @@
 	
 	<searchPath name="validation">
 		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-			<uri format="{0}/releases/helios/">
+			<uri format="{0}/modeling/emft/updates/releases/">
 				<bc:propertyRef key="eclipse.download" />
 			</uri>
 		</provider>
@@ -69,7 +69,7 @@
 	
 	<searchPath name="xtext">
 		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-			<uri format="{0}/releases/helios/">
+			<uri format="{0}/modeling/tmf/updates/">
 				<bc:propertyRef key="eclipse.download" />
 			</uri>
 		</provider>
@@ -77,7 +77,7 @@
 	
 	<searchPath name="ocl">
 		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-			<uri format="{0}/releases/helios/">
+			<uri format="{0}/modeling/mdt/ocl/3_0/updates/">
 				<bc:propertyRef key="eclipse.download" />
 			</uri>
 		</provider>
@@ -109,7 +109,7 @@
 	
 	<searchPath name="uml2">
 		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-			<uri format="{0}/releases/helios/">
+			<uri format="{0}/modeling/mdt/updates/releases/">
 				<bc:propertyRef key="eclipse.download" />
 			</uri>
 		</provider>
