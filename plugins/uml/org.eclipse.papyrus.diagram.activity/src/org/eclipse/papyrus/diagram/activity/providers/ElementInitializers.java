@@ -52,6 +52,7 @@ import org.eclipse.uml2.uml.SendSignalAction;
 import org.eclipse.uml2.uml.SequenceNode;
 import org.eclipse.uml2.uml.StructuredActivityNode;
 import org.eclipse.uml2.uml.TimeConstraint;
+import org.eclipse.uml2.uml.TimeInterval;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.ValuePin;
 import org.eclipse.uml2.uml.ValueSpecificationAction;
@@ -862,6 +863,11 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_TimeConstraint_3036(instance);
 			instance.setName((String)value_0);
+			TimeInterval newInstance_1_0 = UMLFactory.eINSTANCE.createTimeInterval();
+			instance.setSpecification(newInstance_1_0);
+			Object value_1_0_0 = name_specification_TimeConstraint_3036(newInstance_1_0);
+			newInstance_1_0.setName((String)value_1_0_0);
+
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
@@ -1383,6 +1389,13 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	private String name_DurationConstraint_3035(DurationConstraint self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_specification_TimeConstraint_3036(TimeInterval self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 

@@ -20,6 +20,7 @@ import java.util.List;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -29,7 +30,6 @@ import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
@@ -40,13 +40,17 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
+import org.eclipse.papyrus.diagram.activity.edit.policies.ActivityDiagramChangeStereotypedShapeEditpolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.TimeConstraintAsLocalPrecondItemSemanticEditPolicy;
-import org.eclipse.papyrus.diagram.activity.figures.WrappedLabel;
+import org.eclipse.papyrus.diagram.activity.figures.LocalPreconditionConstraintFigure;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
-import org.eclipse.papyrus.diagram.common.figure.node.CornerBentFigure;
+import org.eclipse.papyrus.diagram.common.editparts.AbstractConstraintEditPart;
+import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
+import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
+import org.eclipse.papyrus.diagram.common.editpolicies.ChangeStereotypedShapeEditPolicy;
 import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
@@ -57,7 +61,7 @@ import org.eclipse.swt.graphics.Color;
  */
 public class TimeConstraintAsLocalPrecondEditPart extends
 
-ShapeNodeEditPart {
+AbstractConstraintEditPart {
 
 	/**
 	 * @generated
@@ -89,8 +93,20 @@ ShapeNodeEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new TimeConstraintAsLocalPrecondItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
+		installEditPolicy(ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY, new ActivityDiagramChangeStereotypedShapeEditpolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
+	}
+
+	/**
+	 * Papyrus codeGen
+	 * 
+	 * @generated
+	 **/
+	protected void handleNotificationEvent(Notification event) {
+		super.handleNotificationEvent(event);
+
 	}
 
 	/**
@@ -122,14 +138,14 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		return primaryShape = new CornerBentWithTextFigure();
+		return primaryShape = new LocalPreconditionConstraintFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public CornerBentWithTextFigure getPrimaryShape() {
-		return (CornerBentWithTextFigure)primaryShape;
+	public LocalPreconditionConstraintFigure getPrimaryShape() {
+		return (LocalPreconditionConstraintFigure)primaryShape;
 	}
 
 	/**
@@ -137,7 +153,11 @@ ShapeNodeEditPart {
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if(childEditPart instanceof TimeConstraintAsLocalPrecondNameEditPart) {
-			((TimeConstraintAsLocalPrecondNameEditPart)childEditPart).setLabel(getPrimaryShape().getCornerBentContent());
+			((TimeConstraintAsLocalPrecondNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
+			return true;
+		}
+		if(childEditPart instanceof TimeConstraintAsLocalPrecondBodyEditPart) {
+			((TimeConstraintAsLocalPrecondBodyEditPart)childEditPart).setLabel(getPrimaryShape().getConstraintFigure());
 			return true;
 		}
 
@@ -149,6 +169,9 @@ ShapeNodeEditPart {
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
 		if(childEditPart instanceof TimeConstraintAsLocalPrecondNameEditPart) {
+			return true;
+		}
+		if(childEditPart instanceof TimeConstraintAsLocalPrecondBodyEditPart) {
 			return true;
 		}
 		return false;
@@ -316,50 +339,6 @@ ShapeNodeEditPart {
 		}
 		return types;
 	}
-
-	/**
-	 * @generated
-	 */
-	public class CornerBentWithTextFigure extends CornerBentFigure {
-
-		/**
-		 * @generated
-		 */
-		private WrappedLabel fCornerBentContent;
-
-		/**
-		 * @generated
-		 */
-		public CornerBentWithTextFigure() {
-
-			this.setBackgroundColor(THIS_BACK);
-			createContents();
-		}
-
-		/**
-		 * @generated
-		 */
-		private void createContents() {
-
-			fCornerBentContent = new WrappedLabel();
-
-			this.add(fCornerBentContent);
-
-		}
-
-		/**
-		 * @generated
-		 */
-		public WrappedLabel getCornerBentContent() {
-			return fCornerBentContent;
-		}
-
-	}
-
-	/**
-	 * @generated
-	 */
-	static final Color THIS_BACK = new Color(null, 248, 249, 214);
 
 	/**
 	 * @generated

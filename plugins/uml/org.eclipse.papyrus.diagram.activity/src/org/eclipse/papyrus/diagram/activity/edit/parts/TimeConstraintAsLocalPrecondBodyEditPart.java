@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2010 Atos Origin.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *   Atos Origin - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.activity.edit.parts;
 
 import java.util.Collections;
@@ -57,6 +44,7 @@ import org.eclipse.papyrus.diagram.activity.providers.UMLParserProvider;
 import org.eclipse.papyrus.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
+import org.eclipse.papyrus.diagram.common.figure.node.ConstraintFigure;
 import org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.extensionpoints.editors.Activator;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IAdvancedEditorConfiguration;
@@ -77,12 +65,12 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class TimeConstraintAsLocalPrecondNameEditPart extends CompartmentEditPart implements ITextAwareEditPart {
+public class TimeConstraintAsLocalPrecondBodyEditPart extends CompartmentEditPart implements ITextAwareEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 5040;
+	public static final int VISUAL_ID = 5132;
 
 	/**
 	 * @generated
@@ -104,16 +92,24 @@ public class TimeConstraintAsLocalPrecondNameEditPart extends CompartmentEditPar
 	 */
 	private String defaultText;
 
-	/** direct edition mode (default, undefined, registered editor, etc.) */
+	/**
+	 * direct edition mode (default, undefined, registered editor, etc.)
+	 * 
+	 * @generated
+	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
-	/** configuration from a registered edit dialog */
+	/**
+	 * configuration from a registered edit dialog
+	 * 
+	 * @generated
+	 */
 	protected IDirectEditorConfiguration configuration;
 
 	/**
 	 * @generated
 	 */
-	public TimeConstraintAsLocalPrecondNameEditPart(View view) {
+	public TimeConstraintAsLocalPrecondBodyEditPart(View view) {
 		super(view);
 	}
 
@@ -182,7 +178,7 @@ public class TimeConstraintAsLocalPrecondNameEditPart extends CompartmentEditPar
 	/**
 	 * @generated
 	 */
-	public void setLabel(WrappingLabel figure) {
+	public void setLabel(ConstraintFigure figure) {
 		unregisterVisuals();
 		setFigure(figure);
 		defaultText = getLabelTextHelper(figure);
@@ -316,7 +312,7 @@ public class TimeConstraintAsLocalPrecondNameEditPart extends CompartmentEditPar
 	 */
 	public IParser getParser() {
 		if(parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.TimeConstraint_3036, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPrecondNameEditPart.VISUAL_ID));
+			parser = UMLParserProvider.getParser(UMLElementTypes.TimeConstraint_3036, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPrecondBodyEditPart.VISUAL_ID));
 		}
 		return parser;
 	}
@@ -621,6 +617,8 @@ public class TimeConstraintAsLocalPrecondNameEditPart extends CompartmentEditPar
 
 	/**
 	 * Updates the preference configuration
+	 * 
+	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
 		String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
@@ -636,6 +634,7 @@ public class TimeConstraintAsLocalPrecondNameEditPart extends CompartmentEditPar
 	 * 
 	 * @param theRequest
 	 *        the direct edit request that starts the direct edit system
+	 * @generated
 	 */
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {
 		// initialize the direct edit manager
@@ -719,6 +718,9 @@ public class TimeConstraintAsLocalPrecondNameEditPart extends CompartmentEditPar
 		return null;
 	}
 
+	/**
+	 * @generated
+	 */
 	private static final String ADD_PARENT_MODEL = "AddParentModel";
 
 	/**
