@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rmap xmlns="http://www.eclipse.org/buckminster/RMap-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0">
 	<locator pattern="^org\.eclipse\.mdt\.papyrus\.releng\.buckminster$" searchPathRef="local.releng" />
-	<locator pattern="^org\.eclipse\.team\.svn(?:\..+)?$" searchPathRef="subversive" />
+	<!--<locator pattern="^org\.eclipse\.team\.svn(?:\..+)?$" searchPathRef="subversive" />
 	<locator pattern="^org\.eclipse\.emf\.transaction(?:\..+)?$" searchPathRef="emf.milestones" />
 	<locator pattern="^org\.eclipse\.emf\.cdo(?:\..+)?$" searchPathRef="cdo" />
 	<locator pattern="^org\.eclipse\.emf\.query(?:\..+)?$" searchPathRef="emf.milestones" />
@@ -16,7 +16,7 @@
 	<locator pattern="^org\.eclipse\.uml2(?:\..+)?$" searchPathRef="uml2" />
 	<locator pattern="^org\.eclipse\.xtext(?:\..+)?$" searchPathRef="tmf" />
 	<locator pattern="^org\.eclipse\.(acceleo|jet)(\..*)?" searchPathRef="m2t" failOnError="true" />
-	<locator pattern="^org\.eclipse\.ocl(?:\..+)?$" searchPathRef="ocl" />
+	<locator pattern="^org\.eclipse\.ocl(?:\..+)?$" searchPathRef="ocl" />-->
 	<locator searchPathRef="target.platform" failOnError="false"/>
 
 	<searchPath name="local.releng">
