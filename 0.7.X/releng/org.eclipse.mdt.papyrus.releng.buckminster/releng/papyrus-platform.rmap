@@ -17,9 +17,7 @@
 	<locator pattern="^org\.eclipse\.xtext(?:\..+)?$" searchPathRef="tmf" />
 	<locator pattern="^org\.eclipse\.(acceleo|jet)(\..*)?" searchPathRef="m2t" failOnError="true" />
 	<locator pattern="^org\.eclipse\.ocl(?:\..+)?$" searchPathRef="ocl" />
-	
-	<locator searchPathRef="platform" />
-	<locator searchPathRef="orbit" failOnError="true" />
+	<locator searchPathRef="target.platform" failOnError="false"/>
 
 	<searchPath name="local.releng">
 		<provider componentTypes="buckminster" readerType="local" source="true" mutable="false">
@@ -28,6 +26,85 @@
 				<bc:propertyRef key="buckminster.component" />
 			</uri>
 		</provider>
+	</searchPath>
+	
+	<searchPath name="target.platform">
+	<!-- Birt -->
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+      <rm:uri format="http://download.eclipse.org/birt/update-site/2.6-interim/"/>
+    </rm:provider>
+
+	<!-- CDO -->
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+      <rm:uri format="http://download.eclipse.org/modeling/emf/cdo/updates/3.0-releases/"/>
+    </rm:provider>
+
+	<!-- EMF Compare -->
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+      <rm:uri format="http://download.eclipse.org/modeling/emf/updates/releases/"/>
+    </rm:provider>
+
+	<!-- EMF -->
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+      <rm:uri format="http://download.eclipse.org/modeling/emf/emf/updates/2.6"/>
+    </rm:provider>
+
+	<!-- EMF Query, EMF Validation -->
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+      <rm:uri format="http://download.eclipse.org/modeling/emf/updates/milestones/"/>
+    </rm:provider>
+
+	<!-- MWE -->
+	<!-- 
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+      <rm:uri format="http://download.eclipse.org/modeling/emft/mwe/updates/"/>
+    </rm:provider>
+     -->
+
+	<!-- ATL -->
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+      <rm:uri format="http://download.eclipse.org/modeling/m2m/updates/releases/"/>
+    </rm:provider>
+
+	<!-- QVT OML -->
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+      <rm:uri format="http://download.eclipse.org/modeling/m2m/qvtoml/updates/3.0.1/milestones/"/>
+    </rm:provider>
+
+	<!-- Acceleo -->
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+      <rm:uri format="http://download.eclipse.org/modeling/m2t/updates/releases/"/>
+    </rm:provider>
+
+	<!-- OCL -->
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+      <rm:uri format="http://download.eclipse.org/modeling/mdt/ocl/updates/releases/3.0.1"/>
+    </rm:provider>
+
+	<!-- UML2 Tools -->
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+      <rm:uri format="http://download.eclipse.org/modeling/mdt/updates/releases/"/>
+    </rm:provider>
+
+	<!-- Mylyn (WikiText) -->
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+      <rm:uri format="http://download.eclipse.org/tools/mylyn/update/helios/"/>
+    </rm:provider>
+
+	<!-- Xtext -->
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+      <rm:uri format="http://download.eclipse.org/modeling/tmf/updates/"/>
+    </rm:provider>
+
+	<!-- Orbit -->
+    <rm:provider componentTypes="osgi.bundle" readerType="p2" source="false" mutable="false">
+      <rm:uri format="http://download.eclipse.org/tools/orbit/downloads/drops/R20100519200754/repository/"/>
+    </rm:provider>
+
+	<!-- Eclipse -->
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+      <rm:uri format="http://download.eclipse.org/eclipse/updates/3.6.x"/>
+    </rm:provider>
 	</searchPath>
 
 	<searchPath name="emf">
