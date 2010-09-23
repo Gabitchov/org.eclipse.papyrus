@@ -4,7 +4,7 @@
 >
 	<locator pattern="^org\.eclipse\.mdt\.papyrus\.releng\.buckminster$" searchPathRef="local.releng" />
 	<locator pattern="^org\.eclipse\.team\.svn(?:\..+)?$" searchPathRef="subversive" />
-	<locator pattern="^org\.eclipse\.emf\.transaction(?:\..+)?$" searchPathRef="emft" />
+	<locator pattern="^org\.eclipse\.emf\.transaction(?:\..+)?$" searchPathRef="transaction" />
 	<locator pattern="^org\.eclipse\.emf\.cdo(?:\..+)?$" searchPathRef="cdo" />
 	<locator pattern="^org\.eclipse\.emf\.query(?:\..+)?$" searchPathRef="query" />
 	<locator pattern="^org\.eclipse\.emf\.validation(?:\..+)?$" searchPathRef="validation" />
@@ -37,9 +37,9 @@
 		</provider>
 	</searchPath>
 	
-	<searchPath name="emft">
+	<searchPath name="transaction">
 		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-			<uri format="{0}/modeling/emft/updates/releases/">
+			<uri format="{0}/modeling/emf/updates/releases/">
 				<bc:propertyRef key="eclipse.download" />
 			</uri>
 		</provider>
@@ -55,7 +55,7 @@
 	
 	<searchPath name="cdo">
 		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-			<uri format="{0}/releases/helios/">
+			<uri format="{0}/modeling/emf/updates/releases/">
 				<bc:propertyRef key="eclipse.download" />
 			</uri>
 		</provider>
@@ -63,7 +63,7 @@
 	
 	<searchPath name="query">
 		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-			<uri format="{0}/modeling/emft/updates/releases/">
+			<uri format="{0}/modeling/emf/updates/releases/">
 				<bc:propertyRef key="eclipse.download" />
 			</uri>
 		</provider>
@@ -71,7 +71,7 @@
 	
 	<searchPath name="validation">
 		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-			<uri format="{0}/modeling/emft/updates/releases/">
+			<uri format="{0}/modeling/emf/updates/releases/">
 				<bc:propertyRef key="eclipse.download" />
 			</uri>
 		</provider>
