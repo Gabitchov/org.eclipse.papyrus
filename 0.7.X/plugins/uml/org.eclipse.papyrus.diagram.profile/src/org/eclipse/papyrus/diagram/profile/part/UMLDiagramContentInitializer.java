@@ -360,7 +360,7 @@ public class UMLDiagramContentInitializer {
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}
-		createPackagePackageableElementCompartmentCN_11Children(getCompartment(view, PackagePackageableElementCompartmentEditPartCN.VISUAL_ID));
+		createPackagePackageableElementCompartment_11Children(getCompartment(view, PackagePackageableElementCompartmentEditPartCN.VISUAL_ID));
 
 	}
 
@@ -407,8 +407,8 @@ public class UMLDiagramContentInitializer {
 	/**
 	 * @generated
 	 */
-	private void createPackagePackageableElementCompartmentCN_11Children(View view) {
-		Collection childNodeDescriptors = UMLDiagramUpdater.getPackagePackageableElementCompartmentCN_11SemanticChildren(view);
+	private void createPackagePackageableElementCompartment_11Children(View view) {
+		Collection childNodeDescriptors = UMLDiagramUpdater.getPackagePackageableElementCompartment_11SemanticChildren(view);
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}

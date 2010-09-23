@@ -127,7 +127,7 @@ public class UMLDiagramUpdater {
 		case PackagePackageableElementCompartmentEditPart.VISUAL_ID:
 			return getPackagePackageableElementCompartment_1005SemanticChildren(view);
 		case PackagePackageableElementCompartmentEditPartCN.VISUAL_ID:
-			return getPackagePackageableElementCompartmentCN_11SemanticChildren(view);
+			return getPackagePackageableElementCompartment_11SemanticChildren(view);
 		case ProfilePackageableElementCompartmentEditPartTN.VISUAL_ID:
 			return getProfileProfilePackageableElementCompartment_1042SemanticChildren(view);
 		case ProfilePackageableElementCompartmentEditPartCN.VISUAL_ID:
@@ -334,7 +334,7 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<UMLNodeDescriptor> getPackagePackageableElementCompartmentCN_11SemanticChildren(View view) {
+	public static List<UMLNodeDescriptor> getPackagePackageableElementCompartment_11SemanticChildren(View view) {
 		if(false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
@@ -386,7 +386,6 @@ public class UMLDiagramUpdater {
 		}
 		return result;
 	}
-
 
 
 
