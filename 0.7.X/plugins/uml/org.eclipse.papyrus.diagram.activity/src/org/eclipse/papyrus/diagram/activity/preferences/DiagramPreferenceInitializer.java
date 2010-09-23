@@ -28,8 +28,6 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = getPreferenceStore();
 
-		InteractionConstraintPreferencePage.initDefaults(store);
-
 		ValueSpecificationActionPreferencePage.initDefaults(store);
 
 		SendObjectActionPreferencePage.initDefaults(store);

@@ -59,8 +59,6 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ExpansionRegionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.FlowFinalNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ForkNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InitialNodeEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.InteractionConstraintAsLocalPostcondEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.InteractionConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.JoinNodeEditPart;
@@ -140,8 +138,6 @@ public class LoopNodeStructuredActivityNodeContentCompartmentCanonicalEditPolicy
 		case DurationConstraintAsLocalPostcondEditPart.VISUAL_ID:
 		case TimeConstraintAsLocalPrecondEditPart.VISUAL_ID:
 		case TimeConstraintAsLocalPostcondEditPart.VISUAL_ID:
-		case InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID:
-		case InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID:
 		case IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID:
 		case IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID:
 		case ConstraintAsLocalPrecondEditPart.VISUAL_ID:

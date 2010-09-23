@@ -19,6 +19,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.draw2d.Graphics;
+import org.eclipse.draw2d.GridData;
+import org.eclipse.draw2d.GridLayout;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.MarginBorder;
@@ -416,12 +418,6 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 		if(targetEditPart instanceof TimeConstraintAsLocalPostcondEditPart) {
 			types.add(UMLElementTypes.ActionLocalPrecondition_4001);
 		}
-		if(targetEditPart instanceof InteractionConstraintAsLocalPrecondEditPart) {
-			types.add(UMLElementTypes.ActionLocalPrecondition_4001);
-		}
-		if(targetEditPart instanceof InteractionConstraintAsLocalPostcondEditPart) {
-			types.add(UMLElementTypes.ActionLocalPrecondition_4001);
-		}
 		if(targetEditPart instanceof IntervalConstraintAsLocalPrecondEditPart) {
 			types.add(UMLElementTypes.ActionLocalPrecondition_4001);
 		}
@@ -444,12 +440,6 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 			types.add(UMLElementTypes.ActionLocalPostcondition_4002);
 		}
 		if(targetEditPart instanceof TimeConstraintAsLocalPostcondEditPart) {
-			types.add(UMLElementTypes.ActionLocalPostcondition_4002);
-		}
-		if(targetEditPart instanceof InteractionConstraintAsLocalPrecondEditPart) {
-			types.add(UMLElementTypes.ActionLocalPostcondition_4002);
-		}
-		if(targetEditPart instanceof InteractionConstraintAsLocalPostcondEditPart) {
 			types.add(UMLElementTypes.ActionLocalPostcondition_4002);
 		}
 		if(targetEditPart instanceof IntervalConstraintAsLocalPrecondEditPart) {
@@ -888,8 +878,6 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 			types.add(UMLElementTypes.DurationConstraint_3035);
 			types.add(UMLElementTypes.TimeConstraint_3036);
 			types.add(UMLElementTypes.TimeConstraint_3037);
-			types.add(UMLElementTypes.InteractionConstraint_3030);
-			types.add(UMLElementTypes.InteractionConstraint_3031);
 			types.add(UMLElementTypes.IntervalConstraint_3032);
 			types.add(UMLElementTypes.IntervalConstraint_3033);
 			types.add(UMLElementTypes.Constraint_3011);
@@ -899,8 +887,6 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 			types.add(UMLElementTypes.DurationConstraint_3035);
 			types.add(UMLElementTypes.TimeConstraint_3036);
 			types.add(UMLElementTypes.TimeConstraint_3037);
-			types.add(UMLElementTypes.InteractionConstraint_3030);
-			types.add(UMLElementTypes.InteractionConstraint_3031);
 			types.add(UMLElementTypes.IntervalConstraint_3032);
 			types.add(UMLElementTypes.IntervalConstraint_3033);
 			types.add(UMLElementTypes.Constraint_3011);

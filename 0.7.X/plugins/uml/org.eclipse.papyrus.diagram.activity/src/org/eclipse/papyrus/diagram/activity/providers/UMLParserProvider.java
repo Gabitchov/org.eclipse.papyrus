@@ -1729,46 +1729,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private IParser interactionConstraintName_5034Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getInteractionConstraintName_5034Parser() {
-		if(interactionConstraintName_5034Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			parser.setViewPattern("<<localPrecondition>>\n{0}"); //$NON-NLS-1$
-			parser.setEditorPattern("{0}"); //$NON-NLS-1$
-			parser.setEditPattern("{0}"); //$NON-NLS-1$
-			interactionConstraintName_5034Parser = parser;
-		}
-		return interactionConstraintName_5034Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private IParser interactionConstraintName_5035Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getInteractionConstraintName_5035Parser() {
-		if(interactionConstraintName_5035Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			parser.setViewPattern("<<localPostcondition>>\n{0}"); //$NON-NLS-1$
-			parser.setEditorPattern("{0}"); //$NON-NLS-1$
-			parser.setEditPattern("{0}"); //$NON-NLS-1$
-			interactionConstraintName_5035Parser = parser;
-		}
-		return interactionConstraintName_5035Parser;
-	}
-
-	/**
-	 * @generated
-	 */
 	private IParser intervalConstraintName_5036Parser;
 
 	/**
@@ -2237,10 +2197,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getTimeConstraintName_5041Parser();
 		case TimeConstraintAsLocalPostcondBodyEditPart.VISUAL_ID:
 			return getTimeConstraintSpecification_5133Parser();
-		case InteractionConstraintAsLocalPrecondNameEditPart.VISUAL_ID:
-			return getInteractionConstraintName_5034Parser();
-		case InteractionConstraintAsLocalPostcondNameEditPart.VISUAL_ID:
-			return getInteractionConstraintName_5035Parser();
 		case IntervalConstraintAsLocalPrecondNameEditPart.VISUAL_ID:
 			return getIntervalConstraintName_5036Parser();
 		case IntervalConstraintAsLocalPostcondNameEditPart.VISUAL_ID:

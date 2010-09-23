@@ -294,18 +294,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case TimeConstraintAsLocalPostcondBodyEditPart.VISUAL_ID:
 				return new TimeConstraintAsLocalPostcondBodyEditPart(view);
 
-			case InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID:
-				return new InteractionConstraintAsLocalPrecondEditPart(view);
-
-			case InteractionConstraintAsLocalPrecondNameEditPart.VISUAL_ID:
-				return new InteractionConstraintAsLocalPrecondNameEditPart(view);
-
-			case InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID:
-				return new InteractionConstraintAsLocalPostcondEditPart(view);
-
-			case InteractionConstraintAsLocalPostcondNameEditPart.VISUAL_ID:
-				return new InteractionConstraintAsLocalPostcondNameEditPart(view);
-
 			case IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID:
 				return new IntervalConstraintAsLocalPrecondEditPart(view);
 

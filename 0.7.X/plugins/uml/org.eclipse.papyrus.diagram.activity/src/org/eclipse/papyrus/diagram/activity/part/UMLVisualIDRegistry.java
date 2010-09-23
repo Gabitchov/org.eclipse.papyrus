@@ -343,12 +343,6 @@ public class UMLVisualIDRegistry {
 			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3037(containerView, (TimeConstraint)domainElement)) {
 				return TimeConstraintAsLocalPostcondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass()) && isInteractionConstraint_3030(containerView, (InteractionConstraint)domainElement)) {
-				return InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass()) && isInteractionConstraint_3031(containerView, (InteractionConstraint)domainElement)) {
-				return InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID;
-			}
 			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3032(containerView, (IntervalConstraint)domainElement)) {
 				return IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID;
 			}
@@ -485,12 +479,6 @@ public class UMLVisualIDRegistry {
 			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3037(containerView, (TimeConstraint)domainElement)) {
 				return TimeConstraintAsLocalPostcondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass()) && isInteractionConstraint_3030(containerView, (InteractionConstraint)domainElement)) {
-				return InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass()) && isInteractionConstraint_3031(containerView, (InteractionConstraint)domainElement)) {
-				return InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID;
-			}
 			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3032(containerView, (IntervalConstraint)domainElement)) {
 				return IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID;
 			}
@@ -616,12 +604,6 @@ public class UMLVisualIDRegistry {
 			}
 			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3037(containerView, (TimeConstraint)domainElement)) {
 				return TimeConstraintAsLocalPostcondEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass()) && isInteractionConstraint_3030(containerView, (InteractionConstraint)domainElement)) {
-				return InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass()) && isInteractionConstraint_3031(containerView, (InteractionConstraint)domainElement)) {
-				return InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3032(containerView, (IntervalConstraint)domainElement)) {
 				return IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID;
@@ -749,12 +731,6 @@ public class UMLVisualIDRegistry {
 			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3037(containerView, (TimeConstraint)domainElement)) {
 				return TimeConstraintAsLocalPostcondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass()) && isInteractionConstraint_3030(containerView, (InteractionConstraint)domainElement)) {
-				return InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass()) && isInteractionConstraint_3031(containerView, (InteractionConstraint)domainElement)) {
-				return InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID;
-			}
 			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3032(containerView, (IntervalConstraint)domainElement)) {
 				return IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID;
 			}
@@ -880,12 +856,6 @@ public class UMLVisualIDRegistry {
 			}
 			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3037(containerView, (TimeConstraint)domainElement)) {
 				return TimeConstraintAsLocalPostcondEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass()) && isInteractionConstraint_3030(containerView, (InteractionConstraint)domainElement)) {
-				return InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass()) && isInteractionConstraint_3031(containerView, (InteractionConstraint)domainElement)) {
-				return InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3032(containerView, (IntervalConstraint)domainElement)) {
 				return IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID;
@@ -1013,12 +983,6 @@ public class UMLVisualIDRegistry {
 			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3037(containerView, (TimeConstraint)domainElement)) {
 				return TimeConstraintAsLocalPostcondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass()) && isInteractionConstraint_3030(containerView, (InteractionConstraint)domainElement)) {
-				return InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass()) && isInteractionConstraint_3031(containerView, (InteractionConstraint)domainElement)) {
-				return InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID;
-			}
 			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3032(containerView, (IntervalConstraint)domainElement)) {
 				return IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID;
 			}
@@ -1144,12 +1108,6 @@ public class UMLVisualIDRegistry {
 			}
 			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3037(containerView, (TimeConstraint)domainElement)) {
 				return TimeConstraintAsLocalPostcondEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass()) && isInteractionConstraint_3030(containerView, (InteractionConstraint)domainElement)) {
-				return InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass()) && isInteractionConstraint_3031(containerView, (InteractionConstraint)domainElement)) {
-				return InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3032(containerView, (IntervalConstraint)domainElement)) {
 				return IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID;
@@ -1281,12 +1239,6 @@ public class UMLVisualIDRegistry {
 			}
 			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3037(containerView, (TimeConstraint)domainElement)) {
 				return TimeConstraintAsLocalPostcondEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass()) && isInteractionConstraint_3030(containerView, (InteractionConstraint)domainElement)) {
-				return InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass()) && isInteractionConstraint_3031(containerView, (InteractionConstraint)domainElement)) {
-				return InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3032(containerView, (IntervalConstraint)domainElement)) {
 				return IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID;
@@ -1571,24 +1523,6 @@ public class UMLVisualIDRegistry {
 	 */
 	private static boolean isConstraint_3012(View containerView, Constraint domainElement) {
 		return isConstraint_3012(domainElement);
-	}
-
-	/**
-	 * Redirect call to defined method
-	 * 
-	 * @generated NOT (method generation is missing or generated calls are incorrect)
-	 */
-	private static boolean isInteractionConstraint_3030(View containerView, InteractionConstraint domainElement) {
-		return isInteractionConstraint_3030(domainElement);
-	}
-
-	/**
-	 * Redirect call to defined method
-	 * 
-	 * @generated NOT (method generation is missing or generated calls are incorrect)
-	 */
-	private static boolean isInteractionConstraint_3031(View containerView, InteractionConstraint domainElement) {
-		return isInteractionConstraint_3031(domainElement);
 	}
 
 	/**
@@ -1940,16 +1874,6 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(TimeConstraintAsLocalPostcondBodyEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID:
-			if(InteractionConstraintAsLocalPrecondNameEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID:
-			if(InteractionConstraintAsLocalPostcondNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -2326,12 +2250,6 @@ public class UMLVisualIDRegistry {
 			if(TimeConstraintAsLocalPostcondEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if(InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
 			if(IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -2424,12 +2342,6 @@ public class UMLVisualIDRegistry {
 			if(TimeConstraintAsLocalPostcondEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if(InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
 			if(IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -2514,12 +2426,6 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(TimeConstraintAsLocalPostcondEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if(IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID == nodeVisualID) {
@@ -2608,12 +2514,6 @@ public class UMLVisualIDRegistry {
 			if(TimeConstraintAsLocalPostcondEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if(InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
 			if(IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -2698,12 +2598,6 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(TimeConstraintAsLocalPostcondEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if(IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID == nodeVisualID) {
@@ -2792,12 +2686,6 @@ public class UMLVisualIDRegistry {
 			if(TimeConstraintAsLocalPostcondEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if(InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
 			if(IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -2882,12 +2770,6 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(TimeConstraintAsLocalPostcondEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if(IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID == nodeVisualID) {
@@ -2977,12 +2859,6 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(TimeConstraintAsLocalPostcondEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if(IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID == nodeVisualID) {
@@ -3294,22 +3170,6 @@ public class UMLVisualIDRegistry {
 	 */
 	private static boolean isExpansionNode_3075(ExpansionNode domainElement) {
 		Object result = UMLOCLFactory.getExpression(29, UMLPackage.eINSTANCE.getExpansionNode(), null).evaluate(domainElement);
-		return result instanceof Boolean && ((Boolean)result).booleanValue();
-	}
-
-	/**
-	 * @generated
-	 */
-	private static boolean isInteractionConstraint_3030(InteractionConstraint domainElement) {
-		Object result = UMLOCLFactory.getExpression(10, UMLPackage.eINSTANCE.getInteractionConstraint(), null).evaluate(domainElement);
-		return result instanceof Boolean && ((Boolean)result).booleanValue();
-	}
-
-	/**
-	 * @generated
-	 */
-	private static boolean isInteractionConstraint_3031(InteractionConstraint domainElement) {
-		Object result = UMLOCLFactory.getExpression(11, UMLPackage.eINSTANCE.getInteractionConstraint(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -3673,42 +3533,6 @@ public class UMLVisualIDRegistry {
 		root.addNode(7009, viewInfo);
 
 		viewInfo = new BaseViewInfo(3037, ViewInfo.Node, "TimeConstraint");
-
-		root.addNode(7004, viewInfo);
-
-		root.addNode(7008, viewInfo);
-
-		root.addNode(7010, viewInfo);
-
-		root.addNode(7012, viewInfo);
-
-		root.addNode(7005, viewInfo);
-
-		root.addNode(7006, viewInfo);
-
-		root.addNode(7007, viewInfo);
-
-		root.addNode(7009, viewInfo);
-
-		viewInfo = new BaseViewInfo(3030, ViewInfo.Node, "InteractionConstraint");
-
-		root.addNode(7004, viewInfo);
-
-		root.addNode(7008, viewInfo);
-
-		root.addNode(7010, viewInfo);
-
-		root.addNode(7012, viewInfo);
-
-		root.addNode(7005, viewInfo);
-
-		root.addNode(7006, viewInfo);
-
-		root.addNode(7007, viewInfo);
-
-		root.addNode(7009, viewInfo);
-
-		viewInfo = new BaseViewInfo(3031, ViewInfo.Node, "InteractionConstraint");
 
 		root.addNode(7004, viewInfo);
 

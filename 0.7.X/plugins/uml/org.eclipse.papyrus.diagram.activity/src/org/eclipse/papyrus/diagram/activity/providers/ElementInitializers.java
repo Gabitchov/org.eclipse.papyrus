@@ -37,7 +37,6 @@ import org.eclipse.uml2.uml.FlowFinalNode;
 import org.eclipse.uml2.uml.ForkNode;
 import org.eclipse.uml2.uml.InitialNode;
 import org.eclipse.uml2.uml.InputPin;
-import org.eclipse.uml2.uml.InteractionConstraint;
 import org.eclipse.uml2.uml.IntervalConstraint;
 import org.eclipse.uml2.uml.JoinNode;
 import org.eclipse.uml2.uml.LoopNode;
@@ -777,30 +776,6 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_InteractionConstraint_3030(InteractionConstraint instance) {
-		try {
-			Object value_0 = name_InteractionConstraint_3030(instance);
-			instance.setName((String)value_0);
-		} catch (RuntimeException e) {
-			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	public void init_InteractionConstraint_3031(InteractionConstraint instance) {
-		try {
-			Object value_0 = name_InteractionConstraint_3031(instance);
-			instance.setName((String)value_0);
-		} catch (RuntimeException e) {
-			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
-		}
-	}
-
-	/**
-	 * @generated
-	 */
 	public void init_IntervalConstraint_3032(IntervalConstraint instance) {
 		try {
 			Object value_0 = name_IntervalConstraint_3032(instance);
@@ -1338,20 +1313,6 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	private String name_DataStoreNode_3078(DataStoreNode self) {
-		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_InteractionConstraint_3030(InteractionConstraint self) {
-		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_InteractionConstraint_3031(InteractionConstraint self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
