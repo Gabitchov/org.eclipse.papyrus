@@ -20,6 +20,7 @@ import java.util.List;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -29,7 +30,6 @@ import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
@@ -42,11 +42,11 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.activity.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.TimeConstraintAsLocalPostcondItemSemanticEditPolicy;
-import org.eclipse.papyrus.diagram.activity.figures.WrappedLabel;
+import org.eclipse.papyrus.diagram.activity.figures.LocalPostConditionConstraintFigure;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
-import org.eclipse.papyrus.diagram.common.figure.node.CornerBentFigure;
+import org.eclipse.papyrus.diagram.common.editparts.AbstractConstraintEditPart;
 import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
@@ -57,7 +57,7 @@ import org.eclipse.swt.graphics.Color;
  */
 public class TimeConstraintAsLocalPostcondEditPart extends
 
-ShapeNodeEditPart {
+AbstractConstraintEditPart {
 
 	/**
 	 * @generated
@@ -94,6 +94,16 @@ ShapeNodeEditPart {
 	}
 
 	/**
+	 * Papyrus codeGen
+	 * 
+	 * @generated
+	 **/
+	protected void handleNotificationEvent(Notification event) {
+		super.handleNotificationEvent(event);
+
+	}
+
+	/**
 	 * @generated
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
@@ -122,14 +132,14 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		return primaryShape = new CornerBentWithTextFigure();
+		return primaryShape = new LocalPostConditionConstraintFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public CornerBentWithTextFigure getPrimaryShape() {
-		return (CornerBentWithTextFigure)primaryShape;
+	public LocalPostConditionConstraintFigure getPrimaryShape() {
+		return (LocalPostConditionConstraintFigure)primaryShape;
 	}
 
 	/**
@@ -137,7 +147,11 @@ ShapeNodeEditPart {
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if(childEditPart instanceof TimeConstraintAsLocalPostcondNameEditPart) {
-			((TimeConstraintAsLocalPostcondNameEditPart)childEditPart).setLabel(getPrimaryShape().getCornerBentContent());
+			((TimeConstraintAsLocalPostcondNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
+			return true;
+		}
+		if(childEditPart instanceof TimeConstraintAsLocalPostcondBodyEditPart) {
+			((TimeConstraintAsLocalPostcondBodyEditPart)childEditPart).setLabel(getPrimaryShape().getConstraintFigure());
 			return true;
 		}
 
@@ -149,6 +163,9 @@ ShapeNodeEditPart {
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
 		if(childEditPart instanceof TimeConstraintAsLocalPostcondNameEditPart) {
+			return true;
+		}
+		if(childEditPart instanceof TimeConstraintAsLocalPostcondBodyEditPart) {
 			return true;
 		}
 		return false;
@@ -316,50 +333,6 @@ ShapeNodeEditPart {
 		}
 		return types;
 	}
-
-	/**
-	 * @generated
-	 */
-	public class CornerBentWithTextFigure extends CornerBentFigure {
-
-		/**
-		 * @generated
-		 */
-		private WrappedLabel fCornerBentContent;
-
-		/**
-		 * @generated
-		 */
-		public CornerBentWithTextFigure() {
-
-			this.setBackgroundColor(THIS_BACK);
-			createContents();
-		}
-
-		/**
-		 * @generated
-		 */
-		private void createContents() {
-
-			fCornerBentContent = new WrappedLabel();
-
-			this.add(fCornerBentContent);
-
-		}
-
-		/**
-		 * @generated
-		 */
-		public WrappedLabel getCornerBentContent() {
-			return fCornerBentContent;
-		}
-
-	}
-
-	/**
-	 * @generated
-	 */
-	static final Color THIS_BACK = new Color(null, 248, 249, 214);
 
 	/**
 	 * @generated
