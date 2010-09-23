@@ -41,6 +41,8 @@ import org.eclipse.uml2.uml.Interval;
 import org.eclipse.uml2.uml.LiteralInteger;
 import org.eclipse.uml2.uml.LiteralString;
 import org.eclipse.uml2.uml.OpaqueExpression;
+import org.eclipse.uml2.uml.TimeExpression;
+import org.eclipse.uml2.uml.TimeInterval;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.ValueSpecification;
@@ -69,6 +71,14 @@ public class ConstraintParser implements IParser, ISemanticParser {
 		if(constraint.getSpecification() instanceof DurationInterval) {
 			if((((DurationInterval)constraint.getSpecification()).getMin())!=null && (((DurationInterval)constraint.getSpecification()).getMax()!=null)){
 				return ((DurationInterval)constraint.getSpecification()).getMin().stringValue()+".."+((DurationInterval)constraint.getSpecification()).getMax().stringValue();
+			}
+			else{
+				return "0..0";}
+		}
+		
+		if(constraint.getSpecification() instanceof TimeInterval) {
+			if((((TimeInterval)constraint.getSpecification()).getMin())!=null && (((TimeInterval)constraint.getSpecification()).getMax()!=null)){
+				return ((TimeInterval)constraint.getSpecification()).getMin().stringValue()+".."+((TimeInterval)constraint.getSpecification()).getMax().stringValue();
 			}
 			else{
 				return "0..0";}
@@ -147,6 +157,28 @@ public class ConstraintParser implements IParser, ISemanticParser {
 			 request = new SetRequest(specif, UMLPackage.eINSTANCE.getInterval_Max(), durationMax);
 			command.compose(new SetValueCommand(request));
 			
+		}
+		
+		if(constraint.getSpecification() instanceof TimeInterval) {
+			TimeInterval specif = (TimeInterval)constraint.getSpecification();
+			command = new CompositeTransactionalCommand(editingDomain, "Set Value Constraint"); //$NON-NLS-1$
+			TimeExpression timeMin= UMLFactory.eINSTANCE.createTimeExpression();
+			timeMin.setName(NamedElementHelper.EINSTANCE.getNewUMLElementName(constraint, timeMin.eClass()));
+			TimeExpression timeMax= UMLFactory.eINSTANCE.createTimeExpression();
+			timeMax.setName(NamedElementHelper.EINSTANCE.getNewUMLElementName(constraint, timeMax.eClass()));
+			
+			LiteralString exp1 =UMLFactory.eINSTANCE.createLiteralString();
+			LiteralString exp2 =UMLFactory.eINSTANCE.createLiteralString();
+			exp1.setName(NamedElementHelper.EINSTANCE.getNewUMLElementName(timeMin, exp1.eClass()));
+			exp1.setValue(newString.substring(0, newString.indexOf("..")));
+			exp2.setValue( newString.substring(newString.indexOf("..")+2,newString.length()));
+			exp2.setName(NamedElementHelper.EINSTANCE.getNewUMLElementName(timeMax, exp2.eClass()));
+			timeMin.setExpr(exp1);
+			timeMax.setExpr(exp2);
+			SetRequest request = new SetRequest(specif, UMLPackage.eINSTANCE.getInterval_Min(),timeMin);
+			command.compose(new SetValueCommand(request));
+			 request = new SetRequest(specif, UMLPackage.eINSTANCE.getInterval_Max(), timeMax);
+			command.compose(new SetValueCommand(request));
 		}
 		return command;
 	}
