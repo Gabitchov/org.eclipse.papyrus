@@ -2742,7 +2742,7 @@
           itemSemanticEditPolicyClassName="PackagePackageableElementCompartmentItemSemanticEditPolicyCN"
           canonicalEditPolicyClassName="PackagePackageableElementCompartmentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.0 /0/@diagram/@childNodes.14"
-          title="PackageableElementCompartmentCN"
+          title="PackageableElementCompartment"
           canCollapse="false"
           needsTitle="false"
           node="/0/@diagram/@childNodes.11"
