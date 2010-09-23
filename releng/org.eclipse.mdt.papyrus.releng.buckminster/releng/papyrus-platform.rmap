@@ -31,7 +31,7 @@
 
 	<searchPath name="emf">
 		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-			<uri format="{0}/modeling/emf/updates/releases/">
+			<uri format="{0}/modeling/emf/emf/updates/2.6milestones">
 				<bc:propertyRef key="eclipse.download" />
 			</uri>
 		</provider>
@@ -87,7 +87,7 @@
 	
 	<searchPath name="ocl">
 		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-			<uri format="{0}/modeling/mdt/ocl/3_0/updates/">
+			<uri format="{0}/modeling/mdt/ocl/3_0/updates/releases/">
 				<bc:propertyRef key="eclipse.download" />
 			</uri>
 		</provider>
