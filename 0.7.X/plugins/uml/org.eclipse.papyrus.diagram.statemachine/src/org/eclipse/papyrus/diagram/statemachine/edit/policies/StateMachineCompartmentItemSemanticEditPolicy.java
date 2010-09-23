@@ -10,7 +10,8 @@ import org.eclipse.papyrus.diagram.statemachine.providers.UMLElementTypes;
 /**
  * @generated
  */
-public class StateMachineCompartmentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+public class StateMachineCompartmentItemSemanticEditPolicy extends
+		UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
@@ -23,13 +24,13 @@ public class StateMachineCompartmentItemSemanticEditPolicy extends UMLBaseItemSe
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if(UMLElementTypes.Region_3000 == req.getElementType()) {
+		if (UMLElementTypes.Region_3000 == req.getElementType()) {
 			return getGEFWrapper(new RegionCreateCommand(req));
 		}
-		if(UMLElementTypes.Pseudostate_16000 == req.getElementType()) {
+		if (UMLElementTypes.Pseudostate_16000 == req.getElementType()) {
 			return getGEFWrapper(new PseudostateEntryPointCreateCommand(req));
 		}
-		if(UMLElementTypes.Pseudostate_17000 == req.getElementType()) {
+		if (UMLElementTypes.Pseudostate_17000 == req.getElementType()) {
 			return getGEFWrapper(new PseudostateExitPointCreateCommand(req));
 		}
 		return super.getCreateCommand(req);

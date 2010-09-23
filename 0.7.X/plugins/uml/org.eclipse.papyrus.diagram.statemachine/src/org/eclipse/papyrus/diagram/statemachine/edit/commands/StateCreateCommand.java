@@ -25,7 +25,8 @@ public class StateCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public static StateCreateCommand create(CreateElementRequest req, EObject eObject) {
+	public static StateCreateCommand create(CreateElementRequest req,
+			EObject eObject) {
 		return new StateCreateCommand(req, eObject);
 	}
 
@@ -67,13 +68,18 @@ public class StateCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(State newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
-		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
-		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());
+	protected void doConfigure(State newElement, IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
+		IElementType elementType = ((CreateElementRequest) getRequest())
+				.getElementType();
+		ConfigureRequest configureRequest = new ConfigureRequest(
+				getEditingDomain(), newElement, elementType);
+		configureRequest.setClientContext(((CreateElementRequest) getRequest())
+				.getClientContext());
 		configureRequest.addParameters(getRequest().getParameters());
-		ICommand configureCommand = elementType.getEditCommand(configureRequest);
-		if(configureCommand != null && configureCommand.canExecute()) {
+		ICommand configureCommand = elementType
+				.getEditCommand(configureRequest);
+		if (configureCommand != null && configureCommand.canExecute()) {
 			configureCommand.execute(monitor, info);
 		}
 	}
@@ -81,18 +87,19 @@ public class StateCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
 
 		State newElement = UMLFactory.eINSTANCE.createState();
 
-		Region owner = (Region)getElementToEdit();
+		Region owner = (Region) getElementToEdit();
 		owner.getSubvertices().add(newElement);
 
 		ElementInitializers.getInstance().init_State_6000(newElement);
 
 		doConfigure(newElement, monitor, info);
 
-		((CreateElementRequest)getRequest()).setNewElement(newElement);
+		((CreateElementRequest) getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
 
@@ -103,11 +110,12 @@ public class StateCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-		EObject container = ((CreateElementRequest)getRequest()).getContainer();
-		if(container instanceof View) {
-			container = ((View)container).getElement();
+		EObject container = ((CreateElementRequest) getRequest())
+				.getContainer();
+		if (container instanceof View) {
+			container = ((View) container).getElement();
 		}
-		if(container != null) {
+		if (container != null) {
 			return container;
 		}
 		return eObject;

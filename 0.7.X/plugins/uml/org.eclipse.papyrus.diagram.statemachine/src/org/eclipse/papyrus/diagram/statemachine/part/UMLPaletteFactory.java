@@ -239,46 +239,46 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	public Tool createTool(String toolId) {
-		if(toolId.equals(CREATEREGIONCREATIONTOOL)) {
+		if (toolId.equals(CREATEREGIONCREATIONTOOL)) {
 			return createRegionCreationTool();
 		}
-		if(toolId.equals(CREATESTATECREATIONTOOL)) {
+		if (toolId.equals(CREATESTATECREATIONTOOL)) {
 			return createStateCreationTool();
 		}
-		if(toolId.equals(CREATEINITIALCREATIONTOOL)) {
+		if (toolId.equals(CREATEINITIALCREATIONTOOL)) {
 			return createInitialCreationTool();
 		}
-		if(toolId.equals(CREATEFINALSTATECREATIONTOOL)) {
+		if (toolId.equals(CREATEFINALSTATECREATIONTOOL)) {
 			return createFinalStateCreationTool();
 		}
-		if(toolId.equals(CREATESHALLOWHISTORYCREATIONTOOL)) {
+		if (toolId.equals(CREATESHALLOWHISTORYCREATIONTOOL)) {
 			return createShallowHistoryCreationTool();
 		}
-		if(toolId.equals(CREATEDEEPHISTORYCREATIONTOOL)) {
+		if (toolId.equals(CREATEDEEPHISTORYCREATIONTOOL)) {
 			return createDeepHistoryCreationTool();
 		}
-		if(toolId.equals(CREATEFORKCREATIONTOOL)) {
+		if (toolId.equals(CREATEFORKCREATIONTOOL)) {
 			return createForkCreationTool();
 		}
-		if(toolId.equals(CREATEJOINCREATIONTOOL)) {
+		if (toolId.equals(CREATEJOINCREATIONTOOL)) {
 			return createJoinCreationTool();
 		}
-		if(toolId.equals(CREATECHOICECREATIONTOOL)) {
+		if (toolId.equals(CREATECHOICECREATIONTOOL)) {
 			return createChoiceCreationTool();
 		}
-		if(toolId.equals(CREATEJUNCTIONCREATIONTOOL)) {
+		if (toolId.equals(CREATEJUNCTIONCREATIONTOOL)) {
 			return createJunctionCreationTool();
 		}
-		if(toolId.equals(CREATEENTRYPOINTCREATIONTOOL)) {
+		if (toolId.equals(CREATEENTRYPOINTCREATIONTOOL)) {
 			return createEntryPointCreationTool();
 		}
-		if(toolId.equals(CREATEEXITPOINTCREATIONTOOL)) {
+		if (toolId.equals(CREATEEXITPOINTCREATIONTOOL)) {
 			return createExitPointCreationTool();
 		}
-		if(toolId.equals(CREATETERMINATECREATIONTOOL)) {
+		if (toolId.equals(CREATETERMINATECREATIONTOOL)) {
 			return createTerminateCreationTool();
 		}
-		if(toolId.equals(CREATETRANSITIONCREATIONTOOL)) {
+		if (toolId.equals(CREATETRANSITIONCREATIONTOOL)) {
 			return createTransitionCreationTool();
 		}
 
