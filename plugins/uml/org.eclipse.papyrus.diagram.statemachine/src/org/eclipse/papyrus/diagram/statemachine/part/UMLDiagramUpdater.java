@@ -52,7 +52,7 @@ public class UMLDiagramUpdater {
 	 * @generated
 	 */
 	public static List<UMLLinkDescriptor> getContainedLinks(View view) {
-		switch(UMLVisualIDRegistry.getVisualID(view)) {
+		switch (UMLVisualIDRegistry.getVisualID(view)) {
 		case PackageEditPart.VISUAL_ID:
 			return getPackage_1000ContainedLinks(view);
 		case StateMachineEditPart.VISUAL_ID:
@@ -92,21 +92,26 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Transition_7000(Region container) {
+	private static Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Transition_7000(
+			Region container) {
 		Collection result = new LinkedList();
-		for(Iterator links = container.getTransitions().iterator(); links.hasNext();) {
-			EObject linkObject = (EObject)links.next();
-			if(false == linkObject instanceof Transition) {
+		for (Iterator links = container.getTransitions().iterator(); links
+				.hasNext();) {
+			EObject linkObject = (EObject) links.next();
+			if (false == linkObject instanceof Transition) {
 				continue;
 			}
-			Transition link = (Transition)linkObject;
-			if(TransitionEditPart.VISUAL_ID != UMLVisualIDRegistry.getLinkWithClassVisualID(link)) {
+			Transition link = (Transition) linkObject;
+			if (TransitionEditPart.VISUAL_ID != UMLVisualIDRegistry
+					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
 
 			Vertex dst = link.getTarget();
 			Vertex src = link.getSource();
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Transition_7000, TransitionEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link,
+					UMLElementTypes.Transition_7000,
+					TransitionEditPart.VISUAL_ID));
 
 		}
 		return result;
@@ -115,26 +120,31 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getFinalState_5000ContainedLinks(View view) {
+	public static List<UMLLinkDescriptor> getFinalState_5000ContainedLinks(
+			View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getFinalState_5000IncomingLinks(View view) {
-		FinalState modelElement = (FinalState)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+	public static List<UMLLinkDescriptor> getFinalState_5000IncomingLinks(
+			View view) {
+		FinalState modelElement = (FinalState) view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
+				.find(view.eResource().getResourceSet().getResources());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Transition_7000(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Transition_7000(
+				modelElement, crossReferences));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getFinalState_5000OutgoingLinks(View view) {
-		FinalState modelElement = (FinalState)view.getElement();
+	public static List<UMLLinkDescriptor> getFinalState_5000OutgoingLinks(
+			View view) {
+		FinalState modelElement = (FinalState) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_Transition_7000(modelElement));
 		return result;
@@ -144,7 +154,7 @@ public class UMLDiagramUpdater {
 	 * @generated
 	 */
 	public static List<UMLLinkDescriptor> getIncomingLinks(View view) {
-		switch(UMLVisualIDRegistry.getVisualID(view)) {
+		switch (UMLVisualIDRegistry.getVisualID(view)) {
 		case StateMachineEditPart.VISUAL_ID:
 			return getStateMachine_2000IncomingLinks(view);
 		case RegionEditPart.VISUAL_ID:
@@ -182,19 +192,27 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Transition_7000(Vertex target, Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
+	private static Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Transition_7000(
+			Vertex target,
+			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		Collection<EStructuralFeature.Setting> settings = crossReferences.get(target);
-		for(EStructuralFeature.Setting setting : settings) {
-			if(setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getTransition_Target() || false == setting.getEObject() instanceof Transition) {
+		Collection<EStructuralFeature.Setting> settings = crossReferences
+				.get(target);
+		for (EStructuralFeature.Setting setting : settings) {
+			if (setting.getEStructuralFeature() != UMLPackage.eINSTANCE
+					.getTransition_Target()
+					|| false == setting.getEObject() instanceof Transition) {
 				continue;
 			}
-			Transition link = (Transition)setting.getEObject();
-			if(TransitionEditPart.VISUAL_ID != UMLVisualIDRegistry.getLinkWithClassVisualID(link)) {
+			Transition link = (Transition) setting.getEObject();
+			if (TransitionEditPart.VISUAL_ID != UMLVisualIDRegistry
+					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
 			Vertex src = link.getSource();
-			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.Transition_7000, TransitionEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, target, link,
+					UMLElementTypes.Transition_7000,
+					TransitionEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -203,7 +221,7 @@ public class UMLDiagramUpdater {
 	 * @generated
 	 */
 	public static List<UMLLinkDescriptor> getOutgoingLinks(View view) {
-		switch(UMLVisualIDRegistry.getVisualID(view)) {
+		switch (UMLVisualIDRegistry.getVisualID(view)) {
 		case StateMachineEditPart.VISUAL_ID:
 			return getStateMachine_2000OutgoingLinks(view);
 		case RegionEditPart.VISUAL_ID:
@@ -241,36 +259,42 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection<UMLLinkDescriptor> getOutgoingTypeModelFacetLinks_Transition_7000(Vertex source) {
+	private static Collection<UMLLinkDescriptor> getOutgoingTypeModelFacetLinks_Transition_7000(
+			Vertex source) {
 		Region container = null;
 		// Find container element for the link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for(EObject element = source; element != null && container == null; element = element.eContainer()) {
-			if(element instanceof Region) {
-				container = (Region)element;
+		for (EObject element = source; element != null && container == null; element = element
+				.eContainer()) {
+			if (element instanceof Region) {
+				container = (Region) element;
 			}
 		}
-		if(container == null) {
+		if (container == null) {
 			return Collections.emptyList();
 		}
 		Collection result = new LinkedList();
-		for(Iterator links = container.getTransitions().iterator(); links.hasNext();) {
-			EObject linkObject = (EObject)links.next();
-			if(false == linkObject instanceof Transition) {
+		for (Iterator links = container.getTransitions().iterator(); links
+				.hasNext();) {
+			EObject linkObject = (EObject) links.next();
+			if (false == linkObject instanceof Transition) {
 				continue;
 			}
-			Transition link = (Transition)linkObject;
-			if(TransitionEditPart.VISUAL_ID != UMLVisualIDRegistry.getLinkWithClassVisualID(link)) {
+			Transition link = (Transition) linkObject;
+			if (TransitionEditPart.VISUAL_ID != UMLVisualIDRegistry
+					.getLinkWithClassVisualID(link)) {
 				continue;
 			}
 
 			Vertex dst = link.getTarget();
 			Vertex src = link.getSource();
-			if(src != source) {
+			if (src != source) {
 				continue;
 			}
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Transition_7000, TransitionEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link,
+					UMLElementTypes.Transition_7000,
+					TransitionEditPart.VISUAL_ID));
 
 		}
 		return result;
@@ -279,23 +303,27 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getPackage_1000ContainedLinks(View view) {
+	public static List<UMLLinkDescriptor> getPackage_1000ContainedLinks(
+			View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<UMLNodeDescriptor> getPackage_1000SemanticChildren(View view) {
-		if(!view.isSetElement()) {
+	public static List<UMLNodeDescriptor> getPackage_1000SemanticChildren(
+			View view) {
+		if (!view.isSetElement()) {
 			return Collections.EMPTY_LIST;
 		}
-		Package modelElement = (Package)view.getElement();
+		Package modelElement = (Package) view.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getPackagedElements().iterator(); it.hasNext();) {
-			PackageableElement childElement = (PackageableElement)it.next();
-			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == StateMachineEditPart.VISUAL_ID) {
+		for (Iterator<?> it = modelElement.getPackagedElements().iterator(); it
+				.hasNext();) {
+			PackageableElement childElement = (PackageableElement) it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view,
+					childElement);
+			if (visualID == StateMachineEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -306,26 +334,31 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getPseudostate_10000ContainedLinks(View view) {
+	public static List<UMLLinkDescriptor> getPseudostate_10000ContainedLinks(
+			View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getPseudostate_10000IncomingLinks(View view) {
-		Pseudostate modelElement = (Pseudostate)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+	public static List<UMLLinkDescriptor> getPseudostate_10000IncomingLinks(
+			View view) {
+		Pseudostate modelElement = (Pseudostate) view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
+				.find(view.eResource().getResourceSet().getResources());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Transition_7000(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Transition_7000(
+				modelElement, crossReferences));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getPseudostate_10000OutgoingLinks(View view) {
-		Pseudostate modelElement = (Pseudostate)view.getElement();
+	public static List<UMLLinkDescriptor> getPseudostate_10000OutgoingLinks(
+			View view) {
+		Pseudostate modelElement = (Pseudostate) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_Transition_7000(modelElement));
 		return result;
@@ -334,26 +367,31 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getPseudostate_11000ContainedLinks(View view) {
+	public static List<UMLLinkDescriptor> getPseudostate_11000ContainedLinks(
+			View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getPseudostate_11000IncomingLinks(View view) {
-		Pseudostate modelElement = (Pseudostate)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+	public static List<UMLLinkDescriptor> getPseudostate_11000IncomingLinks(
+			View view) {
+		Pseudostate modelElement = (Pseudostate) view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
+				.find(view.eResource().getResourceSet().getResources());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Transition_7000(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Transition_7000(
+				modelElement, crossReferences));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getPseudostate_11000OutgoingLinks(View view) {
-		Pseudostate modelElement = (Pseudostate)view.getElement();
+	public static List<UMLLinkDescriptor> getPseudostate_11000OutgoingLinks(
+			View view) {
+		Pseudostate modelElement = (Pseudostate) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_Transition_7000(modelElement));
 		return result;
@@ -362,26 +400,31 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getPseudostate_12000ContainedLinks(View view) {
+	public static List<UMLLinkDescriptor> getPseudostate_12000ContainedLinks(
+			View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getPseudostate_12000IncomingLinks(View view) {
-		Pseudostate modelElement = (Pseudostate)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+	public static List<UMLLinkDescriptor> getPseudostate_12000IncomingLinks(
+			View view) {
+		Pseudostate modelElement = (Pseudostate) view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
+				.find(view.eResource().getResourceSet().getResources());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Transition_7000(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Transition_7000(
+				modelElement, crossReferences));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getPseudostate_12000OutgoingLinks(View view) {
-		Pseudostate modelElement = (Pseudostate)view.getElement();
+	public static List<UMLLinkDescriptor> getPseudostate_12000OutgoingLinks(
+			View view) {
+		Pseudostate modelElement = (Pseudostate) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_Transition_7000(modelElement));
 		return result;
@@ -390,26 +433,31 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getPseudostate_13000ContainedLinks(View view) {
+	public static List<UMLLinkDescriptor> getPseudostate_13000ContainedLinks(
+			View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getPseudostate_13000IncomingLinks(View view) {
-		Pseudostate modelElement = (Pseudostate)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+	public static List<UMLLinkDescriptor> getPseudostate_13000IncomingLinks(
+			View view) {
+		Pseudostate modelElement = (Pseudostate) view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
+				.find(view.eResource().getResourceSet().getResources());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Transition_7000(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Transition_7000(
+				modelElement, crossReferences));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getPseudostate_13000OutgoingLinks(View view) {
-		Pseudostate modelElement = (Pseudostate)view.getElement();
+	public static List<UMLLinkDescriptor> getPseudostate_13000OutgoingLinks(
+			View view) {
+		Pseudostate modelElement = (Pseudostate) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_Transition_7000(modelElement));
 		return result;
@@ -418,26 +466,31 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getPseudostate_14000ContainedLinks(View view) {
+	public static List<UMLLinkDescriptor> getPseudostate_14000ContainedLinks(
+			View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getPseudostate_14000IncomingLinks(View view) {
-		Pseudostate modelElement = (Pseudostate)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+	public static List<UMLLinkDescriptor> getPseudostate_14000IncomingLinks(
+			View view) {
+		Pseudostate modelElement = (Pseudostate) view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
+				.find(view.eResource().getResourceSet().getResources());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Transition_7000(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Transition_7000(
+				modelElement, crossReferences));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getPseudostate_14000OutgoingLinks(View view) {
-		Pseudostate modelElement = (Pseudostate)view.getElement();
+	public static List<UMLLinkDescriptor> getPseudostate_14000OutgoingLinks(
+			View view) {
+		Pseudostate modelElement = (Pseudostate) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_Transition_7000(modelElement));
 		return result;
@@ -446,26 +499,31 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getPseudostate_15000ContainedLinks(View view) {
+	public static List<UMLLinkDescriptor> getPseudostate_15000ContainedLinks(
+			View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getPseudostate_15000IncomingLinks(View view) {
-		Pseudostate modelElement = (Pseudostate)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+	public static List<UMLLinkDescriptor> getPseudostate_15000IncomingLinks(
+			View view) {
+		Pseudostate modelElement = (Pseudostate) view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
+				.find(view.eResource().getResourceSet().getResources());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Transition_7000(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Transition_7000(
+				modelElement, crossReferences));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getPseudostate_15000OutgoingLinks(View view) {
-		Pseudostate modelElement = (Pseudostate)view.getElement();
+	public static List<UMLLinkDescriptor> getPseudostate_15000OutgoingLinks(
+			View view) {
+		Pseudostate modelElement = (Pseudostate) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_Transition_7000(modelElement));
 		return result;
@@ -474,26 +532,31 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getPseudostate_16000ContainedLinks(View view) {
+	public static List<UMLLinkDescriptor> getPseudostate_16000ContainedLinks(
+			View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getPseudostate_16000IncomingLinks(View view) {
-		Pseudostate modelElement = (Pseudostate)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+	public static List<UMLLinkDescriptor> getPseudostate_16000IncomingLinks(
+			View view) {
+		Pseudostate modelElement = (Pseudostate) view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
+				.find(view.eResource().getResourceSet().getResources());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Transition_7000(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Transition_7000(
+				modelElement, crossReferences));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getPseudostate_16000OutgoingLinks(View view) {
-		Pseudostate modelElement = (Pseudostate)view.getElement();
+	public static List<UMLLinkDescriptor> getPseudostate_16000OutgoingLinks(
+			View view) {
+		Pseudostate modelElement = (Pseudostate) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_Transition_7000(modelElement));
 		return result;
@@ -502,26 +565,31 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getPseudostate_17000ContainedLinks(View view) {
+	public static List<UMLLinkDescriptor> getPseudostate_17000ContainedLinks(
+			View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getPseudostate_17000IncomingLinks(View view) {
-		Pseudostate modelElement = (Pseudostate)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+	public static List<UMLLinkDescriptor> getPseudostate_17000IncomingLinks(
+			View view) {
+		Pseudostate modelElement = (Pseudostate) view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
+				.find(view.eResource().getResourceSet().getResources());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Transition_7000(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Transition_7000(
+				modelElement, crossReferences));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getPseudostate_17000OutgoingLinks(View view) {
-		Pseudostate modelElement = (Pseudostate)view.getElement();
+	public static List<UMLLinkDescriptor> getPseudostate_17000OutgoingLinks(
+			View view) {
+		Pseudostate modelElement = (Pseudostate) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_Transition_7000(modelElement));
 		return result;
@@ -530,26 +598,31 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getPseudostate_8000ContainedLinks(View view) {
+	public static List<UMLLinkDescriptor> getPseudostate_8000ContainedLinks(
+			View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getPseudostate_8000IncomingLinks(View view) {
-		Pseudostate modelElement = (Pseudostate)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+	public static List<UMLLinkDescriptor> getPseudostate_8000IncomingLinks(
+			View view) {
+		Pseudostate modelElement = (Pseudostate) view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
+				.find(view.eResource().getResourceSet().getResources());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Transition_7000(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Transition_7000(
+				modelElement, crossReferences));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getPseudostate_8000OutgoingLinks(View view) {
-		Pseudostate modelElement = (Pseudostate)view.getElement();
+	public static List<UMLLinkDescriptor> getPseudostate_8000OutgoingLinks(
+			View view) {
+		Pseudostate modelElement = (Pseudostate) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_Transition_7000(modelElement));
 		return result;
@@ -558,26 +631,31 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getPseudostate_9000ContainedLinks(View view) {
+	public static List<UMLLinkDescriptor> getPseudostate_9000ContainedLinks(
+			View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getPseudostate_9000IncomingLinks(View view) {
-		Pseudostate modelElement = (Pseudostate)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+	public static List<UMLLinkDescriptor> getPseudostate_9000IncomingLinks(
+			View view) {
+		Pseudostate modelElement = (Pseudostate) view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
+				.find(view.eResource().getResourceSet().getResources());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Transition_7000(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Transition_7000(
+				modelElement, crossReferences));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getPseudostate_9000OutgoingLinks(View view) {
-		Pseudostate modelElement = (Pseudostate)view.getElement();
+	public static List<UMLLinkDescriptor> getPseudostate_9000OutgoingLinks(
+			View view) {
+		Pseudostate modelElement = (Pseudostate) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_Transition_7000(modelElement));
 		return result;
@@ -587,7 +665,7 @@ public class UMLDiagramUpdater {
 	 * @generated
 	 */
 	public static List<UMLLinkDescriptor> getRegion_3000ContainedLinks(View view) {
-		Region modelElement = (Region)view.getElement();
+		Region modelElement = (Region) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getContainedTypeModelFacetLinks_Transition_7000(modelElement));
 		return result;
@@ -619,7 +697,7 @@ public class UMLDiagramUpdater {
 	 * @generated
 	 */
 	public static List<UMLNodeDescriptor> getSemanticChildren(View view) {
-		switch(UMLVisualIDRegistry.getVisualID(view)) {
+		switch (UMLVisualIDRegistry.getVisualID(view)) {
 		case PackageEditPart.VISUAL_ID:
 			return getPackage_1000SemanticChildren(view);
 		case StateMachineEditPart.VISUAL_ID:
@@ -643,10 +721,12 @@ public class UMLDiagramUpdater {
 	 * @generated
 	 */
 	public static List<UMLLinkDescriptor> getState_6000IncomingLinks(View view) {
-		State modelElement = (State)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		State modelElement = (State) view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
+				.find(view.eResource().getResourceSet().getResources());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Transition_7000(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Transition_7000(
+				modelElement, crossReferences));
 		return result;
 	}
 
@@ -654,7 +734,7 @@ public class UMLDiagramUpdater {
 	 * @generated
 	 */
 	public static List<UMLLinkDescriptor> getState_6000OutgoingLinks(View view) {
-		State modelElement = (State)view.getElement();
+		State modelElement = (State) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_Transition_7000(modelElement));
 		return result;
@@ -663,41 +743,47 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getStateMachine_2000ContainedLinks(View view) {
+	public static List<UMLLinkDescriptor> getStateMachine_2000ContainedLinks(
+			View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getStateMachine_2000IncomingLinks(View view) {
+	public static List<UMLLinkDescriptor> getStateMachine_2000IncomingLinks(
+			View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getStateMachine_2000OutgoingLinks(View view) {
+	public static List<UMLLinkDescriptor> getStateMachine_2000OutgoingLinks(
+			View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<UMLNodeDescriptor> getStateMachine_2000SemanticChildren(View view) {
-		if(!view.isSetElement()) {
+	public static List<UMLNodeDescriptor> getStateMachine_2000SemanticChildren(
+			View view) {
+		if (!view.isSetElement()) {
 			return Collections.EMPTY_LIST;
 		}
-		StateMachine modelElement = (StateMachine)view.getElement();
+		StateMachine modelElement = (StateMachine) view.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getConnectionPoints().iterator(); it.hasNext();) {
-			Pseudostate childElement = (Pseudostate)it.next();
-			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == PseudostateEntryPointEditPart.VISUAL_ID) {
+		for (Iterator<?> it = modelElement.getConnectionPoints().iterator(); it
+				.hasNext();) {
+			Pseudostate childElement = (Pseudostate) it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view,
+					childElement);
+			if (visualID == PseudostateEntryPointEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(visualID == PseudostateExitPointEditPart.VISUAL_ID) {
+			if (visualID == PseudostateExitPointEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -708,32 +794,37 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<UMLNodeDescriptor> getStateMachineStateMachineCompartment_2002SemanticChildren(View view) {
-		if(false == view.eContainer() instanceof View) {
+	public static List<UMLNodeDescriptor> getStateMachineStateMachineCompartment_2002SemanticChildren(
+			View view) {
+		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
-		View containerView = (View)view.eContainer();
-		if(!containerView.isSetElement()) {
+		View containerView = (View) view.eContainer();
+		if (!containerView.isSetElement()) {
 			return Collections.emptyList();
 		}
-		StateMachine modelElement = (StateMachine)containerView.getElement();
+		StateMachine modelElement = (StateMachine) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getRegions().iterator(); it.hasNext();) {
-			Region childElement = (Region)it.next();
-			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == RegionEditPart.VISUAL_ID) {
+		for (Iterator<?> it = modelElement.getRegions().iterator(); it
+				.hasNext();) {
+			Region childElement = (Region) it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view,
+					childElement);
+			if (visualID == RegionEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
 		}
-		for(Iterator<?> it = modelElement.getConnectionPoints().iterator(); it.hasNext();) {
-			Pseudostate childElement = (Pseudostate)it.next();
-			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == PseudostateEntryPointEditPart.VISUAL_ID) {
+		for (Iterator<?> it = modelElement.getConnectionPoints().iterator(); it
+				.hasNext();) {
+			Pseudostate childElement = (Pseudostate) it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view,
+					childElement);
+			if (visualID == PseudostateEntryPointEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(visualID == PseudostateExitPointEditPart.VISUAL_ID) {
+			if (visualID == PseudostateExitPointEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -744,21 +835,24 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getTransition_7000ContainedLinks(View view) {
+	public static List<UMLLinkDescriptor> getTransition_7000ContainedLinks(
+			View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getTransition_7000IncomingLinks(View view) {
+	public static List<UMLLinkDescriptor> getTransition_7000IncomingLinks(
+			View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getTransition_7000OutgoingLinks(View view) {
+	public static List<UMLLinkDescriptor> getTransition_7000OutgoingLinks(
+			View view) {
 		return Collections.emptyList();
 	}
 
