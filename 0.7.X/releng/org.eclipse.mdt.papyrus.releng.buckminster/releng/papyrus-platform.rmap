@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rmap xmlns="http://www.eclipse.org/buckminster/RMap-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0"
->
+<rmap xmlns="http://www.eclipse.org/buckminster/RMap-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0">
 	<locator pattern="^org\.eclipse\.mdt\.papyrus\.releng\.buckminster$" searchPathRef="local.releng" />
 	<locator pattern="^org\.eclipse\.team\.svn(?:\..+)?$" searchPathRef="subversive" />
 	<locator pattern="^org\.eclipse\.emf\.transaction(?:\..+)?$" searchPathRef="emf.milestones" />
@@ -173,9 +171,7 @@
 
 	<searchPath name="platform">
 		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-			<uri format="{0}/eclipse/updates/3.7milestones">
-				<bc:propertyRef key="eclipse.download" />
-			</uri>
+			 <uri format="http://download.eclipse.org/eclipse/updates/3.6.x"/>
 		</provider>
 	</searchPath>
 
