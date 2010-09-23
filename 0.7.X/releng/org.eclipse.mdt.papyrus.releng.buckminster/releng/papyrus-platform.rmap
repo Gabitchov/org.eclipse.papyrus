@@ -51,8 +51,8 @@
 	<searchPath name="cdo">
 		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
 			<uri format="http://download.eclipse.org/modeling/emf/cdo/updates/3.0-releases/" />
-		<provider>
-	<searchPath>
+		</provider>
+	</searchPath>
 	
 	<!-- EMF Query, EMF Validation -->
 	<searchPath name="emf.milestones">
