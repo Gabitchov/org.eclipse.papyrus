@@ -259,13 +259,6 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
-			class="org.eclipse.papyrus.diagram.activity.preferences.InteractionConstraintPreferencePage"
-            id="org.eclipse.papyrus.diagram.activity.preferences.InteractionConstraintPreferencePage"
-            name="InteractionConstraint Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
 			class="org.eclipse.papyrus.diagram.activity.preferences.ValueSpecificationActionPreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.ValueSpecificationActionPreferencePage"
             name="ValueSpecificationAction Node" />
@@ -552,7 +545,7 @@
       <viewProvider class="org.eclipse.papyrus.diagram.activity.providers.UMLViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="PapyrusUMLActivityDiagram"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,3001,3002,3003,3004,3005,3006,3007,3015,3016,3013,3014,3008,3017,3018,3019,3020,3010,3021,3022,3023,3024,3025,3026,3027,3034,3035,3036,3037,3030,3031,3032,3033,3011,3012,3038,3039,3040,3041,3078,3042,3046,3047,3048,3049,3050,3051,3052,3053,3054,3055,3060,3061,3062,3059,3063,3064,3076,3077,3069,3070,3074,3075,3071,3073,3065,3067,3068,3079"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,3001,3002,3003,3004,3005,3006,3007,3015,3016,3013,3014,3008,3017,3018,3019,3020,3010,3021,3022,3023,3024,3025,3026,3027,3034,3035,3036,3037,3032,3033,3011,3012,3038,3039,3040,3041,3078,3042,3046,3047,3048,3049,3050,3051,3052,3053,3054,3055,3060,3061,3062,3059,3063,3064,3076,3077,3069,3070,3074,3075,3071,3073,3065,3067,3068,3079"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4001,4002,4003,4004,4005"/>
       </viewProvider>
    </extension>
@@ -565,13 +558,13 @@
             <method name="getType()" value="PapyrusUMLActivityDiagram"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2001,3001,3002,3003,3004,3005,3006,3007,3015,3016,3013,3014,3008,3017,3018,3019,3020,3010,3021,3022,3023,3024,3025,3026,3027,3034,3035,3036,3037,3030,3031,3032,3033,3011,3012,3038,3039,3040,3041,3078,3042,3046,3047,3048,3049,3050,3051,3052,3053,3054,3055,3060,3061,3062,3059,3063,3064,3076,3077,3069,3070,3074,3075,3071,3073,3065,3067,3068,3079"/>
+            <method name="getType()" value="2001,3001,3002,3003,3004,3005,3006,3007,3015,3016,3013,3014,3008,3017,3018,3019,3020,3010,3021,3022,3023,3024,3025,3026,3027,3034,3035,3036,3037,3032,3033,3011,3012,3038,3039,3040,3041,3078,3042,3046,3047,3048,3049,3050,3051,3052,3053,3054,3055,3060,3061,3062,3059,3063,3064,3076,3077,3069,3070,3074,3075,3071,3073,3065,3067,3068,3079"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
             <method name="getType()" value="4001,4002,4003,4004,4005"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="5001,5002,5080,5081,5082,5003,5011,5024,5083,5012,5025,5084,5009,5085,5010,5086,5004,5013,5026,5087,5014,5027,5088,5015,5089,5016,5090,5006,5017,5028,5091,5018,5029,5092,5019,5093,5020,5094,5021,5030,5095,5022,5031,5096,5023,5097,5038,5130,5039,5131,5040,5132,5041,5133,5034,5035,5036,5037,5007,5008,5043,5098,5099,5100,5042,5101,5127,5128,5059,5049,5050,5102,5051,5052,5103,5053,5104,5054,5055,5105,5056,5057,5106,5058,5107,5060,5061,5062,5108,5063,5064,5109,5065,5110,5072,5073,5111,5074,5075,5112,5076,5113,5071,5078,5079,5115,5077,5114,5126,5124,5125,5119,5120,5121,5123,5117,5118,5129"/>
+            <method name="getType()" value="5001,5002,5080,5081,5082,5003,5011,5024,5083,5012,5025,5084,5009,5085,5010,5086,5004,5013,5026,5087,5014,5027,5088,5015,5089,5016,5090,5006,5017,5028,5091,5018,5029,5092,5019,5093,5020,5094,5021,5030,5095,5022,5031,5096,5023,5097,5038,5130,5039,5131,5040,5132,5041,5133,5036,5037,5007,5008,5043,5098,5099,5100,5042,5101,5127,5128,5059,5049,5050,5102,5051,5052,5103,5053,5104,5054,5055,5105,5056,5057,5106,5058,5107,5060,5061,5062,5108,5063,5064,5109,5065,5110,5072,5073,5111,5074,5075,5112,5076,5113,5071,5078,5079,5115,5077,5114,5126,5124,5125,5119,5120,5121,5123,5117,5118,5129"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
             <method name="getType()" value="7001,7002,7003,7004,7008,7009,7010,7012,7005,7006,7007"/>
@@ -890,25 +883,6 @@
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
             <specializes id="org.eclipse.papyrus.diagram.activity.TimeConstraint_3036"/>
             <param name="semanticHint" value="3037"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.diagram.activity.InteractionConstraint_3030"
-               name="%metatype.name.InteractionConstraint_3030"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="InteractionConstraint"
-               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.InteractionConstraintEditHelper">
-            <param name="semanticHint" value="3030"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.diagram.activity.InteractionConstraint_3031"
-               name="%metatype.name.InteractionConstraint_3031"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.diagram.activity.InteractionConstraint_3030"/>
-            <param name="semanticHint" value="3031"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
@@ -1363,8 +1337,6 @@
          <elementType ref="org.eclipse.papyrus.diagram.activity.DurationConstraint_3035"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.TimeConstraint_3036"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.TimeConstraint_3037"/>
-         <elementType ref="org.eclipse.papyrus.diagram.activity.InteractionConstraint_3030"/>
-         <elementType ref="org.eclipse.papyrus.diagram.activity.InteractionConstraint_3031"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.IntervalConstraint_3032"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.IntervalConstraint_3033"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.Constraint_3011"/>
@@ -2681,18 +2653,8 @@ and self.decisionInput.ownedParameter->select(
  	</entry>
 	<entry
        defineOnly="true"
-       description="Create an Interaction Constraint as Local Precondition for an Action"
-       id="createLocalPreconditionInteractionConstraint2CreationTool"
-       kind="tool"
-       label="Local Precondition Interaction Constraint"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionConstraint.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionConstraint.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
        description="Create an Interval Constraint as Local Precondition for an Action"
-       id="createLocalPreconditionIntervalConstraint3CreationTool"
+       id="createLocalPreconditionIntervalConstraint2CreationTool"
        kind="tool"
        label="Local Precondition Interval Constraint"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/IntervalConstraint.gif"
@@ -2702,7 +2664,7 @@ and self.decisionInput.ownedParameter->select(
 	<entry
        defineOnly="true"
        description="Create a Duration Constraint as Local Precondition for an Action"
-       id="createLocalPreconditionDurationConstraint4CreationTool"
+       id="createLocalPreconditionDurationConstraint3CreationTool"
        kind="tool"
        label="Local Precondition Duration Constraint"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationConstraint.gif"
@@ -2712,7 +2674,7 @@ and self.decisionInput.ownedParameter->select(
 	<entry
        defineOnly="true"
        description="Create a Time Constraint as Local Precondition for an Action"
-       id="createLocalPreconditionTimeConstraint5CreationTool"
+       id="createLocalPreconditionTimeConstraint4CreationTool"
        kind="tool"
        label="Local Precondition Time Constraint"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeConstraint.gif"
@@ -2722,7 +2684,7 @@ and self.decisionInput.ownedParameter->select(
 	<entry
        defineOnly="true"
        description="Create a Constraint as Local Postcondition for an Action"
-       id="createLocalPostconditionConstraint6CreationTool"
+       id="createLocalPostconditionConstraint5CreationTool"
        kind="tool"
        label="Local Postcondition Constraint"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
@@ -2731,18 +2693,8 @@ and self.decisionInput.ownedParameter->select(
  	</entry>
 	<entry
        defineOnly="true"
-       description="Create an Interaction Constraint as Local Postcondition for an Action"
-       id="createLocalPostconditionInteractionConstraint7CreationTool"
-       kind="tool"
-       label="Local Postcondition Interaction Constraint"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionConstraint.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionConstraint.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
        description="Create an Interval Constraint as Local Postcondition for an Action"
-       id="createLocalPostconditionIntervalConstraint8CreationTool"
+       id="createLocalPostconditionIntervalConstraint6CreationTool"
        kind="tool"
        label="Local Postcondition Interval Constraint"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/IntervalConstraint.gif"
@@ -2752,7 +2704,7 @@ and self.decisionInput.ownedParameter->select(
 	<entry
        defineOnly="true"
        description="Create a Duration Constraint as Local Postcondition for an Action"
-       id="createLocalPostconditionDurationConstraint9CreationTool"
+       id="createLocalPostconditionDurationConstraint7CreationTool"
        kind="tool"
        label="Local Postcondition Duration Constraint"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationConstraint.gif"
@@ -2762,7 +2714,7 @@ and self.decisionInput.ownedParameter->select(
 	<entry
        defineOnly="true"
        description="Create a Time Constraint as Local Postcondition for an Action"
-       id="createLocalPostconditionTimeConstraint10CreationTool"
+       id="createLocalPostconditionTimeConstraint8CreationTool"
        kind="tool"
        label="Local Postcondition Time Constraint"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeConstraint.gif"
@@ -3004,39 +2956,31 @@ and self.decisionInput.ownedParameter->select(
           path="/createActionsLocalConditions6Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createLocalPreconditionInteractionConstraint2CreationTool"
+          id="createLocalPreconditionIntervalConstraint2CreationTool"
           path="/createActionsLocalConditions6Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createLocalPreconditionIntervalConstraint3CreationTool"
+          id="createLocalPreconditionDurationConstraint3CreationTool"
           path="/createActionsLocalConditions6Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createLocalPreconditionDurationConstraint4CreationTool"
+          id="createLocalPreconditionTimeConstraint4CreationTool"
           path="/createActionsLocalConditions6Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createLocalPreconditionTimeConstraint5CreationTool"
+          id="createLocalPostconditionConstraint5CreationTool"
           path="/createActionsLocalConditions6Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createLocalPostconditionConstraint6CreationTool"
+          id="createLocalPostconditionIntervalConstraint6CreationTool"
           path="/createActionsLocalConditions6Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createLocalPostconditionInteractionConstraint7CreationTool"
+          id="createLocalPostconditionDurationConstraint7CreationTool"
           path="/createActionsLocalConditions6Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createLocalPostconditionIntervalConstraint8CreationTool"
-          path="/createActionsLocalConditions6Group">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="createLocalPostconditionDurationConstraint9CreationTool"
-          path="/createActionsLocalConditions6Group">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="createLocalPostconditionTimeConstraint10CreationTool"
+          id="createLocalPostconditionTimeConstraint8CreationTool"
           path="/createActionsLocalConditions6Group">
     </predefinedEntry>
 

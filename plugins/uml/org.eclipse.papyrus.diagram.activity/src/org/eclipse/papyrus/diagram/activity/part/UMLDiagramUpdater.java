@@ -74,8 +74,6 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInSendObjActAsReq
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInSendObjActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInSendSigActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInSendSigActEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.InteractionConstraintAsLocalPostcondEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.InteractionConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InterruptibleActivityRegionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPostcondEditPart;
@@ -136,7 +134,6 @@ import org.eclipse.uml2.uml.FlowFinalNode;
 import org.eclipse.uml2.uml.ForkNode;
 import org.eclipse.uml2.uml.InitialNode;
 import org.eclipse.uml2.uml.InputPin;
-import org.eclipse.uml2.uml.InteractionConstraint;
 import org.eclipse.uml2.uml.InterruptibleActivityRegion;
 import org.eclipse.uml2.uml.IntervalConstraint;
 import org.eclipse.uml2.uml.JoinNode;
@@ -1490,10 +1487,7 @@ public class UMLDiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(visualID == InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
+
 			if(visualID == IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
@@ -1513,10 +1507,7 @@ public class UMLDiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(visualID == InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
+
 			if(visualID == IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
@@ -1618,10 +1609,6 @@ public class UMLDiagramUpdater {
 			return getTimeConstraint_3036ContainedLinks(view);
 		case TimeConstraintAsLocalPostcondEditPart.VISUAL_ID:
 			return getTimeConstraint_3037ContainedLinks(view);
-		case InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID:
-			return getInteractionConstraint_3030ContainedLinks(view);
-		case InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID:
-			return getInteractionConstraint_3031ContainedLinks(view);
 		case IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID:
 			return getIntervalConstraint_3032ContainedLinks(view);
 		case IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID:
@@ -1771,10 +1758,6 @@ public class UMLDiagramUpdater {
 			return getTimeConstraint_3036IncomingLinks(view);
 		case TimeConstraintAsLocalPostcondEditPart.VISUAL_ID:
 			return getTimeConstraint_3037IncomingLinks(view);
-		case InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID:
-			return getInteractionConstraint_3030IncomingLinks(view);
-		case InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID:
-			return getInteractionConstraint_3031IncomingLinks(view);
 		case IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID:
 			return getIntervalConstraint_3032IncomingLinks(view);
 		case IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID:
@@ -1924,10 +1907,6 @@ public class UMLDiagramUpdater {
 			return getTimeConstraint_3036OutgoingLinks(view);
 		case TimeConstraintAsLocalPostcondEditPart.VISUAL_ID:
 			return getTimeConstraint_3037OutgoingLinks(view);
-		case InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID:
-			return getInteractionConstraint_3030OutgoingLinks(view);
-		case InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID:
-			return getInteractionConstraint_3031OutgoingLinks(view);
 		case IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID:
 			return getIntervalConstraint_3032OutgoingLinks(view);
 		case IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID:
@@ -2510,20 +2489,6 @@ public class UMLDiagramUpdater {
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_ExceptionHandler_4005(modelElement));
 		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getInteractionConstraint_3030ContainedLinks(View view) {
-		return Collections.emptyList();
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getInteractionConstraint_3031ContainedLinks(View view) {
-		return Collections.emptyList();
 	}
 
 	/**
@@ -3322,30 +3287,6 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getInteractionConstraint_3030IncomingLinks(View view) {
-		InteractionConstraint modelElement = (InteractionConstraint)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement, crossReferences));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getInteractionConstraint_3031IncomingLinks(View view) {
-		InteractionConstraint modelElement = (InteractionConstraint)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement, crossReferences));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
 	public static List<UMLLinkDescriptor> getIntervalConstraint_3032IncomingLinks(View view) {
 		IntervalConstraint modelElement = (IntervalConstraint)view.getElement();
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
@@ -4105,20 +4046,6 @@ public class UMLDiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ExceptionHandler_4005(modelElement));
 		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getInteractionConstraint_3030OutgoingLinks(View view) {
-		return Collections.emptyList();
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getInteractionConstraint_3031OutgoingLinks(View view) {
-		return Collections.emptyList();
 	}
 
 	/**

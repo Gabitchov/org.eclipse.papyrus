@@ -1001,92 +1001,72 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String createLocalPreconditionInteractionConstraint2CreationTool_title;
+	public static String createLocalPreconditionIntervalConstraint2CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createLocalPreconditionInteractionConstraint2CreationTool_desc;
+	public static String createLocalPreconditionIntervalConstraint2CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createLocalPreconditionIntervalConstraint3CreationTool_title;
+	public static String createLocalPreconditionDurationConstraint3CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createLocalPreconditionIntervalConstraint3CreationTool_desc;
+	public static String createLocalPreconditionDurationConstraint3CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createLocalPreconditionDurationConstraint4CreationTool_title;
+	public static String createLocalPreconditionTimeConstraint4CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createLocalPreconditionDurationConstraint4CreationTool_desc;
+	public static String createLocalPreconditionTimeConstraint4CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createLocalPreconditionTimeConstraint5CreationTool_title;
+	public static String createLocalPostconditionConstraint5CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createLocalPreconditionTimeConstraint5CreationTool_desc;
+	public static String createLocalPostconditionConstraint5CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createLocalPostconditionConstraint6CreationTool_title;
+	public static String createLocalPostconditionIntervalConstraint6CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createLocalPostconditionConstraint6CreationTool_desc;
+	public static String createLocalPostconditionIntervalConstraint6CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createLocalPostconditionInteractionConstraint7CreationTool_title;
+	public static String createLocalPostconditionDurationConstraint7CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createLocalPostconditionInteractionConstraint7CreationTool_desc;
+	public static String createLocalPostconditionDurationConstraint7CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createLocalPostconditionIntervalConstraint8CreationTool_title;
+	public static String createLocalPostconditionTimeConstraint8CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createLocalPostconditionIntervalConstraint8CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String createLocalPostconditionDurationConstraint9CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String createLocalPostconditionDurationConstraint9CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String createLocalPostconditionTimeConstraint10CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String createLocalPostconditionTimeConstraint10CreationTool_desc;
+	public static String createLocalPostconditionTimeConstraint8CreationTool_desc;
 
 	/**
 	 * @generated
@@ -1147,6 +1127,11 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String CommandName_OpenDiagram;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_File_incominglinks;
 
 	/**
 	 * @generated
@@ -1682,16 +1667,6 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_SequenceNode_3073_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_InteractionConstraint_3030_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_InteractionConstraint_3031_incominglinks;
 
 	/**
 	 * @generated

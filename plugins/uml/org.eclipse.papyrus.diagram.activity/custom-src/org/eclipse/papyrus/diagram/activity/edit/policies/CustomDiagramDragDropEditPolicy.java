@@ -54,8 +54,6 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPrecondE
 import org.eclipse.papyrus.diagram.activity.edit.parts.ControlFlowEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPrecondEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.InteractionConstraintAsLocalPostcondEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.InteractionConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowEditPart;
@@ -113,8 +111,6 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		droppableElementsVisualID.add(DurationConstraintAsLocalPostcondEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID);
-		droppableElementsVisualID.add(InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID);
-		droppableElementsVisualID.add(InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(ConstraintAsLocalPrecondEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(ConstraintAsLocalPostcondEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(ObjectFlowEditPart.VISUAL_ID);
@@ -163,8 +159,6 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		case DurationConstraintAsLocalPostcondEditPart.VISUAL_ID:
 		case IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID:
 		case IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID:
-		case InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID:
-		case InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID:
 		case ConstraintAsLocalPrecondEditPart.VISUAL_ID:
 		case ConstraintAsLocalPostcondEditPart.VISUAL_ID:
 			return dropActionLocalCondition(dropRequest, semanticElement, nodeVISUALID);
@@ -239,9 +233,9 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 					}
 				}
 
-				if(TimeConstraintAsLocalPrecondEditPart.VISUAL_ID == nodeVISUALID || DurationConstraintAsLocalPrecondEditPart.VISUAL_ID == nodeVISUALID || IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID == nodeVISUALID || InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID == nodeVISUALID || ConstraintAsLocalPrecondEditPart.VISUAL_ID == nodeVISUALID) {
+				if(TimeConstraintAsLocalPrecondEditPart.VISUAL_ID == nodeVISUALID || DurationConstraintAsLocalPrecondEditPart.VISUAL_ID == nodeVISUALID || IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID == nodeVISUALID ||  ConstraintAsLocalPrecondEditPart.VISUAL_ID == nodeVISUALID) {
 					return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Local Precondition link"), linkSource, linkTarget, ActionLocalPreconditionEditPart.VISUAL_ID, location, semanticElement));
-				} else if(TimeConstraintAsLocalPostcondEditPart.VISUAL_ID == nodeVISUALID || DurationConstraintAsLocalPostcondEditPart.VISUAL_ID == nodeVISUALID || IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID == nodeVISUALID || InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID == nodeVISUALID || ConstraintAsLocalPostcondEditPart.VISUAL_ID == nodeVISUALID) {
+				} else if(TimeConstraintAsLocalPostcondEditPart.VISUAL_ID == nodeVISUALID || DurationConstraintAsLocalPostcondEditPart.VISUAL_ID == nodeVISUALID || IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID == nodeVISUALID ||  ConstraintAsLocalPostcondEditPart.VISUAL_ID == nodeVISUALID) {
 					return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Local Postcondition link"), linkSource, linkTarget, ActionLocalPostconditionEditPart.VISUAL_ID, location, semanticElement));
 				}
 			}

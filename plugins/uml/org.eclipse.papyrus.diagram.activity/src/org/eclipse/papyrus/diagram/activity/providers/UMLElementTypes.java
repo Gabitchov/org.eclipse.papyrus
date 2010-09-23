@@ -70,8 +70,6 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInSendObjActAsReq
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInSendObjActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInSendSigActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInSendSigActEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.InteractionConstraintAsLocalPostcondEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.InteractionConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InterruptibleActivityRegionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPrecondEditPart;
@@ -445,16 +443,6 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType InteractionConstraint_3030 = getElementType("org.eclipse.papyrus.diagram.activity.InteractionConstraint_3030"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType InteractionConstraint_3031 = getElementType("org.eclipse.papyrus.diagram.activity.InteractionConstraint_3031"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
 	public static final IElementType IntervalConstraint_3032 = getElementType("org.eclipse.papyrus.diagram.activity.IntervalConstraint_3032"); //$NON-NLS-1$
 
 	/**
@@ -673,10 +661,6 @@ public class UMLElementTypes {
 
 			elements.put(TimeConstraint_3037, UMLPackage.eINSTANCE.getTimeConstraint());
 
-			elements.put(InteractionConstraint_3030, UMLPackage.eINSTANCE.getInteractionConstraint());
-
-			elements.put(InteractionConstraint_3031, UMLPackage.eINSTANCE.getInteractionConstraint());
-
 			elements.put(IntervalConstraint_3032, UMLPackage.eINSTANCE.getIntervalConstraint());
 
 			elements.put(IntervalConstraint_3033, UMLPackage.eINSTANCE.getIntervalConstraint());
@@ -809,8 +793,6 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(DurationConstraint_3035);
 			KNOWN_ELEMENT_TYPES.add(TimeConstraint_3036);
 			KNOWN_ELEMENT_TYPES.add(TimeConstraint_3037);
-			KNOWN_ELEMENT_TYPES.add(InteractionConstraint_3030);
-			KNOWN_ELEMENT_TYPES.add(InteractionConstraint_3031);
 			KNOWN_ELEMENT_TYPES.add(IntervalConstraint_3032);
 			KNOWN_ELEMENT_TYPES.add(IntervalConstraint_3033);
 			KNOWN_ELEMENT_TYPES.add(Constraint_3011);
@@ -923,10 +905,6 @@ public class UMLElementTypes {
 			return TimeConstraint_3036;
 		case TimeConstraintAsLocalPostcondEditPart.VISUAL_ID:
 			return TimeConstraint_3037;
-		case InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID:
-			return InteractionConstraint_3030;
-		case InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID:
-			return InteractionConstraint_3031;
 		case IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID:
 			return IntervalConstraint_3032;
 		case IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID:
