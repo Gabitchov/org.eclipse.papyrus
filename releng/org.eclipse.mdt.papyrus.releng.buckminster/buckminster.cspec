@@ -12,7 +12,6 @@
         <cs:dependency name="org.eclipse.emf.validation.sdk" componentType="eclipse.feature" versionDesignator="[1.4.0,1.5.0)"/>
         <cs:dependency name="org.eclipse.equinox.executable" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.gmt.modisco.all" componentType="eclipse.feature"/>
-        <cs:dependency name="org.eclipse.gmt.modisco.tests.feature" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.jdt" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.jet.core" componentType="osgi.bundle" versionDesignator="[1.1.0,1.2.0)"/>
         <cs:dependency name="org.eclipse.m2m.atl.dsls" componentType="osgi.bundle"/>
