@@ -83,6 +83,13 @@ public class ConstraintParser implements IParser, ISemanticParser {
 			else{
 				return "0..0";}
 		}
+		if(constraint.getSpecification() instanceof Interval) {
+			if((((Interval)constraint.getSpecification()).getMin())!=null && (((Interval)constraint.getSpecification()).getMax()!=null)){
+				return ((Interval)constraint.getSpecification()).getMin().stringValue()+".."+((Interval)constraint.getSpecification()).getMax().stringValue();
+			}
+			else{
+				return "0..0";}
+		}
 		if(constraint.getSpecification() instanceof OpaqueExpression) {
 			if(((OpaqueExpression)constraint.getSpecification()).getBodies().size()>0){
 				return OPAQUE_EXPRESSION_BEGIN_LANGUAGE+((OpaqueExpression)constraint.getSpecification()).getLanguages().get(0) +OPAQUE_EXPRESSION_END_LANGUAGE+((OpaqueExpression)constraint.getSpecification()).getBodies().get(0);
@@ -178,6 +185,27 @@ public class ConstraintParser implements IParser, ISemanticParser {
 			SetRequest request = new SetRequest(specif, UMLPackage.eINSTANCE.getInterval_Min(),timeMin);
 			command.compose(new SetValueCommand(request));
 			 request = new SetRequest(specif, UMLPackage.eINSTANCE.getInterval_Max(), timeMax);
+			command.compose(new SetValueCommand(request));
+		}
+		
+		if(constraint.getSpecification() instanceof Interval) {
+			
+			Interval specif = (Interval)constraint.getSpecification();
+			command = new CompositeTransactionalCommand(editingDomain, "Set Value Constraint"); //$NON-NLS-1$
+			
+			
+			LiteralInteger min =UMLFactory.eINSTANCE.createLiteralInteger();
+			LiteralInteger max =UMLFactory.eINSTANCE.createLiteralInteger();
+			min.setName(NamedElementHelper.EINSTANCE.getNewUMLElementName(min, min.eClass()));
+			max.setName(NamedElementHelper.EINSTANCE.getNewUMLElementName(max, max.eClass()));
+			Integer minInt= new Integer(newString.substring(0, newString.indexOf("..")));
+			Integer maxInt= new Integer( newString.substring(newString.indexOf("..")+2,newString.length()));
+			min.setValue(minInt.intValue());
+			max.setValue( maxInt.intValue());
+			
+			SetRequest request = new SetRequest(specif, UMLPackage.eINSTANCE.getInterval_Min(),min);
+			command.compose(new SetValueCommand(request));
+			 request = new SetRequest(specif, UMLPackage.eINSTANCE.getInterval_Max(), max);
 			command.compose(new SetValueCommand(request));
 		}
 		return command;

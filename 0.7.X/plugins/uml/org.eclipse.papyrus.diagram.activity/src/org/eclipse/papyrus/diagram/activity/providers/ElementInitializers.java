@@ -37,6 +37,7 @@ import org.eclipse.uml2.uml.FlowFinalNode;
 import org.eclipse.uml2.uml.ForkNode;
 import org.eclipse.uml2.uml.InitialNode;
 import org.eclipse.uml2.uml.InputPin;
+import org.eclipse.uml2.uml.Interval;
 import org.eclipse.uml2.uml.IntervalConstraint;
 import org.eclipse.uml2.uml.JoinNode;
 import org.eclipse.uml2.uml.LoopNode;
@@ -372,6 +373,11 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Constraint_3011(instance);
 			instance.setName((String)value_0);
+			OpaqueExpression newInstance_1_0 = UMLFactory.eINSTANCE.createOpaqueExpression();
+			instance.setSpecification(newInstance_1_0);
+			Object value_1_0_0 = name_specification_Constraint_3011(newInstance_1_0);
+			newInstance_1_0.setName((String)value_1_0_0);
+
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
@@ -384,6 +390,11 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Constraint_3012(instance);
 			instance.setName((String)value_0);
+			OpaqueExpression newInstance_1_0 = UMLFactory.eINSTANCE.createOpaqueExpression();
+			instance.setSpecification(newInstance_1_0);
+			Object value_1_0_0 = name_specification_Constraint_3012(newInstance_1_0);
+			newInstance_1_0.setName((String)value_1_0_0);
+
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
@@ -780,6 +791,11 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_IntervalConstraint_3032(instance);
 			instance.setName((String)value_0);
+			Interval newInstance_1_0 = UMLFactory.eINSTANCE.createInterval();
+			instance.setSpecification(newInstance_1_0);
+			Object value_1_0_0 = name_specification_IntervalConstraint_3032(newInstance_1_0);
+			newInstance_1_0.setName((String)value_1_0_0);
+
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
@@ -792,6 +808,11 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_IntervalConstraint_3033(instance);
 			instance.setName((String)value_0);
+			Interval newInstance_1_0 = UMLFactory.eINSTANCE.createInterval();
+			instance.setSpecification(newInstance_1_0);
+			Object value_1_0_0 = name_specification_IntervalConstraint_3033(newInstance_1_0);
+			newInstance_1_0.setName((String)value_1_0_0);
+
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
@@ -1088,6 +1109,20 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
+	private String name_specification_Constraint_3011(OpaqueExpression self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_specification_Constraint_3012(OpaqueExpression self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
 	private String name_Constraint_3012(Constraint self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
@@ -1333,6 +1368,13 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
+	private String name_specification_IntervalConstraint_3033(Interval self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
 	private String name_DurationConstraint_3034(DurationConstraint self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
@@ -1376,6 +1418,13 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	private String name_specification_TimeConstraint_3037(TimeInterval self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_specification_IntervalConstraint_3032(Interval self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 

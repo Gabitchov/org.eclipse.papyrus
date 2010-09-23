@@ -1881,9 +1881,15 @@ public class UMLVisualIDRegistry {
 			if(IntervalConstraintAsLocalPrecondNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(IntervalConstraintAsLocalPrecondBodyEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID:
 			if(IntervalConstraintAsLocalPostcondNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(IntervalConstraintAsLocalPostcondBodyEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -1891,9 +1897,15 @@ public class UMLVisualIDRegistry {
 			if(ConstraintAsLocalPrecondNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(ConstraintAsLocalPrecondBodyEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case ConstraintAsLocalPostcondEditPart.VISUAL_ID:
 			if(ConstraintAsLocalPostcondNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ConstraintAsLocalPostcondBodyEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
