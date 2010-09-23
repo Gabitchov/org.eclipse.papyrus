@@ -43,28 +43,28 @@ This feature contains the specialized generator used by Papyrus
          id="org.eclipse.papyrus.def"
          download-size="0"
          install-size="0"
-         version="0.7.0.qualifier"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="org.eclipse.papyrus.codegen"
          download-size="0"
          install-size="0"
-         version="0.7.0.qualifier"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="org.eclipse.papyrus.gmfgenextension"
          download-size="0"
          install-size="0"
-         version="0.7.0.qualifier"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="org.eclipse.papyrus.java.template"
          download-size="0"
          install-size="0"
-         version="0.7.0.qualifier"
+         version="0.0.0"
          unpack="false"/>
 
 </feature>
