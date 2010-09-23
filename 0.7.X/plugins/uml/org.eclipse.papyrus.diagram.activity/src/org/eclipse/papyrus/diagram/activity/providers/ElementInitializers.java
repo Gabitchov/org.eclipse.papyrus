@@ -880,6 +880,11 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_TimeConstraint_3037(instance);
 			instance.setName((String)value_0);
+			TimeInterval newInstance_1_0 = UMLFactory.eINSTANCE.createTimeInterval();
+			instance.setSpecification(newInstance_1_0);
+			Object value_1_0_0 = name_specification_TimeConstraint_3037(newInstance_1_0);
+			newInstance_1_0.setName((String)value_1_0_0);
+
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
@@ -1403,6 +1408,13 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	private String name_TimeConstraint_3036(TimeConstraint self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_specification_TimeConstraint_3037(TimeInterval self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 

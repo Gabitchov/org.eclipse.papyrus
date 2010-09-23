@@ -1939,6 +1939,9 @@ public class UMLVisualIDRegistry {
 			if(TimeConstraintAsLocalPostcondNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(TimeConstraintAsLocalPostcondBodyEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID:
 			if(InteractionConstraintAsLocalPrecondNameEditPart.VISUAL_ID == nodeVisualID) {
