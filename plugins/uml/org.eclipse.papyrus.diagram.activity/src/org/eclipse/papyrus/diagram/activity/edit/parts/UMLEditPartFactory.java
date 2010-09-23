@@ -300,11 +300,17 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case IntervalConstraintAsLocalPrecondNameEditPart.VISUAL_ID:
 				return new IntervalConstraintAsLocalPrecondNameEditPart(view);
 
+			case IntervalConstraintAsLocalPrecondBodyEditPart.VISUAL_ID:
+				return new IntervalConstraintAsLocalPrecondBodyEditPart(view);
+
 			case IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID:
 				return new IntervalConstraintAsLocalPostcondEditPart(view);
 
 			case IntervalConstraintAsLocalPostcondNameEditPart.VISUAL_ID:
 				return new IntervalConstraintAsLocalPostcondNameEditPart(view);
+
+			case IntervalConstraintAsLocalPostcondBodyEditPart.VISUAL_ID:
+				return new IntervalConstraintAsLocalPostcondBodyEditPart(view);
 
 			case ConstraintAsLocalPrecondEditPart.VISUAL_ID:
 				return new ConstraintAsLocalPrecondEditPart(view);
@@ -312,11 +318,17 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ConstraintAsLocalPrecondNameEditPart.VISUAL_ID:
 				return new ConstraintAsLocalPrecondNameEditPart(view);
 
+			case ConstraintAsLocalPrecondBodyEditPart.VISUAL_ID:
+				return new ConstraintAsLocalPrecondBodyEditPart(view);
+
 			case ConstraintAsLocalPostcondEditPart.VISUAL_ID:
 				return new ConstraintAsLocalPostcondEditPart(view);
 
 			case ConstraintAsLocalPostcondNameEditPart.VISUAL_ID:
 				return new ConstraintAsLocalPostcondNameEditPart(view);
+
+			case ConstraintAsLocalPostcondBodyEditPart.VISUAL_ID:
+				return new ConstraintAsLocalPostcondBodyEditPart(view);
 
 			case DecisionNodeEditPart.VISUAL_ID:
 				return new DecisionNodeEditPart(view);

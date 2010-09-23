@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *   Atos Origin - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.activity.edit.parts;
 
 import java.util.Collections;
@@ -51,13 +38,13 @@ import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.diagram.activity.edit.policies.UMLTextSelectionEditPolicy;
-import org.eclipse.papyrus.diagram.activity.figures.WrappedLabel;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.activity.providers.UMLParserProvider;
 import org.eclipse.papyrus.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
+import org.eclipse.papyrus.diagram.common.figure.node.ConstraintFigure;
 import org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.extensionpoints.editors.Activator;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IAdvancedEditorConfiguration;
@@ -78,12 +65,12 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class ConstraintAsLocalPostcondNameEditPart extends CompartmentEditPart implements ITextAwareEditPart {
+public class IntervalConstraintAsLocalPrecondBodyEditPart extends CompartmentEditPart implements ITextAwareEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 5008;
+	public static final int VISUAL_ID = 5134;
 
 	/**
 	 * @generated
@@ -105,16 +92,24 @@ public class ConstraintAsLocalPostcondNameEditPart extends CompartmentEditPart i
 	 */
 	private String defaultText;
 
-	/** direct edition mode (default, undefined, registered editor, etc.) */
+	/**
+	 * direct edition mode (default, undefined, registered editor, etc.)
+	 * 
+	 * @generated
+	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
-	/** configuration from a registered edit dialog */
+	/**
+	 * configuration from a registered edit dialog
+	 * 
+	 * @generated
+	 */
 	protected IDirectEditorConfiguration configuration;
 
 	/**
 	 * @generated
 	 */
-	public ConstraintAsLocalPostcondNameEditPart(View view) {
+	public IntervalConstraintAsLocalPrecondBodyEditPart(View view) {
 		super(view);
 	}
 
@@ -183,7 +178,7 @@ public class ConstraintAsLocalPostcondNameEditPart extends CompartmentEditPart i
 	/**
 	 * @generated
 	 */
-	public void setLabel(WrappingLabel figure) {
+	public void setLabel(ConstraintFigure figure) {
 		unregisterVisuals();
 		setFigure(figure);
 		defaultText = getLabelTextHelper(figure);
@@ -317,7 +312,7 @@ public class ConstraintAsLocalPostcondNameEditPart extends CompartmentEditPart i
 	 */
 	public IParser getParser() {
 		if(parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.Constraint_3012, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPostcondNameEditPart.VISUAL_ID));
+			parser = UMLParserProvider.getParser(UMLElementTypes.IntervalConstraint_3032, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPrecondBodyEditPart.VISUAL_ID));
 		}
 		return parser;
 	}
@@ -622,6 +617,8 @@ public class ConstraintAsLocalPostcondNameEditPart extends CompartmentEditPart i
 
 	/**
 	 * Updates the preference configuration
+	 * 
+	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
 		String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
@@ -637,6 +634,7 @@ public class ConstraintAsLocalPostcondNameEditPart extends CompartmentEditPart i
 	 * 
 	 * @param theRequest
 	 *        the direct edit request that starts the direct edit system
+	 * @generated
 	 */
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {
 		// initialize the direct edit manager
@@ -720,6 +718,9 @@ public class ConstraintAsLocalPostcondNameEditPart extends CompartmentEditPart i
 		return null;
 	}
 
+	/**
+	 * @generated
+	 */
 	private static final String ADD_PARENT_MODEL = "AddParentModel";
 
 	/**

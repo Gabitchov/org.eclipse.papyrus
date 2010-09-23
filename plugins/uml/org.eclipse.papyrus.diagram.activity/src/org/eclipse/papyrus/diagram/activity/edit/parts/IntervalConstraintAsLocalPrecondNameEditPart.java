@@ -183,7 +183,7 @@ public class IntervalConstraintAsLocalPrecondNameEditPart extends CompartmentEdi
 	/**
 	 * @generated
 	 */
-	public void setLabel(WrappedLabel figure) {
+	public void setLabel(WrappingLabel figure) {
 		unregisterVisuals();
 		setFigure(figure);
 		defaultText = getLabelTextHelper(figure);

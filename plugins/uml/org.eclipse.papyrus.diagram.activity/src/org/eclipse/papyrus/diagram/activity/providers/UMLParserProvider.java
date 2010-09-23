@@ -829,6 +829,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private ConstraintParser constraintSpecification_5136Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getConstraintSpecification_5136Parser() {
+		if(constraintSpecification_5136Parser == null) {
+			constraintSpecification_5136Parser = new ConstraintParser();
+		}
+		return constraintSpecification_5136Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser constraintName_5008Parser;
 
 	/**
@@ -844,6 +859,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			constraintName_5008Parser = parser;
 		}
 		return constraintName_5008Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ConstraintParser constraintSpecification_5137Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getConstraintSpecification_5137Parser() {
+		if(constraintSpecification_5137Parser == null) {
+			constraintSpecification_5137Parser = new ConstraintParser();
+		}
+		return constraintSpecification_5137Parser;
 	}
 
 	/**
@@ -1738,12 +1768,24 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		if(intervalConstraintName_5036Parser == null) {
 			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			parser.setViewPattern("<<localPrecondition>>\n{0}"); //$NON-NLS-1$
-			parser.setEditorPattern("{0}"); //$NON-NLS-1$
-			parser.setEditPattern("{0}"); //$NON-NLS-1$
 			intervalConstraintName_5036Parser = parser;
 		}
 		return intervalConstraintName_5036Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ConstraintParser intervalConstraintSpecification_5134Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getIntervalConstraintSpecification_5134Parser() {
+		if(intervalConstraintSpecification_5134Parser == null) {
+			intervalConstraintSpecification_5134Parser = new ConstraintParser();
+		}
+		return intervalConstraintSpecification_5134Parser;
 	}
 
 	/**
@@ -1758,12 +1800,24 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		if(intervalConstraintName_5037Parser == null) {
 			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			parser.setViewPattern("<<localPostcondition>>\n{0}"); //$NON-NLS-1$
-			parser.setEditorPattern("{0}"); //$NON-NLS-1$
-			parser.setEditPattern("{0}"); //$NON-NLS-1$
 			intervalConstraintName_5037Parser = parser;
 		}
 		return intervalConstraintName_5037Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ConstraintParser intervalConstraintSpecification_5135Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getIntervalConstraintSpecification_5135Parser() {
+		if(intervalConstraintSpecification_5135Parser == null) {
+			intervalConstraintSpecification_5135Parser = new ConstraintParser();
+		}
+		return intervalConstraintSpecification_5135Parser;
 	}
 
 	/**
@@ -2199,12 +2253,20 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getTimeConstraintSpecification_5133Parser();
 		case IntervalConstraintAsLocalPrecondNameEditPart.VISUAL_ID:
 			return getIntervalConstraintName_5036Parser();
+		case IntervalConstraintAsLocalPrecondBodyEditPart.VISUAL_ID:
+			return getIntervalConstraintSpecification_5134Parser();
 		case IntervalConstraintAsLocalPostcondNameEditPart.VISUAL_ID:
 			return getIntervalConstraintName_5037Parser();
+		case IntervalConstraintAsLocalPostcondBodyEditPart.VISUAL_ID:
+			return getIntervalConstraintSpecification_5135Parser();
 		case ConstraintAsLocalPrecondNameEditPart.VISUAL_ID:
 			return getConstraintName_5007Parser();
+		case ConstraintAsLocalPrecondBodyEditPart.VISUAL_ID:
+			return getConstraintSpecification_5136Parser();
 		case ConstraintAsLocalPostcondNameEditPart.VISUAL_ID:
 			return getConstraintName_5008Parser();
+		case ConstraintAsLocalPostcondBodyEditPart.VISUAL_ID:
+			return getConstraintSpecification_5137Parser();
 		case DecisionInputEditPart.VISUAL_ID:
 			return getDecisionNodeLabel_5043Parser();
 		case DecisionNodeAppliedStereotypeEditPart.VISUAL_ID:

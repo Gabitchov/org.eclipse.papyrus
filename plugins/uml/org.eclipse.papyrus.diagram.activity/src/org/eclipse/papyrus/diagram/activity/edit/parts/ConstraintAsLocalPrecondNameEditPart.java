@@ -183,7 +183,7 @@ public class ConstraintAsLocalPrecondNameEditPart extends CompartmentEditPart im
 	/**
 	 * @generated
 	 */
-	public void setLabel(WrappedLabel figure) {
+	public void setLabel(WrappingLabel figure) {
 		unregisterVisuals();
 		setFigure(figure);
 		defaultText = getLabelTextHelper(figure);
