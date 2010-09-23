@@ -4,27 +4,27 @@
 >
 	<cs:dependencies>
 	    <cs:dependency name="org.antlr.runtime" componentType="osgi.bundle"/>
-        <cs:dependency name="org.eclipse.acceleo.sdk" componentType="eclipse.feature" versionDesignator="[3.0.1,3.1.0)"/>
-        <cs:dependency name="org.eclipse.emf.cdo.sdk" componentType="eclipse.feature" versionDesignator="[3.0.0,3.1.0)"/>
-        <cs:dependency name="org.eclipse.emf.compare" componentType="osgi.bundle" versionDesignator="[1.1.1,1.2.0)"/>
-        <cs:dependency name="org.eclipse.emf.query.sdk" componentType="eclipse.feature" versionDesignator="[1.4.0,1.5.0)"/>
-        <cs:dependency name="org.eclipse.emf.sdk" componentType="eclipse.feature" versionDesignator="[2.6.1,2.7.0)"/>
-        <cs:dependency name="org.eclipse.emf.validation.sdk" componentType="eclipse.feature" versionDesignator="[1.4.0,1.5.0)"/>
+        <cs:dependency name="org.eclipse.acceleo.sdk" componentType="eclipse.feature"/>
+        <cs:dependency name="org.eclipse.emf.cdo.sdk" componentType="eclipse.feature"/>
+        <cs:dependency name="org.eclipse.emf.compare" componentType="osgi.bundle"/>
+        <cs:dependency name="org.eclipse.emf.query.sdk" componentType="eclipse.feature"/>
+        <cs:dependency name="org.eclipse.emf.sdk" componentType="eclipse.feature"/>
+        <cs:dependency name="org.eclipse.emf.validation.sdk" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.equinox.executable" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.gmt.modisco.all" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.jdt" componentType="eclipse.feature"/>
-        <cs:dependency name="org.eclipse.jet.core" componentType="osgi.bundle" versionDesignator="[1.1.0,1.2.0)"/>
+        <cs:dependency name="org.eclipse.jet.core" componentType="osgi.bundle"/>
         <cs:dependency name="org.eclipse.m2m.atl.dsls" componentType="osgi.bundle"/>
-        <cs:dependency name="org.eclipse.m2m.atl.sdk" componentType="eclipse.feature" versionDesignator="[3.1.1,3.2.0)"/>
-        <cs:dependency name="org.eclipse.m2m.qvt.oml.sdk" componentType="eclipse.feature" versionDesignator="[3.0.1,3.1.0)"/>
-        <cs:dependency name="org.eclipse.net4j.sdk" componentType="eclipse.feature" versionDesignator="[3.0.0,3.1.0)"/>
-        <cs:dependency name="org.eclipse.ocl.all.sdk" componentType="eclipse.feature" versionDesignator="[3.0.1,3.1.0)"/>
+        <cs:dependency name="org.eclipse.m2m.atl.sdk" componentType="eclipse.feature"/>
+        <cs:dependency name="org.eclipse.m2m.qvt.oml.sdk" componentType="eclipse.feature"/>
+        <cs:dependency name="org.eclipse.net4j.sdk" componentType="eclipse.feature"/>
+        <cs:dependency name="org.eclipse.ocl.all.sdk" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.pde.core" componentType="osgi.bundle"/>
         <cs:dependency name="org.eclipse.pde.junit.runtime" componentType="osgi.bundle"/>
         <cs:dependency name="org.eclipse.platform" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.rcp" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.sdk" componentType="eclipse.feature"/>
-        <cs:dependency name="org.eclipse.uml2.sdk" componentType="eclipse.feature" versionDesignator="[3.1.1,3.2.0)"/>
+        <cs:dependency name="org.eclipse.uml2.sdk" componentType="eclipse.feature"/>
 	
 	
 	

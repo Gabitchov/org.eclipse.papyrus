@@ -15,10 +15,11 @@
 	<locator pattern="^org\.eclipse\.m2m\.qvt.oml(\..*)?" searchPathRef="qvtoml" failOnError="true" />
 	<locator pattern="^org\.eclipse\.uml2(?:\..+)?$" searchPathRef="uml2" />
 	<locator pattern="^org\.eclipse\.xtext(?:\..+)?$" searchPathRef="tmf" />
-	<locator pattern="^org\.eclipse\.acceleo(?:\..+)?$" searchPathRef="m2t" />
+	<locator pattern="^org\.eclipse\.(acceleo|jet)(\..*)?" searchPathRef="m2t" failOnError="true" />
 	<locator pattern="^org\.eclipse\.ocl(?:\..+)?$" searchPathRef="ocl" />
 	
 	<locator searchPathRef="platform" />
+	<locator searchPathRef="orbit" failOnError="true" />
 
 	<searchPath name="local.releng">
 		<provider componentTypes="buckminster" readerType="local" source="true" mutable="false">
