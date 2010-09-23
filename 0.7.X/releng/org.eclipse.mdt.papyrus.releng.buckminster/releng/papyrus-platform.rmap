@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rmap xmlns="http://www.eclipse.org/buckminster/RMap-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0"
+>
+	<locator pattern="^org\.eclipse\.mdt\.papyrus\.releng\.buckminster$" searchPathRef="local.releng" />
+	<locator pattern="^org\.eclipse\.team\.svn(?:\..+)?$" searchPathRef="subversive" />
+	<locator pattern="^org\.eclipse\.emf\.transaction(?:\..+)?$" searchPathRef="emft" />
+	<locator pattern="^org\.eclipse\.emf\.cdo(?:\..+)?$" searchPathRef="cdo" />
+	<locator pattern="^org\.eclipse\.emf\.query(?:\..+)?$" searchPathRef="query" />
+	<locator pattern="^org\.eclipse\.emf\.validation(?:\..+)?$" searchPathRef="validation" />
+	<locator pattern="^org\.eclipse\.emf(?:\..+)?$" searchPathRef="emf" />
+	<locator pattern="^org\.eclipse\.gmt(?:\..+)?$" searchPathRef="modisco" />
+	<locator pattern="^org\.eclipse\.gef(?:\..+)?$" searchPathRef="gef" />
+	<locator pattern="^org\.eclipse\.gmf(?:\..+)?$" searchPathRef="gmf" />
+	<locator pattern="^org\.eclipse\.uml2(?:\..+)?$" searchPathRef="uml2" />
+	<locator pattern="^org\.eclipse\.xtext(?:\..+)?$" searchPathRef="xtext" />
+	<locator pattern="^org\.eclipse\.ocl(?:\..+)?$" searchPathRef="ocl" />
+	
+	<locator searchPathRef="platform" />
+
+	<searchPath name="local.releng">
+		<provider componentTypes="buckminster" readerType="local" source="true" mutable="false">
+			<uri format="{0}{1}">
+				<bc:propertyRef key="checkout.location" />
+				<bc:propertyRef key="buckminster.component" />
+			</uri>
+		</provider>
+	</searchPath>
+
+	<searchPath name="emf">
+		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+			<uri format="{0}/modeling/emf/updates">
+				<bc:propertyRef key="eclipse.download" />
+			</uri>
+		</provider>
+	</searchPath>
+	
+	<searchPath name="emft">
+		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+			<uri format="{0}/modeling/emft/updates">
+				<bc:propertyRef key="eclipse.download" />
+			</uri>
+		</provider>
+	</searchPath>
+	
+	<searchPath name="cdo">
+		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+			<uri format="{0}/releases/helios/">
+				<bc:propertyRef key="eclipse.download" />
+			</uri>
+		</provider>
+	</searchPath>
+	
+	<searchPath name="query">
+		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+			<uri format="{0}/releases/helios/">
+				<bc:propertyRef key="eclipse.download" />
+			</uri>
+		</provider>
+	</searchPath>
+	
+	<searchPath name="validation">
+		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+			<uri format="{0}/releases/helios/">
+				<bc:propertyRef key="eclipse.download" />
+			</uri>
+		</provider>
+	</searchPath>
+	
+	<searchPath name="xtext">
+		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+			<uri format="{0}/releases/helios/">
+				<bc:propertyRef key="eclipse.download" />
+			</uri>
+		</provider>
+	</searchPath>
+	
+	<searchPath name="ocl">
+		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+			<uri format="{0}/releases/helios/">
+				<bc:propertyRef key="eclipse.download" />
+			</uri>
+		</provider>
+	</searchPath>
+	
+	<searchPath name="modisco">
+		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+			<uri format="{0}/modeling/mdt/modisco/updates/release/0.8.0/">
+				<bc:propertyRef key="eclipse.download" />
+			</uri>
+		</provider>
+	</searchPath>
+	
+	<searchPath name="gef">
+		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+			<uri format="{0}/tools/gef/updates/releases">
+				<bc:propertyRef key="eclipse.download" />
+			</uri>
+		</provider>
+	</searchPath>
+	
+	<searchPath name="gmf">
+		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+			<uri format="{0}/modeling/gmf/updates/releases/">
+				<bc:propertyRef key="eclipse.download" />
+			</uri>
+		</provider>
+	</searchPath>
+	
+	<searchPath name="uml2">
+		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+			<uri format="{0}/releases/helios/">
+				<bc:propertyRef key="eclipse.download" />
+			</uri>
+		</provider>
+	</searchPath>
+
+	<searchPath name="subversive">
+		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+			<uri format="{0}/technology/subversive/0.7/update-site">
+				<bc:propertyRef key="eclipse.download" />
+			</uri>
+		</provider>
+	</searchPath>
+
+	<searchPath name="platform">
+		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+			<uri format="{0}/eclipse/updates/3.6milestones">
+				<bc:propertyRef key="eclipse.download" />
+			</uri>
+		</provider>
+	</searchPath>
+
+	<property key="checkout.location" value="${workspace.root}/" />
+	<property key="eclipse.download" value="http://download.eclipse.org" />
+</rmap>
