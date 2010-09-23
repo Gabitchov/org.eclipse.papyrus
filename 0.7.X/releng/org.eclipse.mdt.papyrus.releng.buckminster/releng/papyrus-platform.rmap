@@ -131,6 +131,6 @@
 		</provider>
 	</searchPath>
 
-	<property key="checkout.location" value="${workspace.root}/" />
+	<property key="checkout.location" value="${workspace.root}/releng/" />
 	<property key="eclipse.download" value="http://download.eclipse.org" />
 </rmap>
