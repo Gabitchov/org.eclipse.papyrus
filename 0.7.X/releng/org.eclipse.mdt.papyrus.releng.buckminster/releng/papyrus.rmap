@@ -1,67 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rmap xmlns="http://www.eclipse.org/buckminster/RMap-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0">
-	<locator pattern="^org\.eclipse\.papyrus\.(?:releng|build)(?:\..+)?$" searchPathRef="releng" />
-	<locator pattern="^org\.eclipse\.papyrus(?:\..+)?$" searchPathRef="papyrus" />
+<rmap xmlns="http://www.eclipse.org/buckminster/RMap-1.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0">
+	<locator pattern="^org\.eclipse\.papyrus\.(?:releng|build)(?:\..+)?$"
+		searchPathRef="releng" />
+	<locator pattern="^org\.eclipse\.papyrus(?:\..+)?$"
+		searchPathRef="papyrus" />
 
 	<searchPath name="papyrus">
-		<provider componentTypes="osgi.bundle" readerType="svn" source="true" mutable="false">
-			<uri format="{0},org.eclipse.mdt.papyrus/branches/0.7.X/plugins/core/{1}">
-				<bc:propertyRef key="eclipse.svn.prefix" />
+		<!-- plugins: core developer others profile-tool sysml uml -->
+		<provider componentTypes="osgi.bundle" readerType="local">
+			<uri format="{0}/plugins/core/{1}">
+				<bc:propertyRef key="repository.local" />
 				<bc:propertyRef key="buckminster.component" />
 			</uri>
 		</provider>
-		<provider componentTypes="osgi.bundle" readerType="svn" source="true" mutable="false">
-			<uri format="{0},org.eclipse.mdt.papyrus/branches/0.7.X/plugins/others/{1}">
-				<bc:propertyRef key="eclipse.svn.prefix" />
+		<provider componentTypes="osgi.bundle" readerType="local">
+			<uri format="{0}/plugins/developer/{1}">
+				<bc:propertyRef key="repository.local" />
 				<bc:propertyRef key="buckminster.component" />
 			</uri>
 		</provider>
-		<provider componentTypes="osgi.bundle" readerType="svn" source="true" mutable="false">
-			<uri format="{0},org.eclipse.mdt.papyrus/branches/0.7.X/plugins/profile-tool/{1}">
-				<bc:propertyRef key="eclipse.svn.prefix" />
+		<provider componentTypes="osgi.bundle" readerType="local">
+			<uri format="{0}/plugins/others/{1}">
+				<bc:propertyRef key="repository.local" />
 				<bc:propertyRef key="buckminster.component" />
 			</uri>
 		</provider>
-		<provider componentTypes="osgi.bundle" readerType="svn" source="true" mutable="false">
-			<uri format="{0},org.eclipse.mdt.papyrus/branches/0.7.X/plugins/sysml/{1}">
-				<bc:propertyRef key="eclipse.svn.prefix" />
+		<provider componentTypes="osgi.bundle" readerType="local">
+			<uri format="{0}/plugins/profile-tool/{1}">
+				<bc:propertyRef key="repository.local" />
 				<bc:propertyRef key="buckminster.component" />
 			</uri>
 		</provider>
-		<provider componentTypes="osgi.bundle" readerType="svn" source="true" mutable="false">
-			<uri format="{0},org.eclipse.mdt.papyrus/branches/0.7.X/plugins/uml/{1}">
-				<bc:propertyRef key="eclipse.svn.prefix" />
+		<provider componentTypes="osgi.bundle" readerType="local">
+			<uri format="{0}/plugins/sysml/{1}">
+				<bc:propertyRef key="repository.local" />
 				<bc:propertyRef key="buckminster.component" />
 			</uri>
 		</provider>
-		<provider componentTypes="osgi.bundle" readerType="svn" source="true" mutable="false">
-			<uri format="{0},org.eclipse.mdt.papyrus/branches/0.7.X/extraplugins/autolayout/{1}">
-				<bc:propertyRef key="eclipse.svn.prefix" />
+		<provider componentTypes="osgi.bundle" readerType="local">
+			<uri format="{0}/plugins/uml/{1}">
+				<bc:propertyRef key="repository.local" />
 				<bc:propertyRef key="buckminster.component" />
 			</uri>
 		</provider>
-		<provider componentTypes="eclipse.feature" readerType="svn" source="true" mutable="false">
-			<uri format="{0},org.eclipse.mdt.papyrus/branches/0.7.X/features/{1}-feature">
-				<bc:propertyRef key="eclipse.svn.prefix" />
+
+		<!-- extra-plugins: autolayout -->
+		<provider componentTypes="osgi.bundle" readerType="local">
+			<uri format="{0}/extraplugins/autolayout/{1}">
+				<bc:propertyRef key="repository.local" />
+				<bc:propertyRef key="buckminster.component" />
+			</uri>
+		</provider>
+
+		<!-- features -->
+		<provider componentTypes="eclipse.feature" readerType="local">
+			<uri format="{0}/features/{1}">
+				<bc:propertyRef key="repository.local" />
+				<bc:propertyRef key="buckminster.component" />
+			</uri>
+		</provider>
+		<provider componentTypes="eclipse.feature" readerType="local">
+			<uri format="{0}/features/{1}-feature">
+				<bc:propertyRef key="repository.local" />
 				<bc:propertyRef key="buckminster.component" />
 			</uri>
 		</provider>
 	</searchPath>
-
+	
+	<!--  releng part -->
 	<searchPath name="releng">
-		<provider componentTypes="buckminster" readerType="svn" source="true" mutable="false">
-			<uri format="{0},org.eclipse.mdt.papyrus/branches/0.7.X/releng/{1}">
-				<bc:propertyRef key="eclipse.svn.prefix" />
+		<provider componentTypes="buckminster" readerType="local"
+			source="true" mutable="false">
+			<uri format="{0}/releng/{1}">
+				<bc:propertyRef key="repository.local" />
 				<bc:propertyRef key="buckminster.component" />
 			</uri>
 		</provider>
-		<provider componentTypes="eclipse.feature" readerType="svn" source="true" mutable="false">
-			<uri format="{0},org.eclipse.mdt.papyrus/branches/0.7.X/releng/{1}-feature">
-				<bc:propertyRef key="eclipse.svn.prefix" />
+		<provider componentTypes="eclipse.feature" readerType="local">
+			<uri format="{0}/releng/{1}-feature">
+				<bc:propertyRef key="repository.local" />
 				<bc:propertyRef key="buckminster.component" />
 			</uri>
 		</provider>
 	</searchPath>
-
-	<property key="eclipse.svn.prefix" value="file:///svnroot" mutable="false"/>
 </rmap>
