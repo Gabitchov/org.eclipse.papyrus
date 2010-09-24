@@ -39,11 +39,9 @@
     </provider>
 
 	<!-- MWE -->
-	<!-- 
     <provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
       <uri format="http://download.eclipse.org/modeling/emft/mwe/updates/"/>
     </provider>
-     -->
 
 	<!-- ATL -->
     <provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
@@ -89,6 +87,12 @@
     <provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
       <uri format="http://download.eclipse.org/eclipse/updates/3.6.x"/>
     </provider>
+    
+    <provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+			<uri format="{0}/technology/subversive/0.7/update-site">
+				<bc:propertyRef key="eclipse.download" />
+			</uri>
+		</provider>
     
     <provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
 			<uri format="{0}/modeling/mdt/modisco/updates/release/0.8.0/">
