@@ -11,10 +11,24 @@
 [closeHeading()/]
 [/template]
 
-[template public docHead()]
+[template public docHeading()]
+<HTML>
 <HEAD>
 [genCSS()/]
 </HEAD>
+<BODY>
+[/template]
+
+[template public printClosingText(text : String)]
+<HR style="width: 14cm; text-align: center;">
+<BR>
+<DIV class="BodyText">[text/]<BR>
+</DIV>
+[/template]
+
+[template public docEnding()]
+</BODY>
+</HTML>
 [/template]
 
 [template public lineBreak()]
