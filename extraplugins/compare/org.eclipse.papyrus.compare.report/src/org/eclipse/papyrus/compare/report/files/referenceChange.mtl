@@ -7,7 +7,7 @@
 [template public genReferenceChanges(el : DiffElement, leftRoot: String, rightRoot: String) {referenceChanges: Sequence(ReferenceChange) = referenceChanges(el); }]
 [if not referenceChanges->isEmpty()]
 [openTable()/]
-[addHeader('References Changed', leftRoot, rightRoot)/]
+[addHeader('Changed References', leftRoot, rightRoot)/]
 [for (referenceChanges)]
 [genReferenceChange()/]
 [/for]
