@@ -6584,6 +6584,26 @@
               parser="/0/@labelParsers/@implementations.19"/>
         </labels>
       </links>
+      <links
+          visualID="4006"
+          editPartClassName="CommentLinkEditPart"
+          itemSemanticEditPolicyClassName="CommentLinkItemSemanticEditPolicy"
+          createCommandClassName="CommentLinkCreateCommand"
+          reorientCommandClassName="CommentLinkReorientCommand">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
+        <elementType
+            xsi:type="gmfgen:NotationType"
+            displayName="Undefined"/>
+        <viewmap
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.LinkFigure"/>
+        <modelFacet
+            xsi:type="gmfgen:FeatureLinkModelFacet">
+          <metaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Comment/annotatedElement"/>
+        </modelFacet>
+      </links>
       <compartments
           visualID="7001"
           editPartClassName="ActivityActivityParametersCompartmentEditPart"
@@ -7212,6 +7232,13 @@
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExceptionHandler.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExceptionHandler.gif"
               genLinks="/0/@diagram/@links.4"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="Link"
+              description="Creation of a link for comment"
+              largeIconPath="icons/obj16/Link.gif"
+              smallIconPath="icons/obj16/Link.gif"
+              genLinks="/0/@diagram/@links.5"/>
         </groups>
       </palette>
       <preferencePages

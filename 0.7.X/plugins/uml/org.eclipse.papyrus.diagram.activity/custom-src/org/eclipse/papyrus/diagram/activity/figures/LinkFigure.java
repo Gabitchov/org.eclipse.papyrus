@@ -10,10 +10,18 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  */
-package org.eclipse.papyrus.diagram.activity.edit.helpers;
+package org.eclipse.papyrus.diagram.activity.figures;
+
+import org.eclipse.papyrus.diagram.common.figure.edge.DashedEdgeFigure;
 
 /**
- * @generated
+ * this link is used to show a dashed line 
+ *
  */
-public class CommentEditHelper extends UMLBaseEditHelper {
+public class LinkFigure extends DashedEdgeFigure {
+	
+	public LinkFigure() {
+		super(false);
+	}
+
 }

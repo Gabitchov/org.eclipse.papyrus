@@ -1,4 +1,20 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ */
 package org.eclipse.papyrus.diagram.activity.edit.parts;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Shape;
@@ -16,6 +32,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
@@ -26,6 +43,7 @@ import org.eclipse.papyrus.diagram.activity.edit.policies.ActivityDiagramChangeS
 import org.eclipse.papyrus.diagram.activity.edit.policies.CommentItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
+import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.common.editparts.AbstractCommentEditPart;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
@@ -265,6 +283,313 @@ AbstractCommentEditPart {
 	 */
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(CommentBodyLabelEditPart.VISUAL_ID));
+	}
+
+	/**
+	 * @generated
+	 */
+	public List<IElementType> getMARelTypesOnSource() {
+		ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		return types;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List<IElementType> getMARelTypesOnSourceAndTarget(IGraphicalEditPart targetEditPart) {
+		LinkedList<IElementType> types = new LinkedList<IElementType>();
+		if(targetEditPart instanceof ActivityEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof InitialNodeEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof ActivityFinalNodeEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof FlowFinalNodeEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof OpaqueActionEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof ValuePinInOpaqueActEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof ActionInputPinInOpaqueActEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof InputPinInOpaqueActEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof OutputPinInOpaqueActEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof CallBehaviorActionEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof ValuePinInCallBeActEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof ActionInputPinInCallBeActEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof InputPinInCallBeActEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof OutputPinInCallBeActEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof CallOperationActionEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof ActionInputPinInCallOpActEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof ValuePinInCallOpActEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof InputPinInCallOpActEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof OutputPinInCallOpActEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof ValuePinInCallOpActAsTargetEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof ActionInputPinInCallOpActAsTargetEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof InputPinInCallOpActAsTargetEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof DurationConstraintAsLocalPrecondEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof DurationConstraintAsLocalPostcondEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof TimeConstraintAsLocalPrecondEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof TimeConstraintAsLocalPostcondEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof IntervalConstraintAsLocalPrecondEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof IntervalConstraintAsLocalPostcondEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof ConstraintAsLocalPrecondEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof ConstraintAsLocalPostcondEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof DecisionNodeEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof MergeNodeEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof ForkNodeEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof JoinNodeEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof DataStoreNodeEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof SendObjectActionEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof ValuePinInSendObjActAsReqEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof ActionInputPinInSendObjActAsReqEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof InputPinInSendObjActAsReqEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof ValuePinInSendObjActAsTargetEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof ActionInputPinInSendObjActAsTargetEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof InputPinInSendObjActAsTargetEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof SendSignalActionEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof ActionInputPinInSendSigActEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof ValuePinInSendSigActEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof InputPinInSendSigActEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof ValuePinInSendSigActAsTargetEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof ActionInputPinInSendSigActAsTargetEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof InputPinInSendSigActAsTargetEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof ActivityParameterNodeEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof AcceptEventActionEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof OutputPinInAcceptEventActionEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof ValueSpecificationActionEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof OutputPinInValSpecActEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof ConditionalNodeEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof ExpansionRegionEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof ExpansionNodeAsInEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof ExpansionNodeAsOutEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof LoopNodeEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof SequenceNodeEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof StructuredActivityNodeEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof ActivityPartitionEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof InterruptibleActivityRegionEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof ShapeNamedElementEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.activity.edit.parts.CommentEditPartCN) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		return types;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
+		LinkedList<IElementType> types = new LinkedList<IElementType>();
+		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4006) {
+			types.add(UMLElementTypes.Activity_2001);
+			types.add(UMLElementTypes.InitialNode_3004);
+			types.add(UMLElementTypes.ActivityFinalNode_3005);
+			types.add(UMLElementTypes.FlowFinalNode_3006);
+			types.add(UMLElementTypes.OpaqueAction_3007);
+			types.add(UMLElementTypes.ValuePin_3015);
+			types.add(UMLElementTypes.ActionInputPin_3016);
+			types.add(UMLElementTypes.InputPin_3013);
+			types.add(UMLElementTypes.OutputPin_3014);
+			types.add(UMLElementTypes.CallBehaviorAction_3008);
+			types.add(UMLElementTypes.ValuePin_3017);
+			types.add(UMLElementTypes.ActionInputPin_3018);
+			types.add(UMLElementTypes.InputPin_3019);
+			types.add(UMLElementTypes.OutputPin_3020);
+			types.add(UMLElementTypes.CallOperationAction_3010);
+			types.add(UMLElementTypes.ActionInputPin_3021);
+			types.add(UMLElementTypes.ValuePin_3022);
+			types.add(UMLElementTypes.InputPin_3023);
+			types.add(UMLElementTypes.OutputPin_3024);
+			types.add(UMLElementTypes.ValuePin_3025);
+			types.add(UMLElementTypes.ActionInputPin_3026);
+			types.add(UMLElementTypes.InputPin_3027);
+			types.add(UMLElementTypes.DurationConstraint_3034);
+			types.add(UMLElementTypes.DurationConstraint_3035);
+			types.add(UMLElementTypes.TimeConstraint_3036);
+			types.add(UMLElementTypes.TimeConstraint_3037);
+			types.add(UMLElementTypes.IntervalConstraint_3032);
+			types.add(UMLElementTypes.IntervalConstraint_3033);
+			types.add(UMLElementTypes.Constraint_3011);
+			types.add(UMLElementTypes.Constraint_3012);
+			types.add(UMLElementTypes.DecisionNode_3038);
+			types.add(UMLElementTypes.MergeNode_3039);
+			types.add(UMLElementTypes.ForkNode_3040);
+			types.add(UMLElementTypes.JoinNode_3041);
+			types.add(UMLElementTypes.DataStoreNode_3078);
+			types.add(UMLElementTypes.SendObjectAction_3042);
+			types.add(UMLElementTypes.ValuePin_3046);
+			types.add(UMLElementTypes.ActionInputPin_3047);
+			types.add(UMLElementTypes.InputPin_3048);
+			types.add(UMLElementTypes.ValuePin_3049);
+			types.add(UMLElementTypes.ActionInputPin_3050);
+			types.add(UMLElementTypes.InputPin_3051);
+			types.add(UMLElementTypes.SendSignalAction_3052);
+			types.add(UMLElementTypes.ActionInputPin_3053);
+			types.add(UMLElementTypes.ValuePin_3054);
+			types.add(UMLElementTypes.InputPin_3055);
+			types.add(UMLElementTypes.ValuePin_3060);
+			types.add(UMLElementTypes.ActionInputPin_3061);
+			types.add(UMLElementTypes.InputPin_3062);
+			types.add(UMLElementTypes.ActivityParameterNode_3059);
+			types.add(UMLElementTypes.AcceptEventAction_3063);
+			types.add(UMLElementTypes.OutputPin_3064);
+			types.add(UMLElementTypes.ValueSpecificationAction_3076);
+			types.add(UMLElementTypes.OutputPin_3077);
+			types.add(UMLElementTypes.ConditionalNode_3069);
+			types.add(UMLElementTypes.ExpansionRegion_3070);
+			types.add(UMLElementTypes.ExpansionNode_3074);
+			types.add(UMLElementTypes.ExpansionNode_3075);
+			types.add(UMLElementTypes.LoopNode_3071);
+			types.add(UMLElementTypes.SequenceNode_3073);
+			types.add(UMLElementTypes.StructuredActivityNode_3065);
+			types.add(UMLElementTypes.ActivityPartition_3067);
+			types.add(UMLElementTypes.InterruptibleActivityRegion_3068);
+			types.add(UMLElementTypes.NamedElement_3079);
+			types.add(UMLElementTypes.Comment_3080);
+		}
+		return types;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List<IElementType> getMARelTypesOnTarget() {
+		ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		return types;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List<IElementType> getMATypesForSource(IElementType relationshipType) {
+		LinkedList<IElementType> types = new LinkedList<IElementType>();
+		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4006) {
+			types.add(UMLElementTypes.Comment_3080);
+		}
+		return types;
 	}
 
 	/**

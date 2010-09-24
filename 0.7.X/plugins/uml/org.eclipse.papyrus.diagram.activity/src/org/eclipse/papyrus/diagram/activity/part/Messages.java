@@ -1061,6 +1061,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String createLink4CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createLink4CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String ActivityActivityParametersCompartmentEditPart_title;
 
 	/**

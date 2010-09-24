@@ -46,6 +46,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityPartitionEditPart
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallBehaviorActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallOperationActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CommentEditPartCN;
+import org.eclipse.papyrus.diagram.activity.edit.parts.CommentLinkEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConditionalNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPrecondEditPart;
@@ -504,6 +505,11 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
+	public static final IElementType CommentAnnotatedElement_4006 = getElementType("org.eclipse.papyrus.diagram.activity.CommentAnnotatedElement_4006"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	private static ImageRegistry getImageRegistry() {
 		if(imageRegistry == null) {
 			imageRegistry = new ImageRegistry();
@@ -754,6 +760,8 @@ public class UMLElementTypes {
 			elements.put(ControlFlow_4004, UMLPackage.eINSTANCE.getControlFlow());
 
 			elements.put(ExceptionHandler_4005, UMLPackage.eINSTANCE.getExceptionHandler());
+
+			elements.put(CommentAnnotatedElement_4006, UMLPackage.eINSTANCE.getComment_AnnotatedElement());
 		}
 		return (ENamedElement)elements.get(type);
 	}
@@ -845,6 +853,7 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(ObjectFlow_4003);
 			KNOWN_ELEMENT_TYPES.add(ControlFlow_4004);
 			KNOWN_ELEMENT_TYPES.add(ExceptionHandler_4005);
+			KNOWN_ELEMENT_TYPES.add(CommentAnnotatedElement_4006);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}
@@ -1002,6 +1011,8 @@ public class UMLElementTypes {
 			return ControlFlow_4004;
 		case ExceptionHandlerEditPart.VISUAL_ID:
 			return ExceptionHandler_4005;
+		case CommentLinkEditPart.VISUAL_ID:
+			return CommentAnnotatedElement_4006;
 		}
 		return null;
 	}

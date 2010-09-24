@@ -29,8 +29,11 @@ import org.eclipse.papyrus.diagram.activity.edit.commands.ActionLocalPostconditi
 import org.eclipse.papyrus.diagram.activity.edit.commands.ActionLocalPostconditionReorientCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ActionLocalPreconditionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ActionLocalPreconditionReorientCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.CommentLinkCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.CommentLinkReorientCommand;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionLocalPostconditionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionLocalPreconditionEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.CommentLinkEditPart;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.common.command.wrappers.EMFtoGMFCommandWrapper;
 
@@ -87,6 +90,9 @@ public class TimeConstraintAsLocalPrecondItemSemanticEditPolicy extends UMLBaseI
 		if(UMLElementTypes.ActionLocalPostcondition_4002 == req.getElementType()) {
 			return null;
 		}
+		if(UMLElementTypes.CommentAnnotatedElement_4006 == req.getElementType()) {
+			return null;
+		}
 		return null;
 	}
 
@@ -99,6 +105,9 @@ public class TimeConstraintAsLocalPrecondItemSemanticEditPolicy extends UMLBaseI
 		}
 		if(UMLElementTypes.ActionLocalPostcondition_4002 == req.getElementType()) {
 			return getGEFWrapper(new ActionLocalPostconditionCreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if(UMLElementTypes.CommentAnnotatedElement_4006 == req.getElementType()) {
+			return getGEFWrapper(new CommentLinkCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -115,6 +124,8 @@ public class TimeConstraintAsLocalPrecondItemSemanticEditPolicy extends UMLBaseI
 			return getGEFWrapper(new ActionLocalPreconditionReorientCommand(req));
 		case ActionLocalPostconditionEditPart.VISUAL_ID:
 			return getGEFWrapper(new ActionLocalPostconditionReorientCommand(req));
+		case CommentLinkEditPart.VISUAL_ID:
+			return getGEFWrapper(new CommentLinkReorientCommand(req));
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}

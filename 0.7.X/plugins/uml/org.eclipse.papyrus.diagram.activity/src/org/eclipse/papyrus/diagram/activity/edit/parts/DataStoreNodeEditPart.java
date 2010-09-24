@@ -764,10 +764,11 @@ NamedElementEditPart {
 	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnTarget() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(3);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(4);
 		types.add(UMLElementTypes.ObjectFlow_4003);
 		types.add(UMLElementTypes.ControlFlow_4004);
 		types.add(UMLElementTypes.ExceptionHandler_4005);
+		types.add(UMLElementTypes.CommentAnnotatedElement_4006);
 		return types;
 	}
 
@@ -895,6 +896,8 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.LoopNode_3071);
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
+		} else if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4006) {
+			types.add(UMLElementTypes.Comment_3080);
 		}
 		return types;
 	}

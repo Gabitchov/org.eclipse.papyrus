@@ -37,6 +37,8 @@ import org.eclipse.papyrus.diagram.activity.edit.commands.ActionLocalPostconditi
 import org.eclipse.papyrus.diagram.activity.edit.commands.ActionLocalPostconditionReorientCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ActionLocalPreconditionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ActionLocalPreconditionReorientCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.CommentLinkCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.CommentLinkReorientCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ControlFlowCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ControlFlowReorientCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ExceptionHandlerCreateCommand;
@@ -49,6 +51,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ActionLocalPreconditionEd
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityFinalNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallBehaviorActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallOperationActionEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.CommentLinkEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConditionalNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConditionalNodeStructuredActivityNodeContentCompartmentEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPostcondEditPart;
@@ -134,6 +137,11 @@ public class ConditionalNodeItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
+							case CommentLinkEditPart.VISUAL_ID:
+								DestroyReferenceRequest destroyRefReq = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(destroyRefReq));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								break;
 							case ObjectFlowEditPart.VISUAL_ID:
 							case ControlFlowEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
@@ -163,6 +171,11 @@ public class ConditionalNodeItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
+							case CommentLinkEditPart.VISUAL_ID:
+								DestroyReferenceRequest destroyRefReq = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(destroyRefReq));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								break;
 							case ObjectFlowEditPart.VISUAL_ID:
 							case ControlFlowEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
@@ -192,6 +205,11 @@ public class ConditionalNodeItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
+							case CommentLinkEditPart.VISUAL_ID:
+								DestroyReferenceRequest destroyRefReq = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(destroyRefReq));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								break;
 							case ObjectFlowEditPart.VISUAL_ID:
 							case ControlFlowEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
@@ -221,6 +239,11 @@ public class ConditionalNodeItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
+							case CommentLinkEditPart.VISUAL_ID:
+								DestroyReferenceRequest destroyRefReq = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(destroyRefReq));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								break;
 							case ObjectFlowEditPart.VISUAL_ID:
 							case ControlFlowEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
@@ -257,6 +280,11 @@ public class ConditionalNodeItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
+							case CommentLinkEditPart.VISUAL_ID:
+								DestroyReferenceRequest destroyRefReq = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(destroyRefReq));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								break;
 							case ObjectFlowEditPart.VISUAL_ID:
 							case ControlFlowEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
@@ -293,6 +321,11 @@ public class ConditionalNodeItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
+							case CommentLinkEditPart.VISUAL_ID:
+								DestroyReferenceRequest destroyRefReq = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(destroyRefReq));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								break;
 							case ObjectFlowEditPart.VISUAL_ID:
 							case ControlFlowEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
@@ -331,6 +364,7 @@ public class ConditionalNodeItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
 							case ActionLocalPreconditionEditPart.VISUAL_ID:
 							case ActionLocalPostconditionEditPart.VISUAL_ID:
+							case CommentLinkEditPart.VISUAL_ID:
 								DestroyReferenceRequest destroyRefReq = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
 								cmd.add(new DestroyReferenceCommand(destroyRefReq));
 								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
@@ -349,6 +383,7 @@ public class ConditionalNodeItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
 							case ActionLocalPreconditionEditPart.VISUAL_ID:
 							case ActionLocalPostconditionEditPart.VISUAL_ID:
+							case CommentLinkEditPart.VISUAL_ID:
 								DestroyReferenceRequest destroyRefReq = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
 								cmd.add(new DestroyReferenceCommand(destroyRefReq));
 								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
@@ -367,6 +402,7 @@ public class ConditionalNodeItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
 							case ActionLocalPreconditionEditPart.VISUAL_ID:
 							case ActionLocalPostconditionEditPart.VISUAL_ID:
+							case CommentLinkEditPart.VISUAL_ID:
 								DestroyReferenceRequest destroyRefReq = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
 								cmd.add(new DestroyReferenceCommand(destroyRefReq));
 								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
@@ -385,6 +421,7 @@ public class ConditionalNodeItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
 							case ActionLocalPreconditionEditPart.VISUAL_ID:
 							case ActionLocalPostconditionEditPart.VISUAL_ID:
+							case CommentLinkEditPart.VISUAL_ID:
 								DestroyReferenceRequest destroyRefReq = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
 								cmd.add(new DestroyReferenceCommand(destroyRefReq));
 								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
@@ -403,6 +440,7 @@ public class ConditionalNodeItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
 							case ActionLocalPreconditionEditPart.VISUAL_ID:
 							case ActionLocalPostconditionEditPart.VISUAL_ID:
+							case CommentLinkEditPart.VISUAL_ID:
 								DestroyReferenceRequest destroyRefReq = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
 								cmd.add(new DestroyReferenceCommand(destroyRefReq));
 								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
@@ -421,6 +459,7 @@ public class ConditionalNodeItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
 							case ActionLocalPreconditionEditPart.VISUAL_ID:
 							case ActionLocalPostconditionEditPart.VISUAL_ID:
+							case CommentLinkEditPart.VISUAL_ID:
 								DestroyReferenceRequest destroyRefReq = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
 								cmd.add(new DestroyReferenceCommand(destroyRefReq));
 								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
@@ -439,6 +478,7 @@ public class ConditionalNodeItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
 							case ActionLocalPreconditionEditPart.VISUAL_ID:
 							case ActionLocalPostconditionEditPart.VISUAL_ID:
+							case CommentLinkEditPart.VISUAL_ID:
 								DestroyReferenceRequest destroyRefReq = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
 								cmd.add(new DestroyReferenceCommand(destroyRefReq));
 								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
@@ -457,6 +497,7 @@ public class ConditionalNodeItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
 							case ActionLocalPreconditionEditPart.VISUAL_ID:
 							case ActionLocalPostconditionEditPart.VISUAL_ID:
+							case CommentLinkEditPart.VISUAL_ID:
 								DestroyReferenceRequest destroyRefReq = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
 								cmd.add(new DestroyReferenceCommand(destroyRefReq));
 								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
@@ -473,6 +514,11 @@ public class ConditionalNodeItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
+							case CommentLinkEditPart.VISUAL_ID:
+								DestroyReferenceRequest destroyRefReq = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(destroyRefReq));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								break;
 							case ObjectFlowEditPart.VISUAL_ID:
 							case ControlFlowEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
@@ -502,6 +548,11 @@ public class ConditionalNodeItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
+							case CommentLinkEditPart.VISUAL_ID:
+								DestroyReferenceRequest destroyRefReq = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(destroyRefReq));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								break;
 							case ObjectFlowEditPart.VISUAL_ID:
 							case ControlFlowEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
@@ -531,6 +582,11 @@ public class ConditionalNodeItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
+							case CommentLinkEditPart.VISUAL_ID:
+								DestroyReferenceRequest destroyRefReq = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(destroyRefReq));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								break;
 							case ObjectFlowEditPart.VISUAL_ID:
 							case ControlFlowEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
@@ -560,6 +616,11 @@ public class ConditionalNodeItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
+							case CommentLinkEditPart.VISUAL_ID:
+								DestroyReferenceRequest destroyRefReq = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(destroyRefReq));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								break;
 							case ObjectFlowEditPart.VISUAL_ID:
 							case ControlFlowEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
@@ -589,6 +650,11 @@ public class ConditionalNodeItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
+							case CommentLinkEditPart.VISUAL_ID:
+								DestroyReferenceRequest destroyRefReq = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(destroyRefReq));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								break;
 							case ObjectFlowEditPart.VISUAL_ID:
 							case ControlFlowEditPart.VISUAL_ID:
 							case ExceptionHandlerEditPart.VISUAL_ID:
@@ -619,6 +685,11 @@ public class ConditionalNodeItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
+							case CommentLinkEditPart.VISUAL_ID:
+								DestroyReferenceRequest destroyRefReq = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(destroyRefReq));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								break;
 							case ObjectFlowEditPart.VISUAL_ID:
 							case ControlFlowEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
@@ -655,6 +726,11 @@ public class ConditionalNodeItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
+							case CommentLinkEditPart.VISUAL_ID:
+								DestroyReferenceRequest destroyRefReq = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(destroyRefReq));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								break;
 							case ObjectFlowEditPart.VISUAL_ID:
 							case ControlFlowEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
@@ -691,6 +767,11 @@ public class ConditionalNodeItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
+							case CommentLinkEditPart.VISUAL_ID:
+								DestroyReferenceRequest destroyRefReq = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(destroyRefReq));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								break;
 							case ObjectFlowEditPart.VISUAL_ID:
 							case ControlFlowEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
@@ -727,6 +808,11 @@ public class ConditionalNodeItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
+							case CommentLinkEditPart.VISUAL_ID:
+								DestroyReferenceRequest destroyRefReq = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(destroyRefReq));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								break;
 							case ObjectFlowEditPart.VISUAL_ID:
 							case ControlFlowEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
@@ -763,6 +849,11 @@ public class ConditionalNodeItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
+							case CommentLinkEditPart.VISUAL_ID:
+								DestroyReferenceRequest destroyRefReq = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(destroyRefReq));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								break;
 							case ObjectFlowEditPart.VISUAL_ID:
 							case ControlFlowEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
@@ -799,6 +890,11 @@ public class ConditionalNodeItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
+							case CommentLinkEditPart.VISUAL_ID:
+								DestroyReferenceRequest destroyRefReq = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(destroyRefReq));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								break;
 							case ObjectFlowEditPart.VISUAL_ID:
 							case ControlFlowEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
@@ -835,6 +931,11 @@ public class ConditionalNodeItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
+							case CommentLinkEditPart.VISUAL_ID:
+								DestroyReferenceRequest destroyRefReq = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(destroyRefReq));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								break;
 							case ObjectFlowEditPart.VISUAL_ID:
 							case ControlFlowEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
@@ -871,6 +972,11 @@ public class ConditionalNodeItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
+							case CommentLinkEditPart.VISUAL_ID:
+								DestroyReferenceRequest destroyRefReq = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(destroyRefReq));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								break;
 							case ObjectFlowEditPart.VISUAL_ID:
 							case ControlFlowEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
@@ -907,6 +1013,11 @@ public class ConditionalNodeItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
+							case CommentLinkEditPart.VISUAL_ID:
+								DestroyReferenceRequest destroyRefReq = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(destroyRefReq));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								break;
 							case ObjectFlowEditPart.VISUAL_ID:
 							case ControlFlowEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
@@ -972,6 +1083,9 @@ public class ConditionalNodeItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 		if(UMLElementTypes.ExceptionHandler_4005 == req.getElementType()) {
 			return getGEFWrapper(new ExceptionHandlerCreateCommand(req, req.getSource(), req.getTarget()));
 		}
+		if(UMLElementTypes.CommentAnnotatedElement_4006 == req.getElementType()) {
+			return null;
+		}
 		return null;
 	}
 
@@ -993,6 +1107,9 @@ public class ConditionalNodeItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 		}
 		if(UMLElementTypes.ExceptionHandler_4005 == req.getElementType()) {
 			return null;
+		}
+		if(UMLElementTypes.CommentAnnotatedElement_4006 == req.getElementType()) {
+			return getGEFWrapper(new CommentLinkCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -1027,6 +1144,8 @@ public class ConditionalNodeItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 			return getGEFWrapper(new ActionLocalPreconditionReorientCommand(req));
 		case ActionLocalPostconditionEditPart.VISUAL_ID:
 			return getGEFWrapper(new ActionLocalPostconditionReorientCommand(req));
+		case CommentLinkEditPart.VISUAL_ID:
+			return getGEFWrapper(new CommentLinkReorientCommand(req));
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
