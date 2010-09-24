@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rmap xmlns="http://www.eclipse.org/buckminster/RMap-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0">
+	<property key="repository.local" value="/opt/users/hudsonbuild/workspace/cbi-papyrus-0.7-nightly/" />
+
 	<locator pattern="^org\.eclipse\.papyrus\.(?:releng|build)(?:\..+)?$" searchPathRef="releng" />
 	<locator pattern="^org\.eclipse\.papyrus(?:\..+)?$" searchPathRef="papyrus" />
 
