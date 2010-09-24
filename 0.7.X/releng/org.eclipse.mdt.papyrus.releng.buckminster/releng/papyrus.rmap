@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rmap xmlns="http://www.eclipse.org/buckminster/RMap-1.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0">
-	<locator pattern="^org\.eclipse\.papyrus\.(?:releng|build)(?:\..+)?$"
-		searchPathRef="releng" />
-	<locator pattern="^org\.eclipse\.papyrus(?:\..+)?$"
-		searchPathRef="papyrus" />
+<rmap xmlns="http://www.eclipse.org/buckminster/RMap-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0">
+	<locator pattern="^org\.eclipse\.papyrus\.(?:releng|build)(?:\..+)?$" searchPathRef="releng" />
+	<locator pattern="^org\.eclipse\.papyrus(?:\..+)?$" searchPathRef="papyrus" />
 
 	<searchPath name="papyrus">
 		<!-- plugins: core developer others profile-tool sysml uml -->
@@ -67,11 +64,10 @@
 			</uri>
 		</provider>
 	</searchPath>
-	
-	<!--  releng part -->
+
+	<!-- releng part -->
 	<searchPath name="releng">
-		<provider componentTypes="buckminster" readerType="local"
-			source="true" mutable="false">
+		<provider componentTypes="buckminster" readerType="local" source="true" mutable="false">
 			<uri format="{0}/releng/{1}">
 				<bc:propertyRef key="repository.local" />
 				<bc:propertyRef key="buckminster.component" />
