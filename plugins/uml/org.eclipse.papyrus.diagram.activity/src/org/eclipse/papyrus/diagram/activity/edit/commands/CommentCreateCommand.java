@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2010 Atos Origin.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *   Atos Origin - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.activity.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -25,15 +12,14 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.activity.edit.commands.util.CreateCommandUtil;
-import org.eclipse.papyrus.diagram.activity.providers.ElementInitializers;
-import org.eclipse.uml2.uml.ConditionalNode;
+import org.eclipse.uml2.uml.Comment;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
  * @generated
  */
-public class ConditionalNodeCreateCommand extends EditElementCommand {
+public class CommentCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -48,7 +34,7 @@ public class ConditionalNodeCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public ConditionalNodeCreateCommand(CreateElementRequest req, EObject eObject) {
+	public CommentCreateCommand(CreateElementRequest req, EObject eObject) {
 		super(req.getLabel(), null, req);
 		this.eObject = eObject;
 		this.eClass = eObject != null ? eObject.eClass() : null;
@@ -57,14 +43,14 @@ public class ConditionalNodeCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public static ConditionalNodeCreateCommand create(CreateElementRequest req, EObject eObject) {
-		return new ConditionalNodeCreateCommand(req, eObject);
+	public static CommentCreateCommand create(CreateElementRequest req, EObject eObject) {
+		return new CommentCreateCommand(req, eObject);
 	}
 
 	/**
 	 * @generated
 	 */
-	public ConditionalNodeCreateCommand(CreateElementRequest req) {
+	public CommentCreateCommand(CreateElementRequest req) {
 		super(req.getLabel(), null, req);
 	}
 
@@ -86,28 +72,23 @@ public class ConditionalNodeCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated NOT check that there is a correct model container.
+	 * @generated
 	 */
 	public boolean canExecute() {
-		//check that there is a correct model container
-		return CreateCommandUtil.canCreateNode(getRequest(), getElementToEdit());
+
+		return true;
+
 	}
 
 	/**
-	 * @generated NOT set appropriate parents
+	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		ConditionalNode newElement = UMLFactory.eINSTANCE.createConditionalNode();
+		Comment newElement = UMLFactory.eINSTANCE.createComment();
 
-		// set appropriate parents
-		if(!CreateCommandUtil.setNodeParents(newElement, getRequest(), getElementToEdit())) {
-			return CommandResult.newCancelledCommandResult();
-		}
-		//		Activity owner = (Activity)getElementToEdit();
-		//		owner.getGroups().add(newElement);
-
-		ElementInitializers.getInstance().init_ConditionalNode_3069(newElement);
+		Element owner = (Element)getElementToEdit();
+		owner.getOwnedComments().add(newElement);
 
 		doConfigure(newElement, monitor, info);
 
@@ -118,7 +99,7 @@ public class ConditionalNodeCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(ConditionalNode newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	protected void doConfigure(Comment newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
 		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());

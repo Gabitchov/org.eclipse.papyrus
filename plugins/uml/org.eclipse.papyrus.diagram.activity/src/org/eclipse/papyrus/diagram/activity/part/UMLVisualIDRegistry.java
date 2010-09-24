@@ -27,7 +27,6 @@ import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.DurationConstraint;
 import org.eclipse.uml2.uml.ExpansionNode;
 import org.eclipse.uml2.uml.InputPin;
-import org.eclipse.uml2.uml.InteractionConstraint;
 import org.eclipse.uml2.uml.IntervalConstraint;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.TimeConstraint;
@@ -434,6 +433,11 @@ public class UMLVisualIDRegistry {
 
 			) {
 				return InterruptibleActivityRegionEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return CommentEditPartCN.VISUAL_ID;
 			}
 			break;
 		case ConditionalNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID:
@@ -2216,6 +2220,11 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
+		case CommentEditPartCN.VISUAL_ID:
+			if(CommentBodyLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		case ActivityActivityParametersCompartmentEditPart.VISUAL_ID:
 			if(ParameterEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
@@ -2320,6 +2329,9 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(InterruptibleActivityRegionEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(CommentEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -3965,6 +3977,10 @@ public class UMLVisualIDRegistry {
 		root.addNode(7004, viewInfo);
 
 		viewInfo = new BaseViewInfo(3079, ViewInfo.Node, "NamedElement");
+
+		viewInfo = new BaseViewInfo(3080, ViewInfo.Node, "Comment");
+
+		root.addNode(7004, viewInfo);
 
 		return root;
 	}

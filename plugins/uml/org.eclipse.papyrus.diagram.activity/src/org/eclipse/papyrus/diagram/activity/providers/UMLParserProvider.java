@@ -48,6 +48,7 @@ import org.eclipse.papyrus.diagram.activity.parser.custom.PinValueParser;
 import org.eclipse.papyrus.diagram.activity.parser.custom.StructuredActivityNodeKeywordParser;
 import org.eclipse.papyrus.diagram.activity.parsers.MessageFormatParser;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
+import org.eclipse.papyrus.diagram.common.parser.CommentParser;
 import org.eclipse.papyrus.diagram.common.parser.ConstraintParser;
 import org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -1622,6 +1623,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private CommentParser commentBody_5138Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getCommentBody_5138Parser() {
+		if(commentBody_5138Parser == null) {
+			commentBody_5138Parser = new CommentParser();
+		}
+		return commentBody_5138Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser valueSpecificationActionName_5126Parser;
 
 	/**
@@ -2383,6 +2399,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getActivityPartitionName_5118Parser();
 		case ShapeNamedElementNameEditPart.VISUAL_ID:
 			return getNamedElementName_5129Parser();
+		case CommentBodyLabelEditPart.VISUAL_ID:
+			return getCommentBody_5138Parser();
 		case ObjectFlowNameEditPart.VISUAL_ID:
 			return getObjectFlowName_6001Parser();
 		case ObjectFlowWeightEditPart.VISUAL_ID:
