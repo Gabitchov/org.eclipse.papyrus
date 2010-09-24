@@ -57,6 +57,12 @@
     <provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
       <uri format="http://download.eclipse.org/modeling/m2t/updates/releases/"/>
     </provider>
+    
+    <!-- Xpand -->
+    <provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+      <uri format="http://download.eclipse.org/modeling/m2t/xpand/updates/"/>
+    </provider>
+    
 
 	<!-- OCL -->
     <provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
