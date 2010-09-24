@@ -2,7 +2,6 @@ package org.eclipse.papyrus.compare.report.services;
 
 import java.util.List;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -44,36 +43,40 @@ public class UmlElementService {
 
 	private StringBuffer getAttributeString(EObject eObject, EAttribute attr) {
 		StringBuffer result = new StringBuffer();
-		result.append(attr.getName());
-		result.append(" : ");
-		result.append(eObject.eGet(attr));
-		result.append("</br>");
+		Object attrValue = eObject.eGet(attr);
+		if (attrValue != null && !attrValue.equals("")) {
+			result.append(attr.getName());
+			result.append(" : ");
+			result.append(attrValue);
+			result.append("</br>");
+		}
 		return result;
 	}
 
 	private StringBuffer getReferenceString(EObject eObject,
 			EReference eReference) {
 		StringBuffer result = new StringBuffer();
-		if (eReference.isContainment()) {
-			result.append(eReference.getName());
-			result.append("containment");
-			result.append("&nbsp;");
-			result.append(" : ");
-			result.append(getElementName(eObject.eGet(eReference)));
-			result.append("</br>");
-		} else {
-			result.append(eReference.getName());
-			result.append("containment");
-			result.append(" : ");
-			result.append(getElementName(eObject.eGet(eReference)));
-			result.append("</br>");
+		Object refValue = getElementName(eObject.eGet(eReference));
+		if (refValue != null && !refValue.equals("") && !refValue.equals("[]") && !refValue.equals(" ")) {
+			if (eReference.isContainment()) {
+				result.append(eReference.getName());
+				result.append("&nbsp;");
+				result.append(" : ");
+				result.append(refValue);
+				result.append("</br>");
+			} else {
+				result.append(eReference.getName());
+				result.append(" : ");
+				result.append("'" + refValue + "'");
+				result.append("</br>");
+			}
 		}
 		return result;
 	}
-	
+
 	private String getElementName(Object obj) {
 		if (obj == null) {
-			return "<null>";
+			return "";
 		}
 		if (obj instanceof NamedElement) {
 			return ((NamedElement) obj).getLabel();
@@ -86,11 +89,11 @@ public class UmlElementService {
 		}
 		if (obj instanceof List) {
 			String result = "";
-			for (Object next: ((List)obj)) {
+			for (Object next : ((List) obj)) {
 				result += getElementName(next);
-				result+=", ";
+				result += ", ";
 			}
-			return result;			
+			return result;
 		}
 		return obj.toString();
 	}
