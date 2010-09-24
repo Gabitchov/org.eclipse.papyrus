@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.eclipse.papyrus.profiletool"
+      id="org.eclipse.papyrus.profile-tool"
       label="%featureName"
       version="0.7.1.qualifier"
       provider-name="%providerName">
