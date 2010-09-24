@@ -93,11 +93,11 @@
     <provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
       <uri format="http://download.eclipse.org/eclipse/updates/3.6.x"/>
     </provider>
-    
+    <!--
     <provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
 			<uri format="http://download.eclipse.org/technology/subversive/0.7/update-site/"/>
 		</provider>
-    
+    -->
     <provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
 			<uri format="{0}/modeling/mdt/modisco/updates/release/0.8.0/">
 				<bc:propertyRef key="eclipse.download" />
