@@ -606,6 +606,12 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ShapeNamedElementNameEditPart.VISUAL_ID:
 				return new ShapeNamedElementNameEditPart(view);
 
+			case CommentEditPartCN.VISUAL_ID:
+				return new CommentEditPartCN(view);
+
+			case CommentBodyLabelEditPart.VISUAL_ID:
+				return new CommentBodyLabelEditPart(view);
+
 			case ActivityActivityParametersCompartmentEditPart.VISUAL_ID:
 				return new ActivityActivityParametersCompartmentEditPart(view);
 

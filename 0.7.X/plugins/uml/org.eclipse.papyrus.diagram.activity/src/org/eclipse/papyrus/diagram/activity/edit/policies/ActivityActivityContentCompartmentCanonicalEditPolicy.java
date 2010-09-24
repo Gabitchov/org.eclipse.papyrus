@@ -49,6 +49,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityFinalNodeEditPart
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityPartitionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallBehaviorActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallOperationActionEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.CommentEditPartCN;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConditionalNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPrecondEditPart;
@@ -146,6 +147,7 @@ public class ActivityActivityContentCompartmentCanonicalEditPolicy extends Canon
 		case StructuredActivityNodeEditPart.VISUAL_ID:
 		case ActivityPartitionEditPart.VISUAL_ID:
 		case InterruptibleActivityRegionEditPart.VISUAL_ID:
+		case CommentEditPartCN.VISUAL_ID:
 			return true;
 		}
 		return false;
@@ -272,6 +274,7 @@ public class ActivityActivityContentCompartmentCanonicalEditPolicy extends Canon
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getAction_LocalPrecondition());
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getAction_LocalPostcondition());
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getActivity_Group());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getElement_OwnedComment());
 		}
 		return myFeaturesToSynchronize;
 	}

@@ -76,102 +76,147 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private final static String CREATEOPAQUEACTION1CREATIONTOOL = "createOpaqueAction1CreationTool"; //$NON-NLS-1$
+	private final static String CREATEOPAQUEACTION10CREATIONTOOL = "createOpaqueAction10CreationTool"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATECALLBEHAVIORACTION2CREATIONTOOL = "createCallBehaviorAction2CreationTool"; //$NON-NLS-1$
+	private final static String CREATECALLBEHAVIORACTION11CREATIONTOOL = "createCallBehaviorAction11CreationTool"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATECALLOPERATIONACTION3CREATIONTOOL = "createCallOperationAction3CreationTool"; //$NON-NLS-1$
+	private final static String CREATECALLOPERATIONACTION12CREATIONTOOL = "createCallOperationAction12CreationTool"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATESENDOBJECTACTION4CREATIONTOOL = "createSendObjectAction4CreationTool"; //$NON-NLS-1$
+	private final static String CREATESENDOBJECTACTION13CREATIONTOOL = "createSendObjectAction13CreationTool"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATESENDSIGNALACTION5CREATIONTOOL = "createSendSignalAction5CreationTool"; //$NON-NLS-1$
+	private final static String CREATESENDSIGNALACTION14CREATIONTOOL = "createSendSignalAction14CreationTool"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEACCEPTEVENTACTION6CREATIONTOOL = "createAcceptEventAction6CreationTool"; //$NON-NLS-1$
+	private final static String CREATEACCEPTEVENTACTION15CREATIONTOOL = "createAcceptEventAction15CreationTool"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEVALUESPECIFICATIONACTION7CREATIONTOOL = "createValueSpecificationAction7CreationTool"; //$NON-NLS-1$
+	private final static String CREATEVALUESPECIFICATIONACTION16CREATIONTOOL = "createValueSpecificationAction16CreationTool"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEACTIVITYPARTITION1CREATIONTOOL = "createActivityPartition1CreationTool"; //$NON-NLS-1$
+	private final static String CREATEACTIVITYPARTITION17CREATIONTOOL = "createActivityPartition17CreationTool"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEINTERRUPTIBLEACTIVITYREGION2CREATIONTOOL = "createInterruptibleActivityRegion2CreationTool"; //$NON-NLS-1$
+	private final static String CREATEINTERRUPTIBLEACTIVITYREGION18CREATIONTOOL = "createInterruptibleActivityRegion18CreationTool"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATESTRUCTUREDACTIVITYNODE3CREATIONTOOL = "createStructuredActivityNode3CreationTool"; //$NON-NLS-1$
+	private final static String CREATESTRUCTUREDACTIVITYNODE19CREATIONTOOL = "createStructuredActivityNode19CreationTool"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATECONDITIONALNODE4CREATIONTOOL = "createConditionalNode4CreationTool"; //$NON-NLS-1$
+	private final static String CREATECONDITIONALNODE20CREATIONTOOL = "createConditionalNode20CreationTool"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEEXPANSIONREGION5CREATIONTOOL = "createExpansionRegion5CreationTool"; //$NON-NLS-1$
+	private final static String CREATEEXPANSIONREGION21CREATIONTOOL = "createExpansionRegion21CreationTool"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATELOOPNODE6CREATIONTOOL = "createLoopNode6CreationTool"; //$NON-NLS-1$
+	private final static String CREATELOOPNODE22CREATIONTOOL = "createLoopNode22CreationTool"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATESEQUENCENODE7CREATIONTOOL = "createSequenceNode7CreationTool"; //$NON-NLS-1$
+	private final static String CREATESEQUENCENODE23CREATIONTOOL = "createSequenceNode23CreationTool"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEOUTPUTPIN1CREATIONTOOL = "createOutputPin1CreationTool"; //$NON-NLS-1$
+	private final static String CREATEOUTPUTPIN24CREATIONTOOL = "createOutputPin24CreationTool"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEINPUTPIN2CREATIONTOOL = "createInputPin2CreationTool"; //$NON-NLS-1$
+	private final static String CREATEINPUTPIN25CREATIONTOOL = "createInputPin25CreationTool"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEACTIONINPUTPIN3CREATIONTOOL = "createActionInputPin3CreationTool"; //$NON-NLS-1$
+	private final static String CREATEACTIONINPUTPIN26CREATIONTOOL = "createActionInputPin26CreationTool"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEVALUEPIN4CREATIONTOOL = "createValuePin4CreationTool"; //$NON-NLS-1$
+	private final static String CREATEVALUEPIN27CREATIONTOOL = "createValuePin27CreationTool"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEINPUTEXPANSIONNODE5CREATIONTOOL = "createInputExpansionNode5CreationTool"; //$NON-NLS-1$
+	private final static String CREATEINPUTEXPANSIONNODE28CREATIONTOOL = "createInputExpansionNode28CreationTool"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEOUTPUTEXPANSIONNODE6CREATIONTOOL = "createOutputExpansionNode6CreationTool"; //$NON-NLS-1$
+	private final static String CREATEOUTPUTEXPANSIONNODE29CREATIONTOOL = "createOutputExpansionNode29CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CREATELOCALPRECONDITIONCONSTRAINT30CREATIONTOOL = "createLocalPreconditionConstraint30CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CREATELOCALPRECONDITIONINTERVALCONSTRAINT31CREATIONTOOL = "createLocalPreconditionIntervalConstraint31CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CREATELOCALPRECONDITIONDURATIONCONSTRAINT32CREATIONTOOL = "createLocalPreconditionDurationConstraint32CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CREATELOCALPRECONDITIONTIMECONSTRAINT33CREATIONTOOL = "createLocalPreconditionTimeConstraint33CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CREATELOCALPOSTCONDITIONCONSTRAINT34CREATIONTOOL = "createLocalPostconditionConstraint34CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CREATELOCALPOSTCONDITIONINTERVALCONSTRAINT35CREATIONTOOL = "createLocalPostconditionIntervalConstraint35CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CREATELOCALPOSTCONDITIONDURATIONCONSTRAINT36CREATIONTOOL = "createLocalPostconditionDurationConstraint36CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CREATELOCALPOSTCONDITIONTIMECONSTRAINT37CREATIONTOOL = "createLocalPostconditionTimeConstraint37CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CLAZZ_TOOL_COMMENT = "clazz.tool.comment"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -187,46 +232,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	private final static String CREATEEXCEPTIONHANDLER3CREATIONTOOL = "createExceptionHandler3CreationTool"; //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	private final static String CREATELOCALPRECONDITIONCONSTRAINT1CREATIONTOOL = "createLocalPreconditionConstraint1CreationTool"; //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	private final static String CREATELOCALPRECONDITIONINTERVALCONSTRAINT2CREATIONTOOL = "createLocalPreconditionIntervalConstraint2CreationTool"; //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	private final static String CREATELOCALPRECONDITIONDURATIONCONSTRAINT3CREATIONTOOL = "createLocalPreconditionDurationConstraint3CreationTool"; //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	private final static String CREATELOCALPRECONDITIONTIMECONSTRAINT4CREATIONTOOL = "createLocalPreconditionTimeConstraint4CreationTool"; //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	private final static String CREATELOCALPOSTCONDITIONCONSTRAINT5CREATIONTOOL = "createLocalPostconditionConstraint5CreationTool"; //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	private final static String CREATELOCALPOSTCONDITIONINTERVALCONSTRAINT6CREATIONTOOL = "createLocalPostconditionIntervalConstraint6CreationTool"; //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	private final static String CREATELOCALPOSTCONDITIONDURATIONCONSTRAINT7CREATIONTOOL = "createLocalPostconditionDurationConstraint7CreationTool"; //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	private final static String CREATELOCALPOSTCONDITIONTIMECONSTRAINT8CREATIONTOOL = "createLocalPostconditionTimeConstraint8CreationTool"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -266,65 +271,92 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		if(toolId.equals(CREATEDATASTORENODE9CREATIONTOOL)) {
 			return createDataStoreNode9CreationTool();
 		}
-		if(toolId.equals(CREATEOPAQUEACTION1CREATIONTOOL)) {
-			return createOpaqueAction1CreationTool();
+		if(toolId.equals(CREATEOPAQUEACTION10CREATIONTOOL)) {
+			return createOpaqueAction10CreationTool();
 		}
-		if(toolId.equals(CREATECALLBEHAVIORACTION2CREATIONTOOL)) {
-			return createCallBehaviorAction2CreationTool();
+		if(toolId.equals(CREATECALLBEHAVIORACTION11CREATIONTOOL)) {
+			return createCallBehaviorAction11CreationTool();
 		}
-		if(toolId.equals(CREATECALLOPERATIONACTION3CREATIONTOOL)) {
-			return createCallOperationAction3CreationTool();
+		if(toolId.equals(CREATECALLOPERATIONACTION12CREATIONTOOL)) {
+			return createCallOperationAction12CreationTool();
 		}
-		if(toolId.equals(CREATESENDOBJECTACTION4CREATIONTOOL)) {
-			return createSendObjectAction4CreationTool();
+		if(toolId.equals(CREATESENDOBJECTACTION13CREATIONTOOL)) {
+			return createSendObjectAction13CreationTool();
 		}
-		if(toolId.equals(CREATESENDSIGNALACTION5CREATIONTOOL)) {
-			return createSendSignalAction5CreationTool();
+		if(toolId.equals(CREATESENDSIGNALACTION14CREATIONTOOL)) {
+			return createSendSignalAction14CreationTool();
 		}
-		if(toolId.equals(CREATEACCEPTEVENTACTION6CREATIONTOOL)) {
-			return createAcceptEventAction6CreationTool();
+		if(toolId.equals(CREATEACCEPTEVENTACTION15CREATIONTOOL)) {
+			return createAcceptEventAction15CreationTool();
 		}
-		if(toolId.equals(CREATEVALUESPECIFICATIONACTION7CREATIONTOOL)) {
-			return createValueSpecificationAction7CreationTool();
+		if(toolId.equals(CREATEVALUESPECIFICATIONACTION16CREATIONTOOL)) {
+			return createValueSpecificationAction16CreationTool();
 		}
-		if(toolId.equals(CREATEACTIVITYPARTITION1CREATIONTOOL)) {
-			return createActivityPartition1CreationTool();
+		if(toolId.equals(CREATEACTIVITYPARTITION17CREATIONTOOL)) {
+			return createActivityPartition17CreationTool();
 		}
-		if(toolId.equals(CREATEINTERRUPTIBLEACTIVITYREGION2CREATIONTOOL)) {
-			return createInterruptibleActivityRegion2CreationTool();
+		if(toolId.equals(CREATEINTERRUPTIBLEACTIVITYREGION18CREATIONTOOL)) {
+			return createInterruptibleActivityRegion18CreationTool();
 		}
-		if(toolId.equals(CREATESTRUCTUREDACTIVITYNODE3CREATIONTOOL)) {
-			return createStructuredActivityNode3CreationTool();
+		if(toolId.equals(CREATESTRUCTUREDACTIVITYNODE19CREATIONTOOL)) {
+			return createStructuredActivityNode19CreationTool();
 		}
-		if(toolId.equals(CREATECONDITIONALNODE4CREATIONTOOL)) {
-			return createConditionalNode4CreationTool();
+		if(toolId.equals(CREATECONDITIONALNODE20CREATIONTOOL)) {
+			return createConditionalNode20CreationTool();
 		}
-		if(toolId.equals(CREATEEXPANSIONREGION5CREATIONTOOL)) {
-			return createExpansionRegion5CreationTool();
+		if(toolId.equals(CREATEEXPANSIONREGION21CREATIONTOOL)) {
+			return createExpansionRegion21CreationTool();
 		}
-		if(toolId.equals(CREATELOOPNODE6CREATIONTOOL)) {
-			return createLoopNode6CreationTool();
+		if(toolId.equals(CREATELOOPNODE22CREATIONTOOL)) {
+			return createLoopNode22CreationTool();
 		}
-		if(toolId.equals(CREATESEQUENCENODE7CREATIONTOOL)) {
-			return createSequenceNode7CreationTool();
+		if(toolId.equals(CREATESEQUENCENODE23CREATIONTOOL)) {
+			return createSequenceNode23CreationTool();
 		}
-		if(toolId.equals(CREATEOUTPUTPIN1CREATIONTOOL)) {
-			return createOutputPin1CreationTool();
+		if(toolId.equals(CREATEOUTPUTPIN24CREATIONTOOL)) {
+			return createOutputPin24CreationTool();
 		}
-		if(toolId.equals(CREATEINPUTPIN2CREATIONTOOL)) {
-			return createInputPin2CreationTool();
+		if(toolId.equals(CREATEINPUTPIN25CREATIONTOOL)) {
+			return createInputPin25CreationTool();
 		}
-		if(toolId.equals(CREATEACTIONINPUTPIN3CREATIONTOOL)) {
-			return createActionInputPin3CreationTool();
+		if(toolId.equals(CREATEACTIONINPUTPIN26CREATIONTOOL)) {
+			return createActionInputPin26CreationTool();
 		}
-		if(toolId.equals(CREATEVALUEPIN4CREATIONTOOL)) {
-			return createValuePin4CreationTool();
+		if(toolId.equals(CREATEVALUEPIN27CREATIONTOOL)) {
+			return createValuePin27CreationTool();
 		}
-		if(toolId.equals(CREATEINPUTEXPANSIONNODE5CREATIONTOOL)) {
-			return createInputExpansionNode5CreationTool();
+		if(toolId.equals(CREATEINPUTEXPANSIONNODE28CREATIONTOOL)) {
+			return createInputExpansionNode28CreationTool();
 		}
-		if(toolId.equals(CREATEOUTPUTEXPANSIONNODE6CREATIONTOOL)) {
-			return createOutputExpansionNode6CreationTool();
+		if(toolId.equals(CREATEOUTPUTEXPANSIONNODE29CREATIONTOOL)) {
+			return createOutputExpansionNode29CreationTool();
+		}
+		if(toolId.equals(CREATELOCALPRECONDITIONCONSTRAINT30CREATIONTOOL)) {
+			return createLocalPreconditionConstraint30CreationTool();
+		}
+		if(toolId.equals(CREATELOCALPRECONDITIONINTERVALCONSTRAINT31CREATIONTOOL)) {
+			return createLocalPreconditionIntervalConstraint31CreationTool();
+		}
+		if(toolId.equals(CREATELOCALPRECONDITIONDURATIONCONSTRAINT32CREATIONTOOL)) {
+			return createLocalPreconditionDurationConstraint32CreationTool();
+		}
+		if(toolId.equals(CREATELOCALPRECONDITIONTIMECONSTRAINT33CREATIONTOOL)) {
+			return createLocalPreconditionTimeConstraint33CreationTool();
+		}
+		if(toolId.equals(CREATELOCALPOSTCONDITIONCONSTRAINT34CREATIONTOOL)) {
+			return createLocalPostconditionConstraint34CreationTool();
+		}
+		if(toolId.equals(CREATELOCALPOSTCONDITIONINTERVALCONSTRAINT35CREATIONTOOL)) {
+			return createLocalPostconditionIntervalConstraint35CreationTool();
+		}
+		if(toolId.equals(CREATELOCALPOSTCONDITIONDURATIONCONSTRAINT36CREATIONTOOL)) {
+			return createLocalPostconditionDurationConstraint36CreationTool();
+		}
+		if(toolId.equals(CREATELOCALPOSTCONDITIONTIMECONSTRAINT37CREATIONTOOL)) {
+			return createLocalPostconditionTimeConstraint37CreationTool();
+		}
+		if(toolId.equals(CLAZZ_TOOL_COMMENT)) {
+			return createCommentCreationTool();
 		}
 		if(toolId.equals(CREATECONTROLFLOW1CREATIONTOOL)) {
 			return createControlFlow1CreationTool();
@@ -334,30 +366,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		}
 		if(toolId.equals(CREATEEXCEPTIONHANDLER3CREATIONTOOL)) {
 			return createExceptionHandler3CreationTool();
-		}
-		if(toolId.equals(CREATELOCALPRECONDITIONCONSTRAINT1CREATIONTOOL)) {
-			return createLocalPreconditionConstraint1CreationTool();
-		}
-		if(toolId.equals(CREATELOCALPRECONDITIONINTERVALCONSTRAINT2CREATIONTOOL)) {
-			return createLocalPreconditionIntervalConstraint2CreationTool();
-		}
-		if(toolId.equals(CREATELOCALPRECONDITIONDURATIONCONSTRAINT3CREATIONTOOL)) {
-			return createLocalPreconditionDurationConstraint3CreationTool();
-		}
-		if(toolId.equals(CREATELOCALPRECONDITIONTIMECONSTRAINT4CREATIONTOOL)) {
-			return createLocalPreconditionTimeConstraint4CreationTool();
-		}
-		if(toolId.equals(CREATELOCALPOSTCONDITIONCONSTRAINT5CREATIONTOOL)) {
-			return createLocalPostconditionConstraint5CreationTool();
-		}
-		if(toolId.equals(CREATELOCALPOSTCONDITIONINTERVALCONSTRAINT6CREATIONTOOL)) {
-			return createLocalPostconditionIntervalConstraint6CreationTool();
-		}
-		if(toolId.equals(CREATELOCALPOSTCONDITIONDURATIONCONSTRAINT7CREATIONTOOL)) {
-			return createLocalPostconditionDurationConstraint7CreationTool();
-		}
-		if(toolId.equals(CREATELOCALPOSTCONDITIONTIMECONSTRAINT8CREATIONTOOL)) {
-			return createLocalPostconditionTimeConstraint8CreationTool();
 		}
 
 		// default return: null
@@ -472,7 +480,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createOpaqueAction1CreationTool() {
+	private Tool createOpaqueAction10CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.OpaqueAction_3007);
 
@@ -483,7 +491,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createCallBehaviorAction2CreationTool() {
+	private Tool createCallBehaviorAction11CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.CallBehaviorAction_3008);
 
@@ -494,7 +502,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createCallOperationAction3CreationTool() {
+	private Tool createCallOperationAction12CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.CallOperationAction_3010);
 
@@ -505,7 +513,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createSendObjectAction4CreationTool() {
+	private Tool createSendObjectAction13CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.SendObjectAction_3042);
 
@@ -516,7 +524,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createSendSignalAction5CreationTool() {
+	private Tool createSendSignalAction14CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.SendSignalAction_3052);
 
@@ -527,7 +535,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createAcceptEventAction6CreationTool() {
+	private Tool createAcceptEventAction15CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.AcceptEventAction_3063);
 
@@ -538,7 +546,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createValueSpecificationAction7CreationTool() {
+	private Tool createValueSpecificationAction16CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.ValueSpecificationAction_3076);
 
@@ -549,7 +557,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createActivityPartition1CreationTool() {
+	private Tool createActivityPartition17CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.ActivityPartition_3067);
 
@@ -560,7 +568,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createInterruptibleActivityRegion2CreationTool() {
+	private Tool createInterruptibleActivityRegion18CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.InterruptibleActivityRegion_3068);
 
@@ -571,7 +579,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createStructuredActivityNode3CreationTool() {
+	private Tool createStructuredActivityNode19CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.StructuredActivityNode_3065);
 
@@ -582,7 +590,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createConditionalNode4CreationTool() {
+	private Tool createConditionalNode20CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.ConditionalNode_3069);
 
@@ -593,7 +601,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createExpansionRegion5CreationTool() {
+	private Tool createExpansionRegion21CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.ExpansionRegion_3070);
 
@@ -604,7 +612,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createLoopNode6CreationTool() {
+	private Tool createLoopNode22CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.LoopNode_3071);
 
@@ -615,7 +623,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createSequenceNode7CreationTool() {
+	private Tool createSequenceNode23CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.SequenceNode_3073);
 
@@ -626,7 +634,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createOutputPin1CreationTool() {
+	private Tool createOutputPin24CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(5);
 		types.add(UMLElementTypes.OutputPin_3014);
 		types.add(UMLElementTypes.OutputPin_3020);
@@ -641,7 +649,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createInputPin2CreationTool() {
+	private Tool createInputPin25CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(4);
 		types.add(UMLElementTypes.InputPin_3013);
 		types.add(UMLElementTypes.InputPin_3019);
@@ -655,7 +663,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createActionInputPin3CreationTool() {
+	private Tool createActionInputPin26CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(4);
 		types.add(UMLElementTypes.ActionInputPin_3016);
 		types.add(UMLElementTypes.ActionInputPin_3018);
@@ -669,7 +677,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createValuePin4CreationTool() {
+	private Tool createValuePin27CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(4);
 		types.add(UMLElementTypes.ValuePin_3015);
 		types.add(UMLElementTypes.ValuePin_3017);
@@ -683,7 +691,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createInputExpansionNode5CreationTool() {
+	private Tool createInputExpansionNode28CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.ExpansionNode_3074);
 
@@ -694,9 +702,108 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createOutputExpansionNode6CreationTool() {
+	private Tool createOutputExpansionNode29CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.ExpansionNode_3075);
+
+		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Tool createLocalPreconditionConstraint30CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.Constraint_3011);
+
+		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Tool createLocalPreconditionIntervalConstraint31CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.IntervalConstraint_3032);
+
+		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Tool createLocalPreconditionDurationConstraint32CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.DurationConstraint_3034);
+
+		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Tool createLocalPreconditionTimeConstraint33CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.TimeConstraint_3036);
+
+		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Tool createLocalPostconditionConstraint34CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.Constraint_3012);
+
+		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Tool createLocalPostconditionIntervalConstraint35CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.IntervalConstraint_3033);
+
+		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Tool createLocalPostconditionDurationConstraint36CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.DurationConstraint_3035);
+
+		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Tool createLocalPostconditionTimeConstraint37CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.TimeConstraint_3037);
+
+		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Tool createCommentCreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.Comment_3080);
 
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
@@ -732,94 +839,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		types.add(UMLElementTypes.ExceptionHandler_4005);
 
 		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
-		return tool;
-	}
-
-	/**
-	 * @generated
-	 */
-	private Tool createLocalPreconditionConstraint1CreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.Constraint_3011);
-
-		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
-		return tool;
-	}
-
-	/**
-	 * @generated
-	 */
-	private Tool createLocalPreconditionIntervalConstraint2CreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.IntervalConstraint_3032);
-
-		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
-		return tool;
-	}
-
-	/**
-	 * @generated
-	 */
-	private Tool createLocalPreconditionDurationConstraint3CreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.DurationConstraint_3034);
-
-		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
-		return tool;
-	}
-
-	/**
-	 * @generated
-	 */
-	private Tool createLocalPreconditionTimeConstraint4CreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.TimeConstraint_3036);
-
-		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
-		return tool;
-	}
-
-	/**
-	 * @generated
-	 */
-	private Tool createLocalPostconditionConstraint5CreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.Constraint_3012);
-
-		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
-		return tool;
-	}
-
-	/**
-	 * @generated
-	 */
-	private Tool createLocalPostconditionIntervalConstraint6CreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.IntervalConstraint_3033);
-
-		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
-		return tool;
-	}
-
-	/**
-	 * @generated
-	 */
-	private Tool createLocalPostconditionDurationConstraint7CreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.DurationConstraint_3035);
-
-		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
-		return tool;
-	}
-
-	/**
-	 * @generated
-	 */
-	private Tool createLocalPostconditionTimeConstraint8CreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.TimeConstraint_3037);
-
-		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
 	}
 

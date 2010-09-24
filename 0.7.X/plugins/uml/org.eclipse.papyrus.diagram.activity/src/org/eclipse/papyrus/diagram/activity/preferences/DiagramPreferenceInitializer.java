@@ -30,6 +30,8 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 
 		ValueSpecificationActionPreferencePage.initDefaults(store);
 
+		CommentPreferencePage.initDefaults(store);
+
 		SendObjectActionPreferencePage.initDefaults(store);
 
 		SequenceNodePreferencePage.initDefaults(store);

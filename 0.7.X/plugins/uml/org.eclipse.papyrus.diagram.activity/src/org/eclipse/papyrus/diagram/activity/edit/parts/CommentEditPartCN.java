@@ -1,21 +1,4 @@
-/*****************************************************************************
- * Copyright (c) 2010 Atos Origin.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *   Atos Origin - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.activity.edit.parts;
-
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Shape;
@@ -33,7 +16,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
-import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
@@ -41,16 +23,14 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.activity.edit.policies.ActivityDiagramChangeStereotypedShapeEditpolicy;
-import org.eclipse.papyrus.diagram.activity.edit.policies.IntervalConstraintAsLocalPrecondItemSemanticEditPolicy;
-import org.eclipse.papyrus.diagram.activity.edit.policies.OpenDiagramEditPolicy;
-import org.eclipse.papyrus.diagram.activity.figures.LocalPreconditionConstraintFigure;
+import org.eclipse.papyrus.diagram.activity.edit.policies.CommentItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
-import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
-import org.eclipse.papyrus.diagram.common.editparts.AbstractConstraintEditPart;
+import org.eclipse.papyrus.diagram.common.editparts.AbstractCommentEditPart;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.ChangeStereotypedShapeEditPolicy;
+import org.eclipse.papyrus.diagram.common.figure.node.HTMLCornerBentFigure;
 import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
@@ -59,14 +39,14 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated
  */
-public class IntervalConstraintAsLocalPrecondEditPart extends
+public class CommentEditPartCN extends
 
-AbstractConstraintEditPart {
+AbstractCommentEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 3032;
+	public static final int VISUAL_ID = 3080;
 
 	/**
 	 * @generated
@@ -81,7 +61,7 @@ AbstractConstraintEditPart {
 	/**
 	 * @generated
 	 */
-	public IntervalConstraintAsLocalPrecondEditPart(View view) {
+	public CommentEditPartCN(View view) {
 		super(view);
 	}
 
@@ -90,9 +70,8 @@ AbstractConstraintEditPart {
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new IntervalConstraintAsLocalPrecondItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CommentItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		installEditPolicy(ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY, new ActivityDiagramChangeStereotypedShapeEditpolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
@@ -138,26 +117,22 @@ AbstractConstraintEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		return primaryShape = new LocalPreconditionConstraintFigure();
+		return primaryShape = new HTMLCornerBentFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public LocalPreconditionConstraintFigure getPrimaryShape() {
-		return (LocalPreconditionConstraintFigure)primaryShape;
+	public HTMLCornerBentFigure getPrimaryShape() {
+		return (HTMLCornerBentFigure)primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof IntervalConstraintAsLocalPrecondNameEditPart) {
-			((IntervalConstraintAsLocalPrecondNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
-			return true;
-		}
-		if(childEditPart instanceof IntervalConstraintAsLocalPrecondBodyEditPart) {
-			((IntervalConstraintAsLocalPrecondBodyEditPart)childEditPart).setLabel(getPrimaryShape().getConstraintFigure());
+		if(childEditPart instanceof CommentBodyLabelEditPart) {
+			((CommentBodyLabelEditPart)childEditPart).setLabel(getPrimaryShape().getCornerBentFigure());
 			return true;
 		}
 
@@ -168,10 +143,7 @@ AbstractConstraintEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof IntervalConstraintAsLocalPrecondNameEditPart) {
-			return true;
-		}
-		if(childEditPart instanceof IntervalConstraintAsLocalPrecondBodyEditPart) {
+		if(childEditPart instanceof CommentBodyLabelEditPart) {
 			return true;
 		}
 		return false;
@@ -208,7 +180,7 @@ AbstractConstraintEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		String prefElementId = "IntervalConstraint";
+		String prefElementId = "Comment";
 		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
@@ -292,52 +264,7 @@ AbstractConstraintEditPart {
 	 * @generated
 	 */
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(UMLVisualIDRegistry.getType(IntervalConstraintAsLocalPrecondNameEditPart.VISUAL_ID));
-	}
-
-	/**
-	 * @generated
-	 */
-	public List<IElementType> getMARelTypesOnTarget() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
-		types.add(UMLElementTypes.ActionLocalPrecondition_4001);
-		types.add(UMLElementTypes.ActionLocalPostcondition_4002);
-		return types;
-	}
-
-	/**
-	 * @generated
-	 */
-	public List<IElementType> getMATypesForSource(IElementType relationshipType) {
-		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if(relationshipType == UMLElementTypes.ActionLocalPrecondition_4001) {
-			types.add(UMLElementTypes.OpaqueAction_3007);
-			types.add(UMLElementTypes.CallBehaviorAction_3008);
-			types.add(UMLElementTypes.CallOperationAction_3010);
-			types.add(UMLElementTypes.SendObjectAction_3042);
-			types.add(UMLElementTypes.SendSignalAction_3052);
-			types.add(UMLElementTypes.AcceptEventAction_3063);
-			types.add(UMLElementTypes.ValueSpecificationAction_3076);
-			types.add(UMLElementTypes.ConditionalNode_3069);
-			types.add(UMLElementTypes.ExpansionRegion_3070);
-			types.add(UMLElementTypes.LoopNode_3071);
-			types.add(UMLElementTypes.SequenceNode_3073);
-			types.add(UMLElementTypes.StructuredActivityNode_3065);
-		} else if(relationshipType == UMLElementTypes.ActionLocalPostcondition_4002) {
-			types.add(UMLElementTypes.OpaqueAction_3007);
-			types.add(UMLElementTypes.CallBehaviorAction_3008);
-			types.add(UMLElementTypes.CallOperationAction_3010);
-			types.add(UMLElementTypes.SendObjectAction_3042);
-			types.add(UMLElementTypes.SendSignalAction_3052);
-			types.add(UMLElementTypes.AcceptEventAction_3063);
-			types.add(UMLElementTypes.ValueSpecificationAction_3076);
-			types.add(UMLElementTypes.ConditionalNode_3069);
-			types.add(UMLElementTypes.ExpansionRegion_3070);
-			types.add(UMLElementTypes.LoopNode_3071);
-			types.add(UMLElementTypes.SequenceNode_3073);
-			types.add(UMLElementTypes.StructuredActivityNode_3065);
-		}
-		return types;
+		return getChildBySemanticHint(UMLVisualIDRegistry.getType(CommentBodyLabelEditPart.VISUAL_ID));
 	}
 
 	/**
@@ -351,15 +278,15 @@ AbstractConstraintEditPart {
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant("IntervalConstraint", PreferenceConstantHelper.COLOR_LINE);
+				prefColor = PreferenceConstantHelper.getElementConstant("Comment", PreferenceConstantHelper.COLOR_LINE);
 			} else if(feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant("IntervalConstraint", PreferenceConstantHelper.COLOR_FONT);
+				prefColor = PreferenceConstantHelper.getElementConstant("Comment", PreferenceConstantHelper.COLOR_FONT);
 			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant("IntervalConstraint", PreferenceConstantHelper.COLOR_FILL);
+				prefColor = PreferenceConstantHelper.getElementConstant("Comment", PreferenceConstantHelper.COLOR_FILL);
 			}
 			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore)preferenceStore, prefColor));
 		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency() || feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
-			String prefGradient = PreferenceConstantHelper.getElementConstant("IntervalConstraint", PreferenceConstantHelper.COLOR_GRADIENT);
+			String prefGradient = PreferenceConstantHelper.getElementConstant("Comment", PreferenceConstantHelper.COLOR_GRADIENT);
 			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore.getString(prefGradient));
 			if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()) {
 				result = new Integer(gradientPreferenceConverter.getTransparency());
