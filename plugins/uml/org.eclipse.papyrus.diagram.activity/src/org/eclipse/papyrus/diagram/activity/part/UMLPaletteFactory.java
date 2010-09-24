@@ -236,6 +236,11 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
+	private final static String CREATELINK4CREATIONTOOL = "createLink4CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	public UMLPaletteFactory() {
 
 	}
@@ -366,6 +371,9 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		}
 		if(toolId.equals(CREATEEXCEPTIONHANDLER3CREATIONTOOL)) {
 			return createExceptionHandler3CreationTool();
+		}
+		if(toolId.equals(CREATELINK4CREATIONTOOL)) {
+			return createLink4CreationTool();
 		}
 
 		// default return: null
@@ -837,6 +845,17 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	private Tool createExceptionHandler3CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.ExceptionHandler_4005);
+
+		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Tool createLink4CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.CommentAnnotatedElement_4006);
 
 		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
 		return tool;

@@ -696,6 +696,9 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ExceptionHandlerTypeEditPart.VISUAL_ID:
 				return new ExceptionHandlerTypeEditPart(view);
 
+			case CommentLinkEditPart.VISUAL_ID:
+				return new CommentLinkEditPart(view);
+
 			}
 		}
 		return createUnrecognizedEditPart(context, model);

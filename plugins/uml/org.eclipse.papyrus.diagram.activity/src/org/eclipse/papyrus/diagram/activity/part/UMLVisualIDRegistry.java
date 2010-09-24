@@ -3322,6 +3322,9 @@ public class UMLVisualIDRegistry {
 		labelInfo = new BaseViewInfo(6012, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
+		viewInfo = new BaseViewInfo(4006, ViewInfo.Edge, "");
+		root.addNode(1000, viewInfo);
+
 		viewInfo = new BaseViewInfo(3001, ViewInfo.Node, "Parameter");
 
 		root.addNode(7001, viewInfo);
