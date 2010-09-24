@@ -95,9 +95,7 @@
     </provider>
     
     <provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-			<uri format="http://download.eclipse.org/technology/subversive/0.7/update-site">
-				<bc:propertyRef key="eclipse.download" />
-			</uri>
+			<uri format="http://download.eclipse.org/technology/subversive/0.7/update-site/"/>
 		</provider>
     
     <provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
@@ -107,7 +105,7 @@
 		</provider>
 	
 		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-			<uri format="{0}/tools/gef/updates/releases">
+			<uri format="{0}/tools/gef/updates/releases/">
 				<bc:propertyRef key="eclipse.download" />
 			</uri>
 		</provider>
