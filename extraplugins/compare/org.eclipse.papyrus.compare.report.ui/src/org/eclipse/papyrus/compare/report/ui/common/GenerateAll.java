@@ -12,18 +12,12 @@ package org.eclipse.papyrus.compare.report.ui.common;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
-import java.util.Enumeration;
 import java.util.List;
 
-import org.eclipse.emf.common.util.BasicMonitor;
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.Path;
-import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.osgi.framework.Bundle;
 
 
 /**
@@ -35,6 +29,8 @@ public class GenerateAll {
 	 * The model URI.
 	 */
 	private URI modelURI;
+
+	private EObject model;
 
 	/**
 	 * The output folder.
@@ -65,6 +61,11 @@ public class GenerateAll {
 		this.arguments = arguments;
 	}
 
+	public GenerateAll(EObject model, File targetFolder, List<? extends Object> arguments) {
+		this.model = model;
+		this.targetFolder = targetFolder;
+		this.arguments = arguments;
+	}
 	/**
 	 * Launches the generation.
 	 *
@@ -79,67 +80,14 @@ public class GenerateAll {
 			targetFolder.mkdirs();
 		}
 		
-		// final URI template0 = getTemplateURI("org.eclipse.papyrus.compare.report", new Path("/org/eclipse/papyrus/compare/report/files/attributeChange.emtl"));
-		// org.eclipse.papyrus.compare.report.files.AttributeChange gen0 = new org.eclipse.papyrus.compare.report.files.AttributeChange(modelURI, targetFolder, arguments) {
-		//	protected URI createTemplateURI(String entry) {
-		//		return template0;
-		//	}
-		//};
-		//gen0.doGenerate(BasicMonitor.toMonitor(monitor));
-		org.eclipse.papyrus.compare.report.files.GenerateReport gen0 = new org.eclipse.papyrus.compare.report.files.GenerateReport(modelURI, targetFolder, arguments);
+		org.eclipse.papyrus.compare.report.files.GenerateReport gen0;
+		if (modelURI != null) {
+			gen0 = new org.eclipse.papyrus.compare.report.files.GenerateReport(modelURI, targetFolder, arguments);
+		} else {
+			gen0 = new org.eclipse.papyrus.compare.report.files.GenerateReport(model, targetFolder, arguments);
+		}
 		gen0.doGenerate(BasicMonitor.toMonitor(monitor));
 			
-			
-		
 	}
 	
-	/**
-	 * Finds the template in the plug-in. Returns the template plug-in URI.
-	 * 
-	 * @param bundleID
-	 *            is the plug-in ID
-	 * @param relativePath
-	 *            is the relative path of the template in the plug-in
-	 * @return the template URI
-	 * @throws IOException
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	private URI getTemplateURI(String bundleID, IPath relativePath) throws IOException {
-		Bundle bundle = Platform.getBundle(bundleID);
-		if (bundle == null) {
-			// no need to go any further
-			return URI.createPlatformResourceURI(new Path(bundleID).append(relativePath).toString(), false);
-		}
-		URL url = bundle.getEntry(relativePath.toString());
-		if (url == null && relativePath.segmentCount() > 1) {
-			Enumeration<URL> entries = bundle.findEntries("/", "*.emtl", true);
-			if (entries != null) {
-				String[] segmentsRelativePath = relativePath.segments();
-				while (url == null && entries.hasMoreElements()) {
-					URL entry = entries.nextElement();
-					IPath path = new Path(entry.getPath());
-					if (path.segmentCount() > relativePath.segmentCount()) {
-						path = path.removeFirstSegments(path.segmentCount() - relativePath.segmentCount());
-					}
-					String[] segmentsPath = path.segments();
-					boolean equals = segmentsPath.length == segmentsRelativePath.length;
-					for (int i = 0; equals && i < segmentsPath.length; i++) {
-						equals = segmentsPath[i].equals(segmentsRelativePath[i]);
-					}
-					if (equals) {
-						url = bundle.getEntry(entry.getPath());
-					}
-				}
-			}
-		}
-		URI result;
-		if (url != null) {
-			result = URI.createPlatformPluginURI(new Path(bundleID).append(new Path(url.getPath())).toString(), false);
-		} else {
-			result = URI.createPlatformResourceURI(new Path(bundleID).append(relativePath).toString(), false);
-		}
-		return result;
-	}
-
 }
