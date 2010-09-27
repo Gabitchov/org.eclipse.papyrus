@@ -31,6 +31,8 @@ import org.eclipse.papyrus.diagram.activity.edit.policies.ActivityActivityPreCon
 import org.eclipse.papyrus.diagram.activity.edit.policies.ActivityActivityPreConditionsCompartmentItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.RemoveOrphanViewPolicy;
 import org.eclipse.papyrus.diagram.activity.part.Messages;
+import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
+import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.DuplicatePasteEditPolicy;
 
 /**
@@ -92,6 +94,7 @@ extends ListCompartmentEditPart {
 
 		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE, new ActivityActivityPreConditionsCompartmentCanonicalEditPolicy());
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
 	}
 
 	/**

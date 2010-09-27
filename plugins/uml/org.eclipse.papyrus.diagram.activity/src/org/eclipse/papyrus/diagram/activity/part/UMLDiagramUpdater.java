@@ -92,6 +92,8 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallOpActEditP
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInOpaqueActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInValSpecActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ParameterEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ReadSelfActionEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ReadSelfActionOutputPinEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SendObjectActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SendSignalActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SequenceNodeEditPart;
@@ -151,6 +153,7 @@ import org.eclipse.uml2.uml.OutputPin;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Parameter;
+import org.eclipse.uml2.uml.ReadSelfAction;
 import org.eclipse.uml2.uml.SendObjectAction;
 import org.eclipse.uml2.uml.SendSignalAction;
 import org.eclipse.uml2.uml.SequenceNode;
@@ -190,6 +193,8 @@ public class UMLDiagramUpdater {
 			return getValueSpecificationAction_3076SemanticChildren(view);
 		case ExpansionRegionEditPart.VISUAL_ID:
 			return getExpansionRegion_3070SemanticChildren(view);
+		case ReadSelfActionEditPart.VISUAL_ID:
+			return getReadSelfAction_3081SemanticChildren(view);
 		case ActivityActivityParametersCompartmentEditPart.VISUAL_ID:
 			return getActivityActivityParametersCompartment_7001SemanticChildren(view);
 		case ActivityActivityPreConditionsCompartmentEditPart.VISUAL_ID:
@@ -479,6 +484,25 @@ public class UMLDiagramUpdater {
 			if(visualID == ExpansionNodeAsOutEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLNodeDescriptor> getReadSelfAction_3081SemanticChildren(View view) {
+		if(!view.isSetElement()) {
+			return Collections.EMPTY_LIST;
+		}
+		ReadSelfAction modelElement = (ReadSelfAction)view.getElement();
+		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
+		{
+			OutputPin childElement = modelElement.getResult();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == ReadSelfActionOutputPinEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
 		}
 		return result;
@@ -1692,6 +1716,10 @@ public class UMLDiagramUpdater {
 			return getNamedElement_3079ContainedLinks(view);
 		case CommentEditPartCN.VISUAL_ID:
 			return getComment_3080ContainedLinks(view);
+		case ReadSelfActionEditPart.VISUAL_ID:
+			return getReadSelfAction_3081ContainedLinks(view);
+		case ReadSelfActionOutputPinEditPart.VISUAL_ID:
+			return getOutputPin_3082ContainedLinks(view);
 		case ObjectFlowEditPart.VISUAL_ID:
 			return getObjectFlow_4003ContainedLinks(view);
 		case ControlFlowEditPart.VISUAL_ID:
@@ -1843,6 +1871,10 @@ public class UMLDiagramUpdater {
 			return getNamedElement_3079IncomingLinks(view);
 		case CommentEditPartCN.VISUAL_ID:
 			return getComment_3080IncomingLinks(view);
+		case ReadSelfActionEditPart.VISUAL_ID:
+			return getReadSelfAction_3081IncomingLinks(view);
+		case ReadSelfActionOutputPinEditPart.VISUAL_ID:
+			return getOutputPin_3082IncomingLinks(view);
 		case ObjectFlowEditPart.VISUAL_ID:
 			return getObjectFlow_4003IncomingLinks(view);
 		case ControlFlowEditPart.VISUAL_ID:
@@ -1994,6 +2026,10 @@ public class UMLDiagramUpdater {
 			return getNamedElement_3079OutgoingLinks(view);
 		case CommentEditPartCN.VISUAL_ID:
 			return getComment_3080OutgoingLinks(view);
+		case ReadSelfActionEditPart.VISUAL_ID:
+			return getReadSelfAction_3081OutgoingLinks(view);
+		case ReadSelfActionOutputPinEditPart.VISUAL_ID:
+			return getOutputPin_3082OutgoingLinks(view);
 		case ObjectFlowEditPart.VISUAL_ID:
 			return getObjectFlow_4003OutgoingLinks(view);
 		case ControlFlowEditPart.VISUAL_ID:
@@ -2422,6 +2458,25 @@ public class UMLDiagramUpdater {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_4006(modelElement));
 		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getReadSelfAction_3081ContainedLinks(View view) {
+		ReadSelfAction modelElement = (ReadSelfAction)view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_ExceptionHandler_4005(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getOutputPin_3082ContainedLinks(View view) {
+		return Collections.emptyList();
 	}
 
 	/**
@@ -3268,6 +3323,33 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	public static List<UMLLinkDescriptor> getReadSelfAction_3081IncomingLinks(View view) {
+		ReadSelfAction modelElement = (ReadSelfAction)view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4006(modelElement, crossReferences));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getOutputPin_3082IncomingLinks(View view) {
+		OutputPin modelElement = (OutputPin)view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ExceptionHandler_4005(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4006(modelElement, crossReferences));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
 	public static List<UMLLinkDescriptor> getValueSpecificationAction_3076IncomingLinks(View view) {
 		ValueSpecificationAction modelElement = (ValueSpecificationAction)view.getElement();
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
@@ -4061,6 +4143,31 @@ public class UMLDiagramUpdater {
 		Comment modelElement = (Comment)view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_4006(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getReadSelfAction_3081OutgoingLinks(View view) {
+		ReadSelfAction modelElement = (ReadSelfAction)view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ExceptionHandler_4005(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getOutputPin_3082OutgoingLinks(View view) {
+		OutputPin modelElement = (OutputPin)view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
 		return result;
 	}
 

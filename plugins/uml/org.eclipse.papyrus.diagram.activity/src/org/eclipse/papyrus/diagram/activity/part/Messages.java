@@ -811,212 +811,222 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String createActivityPartition17CreationTool_title;
+	public static String createReadSelfActionCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createActivityPartition17CreationTool_desc;
+	public static String createReadSelfActionCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createInterruptibleActivityRegion18CreationTool_title;
+	public static String createActivityPartition18CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createInterruptibleActivityRegion18CreationTool_desc;
+	public static String createActivityPartition18CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createStructuredActivityNode19CreationTool_title;
+	public static String createInterruptibleActivityRegion19CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createStructuredActivityNode19CreationTool_desc;
+	public static String createInterruptibleActivityRegion19CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createConditionalNode20CreationTool_title;
+	public static String createStructuredActivityNode20CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createConditionalNode20CreationTool_desc;
+	public static String createStructuredActivityNode20CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createExpansionRegion21CreationTool_title;
+	public static String createConditionalNode21CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createExpansionRegion21CreationTool_desc;
+	public static String createConditionalNode21CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createLoopNode22CreationTool_title;
+	public static String createExpansionRegion22CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createLoopNode22CreationTool_desc;
+	public static String createExpansionRegion22CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createSequenceNode23CreationTool_title;
+	public static String createLoopNode23CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createSequenceNode23CreationTool_desc;
+	public static String createLoopNode23CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createOutputPin24CreationTool_title;
+	public static String createSequenceNode24CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createOutputPin24CreationTool_desc;
+	public static String createSequenceNode24CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createInputPin25CreationTool_title;
+	public static String createOutputPin25CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createInputPin25CreationTool_desc;
+	public static String createOutputPin25CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createActionInputPin26CreationTool_title;
+	public static String createInputPin26CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createActionInputPin26CreationTool_desc;
+	public static String createInputPin26CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createValuePin27CreationTool_title;
+	public static String createActionInputPin27CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createValuePin27CreationTool_desc;
+	public static String createActionInputPin27CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createInputExpansionNode28CreationTool_title;
+	public static String createValuePin28CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createInputExpansionNode28CreationTool_desc;
+	public static String createValuePin28CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createOutputExpansionNode29CreationTool_title;
+	public static String createInputExpansionNode29CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createOutputExpansionNode29CreationTool_desc;
+	public static String createInputExpansionNode29CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createLocalPreconditionConstraint30CreationTool_title;
+	public static String createOutputExpansionNode30CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createLocalPreconditionConstraint30CreationTool_desc;
+	public static String createOutputExpansionNode30CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createLocalPreconditionIntervalConstraint31CreationTool_title;
+	public static String createLocalPreconditionConstraint31CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createLocalPreconditionIntervalConstraint31CreationTool_desc;
+	public static String createLocalPreconditionConstraint31CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createLocalPreconditionDurationConstraint32CreationTool_title;
+	public static String createLocalPreconditionIntervalConstraint32CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createLocalPreconditionDurationConstraint32CreationTool_desc;
+	public static String createLocalPreconditionIntervalConstraint32CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createLocalPreconditionTimeConstraint33CreationTool_title;
+	public static String createLocalPreconditionDurationConstraint33CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createLocalPreconditionTimeConstraint33CreationTool_desc;
+	public static String createLocalPreconditionDurationConstraint33CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createLocalPostconditionConstraint34CreationTool_title;
+	public static String createLocalPreconditionTimeConstraint34CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createLocalPostconditionConstraint34CreationTool_desc;
+	public static String createLocalPreconditionTimeConstraint34CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createLocalPostconditionIntervalConstraint35CreationTool_title;
+	public static String createLocalPostconditionConstraint35CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createLocalPostconditionIntervalConstraint35CreationTool_desc;
+	public static String createLocalPostconditionConstraint35CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createLocalPostconditionDurationConstraint36CreationTool_title;
+	public static String createLocalPostconditionIntervalConstraint36CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createLocalPostconditionDurationConstraint36CreationTool_desc;
+	public static String createLocalPostconditionIntervalConstraint36CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createLocalPostconditionTimeConstraint37CreationTool_title;
+	public static String createLocalPostconditionDurationConstraint37CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createLocalPostconditionTimeConstraint37CreationTool_desc;
+	public static String createLocalPostconditionDurationConstraint37CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createLocalPostconditionTimeConstraint38CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createLocalPostconditionTimeConstraint38CreationTool_desc;
 
 	/**
 	 * @generated

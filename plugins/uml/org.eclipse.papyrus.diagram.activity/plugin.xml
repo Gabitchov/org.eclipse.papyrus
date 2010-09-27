@@ -413,6 +413,13 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
+			class="org.eclipse.papyrus.diagram.activity.preferences.ReadSelfActionPreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.ReadSelfActionPreferencePage"
+            name="ReadSelfAction Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
 			class="org.eclipse.papyrus.diagram.activity.preferences.OpaqueActionPreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.OpaqueActionPreferencePage"
             name="OpaqueAction Node" />
@@ -552,7 +559,7 @@
       <viewProvider class="org.eclipse.papyrus.diagram.activity.providers.UMLViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="PapyrusUMLActivityDiagram"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,3001,3002,3003,3004,3005,3006,3007,3015,3016,3013,3014,3008,3017,3018,3019,3020,3010,3021,3022,3023,3024,3025,3026,3027,3034,3035,3036,3037,3032,3033,3011,3012,3038,3039,3040,3041,3078,3042,3046,3047,3048,3049,3050,3051,3052,3053,3054,3055,3060,3061,3062,3059,3063,3064,3076,3077,3069,3070,3074,3075,3071,3073,3065,3067,3068,3079,3080"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,3001,3002,3003,3004,3005,3006,3007,3015,3016,3013,3014,3008,3017,3018,3019,3020,3010,3021,3022,3023,3024,3025,3026,3027,3034,3035,3036,3037,3032,3033,3011,3012,3038,3039,3040,3041,3078,3042,3046,3047,3048,3049,3050,3051,3052,3053,3054,3055,3060,3061,3062,3059,3063,3064,3076,3077,3069,3070,3074,3075,3071,3073,3065,3067,3068,3079,3080,3081,3082"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4001,4002,4003,4004,4005,4006"/>
       </viewProvider>
    </extension>
@@ -565,13 +572,13 @@
             <method name="getType()" value="PapyrusUMLActivityDiagram"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2001,3001,3002,3003,3004,3005,3006,3007,3015,3016,3013,3014,3008,3017,3018,3019,3020,3010,3021,3022,3023,3024,3025,3026,3027,3034,3035,3036,3037,3032,3033,3011,3012,3038,3039,3040,3041,3078,3042,3046,3047,3048,3049,3050,3051,3052,3053,3054,3055,3060,3061,3062,3059,3063,3064,3076,3077,3069,3070,3074,3075,3071,3073,3065,3067,3068,3079,3080"/>
+            <method name="getType()" value="2001,3001,3002,3003,3004,3005,3006,3007,3015,3016,3013,3014,3008,3017,3018,3019,3020,3010,3021,3022,3023,3024,3025,3026,3027,3034,3035,3036,3037,3032,3033,3011,3012,3038,3039,3040,3041,3078,3042,3046,3047,3048,3049,3050,3051,3052,3053,3054,3055,3060,3061,3062,3059,3063,3064,3076,3077,3069,3070,3074,3075,3071,3073,3065,3067,3068,3079,3080,3081,3082"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
             <method name="getType()" value="4001,4002,4003,4004,4005,4006"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="5001,5002,5080,5081,5082,5003,5011,5024,5083,5012,5025,5084,5009,5085,5010,5086,5004,5013,5026,5087,5014,5027,5088,5015,5089,5016,5090,5006,5017,5028,5091,5018,5029,5092,5019,5093,5020,5094,5021,5030,5095,5022,5031,5096,5023,5097,5038,5130,5039,5131,5040,5132,5041,5133,5036,5134,5037,5135,5007,5136,5008,5137,5043,5098,5099,5100,5042,5101,5127,5128,5059,5049,5050,5102,5051,5052,5103,5053,5104,5054,5055,5105,5056,5057,5106,5058,5107,5060,5061,5062,5108,5063,5064,5109,5065,5110,5072,5073,5111,5074,5075,5112,5076,5113,5071,5078,5079,5115,5077,5114,5126,5124,5125,5119,5120,5121,5123,5117,5118,5129,5138"/>
+            <method name="getType()" value="5001,5002,5080,5081,5082,5003,5011,5024,5083,5012,5025,5084,5009,5085,5010,5086,5004,5013,5026,5087,5014,5027,5088,5015,5089,5016,5090,5006,5017,5028,5091,5018,5029,5092,5019,5093,5020,5094,5021,5030,5095,5022,5031,5096,5023,5097,5038,5130,5039,5131,5040,5132,5041,5133,5036,5134,5037,5135,5007,5136,5008,5137,5043,5098,5099,5100,5042,5101,5127,5128,5059,5049,5050,5102,5051,5052,5103,5053,5104,5054,5055,5105,5056,5057,5106,5058,5107,5060,5061,5062,5108,5063,5064,5109,5065,5110,5072,5073,5111,5074,5075,5112,5076,5113,5071,5078,5079,5115,5077,5114,5126,5124,5125,5119,5120,5121,5123,5117,5118,5129,5138,5139,5140,5141"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
             <method name="getType()" value="7001,7002,7003,7004,7008,7009,7010,7012,7005,7006,7007"/>
@@ -1265,6 +1272,26 @@
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.activity.ReadSelfAction_3081"
+               name="%metatype.name.ReadSelfAction_3081"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="ReadSelfAction"
+               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.ReadSelfActionEditHelper">
+            <param name="semanticHint" value="3081"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.activity.OutputPin_3082"
+               name="%metatype.name.OutputPin_3082"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="OutputPin"
+               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.OutputPinEditHelper">
+            <param name="semanticHint" value="3082"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.diagram.activity.ActionLocalPrecondition_4001"
                name="%metatype.name.ActionLocalPrecondition_4001"
@@ -1400,6 +1427,8 @@
          <elementType ref="org.eclipse.papyrus.diagram.activity.InterruptibleActivityRegion_3068"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.NamedElement_3079"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.Comment_3080"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.ReadSelfAction_3081"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.OutputPin_3082"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.ActionLocalPrecondition_4001"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.ActionLocalPostcondition_4002"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.ObjectFlow_4003"/>
@@ -2509,8 +2538,18 @@ and self.decisionInput.ownedParameter->select(
  	</entry>
 	<entry
        defineOnly="true"
+       description="Create a ReadSelfAction"
+       id="createReadSelfActionCreationTool"
+       kind="tool"
+       label="ReadSelfAction"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadSelfAction.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadSelfAction.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
        description="Create an Activity Partition"
-       id="createActivityPartition17CreationTool"
+       id="createActivityPartition18CreationTool"
        kind="tool"
        label="Activity Partition"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActivityPartition.gif"
@@ -2520,7 +2559,7 @@ and self.decisionInput.ownedParameter->select(
 	<entry
        defineOnly="true"
        description="Create an Interruptible Activity Region"
-       id="createInterruptibleActivityRegion18CreationTool"
+       id="createInterruptibleActivityRegion19CreationTool"
        kind="tool"
        label="Interruptible Activity Region"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InterruptibleActivityRegion.gif"
@@ -2530,7 +2569,7 @@ and self.decisionInput.ownedParameter->select(
 	<entry
        defineOnly="true"
        description="Create a Structured Activity Node"
-       id="createStructuredActivityNode19CreationTool"
+       id="createStructuredActivityNode20CreationTool"
        kind="tool"
        label="Structured Activity Node"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StructuredActivityNode.gif"
@@ -2540,7 +2579,7 @@ and self.decisionInput.ownedParameter->select(
 	<entry
        defineOnly="true"
        description="Create a Conditional Node"
-       id="createConditionalNode20CreationTool"
+       id="createConditionalNode21CreationTool"
        kind="tool"
        label="Conditional Node"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConditionalNode.gif"
@@ -2550,7 +2589,7 @@ and self.decisionInput.ownedParameter->select(
 	<entry
        defineOnly="true"
        description="Create an Expansion Region"
-       id="createExpansionRegion21CreationTool"
+       id="createExpansionRegion22CreationTool"
        kind="tool"
        label="Expansion Region"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExpansionRegion.gif"
@@ -2560,7 +2599,7 @@ and self.decisionInput.ownedParameter->select(
 	<entry
        defineOnly="true"
        description="Create a Loop Node"
-       id="createLoopNode22CreationTool"
+       id="createLoopNode23CreationTool"
        kind="tool"
        label="Loop Node"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LoopNode.gif"
@@ -2570,7 +2609,7 @@ and self.decisionInput.ownedParameter->select(
 	<entry
        defineOnly="true"
        description="Create a Sequence Node"
-       id="createSequenceNode23CreationTool"
+       id="createSequenceNode24CreationTool"
        kind="tool"
        label="Sequence Node"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/SequenceNode.gif"
@@ -2580,7 +2619,7 @@ and self.decisionInput.ownedParameter->select(
 	<entry
        defineOnly="true"
        description="Create an Output Pin"
-       id="createOutputPin24CreationTool"
+       id="createOutputPin25CreationTool"
        kind="tool"
        label="Output Pin"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OutputPin.gif"
@@ -2590,7 +2629,7 @@ and self.decisionInput.ownedParameter->select(
 	<entry
        defineOnly="true"
        description="Create an Input Pin"
-       id="createInputPin25CreationTool"
+       id="createInputPin26CreationTool"
        kind="tool"
        label="Input Pin"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InputPin.gif"
@@ -2600,7 +2639,7 @@ and self.decisionInput.ownedParameter->select(
 	<entry
        defineOnly="true"
        description="Create an Action Input Pin"
-       id="createActionInputPin26CreationTool"
+       id="createActionInputPin27CreationTool"
        kind="tool"
        label="Action Input Pin"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActionInputPin.gif"
@@ -2610,7 +2649,7 @@ and self.decisionInput.ownedParameter->select(
 	<entry
        defineOnly="true"
        description="Create a Value Pin"
-       id="createValuePin27CreationTool"
+       id="createValuePin28CreationTool"
        kind="tool"
        label="Value Pin"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ValuePin.gif"
@@ -2620,7 +2659,7 @@ and self.decisionInput.ownedParameter->select(
 	<entry
        defineOnly="true"
        description="Create an Expansion Node as Input of an Expansion Region"
-       id="createInputExpansionNode28CreationTool"
+       id="createInputExpansionNode29CreationTool"
        kind="tool"
        label="Input Expansion Node"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExpansionNode.gif"
@@ -2630,7 +2669,7 @@ and self.decisionInput.ownedParameter->select(
 	<entry
        defineOnly="true"
        description="Create an Expansion Node as Output of an Expansion Region"
-       id="createOutputExpansionNode29CreationTool"
+       id="createOutputExpansionNode30CreationTool"
        kind="tool"
        label="Output Expansion Node"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExpansionNode.gif"
@@ -2640,7 +2679,7 @@ and self.decisionInput.ownedParameter->select(
 	<entry
        defineOnly="true"
        description="Create a Constraint as Local Precondition for an Action"
-       id="createLocalPreconditionConstraint30CreationTool"
+       id="createLocalPreconditionConstraint31CreationTool"
        kind="tool"
        label="Local Precondition Constraint"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
@@ -2650,7 +2689,7 @@ and self.decisionInput.ownedParameter->select(
 	<entry
        defineOnly="true"
        description="Create an Interval Constraint as Local Precondition for an Action"
-       id="createLocalPreconditionIntervalConstraint31CreationTool"
+       id="createLocalPreconditionIntervalConstraint32CreationTool"
        kind="tool"
        label="Local Precondition Interval Constraint"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/IntervalConstraint.gif"
@@ -2660,7 +2699,7 @@ and self.decisionInput.ownedParameter->select(
 	<entry
        defineOnly="true"
        description="Create a Duration Constraint as Local Precondition for an Action"
-       id="createLocalPreconditionDurationConstraint32CreationTool"
+       id="createLocalPreconditionDurationConstraint33CreationTool"
        kind="tool"
        label="Local Precondition Duration Constraint"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationConstraint.gif"
@@ -2670,7 +2709,7 @@ and self.decisionInput.ownedParameter->select(
 	<entry
        defineOnly="true"
        description="Create a Time Constraint as Local Precondition for an Action"
-       id="createLocalPreconditionTimeConstraint33CreationTool"
+       id="createLocalPreconditionTimeConstraint34CreationTool"
        kind="tool"
        label="Local Precondition Time Constraint"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeConstraint.gif"
@@ -2680,7 +2719,7 @@ and self.decisionInput.ownedParameter->select(
 	<entry
        defineOnly="true"
        description="Create a Constraint as Local Postcondition for an Action"
-       id="createLocalPostconditionConstraint34CreationTool"
+       id="createLocalPostconditionConstraint35CreationTool"
        kind="tool"
        label="Local Postcondition Constraint"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
@@ -2690,7 +2729,7 @@ and self.decisionInput.ownedParameter->select(
 	<entry
        defineOnly="true"
        description="Create an Interval Constraint as Local Postcondition for an Action"
-       id="createLocalPostconditionIntervalConstraint35CreationTool"
+       id="createLocalPostconditionIntervalConstraint36CreationTool"
        kind="tool"
        label="Local Postcondition Interval Constraint"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/IntervalConstraint.gif"
@@ -2700,7 +2739,7 @@ and self.decisionInput.ownedParameter->select(
 	<entry
        defineOnly="true"
        description="Create a Duration Constraint as Local Postcondition for an Action"
-       id="createLocalPostconditionDurationConstraint36CreationTool"
+       id="createLocalPostconditionDurationConstraint37CreationTool"
        kind="tool"
        label="Local Postcondition Duration Constraint"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationConstraint.gif"
@@ -2710,7 +2749,7 @@ and self.decisionInput.ownedParameter->select(
 	<entry
        defineOnly="true"
        description="Create a Time Constraint as Local Postcondition for an Action"
-       id="createLocalPostconditionTimeConstraint37CreationTool"
+       id="createLocalPostconditionTimeConstraint38CreationTool"
        kind="tool"
        label="Local Postcondition Time Constraint"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeConstraint.gif"
@@ -2864,87 +2903,91 @@ and self.decisionInput.ownedParameter->select(
           path="/createNodes1Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createActivityPartition17CreationTool"
+          id="createReadSelfActionCreationTool"
           path="/createNodes1Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createInterruptibleActivityRegion18CreationTool"
+          id="createActivityPartition18CreationTool"
           path="/createNodes1Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createStructuredActivityNode19CreationTool"
+          id="createInterruptibleActivityRegion19CreationTool"
           path="/createNodes1Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createConditionalNode20CreationTool"
+          id="createStructuredActivityNode20CreationTool"
           path="/createNodes1Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createExpansionRegion21CreationTool"
+          id="createConditionalNode21CreationTool"
           path="/createNodes1Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createLoopNode22CreationTool"
+          id="createExpansionRegion22CreationTool"
           path="/createNodes1Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createSequenceNode23CreationTool"
+          id="createLoopNode23CreationTool"
           path="/createNodes1Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createOutputPin24CreationTool"
+          id="createSequenceNode24CreationTool"
           path="/createNodes1Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createInputPin25CreationTool"
+          id="createOutputPin25CreationTool"
           path="/createNodes1Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createActionInputPin26CreationTool"
+          id="createInputPin26CreationTool"
           path="/createNodes1Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createValuePin27CreationTool"
+          id="createActionInputPin27CreationTool"
           path="/createNodes1Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createInputExpansionNode28CreationTool"
+          id="createValuePin28CreationTool"
           path="/createNodes1Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createOutputExpansionNode29CreationTool"
+          id="createInputExpansionNode29CreationTool"
           path="/createNodes1Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createLocalPreconditionConstraint30CreationTool"
+          id="createOutputExpansionNode30CreationTool"
           path="/createNodes1Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createLocalPreconditionIntervalConstraint31CreationTool"
+          id="createLocalPreconditionConstraint31CreationTool"
           path="/createNodes1Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createLocalPreconditionDurationConstraint32CreationTool"
+          id="createLocalPreconditionIntervalConstraint32CreationTool"
           path="/createNodes1Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createLocalPreconditionTimeConstraint33CreationTool"
+          id="createLocalPreconditionDurationConstraint33CreationTool"
           path="/createNodes1Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createLocalPostconditionConstraint34CreationTool"
+          id="createLocalPreconditionTimeConstraint34CreationTool"
           path="/createNodes1Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createLocalPostconditionIntervalConstraint35CreationTool"
+          id="createLocalPostconditionConstraint35CreationTool"
           path="/createNodes1Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createLocalPostconditionDurationConstraint36CreationTool"
+          id="createLocalPostconditionIntervalConstraint36CreationTool"
           path="/createNodes1Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createLocalPostconditionTimeConstraint37CreationTool"
+          id="createLocalPostconditionDurationConstraint37CreationTool"
+          path="/createNodes1Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createLocalPostconditionTimeConstraint38CreationTool"
           path="/createNodes1Group">
     </predefinedEntry>
  	<predefinedEntry

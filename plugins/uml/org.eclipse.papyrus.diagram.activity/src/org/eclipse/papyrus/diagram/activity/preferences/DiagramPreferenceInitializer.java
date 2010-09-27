@@ -72,6 +72,8 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 
 		IntervalConstraintPreferencePage.initDefaults(store);
 
+		ReadSelfActionPreferencePage.initDefaults(store);
+
 		OpaqueActionPreferencePage.initDefaults(store);
 
 		InitialNodePreferencePage.initDefaults(store);
