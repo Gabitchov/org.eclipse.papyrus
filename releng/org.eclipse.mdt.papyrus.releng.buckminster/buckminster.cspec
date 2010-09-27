@@ -36,7 +36,7 @@
   		<cs:dependency name="org.eclipse.xtext.sdk" componentType="eclipse.feature"/>
         <cs:dependency name="org.apache.ant" componentType="osgi.bundle"/>
         <cs:dependency name="org.apache.derby" componentType="osgi.bundle"/>
-  		
+        <cs:dependency name="org.eclipse.zest.sdk" componentType="eclipse.feature"/>
 	</cs:dependencies>
 
 	<cs:actions>
