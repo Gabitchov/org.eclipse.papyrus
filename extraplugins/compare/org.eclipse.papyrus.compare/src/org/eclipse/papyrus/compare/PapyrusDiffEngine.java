@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 
 public class PapyrusDiffEngine extends GenericDiffEngine {
@@ -37,7 +38,8 @@ public class PapyrusDiffEngine extends GenericDiffEngine {
 		final Iterator<MatchElement> it = matchElement.getSubMatchElements().iterator();
 		while(it.hasNext()) {
 			final Match2Elements element = (Match2Elements)it.next();
-			if(element.getLeftElement() instanceof DynamicEObjectImpl) {
+			EObject left = element.getLeftElement();
+			if(left instanceof DynamicEObjectImpl && UMLUtil.getStereotype(left) != null) {
 				super.checkForDiffs(current, element);
 			}
 		}
