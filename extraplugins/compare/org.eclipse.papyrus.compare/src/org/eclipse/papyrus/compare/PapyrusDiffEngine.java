@@ -30,8 +30,8 @@ public class PapyrusDiffEngine extends GenericDiffEngine {
 		checkStereotypesForElement(current, match);
 	}
 
-	private boolean isStereotypeApplication(EObject eobject) {
-		return eobject instanceof DynamicEObjectImpl;
+	private boolean isStereotypeApplication(EObject eObject) {
+		return UMLUtil.getStereotype(eObject) != null;
 	}
 
 	private void checkStereotypesForElement(DiffGroup current, Match2Elements matchElement) throws FactoryException {
