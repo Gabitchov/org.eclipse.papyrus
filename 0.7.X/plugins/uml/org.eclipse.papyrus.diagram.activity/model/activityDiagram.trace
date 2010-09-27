@@ -15,13 +15,13 @@
         visualID="7001"
         queryText="true"/>
     <compartmentTraces
-        visualID="7002"
-        queryText="true"/>
-    <compartmentTraces
         visualID="7003"
         queryText="true"/>
     <compartmentTraces
         visualID="7004"
+        queryText="true"/>
+    <compartmentTraces
+        visualID="7013"
         queryText="true"/>
   </nodeTraces>
   <childNodeTraces
@@ -81,12 +81,18 @@
     <nodeLabelTraces
         visualID="5007"
         queryText="true"/>
+    <nodeLabelTraces
+        visualID="5136"
+        queryText="true"/>
   </childNodeTraces>
   <childNodeTraces
       visualID="3012"
       queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Constraint') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Action') and _containmentMF_.name = 'localPostcondition')">
     <nodeLabelTraces
         visualID="5008"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5137"
         queryText="true"/>
   </childNodeTraces>
   <childNodeTraces
@@ -264,24 +270,13 @@
         queryText="true"/>
   </childNodeTraces>
   <childNodeTraces
-      visualID="3030"
-      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'InteractionConstraint') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Action') and _containmentMF_.name = 'localPrecondition')">
-    <nodeLabelTraces
-        visualID="5034"
-        queryText="true"/>
-  </childNodeTraces>
-  <childNodeTraces
-      visualID="3031"
-      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'InteractionConstraint') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Action') and _containmentMF_.name = 'localPostcondition')">
-    <nodeLabelTraces
-        visualID="5035"
-        queryText="true"/>
-  </childNodeTraces>
-  <childNodeTraces
       visualID="3032"
       queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'IntervalConstraint') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Action') and _containmentMF_.name = 'localPrecondition')">
     <nodeLabelTraces
         visualID="5036"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5134"
         queryText="true"/>
   </childNodeTraces>
   <childNodeTraces
@@ -290,12 +285,18 @@
     <nodeLabelTraces
         visualID="5037"
         queryText="true"/>
+    <nodeLabelTraces
+        visualID="5135"
+        queryText="true"/>
   </childNodeTraces>
   <childNodeTraces
       visualID="3034"
       queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'DurationConstraint') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Action') and _containmentMF_.name = 'localPrecondition')">
     <nodeLabelTraces
         visualID="5038"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5130"
         queryText="true"/>
   </childNodeTraces>
   <childNodeTraces
@@ -304,6 +305,9 @@
     <nodeLabelTraces
         visualID="5039"
         queryText="true"/>
+    <nodeLabelTraces
+        visualID="5131"
+        queryText="true"/>
   </childNodeTraces>
   <childNodeTraces
       visualID="3036"
@@ -311,12 +315,18 @@
     <nodeLabelTraces
         visualID="5040"
         queryText="true"/>
+    <nodeLabelTraces
+        visualID="5132"
+        queryText="true"/>
   </childNodeTraces>
   <childNodeTraces
       visualID="3037"
       queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'TimeConstraint') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Action') and _containmentMF_.name = 'localPostcondition')">
     <nodeLabelTraces
         visualID="5041"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5133"
         queryText="true"/>
   </childNodeTraces>
   <childNodeTraces
@@ -639,6 +649,13 @@
         queryText="true"/>
     <nodeLabelTraces
         visualID="5128"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3080"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Comment') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Element') and _containmentMF_.name = 'ownedComment')">
+    <nodeLabelTraces
+        visualID="5138"
         queryText="true"/>
   </childNodeTraces>
   <linkTraces
