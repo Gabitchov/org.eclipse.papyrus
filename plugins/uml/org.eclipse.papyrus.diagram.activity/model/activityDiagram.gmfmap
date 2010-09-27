@@ -285,9 +285,9 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="activityDiagram.gmftool#//@palette/@tools.1/@tools.0"/>
+              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.9"/>
           <diagramNode
-              href="activityDiagram.gmfgraph#ActionNode"/>
+              href="../../org.eclipse.papyrus.diagram.common/model/Action.gmfgraph#ActionFigureNode"/>
           <children
               referencedChild="//@nodes.0/@ownedChild/@children.6/@ownedChild/@children.0/@ownedChild">
             <containmentFeature
@@ -325,7 +325,7 @@
               </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.3/@tools.3"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.26"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -367,7 +367,7 @@
               </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.3/@tools.2"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.25"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -405,7 +405,7 @@
               </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.3/@tools.1"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.24"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -443,7 +443,7 @@
               </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.3/@tools.0"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.23"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -479,7 +479,7 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="activityDiagram.gmftool#//@palette/@tools.1/@tools.1"/>
+              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.10"/>
           <diagramNode
               href="activityDiagram.gmfgraph#CallBehaviorActionFigureNode"/>
           <children
@@ -519,7 +519,7 @@
               </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.3/@tools.3"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.26"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -561,7 +561,7 @@
               </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.3/@tools.2"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.25"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -599,7 +599,7 @@
               </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.3/@tools.1"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.24"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -637,7 +637,7 @@
               </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.3/@tools.0"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.23"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -673,7 +673,7 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="activityDiagram.gmftool#//@palette/@tools.1/@tools.2"/>
+              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.11"/>
           <diagramNode
               href="../../org.eclipse.papyrus.diagram.common/model/Action.gmfgraph#ActionFigureNode"/>
           <children
@@ -715,7 +715,7 @@
               </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.3/@tools.2"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.25"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -759,7 +759,7 @@
               </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.3/@tools.3"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.26"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -799,7 +799,7 @@
               </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.3/@tools.1"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.24"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -837,7 +837,7 @@
               </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.3/@tools.0"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.23"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -987,6 +987,25 @@
                   body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"
                   language="java"/>
             </initializers>
+            <initializers
+                xsi:type="gmfmap:ReferenceNewElementSpec">
+              <feature
+                  xsi:type="ecore:EReference"
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Constraint/specification"/>
+              <newElementInitializers>
+                <initializers
+                    xsi:type="gmfmap:FeatureValueSpec">
+                  <feature
+                      xsi:type="ecore:EAttribute"
+                      href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+                  <value
+                      body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"
+                      language="java"/>
+                </initializers>
+                <elementClass
+                    href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DurationInterval"/>
+              </newElementInitializers>
+            </initializers>
           </domainInitializer>
           <labelMappings
               xsi:type="gmfmap:FeatureLabelMapping"
@@ -994,19 +1013,19 @@
               editorPattern=""
               editPattern="">
             <diagramLabel
-                href="../../org.eclipse.papyrus.diagram.common/model/Constraint.gmfgraph#ConstraintNameDiagramLabel"/>
+                href="LocalPreconditionConstraint.gmfgraph#LocalPrecondtionConstraintNameDiagramLabel"/>
             <features
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
           </labelMappings>
           <labelMappings>
             <diagramLabel
-                href="../../org.eclipse.papyrus.diagram.common/model/Constraint.gmfgraph#ConstraintBodyDiagramLabel"/>
+                href="LocalPreconditionConstraint.gmfgraph#LocalPrecondtionConstraintBodyDiagramLabel"/>
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="activityDiagram.gmftool#//@palette/@tools.5/@tools.3"/>
+              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.32"/>
           <diagramNode
-              href="../../org.eclipse.papyrus.diagram.common/model/Constraint.gmfgraph#ConstraintNode"/>
+              href="LocalPreconditionConstraint.gmfgraph#LocalPrecondtionConstraintNode"/>
         </ownedChild>
       </children>
       <children
@@ -1033,26 +1052,45 @@
                   body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"
                   language="java"/>
             </initializers>
+            <initializers
+                xsi:type="gmfmap:ReferenceNewElementSpec">
+              <feature
+                  xsi:type="ecore:EReference"
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Constraint/specification"/>
+              <newElementInitializers>
+                <initializers
+                    xsi:type="gmfmap:FeatureValueSpec">
+                  <feature
+                      xsi:type="ecore:EAttribute"
+                      href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+                  <value
+                      body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"
+                      language="java"/>
+                </initializers>
+                <elementClass
+                    href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DurationInterval"/>
+              </newElementInitializers>
+            </initializers>
           </domainInitializer>
           <labelMappings
               xsi:type="gmfmap:FeatureLabelMapping"
-              viewPattern="&lt;&lt;localPostcondition>>\n{0}"
-              editorPattern="{0}"
-              editPattern="{0}">
+              viewPattern=""
+              editorPattern=""
+              editPattern="">
             <diagramLabel
-                href="../../org.eclipse.papyrus.diagram.common/model/Constraint.gmfgraph#ConstraintNameDiagramLabel"/>
+                href="LocalPostconditionConstraint.gmfgraph#LocalPostconditionConstraintNameDiagramLabel"/>
             <features
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
           </labelMappings>
           <labelMappings>
             <diagramLabel
-                href="../../org.eclipse.papyrus.diagram.common/model/Constraint.gmfgraph#ConstraintBodyDiagramLabel"/>
+                href="LocalPostconditionConstraint.gmfgraph#LocalPostconditionConstraintBodyDiagramLabel"/>
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="activityDiagram.gmftool#//@palette/@tools.5/@tools.8"/>
+              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.37"/>
           <diagramNode
-              href="../../org.eclipse.papyrus.diagram.common/model/Constraint.gmfgraph#ConstraintNode"/>
+              href="LocalPostconditionConstraint.gmfgraph#LocalPostconditionConstraintNode"/>
         </ownedChild>
       </children>
       <children
@@ -1079,6 +1117,25 @@
                   body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"
                   language="java"/>
             </initializers>
+            <initializers
+                xsi:type="gmfmap:ReferenceNewElementSpec">
+              <feature
+                  xsi:type="ecore:EReference"
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Constraint/specification"/>
+              <newElementInitializers>
+                <initializers
+                    xsi:type="gmfmap:FeatureValueSpec">
+                  <feature
+                      xsi:type="ecore:EAttribute"
+                      href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+                  <value
+                      body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"
+                      language="java"/>
+                </initializers>
+                <elementClass
+                    href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//TimeInterval"/>
+              </newElementInitializers>
+            </initializers>
           </domainInitializer>
           <labelMappings
               xsi:type="gmfmap:FeatureLabelMapping"
@@ -1086,19 +1143,19 @@
               editorPattern=""
               editPattern="">
             <diagramLabel
-                href="../../org.eclipse.papyrus.diagram.common/model/Constraint.gmfgraph#ConstraintNameDiagramLabel"/>
+                href="LocalPreconditionConstraint.gmfgraph#LocalPrecondtionConstraintNameDiagramLabel"/>
             <features
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
           </labelMappings>
           <labelMappings>
             <diagramLabel
-                href="../../org.eclipse.papyrus.diagram.common/model/Constraint.gmfgraph#ConstraintBodyDiagramLabel"/>
+                href="LocalPreconditionConstraint.gmfgraph#LocalPrecondtionConstraintBodyDiagramLabel"/>
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="activityDiagram.gmftool#//@palette/@tools.5/@tools.4"/>
+              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.33"/>
           <diagramNode
-              href="../../org.eclipse.papyrus.diagram.common/model/Constraint.gmfgraph#ConstraintNode"/>
+              href="LocalPreconditionConstraint.gmfgraph#LocalPrecondtionConstraintNode"/>
         </ownedChild>
       </children>
       <children
@@ -1125,20 +1182,43 @@
                   body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"
                   language="java"/>
             </initializers>
+            <initializers
+                xsi:type="gmfmap:ReferenceNewElementSpec">
+              <feature
+                  xsi:type="ecore:EReference"
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Constraint/specification"/>
+              <newElementInitializers>
+                <initializers
+                    xsi:type="gmfmap:FeatureValueSpec">
+                  <feature
+                      xsi:type="ecore:EAttribute"
+                      href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+                  <value
+                      body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"
+                      language="java"/>
+                </initializers>
+                <elementClass
+                    href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//TimeInterval"/>
+              </newElementInitializers>
+            </initializers>
           </domainInitializer>
           <labelMappings
               xsi:type="gmfmap:FeatureLabelMapping"
-              viewPattern="&lt;&lt;localPostcondition>>\n{0}"
-              editorPattern="{0}"
-              editPattern="{0}">
+              viewPattern=""
+              editorPattern=""
+              editPattern="">
             <diagramLabel
-                href="activityDiagram.gmfgraph#ActionLocalConditionContent"/>
+                href="LocalPostconditionConstraint.gmfgraph#LocalPostconditionConstraintNameDiagramLabel"/>
             <features
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
           </labelMappings>
+          <labelMappings>
+            <diagramLabel
+                href="LocalPostconditionConstraint.gmfgraph#LocalPostconditionConstraintBodyDiagramLabel"/>
+          </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="activityDiagram.gmftool#//@palette/@tools.5/@tools.9"/>
+              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.38"/>
           <diagramNode
               href="activityDiagram.gmfgraph#BehaviorProperty"/>
         </ownedChild>
@@ -1167,6 +1247,25 @@
                   body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"
                   language="java"/>
             </initializers>
+            <initializers
+                xsi:type="gmfmap:ReferenceNewElementSpec">
+              <feature
+                  xsi:type="ecore:EReference"
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Constraint/specification"/>
+              <newElementInitializers>
+                <initializers
+                    xsi:type="gmfmap:FeatureValueSpec">
+                  <feature
+                      xsi:type="ecore:EAttribute"
+                      href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+                  <value
+                      body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"
+                      language="java"/>
+                </initializers>
+                <elementClass
+                    href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interval"/>
+              </newElementInitializers>
+            </initializers>
           </domainInitializer>
           <labelMappings
               xsi:type="gmfmap:FeatureLabelMapping"
@@ -1174,15 +1273,19 @@
               editorPattern="{0}"
               editPattern="{0}">
             <diagramLabel
-                href="activityDiagram.gmfgraph#ActionLocalConditionContent"/>
+                href="LocalPreconditionConstraint.gmfgraph#LocalPrecondtionConstraintNameDiagramLabel"/>
             <features
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
           </labelMappings>
+          <labelMappings>
+            <diagramLabel
+                href="LocalPreconditionConstraint.gmfgraph#LocalPrecondtionConstraintBodyDiagramLabel"/>
+          </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="activityDiagram.gmftool#//@palette/@tools.5/@tools.2"/>
+              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.31"/>
           <diagramNode
-              href="activityDiagram.gmfgraph#BehaviorProperty"/>
+              href="LocalPreconditionConstraint.gmfgraph#LocalPrecondtionConstraintNode"/>
         </ownedChild>
       </children>
       <children
@@ -1209,6 +1312,25 @@
                   body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"
                   language="java"/>
             </initializers>
+            <initializers
+                xsi:type="gmfmap:ReferenceNewElementSpec">
+              <feature
+                  xsi:type="ecore:EReference"
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Constraint/specification"/>
+              <newElementInitializers>
+                <initializers
+                    xsi:type="gmfmap:FeatureValueSpec">
+                  <feature
+                      xsi:type="ecore:EAttribute"
+                      href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+                  <value
+                      body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"
+                      language="java"/>
+                </initializers>
+                <elementClass
+                    href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interval"/>
+              </newElementInitializers>
+            </initializers>
           </domainInitializer>
           <labelMappings
               xsi:type="gmfmap:FeatureLabelMapping"
@@ -1216,15 +1338,19 @@
               editorPattern="{0}"
               editPattern="{0}">
             <diagramLabel
-                href="activityDiagram.gmfgraph#ActionLocalConditionContent"/>
+                href="LocalPostconditionConstraint.gmfgraph#LocalPostconditionConstraintNameDiagramLabel"/>
             <features
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
           </labelMappings>
+          <labelMappings>
+            <diagramLabel
+                href="LocalPostconditionConstraint.gmfgraph#LocalPostconditionConstraintBodyDiagramLabel"/>
+          </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="activityDiagram.gmftool#//@palette/@tools.5/@tools.7"/>
+              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.36"/>
           <diagramNode
-              href="activityDiagram.gmfgraph#BehaviorProperty"/>
+              href="LocalPostconditionConstraint.gmfgraph#LocalPostconditionConstraintNode"/>
         </ownedChild>
       </children>
       <children
@@ -1251,22 +1377,45 @@
                   body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"
                   language="java"/>
             </initializers>
+            <initializers
+                xsi:type="gmfmap:ReferenceNewElementSpec">
+              <feature
+                  xsi:type="ecore:EReference"
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Constraint/specification"/>
+              <newElementInitializers>
+                <initializers
+                    xsi:type="gmfmap:FeatureValueSpec">
+                  <feature
+                      xsi:type="ecore:EAttribute"
+                      href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+                  <value
+                      body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"
+                      language="java"/>
+                </initializers>
+                <elementClass
+                    href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//OpaqueExpression"/>
+              </newElementInitializers>
+            </initializers>
           </domainInitializer>
           <labelMappings
               xsi:type="gmfmap:FeatureLabelMapping"
-              viewPattern="&lt;&lt;localPrecondition>>\n{0}"
-              editorPattern="{0}"
-              editPattern="{0}">
+              viewPattern=""
+              editorPattern=""
+              editPattern="">
             <diagramLabel
-                href="activityDiagram.gmfgraph#ActionLocalConditionContent"/>
+                href="LocalPreconditionConstraint.gmfgraph#LocalPrecondtionConstraintNameDiagramLabel"/>
             <features
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
           </labelMappings>
+          <labelMappings>
+            <diagramLabel
+                href="LocalPreconditionConstraint.gmfgraph#LocalPrecondtionConstraintBodyDiagramLabel"/>
+          </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="activityDiagram.gmftool#//@palette/@tools.5/@tools.0"/>
+              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.29"/>
           <diagramNode
-              href="activityDiagram.gmfgraph#BehaviorProperty"/>
+              href="LocalPreconditionConstraint.gmfgraph#LocalPrecondtionConstraintNode"/>
         </ownedChild>
       </children>
       <children
@@ -1293,6 +1442,25 @@
                   body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"
                   language="java"/>
             </initializers>
+            <initializers
+                xsi:type="gmfmap:ReferenceNewElementSpec">
+              <feature
+                  xsi:type="ecore:EReference"
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Constraint/specification"/>
+              <newElementInitializers>
+                <initializers
+                    xsi:type="gmfmap:FeatureValueSpec">
+                  <feature
+                      xsi:type="ecore:EAttribute"
+                      href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+                  <value
+                      body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"
+                      language="java"/>
+                </initializers>
+                <elementClass
+                    href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//OpaqueExpression"/>
+              </newElementInitializers>
+            </initializers>
           </domainInitializer>
           <labelMappings
               xsi:type="gmfmap:FeatureLabelMapping"
@@ -1300,15 +1468,19 @@
               editorPattern="{0}"
               editPattern="{0}">
             <diagramLabel
-                href="activityDiagram.gmfgraph#ActionLocalConditionContent"/>
+                href="LocalPostconditionConstraint.gmfgraph#LocalPostconditionConstraintNameDiagramLabel"/>
             <features
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
           </labelMappings>
+          <labelMappings>
+            <diagramLabel
+                href="LocalPostconditionConstraint.gmfgraph#LocalPostconditionConstraintBodyDiagramLabel"/>
+          </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="activityDiagram.gmftool#//@palette/@tools.5/@tools.5"/>
+              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.34"/>
           <diagramNode
-              href="activityDiagram.gmfgraph#BehaviorProperty"/>
+              href="LocalPostconditionConstraint.gmfgraph#LocalPostconditionConstraintNode"/>
         </ownedChild>
       </children>
       <children
@@ -1529,7 +1701,7 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="activityDiagram.gmftool#//@palette/@tools.1/@tools.3"/>
+              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.12"/>
           <diagramNode
               href="../../org.eclipse.papyrus.diagram.common/model/Action.gmfgraph#ActionFigureNode"/>
           <children
@@ -1804,7 +1976,7 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="activityDiagram.gmftool#//@palette/@tools.1/@tools.4"/>
+              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.13"/>
           <diagramNode
               href="../../org.eclipse.papyrus.diagram.common/model/SendNodeFigure.gmfgraph#SendNodeFigureNode"/>
           <children
@@ -1846,7 +2018,7 @@
               </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.3/@tools.2"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.25"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -1890,7 +2062,7 @@
               </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.3/@tools.3"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.26"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -1930,7 +2102,7 @@
               </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.3/@tools.1"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.24"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -2127,7 +2299,7 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="activityDiagram.gmftool#//@palette/@tools.1/@tools.5"/>
+              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.14"/>
           <diagramNode
               href="activityDiagram.gmfgraph#AcceptEventActionNode"/>
           <children
@@ -2163,7 +2335,7 @@
               </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.3/@tools.0"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.23"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -2202,7 +2374,7 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="activityDiagram.gmftool#//@palette/@tools.1/@tools.6"/>
+              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.15"/>
           <diagramNode
               href="../../org.eclipse.papyrus.diagram.common/model/Action.gmfgraph#ActionFigureNode"/>
           <children
@@ -2238,7 +2410,7 @@
               </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.3/@tools.0"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.23"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -2275,7 +2447,7 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="activityDiagram.gmftool#//@palette/@tools.2/@tools.3"/>
+              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.19"/>
           <diagramNode
               href="activityDiagram.gmfgraph#StructuredActivityNode"/>
           <compartments>
@@ -2314,7 +2486,7 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="activityDiagram.gmftool#//@palette/@tools.2/@tools.4"/>
+              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.20"/>
           <diagramNode
               href="activityDiagram.gmfgraph#StructuredActivityNode"/>
           <children
@@ -2343,7 +2515,7 @@
               </domainInitializer>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.3/@tools.4"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.27"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#ExpansionNode"/>
             </ownedChild>
@@ -2374,7 +2546,7 @@
               </domainInitializer>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.3/@tools.5"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.28"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#ExpansionNode"/>
             </ownedChild>
@@ -2415,7 +2587,7 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="activityDiagram.gmftool#//@palette/@tools.2/@tools.5"/>
+              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.21"/>
           <diagramNode
               href="activityDiagram.gmfgraph#StructuredActivityNode"/>
           <compartments>
@@ -2454,7 +2626,7 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="activityDiagram.gmftool#//@palette/@tools.2/@tools.6"/>
+              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.22"/>
           <diagramNode
               href="activityDiagram.gmfgraph#StructuredActivityNode"/>
           <compartments>
@@ -2493,7 +2665,7 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="activityDiagram.gmftool#//@palette/@tools.2/@tools.2"/>
+              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.18"/>
           <diagramNode
               href="activityDiagram.gmfgraph#StructuredActivityNode"/>
           <compartments>
@@ -2534,7 +2706,7 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="activityDiagram.gmftool#//@palette/@tools.2/@tools.0"/>
+              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.16"/>
           <diagramNode
               href="activityDiagram.gmfgraph#ActivityPartitionNode"/>
           <compartments>
@@ -2556,13 +2728,45 @@
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InterruptibleActivityRegion"/>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="activityDiagram.gmftool#//@palette/@tools.2/@tools.1"/>
+              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.17"/>
           <diagramNode
               href="activityDiagram.gmfgraph#InterruptibleActivityRegionNode"/>
           <compartments>
             <compartment
                 href="activityDiagram.gmfgraph#InterruptibleActivityRegionContentCompartment"/>
           </compartments>
+        </ownedChild>
+      </children>
+      <children
+          compartment="//@nodes.0/@ownedChild/@compartments.3">
+        <containmentFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Element/ownedComment"/>
+        <ownedChild>
+          <domainMetaElement
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Comment"/>
+          <domainInitializer
+              xsi:type="gmfmap:FeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfmap:FeatureValueSpec">
+              <feature
+                  xsi:type="ecore:EAttribute"
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Comment/body"/>
+              <value
+                  body="' '"/>
+            </initializers>
+          </domainInitializer>
+          <labelMappings
+              xsi:type="gmfmap:FeatureLabelMapping">
+            <diagramLabel
+                href="../../org.eclipse.papyrus.diagram.common/model/Comment.gmfgraph#CornerBentContentDiagramLabel"/>
+            <features
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Comment/body"/>
+          </labelMappings>
+          <tool
+              xsi:type="gmftool:CreationTool"
+              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.39"/>
+          <diagramNode
+              href="../../org.eclipse.papyrus.diagram.common/model/Comment.gmfgraph#CornerBentNode"/>
         </ownedChild>
       </children>
       <compartments
@@ -2581,7 +2785,7 @@
             href="activityDiagram.gmfgraph#ActivityPostConditionsCompartment"/>
       </compartments>
       <compartments
-          children="//@nodes.0/@ownedChild/@children.5 //@nodes.0/@ownedChild/@children.3 //@nodes.0/@ownedChild/@children.4 //@nodes.0/@ownedChild/@children.6 //@nodes.0/@ownedChild/@children.15 //@nodes.0/@ownedChild/@children.7 //@nodes.0/@ownedChild/@children.8 //@nodes.0/@ownedChild/@children.16 //@nodes.0/@ownedChild/@children.13 //@nodes.0/@ownedChild/@children.14 //@nodes.0/@ownedChild/@children.9 //@nodes.0/@ownedChild/@children.10 //@nodes.0/@ownedChild/@children.11 //@nodes.0/@ownedChild/@children.12 //@nodes.0/@ownedChild/@children.17 //@nodes.0/@ownedChild/@children.18 //@nodes.0/@ownedChild/@children.19 //@nodes.0/@ownedChild/@children.20 //@nodes.0/@ownedChild/@children.22 //@nodes.0/@ownedChild/@children.23 //@nodes.0/@ownedChild/@children.25 //@nodes.0/@ownedChild/@children.31 //@nodes.0/@ownedChild/@children.32 //@nodes.0/@ownedChild/@children.33 //@nodes.0/@ownedChild/@children.27 //@nodes.0/@ownedChild/@children.28 //@nodes.0/@ownedChild/@children.29 //@nodes.0/@ownedChild/@children.30 //@nodes.0/@ownedChild/@children.21 //@nodes.0/@ownedChild/@children.26">
+          children="//@nodes.0/@ownedChild/@children.5 //@nodes.0/@ownedChild/@children.3 //@nodes.0/@ownedChild/@children.4 //@nodes.0/@ownedChild/@children.6 //@nodes.0/@ownedChild/@children.15 //@nodes.0/@ownedChild/@children.7 //@nodes.0/@ownedChild/@children.8 //@nodes.0/@ownedChild/@children.16 //@nodes.0/@ownedChild/@children.13 //@nodes.0/@ownedChild/@children.14 //@nodes.0/@ownedChild/@children.9 //@nodes.0/@ownedChild/@children.10 //@nodes.0/@ownedChild/@children.11 //@nodes.0/@ownedChild/@children.12 //@nodes.0/@ownedChild/@children.17 //@nodes.0/@ownedChild/@children.18 //@nodes.0/@ownedChild/@children.19 //@nodes.0/@ownedChild/@children.20 //@nodes.0/@ownedChild/@children.22 //@nodes.0/@ownedChild/@children.23 //@nodes.0/@ownedChild/@children.25 //@nodes.0/@ownedChild/@children.31 //@nodes.0/@ownedChild/@children.32 //@nodes.0/@ownedChild/@children.33 //@nodes.0/@ownedChild/@children.27 //@nodes.0/@ownedChild/@children.28 //@nodes.0/@ownedChild/@children.29 //@nodes.0/@ownedChild/@children.30 //@nodes.0/@ownedChild/@children.21 //@nodes.0/@ownedChild/@children.26 //@nodes.0/@ownedChild/@children.34">
         <compartment
             href="activityDiagram.gmfgraph#ActivityContentCompartment"/>
       </compartments>
@@ -2655,7 +2859,7 @@
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/edge"/>
     <tool
         xsi:type="gmftool:CreationTool"
-        href="activityDiagram.gmftool#//@palette/@tools.4/@tools.1"/>
+        href="activityDiagram.gmftool#//@palette/@tools.1/@tools.1"/>
     <diagramLink
         href="activityDiagram.gmfgraph#ActivityEdgeConnection"/>
     <sourceMetaFeature
@@ -2713,7 +2917,7 @@
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/edge"/>
     <tool
         xsi:type="gmftool:CreationTool"
-        href="activityDiagram.gmftool#//@palette/@tools.4/@tools.0"/>
+        href="activityDiagram.gmftool#//@palette/@tools.1/@tools.0"/>
     <diagramLink
         href="activityDiagram.gmfgraph#ActivityEdgeConnection"/>
     <sourceMetaFeature
@@ -2743,7 +2947,7 @@
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ExecutableNode/handler"/>
     <tool
         xsi:type="gmftool:CreationTool"
-        href="activityDiagram.gmftool#//@palette/@tools.4/@tools.2"/>
+        href="activityDiagram.gmftool#//@palette/@tools.1/@tools.2"/>
     <diagramLink
         href="activityDiagram.gmfgraph#ExceptionHandlerConnection"/>
     <sourceMetaFeature

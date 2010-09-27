@@ -8,7 +8,7 @@
       description="">
     <tools
         xsi:type="gmftool:ToolGroup"
-        title="Objects">
+        title="Nodes">
       <smallIcon
           xsi:type="gmftool:BundleImage"
           path="icons/group.gif"
@@ -134,18 +134,6 @@
             path="icons/full/obj16/DataStoreNode.gif"
             bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
       </tools>
-    </tools>
-    <tools
-        xsi:type="gmftool:ToolGroup"
-        title="Actions">
-      <smallIcon
-          xsi:type="gmftool:BundleImage"
-          path="icons/group.gif"
-          bundle="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/"/>
-      <largeIcon
-          xsi:type="gmftool:BundleImage"
-          path="icons/group.gif"
-          bundle="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/"/>
       <tools
           xsi:type="gmftool:CreationTool"
           title="Opaque Action"
@@ -237,18 +225,6 @@
             path="icons/full/obj16/ValueSpecificationAction.gif"
             bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
       </tools>
-    </tools>
-    <tools
-        xsi:type="gmftool:ToolGroup"
-        title="Groups">
-      <smallIcon
-          xsi:type="gmftool:BundleImage"
-          path="icons/group.gif"
-          bundle="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/"/>
-      <largeIcon
-          xsi:type="gmftool:BundleImage"
-          path="icons/group.gif"
-          bundle="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/"/>
       <tools
           xsi:type="gmftool:CreationTool"
           title="Activity Partition"
@@ -340,18 +316,6 @@
             path="icons/full/obj16/SequenceNode.gif"
             bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
       </tools>
-    </tools>
-    <tools
-        xsi:type="gmftool:ToolGroup"
-        title="Pins">
-      <smallIcon
-          xsi:type="gmftool:BundleImage"
-          path="icons/group.gif"
-          bundle="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/"/>
-      <largeIcon
-          xsi:type="gmftool:BundleImage"
-          path="icons/group.gif"
-          bundle="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/"/>
       <tools
           xsi:type="gmftool:CreationTool"
           title="Output Pin"
@@ -430,69 +394,6 @@
             path="icons/full/obj16/ExpansionNode.gif"
             bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
       </tools>
-    </tools>
-    <tools
-        xsi:type="gmftool:ToolGroup"
-        title="Edges">
-      <smallIcon
-          xsi:type="gmftool:BundleImage"
-          path="icons/group.gif"
-          bundle="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/"/>
-      <largeIcon
-          xsi:type="gmftool:BundleImage"
-          path="icons/group.gif"
-          bundle="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/"/>
-      <tools
-          xsi:type="gmftool:CreationTool"
-          title="Control Flow"
-          description="Create a Control Flow">
-        <smallIcon
-            xsi:type="gmftool:BundleImage"
-            path="icons/full/obj16/ControlFlow.gif"
-            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
-        <largeIcon
-            xsi:type="gmftool:BundleImage"
-            path="icons/full/obj16/ControlFlow.gif"
-            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
-      </tools>
-      <tools
-          xsi:type="gmftool:CreationTool"
-          title="Object Flow"
-          description="Create an Object Flow">
-        <smallIcon
-            xsi:type="gmftool:BundleImage"
-            path="icons/full/obj16/ObjectFlow.gif"
-            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
-        <largeIcon
-            xsi:type="gmftool:BundleImage"
-            path="icons/full/obj16/ObjectFlow.gif"
-            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
-      </tools>
-      <tools
-          xsi:type="gmftool:CreationTool"
-          title="Exception Handler"
-          description="Create an Exception Handler">
-        <smallIcon
-            xsi:type="gmftool:BundleImage"
-            path="icons/full/obj16/ExceptionHandler.gif"
-            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
-        <largeIcon
-            xsi:type="gmftool:BundleImage"
-            path="icons/full/obj16/ExceptionHandler.gif"
-            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
-      </tools>
-    </tools>
-    <tools
-        xsi:type="gmftool:ToolGroup"
-        title="Actions' Local Conditions">
-      <smallIcon
-          xsi:type="gmftool:BundleImage"
-          path="icons/group.gif"
-          bundle="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/"/>
-      <largeIcon
-          xsi:type="gmftool:BundleImage"
-          path="icons/group.gif"
-          bundle="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/"/>
       <tools
           xsi:type="gmftool:CreationTool"
           title="Local Precondition Constraint"
@@ -621,6 +522,70 @@
         <largeIcon
             xsi:type="gmftool:BundleImage"
             path="icons/full/obj16/TimeConstraint.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Comment"
+          description="Create a Comment">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/Comment.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/Comment.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+      </tools>
+    </tools>
+    <tools
+        xsi:type="gmftool:ToolGroup"
+        title="Edges">
+      <smallIcon
+          xsi:type="gmftool:BundleImage"
+          path="icons/group.gif"
+          bundle="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/"/>
+      <largeIcon
+          xsi:type="gmftool:BundleImage"
+          path="icons/group.gif"
+          bundle="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Control Flow"
+          description="Create a Control Flow">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/ControlFlow.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/ControlFlow.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Object Flow"
+          description="Create an Object Flow">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/ObjectFlow.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/ObjectFlow.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Exception Handler"
+          description="Create an Exception Handler">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/ExceptionHandler.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/ExceptionHandler.gif"
             bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
       </tools>
     </tools>
