@@ -33,6 +33,7 @@ import org.eclipse.papyrus.diagram.activity.edit.commands.JoinNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.LoopNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.MergeNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.OpaqueActionCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.ReadSelfActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.SendObjectActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.SendSignalActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.SequenceNodeCreateCommand;
@@ -73,6 +74,9 @@ public class ActivityActivityContentCompartmentItemSemanticEditPolicy extends UM
 		}
 		if(UMLElementTypes.CallOperationAction_3010 == req.getElementType()) {
 			return getGEFWrapper(new CallOperationActionCreateCommand(req));
+		}
+		if(UMLElementTypes.ReadSelfAction_3081 == req.getElementType()) {
+			return getGEFWrapper(new ReadSelfActionCreateCommand(req));
 		}
 		//		if(UMLElementTypes.DurationConstraint_3034 == req.getElementType()) {
 		//			return getGEFWrapper(new DurationConstraintAsLocalPrecondCreateCommand(req));

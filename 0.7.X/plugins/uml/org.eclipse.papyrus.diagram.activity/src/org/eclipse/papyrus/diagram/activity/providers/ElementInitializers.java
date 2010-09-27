@@ -47,6 +47,7 @@ import org.eclipse.uml2.uml.OpaqueAction;
 import org.eclipse.uml2.uml.OpaqueExpression;
 import org.eclipse.uml2.uml.OutputPin;
 import org.eclipse.uml2.uml.Parameter;
+import org.eclipse.uml2.uml.ReadSelfAction;
 import org.eclipse.uml2.uml.SendObjectAction;
 import org.eclipse.uml2.uml.SendSignalAction;
 import org.eclipse.uml2.uml.SequenceNode;
@@ -751,6 +752,30 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
+	public void init_ReadSelfAction_3081(ReadSelfAction instance) {
+		try {
+			Object value_0 = name_ReadSelfAction_3081(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_OutputPin_3082(OutputPin instance) {
+		try {
+			Object value_0 = name_OutputPin_3082(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
 	public void init_ValueSpecificationAction_3076(ValueSpecificationAction instance) {
 		try {
 			Object value_0 = name_ValueSpecificationAction_3076(instance);
@@ -1327,6 +1352,20 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	private String name_ActivityPartition_3067(ActivityPartition self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ReadSelfAction_3081(ReadSelfAction self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_OutputPin_3082(OutputPin self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 

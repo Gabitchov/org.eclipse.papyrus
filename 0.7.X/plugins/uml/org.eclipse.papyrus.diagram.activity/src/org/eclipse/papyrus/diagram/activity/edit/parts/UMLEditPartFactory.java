@@ -612,6 +612,21 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case CommentBodyLabelEditPart.VISUAL_ID:
 				return new CommentBodyLabelEditPart(view);
 
+			case ReadSelfActionEditPart.VISUAL_ID:
+				return new ReadSelfActionEditPart(view);
+
+			case ReadSelfActionNameEditPart.VISUAL_ID:
+				return new ReadSelfActionNameEditPart(view);
+
+			case ReadSelfActionOutputPinEditPart.VISUAL_ID:
+				return new ReadSelfActionOutputPinEditPart(view);
+
+			case OutputPinInReadSelfActionLabelEditPart.VISUAL_ID:
+				return new OutputPinInReadSelfActionLabelEditPart(view);
+
+			case OutputPinInReadSelfActionAppliedStereotypeEditPart.VISUAL_ID:
+				return new OutputPinInReadSelfActionAppliedStereotypeEditPart(view);
+
 			case ActivityActivityParametersCompartmentEditPart.VISUAL_ID:
 				return new ActivityActivityParametersCompartmentEditPart(view);
 

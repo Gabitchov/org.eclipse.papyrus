@@ -278,6 +278,13 @@ public class UMLVisualIDRegistry {
 				return ExpansionNodeAsOutEditPart.VISUAL_ID;
 			}
 			break;
+		case ReadSelfActionEditPart.VISUAL_ID:
+			if(UMLPackage.eINSTANCE.getOutputPin().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ReadSelfActionOutputPinEditPart.VISUAL_ID;
+			}
+			break;
 		case ActivityActivityParametersCompartmentEditPart.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())
 
@@ -438,6 +445,11 @@ public class UMLVisualIDRegistry {
 
 			) {
 				return CommentEditPartCN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getReadSelfAction().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ReadSelfActionEditPart.VISUAL_ID;
 			}
 			break;
 		case ConditionalNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID:
@@ -2225,6 +2237,22 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
+		case ReadSelfActionEditPart.VISUAL_ID:
+			if(ReadSelfActionNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ReadSelfActionOutputPinEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ReadSelfActionOutputPinEditPart.VISUAL_ID:
+			if(OutputPinInReadSelfActionLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(OutputPinInReadSelfActionAppliedStereotypeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		case ActivityActivityParametersCompartmentEditPart.VISUAL_ID:
 			if(ParameterEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
@@ -2332,6 +2360,9 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(CommentEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ReadSelfActionEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -3984,6 +4015,14 @@ public class UMLVisualIDRegistry {
 		viewInfo = new BaseViewInfo(3080, ViewInfo.Node, "Comment");
 
 		root.addNode(7004, viewInfo);
+
+		viewInfo = new BaseViewInfo(3081, ViewInfo.Node, "ReadSelfAction");
+
+		root.addNode(7004, viewInfo);
+
+		viewInfo = new BaseViewInfo(3082, ViewInfo.Node, "OutputPin");
+
+		root.addNode(3081, viewInfo);
 
 		return root;
 	}

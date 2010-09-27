@@ -86,6 +86,8 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallOpActEditP
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInOpaqueActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInValSpecActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ParameterEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ReadSelfActionEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ReadSelfActionOutputPinEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SendObjectActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SendSignalActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SequenceNodeEditPart;
@@ -401,6 +403,16 @@ public class UMLElementTypes {
 	 * @generated
 	 */
 	public static final IElementType Comment_3080 = getElementType("org.eclipse.papyrus.diagram.activity.Comment_3080"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ReadSelfAction_3081 = getElementType("org.eclipse.papyrus.diagram.activity.ReadSelfAction_3081"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType OutputPin_3082 = getElementType("org.eclipse.papyrus.diagram.activity.OutputPin_3082"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -751,6 +763,10 @@ public class UMLElementTypes {
 
 			elements.put(Comment_3080, UMLPackage.eINSTANCE.getComment());
 
+			elements.put(ReadSelfAction_3081, UMLPackage.eINSTANCE.getReadSelfAction());
+
+			elements.put(OutputPin_3082, UMLPackage.eINSTANCE.getOutputPin());
+
 			elements.put(ActionLocalPrecondition_4001, UMLPackage.eINSTANCE.getAction_LocalPrecondition());
 
 			elements.put(ActionLocalPostcondition_4002, UMLPackage.eINSTANCE.getAction_LocalPostcondition());
@@ -848,6 +864,8 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(InterruptibleActivityRegion_3068);
 			KNOWN_ELEMENT_TYPES.add(NamedElement_3079);
 			KNOWN_ELEMENT_TYPES.add(Comment_3080);
+			KNOWN_ELEMENT_TYPES.add(ReadSelfAction_3081);
+			KNOWN_ELEMENT_TYPES.add(OutputPin_3082);
 			KNOWN_ELEMENT_TYPES.add(ActionLocalPrecondition_4001);
 			KNOWN_ELEMENT_TYPES.add(ActionLocalPostcondition_4002);
 			KNOWN_ELEMENT_TYPES.add(ObjectFlow_4003);
@@ -1001,6 +1019,10 @@ public class UMLElementTypes {
 			return NamedElement_3079;
 		case CommentEditPartCN.VISUAL_ID:
 			return Comment_3080;
+		case ReadSelfActionEditPart.VISUAL_ID:
+			return ReadSelfAction_3081;
+		case ReadSelfActionOutputPinEditPart.VISUAL_ID:
+			return OutputPin_3082;
 		case ActionLocalPreconditionEditPart.VISUAL_ID:
 			return ActionLocalPrecondition_4001;
 		case ActionLocalPostconditionEditPart.VISUAL_ID:
