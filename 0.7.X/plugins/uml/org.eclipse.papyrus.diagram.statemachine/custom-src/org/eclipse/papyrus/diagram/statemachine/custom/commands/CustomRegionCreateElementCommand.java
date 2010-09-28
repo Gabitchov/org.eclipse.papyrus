@@ -21,6 +21,7 @@ import org.eclipse.papyrus.diagram.statemachine.custom.helpers.Zone;
 import org.eclipse.papyrus.diagram.statemachine.providers.ElementInitializers;
 import org.eclipse.papyrus.diagram.statemachine.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Region;
+import org.eclipse.uml2.uml.State;
 import org.eclipse.uml2.uml.StateMachine;
 import org.eclipse.uml2.uml.UMLFactory;
 
@@ -75,18 +76,24 @@ public class CustomRegionCreateElementCommand extends AbstractTransactionalComma
 		int x = Zone.getX(existingRegion);
 		int y = Zone.getY(existingRegion);
 
-		// get the stateMachine via the stateMachineView
-		View stateMachineCompartment = (View)existingRegion.eContainer();
-		View stateMachine = (View)stateMachineCompartment.eContainer();
+		// get the stateMachine/state via the stateMachineView/stateView
+		View compartment = (View)existingRegion.eContainer();
+		View ownerView = (View)compartment.eContainer();
 
 		if(adaptableForDropped == null) {
-			// create a new UML region
-			StateMachine umlStateMachine = (StateMachine)stateMachine.getElement();
-
-			createElementRequest = new CreateElementRequest(getEditingDomain(), stateMachine, UMLElementTypes.Region_3000);
-
 			Region umlRegion = UMLFactory.eINSTANCE.createRegion();
-			umlStateMachine.getRegions().add(umlRegion);
+
+			createElementRequest = new CreateElementRequest(getEditingDomain(), ownerView, UMLElementTypes.Region_3000);
+
+			// create a new UML region
+			if(ownerView.getElement() instanceof StateMachine){
+				StateMachine umlStateMachine = (StateMachine)ownerView.getElement();
+				umlStateMachine.getRegions().add(umlRegion);
+			}
+			else if(ownerView.getElement() instanceof State){
+				State umlState = (State)ownerView.getElement();
+				umlState.getRegions().add(umlRegion);
+			}
 
 			ElementInitializers.getInstance().init_Region_3000(umlRegion);
 
@@ -97,7 +104,7 @@ public class CustomRegionCreateElementCommand extends AbstractTransactionalComma
 
 		// create a view for the new region on the stateMachineCompartment
 		String semanticHint = ((IHintedType)UMLElementTypes.Region_3000).getSemanticHint();
-		View newRegion = (View)ViewService.getInstance().createNode(adaptableForDropped, stateMachineCompartment, semanticHint, -1, prefHints);
+		View newRegion = (View)ViewService.getInstance().createNode(adaptableForDropped, compartment, semanticHint, -1, prefHints);
 
 		// add region specific annotation
 		Zone.createRegionDefaultAnnotation(newRegion);

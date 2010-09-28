@@ -50,18 +50,23 @@ import org.eclipse.papyrus.diagram.statemachine.custom.figures.RegionFigure;
 import org.eclipse.papyrus.diagram.statemachine.custom.helpers.StateMachineLinkMappingHelper;
 import org.eclipse.papyrus.diagram.statemachine.custom.helpers.Zone;
 import org.eclipse.papyrus.diagram.statemachine.custom.locators.CustomEntryExitPointPositionLocator;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConnectionPointReferenceEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateEntryPointEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateExitPointEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionCompartmentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateCompartmentEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineCompartmentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineEditPart;
 import org.eclipse.papyrus.diagram.statemachine.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.statemachine.providers.UMLElementTypes;
+import org.eclipse.uml2.uml.ConnectionPointReference;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Pseudostate;
 import org.eclipse.uml2.uml.PseudostateKind;
 import org.eclipse.uml2.uml.Region;
+import org.eclipse.uml2.uml.State;
 import org.eclipse.uml2.uml.StateMachine;
 
 public class CustomStateMachineDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPolicy {
@@ -82,7 +87,7 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends CommonDiagramDr
 
 	/**
 	 * <pre>
-	 * Returns the drop command for Affixed nodes (Pseudostate entry/exitPoint).
+	 * Returns the drop command for Affixed nodes (Pseudostate entry/exitPoint, ConnectionPointReference).
 	 * </pre>
 	 * 
 	 * @param dropRequest
@@ -97,17 +102,20 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends CommonDiagramDr
 	 */
 	protected Command dropAffixedNode(DropObjectsRequest dropRequest, Element droppedElement, int nodeVISUALID) {
 
-		// The dropped element must be a Pseudostate
-		if(!(droppedElement instanceof Pseudostate)) {
+		// The dropped element must be a Pseudostate or ConnectionPointReference
+		if(!((droppedElement instanceof Pseudostate) || (droppedElement instanceof ConnectionPointReference))) {
 			return UnexecutableCommand.INSTANCE;
 		}
 
-		Pseudostate ps = (Pseudostate)droppedElement;
-		// The dropped element must be an entry or exitPoint
-		PseudostateKind kind = ps.getKind();
-		if(!(kind.equals(PseudostateKind.ENTRY_POINT_LITERAL) || kind.equals(PseudostateKind.EXIT_POINT_LITERAL))) {
-			return UnexecutableCommand.INSTANCE;
+		if(droppedElement instanceof Pseudostate){
+			Pseudostate ps = (Pseudostate)droppedElement;
+			// The dropped element must be an entry or exitPoint
+			PseudostateKind kind = ps.getKind();
+			if(!(kind.equals(PseudostateKind.ENTRY_POINT_LITERAL) || kind.equals(PseudostateKind.EXIT_POINT_LITERAL))) {
+				return UnexecutableCommand.INSTANCE;
+			}
 		}
+
 		// Manage Element drop in compartment
 		Boolean isCompartmentTarget = false; // True if the target is a ShapeCompartmentEditPart
 		GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart)getHost();
@@ -119,39 +127,56 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends CommonDiagramDr
 		if(graphicalParentEditPart instanceof RegionCompartmentEditPart) {
 			isCompartmentTarget = true;
 
-			// Replace compartment edit part by its ancestor StateMachineEditPart
+			RegionFigure regionFigure = (RegionFigure)((RegionEditPart)graphicalParentEditPart.getParent()).getPrimaryShape();
+
+			// Replace compartment edit part by its ancestor StateMachineEditPart or StateEditPart
 			graphicalParentEditPart = (GraphicalEditPart)graphicalParentEditPart.getParent().getParent().getParent();
 
-			// Translate Pseudostate expected location according to the compartment location
-			Point targetLocation = graphicalParentEditPart.getContentPane().getBounds().getLocation();
-			ShapeCompartmentFigure compartmentFigure = (ShapeCompartmentFigure)getHostFigure();
-
-			compartmentFigure.translateToAbsolute(dropLocation);
+			dropLocation.translate(regionFigure.getLocation());
+			if(graphicalParentEditPart instanceof StateMachineEditPart){
+				regionFigure.translateToAbsolute(dropLocation);
+			}
+		}
+		else if (graphicalParentEditPart instanceof StateCompartmentEditPart){
+			isCompartmentTarget = true;
+			// Replace compartment edit part by its ancestor StateMachineEditPart or StateEditPart
+			graphicalParentEditPart = (GraphicalEditPart)graphicalParentEditPart.getParent();			
 		}
 		// Manage Element drop in compartment
 
 		// Create proposed creation bounds and use the locator to find the expected position
 		Point parentLoc = graphicalParentEditPart.getFigure().getBounds().getLocation().getCopy();
+
 		CustomEntryExitPointPositionLocator locator = new CustomEntryExitPointPositionLocator(graphicalParentEditPart.getFigure(), PositionConstants.NONE);
 
 		Rectangle proposedBounds = new Rectangle(dropLocation, new Dimension(20, 20));
-		if(!isCompartmentTarget)
-			proposedBounds = proposedBounds.getTranslated(parentLoc);
 		Rectangle preferredBounds = locator.getPreferredLocation(proposedBounds);
 
 		// Convert the calculated preferred bounds as relative to parent location
 		Rectangle creationBounds = preferredBounds.getTranslated(parentLoc.getNegated());
-		dropLocation = creationBounds.getLocation();
+		if(graphicalParentEditPart instanceof StateMachineEditPart){
+			dropLocation = creationBounds.getLocation();
+		}
 
 		EObject graphicalParentObject = graphicalParentEditPart.resolveSemanticElement();
 
-		if((graphicalParentObject instanceof StateMachine) && (((StateMachine)graphicalParentObject).getConnectionPoints().contains(droppedElement))) {
+		if((graphicalParentObject instanceof StateMachine) && (((StateMachine)graphicalParentObject).getConnectionPoints().contains((Pseudostate)droppedElement))) {
 			// Drop Pseudostate on StateMachine
 			if(isCompartmentTarget) {
 				return getDropAffixedNodeInCompartmentCommand(nodeVISUALID, dropLocation, droppedElement);
 			}
 			return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, dropLocation, droppedElement));
 
+		}
+		if(graphicalParentObject instanceof State){
+			if((droppedElement instanceof Pseudostate) && (((State)graphicalParentObject).getConnectionPoints().contains((Pseudostate)droppedElement))
+				||(droppedElement instanceof ConnectionPointReference) && (((State)graphicalParentObject).getConnections().contains((ConnectionPointReference)droppedElement))){
+				// Drop Pseudostate or ConnectionPointReference on State
+				if(isCompartmentTarget) {
+					return getDropAffixedNodeInCompartmentCommand(nodeVISUALID, dropLocation, droppedElement);
+				}
+				return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, dropLocation, droppedElement));
+			}
 		}
 
 		return UnexecutableCommand.INSTANCE;
@@ -175,41 +200,48 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends CommonDiagramDr
 		GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart)getHost();
 		EObject graphicalParentObject = graphicalParentEditPart.resolveSemanticElement();
 
-		if((graphicalParentObject instanceof Region) && (((Region)graphicalParentObject).getStateMachine().getRegions().contains(droppedElement)) && !graphicalParentObject.equals(droppedElement)) {
-			CompositeCommand cc = new CompositeCommand("Drop");
-			// get an adaptable for the dropped region
-			IAdaptable adaptableForDroppedRegion = (IAdaptable)new SemanticAdapter(droppedElement, null);
-			// get the existing region view
-			View existingRegionView = (View)graphicalParentEditPart.getParent().getModel();
-			// get and adaptable for it, to pass on to commands
-			IAdaptable adaptableForExistingRegionView = (IAdaptable)new SemanticAdapter(null, existingRegionView);
+		if(graphicalParentObject instanceof Region){
+			Region region = (Region)graphicalParentObject;
 
-			// check whether the dropped region is already shown in the state
-			// machine
-			View stateMachineCompartment = (View)existingRegionView.eContainer();
-			View alreadyShown = null;
-			Iterator<View> it = stateMachineCompartment.getChildren().iterator();
-			while((alreadyShown == null) && it.hasNext()) {
-				View current = it.next();
-				if(current.getElement().equals(droppedElement)) {
-					alreadyShown = current;
+
+			if(((region.getStateMachine() != null) && region.getStateMachine().getRegions().contains(droppedElement) && !region.equals(droppedElement))
+				||((region.getState() != null) && region.getState().getRegions().contains(droppedElement) && !region.equals(droppedElement)))
+			{
+				CompositeCommand cc = new CompositeCommand("Drop");
+				// get an adaptable for the dropped region
+				IAdaptable adaptableForDroppedRegion = (IAdaptable)new SemanticAdapter(droppedElement, null);
+				// get the existing region view
+				View existingRegionView = (View)graphicalParentEditPart.getParent().getModel();
+				// get and adaptable for it, to pass on to commands
+				IAdaptable adaptableForExistingRegionView = (IAdaptable)new SemanticAdapter(null, existingRegionView);
+
+				// check whether the dropped region is already shown in the state
+				// machine or state compartment
+				View compartment = (View)existingRegionView.eContainer();
+				View alreadyShown = null;
+				Iterator<View> it = compartment.getChildren().iterator();
+				while((alreadyShown == null) && it.hasNext()) {
+					View current = it.next();
+					if(current.getElement().equals(droppedElement)) {
+						alreadyShown = current;
+					}
 				}
-			}
-			if(alreadyShown != null) {
-				if(fromOutline) {
-					return UnexecutableCommand.INSTANCE;
+				if(alreadyShown != null) {
+					if(fromOutline) {
+						return UnexecutableCommand.INSTANCE;
+					}
+					// specific command to get rid of the already shown region
+					CustomRegionDeleteCommand deleteAlreadyShown = new CustomRegionDeleteCommand(getEditingDomain(), alreadyShown);
+					cc.compose(deleteAlreadyShown);
 				}
-				// specific command to get rid of the already shown region
-				CustomRegionDeleteCommand deleteAlreadyShown = new CustomRegionDeleteCommand(getEditingDomain(), alreadyShown);
-				cc.compose(deleteAlreadyShown);
+
+				// do the whole job
+				CustomRegionCreateElementCommand createNewRegion = new CustomRegionCreateElementCommand(adaptableForExistingRegionView, adaptableForDroppedRegion, ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint(), getEditingDomain(), DiagramUIMessages.CreateCommand_Label, dropLocation);
+
+				cc.compose(createNewRegion);
+
+				return new ICommandProxy(cc.reduce());
 			}
-
-			// do the whole job
-			CustomRegionCreateElementCommand createNewRegion = new CustomRegionCreateElementCommand(adaptableForExistingRegionView, adaptableForDroppedRegion, ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint(), getEditingDomain(), DiagramUIMessages.CreateCommand_Label, dropLocation);
-
-			cc.compose(createNewRegion);
-
-			return new ICommandProxy(cc.reduce());
 		}
 
 		return UnexecutableCommand.INSTANCE;
@@ -264,7 +296,7 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends CommonDiagramDr
 
 	/**
 	 * <pre>
-	 * This method returns the drop command for AffixedNode (Pseudostate) 
+	 * This method returns the drop command for AffixedNode (Pseudostate, ConnectionPointReference) 
 	 * in case the node is dropped on a ShapeCompartmentEditPart.
 	 * </pre>
 	 * 
@@ -282,8 +314,15 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends CommonDiagramDr
 
 		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType)getUMLElementType(nodeVISUALID)).getSemanticHint(), ViewUtil.APPEND, false, getDiagramPreferencesHint());
 		// Create the command targeting host parent (owner of the ShapeCompartmentEditPart) 
-		CreateViewCommand createCommand = new CreateViewCommand(getEditingDomain(), descriptor, ((View)(getHost().getParent().getParent().getParent().getModel())));
-		cc.add(new ICommandProxy(createCommand));
+		CreateViewCommand createCommand =  null;
+		if(nodeVISUALID != ConnectionPointReferenceEditPart.VISUAL_ID){
+			createCommand = new CreateViewCommand(getEditingDomain(), descriptor, ((View)(getHost().getParent().getParent().getParent().getModel())));
+			cc.add(new ICommandProxy(createCommand));
+		}
+		else{
+			createCommand = new CreateViewCommand(getEditingDomain(), descriptor, ((View)(getHost().getParent().getModel())));
+			cc.add(new ICommandProxy(createCommand));			
+		}
 
 		SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)createCommand.getCommandResult().getReturnValue(), location);
 		cc.add(new ICommandProxy(setBoundsCommand));
@@ -301,6 +340,7 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends CommonDiagramDr
 		droppableElementsVisualId.add(RegionEditPart.VISUAL_ID);
 		droppableElementsVisualId.add(PseudostateEntryPointEditPart.VISUAL_ID);
 		droppableElementsVisualId.add(PseudostateExitPointEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(ConnectionPointReferenceEditPart.VISUAL_ID);
 		return droppableElementsVisualId;
 	}
 
@@ -343,7 +383,8 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends CommonDiagramDr
 			return dropRegion(dropRequest, (Region)semanticElement, nodeVISUALID);
 		case PseudostateEntryPointEditPart.VISUAL_ID:
 		case PseudostateExitPointEditPart.VISUAL_ID:
-			return dropAffixedNode(dropRequest, (Pseudostate)semanticElement, nodeVISUALID);
+		case ConnectionPointReferenceEditPart.VISUAL_ID:
+			return dropAffixedNode(dropRequest, semanticElement, nodeVISUALID);
 
 		default:
 			return super.getSpecificDropCommand(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
@@ -365,8 +406,8 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends CommonDiagramDr
 				if(element instanceof RegionEditPart) {
 					CustomRegionEditPart regionEditPart = (CustomRegionEditPart)element;
 
-					View stateMachineCompartment = (View)((View)element.getModel()).eContainer();
-					if(stateMachineCompartment.getChildren().size() == 1)
+					View compartment = (View)((View)element.getModel()).eContainer();
+					if(compartment.getChildren().size() == 1)
 						return;
 
 					CustomRegionDragTracker dragTracker = regionEditPart.getRegionDragTracker();
@@ -423,9 +464,13 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends CommonDiagramDr
 				if(element instanceof Region) {
 					// check whether the dropped region is already shown in the
 					// state machine
-					View stateMachineCompartment = (View)((StateMachineCompartmentEditPart)getHost().getParent().getParent()).getModel();
+					View compartment = null;
+					if(getHost().getParent().getParent() instanceof StateMachineCompartmentEditPart)
+						compartment = (View)((StateMachineCompartmentEditPart)getHost().getParent().getParent()).getModel();
+					else if(getHost().getParent().getParent() instanceof StateCompartmentEditPart)
+						compartment = (View)((StateCompartmentEditPart)getHost().getParent().getParent()).getModel();
 					View alreadyShown = null;
-					Iterator<View> it = stateMachineCompartment.getChildren().iterator();
+					Iterator<View> it = compartment.getChildren().iterator();
 					while((alreadyShown == null) && it.hasNext()) {
 						View current = it.next();
 						if(current.getElement().equals(element)) {

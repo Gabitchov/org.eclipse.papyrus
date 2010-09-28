@@ -14,6 +14,7 @@ import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConnectionPointReferenceEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateChoiceEditPart;
@@ -132,6 +133,11 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
+	public static final IElementType ConnectionPointReference_18000 = getElementType("org.eclipse.papyrus.diagram.statemachine.ConnectionPointReference_18000"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	public static final IElementType Transition_7000 = getElementType("org.eclipse.papyrus.diagram.statemachine.Transition_7000"); //$NON-NLS-1$
 
 	/**
@@ -185,6 +191,9 @@ public class UMLElementTypes {
 			elements.put(Pseudostate_17000,
 					UMLPackage.eINSTANCE.getPseudostate());
 
+			elements.put(ConnectionPointReference_18000,
+					UMLPackage.eINSTANCE.getConnectionPointReference());
+
 			elements.put(Transition_7000, UMLPackage.eINSTANCE.getTransition());
 		}
 		return (ENamedElement) elements.get(type);
@@ -225,6 +234,8 @@ public class UMLElementTypes {
 			return Pseudostate_16000;
 		case PseudostateExitPointEditPart.VISUAL_ID:
 			return Pseudostate_17000;
+		case ConnectionPointReferenceEditPart.VISUAL_ID:
+			return ConnectionPointReference_18000;
 		case TransitionEditPart.VISUAL_ID:
 			return Transition_7000;
 		}
@@ -360,6 +371,7 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(Pseudostate_15000);
 			KNOWN_ELEMENT_TYPES.add(Pseudostate_16000);
 			KNOWN_ELEMENT_TYPES.add(Pseudostate_17000);
+			KNOWN_ELEMENT_TYPES.add(ConnectionPointReference_18000);
 			KNOWN_ELEMENT_TYPES.add(Transition_7000);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);

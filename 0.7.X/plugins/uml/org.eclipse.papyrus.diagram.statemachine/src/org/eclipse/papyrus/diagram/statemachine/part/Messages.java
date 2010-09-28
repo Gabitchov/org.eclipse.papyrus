@@ -377,6 +377,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String createConnectionPointReferenceCreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createConnectionPointReferenceCreationTool_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String createTransitionCreationTool_title;
 
 	/**
@@ -393,6 +403,11 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String StateMachineCompartmentEditPart_title;
+
+	/**
+	 * @generated
+	 */
+	public static String StateCompartmentEditPart_title;
 
 	/**
 	 * @generated

@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.part.ICustomDiagramUpdater;
 import org.eclipse.papyrus.diagram.statemachine.custom.parts.RegionCompartmentDiagramUpdater;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConnectionPointReferenceEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateChoiceEditPart;
@@ -27,11 +28,13 @@ import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateShallowHis
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateTerminateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionCompartmentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateCompartmentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineCompartmentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.TransitionEditPart;
 import org.eclipse.papyrus.diagram.statemachine.providers.UMLElementTypes;
+import org.eclipse.uml2.uml.ConnectionPointReference;
 import org.eclipse.uml2.uml.FinalState;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageableElement;
@@ -83,6 +86,8 @@ public class UMLDiagramUpdater {
 			return getPseudostate_16000ContainedLinks(view);
 		case PseudostateExitPointEditPart.VISUAL_ID:
 			return getPseudostate_17000ContainedLinks(view);
+		case ConnectionPointReferenceEditPart.VISUAL_ID:
+			return getConnectionPointReference_18000ContainedLinks(view);
 		case TransitionEditPart.VISUAL_ID:
 			return getTransition_7000ContainedLinks(view);
 		}
@@ -183,6 +188,8 @@ public class UMLDiagramUpdater {
 			return getPseudostate_16000IncomingLinks(view);
 		case PseudostateExitPointEditPart.VISUAL_ID:
 			return getPseudostate_17000IncomingLinks(view);
+		case ConnectionPointReferenceEditPart.VISUAL_ID:
+			return getConnectionPointReference_18000IncomingLinks(view);
 		case TransitionEditPart.VISUAL_ID:
 			return getTransition_7000IncomingLinks(view);
 		}
@@ -250,6 +257,8 @@ public class UMLDiagramUpdater {
 			return getPseudostate_16000OutgoingLinks(view);
 		case PseudostateExitPointEditPart.VISUAL_ID:
 			return getPseudostate_17000OutgoingLinks(view);
+		case ConnectionPointReferenceEditPart.VISUAL_ID:
+			return getConnectionPointReference_18000OutgoingLinks(view);
 		case TransitionEditPart.VISUAL_ID:
 			return getTransition_7000OutgoingLinks(view);
 		}
@@ -573,6 +582,14 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	public static List<UMLLinkDescriptor> getConnectionPointReference_18000ContainedLinks(
+			View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
 	public static List<UMLLinkDescriptor> getPseudostate_17000IncomingLinks(
 			View view) {
 		Pseudostate modelElement = (Pseudostate) view.getElement();
@@ -587,9 +604,36 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	public static List<UMLLinkDescriptor> getConnectionPointReference_18000IncomingLinks(
+			View view) {
+		ConnectionPointReference modelElement = (ConnectionPointReference) view
+				.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
+				.find(view.eResource().getResourceSet().getResources());
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getIncomingTypeModelFacetLinks_Transition_7000(
+				modelElement, crossReferences));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
 	public static List<UMLLinkDescriptor> getPseudostate_17000OutgoingLinks(
 			View view) {
 		Pseudostate modelElement = (Pseudostate) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getOutgoingTypeModelFacetLinks_Transition_7000(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getConnectionPointReference_18000OutgoingLinks(
+			View view) {
+		ConnectionPointReference modelElement = (ConnectionPointReference) view
+				.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_Transition_7000(modelElement));
 		return result;
@@ -702,10 +746,14 @@ public class UMLDiagramUpdater {
 			return getPackage_1000SemanticChildren(view);
 		case StateMachineEditPart.VISUAL_ID:
 			return getStateMachine_2000SemanticChildren(view);
+		case StateEditPart.VISUAL_ID:
+			return getState_6000SemanticChildren(view);
 		case RegionCompartmentEditPart.VISUAL_ID:
 			return getRegionRegionCompartment_3002SemanticChildren(view);
 		case StateMachineCompartmentEditPart.VISUAL_ID:
 			return getStateMachineStateMachineCompartment_2002SemanticChildren(view);
+		case StateCompartmentEditPart.VISUAL_ID:
+			return getStateStateCompartment_6002SemanticChildren(view);
 		}
 		return Collections.emptyList();
 	}
@@ -794,6 +842,54 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	public static List<UMLNodeDescriptor> getState_6000SemanticChildren(
+			View view) {
+		if (!view.isSetElement()) {
+			return Collections.EMPTY_LIST;
+		}
+		State modelElement = (State) view.getElement();
+		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
+		for (Iterator<?> it = modelElement.getRegions().iterator(); it
+				.hasNext();) {
+			Region childElement = (Region) it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view,
+					childElement);
+			if (visualID == RegionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		for (Iterator<?> it = modelElement.getConnectionPoints().iterator(); it
+				.hasNext();) {
+			Pseudostate childElement = (Pseudostate) it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view,
+					childElement);
+			if (visualID == PseudostateEntryPointEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if (visualID == PseudostateExitPointEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		for (Iterator<?> it = modelElement.getConnections().iterator(); it
+				.hasNext();) {
+			ConnectionPointReference childElement = (ConnectionPointReference) it
+					.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view,
+					childElement);
+			if (visualID == ConnectionPointReferenceEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
 	public static List<UMLNodeDescriptor> getStateMachineStateMachineCompartment_2002SemanticChildren(
 			View view) {
 		if (false == view.eContainer() instanceof View) {
@@ -825,6 +921,44 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			if (visualID == PseudostateExitPointEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLNodeDescriptor> getStateStateCompartment_6002SemanticChildren(
+			View view) {
+		if (false == view.eContainer() instanceof View) {
+			return Collections.emptyList();
+		}
+		View containerView = (View) view.eContainer();
+		if (!containerView.isSetElement()) {
+			return Collections.emptyList();
+		}
+		State modelElement = (State) containerView.getElement();
+		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
+		for (Iterator<?> it = modelElement.getRegions().iterator(); it
+				.hasNext();) {
+			Region childElement = (Region) it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view,
+					childElement);
+			if (visualID == RegionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		for (Iterator<?> it = modelElement.getConnections().iterator(); it
+				.hasNext();) {
+			ConnectionPointReference childElement = (ConnectionPointReference) it
+					.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view,
+					childElement);
+			if (visualID == ConnectionPointReferenceEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}

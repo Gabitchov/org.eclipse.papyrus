@@ -17,6 +17,7 @@ import org.eclipse.gmf.runtime.emf.ui.services.modelingassistant.ModelingAssista
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConnectionPointReferenceEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateChoiceEditPart;
@@ -30,6 +31,7 @@ import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateJunctionEd
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateShallowHistoryEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateTerminateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionCompartmentEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateCompartmentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineCompartmentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineEditPart;
@@ -97,6 +99,10 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return ((PseudostateExitPointEditPart) sourceEditPart)
 					.getMARelTypesOnSource();
 		}
+		if (sourceEditPart instanceof ConnectionPointReferenceEditPart) {
+			return ((ConnectionPointReferenceEditPart) sourceEditPart)
+					.getMARelTypesOnSource();
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -157,6 +163,10 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return ((PseudostateExitPointEditPart) sourceEditPart)
 					.getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
+		if (sourceEditPart instanceof ConnectionPointReferenceEditPart) {
+			return ((ConnectionPointReferenceEditPart) sourceEditPart)
+					.getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -213,6 +223,10 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return ((PseudostateExitPointEditPart) targetEditPart)
 					.getMARelTypesOnTarget();
 		}
+		if (targetEditPart instanceof ConnectionPointReferenceEditPart) {
+			return ((ConnectionPointReferenceEditPart) targetEditPart)
+					.getMARelTypesOnTarget();
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -231,6 +245,14 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			ArrayList<IElementType> types = new ArrayList<IElementType>(2);
 			types.add(UMLElementTypes.Pseudostate_16000);
 			types.add(UMLElementTypes.Pseudostate_17000);
+			return types;
+		}
+		if (editPart instanceof StateEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(4);
+			types.add(UMLElementTypes.Region_3000);
+			types.add(UMLElementTypes.Pseudostate_16000);
+			types.add(UMLElementTypes.Pseudostate_17000);
+			types.add(UMLElementTypes.ConnectionPointReference_18000);
 			return types;
 		}
 		if (editPart instanceof RegionCompartmentEditPart) {
@@ -254,6 +276,12 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.Region_3000);
 			types.add(UMLElementTypes.Pseudostate_16000);
 			types.add(UMLElementTypes.Pseudostate_17000);
+			return types;
+		}
+		if (editPart instanceof StateCompartmentEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(2);
+			types.add(UMLElementTypes.Region_3000);
+			types.add(UMLElementTypes.ConnectionPointReference_18000);
 			return types;
 		}
 		return Collections.EMPTY_LIST;
@@ -314,6 +342,10 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return ((PseudostateExitPointEditPart) targetEditPart)
 					.getMATypesForSource(relationshipType);
 		}
+		if (targetEditPart instanceof ConnectionPointReferenceEditPart) {
+			return ((ConnectionPointReferenceEditPart) targetEditPart)
+					.getMATypesForSource(relationshipType);
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -370,6 +402,10 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if (sourceEditPart instanceof PseudostateExitPointEditPart) {
 			return ((PseudostateExitPointEditPart) sourceEditPart)
+					.getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof ConnectionPointReferenceEditPart) {
+			return ((ConnectionPointReferenceEditPart) sourceEditPart)
 					.getMATypesForTarget(relationshipType);
 		}
 		return Collections.EMPTY_LIST;
