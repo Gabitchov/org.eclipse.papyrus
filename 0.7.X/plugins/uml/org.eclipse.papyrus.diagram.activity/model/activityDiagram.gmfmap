@@ -325,7 +325,7 @@
               </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.26"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.27"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -367,7 +367,7 @@
               </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.25"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.26"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -405,7 +405,7 @@
               </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.24"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.25"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -443,7 +443,7 @@
               </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.23"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.24"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -519,7 +519,7 @@
               </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.26"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.27"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -561,7 +561,7 @@
               </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.25"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.26"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -599,7 +599,7 @@
               </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.24"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.25"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -637,7 +637,7 @@
               </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.23"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.24"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -715,7 +715,7 @@
               </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.25"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.26"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -759,7 +759,7 @@
               </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.26"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.27"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -799,7 +799,7 @@
               </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.24"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.25"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -837,7 +837,7 @@
               </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.23"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.24"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -1023,7 +1023,7 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.32"/>
+              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.33"/>
           <diagramNode
               href="LocalPreconditionConstraint.gmfgraph#LocalPrecondtionConstraintNode"/>
         </ownedChild>
@@ -1088,7 +1088,7 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.37"/>
+              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.38"/>
           <diagramNode
               href="LocalPostconditionConstraint.gmfgraph#LocalPostconditionConstraintNode"/>
         </ownedChild>
@@ -1153,7 +1153,7 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.33"/>
+              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.34"/>
           <diagramNode
               href="LocalPreconditionConstraint.gmfgraph#LocalPrecondtionConstraintNode"/>
         </ownedChild>
@@ -1218,7 +1218,7 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.38"/>
+              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.39"/>
           <diagramNode
               href="activityDiagram.gmfgraph#BehaviorProperty"/>
         </ownedChild>
@@ -1283,7 +1283,7 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.31"/>
+              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.32"/>
           <diagramNode
               href="LocalPreconditionConstraint.gmfgraph#LocalPrecondtionConstraintNode"/>
         </ownedChild>
@@ -1348,7 +1348,7 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.36"/>
+              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.37"/>
           <diagramNode
               href="LocalPostconditionConstraint.gmfgraph#LocalPostconditionConstraintNode"/>
         </ownedChild>
@@ -1413,7 +1413,7 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.29"/>
+              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.30"/>
           <diagramNode
               href="LocalPreconditionConstraint.gmfgraph#LocalPrecondtionConstraintNode"/>
         </ownedChild>
@@ -1478,7 +1478,7 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.34"/>
+              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.35"/>
           <diagramNode
               href="LocalPostconditionConstraint.gmfgraph#LocalPostconditionConstraintNode"/>
         </ownedChild>
@@ -2018,7 +2018,7 @@
               </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.25"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.26"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -2062,7 +2062,7 @@
               </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.26"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.27"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -2102,7 +2102,7 @@
               </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.24"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.25"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -2335,7 +2335,7 @@
               </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.23"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.24"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -2410,7 +2410,7 @@
               </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.23"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.24"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -2447,7 +2447,7 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.19"/>
+              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.20"/>
           <diagramNode
               href="activityDiagram.gmfgraph#StructuredActivityNode"/>
           <compartments>
@@ -2486,7 +2486,7 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.20"/>
+              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.21"/>
           <diagramNode
               href="activityDiagram.gmfgraph#StructuredActivityNode"/>
           <children
@@ -2515,7 +2515,7 @@
               </domainInitializer>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.27"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.28"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#ExpansionNode"/>
             </ownedChild>
@@ -2546,7 +2546,7 @@
               </domainInitializer>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.28"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.29"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#ExpansionNode"/>
             </ownedChild>
@@ -2587,7 +2587,7 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.21"/>
+              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.22"/>
           <diagramNode
               href="activityDiagram.gmfgraph#StructuredActivityNode"/>
           <compartments>
@@ -2626,7 +2626,7 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.22"/>
+              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.23"/>
           <diagramNode
               href="activityDiagram.gmfgraph#StructuredActivityNode"/>
           <compartments>
@@ -2764,9 +2764,80 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.39"/>
+              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.40"/>
           <diagramNode
               href="../../org.eclipse.papyrus.diagram.common/model/Comment.gmfgraph#CornerBentNode"/>
+        </ownedChild>
+      </children>
+      <children
+          referencedChild="//@nodes.0/@ownedChild/@children.35/@ownedChild">
+        <containmentFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/node"/>
+        <childrenFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/node"/>
+        <ownedChild
+            relatedDiagrams="//@diagram">
+          <domainMetaElement
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReadSelfAction"/>
+          <domainInitializer
+              xsi:type="gmfmap:FeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfmap:FeatureValueSpec">
+              <feature
+                  xsi:type="ecore:EAttribute"
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+              <value
+                  body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"
+                  language="java"/>
+            </initializers>
+          </domainInitializer>
+          <labelMappings>
+            <diagramLabel
+                href="../../org.eclipse.papyrus.diagram.common/model/Action.gmfgraph#ActionFigureNameDiagramLabel"/>
+          </labelMappings>
+          <tool
+              xsi:type="gmftool:CreationTool"
+              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.19"/>
+          <diagramNode
+              href="../../org.eclipse.papyrus.diagram.common/model/Action.gmfgraph#ActionFigureNode"/>
+          <children
+              referencedChild="//@nodes.0/@ownedChild/@children.35/@ownedChild/@children.0/@ownedChild">
+            <containmentFeature
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CallAction/result"/>
+            <childrenFeature
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CallAction/result"/>
+            <ownedChild
+                relatedDiagrams="//@diagram">
+              <domainMetaElement
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//OutputPin"/>
+              <domainInitializer
+                  xsi:type="gmfmap:FeatureSeqInitializer">
+                <initializers
+                    xsi:type="gmfmap:FeatureValueSpec">
+                  <feature
+                      xsi:type="ecore:EAttribute"
+                      href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+                  <value
+                      body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"
+                      language="java"/>
+                </initializers>
+              </domainInitializer>
+              <labelMappings>
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#PinName"/>
+              </labelMappings>
+              <labelMappings
+                  readOnly="true">
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
+              </labelMappings>
+              <tool
+                  xsi:type="gmftool:CreationTool"
+                  href="activityDiagram.gmftool#//@palette/@tools.0/@tools.24"/>
+              <diagramNode
+                  href="activityDiagram.gmfgraph#PinNode"/>
+            </ownedChild>
+          </children>
         </ownedChild>
       </children>
       <compartments
