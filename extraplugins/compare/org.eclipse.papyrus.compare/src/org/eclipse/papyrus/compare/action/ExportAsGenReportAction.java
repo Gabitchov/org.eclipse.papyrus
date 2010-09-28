@@ -7,9 +7,12 @@ import java.util.List;
 import org.eclipse.emf.compare.diff.metamodel.ComparisonSnapshot;
 import org.eclipse.emf.compare.ui.export.IExportAction;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.papyrus.compare.Activator;
 import org.eclipse.papyrus.compare.report.ui.common.GenerateAll;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 
@@ -36,7 +39,13 @@ public class ExportAsGenReportAction implements IExportAction {
 	}
 
 	public void exportSnapshot(ComparisonSnapshot snapshot) {
-		GenerateAll generator = new GenerateAll(snapshot, null, getArguments());
+		final ExportAsHTMLWizard wizard = new ExportAsHTMLWizard();
+		final IWorkbench workbench = PlatformUI.getWorkbench();
+		
+		wizard.init(workbench, snapshot);
+		final WizardDialog dialog = new WizardDialog(workbench.getActiveWorkbenchWindow().getShell(), wizard);
+		dialog.open();
+
 	}
 
 	public Image getDisabledImage() {
@@ -47,10 +56,4 @@ public class ExportAsGenReportAction implements IExportAction {
 		return myImage;
 	}
 	
-	protected List<? extends Object> getArguments() {
-		return new ArrayList<String>();
-	}
-
-
-
 }
