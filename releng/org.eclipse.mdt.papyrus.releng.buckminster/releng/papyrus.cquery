@@ -3,5 +3,5 @@
 	<cq:rootRequest name="org.eclipse.papyrus.build" componentType="eclipse.feature"/>
 
 	<cq:advisorNode namePattern="^org\.eclipse\.papyrus(?:\..*)?\.source$" skipComponent="true"/>
-	<cq:advisorNode namePattern="^org\.eclipse\.mdt\.papyrus\.releng\.buckminster$" useMaterialization="false" useWorkspace="true"/>
+	<cq:advisorNode namePattern="^org\.eclipse\.mdt\.papyrus\.releng\.buckminster$" useMaterialization="false" useWorkspace="false"/>
 </cq:componentQuery>
