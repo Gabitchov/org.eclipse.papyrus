@@ -56,7 +56,7 @@
           compartments="/0/@diagram/@compartments.0"
           graphicalNodeEditPolicyClassName="RegionGraphicalNodeEditPolicy"
           createCommandClassName="RegionCreateCommand"
-          containers="/0/@diagram/@compartments.1">
+          containers="/0/@diagram/@compartments.1 /0/@diagram/@compartments.2 /0/@diagram/@childNodes.2">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -194,6 +194,8 @@
           editPartClassName="StateEditPart"
           itemSemanticEditPolicyClassName="StateItemSemanticEditPolicy"
           canonicalEditPolicyClassName="StateCanonicalEditPolicy"
+          childNodes="/0/@diagram/@childNodes.0 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13"
+          compartments="/0/@diagram/@compartments.2"
           graphicalNodeEditPolicyClassName="StateGraphicalNodeEditPolicy"
           createCommandClassName="StateCreateCommand"
           containers="/0/@diagram/@compartments.0">
@@ -215,6 +217,30 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.statemachine.custom.policies.CustomStateLayoutEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.statemachine.custom.policies.CustomStateMachineDiagramDragDropEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideCompartmentEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.statemachine.custom.policies.CustomStateCreationEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.AffixedNodeAlignmentEditPolicy.AFFIXED_CHILD_ALIGNMENT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AffixedNodeAlignmentEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.statemachine.custom.policies.CustomStateItemSemanticEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/State"/>
@@ -331,7 +357,7 @@
             xsi:type="gmfgen:GenExternalNodeLabel"
             visualID="8002"
             editPartClassName="PseudostateInitialStereotypeEditPart"
-            itemSemanticEditPolicyClassName="PseudostateInitialStereotypelItemSemanticEditPolicy">
+            itemSemanticEditPolicyClassName="PseudostateInitialStereotypeltemSemanticEditPolicy">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -435,7 +461,7 @@
             xsi:type="gmfgen:GenExternalNodeLabel"
             visualID="9002"
             editPartClassName="PseudostateJoinStereotypeEditPart"
-            itemSemanticEditPolicyClassName="PseudostateJoinStereotypelItemSemanticEditPolicy">
+            itemSemanticEditPolicyClassName="PseudostateJoinStereotypeItemSemanticEditPolicy">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -539,7 +565,7 @@
             xsi:type="gmfgen:GenExternalNodeLabel"
             visualID="10002"
             editPartClassName="PseudostateForkStereotypeEditPart"
-            itemSemanticEditPolicyClassName="PseudostateForkStereotypelItemSemanticEditPolicy">
+            itemSemanticEditPolicyClassName="PseudostateForkStereotypeltemSemanticEditPolicy">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -643,7 +669,7 @@
             xsi:type="gmfgen:GenExternalNodeLabel"
             visualID="11002"
             editPartClassName="PseudostateChoiceStereotypeEditPart"
-            itemSemanticEditPolicyClassName="PseudostateChoiceStereotypelItemSemanticEditPolicy">
+            itemSemanticEditPolicyClassName="PseudostateChoiceStereotypeItemSemanticEditPolicy">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -747,7 +773,7 @@
             xsi:type="gmfgen:GenExternalNodeLabel"
             visualID="12002"
             editPartClassName="PseudostateJunctionStereotypeEditPart"
-            itemSemanticEditPolicyClassName="PseudostateJunctionStereotypelItemSemanticEditPolicy">
+            itemSemanticEditPolicyClassName="PseudostateJunctionStereotypeItemSemanticEditPolicy">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -851,7 +877,7 @@
             xsi:type="gmfgen:GenExternalNodeLabel"
             visualID="13002"
             editPartClassName="PseudostateShallowHistoryStereotypeEditPart"
-            itemSemanticEditPolicyClassName="PseudostateShallowHistoryStereotypelItemSemanticEditPolicy">
+            itemSemanticEditPolicyClassName="PseudostateShallowHistoryStereotypeItemSemanticEditPolicy">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -955,7 +981,7 @@
             xsi:type="gmfgen:GenExternalNodeLabel"
             visualID="14002"
             editPartClassName="PseudostateDeepHistoryStereotypeEditPart"
-            itemSemanticEditPolicyClassName="PseudostateDeepHistoryStereotypelItemSemanticEditPolicy">
+            itemSemanticEditPolicyClassName="PseudostateDeepHistoryStereotypeItemSemanticEditPolicy">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -1060,7 +1086,7 @@
             xsi:type="gmfgen:GenExternalNodeLabel"
             visualID="15002"
             editPartClassName="PseudostateTerminateStereotypeEditPart"
-            itemSemanticEditPolicyClassName="PseudostateTerminateStereotypelItemSemanticEditPolicy">
+            itemSemanticEditPolicyClassName="PseudostateTerminateStereotypeItemSemanticEditPolicy">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -1093,7 +1119,7 @@
           canonicalEditPolicyClassName="PseudostateEntryPointCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="PseudostateEntryPointNodeGraphicalNodeEditPolicy"
           createCommandClassName="PseudostateEntryPointCreateCommand"
-          containers="/0/@diagram/@topLevelNodes.0 /0/@diagram/@compartments.0 /0/@diagram/@compartments.1">
+          containers="/0/@diagram/@topLevelNodes.0 /0/@diagram/@compartments.0 /0/@diagram/@compartments.1 /0/@diagram/@childNodes.2">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -1168,7 +1194,7 @@
             xsi:type="gmfgen:GenExternalNodeLabel"
             visualID="16002"
             editPartClassName="PseudostateEntryPointStereotypeEditPart"
-            itemSemanticEditPolicyClassName="PseudostateEntryPointStereotypelItemSemanticEditPolicy">
+            itemSemanticEditPolicyClassName="PseudostateEntryPointStereotypeltemSemanticEditPolicy">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -1201,7 +1227,7 @@
           canonicalEditPolicyClassName="PseudostateExitPointCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="PseudostateExitPointNodeGraphicalNodeEditPolicy"
           createCommandClassName="PseudostateExitPointCreateCommand"
-          containers="/0/@diagram/@compartments.0 /0/@diagram/@compartments.1 /0/@diagram/@topLevelNodes.0">
+          containers="/0/@diagram/@compartments.0 /0/@diagram/@compartments.1 /0/@diagram/@topLevelNodes.0 /0/@diagram/@childNodes.2">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -1276,7 +1302,108 @@
             xsi:type="gmfgen:GenExternalNodeLabel"
             visualID="17002"
             editPartClassName="PseudostateExitPointStereotypeEditPart"
-            itemSemanticEditPolicyClassName="PseudostateExitPointStereotypelItemSemanticEditPolicy">
+            itemSemanticEditPolicyClassName="PseudostateExitPointStereotypeItemSemanticEditPolicy">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.AppliedStereotypeWrappingLabelFigure">
+            <attributes
+                xsi:type="gmfgen:LabelOffsetAttributes"
+                x="25"
+                y="-10"/>
+          </viewmap>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeExternalNodeEditPolicy"/>
+          <modelFacet
+              xsi:type="gmfgen:FeatureLabelModelFacet"
+              parser="/0/@labelParsers/@implementations.1"
+              editorPattern="&lt;&lt;0>>"
+              editPattern="&lt;&lt;0>>">
+            <metaFeatures
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+          </modelFacet>
+        </labels>
+      </childNodes>
+      <childNodes
+          xsi:type="gmfgen:GenChildSideAffixedNode"
+          visualID="18000"
+          editPartClassName="ConnectionPointReferenceEditPart"
+          itemSemanticEditPolicyClassName="ConnectionPointReferenceItemSemanticEditPolicy"
+          canonicalEditPolicyClassName="ConnectionPointReferenceCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="ConnectionPointReferenceNodeGraphicalNodeEditPolicy"
+          createCommandClassName="ConnectionPointReferenceCreateCommand"
+          containers="/0/@diagram/@childNodes.2 /0/@diagram/@compartments.2">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <elementType
+            xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.diagram.statemachine.ConnectionPointReference_18000"
+            displayName="ConnectionPointReference"
+            editHelperClassName="ConnectionPointReferenceEditHelper"/>
+        <viewmap
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.statemachine.custom.figures.ConnectionPointReferenceFigure">
+          <attributes
+              xsi:type="gmfgen:DefaultSizeAttributes"
+              width="4"
+              height="4"/>
+        </viewmap>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy"/>
+        <modelFacet>
+          <metaClass
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ConnectionPointReference"/>
+          <containmentMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/State/connection"/>
+          <childMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/State/connection"/>
+          <modelElementInitializer
+              xsi:type="gmfgen:GenFeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.0/@expressions.0">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+            </initializers>
+          </modelElementInitializer>
+        </modelFacet>
+        <labels
+            xsi:type="gmfgen:GenExternalNodeLabel"
+            visualID="18001"
+            editPartClassName="ConnectionPointReferenceNameEditPart"
+            itemSemanticEditPolicyClassName="ConnectionPointReferenceNameItemSemanticEditPolicy">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+            <attributes
+                xsi:type="gmfgen:LabelOffsetAttributes"
+                x="25"
+                y="3"/>
+          </viewmap>
+          <modelFacet
+              xsi:type="gmfgen:FeatureLabelModelFacet"
+              parser="/0/@labelParsers/@implementations.0"
+              viewPattern="">
+            <metaFeatures
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+          </modelFacet>
+        </labels>
+        <labels
+            xsi:type="gmfgen:GenExternalNodeLabel"
+            visualID="18002"
+            editPartClassName="ConnectionPointReferenceStereotypeEditPart"
+            itemSemanticEditPolicyClassName="ConnectionPointReferenceItemSemanticEditPolicy">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -1531,6 +1658,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.statemachine.custom.policies.CustomStateMachineDiagramDragDropEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.statemachine.custom.policies.CustomRegionCompartmentXYLayoutEditPolicy"/>
       </compartments>
       <compartments
           visualID="2002"
@@ -1562,6 +1693,41 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.statemachine.custom.policies.CustomStateMachineDiagramDragDropEditPolicy"/>
+      </compartments>
+      <compartments
+          visualID="6002"
+          editPartClassName="StateCompartmentEditPart"
+          itemSemanticEditPolicyClassName="StateCompartmentItemSemanticEditPolicy"
+          canonicalEditPolicyClassName="StateCompartmentCanonicalEditPolicy"
+          childNodes="/0/@diagram/@childNodes.0 /0/@diagram/@childNodes.13"
+          title="StateCompartment"
+          canCollapse="false"
+          hideIfEmpty="false"
+          needsTitle="false"
+          node="/0/@diagram/@childNodes.2"
+          listLayout="false">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:ParentAssignedViewmap"
+            getterName="getStateCompartmentFigure"
+            figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RemoveOrphanView&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.statemachine.custom.policies.RemoveOrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.statemachine.custom.policies.CustomStateCompartmentXYLayoutEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.statemachine.custom.policies.CustomStateMachineDiagramDragDropEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.statemachine.custom.policies.CustomStateCompartmentCreationEditPolicy"/>
       </compartments>
       <palette>
         <groups
@@ -1675,6 +1841,14 @@
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_terminate.gif"
               createMethodName="createTerminateCreationTool"
               genNodes="/0/@diagram/@childNodes.10"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="ConnectionPointReference"
+              description="ConnectionPointReference"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConnectionPointReference.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConnectionPointReference.gif"
+              createMethodName="createConnectionPointReferenceCreationTool"
+              genNodes="/0/@diagram/@childNodes.13"/>
         </groups>
         <groups
             title="Edges"
@@ -1848,10 +2022,10 @@
         extensibleViaService="true">
       <implementations
           xsi:type="gmfgen:PredefinedParser"
-          uses="/0/@diagram/@topLevelNodes.0/@labels.0/@modelFacet /0/@diagram/@childNodes.2/@labels.0/@modelFacet /0/@diagram/@childNodes.1/@labels.0/@modelFacet /0/@diagram/@links.0/@labels.0/@modelFacet /0/@diagram/@childNodes.3/@labels.0/@modelFacet /0/@diagram/@childNodes.4/@labels.0/@modelFacet /0/@diagram/@childNodes.5/@labels.0/@modelFacet /0/@diagram/@childNodes.6/@labels.0/@modelFacet /0/@diagram/@childNodes.7/@labels.0/@modelFacet /0/@diagram/@childNodes.8/@labels.0/@modelFacet /0/@diagram/@childNodes.9/@labels.0/@modelFacet /0/@diagram/@childNodes.10/@labels.0/@modelFacet /0/@diagram/@childNodes.11/@labels.0/@modelFacet /0/@diagram/@childNodes.12/@labels.0/@modelFacet"/>
+          uses="/0/@diagram/@topLevelNodes.0/@labels.0/@modelFacet /0/@diagram/@childNodes.2/@labels.0/@modelFacet /0/@diagram/@childNodes.1/@labels.0/@modelFacet /0/@diagram/@links.0/@labels.0/@modelFacet /0/@diagram/@childNodes.3/@labels.0/@modelFacet /0/@diagram/@childNodes.4/@labels.0/@modelFacet /0/@diagram/@childNodes.5/@labels.0/@modelFacet /0/@diagram/@childNodes.6/@labels.0/@modelFacet /0/@diagram/@childNodes.7/@labels.0/@modelFacet /0/@diagram/@childNodes.8/@labels.0/@modelFacet /0/@diagram/@childNodes.9/@labels.0/@modelFacet /0/@diagram/@childNodes.10/@labels.0/@modelFacet /0/@diagram/@childNodes.11/@labels.0/@modelFacet /0/@diagram/@childNodes.12/@labels.0/@modelFacet /0/@diagram/@childNodes.13/@labels.0/@modelFacet"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@links.0/@labels.2/@modelFacet /0/@diagram/@childNodes.1/@labels.1/@modelFacet /0/@diagram/@childNodes.3/@labels.1/@modelFacet /0/@diagram/@childNodes.4/@labels.1/@modelFacet /0/@diagram/@childNodes.5/@labels.1/@modelFacet /0/@diagram/@childNodes.6/@labels.1/@modelFacet /0/@diagram/@childNodes.7/@labels.1/@modelFacet /0/@diagram/@childNodes.8/@labels.1/@modelFacet /0/@diagram/@childNodes.9/@labels.1/@modelFacet /0/@diagram/@childNodes.10/@labels.1/@modelFacet /0/@diagram/@childNodes.11/@labels.1/@modelFacet /0/@diagram/@childNodes.12/@labels.1/@modelFacet"
+          uses="/0/@diagram/@links.0/@labels.2/@modelFacet /0/@diagram/@childNodes.1/@labels.1/@modelFacet /0/@diagram/@childNodes.3/@labels.1/@modelFacet /0/@diagram/@childNodes.4/@labels.1/@modelFacet /0/@diagram/@childNodes.5/@labels.1/@modelFacet /0/@diagram/@childNodes.6/@labels.1/@modelFacet /0/@diagram/@childNodes.7/@labels.1/@modelFacet /0/@diagram/@childNodes.8/@labels.1/@modelFacet /0/@diagram/@childNodes.9/@labels.1/@modelFacet /0/@diagram/@childNodes.10/@labels.1/@modelFacet /0/@diagram/@childNodes.11/@labels.1/@modelFacet /0/@diagram/@childNodes.12/@labels.1/@modelFacet /0/@diagram/@childNodes.13/@labels.1/@modelFacet"
           qualifiedName="org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
@@ -1882,18 +2056,18 @@
         xsi:type="papyrusgmfgenextension:SpecificLocatorExternalLabel"
         comment="External node label locator"
         classpath="org.eclipse.papyrus.diagram.common.locator.ExternalLabelPositionLocator"
-        genExternalNodeLabel="/0/@diagram/@childNodes.1/@labels.1 /0/@diagram/@childNodes.3/@labels.1 /0/@diagram/@childNodes.4/@labels.1 /0/@diagram/@childNodes.5/@labels.1 /0/@diagram/@childNodes.6/@labels.1 /0/@diagram/@childNodes.7/@labels.1 /0/@diagram/@childNodes.8/@labels.1 /0/@diagram/@childNodes.9/@labels.1 /0/@diagram/@childNodes.10/@labels.1 /0/@diagram/@childNodes.11/@labels.1 /0/@diagram/@childNodes.1/@labels.0 /0/@diagram/@childNodes.3/@labels.0 /0/@diagram/@childNodes.4/@labels.0 /0/@diagram/@childNodes.5/@labels.0 /0/@diagram/@childNodes.6/@labels.0 /0/@diagram/@childNodes.7/@labels.0 /0/@diagram/@childNodes.8/@labels.0 /0/@diagram/@childNodes.9/@labels.0 /0/@diagram/@childNodes.10/@labels.0 /0/@diagram/@childNodes.11/@labels.0 /0/@diagram/@childNodes.12/@labels.0"/>
+        genExternalNodeLabel="/0/@diagram/@childNodes.1/@labels.1 /0/@diagram/@childNodes.3/@labels.1 /0/@diagram/@childNodes.4/@labels.1 /0/@diagram/@childNodes.5/@labels.1 /0/@diagram/@childNodes.6/@labels.1 /0/@diagram/@childNodes.7/@labels.1 /0/@diagram/@childNodes.8/@labels.1 /0/@diagram/@childNodes.9/@labels.1 /0/@diagram/@childNodes.10/@labels.1 /0/@diagram/@childNodes.11/@labels.1 /0/@diagram/@childNodes.1/@labels.0 /0/@diagram/@childNodes.3/@labels.0 /0/@diagram/@childNodes.4/@labels.0 /0/@diagram/@childNodes.5/@labels.0 /0/@diagram/@childNodes.6/@labels.0 /0/@diagram/@childNodes.7/@labels.0 /0/@diagram/@childNodes.8/@labels.0 /0/@diagram/@childNodes.9/@labels.0 /0/@diagram/@childNodes.10/@labels.0 /0/@diagram/@childNodes.11/@labels.0 /0/@diagram/@childNodes.12/@labels.0 /0/@diagram/@childNodes.13/@labels.0"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="Manages stereotype shown with External Label"
-        genView="/0/@diagram/@childNodes.1/@labels.1 /0/@diagram/@childNodes.3/@labels.1 /0/@diagram/@childNodes.4/@labels.1 /0/@diagram/@childNodes.5/@labels.1 /0/@diagram/@childNodes.6/@labels.1 /0/@diagram/@childNodes.7/@labels.1 /0/@diagram/@childNodes.8/@labels.1 /0/@diagram/@childNodes.9/@labels.1 /0/@diagram/@childNodes.10/@labels.1 /0/@diagram/@childNodes.11/@labels.1 /0/@diagram/@childNodes.12/@labels.1"
+        genView="/0/@diagram/@childNodes.1/@labels.1 /0/@diagram/@childNodes.3/@labels.1 /0/@diagram/@childNodes.4/@labels.1 /0/@diagram/@childNodes.5/@labels.1 /0/@diagram/@childNodes.6/@labels.1 /0/@diagram/@childNodes.7/@labels.1 /0/@diagram/@childNodes.8/@labels.1 /0/@diagram/@childNodes.9/@labels.1 /0/@diagram/@childNodes.10/@labels.1 /0/@diagram/@childNodes.11/@labels.1 /0/@diagram/@childNodes.12/@labels.1 /0/@diagram/@childNodes.13/@labels.1"
         name="EP_Stereotypes_EXT_NODE"
         superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.AbstractLabelEditPart"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:SpecificLocator"
-        comment="Affixed EntryExitPoints Locator"
+        comment="Affixed EntryExitPoints ConnectionPointReferences Locator"
         classpath="org.eclipse.papyrus.diagram.statemachine.custom.locators.CustomEntryExitPointPositionLocator"
-        genChildSideAffixedNode="/0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12"/>
+        genChildSideAffixedNode="/0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:SpecificDiagramUpdater"
         comment="Region compartment custom DiagramUpdater"
@@ -1902,7 +2076,7 @@
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="Manage named element figure relying on Affixed Node"
-        genView="/0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12"
+        genView="/0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13"
         name="EP_NamedElement_AFF_NODE"
         superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.AbstractBorderEditPart"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>

@@ -83,6 +83,11 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
+	private final static String CREATECONNECTIONPOINTREFERENCECREATIONTOOL = "createConnectionPointReferenceCreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	private final static String CREATETRANSITIONCREATIONTOOL = "createTransitionCreationTool"; //$NON-NLS-1$
 
 	/**
@@ -238,6 +243,17 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
+	private Tool createConnectionPointReferenceCreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.ConnectionPointReference_18000);
+
+		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
 	public Tool createTool(String toolId) {
 		if (toolId.equals(CREATEREGIONCREATIONTOOL)) {
 			return createRegionCreationTool();
@@ -277,6 +293,9 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		}
 		if (toolId.equals(CREATETERMINATECREATIONTOOL)) {
 			return createTerminateCreationTool();
+		}
+		if (toolId.equals(CREATECONNECTIONPOINTREFERENCECREATIONTOOL)) {
+			return createConnectionPointReferenceCreationTool();
 		}
 		if (toolId.equals(CREATETRANSITIONCREATIONTOOL)) {
 			return createTransitionCreationTool();

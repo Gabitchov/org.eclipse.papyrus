@@ -250,6 +250,9 @@ AbstractBorderedShapeEditPart {
 		if (targetEditPart instanceof PseudostateExitPointEditPart) {
 			types.add(UMLElementTypes.Transition_7000);
 		}
+		if (targetEditPart instanceof ConnectionPointReferenceEditPart) {
+			types.add(UMLElementTypes.Transition_7000);
+		}
 		return types;
 	}
 
@@ -280,6 +283,7 @@ AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.Pseudostate_15000);
 			types.add(UMLElementTypes.Pseudostate_16000);
 			types.add(UMLElementTypes.Pseudostate_17000);
+			types.add(UMLElementTypes.ConnectionPointReference_18000);
 		}
 		return types;
 	}
@@ -302,6 +306,7 @@ AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.Pseudostate_15000);
 			types.add(UMLElementTypes.Pseudostate_16000);
 			types.add(UMLElementTypes.Pseudostate_17000);
+			types.add(UMLElementTypes.ConnectionPointReference_18000);
 		}
 		return types;
 	}

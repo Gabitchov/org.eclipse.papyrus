@@ -5,6 +5,7 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
@@ -16,6 +17,7 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.editpolicies.DuplicatePasteEditPolicy;
 import org.eclipse.papyrus.diagram.statemachine.custom.policies.CustomRegionCompartmentCreationEditPolicy;
+import org.eclipse.papyrus.diagram.statemachine.custom.policies.CustomRegionCompartmentXYLayoutEditPolicy;
 import org.eclipse.papyrus.diagram.statemachine.custom.policies.CustomStateMachineDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.diagram.statemachine.custom.policies.RemoveOrphanViewPolicy;
 import org.eclipse.papyrus.diagram.statemachine.edit.policies.RegionCompartmentItemSemanticEditPolicy;
@@ -64,6 +66,8 @@ extends ShapeCompartmentEditPart
 				new CustomRegionCompartmentCreationEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE,
 				new CustomStateMachineDiagramDragDropEditPolicy());
+		installEditPolicy(EditPolicy.LAYOUT_ROLE,
+				new CustomRegionCompartmentXYLayoutEditPolicy());
 	}
 
 	/**

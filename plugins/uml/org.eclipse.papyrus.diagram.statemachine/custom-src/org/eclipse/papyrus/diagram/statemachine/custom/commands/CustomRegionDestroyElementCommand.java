@@ -1,7 +1,12 @@
 package org.eclipse.papyrus.diagram.statemachine.custom.commands;
 
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.uml2.uml.State;
 import org.eclipse.uml2.uml.StateMachine;
 
 /*
@@ -17,11 +22,26 @@ public class CustomRegionDestroyElementCommand extends DestroyElementCommand {
 	@Override
 	public boolean canExecute() {
 		if(super.canExecute()) {
-			StateMachine stateMachine = (StateMachine)getElementToEdit();
-			if(stateMachine.getRegions().size() == 1)
-				return false;
+			if(getElementToEdit() instanceof StateMachine){
+				StateMachine stateMachine = (StateMachine)getElementToEdit();
+				if(stateMachine.getRegions().size() == 1)
+					return false;
+				return true;
+			}
 			return true;
+//			else if(getElementToEdit() instanceof State){
+//				State state = (State)getElementToEdit();
+//				if(state.getRegions().size() == 1)
+//					return false;
+//				return true;
+//			}
 		}
 		return false;
+	}
+	
+	@Override
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		// TODO Auto-generated method stub
+		return super.doExecuteWithResult(monitor, info);
 	}
 }

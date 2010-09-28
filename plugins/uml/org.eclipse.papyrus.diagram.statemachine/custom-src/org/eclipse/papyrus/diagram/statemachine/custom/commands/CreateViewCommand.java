@@ -19,7 +19,6 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CreateCommand;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.uml2.uml.CombinedFragment;
 
 public class CreateViewCommand extends CreateCommand {
 

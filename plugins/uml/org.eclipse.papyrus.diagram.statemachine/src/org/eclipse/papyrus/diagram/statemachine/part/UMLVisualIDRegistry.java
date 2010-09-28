@@ -7,6 +7,9 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.providers.BaseViewInfo;
 import org.eclipse.papyrus.diagram.common.providers.ViewInfo;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConnectionPointReferenceEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConnectionPointReferenceNameEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConnectionPointReferenceStereotypeEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateNameEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateStereotypeEditPart;
@@ -43,6 +46,7 @@ import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateTerminateN
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateTerminateStereotypeEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionCompartmentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateCompartmentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineCompartmentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineEditPart;
@@ -133,6 +137,21 @@ public class UMLVisualIDRegistry {
 			if (StateNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if (StateCompartmentEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (RegionEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (PseudostateEntryPointEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (PseudostateExitPointEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (ConnectionPointReferenceEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case PseudostateInitialEditPart.VISUAL_ID:
 			if (PseudostateInitialNameEditPart.VISUAL_ID == nodeVisualID) {
@@ -214,6 +233,14 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
+		case ConnectionPointReferenceEditPart.VISUAL_ID:
+			if (ConnectionPointReferenceNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (ConnectionPointReferenceStereotypeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		case RegionCompartmentEditPart.VISUAL_ID:
 			if (PseudostateInitialEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
@@ -260,6 +287,14 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if (PseudostateExitPointEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case StateCompartmentEditPart.VISUAL_ID:
+			if (RegionEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (ConnectionPointReferenceEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -381,6 +416,32 @@ public class UMLVisualIDRegistry {
 				return PseudostateExitPointEditPart.VISUAL_ID;
 			}
 			break;
+		case StateEditPart.VISUAL_ID:
+			if (UMLPackage.eINSTANCE.getRegion().isSuperTypeOf(
+					domainElement.eClass())
+
+			) {
+				return RegionEditPart.VISUAL_ID;
+			}
+			if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(
+					domainElement.eClass())
+					&& isPseudostate_16000(containerView,
+							(Pseudostate) domainElement)) {
+				return PseudostateEntryPointEditPart.VISUAL_ID;
+			}
+			if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(
+					domainElement.eClass())
+					&& isPseudostate_17000(containerView,
+							(Pseudostate) domainElement)) {
+				return PseudostateExitPointEditPart.VISUAL_ID;
+			}
+			if (UMLPackage.eINSTANCE.getConnectionPointReference()
+					.isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ConnectionPointReferenceEditPart.VISUAL_ID;
+			}
+			break;
 		case RegionCompartmentEditPart.VISUAL_ID:
 			if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(
 					domainElement.eClass())
@@ -475,6 +536,20 @@ public class UMLVisualIDRegistry {
 				return PseudostateExitPointEditPart.VISUAL_ID;
 			}
 			break;
+		case StateCompartmentEditPart.VISUAL_ID:
+			if (UMLPackage.eINSTANCE.getRegion().isSuperTypeOf(
+					domainElement.eClass())
+
+			) {
+				return RegionEditPart.VISUAL_ID;
+			}
+			if (UMLPackage.eINSTANCE.getConnectionPointReference()
+					.isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ConnectionPointReferenceEditPart.VISUAL_ID;
+			}
+			break;
 		}
 		return -1;
 	}
@@ -505,6 +580,10 @@ public class UMLVisualIDRegistry {
 		viewInfo = new BaseViewInfo(3000, ViewInfo.Node, "Region");
 
 		root.addNode(2002, viewInfo);
+
+		root.addNode(6002, viewInfo);
+
+		root.addNode(6000, viewInfo);
 
 		viewInfo = new BaseViewInfo(5000, ViewInfo.Node, "FinalState");
 
@@ -554,6 +633,8 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(2002, viewInfo);
 
+		root.addNode(6000, viewInfo);
+
 		viewInfo = new BaseViewInfo(17000, ViewInfo.Node, "Pseudostate");
 
 		root.addNode(3002, viewInfo);
@@ -561,6 +642,15 @@ public class UMLVisualIDRegistry {
 		root.addNode(2002, viewInfo);
 
 		root.addNode(2000, viewInfo);
+
+		root.addNode(6000, viewInfo);
+
+		viewInfo = new BaseViewInfo(18000, ViewInfo.Node,
+				"ConnectionPointReference");
+
+		root.addNode(6000, viewInfo);
+
+		root.addNode(6002, viewInfo);
 
 		return root;
 	}

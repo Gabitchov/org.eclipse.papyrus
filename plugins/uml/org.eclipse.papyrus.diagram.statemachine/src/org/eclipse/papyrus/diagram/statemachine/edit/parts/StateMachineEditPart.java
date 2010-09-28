@@ -103,7 +103,7 @@ NamedElementEditPart {
 			return true;
 		}
 
-		//Papyrus Gencode :Affixed EntryExitPoints Locator
+		//Papyrus Gencode :Affixed EntryExitPoints ConnectionPointReferences Locator
 		if (childEditPart instanceof PseudostateEntryPointEditPart) {
 			IBorderItemLocator locator = new CustomEntryExitPointPositionLocator(
 					getMainFigure(), PositionConstants.NONE);
@@ -115,7 +115,7 @@ NamedElementEditPart {
 			return true;
 		}
 
-		//Papyrus Gencode :Affixed EntryExitPoints Locator
+		//Papyrus Gencode :Affixed EntryExitPoints ConnectionPointReferences Locator
 		if (childEditPart instanceof PseudostateExitPointEditPart) {
 			IBorderItemLocator locator = new CustomEntryExitPointPositionLocator(
 					getMainFigure(), PositionConstants.NONE);

@@ -297,11 +297,23 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case PseudostateExitPointStereotypeEditPart.VISUAL_ID:
 				return new PseudostateExitPointStereotypeEditPart(view);
 
+			case ConnectionPointReferenceEditPart.VISUAL_ID:
+				return new ConnectionPointReferenceEditPart(view);
+
+			case ConnectionPointReferenceNameEditPart.VISUAL_ID:
+				return new ConnectionPointReferenceNameEditPart(view);
+
+			case ConnectionPointReferenceStereotypeEditPart.VISUAL_ID:
+				return new ConnectionPointReferenceStereotypeEditPart(view);
+
 			case RegionCompartmentEditPart.VISUAL_ID:
 				return new RegionCompartmentEditPart(view);
 
 			case StateMachineCompartmentEditPart.VISUAL_ID:
 				return new StateMachineCompartmentEditPart(view);
+
+			case StateCompartmentEditPart.VISUAL_ID:
+				return new StateCompartmentEditPart(view);
 
 			case TransitionEditPart.VISUAL_ID:
 				return new TransitionEditPart(view);

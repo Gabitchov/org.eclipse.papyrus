@@ -40,6 +40,9 @@ import org.eclipse.gmf.runtime.notation.datatype.RelativeBendpoint;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConnectionPointReferenceEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConnectionPointReferenceNameEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConnectionPointReferenceStereotypeEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateNameEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateStereotypeEditPart;
@@ -76,6 +79,7 @@ import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateTerminateN
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateTerminateStereotypeEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionCompartmentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateCompartmentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineCompartmentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineEditPart;
@@ -272,6 +276,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		case PseudostateExitPointEditPart.VISUAL_ID:
 			return createPseudostate_17000(domainElement, containerView, index,
 					persisted, preferencesHint);
+		case ConnectionPointReferenceEditPart.VISUAL_ID:
+			return createConnectionPointReference_18000(domainElement,
+					containerView, index, persisted, preferencesHint);
 		}
 		// can't happen, provided #provides(CreateNodeViewOperation) is correct
 		return null;
@@ -663,6 +670,55 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
+	public Node createConnectionPointReference_18000(EObject domainElement,
+			View containerView, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry
+				.getType(ConnectionPointReferenceEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
+				.getPreferenceStore();
+
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node,
+				prefStore, "ConnectionPointReference");
+
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node,
+				prefStore, "ConnectionPointReference");
+
+		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node,
+				prefStore, "ConnectionPointReference");
+
+		Node label18001 = createLabel(
+				node,
+				UMLVisualIDRegistry
+						.getType(ConnectionPointReferenceNameEditPart.VISUAL_ID));
+		label18001.setLayoutConstraint(NotationFactory.eINSTANCE
+				.createLocation());
+
+		Location location18001 = (Location) label18001.getLayoutConstraint();
+		location18001.setX(25);
+		location18001.setY(3);
+		Node label18002 = createLabel(
+				node,
+				UMLVisualIDRegistry
+						.getType(ConnectionPointReferenceStereotypeEditPart.VISUAL_ID));
+		label18002.setLayoutConstraint(NotationFactory.eINSTANCE
+				.createLocation());
+
+		Location location18002 = (Location) label18002.getLayoutConstraint();
+		location18002.setX(25);
+		location18002.setY(-10);
+
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
 	public Node createPseudostate_8000(EObject domainElement,
 			View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
@@ -814,6 +870,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label6001 = createLabel(node,
 				UMLVisualIDRegistry.getType(StateNameEditPart.VISUAL_ID));
+		createCompartment(
+				node,
+				UMLVisualIDRegistry.getType(StateCompartmentEditPart.VISUAL_ID),
+				false, false, false, false);
+
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(
+				node, prefStore, "State");
 
 		return node;
 	}
@@ -1107,6 +1170,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				case PseudostateTerminateEditPart.VISUAL_ID:
 				case PseudostateEntryPointEditPart.VISUAL_ID:
 				case PseudostateExitPointEditPart.VISUAL_ID:
+				case ConnectionPointReferenceEditPart.VISUAL_ID:
 					if (domainElement == null
 							|| visualID != UMLVisualIDRegistry.getNodeVisualID(
 									op.getContainerView(), domainElement)) {
@@ -1131,7 +1195,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				|| PseudostateDeepHistoryEditPart.VISUAL_ID == visualID
 				|| PseudostateTerminateEditPart.VISUAL_ID == visualID
 				|| PseudostateEntryPointEditPart.VISUAL_ID == visualID
-				|| PseudostateExitPointEditPart.VISUAL_ID == visualID;
+				|| PseudostateExitPointEditPart.VISUAL_ID == visualID
+				|| ConnectionPointReferenceEditPart.VISUAL_ID == visualID;
 	}
 
 	/**

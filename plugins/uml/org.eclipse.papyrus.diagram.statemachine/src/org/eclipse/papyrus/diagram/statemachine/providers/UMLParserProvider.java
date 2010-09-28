@@ -14,6 +14,8 @@ import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser;
 import org.eclipse.papyrus.diagram.statemachine.custom.parsers.TransitionPropertiesParser;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConnectionPointReferenceNameEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConnectionPointReferenceStereotypeEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateNameEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateStereotypeEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateChoiceNameEditPart;
@@ -318,6 +320,10 @@ public class UMLParserProvider extends AbstractProvider implements
 			return getPseudostateName_17001Parser();
 		case PseudostateExitPointStereotypeEditPart.VISUAL_ID:
 			return getPseudostateName_17002Parser();
+		case ConnectionPointReferenceNameEditPart.VISUAL_ID:
+			return getConnectionPointReferenceName_18001Parser();
+		case ConnectionPointReferenceStereotypeEditPart.VISUAL_ID:
+			return getConnectionPointReferenceName_18002Parser();
 		case TransitionNameEditPart.VISUAL_ID:
 			return getTransitionName_7001Parser();
 		case TransitionGuardEditPart.VISUAL_ID:
@@ -510,6 +516,39 @@ public class UMLParserProvider extends AbstractProvider implements
 			pseudostateName_17002Parser = new AppliedStereotypeParser();
 		}
 		return pseudostateName_17002Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser connectionPointReferenceName_18001Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getConnectionPointReferenceName_18001Parser() {
+		if (connectionPointReferenceName_18001Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE
+					.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			connectionPointReferenceName_18001Parser = parser;
+		}
+		return connectionPointReferenceName_18001Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser connectionPointReferenceName_18002Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getConnectionPointReferenceName_18002Parser() {
+		if (connectionPointReferenceName_18002Parser == null) {
+			connectionPointReferenceName_18002Parser = new AppliedStereotypeParser();
+		}
+		return connectionPointReferenceName_18002Parser;
 	}
 
 	/**
