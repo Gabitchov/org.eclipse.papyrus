@@ -5,32 +5,29 @@
 # It then promotes the result of the build. The promote is not done from
 # Hudson because it does not have the necessary rights.
 
-lastPromoteFileN=/opt/public/modeling/mdt/modisco/lastPromoteRefN
-lastPromoteFileI=/opt/public/modeling/mdt/modisco/lastPromoteRefI
-promoteSignalN=/opt/public/modeling/mdt/modisco/modiscoBuildPromoteSignalN
-promoteSignalI=/opt/public/modeling/mdt/modisco/modiscoBuildPromoteSignalI
-promoteVersionN=/opt/public/modeling/mdt/modisco/modiscoBuildPromoteVersionN
-promoteVersionI=/opt/public/modeling/mdt/modisco/modiscoBuildPromoteVersionI
-promoteDirNameN=/opt/public/modeling/mdt/modisco/modiscoBuildPromoteDirNameN
-promoteDirNameI=/opt/public/modeling/mdt/modisco/modiscoBuildPromoteDirNameI
-logFile=/opt/public/modeling/mdt/modisco/log-cronPromote
-integrationTags=/opt/public/modeling/mdt/modisco/integrationTags
+lastPromoteFileN=/opt/public/modeling/mdt/papyrus/lastPromoteRefN
+lastPromoteFileI=/opt/public/modeling/mdt/papyrus/lastPromoteRefI
+promoteSignalN=/opt/public/modeling/mdt/papyrus/papyrusBuildPromoteSignalN
+promoteSignalI=/opt/public/modeling/mdt/papyrus/papyrusBuildPromoteSignalI
+promoteVersionN=/opt/public/modeling/mdt/papyrus/papyrusBuildPromoteVersionN
+promoteVersionI=/opt/public/modeling/mdt/papyrus/papyrusBuildPromoteVersionI
+promoteDirNameN=/opt/public/modeling/mdt/papyrus/papyrusBuildPromoteDirNameN
+promoteDirNameI=/opt/public/modeling/mdt/papyrus/papyrusBuildPromoteDirNameI
+logFile=/opt/public/modeling/mdt/papyrus/log-cronPromote
+integrationTags=/opt/public/modeling/mdt/papyrus/integrationTags
 
-updates_nightly=/home/data/httpd/download.eclipse.org/modeling/mdt/modisco/updates/nightly/
-updates_integration=/home/data/httpd/download.eclipse.org/modeling/mdt/modisco/updates/integration/
+updates_nightly=/home/data/httpd/download.eclipse.org/modeling/mdt/papyrus/updates/nightly/helios/
+updates_integration=/home/data/httpd/download.eclipse.org/modeling/mdt/papyrus/updates/integration/
 
+#HUDSON_METRICS=/opt/users/hudsonbuild/workspace/papyrus-nightly/metrics.html
+#DOWNLOAD_METRICS=/home/data/httpd/download.eclipse.org/modeling/mdt/papyrus/metrics.html
+DOWNLOAD_ITAGS=/home/data/httpd/download.eclipse.org/modeling/mdt/papyrus/integrationTags
+PROMO_LOGS_DIR=/opt/public/modeling/mdt/papyrus/promo_logs
+DROPS_DIR=/home/data/httpd/download.eclipse.org/modeling/mdt/papyrus/downloads/drops
+BUILD_LOC_N=/opt/public/modeling/mdt/papyrus/lastSuccessfulBuildN
+BUILD_LOC_I=/opt/public/modeling/mdt/papyrus/lastSuccessfulBuildI
 
-#ANT=/opt/public/common/apache-ant-1.7.1/bin/ant
-#RELENG_DIR=/opt/users/hudsonbuild/.hudson/jobs/cbi-modisco-nightly/workspace/build/org.eclipse.modisco.releng
-HUDSON_METRICS=/opt/users/hudsonbuild/workspace/modisco-nightly/metrics.html
-DOWNLOAD_METRICS=/home/data/httpd/download.eclipse.org/modeling/mdt/modisco/metrics.html
-DOWNLOAD_ITAGS=/home/data/httpd/download.eclipse.org/modeling/mdt/modisco/integrationTags
-PROMO_LOGS_DIR=/opt/public/modeling/mdt/modisco/promo_logs
-DROPS_DIR=/home/data/httpd/download.eclipse.org/modeling/mdt/modisco/downloads/drops
-BUILD_LOC_N=/opt/public/modeling/mdt/modisco/lastSuccessfulBuildN
-BUILD_LOC_I=/opt/public/modeling/mdt/modisco/lastSuccessfulBuildI
-
-ADD_DOWNLOAD_STATS=/opt/public/modeling/mdt/modisco/addDownloadStats.sh
+#ADD_DOWNLOAD_STATS=/opt/public/modeling/mdt/papyrus/addDownloadStats.sh
 
 DATE=`date +%Y%m%d-%H%M`
 
@@ -81,7 +78,7 @@ if [ $signalDateN -gt $lastPromoteDateN ]; then
         cd $BUILD_LOC_N
         zipName=$(cat $promoteSignalN).zip
         # see http://wiki.hudson-ci.org/display/HUDSON/Remote+access+API
-        wget --no-check-certificate "https://hudson.eclipse.org/hudson/job/modisco-nightly/lastSuccessfulBuild/artifact/${zipName}"
+        wget --no-check-certificate "https://hudson.eclipse.org/hudson/job/cbi-papyrus-0.7-nightly/lastSuccessfulBuild/artifact/${zipName}"
         if [ ! -f $zipName ]; then echo "ERROR:$zipName (from Hudson) not found"; exit -2; fi
         VERSION=$(cat $promoteVersionN)
         if [ -z "$VERSION" ]; then echo "ERROR:version not found"; exit -2; fi
@@ -93,13 +90,9 @@ if [ $signalDateN -gt $lastPromoteDateN ]; then
         # extract the zip in which there is the update site zip to a tmp dir
         tmpDrop=$(mktemp -d)
         unzip $zipName -d $tmpDrop
-        unzip -o $tmpDrop/?20*/MODISCO-Update-*.zip -d $updates_nightly
-        cp index.php $updates_nightly/
-        $ADD_DOWNLOAD_STATS $updates_nightly
+        unzip -o $tmpDrop/?20*/mdt-papyrus-Update-*.zip -d $updates_nightly
         chmod -R 755 $BUILDS_DIR
         chmod -R 755 $updates_nightly
-        #cp -f $HUDSON_METRICS $DOWNLOAD_METRICS
-        #cp -f /opt/users/hudsonbuild/.hudson/jobs/cbi-modisco-nightly/workspace/build/org.eclipse.modisco.releng/psfs/infrastructure.subversive.psf /home/data/httpd/download.eclipse.org/modeling/mdt/modisco/modisco.psf
         echo "$DATE: done" >> $logFile
         trimLog
 fi
@@ -112,7 +105,7 @@ if [ $signalDateI -gt $lastPromoteDateI ]; then
         cd $BUILD_LOC_I
         zipName=$(cat $promoteSignalI).zip
         # see http://wiki.hudson-ci.org/display/HUDSON/Remote+access+API
-        wget --no-check-certificate "https://hudson.eclipse.org/hudson/job/modisco-integration/lastSuccessfulBuild/artifact/${zipName}"
+        wget --no-check-certificate "https://hudson.eclipse.org/hudson/job/papyrus-integration/lastSuccessfulBuild/artifact/${zipName}"
         if [ ! -f $zipName ]; then echo "ERROR:$zipName (from Hudson) not found"; exit -2; fi
         VERSION=$(cat $promoteVersionI)
         if [ -z "$VERSION" ]; then echo "ERROR:version not found"; exit -2; fi
@@ -125,13 +118,11 @@ if [ $signalDateI -gt $lastPromoteDateI ]; then
         # extract the zip in which there is the update site zip to a tmp dir
         tmpDrop=$(mktemp -d)
         unzip $zipName -d $tmpDrop
-        unzip -o $tmpDrop/?20*/MODISCO-Update-*.zip -d $updates_integration/$VERSION
+        unzip -o $tmpDrop/?20*/mdt-papyrus-Update-*.zip -d $updates_integration/$VERSION
         cp index.php $updates_integration/$VERSION
         $ADD_DOWNLOAD_STATS $updates_integration/$VERSION
         chmod -R 755 $BUILDS_DIR
         chmod -R 755 $updates_integration/$VERSION
-        #cp -f $HUDSON_METRICS $DOWNLOAD_METRICS
-        #cp -f /opt/users/hudsonbuild/.hudson/jobs/cbi-modisco-nightly/workspace/build/org.eclipse.modisco.releng/psfs/infrastructure.subversive.psf /home/data/httpd/download.eclipse.org/modeling/mdt/modisco/modisco.psf
         cp $integrationTags $DOWNLOAD_ITAGS
         echo "$DATE: done" >> $logFile
         trimLog
