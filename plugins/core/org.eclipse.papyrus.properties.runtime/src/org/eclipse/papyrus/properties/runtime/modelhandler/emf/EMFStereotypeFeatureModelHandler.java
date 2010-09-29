@@ -11,6 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.runtime.modelhandler.emf;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
@@ -42,6 +43,14 @@ public abstract class EMFStereotypeFeatureModelHandler extends EMFFeatureModelHa
 	@Override
 	public void addListenersToModel(List<? extends EObject> objectsToEdit, EMFPropertyEditorController controller) {
 		super.addListenersToModel(objectsToEdit, controller);
+		for(EObject object : objectsToEdit) {
+			if(object instanceof Element) {
+				Iterator<EObject> it = ((Element)object).getStereotypeApplications().iterator();
+				while(it.hasNext()) {
+					it.next().eAdapters().add(controller);
+				}
+			}
+		}
 	}
 
 	/**
@@ -50,6 +59,14 @@ public abstract class EMFStereotypeFeatureModelHandler extends EMFFeatureModelHa
 	@Override
 	public void removeListenersFromModel(List<? extends EObject> objectsToEdit, EMFPropertyEditorController controller) {
 		super.removeListenersFromModel(objectsToEdit, controller);
+		for(EObject object : objectsToEdit) {
+			if(object instanceof Element) {
+				Iterator<EObject> it = ((Element)object).getStereotypeApplications().iterator();
+				while(it.hasNext()) {
+					it.next().eAdapters().remove(controller);
+				}
+			}
+		}
 	}
 
 	/**
