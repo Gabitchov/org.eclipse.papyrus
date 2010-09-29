@@ -28,6 +28,7 @@ import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -49,6 +50,8 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.internal.figures.CircleFigure;
+import org.eclipse.gmf.runtime.notation.Bounds;
+import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
@@ -56,8 +59,12 @@ import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.activity.edit.policies.ActivityFinalNodeItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.ResizableSquareEditPolicy;
+import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.common.editparts.UMLNodeEditPart;
+import org.eclipse.papyrus.diagram.common.figure.node.FinalNode;
+import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.graphics.Color;
@@ -67,7 +74,7 @@ import org.eclipse.swt.graphics.Color;
  */
 public class ActivityFinalNodeEditPart extends
 
-AbstractBorderedShapeEditPart {
+UMLNodeEditPart {
 
 	/**
 	 * @generated
@@ -116,6 +123,16 @@ AbstractBorderedShapeEditPart {
 	}
 
 	/**
+	 * Papyrus codeGen
+	 * 
+	 * @generated
+	 **/
+	protected void handleNotificationEvent(Notification event) {
+		super.handleNotificationEvent(event);
+
+	}
+
+	/**
 	 * @generated
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
@@ -156,14 +173,14 @@ AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		return primaryShape = new ActivityFinalNodeFigure();
+		return primaryShape = new FinalNode();
 	}
 
 	/**
 	 * @generated
 	 */
-	public ActivityFinalNodeFigure getPrimaryShape() {
-		return (ActivityFinalNodeFigure)primaryShape;
+	public FinalNode getPrimaryShape() {
+		return (FinalNode)primaryShape;
 	}
 
 	/**
@@ -183,7 +200,7 @@ AbstractBorderedShapeEditPart {
 	 * @generated NOT use a circle figure instead
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new CircleFigure(22, 22);
+		DefaultSizeNodeFigure result = new CircleFigure(((Bounds)((Node)getNotationView()).getLayoutConstraint()).getWidth(), ((Bounds)((Node)getNotationView()).getLayoutConstraint()).getHeight());;
 		return result;
 	}
 
@@ -851,69 +868,6 @@ AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.Comment_3080);
 		}
 		return types;
-	}
-
-	/**
-	 * @generated
-	 */
-	public class ActivityFinalNodeFigure extends Ellipse {
-
-		/**
-		 * @generated
-		 */
-		private Ellipse fFigureDisc;
-
-		/**
-		 * @generated
-		 */
-		public ActivityFinalNodeFigure() {
-			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(22), getMapMode().DPtoLP(22)));
-			this.setSize(getMapMode().DPtoLP(22), getMapMode().DPtoLP(22));
-			createContents();
-		}
-
-		/**
-		 * Sets the bounds of this Figure to the Rectangle <i>rect</i>.
-		 * This also updates sub-figures.
-		 * 
-		 * @see Figure#setBounds(Rectangle)
-		 * @param rect
-		 *        The new bounds
-		 * @generated NOT
-		 */
-		public void setBounds(Rectangle rect) {
-			if(getFigureDisc() != null) {
-				Rectangle discBounds = rect.getCopy();
-				// compute the new location and size of the disc
-				int discLocationDiff = discBounds.height / 7;
-				discBounds.resize(-2 * discLocationDiff, -2 * discLocationDiff);
-				discBounds.translate(discLocationDiff, discLocationDiff);
-				getFigureDisc().setBounds(discBounds);
-			}
-			super.setBounds(rect);
-		}
-
-		/**
-		 * @generated
-		 */
-		private void createContents() {
-
-			fFigureDisc = new Ellipse();
-			fFigureDisc.setBackgroundColor(ColorConstants.black);
-			fFigureDisc.setLocation(new Point(getMapMode().DPtoLP(3), getMapMode().DPtoLP(3)));
-			fFigureDisc.setSize(getMapMode().DPtoLP(16), getMapMode().DPtoLP(16));
-
-			this.add(fFigureDisc);
-
-		}
-
-		/**
-		 * @generated
-		 */
-		public Ellipse getFigureDisc() {
-			return fFigureDisc;
-		}
-
 	}
 
 	/**

@@ -24,6 +24,7 @@ import org.eclipse.draw2d.ScalablePolygonShape;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -42,6 +43,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
@@ -49,8 +51,12 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.activity.edit.policies.MergeNodeItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.OpenDiagramEditPolicy;
+import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.common.editparts.UMLNodeEditPart;
+import org.eclipse.papyrus.diagram.common.figure.node.DiamondNode;
+import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.graphics.Color;
@@ -60,7 +66,7 @@ import org.eclipse.swt.graphics.Color;
  */
 public class MergeNodeEditPart extends
 
-AbstractBorderedShapeEditPart {
+UMLNodeEditPart {
 
 	/**
 	 * @generated
@@ -94,6 +100,16 @@ AbstractBorderedShapeEditPart {
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
+	}
+
+	/**
+	 * Papyrus codeGen
+	 * 
+	 * @generated
+	 **/
+	protected void handleNotificationEvent(Notification event) {
+		super.handleNotificationEvent(event);
+
 	}
 
 	/**
@@ -137,14 +153,14 @@ AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		return primaryShape = new DiamondFigure();
+		return primaryShape = new DiamondNode();
 	}
 
 	/**
 	 * @generated
 	 */
-	public DiamondFigure getPrimaryShape() {
-		return (DiamondFigure)primaryShape;
+	public DiamondNode getPrimaryShape() {
+		return (DiamondNode)primaryShape;
 	}
 
 	/**
@@ -832,22 +848,6 @@ AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.Comment_3080);
 		}
 		return types;
-	}
-
-	/**
-	 * @generated
-	 */
-	public class DiamondFigure extends ScalablePolygonShape {
-
-		/**
-		 * @generated
-		 */
-		public DiamondFigure() {
-			this.setFill(true);
-			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(20), getMapMode().DPtoLP(30)));
-			this.setSize(getMapMode().DPtoLP(20), getMapMode().DPtoLP(30));
-		}
-
 	}
 
 	/**

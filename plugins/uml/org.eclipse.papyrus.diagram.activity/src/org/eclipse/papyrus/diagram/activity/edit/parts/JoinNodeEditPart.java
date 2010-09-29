@@ -25,6 +25,7 @@ import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -49,11 +50,14 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
+import org.eclipse.papyrus.diagram.activity.edit.policies.ForkJoinResizeEditPolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.JoinNodeItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.common.editparts.UMLNodeEditPart;
+import org.eclipse.papyrus.diagram.common.figure.node.ForkNode;
 import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
@@ -64,7 +68,7 @@ import org.eclipse.swt.graphics.Color;
  */
 public class JoinNodeEditPart extends
 
-AbstractBorderedShapeEditPart {
+UMLNodeEditPart {
 
 	/**
 	 * @generated
@@ -89,6 +93,18 @@ AbstractBorderedShapeEditPart {
 	}
 
 	/**
+	 * Return the edit policy to resize figure as a fork or a join
+	 * 
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeEditPart#getPrimaryDragEditPolicy()
+	 * @return EditPolicy
+	 * @generated NOT
+	 */
+	@Override
+	public EditPolicy getPrimaryDragEditPolicy() {
+		return new ForkJoinResizeEditPolicy();
+	}
+
+	/**
 	 * @generated
 	 */
 	protected void createDefaultEditPolicies() {
@@ -98,6 +114,16 @@ AbstractBorderedShapeEditPart {
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
+	}
+
+	/**
+	 * Papyrus codeGen
+	 * 
+	 * @generated
+	 **/
+	protected void handleNotificationEvent(Notification event) {
+		super.handleNotificationEvent(event);
+
 	}
 
 	/**
@@ -142,14 +168,14 @@ AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		return primaryShape = new SegmentFigure();
+		return primaryShape = new ForkNode();
 	}
 
 	/**
 	 * @generated
 	 */
-	public SegmentFigure getPrimaryShape() {
-		return (SegmentFigure)primaryShape;
+	public ForkNode getPrimaryShape() {
+		return (ForkNode)primaryShape;
 	}
 
 	/**
@@ -842,23 +868,6 @@ AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.Comment_3080);
 		}
 		return types;
-	}
-
-	/**
-	 * @generated
-	 */
-	public class SegmentFigure extends RectangleFigure {
-
-		/**
-		 * @generated
-		 */
-		public SegmentFigure() {
-			this.setBackgroundColor(ColorConstants.black);
-			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(4), getMapMode().DPtoLP(45)));
-			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(4), getMapMode().DPtoLP(4)));
-			this.setSize(getMapMode().DPtoLP(4), getMapMode().DPtoLP(45));
-		}
-
 	}
 
 	/**
