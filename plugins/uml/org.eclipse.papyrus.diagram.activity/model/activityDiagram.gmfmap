@@ -180,7 +180,7 @@
               xsi:type="gmftool:CreationTool"
               href="activityDiagram.gmftool#//@palette/@tools.0/@tools.0"/>
           <diagramNode
-              href="activityDiagram.gmfgraph#InitialNode"/>
+              href="../../org.eclipse.papyrus.diagram.common/model/InitialNode.gmfgraph#InitialNodeFigureNode"/>
         </ownedChild>
       </children>
       <children
@@ -215,7 +215,7 @@
               xsi:type="gmftool:CreationTool"
               href="activityDiagram.gmftool#//@palette/@tools.0/@tools.1"/>
           <diagramNode
-              href="activityDiagram.gmfgraph#ActivityFinalNode"/>
+              href="../../org.eclipse.papyrus.diagram.common/model/FinalNode.gmfgraph#FinalNodeFigureNode"/>
         </ownedChild>
       </children>
       <children
@@ -250,7 +250,7 @@
               xsi:type="gmftool:CreationTool"
               href="activityDiagram.gmftool#//@palette/@tools.0/@tools.2"/>
           <diagramNode
-              href="activityDiagram.gmfgraph#FlowFinalNode"/>
+              href="../../org.eclipse.papyrus.diagram.common/model/FlowFinalNode.gmfgraph#FlowFinalNodeFigureNode"/>
         </ownedChild>
       </children>
       <children
@@ -1519,7 +1519,7 @@
               xsi:type="gmftool:CreationTool"
               href="activityDiagram.gmftool#//@palette/@tools.0/@tools.3"/>
           <diagramNode
-              href="activityDiagram.gmfgraph#DiamondNode"/>
+              href="../../org.eclipse.papyrus.diagram.common/model/DiamondNode.gmfgraph#DiamondNodeFigureNode"/>
         </ownedChild>
       </children>
       <children
@@ -1554,7 +1554,7 @@
               xsi:type="gmftool:CreationTool"
               href="activityDiagram.gmftool#//@palette/@tools.0/@tools.4"/>
           <diagramNode
-              href="activityDiagram.gmfgraph#DiamondNode"/>
+              href="../../org.eclipse.papyrus.diagram.common/model/DiamondNode.gmfgraph#DiamondNodeFigureNode"/>
         </ownedChild>
       </children>
       <children
@@ -1589,7 +1589,7 @@
               xsi:type="gmftool:CreationTool"
               href="activityDiagram.gmftool#//@palette/@tools.0/@tools.6"/>
           <diagramNode
-              href="activityDiagram.gmfgraph#SegmentNode"/>
+              href="../../org.eclipse.papyrus.diagram.common/model/ForkNode.gmfgraph#ForkNodeFigureNode"/>
         </ownedChild>
       </children>
       <children
@@ -1628,7 +1628,7 @@
               xsi:type="gmftool:CreationTool"
               href="activityDiagram.gmftool#//@palette/@tools.0/@tools.5"/>
           <diagramNode
-              href="activityDiagram.gmfgraph#SegmentNode"/>
+              href="../../org.eclipse.papyrus.diagram.common/model/ForkNode.gmfgraph#ForkNodeFigureNode"/>
         </ownedChild>
       </children>
       <children
