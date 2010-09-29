@@ -27,6 +27,8 @@ public class StateFigure extends CompartmentFigure {
 	 */
 	protected WrappingLabel informationLabel;
 
+	protected boolean informationHasChanged = false;
+
 	protected boolean isInformationShown = false;
 	/** The State Compartment */
 	private final static String STATE_COMPARTMENT = "stateCompartment";
@@ -64,10 +66,14 @@ public class StateFigure extends CompartmentFigure {
 	protected void createNameLabel() {
 		// TODO Auto-generated method stub
 		super.createNameLabel();
-		
+
 		createInformationLabel();
 	}
-	
+
+	public WrappingLabel getInformationLabel(){
+		return informationLabel;
+	}
+
 	/**
 	 * Create a label that contains the name of the element.
 	 */
@@ -81,9 +87,18 @@ public class StateFigure extends CompartmentFigure {
 		getInformationLabelContainer().add(informationLabel, getInformationLabelConstraint(), -1);
 	}
 
+	public boolean hasInformationChanged(){
+		return informationHasChanged;
+	}
+	
 	public void fillInformation(String text) {
-		informationLabel.setText(text);
-		refreshInformationToShow();
+		if(!informationLabel.getText().equals(text)){
+			informationLabel.setText(text);
+			informationHasChanged = true;
+			refreshInformationToShow();
+		}
+		else
+			informationHasChanged = false;
 	}
 
 	/**
@@ -187,6 +202,7 @@ public class StateFigure extends CompartmentFigure {
 
 		if(isInformationShown) {
 			Rectangle rect = informationLabel.getBounds();
+			Rectangle rect2 = nameLabel.getBounds();
 
 			graphics.setLineStyle(SWT.BORDER_SOLID);
 			graphics.setLineWidth(SWT.BOLD);
