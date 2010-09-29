@@ -75,7 +75,12 @@ public class RadioBoxPropertyEditor extends AbstractPropertyEditor {
 		// create the set of radio-boxes. Does not know the size of the grid used for this editor
 		for(String value : values) {
 			Button button = getWidgetFactory().createButton(composite, (!value.equals("") ? value : "<Unset>"), SWT.RADIO);
-			button.addSelectionListener(listener);
+			if(!getIsReadOnly()) {
+				button.setEnabled(true);
+				button.addSelectionListener(listener);	
+			} else {
+				button.setEnabled(false);
+			}
 			buttons.add(button);
 			button.setToolTipText(getTooltipText());
 		}
