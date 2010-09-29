@@ -23,6 +23,7 @@ import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
+import org.eclipse.gmf.runtime.diagram.core.commands.SetPropertyCommand;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CreateCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
@@ -41,6 +42,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.diagram.common.editpolicies.CommonDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.diagram.statemachine.custom.commands.CreateViewCommand;
+import org.eclipse.papyrus.diagram.statemachine.custom.commands.CustomFirstRegionInCompositeStateCreateElementCommand;
 import org.eclipse.papyrus.diagram.statemachine.custom.commands.CustomRegionCreateElementCommand;
 import org.eclipse.papyrus.diagram.statemachine.custom.commands.CustomRegionDeleteCommand;
 import org.eclipse.papyrus.diagram.statemachine.custom.commands.CustomStateMachineSetBoundsCommand;
@@ -242,6 +244,37 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends CommonDiagramDr
 
 				return new ICommandProxy(cc.reduce());
 			}
+		}
+
+		else if(graphicalParentObject instanceof State){
+			State state = (State)graphicalParentObject;
+
+			if(state.getRegions().contains(droppedElement)){
+
+				// get the state view
+				View stateView = (View)graphicalParentEditPart.getModel();
+
+				// check whether any region is already shown in the state compartment
+				View compartment = (View)stateView.getChildren().get(1);
+				if(!compartment.getChildren().isEmpty())
+					//then do not allow the drag and drop on state, this forces the drag and drop on an displayed region (see above)
+					return UnexecutableCommand.INSTANCE;
+
+				CompositeCommand cc = new CompositeCommand("Drop");
+				// get an adaptable for the dropped region
+				IAdaptable adaptableForDroppedRegion = (IAdaptable)new SemanticAdapter(droppedElement, null);
+				// get and adaptable for the compartmentView, to pass on to commands
+				IAdaptable adaptableForCompartment = (IAdaptable)new SemanticAdapter(null, compartment);
+
+				// do the whole job
+				CustomFirstRegionInCompositeStateCreateElementCommand createNewRegion = new CustomFirstRegionInCompositeStateCreateElementCommand(adaptableForCompartment, adaptableForDroppedRegion, ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint(), getEditingDomain(), DiagramUIMessages.CreateCommand_Label, dropLocation);
+				SetPropertyCommand showCompartment = new SetPropertyCommand(getEditingDomain(), adaptableForCompartment, "notation.View.visible", "Visibility", true);
+				cc.compose(showCompartment);
+				cc.compose(createNewRegion);
+
+				return new ICommandProxy(cc.reduce());
+			}
+
 		}
 
 		return UnexecutableCommand.INSTANCE;
@@ -461,7 +494,7 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends CommonDiagramDr
 			DropObjectsRequest dropRequest = (DropObjectsRequest)request;
 			for(Iterator iter = dropRequest.getObjects().iterator(); iter.hasNext();) {
 				EObject element = (EObject)iter.next();
-				if(element instanceof Region) {
+				if((element instanceof Region) && (getHost().getParent() instanceof RegionEditPart)){
 					// check whether the dropped region is already shown in the
 					// state machine
 					View compartment = null;

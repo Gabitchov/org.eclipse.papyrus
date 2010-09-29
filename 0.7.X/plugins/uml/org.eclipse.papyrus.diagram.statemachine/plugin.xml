@@ -188,7 +188,7 @@
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="PapyrusUMLStateMachineDiagram"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2000,3000,5000,6000,8000,9000,10000,11000,12000,13000,14000,15000,16000,17000,18000"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="7000"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="7000,19000"/>
       </viewProvider>
    </extension>
 
@@ -203,7 +203,7 @@
             <method name="getType()" value="2000,3000,5000,6000,8000,9000,10000,11000,12000,13000,14000,15000,16000,17000,18000"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
-            <method name="getType()" value="7000"/>
+            <method name="getType()" value="7000,19000"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
             <method name="getType()" value="2001,5001,5002,6001,8001,8002,9001,9002,10001,10002,11001,11002,12001,12002,13001,13002,14001,14002,15001,15002,16001,16002,17001,17002,18001,18002"/>
@@ -411,6 +411,16 @@
             <param name="semanticHint" value="7000"/>
          </metamodelType>
       </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.statemachine.Generalization_19000"
+               name="%metatype.name.Generalization_19000"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Generalization"
+               edithelper="org.eclipse.papyrus.diagram.statemachine.edit.helpers.GeneralizationEditHelper">
+            <param name="semanticHint" value="19000"/>
+         </metamodelType>
+      </metamodel>
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
@@ -440,6 +450,7 @@
          <elementType ref="org.eclipse.papyrus.diagram.statemachine.Pseudostate_17000"/>
          <elementType ref="org.eclipse.papyrus.diagram.statemachine.ConnectionPointReference_18000"/>
          <elementType ref="org.eclipse.papyrus.diagram.statemachine.Transition_7000"/>
+         <elementType ref="org.eclipse.papyrus.diagram.statemachine.Generalization_19000"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>
@@ -762,7 +773,7 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLStateMachineDiagram"
-			class="org.eclipse.papyrus.diagram.statemachine.custom.preferences.CustomStatePreferencePage"
+			class="org.eclipse.papyrus.diagram.statemachine.preferences.StatePreferencePage"
             id="org.eclipse.papyrus.diagram.statemachine.preferences.StatePreferencePage"
             name="State Node" />
 	
@@ -782,6 +793,14 @@
 	
 
 
+		
+
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLStateMachineDiagram"
+			class="org.eclipse.papyrus.diagram.statemachine.preferences.GeneralizationPreferencePage"
+            id="org.eclipse.papyrus.diagram.statemachine.preferences.GeneralizationPreferencePage"
+            name="Generalization Link" />
+		
 		
 
 	<?gmfgen generated="true"?>
@@ -955,6 +974,16 @@
        path=""
        small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Transition_local.gif">
  	</entry>
+	<entry
+       defineOnly="true"
+       description="Generalization"
+       id="createGeneralizationCreationTool"
+       kind="tool"
+       label="Generalization"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif">
+ 	</entry>
 
 			</contribution>
 		</paletteProvider>	
@@ -1072,6 +1101,10 @@
  	 
  	 	<predefinedEntry
           id="createTransitionCreationTool"
+          path="/createEdgesGroup">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createGeneralizationCreationTool"
           path="/createEdgesGroup">
     </predefinedEntry>
 

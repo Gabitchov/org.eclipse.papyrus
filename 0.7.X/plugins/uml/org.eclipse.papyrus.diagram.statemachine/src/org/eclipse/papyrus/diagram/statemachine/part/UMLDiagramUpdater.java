@@ -15,6 +15,7 @@ import org.eclipse.papyrus.diagram.common.part.ICustomDiagramUpdater;
 import org.eclipse.papyrus.diagram.statemachine.custom.parts.RegionCompartmentDiagramUpdater;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConnectionPointReferenceEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.GeneralizationEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateChoiceEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateDeepHistoryEditPart;
@@ -34,8 +35,10 @@ import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineCompartme
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.TransitionEditPart;
 import org.eclipse.papyrus.diagram.statemachine.providers.UMLElementTypes;
+import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.ConnectionPointReference;
 import org.eclipse.uml2.uml.FinalState;
+import org.eclipse.uml2.uml.Generalization;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Pseudostate;
@@ -90,6 +93,8 @@ public class UMLDiagramUpdater {
 			return getConnectionPointReference_18000ContainedLinks(view);
 		case TransitionEditPart.VISUAL_ID:
 			return getTransition_7000ContainedLinks(view);
+		case GeneralizationEditPart.VISUAL_ID:
+			return getGeneralization_19000ContainedLinks(view);
 		}
 		return Collections.emptyList();
 	}
@@ -117,6 +122,33 @@ public class UMLDiagramUpdater {
 			result.add(new UMLLinkDescriptor(src, dst, link,
 					UMLElementTypes.Transition_7000,
 					TransitionEditPart.VISUAL_ID));
+
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	private static Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Generalization_19000(
+			Classifier container) {
+		Collection result = new LinkedList();
+		for (Iterator links = container.getGeneralizations().iterator(); links
+				.hasNext();) {
+			EObject linkObject = (EObject) links.next();
+			if (false == linkObject instanceof Generalization) {
+				continue;
+			}
+			Generalization link = (Generalization) linkObject;
+			if (GeneralizationEditPart.VISUAL_ID != UMLVisualIDRegistry
+					.getLinkWithClassVisualID(link)) {
+				continue;
+			}
+
+			Classifier dst = link.getGeneral();
+			result.add(new UMLLinkDescriptor(container, dst, link,
+					UMLElementTypes.Generalization_19000,
+					GeneralizationEditPart.VISUAL_ID));
 
 		}
 		return result;
@@ -192,6 +224,8 @@ public class UMLDiagramUpdater {
 			return getConnectionPointReference_18000IncomingLinks(view);
 		case TransitionEditPart.VISUAL_ID:
 			return getTransition_7000IncomingLinks(view);
+		case GeneralizationEditPart.VISUAL_ID:
+			return getGeneralization_19000IncomingLinks(view);
 		}
 		return Collections.emptyList();
 	}
@@ -220,6 +254,38 @@ public class UMLDiagramUpdater {
 			result.add(new UMLLinkDescriptor(src, target, link,
 					UMLElementTypes.Transition_7000,
 					TransitionEditPart.VISUAL_ID));
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	private static Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Generalization_19000(
+			Classifier target,
+			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		Collection<EStructuralFeature.Setting> settings = crossReferences
+				.get(target);
+		for (EStructuralFeature.Setting setting : settings) {
+			if (setting.getEStructuralFeature() != UMLPackage.eINSTANCE
+					.getGeneralization_General()
+					|| false == setting.getEObject() instanceof Generalization) {
+				continue;
+			}
+			Generalization link = (Generalization) setting.getEObject();
+			if (GeneralizationEditPart.VISUAL_ID != UMLVisualIDRegistry
+					.getLinkWithClassVisualID(link)) {
+				continue;
+			}
+			if (false == link.eContainer() instanceof Classifier) {
+				continue;
+			}
+			Classifier container = (Classifier) link.eContainer();
+			result.add(new UMLLinkDescriptor(container, target, link,
+					UMLElementTypes.Generalization_19000,
+					GeneralizationEditPart.VISUAL_ID));
+
 		}
 		return result;
 	}
@@ -261,6 +327,8 @@ public class UMLDiagramUpdater {
 			return getConnectionPointReference_18000OutgoingLinks(view);
 		case TransitionEditPart.VISUAL_ID:
 			return getTransition_7000OutgoingLinks(view);
+		case GeneralizationEditPart.VISUAL_ID:
+			return getGeneralization_19000OutgoingLinks(view);
 		}
 		return Collections.emptyList();
 	}
@@ -793,7 +861,10 @@ public class UMLDiagramUpdater {
 	 */
 	public static List<UMLLinkDescriptor> getStateMachine_2000ContainedLinks(
 			View view) {
-		return Collections.emptyList();
+		StateMachine modelElement = (StateMachine) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_19000(modelElement));
+		return result;
 	}
 
 	/**
@@ -801,7 +872,13 @@ public class UMLDiagramUpdater {
 	 */
 	public static List<UMLLinkDescriptor> getStateMachine_2000IncomingLinks(
 			View view) {
-		return Collections.emptyList();
+		StateMachine modelElement = (StateMachine) view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
+				.find(view.eResource().getResourceSet().getResources());
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_19000(
+				modelElement, crossReferences));
+		return result;
 	}
 
 	/**
@@ -809,7 +886,10 @@ public class UMLDiagramUpdater {
 	 */
 	public static List<UMLLinkDescriptor> getStateMachine_2000OutgoingLinks(
 			View view) {
-		return Collections.emptyList();
+		StateMachine modelElement = (StateMachine) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_19000(modelElement));
+		return result;
 	}
 
 	/**
@@ -977,6 +1057,14 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	public static List<UMLLinkDescriptor> getGeneralization_19000ContainedLinks(
+			View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
 	public static List<UMLLinkDescriptor> getTransition_7000IncomingLinks(
 			View view) {
 		return Collections.emptyList();
@@ -985,7 +1073,23 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	public static List<UMLLinkDescriptor> getGeneralization_19000IncomingLinks(
+			View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
 	public static List<UMLLinkDescriptor> getTransition_7000OutgoingLinks(
+			View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getGeneralization_19000OutgoingLinks(
 			View view) {
 		return Collections.emptyList();
 	}

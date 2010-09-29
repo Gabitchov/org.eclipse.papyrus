@@ -291,17 +291,17 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	private Object[] getViewChildren(View view, Object parentElement) {
 		switch (UMLVisualIDRegistry.getVisualID(view)) {
 
-		case PackageEditPart.VISUAL_ID: {
-
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForPackageEditPart(view, parentElement);
-
-		}
-
 		case StateMachineEditPart.VISUAL_ID: {
 
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForStateMachineEditPart(view, parentElement);
+
+		}
+
+		case PackageEditPart.VISUAL_ID: {
+
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForPackageEditPart(view, parentElement);
 
 		}
 

@@ -397,6 +397,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String createGeneralizationCreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createGeneralizationCreationTool_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String RegionCompartmentEditPart_title;
 
 	/**

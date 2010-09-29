@@ -327,6 +327,12 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case TransitionStereotypeEditPart.VISUAL_ID:
 				return new TransitionStereotypeEditPart(view);
 
+			case GeneralizationEditPart.VISUAL_ID:
+				return new GeneralizationEditPart(view);
+
+			case GeneralizationStereotypeEditPart.VISUAL_ID:
+				return new GeneralizationStereotypeEditPart(view);
+
 			}
 		}
 		return createUnrecognizedEditPart(context, model);

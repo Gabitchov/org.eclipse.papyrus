@@ -46,6 +46,8 @@ import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConnectionPointRefere
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateNameEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateStereotypeEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.GeneralizationEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.GeneralizationStereotypeEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateChoiceEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateChoiceNameEditPart;
@@ -159,6 +161,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		case TransitionEditPart.VISUAL_ID:
 			return createTransition_7000(getSemanticElement(semanticAdapter),
 					containerView, index, persisted, preferencesHint);
+		case GeneralizationEditPart.VISUAL_ID:
+			return createGeneralization_19000(
+					getSemanticElement(semanticAdapter), containerView, index,
+					persisted, preferencesHint);
 		}
 		// can never happen, provided #provides(CreateEdgeViewOperation) is correct
 		return null;
@@ -973,6 +979,55 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location7003 = (Location) label7003.getLayoutConstraint();
 		location7003.setX(0);
 		location7003.setY(60);
+		return edge;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Edge createGeneralization_19000(EObject domainElement,
+			View containerView, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+		Connector edge = NotationFactory.eINSTANCE.createConnector();
+		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
+				.createRelativeBendpoints();
+		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(
+				2);
+		points.add(new RelativeBendpoint());
+		points.add(new RelativeBendpoint());
+		bendpoints.setPoints(points);
+		edge.setBendpoints(bendpoints);
+		ViewUtil.insertChildView(containerView, edge, index, persisted);
+		edge.setType(UMLVisualIDRegistry
+				.getType(GeneralizationEditPart.VISUAL_ID));
+		edge.setElement(domainElement);
+		// initializePreferences
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
+				.getPreferenceStore();
+
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(edge,
+				prefStore, "Generalization");
+
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge,
+				prefStore, "Generalization");
+
+		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
+		//if (routing != null) {
+		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		//}
+
+		PreferenceInitializerForElementHelper.initRountingFromPrefs(edge,
+				prefStore, "Generalization");
+
+		Node label19002 = createLabel(edge,
+				UMLVisualIDRegistry
+						.getType(GeneralizationStereotypeEditPart.VISUAL_ID));
+		label19002.setLayoutConstraint(NotationFactory.eINSTANCE
+				.createLocation());
+		Location location19002 = (Location) label19002.getLayoutConstraint();
+		location19002.setX(0);
+		location19002.setY(40);
 		return edge;
 	}
 
