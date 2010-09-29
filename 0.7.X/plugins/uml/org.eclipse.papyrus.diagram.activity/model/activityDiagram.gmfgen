@@ -965,19 +965,8 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="InitialNodeEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="InitialNodeFigure"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class InitialNodeFigure extends org.eclipse.draw2d.Ellipse {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public InitialNodeFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;this.setBackgroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(16)&#xA;, getMapMode().DPtoLP(16)&#xA;));&#xA;this.setSize(getMapMode().DPtoLP(16)&#xA;, getMapMode().DPtoLP(16)&#xA;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:StyleAttributes"
-              fixedBackground="true"/>
-          <attributes
-              xsi:type="gmfgen:ResizeConstraints"/>
-          <attributes
-              xsi:type="gmfgen:DefaultSizeAttributes"
-              width="16"
-              height="16"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.InitialNode"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
@@ -1033,16 +1022,12 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="ActivityFinalNodeEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="ActivityFinalNodeFigure"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ActivityFinalNodeFigure extends org.eclipse.draw2d.Ellipse {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.Ellipse fFigureDisc; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ActivityFinalNodeFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(22)&#xA;, getMapMode().DPtoLP(22)&#xA;));&#xA;this.setSize(getMapMode().DPtoLP(22)&#xA;, getMapMode().DPtoLP(22)&#xA;);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureDisc = new org.eclipse.draw2d.Ellipse();&#xA;&#x9;fFigureDisc.setBackgroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;fFigureDisc.setLocation(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(3)&#xA;, getMapMode().DPtoLP(3)&#xA;));&#xA;fFigureDisc.setSize(getMapMode().DPtoLP(16)&#xA;, getMapMode().DPtoLP(16)&#xA;);&#xA;&#xA;this.add(fFigureDisc);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.Ellipse getFigureDisc() {&#xA;&#x9;&#x9;return fFigureDisc;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;">
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.FinalNode">
           <attributes
               xsi:type="gmfgen:DefaultSizeAttributes"
-              width="22"
-              height="22"/>
-          <attributes
-              xsi:type="gmfgen:StyleAttributes"
-              fixedForeground="true"/>
+              width="20"
+              height="20"/>
         </viewmap>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
@@ -1099,13 +1084,12 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="FlowFinalNodeEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="FlowFinalNodeFigure"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class FlowFinalNodeFigure extends org.eclipse.draw2d.Ellipse {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fFigureSlash; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fFigureAntislash; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public FlowFinalNodeFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(22)&#xA;, getMapMode().DPtoLP(22)&#xA;));&#xA;this.setSize(getMapMode().DPtoLP(22)&#xA;, getMapMode().DPtoLP(22)&#xA;);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureAntislash = new org.eclipse.draw2d.PolylineShape();&#xA;fFigureAntislash.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(4)&#xA;, getMapMode().DPtoLP(4)&#xA;));&#xA;fFigureAntislash.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(18)&#xA;, getMapMode().DPtoLP(18)&#xA;));&#xA;&#xA;this.add(fFigureAntislash);&#xA;&#xA;&#xA;&#xA;fFigureSlash = new org.eclipse.draw2d.PolylineShape();&#xA;fFigureSlash.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(4)&#xA;, getMapMode().DPtoLP(18)&#xA;));&#xA;fFigureSlash.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(18)&#xA;, getMapMode().DPtoLP(4)&#xA;));&#xA;&#xA;this.add(fFigureSlash);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getFigureSlash() {&#xA;&#x9;&#x9;return fFigureSlash;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getFigureAntislash() {&#xA;&#x9;&#x9;return fFigureAntislash;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;">
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.FlowFinalNode">
           <attributes
               xsi:type="gmfgen:DefaultSizeAttributes"
-              width="22"
-              height="22"/>
+              width="20"
+              height="20"/>
         </viewmap>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
@@ -3541,13 +3525,8 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="DecisionNodeEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="DiamondFigure"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class DiamondFigure extends org.eclipse.draw2d.ScalablePolygonShape {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public DiamondFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setFill(true);&#xA;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(20)&#xA;, getMapMode().DPtoLP(30)&#xA;));&#xA;this.setSize(getMapMode().DPtoLP(20)&#xA;, getMapMode().DPtoLP(30)&#xA;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:DefaultSizeAttributes"
-              width="20"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName=" org.eclipse.papyrus.diagram.common.figure.node.DiamondNode"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
@@ -3626,13 +3605,8 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="MergeNodeEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="DiamondFigure"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class DiamondFigure extends org.eclipse.draw2d.ScalablePolygonShape {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public DiamondFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setFill(true);&#xA;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(20)&#xA;, getMapMode().DPtoLP(30)&#xA;));&#xA;this.setSize(getMapMode().DPtoLP(20)&#xA;, getMapMode().DPtoLP(30)&#xA;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:DefaultSizeAttributes"
-              width="20"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName=" org.eclipse.papyrus.diagram.common.figure.node.DiamondNode"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
@@ -3688,16 +3662,12 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="ForkNodeEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="SegmentFigure"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class SegmentFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public SegmentFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;this.setBackgroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(4)&#xA;, getMapMode().DPtoLP(45)&#xA;));&#xA;this.setMinimumSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(4)&#xA;, getMapMode().DPtoLP(4)&#xA;));&#xA;this.setSize(getMapMode().DPtoLP(4)&#xA;, getMapMode().DPtoLP(45)&#xA;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:StyleAttributes"
-              fixedBackground="true"/>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.ForkNode">
           <attributes
               xsi:type="gmfgen:DefaultSizeAttributes"
-              width="4"
-              height="45"/>
+              width="10"
+              height="40"/>
         </viewmap>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
@@ -3754,16 +3724,12 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="JoinNodeEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="SegmentFigure"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class SegmentFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public SegmentFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;this.setBackgroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(4)&#xA;, getMapMode().DPtoLP(45)&#xA;));&#xA;this.setMinimumSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(4)&#xA;, getMapMode().DPtoLP(4)&#xA;));&#xA;this.setSize(getMapMode().DPtoLP(4)&#xA;, getMapMode().DPtoLP(45)&#xA;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:StyleAttributes"
-              fixedBackground="true"/>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.ForkNode">
           <attributes
               xsi:type="gmfgen:DefaultSizeAttributes"
-              width="4"
-              height="45"/>
+              width="10"
+              height="40"/>
         </viewmap>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
@@ -6840,16 +6806,16 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.CustomDiagramDragDropEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="EditPolicy.LAYOUT_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.CompartmentXYLayoutEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.ActivityParameterNodeInCompartmentCreationEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RemoveOrphanView&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.RemoveOrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.CompartmentXYLayoutEditPolicy"/>
       </compartments>
       <compartments
           visualID="7008"
@@ -11752,5 +11718,11 @@
         genView="/0/@diagram/@childNodes.66"
         name="comment extended node"
         superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.AbstractCommentEditPart"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        comment="elements that intherit form UMLNodeEditpart"
+        genView="/0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.32 /0/@diagram/@childNodes.33 /0/@diagram/@childNodes.35 /0/@diagram/@childNodes.34 /0/@diagram/@childNodes.3"
+        name="UMLNodeEditPart"
+        superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.UMLNodeEditPart"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>
 </xmi:XMI>

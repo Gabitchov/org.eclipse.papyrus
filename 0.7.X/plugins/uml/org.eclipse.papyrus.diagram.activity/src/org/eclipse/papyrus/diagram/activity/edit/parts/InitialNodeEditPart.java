@@ -25,6 +25,7 @@ import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -33,6 +34,7 @@ import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
+import org.eclipse.gef.editpolicies.ResizableEditPolicy;
 import org.eclipse.gef.handles.MoveHandle;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
@@ -46,6 +48,8 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.internal.figures.CircleFigure;
+import org.eclipse.gmf.runtime.notation.Bounds;
+import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
@@ -53,8 +57,12 @@ import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.activity.edit.policies.InitialNodeItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.ResizableSquareEditPolicy;
+import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.common.editparts.UMLNodeEditPart;
+import org.eclipse.papyrus.diagram.common.figure.node.InitialNode;
+import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.graphics.Color;
@@ -64,7 +72,7 @@ import org.eclipse.swt.graphics.Color;
  */
 public class InitialNodeEditPart extends
 
-AbstractBorderedShapeEditPart {
+UMLNodeEditPart {
 
 	/**
 	 * @generated
@@ -130,6 +138,16 @@ AbstractBorderedShapeEditPart {
 	}
 
 	/**
+	 * Papyrus codeGen
+	 * 
+	 * @generated
+	 **/
+	protected void handleNotificationEvent(Notification event) {
+		super.handleNotificationEvent(event);
+
+	}
+
+	/**
 	 * @generated
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
@@ -170,14 +188,14 @@ AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		return primaryShape = new InitialNodeFigure();
+		return primaryShape = new InitialNode();
 	}
 
 	/**
 	 * @generated
 	 */
-	public InitialNodeFigure getPrimaryShape() {
-		return (InitialNodeFigure)primaryShape;
+	public InitialNode getPrimaryShape() {
+		return (InitialNode)primaryShape;
 	}
 
 	/**
@@ -197,7 +215,7 @@ AbstractBorderedShapeEditPart {
 	 * @generated NOT use a circle figure instead
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new CircleFigure(16, 16);
+		DefaultSizeNodeFigure result = new CircleFigure(((Bounds)((Node)getNotationView()).getLayoutConstraint()).getWidth(), ((Bounds)((Node)getNotationView()).getLayoutConstraint()).getHeight());
 		return result;
 	}
 
@@ -848,22 +866,6 @@ AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.Comment_3080);
 		}
 		return types;
-	}
-
-	/**
-	 * @generated
-	 */
-	public class InitialNodeFigure extends Ellipse {
-
-		/**
-		 * @generated
-		 */
-		public InitialNodeFigure() {
-			this.setBackgroundColor(ColorConstants.black);
-			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(16), getMapMode().DPtoLP(16)));
-			this.setSize(getMapMode().DPtoLP(16), getMapMode().DPtoLP(16));
-		}
-
 	}
 
 	/**
