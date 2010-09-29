@@ -277,7 +277,7 @@ public class «notationViewProviderClassName»«EXPAND xpt::providers::ViewProvi
 		«REM» BEGIN Papyrus Modification «ENDREM»
 «IF compartments->size() <> 0-»
 	org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(«'node'», «'prefStore'», "«elementType.displayName»");
-«ENDIF»
+«ENDIF-»
 		«REM» END Papyrus Modification «ENDREM»
 		return node;
 	}
