@@ -20,16 +20,13 @@
 «ENDDEFINE»
 
 «DEFINE compartmentsList FOR gmfgen::GenNode-»
-			«FOREACH compartments AS cpt SEPARATOR ','»
+			«FOREACH compartments AS cpt SEPARATOR ','-»
 			"«cpt.title»"
-			«ENDFOREACH»
+			«ENDFOREACH-»
 «ENDDEFINE»
 
 «DEFINE NodePreferencePage FOR gmfgen::GenNode-»
 package «getDiagram().preferencesPackageName»;
-
-	
-
 
 «EXPAND xpt::Common::generatedClassComment»
 public class «EXPAND className» extends org.eclipse.papyrus.preferences.pages.AbstractPapyrusNodePreferencePage {
@@ -47,7 +44,7 @@ public class «EXPAND className» extends org.eclipse.papyrus.preferences.pages.
 	«EXPAND xpt::Common::generatedClassComment»
 	@Override
 	protected String getBundleId() {
-		return «getDiagram().editorGen.plugin.getActivatorQualifiedClassName()».getInstance().ID;
+		return «getDiagram().editorGen.plugin.getActivatorQualifiedClassName()».ID;
 	}
 	
 	«EXPAND xpt::Common::generatedClassComment»
@@ -62,7 +59,7 @@ public class «EXPAND className» extends org.eclipse.papyrus.preferences.pages.
 				String preferenceName = org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getCompartmentElementConstant(key, name, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
 				store.setDefault(preferenceName, true);
 			}
-	 	«ENDIF»
+	 	«ENDIF-»
 	 
 	    //org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_FILL), new org.eclipse.swt.graphics.RGB(255, 255, 255));
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_LINE), new org.eclipse.swt.graphics.RGB(0, 0, 0));
@@ -84,7 +81,7 @@ public class «EXPAND className» extends org.eclipse.papyrus.preferences.pages.
 				this.compartmentsList.add(name);
 			}
 		}
-	«ENDIF»
+	«ENDIF-»
 
 }
 «ENDDEFINE»
