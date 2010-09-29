@@ -35,6 +35,8 @@ import org.eclipse.papyrus.diagram.statemachine.edit.helpers.UMLBaseEditHelper;
 import org.eclipse.papyrus.diagram.statemachine.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.statemachine.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.statemachine.providers.UMLElementTypes;
+import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.Generalization;
 import org.eclipse.uml2.uml.Region;
 import org.eclipse.uml2.uml.Transition;
 import org.eclipse.uml2.uml.Vertex;
@@ -67,8 +69,25 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
+		public boolean canCreateGeneralization_19000(Classifier source,
+				Classifier target) {
+			return canExistGeneralization_19000(null, source, target);
+		}
+
+		/**
+		 * @generated
+		 */
 		public boolean canExistTransition_7000(Region container,
 				Transition linkInstance, Vertex source, Vertex target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean canExistGeneralization_19000(
+				Generalization linkInstance, Classifier source,
+				Classifier target) {
 			return true;
 		}
 

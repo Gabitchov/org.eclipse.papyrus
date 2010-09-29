@@ -52,6 +52,10 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 	public List getRelTypesOnSource(IAdaptable source) {
 		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
 				.getAdapter(IGraphicalEditPart.class);
+		if (sourceEditPart instanceof StateMachineEditPart) {
+			return ((StateMachineEditPart) sourceEditPart)
+					.getMARelTypesOnSource();
+		}
 		if (sourceEditPart instanceof FinalStateEditPart) {
 			return ((FinalStateEditPart) sourceEditPart)
 					.getMARelTypesOnSource();
@@ -115,6 +119,10 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 				.getAdapter(IGraphicalEditPart.class);
 		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
 				.getAdapter(IGraphicalEditPart.class);
+		if (sourceEditPart instanceof StateMachineEditPart) {
+			return ((StateMachineEditPart) sourceEditPart)
+					.getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
 		if (sourceEditPart instanceof FinalStateEditPart) {
 			return ((FinalStateEditPart) sourceEditPart)
 					.getMARelTypesOnSourceAndTarget(targetEditPart);
@@ -176,6 +184,10 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 	public List getRelTypesOnTarget(IAdaptable target) {
 		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
 				.getAdapter(IGraphicalEditPart.class);
+		if (targetEditPart instanceof StateMachineEditPart) {
+			return ((StateMachineEditPart) targetEditPart)
+					.getMARelTypesOnTarget();
+		}
 		if (targetEditPart instanceof FinalStateEditPart) {
 			return ((FinalStateEditPart) targetEditPart)
 					.getMARelTypesOnTarget();
@@ -294,6 +306,10 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			IElementType relationshipType) {
 		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
 				.getAdapter(IGraphicalEditPart.class);
+		if (targetEditPart instanceof StateMachineEditPart) {
+			return ((StateMachineEditPart) targetEditPart)
+					.getMATypesForSource(relationshipType);
+		}
 		if (targetEditPart instanceof FinalStateEditPart) {
 			return ((FinalStateEditPart) targetEditPart)
 					.getMATypesForSource(relationshipType);
@@ -356,6 +372,10 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			IElementType relationshipType) {
 		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
 				.getAdapter(IGraphicalEditPart.class);
+		if (sourceEditPart instanceof StateMachineEditPart) {
+			return ((StateMachineEditPart) sourceEditPart)
+					.getMATypesForTarget(relationshipType);
+		}
 		if (sourceEditPart instanceof FinalStateEditPart) {
 			return ((FinalStateEditPart) sourceEditPart)
 					.getMATypesForTarget(relationshipType);

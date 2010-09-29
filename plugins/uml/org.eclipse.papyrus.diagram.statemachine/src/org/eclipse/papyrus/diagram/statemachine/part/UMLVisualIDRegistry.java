@@ -13,6 +13,8 @@ import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConnectionPointRefere
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateNameEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateStereotypeEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.GeneralizationEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.GeneralizationStereotypeEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateChoiceEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateChoiceNameEditPart;
@@ -309,6 +311,11 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
+		case GeneralizationEditPart.VISUAL_ID:
+			if (GeneralizationStereotypeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		}
 		return false;
 	}
@@ -351,6 +358,12 @@ public class UMLVisualIDRegistry {
 
 		) {
 			return TransitionEditPart.VISUAL_ID;
+		}
+		if (UMLPackage.eINSTANCE.getGeneralization().isSuperTypeOf(
+				domainElement.eClass())
+
+		) {
+			return GeneralizationEditPart.VISUAL_ID;
 		}
 		return -1;
 	}
@@ -575,6 +588,12 @@ public class UMLVisualIDRegistry {
 		viewInfo.getChildren().add(labelInfo);
 
 		labelInfo = new BaseViewInfo(7003, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+		viewInfo = new BaseViewInfo(19000, ViewInfo.Edge, "");
+		root.addNode(1000, viewInfo);
+
+		labelInfo = new BaseViewInfo(19002, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
 		viewInfo = new BaseViewInfo(3000, ViewInfo.Node, "Region");

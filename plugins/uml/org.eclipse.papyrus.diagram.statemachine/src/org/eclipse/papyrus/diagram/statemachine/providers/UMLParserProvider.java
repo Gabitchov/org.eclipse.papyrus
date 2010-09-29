@@ -18,6 +18,7 @@ import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConnectionPointRefere
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConnectionPointReferenceStereotypeEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateNameEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateStereotypeEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.GeneralizationStereotypeEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateChoiceNameEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateChoiceStereotypeEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateDeepHistoryNameEditPart;
@@ -330,6 +331,8 @@ public class UMLParserProvider extends AbstractProvider implements
 			return getTransitionGuard_7002Parser();
 		case TransitionStereotypeEditPart.VISUAL_ID:
 			return getTransitionName_7003Parser();
+		case GeneralizationStereotypeEditPart.VISUAL_ID:
+			return getGeneralizationIsSubstitutable_19002Parser();
 		}
 		return null;
 	}
@@ -654,6 +657,27 @@ public class UMLParserProvider extends AbstractProvider implements
 			transitionName_7003Parser = new AppliedStereotypeParser();
 		}
 		return transitionName_7003Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser generalizationIsSubstitutable_19002Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getGeneralizationIsSubstitutable_19002Parser() {
+		if (generalizationIsSubstitutable_19002Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE
+					.getGeneralization_IsSubstitutable() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("<<{0}>>"); //$NON-NLS-1$
+			parser.setEditorPattern("<<{0}>>"); //$NON-NLS-1$
+			parser.setEditPattern("<<{0}>>"); //$NON-NLS-1$
+			generalizationIsSubstitutable_19002Parser = parser;
+		}
+		return generalizationIsSubstitutable_19002Parser;
 	}
 
 	/**

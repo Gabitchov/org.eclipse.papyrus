@@ -16,6 +16,7 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConnectionPointReferenceEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.GeneralizationEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateChoiceEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateDeepHistoryEditPart;
@@ -141,6 +142,11 @@ public class UMLElementTypes {
 	public static final IElementType Transition_7000 = getElementType("org.eclipse.papyrus.diagram.statemachine.Transition_7000"); //$NON-NLS-1$
 
 	/**
+	 * @generated
+	 */
+	public static final IElementType Generalization_19000 = getElementType("org.eclipse.papyrus.diagram.statemachine.Generalization_19000"); //$NON-NLS-1$
+
+	/**
 	 * Returns 'type' of the ecore object associated with the hint.
 	 * 
 	 * @generated
@@ -195,6 +201,9 @@ public class UMLElementTypes {
 					UMLPackage.eINSTANCE.getConnectionPointReference());
 
 			elements.put(Transition_7000, UMLPackage.eINSTANCE.getTransition());
+
+			elements.put(Generalization_19000,
+					UMLPackage.eINSTANCE.getGeneralization());
 		}
 		return (ENamedElement) elements.get(type);
 	}
@@ -238,6 +247,8 @@ public class UMLElementTypes {
 			return ConnectionPointReference_18000;
 		case TransitionEditPart.VISUAL_ID:
 			return Transition_7000;
+		case GeneralizationEditPart.VISUAL_ID:
+			return Generalization_19000;
 		}
 		return null;
 	}
@@ -373,6 +384,7 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(Pseudostate_17000);
 			KNOWN_ELEMENT_TYPES.add(ConnectionPointReference_18000);
 			KNOWN_ELEMENT_TYPES.add(Transition_7000);
+			KNOWN_ELEMENT_TYPES.add(Generalization_19000);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}
