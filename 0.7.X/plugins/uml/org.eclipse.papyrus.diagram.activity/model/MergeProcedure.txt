@@ -14,7 +14,7 @@ Procedure to merge a new gmfgen files where modifications are made.
 			(WEST for input pins, EAST for output, NORTH for target)
 		- the addition of activity nodes as children of groups
 			(childNodes attribute of compartments)
-7. Other changes must not be merged. These may should be among this list :
+7. Other changes must not be merged. These should be among this list :
 	- changes subsequent to modifications in the tooling files,
 	- alteration of the order of usage in implementations of labelParsers,
 	- addition of notationViewFactoryClassName attribute
