@@ -24,6 +24,8 @@ import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
  */
 public class ParameterPreferencePage extends AbstractPapyrusNodePreferencePage {
 
+
+
 	/**
 	 * @generated
 	 */
@@ -37,7 +39,7 @@ public class ParameterPreferencePage extends AbstractPapyrusNodePreferencePage {
 	 */
 	@Override
 	protected String getBundleId() {
-		return UMLDiagramEditorPlugin.getInstance().ID;
+		return UMLDiagramEditorPlugin.ID;
 	}
 
 	/**
@@ -48,6 +50,7 @@ public class ParameterPreferencePage extends AbstractPapyrusNodePreferencePage {
 		String key = CompositeStructureDiagramEditPart.MODEL_ID + "_Parameter";
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.WIDTH), 20);
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.HEIGHT), 20);
+
 
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_FILL), new org.eclipse.swt.graphics.RGB(255, 255, 255));
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_LINE), new org.eclipse.swt.graphics.RGB(0, 0, 0));
@@ -60,5 +63,6 @@ public class ParameterPreferencePage extends AbstractPapyrusNodePreferencePage {
 		//store.setDefault(org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_GRADIENT), gradientPreferenceConverter.getPreferenceValue());
 
 	}
+
 
 }

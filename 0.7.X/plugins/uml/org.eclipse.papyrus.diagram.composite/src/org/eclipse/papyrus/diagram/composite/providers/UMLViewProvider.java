@@ -588,6 +588,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label5112 = createLabel(node, UMLVisualIDRegistry.getType(ActivityCompositeNameEditPart.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(ActivityCompositeCompartmentEditPart.VISUAL_ID), true, false, false, false);
+
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Activity");
+
 		return node;
 	}
 
@@ -616,6 +619,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label5113 = createLabel(node, UMLVisualIDRegistry.getType(InteractionCompositeNameEditPart.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(InteractionCompositeCompartmentEditPart.VISUAL_ID), true, false, false, false);
+
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Interaction");
+
 		return node;
 	}
 
@@ -644,6 +650,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label5114 = createLabel(node, UMLVisualIDRegistry.getType(ProtocolStateMachineCompositeNameEditPart.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(ProtocolStateMachineCompositeCompartmentEditPart.VISUAL_ID), true, false, false, false);
+
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "ProtocolStateMachine");
+
 		return node;
 	}
 
@@ -672,6 +681,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label5115 = createLabel(node, UMLVisualIDRegistry.getType(StateMachineCompositeNameEditPart.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(StateMachineCompositeCompartmentEditPart.VISUAL_ID), true, false, false, false);
+
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "StateMachine");
+
 		return node;
 	}
 
@@ -700,6 +712,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label5116 = createLabel(node, UMLVisualIDRegistry.getType(FunctionBehaviorCompositeNameEditPart.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(FunctionBehaviorCompositeCompartmentEditPart.VISUAL_ID), true, false, false, false);
+
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "FunctionBehavior");
+
 		return node;
 	}
 
@@ -728,6 +743,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label5117 = createLabel(node, UMLVisualIDRegistry.getType(OpaqueBehaviorCompositeNameEditPart.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(OpaqueBehaviorCompositeCompartmentEditPart.VISUAL_ID), true, false, false, false);
+
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "OpaqueBehavior");
+
 		return node;
 	}
 
@@ -756,6 +774,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label5121 = createLabel(node, UMLVisualIDRegistry.getType(ComponentCompositeNameEditPart.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(ComponentCompositeCompartmentEditPart.VISUAL_ID), true, false, false, false);
+
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Component");
+
 		return node;
 	}
 
@@ -784,6 +805,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label5122 = createLabel(node, UMLVisualIDRegistry.getType(DeviceCompositeNameEditPart.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(DeviceCompositeCompartmentEditPart.VISUAL_ID), true, false, false, false);
+
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Device");
+
 		return node;
 	}
 
@@ -812,6 +836,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label5123 = createLabel(node, UMLVisualIDRegistry.getType(ExecutionEnvironmentCompositeNameEditPart.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(ExecutionEnvironmentCompositeCompartmentEditPart.VISUAL_ID), true, false, false, false);
+
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "ExecutionEnvironment");
+
 		return node;
 	}
 
@@ -840,6 +867,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label5124 = createLabel(node, UMLVisualIDRegistry.getType(NodeCompositeNameEditPart.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(NodeCompositeCompartmentEditPart.VISUAL_ID), true, false, false, false);
+
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Node");
+
 		return node;
 	}
 
@@ -868,6 +898,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label5156 = createLabel(node, UMLVisualIDRegistry.getType(ClassCompositeNameEditPart.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(ClassCompositeCompartmentEditPart.VISUAL_ID), true, false, false, false);
+
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Class");
+
 		return node;
 	}
 
@@ -898,6 +931,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		createCompartment(node, UMLVisualIDRegistry.getType(ClassAttributeCompartmentEditPart.VISUAL_ID), true, false, true, true);
 		createCompartment(node, UMLVisualIDRegistry.getType(ClassOperationCompartmentEditPart.VISUAL_ID), true, false, true, true);
 		createCompartment(node, UMLVisualIDRegistry.getType(ClassNestedClassifierCompartmentEditPart.VISUAL_ID), true, false, true, true);
+
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Class");
+
 		return node;
 	}
 
@@ -926,6 +962,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label5158 = createLabel(node, UMLVisualIDRegistry.getType(CollaborationCompositeNameEditPart.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(CollaborationCompositeCompartmentEditPart.VISUAL_ID), true, false, false, false);
+
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Collaboration");
+
 		return node;
 	}
 
@@ -954,6 +993,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label5159 = createLabel(node, UMLVisualIDRegistry.getType(InterfaceNameEditPart.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(InterfaceCompartmentEditPart.VISUAL_ID), true, false, false, false);
+
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Interface");
+
 		return node;
 	}
 
@@ -981,6 +1023,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "PrimitiveType");
 
 		Node label5118 = createLabel(node, UMLVisualIDRegistry.getType(PrimitiveTypeNameEditPart.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -1009,6 +1053,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label5119 = createLabel(node, UMLVisualIDRegistry.getType(EnumerationNameEditPart.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(EnumerationEnumerationLiteralCompartmentEditPart.VISUAL_ID), true, false, true, true);
+
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Enumeration");
+
 		return node;
 	}
 
@@ -1038,6 +1085,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Node label5120 = createLabel(node, UMLVisualIDRegistry.getType(DataTypeNameEditPart.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(DataTypeAttributeCompartmentEditPart.VISUAL_ID), true, false, true, true);
 		createCompartment(node, UMLVisualIDRegistry.getType(DataTypeOperationCompartmentEditPart.VISUAL_ID), true, false, true, true);
+
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "DataType");
+
 		return node;
 	}
 
@@ -1064,6 +1114,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Actor");
 
 		Node label5160 = createLabel(node, UMLVisualIDRegistry.getType(ActorNameEditPart.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -1090,6 +1142,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "DeploymentSpecification");
 
 		Node label5161 = createLabel(node, UMLVisualIDRegistry.getType(DeploymentSpecificationNameEditPart.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -1116,6 +1170,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Artifact");
 
 		Node label5162 = createLabel(node, UMLVisualIDRegistry.getType(ArtifactNameEditPart.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -1143,6 +1199,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "InformationItem");
 
 		Node label5163 = createLabel(node, UMLVisualIDRegistry.getType(InformationItemNameEditPart.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -1170,6 +1228,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Signal");
 
 		Node label5164 = createLabel(node, UMLVisualIDRegistry.getType(SignalNameEditPart.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -1196,6 +1256,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "UseCase");
 
 		Node label5165 = createLabel(node, UMLVisualIDRegistry.getType(UseCaseNameEditPart.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -1222,6 +1284,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "SignalEvent");
 
 		Node label5166 = createLabel(node, UMLVisualIDRegistry.getType(SignalEventNameEditPart.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -1248,6 +1312,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "CallEvent");
 
 		Node label5167 = createLabel(node, UMLVisualIDRegistry.getType(CallEventNameEditPart.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -1274,6 +1340,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "AnyReceiveEvent");
 
 		Node label5168 = createLabel(node, UMLVisualIDRegistry.getType(AnyReceiveEventNameEditPart.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -1300,6 +1368,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "SendSignalEvent");
 
 		Node label5169 = createLabel(node, UMLVisualIDRegistry.getType(SendSignalEventNameEditPart.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -1326,6 +1396,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "SendOperationEvent");
 
 		Node label5170 = createLabel(node, UMLVisualIDRegistry.getType(SendOperationEventNameEditPart.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -1352,6 +1424,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "ChangeEvent");
 
 		Node label5171 = createLabel(node, UMLVisualIDRegistry.getType(ChangeEventNameEditPart.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -1378,6 +1452,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "TimeEvent");
 
 		Node label5172 = createLabel(node, UMLVisualIDRegistry.getType(TimeEventNameEditPart.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -1404,6 +1480,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "CreationEvent");
 
 		Node label5173 = createLabel(node, UMLVisualIDRegistry.getType(CreationEventNameEditPart.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -1430,6 +1508,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "DestructionEvent");
 
 		Node label5174 = createLabel(node, UMLVisualIDRegistry.getType(DestructionEventNameEditPart.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -1456,6 +1536,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "ExecutionEvent");
 
 		Node label5175 = createLabel(node, UMLVisualIDRegistry.getType(ExecutionEventNameEditPart.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -1494,6 +1576,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5152 = (Location)label5152.getLayoutConstraint();
 		location5152.setX(25);
 		location5152.setY(-10);
+
+
 		return node;
 	}
 
@@ -1532,6 +1616,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5143 = (Location)label5143.getLayoutConstraint();
 		location5143.setX(25);
 		location5143.setY(-10);
+
+
 		return node;
 	}
 
@@ -1558,6 +1644,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "LiteralBoolean");
 
 		Node label5178 = createLabel(node, UMLVisualIDRegistry.getType(LiteralBooleanNameEditPart.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -1584,6 +1672,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "LiteralInteger");
 
 		Node label5179 = createLabel(node, UMLVisualIDRegistry.getType(LiteralIntegerNameEditPart.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -1610,6 +1700,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "LiteralNull");
 
 		Node label5180 = createLabel(node, UMLVisualIDRegistry.getType(LiteralNullNameEditPart.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -1636,6 +1728,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "LiteralString");
 
 		Node label5181 = createLabel(node, UMLVisualIDRegistry.getType(LiteralStringNameEditPart.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -1662,6 +1756,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "LiteralUnlimitedNatural");
 
 		Node label5182 = createLabel(node, UMLVisualIDRegistry.getType(LiteralUnlimitedNaturalNameEditPart.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -1688,6 +1784,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "StringExpression");
 
 		Node label5183 = createLabel(node, UMLVisualIDRegistry.getType(StringExpressionNameEditPart.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -1714,6 +1812,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "OpaqueExpression");
 
 		Node label5184 = createLabel(node, UMLVisualIDRegistry.getType(OpaqueExpressionNameEditPart.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -1740,6 +1840,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "TimeExpression");
 
 		Node label5185 = createLabel(node, UMLVisualIDRegistry.getType(TimeExpressionNameEditPart.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -1766,6 +1868,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Expression");
 
 		Node label5186 = createLabel(node, UMLVisualIDRegistry.getType(ExpressionNameEditPart.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -1792,6 +1896,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Duration");
 
 		Node label5187 = createLabel(node, UMLVisualIDRegistry.getType(DurationNameEditPart.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -1818,6 +1924,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "TimeInterval");
 
 		Node label5188 = createLabel(node, UMLVisualIDRegistry.getType(TimeIntervalNameEditPart.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -1844,6 +1952,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "DurationInterval");
 
 		Node label5189 = createLabel(node, UMLVisualIDRegistry.getType(DurationIntervalNameEditPart.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -1870,6 +1980,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Interval");
 
 		Node label5190 = createLabel(node, UMLVisualIDRegistry.getType(IntervalNameEditPart.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -1896,6 +2008,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "InstanceValue");
 
 		Node label5191 = createLabel(node, UMLVisualIDRegistry.getType(InstanceValueNameEditPart.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -1923,6 +2037,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Comment");
 
 		Node label5192 = createLabel(node, UMLVisualIDRegistry.getType(CommentBodyEditPart.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -1951,6 +2067,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label5193 = createLabel(node, UMLVisualIDRegistry.getType(DurationConstraintNameEditPart.VISUAL_ID));
 		Node label6035 = createLabel(node, UMLVisualIDRegistry.getType(DurationConstraintSpecificationEditPart.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -1979,6 +2097,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label5194 = createLabel(node, UMLVisualIDRegistry.getType(TimeConstraintNameEditPart.VISUAL_ID));
 		Node label6036 = createLabel(node, UMLVisualIDRegistry.getType(TimeConstraintSpecificationEditPart.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -2007,6 +2127,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label5195 = createLabel(node, UMLVisualIDRegistry.getType(IntervalConstraintNameEditPart.VISUAL_ID));
 		Node label6037 = createLabel(node, UMLVisualIDRegistry.getType(IntervalConstraintSpecificationEditPart.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -2035,6 +2157,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label5196 = createLabel(node, UMLVisualIDRegistry.getType(InteractionConstraintNameEditPart.VISUAL_ID));
 		Node label6038 = createLabel(node, UMLVisualIDRegistry.getType(InteractionConstraintSpecificationEditPart.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -2063,6 +2187,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label5197 = createLabel(node, UMLVisualIDRegistry.getType(ConstraintNameEditPart.VISUAL_ID));
 		Node label6039 = createLabel(node, UMLVisualIDRegistry.getType(ConstraintSpecificationEditPart.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -2100,6 +2226,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6029 = (Location)label6029.getLayoutConstraint();
 		location6029.setX(25);
 		location6029.setY(-10);
+
+
 		return node;
 	}
 
@@ -2137,6 +2265,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6034 = (Location)label6034.getLayoutConstraint();
 		location6034.setX(25);
 		location6034.setY(-10);
+
+
 		return node;
 	}
 
@@ -2164,6 +2294,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label5126 = createLabel(node, UMLVisualIDRegistry.getType(PropertyPartNameEditPartCN.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(PropertyPartCompartmentEditPartCN.VISUAL_ID), true, false, false, false);
+
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Property");
+
 		return node;
 	}
 
@@ -2190,6 +2323,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "ConnectableElement");
 
 		Node label5198 = createLabel(node, UMLVisualIDRegistry.getType(CollaborationRoleNameEditPartCN.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -2216,6 +2351,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "CollaborationUse");
 
 		Node label5127 = createLabel(node, UMLVisualIDRegistry.getType(CollaborationUseNameEditPart.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -2243,6 +2380,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label5128 = createLabel(node, UMLVisualIDRegistry.getType(ActivityCompositeNameEditPartCN.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(ActivityCompositeCompartmentEditPartCN.VISUAL_ID), true, false, false, false);
+
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Activity");
+
 		return node;
 	}
 
@@ -2270,6 +2410,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label5129 = createLabel(node, UMLVisualIDRegistry.getType(InteractionCompositeNameEditPartCN.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(InteractionCompositeCompartmentEditPartCN.VISUAL_ID), true, false, false, false);
+
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Interaction");
+
 		return node;
 	}
 
@@ -2297,6 +2440,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label5130 = createLabel(node, UMLVisualIDRegistry.getType(ProtocolStateMachineCompositeNameEditPartCN.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(ProtocolStateMachineCompositeCompartmentEditPartCN.VISUAL_ID), true, false, false, false);
+
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "ProtocolStateMachine");
+
 		return node;
 	}
 
@@ -2324,6 +2470,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label5131 = createLabel(node, UMLVisualIDRegistry.getType(StateMachineCompositeNameEditPartCN.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(StateMachineCompositeCompartmentEditPartCN.VISUAL_ID), true, false, false, false);
+
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "StateMachine");
+
 		return node;
 	}
 
@@ -2351,6 +2500,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label5132 = createLabel(node, UMLVisualIDRegistry.getType(FunctionBehaviorCompositeNameEditPartCN.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(FunctionBehaviorCompositeCompartmentEditPartCN.VISUAL_ID), true, false, false, false);
+
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "FunctionBehavior");
+
 		return node;
 	}
 
@@ -2378,6 +2530,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label5133 = createLabel(node, UMLVisualIDRegistry.getType(OpaqueBehaviorCompositeNameEditPartCN.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(OpaqueBehaviorCompositeCompartmentEditPartCN.VISUAL_ID), true, false, false, false);
+
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "OpaqueBehavior");
+
 		return node;
 	}
 
@@ -2405,6 +2560,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label5137 = createLabel(node, UMLVisualIDRegistry.getType(ComponentCompositeNameEditPartCN.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(ComponentCompositeCompartmentEditPartCN.VISUAL_ID), true, false, false, false);
+
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Component");
+
 		return node;
 	}
 
@@ -2432,6 +2590,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label5138 = createLabel(node, UMLVisualIDRegistry.getType(DeviceCompositeNameEditPartCN.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(DeviceCompositeCompartmentEditPartCN.VISUAL_ID), true, false, false, false);
+
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Device");
+
 		return node;
 	}
 
@@ -2459,6 +2620,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label5139 = createLabel(node, UMLVisualIDRegistry.getType(ExecutionEnvironmentCompositeNameEditPartCN.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(ExecutionEnvironmentCompositeCompartmentEditPartCN.VISUAL_ID), true, false, false, false);
+
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "ExecutionEnvironment");
+
 		return node;
 	}
 
@@ -2486,6 +2650,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label5140 = createLabel(node, UMLVisualIDRegistry.getType(NodeCompositeNameEditPartCN.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(NodeCompositeCompartmentEditPartCN.VISUAL_ID), true, false, false, false);
+
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Node");
+
 		return node;
 	}
 
@@ -2513,6 +2680,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label5155 = createLabel(node, UMLVisualIDRegistry.getType(ClassCompositeNameEditPartCN.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(ClassCompositeCompartmentEditPartCN.VISUAL_ID), true, false, false, false);
+
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Class");
+
 		return node;
 	}
 
@@ -2540,6 +2710,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label5141 = createLabel(node, UMLVisualIDRegistry.getType(CollaborationCompositeNameEditPartCN.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(CollaborationCompositeCompartmentEditPartCN.VISUAL_ID), true, false, false, false);
+
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Collaboration");
+
 		return node;
 	}
 
@@ -2567,6 +2740,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label5154 = createLabel(node, UMLVisualIDRegistry.getType(InterfaceNameEditPartCN.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(InterfaceCompartmentEditPartCN.VISUAL_ID), true, false, false, false);
+
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Interface");
+
 		return node;
 	}
 
@@ -2593,6 +2769,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "PrimitiveType");
 
 		Node label5134 = createLabel(node, UMLVisualIDRegistry.getType(PrimitiveTypeNameEditPartCN.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -2620,6 +2798,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label5135 = createLabel(node, UMLVisualIDRegistry.getType(EnumerationNameEditPartCN.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(EnumerationEnumerationLiteralCompartmentEditPartCN.VISUAL_ID), true, false, true, true);
+
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Enumeration");
+
 		return node;
 	}
 
@@ -2648,6 +2829,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Node label5136 = createLabel(node, UMLVisualIDRegistry.getType(DataTypeNameEditPartCN.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(DataTypeAttributeCompartmentEditPartCN.VISUAL_ID), true, false, true, true);
 		createCompartment(node, UMLVisualIDRegistry.getType(DataTypeOperationCompartmentEditPartCN.VISUAL_ID), true, false, true, true);
+
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "DataType");
+
 		return node;
 	}
 
@@ -2673,6 +2857,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Actor");
 
 		Node label5144 = createLabel(node, UMLVisualIDRegistry.getType(ActorNameEditPartCN.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -2698,6 +2884,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "DeploymentSpecification");
 
 		Node label5145 = createLabel(node, UMLVisualIDRegistry.getType(DeploymentSpecificationNameEditPartCN.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -2723,6 +2911,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Artifact");
 
 		Node label5146 = createLabel(node, UMLVisualIDRegistry.getType(ArtifactNameEditPartCN.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -2749,6 +2939,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "InformationItem");
 
 		Node label5147 = createLabel(node, UMLVisualIDRegistry.getType(InformationItemNameEditPartCN.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -2775,6 +2967,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Signal");
 
 		Node label5148 = createLabel(node, UMLVisualIDRegistry.getType(SignalNameEditPartCN.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -2800,6 +2994,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "UseCase");
 
 		Node label5149 = createLabel(node, UMLVisualIDRegistry.getType(UseCaseNameEditPartCN.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -2826,6 +3022,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Comment");
 
 		Node label5150 = createLabel(node, UMLVisualIDRegistry.getType(CommentBodyEditPartCN.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -2853,6 +3051,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label6040 = createLabel(node, UMLVisualIDRegistry.getType(DurationConstraintNameEditPartCN.VISUAL_ID));
 		Node label6041 = createLabel(node, UMLVisualIDRegistry.getType(DurationConstraintSpecificationEditPartCN.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -2880,6 +3080,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label6042 = createLabel(node, UMLVisualIDRegistry.getType(TimeConstraintNameEditPartCN.VISUAL_ID));
 		Node label6043 = createLabel(node, UMLVisualIDRegistry.getType(TimeConstraintSpecificationEditPartCN.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -2907,6 +3109,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label6044 = createLabel(node, UMLVisualIDRegistry.getType(IntervalConstraintNameEditPartCN.VISUAL_ID));
 		Node label6045 = createLabel(node, UMLVisualIDRegistry.getType(IntervalConstraintSpecificationEditPartCN.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -2934,6 +3138,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label6046 = createLabel(node, UMLVisualIDRegistry.getType(InteractionConstraintNameEditPartCN.VISUAL_ID));
 		Node label6047 = createLabel(node, UMLVisualIDRegistry.getType(InteractionConstraintSpecificationEditPartCN.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -2961,6 +3167,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label6048 = createLabel(node, UMLVisualIDRegistry.getType(ConstraintNameEditPartCN.VISUAL_ID));
 		Node label6049 = createLabel(node, UMLVisualIDRegistry.getType(ConstraintSpecificationEditPartCN.VISUAL_ID));
+
+
 		return node;
 	}
 
