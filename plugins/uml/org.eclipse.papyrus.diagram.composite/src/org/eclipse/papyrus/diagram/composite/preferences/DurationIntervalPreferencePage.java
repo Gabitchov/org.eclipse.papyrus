@@ -24,6 +24,8 @@ import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
  */
 public class DurationIntervalPreferencePage extends AbstractPapyrusNodePreferencePage {
 
+
+
 	/**
 	 * @generated
 	 */
@@ -37,7 +39,7 @@ public class DurationIntervalPreferencePage extends AbstractPapyrusNodePreferenc
 	 */
 	@Override
 	protected String getBundleId() {
-		return UMLDiagramEditorPlugin.getInstance().ID;
+		return UMLDiagramEditorPlugin.ID;
 	}
 
 	/**
@@ -48,6 +50,7 @@ public class DurationIntervalPreferencePage extends AbstractPapyrusNodePreferenc
 		String key = CompositeStructureDiagramEditPart.MODEL_ID + "_DurationInterval";
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.WIDTH), 40);
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.HEIGHT), 40);
+
 
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_FILL), new org.eclipse.swt.graphics.RGB(255, 255, 255));
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_LINE), new org.eclipse.swt.graphics.RGB(0, 0, 0));
@@ -60,5 +63,6 @@ public class DurationIntervalPreferencePage extends AbstractPapyrusNodePreferenc
 		//store.setDefault(org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_GRADIENT), gradientPreferenceConverter.getPreferenceValue());
 
 	}
+
 
 }

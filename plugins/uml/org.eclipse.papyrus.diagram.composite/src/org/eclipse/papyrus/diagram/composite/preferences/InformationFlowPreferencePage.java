@@ -36,7 +36,7 @@ public class InformationFlowPreferencePage extends AbstractPapyrusLinkPreference
 	 */
 	@Override
 	protected String getBundleId() {
-		return UMLDiagramEditorPlugin.getInstance().ID;
+		return UMLDiagramEditorPlugin.ID;
 	}
 
 	/**
