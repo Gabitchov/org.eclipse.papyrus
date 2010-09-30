@@ -516,8 +516,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ActivityParameterNodeEditPart.VISUAL_ID:
 				return new ActivityParameterNodeEditPart(view);
 
-			case CenteredWrappedLabelEditPart.VISUAL_ID:
-				return new CenteredWrappedLabelEditPart(view);
+			case ParameterNodeNameEditPart.VISUAL_ID:
+				return new ParameterNodeNameEditPart(view);
 
 			case AcceptEventActionEditPart.VISUAL_ID:
 				return new AcceptEventActionEditPart(view);

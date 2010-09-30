@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2010 Atos Origin.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *   Atos Origin - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.activity.edit.parts;
 
 import java.util.Collections;
@@ -19,7 +6,6 @@ import java.util.List;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -34,12 +20,10 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.LabelDirectEditPolicy;
-import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramColorRegistry;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.diagram.ui.tools.TextDirectEditManager;
@@ -54,7 +38,6 @@ import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.diagram.activity.edit.policies.UMLTextSelectionEditPolicy;
-import org.eclipse.papyrus.diagram.activity.figures.WrappedLabel;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.activity.providers.UMLParserProvider;
@@ -65,8 +48,10 @@ import org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.extensionpoints.editors.Activator;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IAdvancedEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration;
+import org.eclipse.papyrus.extensionpoints.editors.configuration.IPopupEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.ui.ExtendedDirectEditionDialog;
 import org.eclipse.papyrus.extensionpoints.editors.ui.ILabelEditorDialog;
+import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
 import org.eclipse.swt.SWT;
@@ -75,21 +60,16 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.uml2.uml.JoinNode;
 
 /**
  * @generated
  */
-public class JoinSpecEditPart
-
-extends LabelEditPart
-
-implements ITextAwareEditPart, IBorderItemEditPart {
+public class ParameterNodeNameEditPart extends CompartmentEditPart implements ITextAwareEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 5042;
+	public static final int VISUAL_ID = 5071;
 
 	/**
 	 * @generated
@@ -111,23 +91,24 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 	 */
 	private String defaultText;
 
-	/** direct edition mode (default, undefined, registered editor, etc.) */
+	/**
+	 * direct edition mode (default, undefined, registered editor, etc.)
+	 * 
+	 * @generated
+	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
-	/** configuration from a registered edit dialog */
+	/**
+	 * configuration from a registered edit dialog
+	 * 
+	 * @generated
+	 */
 	protected IDirectEditorConfiguration configuration;
 
 	/**
 	 * @generated
 	 */
-	static {
-		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.activity.edit.parts.JoinSpecEditPart.VISUAL_ID), new Point(0, 0));
-	}
-
-	/**
-	 * @generated
-	 */
-	public JoinSpecEditPart(View view) {
+	public ParameterNodeNameEditPart(View view) {
 		super(view);
 	}
 
@@ -136,31 +117,9 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
 		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new UMLTextSelectionEditPolicy());
-	}
-
-	/**
-	 * @generated
-	 */
-	public IBorderItemLocator getBorderItemLocator() {
-		IFigure parentFigure = getFigure().getParent();
-		if(parentFigure != null && parentFigure.getLayoutManager() != null) {
-			Object constraint = parentFigure.getLayoutManager().getConstraint(getFigure());
-			return (IBorderItemLocator)constraint;
-		}
-		return null;
-	}
-
-	/**
-	 * @generated
-	 */
-	public void refreshBounds() {
-		int x = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
-		int y = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
-		int width = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Width())).intValue();
-		int height = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Height())).intValue();
-		getBorderItemLocator().setConstraint(new Rectangle(x, y, width, height));
+		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
+		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new ActivityDiagramEditPart.NodeLabelDragPolicy());
 	}
 
 	/**
@@ -218,7 +177,7 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 	/**
 	 * @generated
 	 */
-	public void setLabel(IFigure figure) {
+	public void setLabel(WrappingLabel figure) {
 		unregisterVisuals();
 		setFigure(figure);
 		defaultText = getLabelTextHelper(figure);
@@ -352,7 +311,7 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 	 */
 	public IParser getParser() {
 		if(parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.JoinNode_3041, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.activity.edit.parts.JoinSpecEditPart.VISUAL_ID));
+			parser = UMLParserProvider.getParser(UMLElementTypes.ActivityParameterNode_3059, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.activity.edit.parts.ParameterNodeNameEditPart.VISUAL_ID));
 		}
 		return parser;
 	}
@@ -402,7 +361,7 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 	}
 
 	/**
-	 * @generated NOT default direct edit occurs only if there is a defined join specification
+	 * @generated
 	 */
 	protected void performDirectEditRequest(Request request) {
 
@@ -422,7 +381,11 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 			} else {
 				configuration.preEditAction(resolveSemanticElement());
 				Dialog dialog = null;
-				if(configuration instanceof IAdvancedEditorConfiguration) {
+				if(configuration instanceof IPopupEditorConfiguration) {
+					IPopupEditorHelper helper = ((IPopupEditorConfiguration)configuration).createPopupEditorHelper(this);
+					helper.showEditor();
+					return;
+				} else if(configuration instanceof IAdvancedEditorConfiguration) {
 					dialog = ((IAdvancedEditorConfiguration)configuration).createDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration.getTextToEdit(resolveSemanticElement()));
 				} else if(configuration instanceof IDirectEditorConfiguration) {
 					dialog = new ExtendedDirectEditionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), ((IDirectEditorConfiguration)configuration).getTextToEdit(resolveSemanticElement()), (IDirectEditorConfiguration)configuration);
@@ -446,11 +409,7 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 			}
 			break;
 		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-			// prevent default direct edition if no join specification
-			EObject element = resolveSemanticElement();
-			if(element instanceof JoinNode && ((JoinNode)element).getJoinSpec() == null) {
-				break;
-			}
+
 			// initialize the direct edit manager
 			try {
 				getEditingDomain().runExclusive(new Runnable() {
@@ -657,6 +616,8 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 
 	/**
 	 * Updates the preference configuration
+	 * 
+	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
 		String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
@@ -672,6 +633,7 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 	 * 
 	 * @param theRequest
 	 *        the direct edit request that starts the direct edit system
+	 * @generated
 	 */
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {
 		// initialize the direct edit manager
@@ -700,7 +662,24 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 	/**
 	 * @generated
 	 */
+	protected void addNotationalListeners() {
+		super.addNotationalListeners();
+		addListenerFilter("PrimaryView", this, getPrimaryView()); //$NON-NLS-1$
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void removeNotationalListeners() {
+		super.removeNotationalListeners();
+		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
+	}
+
+	/**
+	 * @generated
+	 */
 	protected void handleNotificationEvent(Notification event) {
+		refreshLabel();
 		Object feature = event.getFeature();
 		if(NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(feature)) {
 			Integer c = (Integer)event.getNewValue();
@@ -726,6 +705,7 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 				}
 			}
 		}
+
 		super.handleNotificationEvent(event);
 	}
 
@@ -733,16 +713,46 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 	 * @generated
 	 */
 	protected IFigure createFigure() {
-		IFigure label = createFigurePrim();
-		defaultText = getLabelTextHelper(label);
-		return label;
+		// Parent should assign one using setLabel() method
+		return null;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected IFigure createFigurePrim() {
-		return new WrappedLabel();
+	private static final String ADD_PARENT_MODEL = "AddParentModel";
+
+	/**
+	 * @generated
+	 */
+	public void activate() {
+		super.activate();
+		addOwnerElementListeners();
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void addOwnerElementListeners() {
+		addListenerFilter(ADD_PARENT_MODEL, this, ((View)getParent().getModel())); //$NON-NLS-1$
+
+	}
+
+	/**
+	 * @generated
+	 */
+	public void deactivate() {
+		removeOwnerElementListeners();
+		super.deactivate();
+
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void removeOwnerElementListeners() {
+		removeListenerFilter(ADD_PARENT_MODEL);
+
 	}
 
 }

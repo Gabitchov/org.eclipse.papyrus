@@ -2126,7 +2126,7 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case ActivityParameterNodeEditPart.VISUAL_ID:
-			if(CenteredWrappedLabelEditPart.VISUAL_ID == nodeVisualID) {
+			if(ParameterNodeNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;

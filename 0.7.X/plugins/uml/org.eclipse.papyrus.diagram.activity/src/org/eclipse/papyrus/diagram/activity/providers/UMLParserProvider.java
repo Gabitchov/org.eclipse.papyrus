@@ -2414,7 +2414,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getInputPinLabel_5076Parser();
 		case InputPinInSendSigActAsTargetAppliedStereotypeEditPart.VISUAL_ID:
 			return getInputPinLabel_5113Parser();
-		case CenteredWrappedLabelEditPart.VISUAL_ID:
+		case ParameterNodeNameEditPart.VISUAL_ID:
 			return getActivityParameterNodeLabel_5071Parser();
 		case AcceptEventActionLabelEditPart.VISUAL_ID:
 			return getAcceptEventActionLabel_5078Parser();
