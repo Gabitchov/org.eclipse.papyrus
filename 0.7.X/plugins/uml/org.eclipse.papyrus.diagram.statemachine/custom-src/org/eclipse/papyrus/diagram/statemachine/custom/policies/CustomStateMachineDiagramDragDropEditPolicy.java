@@ -30,7 +30,6 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.figures.ShapeCompartmentFigure;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
@@ -44,7 +43,7 @@ import org.eclipse.papyrus.diagram.common.editpolicies.CommonDiagramDragDropEdit
 import org.eclipse.papyrus.diagram.statemachine.custom.commands.CreateViewCommand;
 import org.eclipse.papyrus.diagram.statemachine.custom.commands.CustomFirstRegionInCompositeStateCreateElementCommand;
 import org.eclipse.papyrus.diagram.statemachine.custom.commands.CustomRegionCreateElementCommand;
-import org.eclipse.papyrus.diagram.statemachine.custom.commands.CustomRegionDeleteCommand;
+import org.eclipse.papyrus.diagram.statemachine.custom.commands.CustomRegionMoveCommand;
 import org.eclipse.papyrus.diagram.statemachine.custom.commands.CustomStateMachineSetBoundsCommand;
 import org.eclipse.papyrus.diagram.statemachine.custom.commands.CustomStateMachineWithDefaultRegionCreateNodeCommand;
 import org.eclipse.papyrus.diagram.statemachine.custom.edit.part.CustomRegionEditPart;
@@ -58,7 +57,6 @@ import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateExitPointE
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionCompartmentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateCompartmentEditPart;
-import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineCompartmentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineEditPart;
 import org.eclipse.papyrus.diagram.statemachine.part.UMLVisualIDRegistry;
@@ -232,16 +230,18 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends CommonDiagramDr
 					if(fromOutline) {
 						return UnexecutableCommand.INSTANCE;
 					}
-					// specific command to get rid of the already shown region
-					CustomRegionDeleteCommand deleteAlreadyShown = new CustomRegionDeleteCommand(getEditingDomain(), alreadyShown);
-					cc.compose(deleteAlreadyShown);
+					
+					IAdaptable adaptableForRegionToMove = (IAdaptable)new SemanticAdapter(null, alreadyShown);
+						
+					// specific command to move the already shown region
+					CustomRegionMoveCommand moveCommand = new CustomRegionMoveCommand(adaptableForExistingRegionView, adaptableForRegionToMove, ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint(), getEditingDomain(), DiagramUIMessages.CreateCommand_Label, dropLocation);
+					cc.compose(moveCommand);
 				}
-
-				// do the whole job
-				CustomRegionCreateElementCommand createNewRegion = new CustomRegionCreateElementCommand(adaptableForExistingRegionView, adaptableForDroppedRegion, ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint(), getEditingDomain(), DiagramUIMessages.CreateCommand_Label, dropLocation);
-
-				cc.compose(createNewRegion);
-
+				else{
+					// do the whole job
+					CustomRegionCreateElementCommand createNewRegion = new CustomRegionCreateElementCommand(adaptableForExistingRegionView, adaptableForDroppedRegion, ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint(), getEditingDomain(), DiagramUIMessages.CreateCommand_Label, dropLocation);
+					cc.compose(createNewRegion);
+				}
 				return new ICommandProxy(cc.reduce());
 			}
 		}
