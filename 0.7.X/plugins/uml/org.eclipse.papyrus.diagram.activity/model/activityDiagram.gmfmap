@@ -2252,13 +2252,13 @@
           </domainInitializer>
           <labelMappings>
             <diagramLabel
-                href="activityDiagram.gmfgraph#ActivityParameterNodeName"/>
+                href="../../org.eclipse.papyrus.diagram.common/model/NodeNamedElement.gmfgraph#NameOfNamedElementFigureDiagramLabel"/>
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
               href="activityDiagram.gmftool#//@palette/@tools.0/@tools.7"/>
           <diagramNode
-              href="activityDiagram.gmfgraph#ActivityParameterNode"/>
+              href="../../org.eclipse.papyrus.diagram.common/model/NodeNamedElement.gmfgraph#NamedElementFigureNode"/>
         </ownedChild>
       </children>
       <children
