@@ -129,7 +129,7 @@ public class CommandHelper {
 		message.setMessageSort(messageSort);
 
 		// Init Name
-		if (signature == null) {
+		if(signature == null) {
 			ElementInitializers.init_NamedElement(message);
 		} else {
 			message.setName(signature.getName());
@@ -302,7 +302,7 @@ public class CommandHelper {
 			EList<Lifeline> lifelines = ((InteractionFragment)parentsOwner).getCovereds();
 			for(Lifeline l : lifelines) {
 				boolean result = addParentsFromLifeline(l, mapTypesPossibleParents);
-				if (result) {
+				if(result) {
 					existingParent = true;
 				}
 			}
@@ -430,7 +430,7 @@ public class CommandHelper {
 		// and the packages to signal
 		List<EObject> possiblePackages = mapTypesPossibleParents.get(UMLPackage.eINSTANCE.getSignal());
 		if(possiblePackages != null) {
-		    possiblePackages.addAll(ModelSetQuery.getObjectsOfType(type, UMLPackage.eINSTANCE.getPackage()));
+			possiblePackages.addAll(ModelSetQuery.getObjectsOfType(type, UMLPackage.eINSTANCE.getPackage()));
 			existingParent = true;
 		}
 

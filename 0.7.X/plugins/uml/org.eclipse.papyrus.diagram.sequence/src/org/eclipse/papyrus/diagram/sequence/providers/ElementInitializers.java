@@ -424,7 +424,7 @@ public class ElementInitializers {
 		Integer nextNumber = -1;
 
 		Namespace namespace = namedElement.getNamespace();
-		if (namespace != null) {
+		if(namespace != null) {
 			for(NamedElement e : namespace.getMembers()) {
 				String name = e.getName();
 				if(name != null && name.startsWith(base)) {

@@ -121,7 +121,7 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 		Connection connection = getConnection();
 		RouterKind kind = RouterKind.getKind(connection, connection.getPoints());
 
-		if (kind.equals(RouterKind.HORIZONTAL)) {
+		if(kind.equals(RouterKind.HORIZONTAL)) {
 			return true;
 		}
 		return false;

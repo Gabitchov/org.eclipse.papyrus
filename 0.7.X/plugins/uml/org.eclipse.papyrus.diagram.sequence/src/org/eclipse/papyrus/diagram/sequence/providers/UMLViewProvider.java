@@ -9,7 +9,7 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
- *
+ *   Vincent Lorenzo - vincent.lorenzo@cea.fr - CEA - LIST
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.providers;
 
@@ -154,10 +154,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	 */
 	protected boolean provides(CreateViewForKindOperation op) {
 		/*
-		 if (op.getViewKind() == Node.class)
-		 return getNodeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
-		 if (op.getViewKind() == Edge.class)
-		 return getEdgeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
+		 * if (op.getViewKind() == Node.class)
+		 * return getNodeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
+		 * if (op.getViewKind() == Edge.class)
+		 * return getEdgeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
 		 */
 		return true;
 	}
@@ -378,6 +378,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label5001 = createLabel(node, UMLVisualIDRegistry.getType(InteractionNameEditPart.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(InteractionInteractionCompartmentEditPart.VISUAL_ID), false, false, false, false);
+
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Interaction");
+
+
 		return node;
 	}
 
@@ -404,6 +408,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Lifeline");
 
 		Node label5002 = createLabel(node, UMLVisualIDRegistry.getType(LifelineNameEditPart.VISUAL_ID));
+
+
+
 		return node;
 	}
 
@@ -428,6 +435,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "BehaviorExecutionSpecification");
+
+
+
 
 		return node;
 	}
@@ -455,6 +465,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "StateInvariant");
 
 		Node label5008 = createLabel(node, UMLVisualIDRegistry.getType(StateInvariantNameEditPart.VISUAL_ID));
+
+
+
 		return node;
 	}
 
@@ -479,6 +492,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "CombinedFragment");
+
+
+
 
 		return node;
 	}
@@ -517,6 +533,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5013 = (Location)label5013.getLayoutConstraint();
 		location5013.setX(0);
 		location5013.setY(-22);
+
+
+
 		return node;
 	}
 
@@ -554,6 +573,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5014 = (Location)label5014.getLayoutConstraint();
 		location5014.setX(0);
 		location5014.setY(-22);
+
+
+
 		return node;
 	}
 
@@ -591,6 +613,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5015 = (Location)label5015.getLayoutConstraint();
 		location5015.setX(0);
 		location5015.setY(-22);
+
+
+
 		return node;
 	}
 
@@ -616,6 +641,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "DestructionEvent");
 
+
+
+
 		return node;
 	}
 
@@ -640,6 +668,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "ActionExecutionSpecification");
+
+
+
 
 		return node;
 	}
@@ -669,6 +700,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label5003 = createLabel(node, UMLVisualIDRegistry.getType(InteractionUseNameEditPart.VISUAL_ID));
 		Node label5004 = createLabel(node, UMLVisualIDRegistry.getType(InteractionUseName2EditPart.VISUAL_ID));
+
+
+
 		return node;
 	}
 
@@ -696,7 +730,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		for(InteractionOperand interactionOperand : ((CombinedFragment)domainElement).getOperands()) {
 			createInteractionOperand_3005(interactionOperand, compartment, -1, true, UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 		}
-
+		//initialization for the compartment visibility
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "CombinedFragment");
 		return node;
 	}
 
@@ -721,6 +756,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "InteractionOperand");
+
+
+
 
 		return node;
 	}
@@ -748,6 +786,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Continuation");
 
 		Node label5007 = createLabel(node, UMLVisualIDRegistry.getType(ContinuationNameEditPart.VISUAL_ID));
+
+
+
 		return node;
 	}
 
@@ -775,6 +816,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label5005 = createLabel(node, UMLVisualIDRegistry.getType(ConstraintNameEditPart.VISUAL_ID));
 		Node label5012 = createLabel(node, UMLVisualIDRegistry.getType(Constraint2EditPart.VISUAL_ID));
+
+
+
 		return node;
 	}
 
@@ -801,6 +845,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Comment");
 
 		Node label5006 = createLabel(node, UMLVisualIDRegistry.getType(CommentBodyEditPart.VISUAL_ID));
+
+
+
 		return node;
 	}
 
@@ -887,6 +934,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			createInteractionOperand_3005(interactionOperand, compartment, -1, true, UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 		}
 
+		//initialization for the compartment visibility
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "ConsiderIgnoreFragment");
 		return node;
 	}
 

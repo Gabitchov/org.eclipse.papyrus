@@ -126,7 +126,7 @@ public class MessageRouter extends ObliqueRouter {
 
 	@Override
 	protected void getSelfRelVertices(Connection conn, PointList newLine) {
-		
+
 		rectilinearResetEndPointsToEdge(conn, newLine);
 
 		IFigure owner = conn.getSourceAnchor().getOwner();
@@ -178,13 +178,13 @@ public class MessageRouter extends ObliqueRouter {
 
 	@Override
 	protected boolean checkSelfRelConnection(Connection conn, PointList newLine) {
-		if (RouterKind.getKind(conn, newLine).equals(RouterKind.SELF)) {
+		if(RouterKind.getKind(conn, newLine).equals(RouterKind.SELF)) {
 			getSelfRelVertices(conn, newLine);
 			return true;
 		}
 		return false;
 	}
-	
+
 	/**
 	 * All the code after this comment is copied from RectilinearRouter and RouterHelper
 	 * 
@@ -742,15 +742,16 @@ public class MessageRouter extends ObliqueRouter {
 		return position;
 	}
 
-    /**
-     * @param conn the <code>Connection</code> that is to be check if it is a feedback
-     * connection or not.
-     * @return <code>true</code> is it is a feedback connection, <code>false</code> otherwise.
-     */
-    private static boolean isFeedback(Connection conn) {
-        Dimension dim = new Dimension(100, 100);
-        Dimension dimCheck = dim.getCopy();
-        conn.translateToRelative(dimCheck);
-        return dim.equals(dimCheck);
-    }
+	/**
+	 * @param conn
+	 *        the <code>Connection</code> that is to be check if it is a feedback
+	 *        connection or not.
+	 * @return <code>true</code> is it is a feedback connection, <code>false</code> otherwise.
+	 */
+	private static boolean isFeedback(Connection conn) {
+		Dimension dim = new Dimension(100, 100);
+		Dimension dimCheck = dim.getCopy();
+		conn.translateToRelative(dimCheck);
+		return dim.equals(dimCheck);
+	}
 }
