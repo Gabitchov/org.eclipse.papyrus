@@ -773,7 +773,7 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLStateMachineDiagram"
-			class="org.eclipse.papyrus.diagram.statemachine.preferences.StatePreferencePage"
+			class="org.eclipse.papyrus.diagram.statemachine.custom.preferences.CustomStatePreferencePage"
             id="org.eclipse.papyrus.diagram.statemachine.preferences.StatePreferencePage"
             name="State Node" />
 	
@@ -974,16 +974,6 @@
        path=""
        small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Transition_local.gif">
  	</entry>
-	<entry
-       defineOnly="true"
-       description="Generalization"
-       id="createGeneralizationCreationTool"
-       kind="tool"
-       label="Generalization"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif">
- 	</entry>
 
 			</contribution>
 		</paletteProvider>	
@@ -1101,10 +1091,6 @@
  	 
  	 	<predefinedEntry
           id="createTransitionCreationTool"
-          path="/createEdgesGroup">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="createGeneralizationCreationTool"
           path="/createEdgesGroup">
     </predefinedEntry>
 

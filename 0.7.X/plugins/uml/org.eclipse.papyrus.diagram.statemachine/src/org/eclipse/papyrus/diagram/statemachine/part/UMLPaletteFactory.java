@@ -93,11 +93,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private final static String CREATEGENERALIZATIONCREATIONTOOL = "createGeneralizationCreationTool"; //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
 	public UMLPaletteFactory() {
 
 	}
@@ -305,9 +300,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		if (toolId.equals(CREATETRANSITIONCREATIONTOOL)) {
 			return createTransitionCreationTool();
 		}
-		if (toolId.equals(CREATEGENERALIZATIONCREATIONTOOL)) {
-			return createGeneralizationCreationTool();
-		}
 
 		// default return: null
 		return null;
@@ -319,17 +311,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	private Tool createTransitionCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Transition_7000);
-
-		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
-		return tool;
-	}
-
-	/**
-	 * @generated
-	 */
-	private Tool createGeneralizationCreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.Generalization_19000);
 
 		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
 		return tool;

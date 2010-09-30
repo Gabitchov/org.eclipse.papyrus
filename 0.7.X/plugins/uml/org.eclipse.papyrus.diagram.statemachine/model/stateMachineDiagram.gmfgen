@@ -1924,15 +1924,6 @@
               createMethodName="createTransitionCreationTool"
               qualifiedToolName=""
               genLinks="/0/@diagram/@links.0"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="Generalization"
-              description="Generalization"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif"
-              createMethodName="createGeneralizationCreationTool"
-              qualifiedToolName=""
-              genLinks="/0/@diagram/@links.1"/>
         </groups>
       </palette>
       <preferencePages
