@@ -92,14 +92,14 @@ public class MessageCustomParser extends MessageFormatParser implements ISemanti
 			semanticElementsBeingParsed.add(message);
 			NamedElement signature = message.getSignature();
 			semanticElementsBeingParsed.add(signature);
-			
-			if (signature instanceof Operation) {
-				for (Parameter parameter : ((Operation)signature).getOwnedParameters()) {
+
+			if(signature instanceof Operation) {
+				for(Parameter parameter : ((Operation)signature).getOwnedParameters()) {
 					semanticElementsBeingParsed.add(parameter);
 				}
 			}
-			if (signature instanceof Signal) {
-				for (Property property : ((Signal)signature).getOwnedAttributes()) {
+			if(signature instanceof Signal) {
+				for(Property property : ((Signal)signature).getOwnedAttributes()) {
 					semanticElementsBeingParsed.add(property);
 				}
 			}

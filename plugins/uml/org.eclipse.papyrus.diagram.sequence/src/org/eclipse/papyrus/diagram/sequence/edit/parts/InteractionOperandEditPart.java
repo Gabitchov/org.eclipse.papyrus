@@ -53,8 +53,8 @@ import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.common.editpolicies.BorderItemResizableEditPolicy;
 import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.diagram.common.providers.UIAdapterImpl;
-import org.eclipse.papyrus.diagram.sequence.edit.policies.InteractionOperandComponentEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.CombinedFragmentCreationEditPolicy;
+import org.eclipse.papyrus.diagram.sequence.edit.policies.InteractionOperandComponentEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.InteractionOperandItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.InteractionOperandLayoutEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.figures.InteractionOperandFigure;
@@ -151,6 +151,7 @@ AbstractBorderedShapeEditPart {
 	 * 
 	 * @generated NOT
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CombinedFragmentCreationEditPolicy());
 		super.createDefaultEditPolicies();
@@ -174,6 +175,7 @@ AbstractBorderedShapeEditPart {
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		XYLayoutEditPolicy lep = new XYLayoutEditPolicy() {
 
+			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				View childView = (View)child.getModel();
 				switch(UMLVisualIDRegistry.getVisualID(childView)) {
@@ -198,6 +200,7 @@ AbstractBorderedShapeEditPart {
 	protected IFigure createNodeShape() {
 		return primaryShape = new CustomInteractionOperandFigure() {
 
+			@Override
 			protected boolean useLocalCoordinates() {
 				return true;
 			}
@@ -217,6 +220,7 @@ AbstractBorderedShapeEditPart {
 	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#getContentPaneFor(org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart)
 	 */
+	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 		if(editPart instanceof IBorderItemEditPart) {
 			return getBorderedFigure().getBorderItemContainer();
@@ -241,6 +245,7 @@ AbstractBorderedShapeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public EditPolicy getPrimaryDragEditPolicy() {
 		EditPolicy result = super.getPrimaryDragEditPolicy();
 		if(result instanceof ResizableEditPolicy) {
@@ -258,6 +263,7 @@ AbstractBorderedShapeEditPart {
 	 * 
 	 * @generated
 	 */
+	@Override
 	protected NodeFigure createMainFigure() {
 		NodeFigure figure = createNodePlate();
 		figure.setLayoutManager(new StackLayout());
@@ -279,6 +285,7 @@ AbstractBorderedShapeEditPart {
 		if(nodeShape.getLayoutManager() == null) {
 			nodeShape.setLayoutManager(new FreeformLayout() {
 
+				@Override
 				public Object getConstraint(IFigure figure) {
 					Object result = constraints.get(figure);
 					if(result == null) {
@@ -328,6 +335,7 @@ AbstractBorderedShapeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public IFigure getContentPane() {
 		if(contentPane != null) {
 			return contentPane;
@@ -338,6 +346,7 @@ AbstractBorderedShapeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setForegroundColor(Color color) {
 		if(primaryShape != null) {
 			primaryShape.setForegroundColor(color);
@@ -347,6 +356,7 @@ AbstractBorderedShapeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setLineWidth(int width) {
 		if(primaryShape instanceof Shape) {
 			((Shape)primaryShape).setLineWidth(width);
@@ -356,6 +366,7 @@ AbstractBorderedShapeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setLineType(int style) {
 		if(primaryShape instanceof Shape) {
 			((Shape)primaryShape).setLineStyle(style);
@@ -483,7 +494,7 @@ AbstractBorderedShapeEditPart {
 			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 				prefColor = PreferenceConstantHelper.getElementConstant("InteractionOperand", PreferenceConstantHelper.COLOR_FILL);
 			}
-			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore)preferenceStore, prefColor));
+			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor(preferenceStore, prefColor));
 		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency() || feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
 			String prefGradient = PreferenceConstantHelper.getElementConstant("InteractionOperand", PreferenceConstantHelper.COLOR_GRADIENT);
 			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore.getString(prefGradient));
@@ -1247,6 +1258,7 @@ AbstractBorderedShapeEditPart {
 	/**
 	 * Handle guard modification and update label.
 	 */
+	@Override
 	protected void handleNotificationEvent(Notification notification) {
 		Object feature = notification.getFeature();
 
