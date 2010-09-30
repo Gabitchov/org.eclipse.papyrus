@@ -990,7 +990,7 @@
             </visibleWhen>
          </command>
          <command
-               commandId="org.eclipse.papyrus.diagram.common.toolbar.command"
+               commandId="org.eclipse.papyrus.diagram.common.toolbar.same.size.command"
                icon="icons/size_to_control.gif"
                id="org.eclipse.papyrus.common.size.toolbar.command"
                style="pulldown"
@@ -1635,6 +1635,12 @@
             defaultHandler="org.eclipse.papyrus.diagram.common.actions.handlers.DropDownToolBarHandler"
             id="org.eclipse.papyrus.diagram.common.toolbar.command"
             name="Command for the toolbar actions">
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            defaultHandler="org.eclipse.papyrus.diagram.common.actions.handlers.DropDownToolBarSameSizeHandler"
+            id="org.eclipse.papyrus.diagram.common.toolbar.same.size.command"
+            name="Command for theMake Same Size Toolbar actions">
       </command>
       <command
             categoryId="org.eclipse.papyrus.editor.category"
