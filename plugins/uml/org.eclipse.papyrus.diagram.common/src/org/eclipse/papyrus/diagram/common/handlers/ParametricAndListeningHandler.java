@@ -52,6 +52,9 @@ public abstract class ParametricAndListeningHandler extends GraphicalCommandHand
 	/** parameter ID */
 	protected String parametedID = null;
 
+	/** listener on the selection */
+	protected ISelectionListener listener = null;
+
 	/**
 	 * 
 	 * Constructor.
@@ -97,14 +100,16 @@ public abstract class ParametricAndListeningHandler extends GraphicalCommandHand
 			if(workbench != null) {
 				IWorkbenchWindow workbenchWindow = workbench.getActiveWorkbenchWindow();
 				if(workbenchWindow != null) {
-					serv = workbenchWindow.getSelectionService();
-					if(serv != null) {
-						serv.addSelectionListener(new ISelectionListener() {
+					this.serv = workbenchWindow.getSelectionService();
+					if(this.serv != null) {
+						this.listener = new ISelectionListener() {
 
 							public void selectionChanged(IWorkbenchPart part, ISelection selection) {
 								refreshMenu();
 							}
-						});
+						};
+
+						serv.addSelectionListener(listener);
 					}
 				}
 			}
@@ -115,7 +120,6 @@ public abstract class ParametricAndListeningHandler extends GraphicalCommandHand
 	 * If the handled action is in a Menu, we need to refresh the handler status
 	 */
 	protected void refreshMenu() {
-		//		action = new ction(parameter, getSelectedElements());
 		fireHandlerChanged(new HandlerEvent(thisHandler, true, false));
 	}
 
@@ -133,6 +137,18 @@ public abstract class ParametricAndListeningHandler extends GraphicalCommandHand
 	public void setInitializationData(IConfigurationElement config, String propertyName, Object data) throws CoreException {
 		if(data instanceof Hashtable && this.parametedID != null) {
 			this.parameter = (String)((Hashtable)data).get(this.parametedID);
+		}
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.core.commands.AbstractHandler#dispose()
+	 * 
+	 */
+	@Override
+	public void dispose() {
+		if(this.serv != null && this.listener != null) {
+			this.serv.removeSelectionListener(listener);
 		}
 	}
 
