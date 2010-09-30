@@ -66,17 +66,23 @@ public class CustomStateMachineResizeCommand extends AbstractTransactionalComman
 		int direction = request.getResizeDirection();
 		int dx = request.getSizeDelta().width;
 		int dy = request.getSizeDelta().height;
+		int newX = bounds.x;
+		int newY = bounds.y;
 
 		if(internalResize) {
 			Zone.setHeight(stateMachineLabel, Zone.getHeight(stateMachineLabel) + dy);
 			dy = 0;
 		}
 		// first resize the state machine node with the constraint provided
-		Zone.setBounds(stateMachine, bounds);
+		Zone.setX(stateMachine, newX);
+		Zone.setY(stateMachine, newY);
+		Zone.setWidth(stateMachine, Zone.getWidth(stateMachine)+dx);
+		Zone.setHeight(stateMachine, Zone.getHeight(stateMachine)+dy);
+		
 		// resize label and compartment
-		Zone.setWidth(stateMachineLabel, bounds.width);
-		Zone.setWidth(stateMachineCompartment, bounds.width);
-		Zone.setHeight(stateMachineCompartment, bounds.height - Zone.getHeight(stateMachineLabel));
+		Zone.setWidth(stateMachineLabel, Zone.getWidth(stateMachine));
+		Zone.setWidth(stateMachineCompartment, Zone.getWidth(stateMachine));
+		Zone.setHeight(stateMachineCompartment, Zone.getHeight(stateMachine) - Zone.getHeight(stateMachineLabel));
 		Zone.setY(stateMachineCompartment, Zone.getHeight(stateMachineLabel));
 
 		if(internalResize && (dx == 0))

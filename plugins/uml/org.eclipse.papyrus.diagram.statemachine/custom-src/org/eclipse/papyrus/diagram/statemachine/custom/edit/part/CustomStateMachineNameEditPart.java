@@ -8,6 +8,7 @@ import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
@@ -40,42 +41,44 @@ public class CustomStateMachineNameEditPart extends StateMachineNameEditPart {
 		// TODO Auto-generated method stub
 		super.handleNotificationEvent(notification);
 
-		WrappingLabel stateMachineLabel = (WrappingLabel)getFigure();
-		Dimension stateMachineLabelBounds = stateMachineLabel.getPreferredSize();
-		View stateMachineLabelView = (View)getModel();
-		View stateMachineView = (View)stateMachineLabelView.eContainer();
-		View stateMachineCompartView = (View)stateMachineView.getChildren().get(1);
+		if(((notification.getFeature() instanceof EAttribute) && ((EAttribute)notification.getFeature()).getName().equals("fontHeight"))){
+			WrappingLabel stateMachineLabel = (WrappingLabel)getFigure();
+			Dimension stateMachineLabelBounds = stateMachineLabel.getPreferredSize().getCopy();
+			View stateMachineLabelView = (View)getModel();
+			View stateMachineView = (View)stateMachineLabelView.eContainer();
+			View stateMachineCompartView = (View)stateMachineView.getChildren().get(1);
 
-		int stateMachineHeight = Zone.getHeight(stateMachineView);
-		int stateMachineWidth = Zone.getWidth(stateMachineView);
+			int stateMachineHeight = Zone.getHeight(stateMachineView);
+			int stateMachineWidth = Zone.getWidth(stateMachineView);
 
-		int stateMachineCompartHeight = Zone.getHeight(stateMachineCompartView);
+			int stateMachineCompartHeight = Zone.getHeight(stateMachineCompartView);
 
-		// Zone.setHeight(stateMachineLabelView,
-		// stateMachineLabelBounds.height);
-		int dx = stateMachineLabelBounds.width - stateMachineWidth;
-		int dy = stateMachineCompartHeight + stateMachineLabelBounds.height - stateMachineHeight;
-		int x = Zone.getX(stateMachineView);
-		int y = Zone.getY(stateMachineView);
+			// Zone.setHeight(stateMachineLabelView,
+			// stateMachineLabelBounds.height);
+			int dx = stateMachineLabelBounds.width - stateMachineWidth;
+			int dy = stateMachineCompartHeight + stateMachineLabelBounds.height - stateMachineHeight;
+			int x = Zone.getX(stateMachineView);
+			int y = Zone.getY(stateMachineView);
 
-		if((stateMachineHeight != -1) && (stateMachineLabelBounds.width != 0) && (dy != 0)) {
-			dx = (dx > 0) ? dx : 0;
-			// a resize request, which we route to the specific ResizeCommand
-			IAdaptable adaptableForStateMachine = new SemanticAdapter(null, stateMachineView);
-			ChangeBoundsRequest internalResizeRequest = new ChangeBoundsRequest();
-			internalResizeRequest.setResizeDirection(PositionConstants.EAST);
-			internalResizeRequest.setSizeDelta(new Dimension(dx, dy));
-			Rectangle rect = new Rectangle(x, y, stateMachineWidth + dx, stateMachineHeight + dy);
+			if((stateMachineHeight != -1) && (stateMachineLabelBounds.width != 0) && (dy != 0)) {
+				dx = (dx > 0) ? dx : 0;
+				// a resize request, which we route to the specific ResizeCommand
+				IAdaptable adaptableForStateMachine = new SemanticAdapter(null, stateMachineView);
+				ChangeBoundsRequest internalResizeRequest = new ChangeBoundsRequest();
+				internalResizeRequest.setResizeDirection(PositionConstants.EAST);
+				internalResizeRequest.setSizeDelta(new Dimension(dx, dy));
+				Rectangle rect = new Rectangle(x, y, stateMachineWidth + dx, stateMachineHeight + dy);
 
-			CustomStateMachineResizeCommand internalResizeCommand = new CustomStateMachineResizeCommand(adaptableForStateMachine, getDiagramPreferencesHint(), getEditingDomain(), DiagramUIMessages.CreateCommand_Label, internalResizeRequest, rect, true);
-			internalResizeCommand.setOptions(Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE));
-			try {
-				internalResizeCommand.execute(null, null);
-			} catch (ExecutionException e) {
+				CustomStateMachineResizeCommand internalResizeCommand = new CustomStateMachineResizeCommand(adaptableForStateMachine, getDiagramPreferencesHint(), getEditingDomain(), DiagramUIMessages.CreateCommand_Label, internalResizeRequest, rect, true);
+				internalResizeCommand.setOptions(Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE));
+				try {
+					internalResizeCommand.execute(null, null);
+				} catch (ExecutionException e) {
+				}
+
 			}
-
+			refreshVisuals();
 		}
-		refreshVisuals();
 	}
 
 	@Override
