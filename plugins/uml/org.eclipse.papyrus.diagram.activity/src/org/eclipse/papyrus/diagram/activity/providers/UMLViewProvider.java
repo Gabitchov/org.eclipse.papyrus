@@ -2063,7 +2063,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "ActivityParameterNode");
 
-		Node label5071 = createLabel(node, UMLVisualIDRegistry.getType(CenteredWrappedLabelEditPart.VISUAL_ID));
+		Node label5071 = createLabel(node, UMLVisualIDRegistry.getType(ParameterNodeNameEditPart.VISUAL_ID));
 
 		return node;
 	}
