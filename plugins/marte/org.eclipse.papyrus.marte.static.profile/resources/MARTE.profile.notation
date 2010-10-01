@@ -16,7 +16,7 @@
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_xCDp6pi4Ed-m0Oaexd_lJA"/>
       </children>
       <element xmi:type="uml:Package" href="MARTE.profile.uml#_u8y4wAPMEdyuUt-4qHuVvQ"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_xCDp4Zi4Ed-m0Oaexd_lJA" x="25" y="15"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_xCDp4Zi4Ed-m0Oaexd_lJA" x="25" y="25"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_sd7DALG0Ed-tmN4hwNCxXQ" type="1026" fontHeight="8" lineColor="0">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_sd7DArG0Ed-tmN4hwNCxXQ" source="ShadowFigure">
