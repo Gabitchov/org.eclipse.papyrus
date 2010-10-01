@@ -380,7 +380,7 @@ public class Messages extends NLS {
 	public static String ShowHideCompartmentAction_Message;
 
 	/** The string No Name for the ShowHideCompartment Action */
-	public static String ShowHideAction_No_Name;
+	public static String EditorLabelProvider_No_name;
 
 	/** %Title for the ShowHideCompartment Action */
 	public static String ShowHideCompartmentAction_Title;

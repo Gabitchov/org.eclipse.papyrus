@@ -52,7 +52,7 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 
 
 	/** String used when the name of an element was not found */
-	public static final String NO_NAME = Messages.ShowHideAction_No_Name;
+	public static final String NO_NAME = Messages.EditorLabelProvider_No_name;
 
 	/** the transactional editing domain */
 	protected TransactionalEditingDomain domain;
