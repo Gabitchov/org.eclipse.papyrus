@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: UML profile for MARTE
+Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.marte.static.profile;singleton:=true
-Bundle-Version: 1.3.0
-Bundle-Vendor: CEA LIST
+Bundle-Version: 0.7.1.qualifier
+Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.papyrus.extensionpoints.uml2;bundle-version="0.7.0",
