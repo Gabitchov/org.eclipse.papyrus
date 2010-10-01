@@ -55,7 +55,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		droppableElementsVisualId.add(AssociationEditPart.VISUAL_ID);
 		return droppableElementsVisualId;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */

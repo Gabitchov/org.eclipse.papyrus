@@ -212,7 +212,7 @@
       <compartments
           children="//@nodes.3/@ownedChild/@children.0">
         <compartment
-            href="usecaseDiagram.gmfgraph#extension points"/>
+            href="usecaseDiagram.gmfgraph#points"/>
       </compartments>
     </ownedChild>
   </nodes>
