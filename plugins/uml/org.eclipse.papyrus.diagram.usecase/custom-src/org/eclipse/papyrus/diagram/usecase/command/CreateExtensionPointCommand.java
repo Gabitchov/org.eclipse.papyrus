@@ -65,7 +65,7 @@ public class CreateExtensionPointCommand extends Command {
 	/** adapter to get the extend element */
 	private IAdaptable adapter;
 
-	
+
 	public CreateExtensionPointCommand(IHintedType elementType, AbstractEditPart compartmentPart, EObject container, IAdaptable adapter) {
 		elementCreationCommand = getElementCreationCommand(container, elementType);
 		type = elementType;
@@ -92,7 +92,7 @@ public class CreateExtensionPointCommand extends Command {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * Get the Command to create the extension point element
 	 * 
@@ -131,8 +131,8 @@ public class CreateExtensionPointCommand extends Command {
 			if(object instanceof Extend) {
 				Extend extend = (Extend)object;
 				setExtensionPropertyCmd = getExtensionPointAddCommand(extend, (ExtensionPoint)extensionPoint);
-				if (setExtensionPropertyCmd.canExecute()) {
-					setExtensionPropertyCmd.execute();					
+				if(setExtensionPropertyCmd.canExecute()) {
+					setExtensionPropertyCmd.execute();
 				}
 			}
 			createExtensionPointView((ExtensionPoint)extensionPoint);
@@ -215,14 +215,14 @@ public class CreateExtensionPointCommand extends Command {
 			elementCreationCommand.undo();
 		}
 	}
-	
+
 	/**
 	 * Custom command to set the property extension points in extend element
 	 */
 	private class SetExtensionPropertyCmd extends AbstractTransactionalCommand {
 
 		private ExtensionPoint extPoint;
-		
+
 		private Extend extend;
 
 		public SetExtensionPropertyCmd(Extend extend, ExtensionPoint extensionPoint) {

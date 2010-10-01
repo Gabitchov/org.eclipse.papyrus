@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.figure;
 
 import org.eclipse.draw2d.Label;
@@ -25,7 +25,7 @@ import org.eclipse.swt.graphics.Image;
 public abstract class AbstractSubjectFigure extends RectangleFigure implements IPapyrusNodeUMLElementFigure {
 
 	static final Color THIS_BACK = new Color(null, 245, 245, 245);
-	
+
 	/** @generated */
 	private boolean myUseLocalCoordinates = false;
 
