@@ -16,7 +16,6 @@ package org.eclipse.papyrus.resource;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -44,9 +43,12 @@ import org.eclipse.emf.workspace.WorkspaceEditingDomainFactory;
  * <li>Finally, call save()</li>
  * </ul>
  * 
+ * Please note that indirectly referenced models are loaded on demand. If a
+ * model contains a cross reference towards another model (e.g. an import in
+ * case of UML) the referenced resource does not appear initially in the set.
+ * However, it is added once the referenced model is resolved.
  * 
- * 
- * TODO Modifiy ModelSetSnippet in order to inform them of model addition.
+ * TODO Modify ModelSetSnippet in order to inform them of model addition.
  * 
  * @author cedric dumoulin
  * 
@@ -79,7 +81,7 @@ public class ModelSet extends ResourceSetImpl {
 
 	/**
 	 * Register the specified model under its associated key.
-	 * The key is defined in the model itself. It is ussually the model type from
+	 * The key is defined in the model itself. It is usually the model type from
 	 * (ModelPackage.eCONTENT_TYPE).
 	 * 
 	 * @param model
@@ -141,7 +143,7 @@ public class ModelSet extends ResourceSetImpl {
 	/**
 	 * @return the filenameWithoutExtension
 	 */
-	protected IPath getFilenameWithoutExtension() {
+	public IPath getFilenameWithoutExtension() {
 		return filenameWithoutExtension;
 	}
 
@@ -249,7 +251,7 @@ public class ModelSet extends ResourceSetImpl {
 	}
 
 	/**
-	 * Load all the associated models from an handle on one of the associated file.
+	 * Load all the associated models from a handle on one of the associated file.
 	 * 
 	 * @param file
 	 *        The file to load (no matter the extension)
@@ -258,6 +260,18 @@ public class ModelSet extends ResourceSetImpl {
 
 		// Get the file name, without extension.
 		filenameWithoutExtension = file.getFullPath().removeFileExtension();
+		loadModels();
+	}
+
+	/**
+	 * Load all the associated models from a path that is stored in attribute
+	 * filenameWithoutExtension. Method should be called after loaded models
+	 * is called with a file parameter
+	 * 
+	 * @param file
+	 *        The file to load (no matter the extension)
+	 */
+	public void loadModels() throws ModelMultiException {
 
 		ModelMultiException exceptions = null;
 
@@ -283,7 +297,7 @@ public class ModelSet extends ResourceSetImpl {
 		if(exceptions != null)
 			throw exceptions;
 	}
-
+	
 	/**
 	 * Import specified models into the ModelSet. The models are imported using the specified IFile.
 	 * After import, the models are associated with the ModelSet Path.
@@ -338,7 +352,7 @@ public class ModelSet extends ResourceSetImpl {
 	 */
 	public void loadMissingModels() throws ModelException {
 		throw new UnsupportedOperationException("Not yet implemented");
-		
+	
 	}
 	
 	

@@ -21,6 +21,8 @@ import java.util.List;
 
 import org.eclipse.core.commands.operations.IUndoContext;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IResourceChangeEvent;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EObject;
@@ -48,6 +50,7 @@ import org.eclipse.papyrus.core.lifecycleevents.IEditorInputChangedListener;
 import org.eclipse.papyrus.core.lifecycleevents.ISaveAndDirtyService;
 import org.eclipse.papyrus.core.multidiagram.actionbarcontributor.ActionBarContributorRegistry;
 import org.eclipse.papyrus.core.multidiagram.actionbarcontributor.CoreComposedActionBarContributor;
+import org.eclipse.papyrus.core.resourceUpdate.ModelResourceListener;
 import org.eclipse.papyrus.core.services.ExtensionServicesRegistry;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServiceMultiException;
@@ -499,7 +502,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 			servicesRegistry.startServicesByClassKeys( servicesToStart );
 			resourceSet = servicesRegistry.getService(ModelSet.class);
 			resourceSet.loadModels(file);
-			
+						
 			// start remaining services
 			servicesRegistry.startRegistry();
 		} catch (ModelMultiException e) {
@@ -524,7 +527,11 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 			throw new PartInitException ("could not initialize services", e);
 		}
 
-		
+		// create model resource listener ...
+		modelResourceListener = new ModelResourceListener (saveAndDirtyService, resourceSet);
+		// ... and add it to the workspace
+		ResourcesPlugin.getWorkspace().addResourceChangeListener(
+		      modelResourceListener, IResourceChangeEvent.POST_CHANGE);
 		
 		// Set the content provider providing editors.
 		setContentProvider(contentProvider);
@@ -607,6 +614,11 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 			}
 		}
 
+		if (modelResourceListener != null) {
+			// remove model resource listener from workspace
+			ResourcesPlugin.getWorkspace().removeResourceChangeListener(
+			      modelResourceListener);
+		}
 		super.dispose();
 	}
 
@@ -763,4 +775,6 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		setInputWithNotify(newInput);
 		setPartName(newInput.getName());
 	}
+	
+	private ModelResourceListener modelResourceListener;
 }
