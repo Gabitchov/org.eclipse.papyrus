@@ -22,6 +22,14 @@
 		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
 			<uri format="http://download.eclipse.org/modeling/emf/updates/releases" />
 		</provider>
+		
+		<!-- EMF -->
+		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+			<uri format="http://download.eclipse.org/modeling/emf/updates/releases" />
+		</provider>
+		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+			<uri format="http://download.eclipse.org/modeling/emf/emf/updates/2.6" />
+		</provider>
 
 		<!-- MWE -->
 		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
