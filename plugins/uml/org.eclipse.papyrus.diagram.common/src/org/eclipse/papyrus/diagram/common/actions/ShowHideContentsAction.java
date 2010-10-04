@@ -660,7 +660,7 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 				EditPartRepresentation rep = findEditPartRepresentation(element);
 				if(rep != null) {
 
-					Classifier classifier = (Classifier)((EditPartRepresentation)element).getUMLElement();
+					Classifier classifier = (Classifier)(rep).getUMLElement();
 					if(classifier.getOwnedMembers().contains(element)) {
 						return rep;
 					} else {
