@@ -96,7 +96,6 @@ AbstractBorderItemEditPart {
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ContinuationItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -107,7 +106,6 @@ AbstractBorderItemEditPart {
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 
-			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if(result == null) {
@@ -116,12 +114,10 @@ AbstractBorderItemEditPart {
 				return result;
 			}
 
-			@Override
 			protected Command getMoveChildrenCommand(Request request) {
 				return null;
 			}
 
-			@Override
 			protected Command getCreateCommand(CreateRequest request) {
 				return null;
 			}
@@ -1105,7 +1101,7 @@ AbstractBorderItemEditPart {
 			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 				prefColor = PreferenceConstantHelper.getElementConstant("Continuation", PreferenceConstantHelper.COLOR_FILL);
 			}
-			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor(preferenceStore, prefColor));
+			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore)preferenceStore, prefColor));
 		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency() || feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
 			String prefGradient = PreferenceConstantHelper.getElementConstant("Continuation", PreferenceConstantHelper.COLOR_GRADIENT);
 			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore.getString(prefGradient));

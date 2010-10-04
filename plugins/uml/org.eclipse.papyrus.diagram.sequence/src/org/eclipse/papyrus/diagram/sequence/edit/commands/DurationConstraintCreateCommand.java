@@ -32,9 +32,7 @@ import org.eclipse.papyrus.diagram.common.helper.DurationConstraintHelper;
 import org.eclipse.papyrus.diagram.sequence.providers.ElementInitializers;
 import org.eclipse.papyrus.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.papyrus.diagram.sequence.util.SequenceUtil;
-import org.eclipse.uml2.uml.Duration;
 import org.eclipse.uml2.uml.DurationConstraint;
-import org.eclipse.uml2.uml.DurationInterval;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -133,7 +131,7 @@ public class DurationConstraintCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated NOT get the Lifeline parent as owner, add duration interval and assign the occurrence specifications
+	 * @generated NOT get the Lifeline parent as owner, assign the occurrence specifications
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
@@ -144,30 +142,6 @@ public class DurationConstraintCreateCommand extends EditElementCommand {
 		owner.getOwnedRules().add(newElement);
 
 		ElementInitializers.getInstance().init_DurationConstraint_3021(newElement);
-
-		// create associated duration interval
-		DurationInterval durationInterval = UMLFactory.eINSTANCE.createDurationInterval();
-		newElement.setSpecification(durationInterval);
-
-		ElementInitializers.init_NamedElement(durationInterval);
-
-		// create, add and set the min and max duration of the duration interval
-		org.eclipse.uml2.uml.Package package_ = durationInterval.getNearestPackage();
-
-		Duration minDuration = UMLFactory.eINSTANCE.createDuration();
-		Duration maxDuration = UMLFactory.eINSTANCE.createDuration();
-
-		package_.getPackagedElements().add(minDuration);
-		package_.getPackagedElements().add(maxDuration);
-
-		ElementInitializers.init_NamedElement(minDuration, "", durationInterval.eClass().getName(), "Min");
-		ElementInitializers.init_NamedElement(maxDuration, "", durationInterval.eClass().getName(), "Max");
-
-		durationInterval.setMin(minDuration);
-		durationInterval.setMax(maxDuration);
-
-		minDuration.setExpr(UMLFactory.eINSTANCE.createLiteralInteger());
-		maxDuration.setExpr(UMLFactory.eINSTANCE.createLiteralInteger());
 
 		// assign the occurrence specification
 		Object paramOccurrence1 = getRequest().getParameter(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION);

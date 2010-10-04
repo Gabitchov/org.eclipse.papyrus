@@ -21,7 +21,9 @@ import org.eclipse.uml2.uml.ConsiderIgnoreFragment;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Continuation;
 import org.eclipse.uml2.uml.DestructionEvent;
+import org.eclipse.uml2.uml.Duration;
 import org.eclipse.uml2.uml.DurationConstraint;
+import org.eclipse.uml2.uml.DurationInterval;
 import org.eclipse.uml2.uml.DurationObservation;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.InteractionUse;
@@ -31,6 +33,8 @@ import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.StateInvariant;
 import org.eclipse.uml2.uml.TimeConstraint;
+import org.eclipse.uml2.uml.TimeExpression;
+import org.eclipse.uml2.uml.TimeInterval;
 import org.eclipse.uml2.uml.TimeObservation;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -141,12 +145,20 @@ public class ElementInitializers {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT init Time Interval
 	 */
 	public void init_TimeConstraint_3019(TimeConstraint instance) {
 		try {
-			Object value_0 = name_TimeConstraint_3019(instance);
-			instance.setName((String)value_0);
+			TimeInterval newInstance_0_0 = UMLFactory.eINSTANCE.createTimeInterval();
+			instance.setSpecification(newInstance_0_0);
+			Object value_0_0_0 = name_specification_TimeConstraint_3019(newInstance_0_0);
+			newInstance_0_0.setName((String)value_0_0_0);
+
+			// init Time Interval
+			init_TimeInterval(newInstance_0_0);
+
+			Object value_1 = name_TimeConstraint_3019(instance);
+			instance.setName((String)value_1);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
@@ -165,15 +177,81 @@ public class ElementInitializers {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT init Duration Interval
 	 */
 	public void init_DurationConstraint_3021(DurationConstraint instance) {
 		try {
-			Object value_0 = name_DurationConstraint_3021(instance);
-			instance.setName((String)value_0);
+			DurationInterval newInstance_0_0 = UMLFactory.eINSTANCE.createDurationInterval();
+			instance.setSpecification(newInstance_0_0);
+			Object value_0_0_0 = name_specification_DurationConstraint_3021(newInstance_0_0);
+			newInstance_0_0.setName((String)value_0_0_0);
+
+			// init Duration Interval
+			init_DurationInterval(newInstance_0_0);
+
+			Object value_1 = name_DurationConstraint_3021(instance);
+			instance.setName((String)value_1);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
+	}
+
+	/**
+	 * Initialize a time interval
+	 * 
+	 * @param instance
+	 *        instance to initialize
+	 */
+	private void init_TimeInterval(TimeInterval instance) {
+		// time interval
+		TimeInterval timeInterval = instance;
+
+		// create, add and set the min and max duration of the duration interval
+		org.eclipse.uml2.uml.Package package_ = timeInterval.getNearestPackage();
+
+		TimeExpression minTimeExpression = UMLFactory.eINSTANCE.createTimeExpression();
+		TimeExpression maxTimeExpression = UMLFactory.eINSTANCE.createTimeExpression();
+
+		package_.getPackagedElements().add(minTimeExpression);
+		package_.getPackagedElements().add(maxTimeExpression);
+
+		ElementInitializers.init_NamedElement(minTimeExpression, "", timeInterval.eClass().getName(), "Min");
+		ElementInitializers.init_NamedElement(maxTimeExpression, "", timeInterval.eClass().getName(), "Max");
+
+		timeInterval.setMin(minTimeExpression);
+		timeInterval.setMax(maxTimeExpression);
+
+		minTimeExpression.setExpr(UMLFactory.eINSTANCE.createLiteralInteger());
+		maxTimeExpression.setExpr(UMLFactory.eINSTANCE.createLiteralInteger());
+	}
+
+	/**
+	 * Initialize a duration interval
+	 * 
+	 * @param instance
+	 *        instance to initialize
+	 */
+	private void init_DurationInterval(DurationInterval instance) {
+		// duration interval
+		DurationInterval durationInterval = instance;
+
+		// create, add and set the min and max duration of the duration interval
+		org.eclipse.uml2.uml.Package package_ = durationInterval.getNearestPackage();
+
+		Duration minDuration = UMLFactory.eINSTANCE.createDuration();
+		Duration maxDuration = UMLFactory.eINSTANCE.createDuration();
+
+		package_.getPackagedElements().add(minDuration);
+		package_.getPackagedElements().add(maxDuration);
+
+		ElementInitializers.init_NamedElement(minDuration, "", durationInterval.eClass().getName(), "Min");
+		ElementInitializers.init_NamedElement(maxDuration, "", durationInterval.eClass().getName(), "Max");
+
+		durationInterval.setMin(minDuration);
+		durationInterval.setMax(maxDuration);
+
+		minDuration.setExpr(UMLFactory.eINSTANCE.createLiteralInteger());
+		maxDuration.setExpr(UMLFactory.eINSTANCE.createLiteralInteger());
 	}
 
 	/**
@@ -216,12 +294,20 @@ public class ElementInitializers {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT init Duration Interval
 	 */
 	public void init_DurationConstraint_3023(DurationConstraint instance) {
 		try {
-			Object value_0 = name_DurationConstraint_3023(instance);
-			instance.setName((String)value_0);
+			DurationInterval newInstance_0_0 = UMLFactory.eINSTANCE.createDurationInterval();
+			instance.setSpecification(newInstance_0_0);
+			Object value_0_0_0 = name_specification_DurationConstraint_3023(newInstance_0_0);
+			newInstance_0_0.setName((String)value_0_0_0);
+
+			// init Duration Interval
+			init_DurationInterval(newInstance_0_0);
+
+			Object value_1 = name_DurationConstraint_3023(instance);
+			instance.setName((String)value_1);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
@@ -305,6 +391,13 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
+	private String name_specification_TimeConstraint_3019(TimeInterval self) {
+		return getNamedElement(self, "", self.eClass().getName(), "");
+	}
+
+	/**
+	 * @generated
+	 */
 	private String name_TimeObservation_3020(TimeObservation self) {
 		return getNamedElement(self, "", "t", "");
 	}
@@ -313,6 +406,13 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	private String name_DurationConstraint_3021(DurationConstraint self) {
+		return getNamedElement(self, "", self.eClass().getName(), "");
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_specification_DurationConstraint_3021(DurationInterval self) {
 		return getNamedElement(self, "", self.eClass().getName(), "");
 	}
 
@@ -334,6 +434,13 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	private String name_DurationConstraint_3023(DurationConstraint self) {
+		return getNamedElement(self, "", self.eClass().getName(), "");
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_specification_DurationConstraint_3023(DurationInterval self) {
 		return getNamedElement(self, "", self.eClass().getName(), "");
 	}
 

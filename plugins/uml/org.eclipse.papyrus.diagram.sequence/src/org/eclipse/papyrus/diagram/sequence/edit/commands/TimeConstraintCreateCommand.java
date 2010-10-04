@@ -36,8 +36,6 @@ import org.eclipse.uml2.uml.MessageSort;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
 import org.eclipse.uml2.uml.TimeConstraint;
-import org.eclipse.uml2.uml.TimeExpression;
-import org.eclipse.uml2.uml.TimeInterval;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
@@ -128,29 +126,7 @@ public class TimeConstraintCreateCommand extends EditElementCommand {
 		Namespace owner = (Namespace)getElementToEdit().eContainer();
 		owner.getOwnedRules().add(newElement);
 
-		// create associated duration interval
-		TimeInterval timeInterval = UMLFactory.eINSTANCE.createTimeInterval();
-		newElement.setSpecification(timeInterval);
-
-		ElementInitializers.init_NamedElement(timeInterval);
-
-		// create, add and set the min and max duration of the duration interval
-		org.eclipse.uml2.uml.Package package_ = timeInterval.getNearestPackage();
-
-		TimeExpression minTimeExpression = UMLFactory.eINSTANCE.createTimeExpression();
-		TimeExpression maxTimeExpression = UMLFactory.eINSTANCE.createTimeExpression();
-
-		package_.getPackagedElements().add(minTimeExpression);
-		package_.getPackagedElements().add(maxTimeExpression);
-
-		ElementInitializers.init_NamedElement(minTimeExpression, "", timeInterval.eClass().getName(), "Min");
-		ElementInitializers.init_NamedElement(maxTimeExpression, "", timeInterval.eClass().getName(), "Max");
-
-		timeInterval.setMin(minTimeExpression);
-		timeInterval.setMax(maxTimeExpression);
-
-		minTimeExpression.setExpr(UMLFactory.eINSTANCE.createLiteralInteger());
-		maxTimeExpression.setExpr(UMLFactory.eINSTANCE.createLiteralInteger());
+		ElementInitializers.getInstance().init_TimeConstraint_3019(newElement);
 
 		// assign the occurrence specification
 		Object paramOccurrence = getRequest().getParameter(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION);
