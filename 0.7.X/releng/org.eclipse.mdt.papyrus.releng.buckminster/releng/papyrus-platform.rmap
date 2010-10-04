@@ -25,6 +25,10 @@
 		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
 			<uri format="http://download.eclipse.org/modeling/emf/emf/updates/2.6" />
 		</provider>
+		
+		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+			<uri format="http://download.eclipse.org/modeling/emf/cdo/updates/3.0/3.0-SR1/" />
+		</provider>
 
 		<!-- MWE -->
 		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
@@ -74,6 +78,11 @@
 		<!-- Xtext -->
 		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
 			<uri format="http://download.eclipse.org/modeling/tmf/updates/releases" />
+		</provider>
+		
+		<!-- XPand, XTend -->
+		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+			<uri format="http://download.eclipse.org/modeling/m2t/xpand/updates/releases/" />
 		</provider>
 
 		<!-- Orbit -->
