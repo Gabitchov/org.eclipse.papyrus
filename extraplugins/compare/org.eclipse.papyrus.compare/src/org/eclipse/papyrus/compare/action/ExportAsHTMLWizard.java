@@ -7,7 +7,9 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.core.resources.IContainer;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
@@ -24,16 +26,20 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 import org.eclipse.ui.internal.ide.IDEWorkbenchPlugin;
+import org.eclipse.ui.internal.wizards.newresource.ResourceMessages;
 import org.eclipse.ui.wizards.newresource.BasicNewFileResourceWizard;
 
 
 public class ExportAsHTMLWizard extends SaveDeltaWizard {
 
+	private ComparisonSnapshot myInputSnapshot;
+
+	private WizardNewFileCreationPage myNewReportFileCreationPage;
+
 	public ExportAsHTMLWizard() {
-		super("emfdiff");
+		super(null);
 	}
 
-	private ComparisonSnapshot myInputSnapshot;
 
 	public void init(IWorkbench workbench, ComparisonSnapshot inputSnapshot) {
 		super.init(workbench, inputSnapshot);
@@ -42,11 +48,29 @@ public class ExportAsHTMLWizard extends SaveDeltaWizard {
 
 	public void addPages() {
 		super.addPages();
+
+		myNewReportFileCreationPage = new WizardNewFileCreationPage("newFilePage1", getSelection());//$NON-NLS-1$
+		myNewReportFileCreationPage.setFileName("result"); //$NON-NLS-1$
+		myNewReportFileCreationPage.setAllowExistingResources(true);
+		myNewReportFileCreationPage.setTitle("New HTML File");
+		myNewReportFileCreationPage.setDescription("Create a new HTML file");
+		myNewReportFileCreationPage.setFileExtension("html");
+		addPage(myNewReportFileCreationPage);
 	}
 
 	@Override
 	public boolean performFinish() {
-		GenerateAll generator = new GenerateAll(EcoreUtil.getURI(myInputSnapshot), null, getArguments());
+		boolean result = super.performFinish();
+		if (!result) {
+			return false;
+		}
+		final String page = "newFilePage1"; //$NON-NLS-1$
+		WizardNewFileCreationPage saveDiffPage = ((WizardNewFileCreationPage)getPage(page));
+
+		IPath filePath = saveDiffPage.getContainerFullPath().append(saveDiffPage.getFileName());
+		IFile fileHandle = IDEWorkbenchPlugin.getPluginWorkspace().getRoot().getFile(filePath);
+		URI uri = URI.createFileURI(fileHandle.getLocation().toOSString());
+		GenerateAll generator = new GenerateAll(uri, fileHandle.getLocation().toFile().getParentFile(), getArguments());
 		try {
 			generator.doGenerate(new NullProgressMonitor());
 		} catch (IOException e) {

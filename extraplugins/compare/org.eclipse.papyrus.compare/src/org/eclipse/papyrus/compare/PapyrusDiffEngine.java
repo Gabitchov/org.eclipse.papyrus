@@ -39,7 +39,7 @@ public class PapyrusDiffEngine extends GenericDiffEngine {
 		while(it.hasNext()) {
 			final Match2Elements element = (Match2Elements)it.next();
 			EObject left = element.getLeftElement();
-			if(left instanceof DynamicEObjectImpl && UMLUtil.getStereotype(left) != null) {
+			if(UMLUtil.getStereotype(left) != null) {
 				super.checkForDiffs(current, element);
 			}
 		}
