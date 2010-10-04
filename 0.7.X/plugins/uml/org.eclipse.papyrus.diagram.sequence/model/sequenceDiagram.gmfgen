@@ -613,6 +613,21 @@
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
+                xsi:type="gmfgen:GenReferenceNewElementSpec">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint/specification"/>
+              <newElementInitializers>
+                <initializers
+                    xsi:type="gmfgen:GenFeatureValueSpec"
+                    value="/0/@expressionProviders/@providers.0/@expressions.8">
+                  <feature
+                      href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                </initializers>
+                <elementClass
+                    href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/TimeInterval"/>
+              </newElementInitializers>
+            </initializers>
+            <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.9">
               <feature
@@ -787,6 +802,21 @@
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Namespace/ownedRule"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfgen:GenReferenceNewElementSpec">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint/specification"/>
+              <newElementInitializers>
+                <initializers
+                    xsi:type="gmfgen:GenFeatureValueSpec"
+                    value="/0/@expressionProviders/@providers.0/@expressions.11">
+                  <feature
+                      href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                </initializers>
+                <elementClass
+                    href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DurationInterval"/>
+              </newElementInitializers>
+            </initializers>
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.12">
@@ -1087,6 +1117,21 @@
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Namespace/ownedRule"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfgen:GenReferenceNewElementSpec">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint/specification"/>
+              <newElementInitializers>
+                <initializers
+                    xsi:type="gmfgen:GenFeatureValueSpec"
+                    value="/0/@expressionProviders/@providers.0/@expressions.15">
+                  <feature
+                      href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                </initializers>
+                <elementClass
+                    href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DurationInterval"/>
+              </newElementInitializers>
+            </initializers>
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.16">
@@ -7182,7 +7227,7 @@
           qualifiedName=" org.eclipse.papyrus.diagram.sequence.parser.custom.InteractionUseCustomParsers"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@links.3/@labels.0/@modelFacet /0/@diagram/@links.1/@labels.0/@modelFacet /0/@diagram/@links.5/@labels.0/@modelFacet /0/@diagram/@links.2/@labels.0/@modelFacet /0/@diagram/@links.4/@labels.0/@modelFacet /0/@diagram/@links.0/@labels.0/@modelFacet /0/@diagram/@links.6/@labels.0/@modelFacet"
+          uses="/0/@diagram/@links.0/@labels.0/@modelFacet /0/@diagram/@links.5/@labels.0/@modelFacet /0/@diagram/@links.4/@labels.0/@modelFacet /0/@diagram/@links.1/@labels.0/@modelFacet /0/@diagram/@links.6/@labels.0/@modelFacet /0/@diagram/@links.2/@labels.0/@modelFacet /0/@diagram/@links.3/@labels.0/@modelFacet"
           qualifiedName=" org.eclipse.papyrus.diagram.sequence.parser.custom.MessageCustomParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
@@ -7194,7 +7239,7 @@
           qualifiedName="org.eclipse.papyrus.diagram.sequence.parser.custom.DurationObservationParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@childNodes.16/@labels.0/@modelFacet /0/@diagram/@childNodes.12/@labels.0/@modelFacet /0/@diagram/@childNodes.10/@labels.0/@modelFacet"
+          uses="/0/@diagram/@childNodes.16/@labels.0/@modelFacet /0/@diagram/@childNodes.10/@labels.0/@modelFacet /0/@diagram/@childNodes.12/@labels.0/@modelFacet"
           qualifiedName="org.eclipse.papyrus.diagram.sequence.parser.custom.TimeConstraintParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
@@ -7202,7 +7247,7 @@
           qualifiedName="org.eclipse.papyrus.diagram.sequence.parser.custom.TimeObservationParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@links.4/@labels.1/@modelFacet /0/@diagram/@childNodes.16/@labels.1/@modelFacet /0/@diagram/@links.0/@labels.1/@modelFacet /0/@diagram/@childNodes.10/@labels.1/@modelFacet /0/@diagram/@links.2/@labels.1/@modelFacet /0/@diagram/@links.6/@labels.1/@modelFacet /0/@diagram/@links.1/@labels.1/@modelFacet /0/@diagram/@links.5/@labels.1/@modelFacet /0/@diagram/@links.3/@labels.1/@modelFacet /0/@diagram/@childNodes.12/@labels.1/@modelFacet /0/@diagram/@childNodes.17/@labels.1/@modelFacet /0/@diagram/@childNodes.11/@labels.1/@modelFacet"
+          uses="/0/@diagram/@childNodes.11/@labels.1/@modelFacet /0/@diagram/@childNodes.12/@labels.1/@modelFacet /0/@diagram/@links.1/@labels.1/@modelFacet /0/@diagram/@childNodes.10/@labels.1/@modelFacet /0/@diagram/@links.2/@labels.1/@modelFacet /0/@diagram/@links.4/@labels.1/@modelFacet /0/@diagram/@links.6/@labels.1/@modelFacet /0/@diagram/@links.5/@labels.1/@modelFacet /0/@diagram/@links.0/@labels.1/@modelFacet /0/@diagram/@childNodes.17/@labels.1/@modelFacet /0/@diagram/@links.3/@labels.1/@modelFacet /0/@diagram/@childNodes.16/@labels.1/@modelFacet"
           qualifiedName="org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"

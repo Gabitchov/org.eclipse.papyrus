@@ -30,7 +30,6 @@ public class ConsiderIgnoreFragmentPreferencePage extends AbstractPapyrusNodePre
 	 */
 	public static final String compartments[] = { Messages.CombinedFragmentCombinedFragmentCompartmentEditPart_title };
 
-
 	/**
 	 * @generated
 	 */

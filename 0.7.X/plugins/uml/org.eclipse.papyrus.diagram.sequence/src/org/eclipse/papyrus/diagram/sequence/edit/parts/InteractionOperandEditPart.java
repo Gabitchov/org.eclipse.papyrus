@@ -175,7 +175,6 @@ AbstractBorderedShapeEditPart {
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		XYLayoutEditPolicy lep = new XYLayoutEditPolicy() {
 
-			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				View childView = (View)child.getModel();
 				switch(UMLVisualIDRegistry.getVisualID(childView)) {
@@ -200,7 +199,6 @@ AbstractBorderedShapeEditPart {
 	protected IFigure createNodeShape() {
 		return primaryShape = new CustomInteractionOperandFigure() {
 
-			@Override
 			protected boolean useLocalCoordinates() {
 				return true;
 			}
@@ -285,7 +283,6 @@ AbstractBorderedShapeEditPart {
 		if(nodeShape.getLayoutManager() == null) {
 			nodeShape.setLayoutManager(new FreeformLayout() {
 
-				@Override
 				public Object getConstraint(IFigure figure) {
 					Object result = constraints.get(figure);
 					if(result == null) {
@@ -494,7 +491,7 @@ AbstractBorderedShapeEditPart {
 			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 				prefColor = PreferenceConstantHelper.getElementConstant("InteractionOperand", PreferenceConstantHelper.COLOR_FILL);
 			}
-			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor(preferenceStore, prefColor));
+			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore)preferenceStore, prefColor));
 		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency() || feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
 			String prefGradient = PreferenceConstantHelper.getElementConstant("InteractionOperand", PreferenceConstantHelper.COLOR_GRADIENT);
 			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore.getString(prefGradient));
