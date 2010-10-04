@@ -75,7 +75,7 @@
 
 		<!-- Eclipse -->
 		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-			<uri format="http://download.eclipse.org/eclipse/updates/3.6/R-3.6.1-201009090800" />
+			<uri format="http://download.eclipse.org/eclipse/updates/3.6/" />
 		</provider>
 		<!-- <provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false"> <uri format="http://download.eclipse.org/technology/subversive/0.7/update-site/"/> 
 			</provider> -->
