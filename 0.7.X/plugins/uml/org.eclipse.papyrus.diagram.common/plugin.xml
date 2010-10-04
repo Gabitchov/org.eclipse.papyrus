@@ -1006,6 +1006,14 @@
                </and>
             </visibleWhen>
          </command>
+         <visibleWhen>
+            <with
+                  variable="activeEditorId">
+               <equals
+                     value="org.eclipse.papyrus.core.papyrusEditor">
+               </equals>
+            </with>
+         </visibleWhen>
       </toolbar>
    </menuContribution>
 </extension>
