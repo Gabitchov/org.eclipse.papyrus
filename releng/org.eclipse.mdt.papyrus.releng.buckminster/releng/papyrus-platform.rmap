@@ -64,6 +64,9 @@
 		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
 			<uri format="http://download.eclipse.org/modeling/mdt/ocl/updates/releases/releases" />
 		</provider>
+		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+			<uri format="http://download.eclipse.org/modeling/mdt/ocl/updates/releases/3.0.1/" />
+		</provider>
 
 		<!-- UML2 Tools -->
 		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
