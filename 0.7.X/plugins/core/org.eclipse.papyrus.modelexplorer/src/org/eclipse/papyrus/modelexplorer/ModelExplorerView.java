@@ -16,7 +16,6 @@ package org.eclipse.papyrus.modelexplorer;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.eclipse.core.commands.operations.IUndoContext;
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.ResourceSetChangeEvent;
 import org.eclipse.emf.transaction.ResourceSetListener;
@@ -26,7 +25,6 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.lifecycleevents.IEditorInputChangedListener;
 import org.eclipse.papyrus.core.lifecycleevents.ISaveAndDirtyService;
-import org.eclipse.papyrus.core.lifecycleevents.SaveAndDirtyService;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.core.utils.ServiceUtils;
@@ -216,9 +214,10 @@ public class ModelExplorerView extends CommonNavigator {
 	 * refresh the view.
 	 */
 	public void refresh() {
-		// Skip if control is disposed or not visible
-		if(getControl().isDisposed() || !getControl().isVisible())
-			return;
+		// Need to refresh, even if (temporarily) invisible
+		// (Better alternative?: store refresh event and execute once visible again)
+		if (getControl().isDisposed())
+				return;
 
 		// avoid reentrant call
 		// Refresh only of we are not already refreshing.
