@@ -17,11 +17,6 @@
 		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
 			<uri format="http://download.eclipse.org/birt/update-site/2.6-interim/" />
 		</provider>
-
-		<!-- EMF -->
-		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-			<uri format="http://download.eclipse.org/modeling/emf/updates/releases" />
-		</provider>
 		
 		<!-- EMF -->
 		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
@@ -50,7 +45,12 @@
 		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
 			<uri format="http://download.eclipse.org/modeling/m2m/updates/releases/" />
 		</provider>
-
+		
+		<!--  QVT OML -->
+		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+			<uri format="http://download.eclipse.org/modeling/m2m/qvtoml/updates/3.0.1/milestones/" />
+		</provider>
+		
 		<!-- Acceleo -->
 		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
 			<uri format="http://download.eclipse.org/modeling/m2t/updates/releases/" />
