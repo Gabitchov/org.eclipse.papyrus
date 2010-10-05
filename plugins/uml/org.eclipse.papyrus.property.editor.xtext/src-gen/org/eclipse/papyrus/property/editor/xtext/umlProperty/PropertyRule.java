@@ -8,8 +8,6 @@ package org.eclipse.papyrus.property.editor.xtext.umlProperty;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.eclipse.uml2.uml.Classifier;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Property Rule</b></em>'.
@@ -115,30 +113,30 @@ public interface PropertyRule extends EObject
   void setName(String value);
 
   /**
-   * Returns the value of the '<em><b>Type</b></em>' reference.
+   * Returns the value of the '<em><b>Type</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Type</em>' reference isn't clear,
+   * If the meaning of the '<em>Type</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Type</em>' reference.
-   * @see #setType(Classifier)
+   * @return the value of the '<em>Type</em>' containment reference.
+   * @see #setType(TypeRule)
    * @see org.eclipse.papyrus.property.editor.xtext.umlProperty.UmlPropertyPackage#getPropertyRule_Type()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  Classifier getType();
+  TypeRule getType();
 
   /**
-   * Sets the value of the '{@link org.eclipse.papyrus.property.editor.xtext.umlProperty.PropertyRule#getType <em>Type</em>}' reference.
+   * Sets the value of the '{@link org.eclipse.papyrus.property.editor.xtext.umlProperty.PropertyRule#getType <em>Type</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Type</em>' reference.
+   * @param value the new value of the '<em>Type</em>' containment reference.
    * @see #getType()
    * @generated
    */
-  void setType(Classifier value);
+  void setType(TypeRule value);
 
   /**
    * Returns the value of the '<em><b>Multiplicity</b></em>' containment reference.

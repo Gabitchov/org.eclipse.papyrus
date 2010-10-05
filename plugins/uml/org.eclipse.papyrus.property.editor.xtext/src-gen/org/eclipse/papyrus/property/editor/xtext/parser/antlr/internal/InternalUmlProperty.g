@@ -165,16 +165,26 @@ rulePropertyRule returns [EObject current=null]
     }
 ((
 (
-		{
-			if ($current==null) {
+		{ 
+	        currentNode=createCompositeNode(grammarAccess.getPropertyRuleAccess().getTypeTypeRuleParserRuleCall_4_0_0(), currentNode); 
+	    }
+		lv_type_4_0=ruleTypeRule		{
+	        if ($current==null) {
 	            $current = factory.create(grammarAccess.getPropertyRuleRule().getType().getClassifier());
-	            associateNodeWithAstElement(currentNode, $current);
+	            associateNodeWithAstElement(currentNode.getParent(), $current);
 	        }
-        }
-	RULE_ID
-	{
-		createLeafNode(grammarAccess.getPropertyRuleAccess().getTypeClassifierCrossReference_4_0_0(), "type"); 
-	}
+	        try {
+	       		set(
+	       			$current, 
+	       			"type",
+	        		lv_type_4_0, 
+	        		"TypeRule", 
+	        		currentNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	        currentNode = currentNode.getParent();
+	    }
 
 )
 )
@@ -222,6 +232,132 @@ rulePropertyRule returns [EObject current=null]
 	       			"modifiers",
 	        		lv_modifiers_7_0, 
 	        		"ModifiersRule", 
+	        		currentNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	        currentNode = currentNode.getParent();
+	    }
+
+)
+)?)
+;
+
+
+
+
+
+// Entry rule entryRuleTypeRule
+entryRuleTypeRule returns [EObject current=null] 
+	:
+	{ currentNode = createCompositeNode(grammarAccess.getTypeRuleRule(), currentNode); }
+	 iv_ruleTypeRule=ruleTypeRule 
+	 { $current=$iv_ruleTypeRule.current; } 
+	 EOF 
+;
+
+// Rule TypeRule
+ruleTypeRule returns [EObject current=null] 
+    @init { EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+    }
+    @after { resetLookahead(); 
+    	lastConsumedNode = currentNode;
+    }:
+((
+(
+		{ 
+	        currentNode=createCompositeNode(grammarAccess.getTypeRuleAccess().getPathQualifiedNameParserRuleCall_0_0(), currentNode); 
+	    }
+		lv_path_0_0=ruleQualifiedName		{
+	        if ($current==null) {
+	            $current = factory.create(grammarAccess.getTypeRuleRule().getType().getClassifier());
+	            associateNodeWithAstElement(currentNode.getParent(), $current);
+	        }
+	        try {
+	       		set(
+	       			$current, 
+	       			"path",
+	        		lv_path_0_0, 
+	        		"QualifiedName", 
+	        		currentNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	        currentNode = currentNode.getParent();
+	    }
+
+)
+)?(
+(
+		{
+			if ($current==null) {
+	            $current = factory.create(grammarAccess.getTypeRuleRule().getType().getClassifier());
+	            associateNodeWithAstElement(currentNode, $current);
+	        }
+        }
+	RULE_ID
+	{
+		createLeafNode(grammarAccess.getTypeRuleAccess().getTypeClassifierCrossReference_1_0(), "type"); 
+	}
+
+)
+))
+;
+
+
+
+
+
+// Entry rule entryRuleQualifiedName
+entryRuleQualifiedName returns [EObject current=null] 
+	:
+	{ currentNode = createCompositeNode(grammarAccess.getQualifiedNameRule(), currentNode); }
+	 iv_ruleQualifiedName=ruleQualifiedName 
+	 { $current=$iv_ruleQualifiedName.current; } 
+	 EOF 
+;
+
+// Rule QualifiedName
+ruleQualifiedName returns [EObject current=null] 
+    @init { EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+    }
+    @after { resetLookahead(); 
+    	lastConsumedNode = currentNode;
+    }:
+((
+(
+		{
+			if ($current==null) {
+	            $current = factory.create(grammarAccess.getQualifiedNameRule().getType().getClassifier());
+	            associateNodeWithAstElement(currentNode, $current);
+	        }
+        }
+	RULE_ID
+	{
+		createLeafNode(grammarAccess.getQualifiedNameAccess().getPathNamespaceCrossReference_0_0(), "path"); 
+	}
+
+)
+)	'::' 
+    {
+        createLeafNode(grammarAccess.getQualifiedNameAccess().getColonColonKeyword_1(), null); 
+    }
+(
+(
+		{ 
+	        currentNode=createCompositeNode(grammarAccess.getQualifiedNameAccess().getRemainingQualifiedNameParserRuleCall_2_0(), currentNode); 
+	    }
+		lv_remaining_2_0=ruleQualifiedName		{
+	        if ($current==null) {
+	            $current = factory.create(grammarAccess.getQualifiedNameRule().getType().getClassifier());
+	            associateNodeWithAstElement(currentNode.getParent(), $current);
+	        }
+	        try {
+	       		set(
+	       			$current, 
+	       			"remaining",
+	        		lv_remaining_2_0, 
+	        		"QualifiedName", 
 	        		currentNode);
 	        } catch (ValueConverterException vce) {
 				handleValueConverterException(vce);

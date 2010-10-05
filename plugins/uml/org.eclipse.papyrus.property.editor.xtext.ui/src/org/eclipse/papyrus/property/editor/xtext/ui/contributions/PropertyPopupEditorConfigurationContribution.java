@@ -27,6 +27,9 @@ import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.property.editor.xtext.ui.internal.UmlPropertyActivator;
 import org.eclipse.papyrus.property.editor.xtext.umlProperty.ModifierSpecification;
 import org.eclipse.papyrus.property.editor.xtext.umlProperty.PropertyRule;
+import org.eclipse.papyrus.property.editor.xtext.umlProperty.QualifiedName;
+import org.eclipse.papyrus.property.editor.xtext.umlProperty.TypeRule;
+import org.eclipse.papyrus.property.editor.xtext.validation.UmlPropertyJavaValidator;
 import org.eclipse.papyrus.umlutils.PropertyUtil;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Property;
@@ -92,6 +95,8 @@ public class PropertyPopupEditorConfigurationContribution extends PopupEditorCon
 			return null;
 		property = (Property)graphicalEditPart.resolveSemanticElement();
 
+		UmlPropertyJavaValidator.init(property) ;
+		
 		// retrieves the XText injector
 		Injector injector = UmlPropertyActivator.getInstance().getInjector("org.eclipse.papyrus.property.editor.xtext.UmlProperty");
 
@@ -168,7 +173,11 @@ public class PropertyPopupEditorConfigurationContribution extends PopupEditorCon
 
 				newName = "" + propertyRuleObject.getName();
 
-				newType = propertyRuleObject.getType();
+				TypeRule typeRule = propertyRuleObject.getType() ;
+				if (typeRule == null)
+					newType = null ;
+				else
+					newType = typeRule.getType() ;
 
 				newVisibility = org.eclipse.uml2.uml.VisibilityKind.PUBLIC_LITERAL;
 
@@ -209,7 +218,7 @@ public class PropertyPopupEditorConfigurationContribution extends PopupEditorCon
 	@Override
 	public String getTextToEdit(Object editedObject) {
 		if(editedObject instanceof Property) {
-			return PropertyUtil.getLabel((Property)editedObject).trim();
+			return UMLPropertyEditorPropertyUtil.getLabel((Property)editedObject).trim();
 			// TODO: default values not supported by the grammar
 			// TODO: either complete the grammar, or use another label provider
 		}

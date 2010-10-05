@@ -99,7 +99,7 @@ public interface UmlPropertyPackage extends EPackage
   int PROPERTY_RULE__NAME = 2;
 
   /**
-   * The feature id for the '<em><b>Type</b></em>' reference.
+   * The feature id for the '<em><b>Type</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -135,6 +135,80 @@ public interface UmlPropertyPackage extends EPackage
   int PROPERTY_RULE_FEATURE_COUNT = 6;
 
   /**
+   * The meta object id for the '{@link org.eclipse.papyrus.property.editor.xtext.umlProperty.impl.TypeRuleImpl <em>Type Rule</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.eclipse.papyrus.property.editor.xtext.umlProperty.impl.TypeRuleImpl
+   * @see org.eclipse.papyrus.property.editor.xtext.umlProperty.impl.UmlPropertyPackageImpl#getTypeRule()
+   * @generated
+   */
+  int TYPE_RULE = 1;
+
+  /**
+   * The feature id for the '<em><b>Path</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TYPE_RULE__PATH = 0;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TYPE_RULE__TYPE = 1;
+
+  /**
+   * The number of structural features of the '<em>Type Rule</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TYPE_RULE_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link org.eclipse.papyrus.property.editor.xtext.umlProperty.impl.QualifiedNameImpl <em>Qualified Name</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.eclipse.papyrus.property.editor.xtext.umlProperty.impl.QualifiedNameImpl
+   * @see org.eclipse.papyrus.property.editor.xtext.umlProperty.impl.UmlPropertyPackageImpl#getQualifiedName()
+   * @generated
+   */
+  int QUALIFIED_NAME = 2;
+
+  /**
+   * The feature id for the '<em><b>Path</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int QUALIFIED_NAME__PATH = 0;
+
+  /**
+   * The feature id for the '<em><b>Remaining</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int QUALIFIED_NAME__REMAINING = 1;
+
+  /**
+   * The number of structural features of the '<em>Qualified Name</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int QUALIFIED_NAME_FEATURE_COUNT = 2;
+
+  /**
    * The meta object id for the '{@link org.eclipse.papyrus.property.editor.xtext.umlProperty.impl.MultiplicityRuleImpl <em>Multiplicity Rule</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -142,7 +216,7 @@ public interface UmlPropertyPackage extends EPackage
    * @see org.eclipse.papyrus.property.editor.xtext.umlProperty.impl.UmlPropertyPackageImpl#getMultiplicityRule()
    * @generated
    */
-  int MULTIPLICITY_RULE = 1;
+  int MULTIPLICITY_RULE = 3;
 
   /**
    * The feature id for the '<em><b>Bounds</b></em>' containment reference list.
@@ -170,7 +244,7 @@ public interface UmlPropertyPackage extends EPackage
    * @see org.eclipse.papyrus.property.editor.xtext.umlProperty.impl.UmlPropertyPackageImpl#getBoundSpecification()
    * @generated
    */
-  int BOUND_SPECIFICATION = 2;
+  int BOUND_SPECIFICATION = 4;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -198,7 +272,7 @@ public interface UmlPropertyPackage extends EPackage
    * @see org.eclipse.papyrus.property.editor.xtext.umlProperty.impl.UmlPropertyPackageImpl#getModifiersRule()
    * @generated
    */
-  int MODIFIERS_RULE = 3;
+  int MODIFIERS_RULE = 5;
 
   /**
    * The feature id for the '<em><b>Values</b></em>' containment reference list.
@@ -226,7 +300,7 @@ public interface UmlPropertyPackage extends EPackage
    * @see org.eclipse.papyrus.property.editor.xtext.umlProperty.impl.UmlPropertyPackageImpl#getModifierSpecification()
    * @generated
    */
-  int MODIFIER_SPECIFICATION = 4;
+  int MODIFIER_SPECIFICATION = 6;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -254,7 +328,7 @@ public interface UmlPropertyPackage extends EPackage
    * @see org.eclipse.papyrus.property.editor.xtext.umlProperty.impl.UmlPropertyPackageImpl#getVisibilityKind()
    * @generated
    */
-  int VISIBILITY_KIND = 5;
+  int VISIBILITY_KIND = 7;
 
   /**
    * The meta object id for the '{@link org.eclipse.papyrus.property.editor.xtext.umlProperty.ModifierKind <em>Modifier Kind</em>}' enum.
@@ -264,7 +338,7 @@ public interface UmlPropertyPackage extends EPackage
    * @see org.eclipse.papyrus.property.editor.xtext.umlProperty.impl.UmlPropertyPackageImpl#getModifierKind()
    * @generated
    */
-  int MODIFIER_KIND = 6;
+  int MODIFIER_KIND = 8;
 
 
   /**
@@ -311,10 +385,10 @@ public interface UmlPropertyPackage extends EPackage
   EAttribute getPropertyRule_Name();
 
   /**
-   * Returns the meta object for the reference '{@link org.eclipse.papyrus.property.editor.xtext.umlProperty.PropertyRule#getType <em>Type</em>}'.
+   * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.property.editor.xtext.umlProperty.PropertyRule#getType <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Type</em>'.
+   * @return the meta object for the containment reference '<em>Type</em>'.
    * @see org.eclipse.papyrus.property.editor.xtext.umlProperty.PropertyRule#getType()
    * @see #getPropertyRule()
    * @generated
@@ -342,6 +416,70 @@ public interface UmlPropertyPackage extends EPackage
    * @generated
    */
   EReference getPropertyRule_Modifiers();
+
+  /**
+   * Returns the meta object for class '{@link org.eclipse.papyrus.property.editor.xtext.umlProperty.TypeRule <em>Type Rule</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Type Rule</em>'.
+   * @see org.eclipse.papyrus.property.editor.xtext.umlProperty.TypeRule
+   * @generated
+   */
+  EClass getTypeRule();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.property.editor.xtext.umlProperty.TypeRule#getPath <em>Path</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Path</em>'.
+   * @see org.eclipse.papyrus.property.editor.xtext.umlProperty.TypeRule#getPath()
+   * @see #getTypeRule()
+   * @generated
+   */
+  EReference getTypeRule_Path();
+
+  /**
+   * Returns the meta object for the reference '{@link org.eclipse.papyrus.property.editor.xtext.umlProperty.TypeRule#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Type</em>'.
+   * @see org.eclipse.papyrus.property.editor.xtext.umlProperty.TypeRule#getType()
+   * @see #getTypeRule()
+   * @generated
+   */
+  EReference getTypeRule_Type();
+
+  /**
+   * Returns the meta object for class '{@link org.eclipse.papyrus.property.editor.xtext.umlProperty.QualifiedName <em>Qualified Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Qualified Name</em>'.
+   * @see org.eclipse.papyrus.property.editor.xtext.umlProperty.QualifiedName
+   * @generated
+   */
+  EClass getQualifiedName();
+
+  /**
+   * Returns the meta object for the reference '{@link org.eclipse.papyrus.property.editor.xtext.umlProperty.QualifiedName#getPath <em>Path</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Path</em>'.
+   * @see org.eclipse.papyrus.property.editor.xtext.umlProperty.QualifiedName#getPath()
+   * @see #getQualifiedName()
+   * @generated
+   */
+  EReference getQualifiedName_Path();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.property.editor.xtext.umlProperty.QualifiedName#getRemaining <em>Remaining</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Remaining</em>'.
+   * @see org.eclipse.papyrus.property.editor.xtext.umlProperty.QualifiedName#getRemaining()
+   * @see #getQualifiedName()
+   * @generated
+   */
+  EReference getQualifiedName_Remaining();
 
   /**
    * Returns the meta object for class '{@link org.eclipse.papyrus.property.editor.xtext.umlProperty.MultiplicityRule <em>Multiplicity Rule</em>}'.
@@ -505,7 +643,7 @@ public interface UmlPropertyPackage extends EPackage
     EAttribute PROPERTY_RULE__NAME = eINSTANCE.getPropertyRule_Name();
 
     /**
-     * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+     * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -527,6 +665,58 @@ public interface UmlPropertyPackage extends EPackage
      * @generated
      */
     EReference PROPERTY_RULE__MODIFIERS = eINSTANCE.getPropertyRule_Modifiers();
+
+    /**
+     * The meta object literal for the '{@link org.eclipse.papyrus.property.editor.xtext.umlProperty.impl.TypeRuleImpl <em>Type Rule</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.papyrus.property.editor.xtext.umlProperty.impl.TypeRuleImpl
+     * @see org.eclipse.papyrus.property.editor.xtext.umlProperty.impl.UmlPropertyPackageImpl#getTypeRule()
+     * @generated
+     */
+    EClass TYPE_RULE = eINSTANCE.getTypeRule();
+
+    /**
+     * The meta object literal for the '<em><b>Path</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference TYPE_RULE__PATH = eINSTANCE.getTypeRule_Path();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference TYPE_RULE__TYPE = eINSTANCE.getTypeRule_Type();
+
+    /**
+     * The meta object literal for the '{@link org.eclipse.papyrus.property.editor.xtext.umlProperty.impl.QualifiedNameImpl <em>Qualified Name</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.papyrus.property.editor.xtext.umlProperty.impl.QualifiedNameImpl
+     * @see org.eclipse.papyrus.property.editor.xtext.umlProperty.impl.UmlPropertyPackageImpl#getQualifiedName()
+     * @generated
+     */
+    EClass QUALIFIED_NAME = eINSTANCE.getQualifiedName();
+
+    /**
+     * The meta object literal for the '<em><b>Path</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference QUALIFIED_NAME__PATH = eINSTANCE.getQualifiedName_Path();
+
+    /**
+     * The meta object literal for the '<em><b>Remaining</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference QUALIFIED_NAME__REMAINING = eINSTANCE.getQualifiedName_Remaining();
 
     /**
      * The meta object literal for the '{@link org.eclipse.papyrus.property.editor.xtext.umlProperty.impl.MultiplicityRuleImpl <em>Multiplicity Rule</em>}' class.
