@@ -6,8 +6,8 @@
 [import diffElement/]
 
 [template public generateReport(model : DiffModel)]
-	[comment @main /]
-	[file (model.fileName().concat('.html'), false, 'UTF-8')]
+[comment @main /]
+[file (model.fileName().concat('.html'), false, 'UTF-8')]
 [docHeading()/]
 [reportHeader(leftRootName(model), rightRootName(model))/]
 [for (diffElement : DiffElement | model.ownedElements)]
