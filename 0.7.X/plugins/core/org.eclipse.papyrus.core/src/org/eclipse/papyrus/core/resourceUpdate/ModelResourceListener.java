@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Ansgar Radermacherr (CEA LIST) ansgar.radermacher@cea.fr - Initial API and implementation
+ *  Ansgar Radermacher (CEA LIST) ansgar.radermacher@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
 
@@ -47,45 +47,42 @@ public class ModelResourceListener implements IResourceChangeListener, IResource
 
 	public static final String RESOURCE_UPDATE_ID = Activator.PLUGIN_ID + ".resourceUpdate";
 
-	public ModelResourceListener (ISaveAndDirtyService saveAndDirty, ModelSet modelSet) {
+	public ModelResourceListener(ISaveAndDirtyService saveAndDirty, ModelSet modelSet) {
 		isActive = true;
 		this.modelSet = modelSet;
 		this.saveAndDirty = saveAndDirty;
 		// register lifecycle events around save: a reload should not be
 		// proposed if the resource change was caused by a save of *this* editor,
 		// hence the listener is temporary deactivated.
-		if (saveAndDirty instanceof ILifeCycleEventsProvider) {
-			ILifeCycleEventsProvider lifeCycleEvents =
-				(ILifeCycleEventsProvider) saveAndDirty;
-			lifeCycleEvents.addDoSaveListener (new ISaveEventListener () {
-				@Override
+		if(saveAndDirty instanceof ILifeCycleEventsProvider) {
+			ILifeCycleEventsProvider lifeCycleEvents = (ILifeCycleEventsProvider)saveAndDirty;
+			lifeCycleEvents.addDoSaveListener(new ISaveEventListener() {
+
 				public void doSave(DoSaveEvent event) {
 					isActive = false;
 				}
 
-				@Override
 				public void doSaveAs(DoSaveEvent event) {
 				}
 			});
-			lifeCycleEvents.addPostDoSaveListener (new ISaveEventListener () {
-				@Override
+			lifeCycleEvents.addPostDoSaveListener(new ISaveEventListener() {
+
 				public void doSave(DoSaveEvent event) {
 					isActive = true;
 				}
 
-				@Override
 				public void doSaveAs(DoSaveEvent event) {
 				}
 			});
 		}
 	}
-	
+
 	/**
 	 * The listener operation that is called by the workspace
 	 */
 	public void resourceChanged(IResourceChangeEvent event) {
-		if (isActive) {
-			switch (event.getType()) {
+		if(isActive) {
+			switch(event.getType()) {
 			case IResourceChangeEvent.PRE_CLOSE:
 			case IResourceChangeEvent.PRE_BUILD:
 			case IResourceChangeEvent.POST_BUILD:
@@ -96,16 +93,15 @@ public class ModelResourceListener implements IResourceChangeListener, IResource
 				try {
 					// delegate to visitor (event.getResource is typically null) and there
 					// might be a tree of changed resources
-					event.getDelta().accept (this);
+					event.getDelta().accept(this);
+				} catch (CoreException coreException) {
+					log.error(coreException);
 				}
-				catch (CoreException coreException) {
-					log.error (coreException);
-				}
-	            break;
+				break;
 			}
 		}
 	}
-	
+
 	/**
 	 * A visitor for resource changes. Detects, whether a changed resource belongs to an opened editor
 	 */
@@ -113,14 +109,14 @@ public class ModelResourceListener implements IResourceChangeListener, IResource
 		IResource changedResource = delta.getResource();
 		boolean changeInMainModelDetected = false;
 		// only proceed in case of Files (not projects, folders, ...) for the moment
-		if (!(changedResource instanceof IFile)) {
+		if(!(changedResource instanceof IFile)) {
 			return true;
 		}
 		String changedResourcePath = changedResource.getFullPath().toString();
 		IPath changedResourcePathWOExt = changedResource.getFullPath().removeFileExtension();
 		URIConverter uriConverter = modelSet.getURIConverter();
 
-		for (Resource resource : modelSet.getResources()) {
+		for(Resource resource : modelSet.getResources()) {
 			URI uri = resource.getURI();
 			URI normalizedURI = uriConverter.normalize(uri);
 
@@ -129,8 +125,8 @@ public class ModelResourceListener implements IResourceChangeListener, IResource
 			// Comparison is done on path level since resource and changedResource are never
 			// identical. The latter is a generic system resource (File, ...), the former a
 			// model-aware representation of the resource
-			if (normalizedURI.path().endsWith(changedResourcePath)) {
-				if (changedResourcePathWOExt.equals (modelSet.getFilenameWithoutExtension ())) {
+			if(normalizedURI.path().endsWith(changedResourcePath)) {
+				if(changedResourcePathWOExt.equals(modelSet.getFilenameWithoutExtension())) {
 					// model itself has changed. Ask user
 					changeInMainModelDetected = true;
 					break;
@@ -138,53 +134,45 @@ public class ModelResourceListener implements IResourceChangeListener, IResource
 				// changed resource does not belong to the model, it might however belong to a referenced
 				// model. Since the referenced model is not editable, it can be unloaded without asking
 				// the user (it will be reloaded on demand)
-				if (resource.isLoaded ()) {
-					resource.unload ();
+				if(resource.isLoaded()) {
+					resource.unload();
 				}
 			}
 		}
-		if (!changeInMainModelDetected) {
+		if(!changeInMainModelDetected) {
 			return true;
 		}
-		switch (delta.getKind()) {
+		switch(delta.getKind()) {
 		case IResourceDelta.ADDED:
 			break;
 		case IResourceDelta.REMOVED:
 			Shell shellR = new Shell();
-			MessageDialog.openInformation (shellR,
-					"Resource removal",
-					"The resource " + changedResourcePath + " that is in use by a Papyrus editor has been removed. Use save/save as, if you want to keep the model");
+			MessageDialog.openInformation(shellR, "Resource removal", "The resource " + changedResourcePath + " that is in use by a Papyrus editor has been removed. Use save/save as, if you want to keep the model");
 			break;
 		case IResourceDelta.CHANGED:
 			Shell shellC = new Shell();
 			boolean ok;
-			if (saveAndDirty.isDirty ()) {
-				ok = MessageDialog.openQuestion (
-					shellC, "Resource change",
-					"The resource " + changedResource.getFullPath() +
-					" that is in use by a Papyrus editor has changed. However, local changes have been made and would be lost during the reload. Do you want to reload this resource?");
+			if(saveAndDirty.isDirty()) {
+				ok = MessageDialog.openQuestion(shellC, "Resource change", "The resource " + changedResource.getFullPath() + " that is in use by a Papyrus editor has changed. However, local changes have been made and would be lost during the reload. Do you want to reload this resource?");
+			} else {
+				ok = MessageDialog.openConfirm(shellC, "Resource change", "The resource " + changedResource.getFullPath() + " that is in use by a Papyrus editor has changed. Do you want to reload this resource?");
 			}
-			else {
-				ok = MessageDialog.openConfirm (
-					shellC, "Resource change",
-					"The resource " + changedResource.getFullPath() +
-					" that is in use by a Papyrus editor has changed. Do you want to reload this resource?");
-			}
-			if (ok) {
+			if(ok) {
 				try {
 					modelSet.unload();
 					modelSet.loadModels();
 				} catch (ModelMultiException me) {
-					log.error (me);
+					log.error(me);
 				}
 			}
 			break;
 		}
 		return true; // visit the children
 	}
-		
+
 	private boolean isActive;
-	
+
 	private ISaveAndDirtyService saveAndDirty;
+
 	private ModelSet modelSet;
 }
