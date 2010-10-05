@@ -7,7 +7,11 @@
 
 [template public generateReport(model : DiffModel)]
 [comment @main /]
-[file (model.fileName().concat('.html'), false, 'UTF-8')]
+[generateReport(model, model.fileName().concat('.html'))/]
+[/template]
+
+[template public generateReport(model : DiffModel, fileName : String)]
+[file (fileName, false, 'UTF-8')]
 [docHeading()/]
 [reportHeader(leftRootName(model), rightRootName(model))/]
 [for (diffElement : DiffElement | model.ownedElements)]
