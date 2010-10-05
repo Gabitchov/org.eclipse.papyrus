@@ -1,3 +1,15 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ */
 package org.eclipse.papyrus.diagram.activity.figures;
 
 import java.util.List;
@@ -17,7 +29,11 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.ShapeCompartmentFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.papyrus.diagram.common.figure.node.PapyrusRoundedNodeFigure;
 
-
+/**
+ * Activity figure for the activity diagram
+ * @author PT202707
+ *
+ */
 public class ActivityFigure extends PapyrusRoundedNodeFigure {
 
 	/**
@@ -144,6 +160,12 @@ public class ActivityFigure extends PapyrusRoundedNodeFigure {
 				 ((IFigure)getPostconditionFigure().getChildren().get(0)).setBounds(postconditionBound);;
 			}
 
+			//setPoscondtion
+			Rectangle singleExecutionBound= getHeaderSingleExecution().getBounds().getCopy();
+			singleExecutionBound.x= getPreconditionFigure().getBounds().x+getPreconditionFigure().getBounds().width+GAP_X;;
+			singleExecutionBound.y= getPreconditionFigure().getBounds().y;
+			getHeaderSingleExecution().setBounds(singleExecutionBound);
+			
 			//replace compartment stereotype properties
 			if(getStereotypePropertiesContent()!=null){
 				Rectangle pscontainer=getStereotypePropertiesContent().getBounds().getCopy();
@@ -201,7 +223,7 @@ public class ActivityFigure extends PapyrusRoundedNodeFigure {
 	/**
 	 * @generated
 	 */
-	private WrappingLabel fHeaderSingleExecution;
+	protected WrappingLabel fHeaderSingleExecution;
 
 	/**
 	 * @generated
@@ -253,6 +275,10 @@ public class ActivityFigure extends PapyrusRoundedNodeFigure {
 		postconditionFigure.setOutline(false);
 		postconditionFigure.setLineWidth(0);
 		add(postconditionFigure);
+		
+		
+		fHeaderSingleExecution= new WrappingLabel();
+		add(fHeaderSingleExecution);
 		//createContents();
 	}
 
@@ -484,8 +510,7 @@ public class ActivityFigure extends PapyrusRoundedNodeFigure {
 	 * @generated
 	 */
 	public WrappingLabel getHeaderSingleExecution() {
-		return new WrappingLabel();
-		//return fHeaderSingleExecution;
+		return fHeaderSingleExecution;
 	}
 
 	/**
