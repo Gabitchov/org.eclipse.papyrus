@@ -14,7 +14,6 @@ import org.eclipse.emf.compare.match.metamodel.MatchElement;
 import org.eclipse.emf.compare.util.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
@@ -88,6 +87,72 @@ public class PapyrusDiffEngine extends GenericDiffEngine {
 			}
 
 		};
+	}
+	
+	private List<EObject> computeAddedReferences(List<EObject> leftReferences, List<EObject> rightReferences) {
+		final List<EObject> deletedReferences = new ArrayList<EObject>();
+		final List<EObject> addedReferences = new ArrayList<EObject>();
+		final double similarReferenceURIThreshold = 0.8d;
+
+		if (leftReferences != null) {
+			addedReferences.addAll(leftReferences);
+		}
+		if (rightReferences != null) {
+			deletedReferences.addAll(rightReferences);
+		}
+		final List<EObject> matchedOldReferences = getMatchedReferences(deletedReferences);
+
+		// "Added" references are the references from the left element that
+		// have no matching "right" counterpart
+		addedReferences.removeAll(matchedOldReferences);
+
+		return addedReferences;
+	}
+
+	/**
+	 * This will create and populate a {@link List} with all the references from the
+	 * <code>rightReferences</code> {@link List} that cannot be matched in the <code>leftReferences</code>
+	 * {@link List}.
+	 * 
+	 * @param leftReferences
+	 *            List of the left element reference values.
+	 * @param rightReferences
+	 *            List of the right element reference values.
+	 * @return {@link List} of all the references that have been deleted from the left (local) element since
+	 *         the right (distant) element.
+	 */
+	private List<EObject> computeDeletedReferences(List<EObject> leftReferences, List<EObject> rightReferences) {
+		final List<EObject> deletedReferences = new ArrayList<EObject>();
+		final List<EObject> addedReferences = new ArrayList<EObject>();
+		final double similarReferenceURIThreshold = 0.8d;
+
+		if (leftReferences != null) {
+			addedReferences.addAll(leftReferences);
+		}
+		if (rightReferences != null) {
+			deletedReferences.addAll(rightReferences);
+		}
+		final List<EObject> matchedNewReferences = getMatchedReferences(addedReferences);
+
+		// "deleted" references are the references from the right element that
+		// have no counterpart in the left element
+		deletedReferences.removeAll(matchedNewReferences);
+
+		return deletedReferences;
+	}
+	private List<EObject> getMatchedReferences(List<EObject> references) {
+		final List<EObject> matchedReferences = new ArrayList<EObject>();
+		final Iterator<EObject> refIterator = references.iterator();
+		while (refIterator.hasNext()) {
+			final Object currentReference = refIterator.next();
+			if (currentReference != null) {
+				final EObject currentMapped = getMatchedEObject((EObject)currentReference);
+				if (currentMapped != null) {
+					matchedReferences.add(currentMapped);
+				}
+			}
+		}
+		return matchedReferences;
 	}
 
 }
