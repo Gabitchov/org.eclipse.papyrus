@@ -1,10 +1,12 @@
 package org.eclipse.papyrus.compare.action;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.URI;
@@ -13,7 +15,6 @@ import org.eclipse.emf.compare.ui.internal.wizard.SaveDeltaWizard;
 import org.eclipse.papyrus.compare.report.ui.common.GenerateAll;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
-import org.eclipse.ui.internal.ide.IDEWorkbenchPlugin;
 
 
 public class ExportAsHTMLWizard extends SaveDeltaWizard {
@@ -51,9 +52,11 @@ public class ExportAsHTMLWizard extends SaveDeltaWizard {
 			return false;
 		}
 		
-		URI uri = getSavedDiffModelURI();
+		URI uri = getNewDiffModelURI();
 		
-		GenerateAll generator = new GenerateAll(uri, myNewReportFileCreationPage.getContainerFullPath().toFile(), getArguments());
+		File targetFolder = ResourcesPlugin.getWorkspace().getRoot().findMember(myNewReportFileCreationPage.getContainerFullPath()).getLocation().toFile();
+		
+		GenerateAll generator = new GenerateAll(uri, targetFolder, getArguments());
 		try {
 			generator.doGenerate(new NullProgressMonitor());
 		} catch (IOException e) {
@@ -63,19 +66,19 @@ public class ExportAsHTMLWizard extends SaveDeltaWizard {
 		return true;
 	}
 
-	protected List<? extends Object> getArguments() {
+	private List<? extends Object> getArguments() {
 		return new ArrayList<String>();
 	}
 	
-	private WizardNewFileCreationPage getSaveDiffPage() {
+	private WizardNewFileCreationPage getNewDiffFilePage() {
 		final String page = "newFilePage1"; //$NON-NLS-1$
 		return (WizardNewFileCreationPage)getPage(page);
 	}
 	
-	private URI getSavedDiffModelURI() {
-		WizardNewFileCreationPage saveDiffPage = getSaveDiffPage();
+	private URI getNewDiffModelURI() {
+		WizardNewFileCreationPage saveDiffPage = getNewDiffFilePage();
 		IPath filePath = saveDiffPage.getContainerFullPath().append(saveDiffPage.getFileName());
-		IFile fileHandle = IDEWorkbenchPlugin.getPluginWorkspace().getRoot().getFile(filePath);
+		IFile fileHandle = ResourcesPlugin.getWorkspace().getRoot().getFile(filePath);
 		return URI.createFileURI(fileHandle.getLocation().toOSString());
 	}
 
