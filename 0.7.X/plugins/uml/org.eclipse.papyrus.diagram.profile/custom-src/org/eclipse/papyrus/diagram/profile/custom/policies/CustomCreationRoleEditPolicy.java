@@ -54,8 +54,8 @@ import org.eclipse.papyrus.diagram.profile.custom.commands.CustomSemanticCreateC
 import org.eclipse.papyrus.diagram.profile.custom.helper.MetaclassHelper;
 import org.eclipse.papyrus.diagram.profile.custom.requests.CustomCreateElementRequestAdapter;
 import org.eclipse.papyrus.diagram.profile.custom.requests.CustomCreateViewAndElementRequest;
-import org.eclipse.papyrus.diagram.profile.custom.requests.CustomCreateViewRequest;
 import org.eclipse.papyrus.diagram.profile.custom.requests.CustomCreateViewAndElementRequest.ViewAndElementDescriptor;
+import org.eclipse.papyrus.diagram.profile.custom.requests.CustomCreateViewRequest;
 import org.eclipse.papyrus.diagram.profile.edit.parts.MetaclassEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.MetaclassEditPartCN;
 import org.eclipse.papyrus.diagram.profile.edit.parts.ProfileDiagramEditPart;

@@ -3491,7 +3491,7 @@
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="Elements that inherits Classifier"
-        genView="/0/@diagram/@childNodes.14 /0/@diagram/@topLevelNodes.11 /0/@diagram/@childNodes.0 /0/@diagram/@topLevelNodes.10"
+        genView="/0/@diagram/@childNodes.14 /0/@diagram/@topLevelNodes.11 /0/@diagram/@childNodes.0 /0/@diagram/@topLevelNodes.10 /0/@diagram/@topLevelNodes.9 /0/@diagram/@childNodes.13"
         name="Classifier inheritance"
         superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.ClassifierEditPart"/>
     <extensionNodes
