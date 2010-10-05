@@ -41,6 +41,8 @@ public class UmlPropertyParser extends AbstractContentAssistParser {
 					put(grammarAccess.getVisibilityKindAccess().getAlternatives(), "rule__VisibilityKind__Alternatives");
 					put(grammarAccess.getModifierKindAccess().getAlternatives(), "rule__ModifierKind__Alternatives");
 					put(grammarAccess.getPropertyRuleAccess().getGroup(), "rule__PropertyRule__Group__0");
+					put(grammarAccess.getTypeRuleAccess().getGroup(), "rule__TypeRule__Group__0");
+					put(grammarAccess.getQualifiedNameAccess().getGroup(), "rule__QualifiedName__Group__0");
 					put(grammarAccess.getMultiplicityRuleAccess().getGroup(), "rule__MultiplicityRule__Group__0");
 					put(grammarAccess.getMultiplicityRuleAccess().getGroup_2(), "rule__MultiplicityRule__Group_2__0");
 					put(grammarAccess.getModifiersRuleAccess().getGroup(), "rule__ModifiersRule__Group__0");
@@ -51,6 +53,10 @@ public class UmlPropertyParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPropertyRuleAccess().getTypeAssignment_4_0(), "rule__PropertyRule__TypeAssignment_4_0");
 					put(grammarAccess.getPropertyRuleAccess().getMultiplicityAssignment_5(), "rule__PropertyRule__MultiplicityAssignment_5");
 					put(grammarAccess.getPropertyRuleAccess().getModifiersAssignment_6(), "rule__PropertyRule__ModifiersAssignment_6");
+					put(grammarAccess.getTypeRuleAccess().getPathAssignment_0(), "rule__TypeRule__PathAssignment_0");
+					put(grammarAccess.getTypeRuleAccess().getTypeAssignment_1(), "rule__TypeRule__TypeAssignment_1");
+					put(grammarAccess.getQualifiedNameAccess().getPathAssignment_0(), "rule__QualifiedName__PathAssignment_0");
+					put(grammarAccess.getQualifiedNameAccess().getRemainingAssignment_2(), "rule__QualifiedName__RemainingAssignment_2");
 					put(grammarAccess.getMultiplicityRuleAccess().getBoundsAssignment_1(), "rule__MultiplicityRule__BoundsAssignment_1");
 					put(grammarAccess.getMultiplicityRuleAccess().getBoundsAssignment_2_1(), "rule__MultiplicityRule__BoundsAssignment_2_1");
 					put(grammarAccess.getBoundSpecificationAccess().getValueAssignment(), "rule__BoundSpecification__ValueAssignment");

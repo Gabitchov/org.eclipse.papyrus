@@ -15,6 +15,9 @@ package org.eclipse.papyrus.property.editor.xtext.validation;
 
 
 import org.eclipse.papyrus.property.editor.xtext.umlProperty.PropertyRule;
+import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Namespace;
+import org.eclipse.uml2.uml.Package;
 import org.eclipse.xtext.validation.Check;
  
 
@@ -24,8 +27,24 @@ import org.eclipse.xtext.validation.Check;
  */
 public class UmlPropertyJavaValidator extends AbstractUmlPropertyJavaValidator {
 
+	private static Namespace model ;
+	private static Element contextElement ;
+	
+	public static void init(Element _contextElement) {
+		contextElement = _contextElement ;
+		if (contextElement != null) {
+			Element elem = contextElement.getOwner() ;
+			while (elem.getOwner() != null) {
+				elem = elem.getOwner() ;
+			}
+			model = (Namespace)elem ;
+		}
+	}
 
-
+	public static Namespace getModel() {
+		return model ;
+	}
+	
 	/**
 	 * Checks
 	 * @param rule

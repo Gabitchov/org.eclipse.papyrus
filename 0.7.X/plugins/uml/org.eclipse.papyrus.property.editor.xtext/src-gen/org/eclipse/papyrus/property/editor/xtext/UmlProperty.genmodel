@@ -25,9 +25,17 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute UmlProperty.ecore#//PropertyRule/visibility"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute UmlProperty.ecore#//PropertyRule/isDerived"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute UmlProperty.ecore#//PropertyRule/name"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference UmlProperty.ecore#//PropertyRule/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UmlProperty.ecore#//PropertyRule/type"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UmlProperty.ecore#//PropertyRule/multiplicity"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UmlProperty.ecore#//PropertyRule/modifiers"/>
+    </genClasses>
+    <genClasses ecoreClass="UmlProperty.ecore#//TypeRule">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UmlProperty.ecore#//TypeRule/path"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference UmlProperty.ecore#//TypeRule/type"/>
+    </genClasses>
+    <genClasses ecoreClass="UmlProperty.ecore#//QualifiedName">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference UmlProperty.ecore#//QualifiedName/path"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UmlProperty.ecore#//QualifiedName/remaining"/>
     </genClasses>
     <genClasses ecoreClass="UmlProperty.ecore#//MultiplicityRule">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UmlProperty.ecore#//MultiplicityRule/bounds"/>

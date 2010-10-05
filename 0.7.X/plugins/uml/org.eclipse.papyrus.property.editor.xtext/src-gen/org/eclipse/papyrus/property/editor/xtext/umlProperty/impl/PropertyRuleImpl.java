@@ -18,10 +18,9 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.papyrus.property.editor.xtext.umlProperty.ModifiersRule;
 import org.eclipse.papyrus.property.editor.xtext.umlProperty.MultiplicityRule;
 import org.eclipse.papyrus.property.editor.xtext.umlProperty.PropertyRule;
+import org.eclipse.papyrus.property.editor.xtext.umlProperty.TypeRule;
 import org.eclipse.papyrus.property.editor.xtext.umlProperty.UmlPropertyPackage;
 import org.eclipse.papyrus.property.editor.xtext.umlProperty.VisibilityKind;
-
-import org.eclipse.uml2.uml.Classifier;
 
 /**
  * <!-- begin-user-doc -->
@@ -104,14 +103,14 @@ public class PropertyRuleImpl extends MinimalEObjectImpl.Container implements Pr
   protected String name = NAME_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getType() <em>Type</em>}' reference.
+   * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getType()
    * @generated
    * @ordered
    */
-  protected Classifier type;
+  protected TypeRule type;
 
   /**
    * The cached value of the '{@link #getMultiplicity() <em>Multiplicity</em>}' containment reference.
@@ -228,27 +227,7 @@ public class PropertyRuleImpl extends MinimalEObjectImpl.Container implements Pr
    * <!-- end-user-doc -->
    * @generated
    */
-  public Classifier getType()
-  {
-    if (type != null && type.eIsProxy())
-    {
-      InternalEObject oldType = (InternalEObject)type;
-      type = (Classifier)eResolveProxy(oldType);
-      if (type != oldType)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, UmlPropertyPackage.PROPERTY_RULE__TYPE, oldType, type));
-      }
-    }
-    return type;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Classifier basicGetType()
+  public TypeRule getType()
   {
     return type;
   }
@@ -258,12 +237,37 @@ public class PropertyRuleImpl extends MinimalEObjectImpl.Container implements Pr
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setType(Classifier newType)
+  public NotificationChain basicSetType(TypeRule newType, NotificationChain msgs)
   {
-    Classifier oldType = type;
+    TypeRule oldType = type;
     type = newType;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, UmlPropertyPackage.PROPERTY_RULE__TYPE, oldType, type));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UmlPropertyPackage.PROPERTY_RULE__TYPE, oldType, newType);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setType(TypeRule newType)
+  {
+    if (newType != type)
+    {
+      NotificationChain msgs = null;
+      if (type != null)
+        msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UmlPropertyPackage.PROPERTY_RULE__TYPE, null, msgs);
+      if (newType != null)
+        msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - UmlPropertyPackage.PROPERTY_RULE__TYPE, null, msgs);
+      msgs = basicSetType(newType, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, UmlPropertyPackage.PROPERTY_RULE__TYPE, newType, newType));
   }
 
   /**
@@ -372,6 +376,8 @@ public class PropertyRuleImpl extends MinimalEObjectImpl.Container implements Pr
   {
     switch (featureID)
     {
+      case UmlPropertyPackage.PROPERTY_RULE__TYPE:
+        return basicSetType(null, msgs);
       case UmlPropertyPackage.PROPERTY_RULE__MULTIPLICITY:
         return basicSetMultiplicity(null, msgs);
       case UmlPropertyPackage.PROPERTY_RULE__MODIFIERS:
@@ -397,8 +403,7 @@ public class PropertyRuleImpl extends MinimalEObjectImpl.Container implements Pr
       case UmlPropertyPackage.PROPERTY_RULE__NAME:
         return getName();
       case UmlPropertyPackage.PROPERTY_RULE__TYPE:
-        if (resolve) return getType();
-        return basicGetType();
+        return getType();
       case UmlPropertyPackage.PROPERTY_RULE__MULTIPLICITY:
         return getMultiplicity();
       case UmlPropertyPackage.PROPERTY_RULE__MODIFIERS:
@@ -427,7 +432,7 @@ public class PropertyRuleImpl extends MinimalEObjectImpl.Container implements Pr
         setName((String)newValue);
         return;
       case UmlPropertyPackage.PROPERTY_RULE__TYPE:
-        setType((Classifier)newValue);
+        setType((TypeRule)newValue);
         return;
       case UmlPropertyPackage.PROPERTY_RULE__MULTIPLICITY:
         setMultiplicity((MultiplicityRule)newValue);
@@ -459,7 +464,7 @@ public class PropertyRuleImpl extends MinimalEObjectImpl.Container implements Pr
         setName(NAME_EDEFAULT);
         return;
       case UmlPropertyPackage.PROPERTY_RULE__TYPE:
-        setType((Classifier)null);
+        setType((TypeRule)null);
         return;
       case UmlPropertyPackage.PROPERTY_RULE__MULTIPLICITY:
         setMultiplicity((MultiplicityRule)null);

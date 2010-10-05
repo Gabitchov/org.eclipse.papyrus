@@ -103,6 +103,20 @@ public class UmlPropertySwitch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case UmlPropertyPackage.TYPE_RULE:
+      {
+        TypeRule typeRule = (TypeRule)theEObject;
+        T result = caseTypeRule(typeRule);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case UmlPropertyPackage.QUALIFIED_NAME:
+      {
+        QualifiedName qualifiedName = (QualifiedName)theEObject;
+        T result = caseQualifiedName(qualifiedName);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case UmlPropertyPackage.MULTIPLICITY_RULE:
       {
         MultiplicityRule multiplicityRule = (MultiplicityRule)theEObject;
@@ -147,6 +161,38 @@ public class UmlPropertySwitch<T>
    * @generated
    */
   public T casePropertyRule(PropertyRule object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Type Rule</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Type Rule</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseTypeRule(TypeRule object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Qualified Name</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Qualified Name</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseQualifiedName(QualifiedName object)
   {
     return null;
   }

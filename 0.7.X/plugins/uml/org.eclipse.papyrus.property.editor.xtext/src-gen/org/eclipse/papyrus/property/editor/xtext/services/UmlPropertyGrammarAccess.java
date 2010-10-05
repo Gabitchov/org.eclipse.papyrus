@@ -29,8 +29,7 @@ public class UmlPropertyGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cColonKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Alternatives cAlternatives_4 = (Alternatives)cGroup.eContents().get(4);
 		private final Assignment cTypeAssignment_4_0 = (Assignment)cAlternatives_4.eContents().get(0);
-		private final CrossReference cTypeClassifierCrossReference_4_0_0 = (CrossReference)cTypeAssignment_4_0.eContents().get(0);
-		private final RuleCall cTypeClassifierIDTerminalRuleCall_4_0_0_1 = (RuleCall)cTypeClassifierCrossReference_4_0_0.eContents().get(1);
+		private final RuleCall cTypeTypeRuleParserRuleCall_4_0_0 = (RuleCall)cTypeAssignment_4_0.eContents().get(0);
 		private final Keyword cUndefinedKeyword_4_1 = (Keyword)cAlternatives_4.eContents().get(1);
 		private final Assignment cMultiplicityAssignment_5 = (Assignment)cGroup.eContents().get(5);
 		private final RuleCall cMultiplicityMultiplicityRuleParserRuleCall_5_0 = (RuleCall)cMultiplicityAssignment_5.eContents().get(0);
@@ -38,12 +37,12 @@ public class UmlPropertyGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cModifiersModifiersRuleParserRuleCall_6_0 = (RuleCall)cModifiersAssignment_6.eContents().get(0);
 		
 		//PropertyRule:
-		//	visibility=VisibilityKind isDerived="/"? name=ID ":" (type=[uml::Classifier] | "<Undefined>")
-		//	multiplicity=MultiplicityRule? modifiers=ModifiersRule?;
+		//	visibility=VisibilityKind isDerived="/"? name=ID ":" (type=TypeRule | "<Undefined>") multiplicity=MultiplicityRule?
+		//	modifiers=ModifiersRule?;
 		public ParserRule getRule() { return rule; }
 
-		//visibility=VisibilityKind isDerived="/"? name=ID ":" (type=[uml::Classifier] | "<Undefined>")
-		//multiplicity=MultiplicityRule? modifiers=ModifiersRule?
+		//visibility=VisibilityKind isDerived="/"? name=ID ":" (type=TypeRule | "<Undefined>") multiplicity=MultiplicityRule?
+		//modifiers=ModifiersRule?
 		public Group getGroup() { return cGroup; }
 
 		//visibility=VisibilityKind
@@ -67,17 +66,14 @@ public class UmlPropertyGrammarAccess extends AbstractGrammarElementFinder {
 		//":"
 		public Keyword getColonKeyword_3() { return cColonKeyword_3; }
 
-		//type=[uml::Classifier] | "<Undefined>"
+		//type=TypeRule | "<Undefined>"
 		public Alternatives getAlternatives_4() { return cAlternatives_4; }
 
-		//type=[uml::Classifier]
+		//type=TypeRule
 		public Assignment getTypeAssignment_4_0() { return cTypeAssignment_4_0; }
 
-		//[uml::Classifier]
-		public CrossReference getTypeClassifierCrossReference_4_0_0() { return cTypeClassifierCrossReference_4_0_0; }
-
-		//ID
-		public RuleCall getTypeClassifierIDTerminalRuleCall_4_0_0_1() { return cTypeClassifierIDTerminalRuleCall_4_0_0_1; }
+		//TypeRule
+		public RuleCall getTypeTypeRuleParserRuleCall_4_0_0() { return cTypeTypeRuleParserRuleCall_4_0_0; }
 
 		//"<Undefined>"
 		public Keyword getUndefinedKeyword_4_1() { return cUndefinedKeyword_4_1; }
@@ -93,6 +89,74 @@ public class UmlPropertyGrammarAccess extends AbstractGrammarElementFinder {
 
 		//ModifiersRule
 		public RuleCall getModifiersModifiersRuleParserRuleCall_6_0() { return cModifiersModifiersRuleParserRuleCall_6_0; }
+	}
+
+	public class TypeRuleElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TypeRule");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cPathAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cPathQualifiedNameParserRuleCall_0_0 = (RuleCall)cPathAssignment_0.eContents().get(0);
+		private final Assignment cTypeAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final CrossReference cTypeClassifierCrossReference_1_0 = (CrossReference)cTypeAssignment_1.eContents().get(0);
+		private final RuleCall cTypeClassifierIDTerminalRuleCall_1_0_1 = (RuleCall)cTypeClassifierCrossReference_1_0.eContents().get(1);
+		
+		//TypeRule:
+		//	path=QualifiedName? type=[uml::Classifier];
+		public ParserRule getRule() { return rule; }
+
+		//path=QualifiedName? type=[uml::Classifier]
+		public Group getGroup() { return cGroup; }
+
+		//path=QualifiedName?
+		public Assignment getPathAssignment_0() { return cPathAssignment_0; }
+
+		//QualifiedName
+		public RuleCall getPathQualifiedNameParserRuleCall_0_0() { return cPathQualifiedNameParserRuleCall_0_0; }
+
+		//type=[uml::Classifier]
+		public Assignment getTypeAssignment_1() { return cTypeAssignment_1; }
+
+		//[uml::Classifier]
+		public CrossReference getTypeClassifierCrossReference_1_0() { return cTypeClassifierCrossReference_1_0; }
+
+		//ID
+		public RuleCall getTypeClassifierIDTerminalRuleCall_1_0_1() { return cTypeClassifierIDTerminalRuleCall_1_0_1; }
+	}
+
+	public class QualifiedNameElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "QualifiedName");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cPathAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final CrossReference cPathNamespaceCrossReference_0_0 = (CrossReference)cPathAssignment_0.eContents().get(0);
+		private final RuleCall cPathNamespaceIDTerminalRuleCall_0_0_1 = (RuleCall)cPathNamespaceCrossReference_0_0.eContents().get(1);
+		private final Keyword cColonColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cRemainingAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cRemainingQualifiedNameParserRuleCall_2_0 = (RuleCall)cRemainingAssignment_2.eContents().get(0);
+		
+		//QualifiedName:
+		//	path=[uml::Namespace] "::" remaining=QualifiedName?;
+		public ParserRule getRule() { return rule; }
+
+		//path=[uml::Namespace] "::" remaining=QualifiedName?
+		public Group getGroup() { return cGroup; }
+
+		//path=[uml::Namespace]
+		public Assignment getPathAssignment_0() { return cPathAssignment_0; }
+
+		//[uml::Namespace]
+		public CrossReference getPathNamespaceCrossReference_0_0() { return cPathNamespaceCrossReference_0_0; }
+
+		//ID
+		public RuleCall getPathNamespaceIDTerminalRuleCall_0_0_1() { return cPathNamespaceIDTerminalRuleCall_0_0_1; }
+
+		//"::"
+		public Keyword getColonColonKeyword_1() { return cColonColonKeyword_1; }
+
+		//remaining=QualifiedName?
+		public Assignment getRemainingAssignment_2() { return cRemainingAssignment_2; }
+
+		//QualifiedName
+		public RuleCall getRemainingQualifiedNameParserRuleCall_2_0() { return cRemainingQualifiedNameParserRuleCall_2_0; }
 	}
 
 	public class MultiplicityRuleElements extends AbstractParserRuleElementFinder {
@@ -306,6 +370,8 @@ public class UmlPropertyGrammarAccess extends AbstractGrammarElementFinder {
 	
 	private PropertyRuleElements pPropertyRule;
 	private VisibilityKindElements unknownRuleVisibilityKind;
+	private TypeRuleElements pTypeRule;
+	private QualifiedNameElements pQualifiedName;
 	private MultiplicityRuleElements pMultiplicityRule;
 	private BoundSpecificationElements pBoundSpecification;
 	private TerminalRule tUnlimitedLiteral;
@@ -335,8 +401,8 @@ public class UmlPropertyGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//PropertyRule:
-	//	visibility=VisibilityKind isDerived="/"? name=ID ":" (type=[uml::Classifier] | "<Undefined>")
-	//	multiplicity=MultiplicityRule? modifiers=ModifiersRule?;
+	//	visibility=VisibilityKind isDerived="/"? name=ID ":" (type=TypeRule | "<Undefined>") multiplicity=MultiplicityRule?
+	//	modifiers=ModifiersRule?;
 	public PropertyRuleElements getPropertyRuleAccess() {
 		return (pPropertyRule != null) ? pPropertyRule : (pPropertyRule = new PropertyRuleElements());
 	}
@@ -353,6 +419,26 @@ public class UmlPropertyGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public EnumRule getVisibilityKindRule() {
 		return getVisibilityKindAccess().getRule();
+	}
+
+	//TypeRule:
+	//	path=QualifiedName? type=[uml::Classifier];
+	public TypeRuleElements getTypeRuleAccess() {
+		return (pTypeRule != null) ? pTypeRule : (pTypeRule = new TypeRuleElements());
+	}
+	
+	public ParserRule getTypeRuleRule() {
+		return getTypeRuleAccess().getRule();
+	}
+
+	//QualifiedName:
+	//	path=[uml::Namespace] "::" remaining=QualifiedName?;
+	public QualifiedNameElements getQualifiedNameAccess() {
+		return (pQualifiedName != null) ? pQualifiedName : (pQualifiedName = new QualifiedNameElements());
+	}
+	
+	public ParserRule getQualifiedNameRule() {
+		return getQualifiedNameAccess().getRule();
 	}
 
 	//MultiplicityRule:

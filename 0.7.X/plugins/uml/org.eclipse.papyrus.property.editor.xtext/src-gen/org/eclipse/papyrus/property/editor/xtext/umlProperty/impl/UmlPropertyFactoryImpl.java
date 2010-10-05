@@ -70,6 +70,8 @@ public class UmlPropertyFactoryImpl extends EFactoryImpl implements UmlPropertyF
     switch (eClass.getClassifierID())
     {
       case UmlPropertyPackage.PROPERTY_RULE: return createPropertyRule();
+      case UmlPropertyPackage.TYPE_RULE: return createTypeRule();
+      case UmlPropertyPackage.QUALIFIED_NAME: return createQualifiedName();
       case UmlPropertyPackage.MULTIPLICITY_RULE: return createMultiplicityRule();
       case UmlPropertyPackage.BOUND_SPECIFICATION: return createBoundSpecification();
       case UmlPropertyPackage.MODIFIERS_RULE: return createModifiersRule();
@@ -126,6 +128,28 @@ public class UmlPropertyFactoryImpl extends EFactoryImpl implements UmlPropertyF
   {
     PropertyRuleImpl propertyRule = new PropertyRuleImpl();
     return propertyRule;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public TypeRule createTypeRule()
+  {
+    TypeRuleImpl typeRule = new TypeRuleImpl();
+    return typeRule;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public QualifiedName createQualifiedName()
+  {
+    QualifiedNameImpl qualifiedName = new QualifiedNameImpl();
+    return qualifiedName;
   }
 
   /**
