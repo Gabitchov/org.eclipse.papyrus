@@ -795,7 +795,10 @@
         itemSemanticEditPolicyClassName="ActivityDiagramItemSemanticEditPolicy"
         canonicalEditPolicyClassName="ActivityDiagramCanonicalEditPolicy"
         iconProviderPriority="Low"
-        validationProviderPriority="Low">
+        validationProviderPriority="Low"
+        validationEnabled="true"
+        validationDecorators="true"
+        liveValidationUIFeedback="true">
       <diagramRunTimeClass
           href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
       <elementType
@@ -819,7 +822,7 @@
           canonicalEditPolicyClassName="ParameterCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="ParameterGraphicalNodeEditPolicy"
           createCommandClassName="ParameterCreateCommand"
-          containers="/0/@diagram/@compartments.0">
+          containers="/0/@diagram/@compartments.0 /0/@diagram/@compartments.12">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -861,7 +864,7 @@
           canonicalEditPolicyClassName="ConstraintInActivityAsPrecondCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="ConstraintInActivityAsPrecondGraphicalNodeEditPolicy"
           createCommandClassName="ConstraintInActivityAsPrecondCreateCommand"
-          containers="/0/@diagram/@compartments.1">
+          containers="/0/@diagram/@compartments.1 /0/@diagram/@compartments.13">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -910,7 +913,7 @@
           canonicalEditPolicyClassName="ConstraintInActivityAsPostcondCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="ConstraintInActivityAsPostcondGraphicalNodeEditPolicy"
           createCommandClassName="ConstraintInActivityAsPostcondCreateCommand"
-          containers="/0/@diagram/@compartments.2">
+          containers="/0/@diagram/@compartments.2 /0/@diagram/@compartments.14">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -958,7 +961,7 @@
           canonicalEditPolicyClassName="InitialNodeCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="InitialNodeGraphicalNodeEditPolicy"
           createCommandClassName="InitialNodeCreateCommand"
-          containers="/0/@diagram/@compartments.3 /0/@diagram/@compartments.4 /0/@diagram/@compartments.6 /0/@diagram/@compartments.7 /0/@diagram/@compartments.8 /0/@diagram/@compartments.9 /0/@diagram/@compartments.10 /0/@diagram/@compartments.5">
+          containers="/0/@diagram/@compartments.3 /0/@diagram/@compartments.4 /0/@diagram/@compartments.6 /0/@diagram/@compartments.7 /0/@diagram/@compartments.8 /0/@diagram/@compartments.9 /0/@diagram/@compartments.10 /0/@diagram/@compartments.5 /0/@diagram/@compartments.11">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -1019,7 +1022,7 @@
           canonicalEditPolicyClassName="ActivityFinalNodeCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="ActivityFinalNodeGraphicalNodeEditPolicy"
           createCommandClassName="ActivityFinalNodeCreateCommand"
-          containers="/0/@diagram/@compartments.3 /0/@diagram/@compartments.4 /0/@diagram/@compartments.6 /0/@diagram/@compartments.7 /0/@diagram/@compartments.8 /0/@diagram/@compartments.9 /0/@diagram/@compartments.10 /0/@diagram/@compartments.5">
+          containers="/0/@diagram/@compartments.3 /0/@diagram/@compartments.4 /0/@diagram/@compartments.6 /0/@diagram/@compartments.7 /0/@diagram/@compartments.8 /0/@diagram/@compartments.9 /0/@diagram/@compartments.10 /0/@diagram/@compartments.5 /0/@diagram/@compartments.11">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -1085,7 +1088,7 @@
           canonicalEditPolicyClassName="FlowFinalNodeCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="FlowFinalNodeGraphicalNodeEditPolicy"
           createCommandClassName="FlowFinalNodeCreateCommand"
-          containers="/0/@diagram/@compartments.3 /0/@diagram/@compartments.4 /0/@diagram/@compartments.6 /0/@diagram/@compartments.7 /0/@diagram/@compartments.8 /0/@diagram/@compartments.9 /0/@diagram/@compartments.10 /0/@diagram/@compartments.5">
+          containers="/0/@diagram/@compartments.3 /0/@diagram/@compartments.4 /0/@diagram/@compartments.6 /0/@diagram/@compartments.7 /0/@diagram/@compartments.8 /0/@diagram/@compartments.9 /0/@diagram/@compartments.10 /0/@diagram/@compartments.5 /0/@diagram/@compartments.11">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -1152,7 +1155,7 @@
           childNodes="/0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10"
           graphicalNodeEditPolicyClassName="OpaqueActionGraphicalNodeEditPolicy"
           createCommandClassName="OpaqueActionCreateCommand"
-          containers="/0/@diagram/@compartments.3 /0/@diagram/@compartments.4 /0/@diagram/@compartments.6 /0/@diagram/@compartments.7 /0/@diagram/@compartments.8 /0/@diagram/@compartments.9 /0/@diagram/@compartments.10 /0/@diagram/@compartments.5">
+          containers="/0/@diagram/@compartments.3 /0/@diagram/@compartments.4 /0/@diagram/@compartments.6 /0/@diagram/@compartments.7 /0/@diagram/@compartments.8 /0/@diagram/@compartments.9 /0/@diagram/@compartments.10 /0/@diagram/@compartments.5 /0/@diagram/@compartments.11">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -1592,7 +1595,7 @@
           childNodes="/0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15"
           graphicalNodeEditPolicyClassName="CallBehaviorActionGraphicalNodeEditPolicy"
           createCommandClassName="CallBehaviorActionCreateCommand"
-          containers="/0/@diagram/@compartments.3 /0/@diagram/@compartments.4 /0/@diagram/@compartments.6 /0/@diagram/@compartments.7 /0/@diagram/@compartments.8 /0/@diagram/@compartments.9 /0/@diagram/@compartments.10 /0/@diagram/@compartments.5">
+          containers="/0/@diagram/@compartments.3 /0/@diagram/@compartments.4 /0/@diagram/@compartments.6 /0/@diagram/@compartments.7 /0/@diagram/@compartments.8 /0/@diagram/@compartments.9 /0/@diagram/@compartments.10 /0/@diagram/@compartments.5 /0/@diagram/@compartments.11">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -2024,7 +2027,7 @@
           childNodes="/0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.23"
           graphicalNodeEditPolicyClassName="CallOperationActionGraphicalNodeEditPolicy"
           createCommandClassName="CallOperationActionCreateCommand"
-          containers="/0/@diagram/@compartments.3 /0/@diagram/@compartments.4 /0/@diagram/@compartments.6 /0/@diagram/@compartments.7 /0/@diagram/@compartments.8 /0/@diagram/@compartments.9 /0/@diagram/@compartments.10 /0/@diagram/@compartments.5">
+          containers="/0/@diagram/@compartments.3 /0/@diagram/@compartments.4 /0/@diagram/@compartments.6 /0/@diagram/@compartments.7 /0/@diagram/@compartments.8 /0/@diagram/@compartments.9 /0/@diagram/@compartments.10 /0/@diagram/@compartments.5 /0/@diagram/@compartments.11">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -3530,7 +3533,7 @@
           canonicalEditPolicyClassName="DecisionNodeCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="DecisionNodeGraphicalNodeEditPolicy"
           createCommandClassName="DecisionNodeCreateCommand"
-          containers="/0/@diagram/@compartments.3 /0/@diagram/@compartments.4 /0/@diagram/@compartments.6 /0/@diagram/@compartments.7 /0/@diagram/@compartments.8 /0/@diagram/@compartments.9 /0/@diagram/@compartments.10 /0/@diagram/@compartments.5">
+          containers="/0/@diagram/@compartments.3 /0/@diagram/@compartments.4 /0/@diagram/@compartments.6 /0/@diagram/@compartments.7 /0/@diagram/@compartments.8 /0/@diagram/@compartments.9 /0/@diagram/@compartments.10 /0/@diagram/@compartments.5 /0/@diagram/@compartments.11">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -3614,7 +3617,7 @@
           canonicalEditPolicyClassName="MergeNodeCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="MergeNodeGraphicalNodeEditPolicy"
           createCommandClassName="MergeNodeCreateCommand"
-          containers="/0/@diagram/@compartments.3 /0/@diagram/@compartments.4 /0/@diagram/@compartments.6 /0/@diagram/@compartments.7 /0/@diagram/@compartments.8 /0/@diagram/@compartments.9 /0/@diagram/@compartments.10 /0/@diagram/@compartments.5">
+          containers="/0/@diagram/@compartments.3 /0/@diagram/@compartments.4 /0/@diagram/@compartments.6 /0/@diagram/@compartments.7 /0/@diagram/@compartments.8 /0/@diagram/@compartments.9 /0/@diagram/@compartments.10 /0/@diagram/@compartments.5 /0/@diagram/@compartments.11">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -3675,7 +3678,7 @@
           canonicalEditPolicyClassName="ForkNodeCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="ForkNodeGraphicalNodeEditPolicy"
           createCommandClassName="ForkNodeCreateCommand"
-          containers="/0/@diagram/@compartments.3 /0/@diagram/@compartments.4 /0/@diagram/@compartments.6 /0/@diagram/@compartments.7 /0/@diagram/@compartments.8 /0/@diagram/@compartments.9 /0/@diagram/@compartments.10 /0/@diagram/@compartments.5">
+          containers="/0/@diagram/@compartments.3 /0/@diagram/@compartments.4 /0/@diagram/@compartments.6 /0/@diagram/@compartments.7 /0/@diagram/@compartments.8 /0/@diagram/@compartments.9 /0/@diagram/@compartments.10 /0/@diagram/@compartments.5 /0/@diagram/@compartments.11">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -3741,7 +3744,7 @@
           canonicalEditPolicyClassName="JoinNodeCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="JoinNodeGraphicalNodeEditPolicy"
           createCommandClassName="JoinNodeCreateCommand"
-          containers="/0/@diagram/@compartments.3 /0/@diagram/@compartments.4 /0/@diagram/@compartments.6 /0/@diagram/@compartments.7 /0/@diagram/@compartments.8 /0/@diagram/@compartments.9 /0/@diagram/@compartments.10 /0/@diagram/@compartments.5">
+          containers="/0/@diagram/@compartments.3 /0/@diagram/@compartments.4 /0/@diagram/@compartments.6 /0/@diagram/@compartments.7 /0/@diagram/@compartments.8 /0/@diagram/@compartments.9 /0/@diagram/@compartments.10 /0/@diagram/@compartments.5 /0/@diagram/@compartments.11">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -3901,7 +3904,7 @@
           childNodes="/0/@diagram/@childNodes.38 /0/@diagram/@childNodes.39 /0/@diagram/@childNodes.40 /0/@diagram/@childNodes.41 /0/@diagram/@childNodes.42 /0/@diagram/@childNodes.43"
           graphicalNodeEditPolicyClassName="SendObjectActionGraphicalNodeEditPolicy"
           createCommandClassName="SendObjectActionCreateCommand"
-          containers="/0/@diagram/@compartments.3 /0/@diagram/@compartments.4 /0/@diagram/@compartments.6 /0/@diagram/@compartments.7 /0/@diagram/@compartments.8 /0/@diagram/@compartments.9 /0/@diagram/@compartments.10 /0/@diagram/@compartments.5">
+          containers="/0/@diagram/@compartments.3 /0/@diagram/@compartments.4 /0/@diagram/@compartments.6 /0/@diagram/@compartments.7 /0/@diagram/@compartments.8 /0/@diagram/@compartments.9 /0/@diagram/@compartments.10 /0/@diagram/@compartments.5 /0/@diagram/@compartments.11">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -4517,7 +4520,7 @@
           childNodes="/0/@diagram/@childNodes.45 /0/@diagram/@childNodes.46 /0/@diagram/@childNodes.47 /0/@diagram/@childNodes.48 /0/@diagram/@childNodes.49 /0/@diagram/@childNodes.50"
           graphicalNodeEditPolicyClassName="SendSignalActionGraphicalNodeEditPolicy"
           createCommandClassName="SendSignalActionCreateCommand"
-          containers="/0/@diagram/@compartments.3 /0/@diagram/@compartments.4 /0/@diagram/@compartments.6 /0/@diagram/@compartments.7 /0/@diagram/@compartments.8 /0/@diagram/@compartments.9 /0/@diagram/@compartments.10 /0/@diagram/@compartments.5">
+          containers="/0/@diagram/@compartments.3 /0/@diagram/@compartments.4 /0/@diagram/@compartments.6 /0/@diagram/@compartments.7 /0/@diagram/@compartments.8 /0/@diagram/@compartments.9 /0/@diagram/@compartments.10 /0/@diagram/@compartments.5 /0/@diagram/@compartments.11">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -5129,7 +5132,7 @@
           canonicalEditPolicyClassName="ActivityParameterNodeCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="ActivityParameterNodeGraphicalNodeEditPolicy"
           createCommandClassName="ActivityParameterNodeCreateCommand"
-          containers="/0/@diagram/@topLevelNodes.0">
+          containers="/0/@diagram/@topLevelNodes.0 /0/@diagram/@childNodes.69">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -5159,6 +5162,12 @@
               <feature
                   href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
+            <initializers
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.0/@expressions.84">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ObjectNode/isControlType"/>
+            </initializers>
           </modelElementInitializer>
         </modelFacet>
         <labels
@@ -5185,7 +5194,7 @@
           childNodes="/0/@diagram/@childNodes.53"
           graphicalNodeEditPolicyClassName="AcceptEventActionGraphicalNodeEditPolicy"
           createCommandClassName="AcceptEventActionCreateCommand"
-          containers="/0/@diagram/@compartments.3 /0/@diagram/@compartments.4 /0/@diagram/@compartments.6 /0/@diagram/@compartments.7 /0/@diagram/@compartments.8 /0/@diagram/@compartments.9 /0/@diagram/@compartments.10 /0/@diagram/@compartments.5">
+          containers="/0/@diagram/@compartments.3 /0/@diagram/@compartments.4 /0/@diagram/@compartments.6 /0/@diagram/@compartments.7 /0/@diagram/@compartments.8 /0/@diagram/@compartments.9 /0/@diagram/@compartments.10 /0/@diagram/@compartments.5 /0/@diagram/@compartments.11">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -5371,7 +5380,7 @@
           childNodes="/0/@diagram/@childNodes.55"
           graphicalNodeEditPolicyClassName="ValueSpecificationActionGraphicalNodeEditPolicy"
           createCommandClassName="ValueSpecificationActionCreateCommand"
-          containers="/0/@diagram/@compartments.3 /0/@diagram/@compartments.4 /0/@diagram/@compartments.6 /0/@diagram/@compartments.7 /0/@diagram/@compartments.8 /0/@diagram/@compartments.9 /0/@diagram/@compartments.10 /0/@diagram/@compartments.5">
+          containers="/0/@diagram/@compartments.3 /0/@diagram/@compartments.4 /0/@diagram/@compartments.6 /0/@diagram/@compartments.7 /0/@diagram/@compartments.8 /0/@diagram/@compartments.9 /0/@diagram/@compartments.10 /0/@diagram/@compartments.5 /0/@diagram/@compartments.11">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -5514,7 +5523,7 @@
           compartments="/0/@diagram/@compartments.4"
           graphicalNodeEditPolicyClassName="ConditionalNodeGraphicalNodeEditPolicy"
           createCommandClassName="ConditionalNodeCreateCommand"
-          containers="/0/@diagram/@compartments.3 /0/@diagram/@compartments.4 /0/@diagram/@compartments.6 /0/@diagram/@compartments.7 /0/@diagram/@compartments.8 /0/@diagram/@compartments.9 /0/@diagram/@compartments.10 /0/@diagram/@compartments.5">
+          containers="/0/@diagram/@compartments.3 /0/@diagram/@compartments.4 /0/@diagram/@compartments.6 /0/@diagram/@compartments.7 /0/@diagram/@compartments.8 /0/@diagram/@compartments.9 /0/@diagram/@compartments.10 /0/@diagram/@compartments.5 /0/@diagram/@compartments.11">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -5526,6 +5535,10 @@
             classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class StructuredActivityNodeDescriptor extends org.eclipse.draw2d.RoundedRectangle {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fStructuredActivityNodeCompartment; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel fKeyword; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public StructuredActivityNodeDescriptor() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.GridLayout layoutThis = new org.eclipse.draw2d.GridLayout();&#xA;&#x9;layoutThis.numColumns = 1;&#xA;&#x9;layoutThis.makeColumnsEqualWidth = false;&#xA;&#x9;layoutThis.horizontalSpacing = 0;&#xA;&#x9;layoutThis.verticalSpacing = 0;&#xA;&#x9;layoutThis.marginWidth = 0;&#xA;&#x9;layoutThis.marginHeight = 0;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setCornerDimensions(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(8)&#xA;, getMapMode().DPtoLP(8)&#xA;));&#xA;this.setFill(false);&#xA;this.setLineStyle(org.eclipse.draw2d.Graphics.LINE_DASH);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fKeyword = new org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel();&#xA;&#xA;&#xA;&#xA;fKeyword.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;));&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintFKeyword = new org.eclipse.draw2d.GridData();&#xA;constraintFKeyword.verticalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintFKeyword.horizontalAlignment = org.eclipse.draw2d.GridData.BEGINNING;&#xA;constraintFKeyword.horizontalIndent = 0;&#xA;constraintFKeyword.horizontalSpan = 1;&#xA;constraintFKeyword.verticalSpan = 1;&#xA;constraintFKeyword.grabExcessHorizontalSpace = false;&#xA;constraintFKeyword.grabExcessVerticalSpace = false;&#xA;this.add(fKeyword, constraintFKeyword);&#xA;&#xA;&#xA;&#xA;&#xA;fStructuredActivityNodeCompartment = new org.eclipse.draw2d.RectangleFigure();&#xA;fStructuredActivityNodeCompartment.setFill(false);&#xA;fStructuredActivityNodeCompartment.setOutline(false);&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintFStructuredActivityNodeCompartment = new org.eclipse.draw2d.GridData();&#xA;constraintFStructuredActivityNodeCompartment.verticalAlignment = org.eclipse.draw2d.GridData.FILL;&#xA;constraintFStructuredActivityNodeCompartment.horizontalAlignment = org.eclipse.draw2d.GridData.FILL;&#xA;constraintFStructuredActivityNodeCompartment.horizontalIndent = 0;&#xA;constraintFStructuredActivityNodeCompartment.horizontalSpan = 1;&#xA;constraintFStructuredActivityNodeCompartment.verticalSpan = 1;&#xA;constraintFStructuredActivityNodeCompartment.grabExcessHorizontalSpace = true;&#xA;constraintFStructuredActivityNodeCompartment.grabExcessVerticalSpace = true;&#xA;this.add(fStructuredActivityNodeCompartment, constraintFStructuredActivityNodeCompartment);&#xA;&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getStructuredActivityNodeCompartment() {&#xA;&#x9;&#x9;return fStructuredActivityNodeCompartment;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel getKeyword() {&#xA;&#x9;&#x9;return fKeyword;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideCompartmentEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ConditionalNode"/>
@@ -5569,7 +5582,7 @@
           compartments="/0/@diagram/@compartments.5"
           graphicalNodeEditPolicyClassName="ExpansionRegionGraphicalNodeEditPolicy"
           createCommandClassName="ExpansionRegionCreateCommand"
-          containers="/0/@diagram/@compartments.3 /0/@diagram/@compartments.4 /0/@diagram/@compartments.6 /0/@diagram/@compartments.7 /0/@diagram/@compartments.8 /0/@diagram/@compartments.9 /0/@diagram/@compartments.10 /0/@diagram/@compartments.5">
+          containers="/0/@diagram/@compartments.3 /0/@diagram/@compartments.4 /0/@diagram/@compartments.6 /0/@diagram/@compartments.7 /0/@diagram/@compartments.8 /0/@diagram/@compartments.9 /0/@diagram/@compartments.10 /0/@diagram/@compartments.5 /0/@diagram/@compartments.11">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -5581,6 +5594,10 @@
             classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class StructuredActivityNodeDescriptor extends org.eclipse.draw2d.RoundedRectangle {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fStructuredActivityNodeCompartment; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel fKeyword; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public StructuredActivityNodeDescriptor() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.GridLayout layoutThis = new org.eclipse.draw2d.GridLayout();&#xA;&#x9;layoutThis.numColumns = 1;&#xA;&#x9;layoutThis.makeColumnsEqualWidth = false;&#xA;&#x9;layoutThis.horizontalSpacing = 0;&#xA;&#x9;layoutThis.verticalSpacing = 0;&#xA;&#x9;layoutThis.marginWidth = 0;&#xA;&#x9;layoutThis.marginHeight = 0;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setCornerDimensions(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(8)&#xA;, getMapMode().DPtoLP(8)&#xA;));&#xA;this.setFill(false);&#xA;this.setLineStyle(org.eclipse.draw2d.Graphics.LINE_DASH);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fKeyword = new org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel();&#xA;&#xA;&#xA;&#xA;fKeyword.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;));&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintFKeyword = new org.eclipse.draw2d.GridData();&#xA;constraintFKeyword.verticalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintFKeyword.horizontalAlignment = org.eclipse.draw2d.GridData.BEGINNING;&#xA;constraintFKeyword.horizontalIndent = 0;&#xA;constraintFKeyword.horizontalSpan = 1;&#xA;constraintFKeyword.verticalSpan = 1;&#xA;constraintFKeyword.grabExcessHorizontalSpace = false;&#xA;constraintFKeyword.grabExcessVerticalSpace = false;&#xA;this.add(fKeyword, constraintFKeyword);&#xA;&#xA;&#xA;&#xA;&#xA;fStructuredActivityNodeCompartment = new org.eclipse.draw2d.RectangleFigure();&#xA;fStructuredActivityNodeCompartment.setFill(false);&#xA;fStructuredActivityNodeCompartment.setOutline(false);&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintFStructuredActivityNodeCompartment = new org.eclipse.draw2d.GridData();&#xA;constraintFStructuredActivityNodeCompartment.verticalAlignment = org.eclipse.draw2d.GridData.FILL;&#xA;constraintFStructuredActivityNodeCompartment.horizontalAlignment = org.eclipse.draw2d.GridData.FILL;&#xA;constraintFStructuredActivityNodeCompartment.horizontalIndent = 0;&#xA;constraintFStructuredActivityNodeCompartment.horizontalSpan = 1;&#xA;constraintFStructuredActivityNodeCompartment.verticalSpan = 1;&#xA;constraintFStructuredActivityNodeCompartment.grabExcessHorizontalSpace = true;&#xA;constraintFStructuredActivityNodeCompartment.grabExcessVerticalSpace = true;&#xA;this.add(fStructuredActivityNodeCompartment, constraintFStructuredActivityNodeCompartment);&#xA;&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getStructuredActivityNodeCompartment() {&#xA;&#x9;&#x9;return fStructuredActivityNodeCompartment;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel getKeyword() {&#xA;&#x9;&#x9;return fKeyword;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideCompartmentEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ExpansionRegion"/>
@@ -5715,7 +5732,7 @@
           compartments="/0/@diagram/@compartments.6"
           graphicalNodeEditPolicyClassName="LoopNodeGraphicalNodeEditPolicy"
           createCommandClassName="LoopNodeCreateCommand"
-          containers="/0/@diagram/@compartments.3 /0/@diagram/@compartments.4 /0/@diagram/@compartments.6 /0/@diagram/@compartments.7 /0/@diagram/@compartments.8 /0/@diagram/@compartments.9 /0/@diagram/@compartments.10 /0/@diagram/@compartments.5">
+          containers="/0/@diagram/@compartments.3 /0/@diagram/@compartments.4 /0/@diagram/@compartments.6 /0/@diagram/@compartments.7 /0/@diagram/@compartments.8 /0/@diagram/@compartments.9 /0/@diagram/@compartments.10 /0/@diagram/@compartments.5 /0/@diagram/@compartments.11">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -5727,6 +5744,10 @@
             classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class StructuredActivityNodeDescriptor extends org.eclipse.draw2d.RoundedRectangle {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fStructuredActivityNodeCompartment; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel fKeyword; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public StructuredActivityNodeDescriptor() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.GridLayout layoutThis = new org.eclipse.draw2d.GridLayout();&#xA;&#x9;layoutThis.numColumns = 1;&#xA;&#x9;layoutThis.makeColumnsEqualWidth = false;&#xA;&#x9;layoutThis.horizontalSpacing = 0;&#xA;&#x9;layoutThis.verticalSpacing = 0;&#xA;&#x9;layoutThis.marginWidth = 0;&#xA;&#x9;layoutThis.marginHeight = 0;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setCornerDimensions(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(8)&#xA;, getMapMode().DPtoLP(8)&#xA;));&#xA;this.setFill(false);&#xA;this.setLineStyle(org.eclipse.draw2d.Graphics.LINE_DASH);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fKeyword = new org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel();&#xA;&#xA;&#xA;&#xA;fKeyword.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;));&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintFKeyword = new org.eclipse.draw2d.GridData();&#xA;constraintFKeyword.verticalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintFKeyword.horizontalAlignment = org.eclipse.draw2d.GridData.BEGINNING;&#xA;constraintFKeyword.horizontalIndent = 0;&#xA;constraintFKeyword.horizontalSpan = 1;&#xA;constraintFKeyword.verticalSpan = 1;&#xA;constraintFKeyword.grabExcessHorizontalSpace = false;&#xA;constraintFKeyword.grabExcessVerticalSpace = false;&#xA;this.add(fKeyword, constraintFKeyword);&#xA;&#xA;&#xA;&#xA;&#xA;fStructuredActivityNodeCompartment = new org.eclipse.draw2d.RectangleFigure();&#xA;fStructuredActivityNodeCompartment.setFill(false);&#xA;fStructuredActivityNodeCompartment.setOutline(false);&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintFStructuredActivityNodeCompartment = new org.eclipse.draw2d.GridData();&#xA;constraintFStructuredActivityNodeCompartment.verticalAlignment = org.eclipse.draw2d.GridData.FILL;&#xA;constraintFStructuredActivityNodeCompartment.horizontalAlignment = org.eclipse.draw2d.GridData.FILL;&#xA;constraintFStructuredActivityNodeCompartment.horizontalIndent = 0;&#xA;constraintFStructuredActivityNodeCompartment.horizontalSpan = 1;&#xA;constraintFStructuredActivityNodeCompartment.verticalSpan = 1;&#xA;constraintFStructuredActivityNodeCompartment.grabExcessHorizontalSpace = true;&#xA;constraintFStructuredActivityNodeCompartment.grabExcessVerticalSpace = true;&#xA;this.add(fStructuredActivityNodeCompartment, constraintFStructuredActivityNodeCompartment);&#xA;&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getStructuredActivityNodeCompartment() {&#xA;&#x9;&#x9;return fStructuredActivityNodeCompartment;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel getKeyword() {&#xA;&#x9;&#x9;return fKeyword;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideCompartmentEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/LoopNode"/>
@@ -5769,7 +5790,7 @@
           compartments="/0/@diagram/@compartments.7"
           graphicalNodeEditPolicyClassName="SequenceNodeGraphicalNodeEditPolicy"
           createCommandClassName="SequenceNodeCreateCommand"
-          containers="/0/@diagram/@compartments.3 /0/@diagram/@compartments.4 /0/@diagram/@compartments.6 /0/@diagram/@compartments.7 /0/@diagram/@compartments.8 /0/@diagram/@compartments.9 /0/@diagram/@compartments.10 /0/@diagram/@compartments.5">
+          containers="/0/@diagram/@compartments.3 /0/@diagram/@compartments.4 /0/@diagram/@compartments.6 /0/@diagram/@compartments.7 /0/@diagram/@compartments.8 /0/@diagram/@compartments.9 /0/@diagram/@compartments.10 /0/@diagram/@compartments.5 /0/@diagram/@compartments.11">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -5781,6 +5802,10 @@
             classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class StructuredActivityNodeDescriptor extends org.eclipse.draw2d.RoundedRectangle {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fStructuredActivityNodeCompartment; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel fKeyword; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public StructuredActivityNodeDescriptor() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.GridLayout layoutThis = new org.eclipse.draw2d.GridLayout();&#xA;&#x9;layoutThis.numColumns = 1;&#xA;&#x9;layoutThis.makeColumnsEqualWidth = false;&#xA;&#x9;layoutThis.horizontalSpacing = 0;&#xA;&#x9;layoutThis.verticalSpacing = 0;&#xA;&#x9;layoutThis.marginWidth = 0;&#xA;&#x9;layoutThis.marginHeight = 0;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setCornerDimensions(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(8)&#xA;, getMapMode().DPtoLP(8)&#xA;));&#xA;this.setFill(false);&#xA;this.setLineStyle(org.eclipse.draw2d.Graphics.LINE_DASH);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fKeyword = new org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel();&#xA;&#xA;&#xA;&#xA;fKeyword.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;));&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintFKeyword = new org.eclipse.draw2d.GridData();&#xA;constraintFKeyword.verticalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintFKeyword.horizontalAlignment = org.eclipse.draw2d.GridData.BEGINNING;&#xA;constraintFKeyword.horizontalIndent = 0;&#xA;constraintFKeyword.horizontalSpan = 1;&#xA;constraintFKeyword.verticalSpan = 1;&#xA;constraintFKeyword.grabExcessHorizontalSpace = false;&#xA;constraintFKeyword.grabExcessVerticalSpace = false;&#xA;this.add(fKeyword, constraintFKeyword);&#xA;&#xA;&#xA;&#xA;&#xA;fStructuredActivityNodeCompartment = new org.eclipse.draw2d.RectangleFigure();&#xA;fStructuredActivityNodeCompartment.setFill(false);&#xA;fStructuredActivityNodeCompartment.setOutline(false);&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintFStructuredActivityNodeCompartment = new org.eclipse.draw2d.GridData();&#xA;constraintFStructuredActivityNodeCompartment.verticalAlignment = org.eclipse.draw2d.GridData.FILL;&#xA;constraintFStructuredActivityNodeCompartment.horizontalAlignment = org.eclipse.draw2d.GridData.FILL;&#xA;constraintFStructuredActivityNodeCompartment.horizontalIndent = 0;&#xA;constraintFStructuredActivityNodeCompartment.horizontalSpan = 1;&#xA;constraintFStructuredActivityNodeCompartment.verticalSpan = 1;&#xA;constraintFStructuredActivityNodeCompartment.grabExcessHorizontalSpace = true;&#xA;constraintFStructuredActivityNodeCompartment.grabExcessVerticalSpace = true;&#xA;this.add(fStructuredActivityNodeCompartment, constraintFStructuredActivityNodeCompartment);&#xA;&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getStructuredActivityNodeCompartment() {&#xA;&#x9;&#x9;return fStructuredActivityNodeCompartment;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel getKeyword() {&#xA;&#x9;&#x9;return fKeyword;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideCompartmentEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/SequenceNode"/>
@@ -5835,6 +5860,10 @@
             classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class StructuredActivityNodeDescriptor extends org.eclipse.draw2d.RoundedRectangle {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fStructuredActivityNodeCompartment; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel fKeyword; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public StructuredActivityNodeDescriptor() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.GridLayout layoutThis = new org.eclipse.draw2d.GridLayout();&#xA;&#x9;layoutThis.numColumns = 1;&#xA;&#x9;layoutThis.makeColumnsEqualWidth = false;&#xA;&#x9;layoutThis.horizontalSpacing = 0;&#xA;&#x9;layoutThis.verticalSpacing = 0;&#xA;&#x9;layoutThis.marginWidth = 0;&#xA;&#x9;layoutThis.marginHeight = 0;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setCornerDimensions(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(8)&#xA;, getMapMode().DPtoLP(8)&#xA;));&#xA;this.setFill(false);&#xA;this.setLineStyle(org.eclipse.draw2d.Graphics.LINE_DASH);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fKeyword = new org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel();&#xA;&#xA;&#xA;&#xA;fKeyword.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;));&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintFKeyword = new org.eclipse.draw2d.GridData();&#xA;constraintFKeyword.verticalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintFKeyword.horizontalAlignment = org.eclipse.draw2d.GridData.BEGINNING;&#xA;constraintFKeyword.horizontalIndent = 0;&#xA;constraintFKeyword.horizontalSpan = 1;&#xA;constraintFKeyword.verticalSpan = 1;&#xA;constraintFKeyword.grabExcessHorizontalSpace = false;&#xA;constraintFKeyword.grabExcessVerticalSpace = false;&#xA;this.add(fKeyword, constraintFKeyword);&#xA;&#xA;&#xA;&#xA;&#xA;fStructuredActivityNodeCompartment = new org.eclipse.draw2d.RectangleFigure();&#xA;fStructuredActivityNodeCompartment.setFill(false);&#xA;fStructuredActivityNodeCompartment.setOutline(false);&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintFStructuredActivityNodeCompartment = new org.eclipse.draw2d.GridData();&#xA;constraintFStructuredActivityNodeCompartment.verticalAlignment = org.eclipse.draw2d.GridData.FILL;&#xA;constraintFStructuredActivityNodeCompartment.horizontalAlignment = org.eclipse.draw2d.GridData.FILL;&#xA;constraintFStructuredActivityNodeCompartment.horizontalIndent = 0;&#xA;constraintFStructuredActivityNodeCompartment.horizontalSpan = 1;&#xA;constraintFStructuredActivityNodeCompartment.verticalSpan = 1;&#xA;constraintFStructuredActivityNodeCompartment.grabExcessHorizontalSpace = true;&#xA;constraintFStructuredActivityNodeCompartment.grabExcessVerticalSpace = true;&#xA;this.add(fStructuredActivityNodeCompartment, constraintFStructuredActivityNodeCompartment);&#xA;&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getStructuredActivityNodeCompartment() {&#xA;&#x9;&#x9;return fStructuredActivityNodeCompartment;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel getKeyword() {&#xA;&#x9;&#x9;return fKeyword;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideCompartmentEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/StructuredActivityNode"/>
@@ -5877,7 +5906,7 @@
           compartments="/0/@diagram/@compartments.9"
           graphicalNodeEditPolicyClassName="ActivityPartitionGraphicalNodeEditPolicy"
           createCommandClassName="ActivityPartitionCreateCommand"
-          containers="/0/@diagram/@compartments.3 /0/@diagram/@compartments.9">
+          containers="/0/@diagram/@compartments.3 /0/@diagram/@compartments.9 /0/@diagram/@compartments.11">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -5889,6 +5918,10 @@
             classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ActivityPartitionDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fActivityPartitionCompartment; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel fPartitionLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ActivityPartitionDescriptor() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.GridLayout layoutThis = new org.eclipse.draw2d.GridLayout();&#xA;&#x9;layoutThis.numColumns = 1;&#xA;&#x9;layoutThis.makeColumnsEqualWidth = false;&#xA;&#x9;layoutThis.horizontalSpacing = 0;&#xA;&#x9;layoutThis.verticalSpacing = 0;&#xA;&#x9;layoutThis.marginWidth = 0;&#xA;&#x9;layoutThis.marginHeight = 0;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setFill(false);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fPartitionLabel = new org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel();&#xA;&#xA;&#xA;&#xA;fPartitionLabel.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;));&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintFPartitionLabel = new org.eclipse.draw2d.GridData();&#xA;constraintFPartitionLabel.verticalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintFPartitionLabel.horizontalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintFPartitionLabel.horizontalIndent = 0;&#xA;constraintFPartitionLabel.horizontalSpan = 1;&#xA;constraintFPartitionLabel.verticalSpan = 1;&#xA;constraintFPartitionLabel.grabExcessHorizontalSpace = false;&#xA;constraintFPartitionLabel.grabExcessVerticalSpace = false;&#xA;this.add(fPartitionLabel, constraintFPartitionLabel);&#xA;&#xA;&#xA;&#xA;&#xA;fActivityPartitionCompartment = new org.eclipse.draw2d.RectangleFigure();&#xA;fActivityPartitionCompartment.setFill(false);&#xA;fActivityPartitionCompartment.setOutline(false);&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintFActivityPartitionCompartment = new org.eclipse.draw2d.GridData();&#xA;constraintFActivityPartitionCompartment.verticalAlignment = org.eclipse.draw2d.GridData.FILL;&#xA;constraintFActivityPartitionCompartment.horizontalAlignment = org.eclipse.draw2d.GridData.FILL;&#xA;constraintFActivityPartitionCompartment.horizontalIndent = 0;&#xA;constraintFActivityPartitionCompartment.horizontalSpan = 1;&#xA;constraintFActivityPartitionCompartment.verticalSpan = 1;&#xA;constraintFActivityPartitionCompartment.grabExcessHorizontalSpace = true;&#xA;constraintFActivityPartitionCompartment.grabExcessVerticalSpace = true;&#xA;this.add(fActivityPartitionCompartment, constraintFActivityPartitionCompartment);&#xA;&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getActivityPartitionCompartment() {&#xA;&#x9;&#x9;return fActivityPartitionCompartment;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel getPartitionLabel() {&#xA;&#x9;&#x9;return fPartitionLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideCompartmentEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ActivityPartition"/>
@@ -5934,7 +5967,7 @@
           compartments="/0/@diagram/@compartments.10"
           graphicalNodeEditPolicyClassName="InterruptibleActivityRegionGraphicalNodeEditPolicy"
           createCommandClassName="InterruptibleActivityRegionCreateCommand"
-          containers="/0/@diagram/@compartments.3">
+          containers="/0/@diagram/@compartments.3 /0/@diagram/@compartments.11">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -5945,6 +5978,10 @@
             figureQualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.InterruptibleActivityRegionFigure"/>
         <behaviour
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideCompartmentEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InterruptibleActivityRegion"/>
@@ -5960,7 +5997,8 @@
           itemSemanticEditPolicyClassName="ShapeNamedElementItemSemanticEditPolicy"
           canonicalEditPolicyClassName="ShapeNamedElementCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="ShapeNamedElementGraphicalNodeEditPolicy"
-          createCommandClassName="ShapeNamedElementCreateCommand">
+          createCommandClassName="ShapeNamedElementCreateCommand"
+          containers="/0/@diagram/@compartments.11">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -6062,7 +6100,7 @@
       <childNodes
           visualID="3081"
           childNodes="/0/@diagram/@childNodes.68"
-          containers="/0/@diagram/@compartments.3">
+          containers="/0/@diagram/@compartments.3 /0/@diagram/@compartments.11">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -6189,6 +6227,90 @@
               parser="/0/@labelParsers/@implementations.1"/>
         </labels>
       </childNodes>
+      <childNodes
+          visualID="3083"
+          editPartClassName="ActivityEditPartCN"
+          itemSemanticEditPolicyClassName="ActivityItemSemanticEditPolicyCN"
+          canonicalEditPolicyClassName="ActivityCanonicalEditPolicyCN"
+          childNodes="/0/@diagram/@childNodes.51"
+          compartments="/0/@diagram/@compartments.11 /0/@diagram/@compartments.12 /0/@diagram/@compartments.13 /0/@diagram/@compartments.14"
+          graphicalNodeEditPolicyClassName="ActivityGraphicalNodeEditPolicyCN"
+          createCommandClassName="ActivityCreateCommandCN"
+          containers="/0/@diagram/@compartments.3 /0/@diagram/@compartments.11">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <elementType
+            xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.diagram.activity.ActivityCN_3083"
+            displayName="ActivityCN"
+            editHelperClassName="ActivityCNEditHelper"/>
+        <viewmap
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.ActivityFigure">
+          <attributes
+              xsi:type="gmfgen:DefaultSizeAttributes"
+              width="200"
+              height="100"/>
+        </viewmap>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.ActivityDiagramChangeStereotypedShapeEditpolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="RequestConstants.REQ_DELETE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.DeleteActionViewEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideCompartmentEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.CANONICAL_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.ActivityCanonicalEditPolicy"/>
+        <modelFacet>
+          <metaClass
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Activity"/>
+          <containmentMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/BehavioredClassifier/ownedBehavior"/>
+          <modelElementInitializer
+              xsi:type="gmfgen:GenFeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.0/@expressions.0">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+            </initializers>
+          </modelElementInitializer>
+        </modelFacet>
+        <labels
+            visualID="5142"
+            editPartClassName="ActivityNameEditPartCN"
+            itemSemanticEditPolicyClassName="ActivityNameEditPartItemSemanticEditPolicyCN"
+            notationViewFactoryClassName="OpaqueActionNameViewFactory">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:ParentAssignedViewmap"
+              getterName="getNameLabel"
+              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
+          <modelFacet
+              xsi:type="gmfgen:FeatureLabelModelFacet"
+              parser="/0/@labelParsers/@implementations.0"
+              viewPattern="">
+            <metaFeatures
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+          </modelFacet>
+        </labels>
+      </childNodes>
       <topLevelNodes
           visualID="2001"
           editPartClassName="ActivityEditPart"
@@ -6205,9 +6327,8 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="ActivityEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="CustomActivityRectangleFigure"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CustomActivityRectangleFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fHeaderLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fActivityParametersCompartment; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fActivityPreconditionsCompartment; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fActivityPostconditionsCompartment; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fHeaderSingleExecution; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fCompartmentFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CustomActivityRectangleFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.BorderLayout layoutThis = new org.eclipse.draw2d.BorderLayout();&#xA;&#x9;layoutThis.setHorizontalSpacing(0);// TODO mapMode?&#xA;&#x9;layoutThis.setVerticalSpacing(0);&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setFill(false);&#xA;this.setOutline(false);&#xA;this.setLineWidth(0);&#xA;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(857)&#xA;, getMapMode().DPtoLP(757)&#xA;));&#xA;this.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(30)&#xA;, getMapMode().DPtoLP(30)&#xA;, getMapMode().DPtoLP(30)&#xA;, getMapMode().DPtoLP(30)&#xA;));&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;org.eclipse.draw2d.RoundedRectangle activityBorderFigure0 = new org.eclipse.draw2d.RoundedRectangle();&#xA;activityBorderFigure0.setCornerDimensions(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(8)&#xA;, getMapMode().DPtoLP(8)&#xA;));&#xA;&#xA;this.add(activityBorderFigure0, org.eclipse.draw2d.BorderLayout.CENTER);&#xA;&#xA;&#x9;org.eclipse.draw2d.GridLayout layoutActivityBorderFigure0 = new org.eclipse.draw2d.GridLayout();&#xA;&#x9;layoutActivityBorderFigure0.numColumns = 3;&#xA;&#x9;layoutActivityBorderFigure0.makeColumnsEqualWidth = false;&#xA;&#x9;layoutActivityBorderFigure0.horizontalSpacing = 0;&#xA;&#x9;layoutActivityBorderFigure0.verticalSpacing = 0;&#xA;&#x9;layoutActivityBorderFigure0.marginWidth = 0;&#xA;&#x9;layoutActivityBorderFigure0.marginHeight = 0;&#xA;&#x9;activityBorderFigure0.setLayoutManager(layoutActivityBorderFigure0);&#xA;&#xA;&#xA;&#xA;org.eclipse.draw2d.RectangleFigure labelAndParameter1 = new org.eclipse.draw2d.RectangleFigure();&#xA;labelAndParameter1.setFill(false);&#xA;labelAndParameter1.setOutline(false);&#xA;labelAndParameter1.setLineWidth(0);&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintLabelAndParameter1 = new org.eclipse.draw2d.GridData();&#xA;constraintLabelAndParameter1.verticalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintLabelAndParameter1.horizontalAlignment = org.eclipse.draw2d.GridData.BEGINNING;&#xA;constraintLabelAndParameter1.horizontalIndent = 0;&#xA;constraintLabelAndParameter1.horizontalSpan = 1;&#xA;constraintLabelAndParameter1.verticalSpan = 1;&#xA;constraintLabelAndParameter1.grabExcessHorizontalSpace = true;&#xA;constraintLabelAndParameter1.grabExcessVerticalSpace = false;&#xA;activityBorderFigure0.add(labelAndParameter1, constraintLabelAndParameter1);&#xA;&#xA;&#xA;&#x9;org.eclipse.draw2d.GridLayout layoutLabelAndParameter1 = new org.eclipse.draw2d.GridLayout();&#xA;&#x9;layoutLabelAndParameter1.numColumns = 1;&#xA;&#x9;layoutLabelAndParameter1.makeColumnsEqualWidth = true;&#xA;&#x9;labelAndParameter1.setLayoutManager(layoutLabelAndParameter1);&#xA;&#xA;&#xA;&#xA;fHeaderLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fHeaderLabel.setText(&quot;ActivityName&quot;);&#xA;&#xA;fHeaderLabel.setFont(FHEADERLABEL_FONT);&#xA;&#xA;&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintFHeaderLabel = new org.eclipse.draw2d.GridData();&#xA;constraintFHeaderLabel.verticalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintFHeaderLabel.horizontalAlignment = org.eclipse.draw2d.GridData.BEGINNING;&#xA;constraintFHeaderLabel.horizontalIndent = 4;&#xA;constraintFHeaderLabel.horizontalSpan = 1;&#xA;constraintFHeaderLabel.verticalSpan = 1;&#xA;constraintFHeaderLabel.grabExcessHorizontalSpace = true;&#xA;constraintFHeaderLabel.grabExcessVerticalSpace = false;&#xA;labelAndParameter1.add(fHeaderLabel, constraintFHeaderLabel);&#xA;&#xA;&#xA;&#xA;&#xA;fActivityParametersCompartment = new org.eclipse.draw2d.RectangleFigure();&#xA;fActivityParametersCompartment.setFill(false);&#xA;fActivityParametersCompartment.setOutline(false);&#xA;fActivityParametersCompartment.setLineWidth(0);&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintFActivityParametersCompartment = new org.eclipse.draw2d.GridData();&#xA;constraintFActivityParametersCompartment.verticalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintFActivityParametersCompartment.horizontalAlignment = org.eclipse.draw2d.GridData.BEGINNING;&#xA;constraintFActivityParametersCompartment.horizontalIndent = 0;&#xA;constraintFActivityParametersCompartment.horizontalSpan = 1;&#xA;constraintFActivityParametersCompartment.verticalSpan = 1;&#xA;constraintFActivityParametersCompartment.grabExcessHorizontalSpace = true;&#xA;constraintFActivityParametersCompartment.grabExcessVerticalSpace = false;&#xA;labelAndParameter1.add(fActivityParametersCompartment, constraintFActivityParametersCompartment);&#xA;&#xA;fActivityParametersCompartment.setLayoutManager(new org.eclipse.draw2d.StackLayout());&#xA;&#xA;&#xA;&#xA;&#xA;org.eclipse.draw2d.RectangleFigure prePostContions1 = new org.eclipse.draw2d.RectangleFigure();&#xA;prePostContions1.setFill(false);&#xA;prePostContions1.setOutline(false);&#xA;prePostContions1.setLineWidth(0);&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintPrePostContions1 = new org.eclipse.draw2d.GridData();&#xA;constraintPrePostContions1.verticalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintPrePostContions1.horizontalAlignment = org.eclipse.draw2d.GridData.BEGINNING;&#xA;constraintPrePostContions1.horizontalIndent = 0;&#xA;constraintPrePostContions1.horizontalSpan = 1;&#xA;constraintPrePostContions1.verticalSpan = 1;&#xA;constraintPrePostContions1.grabExcessHorizontalSpace = true;&#xA;constraintPrePostContions1.grabExcessVerticalSpace = false;&#xA;activityBorderFigure0.add(prePostContions1, constraintPrePostContions1);&#xA;&#xA;&#xA;&#x9;org.eclipse.draw2d.GridLayout layoutPrePostContions1 = new org.eclipse.draw2d.GridLayout();&#xA;&#x9;layoutPrePostContions1.numColumns = 1;&#xA;&#x9;layoutPrePostContions1.makeColumnsEqualWidth = true;&#xA;&#x9;prePostContions1.setLayoutManager(layoutPrePostContions1);&#xA;&#xA;&#xA;&#xA;fActivityPreconditionsCompartment = new org.eclipse.draw2d.RectangleFigure();&#xA;fActivityPreconditionsCompartment.setFill(false);&#xA;fActivityPreconditionsCompartment.setOutline(false);&#xA;fActivityPreconditionsCompartment.setLineWidth(0);&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintFActivityPreconditionsCompartment = new org.eclipse.draw2d.GridData();&#xA;constraintFActivityPreconditionsCompartment.verticalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintFActivityPreconditionsCompartment.horizontalAlignment = org.eclipse.draw2d.GridData.BEGINNING;&#xA;constraintFActivityPreconditionsCompartment.horizontalIndent = 0;&#xA;constraintFActivityPreconditionsCompartment.horizontalSpan = 1;&#xA;constraintFActivityPreconditionsCompartment.verticalSpan = 1;&#xA;constraintFActivityPreconditionsCompartment.grabExcessHorizontalSpace = true;&#xA;constraintFActivityPreconditionsCompartment.grabExcessVerticalSpace = false;&#xA;prePostContions1.add(fActivityPreconditionsCompartment, constraintFActivityPreconditionsCompartment);&#xA;&#xA;fActivityPreconditionsCompartment.setLayoutManager(new org.eclipse.draw2d.StackLayout());&#xA;&#xA;&#xA;&#xA;fActivityPostconditionsCompartment = new org.eclipse.draw2d.RectangleFigure();&#xA;fActivityPostconditionsCompartment.setFill(false);&#xA;fActivityPostconditionsCompartment.setOutline(false);&#xA;fActivityPostconditionsCompartment.setLineWidth(0);&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintFActivityPostconditionsCompartment = new org.eclipse.draw2d.GridData();&#xA;constraintFActivityPostconditionsCompartment.verticalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintFActivityPostconditionsCompartment.horizontalAlignment = org.eclipse.draw2d.GridData.BEGINNING;&#xA;constraintFActivityPostconditionsCompartment.horizontalIndent = 0;&#xA;constraintFActivityPostconditionsCompartment.horizontalSpan = 1;&#xA;constraintFActivityPostconditionsCompartment.verticalSpan = 1;&#xA;constraintFActivityPostconditionsCompartment.grabExcessHorizontalSpace = true;&#xA;constraintFActivityPostconditionsCompartment.grabExcessVerticalSpace = false;&#xA;prePostContions1.add(fActivityPostconditionsCompartment, constraintFActivityPostconditionsCompartment);&#xA;&#xA;fActivityPostconditionsCompartment.setLayoutManager(new org.eclipse.draw2d.StackLayout());&#xA;&#xA;&#xA;&#xA;&#xA;fHeaderSingleExecution = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fHeaderSingleExecution.setText(&quot;&quot;);&#xA;fHeaderSingleExecution.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(8)&#xA;));&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintFHeaderSingleExecution = new org.eclipse.draw2d.GridData();&#xA;constraintFHeaderSingleExecution.verticalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintFHeaderSingleExecution.horizontalAlignment = org.eclipse.draw2d.GridData.BEGINNING;&#xA;constraintFHeaderSingleExecution.horizontalIndent = 0;&#xA;constraintFHeaderSingleExecution.horizontalSpan = 1;&#xA;constraintFHeaderSingleExecution.verticalSpan = 2;&#xA;constraintFHeaderSingleExecution.grabExcessHorizontalSpace = false;&#xA;constraintFHeaderSingleExecution.grabExcessVerticalSpace = false;&#xA;activityBorderFigure0.add(fHeaderSingleExecution, constraintFHeaderSingleExecution);&#xA;&#xA;&#xA;&#xA;&#xA;fCompartmentFigure = new org.eclipse.draw2d.RectangleFigure();&#xA;fCompartmentFigure.setFill(false);&#xA;fCompartmentFigure.setOutline(false);&#xA;fCompartmentFigure.setLineWidth(0);&#xA;fCompartmentFigure.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(4)&#xA;, getMapMode().DPtoLP(4)&#xA;, getMapMode().DPtoLP(4)&#xA;));&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintFCompartmentFigure = new org.eclipse.draw2d.GridData();&#xA;constraintFCompartmentFigure.verticalAlignment = org.eclipse.draw2d.GridData.FILL;&#xA;constraintFCompartmentFigure.horizontalAlignment = org.eclipse.draw2d.GridData.FILL;&#xA;constraintFCompartmentFigure.horizontalIndent = 0;&#xA;constraintFCompartmentFigure.horizontalSpan = 3;&#xA;constraintFCompartmentFigure.verticalSpan = 1;&#xA;constraintFCompartmentFigure.grabExcessHorizontalSpace = true;&#xA;constraintFCompartmentFigure.grabExcessVerticalSpace = true;&#xA;activityBorderFigure0.add(fCompartmentFigure, constraintFCompartmentFigure);&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getHeaderLabel() {&#xA;&#x9;&#x9;return fHeaderLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getActivityParametersCompartment() {&#xA;&#x9;&#x9;return fActivityParametersCompartment;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getActivityPreconditionsCompartment() {&#xA;&#x9;&#x9;return fActivityPreconditionsCompartment;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getActivityPostconditionsCompartment() {&#xA;&#x9;&#x9;return fActivityPostconditionsCompartment;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getHeaderSingleExecution() {&#xA;&#x9;&#x9;return fHeaderSingleExecution;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getCompartmentFigure() {&#xA;&#x9;&#x9;return fCompartmentFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FHEADERLABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), org.eclipse.swt.widgets.Display.getDefault().getSystemFont().getFontData()[0].getName(), 8, org.eclipse.swt.SWT.BOLD);&#xA;&#xA;">
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.ActivityFigure">
           <attributes
               xsi:type="gmfgen:DefaultSizeAttributes"
               width="857"
@@ -6229,6 +6350,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicyRoles.CANONICAL_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.ActivityCanonicalEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideCompartmentEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Activity"/>
@@ -6255,7 +6380,7 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getHeaderLabel"
+              getterName="getNameLabel"
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes
                 xsi:type="gmfgen:StyleAttributes"
@@ -6737,7 +6862,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap
             xsi:type="gmfgen:ParentAssignedViewmap"
-            getterName="getActivityParametersCompartment"
+            getterName="getParameterFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
@@ -6763,7 +6888,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap
             xsi:type="gmfgen:ParentAssignedViewmap"
-            getterName="getActivityPreconditionsCompartment"
+            getterName="getPreconditionFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
@@ -6793,7 +6918,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap
             xsi:type="gmfgen:ParentAssignedViewmap"
-            getterName="getActivityPostconditionsCompartment"
+            getterName="getPostconditionFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
@@ -6810,7 +6935,7 @@
           itemSemanticEditPolicyClassName="ActivityActivityContentCompartmentItemSemanticEditPolicy"
           notationViewFactoryClassName="ActivityActivityContentCompartmentViewFactory"
           canonicalEditPolicyClassName="ActivityActivityContentCompartmentCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26 /0/@diagram/@childNodes.27 /0/@diagram/@childNodes.28 /0/@diagram/@childNodes.29 /0/@diagram/@childNodes.30 /0/@diagram/@childNodes.31 /0/@diagram/@childNodes.32 /0/@diagram/@childNodes.33 /0/@diagram/@childNodes.34 /0/@diagram/@childNodes.35 /0/@diagram/@childNodes.36 /0/@diagram/@childNodes.37 /0/@diagram/@childNodes.44 /0/@diagram/@childNodes.52 /0/@diagram/@childNodes.54 /0/@diagram/@childNodes.56 /0/@diagram/@childNodes.57 /0/@diagram/@childNodes.60 /0/@diagram/@childNodes.61 /0/@diagram/@childNodes.62 /0/@diagram/@childNodes.63 /0/@diagram/@childNodes.64 /0/@diagram/@childNodes.66 /0/@diagram/@childNodes.67"
+          childNodes="/0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26 /0/@diagram/@childNodes.27 /0/@diagram/@childNodes.28 /0/@diagram/@childNodes.29 /0/@diagram/@childNodes.30 /0/@diagram/@childNodes.31 /0/@diagram/@childNodes.32 /0/@diagram/@childNodes.33 /0/@diagram/@childNodes.34 /0/@diagram/@childNodes.35 /0/@diagram/@childNodes.36 /0/@diagram/@childNodes.37 /0/@diagram/@childNodes.44 /0/@diagram/@childNodes.52 /0/@diagram/@childNodes.54 /0/@diagram/@childNodes.56 /0/@diagram/@childNodes.57 /0/@diagram/@childNodes.60 /0/@diagram/@childNodes.61 /0/@diagram/@childNodes.62 /0/@diagram/@childNodes.63 /0/@diagram/@childNodes.64 /0/@diagram/@childNodes.66 /0/@diagram/@childNodes.67 /0/@diagram/@childNodes.69"
           title="ActivityContentCompartment"
           canCollapse="false"
           needsTitle="false"
@@ -6820,7 +6945,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap
             xsi:type="gmfgen:ParentAssignedViewmap"
-            getterName="getCompartmentFigure"
+            getterName="getContentFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
@@ -7050,6 +7175,123 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.CustomDiagramDragDropEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RemoveOrphanView&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.RemoveOrphanViewPolicy"/>
+      </compartments>
+      <compartments
+          visualID="7013"
+          editPartClassName="ActivityCNContentCompartmentEditPart"
+          itemSemanticEditPolicyClassName="ActivityCNContentCompartmentItemSemanticEditPolicy"
+          notationViewFactoryClassName="ActivityActivityContentCompartmentViewFactory"
+          canonicalEditPolicyClassName="ActivityCNContentCompartmentCanonicalEditPolicy"
+          childNodes="/0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.32 /0/@diagram/@childNodes.33 /0/@diagram/@childNodes.34 /0/@diagram/@childNodes.35 /0/@diagram/@childNodes.37 /0/@diagram/@childNodes.44 /0/@diagram/@childNodes.52 /0/@diagram/@childNodes.54 /0/@diagram/@childNodes.56 /0/@diagram/@childNodes.57 /0/@diagram/@childNodes.60 /0/@diagram/@childNodes.61 /0/@diagram/@childNodes.63 /0/@diagram/@childNodes.64 /0/@diagram/@childNodes.65 /0/@diagram/@childNodes.67 /0/@diagram/@childNodes.69"
+          title="ActivityContentCompartment"
+          canCollapse="false"
+          needsTitle="false"
+          node="/0/@diagram/@childNodes.69"
+          listLayout="false">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:ParentAssignedViewmap"
+            getterName="getContentFigure"
+            figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.CustomDiagramDragDropEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.ActivityParameterNodeInCompartmentCreationEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RemoveOrphanView&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.RemoveOrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.CompartmentXYLayoutEditPolicy"/>
+      </compartments>
+      <compartments
+          visualID="7014"
+          editPartClassName="ActivityCNParametersCompartmentEditPart"
+          itemSemanticEditPolicyClassName="ActivityCNParametersCompartmentItemSemanticEditPolicy"
+          notationViewFactoryClassName="ActivityActivityParametersCompartmentViewFactory"
+          canonicalEditPolicyClassName="ActivityCNParametersCompartmentCanonicalEditPolicy"
+          childNodes="/0/@diagram/@childNodes.0"
+          title="ActivityParametersCompartment"
+          canCollapse="false"
+          needsTitle="false"
+          node="/0/@diagram/@childNodes.69">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:ParentAssignedViewmap"
+            getterName="getParameterFigure"
+            figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.CANONICAL_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.ActivityActivityParametersCompartmentCanonicalEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RemoveOrphanView&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.RemoveOrphanViewPolicy"/>
+      </compartments>
+      <compartments
+          visualID="7015"
+          editPartClassName="ActivityCNPreConditionsCompartmentEditPart"
+          itemSemanticEditPolicyClassName="ActivityCNPreConditionsCompartmentItemSemanticEditPolicy"
+          notationViewFactoryClassName="ActivityActivityPreConditionsCompartmentViewFactory"
+          canonicalEditPolicyClassName="ActivityCNPreConditionsCompartmentCanonicalEditPolicy"
+          childNodes="/0/@diagram/@childNodes.1"
+          title="ActivityPreConditionsCompartment"
+          canCollapse="false"
+          needsTitle="false"
+          node="/0/@diagram/@childNodes.69">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:ParentAssignedViewmap"
+            getterName="getPreconditionFigure"
+            figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.CANONICAL_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.ActivityActivityPreConditionsCompartmentCanonicalEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RemoveOrphanView&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.RemoveOrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy"/>
+      </compartments>
+      <compartments
+          visualID="7016"
+          editPartClassName="ActivityCNPostConditionsCompartmentEditPart"
+          itemSemanticEditPolicyClassName="ActivityCNPostConditionsCompartmentItemSemanticEditPolicy"
+          notationViewFactoryClassName="ActivityActivityPostConditionsCompartmentViewFactory"
+          canonicalEditPolicyClassName="ActivityCNPostConditionsCompartmentCanonicalEditPolicy"
+          childNodes="/0/@diagram/@childNodes.2"
+          title="ActivityPostConditionsCompartment"
+          canCollapse="false"
+          needsTitle="false"
+          node="/0/@diagram/@childNodes.69">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:ParentAssignedViewmap"
+            getterName="getPostconditionFigure"
+            figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.CANONICAL_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.ActivityActivityPostConditionsCompartmentCanonicalEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RemoveOrphanView&quot;"
@@ -7337,6 +7579,13 @@
               createMethodName="createCommentCreationTool"
               id="&quot;clazz.tool.comment&quot;"
               genNodes="/0/@diagram/@childNodes.66"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="Activity"
+              description="Create an Activity"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Activity.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Activity.gif"
+              genNodes="/0/@diagram/@childNodes.69"/>
         </groups>
         <groups
             title="Edges"
@@ -11380,6 +11629,8 @@
         <expressions
             xsi:type="gmfgen:GenConstraint"
             body="return UMLValidationHelper.validateTwoInputParameters(context, ctx);"/>
+        <expressions
+            body="return true;"/>
       </providers>
       <providers
           xsi:type="gmfgen:GenExpressionInterpreter">
@@ -11575,7 +11826,7 @@
         extensibleViaService="true">
       <implementations
           xsi:type="gmfgen:PredefinedParser"
-          uses="/0/@diagram/@childNodes.1/@labelModelFacet /0/@diagram/@childNodes.2/@labelModelFacet /0/@diagram/@childNodes.6/@labels.0/@modelFacet /0/@diagram/@childNodes.24/@labels.0/@modelFacet /0/@diagram/@childNodes.25/@labels.0/@modelFacet /0/@diagram/@childNodes.26/@labels.0/@modelFacet /0/@diagram/@childNodes.27/@labels.0/@modelFacet /0/@diagram/@childNodes.28/@labels.0/@modelFacet /0/@diagram/@childNodes.29/@labels.0/@modelFacet /0/@diagram/@childNodes.30/@labels.0/@modelFacet /0/@diagram/@childNodes.31/@labels.0/@modelFacet /0/@diagram/@childNodes.37/@labels.0/@modelFacet /0/@diagram/@childNodes.44/@labels.0/@modelFacet /0/@diagram/@childNodes.54/@labels.0/@modelFacet /0/@diagram/@childNodes.63/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.0/@labels.0/@modelFacet /0/@diagram/@links.2/@labels.0/@modelFacet /0/@diagram/@links.3/@labels.0/@modelFacet /0/@diagram/@childNodes.65/@labels.0/@modelFacet /0/@diagram/@childNodes.67/@labels.0/@modelFacet"/>
+          uses="/0/@diagram/@childNodes.1/@labelModelFacet /0/@diagram/@childNodes.2/@labelModelFacet /0/@diagram/@childNodes.6/@labels.0/@modelFacet /0/@diagram/@childNodes.24/@labels.0/@modelFacet /0/@diagram/@childNodes.25/@labels.0/@modelFacet /0/@diagram/@childNodes.26/@labels.0/@modelFacet /0/@diagram/@childNodes.27/@labels.0/@modelFacet /0/@diagram/@childNodes.28/@labels.0/@modelFacet /0/@diagram/@childNodes.29/@labels.0/@modelFacet /0/@diagram/@childNodes.30/@labels.0/@modelFacet /0/@diagram/@childNodes.31/@labels.0/@modelFacet /0/@diagram/@childNodes.37/@labels.0/@modelFacet /0/@diagram/@childNodes.44/@labels.0/@modelFacet /0/@diagram/@childNodes.54/@labels.0/@modelFacet /0/@diagram/@childNodes.63/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.0/@labels.0/@modelFacet /0/@diagram/@links.2/@labels.0/@modelFacet /0/@diagram/@links.3/@labels.0/@modelFacet /0/@diagram/@childNodes.65/@labels.0/@modelFacet /0/@diagram/@childNodes.67/@labels.0/@modelFacet /0/@diagram/@childNodes.69/@labels.0/@modelFacet"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
           uses="/0/@diagram/@childNodes.7/@labels.2/@modelFacet /0/@diagram/@childNodes.42/@labels.2/@modelFacet /0/@diagram/@childNodes.15/@labels.1/@modelFacet /0/@diagram/@childNodes.17/@labels.2/@modelFacet /0/@diagram/@childNodes.40/@labels.1/@modelFacet /0/@diagram/@childNodes.8/@labels.2/@modelFacet /0/@diagram/@childNodes.14/@labels.1/@modelFacet /0/@diagram/@links.3/@labels.3/@modelFacet /0/@diagram/@childNodes.21/@labels.2/@modelFacet /0/@diagram/@childNodes.4/@labels.0/@modelFacet /0/@diagram/@childNodes.34/@labels.0/@modelFacet /0/@diagram/@childNodes.55/@labels.1/@modelFacet /0/@diagram/@childNodes.22/@labels.2/@modelFacet /0/@diagram/@childNodes.43/@labels.1/@modelFacet /0/@diagram/@childNodes.47/@labels.1/@modelFacet /0/@diagram/@childNodes.3/@labels.0/@modelFacet /0/@diagram/@childNodes.23/@labels.1/@modelFacet /0/@diagram/@childNodes.50/@labels.1/@modelFacet /0/@diagram/@childNodes.48/@labels.2/@modelFacet /0/@diagram/@childNodes.10/@labels.1/@modelFacet /0/@diagram/@childNodes.12/@labels.2/@modelFacet /0/@diagram/@childNodes.39/@labels.2/@modelFacet /0/@diagram/@childNodes.52/@labels.2/@modelFacet /0/@diagram/@childNodes.19/@labels.1/@modelFacet /0/@diagram/@childNodes.32/@labels.1/@modelFacet /0/@diagram/@childNodes.20/@labels.1/@modelFacet /0/@diagram/@childNodes.18/@labels.2/@modelFacet /0/@diagram/@childNodes.45/@labels.2/@modelFacet /0/@diagram/@childNodes.46/@labels.2/@modelFacet /0/@diagram/@childNodes.35/@labels.1/@modelFacet /0/@diagram/@childNodes.13/@labels.2/@modelFacet /0/@diagram/@childNodes.5/@labels.0/@modelFacet /0/@diagram/@childNodes.33/@labels.0/@modelFacet /0/@diagram/@links.2/@labels.6/@modelFacet /0/@diagram/@childNodes.49/@labels.2/@modelFacet /0/@diagram/@childNodes.9/@labels.1/@modelFacet /0/@diagram/@childNodes.41/@labels.2/@modelFacet /0/@diagram/@childNodes.38/@labels.2/@modelFacet /0/@diagram/@childNodes.53/@labels.1/@modelFacet /0/@diagram/@childNodes.68/@labels.1/@modelFacet"
@@ -11697,7 +11948,7 @@
     <extensionNodes
         xsi:type="papyrusgmfgenextension:SpecificLocator"
         comment="Affixed Activity Parameter Node locator for Activity"
-        classpath="org.eclipse.papyrus.diagram.activity.locator.ActivityParameterNodePositionLocator"
+        classpath="org.eclipse.papyrus.diagram.activity.locator.ParameterNodeLocator"
         genChildSideAffixedNode="/0/@diagram/@childNodes.51"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:SpecificLocator"
@@ -11707,7 +11958,7 @@
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="Node with label for named element"
-        genView="/0/@diagram/@childNodes.36 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.37 /0/@diagram/@childNodes.54 /0/@diagram/@childNodes.44 /0/@diagram/@childNodes.67"
+        genView="/0/@diagram/@childNodes.36 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.37 /0/@diagram/@childNodes.54 /0/@diagram/@childNodes.44 /0/@diagram/@childNodes.67 /0/@diagram/@childNodes.69 /0/@diagram/@topLevelNodes.0"
         name="NamedElementEditPart"
         superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.NamedElementEditPart"/>
     <extensionNodes

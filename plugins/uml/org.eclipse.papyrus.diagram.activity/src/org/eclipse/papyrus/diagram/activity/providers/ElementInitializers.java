@@ -624,6 +624,8 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_ActivityParameterNode_3059(instance);
 			instance.setName((String)value_0);
+			Object value_1 = isControlType_ActivityParameterNode_3059(instance);
+			instance.setIsControlType(((Boolean)value_1).booleanValue());
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
@@ -767,6 +769,18 @@ public class ElementInitializers {
 	public void init_OutputPin_3082(OutputPin instance) {
 		try {
 			Object value_0 = name_OutputPin_3082(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_Activity_3083(Activity instance) {
+		try {
+			Object value_0 = name_Activity_3083(instance);
 			instance.setName((String)value_0);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
@@ -1288,6 +1302,13 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
+	private Boolean isControlType_ActivityParameterNode_3059(ActivityParameterNode self) {
+		return true;
+	}
+
+	/**
+	 * @generated
+	 */
 	private String name_AcceptEventAction_3063(AcceptEventAction self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
@@ -1366,6 +1387,13 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	private String name_OutputPin_3082(OutputPin self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_Activity_3083(Activity self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 

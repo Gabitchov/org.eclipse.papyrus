@@ -500,6 +500,9 @@ AbstractCommentEditPart {
 		if(targetEditPart instanceof ReadSelfActionOutputPinEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
 		}
+		if(targetEditPart instanceof ActivityEditPartCN) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
 		return types;
 	}
 
@@ -576,6 +579,7 @@ AbstractCommentEditPart {
 			types.add(UMLElementTypes.Comment_3080);
 			types.add(UMLElementTypes.ReadSelfAction_3081);
 			types.add(UMLElementTypes.OutputPin_3082);
+			types.add(UMLElementTypes.Activity_3083);
 		}
 		return types;
 	}

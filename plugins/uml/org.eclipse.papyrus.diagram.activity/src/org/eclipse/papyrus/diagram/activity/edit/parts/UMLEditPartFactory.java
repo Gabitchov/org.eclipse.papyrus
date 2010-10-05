@@ -627,6 +627,12 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case OutputPinInReadSelfActionAppliedStereotypeEditPart.VISUAL_ID:
 				return new OutputPinInReadSelfActionAppliedStereotypeEditPart(view);
 
+			case ActivityEditPartCN.VISUAL_ID:
+				return new ActivityEditPartCN(view);
+
+			case ActivityNameEditPartCN.VISUAL_ID:
+				return new ActivityNameEditPartCN(view);
+
 			case ActivityActivityParametersCompartmentEditPart.VISUAL_ID:
 				return new ActivityActivityParametersCompartmentEditPart(view);
 
@@ -659,6 +665,18 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart.VISUAL_ID:
 				return new InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart(view);
+
+			case ActivityCNContentCompartmentEditPart.VISUAL_ID:
+				return new ActivityCNContentCompartmentEditPart(view);
+
+			case ActivityCNParametersCompartmentEditPart.VISUAL_ID:
+				return new ActivityCNParametersCompartmentEditPart(view);
+
+			case ActivityCNPreConditionsCompartmentEditPart.VISUAL_ID:
+				return new ActivityCNPreConditionsCompartmentEditPart(view);
+
+			case ActivityCNPostConditionsCompartmentEditPart.VISUAL_ID:
+				return new ActivityCNPostConditionsCompartmentEditPart(view);
 
 			case ActionLocalPreconditionEditPart.VISUAL_ID:
 				return new ActionLocalPreconditionEditPart(view);

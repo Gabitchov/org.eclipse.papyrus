@@ -84,6 +84,8 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 
 		OutputPinPreferencePage.initDefaults(store);
 
+		ActivityCNPreferencePage.initDefaults(store);
+
 		MergeNodePreferencePage.initDefaults(store);
 
 		ConstraintPreferencePage.initDefaults(store);

@@ -186,6 +186,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				case CommentEditPartCN.VISUAL_ID:
 				case ReadSelfActionEditPart.VISUAL_ID:
 				case ReadSelfActionOutputPinEditPart.VISUAL_ID:
+				case ActivityEditPartCN.VISUAL_ID:
 				case ConstraintInActivityAsPostcondEditPart.VISUAL_ID:
 				case ValuePinInCallBeActEditPart.VISUAL_ID:
 				case ActionInputPinInCallBeActEditPart.VISUAL_ID:
@@ -227,7 +228,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				}
 			}
 		}
-		return ActivityEditPart.VISUAL_ID == visualID || ParameterEditPart.VISUAL_ID == visualID || ConstraintInActivityAsPrecondEditPart.VISUAL_ID == visualID || ConstraintInActivityAsPostcondEditPart.VISUAL_ID == visualID || InitialNodeEditPart.VISUAL_ID == visualID || ActivityFinalNodeEditPart.VISUAL_ID == visualID || FlowFinalNodeEditPart.VISUAL_ID == visualID || OpaqueActionEditPart.VISUAL_ID == visualID || ValuePinInOpaqueActEditPart.VISUAL_ID == visualID || ActionInputPinInOpaqueActEditPart.VISUAL_ID == visualID || InputPinInOpaqueActEditPart.VISUAL_ID == visualID || OutputPinInOpaqueActEditPart.VISUAL_ID == visualID || CallBehaviorActionEditPart.VISUAL_ID == visualID || ValuePinInCallBeActEditPart.VISUAL_ID == visualID || ActionInputPinInCallBeActEditPart.VISUAL_ID == visualID || InputPinInCallBeActEditPart.VISUAL_ID == visualID || OutputPinInCallBeActEditPart.VISUAL_ID == visualID || CallOperationActionEditPart.VISUAL_ID == visualID || ActionInputPinInCallOpActEditPart.VISUAL_ID == visualID || ValuePinInCallOpActEditPart.VISUAL_ID == visualID || InputPinInCallOpActEditPart.VISUAL_ID == visualID || OutputPinInCallOpActEditPart.VISUAL_ID == visualID || ValuePinInCallOpActAsTargetEditPart.VISUAL_ID == visualID || ActionInputPinInCallOpActAsTargetEditPart.VISUAL_ID == visualID || InputPinInCallOpActAsTargetEditPart.VISUAL_ID == visualID || DurationConstraintAsLocalPrecondEditPart.VISUAL_ID == visualID || DurationConstraintAsLocalPostcondEditPart.VISUAL_ID == visualID || TimeConstraintAsLocalPrecondEditPart.VISUAL_ID == visualID || TimeConstraintAsLocalPostcondEditPart.VISUAL_ID == visualID || IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID == visualID || IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID == visualID || ConstraintAsLocalPrecondEditPart.VISUAL_ID == visualID || ConstraintAsLocalPostcondEditPart.VISUAL_ID == visualID || DecisionNodeEditPart.VISUAL_ID == visualID || MergeNodeEditPart.VISUAL_ID == visualID || ForkNodeEditPart.VISUAL_ID == visualID || JoinNodeEditPart.VISUAL_ID == visualID || DataStoreNodeEditPart.VISUAL_ID == visualID || SendObjectActionEditPart.VISUAL_ID == visualID || ValuePinInSendObjActAsReqEditPart.VISUAL_ID == visualID || ActionInputPinInSendObjActAsReqEditPart.VISUAL_ID == visualID || InputPinInSendObjActAsReqEditPart.VISUAL_ID == visualID || ValuePinInSendObjActAsTargetEditPart.VISUAL_ID == visualID || ActionInputPinInSendObjActAsTargetEditPart.VISUAL_ID == visualID || InputPinInSendObjActAsTargetEditPart.VISUAL_ID == visualID || SendSignalActionEditPart.VISUAL_ID == visualID || ActionInputPinInSendSigActEditPart.VISUAL_ID == visualID || ValuePinInSendSigActEditPart.VISUAL_ID == visualID || InputPinInSendSigActEditPart.VISUAL_ID == visualID || ValuePinInSendSigActAsTargetEditPart.VISUAL_ID == visualID || ActionInputPinInSendSigActAsTargetEditPart.VISUAL_ID == visualID || InputPinInSendSigActAsTargetEditPart.VISUAL_ID == visualID || ActivityParameterNodeEditPart.VISUAL_ID == visualID || AcceptEventActionEditPart.VISUAL_ID == visualID || OutputPinInAcceptEventActionEditPart.VISUAL_ID == visualID || ValueSpecificationActionEditPart.VISUAL_ID == visualID || OutputPinInValSpecActEditPart.VISUAL_ID == visualID || ConditionalNodeEditPart.VISUAL_ID == visualID || ExpansionRegionEditPart.VISUAL_ID == visualID || ExpansionNodeAsInEditPart.VISUAL_ID == visualID || ExpansionNodeAsOutEditPart.VISUAL_ID == visualID || LoopNodeEditPart.VISUAL_ID == visualID || SequenceNodeEditPart.VISUAL_ID == visualID || StructuredActivityNodeEditPart.VISUAL_ID == visualID || ActivityPartitionEditPart.VISUAL_ID == visualID || InterruptibleActivityRegionEditPart.VISUAL_ID == visualID || ShapeNamedElementEditPart.VISUAL_ID == visualID || CommentEditPartCN.VISUAL_ID == visualID || ReadSelfActionEditPart.VISUAL_ID == visualID || ReadSelfActionOutputPinEditPart.VISUAL_ID == visualID;
+		return ActivityEditPart.VISUAL_ID == visualID || ParameterEditPart.VISUAL_ID == visualID || ConstraintInActivityAsPrecondEditPart.VISUAL_ID == visualID || ConstraintInActivityAsPostcondEditPart.VISUAL_ID == visualID || InitialNodeEditPart.VISUAL_ID == visualID || ActivityFinalNodeEditPart.VISUAL_ID == visualID || FlowFinalNodeEditPart.VISUAL_ID == visualID || OpaqueActionEditPart.VISUAL_ID == visualID || ValuePinInOpaqueActEditPart.VISUAL_ID == visualID || ActionInputPinInOpaqueActEditPart.VISUAL_ID == visualID || InputPinInOpaqueActEditPart.VISUAL_ID == visualID || OutputPinInOpaqueActEditPart.VISUAL_ID == visualID || CallBehaviorActionEditPart.VISUAL_ID == visualID || ValuePinInCallBeActEditPart.VISUAL_ID == visualID || ActionInputPinInCallBeActEditPart.VISUAL_ID == visualID || InputPinInCallBeActEditPart.VISUAL_ID == visualID || OutputPinInCallBeActEditPart.VISUAL_ID == visualID || CallOperationActionEditPart.VISUAL_ID == visualID || ActionInputPinInCallOpActEditPart.VISUAL_ID == visualID || ValuePinInCallOpActEditPart.VISUAL_ID == visualID || InputPinInCallOpActEditPart.VISUAL_ID == visualID || OutputPinInCallOpActEditPart.VISUAL_ID == visualID || ValuePinInCallOpActAsTargetEditPart.VISUAL_ID == visualID || ActionInputPinInCallOpActAsTargetEditPart.VISUAL_ID == visualID || InputPinInCallOpActAsTargetEditPart.VISUAL_ID == visualID || DurationConstraintAsLocalPrecondEditPart.VISUAL_ID == visualID || DurationConstraintAsLocalPostcondEditPart.VISUAL_ID == visualID || TimeConstraintAsLocalPrecondEditPart.VISUAL_ID == visualID || TimeConstraintAsLocalPostcondEditPart.VISUAL_ID == visualID || IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID == visualID || IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID == visualID || ConstraintAsLocalPrecondEditPart.VISUAL_ID == visualID || ConstraintAsLocalPostcondEditPart.VISUAL_ID == visualID || DecisionNodeEditPart.VISUAL_ID == visualID || MergeNodeEditPart.VISUAL_ID == visualID || ForkNodeEditPart.VISUAL_ID == visualID || JoinNodeEditPart.VISUAL_ID == visualID || DataStoreNodeEditPart.VISUAL_ID == visualID || SendObjectActionEditPart.VISUAL_ID == visualID || ValuePinInSendObjActAsReqEditPart.VISUAL_ID == visualID || ActionInputPinInSendObjActAsReqEditPart.VISUAL_ID == visualID || InputPinInSendObjActAsReqEditPart.VISUAL_ID == visualID || ValuePinInSendObjActAsTargetEditPart.VISUAL_ID == visualID || ActionInputPinInSendObjActAsTargetEditPart.VISUAL_ID == visualID || InputPinInSendObjActAsTargetEditPart.VISUAL_ID == visualID || SendSignalActionEditPart.VISUAL_ID == visualID || ActionInputPinInSendSigActEditPart.VISUAL_ID == visualID || ValuePinInSendSigActEditPart.VISUAL_ID == visualID || InputPinInSendSigActEditPart.VISUAL_ID == visualID || ValuePinInSendSigActAsTargetEditPart.VISUAL_ID == visualID || ActionInputPinInSendSigActAsTargetEditPart.VISUAL_ID == visualID || InputPinInSendSigActAsTargetEditPart.VISUAL_ID == visualID || ActivityParameterNodeEditPart.VISUAL_ID == visualID || AcceptEventActionEditPart.VISUAL_ID == visualID || OutputPinInAcceptEventActionEditPart.VISUAL_ID == visualID || ValueSpecificationActionEditPart.VISUAL_ID == visualID || OutputPinInValSpecActEditPart.VISUAL_ID == visualID || ConditionalNodeEditPart.VISUAL_ID == visualID || ExpansionRegionEditPart.VISUAL_ID == visualID || ExpansionNodeAsInEditPart.VISUAL_ID == visualID || ExpansionNodeAsOutEditPart.VISUAL_ID == visualID || LoopNodeEditPart.VISUAL_ID == visualID || SequenceNodeEditPart.VISUAL_ID == visualID || StructuredActivityNodeEditPart.VISUAL_ID == visualID || ActivityPartitionEditPart.VISUAL_ID == visualID || InterruptibleActivityRegionEditPart.VISUAL_ID == visualID || ShapeNamedElementEditPart.VISUAL_ID == visualID || CommentEditPartCN.VISUAL_ID == visualID || ReadSelfActionEditPart.VISUAL_ID == visualID || ReadSelfActionOutputPinEditPart.VISUAL_ID == visualID || ActivityEditPartCN.VISUAL_ID == visualID;
 	}
 
 	/**
@@ -414,6 +415,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			return createReadSelfAction_3081(domainElement, containerView, index, persisted, preferencesHint);
 		case ReadSelfActionOutputPinEditPart.VISUAL_ID:
 			return createOutputPin_3082(domainElement, containerView, index, persisted, preferencesHint);
+		case ActivityEditPartCN.VISUAL_ID:
+			return createActivity_3083(domainElement, containerView, index, persisted, preferencesHint);
 		}
 		// can't happen, provided #provides(CreateNodeViewOperation) is correct
 		return null;
@@ -2323,6 +2326,35 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5141 = (Location)label5141.getLayoutConstraint();
 		location5141.setX(0);
 		location5141.setY(5);
+
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createActivity_3083(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry.getType(ActivityEditPartCN.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "ActivityCN");
+
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActivityCN");
+
+		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "ActivityCN");
+
+		Node label5142 = createLabel(node, UMLVisualIDRegistry.getType(ActivityNameEditPartCN.VISUAL_ID));
+		createCompartment(node, UMLVisualIDRegistry.getType(ActivityCNContentCompartmentEditPart.VISUAL_ID), false, false, false, false);
+		createCompartment(node, UMLVisualIDRegistry.getType(ActivityCNParametersCompartmentEditPart.VISUAL_ID), false, false, true, true);
+		createCompartment(node, UMLVisualIDRegistry.getType(ActivityCNPreConditionsCompartmentEditPart.VISUAL_ID), false, false, true, true);
+		createCompartment(node, UMLVisualIDRegistry.getType(ActivityCNPostConditionsCompartmentEditPart.VISUAL_ID), false, false, true, true);
+
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "ActivityCN");
 
 		return node;
 	}
