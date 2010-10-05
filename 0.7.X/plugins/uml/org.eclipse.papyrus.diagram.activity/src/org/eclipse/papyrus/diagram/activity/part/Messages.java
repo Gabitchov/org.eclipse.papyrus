@@ -1041,6 +1041,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String createActivity40CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createActivity40CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String createControlFlow1CreationTool_title;
 
 	/**
@@ -1112,6 +1122,26 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart_title;
+
+	/**
+	 * @generated
+	 */
+	public static String ActivityCNContentCompartmentEditPart_title;
+
+	/**
+	 * @generated
+	 */
+	public static String ActivityCNParametersCompartmentEditPart_title;
+
+	/**
+	 * @generated
+	 */
+	public static String ActivityCNPreConditionsCompartmentEditPart_title;
+
+	/**
+	 * @generated
+	 */
+	public static String ActivityCNPostConditionsCompartmentEditPart_title;
 
 	/**
 	 * @generated

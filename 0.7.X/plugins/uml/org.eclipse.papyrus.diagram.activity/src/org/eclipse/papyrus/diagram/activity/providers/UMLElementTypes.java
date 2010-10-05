@@ -40,6 +40,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ActionLocalPostconditionE
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionLocalPreconditionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityDiagramEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityEditPartCN;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityFinalNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityParameterNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityPartitionEditPart;
@@ -417,6 +418,11 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
+	public static final IElementType Activity_3083 = getElementType("org.eclipse.papyrus.diagram.activity.ActivityCN_3083"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	public static final IElementType ValueSpecificationAction_3076 = getElementType("org.eclipse.papyrus.diagram.activity.ValueSpecificationAction_3076"); //$NON-NLS-1$
 
 	/**
@@ -767,6 +773,8 @@ public class UMLElementTypes {
 
 			elements.put(OutputPin_3082, UMLPackage.eINSTANCE.getOutputPin());
 
+			elements.put(Activity_3083, UMLPackage.eINSTANCE.getActivity());
+
 			elements.put(ActionLocalPrecondition_4001, UMLPackage.eINSTANCE.getAction_LocalPrecondition());
 
 			elements.put(ActionLocalPostcondition_4002, UMLPackage.eINSTANCE.getAction_LocalPostcondition());
@@ -866,6 +874,7 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(Comment_3080);
 			KNOWN_ELEMENT_TYPES.add(ReadSelfAction_3081);
 			KNOWN_ELEMENT_TYPES.add(OutputPin_3082);
+			KNOWN_ELEMENT_TYPES.add(Activity_3083);
 			KNOWN_ELEMENT_TYPES.add(ActionLocalPrecondition_4001);
 			KNOWN_ELEMENT_TYPES.add(ActionLocalPostcondition_4002);
 			KNOWN_ELEMENT_TYPES.add(ObjectFlow_4003);
@@ -1023,6 +1032,8 @@ public class UMLElementTypes {
 			return ReadSelfAction_3081;
 		case ReadSelfActionOutputPinEditPart.VISUAL_ID:
 			return OutputPin_3082;
+		case ActivityEditPartCN.VISUAL_ID:
+			return Activity_3083;
 		case ActionLocalPreconditionEditPart.VISUAL_ID:
 			return ActionLocalPrecondition_4001;
 		case ActionLocalPostconditionEditPart.VISUAL_ID:

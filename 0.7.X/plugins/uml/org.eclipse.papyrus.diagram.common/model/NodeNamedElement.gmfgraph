@@ -6,54 +6,29 @@
   <figures
       name="Default">
     <descriptors
-        name="ConstraintDescriptor">
+        name="NodeNamedElementFigure">
       <actualFigure
           xsi:type="gmfgraph:CustomFigure"
-          name="ConstraintFigure"
-          qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.ConstraintFigure">
+          name="NodeNamedElementFigure"
+          qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.NodeNamedElementFigure">
         <customChildren
             accessor="getNameLabel()">
           <typedFigure
               xsi:type="gmfgraph:Label"
               name="nameLabel"/>
         </customChildren>
-        <customChildren
-            accessor="getConstraintFigure()">
-          <typedFigure
-              xsi:type="gmfgraph:CustomFigure"
-              name="ConstraintFigure"
-              qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.ConstraintFigure"/>
-        </customChildren>
       </actualFigure>
-      <accessors
-          accessor="getConstraintFigure"
-          figure="//@figures.0/@descriptors.0/@actualFigure/@customChildren.1/@typedFigure"/>
       <accessors
           accessor="getNameLabel"
           figure="//@figures.0/@descriptors.0/@actualFigure/@customChildren.0/@typedFigure"/>
     </descriptors>
-    <descriptors
-        name="ConstraintLinkDescriptor">
-      <actualFigure
-          xsi:type="gmfgraph:PolylineConnection"
-          name="ConstraintLinkPolilyne"
-          lineKind="LINE_DASH"/>
-    </descriptors>
   </figures>
   <nodes
-      name="ConstraintNode"
-      figure="ConstraintDescriptor"/>
-  <connections
-      name="ConstraintLinkConnection"
-      figure="ConstraintLinkDescriptor"/>
+      name="NamedElementFigureNode"
+      figure="NodeNamedElementFigure"/>
   <labels
-      name="ConstraintBodyDiagramLabel"
-      figure="ConstraintDescriptor"
+      name="NameOfNamedElementFigureDiagramLabel"
+      figure="NodeNamedElementFigure"
       elementIcon="false"
       accessor="//@figures.0/@descriptors.0/@accessors.0"/>
-  <labels
-      name="ConstraintNameDiagramLabel"
-      figure="ConstraintDescriptor"
-      elementIcon="false"
-      accessor="//@figures.0/@descriptors.0/@accessors.1"/>
 </gmfgraph:Canvas>

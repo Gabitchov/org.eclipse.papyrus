@@ -75,7 +75,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	/**
 	 * Added for stereotypes properties, displayed in the InBrace location
 	 */
-	private Label stereotypePropertiesInBraceContent;
+	protected Label stereotypePropertiesInBraceContent;
 
 	/**
 	 * The stereotypes label.

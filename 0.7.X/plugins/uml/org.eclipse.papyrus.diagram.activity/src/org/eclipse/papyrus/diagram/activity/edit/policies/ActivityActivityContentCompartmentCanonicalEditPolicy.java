@@ -45,6 +45,7 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.Size;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.activity.edit.parts.AcceptEventActionEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityEditPartCN;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityFinalNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityPartitionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallBehaviorActionEditPart;
@@ -150,6 +151,7 @@ public class ActivityActivityContentCompartmentCanonicalEditPolicy extends Canon
 		case InterruptibleActivityRegionEditPart.VISUAL_ID:
 		case CommentEditPartCN.VISUAL_ID:
 		case ReadSelfActionEditPart.VISUAL_ID:
+		case ActivityEditPartCN.VISUAL_ID:
 			return true;
 		}
 		return false;
@@ -277,6 +279,7 @@ public class ActivityActivityContentCompartmentCanonicalEditPolicy extends Canon
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getAction_LocalPostcondition());
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getActivity_Group());
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getElement_OwnedComment());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getBehavioredClassifier_OwnedBehavior());
 		}
 		return myFeaturesToSynchronize;
 	}
