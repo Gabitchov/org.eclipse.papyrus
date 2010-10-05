@@ -3,6 +3,7 @@ package org.eclipse.papyrus.compare.action;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
@@ -67,7 +68,7 @@ public class ExportAsHTMLWizard extends SaveDeltaWizard {
 	}
 
 	private List<? extends Object> getArguments() {
-		return new ArrayList<String>();
+		return Collections.singletonList(myNewReportFileCreationPage.getFileName());
 	}
 	
 	private WizardNewFileCreationPage getNewDiffFilePage() {
