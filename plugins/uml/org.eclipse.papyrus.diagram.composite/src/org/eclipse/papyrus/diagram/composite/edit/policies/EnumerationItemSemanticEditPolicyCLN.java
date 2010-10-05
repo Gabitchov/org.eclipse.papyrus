@@ -38,7 +38,6 @@ public class EnumerationItemSemanticEditPolicyCLN extends UMLBaseItemSemanticEdi
 		super(UMLElementTypes.Enumeration_3111);
 	}
 
-
 	/**
 	 * @generated
 	 */

@@ -226,18 +226,6 @@ public class UMLDiagramContentInitializer {
 	/**
 	 * @generated
 	 */
-	private void createClass_2074Children(View view) {
-		myDomain2NotationMap.put(view.getElement(), view);
-		myLinkDescriptors.addAll(UMLDiagramUpdater.getClass_2074OutgoingLinks(view));
-		createClassClassAttributeCompartment_7043Children(getCompartment(view, ClassAttributeCompartmentEditPart.VISUAL_ID));
-		createClassClassOperationCompartment_7044Children(getCompartment(view, ClassOperationCompartmentEditPart.VISUAL_ID));
-		createClassClassNestedClassifierCompartment_7045Children(getCompartment(view, ClassNestedClassifierCompartmentEditPart.VISUAL_ID));
-
-	}
-
-	/**
-	 * @generated
-	 */
 	private void createCollaboration_2075Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
 		myLinkDescriptors.addAll(UMLDiagramUpdater.getCollaboration_2075OutgoingLinks(view));
@@ -1184,36 +1172,6 @@ public class UMLDiagramContentInitializer {
 	/**
 	 * @generated
 	 */
-	private void createClassClassAttributeCompartment_7043Children(View view) {
-		Collection childNodeDescriptors = UMLDiagramUpdater.getClassClassAttributeCompartment_7043SemanticChildren(view);
-		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
-			createNode(view, (UMLNodeDescriptor)it.next());
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	private void createClassClassOperationCompartment_7044Children(View view) {
-		Collection childNodeDescriptors = UMLDiagramUpdater.getClassClassOperationCompartment_7044SemanticChildren(view);
-		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
-			createNode(view, (UMLNodeDescriptor)it.next());
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	private void createClassClassNestedClassifierCompartment_7045Children(View view) {
-		Collection childNodeDescriptors = UMLDiagramUpdater.getClassClassNestedClassifierCompartment_7045SemanticChildren(view);
-		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
-			createNode(view, (UMLNodeDescriptor)it.next());
-		}
-	}
-
-	/**
-	 * @generated
-	 */
 	private void createEnumerationEnumerationEnumerationLiteralCompartment_7048Children(View view) {
 		Collection childNodeDescriptors = UMLDiagramUpdater.getEnumerationEnumerationEnumerationLiteralCompartment_7048SemanticChildren(view);
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
@@ -1532,9 +1490,6 @@ public class UMLDiagramContentInitializer {
 			return;
 		case ClassCompositeEditPart.VISUAL_ID:
 			createClass_2073Children(node);
-			return;
-		case ClassClassifierEditPart.VISUAL_ID:
-			createClass_2074Children(node);
 			return;
 		case CollaborationCompositeEditPart.VISUAL_ID:
 			createCollaboration_2075Children(node);

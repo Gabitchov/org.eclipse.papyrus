@@ -91,7 +91,11 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class PropertyEditPartCLN extends CompartmentEditPart implements ITextAwareEditPart, IPrimaryEditPart {
+public class PropertyEditPartCLN
+
+extends CompartmentEditPart
+
+implements ITextAwareEditPart, IPrimaryEditPart {
 
 	/**
 	 * @generated
@@ -118,8 +122,6 @@ public class PropertyEditPartCLN extends CompartmentEditPart implements ITextAwa
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -133,8 +135,6 @@ public class PropertyEditPartCLN extends CompartmentEditPart implements ITextAwa
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -610,8 +610,6 @@ public class PropertyEditPartCLN extends CompartmentEditPart implements ITextAwa
 		return (View)getModel();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -715,8 +713,6 @@ public class PropertyEditPartCLN extends CompartmentEditPart implements ITextAwa
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -732,8 +728,6 @@ public class PropertyEditPartCLN extends CompartmentEditPart implements ITextAwa
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
-
-
 
 	/**
 	 * @generated
@@ -786,14 +780,10 @@ public class PropertyEditPartCLN extends CompartmentEditPart implements ITextAwa
 		return new PropertyFigureDescriptor();
 	}
 
-
 	/**
 	 * @generated
 	 */
 	public class PropertyFigureDescriptor extends WrappingLabel {
-
-
-
 
 		/**
 		 * @generated
@@ -803,12 +793,7 @@ public class PropertyEditPartCLN extends CompartmentEditPart implements ITextAwa
 
 			this.setFont(THIS_FONT);
 
-
 		}
-
-
-
-
 
 	}
 
@@ -816,7 +801,5 @@ public class PropertyEditPartCLN extends CompartmentEditPart implements ITextAwa
 	 * @generated
 	 */
 	static final Font THIS_FONT = new Font(Display.getCurrent(), "Arial", 10, SWT.NORMAL);
-
-
 
 }

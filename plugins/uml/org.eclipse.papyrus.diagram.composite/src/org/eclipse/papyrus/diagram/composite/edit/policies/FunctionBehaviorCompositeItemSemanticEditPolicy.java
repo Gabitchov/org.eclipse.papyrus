@@ -136,7 +136,6 @@ public class FunctionBehaviorCompositeItemSemanticEditPolicy extends UMLBaseItem
 		super(UMLElementTypes.FunctionBehavior_2064);
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -183,7 +182,6 @@ public class FunctionBehaviorCompositeItemSemanticEditPolicy extends UMLBaseItem
 			Node node = (Node)nit.next();
 			switch(UMLVisualIDRegistry.getVisualID(node)) {
 			case PortEditPart.VISUAL_ID:
-
 
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
@@ -239,7 +237,6 @@ public class FunctionBehaviorCompositeItemSemanticEditPolicy extends UMLBaseItem
 				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
 				break;
 			case ParameterEditPart.VISUAL_ID:
-
 
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
@@ -300,7 +297,6 @@ public class FunctionBehaviorCompositeItemSemanticEditPolicy extends UMLBaseItem
 					switch(UMLVisualIDRegistry.getVisualID(cnode)) {
 					case PortEditPart.VISUAL_ID:
 
-
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -355,7 +351,6 @@ public class FunctionBehaviorCompositeItemSemanticEditPolicy extends UMLBaseItem
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					case ParameterEditPart.VISUAL_ID:
-
 
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
@@ -412,7 +407,6 @@ public class FunctionBehaviorCompositeItemSemanticEditPolicy extends UMLBaseItem
 						break;
 					case PropertyPartEditPartCN.VISUAL_ID:
 
-
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -468,7 +462,6 @@ public class FunctionBehaviorCompositeItemSemanticEditPolicy extends UMLBaseItem
 						break;
 					case CollaborationUseEditPartCN.VISUAL_ID:
 
-
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -523,7 +516,6 @@ public class FunctionBehaviorCompositeItemSemanticEditPolicy extends UMLBaseItem
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					case ActivityCompositeEditPartCN.VISUAL_ID:
-
 
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
@@ -583,7 +575,6 @@ public class FunctionBehaviorCompositeItemSemanticEditPolicy extends UMLBaseItem
 						break;
 					case InteractionCompositeEditPartCN.VISUAL_ID:
 
-
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -641,7 +632,6 @@ public class FunctionBehaviorCompositeItemSemanticEditPolicy extends UMLBaseItem
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					case ProtocolStateMachineCompositeEditPartCN.VISUAL_ID:
-
 
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
@@ -701,7 +691,6 @@ public class FunctionBehaviorCompositeItemSemanticEditPolicy extends UMLBaseItem
 						break;
 					case StateMachineCompositeEditPartCN.VISUAL_ID:
 
-
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -759,7 +748,6 @@ public class FunctionBehaviorCompositeItemSemanticEditPolicy extends UMLBaseItem
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					case FunctionBehaviorCompositeEditPartCN.VISUAL_ID:
-
 
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
@@ -819,7 +807,6 @@ public class FunctionBehaviorCompositeItemSemanticEditPolicy extends UMLBaseItem
 						break;
 					case OpaqueBehaviorCompositeEditPartCN.VISUAL_ID:
 
-
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -877,7 +864,6 @@ public class FunctionBehaviorCompositeItemSemanticEditPolicy extends UMLBaseItem
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					case ComponentCompositeEditPartCN.VISUAL_ID:
-
 
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
@@ -937,7 +923,6 @@ public class FunctionBehaviorCompositeItemSemanticEditPolicy extends UMLBaseItem
 						break;
 					case DeviceCompositeEditPartCN.VISUAL_ID:
 
-
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -995,7 +980,6 @@ public class FunctionBehaviorCompositeItemSemanticEditPolicy extends UMLBaseItem
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					case ExecutionEnvironmentCompositeEditPartCN.VISUAL_ID:
-
 
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
@@ -1055,7 +1039,6 @@ public class FunctionBehaviorCompositeItemSemanticEditPolicy extends UMLBaseItem
 						break;
 					case NodeCompositeEditPartCN.VISUAL_ID:
 
-
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -1113,7 +1096,6 @@ public class FunctionBehaviorCompositeItemSemanticEditPolicy extends UMLBaseItem
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					case ClassCompositeEditPartCN.VISUAL_ID:
-
 
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
@@ -1173,7 +1155,6 @@ public class FunctionBehaviorCompositeItemSemanticEditPolicy extends UMLBaseItem
 						break;
 					case CollaborationCompositeEditPartCN.VISUAL_ID:
 
-
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -1231,7 +1212,6 @@ public class FunctionBehaviorCompositeItemSemanticEditPolicy extends UMLBaseItem
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					case InterfaceEditPartCN.VISUAL_ID:
-
 
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
@@ -1291,7 +1271,6 @@ public class FunctionBehaviorCompositeItemSemanticEditPolicy extends UMLBaseItem
 						break;
 					case PrimitiveTypeEditPartCN.VISUAL_ID:
 
-
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -1349,7 +1328,6 @@ public class FunctionBehaviorCompositeItemSemanticEditPolicy extends UMLBaseItem
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					case EnumerationEditPartCN.VISUAL_ID:
-
 
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
@@ -1409,7 +1387,6 @@ public class FunctionBehaviorCompositeItemSemanticEditPolicy extends UMLBaseItem
 						break;
 					case DataTypeEditPartCN.VISUAL_ID:
 
-
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -1467,7 +1444,6 @@ public class FunctionBehaviorCompositeItemSemanticEditPolicy extends UMLBaseItem
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					case ActorEditPartCN.VISUAL_ID:
-
 
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
@@ -1527,7 +1503,6 @@ public class FunctionBehaviorCompositeItemSemanticEditPolicy extends UMLBaseItem
 						break;
 					case DeploymentSpecificationEditPartCN.VISUAL_ID:
 
-
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -1586,7 +1561,6 @@ public class FunctionBehaviorCompositeItemSemanticEditPolicy extends UMLBaseItem
 						break;
 					case ArtifactEditPartCN.VISUAL_ID:
 
-
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -1644,7 +1618,6 @@ public class FunctionBehaviorCompositeItemSemanticEditPolicy extends UMLBaseItem
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					case InformationItemEditPartCN.VISUAL_ID:
-
 
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
@@ -1709,7 +1682,6 @@ public class FunctionBehaviorCompositeItemSemanticEditPolicy extends UMLBaseItem
 						break;
 					case SignalEditPartCN.VISUAL_ID:
 
-
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -1767,7 +1739,6 @@ public class FunctionBehaviorCompositeItemSemanticEditPolicy extends UMLBaseItem
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					case UseCaseEditPartCN.VISUAL_ID:
-
 
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
@@ -1827,7 +1798,6 @@ public class FunctionBehaviorCompositeItemSemanticEditPolicy extends UMLBaseItem
 						break;
 					case CommentEditPartCN.VISUAL_ID:
 
-
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -1855,7 +1825,6 @@ public class FunctionBehaviorCompositeItemSemanticEditPolicy extends UMLBaseItem
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					case DurationConstraintEditPartCN.VISUAL_ID:
-
 
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
@@ -1917,7 +1886,6 @@ public class FunctionBehaviorCompositeItemSemanticEditPolicy extends UMLBaseItem
 						break;
 					case TimeConstraintEditPartCN.VISUAL_ID:
 
-
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -1977,7 +1945,6 @@ public class FunctionBehaviorCompositeItemSemanticEditPolicy extends UMLBaseItem
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					case IntervalConstraintEditPartCN.VISUAL_ID:
-
 
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
@@ -2039,7 +2006,6 @@ public class FunctionBehaviorCompositeItemSemanticEditPolicy extends UMLBaseItem
 						break;
 					case InteractionConstraintEditPartCN.VISUAL_ID:
 
-
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -2099,7 +2065,6 @@ public class FunctionBehaviorCompositeItemSemanticEditPolicy extends UMLBaseItem
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					case ConstraintEditPartCN.VISUAL_ID:
-
 
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();

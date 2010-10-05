@@ -86,7 +86,6 @@ public class CollaborationUseItemSemanticEditPolicyCN extends UMLBaseItemSemanti
 		super(UMLElementTypes.CollaborationUse_3071);
 	}
 
-
 	/**
 	 * @generated
 	 */

@@ -236,18 +236,6 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Class_2074(Class instance) {
-		try {
-			Object value_0 = name_Class_2074(instance);
-			instance.setName((String)value_0);
-		} catch (RuntimeException e) {
-			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
-		}
-	}
-
-	/**
-	 * @generated
-	 */
 	public void init_Collaboration_2075(Collaboration instance) {
 		try {
 			Object value_0 = name_Collaboration_2075(instance);
@@ -1586,13 +1574,6 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	private String name_Class_2074(Class self) {
-		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
-	}
-
-	/**
-	 * @generated
-	 */
 	private String name_Collaboration_2075(Collaboration self) {
 		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
 	}
@@ -2428,7 +2409,6 @@ public class ElementInitializers {
 	private String name_InformationFlow_4021(InformationFlow self) {
 		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
 	}
-
 
 	/**
 	 * @generated

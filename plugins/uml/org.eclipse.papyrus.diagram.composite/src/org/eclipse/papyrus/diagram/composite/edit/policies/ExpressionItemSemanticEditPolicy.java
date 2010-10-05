@@ -86,7 +86,6 @@ public class ExpressionItemSemanticEditPolicy extends UMLBaseItemSemanticEditPol
 		super(UMLElementTypes.Expression_2103);
 	}
 
-
 	/**
 	 * @generated
 	 */

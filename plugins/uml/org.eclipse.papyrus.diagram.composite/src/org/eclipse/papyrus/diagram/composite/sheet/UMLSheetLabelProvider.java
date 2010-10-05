@@ -28,7 +28,6 @@ import org.eclipse.swt.graphics.Image;
  */
 public class UMLSheetLabelProvider extends BaseLabelProvider implements ILabelProvider {
 
-
 	/**
 	 * @generated
 	 */
@@ -38,7 +37,6 @@ public class UMLSheetLabelProvider extends BaseLabelProvider implements ILabelPr
 		return etype == null ? "" : etype.getDisplayName();
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -46,7 +44,6 @@ public class UMLSheetLabelProvider extends BaseLabelProvider implements ILabelPr
 		IElementType etype = getElementType(getView(unwrap(element)));
 		return etype == null ? null : UMLElementTypes.getImage(etype);
 	}
-
 
 	/**
 	 * @generated
@@ -86,7 +83,5 @@ public class UMLSheetLabelProvider extends BaseLabelProvider implements ILabelPr
 		}
 		return null;
 	}
-
-
 
 }

@@ -45,7 +45,6 @@ public class RoleBindingCreateCommand extends EditElementCommand {
 	 */
 	private final EObject target;
 
-
 	/**
 	 * @generated
 	 */
@@ -84,7 +83,6 @@ public class RoleBindingCreateCommand extends EditElementCommand {
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateDependency_4017(getContainer(), getSource(), getTarget());
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -102,7 +100,6 @@ public class RoleBindingCreateCommand extends EditElementCommand {
 		return CommandResult.newOKCommandResult(newElement);
 
 	}
-
 
 	/**
 	 * @generated

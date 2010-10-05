@@ -46,7 +46,6 @@ public class SubstitutionCreateCommand extends EditElementCommand {
 	 */
 	private final EObject target;
 
-
 	/**
 	 * @generated
 	 */
@@ -85,7 +84,6 @@ public class SubstitutionCreateCommand extends EditElementCommand {
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateSubstitution_4011(getContainer(), getSource(), getTarget());
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -104,7 +102,6 @@ public class SubstitutionCreateCommand extends EditElementCommand {
 		return CommandResult.newOKCommandResult(newElement);
 
 	}
-
 
 	/**
 	 * @generated

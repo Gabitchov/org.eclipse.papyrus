@@ -86,7 +86,6 @@ public class CallEventItemSemanticEditPolicy extends UMLBaseItemSemanticEditPoli
 		super(UMLElementTypes.CallEvent_2084);
 	}
 
-
 	/**
 	 * @generated
 	 */

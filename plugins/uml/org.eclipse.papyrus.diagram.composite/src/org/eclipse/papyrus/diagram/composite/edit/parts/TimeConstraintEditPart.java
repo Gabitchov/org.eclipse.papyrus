@@ -58,7 +58,6 @@ import org.eclipse.swt.graphics.Color;
  */
 public class TimeConstraintEditPart extends
 
-
 AbstractConstraintEditPart {
 
 	/**
@@ -95,9 +94,6 @@ AbstractConstraintEditPart {
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
-
-
-
 	/**
 	 * Papyrus codeGen
 	 * 
@@ -107,10 +103,6 @@ AbstractConstraintEditPart {
 		super.handleNotificationEvent(event);
 
 	}
-
-
-
-
 
 	/**
 	 * @generated
@@ -164,10 +156,8 @@ AbstractConstraintEditPart {
 			return true;
 		}
 
-
 		return false;
 	}
-
 
 	/**
 	 * @generated
@@ -209,7 +199,6 @@ AbstractConstraintEditPart {
 		return getContentPane();
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -222,7 +211,6 @@ AbstractConstraintEditPart {
 
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -358,9 +346,6 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4003);
 		}
 		if(targetEditPart instanceof ClassCompositeEditPart) {
-			types.add(UMLElementTypes.ConstraintConstrainedElement_4003);
-		}
-		if(targetEditPart instanceof ClassClassifierEditPart) {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4003);
 		}
 		if(targetEditPart instanceof CollaborationCompositeEditPart) {
@@ -624,9 +609,6 @@ AbstractConstraintEditPart {
 		if(targetEditPart instanceof ClassCompositeEditPart) {
 			types.add(UMLElementTypes.ComponentRealization_4004);
 		}
-		if(targetEditPart instanceof ClassClassifierEditPart) {
-			types.add(UMLElementTypes.ComponentRealization_4004);
-		}
 		if(targetEditPart instanceof CollaborationCompositeEditPart) {
 			types.add(UMLElementTypes.ComponentRealization_4004);
 		}
@@ -880,9 +862,6 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.InterfaceRealization_4005);
 		}
 		if(targetEditPart instanceof ClassCompositeEditPart) {
-			types.add(UMLElementTypes.InterfaceRealization_4005);
-		}
-		if(targetEditPart instanceof ClassClassifierEditPart) {
 			types.add(UMLElementTypes.InterfaceRealization_4005);
 		}
 		if(targetEditPart instanceof CollaborationCompositeEditPart) {
@@ -1140,9 +1119,6 @@ AbstractConstraintEditPart {
 		if(targetEditPart instanceof ClassCompositeEditPart) {
 			types.add(UMLElementTypes.Substitution_4011);
 		}
-		if(targetEditPart instanceof ClassClassifierEditPart) {
-			types.add(UMLElementTypes.Substitution_4011);
-		}
 		if(targetEditPart instanceof CollaborationCompositeEditPart) {
 			types.add(UMLElementTypes.Substitution_4011);
 		}
@@ -1396,9 +1372,6 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.Realization_4006);
 		}
 		if(targetEditPart instanceof ClassCompositeEditPart) {
-			types.add(UMLElementTypes.Realization_4006);
-		}
-		if(targetEditPart instanceof ClassClassifierEditPart) {
 			types.add(UMLElementTypes.Realization_4006);
 		}
 		if(targetEditPart instanceof CollaborationCompositeEditPart) {
@@ -1656,9 +1629,6 @@ AbstractConstraintEditPart {
 		if(targetEditPart instanceof ClassCompositeEditPart) {
 			types.add(UMLElementTypes.Manifestation_4012);
 		}
-		if(targetEditPart instanceof ClassClassifierEditPart) {
-			types.add(UMLElementTypes.Manifestation_4012);
-		}
 		if(targetEditPart instanceof CollaborationCompositeEditPart) {
 			types.add(UMLElementTypes.Manifestation_4012);
 		}
@@ -1912,9 +1882,6 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.Abstraction_4007);
 		}
 		if(targetEditPart instanceof ClassCompositeEditPart) {
-			types.add(UMLElementTypes.Abstraction_4007);
-		}
-		if(targetEditPart instanceof ClassClassifierEditPart) {
 			types.add(UMLElementTypes.Abstraction_4007);
 		}
 		if(targetEditPart instanceof CollaborationCompositeEditPart) {
@@ -2172,9 +2139,6 @@ AbstractConstraintEditPart {
 		if(targetEditPart instanceof ClassCompositeEditPart) {
 			types.add(UMLElementTypes.Usage_4008);
 		}
-		if(targetEditPart instanceof ClassClassifierEditPart) {
-			types.add(UMLElementTypes.Usage_4008);
-		}
 		if(targetEditPart instanceof CollaborationCompositeEditPart) {
 			types.add(UMLElementTypes.Usage_4008);
 		}
@@ -2428,9 +2392,6 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.Deployment_4009);
 		}
 		if(targetEditPart instanceof ClassCompositeEditPart) {
-			types.add(UMLElementTypes.Deployment_4009);
-		}
-		if(targetEditPart instanceof ClassClassifierEditPart) {
 			types.add(UMLElementTypes.Deployment_4009);
 		}
 		if(targetEditPart instanceof CollaborationCompositeEditPart) {
@@ -2688,9 +2649,6 @@ AbstractConstraintEditPart {
 		if(targetEditPart instanceof ClassCompositeEditPart) {
 			types.add(UMLElementTypes.Dependency_4017);
 		}
-		if(targetEditPart instanceof ClassClassifierEditPart) {
-			types.add(UMLElementTypes.Dependency_4017);
-		}
 		if(targetEditPart instanceof CollaborationCompositeEditPart) {
 			types.add(UMLElementTypes.Dependency_4017);
 		}
@@ -2946,9 +2904,6 @@ AbstractConstraintEditPart {
 		if(targetEditPart instanceof ClassCompositeEditPart) {
 			types.add(UMLElementTypes.Dependency_4010);
 		}
-		if(targetEditPart instanceof ClassClassifierEditPart) {
-			types.add(UMLElementTypes.Dependency_4010);
-		}
 		if(targetEditPart instanceof CollaborationCompositeEditPart) {
 			types.add(UMLElementTypes.Dependency_4010);
 		}
@@ -3202,9 +3157,6 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.InformationFlow_4021);
 		}
 		if(targetEditPart instanceof ClassCompositeEditPart) {
-			types.add(UMLElementTypes.InformationFlow_4021);
-		}
-		if(targetEditPart instanceof ClassClassifierEditPart) {
 			types.add(UMLElementTypes.InformationFlow_4021);
 		}
 		if(targetEditPart instanceof CollaborationCompositeEditPart) {
@@ -3449,7 +3401,6 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -3538,7 +3489,6 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -3625,7 +3575,6 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -3712,7 +3661,6 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -3799,7 +3747,6 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -3886,7 +3833,6 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -3973,7 +3919,6 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -4060,7 +4005,6 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -4147,7 +4091,6 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -4234,7 +4177,6 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -4321,7 +4263,6 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -4408,7 +4349,6 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -4541,7 +4481,6 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -4628,7 +4567,6 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -4715,7 +4653,6 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -4802,7 +4739,6 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -4889,7 +4825,6 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -4976,7 +4911,6 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -5063,7 +4997,6 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -5150,7 +5083,6 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -5237,7 +5169,6 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -5324,7 +5255,6 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -5415,7 +5345,6 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -5493,10 +5422,6 @@ AbstractConstraintEditPart {
 		}
 		return types;
 	}
-
-
-
-
 
 	/**
 	 * @generated

@@ -110,7 +110,6 @@ public class CollaborationCompositeItemSemanticEditPolicyCN extends UMLBaseItemS
 		super(UMLElementTypes.Collaboration_3086);
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -148,7 +147,6 @@ public class CollaborationCompositeItemSemanticEditPolicyCN extends UMLBaseItemS
 					Node cnode = (Node)cit.next();
 					switch(UMLVisualIDRegistry.getVisualID(cnode)) {
 					case PropertyPartEditPartCN.VISUAL_ID:
-
 
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
@@ -205,7 +203,6 @@ public class CollaborationCompositeItemSemanticEditPolicyCN extends UMLBaseItemS
 						break;
 					case CollaborationUseEditPartCN.VISUAL_ID:
 
-
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -261,7 +258,6 @@ public class CollaborationCompositeItemSemanticEditPolicyCN extends UMLBaseItemS
 						break;
 					case CommentEditPartCN.VISUAL_ID:
 
-
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -289,7 +285,6 @@ public class CollaborationCompositeItemSemanticEditPolicyCN extends UMLBaseItemS
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					case CollaborationRoleEditPartCN.VISUAL_ID:
-
 
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
@@ -345,7 +340,6 @@ public class CollaborationCompositeItemSemanticEditPolicyCN extends UMLBaseItemS
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					case DurationConstraintEditPartCN.VISUAL_ID:
-
 
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
@@ -407,7 +401,6 @@ public class CollaborationCompositeItemSemanticEditPolicyCN extends UMLBaseItemS
 						break;
 					case TimeConstraintEditPartCN.VISUAL_ID:
 
-
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -467,7 +460,6 @@ public class CollaborationCompositeItemSemanticEditPolicyCN extends UMLBaseItemS
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					case IntervalConstraintEditPartCN.VISUAL_ID:
-
 
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
@@ -529,7 +521,6 @@ public class CollaborationCompositeItemSemanticEditPolicyCN extends UMLBaseItemS
 						break;
 					case InteractionConstraintEditPartCN.VISUAL_ID:
 
-
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -589,7 +580,6 @@ public class CollaborationCompositeItemSemanticEditPolicyCN extends UMLBaseItemS
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					case ConstraintEditPartCN.VISUAL_ID:
-
 
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();

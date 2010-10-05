@@ -29,7 +29,6 @@ public class ExecutionEnvironmentPreferencePage extends AbstractPapyrusNodePrefe
 	 */
 	public static final String compartments[] = { "ExecutionEnvironmentCompositeCompartment" };
 
-
 	/**
 	 * @generated
 	 */

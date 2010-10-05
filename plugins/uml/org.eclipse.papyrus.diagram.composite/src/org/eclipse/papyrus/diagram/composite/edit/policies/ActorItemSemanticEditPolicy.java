@@ -92,7 +92,6 @@ public class ActorItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 		super(UMLElementTypes.Actor_2077);
 	}
 
-
 	/**
 	 * @generated
 	 */

@@ -86,7 +86,6 @@ public class DestructionEventItemSemanticEditPolicy extends UMLBaseItemSemanticE
 		super(UMLElementTypes.DestructionEvent_2091);
 	}
 
-
 	/**
 	 * @generated
 	 */

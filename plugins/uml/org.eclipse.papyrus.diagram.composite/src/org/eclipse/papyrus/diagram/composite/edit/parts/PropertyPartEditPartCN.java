@@ -74,7 +74,6 @@ import org.eclipse.swt.graphics.Color;
  */
 public class PropertyPartEditPartCN extends
 
-
 org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 
 	/**
@@ -102,7 +101,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void createDefaultEditPolicies() {
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy());
 		super.createDefaultEditPolicies();
@@ -125,23 +123,15 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
-
-
-
 	/**
 	 * Papyrus codeGen
 	 * 
 	 * @generated
 	 **/
-	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
 
 	}
-
-
-
-
 
 	/**
 	 * @generated
@@ -149,7 +139,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 
-			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				View childView = (View)child.getModel();
 				switch(UMLVisualIDRegistry.getVisualID(childView)) {
@@ -165,12 +154,10 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 				return result;
 			}
 
-			@Override
 			protected Command getMoveChildrenCommand(Request request) {
 				return null;
 			}
 
-			@Override
 			protected Command getCreateCommand(CreateRequest request) {
 				return null;
 			}
@@ -188,7 +175,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 	/**
 	 * @generated
 	 */
-	@Override
 	public PropertyPartFigure getPrimaryShape() {
 		return (PropertyPartFigure)primaryShape;
 	}
@@ -202,17 +188,12 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 			return true;
 		}
 
-
 		if(childEditPart instanceof PropertyPartCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getCompositeCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((PropertyPartCompartmentEditPartCN)childEditPart).getFigure());
 			return true;
 		}
-
-
-
-
 
 		//Papyrus Gencode :Affixed Port locator
 		if(childEditPart instanceof PortEditPart) {
@@ -221,12 +202,8 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 			return true;
 		}
 
-
-
-
 		return false;
 	}
-
 
 	/**
 	 * @generated
@@ -251,7 +228,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
 		if(addFixedChild(childEditPart)) {
 			return;
@@ -262,7 +238,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
 		if(removeFixedChild(childEditPart)) {
 			return;
@@ -273,7 +248,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 		if(editPart instanceof PropertyPartCompartmentEditPartCN) {
 			return getPrimaryShape().getCompositeCompartmentFigure();
@@ -283,7 +257,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 		}
 		return getContentPane();
 	}
-
 
 	/**
 	 * @generated
@@ -298,7 +271,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 		return result;
 	}
 
-
 	/**
 	 * Creates figure for this edit part.
 	 * 
@@ -307,7 +279,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 	 * 
 	 * @generated
 	 */
-	@Override
 	protected NodeFigure createMainFigure() {
 		NodeFigure figure = createNodePlate();
 		figure.setLayoutManager(new StackLayout());
@@ -337,7 +308,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 	/**
 	 * @generated
 	 */
-	@Override
 	public IFigure getContentPane() {
 		if(contentPane != null) {
 			return contentPane;
@@ -348,7 +318,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setForegroundColor(Color color) {
 		if(primaryShape != null) {
 			primaryShape.setForegroundColor(color);
@@ -358,7 +327,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setLineWidth(int width) {
 		if(primaryShape instanceof Shape) {
 			((Shape)primaryShape).setLineWidth(width);
@@ -368,7 +336,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setLineType(int style) {
 		if(primaryShape instanceof Shape) {
 			((Shape)primaryShape).setLineStyle(style);
@@ -378,7 +345,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 	/**
 	 * @generated
 	 */
-	@Override
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(PropertyPartNameEditPartCN.VISUAL_ID));
 	}
@@ -440,9 +406,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 		if(targetEditPart instanceof ClassCompositeEditPart) {
 			types.add(UMLElementTypes.ComponentRealization_4004);
 		}
-		if(targetEditPart instanceof ClassClassifierEditPart) {
-			types.add(UMLElementTypes.ComponentRealization_4004);
-		}
 		if(targetEditPart instanceof CollaborationCompositeEditPart) {
 			types.add(UMLElementTypes.ComponentRealization_4004);
 		}
@@ -696,9 +659,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 			types.add(UMLElementTypes.InterfaceRealization_4005);
 		}
 		if(targetEditPart instanceof ClassCompositeEditPart) {
-			types.add(UMLElementTypes.InterfaceRealization_4005);
-		}
-		if(targetEditPart instanceof ClassClassifierEditPart) {
 			types.add(UMLElementTypes.InterfaceRealization_4005);
 		}
 		if(targetEditPart instanceof CollaborationCompositeEditPart) {
@@ -956,9 +916,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 		if(targetEditPart instanceof ClassCompositeEditPart) {
 			types.add(UMLElementTypes.Substitution_4011);
 		}
-		if(targetEditPart instanceof ClassClassifierEditPart) {
-			types.add(UMLElementTypes.Substitution_4011);
-		}
 		if(targetEditPart instanceof CollaborationCompositeEditPart) {
 			types.add(UMLElementTypes.Substitution_4011);
 		}
@@ -1212,9 +1169,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 			types.add(UMLElementTypes.Realization_4006);
 		}
 		if(targetEditPart instanceof ClassCompositeEditPart) {
-			types.add(UMLElementTypes.Realization_4006);
-		}
-		if(targetEditPart instanceof ClassClassifierEditPart) {
 			types.add(UMLElementTypes.Realization_4006);
 		}
 		if(targetEditPart instanceof CollaborationCompositeEditPart) {
@@ -1472,9 +1426,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 		if(targetEditPart instanceof ClassCompositeEditPart) {
 			types.add(UMLElementTypes.Manifestation_4012);
 		}
-		if(targetEditPart instanceof ClassClassifierEditPart) {
-			types.add(UMLElementTypes.Manifestation_4012);
-		}
 		if(targetEditPart instanceof CollaborationCompositeEditPart) {
 			types.add(UMLElementTypes.Manifestation_4012);
 		}
@@ -1728,9 +1679,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 			types.add(UMLElementTypes.Abstraction_4007);
 		}
 		if(targetEditPart instanceof ClassCompositeEditPart) {
-			types.add(UMLElementTypes.Abstraction_4007);
-		}
-		if(targetEditPart instanceof ClassClassifierEditPart) {
 			types.add(UMLElementTypes.Abstraction_4007);
 		}
 		if(targetEditPart instanceof CollaborationCompositeEditPart) {
@@ -1988,9 +1936,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 		if(targetEditPart instanceof ClassCompositeEditPart) {
 			types.add(UMLElementTypes.Usage_4008);
 		}
-		if(targetEditPart instanceof ClassClassifierEditPart) {
-			types.add(UMLElementTypes.Usage_4008);
-		}
 		if(targetEditPart instanceof CollaborationCompositeEditPart) {
 			types.add(UMLElementTypes.Usage_4008);
 		}
@@ -2244,9 +2189,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 			types.add(UMLElementTypes.Deployment_4009);
 		}
 		if(targetEditPart instanceof ClassCompositeEditPart) {
-			types.add(UMLElementTypes.Deployment_4009);
-		}
-		if(targetEditPart instanceof ClassClassifierEditPart) {
 			types.add(UMLElementTypes.Deployment_4009);
 		}
 		if(targetEditPart instanceof CollaborationCompositeEditPart) {
@@ -2504,9 +2446,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 		if(targetEditPart instanceof ClassCompositeEditPart) {
 			types.add(UMLElementTypes.Dependency_4017);
 		}
-		if(targetEditPart instanceof ClassClassifierEditPart) {
-			types.add(UMLElementTypes.Dependency_4017);
-		}
 		if(targetEditPart instanceof CollaborationCompositeEditPart) {
 			types.add(UMLElementTypes.Dependency_4017);
 		}
@@ -2762,9 +2701,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 		if(targetEditPart instanceof ClassCompositeEditPart) {
 			types.add(UMLElementTypes.Dependency_4010);
 		}
-		if(targetEditPart instanceof ClassClassifierEditPart) {
-			types.add(UMLElementTypes.Dependency_4010);
-		}
 		if(targetEditPart instanceof CollaborationCompositeEditPart) {
 			types.add(UMLElementTypes.Dependency_4010);
 		}
@@ -3018,9 +2954,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 			types.add(UMLElementTypes.InformationFlow_4021);
 		}
 		if(targetEditPart instanceof ClassCompositeEditPart) {
-			types.add(UMLElementTypes.InformationFlow_4021);
-		}
-		if(targetEditPart instanceof ClassClassifierEditPart) {
 			types.add(UMLElementTypes.InformationFlow_4021);
 		}
 		if(targetEditPart instanceof CollaborationCompositeEditPart) {
@@ -3265,7 +3198,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -3352,7 +3284,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -3439,7 +3370,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -3526,7 +3456,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -3613,7 +3542,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -3700,7 +3628,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -3787,7 +3714,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -3874,7 +3800,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -3961,7 +3886,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -4048,7 +3972,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -4135,7 +4058,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -4268,7 +4190,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -4355,7 +4276,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -4442,7 +4362,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -4529,7 +4448,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -4616,7 +4534,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -4703,7 +4620,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -4790,7 +4706,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -4877,7 +4792,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -4964,7 +4878,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -5051,7 +4964,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -5142,7 +5054,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -5221,10 +5132,6 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 		return types;
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */
@@ -5242,7 +5149,7 @@ org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN {
 			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 				prefColor = PreferenceConstantHelper.getElementConstant("Property", PreferenceConstantHelper.COLOR_FILL);
 			}
-			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor(preferenceStore, prefColor));
+			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore)preferenceStore, prefColor));
 		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency() || feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
 			String prefGradient = PreferenceConstantHelper.getElementConstant("Property", PreferenceConstantHelper.COLOR_GRADIENT);
 			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore.getString(prefGradient));

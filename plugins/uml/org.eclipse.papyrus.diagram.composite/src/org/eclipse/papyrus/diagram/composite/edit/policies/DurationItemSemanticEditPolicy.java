@@ -86,7 +86,6 @@ public class DurationItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 		super(UMLElementTypes.Duration_2104);
 	}
 
-
 	/**
 	 * @generated
 	 */

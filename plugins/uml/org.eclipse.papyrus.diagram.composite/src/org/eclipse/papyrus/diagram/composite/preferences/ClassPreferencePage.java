@@ -27,7 +27,7 @@ public class ClassPreferencePage extends AbstractPapyrusNodePreferencePage {
 	/**
 	 * @generated
 	 */
-	public static final String compartments[] = { "ClassAttributeCompartment", "ClassOperationCompartment", "ClassNestedClassifierCompartment" };
+	public static final String compartments[] = { "ClassCompositeCompartment" };
 
 	/**
 	 * @generated

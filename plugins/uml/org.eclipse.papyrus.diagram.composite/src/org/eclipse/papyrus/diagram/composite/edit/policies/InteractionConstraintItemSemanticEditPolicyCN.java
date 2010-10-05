@@ -86,7 +86,6 @@ public class InteractionConstraintItemSemanticEditPolicyCN extends UMLBaseItemSe
 		super(UMLElementTypes.InteractionConstraint_3119);
 	}
 
-
 	/**
 	 * @generated
 	 */

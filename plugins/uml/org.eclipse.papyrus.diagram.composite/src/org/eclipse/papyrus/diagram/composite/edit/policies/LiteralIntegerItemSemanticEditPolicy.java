@@ -86,7 +86,6 @@ public class LiteralIntegerItemSemanticEditPolicy extends UMLBaseItemSemanticEdi
 		super(UMLElementTypes.LiteralInteger_2096);
 	}
 
-
 	/**
 	 * @generated
 	 */

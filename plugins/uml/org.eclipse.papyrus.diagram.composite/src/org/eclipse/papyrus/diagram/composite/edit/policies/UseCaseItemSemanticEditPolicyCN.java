@@ -92,7 +92,6 @@ public class UseCaseItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPoli
 		super(UMLElementTypes.UseCase_3096);
 	}
 
-
 	/**
 	 * @generated
 	 */

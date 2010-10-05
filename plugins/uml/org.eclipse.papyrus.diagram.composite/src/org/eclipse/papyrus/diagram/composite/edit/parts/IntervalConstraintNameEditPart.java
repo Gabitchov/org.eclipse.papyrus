@@ -108,8 +108,6 @@ public class IntervalConstraintNameEditPart extends CompartmentEditPart implemen
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -123,8 +121,6 @@ public class IntervalConstraintNameEditPart extends CompartmentEditPart implemen
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -589,8 +585,6 @@ public class IntervalConstraintNameEditPart extends CompartmentEditPart implemen
 		return (View)getModel();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -694,8 +688,6 @@ public class IntervalConstraintNameEditPart extends CompartmentEditPart implemen
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -711,7 +703,6 @@ public class IntervalConstraintNameEditPart extends CompartmentEditPart implemen
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
-
 
 	/**
 	 * @generated
@@ -759,13 +750,10 @@ public class IntervalConstraintNameEditPart extends CompartmentEditPart implemen
 		return null;
 	}
 
-
-
 	/**
 	 * @generated
 	 */
 	private static final String ADD_PARENT_MODEL = "AddParentModel";
-
 
 	/**
 	 * @generated
@@ -792,7 +780,6 @@ public class IntervalConstraintNameEditPart extends CompartmentEditPart implemen
 
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -800,6 +787,5 @@ public class IntervalConstraintNameEditPart extends CompartmentEditPart implemen
 		removeListenerFilter(ADD_PARENT_MODEL);
 
 	}
-
 
 }

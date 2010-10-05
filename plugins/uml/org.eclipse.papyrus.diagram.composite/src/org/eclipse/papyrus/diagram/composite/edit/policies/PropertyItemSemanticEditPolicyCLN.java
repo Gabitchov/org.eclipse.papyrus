@@ -38,7 +38,6 @@ public class PropertyItemSemanticEditPolicyCLN extends UMLBaseItemSemanticEditPo
 		super(UMLElementTypes.Property_3101);
 	}
 
-
 	/**
 	 * @generated
 	 */

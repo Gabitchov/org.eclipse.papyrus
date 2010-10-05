@@ -27,5 +27,4 @@ public class InterfaceCompartmentItemSemanticEditPolicy extends UMLBaseItemSeman
 		super(UMLElementTypes.Interface_2076);
 	}
 
-
 }

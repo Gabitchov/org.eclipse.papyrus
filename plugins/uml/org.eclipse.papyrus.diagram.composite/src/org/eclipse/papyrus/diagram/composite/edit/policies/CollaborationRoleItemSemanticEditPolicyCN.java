@@ -86,7 +86,6 @@ public class CollaborationRoleItemSemanticEditPolicyCN extends UMLBaseItemSemant
 		super(UMLElementTypes.ConnectableElement_3115);
 	}
 
-
 	/**
 	 * @generated
 	 */

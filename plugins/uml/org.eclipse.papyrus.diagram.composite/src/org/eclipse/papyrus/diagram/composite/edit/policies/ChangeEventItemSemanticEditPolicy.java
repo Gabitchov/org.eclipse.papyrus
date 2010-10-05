@@ -86,7 +86,6 @@ public class ChangeEventItemSemanticEditPolicy extends UMLBaseItemSemanticEditPo
 		super(UMLElementTypes.ChangeEvent_2088);
 	}
 
-
 	/**
 	 * @generated
 	 */

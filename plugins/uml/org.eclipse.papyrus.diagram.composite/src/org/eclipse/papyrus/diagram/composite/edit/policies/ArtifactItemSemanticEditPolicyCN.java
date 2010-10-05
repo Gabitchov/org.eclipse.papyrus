@@ -92,7 +92,6 @@ public class ArtifactItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPol
 		super(UMLElementTypes.Artifact_3093);
 	}
 
-
 	/**
 	 * @generated
 	 */

@@ -91,7 +91,11 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class OperationEditPartCLN extends CompartmentEditPart implements ITextAwareEditPart, IPrimaryEditPart {
+public class OperationEditPartCLN
+
+extends CompartmentEditPart
+
+implements ITextAwareEditPart, IPrimaryEditPart {
 
 	/**
 	 * @generated
@@ -118,8 +122,6 @@ public class OperationEditPartCLN extends CompartmentEditPart implements ITextAw
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -133,8 +135,6 @@ public class OperationEditPartCLN extends CompartmentEditPart implements ITextAw
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -610,8 +610,6 @@ public class OperationEditPartCLN extends CompartmentEditPart implements ITextAw
 		return (View)getModel();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -715,8 +713,6 @@ public class OperationEditPartCLN extends CompartmentEditPart implements ITextAw
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -732,8 +728,6 @@ public class OperationEditPartCLN extends CompartmentEditPart implements ITextAw
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
-
-
 
 	/**
 	 * @generated
@@ -786,14 +780,10 @@ public class OperationEditPartCLN extends CompartmentEditPart implements ITextAw
 		return new OperationFigureDescriptor();
 	}
 
-
 	/**
 	 * @generated
 	 */
 	public class OperationFigureDescriptor extends WrappingLabel {
-
-
-
 
 		/**
 		 * @generated
@@ -803,12 +793,7 @@ public class OperationEditPartCLN extends CompartmentEditPart implements ITextAw
 
 			this.setFont(THIS_FONT);
 
-
 		}
-
-
-
-
 
 	}
 
@@ -816,7 +801,5 @@ public class OperationEditPartCLN extends CompartmentEditPart implements ITextAw
 	 * @generated
 	 */
 	static final Font THIS_FONT = new Font(Display.getCurrent(), "Arial", 10, SWT.NORMAL);
-
-
 
 }

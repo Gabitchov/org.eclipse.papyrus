@@ -54,14 +54,11 @@ public class CompositeStructureDiagramEditPart extends DiagramEditPart {
 	 */
 	public static final int VISUAL_ID = 1000;
 
-
-
 	/**
 	 * @generated
 	 */
 	public CompositeStructureDiagramEditPart(View view) {
 		super(view);
-
 
 		getFigure().setClippingStrategy(new IClippingStrategy() {
 
@@ -123,7 +120,6 @@ public class CompositeStructureDiagramEditPart extends DiagramEditPart {
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -154,7 +150,6 @@ public class CompositeStructureDiagramEditPart extends DiagramEditPart {
 		}
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -171,10 +166,6 @@ public class CompositeStructureDiagramEditPart extends DiagramEditPart {
 		}
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */
@@ -190,7 +181,6 @@ public class CompositeStructureDiagramEditPart extends DiagramEditPart {
 		}
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -201,7 +191,5 @@ public class CompositeStructureDiagramEditPart extends DiagramEditPart {
 		}
 		return super.getAdapter(adapter);
 	}
-
-
 
 }

@@ -42,8 +42,6 @@ import org.eclipse.papyrus.diagram.composite.part.Messages;
  */
 public class CollaborationCompositeCompartmentEditPartCN
 
-
-
 extends ShapeCompartmentEditPart
 
 {
@@ -59,7 +57,6 @@ extends ShapeCompartmentEditPart
 	public CollaborationCompositeCompartmentEditPartCN(View view) {
 		super(view);
 	}
-
 
 	/**
 	 * @generated
@@ -93,9 +90,6 @@ extends ShapeCompartmentEditPart
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -104,8 +98,6 @@ extends ShapeCompartmentEditPart
 			super.setRatio(ratio);
 		}
 	}
-
-
 
 	/**
 	 * @generated

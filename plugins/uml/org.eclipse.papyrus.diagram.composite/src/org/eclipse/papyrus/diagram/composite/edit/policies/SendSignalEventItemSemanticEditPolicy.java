@@ -86,7 +86,6 @@ public class SendSignalEventItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 		super(UMLElementTypes.SendSignalEvent_2086);
 	}
 
-
 	/**
 	 * @generated
 	 */

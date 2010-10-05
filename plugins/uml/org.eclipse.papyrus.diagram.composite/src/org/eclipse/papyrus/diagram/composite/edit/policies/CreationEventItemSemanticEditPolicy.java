@@ -86,7 +86,6 @@ public class CreationEventItemSemanticEditPolicy extends UMLBaseItemSemanticEdit
 		super(UMLElementTypes.CreationEvent_2090);
 	}
 
-
 	/**
 	 * @generated
 	 */
