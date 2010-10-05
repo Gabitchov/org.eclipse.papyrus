@@ -86,7 +86,6 @@ public class PortItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 		super(UMLElementTypes.Port_3069);
 	}
 
-
 	/**
 	 * @generated
 	 */

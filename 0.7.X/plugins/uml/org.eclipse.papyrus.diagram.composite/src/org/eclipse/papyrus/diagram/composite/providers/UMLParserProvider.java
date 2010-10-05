@@ -262,26 +262,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private IParser className_5157Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getClassName_5157Parser() {
-		if(className_5157Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			parser.setViewPattern("{0}  "); //$NON-NLS-1$
-			parser.setEditorPattern("{0}"); //$NON-NLS-1$
-			parser.setEditPattern("{0}"); //$NON-NLS-1$
-			className_5157Parser = parser;
-		}
-		return className_5157Parser;
-	}
-
-	/**
-	 * @generated
-	 */
 	private IParser collaborationName_5158Parser;
 
 	/**
@@ -1217,7 +1197,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		}
 		return constraintSpecification_6039Parser;
 	}
-
 
 	/**
 	 * @generated
@@ -2272,7 +2251,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		return class_3114Parser;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -2636,7 +2614,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		return informationFlowName_6032Parser;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -2664,8 +2641,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getNodeName_5124Parser();
 		case ClassCompositeNameEditPart.VISUAL_ID:
 			return getClassName_5156Parser();
-		case ClassClassifierNameEditPart.VISUAL_ID:
-			return getClassName_5157Parser();
 		case CollaborationCompositeNameEditPart.VISUAL_ID:
 			return getCollaborationName_5158Parser();
 		case InterfaceNameEditPart.VISUAL_ID:

@@ -57,15 +57,12 @@ public class UMLPropertySection extends AdvancedPropertySection implements IProp
 		return null;
 	}
 
-
-
 	/**
 	 * @generated
 	 */
 	protected IPropertySourceProvider getPropertySourceProvider() {
 		return this;
 	}
-
 
 	/**
 	 * Modify/unwrap selection.
@@ -90,7 +87,6 @@ public class UMLPropertySection extends AdvancedPropertySection implements IProp
 		return selected;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -110,7 +106,6 @@ public class UMLPropertySection extends AdvancedPropertySection implements IProp
 		super.setInput(part, new StructuredSelection(transformedSelection));
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -124,7 +119,5 @@ public class UMLPropertySection extends AdvancedPropertySection implements IProp
 		}
 		return null;
 	}
-
-
 
 }

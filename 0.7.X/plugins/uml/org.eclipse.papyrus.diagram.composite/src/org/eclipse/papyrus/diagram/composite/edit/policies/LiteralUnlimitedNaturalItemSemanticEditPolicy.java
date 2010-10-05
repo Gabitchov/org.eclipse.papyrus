@@ -86,7 +86,6 @@ public class LiteralUnlimitedNaturalItemSemanticEditPolicy extends UMLBaseItemSe
 		super(UMLElementTypes.LiteralUnlimitedNatural_2099);
 	}
 
-
 	/**
 	 * @generated
 	 */

@@ -29,7 +29,6 @@ public class ComponentPreferencePage extends AbstractPapyrusNodePreferencePage {
 	 */
 	public static final String compartments[] = { "ComponentCompositeCompartment" };
 
-
 	/**
 	 * @generated
 	 */

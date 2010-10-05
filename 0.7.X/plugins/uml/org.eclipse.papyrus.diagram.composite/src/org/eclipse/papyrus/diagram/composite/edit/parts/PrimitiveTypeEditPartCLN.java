@@ -89,7 +89,11 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class PrimitiveTypeEditPartCLN extends CompartmentEditPart implements ITextAwareEditPart, IPrimaryEditPart {
+public class PrimitiveTypeEditPartCLN
+
+extends CompartmentEditPart
+
+implements ITextAwareEditPart, IPrimaryEditPart {
 
 	/**
 	 * @generated
@@ -116,8 +120,6 @@ public class PrimitiveTypeEditPartCLN extends CompartmentEditPart implements ITe
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -131,8 +133,6 @@ public class PrimitiveTypeEditPartCLN extends CompartmentEditPart implements ITe
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -608,8 +608,6 @@ public class PrimitiveTypeEditPartCLN extends CompartmentEditPart implements ITe
 		return getPrimaryView();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -713,8 +711,6 @@ public class PrimitiveTypeEditPartCLN extends CompartmentEditPart implements ITe
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -730,8 +726,6 @@ public class PrimitiveTypeEditPartCLN extends CompartmentEditPart implements ITe
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
-
-
 
 	/**
 	 * @generated

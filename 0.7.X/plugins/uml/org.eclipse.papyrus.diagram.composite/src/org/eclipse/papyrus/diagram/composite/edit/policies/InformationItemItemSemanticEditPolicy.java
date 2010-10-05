@@ -92,7 +92,6 @@ public class InformationItemItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 		super(UMLElementTypes.InformationItem_2080);
 	}
 
-
 	/**
 	 * @generated
 	 */

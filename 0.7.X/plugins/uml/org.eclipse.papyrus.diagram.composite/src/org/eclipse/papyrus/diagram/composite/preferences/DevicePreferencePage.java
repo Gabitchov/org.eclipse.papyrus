@@ -29,7 +29,6 @@ public class DevicePreferencePage extends AbstractPapyrusNodePreferencePage {
 	 */
 	public static final String compartments[] = { "DeviceCompositeCompartment" };
 
-
 	/**
 	 * @generated
 	 */

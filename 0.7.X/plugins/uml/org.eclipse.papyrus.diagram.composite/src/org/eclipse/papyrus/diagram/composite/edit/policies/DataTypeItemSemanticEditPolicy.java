@@ -101,7 +101,6 @@ public class DataTypeItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 		super(UMLElementTypes.DataType_2068);
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -140,8 +139,6 @@ public class DataTypeItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 					switch(UMLVisualIDRegistry.getVisualID(cnode)) {
 					case PropertyEditPartCLN.VISUAL_ID:
 
-
-
 						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: false
 						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
@@ -154,8 +151,6 @@ public class DataTypeItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 					Node cnode = (Node)cit.next();
 					switch(UMLVisualIDRegistry.getVisualID(cnode)) {
 					case OperationEditPartCLN.VISUAL_ID:
-
-
 
 						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: false
 						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 

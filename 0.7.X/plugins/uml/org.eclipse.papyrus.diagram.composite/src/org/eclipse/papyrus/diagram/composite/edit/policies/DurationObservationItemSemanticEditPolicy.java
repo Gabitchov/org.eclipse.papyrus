@@ -86,7 +86,6 @@ public class DurationObservationItemSemanticEditPolicy extends UMLBaseItemSemant
 		super(UMLElementTypes.DurationObservation_2093);
 	}
 
-
 	/**
 	 * @generated
 	 */

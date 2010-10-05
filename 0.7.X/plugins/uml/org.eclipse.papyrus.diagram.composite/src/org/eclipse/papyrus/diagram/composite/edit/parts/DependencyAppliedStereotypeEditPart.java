@@ -105,8 +105,6 @@ public class DependencyAppliedStereotypeEditPart extends LabelEditPart implement
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -120,8 +118,6 @@ public class DependencyAppliedStereotypeEditPart extends LabelEditPart implement
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -588,8 +584,6 @@ public class DependencyAppliedStereotypeEditPart extends LabelEditPart implement
 		return getPrimaryView();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -693,8 +687,6 @@ public class DependencyAppliedStereotypeEditPart extends LabelEditPart implement
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -724,9 +716,6 @@ public class DependencyAppliedStereotypeEditPart extends LabelEditPart implement
 				}
 			}
 		}
-
-
-
 
 		super.handleNotificationEvent(event);
 	}

@@ -61,7 +61,6 @@ public class ProtocolStateMachineCompositeCompartmentItemSemanticEditPolicyCN ex
 		super(UMLElementTypes.ProtocolStateMachine_3074);
 	}
 
-
 	/**
 	 * @generated
 	 */

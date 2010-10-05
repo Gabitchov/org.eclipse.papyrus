@@ -86,7 +86,6 @@ public class DurationConstraintItemSemanticEditPolicyCN extends UMLBaseItemSeman
 		super(UMLElementTypes.DurationConstraint_3116);
 	}
 
-
 	/**
 	 * @generated
 	 */

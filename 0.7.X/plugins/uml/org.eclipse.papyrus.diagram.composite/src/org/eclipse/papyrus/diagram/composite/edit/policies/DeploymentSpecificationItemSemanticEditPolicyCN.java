@@ -92,7 +92,6 @@ public class DeploymentSpecificationItemSemanticEditPolicyCN extends UMLBaseItem
 		super(UMLElementTypes.DeploymentSpecification_3092);
 	}
 
-
 	/**
 	 * @generated
 	 */

@@ -51,10 +51,6 @@ implements ITreeBranchEditPart {
 		removeEditPolicy(EditPolicyRoles.SEMANTIC_ROLE);
 	}
 
-
-
-
-
 	/**
 	 * Creates figure for this edit part.
 	 * 
@@ -75,14 +71,10 @@ implements ITreeBranchEditPart {
 		return (LinkDescriptor)getFigure();
 	}
 
-
 	/**
 	 * @generated
 	 */
 	public class LinkDescriptor extends PolylineConnectionEx {
-
-
-
 
 		/**
 		 * @generated
@@ -93,11 +85,6 @@ implements ITreeBranchEditPart {
 
 		}
 
-
-
-
 	}
-
-
 
 }

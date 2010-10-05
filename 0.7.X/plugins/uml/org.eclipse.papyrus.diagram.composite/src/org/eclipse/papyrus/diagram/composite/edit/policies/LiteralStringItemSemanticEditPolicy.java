@@ -86,7 +86,6 @@ public class LiteralStringItemSemanticEditPolicy extends UMLBaseItemSemanticEdit
 		super(UMLElementTypes.LiteralString_2098);
 	}
 
-
 	/**
 	 * @generated
 	 */

@@ -92,7 +92,6 @@ public class SignalItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy 
 		super(UMLElementTypes.Signal_2081);
 	}
 
-
 	/**
 	 * @generated
 	 */

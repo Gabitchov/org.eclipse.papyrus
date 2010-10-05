@@ -86,7 +86,6 @@ public class ParameterItemSemanticEditPolicy extends UMLBaseItemSemanticEditPoli
 		super(UMLElementTypes.Parameter_3088);
 	}
 
-
 	/**
 	 * @generated
 	 */

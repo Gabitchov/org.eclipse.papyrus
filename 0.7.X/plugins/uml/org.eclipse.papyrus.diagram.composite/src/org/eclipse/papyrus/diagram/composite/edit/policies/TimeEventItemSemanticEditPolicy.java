@@ -86,7 +86,6 @@ public class TimeEventItemSemanticEditPolicy extends UMLBaseItemSemanticEditPoli
 		super(UMLElementTypes.TimeEvent_2089);
 	}
 
-
 	/**
 	 * @generated
 	 */

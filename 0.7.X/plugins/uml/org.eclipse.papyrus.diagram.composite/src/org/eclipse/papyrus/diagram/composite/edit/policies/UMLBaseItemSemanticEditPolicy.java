@@ -286,9 +286,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 */
 	protected Command getMoveCommand(MoveRequest req) {
 
-
 		return getGEFWrapper(new MoveElementsCommand(req));
-
 
 	}
 
@@ -338,7 +336,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -349,7 +346,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 		return cached;
 	}
-
 
 	/**
 	 * @generated
@@ -363,14 +359,12 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			// use static method #getLinkConstraints() to access instance
 		}
 
-
 		/**
 		 * @generated
 		 */
 		public boolean canCreateLink_4001() {
 			return canExistLink_4001();
 		}
-
 
 		/**
 		 * @generated
@@ -385,7 +379,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistCommentAnnotatedElement_4002(source, target);
 		}
 
-
 		/**
 		 * @generated
 		 */
@@ -399,14 +392,12 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistConstraintConstrainedElement_4003(source, target);
 		}
 
-
 		/**
 		 * @generated
 		 */
 		public boolean canCreateComponentRealization_4004(Package container, NamedElement source, NamedElement target) {
 			return canExistComponentRealization_4004(container, null, source, target);
 		}
-
 
 		/**
 		 * @generated
@@ -415,14 +406,12 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistInterfaceRealization_4005(container, null, source, target);
 		}
 
-
 		/**
 		 * @generated
 		 */
 		public boolean canCreateSubstitution_4011(Package container, NamedElement source, NamedElement target) {
 			return canExistSubstitution_4011(container, null, source, target);
 		}
-
 
 		/**
 		 * @generated
@@ -431,14 +420,12 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistRealization_4006(container, null, source, target);
 		}
 
-
 		/**
 		 * @generated
 		 */
 		public boolean canCreateManifestation_4012(Package container, NamedElement source, NamedElement target) {
 			return canExistManifestation_4012(container, null, source, target);
 		}
-
 
 		/**
 		 * @generated
@@ -447,14 +434,12 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistAbstraction_4007(container, null, source, target);
 		}
 
-
 		/**
 		 * @generated
 		 */
 		public boolean canCreateUsage_4008(Package container, NamedElement source, NamedElement target) {
 			return canExistUsage_4008(container, null, source, target);
 		}
-
 
 		/**
 		 * @generated
@@ -463,14 +448,12 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistDeployment_4009(container, null, source, target);
 		}
 
-
 		/**
 		 * @generated
 		 */
 		public boolean canCreateDependency_4017(Package container, NamedElement source, NamedElement target) {
 			return canExistDependency_4017(container, null, source, target);
 		}
-
 
 		/**
 		 * @generated
@@ -479,7 +462,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistDependency_4010(container, null, source, target);
 		}
 
-
 		/**
 		 * @generated
 		 */
@@ -487,14 +469,12 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistConnector_4013(container, null, source, target);
 		}
 
-
 		/**
 		 * @generated
 		 */
 		public boolean canCreateGeneralization_4015(Classifier container, Classifier source, Classifier target) {
 			return canExistGeneralization_4015(container, null, source, target);
 		}
-
 
 		/**
 		 * @generated
@@ -509,7 +489,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistTimeObservationEvent_4018(source, target);
 		}
 
-
 		/**
 		 * @generated
 		 */
@@ -522,7 +501,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 			return canExistDurationObservationEvent_4019(source, target);
 		}
-
 
 		/**
 		 * @generated
@@ -537,14 +515,12 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistInformationItemRepresented_4020(source, target);
 		}
 
-
 		/**
 		 * @generated
 		 */
 		public boolean canCreateInformationFlow_4021(Package container, NamedElement source, NamedElement target) {
 			return canExistInformationFlow_4021(container, null, source, target);
 		}
-
 
 		/**
 		 * @generated

@@ -92,7 +92,6 @@ public class PrimitiveTypeItemSemanticEditPolicy extends UMLBaseItemSemanticEdit
 		super(UMLElementTypes.PrimitiveType_2066);
 	}
 
-
 	/**
 	 * @generated
 	 */

@@ -86,7 +86,6 @@ public class OpaqueExpressionItemSemanticEditPolicy extends UMLBaseItemSemanticE
 		super(UMLElementTypes.OpaqueExpression_2101);
 	}
 
-
 	/**
 	 * @generated
 	 */
