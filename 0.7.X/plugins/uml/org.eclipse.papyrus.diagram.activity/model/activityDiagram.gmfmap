@@ -29,7 +29,7 @@
           editorPattern=""
           editPattern="">
         <diagramLabel
-            href="activityDiagram.gmfgraph#ActivityName"/>
+            href="ActivityFigure.gmfgraph#ActivityFigureNameDiagramLabel"/>
         <features
             href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
       </labelMappings>
@@ -37,12 +37,15 @@
           xsi:type="gmfmap:FeatureLabelMapping"
           readOnly="true">
         <diagramLabel
-            href="activityDiagram.gmfgraph#ActivitySingleExecution"/>
+            href="ActivityFigure.gmfgraph#ActivityFigureSingleExecutionDiagramLabel"/>
         <features
             href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/isSingleExecution"/>
       </labelMappings>
+      <tool
+          xsi:type="gmftool:CreationTool"
+          href="activityDiagram.gmftool#//@palette/@tools.0/@tools.41"/>
       <diagramNode
-          href="activityDiagram.gmfgraph#ActivityNode"/>
+          href="ActivityFigure.gmfgraph#ActivityFigureNode"/>
       <children
           compartment="//@nodes.0/@ownedChild/@compartments.0"
           referencedChild="//@nodes.0/@ownedChild/@children.0/@ownedChild">
@@ -2770,6 +2773,7 @@
         </ownedChild>
       </children>
       <children
+          compartment="//@nodes.0/@ownedChild/@compartments.3"
           referencedChild="//@nodes.0/@ownedChild/@children.35/@ownedChild">
         <containmentFeature
             href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/node"/>
@@ -2840,25 +2844,33 @@
           </children>
         </ownedChild>
       </children>
+      <children
+          compartment="//@nodes.0/@ownedChild/@compartments.3"
+          referencedChild="//@nodes.0/@ownedChild">
+        <containmentFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//BehavioredClassifier/ownedBehavior"/>
+        <childrenFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//BehavioredClassifier/ownedBehavior"/>
+      </children>
       <compartments
           children="//@nodes.0/@ownedChild/@children.0">
         <compartment
-            href="activityDiagram.gmfgraph#ActivityParametersCompartment"/>
+            href="ActivityFigure.gmfgraph#ActivityFigureParameterCompartment"/>
       </compartments>
       <compartments
           children="//@nodes.0/@ownedChild/@children.1">
         <compartment
-            href="activityDiagram.gmfgraph#ActivityPreConditionsCompartment"/>
+            href="ActivityFigure.gmfgraph#ActivityFigurePreconditionCompartment"/>
       </compartments>
       <compartments
           children="//@nodes.0/@ownedChild/@children.2">
         <compartment
-            href="activityDiagram.gmfgraph#ActivityPostConditionsCompartment"/>
+            href="ActivityFigure.gmfgraph#ActivityFigurePostCondtionCompartment"/>
       </compartments>
       <compartments
-          children="//@nodes.0/@ownedChild/@children.5 //@nodes.0/@ownedChild/@children.3 //@nodes.0/@ownedChild/@children.4 //@nodes.0/@ownedChild/@children.6 //@nodes.0/@ownedChild/@children.15 //@nodes.0/@ownedChild/@children.7 //@nodes.0/@ownedChild/@children.8 //@nodes.0/@ownedChild/@children.16 //@nodes.0/@ownedChild/@children.13 //@nodes.0/@ownedChild/@children.14 //@nodes.0/@ownedChild/@children.9 //@nodes.0/@ownedChild/@children.10 //@nodes.0/@ownedChild/@children.11 //@nodes.0/@ownedChild/@children.12 //@nodes.0/@ownedChild/@children.17 //@nodes.0/@ownedChild/@children.18 //@nodes.0/@ownedChild/@children.19 //@nodes.0/@ownedChild/@children.20 //@nodes.0/@ownedChild/@children.22 //@nodes.0/@ownedChild/@children.23 //@nodes.0/@ownedChild/@children.25 //@nodes.0/@ownedChild/@children.31 //@nodes.0/@ownedChild/@children.32 //@nodes.0/@ownedChild/@children.33 //@nodes.0/@ownedChild/@children.27 //@nodes.0/@ownedChild/@children.28 //@nodes.0/@ownedChild/@children.29 //@nodes.0/@ownedChild/@children.30 //@nodes.0/@ownedChild/@children.21 //@nodes.0/@ownedChild/@children.26 //@nodes.0/@ownedChild/@children.34">
+          children="//@nodes.0/@ownedChild/@children.5 //@nodes.0/@ownedChild/@children.3 //@nodes.0/@ownedChild/@children.4 //@nodes.0/@ownedChild/@children.6 //@nodes.0/@ownedChild/@children.15 //@nodes.0/@ownedChild/@children.7 //@nodes.0/@ownedChild/@children.8 //@nodes.0/@ownedChild/@children.16 //@nodes.0/@ownedChild/@children.13 //@nodes.0/@ownedChild/@children.14 //@nodes.0/@ownedChild/@children.9 //@nodes.0/@ownedChild/@children.10 //@nodes.0/@ownedChild/@children.11 //@nodes.0/@ownedChild/@children.12 //@nodes.0/@ownedChild/@children.17 //@nodes.0/@ownedChild/@children.18 //@nodes.0/@ownedChild/@children.19 //@nodes.0/@ownedChild/@children.20 //@nodes.0/@ownedChild/@children.22 //@nodes.0/@ownedChild/@children.23 //@nodes.0/@ownedChild/@children.25 //@nodes.0/@ownedChild/@children.31 //@nodes.0/@ownedChild/@children.32 //@nodes.0/@ownedChild/@children.33 //@nodes.0/@ownedChild/@children.27 //@nodes.0/@ownedChild/@children.28 //@nodes.0/@ownedChild/@children.29 //@nodes.0/@ownedChild/@children.30 //@nodes.0/@ownedChild/@children.21 //@nodes.0/@ownedChild/@children.26 //@nodes.0/@ownedChild/@children.34 //@nodes.0/@ownedChild/@children.35 //@nodes.0/@ownedChild/@children.36">
         <compartment
-            href="activityDiagram.gmfgraph#ActivityContentCompartment"/>
+            href="ActivityFigure.gmfgraph#ActivityFigureContentCompartment"/>
       </compartments>
     </ownedChild>
   </nodes>
