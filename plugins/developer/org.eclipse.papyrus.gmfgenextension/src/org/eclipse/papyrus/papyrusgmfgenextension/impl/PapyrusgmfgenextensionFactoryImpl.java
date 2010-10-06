@@ -16,6 +16,7 @@ import org.eclipse.papyrus.papyrusgmfgenextension.AlternateCanvas;
 import org.eclipse.papyrus.papyrusgmfgenextension.AlternateGenLink;
 import org.eclipse.papyrus.papyrusgmfgenextension.AlternateGenTopLevelNode;
 import org.eclipse.papyrus.papyrusgmfgenextension.CommentedElement;
+import org.eclipse.papyrus.papyrusgmfgenextension.EditPartUsingDeleteService;
 import org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView;
 import org.eclipse.papyrus.papyrusgmfgenextension.ExternalHook;
 import org.eclipse.papyrus.papyrusgmfgenextension.GenNodeConstraint;
@@ -107,6 +108,8 @@ public class PapyrusgmfgenextensionFactoryImpl extends EFactoryImpl implements P
 			return createSpecificLocatorExternalLabel();
 		case PapyrusgmfgenextensionPackage.ADDITIONAL_EDIT_PART_CANDIES:
 			return createAdditionalEditPartCandies();
+		case PapyrusgmfgenextensionPackage.EDIT_PART_USING_DELETE_SERVICE:
+			return createEditPartUsingDeleteService();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -275,6 +278,17 @@ public class PapyrusgmfgenextensionFactoryImpl extends EFactoryImpl implements P
 	public AdditionalEditPartCandies createAdditionalEditPartCandies() {
 		AdditionalEditPartCandiesImpl additionalEditPartCandies = new AdditionalEditPartCandiesImpl();
 		return additionalEditPartCandies;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EditPartUsingDeleteService createEditPartUsingDeleteService() {
+		EditPartUsingDeleteServiceImpl editPartUsingDeleteService = new EditPartUsingDeleteServiceImpl();
+		return editPartUsingDeleteService;
 	}
 
 	/**

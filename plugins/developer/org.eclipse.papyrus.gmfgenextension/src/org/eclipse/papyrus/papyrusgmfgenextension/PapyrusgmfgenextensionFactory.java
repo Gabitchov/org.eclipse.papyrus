@@ -179,6 +179,16 @@ public interface PapyrusgmfgenextensionFactory extends EFactory {
 	AdditionalEditPartCandies createAdditionalEditPartCandies();
 
 	/**
+	 * Returns a new object of class '<em>Edit Part Using Delete Service</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return a new object of class '<em>Edit Part Using Delete Service</em>'.
+	 * @generated
+	 */
+	EditPartUsingDeleteService createEditPartUsingDeleteService();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
