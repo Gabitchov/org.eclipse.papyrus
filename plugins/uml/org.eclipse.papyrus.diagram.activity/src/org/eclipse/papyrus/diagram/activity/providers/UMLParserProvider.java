@@ -45,6 +45,8 @@ import org.eclipse.papyrus.diagram.activity.parser.custom.ObjectNodeSelectionPar
 import org.eclipse.papyrus.diagram.activity.parser.custom.ParameterParser;
 import org.eclipse.papyrus.diagram.activity.parser.custom.PinParser;
 import org.eclipse.papyrus.diagram.activity.parser.custom.PinValueParser;
+import org.eclipse.papyrus.diagram.activity.parser.custom.PostConditionConstraintLabelParser;
+import org.eclipse.papyrus.diagram.activity.parser.custom.PreConditionConstraintLabelParser;
 import org.eclipse.papyrus.diagram.activity.parser.custom.StructuredActivityNodeKeywordParser;
 import org.eclipse.papyrus.diagram.activity.parsers.MessageFormatParser;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
@@ -108,19 +110,14 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private IParser constraint_3002Parser;
+	private PreConditionConstraintLabelParser constraint_3002Parser;
 
 	/**
 	 * @generated
 	 */
 	private IParser getConstraint_3002Parser() {
 		if(constraint_3002Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			parser.setViewPattern("<<precondition>> {0}"); //$NON-NLS-1$
-			parser.setEditorPattern("{0}"); //$NON-NLS-1$
-			parser.setEditPattern("{0}"); //$NON-NLS-1$
-			constraint_3002Parser = parser;
+			constraint_3002Parser = new PreConditionConstraintLabelParser();
 		}
 		return constraint_3002Parser;
 	}
@@ -128,19 +125,14 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private IParser constraint_3003Parser;
+	private PostConditionConstraintLabelParser constraint_3003Parser;
 
 	/**
 	 * @generated
 	 */
 	private IParser getConstraint_3003Parser() {
 		if(constraint_3003Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			parser.setViewPattern("<<postcondition>> {0}"); //$NON-NLS-1$
-			parser.setEditorPattern("{0}"); //$NON-NLS-1$
-			parser.setEditPattern("{0}"); //$NON-NLS-1$
-			constraint_3003Parser = parser;
+			constraint_3003Parser = new PostConditionConstraintLabelParser();
 		}
 		return constraint_3003Parser;
 	}
@@ -1702,6 +1694,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private ActivitySingleExecutionParser activityIsSingleExecution_5143Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getActivityIsSingleExecution_5143Parser() {
+		if(activityIsSingleExecution_5143Parser == null) {
+			activityIsSingleExecution_5143Parser = new ActivitySingleExecutionParser();
+		}
+		return activityIsSingleExecution_5143Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser valueSpecificationActionName_5126Parser;
 
 	/**
@@ -2473,6 +2480,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getOutputPinLabel_5141Parser();
 		case ActivityNameEditPartCN.VISUAL_ID:
 			return getActivityName_5142Parser();
+		case ActivityIsSingleExecutionCNEditPart.VISUAL_ID:
+			return getActivityIsSingleExecution_5143Parser();
 		case ObjectFlowNameEditPart.VISUAL_ID:
 			return getObjectFlowName_6001Parser();
 		case ObjectFlowWeightEditPart.VISUAL_ID:

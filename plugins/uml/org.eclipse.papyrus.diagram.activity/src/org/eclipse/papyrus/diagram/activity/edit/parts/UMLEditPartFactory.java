@@ -633,6 +633,9 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ActivityNameEditPartCN.VISUAL_ID:
 				return new ActivityNameEditPartCN(view);
 
+			case ActivityIsSingleExecutionCNEditPart.VISUAL_ID:
+				return new ActivityIsSingleExecutionCNEditPart(view);
+
 			case ActivityActivityParametersCompartmentEditPart.VISUAL_ID:
 				return new ActivityActivityParametersCompartmentEditPart(view);
 
@@ -666,9 +669,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart.VISUAL_ID:
 				return new InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart(view);
 
-			case ActivityCNContentCompartmentEditPart.VISUAL_ID:
-				return new ActivityCNContentCompartmentEditPart(view);
-
 			case ActivityCNParametersCompartmentEditPart.VISUAL_ID:
 				return new ActivityCNParametersCompartmentEditPart(view);
 
@@ -677,6 +677,9 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case ActivityCNPostConditionsCompartmentEditPart.VISUAL_ID:
 				return new ActivityCNPostConditionsCompartmentEditPart(view);
+
+			case ActivityCNContentCompartmentEditPart.VISUAL_ID:
+				return new ActivityCNContentCompartmentEditPart(view);
 
 			case ActionLocalPreconditionEditPart.VISUAL_ID:
 				return new ActionLocalPreconditionEditPart(view);

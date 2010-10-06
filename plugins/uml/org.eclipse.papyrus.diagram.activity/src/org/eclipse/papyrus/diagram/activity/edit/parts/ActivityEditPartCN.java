@@ -174,6 +174,10 @@ NamedElementEditPart {
 			((ActivityNameEditPartCN)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
+		if(childEditPart instanceof ActivityIsSingleExecutionCNEditPart) {
+			((ActivityIsSingleExecutionCNEditPart)childEditPart).setLabel(getPrimaryShape().getHeaderSingleExecution());
+			return true;
+		}
 
 		if(childEditPart instanceof ActivityCNContentCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getContentFigure();
@@ -218,6 +222,9 @@ NamedElementEditPart {
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
 		if(childEditPart instanceof ActivityNameEditPartCN) {
+			return true;
+		}
+		if(childEditPart instanceof ActivityIsSingleExecutionCNEditPart) {
 			return true;
 		}
 		if(childEditPart instanceof ActivityCNContentCompartmentEditPart) {

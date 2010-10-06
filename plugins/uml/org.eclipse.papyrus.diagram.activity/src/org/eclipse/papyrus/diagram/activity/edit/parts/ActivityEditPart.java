@@ -121,8 +121,7 @@ NamedElementEditPart {
 
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new RootComponentEditPolicy());
-		//installEditPolicy(EditPolicy.LAYOUT_ROLE,
-		//		new ResizeActivityEditPolicy());
+		installEditPolicy(EditPolicy.LAYOUT_ROLE, new ResizeActivityEditPolicy());
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE, new ActivityCanonicalEditPolicy());
 		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
