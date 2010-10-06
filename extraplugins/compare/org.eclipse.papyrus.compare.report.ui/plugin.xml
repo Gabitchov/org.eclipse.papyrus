@@ -14,7 +14,7 @@
                class="org.eclipse.papyrus.compare.report.ui.popupMenus.AcceleoGenerateGenerateReportAction"
                enablesFor="+"
                id="org.eclipse.papyrus.compare.report.ui.popupMenus.acceleoGenerateGenerateReportAction"
-               icon="icons/default.gif"
+               icon="icons/export_as_html.gif"
                label="Generate DiffReport"
                menubarPath="org.eclipse.acceleo.module.menu/acceleo"/>
       </objectContribution>
