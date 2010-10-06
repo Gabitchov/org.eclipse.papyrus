@@ -1223,7 +1223,7 @@
               xsi:type="gmftool:CreationTool"
               href="activityDiagram.gmftool#//@palette/@tools.0/@tools.39"/>
           <diagramNode
-              href="activityDiagram.gmfgraph#BehaviorProperty"/>
+              href="LocalPostconditionConstraint.gmfgraph#LocalPostconditionConstraintNode"/>
         </ownedChild>
       </children>
       <children
@@ -1272,9 +1272,9 @@
           </domainInitializer>
           <labelMappings
               xsi:type="gmfmap:FeatureLabelMapping"
-              viewPattern="&lt;&lt;localPrecondition>>\n{0}"
-              editorPattern="{0}"
-              editPattern="{0}">
+              viewPattern=""
+              editorPattern=""
+              editPattern="">
             <diagramLabel
                 href="LocalPreconditionConstraint.gmfgraph#LocalPrecondtionConstraintNameDiagramLabel"/>
             <features
@@ -1337,9 +1337,9 @@
           </domainInitializer>
           <labelMappings
               xsi:type="gmfmap:FeatureLabelMapping"
-              viewPattern="&lt;&lt;localPostcondition>>\n{0}"
-              editorPattern="{0}"
-              editPattern="{0}">
+              viewPattern=""
+              editorPattern=""
+              editPattern="">
             <diagramLabel
                 href="LocalPostconditionConstraint.gmfgraph#LocalPostconditionConstraintNameDiagramLabel"/>
             <features
@@ -1467,9 +1467,9 @@
           </domainInitializer>
           <labelMappings
               xsi:type="gmfmap:FeatureLabelMapping"
-              viewPattern="&lt;&lt;localPostcondition>>\n{0}"
-              editorPattern="{0}"
-              editPattern="{0}">
+              viewPattern=""
+              editorPattern=""
+              editPattern="">
             <diagramLabel
                 href="LocalPostconditionConstraint.gmfgraph#LocalPostconditionConstraintNameDiagramLabel"/>
             <features
@@ -2252,16 +2252,25 @@
                   body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"
                   language="java"/>
             </initializers>
+            <initializers
+                xsi:type="gmfmap:FeatureValueSpec">
+              <feature
+                  xsi:type="ecore:EAttribute"
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ObjectNode/isControlType"/>
+              <value
+                  body="return true;"
+                  language="java"/>
+            </initializers>
           </domainInitializer>
           <labelMappings>
             <diagramLabel
-                href="../../org.eclipse.papyrus.diagram.common/model/NodeNamedElement.gmfgraph#NameOfNamedElementFigureDiagramLabel"/>
+                href="../../org.eclipse.papyrus.diagram.common/model/SideNodeNamedElement.gmfgraph#NameOfSideNamedElementFigureDiagramLabel"/>
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
               href="activityDiagram.gmftool#//@palette/@tools.0/@tools.7"/>
           <diagramNode
-              href="../../org.eclipse.papyrus.diagram.common/model/NodeNamedElement.gmfgraph#NamedElementFigureNode"/>
+              href="../../org.eclipse.papyrus.diagram.common/model/SideNodeNamedElement.gmfgraph#SideNamedElementFigureNode"/>
         </ownedChild>
       </children>
       <children

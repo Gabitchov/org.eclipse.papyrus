@@ -14,7 +14,7 @@ public class ActivityCNPreferencePage extends AbstractPapyrusNodePreferencePage 
 	/**
 	 * @generated
 	 */
-	public static final String compartments[] = { "ActivityContentCompartment", "ActivityParametersCompartment", "ActivityPreConditionsCompartment", "ActivityPostConditionsCompartment"
+	public static final String compartments[] = { "ActivityFigureContentCompartment", "ActivityFigureParameterCompartment", "ActivityFigurePreconditionCompartment", "ActivityFigurePostCondtionCompartment"
 
 	};
 

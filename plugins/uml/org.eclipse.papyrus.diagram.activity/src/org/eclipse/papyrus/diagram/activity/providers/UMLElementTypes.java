@@ -765,8 +765,6 @@ public class UMLElementTypes {
 
 			elements.put(InterruptibleActivityRegion_3068, UMLPackage.eINSTANCE.getInterruptibleActivityRegion());
 
-			elements.put(NamedElement_3079, UMLPackage.eINSTANCE.getNamedElement());
-
 			elements.put(Comment_3080, UMLPackage.eINSTANCE.getComment());
 
 			elements.put(ReadSelfAction_3081, UMLPackage.eINSTANCE.getReadSelfAction());
@@ -774,6 +772,8 @@ public class UMLElementTypes {
 			elements.put(OutputPin_3082, UMLPackage.eINSTANCE.getOutputPin());
 
 			elements.put(Activity_3083, UMLPackage.eINSTANCE.getActivity());
+
+			elements.put(NamedElement_3079, UMLPackage.eINSTANCE.getNamedElement());
 
 			elements.put(ActionLocalPrecondition_4001, UMLPackage.eINSTANCE.getAction_LocalPrecondition());
 
@@ -870,11 +870,11 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(StructuredActivityNode_3065);
 			KNOWN_ELEMENT_TYPES.add(ActivityPartition_3067);
 			KNOWN_ELEMENT_TYPES.add(InterruptibleActivityRegion_3068);
-			KNOWN_ELEMENT_TYPES.add(NamedElement_3079);
 			KNOWN_ELEMENT_TYPES.add(Comment_3080);
 			KNOWN_ELEMENT_TYPES.add(ReadSelfAction_3081);
 			KNOWN_ELEMENT_TYPES.add(OutputPin_3082);
 			KNOWN_ELEMENT_TYPES.add(Activity_3083);
+			KNOWN_ELEMENT_TYPES.add(NamedElement_3079);
 			KNOWN_ELEMENT_TYPES.add(ActionLocalPrecondition_4001);
 			KNOWN_ELEMENT_TYPES.add(ActionLocalPostcondition_4002);
 			KNOWN_ELEMENT_TYPES.add(ObjectFlow_4003);
@@ -1024,8 +1024,6 @@ public class UMLElementTypes {
 			return ActivityPartition_3067;
 		case InterruptibleActivityRegionEditPart.VISUAL_ID:
 			return InterruptibleActivityRegion_3068;
-		case ShapeNamedElementEditPart.VISUAL_ID:
-			return NamedElement_3079;
 		case CommentEditPartCN.VISUAL_ID:
 			return Comment_3080;
 		case ReadSelfActionEditPart.VISUAL_ID:
@@ -1034,6 +1032,8 @@ public class UMLElementTypes {
 			return OutputPin_3082;
 		case ActivityEditPartCN.VISUAL_ID:
 			return Activity_3083;
+		case ShapeNamedElementEditPart.VISUAL_ID:
+			return NamedElement_3079;
 		case ActionLocalPreconditionEditPart.VISUAL_ID:
 			return ActionLocalPrecondition_4001;
 		case ActionLocalPostconditionEditPart.VISUAL_ID:

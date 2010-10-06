@@ -594,9 +594,6 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof InterruptibleActivityRegionEditPart) {
 			return ((InterruptibleActivityRegionEditPart)targetEditPart).getMARelTypesOnTarget();
 		}
-		if(targetEditPart instanceof ShapeNamedElementEditPart) {
-			return ((ShapeNamedElementEditPart)targetEditPart).getMARelTypesOnTarget();
-		}
 		if(targetEditPart instanceof CommentEditPartCN) {
 			return ((CommentEditPartCN)targetEditPart).getMARelTypesOnTarget();
 		}
@@ -608,6 +605,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if(targetEditPart instanceof ActivityEditPartCN) {
 			return ((ActivityEditPartCN)targetEditPart).getMARelTypesOnTarget();
+		}
+		if(targetEditPart instanceof ShapeNamedElementEditPart) {
+			return ((ShapeNamedElementEditPart)targetEditPart).getMARelTypesOnTarget();
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -980,9 +980,6 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof InterruptibleActivityRegionEditPart) {
 			return ((InterruptibleActivityRegionEditPart)targetEditPart).getMATypesForSource(relationshipType);
 		}
-		if(targetEditPart instanceof ShapeNamedElementEditPart) {
-			return ((ShapeNamedElementEditPart)targetEditPart).getMATypesForSource(relationshipType);
-		}
 		if(targetEditPart instanceof CommentEditPartCN) {
 			return ((CommentEditPartCN)targetEditPart).getMATypesForSource(relationshipType);
 		}
@@ -994,6 +991,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if(targetEditPart instanceof ActivityEditPartCN) {
 			return ((ActivityEditPartCN)targetEditPart).getMATypesForSource(relationshipType);
+		}
+		if(targetEditPart instanceof ShapeNamedElementEditPart) {
+			return ((ShapeNamedElementEditPart)targetEditPart).getMATypesForSource(relationshipType);
 		}
 		return Collections.EMPTY_LIST;
 	}

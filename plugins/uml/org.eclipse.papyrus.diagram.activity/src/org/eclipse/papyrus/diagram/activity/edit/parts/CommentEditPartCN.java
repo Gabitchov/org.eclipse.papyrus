@@ -488,9 +488,6 @@ AbstractCommentEditPart {
 		if(targetEditPart instanceof InterruptibleActivityRegionEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
 		}
-		if(targetEditPart instanceof ShapeNamedElementEditPart) {
-			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
-		}
 		if(targetEditPart instanceof org.eclipse.papyrus.diagram.activity.edit.parts.CommentEditPartCN) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
 		}
@@ -501,6 +498,9 @@ AbstractCommentEditPart {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
 		}
 		if(targetEditPart instanceof ActivityEditPartCN) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		}
+		if(targetEditPart instanceof ShapeNamedElementEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4006);
 		}
 		return types;
@@ -575,11 +575,11 @@ AbstractCommentEditPart {
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
 			types.add(UMLElementTypes.ActivityPartition_3067);
 			types.add(UMLElementTypes.InterruptibleActivityRegion_3068);
-			types.add(UMLElementTypes.NamedElement_3079);
 			types.add(UMLElementTypes.Comment_3080);
 			types.add(UMLElementTypes.ReadSelfAction_3081);
 			types.add(UMLElementTypes.OutputPin_3082);
 			types.add(UMLElementTypes.Activity_3083);
+			types.add(UMLElementTypes.NamedElement_3079);
 		}
 		return types;
 	}

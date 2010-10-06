@@ -9,8 +9,8 @@
         name="LocalPostconditionConstraintDescriptor">
       <actualFigure
           xsi:type="gmfgraph:CustomFigure"
-          name="org.eclipse.papyrus.diagram.activity.figures.LocalPostconditionConstraintFigure"
-          qualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.org.eclipse.papyrus.diagram.activity.figures.LocalPostconditionConstraintFigure">
+          name="LocalPostconditionConstraintFigure"
+          qualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.LocalPostconditionConstraintFigure">
         <customChildren
             accessor="getNameLabel()">
           <typedFigure
@@ -21,8 +21,8 @@
             accessor="getConstraintFigure()">
           <typedFigure
               xsi:type="gmfgraph:CustomFigure"
-              name="org.eclipse.papyrus.diagram.activity.figures.LocalPostconditionConstraintFigure"
-              qualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.LocalPostconditionConstraintFigure"/>
+              name="ConstraintFigure"
+              qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.ConstraintFigure"/>
         </customChildren>
       </actualFigure>
       <accessors

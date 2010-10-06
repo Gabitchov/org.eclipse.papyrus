@@ -811,9 +811,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		if(constraintName_5007Parser == null) {
 			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			parser.setViewPattern("<<localPrecondition>>\n{0}"); //$NON-NLS-1$
-			parser.setEditorPattern("{0}"); //$NON-NLS-1$
-			parser.setEditPattern("{0}"); //$NON-NLS-1$
 			constraintName_5007Parser = parser;
 		}
 		return constraintName_5007Parser;
@@ -846,9 +843,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		if(constraintName_5008Parser == null) {
 			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			parser.setViewPattern("<<localPostcondition>>\n{0}"); //$NON-NLS-1$
-			parser.setEditorPattern("{0}"); //$NON-NLS-1$
-			parser.setEditPattern("{0}"); //$NON-NLS-1$
 			constraintName_5008Parser = parser;
 		}
 		return constraintName_5008Parser;
@@ -1598,16 +1592,14 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private IParser namedElementName_5129Parser;
+	private ActivitySingleExecutionParser namedElementName_5129Parser;
 
 	/**
 	 * @generated
 	 */
 	private IParser getNamedElementName_5129Parser() {
 		if(namedElementName_5129Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			namedElementName_5129Parser = parser;
+			namedElementName_5129Parser = new ActivitySingleExecutionParser();
 		}
 		return namedElementName_5129Parser;
 	}
@@ -2468,8 +2460,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getStructuredActivityNodeLabel_5117Parser();
 		case ActivityPartitionNameEditPart.VISUAL_ID:
 			return getActivityPartitionName_5118Parser();
-		case ShapeNamedElementNameEditPart.VISUAL_ID:
-			return getNamedElementName_5129Parser();
 		case CommentBodyLabelEditPart.VISUAL_ID:
 			return getCommentBody_5138Parser();
 		case ReadSelfActionNameEditPart.VISUAL_ID:
@@ -2482,6 +2472,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getActivityName_5142Parser();
 		case ActivityIsSingleExecutionCNEditPart.VISUAL_ID:
 			return getActivityIsSingleExecution_5143Parser();
+		case ShapeNamedElementNameEditPart.VISUAL_ID:
+			return getNamedElementName_5129Parser();
 		case ObjectFlowNameEditPart.VISUAL_ID:
 			return getObjectFlowName_6001Parser();
 		case ObjectFlowWeightEditPart.VISUAL_ID:

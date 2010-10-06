@@ -43,7 +43,7 @@ import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.activity.edit.policies.ActivityDiagramChangeStereotypedShapeEditpolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.ConstraintAsLocalPostcondItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.OpenDiagramEditPolicy;
-import org.eclipse.papyrus.diagram.activity.figures.LocalPostConditionConstraintFigure;
+import org.eclipse.papyrus.diagram.activity.figures.LocalPostconditionConstraintFigure;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
@@ -138,14 +138,14 @@ AbstractConstraintEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		return primaryShape = new LocalPostConditionConstraintFigure();
+		return primaryShape = new LocalPostconditionConstraintFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public LocalPostConditionConstraintFigure getPrimaryShape() {
-		return (LocalPostConditionConstraintFigure)primaryShape;
+	public LocalPostconditionConstraintFigure getPrimaryShape() {
+		return (LocalPostconditionConstraintFigure)primaryShape;
 	}
 
 	/**

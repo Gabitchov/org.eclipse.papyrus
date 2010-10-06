@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *   Atos Origin - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.activity.edit.policies;
 
 import java.util.ArrayList;
@@ -32,7 +19,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ParameterEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityParameterNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.diagram.activity.part.UMLNodeDescriptor;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
@@ -41,13 +28,13 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * @generated
  */
-public class ActivityActivityParametersCompartmentCanonicalEditPolicy extends CanonicalEditPolicy {
+public class ReadSelfActionOutputPinCanonicalEditPolicy extends CanonicalEditPolicy {
 
 	/**
 	 * @generated
 	 */
 	protected EStructuralFeature getFeatureToSynchronize() {
-		return UMLPackage.eINSTANCE.getBehavior_OwnedParameter();
+		return UMLPackage.eINSTANCE.getActivity_Node();
 	}
 
 	/**
@@ -57,7 +44,7 @@ public class ActivityActivityParametersCompartmentCanonicalEditPolicy extends Ca
 	protected List getSemanticChildrenList() {
 		View viewObject = (View)getHost().getModel();
 		LinkedList<EObject> result = new LinkedList<EObject>();
-		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.getActivityActivityFigureParameterCompartment_7001SemanticChildren(viewObject);
+		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.getOutputPin_3082SemanticChildren(viewObject);
 		for(UMLNodeDescriptor d : childDescriptors) {
 			result.add(d.getModelElement());
 		}
@@ -75,7 +62,7 @@ public class ActivityActivityParametersCompartmentCanonicalEditPolicy extends Ca
 	 * @generated
 	 */
 	private boolean isMyDiagramElement(View view) {
-		return ParameterEditPart.VISUAL_ID == UMLVisualIDRegistry.getVisualID(view);
+		return ActivityParameterNodeEditPart.VISUAL_ID == UMLVisualIDRegistry.getVisualID(view);
 	}
 
 	/**
@@ -86,7 +73,7 @@ public class ActivityActivityParametersCompartmentCanonicalEditPolicy extends Ca
 			return;
 		}
 		LinkedList<IAdaptable> createdViews = new LinkedList<IAdaptable>();
-		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.getActivityActivityFigureParameterCompartment_7001SemanticChildren((View)getHost().getModel());
+		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.getOutputPin_3082SemanticChildren((View)getHost().getModel());
 		LinkedList<View> orphaned = new LinkedList<View>();
 		// we care to check only views we recognize as ours
 		LinkedList<View> knownViewChildren = new LinkedList<View>();
@@ -155,5 +142,4 @@ public class ActivityActivityParametersCompartmentCanonicalEditPolicy extends Ca
 
 		makeViewsImmutable(createdViews);
 	}
-
 }

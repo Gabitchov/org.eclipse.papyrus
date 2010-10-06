@@ -849,7 +849,8 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	private Tool createActivity40CreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(1);
+		List<IElementType> types = new ArrayList<IElementType>(2);
+		types.add(UMLElementTypes.Activity_2001);
 		types.add(UMLElementTypes.Activity_3083);
 
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);

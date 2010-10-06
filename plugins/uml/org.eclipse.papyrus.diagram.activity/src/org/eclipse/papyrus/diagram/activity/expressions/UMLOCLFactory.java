@@ -44,7 +44,7 @@ public class UMLOCLFactory {
 	 * @generated
 	 */
 	protected UMLOCLFactory() {
-		this.expressions = new UMLAbstractExpression[62];
+		this.expressions = new UMLAbstractExpression[61];
 	}
 
 	/**
@@ -73,8 +73,6 @@ public class UMLOCLFactory {
 			"if self.owner.oclIsKindOf(Action)\r\nthen self.owner.oclAsType(Action).localPostcondition->includes(self)\r\nelse false endif", //$NON-NLS-1$
 			"if self.owner.oclIsKindOf(Action)\r\nthen self.owner.oclAsType(Action).localPrecondition->includes(self)\r\nelse false endif", //$NON-NLS-1$
 			"if self.owner.oclIsKindOf(Action)\r\nthen self.owner.oclAsType(Action).localPostcondition->includes(self)\r\nelse false endif", //$NON-NLS-1$
-			"if self.owner.oclIsKindOf(Action)\r\nthen self.owner.oclAsType(Action).localPrecondition->includes(self)\r\nelse false endif", //$NON-NLS-1$
-			"if self.owner.oclIsKindOf(Action)\r\nthen self.owner.oclAsType(Action).localPostcondition->includes(self)\r\nelse false endif", //$NON-NLS-1$
 			"if self.owner.oclIsKindOf(SendObjectAction)\r\nthen self.owner.oclAsType(SendObjectAction).request = self\r\nelse false endif", //$NON-NLS-1$
 			"if self.owner.oclIsKindOf(SendObjectAction)\r\nthen self.owner.oclAsType(SendObjectAction).request = self\r\nelse false endif", //$NON-NLS-1$
 			"if self.owner.oclIsKindOf(SendObjectAction)\r\nthen self.owner.oclAsType(SendObjectAction).request = self\r\nelse false endif", //$NON-NLS-1$
@@ -89,6 +87,7 @@ public class UMLOCLFactory {
 			"if self.owner.oclIsKindOf(SendSignalAction)\r\nthen self.owner.oclAsType(SendSignalAction).target = self\r\nelse false endif", //$NON-NLS-1$
 			"if self.owner.oclIsKindOf(ExpansionRegion)\r\nthen self.owner.oclAsType(ExpansionRegion).inputElement->includes(self)\r\nelse false endif", //$NON-NLS-1$
 			"if self.owner.oclIsKindOf(ExpansionRegion)\r\nthen self.owner.oclAsType(ExpansionRegion).outputElement->includes(self)\r\nelse false endif", //$NON-NLS-1$
+			"\' \'", //$NON-NLS-1$
 			"self.incoming->isEmpty()", //$NON-NLS-1$
 			"not self.source.oclIsKindOf(InitialNode)", //$NON-NLS-1$
 			"self.outgoing->isEmpty()", //$NON-NLS-1$
