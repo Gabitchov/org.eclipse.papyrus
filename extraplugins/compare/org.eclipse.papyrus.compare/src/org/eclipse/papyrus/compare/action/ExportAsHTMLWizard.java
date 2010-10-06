@@ -1,13 +1,15 @@
 package org.eclipse.papyrus.compare.action;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.compare.diff.metamodel.ComparisonSnapshot;
@@ -49,12 +51,21 @@ public class ExportAsHTMLWizard extends SaveDeltaWizard {
 			return false;
 		}
 		
-		GenerateAll generator = new GenerateAll(getNewDiffModelURI(), getTargetFolder(), getTemplateArguments());
+		IProgressMonitor monitor = new NullProgressMonitor();
+		IResource targetFolder = getTargetFolder();
+		GenerateAll generator = new GenerateAll(getNewDiffModelURI(), targetFolder.getLocation().toFile(), getTemplateArguments());
+		
 		try {
-			generator.doGenerate(new NullProgressMonitor());
+			generator.doGenerate(monitor);
 		} catch (IOException e) {
 			e.printStackTrace();
 			return false;
+		} finally {
+			try {
+				targetFolder.refreshLocal(IResource.DEPTH_INFINITE, monitor);
+			} catch (CoreException e) {
+				e.printStackTrace();
+			}
 		}
 		return true;
 	}
@@ -63,8 +74,8 @@ public class ExportAsHTMLWizard extends SaveDeltaWizard {
 		return Collections.singletonList(myNewReportFileCreationPage.getFileName());
 	}
 	
-	private File getTargetFolder() {
-		return ResourcesPlugin.getWorkspace().getRoot().findMember(myNewReportFileCreationPage.getContainerFullPath()).getLocation().toFile();
+	private IResource getTargetFolder() {
+		return ResourcesPlugin.getWorkspace().getRoot().findMember(myNewReportFileCreationPage.getContainerFullPath());
 	}
 	
 	private WizardNewFileCreationPage findNewDiffFilePage() {
