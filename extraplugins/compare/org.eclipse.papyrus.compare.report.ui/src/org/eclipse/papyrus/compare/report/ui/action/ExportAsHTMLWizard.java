@@ -32,6 +32,8 @@ public class ExportAsHTMLWizard extends SaveDeltaWizard {
 	
 	private static final String HTML_EXTENSION = "html";
 
+	private static final String EMFDIFF_EXTENSION = "emfdiff";
+
 	private WizardNewFileCreationPage myNewReportFileCreationPage;
 
 	private IResource myFirstSelectedFile;
@@ -63,7 +65,7 @@ public class ExportAsHTMLWizard extends SaveDeltaWizard {
 				return null;
 			}
 		}
-	}
+	} 
 
 	private Resource getFirstSelectedResource(DiffModel diffModel) {
 		EList<EObject> leftRoots = diffModel.getLeftRoots();
@@ -86,6 +88,8 @@ public class ExportAsHTMLWizard extends SaveDeltaWizard {
 	public void addPages() {
 		super.addPages();
 		findNewDiffFilePage().setAllowExistingResources(true);
+		findNewDiffFilePage().setFileExtension(EMFDIFF_EXTENSION);
+		findNewDiffFilePage().setFileName(getDefaultFileName() + "." + EMFDIFF_EXTENSION);
 
 		myNewReportFileCreationPage = new WizardNewFileCreationPage("newFilePage1", getSelection());//$NON-NLS-1$
 		myNewReportFileCreationPage.setFileName(getDefaultFileName() + "." + HTML_EXTENSION);
