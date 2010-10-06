@@ -117,15 +117,17 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	 * Service used to maintain the dirty state and to perform save and saveAs.
 	 */
 	protected ISaveAndDirtyService saveAndDirtyService;
-	
+
 	/**
 	 * Listener on {@link ISaveAndDirtyService#addInputChangedListener(IEditorInputChangedListener)}
 	 */
 	protected IEditorInputChangedListener editorInputChangedListener = new IEditorInputChangedListener() {
+
 		/**
 		 * This method is called when the editor input is changed from the ISaveAndDirtyService.
+		 * 
 		 * @see org.eclipse.papyrus.core.lifecycleevents.IEditorInputChangedListener#editorInputChanged(org.eclipse.ui.part.FileEditorInput)
-		 *
+		 * 
 		 * @param fileEditorInput
 		 */
 		public void editorInputChanged(FileEditorInput fileEditorInput) {
@@ -136,11 +138,12 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 
 		/**
 		 * The isDirty flag has changed, reflect its new value
+		 * 
 		 * @see org.eclipse.papyrus.core.lifecycleevents.IEditorInputChangedListener#isDirtyChanged()
-		 *
+		 * 
 		 */
 		public void isDirtyChanged() {
-			
+
 			// Run it in async way.
 			getSite().getShell().getDisplay().asyncExec(new Runnable() {
 
@@ -150,13 +153,13 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 			});
 		}
 	};
-	
+
 	private TransactionalEditingDomain transactionalEditingDomain;
 
 	/**
 	 * Object managing models lifeCycle.
 	 */
-	protected ModelSet resourceSet ;
+	protected ModelSet resourceSet;
 
 	/**
 	 * Cached event that can be reused.
@@ -193,7 +196,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 
 	/**
 	 * Undo context used to have the same undo context in all Papyrus related views and editors.
-	 * TODO : move away, use a version independent of GMF, add a listener that will add 
+	 * TODO : move away, use a version independent of GMF, add a listener that will add
 	 * the context to all commands modifying attached Resources (==> linked to ModelSet ?)
 	 */
 	private EditingDomainUndoContext undoContext;
@@ -370,15 +373,14 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		 * Return context used for undo/redo.
 		 * All papyrus views should use this context.
 		 */
-		if( IUndoContext.class == adapter)
-		{
-			if( undoContext != null)
+		if(IUndoContext.class == adapter) {
+			if(undoContext != null)
 				return undoContext;
-			
+
 			undoContext = new EditingDomainUndoContext(transactionalEditingDomain);
 			return undoContext;
 		}
-		
+
 		// EMF requirements
 		if(IEditingDomainProvider.class == adapter) {
 
@@ -422,12 +424,12 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		BusinessModelResolver.getInstance();
 
 		// Load resources
-//		resourceSet = new DiResourceSet();
-//		IFile file = ((IFileEditorInput)input).getFile();
-//		resourceSet.loadResources(file);
+		//		resourceSet = new DiResourceSet();
+		//		IFile file = ((IFileEditorInput)input).getFile();
+		//		resourceSet.loadResources(file);
 
 		// Create the 2 edit domains
-//		transactionalEditingDomain = resourceSet.getTransactionalEditingDomain();
+		//		transactionalEditingDomain = resourceSet.getTransactionalEditingDomain();
 
 		// Create Gef adaptor
 		gefAdaptorDelegate = new MultiDiagramEditorGefDelegate();
@@ -438,34 +440,34 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 
 		// Add itself as a service
 		servicesRegistry.add(IMultiDiagramEditor.class, 1, this);
-		
+
 		// Create lifeCycle event provider and the event that is used when the editor fire a save event.
-//		lifeCycleEventsProvider = new LifeCycleEventsProvider();
-//		lifeCycleEvent = new DoSaveEvent(servicesRegistry, this);
-//		servicesRegistry.add(ILifeCycleEventsProvider.class, 1, lifeCycleEventsProvider);
+		//		lifeCycleEventsProvider = new LifeCycleEventsProvider();
+		//		lifeCycleEvent = new DoSaveEvent(servicesRegistry, this);
+		//		servicesRegistry.add(ILifeCycleEventsProvider.class, 1, lifeCycleEventsProvider);
 
 		// register services
 		servicesRegistry.add(ActionBarContributorRegistry.class, 1, getActionBarContributorRegistry());
-//		servicesRegistry.add(TransactionalEditingDomain.class, 1, transactionalEditingDomain);
-//		servicesRegistry.add(DiResourceSet.class, 1, resourceSet);
+		//		servicesRegistry.add(TransactionalEditingDomain.class, 1, transactionalEditingDomain);
+		//		servicesRegistry.add(DiResourceSet.class, 1, resourceSet);
 
 		// Create and initalize editor icons service
-//		PageIconsRegistry pageIconsRegistry = new PageIconsRegistry();
-//		PluggableEditorFactoryReader editorReader = new PluggableEditorFactoryReader(Activator.PLUGIN_ID);
-//		editorReader.populate(pageIconsRegistry);
-//		servicesRegistry.add(IPageIconsRegistry.class, 1, pageIconsRegistry);
+		//		PageIconsRegistry pageIconsRegistry = new PageIconsRegistry();
+		//		PluggableEditorFactoryReader editorReader = new PluggableEditorFactoryReader(Activator.PLUGIN_ID);
+		//		editorReader.populate(pageIconsRegistry);
+		//		servicesRegistry.add(IPageIconsRegistry.class, 1, pageIconsRegistry);
 
 
 		// Create PageModelRegistry requested by content provider.
 		// Also populate it from extensions.
-//		PageModelFactoryRegistry pageModelRegistry = new PageModelFactoryRegistry();
-//		editorReader.populate(pageModelRegistry, servicesRegistry);
+		//		PageModelFactoryRegistry pageModelRegistry = new PageModelFactoryRegistry();
+		//		editorReader.populate(pageModelRegistry, servicesRegistry);
 
 		// TODO : create appropriate Resource for the contentProvider, and pass it here.
 		// This will allow to remove the old sash stuff.
-//		setContentProvider(createPageProvider(pageModelRegistry, resourceSet.getDiResource(), transactionalEditingDomain));
-//		servicesRegistry.add(ISashWindowsContentProvider.class, 1, getContentProvider());
-//		servicesRegistry.add(IPageMngr.class, 1, getIPageMngr());
+		//		setContentProvider(createPageProvider(pageModelRegistry, resourceSet.getDiResource(), transactionalEditingDomain));
+		//		servicesRegistry.add(ISashWindowsContentProvider.class, 1, getContentProvider());
+		//		servicesRegistry.add(IPageMngr.class, 1, getIPageMngr());
 
 		// register a basic label provider
 		// adapter factory used by EMF objects
@@ -498,22 +500,22 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 			// Start the ModelSet first, and load if from the specified File
 			List<Class<?>> servicesToStart = new ArrayList<Class<?>>(1);
 			servicesToStart.add(ModelSet.class);
-			
-			servicesRegistry.startServicesByClassKeys( servicesToStart );
+
+			servicesRegistry.startServicesByClassKeys(servicesToStart);
 			resourceSet = servicesRegistry.getService(ModelSet.class);
 			resourceSet.loadModels(file);
-						
+
 			// start remaining services
 			servicesRegistry.startRegistry();
 		} catch (ModelMultiException e) {
 			log.error(e);
-			throw new PartInitException ("errors in model", e);
+			throw new PartInitException("errors in model", e);
 		} catch (ServiceException e) {
 			log.error(e);
-			throw new PartInitException ("could not initialize services", e);
+			throw new PartInitException("could not initialize services", e);
 		}
-	
-			
+
+
 		// Get required services
 		ISashWindowsContentProvider contentProvider = null;
 		try {
@@ -524,24 +526,23 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		} catch (ServiceException e) {
 			log.error("A required service is missing.", e);
 			// if one of the services above fail to start, the editor can't run => stop
-			throw new PartInitException ("could not initialize services", e);
+			throw new PartInitException("could not initialize services", e);
 		}
 
 		// create model resource listener ...
-		modelResourceListener = new ModelResourceListener (saveAndDirtyService, resourceSet);
+		modelResourceListener = new ModelResourceListener(this, saveAndDirtyService, resourceSet);
 		// ... and add it to the workspace
-		ResourcesPlugin.getWorkspace().addResourceChangeListener(
-		      modelResourceListener, IResourceChangeEvent.POST_CHANGE);
-		
+		ResourcesPlugin.getWorkspace().addResourceChangeListener(modelResourceListener, IResourceChangeEvent.POST_CHANGE);
+
 		// Set the content provider providing editors.
 		setContentProvider(contentProvider);
-		
+
 		// Set editor name
 		setPartName(file.getName());
 
 		// Listen on contentProvider changes
 		sashModelMngr.getSashModelContentChangedProvider().addListener(contentChangedListener);
-		
+
 		// Listen on input changed from the ISaveAndDirtyService
 		saveAndDirtyService.addInputChangedListener(editorInputChangedListener);
 	}
@@ -614,10 +615,9 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 			}
 		}
 
-		if (modelResourceListener != null) {
+		if(modelResourceListener != null) {
 			// remove model resource listener from workspace
-			ResourcesPlugin.getWorkspace().removeResourceChangeListener(
-			      modelResourceListener);
+			ResourcesPlugin.getWorkspace().removeResourceChangeListener(modelResourceListener);
 		}
 		super.dispose();
 	}
@@ -775,6 +775,6 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		setInputWithNotify(newInput);
 		setPartName(newInput.getName());
 	}
-	
+
 	private ModelResourceListener modelResourceListener;
 }

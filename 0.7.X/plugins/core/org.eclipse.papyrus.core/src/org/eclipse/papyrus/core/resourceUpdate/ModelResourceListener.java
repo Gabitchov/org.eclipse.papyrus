@@ -29,13 +29,19 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.core.Activator;
+import org.eclipse.papyrus.core.editor.CoreMultiDiagramEditor;
 import org.eclipse.papyrus.core.lifecycleevents.DoSaveEvent;
 import org.eclipse.papyrus.core.lifecycleevents.ILifeCycleEventsProvider;
 import org.eclipse.papyrus.core.lifecycleevents.ISaveAndDirtyService;
 import org.eclipse.papyrus.core.lifecycleevents.ISaveEventListener;
-import org.eclipse.papyrus.resource.ModelMultiException;
 import org.eclipse.papyrus.resource.ModelSet;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.IEditorDescriptor;
+import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.PlatformUI;
 
 /**
  * A listener for resource changes, used to trigger an update of
@@ -47,11 +53,11 @@ public class ModelResourceListener implements IResourceChangeListener, IResource
 
 	public static final String RESOURCE_UPDATE_ID = Activator.PLUGIN_ID + ".resourceUpdate";
 
-	public ModelResourceListener(ISaveAndDirtyService saveAndDirty, ModelSet modelSet) {
+	public ModelResourceListener(CoreMultiDiagramEditor editor, ISaveAndDirtyService saveAndDirty, ModelSet modelSet) {
 		isActive = true;
 		this.modelSet = modelSet;
-		this.saveAndDirty = saveAndDirty;
-		// register lifecycle events around save: a reload should not be
+		this.editor = editor;
+		// register lifecycle events related to "save": a reload should not be
 		// proposed if the resource change was caused by a save of *this* editor,
 		// hence the listener is temporary deactivated.
 		if(saveAndDirty instanceof ILifeCycleEventsProvider) {
@@ -107,7 +113,7 @@ public class ModelResourceListener implements IResourceChangeListener, IResource
 	 */
 	public boolean visit(IResourceDelta delta) {
 		IResource changedResource = delta.getResource();
-		boolean changeInMainModelDetected = false;
+		boolean resourceOfMainModelChanged = false;
 		// only proceed in case of Files (not projects, folders, ...) for the moment
 		if(!(changedResource instanceof IFile)) {
 			return true;
@@ -128,7 +134,7 @@ public class ModelResourceListener implements IResourceChangeListener, IResource
 			if(normalizedURI.path().endsWith(changedResourcePath)) {
 				if(changedResourcePathWOExt.equals(modelSet.getFilenameWithoutExtension())) {
 					// model itself has changed. Ask user
-					changeInMainModelDetected = true;
+					resourceOfMainModelChanged = true;
 					break;
 				}
 				// changed resource does not belong to the model, it might however belong to a referenced
@@ -139,7 +145,7 @@ public class ModelResourceListener implements IResourceChangeListener, IResource
 				}
 			}
 		}
-		if(!changeInMainModelDetected) {
+		if(!resourceOfMainModelChanged) {
 			return true;
 		}
 		switch(delta.getKind()) {
@@ -150,19 +156,29 @@ public class ModelResourceListener implements IResourceChangeListener, IResource
 			MessageDialog.openInformation(shellR, "Resource removal", "The resource " + changedResourcePath + " that is in use by a Papyrus editor has been removed. Use save/save as, if you want to keep the model");
 			break;
 		case IResourceDelta.CHANGED:
-			Shell shellC = new Shell();
-			boolean ok;
-			if(saveAndDirty.isDirty()) {
-				ok = MessageDialog.openQuestion(shellC, "Resource change", "The resource " + changedResource.getFullPath() + " that is in use by a Papyrus editor has changed. However, local changes have been made and would be lost during the reload. Do you want to reload this resource?");
-			} else {
-				ok = MessageDialog.openConfirm(shellC, "Resource change", "The resource " + changedResource.getFullPath() + " that is in use by a Papyrus editor has changed. Do you want to reload this resource?");
+			String message = "The resource " + changedResource.getFullPath() + " that is in use by a Papyrus editor has changed. Do you want to reopen the editor in order to update its contents?";
+			if(editor.isDirty()) {
+				message += "CAVEAT: the editor contains unsaved modification that would be lost.";
 			}
-			if(ok) {
+
+			if(MessageDialog.openQuestion(new Shell(), "Resource change", message)) {
+				// unloading and reloading all resources of the main causes the following problems
+				//  - since resources are removed during the modelSets unload operation, the call eResource().getContents ()
+				//    used by the model explorer leads to a null pointer exception
+				//  - diagrams in model explorer are not shown
+				//  - would need to reset dirty flags
+				// => clean & simple option is to close and reopen the editor.
+
+				IWorkbench wb = PlatformUI.getWorkbench();
+				IWorkbenchPage page = wb.getActiveWorkbenchWindow().getActivePage();
+				IEditorInput input = editor.getEditorInput();
+				isActive = false;
+				page.closeEditor(editor, false);
 				try {
-					modelSet.unload();
-					modelSet.loadModels();
-				} catch (ModelMultiException me) {
-					log.error(me);
+					IEditorDescriptor desc = wb.getEditorRegistry().getDefaultEditor(input.getName());
+					page.openEditor(input, desc.getId(), false);
+				} catch (PartInitException e) {
+					log.error(e);
 				}
 			}
 			break;
@@ -172,7 +188,7 @@ public class ModelResourceListener implements IResourceChangeListener, IResource
 
 	private boolean isActive;
 
-	private ISaveAndDirtyService saveAndDirty;
+	private CoreMultiDiagramEditor editor;
 
 	private ModelSet modelSet;
 }
