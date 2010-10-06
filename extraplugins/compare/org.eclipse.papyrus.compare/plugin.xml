@@ -17,13 +17,5 @@
             icon="icons/DiffEngine.gif"
             label="Papyrus Differencing Engine"/>
    </extension>
-  <extension
-        point="org.eclipse.emf.compare.ui.export">
-     <action
-           class="org.eclipse.papyrus.compare.action.ExportAsGenReportAction"
-           fileExtension="uml"
-           id="org.eclipse.papyrus.compare.exportAsHTMLAction">
-     </action>
-  </extension>
 
 </plugin>

@@ -1,4 +1,4 @@
-package org.eclipse.papyrus.compare.action;
+package org.eclipse.papyrus.compare.report.ui.action;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -34,6 +34,8 @@ public class ExportAsHTMLWizard extends SaveDeltaWizard {
 	private WizardNewFileCreationPage myNewReportFileCreationPage;
 
 	private IResource myFirstSelectedFile;
+	
+	private String myDefaultFileName;
 
 	public ExportAsHTMLWizard() {
 		super(null); // use default extension

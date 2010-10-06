@@ -1,9 +1,9 @@
-package org.eclipse.papyrus.compare.action;
+package org.eclipse.papyrus.compare.report.ui.action;
 
 import org.eclipse.emf.compare.diff.metamodel.ComparisonSnapshot;
 import org.eclipse.emf.compare.ui.export.IExportAction;
 import org.eclipse.jface.wizard.WizardDialog;
-import org.eclipse.papyrus.compare.Activator;
+import org.eclipse.papyrus.compare.report.ui.Activator;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;

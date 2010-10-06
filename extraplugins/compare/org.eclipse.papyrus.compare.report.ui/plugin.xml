@@ -19,4 +19,14 @@
                menubarPath="org.eclipse.acceleo.module.menu/acceleo"/>
       </objectContribution>
    </extension>
+
+  <extension
+        point="org.eclipse.emf.compare.ui.export">
+     <action
+           class="org.eclipse.papyrus.compare.report.ui.action.ExportAsGenReportAction"
+           fileExtension="uml"
+           id="org.eclipse.papyrus.compare.exportAsHTMLAction">
+     </action>
+  </extension>
+   
 </plugin>
