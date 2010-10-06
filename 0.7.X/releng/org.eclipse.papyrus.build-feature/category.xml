@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
+ 	<feature id="org.eclipse.papyrus" version="0.0.0">
+      <category name="papyrus.all"/>
+   </feature>
 	<feature id="org.eclipse.papyrus.backbone" version="0.0.0">
       <category name="papyrus.runtime"/>
    </feature>
-   <feature id="org.eclipse.papyrus" version="0.0.0">
+   <feature id="org.eclipse.papyrus.customization" version="0.0.0">
       <category name="papyrus.runtime"/>
    </feature>
-   
    <feature id="org.eclipse.papyrus.uml" version="0.0.0">
       <category name="papyrus.uml"/>
    </feature>
@@ -64,6 +66,11 @@
       <category name="papyrus.thirdparty"/>
    </feature>
    
+   <category-def name="papyrus.all" label="Papyrus All">
+		<description>
+			Full Papyrus installation, with the backbone, all diagram features and extra plugins.
+      </description>
+	</category-def>
 	<category-def name="papyrus.runtime" label="Papyrus Runtime">
 		<description>
 			Papyrus Runtime features.
