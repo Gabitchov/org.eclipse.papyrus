@@ -15,6 +15,7 @@ import org.eclipse.papyrus.papyrusgmfgenextension.AlternateCanvas;
 import org.eclipse.papyrus.papyrusgmfgenextension.AlternateGenLink;
 import org.eclipse.papyrus.papyrusgmfgenextension.AlternateGenTopLevelNode;
 import org.eclipse.papyrus.papyrusgmfgenextension.CommentedElement;
+import org.eclipse.papyrus.papyrusgmfgenextension.EditPartUsingDeleteService;
 import org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView;
 import org.eclipse.papyrus.papyrusgmfgenextension.ExternalHook;
 import org.eclipse.papyrus.papyrusgmfgenextension.GenNodeConstraint;
@@ -257,6 +258,16 @@ public class PapyrusgmfgenextensionSwitch<T> {
 			T result = caseAdditionalEditPartCandies(additionalEditPartCandies);
 			if(result == null)
 				result = caseCommentedElement(additionalEditPartCandies);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case PapyrusgmfgenextensionPackage.EDIT_PART_USING_DELETE_SERVICE:
+		{
+			EditPartUsingDeleteService editPartUsingDeleteService = (EditPartUsingDeleteService)theEObject;
+			T result = caseEditPartUsingDeleteService(editPartUsingDeleteService);
+			if(result == null)
+				result = caseCommentedElement(editPartUsingDeleteService);
 			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -518,6 +529,23 @@ public class PapyrusgmfgenextensionSwitch<T> {
 	 * @generated
 	 */
 	public T caseAdditionalEditPartCandies(AdditionalEditPartCandies object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Edit Part Using Delete Service</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * 
+	 * @param object
+	 *        the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Edit Part Using Delete Service</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEditPartUsingDeleteService(EditPartUsingDeleteService object) {
 		return null;
 	}
 

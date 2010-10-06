@@ -19,6 +19,7 @@ import org.eclipse.papyrus.papyrusgmfgenextension.AlternateCanvas;
 import org.eclipse.papyrus.papyrusgmfgenextension.AlternateGenLink;
 import org.eclipse.papyrus.papyrusgmfgenextension.AlternateGenTopLevelNode;
 import org.eclipse.papyrus.papyrusgmfgenextension.CommentedElement;
+import org.eclipse.papyrus.papyrusgmfgenextension.EditPartUsingDeleteService;
 import org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView;
 import org.eclipse.papyrus.papyrusgmfgenextension.ExternalHook;
 import org.eclipse.papyrus.papyrusgmfgenextension.GenNodeConstraint;
@@ -147,6 +148,14 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 	 * @generated
 	 */
 	private EClass additionalEditPartCandiesEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass editPartUsingDeleteServiceEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
@@ -599,6 +608,36 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EClass getEditPartUsingDeleteService() {
+		return editPartUsingDeleteServiceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EAttribute getEditPartUsingDeleteService_Name() {
+		return (EAttribute)editPartUsingDeleteServiceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getEditPartUsingDeleteService_GenView() {
+		return (EReference)editPartUsingDeleteServiceEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -683,6 +722,10 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 
 		additionalEditPartCandiesEClass = createEClass(ADDITIONAL_EDIT_PART_CANDIES);
 		createEAttribute(additionalEditPartCandiesEClass, ADDITIONAL_EDIT_PART_CANDIES__BASE_EDIT_HELPER_PACKAGE);
+
+		editPartUsingDeleteServiceEClass = createEClass(EDIT_PART_USING_DELETE_SERVICE);
+		createEAttribute(editPartUsingDeleteServiceEClass, EDIT_PART_USING_DELETE_SERVICE__NAME);
+		createEReference(editPartUsingDeleteServiceEClass, EDIT_PART_USING_DELETE_SERVICE__GEN_VIEW);
 	}
 
 	/**
@@ -733,6 +776,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 		genNodeConstraintEClass.getESuperTypes().add(this.getCommentedElement());
 		specificLocatorExternalLabelEClass.getESuperTypes().add(this.getExternalHook());
 		additionalEditPartCandiesEClass.getESuperTypes().add(this.getCommentedElement());
+		editPartUsingDeleteServiceEClass.getESuperTypes().add(this.getCommentedElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(extendedGenViewEClass, ExtendedGenView.class, "ExtendedGenView", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -791,6 +835,10 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 
 		initEClass(additionalEditPartCandiesEClass, AdditionalEditPartCandies.class, "AdditionalEditPartCandies", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getAdditionalEditPartCandies_BaseEditHelperPackage(), theEcorePackage.getEString(), "baseEditHelperPackage", null, 0, 1, AdditionalEditPartCandies.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(editPartUsingDeleteServiceEClass, EditPartUsingDeleteService.class, "EditPartUsingDeleteService", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getEditPartUsingDeleteService_Name(), theEcorePackage.getEString(), "name", null, 0, 1, EditPartUsingDeleteService.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEditPartUsingDeleteService_GenView(), theGMFGenPackage.getGenCommonBase(), null, "genView", null, 0, -1, EditPartUsingDeleteService.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

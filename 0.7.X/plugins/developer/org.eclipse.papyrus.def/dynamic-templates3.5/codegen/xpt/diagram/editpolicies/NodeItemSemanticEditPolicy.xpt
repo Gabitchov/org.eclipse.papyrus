@@ -9,6 +9,7 @@
  * Contributors:
  *    Alexander Shatalin (Borland) - initial API and implementation
  *    Artem Tikhomirov (Borland) - [257632] do not rely on EditPart presence for element deletion
+ *	modified by Vincent Lorenzo (CEA-LIST) 
  */
  
 «REM»
@@ -18,8 +19,9 @@
 «ENDREM»
  
 «IMPORT 'http://www.eclipse.org/gmf/2009/GenModel'»
-
+«IMPORT 'http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension'»
 «EXTENSION xpt::diagram::editpolicies::Utils»
+«EXTENSION xpt::diagram::editpolicies::UtilsItemSemanticEditPolicy»
 
 «DEFINE NodeItemSemanticEditPolicy FOR gmfgen::GenNode-»
 	«EXPAND xpt::Common::copyright FOR getDiagram().editorGen-»
@@ -32,10 +34,19 @@ public class «itemSemanticEditPolicyClassName» extends «getDiagram().getBaseI
 
 	«EXPAND xpt::diagram::editpolicies::childContainerCreateCommand::childContainerCreateCommand FOR childNodes->asSequence()-»
 
-	«EXPAND getDestroyElementCommand-»
-	«IF hasChildrenOrCompartments(self)-»
-		«EXPAND addDestroyChildNodesCommand-»
-	«ENDIF-»
+«REM»
+Papyrus REM : 
+Test to know how the delete of this EditPart is done : we used the DeleteService or the "Traditional method"
+«ENDREM»
+	«IF papyrusgmfgenextension::EditPartUsingDeleteService.allInstances()->select(v:papyrusgmfgenextension::EditPartUsingDeleteService|v.genView->includes(self))->size()<>0»
+		«EXPAND xpt::diagram::editpolicies::UtilsItemSemanticEditPolicy::getDestroyElementCommandByService-»
+	«ELSE»
+		«EXPAND getDestroyElementCommand-»
+		«IF hasChildrenOrCompartments(self)-»
+			«EXPAND addDestroyChildNodesCommand-»
+		«ENDIF-»
+	«ENDIF-»	
+	
 	«EXPAND xpt::diagram::editpolicies::linkCommands::linkCommands-»
 
 	«EXPAND additions-»
@@ -52,9 +63,9 @@ protected org.eclipse.gef.commands.Command getDestroyElementCommand(org.eclipse.
 	org.eclipse.emf.ecore.EAnnotation annotation = view.getEAnnotation("Shortcut");«EXPAND xpt::Common::nonNLS»
 	if (annotation == null) {
 		// there are indirectly referenced children, need extra commands: «childNodes->union(compartments.childNodes->asBag())->exists(not isDirectlyOwned(self))»
-«IF hasChildrenOrCompartments(self)-»
-		addDestroyChildNodesCommand(cmd);
-«ENDIF-»
+	«IF hasChildrenOrCompartments(self)-»
+			addDestroyChildNodesCommand(cmd);
+	«ENDIF-»
 		addDestroyShortcutsCommand(cmd, view);
 		// delete host element
 		java.util.List<org.eclipse.emf.ecore.EObject> todestroy=new java.util.ArrayList<org.eclipse.emf.ecore.EObject>();

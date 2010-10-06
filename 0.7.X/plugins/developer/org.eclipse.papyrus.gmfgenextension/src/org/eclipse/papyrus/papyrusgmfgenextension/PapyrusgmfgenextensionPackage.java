@@ -853,6 +853,59 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.EditPartUsingDeleteServiceImpl
+	 * <em>Edit Part Using Delete Service</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.EditPartUsingDeleteServiceImpl
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getEditPartUsingDeleteService()
+	 * @generated
+	 */
+	int EDIT_PART_USING_DELETE_SERVICE = 15;
+
+	/**
+	 * The feature id for the '<em><b>Comment</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int EDIT_PART_USING_DELETE_SERVICE__COMMENT = COMMENTED_ELEMENT__COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int EDIT_PART_USING_DELETE_SERVICE__NAME = COMMENTED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Gen View</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int EDIT_PART_USING_DELETE_SERVICE__GEN_VIEW = COMMENTED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Edit Part Using Delete Service</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int EDIT_PART_USING_DELETE_SERVICE_FEATURE_COUNT = COMMENTED_ELEMENT_FEATURE_COUNT + 2;
+
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView <em>Extended Gen View</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1368,6 +1421,44 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	EAttribute getAdditionalEditPartCandies_BaseEditHelperPackage();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.EditPartUsingDeleteService
+	 * <em>Edit Part Using Delete Service</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for class '<em>Edit Part Using Delete Service</em>'.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.EditPartUsingDeleteService
+	 * @generated
+	 */
+	EClass getEditPartUsingDeleteService();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.papyrusgmfgenextension.EditPartUsingDeleteService#getName <em>Name</em>}
+	 * '.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.EditPartUsingDeleteService#getName()
+	 * @see #getEditPartUsingDeleteService()
+	 * @generated
+	 */
+	EAttribute getEditPartUsingDeleteService_Name();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.papyrusgmfgenextension.EditPartUsingDeleteService#getGenView
+	 * <em>Gen View</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the reference list '<em>Gen View</em>'.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.EditPartUsingDeleteService#getGenView()
+	 * @see #getEditPartUsingDeleteService()
+	 * @generated
+	 */
+	EReference getEditPartUsingDeleteService_GenView();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1812,6 +1903,36 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ADDITIONAL_EDIT_PART_CANDIES__BASE_EDIT_HELPER_PACKAGE = eINSTANCE.getAdditionalEditPartCandies_BaseEditHelperPackage();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.EditPartUsingDeleteServiceImpl
+		 * <em>Edit Part Using Delete Service</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * 
+		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.EditPartUsingDeleteServiceImpl
+		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getEditPartUsingDeleteService()
+		 * @generated
+		 */
+		EClass EDIT_PART_USING_DELETE_SERVICE = eINSTANCE.getEditPartUsingDeleteService();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EAttribute EDIT_PART_USING_DELETE_SERVICE__NAME = eINSTANCE.getEditPartUsingDeleteService_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Gen View</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference EDIT_PART_USING_DELETE_SERVICE__GEN_VIEW = eINSTANCE.getEditPartUsingDeleteService_GenView();
 
 	}
 

@@ -15,6 +15,7 @@ import org.eclipse.papyrus.papyrusgmfgenextension.AlternateCanvas;
 import org.eclipse.papyrus.papyrusgmfgenextension.AlternateGenLink;
 import org.eclipse.papyrus.papyrusgmfgenextension.AlternateGenTopLevelNode;
 import org.eclipse.papyrus.papyrusgmfgenextension.CommentedElement;
+import org.eclipse.papyrus.papyrusgmfgenextension.EditPartUsingDeleteService;
 import org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView;
 import org.eclipse.papyrus.papyrusgmfgenextension.ExternalHook;
 import org.eclipse.papyrus.papyrusgmfgenextension.GenNodeConstraint;
@@ -162,6 +163,11 @@ public class PapyrusgmfgenextensionAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseAdditionalEditPartCandies(AdditionalEditPartCandies object) {
 			return createAdditionalEditPartCandiesAdapter();
+		}
+
+		@Override
+		public Adapter caseEditPartUsingDeleteService(EditPartUsingDeleteService object) {
+			return createEditPartUsingDeleteServiceAdapter();
 		}
 
 		@Override
@@ -415,6 +421,22 @@ public class PapyrusgmfgenextensionAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createAdditionalEditPartCandiesAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.papyrusgmfgenextension.EditPartUsingDeleteService
+	 * <em>Edit Part Using Delete Service</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.EditPartUsingDeleteService
+	 * @generated
+	 */
+	public Adapter createEditPartUsingDeleteServiceAdapter() {
 		return null;
 	}
 
