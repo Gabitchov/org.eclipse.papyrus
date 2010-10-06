@@ -1351,6 +1351,27 @@ public class UMLVisualIDRegistry {
 				return StructuredActivityNodeEditPart.VISUAL_ID;
 			}
 			break;
+		case ActivityCNParametersCompartmentEditPart.VISUAL_ID:
+			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ParameterEditPart.VISUAL_ID;
+			}
+			break;
+		case ActivityCNPreConditionsCompartmentEditPart.VISUAL_ID:
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ConstraintInActivityAsPrecondEditPart.VISUAL_ID;
+			}
+			break;
+		case ActivityCNPostConditionsCompartmentEditPart.VISUAL_ID:
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ConstraintInActivityAsPostcondEditPart.VISUAL_ID;
+			}
+			break;
 		case ActivityCNContentCompartmentEditPart.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getInitialNode().isSuperTypeOf(domainElement.eClass())
 
@@ -1466,27 +1487,6 @@ public class UMLVisualIDRegistry {
 
 			) {
 				return ActivityEditPartCN.VISUAL_ID;
-			}
-			break;
-		case ActivityCNParametersCompartmentEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return ParameterEditPart.VISUAL_ID;
-			}
-			break;
-		case ActivityCNPreConditionsCompartmentEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return ConstraintInActivityAsPrecondEditPart.VISUAL_ID;
-			}
-			break;
-		case ActivityCNPostConditionsCompartmentEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return ConstraintInActivityAsPostcondEditPart.VISUAL_ID;
 			}
 			break;
 		}
@@ -2407,6 +2407,9 @@ public class UMLVisualIDRegistry {
 			if(ActivityNameEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(ActivityIsSingleExecutionCNEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			if(ActivityCNContentCompartmentEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -3144,6 +3147,21 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
+		case ActivityCNParametersCompartmentEditPart.VISUAL_ID:
+			if(ParameterEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ActivityCNPreConditionsCompartmentEditPart.VISUAL_ID:
+			if(ConstraintInActivityAsPrecondEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ActivityCNPostConditionsCompartmentEditPart.VISUAL_ID:
+			if(ConstraintInActivityAsPostcondEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		case ActivityCNContentCompartmentEditPart.VISUAL_ID:
 			if(InitialNodeEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
@@ -3212,21 +3230,6 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(ActivityEditPartCN.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case ActivityCNParametersCompartmentEditPart.VISUAL_ID:
-			if(ParameterEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case ActivityCNPreConditionsCompartmentEditPart.VISUAL_ID:
-			if(ConstraintInActivityAsPrecondEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case ActivityCNPostConditionsCompartmentEditPart.VISUAL_ID:
-			if(ConstraintInActivityAsPostcondEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;

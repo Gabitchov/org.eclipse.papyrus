@@ -225,14 +225,14 @@ public class UMLDiagramUpdater {
 			return getActivityPartitionActivityPartitionContentCompartment_7006SemanticChildren(view);
 		case InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart.VISUAL_ID:
 			return getInterruptibleActivityRegionInterruptibleActivityRegionContentCompartment_7007SemanticChildren(view);
-		case ActivityCNContentCompartmentEditPart.VISUAL_ID:
-			return getActivityActivityContentCompartment_7013SemanticChildren(view);
 		case ActivityCNParametersCompartmentEditPart.VISUAL_ID:
 			return getActivityActivityParametersCompartment_7014SemanticChildren(view);
 		case ActivityCNPreConditionsCompartmentEditPart.VISUAL_ID:
 			return getActivityActivityPreConditionsCompartment_7015SemanticChildren(view);
 		case ActivityCNPostConditionsCompartmentEditPart.VISUAL_ID:
 			return getActivityActivityPostConditionsCompartment_7016SemanticChildren(view);
+		case ActivityCNContentCompartmentEditPart.VISUAL_ID:
+			return getActivityActivityContentCompartment_7013SemanticChildren(view);
 		}
 		return Collections.emptyList();
 	}
