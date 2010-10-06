@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.papyrus.compare.report.services.UmlElementService;
 import org.eclipse.papyrus.compare.report.ui.common.GenerateAll;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
@@ -44,8 +45,10 @@ public class ExportAsHTMLWizard extends SaveDeltaWizard {
 
 	public void init(IWorkbench workbench, ComparisonSnapshot inputSnapshot) {
 		super.init(workbench, inputSnapshot);
-		Resource firstSelectedResource = getFirstSelectedResource(getDiffModel(inputSnapshot));
+		DiffModel model = getDiffModel(inputSnapshot);
+		Resource firstSelectedResource = getFirstSelectedResource(model);
 		myFirstSelectedFile = ResourcesPlugin.getWorkspace().getRoot().findMember(firstSelectedResource.getURI().toPlatformString(true));
+		myDefaultFileName = new UmlElementService().getFileName(model);
 	}
 
 	private DiffModel getDiffModel(ComparisonSnapshot inputSnapshot) {
@@ -120,7 +123,7 @@ public class ExportAsHTMLWizard extends SaveDeltaWizard {
 	}
 
 	private String getDefaultFileName() {
-		return "result";
+		return myDefaultFileName;
 	}
 
 	private List<? extends Object> getTemplateArguments() {
