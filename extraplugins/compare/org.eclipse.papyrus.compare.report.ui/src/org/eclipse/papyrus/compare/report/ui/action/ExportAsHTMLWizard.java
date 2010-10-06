@@ -106,6 +106,8 @@ public class ExportAsHTMLWizard extends SaveDeltaWizard {
 		if(!result) {
 			return false;
 		}
+		
+		myNewReportFileCreationPage.createNewFile();
 
 		IProgressMonitor monitor = new NullProgressMonitor();
 		IResource targetFolder = getTargetFolder();
