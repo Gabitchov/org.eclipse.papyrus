@@ -12,6 +12,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.codegen;
 
+import org.eclipse.gmf.codegen.gmfgen.GenChildLabelNode;
 import org.eclipse.gmf.codegen.gmfgen.GenDiagram;
 import org.eclipse.gmf.codegen.gmfgen.GenEditorGenerator;
 import org.eclipse.gmf.codegen.gmfgen.GenLink;
@@ -59,9 +60,18 @@ public class PapyrusGenerator extends Generator {
 		 * the generation of the preferences (top level nodes preferences were erased by child label nodes preferences)
 		 */
 
+		// Generate LabelChildNodePreferencePage
+		for(GenNode node : diagram.getChildNodes()) {
+			if(node instanceof GenChildLabelNode) {
+				generateNodePreferencePage(node, node.getElementType().getDisplayName());
+			}
+		}
+
 		// Generate ChildNodePreferencePage
 		for(GenNode node : diagram.getChildNodes()) {
-			generateNodePreferencePage(node, node.getElementType().getDisplayName());
+			if(!(node instanceof GenChildLabelNode)) {
+				generateNodePreferencePage(node, node.getElementType().getDisplayName());
+			}
 		}
 
 		// Generate TopLevelNodePreferencePage
