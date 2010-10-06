@@ -1,18 +1,27 @@
 package org.eclipse.papyrus.diagram.activity.edit.policies;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.command.DeleteCommand;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gmf.runtime.common.core.command.ICompositeCommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
+import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
+import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyReferenceCommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
+import org.eclipse.gmf.runtime.notation.Edge;
+import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.activity.edit.commands.ActivityParameterNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.CommentLinkCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.CommentLinkReorientCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ControlFlowCreateCommand;
@@ -21,10 +30,12 @@ import org.eclipse.papyrus.diagram.activity.edit.commands.ExceptionHandlerCreate
 import org.eclipse.papyrus.diagram.activity.edit.commands.ExceptionHandlerReorientCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ObjectFlowCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ObjectFlowReorientCommand;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityParameterNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CommentLinkEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ControlFlowEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ExceptionHandlerEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowEditPart;
+import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.common.command.wrappers.EMFtoGMFCommandWrapper;
 
@@ -43,6 +54,16 @@ public class ReadSelfActionOutputPinItemSemanticEditPolicy extends UMLBaseItemSe
 	/**
 	 * @generated
 	 */
+	protected Command getCreateCommand(CreateElementRequest req) {
+		if(UMLElementTypes.ActivityParameterNode_3059 == req.getElementType()) {
+			return getGEFWrapper(new ActivityParameterNodeCreateCommand(req));
+		}
+		return super.getCreateCommand(req);
+	}
+
+	/**
+	 * @generated
+	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		View view = (View)getHost().getModel();
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
@@ -50,7 +71,8 @@ public class ReadSelfActionOutputPinItemSemanticEditPolicy extends UMLBaseItemSe
 
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 		if(annotation == null) {
-			// there are indirectly referenced children, need extra commands: false
+			// there are indirectly referenced children, need extra commands: true
+			addDestroyChildNodesCommand(cmd);
 			addDestroyShortcutsCommand(cmd, view);
 			// delete host element
 			List<EObject> todestroy = new ArrayList<EObject>();
@@ -61,6 +83,53 @@ public class ReadSelfActionOutputPinItemSemanticEditPolicy extends UMLBaseItemSe
 			cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), view));
 		}
 		return getGEFWrapper(cmd.reduce());
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void addDestroyChildNodesCommand(ICompositeCommand cmd) {
+		View view = (View)getHost().getModel();
+		for(Iterator<?> nit = view.getChildren().iterator(); nit.hasNext();) {
+			Node node = (Node)nit.next();
+			switch(UMLVisualIDRegistry.getVisualID(node)) {
+			case ActivityParameterNodeEditPart.VISUAL_ID:
+
+				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
+					Edge incomingLink = (Edge)it.next();
+					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
+					case CommentLinkEditPart.VISUAL_ID:
+						DestroyReferenceRequest destroyRefReq = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+						cmd.add(new DestroyReferenceCommand(destroyRefReq));
+						cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), incomingLink));
+						break;
+					case ObjectFlowEditPart.VISUAL_ID:
+					case ControlFlowEditPart.VISUAL_ID:
+					case ExceptionHandlerEditPart.VISUAL_ID:
+						DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
+						cmd.add(new DestroyElementCommand(destroyEltReq));
+						cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), incomingLink));
+						break;
+					}
+				}
+
+				for(Iterator<?> it = node.getSourceEdges().iterator(); it.hasNext();) {
+					Edge outgoingLink = (Edge)it.next();
+					switch(UMLVisualIDRegistry.getVisualID(outgoingLink)) {
+					case ObjectFlowEditPart.VISUAL_ID:
+					case ControlFlowEditPart.VISUAL_ID:
+						DestroyElementRequest destroyEltReq = new DestroyElementRequest(outgoingLink.getElement(), false);
+						cmd.add(new DestroyElementCommand(destroyEltReq));
+						cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), outgoingLink));
+						break;
+					}
+				}
+				cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), node.getElement(), false))); // directlyOwned: false
+				// don't need explicit deletion of node as parent's view deletion would clean child views as well 
+				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
+				break;
+			}
+		}
 	}
 
 	/**

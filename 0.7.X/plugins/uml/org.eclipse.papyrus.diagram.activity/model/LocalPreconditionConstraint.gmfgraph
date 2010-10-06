@@ -21,8 +21,8 @@
             accessor="getConstraintFigure()">
           <typedFigure
               xsi:type="gmfgraph:CustomFigure"
-              name="LocalPrecondtionConstraintFigure"
-              qualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.LocalPreconditionConstraintFigure"/>
+              name="ConstraintFigure"
+              qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.ConstraintFigure"/>
         </customChildren>
       </actualFigure>
       <accessors

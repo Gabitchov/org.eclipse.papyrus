@@ -285,6 +285,13 @@ public class UMLVisualIDRegistry {
 				return ReadSelfActionOutputPinEditPart.VISUAL_ID;
 			}
 			break;
+		case ReadSelfActionOutputPinEditPart.VISUAL_ID:
+			if(UMLPackage.eINSTANCE.getActivityParameterNode().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ActivityParameterNodeEditPart.VISUAL_ID;
+			}
+			break;
 		case ActivityEditPartCN.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getActivityParameterNode().isSuperTypeOf(domainElement.eClass())
 
@@ -1403,6 +1410,30 @@ public class UMLVisualIDRegistry {
 			) {
 				return CallOperationActionEditPart.VISUAL_ID;
 			}
+			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3034(containerView, (DurationConstraint)domainElement)) {
+				return DurationConstraintAsLocalPrecondEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3035(containerView, (DurationConstraint)domainElement)) {
+				return DurationConstraintAsLocalPostcondEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3036(containerView, (TimeConstraint)domainElement)) {
+				return TimeConstraintAsLocalPrecondEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3037(containerView, (TimeConstraint)domainElement)) {
+				return TimeConstraintAsLocalPostcondEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3032(containerView, (IntervalConstraint)domainElement)) {
+				return IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3033(containerView, (IntervalConstraint)domainElement)) {
+				return IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3011(containerView, (Constraint)domainElement)) {
+				return ConstraintAsLocalPrecondEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3012(containerView, (Constraint)domainElement)) {
+				return ConstraintAsLocalPostcondEditPart.VISUAL_ID;
+			}
 			if(UMLPackage.eINSTANCE.getDecisionNode().isSuperTypeOf(domainElement.eClass())
 
 			) {
@@ -1422,6 +1453,11 @@ public class UMLVisualIDRegistry {
 
 			) {
 				return JoinNodeEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getDataStoreNode().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return DataStoreNodeEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getSendObjectAction().isSuperTypeOf(domainElement.eClass())
 
@@ -1463,6 +1499,11 @@ public class UMLVisualIDRegistry {
 			) {
 				return SequenceNodeEditPart.VISUAL_ID;
 			}
+			if(UMLPackage.eINSTANCE.getStructuredActivityNode().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return StructuredActivityNodeEditPart.VISUAL_ID;
+			}
 			if(UMLPackage.eINSTANCE.getActivityPartition().isSuperTypeOf(domainElement.eClass())
 
 			) {
@@ -1473,10 +1514,10 @@ public class UMLVisualIDRegistry {
 			) {
 				return InterruptibleActivityRegionEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getNamedElement().isSuperTypeOf(domainElement.eClass())
+			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())
 
 			) {
-				return ShapeNamedElementEditPart.VISUAL_ID;
+				return CommentEditPartCN.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getReadSelfAction().isSuperTypeOf(domainElement.eClass())
 
@@ -1487,6 +1528,11 @@ public class UMLVisualIDRegistry {
 
 			) {
 				return ActivityEditPartCN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getNamedElement().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ShapeNamedElementEditPart.VISUAL_ID;
 			}
 			break;
 		}
@@ -2377,11 +2423,6 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
-		case ShapeNamedElementEditPart.VISUAL_ID:
-			if(ShapeNamedElementNameEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
 		case CommentEditPartCN.VISUAL_ID:
 			if(CommentBodyLabelEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
@@ -2400,6 +2441,9 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(OutputPinInReadSelfActionAppliedStereotypeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ActivityParameterNodeEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -2423,6 +2467,11 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(ActivityParameterNodeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ShapeNamedElementEditPart.VISUAL_ID:
+			if(ShapeNamedElementNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -3181,6 +3230,30 @@ public class UMLVisualIDRegistry {
 			if(CallOperationActionEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(DurationConstraintAsLocalPrecondEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(DurationConstraintAsLocalPostcondEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(TimeConstraintAsLocalPrecondEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(TimeConstraintAsLocalPostcondEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ConstraintAsLocalPrecondEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ConstraintAsLocalPostcondEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			if(DecisionNodeEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -3191,6 +3264,9 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(JoinNodeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(DataStoreNodeEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if(SendObjectActionEditPart.VISUAL_ID == nodeVisualID) {
@@ -3217,19 +3293,25 @@ public class UMLVisualIDRegistry {
 			if(SequenceNodeEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(StructuredActivityNodeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			if(ActivityPartitionEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if(InterruptibleActivityRegionEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if(ShapeNamedElementEditPart.VISUAL_ID == nodeVisualID) {
+			if(CommentEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if(ReadSelfActionEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if(ActivityEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ShapeNamedElementEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -3366,7 +3448,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isConstraint_3011(Constraint domainElement) {
-		Object result = UMLOCLFactory.getExpression(14, UMLPackage.eINSTANCE.getConstraint(), null).evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(12, UMLPackage.eINSTANCE.getConstraint(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -3374,7 +3456,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isConstraint_3012(Constraint domainElement) {
-		Object result = UMLOCLFactory.getExpression(15, UMLPackage.eINSTANCE.getConstraint(), null).evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(13, UMLPackage.eINSTANCE.getConstraint(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -3382,7 +3464,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isValuePin_3046(ValuePin domainElement) {
-		Object result = UMLOCLFactory.getExpression(16, UMLPackage.eINSTANCE.getValuePin(), null).evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(14, UMLPackage.eINSTANCE.getValuePin(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -3390,7 +3472,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isActionInputPin_3047(ActionInputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(17, UMLPackage.eINSTANCE.getActionInputPin(), null).evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(15, UMLPackage.eINSTANCE.getActionInputPin(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -3398,7 +3480,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isInputPin_3048(InputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(18, UMLPackage.eINSTANCE.getInputPin(), null).evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(16, UMLPackage.eINSTANCE.getInputPin(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -3406,7 +3488,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isValuePin_3049(ValuePin domainElement) {
-		Object result = UMLOCLFactory.getExpression(19, UMLPackage.eINSTANCE.getValuePin(), null).evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(17, UMLPackage.eINSTANCE.getValuePin(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -3414,7 +3496,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isActionInputPin_3050(ActionInputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(20, UMLPackage.eINSTANCE.getActionInputPin(), null).evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(18, UMLPackage.eINSTANCE.getActionInputPin(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -3422,7 +3504,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isInputPin_3051(InputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(21, UMLPackage.eINSTANCE.getInputPin(), null).evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(19, UMLPackage.eINSTANCE.getInputPin(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -3430,7 +3512,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isActionInputPin_3053(ActionInputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(22, UMLPackage.eINSTANCE.getActionInputPin(), null).evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(20, UMLPackage.eINSTANCE.getActionInputPin(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -3438,7 +3520,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isValuePin_3054(ValuePin domainElement) {
-		Object result = UMLOCLFactory.getExpression(23, UMLPackage.eINSTANCE.getValuePin(), null).evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(21, UMLPackage.eINSTANCE.getValuePin(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -3446,7 +3528,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isInputPin_3055(InputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(24, UMLPackage.eINSTANCE.getInputPin(), null).evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(22, UMLPackage.eINSTANCE.getInputPin(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -3454,7 +3536,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isValuePin_3060(ValuePin domainElement) {
-		Object result = UMLOCLFactory.getExpression(25, UMLPackage.eINSTANCE.getValuePin(), null).evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(23, UMLPackage.eINSTANCE.getValuePin(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -3462,7 +3544,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isActionInputPin_3061(ActionInputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(26, UMLPackage.eINSTANCE.getActionInputPin(), null).evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(24, UMLPackage.eINSTANCE.getActionInputPin(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -3470,7 +3552,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isInputPin_3062(InputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(27, UMLPackage.eINSTANCE.getInputPin(), null).evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(25, UMLPackage.eINSTANCE.getInputPin(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -3478,7 +3560,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isExpansionNode_3074(ExpansionNode domainElement) {
-		Object result = UMLOCLFactory.getExpression(28, UMLPackage.eINSTANCE.getExpansionNode(), null).evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(26, UMLPackage.eINSTANCE.getExpansionNode(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -3486,7 +3568,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isExpansionNode_3075(ExpansionNode domainElement) {
-		Object result = UMLOCLFactory.getExpression(29, UMLPackage.eINSTANCE.getExpansionNode(), null).evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(27, UMLPackage.eINSTANCE.getExpansionNode(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -3494,7 +3576,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isIntervalConstraint_3032(IntervalConstraint domainElement) {
-		Object result = UMLOCLFactory.getExpression(12, UMLPackage.eINSTANCE.getIntervalConstraint(), null).evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(10, UMLPackage.eINSTANCE.getIntervalConstraint(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -3502,7 +3584,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isIntervalConstraint_3033(IntervalConstraint domainElement) {
-		Object result = UMLOCLFactory.getExpression(13, UMLPackage.eINSTANCE.getIntervalConstraint(), null).evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(11, UMLPackage.eINSTANCE.getIntervalConstraint(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -3834,6 +3916,8 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7009, viewInfo);
 
+		root.addNode(7013, viewInfo);
+
 		viewInfo = new BaseViewInfo(3035, ViewInfo.Node, "DurationConstraint");
 
 		root.addNode(7004, viewInfo);
@@ -3851,6 +3935,8 @@ public class UMLVisualIDRegistry {
 		root.addNode(7007, viewInfo);
 
 		root.addNode(7009, viewInfo);
+
+		root.addNode(7013, viewInfo);
 
 		viewInfo = new BaseViewInfo(3036, ViewInfo.Node, "TimeConstraint");
 
@@ -3870,6 +3956,8 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7009, viewInfo);
 
+		root.addNode(7013, viewInfo);
+
 		viewInfo = new BaseViewInfo(3037, ViewInfo.Node, "TimeConstraint");
 
 		root.addNode(7004, viewInfo);
@@ -3887,6 +3975,8 @@ public class UMLVisualIDRegistry {
 		root.addNode(7007, viewInfo);
 
 		root.addNode(7009, viewInfo);
+
+		root.addNode(7013, viewInfo);
 
 		viewInfo = new BaseViewInfo(3032, ViewInfo.Node, "IntervalConstraint");
 
@@ -3906,6 +3996,8 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7009, viewInfo);
 
+		root.addNode(7013, viewInfo);
+
 		viewInfo = new BaseViewInfo(3033, ViewInfo.Node, "IntervalConstraint");
 
 		root.addNode(7004, viewInfo);
@@ -3923,6 +4015,8 @@ public class UMLVisualIDRegistry {
 		root.addNode(7007, viewInfo);
 
 		root.addNode(7009, viewInfo);
+
+		root.addNode(7013, viewInfo);
 
 		viewInfo = new BaseViewInfo(3011, ViewInfo.Node, "Constraint");
 
@@ -3942,6 +4036,8 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7009, viewInfo);
 
+		root.addNode(7013, viewInfo);
+
 		viewInfo = new BaseViewInfo(3012, ViewInfo.Node, "Constraint");
 
 		root.addNode(7004, viewInfo);
@@ -3959,6 +4055,8 @@ public class UMLVisualIDRegistry {
 		root.addNode(7007, viewInfo);
 
 		root.addNode(7009, viewInfo);
+
+		root.addNode(7013, viewInfo);
 
 		viewInfo = new BaseViewInfo(3038, ViewInfo.Node, "DecisionNode");
 
@@ -4044,7 +4142,11 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7004, viewInfo);
 
+		root.addNode(7013, viewInfo);
+
 		root.addNode(7008, viewInfo);
+
+		root.addNode(7009, viewInfo);
 
 		root.addNode(7010, viewInfo);
 
@@ -4055,8 +4157,6 @@ public class UMLVisualIDRegistry {
 		root.addNode(7006, viewInfo);
 
 		root.addNode(7007, viewInfo);
-
-		root.addNode(7009, viewInfo);
 
 		viewInfo = new BaseViewInfo(3042, ViewInfo.Node, "SendObjectAction");
 
@@ -4149,6 +4249,8 @@ public class UMLVisualIDRegistry {
 		viewInfo = new BaseViewInfo(3059, ViewInfo.Node, "ActivityParameterNode");
 
 		root.addNode(2001, viewInfo);
+
+		root.addNode(3082, viewInfo);
 
 		root.addNode(3083, viewInfo);
 
@@ -4306,6 +4408,8 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7009, viewInfo);
 
+		root.addNode(7013, viewInfo);
+
 		viewInfo = new BaseViewInfo(3067, ViewInfo.Node, "ActivityPartition");
 
 		root.addNode(7004, viewInfo);
@@ -4320,13 +4424,11 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7013, viewInfo);
 
-		viewInfo = new BaseViewInfo(3079, ViewInfo.Node, "NamedElement");
-
-		root.addNode(7013, viewInfo);
-
 		viewInfo = new BaseViewInfo(3080, ViewInfo.Node, "Comment");
 
 		root.addNode(7004, viewInfo);
+
+		root.addNode(7013, viewInfo);
 
 		viewInfo = new BaseViewInfo(3081, ViewInfo.Node, "ReadSelfAction");
 
@@ -4340,7 +4442,11 @@ public class UMLVisualIDRegistry {
 
 		viewInfo = new BaseViewInfo(3083, ViewInfo.Node, "Activity");
 
+		root.addNode(7013, viewInfo);
+
 		root.addNode(7004, viewInfo);
+
+		viewInfo = new BaseViewInfo(3079, ViewInfo.Node, "NamedElement");
 
 		root.addNode(7013, viewInfo);
 

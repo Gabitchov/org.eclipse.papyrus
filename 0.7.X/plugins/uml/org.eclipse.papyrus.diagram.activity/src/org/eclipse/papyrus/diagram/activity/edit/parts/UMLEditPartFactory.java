@@ -600,12 +600,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case InterruptibleActivityRegionEditPart.VISUAL_ID:
 				return new InterruptibleActivityRegionEditPart(view);
 
-			case ShapeNamedElementEditPart.VISUAL_ID:
-				return new ShapeNamedElementEditPart(view);
-
-			case ShapeNamedElementNameEditPart.VISUAL_ID:
-				return new ShapeNamedElementNameEditPart(view);
-
 			case CommentEditPartCN.VISUAL_ID:
 				return new CommentEditPartCN(view);
 
@@ -635,6 +629,12 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case ActivityIsSingleExecutionCNEditPart.VISUAL_ID:
 				return new ActivityIsSingleExecutionCNEditPart(view);
+
+			case ShapeNamedElementEditPart.VISUAL_ID:
+				return new ShapeNamedElementEditPart(view);
+
+			case ShapeNamedElementNameEditPart.VISUAL_ID:
+				return new ShapeNamedElementNameEditPart(view);
 
 			case ActivityActivityParametersCompartmentEditPart.VISUAL_ID:
 				return new ActivityActivityParametersCompartmentEditPart(view);

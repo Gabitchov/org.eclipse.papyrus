@@ -15,13 +15,13 @@
         visualID="7001"
         queryText="true"/>
     <compartmentTraces
+        visualID="7002"
+        queryText="true"/>
+    <compartmentTraces
         visualID="7003"
         queryText="true"/>
     <compartmentTraces
         visualID="7004"
-        queryText="true"/>
-    <compartmentTraces
-        visualID="7013"
         queryText="true"/>
   </nodeTraces>
   <childNodeTraces

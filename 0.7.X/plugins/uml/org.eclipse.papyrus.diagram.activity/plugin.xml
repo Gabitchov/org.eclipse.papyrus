@@ -566,7 +566,7 @@
       <viewProvider class="org.eclipse.papyrus.diagram.activity.providers.UMLViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="PapyrusUMLActivityDiagram"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,3001,3002,3003,3004,3005,3006,3007,3015,3016,3013,3014,3008,3017,3018,3019,3020,3010,3021,3022,3023,3024,3025,3026,3027,3034,3035,3036,3037,3032,3033,3011,3012,3038,3039,3040,3041,3078,3042,3046,3047,3048,3049,3050,3051,3052,3053,3054,3055,3060,3061,3062,3059,3063,3064,3076,3077,3069,3070,3074,3075,3071,3073,3065,3067,3068,3079,3080,3081,3082,3083"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,3001,3002,3003,3004,3005,3006,3007,3015,3016,3013,3014,3008,3017,3018,3019,3020,3010,3021,3022,3023,3024,3025,3026,3027,3034,3035,3036,3037,3032,3033,3011,3012,3038,3039,3040,3041,3078,3042,3046,3047,3048,3049,3050,3051,3052,3053,3054,3055,3060,3061,3062,3059,3063,3064,3076,3077,3069,3070,3074,3075,3071,3073,3065,3067,3068,3080,3081,3082,3083,3079"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4001,4002,4003,4004,4005,4006"/>
       </viewProvider>
    </extension>
@@ -579,13 +579,13 @@
             <method name="getType()" value="PapyrusUMLActivityDiagram"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2001,3001,3002,3003,3004,3005,3006,3007,3015,3016,3013,3014,3008,3017,3018,3019,3020,3010,3021,3022,3023,3024,3025,3026,3027,3034,3035,3036,3037,3032,3033,3011,3012,3038,3039,3040,3041,3078,3042,3046,3047,3048,3049,3050,3051,3052,3053,3054,3055,3060,3061,3062,3059,3063,3064,3076,3077,3069,3070,3074,3075,3071,3073,3065,3067,3068,3079,3080,3081,3082,3083"/>
+            <method name="getType()" value="2001,3001,3002,3003,3004,3005,3006,3007,3015,3016,3013,3014,3008,3017,3018,3019,3020,3010,3021,3022,3023,3024,3025,3026,3027,3034,3035,3036,3037,3032,3033,3011,3012,3038,3039,3040,3041,3078,3042,3046,3047,3048,3049,3050,3051,3052,3053,3054,3055,3060,3061,3062,3059,3063,3064,3076,3077,3069,3070,3074,3075,3071,3073,3065,3067,3068,3080,3081,3082,3083,3079"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
             <method name="getType()" value="4001,4002,4003,4004,4005,4006"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="5001,5002,5080,5081,5082,5003,5011,5024,5083,5012,5025,5084,5009,5085,5010,5086,5004,5013,5026,5087,5014,5027,5088,5015,5089,5016,5090,5006,5017,5028,5091,5018,5029,5092,5019,5093,5020,5094,5021,5030,5095,5022,5031,5096,5023,5097,5038,5130,5039,5131,5040,5132,5041,5133,5036,5134,5037,5135,5007,5136,5008,5137,5043,5098,5099,5100,5042,5101,5127,5128,5059,5049,5050,5102,5051,5052,5103,5053,5104,5054,5055,5105,5056,5057,5106,5058,5107,5060,5061,5062,5108,5063,5064,5109,5065,5110,5072,5073,5111,5074,5075,5112,5076,5113,5071,5078,5079,5115,5077,5114,5126,5124,5125,5119,5120,5121,5123,5117,5118,5129,5138,5139,5140,5141,5142,5143"/>
+            <method name="getType()" value="5001,5002,5080,5081,5082,5003,5011,5024,5083,5012,5025,5084,5009,5085,5010,5086,5004,5013,5026,5087,5014,5027,5088,5015,5089,5016,5090,5006,5017,5028,5091,5018,5029,5092,5019,5093,5020,5094,5021,5030,5095,5022,5031,5096,5023,5097,5038,5130,5039,5131,5040,5132,5041,5133,5036,5134,5037,5135,5007,5136,5008,5137,5043,5098,5099,5100,5042,5101,5127,5128,5059,5049,5050,5102,5051,5052,5103,5053,5104,5054,5055,5105,5056,5057,5106,5058,5107,5060,5061,5062,5108,5063,5064,5109,5065,5110,5072,5073,5111,5074,5075,5112,5076,5113,5071,5078,5079,5115,5077,5114,5126,5124,5125,5119,5120,5121,5123,5117,5118,5138,5139,5140,5141,5142,5143,5129"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
             <method name="getType()" value="7001,7002,7003,7004,7008,7009,7010,7012,7005,7006,7007,7014,7015,7016,7013"/>
@@ -1260,16 +1260,6 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.activity.NamedElement_3079"
-               name="%metatype.name.NamedElement_3079"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="NamedElement"
-               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.ShapeNamedElementEditHelper">
-            <param name="semanticHint" value="3079"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
-         <metamodelType
                id="org.eclipse.papyrus.diagram.activity.Comment_3080"
                name="%metatype.name.Comment_3080"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
@@ -1289,14 +1279,13 @@
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
-         <metamodelType
+         <specializationType
                id="org.eclipse.papyrus.diagram.activity.OutputPin_3082"
                name="%metatype.name.OutputPin_3082"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="OutputPin"
-               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.OutputPinEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.activity.OutputPin_3014"/>
             <param name="semanticHint" value="3082"/>
-         </metamodelType>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
@@ -1306,6 +1295,16 @@
                eclass="Activity"
                edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.ActivityCNEditHelper">
             <param name="semanticHint" value="3083"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.activity.NamedElement_3079"
+               name="%metatype.name.NamedElement_3079"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="NamedElement"
+               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.ShapeNamedElementEditHelper">
+            <param name="semanticHint" value="3079"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
@@ -1442,11 +1441,11 @@
          <elementType ref="org.eclipse.papyrus.diagram.activity.StructuredActivityNode_3065"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.ActivityPartition_3067"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.InterruptibleActivityRegion_3068"/>
-         <elementType ref="org.eclipse.papyrus.diagram.activity.NamedElement_3079"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.Comment_3080"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.ReadSelfAction_3081"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.OutputPin_3082"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.ActivityCN_3083"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.NamedElement_3079"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.ActionLocalPrecondition_4001"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.ActionLocalPostcondition_4002"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.ObjectFlow_4003"/>
@@ -2776,7 +2775,7 @@ and self.decisionInput.ownedParameter->select(
  	</entry>
 	<entry
        defineOnly="true"
-       description="Create a comment"
+       description="Create a Comment"
        id="clazz.tool.comment"
        kind="tool"
        label="Comment"
