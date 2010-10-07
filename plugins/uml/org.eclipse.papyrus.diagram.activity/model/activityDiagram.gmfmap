@@ -2804,9 +2804,12 @@
                   language="java"/>
             </initializers>
           </domainInitializer>
-          <labelMappings>
+          <labelMappings
+              xsi:type="gmfmap:FeatureLabelMapping">
             <diagramLabel
                 href="../../org.eclipse.papyrus.diagram.common/model/Action.gmfgraph#ActionFigureNameDiagramLabel"/>
+            <features
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
@@ -2816,9 +2819,9 @@
           <children
               referencedChild="//@nodes.0/@ownedChild/@children.35/@ownedChild/@children.0/@ownedChild">
             <containmentFeature
-                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CallAction/result"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReadSelfAction/result"/>
             <childrenFeature
-                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CallAction/result"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReadSelfAction/result"/>
             <ownedChild
                 relatedDiagrams="//@diagram">
               <domainMetaElement
@@ -2860,6 +2863,12 @@
             href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//BehavioredClassifier/ownedBehavior"/>
         <childrenFeature
             href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//BehavioredClassifier/ownedBehavior"/>
+      </children>
+      <children>
+        <ownedChild>
+          <diagramNode
+              href="activityDiagram.gmfgraph#StereotypedCustomizedNode"/>
+        </ownedChild>
       </children>
       <compartments
           children="//@nodes.0/@ownedChild/@children.0">
@@ -3048,6 +3057,17 @@
     <linkMetaFeature
         xsi:type="ecore:EReference"
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ExceptionHandler/exceptionInput"/>
+  </links>
+  <links
+      relatedDiagrams="//@diagram">
+    <tool
+        xsi:type="gmftool:CreationTool"
+        href="activityDiagram.gmftool#//@palette/@tools.1/@tools.3"/>
+    <diagramLink
+        href="activityDiagram.gmfgraph#CommentLinkFigure"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Comment/annotatedElement"/>
   </links>
   <diagram>
     <diagramCanvas

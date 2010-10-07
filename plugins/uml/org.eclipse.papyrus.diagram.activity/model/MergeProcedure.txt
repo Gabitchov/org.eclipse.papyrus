@@ -1,19 +1,21 @@
 Procedure to merge a new gmfgen files where modifications are made.
 
-1. Copy the not modified gmfgen to another directory.
+1. Copy the not modified gmfgen to another location.
 2. Generate the new gmfgen file.
 3. Delete the unused first label parser located at :
 	Gen Editor ... > Gen Parsers ... > External Parser
 4. Save the modification.
 5. Compare the new and old gmfgen files in text mode.
-6. Using Ctrl+., inspect each differences and merge from old to new file
-	(using the Copy current change from left to right or right to left action) :
+6. Using Ctrl+. or Ctrl+, , inspect each differences and merge from old to new file
+	(using the Copy current change from left to right or right to left action)
+	(take care that you do have only one compare editor opened) :
 		- the addition of groups as containers of activity nodes
 			(in containers attribute, addition of compartments 4 to 9)
 		- the preferredSideName attribute for pins
 			(WEST for input pins, EAST for output, NORTH for target)
 		- the addition of activity nodes as children of groups
 			(childNodes attribute of compartments)
+		- copy/paste child node ShapeNamedElementEditPart
 7. Other changes must not be merged. These should be among this list :
 	- changes subsequent to modifications in the tooling files,
 	- alteration of the order of usage in implementations of labelParsers,
