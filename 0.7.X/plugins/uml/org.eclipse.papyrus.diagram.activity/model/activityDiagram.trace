@@ -666,16 +666,6 @@
         queryText="true"/>
   </childNodeTraces>
   <childNodeTraces
-      visualID="3082"
-      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'OutputPin') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'CallAction') and _containmentMF_.name = 'result')">
-    <nodeLabelTraces
-        visualID="5140"
-        queryText="true"/>
-    <nodeLabelTraces
-        visualID="5141"
-        queryText="true"/>
-  </childNodeTraces>
-  <childNodeTraces
       visualID="3083"
       queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Activity') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'BehavioredClassifier') and _containmentMF_.name = 'ownedBehavior')">
     <nodeLabelTraces
@@ -697,6 +687,19 @@
         visualID="7013"
         queryText="true"/>
   </childNodeTraces>
+  <childNodeTraces
+      visualID="3084"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'OutputPin') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'ReadSelfAction') and _containmentMF_.name = 'result')">
+    <nodeLabelTraces
+        visualID="5144"
+        queryText="true"/>
+    <nodeLabelTraces
+        visualID="5145"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3085"
+      queryText="modelFacet = null"/>
   <linkTraces
       visualID="4001"
       queryText="modelFacet.oclIsKindOf(gmfgen::FeatureLinkModelFacet) and (let _feature_:ecore::EStructuralFeature = modelFacet.oclAsType(gmfgen::FeatureLinkModelFacet).metaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _feature_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Action') and _feature_.name = 'localPrecondition')"/>
@@ -751,4 +754,7 @@
         visualID="6012"
         queryText="true"/>
   </linkTraces>
+  <linkTraces
+      visualID="4006"
+      queryText="modelFacet.oclIsKindOf(gmfgen::FeatureLinkModelFacet) and (let _feature_:ecore::EStructuralFeature = modelFacet.oclAsType(gmfgen::FeatureLinkModelFacet).metaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _feature_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Comment') and _feature_.name = 'annotatedElement')"/>
 </trace:TraceModel>

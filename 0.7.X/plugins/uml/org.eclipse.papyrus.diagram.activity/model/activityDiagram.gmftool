@@ -614,6 +614,19 @@
             path="icons/full/obj16/ExceptionHandler.gif"
             bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
       </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Link"
+          description="Create of a link for comment">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/Link.gif"
+            bundle=""/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/Link.gif"
+            bundle=""/>
+      </tools>
     </tools>
   </palette>
 </gmftool:ToolRegistry>

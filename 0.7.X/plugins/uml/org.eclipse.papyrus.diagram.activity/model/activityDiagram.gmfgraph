@@ -801,6 +801,20 @@
           accessor="getNameLabel"
           figure="//@figures.0/@descriptors.24/@actualFigure/@customChildren.0/@typedFigure"/>
     </descriptors>
+    <descriptors
+        name="CommentLinkFigureDescriptor">
+      <actualFigure
+          xsi:type="gmfgraph:CustomConnection"
+          name="CommentLinkFigure"
+          qualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.LinkFigure"/>
+    </descriptors>
+    <descriptors
+        name="StereotypedCustomizedFigureDescriptor">
+      <actualFigure
+          xsi:type="gmfgraph:CustomFigure"
+          name="StereotypedCustomizedFigure"
+          qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.ShapeNamedElementFigure"/>
+    </descriptors>
   </figures>
   <nodes
       name="ActivityNode"
@@ -866,6 +880,9 @@
   <nodes
       name="CallBehaviorActionFigureNode"
       figure="CallBehaviorActionDescriptor"/>
+  <nodes
+      name="StereotypedCustomizedNode"
+      figure="StereotypedCustomizedFigureDescriptor"/>
   <connections
       name="CornerBentWithTextLinkConnection"
       figure="DashedLinkDescriptor"/>
@@ -875,6 +892,9 @@
   <connections
       name="ExceptionHandlerConnection"
       figure="ExceptionHandlerDescriptor"/>
+  <connections
+      name="CommentLinkFigure"
+      figure="CommentLinkFigureDescriptor"/>
   <compartments
       name="ActivityParametersCompartment"
       figure="CustomActivityRectangleFigure"
