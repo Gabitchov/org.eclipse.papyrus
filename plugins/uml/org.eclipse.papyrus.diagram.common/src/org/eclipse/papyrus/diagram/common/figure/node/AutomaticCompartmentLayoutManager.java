@@ -214,6 +214,10 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 
 	}
 
+	/**
+	 * use to know what kind of element we have in order to apply the good policy for the disposition
+	 * @param container
+	 */
 	public void collectInformationOnChildren(IFigure container) {
 		compartmentList = new ArrayList<IFigure>();
 		notCompartmentList = new ArrayList<IFigure>();
@@ -221,7 +225,7 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 			if(isAGMFContainer(((IFigure)container.getChildren().get(i)))) {
 				compartmentList.add(((IFigure)container.getChildren().get(i)));
 			} else {
-				if((container.getChildren().get(i)) instanceof Label || (container.getChildren().get(i)) instanceof WrappingLabel) {
+				if((container.getChildren().get(i)) instanceof Label || (container.getChildren().get(i)) instanceof WrappingLabel||((container.getChildren().get(i)) instanceof StereotypePropertiesCompartment)) {
 					notCompartmentList.add(((IFigure)container.getChildren().get(i)));
 				}
 			}
