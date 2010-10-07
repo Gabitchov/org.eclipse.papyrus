@@ -22,11 +22,13 @@ import org.eclipse.draw2d.GridLayout;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.RoundedRectangle;
+import org.eclipse.draw2d.ScrollPane;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ShapeCompartmentFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.gmf.runtime.draw2d.ui.internal.figures.AnimatableScrollPane;
 import org.eclipse.papyrus.diagram.common.figure.node.PapyrusRoundedNodeFigure;
 
 /**
@@ -70,9 +72,16 @@ public class ActivityFigure extends PapyrusRoundedNodeFigure {
 		 */
 		@Override
 		protected Dimension calculatePreferredSize(IFigure container, int hint, int hint2) {
-
 			int minimumWith = 0;
 			int minimumHeight = 0;
+
+			//take in account the content of the figure activity
+			if((getContentFigure().getChildren().size()>0)){
+				IFigure content =(IFigure)getContentFigure().getChildren().get(0);
+				minimumWith=content.getPreferredSize().width+50;
+				minimumHeight=content.getPreferredSize().height+50;
+			}
+
 			// display name
 			if(getNameLabel() != null) {
 				if(getNameLabel().getPreferredSize().width > minimumWith) {
@@ -81,6 +90,11 @@ public class ActivityFigure extends PapyrusRoundedNodeFigure {
 				minimumHeight += getNameLabel().getPreferredSize().height;
 			}
 
+			if(getHeaderSingleExecution() != null) {
+				if(getHeaderSingleExecution().getBounds().getTopRight().x> minimumWith) {
+					minimumWith =getHeaderSingleExecution().getBounds().getTopRight().x;
+				}
+			}
 			return new Dimension(minimumWith, minimumHeight);
 		}
 
@@ -148,7 +162,7 @@ public class ActivityFigure extends PapyrusRoundedNodeFigure {
 			preconditionBound.y=((IFigure) container.getChildren().get(0)).getBounds().y;
 			getPreconditionFigure().setBounds(preconditionBound);
 			if(getPreconditionFigure().getChildren().size() > 0) {
-				 ((IFigure)getPreconditionFigure().getChildren().get(0)).setBounds(preconditionBound);;
+				((IFigure)getPreconditionFigure().getChildren().get(0)).setBounds(preconditionBound);;
 			}
 
 			//setPoscondtion
@@ -157,7 +171,7 @@ public class ActivityFigure extends PapyrusRoundedNodeFigure {
 			postconditionBound.y= getPreconditionFigure().getBounds().y+getPreconditionFigure().getBounds().height+GAP_Y;
 			getPostconditionFigure().setBounds(postconditionBound);
 			if(getPostconditionFigure().getChildren().size() > 0) {
-				 ((IFigure)getPostconditionFigure().getChildren().get(0)).setBounds(postconditionBound);;
+				((IFigure)getPostconditionFigure().getChildren().get(0)).setBounds(postconditionBound);;
 			}
 
 			//setPoscondtion
@@ -165,7 +179,7 @@ public class ActivityFigure extends PapyrusRoundedNodeFigure {
 			singleExecutionBound.x= getPreconditionFigure().getBounds().x+getPreconditionFigure().getBounds().width+GAP_X;;
 			singleExecutionBound.y= getPreconditionFigure().getBounds().y;
 			getHeaderSingleExecution().setBounds(singleExecutionBound);
-			
+
 			//replace compartment stereotype properties
 			if(getStereotypePropertiesContent()!=null){
 				Rectangle pscontainer=getStereotypePropertiesContent().getBounds().getCopy();
@@ -173,8 +187,8 @@ public class ActivityFigure extends PapyrusRoundedNodeFigure {
 					pscontainer.y=getPostconditionFigure().getBounds().y+getPostconditionFigure().getBounds().height+GAP_Y;
 				getStereotypePropertiesContent().setBounds(pscontainer);
 			}
-			
-			
+
+
 			//place parameter
 			//replace compartment stereotype properties
 			if(getStereotypePropertiesContent()!=null){
@@ -182,9 +196,9 @@ public class ActivityFigure extends PapyrusRoundedNodeFigure {
 				paramBoundcontainer.y=getStereotypePropertiesContent().getBounds().getBottomLeft().y;
 				getParameterFigure().setBounds(paramBoundcontainer);
 				if(getParameterFigure().getChildren().size() > 0) {
-					 ((IFigure)shapeCompartment.getChildren().get(0)).setBounds(paramBoundcontainer);
-					 
-					 
+					((IFigure)shapeCompartment.getChildren().get(0)).setBounds(paramBoundcontainer);
+
+
 				}
 			}
 			else{
@@ -192,10 +206,10 @@ public class ActivityFigure extends PapyrusRoundedNodeFigure {
 				paramBoundcontainer.y=getNameLabel().getBounds().getBottomLeft().y;
 				getParameterFigure().setBounds(paramBoundcontainer);
 				if(getParameterFigure().getChildren().size() > 0) {
-					 ((IFigure)shapeCompartment.getChildren().get(0)).setBounds(paramBoundcontainer);;
+					((IFigure)shapeCompartment.getChildren().get(0)).setBounds(paramBoundcontainer);;
 				}
 			}
-			
+
 		}
 
 	}
@@ -275,8 +289,8 @@ public class ActivityFigure extends PapyrusRoundedNodeFigure {
 		postconditionFigure.setOutline(false);
 		postconditionFigure.setLineWidth(0);
 		add(postconditionFigure);
-		
-		
+
+
 		fHeaderSingleExecution= new WrappingLabel();
 		add(fHeaderSingleExecution);
 		//createContents();
