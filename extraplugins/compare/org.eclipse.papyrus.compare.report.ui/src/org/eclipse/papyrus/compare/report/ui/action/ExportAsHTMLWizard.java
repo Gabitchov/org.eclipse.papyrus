@@ -1,5 +1,6 @@
 package org.eclipse.papyrus.compare.report.ui.action;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
@@ -110,8 +111,9 @@ public class ExportAsHTMLWizard extends SaveDeltaWizard {
 		myNewReportFileCreationPage.createNewFile();
 
 		IProgressMonitor monitor = new NullProgressMonitor();
-		IResource targetFolder = getTargetFolder();
-		GenerateAll generator = new GenerateAll(getNewDiffModelURI(), targetFolder.getLocation().toFile(), getTemplateArguments());
+		IResource targetFolder = getTargetFolder();  // The logical folder were the IFile is to appear.
+		File rawTargetFolder = getRawTargetFolder(); // The file-system folder were the File is to be created.
+		GenerateAll generator = new GenerateAll(getNewDiffModelURI(), rawTargetFolder, getTemplateArguments());
 
 		try {
 			generator.doGenerate(monitor);
@@ -136,6 +138,27 @@ public class ExportAsHTMLWizard extends SaveDeltaWizard {
 		return Collections.singletonList(myNewReportFileCreationPage.getFileName());
 	}
 
+	private File getRawTargetFolder() {
+		File targetFolder = null;
+		IResource targetFolderResource = ResourcesPlugin.getWorkspace().getRoot().findMember(myNewReportFileCreationPage.getContainerFullPath());
+		if (targetFolderResource.isLinked()) {
+			targetFolder = targetFolderResource.getRawLocation().toFile();
+		} else {
+			IPath targetFolderPath = targetFolderResource.getLocation();
+			if (targetFolderPath != null) {
+				targetFolder = targetFolderPath.toFile();
+			} else {
+				// Virtual folder or non-local project.
+				// In that case, use the diff-model's folder as file-system folder.
+				WizardNewFileCreationPage saveDiffPage = findNewDiffFilePage();
+				IPath filePath = saveDiffPage.getContainerFullPath().append(saveDiffPage.getFileName());
+				IFile fileHandle = ResourcesPlugin.getWorkspace().getRoot().getFile(filePath);
+				targetFolder = fileHandle.getRawLocation().toFile().getParentFile();
+			}
+		}
+		return targetFolder;
+	}
+	
 	private IResource getTargetFolder() {
 		return ResourcesPlugin.getWorkspace().getRoot().findMember(myNewReportFileCreationPage.getContainerFullPath());
 	}
