@@ -140,7 +140,7 @@ public class ConstraintParser implements IParser, ISemanticParser {
 			command.compose(new SetValueCommand(request));
 			request = new SetRequest(specif, UMLPackage.eINSTANCE.getOpaqueExpression_Language(), stringLanguageList);
 			command.compose(new SetValueCommand(request));
-			
+			return  command;
 		}
 		
 		if(constraint.getSpecification() instanceof DurationInterval) {
@@ -163,7 +163,7 @@ public class ConstraintParser implements IParser, ISemanticParser {
 			command.compose(new SetValueCommand(request));
 			 request = new SetRequest(specif, UMLPackage.eINSTANCE.getInterval_Max(), durationMax);
 			command.compose(new SetValueCommand(request));
-			
+			return  command;
 		}
 		
 		if(constraint.getSpecification() instanceof TimeInterval) {
@@ -186,6 +186,7 @@ public class ConstraintParser implements IParser, ISemanticParser {
 			command.compose(new SetValueCommand(request));
 			 request = new SetRequest(specif, UMLPackage.eINSTANCE.getInterval_Max(), timeMax);
 			command.compose(new SetValueCommand(request));
+			return  command;
 		}
 		
 		if(constraint.getSpecification() instanceof Interval) {
@@ -207,6 +208,7 @@ public class ConstraintParser implements IParser, ISemanticParser {
 			command.compose(new SetValueCommand(request));
 			 request = new SetRequest(specif, UMLPackage.eINSTANCE.getInterval_Max(), max);
 			command.compose(new SetValueCommand(request));
+			return  command;
 		}
 		return command;
 	}
