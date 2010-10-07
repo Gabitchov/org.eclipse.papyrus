@@ -69,6 +69,7 @@ public class ModelResourceListener implements IResourceChangeListener, IResource
 				}
 
 				public void doSaveAs(DoSaveEvent event) {
+					isActive = false;
 				}
 			});
 			lifeCycleEvents.addPostDoSaveListener(new ISaveEventListener() {
@@ -78,6 +79,7 @@ public class ModelResourceListener implements IResourceChangeListener, IResource
 				}
 
 				public void doSaveAs(DoSaveEvent event) {
+					isActive = true;
 				}
 			});
 		}
