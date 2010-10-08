@@ -44,16 +44,17 @@ This function writes only  : "case myLinkEditPart.VISUAL_ID:"
 for the link which uses the ReorientCommand provided by the EditService 
 «ENDREM»
 «DEFINE reorientLinkCommandWithService FOR gmfgen::GenLink-»
-	«IF papyrusgmfgenextension::EditPartUsingReorientService.allInstances()->select(v:papyrusgmfgenextension::EditPartUsingReorientService|v.genView->includes(self))->size()<>0» 
-		«EXPAND xpt::Common::caseVisualID»
-	«ENDIF»
+	«IF papyrusgmfgenextension::EditPartUsingReorientService.allInstances()->select(v:papyrusgmfgenextension::EditPartUsingReorientService|v.genView->includes(self))->size()<>0-» 
+		«EXPAND xpt::Common::caseVisualID-»
+	«ENDIF-»
 «ENDDEFINE»
 
 «REM» 
 This function writes the code to call the ReorientCommand provided by the ReorientService
 «ENDREM»
 «DEFINE callReorientCommand FOR gmfgen::GenLinkEnd-»
-	«IF papyrusgmfgenextension::EditPartUsingReorientService.allInstances()->size()<>0»
+	«IF papyrusgmfgenextension::EditPartUsingReorientService.allInstances()->size()<>0-»
+			
 			//we use the reorient command provided by the EditService
 			 org.eclipse.papyrus.service.edit.service.IElementEditService provider = org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils.getCommandProvider(req.getRelationship());
 			 if(provider == null) {
@@ -64,14 +65,14 @@ This function writes the code to call the ReorientCommand provided by the Reorie
 	             return org.eclipse.gef.commands.UnexecutableCommand.INSTANCE;
              }
 			 return getGEFWrapper(reorientCommand.reduce());
-	«ENDIF»
+	«ENDIF-»
 «ENDDEFINE»
 
 «REM»
 This function writes the code for the Links which uses their own ReorientCommand (the initial code)
 «ENDREM»
 «DEFINE reorientLinkCommandWithoutService FOR gmfgen::GenLink-»
-	«IF papyrusgmfgenextension::EditPartUsingReorientService.allInstances()->select(v:papyrusgmfgenextension::EditPartUsingReorientService|v.genView->includes(self))->size()=0» 
-		«EXPAND xpt::diagram::editpolicies::linkCommands::reorientLinkCommand» 
-	«ENDIF»
+	«IF papyrusgmfgenextension::EditPartUsingReorientService.allInstances()->select(v:papyrusgmfgenextension::EditPartUsingReorientService|v.genView->includes(self))->size()=0-» 
+		«EXPAND xpt::diagram::editpolicies::linkCommands::reorientLinkCommand-» 
+	«ENDIF-»
 «ENDDEFINE»
