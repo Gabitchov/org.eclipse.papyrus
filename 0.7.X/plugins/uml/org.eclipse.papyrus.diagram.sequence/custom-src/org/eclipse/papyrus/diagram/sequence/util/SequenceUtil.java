@@ -196,18 +196,19 @@ public class SequenceUtil {
 	}
 
 	/**
-	 * Find the location on the lifeline of an occurrence specification
+	 * Find the location on the lifeline of an interaction fragment
 	 * 
 	 * @param lifelineEditPart
 	 *        the lifeline edit part
-	 * @param event
-	 *        the occurrence specification
-	 * @return the absolute location or null
+	 * @param fragment
+	 *        the searched interaction fragment
+	 * @return the absolute location or null if not found
 	 */
-	public static Point findLocationOfEvent(LifelineEditPart lifelineEditPart, OccurrenceSpecification event) {
+	public static Point findLocationOfEvent(LifelineEditPart lifelineEditPart, InteractionFragment fragment) {
 		if(lifelineEditPart == null) {
 			return null;
 		}
+		//TODO handle CombinedFragments, Continuation,  Interaction, InteractionOperand, InteractionUse, StateInvariant
 		// search on graphical children of the lifeline
 		List<?> children = lifelineEditPart.getChildren();
 		for(Object child : children) {
@@ -215,8 +216,8 @@ public class SequenceUtil {
 			if(child instanceof DestructionEventEditPart) {
 				EObject destructionEvent = ((GraphicalEditPart)child).resolveSemanticElement();
 				EObject lifeline = lifelineEditPart.resolveSemanticElement();
-				if(destructionEvent instanceof DestructionEvent && lifeline instanceof Lifeline) {
-					Event destEvent = ((OccurrenceSpecification)event).getEvent();
+				if(destructionEvent instanceof DestructionEvent && lifeline instanceof Lifeline && fragment instanceof OccurrenceSpecification) {
+					Event destEvent = ((OccurrenceSpecification)fragment).getEvent();
 					if(destEvent != null && destEvent.equals(destructionEvent)) {
 						Rectangle bounds = ((GraphicalEditPart)child).getFigure().getBounds().getCopy();
 						lifelineEditPart.getFigure().translateToAbsolute(bounds);
@@ -226,32 +227,42 @@ public class SequenceUtil {
 			}
 			// check in children executions
 			if(child instanceof ActionExecutionSpecificationEditPart || child instanceof BehaviorExecutionSpecificationEditPart) {
-				if(event instanceof ExecutionOccurrenceSpecification) {
-					// check start and finish events of the execution
+				if(fragment instanceof ExecutionSpecification) {
+					// check the execution
 					EObject element = ((GraphicalEditPart)child).resolveSemanticElement();
 					if(element instanceof ExecutionSpecification) {
-						if(event.equals(((ExecutionSpecification)element).getStart())) {
+						if(fragment.equals(element)) {
 							Rectangle bounds = ((GraphicalEditPart)child).getFigure().getBounds().getCopy();
 							lifelineEditPart.getFigure().translateToAbsolute(bounds);
 							return bounds.getTop();
-						} else if(event.equals(((ExecutionSpecification)element).getFinish())) {
+						}
+					}
+				} else if(fragment instanceof ExecutionOccurrenceSpecification) {
+					// check start and finish events of the execution
+					EObject element = ((GraphicalEditPart)child).resolveSemanticElement();
+					if(element instanceof ExecutionSpecification) {
+						if(fragment.equals(((ExecutionSpecification)element).getStart())) {
+							Rectangle bounds = ((GraphicalEditPart)child).getFigure().getBounds().getCopy();
+							lifelineEditPart.getFigure().translateToAbsolute(bounds);
+							return bounds.getTop();
+						} else if(fragment.equals(((ExecutionSpecification)element).getFinish())) {
 							Rectangle bounds = ((GraphicalEditPart)child).getFigure().getBounds().getCopy();
 							lifelineEditPart.getFigure().translateToAbsolute(bounds);
 							return bounds.getBottom();
 						}
 					}
-				} else if(event instanceof MessageOccurrenceSpecification) {
+				} else if(fragment instanceof MessageOccurrenceSpecification) {
 					// check messages to and from the execution
-					Point loc = findLocationOfMessageOccurrence((GraphicalEditPart)child, (MessageOccurrenceSpecification)event);
+					Point loc = findLocationOfMessageOccurrence((GraphicalEditPart)child, (MessageOccurrenceSpecification)fragment);
 					if(loc != null) {
 						return loc;
 					}
 				}
 			}
 		}
-		if(event instanceof MessageOccurrenceSpecification) {
+		if(fragment instanceof MessageOccurrenceSpecification) {
 			// check messages to and from the lifeline
-			Point loc = findLocationOfMessageOccurrence(lifelineEditPart, (MessageOccurrenceSpecification)event);
+			Point loc = findLocationOfMessageOccurrence(lifelineEditPart, (MessageOccurrenceSpecification)fragment);
 			if(loc != null) {
 				return loc;
 			}

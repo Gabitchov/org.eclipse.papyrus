@@ -964,4 +964,11 @@ public class Messages extends NLS {
 	public static String UMLModelingAssistantProviderMessage;
 
 	// TODO: put accessor fields manually
+
+	/**
+	 * Error message for when an error occurs in FragmentOrderingKeeper evaluation.
+	 * 
+	 * @generated NOT
+	 */
+	public static String FragmentOrderingKeeper_error;
 }
