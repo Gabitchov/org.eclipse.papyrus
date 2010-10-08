@@ -76,7 +76,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.gef,
  org.eclipse.papyrus.preferences,
  org.eclipse.papyrus.extensionpoints.editors
-«IF papyrusgmfgenextension::EditPartUsingDeleteService.allInstances()->size()<>0-»
+«IF papyrusgmfgenextension::EditPartUsingDeleteService.allInstances()->size()<>0 or papyrusgmfgenextension::EditPartUsingReorientService.allInstances()->size()<>0-»
  ,org.eclipse.papyrus.service.edit
 «ENDIF-»
 Eclipse-LazyStart: true

@@ -30,13 +30,13 @@ import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.AlternateCanvasImpl#getDomainDiagramElement <em>Domain Diagram Element</em>}</li>
- * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.AlternateCanvasImpl#getAlternateTopLevelNodes <em>Alternate Top Level Nodes</em>}</li>
- * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.AlternateCanvasImpl#getAlternateLinkNodes <em>Alternate Link Nodes</em>}</li>
- * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.AlternateCanvasImpl#getDiagram <em>Diagram</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.AlternateCanvasImpl#getDomainDiagramElement <em>Domain Diagram Element</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.AlternateCanvasImpl#getAlternateTopLevelNodes <em>Alternate Top Level Nodes</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.AlternateCanvasImpl#getAlternateLinkNodes <em>Alternate Link Nodes</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.AlternateCanvasImpl#getDiagram <em>Diagram</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class AlternateCanvasImpl extends CommentedElementImpl implements AlternateCanvas {
@@ -45,7 +45,6 @@ public class AlternateCanvasImpl extends CommentedElementImpl implements Alterna
 	 * The cached value of the '{@link #getDomainDiagramElement() <em>Domain Diagram Element</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getDomainDiagramElement()
 	 * @generated
 	 * @ordered
@@ -56,7 +55,6 @@ public class AlternateCanvasImpl extends CommentedElementImpl implements Alterna
 	 * The cached value of the '{@link #getAlternateTopLevelNodes() <em>Alternate Top Level Nodes</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getAlternateTopLevelNodes()
 	 * @generated
 	 * @ordered
@@ -67,7 +65,6 @@ public class AlternateCanvasImpl extends CommentedElementImpl implements Alterna
 	 * The cached value of the '{@link #getAlternateLinkNodes() <em>Alternate Link Nodes</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getAlternateLinkNodes()
 	 * @generated
 	 * @ordered
@@ -78,7 +75,6 @@ public class AlternateCanvasImpl extends CommentedElementImpl implements Alterna
 	 * The cached value of the '{@link #getDiagram() <em>Diagram</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getDiagram()
 	 * @generated
 	 * @ordered
@@ -88,7 +84,6 @@ public class AlternateCanvasImpl extends CommentedElementImpl implements Alterna
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected AlternateCanvasImpl() {
@@ -98,7 +93,6 @@ public class AlternateCanvasImpl extends CommentedElementImpl implements Alterna
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -109,15 +103,14 @@ public class AlternateCanvasImpl extends CommentedElementImpl implements Alterna
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public GenClass getDomainDiagramElement() {
-		if(domainDiagramElement != null && domainDiagramElement.eIsProxy()) {
+		if (domainDiagramElement != null && domainDiagramElement.eIsProxy()) {
 			InternalEObject oldDomainDiagramElement = (InternalEObject)domainDiagramElement;
 			domainDiagramElement = (GenClass)eResolveProxy(oldDomainDiagramElement);
-			if(domainDiagramElement != oldDomainDiagramElement) {
-				if(eNotificationRequired())
+			if (domainDiagramElement != oldDomainDiagramElement) {
+				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PapyrusgmfgenextensionPackage.ALTERNATE_CANVAS__DOMAIN_DIAGRAM_ELEMENT, oldDomainDiagramElement, domainDiagramElement));
 			}
 		}
@@ -127,7 +120,6 @@ public class AlternateCanvasImpl extends CommentedElementImpl implements Alterna
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public GenClass basicGetDomainDiagramElement() {
@@ -137,24 +129,22 @@ public class AlternateCanvasImpl extends CommentedElementImpl implements Alterna
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setDomainDiagramElement(GenClass newDomainDiagramElement) {
 		GenClass oldDomainDiagramElement = domainDiagramElement;
 		domainDiagramElement = newDomainDiagramElement;
-		if(eNotificationRequired())
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PapyrusgmfgenextensionPackage.ALTERNATE_CANVAS__DOMAIN_DIAGRAM_ELEMENT, oldDomainDiagramElement, domainDiagramElement));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<AlternateGenTopLevelNode> getAlternateTopLevelNodes() {
-		if(alternateTopLevelNodes == null) {
+		if (alternateTopLevelNodes == null) {
 			alternateTopLevelNodes = new EObjectContainmentEList<AlternateGenTopLevelNode>(AlternateGenTopLevelNode.class, this, PapyrusgmfgenextensionPackage.ALTERNATE_CANVAS__ALTERNATE_TOP_LEVEL_NODES);
 		}
 		return alternateTopLevelNodes;
@@ -163,11 +153,10 @@ public class AlternateCanvasImpl extends CommentedElementImpl implements Alterna
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<AlternateGenLink> getAlternateLinkNodes() {
-		if(alternateLinkNodes == null) {
+		if (alternateLinkNodes == null) {
 			alternateLinkNodes = new EObjectContainmentEList<AlternateGenLink>(AlternateGenLink.class, this, PapyrusgmfgenextensionPackage.ALTERNATE_CANVAS__ALTERNATE_LINK_NODES);
 		}
 		return alternateLinkNodes;
@@ -176,15 +165,14 @@ public class AlternateCanvasImpl extends CommentedElementImpl implements Alterna
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public GenDiagram getDiagram() {
-		if(diagram != null && diagram.eIsProxy()) {
+		if (diagram != null && diagram.eIsProxy()) {
 			InternalEObject oldDiagram = (InternalEObject)diagram;
 			diagram = (GenDiagram)eResolveProxy(oldDiagram);
-			if(diagram != oldDiagram) {
-				if(eNotificationRequired())
+			if (diagram != oldDiagram) {
+				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PapyrusgmfgenextensionPackage.ALTERNATE_CANVAS__DIAGRAM, oldDiagram, diagram));
 			}
 		}
@@ -194,7 +182,6 @@ public class AlternateCanvasImpl extends CommentedElementImpl implements Alterna
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public GenDiagram basicGetDiagram() {
@@ -204,29 +191,27 @@ public class AlternateCanvasImpl extends CommentedElementImpl implements Alterna
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setDiagram(GenDiagram newDiagram) {
 		GenDiagram oldDiagram = diagram;
 		diagram = newDiagram;
-		if(eNotificationRequired())
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PapyrusgmfgenextensionPackage.ALTERNATE_CANVAS__DIAGRAM, oldDiagram, diagram));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch(featureID) {
-		case PapyrusgmfgenextensionPackage.ALTERNATE_CANVAS__ALTERNATE_TOP_LEVEL_NODES:
-			return ((InternalEList<?>)getAlternateTopLevelNodes()).basicRemove(otherEnd, msgs);
-		case PapyrusgmfgenextensionPackage.ALTERNATE_CANVAS__ALTERNATE_LINK_NODES:
-			return ((InternalEList<?>)getAlternateLinkNodes()).basicRemove(otherEnd, msgs);
+		switch (featureID) {
+			case PapyrusgmfgenextensionPackage.ALTERNATE_CANVAS__ALTERNATE_TOP_LEVEL_NODES:
+				return ((InternalEList<?>)getAlternateTopLevelNodes()).basicRemove(otherEnd, msgs);
+			case PapyrusgmfgenextensionPackage.ALTERNATE_CANVAS__ALTERNATE_LINK_NODES:
+				return ((InternalEList<?>)getAlternateLinkNodes()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -234,24 +219,21 @@ public class AlternateCanvasImpl extends CommentedElementImpl implements Alterna
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch(featureID) {
-		case PapyrusgmfgenextensionPackage.ALTERNATE_CANVAS__DOMAIN_DIAGRAM_ELEMENT:
-			if(resolve)
-				return getDomainDiagramElement();
-			return basicGetDomainDiagramElement();
-		case PapyrusgmfgenextensionPackage.ALTERNATE_CANVAS__ALTERNATE_TOP_LEVEL_NODES:
-			return getAlternateTopLevelNodes();
-		case PapyrusgmfgenextensionPackage.ALTERNATE_CANVAS__ALTERNATE_LINK_NODES:
-			return getAlternateLinkNodes();
-		case PapyrusgmfgenextensionPackage.ALTERNATE_CANVAS__DIAGRAM:
-			if(resolve)
-				return getDiagram();
-			return basicGetDiagram();
+		switch (featureID) {
+			case PapyrusgmfgenextensionPackage.ALTERNATE_CANVAS__DOMAIN_DIAGRAM_ELEMENT:
+				if (resolve) return getDomainDiagramElement();
+				return basicGetDomainDiagramElement();
+			case PapyrusgmfgenextensionPackage.ALTERNATE_CANVAS__ALTERNATE_TOP_LEVEL_NODES:
+				return getAlternateTopLevelNodes();
+			case PapyrusgmfgenextensionPackage.ALTERNATE_CANVAS__ALTERNATE_LINK_NODES:
+				return getAlternateLinkNodes();
+			case PapyrusgmfgenextensionPackage.ALTERNATE_CANVAS__DIAGRAM:
+				if (resolve) return getDiagram();
+				return basicGetDiagram();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -259,27 +241,26 @@ public class AlternateCanvasImpl extends CommentedElementImpl implements Alterna
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch(featureID) {
-		case PapyrusgmfgenextensionPackage.ALTERNATE_CANVAS__DOMAIN_DIAGRAM_ELEMENT:
-			setDomainDiagramElement((GenClass)newValue);
-			return;
-		case PapyrusgmfgenextensionPackage.ALTERNATE_CANVAS__ALTERNATE_TOP_LEVEL_NODES:
-			getAlternateTopLevelNodes().clear();
-			getAlternateTopLevelNodes().addAll((Collection<? extends AlternateGenTopLevelNode>)newValue);
-			return;
-		case PapyrusgmfgenextensionPackage.ALTERNATE_CANVAS__ALTERNATE_LINK_NODES:
-			getAlternateLinkNodes().clear();
-			getAlternateLinkNodes().addAll((Collection<? extends AlternateGenLink>)newValue);
-			return;
-		case PapyrusgmfgenextensionPackage.ALTERNATE_CANVAS__DIAGRAM:
-			setDiagram((GenDiagram)newValue);
-			return;
+		switch (featureID) {
+			case PapyrusgmfgenextensionPackage.ALTERNATE_CANVAS__DOMAIN_DIAGRAM_ELEMENT:
+				setDomainDiagramElement((GenClass)newValue);
+				return;
+			case PapyrusgmfgenextensionPackage.ALTERNATE_CANVAS__ALTERNATE_TOP_LEVEL_NODES:
+				getAlternateTopLevelNodes().clear();
+				getAlternateTopLevelNodes().addAll((Collection<? extends AlternateGenTopLevelNode>)newValue);
+				return;
+			case PapyrusgmfgenextensionPackage.ALTERNATE_CANVAS__ALTERNATE_LINK_NODES:
+				getAlternateLinkNodes().clear();
+				getAlternateLinkNodes().addAll((Collection<? extends AlternateGenLink>)newValue);
+				return;
+			case PapyrusgmfgenextensionPackage.ALTERNATE_CANVAS__DIAGRAM:
+				setDiagram((GenDiagram)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -287,24 +268,23 @@ public class AlternateCanvasImpl extends CommentedElementImpl implements Alterna
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch(featureID) {
-		case PapyrusgmfgenextensionPackage.ALTERNATE_CANVAS__DOMAIN_DIAGRAM_ELEMENT:
-			setDomainDiagramElement((GenClass)null);
-			return;
-		case PapyrusgmfgenextensionPackage.ALTERNATE_CANVAS__ALTERNATE_TOP_LEVEL_NODES:
-			getAlternateTopLevelNodes().clear();
-			return;
-		case PapyrusgmfgenextensionPackage.ALTERNATE_CANVAS__ALTERNATE_LINK_NODES:
-			getAlternateLinkNodes().clear();
-			return;
-		case PapyrusgmfgenextensionPackage.ALTERNATE_CANVAS__DIAGRAM:
-			setDiagram((GenDiagram)null);
-			return;
+		switch (featureID) {
+			case PapyrusgmfgenextensionPackage.ALTERNATE_CANVAS__DOMAIN_DIAGRAM_ELEMENT:
+				setDomainDiagramElement((GenClass)null);
+				return;
+			case PapyrusgmfgenextensionPackage.ALTERNATE_CANVAS__ALTERNATE_TOP_LEVEL_NODES:
+				getAlternateTopLevelNodes().clear();
+				return;
+			case PapyrusgmfgenextensionPackage.ALTERNATE_CANVAS__ALTERNATE_LINK_NODES:
+				getAlternateLinkNodes().clear();
+				return;
+			case PapyrusgmfgenextensionPackage.ALTERNATE_CANVAS__DIAGRAM:
+				setDiagram((GenDiagram)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -312,20 +292,19 @@ public class AlternateCanvasImpl extends CommentedElementImpl implements Alterna
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch(featureID) {
-		case PapyrusgmfgenextensionPackage.ALTERNATE_CANVAS__DOMAIN_DIAGRAM_ELEMENT:
-			return domainDiagramElement != null;
-		case PapyrusgmfgenextensionPackage.ALTERNATE_CANVAS__ALTERNATE_TOP_LEVEL_NODES:
-			return alternateTopLevelNodes != null && !alternateTopLevelNodes.isEmpty();
-		case PapyrusgmfgenextensionPackage.ALTERNATE_CANVAS__ALTERNATE_LINK_NODES:
-			return alternateLinkNodes != null && !alternateLinkNodes.isEmpty();
-		case PapyrusgmfgenextensionPackage.ALTERNATE_CANVAS__DIAGRAM:
-			return diagram != null;
+		switch (featureID) {
+			case PapyrusgmfgenextensionPackage.ALTERNATE_CANVAS__DOMAIN_DIAGRAM_ELEMENT:
+				return domainDiagramElement != null;
+			case PapyrusgmfgenextensionPackage.ALTERNATE_CANVAS__ALTERNATE_TOP_LEVEL_NODES:
+				return alternateTopLevelNodes != null && !alternateTopLevelNodes.isEmpty();
+			case PapyrusgmfgenextensionPackage.ALTERNATE_CANVAS__ALTERNATE_LINK_NODES:
+				return alternateLinkNodes != null && !alternateLinkNodes.isEmpty();
+			case PapyrusgmfgenextensionPackage.ALTERNATE_CANVAS__DIAGRAM:
+				return diagram != null;
 		}
 		return super.eIsSet(featureID);
 	}
