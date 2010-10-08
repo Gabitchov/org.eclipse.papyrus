@@ -974,4 +974,44 @@
     <palette
         href="sequenceDiagram.gmftool#//@palette"/>
   </diagram>
+  <audits
+      id="org.eclipse.uml2.uml.util.UMLValidator.validate"
+      name="validateUMLModel"
+      description="Validate the UML model">
+    <childContainers
+        id="org.eclipse.papyrus.diagram.sequence.validation.FragmentOrderingKeeper"
+        name="fragmentsOrder"
+        description="Fragments order">
+      <audits
+          name="Interaction fragment ordering"
+          description="The fragment property of an Interaction must be ordered as a valid trace."
+          id="FragmentOrderingKeeper.Interaction"
+          useInLiveMode="true"
+          message="There is no valid trace sequencing the InteractionFragments in the fragment property. Some of them can not be organized as a valid sequence :{0}">
+        <rule
+            body="return UMLValidationHelper.validateFragmentsOrder(context, ctx);"
+            language="java"/>
+        <target
+            xsi:type="gmfmap:DomainElementTarget">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction"/>
+        </target>
+      </audits>
+      <audits
+          name="InteractionOperand fragment ordering"
+          description="The fragment property of an InteractionOperand must be ordered as a valid trace."
+          id="FragmentOrderingKeeper.InteractionOperand"
+          useInLiveMode="true"
+          message="There is no valid trace sequencing the InteractionFragments in the fragment property. Some of them can not be organized as a valid sequence :{0}">
+        <rule
+            body="return UMLValidationHelper.validateFragmentsOrder(context, ctx);"
+            language="java"/>
+        <target
+            xsi:type="gmfmap:DomainElementTarget">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InteractionOperand"/>
+        </target>
+      </audits>
+    </childContainers>
+  </audits>
 </gmfmap:Mapping>

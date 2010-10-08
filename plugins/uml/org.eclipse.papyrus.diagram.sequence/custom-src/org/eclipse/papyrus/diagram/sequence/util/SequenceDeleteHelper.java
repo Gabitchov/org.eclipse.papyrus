@@ -18,6 +18,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.draw2d.PositionConstants;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
@@ -30,6 +31,9 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
+import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
+import org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.commands.DestroyElementPapyrusCommand;
@@ -38,18 +42,23 @@ import org.eclipse.papyrus.diagram.common.helper.DurationObservationHelper;
 import org.eclipse.papyrus.diagram.common.helper.TimeConstraintHelper;
 import org.eclipse.papyrus.diagram.common.helper.TimeObservationHelper;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
+import org.eclipse.papyrus.diagram.common.util.Util;
+import org.eclipse.papyrus.diagram.sequence.edit.commands.DurationConstraintInMessageCreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.DestructionEvent;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Gate;
+import org.eclipse.uml2.uml.GeneralOrdering;
+import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.InteractionOperand;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageEnd;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * An Helper to get deleting command for the sequence diagram elements.
@@ -127,10 +136,10 @@ public class SequenceDeleteHelper {
 	public static ICommand completeDestroyMessageCommand(Message message, CompositeTransactionalCommand cmd) {
 
 		// Destroy the send event
-		destroyMessageEnd(cmd, message.getSendEvent());
+		destroyMessageEnd(cmd, message.getSendEvent(), false);
 
 		// Destroy the receive event
-		destroyMessageEnd(cmd, message.getReceiveEvent());
+		destroyMessageEnd(cmd, message.getReceiveEvent(), false);
 
 		return cmd;
 	}
@@ -142,10 +151,13 @@ public class SequenceDeleteHelper {
 	 *        the composite transactional command where the new commands will be added
 	 * @param messageEnd
 	 *        the messageEnd to destroy
+	 * @param deleteStartedOrEndedMessage
+	 *        true if we must destroy the started or ended message as chain effect, false if this deletion is provoked by the deletion of the message
+	 *        itself.
 	 */
-	private static void destroyMessageEnd(CompositeTransactionalCommand cmd, MessageEnd messageEnd) {
+	private static void destroyMessageEnd(CompositeTransactionalCommand cmd, MessageEnd messageEnd, boolean deleteStartedOrEndedMessage) {
 		if(messageEnd instanceof MessageOccurrenceSpecification) {
-			destroyOccurrenceSpecification(cmd, (MessageOccurrenceSpecification)messageEnd);
+			destroyOccurrenceSpecification(cmd, (MessageOccurrenceSpecification)messageEnd, deleteStartedOrEndedMessage);
 		} else if(messageEnd instanceof Gate) {
 			destroyGate(cmd, (Gate)messageEnd);
 		}
@@ -176,28 +188,114 @@ public class SequenceDeleteHelper {
 	public static ICommand completeDestroyExecutionSpecificationCommand(CompositeTransactionalCommand cmd, ExecutionSpecification execution) {
 
 		// Destroy start execution occurrence specification
-		destroyOccurrenceSpecification(cmd, execution.getStart());
+		destroyOccurrenceSpecification(cmd, execution.getStart(), false);
 
 		// Destroy end execution occurrence specification
-		destroyOccurrenceSpecification(cmd, execution.getFinish());
+		destroyOccurrenceSpecification(cmd, execution.getFinish(), false);
 
 		return cmd;
 	}
 
 	/**
-	 * Destroy the given OccurrenceSpecification, and its linkedTimeElements
+	 * Destroy the given OccurrenceSpecification with side effects :<br/>
+	 * <li>
+	 * <ul>
+	 * destroy related elements (started or ended by) if deleteStartedOrEndedElement,
+	 * </ul>
+	 * <ul>
+	 * destroy linkedTimeElements,
+	 * </ul>
+	 * <ul>
+	 * rearrange or delete linked GeneralOrdering.
+	 * </ul>
+	 * </li>
 	 * 
 	 * @param cmd
 	 *        the composite transactional command where the new commands will be added
 	 * @param os
 	 *        the occurrenceSpecification to destroy
+	 * @param deleteStartedOrEndedElement
+	 *        true if we must destroy the started or ended element as chain effect, false if this deletion is provoked by the deletion of the linked
+	 *        element itself.
 	 */
-	private static void destroyOccurrenceSpecification(CompositeTransactionalCommand cmd, OccurrenceSpecification os) {
+	private static void destroyOccurrenceSpecification(CompositeTransactionalCommand cmd, OccurrenceSpecification os, boolean deleteStartedOrEndedElement) {
 		cmd.add(createDestroyElementCommand(os));
+		if(deleteStartedOrEndedElement) {
+			// TODO delete started or ended execution and messages
+		}
 		// delete linked time elements
 		List<NamedElement> timeElements = getLinkedTimeElements(os);
 		for(NamedElement elt : timeElements) {
 			cmd.add(createDestroyElementCommand(elt));
+		}
+		// rearrange linked general ordering
+		replaceGeneralOrderings(cmd, os);
+	}
+
+	/**
+	 * Rearrange General Orderings linked to the deleted occurrence specification so that order is conserved.
+	 * 
+	 * @param cmd
+	 *        the composite transactional command where the new commands will be added
+	 * @param deletedOccurrenceSpecification
+	 *        occurrence specification to be deleted
+	 */
+	private static void replaceGeneralOrderings(CompositeTransactionalCommand cmd, OccurrenceSpecification deletedOccurrenceSpecification) {
+		/*
+		 * Illustrating example :
+		 * A ->- D ->- E
+		 * B ->- D
+		 * C ->- D ->- F
+		 * When D is deleted, general orderings are replaced by new ones, such as each beginning occurrence specification is linked to an ending
+		 * occurrence specification.
+		 * Hence, we get :
+		 * A ->- E
+		 * B ->- E
+		 * C ->- E
+		 * A ->- F
+		 * B ->- F
+		 * C ->- F
+		 * 
+		 * 1. Count B (=3) occurrence specifications before incoming GeneralOrderings and A (=2) occurrence specifications after outgoing
+		 * GeneralOrderings.
+		 * 2. Destroy all of old GeneralOrderings.
+		 * 3. Replace by B*A (=6) new GeneralOrderings linking occurrence specifications.
+		 */
+		EList<GeneralOrdering> beforeGOs = deletedOccurrenceSpecification.getToBefores();
+		EList<GeneralOrdering> afterGOs = deletedOccurrenceSpecification.getToAfters();
+		// 1. count B and A
+		List<OccurrenceSpecification> befores = new ArrayList<OccurrenceSpecification>(beforeGOs.size());
+		List<OccurrenceSpecification> afters = new ArrayList<OccurrenceSpecification>(afterGOs.size());
+		// if B or A = 0, B*A = 0 no new GeneralOrdering, no need to count either
+		if(beforeGOs.size() > 0 && afterGOs.size() > 0) {
+			// count B
+			for(GeneralOrdering go : beforeGOs) {
+				if(go.getBefore() != null) {
+					befores.add(go.getBefore());
+				}
+			}
+			// count A
+			for(GeneralOrdering go : afterGOs) {
+				if(go.getAfter() != null) {
+					afters.add(go.getAfter());
+				}
+			}
+		}
+		// 2. Delete GeneralOrderings.
+		for(GeneralOrdering go : beforeGOs) {
+			cmd.add(createDestroyElementCommand(go));
+		}
+		for(GeneralOrdering go : afterGOs) {
+			cmd.add(createDestroyElementCommand(go));
+		}
+		// 3. Create new GeneralOrderings.
+		for(OccurrenceSpecification before : befores) {
+			for(OccurrenceSpecification after : afters) {
+				InteractionFragment parent = Util.getCommonParent(before, after, InteractionFragment.class);
+				if(parent != null) {
+					//TODO create GeneralOrdering under parent, from before to after
+				}
+			}
 		}
 	}
 
@@ -225,13 +323,13 @@ public class SequenceDeleteHelper {
 	/**
 	 * Get a destroy element command without confirmation. It creates the request and the command.
 	 * 
-	 * @param start
-	 * @return
+	 * @param eObject
+	 *        element to destroy
+	 * @return destroy element command
 	 */
 	private static ICommand createDestroyElementCommand(EObject eObject) {
 		return new DestroyElementPapyrusCommand(new DestroyElementRequest(eObject, false));
 	}
-
 
 	/**
 	 * Complete an ICommand which destroys a Message element to also destroy dependent message ends and time/duration constraint/observation linked
@@ -332,8 +430,6 @@ public class SequenceDeleteHelper {
 			}
 		}
 	}
-
-
 
 	/**
 	 * Complete an ICommand which destroys an ExecutionSpecification element to also destroy dependent finish and start events and time/duration
