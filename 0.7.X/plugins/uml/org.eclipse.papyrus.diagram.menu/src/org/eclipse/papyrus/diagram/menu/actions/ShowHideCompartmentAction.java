@@ -33,12 +33,12 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.papyrus.diagram.common.Messages;
 import org.eclipse.papyrus.diagram.common.actions.AbstractShowHideAction;
 import org.eclipse.papyrus.diagram.common.commands.ShowHideCompartmentRequest;
 import org.eclipse.papyrus.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
 import org.eclipse.papyrus.diagram.common.providers.EditorLabelProvider;
 import org.eclipse.papyrus.diagram.common.util.ViewServiceUtil;
+import org.eclipse.papyrus.diagram.menu.messages.Messages;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.uml2.uml.Element;
@@ -53,10 +53,19 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 
 
 	/** String used when the name of an element was not found */
-	public static final String NO_NAME = Messages.EditorLabelProvider_No_name;
+	public static final String NO_NAME = Messages.ShowHideCompartmentAction_No_Name;
 
 	/** the transactional editing domain */
 	protected TransactionalEditingDomain domain;
+
+	//	/** %Title for the ShowHideCompartment Action */
+	//	public static String ShowHideCompartmentAction_Title;
+	//
+	//	/** Message for the ShowHideCompartment Action */
+	//	public static String ShowHideCompartmentAction_Message;
+	//	ShowHideCompartmentAction_Message=Choose the compartments to show
+	//	ShowHideAction_No_Name=No Name
+	//	ShowHideCompartmentAction_Title=Show/Hide compartments
 
 	/**
 	 * 
@@ -65,7 +74,7 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 	 * 
 	 */
 	public ShowHideCompartmentAction() {
-		super(Messages.ShowHideCompartmentAction_Title, Messages.ShowHideCompartmentAction_Message, ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY);
+		super(Messages.ShowHideCompartmentAction_Title, Messages.ShowHideCompartmentAction_Messages, ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY);
 	}
 
 	/**
