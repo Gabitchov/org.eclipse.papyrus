@@ -376,14 +376,9 @@ public class Messages extends NLS {
 	/** Message Set Name Diagram */
 	public static String SetNameDiagram;
 
-	/** Message for the ShowHideCompartment Action */
-	public static String ShowHideCompartmentAction_Message;
-
 	/** The string No Name for the ShowHideCompartment Action */
 	public static String EditorLabelProvider_No_name;
 
-	/** %Title for the ShowHideCompartment Action */
-	public static String ShowHideCompartmentAction_Title;
 
 	public static String ShowHideContentsAction_Message;
 
