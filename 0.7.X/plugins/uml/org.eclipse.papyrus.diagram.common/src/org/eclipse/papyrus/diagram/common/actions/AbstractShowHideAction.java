@@ -1,3 +1,5 @@
+package org.eclipse.papyrus.diagram.common.actions;
+
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
  *
@@ -11,7 +13,7 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.diagram.common.actions;
+
 
 import java.util.ArrayList;
 import java.util.List;

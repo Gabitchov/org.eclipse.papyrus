@@ -2748,7 +2748,7 @@
 <extension
       point="org.eclipse.ui.menus">
    <menuContribution
-         locationURI="menu:org.eclipse.papyrus.common.showhide.toolbar.command">
+         locationURI="menu:org.eclipse.papyrus.menu.showhide.toolbar.command">
       <command
             commandId="org.eclipse.papyrus.diagram.composite.commands.ShowHideRelatedContentsCommand"
             icon="icons/fantomRelated.gif"
