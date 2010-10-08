@@ -42,16 +42,16 @@ public class SizeAction {
 
 
 	/** parameter for the autosize action */
-	public static final String PARAMETER_AUTOSIZE = "parameter_autosize";
+	public static final String PARAMETER_AUTOSIZE = "parameter_autosize"; //$NON-NLS-1$
 
 	/** parameter for the Same Height and Width action */
-	public static final String PARAMETER_BOTH = "parameter_both";
+	public static final String PARAMETER_BOTH = "parameter_both"; //$NON-NLS-1$
 
 	/** parameter for the same Height action */
-	public static final String PARAMETER_HEIGHT = "parameter_height";
+	public static final String PARAMETER_HEIGHT = "parameter_height"; //$NON-NLS-1$
 
 	/** parameter for the Same Width action */
-	public static final String PARAMETER_WIDTH = "parameter_width";
+	public static final String PARAMETER_WIDTH = "parameter_width"; //$NON-NLS-1$
 
 	/** the size action type */
 	protected int sizeActionType = 0;
@@ -132,7 +132,7 @@ public class SizeAction {
 			boolean foundNonAutosizedPart = false;
 			List<IGraphicalEditPart> operationSet = selectedElements;
 			Iterator<IGraphicalEditPart> editParts = operationSet.iterator();
-			CompoundCommand command = new CompoundCommand("AutoSize Command");
+			CompoundCommand command = new CompoundCommand("AutoSize Command"); //$NON-NLS-1$
 			while(editParts.hasNext()) {
 				EditPart editPart = editParts.next();
 
