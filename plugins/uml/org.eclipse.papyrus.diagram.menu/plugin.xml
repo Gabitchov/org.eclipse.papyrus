@@ -1,0 +1,1338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin
+>
+   <extension
+      point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
+   <contributionItemProvider
+         checkPluginLoaded="false"
+         class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContributionItemProvider">
+      <Priority
+            name="High">
+      </Priority>
+      <partContribution
+            class="org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart">
+         <partPredefinedItem
+               id="org.eclipse.gef.align_left"
+               menubarPath="/diagramMenu/alignMenu/alignHorizontalGroup"
+               removeFromMenubar="true"
+               removeFromToolbar="true"
+               toolbarPath="/alignMenu/alignHorizontalGroup">
+         </partPredefinedItem>
+         <partPredefinedItem
+               id="org.eclipse.gef.align_center"
+               menubarPath="/diagramMenu/alignMenu/alignHorizontalGroup"
+               removeFromMenubar="true"
+               removeFromToolbar="true"
+               toolbarPath="/alignMenu/alignHorizontalGroup">
+         </partPredefinedItem>
+         <partPredefinedItem
+               id="org.eclipse.gef.align_right"
+               menubarPath="/diagramMenu/alignMenu/alignHorizontalGroup"
+               removeFromMenubar="true"
+               removeFromToolbar="true"
+               toolbarPath="/alignMenu/alignHorizontalGroup">
+         </partPredefinedItem>
+         <partPredefinedItem
+               id="org.eclipse.gef.align_bottom"
+               menubarPath="/diagramMenu/alignMenu/alignVerticalGroup"
+               removeFromMenubar="true"
+               removeFromToolbar="true"
+               toolbarPath="/alignMenu/alignVerticalGroup">
+         </partPredefinedItem>
+         <partPredefinedItem
+               id="org.eclipse.gef.align_middle"
+               menubarPath="/diagramMenu/alignMenu/alignVerticalGroup"
+               removeFromMenubar="true"
+               removeFromToolbar="true"
+               toolbarPath="/alignMenu/alignVerticalGroup">
+         </partPredefinedItem>
+         <partPredefinedItem
+               id="org.eclipse.gef.align_top"
+               menubarPath="/diagramMenu/alignMenu/alignVerticalGroup"
+               removeFromMenubar="true"
+               removeFromToolbar="true"
+               toolbarPath="/alignMenu/alignVerticalGroup">
+         </partPredefinedItem>
+      </partContribution>
+      <popupContribution
+            class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+         <popupPredefinedItem
+               id="alignLeftAction"
+               path="/formatMenu/alignMenu/alignHorizontalGroup"
+               remove="true">
+         </popupPredefinedItem>
+         <popupPredefinedItem
+               id="alignCenterAction"
+               path="/formatMenu/alignMenu/alignHorizontalGroup"
+               remove="true">
+         </popupPredefinedItem>
+         <popupPredefinedItem
+               id="alignRightAction"
+               path="/formatMenu/alignMenu/alignHorizontalGroup"
+               remove="true">
+         </popupPredefinedItem>
+         <popupPredefinedItem
+               id="alignBottomAction"
+               path="/formatMenu/alignMenu/alignVerticalGroup"
+               remove="true">
+         </popupPredefinedItem>
+         <popupPredefinedItem
+               id="alignMiddleAction"
+               path="/formatMenu/alignMenu/alignVerticalGroup"
+               remove="true">
+         </popupPredefinedItem>
+         <popupPredefinedItem
+               id="alignTopAction"
+               path="/formatMenu/alignMenu/alignVerticalGroup"
+               remove="true">
+         </popupPredefinedItem>
+      </popupContribution>
+   </contributionItemProvider>
+</extension>
+<extension
+         point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
+      <contributionItemProvider
+            checkPluginLoaded="false"
+            class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContributionItemProvider">
+         <Priority
+               name="High">
+         </Priority>
+         <popupContribution
+               class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+            <popupPredefinedItem
+                  id="hideSelectionAction"
+                  path="/filtersMenu/miscellaneousGroup"
+                  remove="true">
+            </popupPredefinedItem>
+            <popupPredefinedItem
+                  id="hideTypeAction"
+                  path="/filtersMenu/miscellaneousGroup"
+                  remove="true">
+            </popupPredefinedItem>
+            <popupPredefinedItem
+                  id="hideSemanticAction"
+                  path="/filtersMenu/miscellaneousGroup"
+                  remove="true">
+            </popupPredefinedItem>
+            <popupPredefinedItem
+                  id="showHiddenPartAction"
+                  path="/filtersMenu/miscellaneousGroup"
+                  remove="true">
+            </popupPredefinedItem>
+            <popupPredefinedItem
+                  id="hideInheritanceTypeAction"
+                  path="/filtersMenu/additions"
+                  remove="true">
+            </popupPredefinedItem>
+            <popupPredefinedItem
+                  id="hideReferenceTypeAction"
+                  path="/filtersMenu/additions"
+                  remove="true">
+            </popupPredefinedItem>
+            <popupPredefinedItem
+                  id="deleteFromDiagramAction"
+                  path="/editGroup"
+                  remove="true">
+            </popupPredefinedItem>
+            <popupPredefinedItem
+                  id="allCompartmentsAction"
+                  path="/filtersMenu/compartmentMenu/allCompartmentsGroup"
+                  remove="true">
+            </popupPredefinedItem>
+            <popupPredefinedItem
+                  id="noCompartmentsAction"
+                  path="/filtersMenu/compartmentMenu/allCompartmentsGroup"
+                  remove="true">
+            </popupPredefinedItem>
+         </popupContribution>
+         <partContribution
+               class="org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart">
+            <partPredefinedItem
+                  id="noCompartmentsAction"
+                  menubarPath="/diagramMenu/filtersMenu/compartmentMenu/allCompartmentsGroup"
+                  removeFromMenubar="true"
+                  removeFromToolbar="true"
+                  toolbarPath="/compartmentMenu/allCompartmentsGroup">
+            </partPredefinedItem>
+            <partPredefinedItem
+                  id="diagramFilterActionMenu"
+                  removeFromMenubar="true"
+                  removeFromToolbar="true"
+                  toolbarPath="/toolbarFilterGroup">
+            </partPredefinedItem>
+            <partPredefinedItem
+                  id="allCompartmentsAction"
+                  menubarPath="/diagramMenu/filtersMenu/compartmentMenu/allCompartmentsGroup"
+                  removeFromMenubar="true"
+                  removeFromToolbar="true"
+                  toolbarPath="/compartmentMenu/allCompartmentsGroup">
+            </partPredefinedItem>
+         </partContribution>
+         <partContribution
+               class="org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart">
+            <partPredefinedItem
+                  id="autoSizeAction"
+                  menubarPath="/diagramMenu/sizeGroup"
+                  removeFromMenubar="true"
+                  removeFromToolbar="true"
+                  toolbarPath="/toolbarFormatGroup">
+            </partPredefinedItem>
+            <partPredefinedItem
+                  id="makeSameWidthAction"
+                  menubarPath="/diagramMenu/makeSameSizeMenu/sameSizeGroup"
+                  removeFromMenubar="true"
+                  removeFromToolbar="true">
+            </partPredefinedItem>
+            <partPredefinedItem
+                  id="makeSameHeightAction"
+                  menubarPath="/diagramMenu/makeSameSizeMenu/sameSizeGroup"
+                  removeFromMenubar="true"
+                  removeFromToolbar="true">
+            </partPredefinedItem>
+            <partPredefinedItem
+                  id="makeSameSizeBothAction"
+                  menubarPath="/diagramMenu/makeSameSizeMenu/sameSizeGroup"
+                  removeFromMenubar="true"
+                  removeFromToolbar="false">
+            </partPredefinedItem>
+         </partContribution>
+         <popupContribution
+               class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+            <popupPredefinedItem
+                  id="autoSizeAction"
+                  path="/formatMenu/sizeGroup"
+                  remove="true">
+            </popupPredefinedItem>
+         </popupContribution>
+      </contributionItemProvider>
+   </extension>
+<extension
+      id="ID:DiagramMenuDefinition"
+      name="Name:DiagramMenuDefinition"
+      point="org.eclipse.ui.menus">
+   <menuContribution
+         allPopups="false"
+         locationURI="menu:org.eclipse.ui.main.menu?after=edit">
+      <menu
+            icon="icons/Papyrus_16x16.gif"
+            id="org.eclipse.papyrus.diagram.ui.menu"
+            label="Diagram"
+            mnemonic="&amp;D"
+            tooltip="Diagram Menu">
+         <visibleWhen>
+            <with
+                  variable="activeEditorId">
+               <equals
+                     value="org.eclipse.papyrus.core.papyrusEditor">
+               </equals>
+            </with>
+         </visibleWhen>
+      </menu>
+   </menuContribution>
+   <menuContribution
+         allPopups="false"
+         locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu?after=filtersMenu">
+      <menu
+            icon="icons/Papyrus_16x16.gif"
+            id="org.eclipse.papyrus.diagram.ui.popupmenu.format"
+            label="Format"
+            mnemonic="&amp;m"
+            tooltip="Papyrus Format Menu">
+         <visibleWhen>
+            <with
+                  variable="activeEditorId">
+               <equals
+                     value="org.eclipse.papyrus.core.papyrusEditor">
+               </equals>
+            </with>
+         </visibleWhen>
+      </menu>
+      <menu
+            icon="icons/Papyrus_16x16.gif"
+            id="org.eclipse.papyrus.diagram.ui.popupmenu.filters"
+            label="Filters"
+            mnemonic="&amp;i"
+            tooltip="Papyrus Filters Menu">
+         <visibleWhen>
+            <with
+                  variable="activeEditorId">
+               <equals
+                     value="org.eclipse.papyrus.core.papyrusEditor">
+               </equals>
+            </with>
+         </visibleWhen>
+      </menu>
+   </menuContribution>
+   <menuContribution
+         locationURI="toolbar:org.eclipse.ui.main.toolbar?before=org.eclipse.papyrus.diagram.ui.toolbar">
+      <toolbar
+            id="org.eclipes.papyrus.menu.toolbar">
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.toolbar.command"
+               icon="icons/alignleft.gif"
+               id="org.eclipse.papyrus.menu.alignment.toolbar.command"
+               style="pulldown"
+               tooltip="Alignment Actions">
+            <visibleWhen>
+               <and>
+                  <with
+                        variable="activeEditorId">
+                     <equals
+                           value="org.eclipse.papyrus.core.papyrusEditor">
+                     </equals>
+                  </with>
+               </and>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.toolbar.command"
+               icon="icons/fantom.gif"
+               id="org.eclipse.papyrus.menu.showhide.toolbar.command"
+               style="pulldown"
+               tooltip="Show/Hide Actions">
+            <visibleWhen>
+               <and>
+                  <with
+                        variable="activeEditorId">
+                     <equals
+                           value="org.eclipse.papyrus.core.papyrusEditor">
+                     </equals>
+                  </with>
+               </and>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.toolbar.command"
+               icon="icons/horizontal_by_left.gif"
+               id="org.eclipse.papyrus.menu.routing.toolbar.command"
+               style="pulldown"
+               tooltip="Routing Actions">
+            <visibleWhen>
+               <and>
+                  <with
+                        variable="activeEditorId">
+                     <equals
+                           value="org.eclipse.papyrus.core.papyrusEditor">
+                     </equals>
+                  </with>
+               </and>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.toolbar.command"
+               icon="icons/distribute_horizontally.gif"
+               id="org.eclipse.papyrus.menu.distribute.toolbar.command"
+               style="pulldown"
+               tooltip="Distribute Actions">
+            <visibleWhen>
+               <and>
+                  <with
+                        variable="activeEditorId">
+                     <equals
+                           value="org.eclipse.papyrus.core.papyrusEditor">
+                     </equals>
+                  </with>
+               </and>
+            </visibleWhen>
+         </command>
+         <separator
+               name="org.eclipse.papyrus.diagram.menu.toolbar.separator1"
+               visible="true">
+         </separator>
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.command.autosize"
+               icon="icons/autosize.gif"
+               mnemonic="&amp;A"
+               style="push"
+               tooltip="Auto Size">
+            <visibleWhen>
+               <and>
+                  <with
+                        variable="activeEditorId">
+                     <equals
+                           value="org.eclipse.papyrus.core.papyrusEditor">
+                     </equals>
+                  </with>
+               </and>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.toolbar.same.size.command"
+               icon="icons/size_to_control.gif"
+               id="org.eclipse.papyrus.menu.size.toolbar.command"
+               style="pulldown"
+               tooltip="Make Same Size">
+            <visibleWhen>
+               <and>
+                  <with
+                        variable="activeEditorId">
+                     <equals
+                           value="org.eclipse.papyrus.core.papyrusEditor">
+                     </equals>
+                  </with>
+               </and>
+            </visibleWhen>
+         </command>
+         <visibleWhen>
+            <with
+                  variable="activeEditorId">
+               <equals
+                     value="org.eclipse.papyrus.core.papyrusEditor">
+               </equals>
+            </with>
+         </visibleWhen>
+      </toolbar>
+   </menuContribution>
+</extension>
+<extension
+      point="org.eclipse.ui.menus">
+   <menuContribution
+         locationURI="menu:org.eclipse.papyrus.menu.alignment.toolbar.command">
+      <command
+            commandId="org.eclipse.papyrus.diagram.menu.command.alignment.left"
+            icon="icons/alignleft.gif"
+            label="Align Left"
+            mnemonic="&amp;L"
+            style="push">
+      </command>
+      <command
+            commandId="org.eclipse.papyrus.diagram.menu.command.alignment.center"
+            icon="icons/aligncenter.gif"
+            label="Align Center"
+            mnemonic="&amp;C"
+            style="push">
+      </command>
+      <command
+            commandId="org.eclipse.papyrus.diagram.menu.command.alignment.right"
+            icon="icons/alignright.gif"
+            label="Align Right"
+            mnemonic="&amp;R"
+            style="push">
+      </command>
+      <separator
+            name="org.eclipse.papyrus.diagram.menu.alignment.pulldown.separator"
+            visible="true">
+      </separator>
+      <command
+            commandId="org.eclipse.papyrus.diagram.menu.command.alignment.bottom"
+            icon="icons/alignbottom.gif"
+            label="Align Bottom"
+            mnemonic="&amp;B"
+            style="push">
+      </command>
+      <command
+            commandId="org.eclipse.papyrus.diagram.menu.command.alignment.middle"
+            icon="icons/alignmid.gif"
+            label="Align Middle"
+            mnemonic="&amp;M"
+            style="push">
+      </command>
+      <command
+            commandId="org.eclipse.papyrus.diagram.menu.command.alignment.top"
+            icon="icons/aligntop.gif"
+            label="Align Top"
+            mnemonic="&amp;T"
+            style="push">
+      </command>
+   </menuContribution>
+   <menuContribution
+         locationURI="menu:org.eclipse.papyrus.menu.showhide.toolbar.command">
+      <command
+            commandId="org.eclipse.papyrus.diagram.menu.commands.ShowHideContentsCommand"
+            icon="icons/fantomContents.gif"
+            label="Show/Hide Contents"
+            mnemonic="&amp;C"
+            style="push"
+            tooltip="The Show/Hide Contents Action">
+         <visibleWhen>
+            <and>
+               <with
+                     variable="activeEditorId">
+                  <equals
+                        value="org.eclipse.papyrus.core.papyrusEditor">
+                  </equals>
+               </with>
+            </and>
+         </visibleWhen>
+      </command>
+      <command
+            commandId="org.eclipse.papyrus.diagram.menu.commands.ShowHideCompartmentCommand"
+            icon="icons/fantomCompartment.gif"
+            label="Show/Hide Compartments"
+            mnemonic="&amp;p"
+            style="push"
+            tooltip="The Show/Hide Compartments Action">
+         <visibleWhen>
+            <and>
+               <with
+                     variable="activeEditorId">
+                  <equals
+                        value="org.eclipse.papyrus.core.papyrusEditor">
+                  </equals>
+               </with>
+            </and>
+         </visibleWhen>
+      </command>
+   </menuContribution>
+   <menuContribution
+         locationURI="menu:org.eclipse.papyrus.menu.routing.toolbar.command">
+      <command
+            commandId="org.eclipse.papyrus.diagram.menu.command.routing.left"
+            icon="icons/horizontal_by_left.gif"
+            label="Set Horizontal By Left"
+            mnemonic="&amp;L"
+            style="push">
+      </command>
+      <command
+            commandId="org.eclipse.papyrus.diagram.menu.command.routing.right"
+            icon="icons/horizontal_by_right.gif"
+            label="Set Horizontal By Right"
+            mnemonic="&amp;R"
+            style="push">
+      </command>
+      <separator
+            name="org.eclipse.papyrus.diagram.menu.routing.pulldown.separator"
+            visible="true">
+      </separator>
+      <command
+            commandId="org.eclipse.papyrus.diagram.menu.command.routing.top"
+            icon="icons/vertical_by_top.gif"
+            label="Set Vertical By Top"
+            mnemonic="&amp;T"
+            style="push">
+      </command>
+      <command
+            commandId="org.eclipse.papyrus.diagram.menu.command.routing.bottom"
+            icon="icons/vertical_by_bottom.gif"
+            label="Set Vertical By Bottom"
+            mnemonic="&amp;B"
+            style="push">
+      </command>
+   </menuContribution>
+   <menuContribution
+         locationURI="menu:org.eclipse.papyrus.menu.distribute.toolbar.command">
+      <command
+            commandId="org.eclipse.papyrus.diagram.menu.command.distribute.horizontally"
+            icon="icons/distribute_horizontally.gif"
+            label="Distribute Nodes/Links Horizontally"
+            mnemonic="&amp;H"
+            style="push">
+      </command>
+      <command
+            commandId="org.eclipse.papyrus.diagram.menu.command.distribute.horizontally_between_nodesly"
+            icon="icons/distribute_horizontally_between_nodes.gif"
+            label="Distribute Nodes/Links Horizontally Between 2 Nodes"
+            mnemonic="&amp;H"
+            style="push">
+      </command>
+      <separator
+            name="org.eclipse.papyrus.diagram.menu.distribute.pulldown.separator"
+            visible="true">
+      </separator>
+      <command
+            commandId="org.eclipse.papyrus.diagram.menu.command.distribute.vertically"
+            icon="icons/distibute_vertically.gif"
+            label="Distribute Nodes/Links Vertically"
+            mnemonic="&amp;V"
+            style="push">
+      </command>
+      <command
+            commandId="org.eclipse.papyrus.diagram.menu.command.distribute.vertically_between_nodes"
+            icon="icons/distribute_vertically_between_nodes.gif"
+            label="Distribute Nodes/Links Vertically Between 2 Nodes"
+            mnemonic="&amp;V"
+            style="push">
+      </command>
+   </menuContribution>
+   <menuContribution
+         locationURI="menu:org.eclipse.papyrus.menu.size.toolbar.command">
+      <command
+            commandId="org.eclipse.papyrus.diagram.menu.command.sameSize.both"
+            icon="icons/size_to_control.gif"
+            label="Both"
+            mnemonic="&amp;B"
+            style="push"
+            tooltip="Set the dimension of the last selected element">
+      </command>
+      <command
+            commandId="org.eclipse.papyrus.diagram.menu.command.sameSize.height"
+            icon="icons/size_to_control_height.gif"
+            label="Height"
+            mnemonic="&amp;H"
+            style="push"
+            tooltip="Set the height of the last selected element">
+      </command>
+      <command
+            commandId="org.eclipse.papyrus.diagram.menu.command.sameSize.width"
+            icon="icons/size_to_control_width.gif"
+            label="Width"
+            mnemonic="&amp;W"
+            style="push"
+            tooltip="Set the width of the last selected element">
+      </command>
+   </menuContribution>
+</extension>
+<extension
+      point="org.eclipse.ui.menus">
+   <menuContribution
+         allPopups="false"
+         locationURI="menu:org.eclipse.papyrus.diagram.ui.menu">
+      <menu
+            icon="icons/alignleft.gif"
+            id="org.eclipse.papyrus.diagram.ui.menu.alignMenu"
+            label="Alignment"
+            mnemonic="&amp;g"
+            tooltip="Alignement Menu">
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.command.alignment.left"
+               icon="icons/alignleft.gif"
+               label="Align Left"
+               mnemonic="&amp;L"
+               style="push">
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.command.alignment.center"
+               icon="icons/aligncenter.gif"
+               label="Align Center"
+               mnemonic="&amp;C"
+               style="push">
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.command.alignment.right"
+               icon="icons/alignright.gif"
+               label="Align Right"
+               mnemonic="&amp;R"
+               style="push">
+         </command>
+         <separator
+               name="org.eclipse.papyrus.diagram.papyrus.alignment.menu.separator"
+               visible="true">
+         </separator>
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.command.alignment.bottom"
+               icon="icons/alignbottom.gif"
+               label="Align Bottom"
+               mnemonic="&amp;B"
+               style="push">
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.command.alignment.middle"
+               icon="icons/alignmid.gif"
+               label="Align Middle"
+               mnemonic="&amp;M"
+               style="push">
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.command.alignment.top"
+               icon="icons/aligntop.gif"
+               label="Align Top"
+               mnemonic="&amp;T"
+               style="push">
+         </command>
+      </menu>
+      <menu
+            icon="icons/horizontal_by_left.gif"
+            id="org.eclipse.papyrus.diagram.ui.menu.routingMenu"
+            label="Routing"
+            mnemonic="&amp;R"
+            tooltip="Routing Menu">
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.command.routing.left"
+               icon="icons/horizontal_by_left.gif"
+               label="Set Horizontal By Left"
+               mnemonic="&amp;L"
+               style="push">
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.command.routing.right"
+               icon="icons/horizontal_by_right.gif"
+               label="Set Horizontal By Right"
+               mnemonic="&amp;R"
+               style="push">
+         </command>
+         <separator
+               name="org.eclipse.papyrus.diagram.papyrus.menu.separator1"
+               visible="true">
+         </separator>
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.command.routing.top"
+               icon="icons/vertical_by_top.gif"
+               label="Set Vertical By Top"
+               mnemonic="&amp;T"
+               style="push">
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.command.routing.bottom"
+               icon="icons/vertical_by_bottom.gif"
+               label="Set Vertical By Bottom"
+               mnemonic="&amp;B"
+               style="push">
+         </command>
+      </menu>
+      <menu
+            icon="icons/distribute_horizontally.gif"
+            id="org.eclipse.papyrus.diagram.ui.menu.distributeMenu"
+            label="Distribution"
+            mnemonic="&amp;D"
+            tooltip="Distribute Menu">
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.command.distribute.horizontally"
+               icon="icons/distribute_horizontally.gif"
+               label="Distribute Nodes/Links Horizontally"
+               mnemonic="&amp;Hmp;L"
+               style="push">
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.command.distribute.horizontally_between_nodesly"
+               icon="icons/distribute_horizontally_between_nodes.gif"
+               label="Distribute Nodes/Links Horizontally Between 2 Nodes"
+               mnemonic="&amp;H"
+               style="push">
+         </command>
+         <separator
+               name="org.eclipse.papyrus.diagram.menu.distribute.menu.separator"
+               visible="true">
+         </separator>
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.command.distribute.vertically"
+               icon="icons/distibute_vertically.gif"
+               label="Distribute Nodes/Links Vertically"
+               mnemonic="&amp;V"
+               style="push">
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.command.distribute.vertically_between_nodes"
+               icon="icons/distribute_vertically_between_nodes.gif"
+               label="Distribute Nodes/Links Vertically Between 2 Nodes"
+               mnemonic="&amp;V"
+               style="push">
+         </command>
+      </menu>
+      <separator
+            name="org.eclipse.papyrus.diagram.menu.separator1"
+            visible="true">
+      </separator>
+      <command
+            commandId="org.eclipse.papyrus.diagram.menu.command.autosize"
+            icon="icons/autosize.gif"
+            label="Auto Size"
+            mnemonic="&amp;A"
+            style="push"
+            tooltip="Auto Size">
+         <visibleWhen>
+            <and>
+               <with
+                     variable="activeEditorId">
+                  <equals
+                        value="org.eclipse.papyrus.core.papyrusEditor">
+                  </equals>
+               </with>
+            </and>
+         </visibleWhen>
+      </command>
+      <menu
+            icon="icons/size_to_control.gif"
+            id="org.eclipse.papyrus.diagram.ui.menu.sameSizeMenu"
+            label="Make Same Size"
+            mnemonic="&amp;M"
+            tooltip="Make Same Size Menu">
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.command.sameSize.both"
+               icon="icons/size_to_control.gif"
+               label="Both"
+               mnemonic="&amp;B"
+               style="push"
+               tooltip="Set the dimension of the last selected element">
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.command.sameSize.height"
+               icon="icons/size_to_control_height.gif"
+               label="Height"
+               mnemonic="&amp;H"
+               style="push"
+               tooltip="Set the height of the last selected element">
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.command.sameSize.width"
+               icon="icons/size_to_control_width.gif"
+               label="Width"
+               mnemonic="&amp;W"
+               style="push"
+               tooltip="Set the width of the last selected element">
+         </command>
+      </menu>
+      <separator
+            name="org.eclipse.papyrus.diagram.menu.separator2"
+            visible="true">
+      </separator>
+      <menu
+            icon="icons/fantom.gif"
+            id="org.eclipse.papyrus.diagram.ui.menu.filtersMenu"
+            label="Filters"
+            mnemonic="&amp;F"
+            tooltip="Filters Menu">
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.commands.ShowHideContentsCommand"
+               icon="icons/fantomContents.gif"
+               id="showh"
+               label="Show/Hide Contents"
+               mnemonic="&amp;C"
+               style="push"
+               tooltip="The Show/Hide Contents Action">
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.commands.ShowHideCompartmentCommand"
+               icon="icons/fantomCompartment.gif"
+               label="Show/Hide Compartments"
+               mnemonic="&amp;p"
+               style="push"
+               tooltip="The Show/Hide Compartments Action">
+         </command>
+      </menu>
+   </menuContribution>
+</extension>
+<extension
+      point="org.eclipse.ui.menus">
+   <menuContribution
+         allPopups="false"
+         locationURI="popup:org.eclipse.papyrus.diagram.ui.popupmenu.format">
+      <menu
+            icon="icons/alignleft.gif"
+            id="org.eclipse.papyrus.diagram.ui.popupmenu.format.alignMenu"
+            label="Alignment"
+            mnemonic="&amp;g"
+            tooltip="Alignement Menu">
+         mmand>
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.command.alignment.left"
+               icon="icons/alignleft.gif"
+               label="Align Left"
+               mnemonic="&amp;L"
+               style="push">
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.command.alignment.center"
+               icon="icons/aligncenter.gif"
+               label="Align Center"
+               mnemonic="&amp;C"
+               style="push">
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.command.alignment.right"
+               icon="icons/alignright.gif"
+               label="Align Right"
+               mnemonic="&amp;R"
+               style="push">
+         </command>
+         <separator
+               name="org.eclipse.papyrus.diagram.papyrus.alignment.popup.separator"
+               visible="true">
+         </separator>
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.command.alignment.bottom"
+               icon="icons/alignbottom.gif"
+               label="Align Bottom"
+               mnemonic="&amp;B"
+               style="push">
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.command.alignment.middle"
+               icon="icons/alignmid.gif"
+               label="Align Middle"
+               mnemonic="&amp;M"
+               style="push">
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.command.alignment.top"
+               icon="icons/aligntop.gif"
+               label="Align Top"
+               mnemonic="&amp;T"
+               style="push">
+         </command>
+      </menu>
+      <menu
+            icon="icons/horizontal_by_left.gif"
+            id="org.eclipse.papyrus.diagram.ui.popupmenu.format.routingMenu"
+            label="Routing"
+            mnemonic="&amp;R"
+            tooltip="Routing Menu">
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.command.routing.left"
+               icon="icons/horizontal_by_left.gif"
+               label="Set Horizontal By Left"
+               mnemonic="&amp;L"
+               style="push">
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.command.routing.right"
+               icon="icons/horizontal_by_right.gif"
+               label="Set Horizontal By Right"
+               mnemonic="&amp;R"
+               style="push">
+         </command>
+         <separator
+               name="org.eclipse.papyrus.diagram.menu.routing.popup.separator"
+               visible="true">
+         </separator>
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.command.routing.top"
+               icon="icons/vertical_by_top.gif"
+               label="Set Vertical By Top"
+               mnemonic="&amp;T"
+               style="push">
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.command.routing.bottom"
+               icon="icons/vertical_by_bottom.gif"
+               label="Set Vertical By Bottom"
+               mnemonic="&amp;B"
+               style="push">
+         </command>
+      </menu>
+      <menu
+            icon="icons/distribute_horizontally.gif"
+            id="org.eclipse.papyrus.diagram.ui.popupmenu.format.distributeMenu"
+            label="Distribution"
+            mnemonic="&amp;D"
+            tooltip="Distribute Menu">
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.command.distribute.horizontally"
+               icon="icons/distribute_horizontally.gif"
+               label="Distribute Nodes/Links Horizontally"
+               mnemonic="&amp;Hmp;L"
+               style="push">
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.command.distribute.horizontally_between_nodesly"
+               icon="icons/distribute_horizontally_between_nodes.gif"
+               label="Distribute Nodes/Links Horizontally Between 2 Nodes"
+               mnemonic="&amp;H"
+               style="push">
+         </command>
+         <separator
+               name="org.eclipse.papyrus.diagram.menu.distribute.popup.separator"
+               visible="true">
+         </separator>
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.command.distribute.vertically"
+               icon="icons/distibute_vertically.gif"
+               label="Distribute Nodes/Links Vertically"
+               mnemonic="&amp;V"
+               style="push">
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.command.distribute.vertically_between_nodes"
+               icon="icons/distribute_vertically_between_nodes.gif"
+               label="Distribute Nodes/Links Vertically Between 2 Nodes"
+               mnemonic="&amp;V"
+               style="push">
+         </command>
+      </menu>
+      <separator
+            name="org.eclipse.papyrus.diagram.menu.popup.separator1"
+            visible="true">
+      </separator>
+      <command
+            commandId="org.eclipse.papyrus.diagram.menu.command.autosize"
+            icon="icons/autosize.gif"
+            mnemonic="&amp;A"
+            style="push"
+            tooltip="Auto Size">
+         <visibleWhen>
+            <and>
+               <with
+                     variable="activeEditorId">
+                  <equals
+                        value="org.eclipse.papyrus.core.papyrusEditor">
+                  </equals>
+               </with>
+            </and>
+         </visibleWhen>
+      </command>
+      <menu
+            icon="icons/size_to_control.gif"
+            id="org.eclipse.papyrus.diagram.ui.popupmenu.format.sameSizeMenu"
+            label="Make Same Size"
+            mnemonic="&amp;M"
+            tooltip="Make Same Size Menu">
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.command.sameSize.both"
+               icon="icons/size_to_control.gif"
+               label="Both"
+               mnemonic="&amp;B"
+               style="push"
+               tooltip="Set the dimension of the last selected element">
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.command.sameSize.height"
+               icon="icons/size_to_control_height.gif"
+               label="Height"
+               mnemonic="&amp;H"
+               style="push"
+               tooltip="Set the height of the last selected element">
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.command.sameSize.width"
+               icon="icons/size_to_control_width.gif"
+               label="Width"
+               mnemonic="&amp;W"
+               style="push"
+               tooltip="Set the width of the last selected element">
+         </command>
+      </menu>
+   </menuContribution>
+   <menuContribution
+         allPopups="false"
+         locationURI="popup:org.eclipse.papyrus.diagram.ui.popupmenu.filters">
+      <command
+            commandId="org.eclipse.papyrus.diagram.menu.commands.ShowHideContentsCommand"
+            icon="icons/fantomContents.gif"
+            id="showhidecontents.popup"
+            label="Show/Hide Contents"
+            mnemonic="&amp;C"
+            style="push"
+            tooltip="The Show/Hide Contents Action">
+      </command>
+      <command
+            commandId="org.eclipse.papyrus.diagram.menu.commands.ShowHideCompartmentCommand"
+            icon="icons/fantomCompartment.gif"
+            id="showhidecompartments.popup"
+            label="Show/Hide Compartments"
+            mnemonic="&amp;p"
+            style="push"
+            tooltip="The Show/Hide Compartments Action">
+      </command>
+   </menuContribution>
+</extension>
+<extension
+      point="org.eclipse.ui.commands">
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         defaultHandler="org.eclipse.papyrus.diagram.menu.actions.handlers.DropDownToolBarHandler"
+         id="org.eclipse.papyrus.diagram.menu.toolbar.command"
+         name="Command for the toolbar actions">
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         defaultHandler="org.eclipse.papyrus.diagram.menu.actions.handlers.DropDownToolBarSameSizeHandler"
+         id="org.eclipse.papyrus.diagram.menu.toolbar.same.size.command"
+         name="Command for theMake Same Size Toolbar actions">
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         description="Call the Routing By Left Action"
+         id="org.eclipse.papyrus.diagram.menu.command.routing.left"
+         name="Routing By Left Command">
+      <defaultHandler
+            class="org.eclipse.papyrus.diagram.menu.actions.handlers.RoutingHandler">
+         <parameter
+               name="org.eclipse.papyrus.diagram.menu.commandRoutingParameter"
+               value="parameter_left">
+         </parameter>
+      </defaultHandler>
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         description="Call the Routing By Right Action"
+         id="org.eclipse.papyrus.diagram.menu.command.routing.right"
+         name="Routing By Righ Command">
+      <defaultHandler
+            class="org.eclipse.papyrus.diagram.menu.actions.handlers.RoutingHandler">
+         <parameter
+               name="org.eclipse.papyrus.diagram.menu.commandRoutingParameter"
+               value="parameter_right">
+         </parameter>
+      </defaultHandler>
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         description="Call the Routing By Top Action"
+         id="org.eclipse.papyrus.diagram.menu.command.routing.top"
+         name="Routing By Top Command">
+      <defaultHandler
+            class="org.eclipse.papyrus.diagram.menu.actions.handlers.RoutingHandler">
+         <parameter
+               name="org.eclipse.papyrus.diagram.menu.commandRoutingParameter"
+               value="parameter_top">
+         </parameter>
+      </defaultHandler>
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         description="Call the Routing By Bottom Action"
+         id="org.eclipse.papyrus.diagram.menu.command.routing.bottom"
+         name="Routing By Bottom Command">
+      <defaultHandler
+            class="org.eclipse.papyrus.diagram.menu.actions.handlers.RoutingHandler">
+         <parameter
+               name="org.eclipse.papyrus.diagram.menu.commandRoutingParameter"
+               value="parameter_bottom">
+         </parameter>
+      </defaultHandler>
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         description="Call the Distribute Nodes/Links Figure Horizontally"
+         id="org.eclipse.papyrus.diagram.menu.command.distribute.horizontally"
+         name="Distribute Nodes/Links horizontally">
+      <defaultHandler
+            class="org.eclipse.papyrus.diagram.menu.actions.handlers.DistributionHandler">
+         <parameter
+               name="org.eclipse.papyrus.diagram.menu.commandDistributionParameter"
+               value="parameter_horizontally">
+         </parameter>
+      </defaultHandler>
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         description="Call the Distribute Nodes/Links Horizontally Between 2 Nodes"
+         id="org.eclipse.papyrus.diagram.menu.command.distribute.horizontally_between_nodesly"
+         name="Distribute Nodes/Links Horizontally Between 2 Nodes">
+      <defaultHandler
+            class="org.eclipse.papyrus.diagram.menu.actions.handlers.DistributionHandler">
+         <parameter
+               name="org.eclipse.papyrus.diagram.menu.commandDistributionParameter"
+               value="parameter_horizontally_between_nodes">
+         </parameter>
+      </defaultHandler>
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         description="Call the Distribute Nodes/Links Vertically"
+         id="org.eclipse.papyrus.diagram.menu.command.distribute.vertically"
+         name="Distribute Nodes/Links Vertically">
+      <defaultHandler
+            class="org.eclipse.papyrus.diagram.menu.actions.handlers.DistributionHandler">
+         <parameter
+               name="org.eclipse.papyrus.diagram.menu.commandDistributionParameter"
+               value="parameter_vertically">
+         </parameter>
+      </defaultHandler>
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         description="Call the Distribute Nodes/Links Vertically Between 2 Nodes"
+         id="org.eclipse.papyrus.diagram.menu.command.distribute.vertically_between_nodes"
+         name="Distribute Nodes/Links Vertically Between 2 Nodes">
+      <defaultHandler
+            class="org.eclipse.papyrus.diagram.menu.actions.handlers.DistributionHandler">
+         <parameter
+               name="org.eclipse.papyrus.diagram.menu.commandDistributionParameter"
+               value="parameter_vertically_between_nodes">
+         </parameter>
+      </defaultHandler>
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         description="Call the Align on Left Command"
+         id="org.eclipse.papyrus.diagram.menu.command.alignment.left"
+         name="Align Left Command">
+      <defaultHandler
+            class="org.eclipse.papyrus.diagram.menu.actions.handlers.AlignementHandler">
+         <parameter
+               name="org.eclipse.papyrus.diagram.menu.commandAlignmentParameter"
+               value="parameter_left">
+         </parameter>
+      </defaultHandler>
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         description="Call the Align on Center Command"
+         id="org.eclipse.papyrus.diagram.menu.command.alignment.center"
+         name="Align Center Command">
+      <defaultHandler
+            class="org.eclipse.papyrus.diagram.menu.actions.handlers.AlignementHandler">
+         <parameter
+               name="org.eclipse.papyrus.diagram.menu.commandAlignmentParameter"
+               value="parameter_center">
+         </parameter>
+      </defaultHandler>
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         description="Call the Align on Right Command"
+         id="org.eclipse.papyrus.diagram.menu.command.alignment.right"
+         name="Align Right Command">
+      <defaultHandler
+            class="org.eclipse.papyrus.diagram.menu.actions.handlers.AlignementHandler">
+         <parameter
+               name="org.eclipse.papyrus.diagram.menu.commandAlignmentParameter"
+               value="parameter_right">
+         </parameter>
+      </defaultHandler>
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         description="Call the Align on Bottom Command"
+         id="org.eclipse.papyrus.diagram.menu.command.alignment.bottom"
+         name="Align Bottom Command">
+      <defaultHandler
+            class="org.eclipse.papyrus.diagram.menu.actions.handlers.AlignementHandler">
+         <parameter
+               name="org.eclipse.papyrus.diagram.menu.commandAlignmentParameter"
+               value="parameter_bottom">
+         </parameter>
+      </defaultHandler>
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         description="Call the Align on Middle Command"
+         id="org.eclipse.papyrus.diagram.menu.command.alignment.middle"
+         name="Align Middle Command">
+      <defaultHandler
+            class="org.eclipse.papyrus.diagram.menu.actions.handlers.AlignementHandler">
+         <parameter
+               name="org.eclipse.papyrus.diagram.menu.commandAlignmentParameter"
+               value="parameter_middle">
+         </parameter>
+      </defaultHandler>
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         description="Call the Align on Top Command"
+         id="org.eclipse.papyrus.diagram.menu.command.alignment.top"
+         name="Align Top Command">
+      <defaultHandler
+            class="org.eclipse.papyrus.diagram.menu.actions.handlers.AlignementHandler">
+         <parameter
+               name="org.eclipse.papyrus.diagram.menu.commandAlignmentParameter"
+               value="parameter_top">
+         </parameter>
+      </defaultHandler>
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         description="Call the Make Same Size Both Action"
+         id="org.eclipse.papyrus.diagram.menu.command.sameSize.both"
+         name="Make Same Size Both">
+      <defaultHandler
+            class="org.eclipse.papyrus.diagram.menu.actions.handlers.SizeHandler">
+         <parameter
+               name="org.eclipse.papyrus.diagram.menu.commandSizeParameter"
+               value="parameter_both">
+         </parameter>
+      </defaultHandler>
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         description="Call the Make Same Size Height Action"
+         id="org.eclipse.papyrus.diagram.menu.command.sameSize.height"
+         name="Make Same Height">
+      <defaultHandler
+            class="org.eclipse.papyrus.diagram.menu.actions.handlers.SizeHandler">
+         <parameter
+               name="org.eclipse.papyrus.diagram.menu.commandSizeParameter"
+               value="parameter_height">
+         </parameter>
+      </defaultHandler>
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         description="Call the Make Width Size Action"
+         id="org.eclipse.papyrus.diagram.menu.command.sameSize.width"
+         name="Make Same Width Both">
+      <defaultHandler
+            class="org.eclipse.papyrus.diagram.menu.actions.handlers.SizeHandler">
+         <parameter
+               name="org.eclipse.papyrus.diagram.menu.commandSizeParameter"
+               value="parameter_width">
+         </parameter>
+      </defaultHandler>
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         description="Call the Auto Size Action"
+         id="org.eclipse.papyrus.diagram.menu.command.autosize"
+         name="Auto Size">
+      <defaultHandler
+            class="org.eclipse.papyrus.diagram.menu.actions.handlers.SizeHandler">
+         <parameter
+               name="org.eclipse.papyrus.diagram.menu.commandSizeParameter"
+               value="parameter_autosize">
+         </parameter>
+      </defaultHandler>
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         defaultHandler="org.eclipse.papyrus.diagram.menu.actions.handlers.ShowHideCompartmentHandler"
+         description="Call the Show/Hide Compartments Action"
+         id="org.eclipse.papyrus.diagram.menu.commands.ShowHideCompartmentCommand"
+         name="Show/Hide Compartments Command">
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         defaultHandler="org.eclipse.papyrus.diagram.menu.actions.handlers.ShowHideContentsHandler"
+         description="Call the Show/Hide Contents Action"
+         id="org.eclipse.papyrus.diagram.menu.commands.ShowHideContentsCommand"
+         name="Show/Hide Contents Command">
+   </command>
+</extension>
+<extension
+      id="update-cmd-binding"
+      point="org.eclipse.ui.bindings">
+   <key
+         commandId="org.eclipse.papyrus.diagram.menu.command.alignment.left"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="CTRL+ARROW_LEFT">
+   </key>
+   <key
+         commandId="org.eclipse.papyrus.diagram.menu.command.alignment.right"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="CTRL+ARROW_RIGHT">
+   </key>
+   <key
+         commandId="org.eclipse.papyrus.diagram.menu.command.alignment.top"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="CTRL+ARROW_UP">
+   </key>
+   <key
+         commandId="org.eclipse.papyrus.diagram.menu.command.alignment.bottom"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="CTRL+ARROW_DOWN">
+   </key>
+   <key
+         commandId="org.eclipse.papyrus.diagram.menu.commands.DeleteFromModel"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="CTRL+DEL">
+   </key>
+   <key
+         commandId="org.eclipse.papyrus.diagram.menu.commands.DeleteFromDiagram"
+         contextId="org.eclipse.gmf.runtime.diagram.ui.diagramContext"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="DEL">
+   </key>
+   <key
+         commandId="org.eclipse.papyrus.diagram.menu.commands.ShowHideContentsCommand"
+         contextId="org.eclipse.gmf.runtime.diagram.ui.diagramContext"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="F4">
+   </key>
+   <key
+         commandId="org.eclipse.papyrus.diagram.menu.commands.ShowHideCompartmentCommand"
+         contextId="org.eclipse.gmf.runtime.diagram.ui.diagramContext"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="CTRL+F5">
+   </key>
+   <key
+         commandId="org.eclipse.papyrus.diagram.menu.command.routing.left"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="CTRL+SHIFT+ARROW_LEFT">
+   </key>
+   <key
+         commandId="org.eclipse.papyrus.diagram.menu.command.routing.right"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="CTRL+SHIFT+ARROW_RIGHT">
+   </key>
+   <key
+         commandId="org.eclipse.papyrus.diagram.menu.command.routing.top"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="CTRL+SHIFT+ARROW_UP">
+   </key>
+   <key
+         commandId="org.eclipse.papyrus.diagram.menu.command.routing.bottom"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="CTRL+SHIFT+ARROW_DOWN">
+   </key>
+</extension>
+</plugin>
