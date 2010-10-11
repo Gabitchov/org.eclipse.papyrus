@@ -27,7 +27,8 @@ import org.eclipse.uml2.uml.NamedElement;
 /**
  * @generated
  */
-public class ConnectorDurationObservationCreateCommand extends EditElementCommand {
+public class ConnectorDurationObservationCreateCommand extends
+		EditElementCommand {
 
 	/**
 	 * @generated
@@ -42,7 +43,8 @@ public class ConnectorDurationObservationCreateCommand extends EditElementComman
 	/**
 	 * @generated
 	 */
-	public ConnectorDurationObservationCreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
+	public ConnectorDurationObservationCreateCommand(
+			CreateRelationshipRequest request, EObject source, EObject target) {
 		super(request.getLabel(), null, request);
 		this.source = source;
 		this.target = target;
@@ -52,31 +54,35 @@ public class ConnectorDurationObservationCreateCommand extends EditElementComman
 	 * @generated
 	 */
 	public boolean canExecute() {
-		if(source == null && target == null) {
+		if (source == null && target == null) {
 			return false;
 		}
-		if(source != null && false == source instanceof DurationObservation) {
+		if (source != null && false == source instanceof DurationObservation) {
 			return false;
 		}
-		if(target != null && false == target instanceof NamedElement) {
+		if (target != null && false == target instanceof NamedElement) {
 			return false;
 		}
-		if(getSource() == null) {
+		if (getSource() == null) {
 			return true; // link creation is in progress; source is not defined yet
 		}
 		// target may be null here but it's possible to check constraint
-		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateDurationObservationEvent_4025(getSource(), getTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints()
+				.canCreateDurationObservationEvent_4025(getSource(),
+						getTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		if(!canExecute()) {
-			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
+		if (!canExecute()) {
+			throw new ExecutionException(
+					"Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 
-		if(getSource() != null && getTarget() != null) {
+		if (getSource() != null && getTarget() != null) {
 			getSource().getEvents().add(getTarget());
 		}
 		return CommandResult.newOKCommandResult();
@@ -94,13 +100,13 @@ public class ConnectorDurationObservationCreateCommand extends EditElementComman
 	 * @generated
 	 */
 	protected DurationObservation getSource() {
-		return (DurationObservation)source;
+		return (DurationObservation) source;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected NamedElement getTarget() {
-		return (NamedElement)target;
+		return (NamedElement) target;
 	}
 }

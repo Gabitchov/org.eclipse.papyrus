@@ -40,6 +40,7 @@ import org.eclipse.uml2.uml.PrimitiveType;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Realization;
 import org.eclipse.uml2.uml.Reception;
+import org.eclipse.uml2.uml.RedefinableTemplateSignature;
 import org.eclipse.uml2.uml.Signal;
 import org.eclipse.uml2.uml.Substitution;
 import org.eclipse.uml2.uml.TimeObservation;
@@ -155,6 +156,18 @@ public class ElementInitializers {
 	public void init_Class_3004(Class instance) {
 		try {
 			Object value_0 = name_Class_3004(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_RedefinableTemplateSignature_3015(RedefinableTemplateSignature instance) {
+		try {
+			Object value_0 = name_RedefinableTemplateSignature_3015(instance);
 			instance.setName((String)value_0);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
@@ -747,6 +760,13 @@ public class ElementInitializers {
 	 */
 	private String name_Class_3004(Class self) {
 		return getName(self);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_RedefinableTemplateSignature_3015(RedefinableTemplateSignature self) {
+		return org.eclipse.papyrus.diagram.common.helper.NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
 	}
 
 	/**

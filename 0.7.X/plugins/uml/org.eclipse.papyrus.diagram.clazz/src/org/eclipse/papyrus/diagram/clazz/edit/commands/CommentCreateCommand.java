@@ -57,7 +57,8 @@ public class CommentCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public static CommentCreateCommand create(CreateElementRequest req, EObject eObject) {
+	public static CommentCreateCommand create(CreateElementRequest req,
+			EObject eObject) {
 		return new CommentCreateCommand(req, eObject);
 	}
 
@@ -76,12 +77,12 @@ public class CommentCreateCommand extends EditElementCommand {
 	@Override
 	protected EObject getElementToEdit() {
 
-
-		EObject container = ((CreateElementRequest)getRequest()).getContainer();
-		if(container instanceof View) {
-			container = ((View)container).getElement();
+		EObject container = ((CreateElementRequest) getRequest())
+				.getContainer();
+		if (container instanceof View) {
+			container = ((View) container).getElement();
 		}
-		if(container != null) {
+		if (container != null) {
 			return container;
 		}
 		return eObject;
@@ -93,10 +94,7 @@ public class CommentCreateCommand extends EditElementCommand {
 	@Override
 	public boolean canExecute() {
 
-
 		return true;
-
-
 
 	}
 
@@ -104,34 +102,37 @@ public class CommentCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	@Override
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
-
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
 
 		Comment newElement = UMLFactory.eINSTANCE.createComment();
 
-		Element owner = (Element)getElementToEdit();
+		Element owner = (Element) getElementToEdit();
 		owner.getOwnedComments().add(newElement);
-
 
 		ElementInitializers.getInstance().init_Comment_2012(newElement);
 
 		doConfigure(newElement, monitor, info);
 
-		((CreateElementRequest)getRequest()).setNewElement(newElement);
+		((CreateElementRequest) getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
 
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(Comment newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
-		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
-		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());
+	protected void doConfigure(Comment newElement, IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
+		IElementType elementType = ((CreateElementRequest) getRequest())
+				.getElementType();
+		ConfigureRequest configureRequest = new ConfigureRequest(
+				getEditingDomain(), newElement, elementType);
+		configureRequest.setClientContext(((CreateElementRequest) getRequest())
+				.getClientContext());
 		configureRequest.addParameters(getRequest().getParameters());
-		ICommand configureCommand = elementType.getEditCommand(configureRequest);
-		if(configureCommand != null && configureCommand.canExecute()) {
+		ICommand configureCommand = elementType
+				.getEditCommand(configureRequest);
+		if (configureCommand != null && configureCommand.canExecute()) {
 			configureCommand.execute(monitor, info);
 		}
 	}

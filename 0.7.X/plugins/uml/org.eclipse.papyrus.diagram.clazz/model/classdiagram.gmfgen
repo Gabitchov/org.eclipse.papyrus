@@ -202,18 +202,15 @@
           graphicalNodeEditPolicyClassName="RedefinableTemplateSignatureGraphicalNodeEditPolicy"
           createCommandClassName="RedefinableTemplateSignatureCreateCommand"
           containers="/0/@diagram/@topLevelNodes.7 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.12 /0/@diagram/@topLevelNodes.5 /0/@diagram/@topLevelNodes.12 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.24 /0/@diagram/@topLevelNodes.6 /0/@diagram/@topLevelNodes.9 /0/@diagram/@childNodes.14 /0/@diagram/@topLevelNodes.10 /0/@diagram/@topLevelNodes.4"
-          preferredSideName="NORTH">
+          preferredSideName="EAST">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="RedefinableTemplateSignatureEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="TemplateSignatureDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class TemplateSignatureDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fTemplateParameterRectangle; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public TemplateSignatureDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setSize(getMapMode().DPtoLP(100)&#xA;, getMapMode().DPtoLP(60)&#xA;);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fTemplateParameterRectangle = new org.eclipse.draw2d.RectangleFigure();&#xA;&#xA;this.add(fTemplateParameterRectangle);&#xA;fTemplateParameterRectangle.setLayoutManager(new org.eclipse.draw2d.StackLayout());&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getTemplateParameterRectangle() {&#xA;&#x9;&#x9;return fTemplateParameterRectangle;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;">
-          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.figure.TemplateFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
@@ -229,6 +226,15 @@
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/TemplateableElement/ownedTemplateSignature"/>
           <childMetaFeature
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/TemplateableElement/ownedTemplateSignature"/>
+          <modelElementInitializer
+              xsi:type="gmfgen:GenFeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.0/@expressions.1">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+            </initializers>
+          </modelElementInitializer>
         </modelFacet>
       </childNodes>
       <childNodes
@@ -251,6 +257,10 @@
             classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class TemplateParameterDescriptor extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public TemplateParameterDescriptor() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;&lt;UNDEFINED>&quot;);&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;">
           <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
         </viewmap>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.clazz.custom.policies.TemplateParamaterDisplayEditPolicy.TEMPLATE_PARAMETER_DISPLAY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.TemplateParamaterDisplayEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ClassifierTemplateParameter"/>
@@ -260,7 +270,7 @@
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/TemplateSignature/parameter"/>
         </modelFacet>
         <labelModelFacet
-            parser="/0/@labelParsers/@implementations.7"/>
+            parser="/0/@labelParsers/@implementations.6"/>
       </childNodes>
       <childNodes
           xsi:type="gmfgen:GenChildLabelNode"
@@ -282,6 +292,10 @@
             classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class TemplateParameterDescriptor extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public TemplateParameterDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;&lt;UNDEFINED>&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
           <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
         </viewmap>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.clazz.custom.policies.TemplateParamaterDisplayEditPolicy.TEMPLATE_PARAMETER_DISPLAY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.TemplateParamaterDisplayEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/TemplateParameter"/>
@@ -1899,7 +1913,7 @@
           </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.8"
+              parser="/0/@labelParsers/@implementations.7"
               editPattern="">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Comment/body"/>
@@ -2000,7 +2014,7 @@
           </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.9"
+              parser="/0/@labelParsers/@implementations.8"
               viewPattern="">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint/specification"/>
@@ -3319,7 +3333,7 @@
           </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.9"
+              parser="/0/@labelParsers/@implementations.8"
               viewPattern="">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint/specification"/>
@@ -3386,7 +3400,7 @@
           </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.8"
+              parser="/0/@labelParsers/@implementations.7"
               editorPattern=""
               editPattern="">
             <metaFeatures
@@ -3440,7 +3454,7 @@
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.10">
+              parser="/0/@labelParsers/@implementations.9">
             <metaFeatures
                 href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram/name"/>
           </modelFacet>
@@ -6866,12 +6880,8 @@
           qualifiedName="org.eclipse.papyrus.diagram.clazz.custom.parsers.SlotParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@childNodes.5/@labelModelFacet"
+          uses="/0/@diagram/@childNodes.5/@labelModelFacet /0/@diagram/@childNodes.4/@labelModelFacet"
           qualifiedName="org.eclipse.papyrus.diagram.clazz.custom.parsers.TemplateParameterParser"/>
-      <implementations
-          xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@childNodes.4/@labelModelFacet"
-          qualifiedName="org.eclipse.papyrus.diagram.clazz.custom.parsers.ClassifierTemplateParameterParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
           uses="/0/@diagram/@childNodes.27/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.14/@labels.0/@modelFacet"
@@ -6920,7 +6930,7 @@
     <extensionNodes
         xsi:type="papyrusgmfgenextension:SpecificLocator"
         comment="precise the locator for a template signature"
-        classpath="org.eclipse.papyrus.diagram.common.locator.TemplateClassifierBorderItemLocator"
+        classpath="org.eclipse.papyrus.diagram.common.locator.TemplateBorderItemLocator"
         genChildSideAffixedNode="/0/@diagram/@childNodes.3"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"

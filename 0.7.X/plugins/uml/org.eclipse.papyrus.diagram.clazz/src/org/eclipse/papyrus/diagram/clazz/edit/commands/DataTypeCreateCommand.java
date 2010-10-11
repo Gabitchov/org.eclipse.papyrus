@@ -57,7 +57,8 @@ public class DataTypeCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public static DataTypeCreateCommand create(CreateElementRequest req, EObject eObject) {
+	public static DataTypeCreateCommand create(CreateElementRequest req,
+			EObject eObject) {
 		return new DataTypeCreateCommand(req, eObject);
 	}
 
@@ -75,12 +76,12 @@ public class DataTypeCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-
-		EObject container = ((CreateElementRequest)getRequest()).getContainer();
-		if(container instanceof View) {
-			container = ((View)container).getElement();
+		EObject container = ((CreateElementRequest) getRequest())
+				.getContainer();
+		if (container instanceof View) {
+			container = ((View) container).getElement();
 		}
-		if(container != null) {
+		if (container != null) {
 			return container;
 		}
 		return eObject;
@@ -91,44 +92,44 @@ public class DataTypeCreateCommand extends EditElementCommand {
 	 */
 	public boolean canExecute() {
 
-
 		return true;
-
-
 
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
-
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
 
 		DataType newElement = UMLFactory.eINSTANCE.createDataType();
 
-		Package owner = (Package)getElementToEdit();
+		Package owner = (Package) getElementToEdit();
 		owner.getPackagedElements().add(newElement);
-
 
 		ElementInitializers.getInstance().init_DataType_2010(newElement);
 
 		doConfigure(newElement, monitor, info);
 
-		((CreateElementRequest)getRequest()).setNewElement(newElement);
+		((CreateElementRequest) getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
 
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(DataType newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
-		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
-		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());
+	protected void doConfigure(DataType newElement, IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
+		IElementType elementType = ((CreateElementRequest) getRequest())
+				.getElementType();
+		ConfigureRequest configureRequest = new ConfigureRequest(
+				getEditingDomain(), newElement, elementType);
+		configureRequest.setClientContext(((CreateElementRequest) getRequest())
+				.getClientContext());
 		configureRequest.addParameters(getRequest().getParameters());
-		ICommand configureCommand = elementType.getEditCommand(configureRequest);
-		if(configureCommand != null && configureCommand.canExecute()) {
+		ICommand configureCommand = elementType
+				.getEditCommand(configureRequest);
+		if (configureCommand != null && configureCommand.canExecute()) {
 			configureCommand.execute(monitor, info);
 		}
 	}
