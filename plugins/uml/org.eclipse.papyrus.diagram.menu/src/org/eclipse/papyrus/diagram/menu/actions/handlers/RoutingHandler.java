@@ -30,7 +30,7 @@ public class RoutingHandler extends ParametricAndListeningHandler {
 	 * 
 	 */
 	public RoutingHandler() {
-		super("org.eclipse.papyrus.diagram.common.commandRoutingParameter"); //$NON-NLS-1$
+		super("org.eclipse.papyrus.diagram.menu.commandRoutingParameter"); //$NON-NLS-1$
 	}
 
 	/**
