@@ -43,6 +43,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
+import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
@@ -64,11 +65,19 @@ import org.eclipse.papyrus.diagram.common.helper.DurationConstraintHelper;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragment2EditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DestructionEventEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionOperandEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionUseEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.common.util.CacheAdapter;
 import org.eclipse.uml2.uml.CombinedFragment;
+import org.eclipse.uml2.uml.Continuation;
 import org.eclipse.uml2.uml.DestructionEvent;
 import org.eclipse.uml2.uml.DurationConstraint;
 import org.eclipse.uml2.uml.Element;
@@ -78,6 +87,7 @@ import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.InteractionOperand;
+import org.eclipse.uml2.uml.InteractionUse;
 import org.eclipse.uml2.uml.IntervalConstraint;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
@@ -86,6 +96,7 @@ import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 import org.eclipse.uml2.uml.MessageSort;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
+import org.eclipse.uml2.uml.StateInvariant;
 import org.eclipse.uml2.uml.TimeConstraint;
 import org.eclipse.uml2.uml.TimeObservation;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -208,63 +219,100 @@ public class SequenceUtil {
 		if(lifelineEditPart == null) {
 			return null;
 		}
-		//TODO handle CombinedFragments, Continuation,  Interaction, InteractionOperand, InteractionUse, StateInvariant
-		// search on graphical children of the lifeline
-		List<?> children = lifelineEditPart.getChildren();
-		for(Object child : children) {
-			// check destruction event
-			if(child instanceof DestructionEventEditPart) {
-				EObject destructionEvent = ((GraphicalEditPart)child).resolveSemanticElement();
-				EObject lifeline = lifelineEditPart.resolveSemanticElement();
-				if(destructionEvent instanceof DestructionEvent && lifeline instanceof Lifeline && fragment instanceof OccurrenceSpecification) {
-					Event destEvent = ((OccurrenceSpecification)fragment).getEvent();
-					if(destEvent != null && destEvent.equals(destructionEvent)) {
-						Rectangle bounds = ((GraphicalEditPart)child).getFigure().getBounds().getCopy();
-						lifelineEditPart.getFigure().translateToAbsolute(bounds);
-						return bounds.getCenter();
+		// Search for corresponding node edit part out of the lifeline.
+		if(fragment instanceof CombinedFragment || fragment instanceof Continuation || fragment instanceof InteractionOperand || fragment instanceof InteractionUse || fragment instanceof Interaction) {
+			List<View> views = DiagramEditPartsUtil.findViews(fragment, lifelineEditPart.getViewer());
+			for(View view : views) {
+				EditPart part = DiagramEditPartsUtil.getEditPartFromView(view, lifelineEditPart);
+				boolean isCombinedFragment = part instanceof CombinedFragmentEditPart || part instanceof CombinedFragment2EditPart;
+				boolean isContinuation = part instanceof ContinuationEditPart;
+				boolean isInteractionOperand = part instanceof InteractionOperandEditPart;
+				boolean isInteractionUse = part instanceof InteractionUseEditPart;
+				boolean isInteraction = part instanceof InteractionEditPart;
+				if(isCombinedFragment || isContinuation || isInteractionOperand || isInteractionUse || isInteraction) {
+					Rectangle bounds = ((GraphicalEditPart)part).getFigure().getBounds().getCopy();
+					lifelineEditPart.getFigure().translateToAbsolute(bounds);
+					return bounds.getTop();
+				}
+			}
+		} else {
+			// search on graphical children of the lifeline
+			List<?> children = lifelineEditPart.getChildren();
+			for(Object child : children) {
+				// check destruction event
+				if(child instanceof DestructionEventEditPart) {
+					EObject destructionEvent = ((GraphicalEditPart)child).resolveSemanticElement();
+					EObject lifeline = lifelineEditPart.resolveSemanticElement();
+					if(destructionEvent instanceof DestructionEvent && lifeline instanceof Lifeline && fragment instanceof OccurrenceSpecification) {
+						Event destEvent = ((OccurrenceSpecification)fragment).getEvent();
+						if(destEvent != null && destEvent.equals(destructionEvent)) {
+							Rectangle bounds = ((GraphicalEditPart)child).getFigure().getBounds().getCopy();
+							lifelineEditPart.getFigure().translateToAbsolute(bounds);
+							return bounds.getCenter();
+						}
+					}
+				}
+				// check in children executions
+				if(child instanceof ActionExecutionSpecificationEditPart || child instanceof BehaviorExecutionSpecificationEditPart) {
+					if(fragment instanceof ExecutionSpecification) {
+						// check the execution
+						EObject element = ((GraphicalEditPart)child).resolveSemanticElement();
+						if(element instanceof ExecutionSpecification) {
+							if(fragment.equals(element)) {
+								Rectangle bounds = ((GraphicalEditPart)child).getFigure().getBounds().getCopy();
+								lifelineEditPart.getFigure().translateToAbsolute(bounds);
+								return bounds.getTop();
+							}
+						}
+					} else if(fragment instanceof ExecutionOccurrenceSpecification) {
+						// check start and finish events of the execution
+						EObject element = ((GraphicalEditPart)child).resolveSemanticElement();
+						if(element instanceof ExecutionSpecification) {
+							if(fragment.equals(((ExecutionSpecification)element).getStart())) {
+								Rectangle bounds = ((GraphicalEditPart)child).getFigure().getBounds().getCopy();
+								lifelineEditPart.getFigure().translateToAbsolute(bounds);
+								return bounds.getTop();
+							} else if(fragment.equals(((ExecutionSpecification)element).getFinish())) {
+								Rectangle bounds = ((GraphicalEditPart)child).getFigure().getBounds().getCopy();
+								lifelineEditPart.getFigure().translateToAbsolute(bounds);
+								return bounds.getBottom();
+							}
+						}
+					} else if(fragment instanceof MessageOccurrenceSpecification) {
+						// check messages to and from the execution
+						Point loc = findLocationOfMessageOccurrence((GraphicalEditPart)child, (MessageOccurrenceSpecification)fragment);
+						if(loc != null) {
+							return loc;
+						}
+					}
+				}
+				// check in children StateInvariant
+				if(child instanceof StateInvariantEditPart) {
+					if(fragment instanceof StateInvariant) {
+						// check the StateInvariant
+						EObject element = ((GraphicalEditPart)child).resolveSemanticElement();
+						if(element instanceof StateInvariant) {
+							if(fragment.equals(element)) {
+								Rectangle bounds = ((GraphicalEditPart)child).getFigure().getBounds().getCopy();
+								lifelineEditPart.getFigure().translateToAbsolute(bounds);
+								return bounds.getTop();
+							}
+						}
+					} else if(fragment instanceof MessageOccurrenceSpecification) {
+						// check messages to and from the execution
+						Point loc = findLocationOfMessageOccurrence((GraphicalEditPart)child, (MessageOccurrenceSpecification)fragment);
+						if(loc != null) {
+							return loc;
+						}
 					}
 				}
 			}
-			// check in children executions
-			if(child instanceof ActionExecutionSpecificationEditPart || child instanceof BehaviorExecutionSpecificationEditPart) {
-				if(fragment instanceof ExecutionSpecification) {
-					// check the execution
-					EObject element = ((GraphicalEditPart)child).resolveSemanticElement();
-					if(element instanceof ExecutionSpecification) {
-						if(fragment.equals(element)) {
-							Rectangle bounds = ((GraphicalEditPart)child).getFigure().getBounds().getCopy();
-							lifelineEditPart.getFigure().translateToAbsolute(bounds);
-							return bounds.getTop();
-						}
-					}
-				} else if(fragment instanceof ExecutionOccurrenceSpecification) {
-					// check start and finish events of the execution
-					EObject element = ((GraphicalEditPart)child).resolveSemanticElement();
-					if(element instanceof ExecutionSpecification) {
-						if(fragment.equals(((ExecutionSpecification)element).getStart())) {
-							Rectangle bounds = ((GraphicalEditPart)child).getFigure().getBounds().getCopy();
-							lifelineEditPart.getFigure().translateToAbsolute(bounds);
-							return bounds.getTop();
-						} else if(fragment.equals(((ExecutionSpecification)element).getFinish())) {
-							Rectangle bounds = ((GraphicalEditPart)child).getFigure().getBounds().getCopy();
-							lifelineEditPart.getFigure().translateToAbsolute(bounds);
-							return bounds.getBottom();
-						}
-					}
-				} else if(fragment instanceof MessageOccurrenceSpecification) {
-					// check messages to and from the execution
-					Point loc = findLocationOfMessageOccurrence((GraphicalEditPart)child, (MessageOccurrenceSpecification)fragment);
-					if(loc != null) {
-						return loc;
-					}
+			if(fragment instanceof MessageOccurrenceSpecification) {
+				// check messages to and from the lifeline
+				Point loc = findLocationOfMessageOccurrence(lifelineEditPart, (MessageOccurrenceSpecification)fragment);
+				if(loc != null) {
+					return loc;
 				}
-			}
-		}
-		if(fragment instanceof MessageOccurrenceSpecification) {
-			// check messages to and from the lifeline
-			Point loc = findLocationOfMessageOccurrence(lifelineEditPart, (MessageOccurrenceSpecification)fragment);
-			if(loc != null) {
-				return loc;
 			}
 		}
 		return null;
