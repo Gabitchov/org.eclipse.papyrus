@@ -21,7 +21,8 @@ import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 /**
  * @generated
  */
-public class InstanceSpecificationSlotCompartmentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+public class InstanceSpecificationSlotCompartmentItemSemanticEditPolicy extends
+		UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
@@ -34,7 +35,7 @@ public class InstanceSpecificationSlotCompartmentItemSemanticEditPolicy extends 
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if(UMLElementTypes.Slot_3030 == req.getElementType()) {
+		if (UMLElementTypes.Slot_3030 == req.getElementType()) {
 			return getGEFWrapper(new SlotCreateCommand(req));
 		}
 		return super.getCreateCommand(req);

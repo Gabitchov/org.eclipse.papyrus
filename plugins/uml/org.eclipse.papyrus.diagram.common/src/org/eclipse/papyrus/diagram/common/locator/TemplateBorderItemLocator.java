@@ -16,39 +16,96 @@ package org.eclipse.papyrus.diagram.common.locator;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Rectangle;
 
-// @unused
-public class TemplateBorderItemLocator extends AdvancedBorderItemLocator {
 
-	// @unused
-	public TemplateBorderItemLocator(IFigure parentFigure) {
-		super(parentFigure);
-	}
+/**
+ * 
+ * This code comes form composite diagram. I was copied to avoid dependencies
+ 
+ * <pre>          <---------+
+ * 	 +------------+------|  |
+ * 	 |    [Class]        | 	|
+ * 	 +-------------------+  |
+ * 	 |                  +-+ |  - Expected position of template signature 
+ * 	 |                  +-+ |
+ * 	 |                   |  \/
+ * 	 |                   |
+ * 	 |                   |
+ * 	 +-------------------+
+ * 
+ * </pre>
+ * 
+ * <pre>
+ * TODO  : The port is not re-sizable
+ * </pre>
+ */
+public class TemplateBorderItemLocator extends PortPositionLocator{
 
-	// @unused
-	public TemplateBorderItemLocator(IFigure borderItem, IFigure parentFigure, Rectangle constraint) {
-		super(borderItem, parentFigure, constraint);
-	}
-
-	// @unused
+	
+	/** the width of the area surrounding the parent figure where border item can be put */
+	protected int borderItemOffset = 10;
+	
 	public TemplateBorderItemLocator(IFigure parentFigure, int preferredSide) {
 		super(parentFigure, preferredSide);
 	}
 
-	@Override
-	public Rectangle getValidLocation(Rectangle proposedLocation, IFigure borderItem) {
+	/**
+	 * 
+	 * @param proposedLocation
+	 *        the proposed location
+	 * @return a possible location on parent figure border
+	 */
+	public Rectangle getPreferredLocation(Rectangle proposedLocation) {
+
+		// Initialize port location with proposed location
+		// and resolve the bounds of it graphical parent
 		Rectangle realLocation = new Rectangle(proposedLocation);
+
 		Rectangle parentRec = getParentFigure().getBounds().getCopy();
-		// position is constraint in the parent rectangle
-		// WEST
-		if(realLocation.x < parentRec.x + parentRec.getSize().width - borderItem.getBounds().width) {
-			realLocation.x = parentRec.x + parentRec.getSize().width - borderItem.getBounds().width;
+
+		// Calculate Max position around the graphical parent (1/2 size or the port around
+		// the graphical parent bounds.
+		int xMin = parentRec.x - borderItemOffset+parentRec.width/2;
+		int xMax = parentRec.x - borderItemOffset + parentRec.width;
+		int yMin = parentRec.y - borderItemOffset;
+		int yMax = parentRec.y - borderItemOffset + parentRec.height/2;
+
+		// Modify Port location if MAX X or Y are exceeded
+		if(realLocation.x < xMin) {
+			realLocation.x = xMin;
 		}
-		// EAST
-		if(realLocation.x > parentRec.x + parentRec.getSize().width - borderItem.getBounds().width / 4) {
-			realLocation.x = parentRec.x + parentRec.getSize().width - borderItem.getBounds().width / 4;
+
+		if(realLocation.x > xMax) {
+			realLocation.x = xMax;
 		}
-		// NORTH
-		realLocation.y = parentRec.y + 40 - (borderItem.getBounds().height / 2);
+
+		if(realLocation.y < yMin) {
+			realLocation.y = yMin;
+		}
+
+		if(realLocation.y > yMax) {
+			realLocation.y = yMax;
+		}
+
+		// Ensure the port is positioned on its parent borders and not in the middle.
+		// Modify position if needed.
+		if((realLocation.y != yMin) && (realLocation.y != yMax)) {
+			if((realLocation.x != xMin) && (realLocation.x != xMax)) {
+
+				if(realLocation.x <= (xMin + (parentRec.width / 2))) {
+					realLocation.x = xMin;
+				} else {
+					realLocation.x = xMax;
+				}
+			}
+		}
+		if(realLocation.x==xMin && (yMin<realLocation.y && realLocation.y<=yMax)){
+			realLocation.x=xMax;
+		}
+
+		if((xMin<=realLocation.x && realLocation.x<xMax)&& realLocation.y==yMax){
+			realLocation.y=yMin;
+		}
+		// Return constrained location
 		return realLocation;
 	}
 

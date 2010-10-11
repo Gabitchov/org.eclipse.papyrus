@@ -27,7 +27,8 @@ import org.eclipse.papyrus.diagram.clazz.custom.policies.CustomGraphicalNodeEdit
 /**
  * @generated
  */
-public class CommentLinkDescriptorEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
+public class CommentLinkDescriptorEditPart extends ConnectionNodeEditPart
+		implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -46,9 +47,11 @@ public class CommentLinkDescriptorEditPart extends ConnectionNodeEditPart implem
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicy.COMPONENT_ROLE, new ViewComponentEditPolicy());
+		installEditPolicy(EditPolicy.COMPONENT_ROLE,
+				new ViewComponentEditPolicy());
 		removeEditPolicy(EditPolicyRoles.SEMANTIC_ROLE);
-		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE,
+				new CustomGraphicalNodeEditPolicy());
 	}
 
 	/**
@@ -68,7 +71,7 @@ public class CommentLinkDescriptorEditPart extends ConnectionNodeEditPart implem
 	 * @generated
 	 */
 	public CommentLinkDescriptor getPrimaryShape() {
-		return (CommentLinkDescriptor)getFigure();
+		return (CommentLinkDescriptor) getFigure();
 	}
 
 	/**

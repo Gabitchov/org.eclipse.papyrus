@@ -21,7 +21,8 @@ import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 /**
  * @generated
  */
-public class ConnectorTimeObservationItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+public class ConnectorTimeObservationItemSemanticEditPolicy extends
+		UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated

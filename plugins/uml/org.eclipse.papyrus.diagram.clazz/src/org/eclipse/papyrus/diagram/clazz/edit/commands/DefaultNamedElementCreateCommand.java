@@ -45,7 +45,8 @@ public class DefaultNamedElementCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public DefaultNamedElementCreateCommand(CreateElementRequest req, EObject eObject) {
+	public DefaultNamedElementCreateCommand(CreateElementRequest req,
+			EObject eObject) {
 		super(req.getLabel(), null, req);
 		this.eObject = eObject;
 		this.eClass = eObject != null ? eObject.eClass() : null;
@@ -54,7 +55,8 @@ public class DefaultNamedElementCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public static DefaultNamedElementCreateCommand create(CreateElementRequest req, EObject eObject) {
+	public static DefaultNamedElementCreateCommand create(
+			CreateElementRequest req, EObject eObject) {
 		return new DefaultNamedElementCreateCommand(req, eObject);
 	}
 
@@ -72,12 +74,12 @@ public class DefaultNamedElementCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-
-		EObject container = ((CreateElementRequest)getRequest()).getContainer();
-		if(container instanceof View) {
-			container = ((View)container).getElement();
+		EObject container = ((CreateElementRequest) getRequest())
+				.getContainer();
+		if (container instanceof View) {
+			container = ((View) container).getElement();
 		}
-		if(container != null) {
+		if (container != null) {
 			return container;
 		}
 		return eObject;
@@ -88,32 +90,36 @@ public class DefaultNamedElementCreateCommand extends EditElementCommand {
 	 */
 	public boolean canExecute() {
 
-
 		return true;
 
-
-
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
 
-
-		throw new UnsupportedOperationException("Unimplemented operation (abstract domain element).");
+		throw new UnsupportedOperationException(
+				"Unimplemented operation (abstract domain element).");
 	}
 
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(NamedElement newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
-		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
-		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());
+	protected void doConfigure(NamedElement newElement,
+			IProgressMonitor monitor, IAdaptable info)
+			throws ExecutionException {
+		IElementType elementType = ((CreateElementRequest) getRequest())
+				.getElementType();
+		ConfigureRequest configureRequest = new ConfigureRequest(
+				getEditingDomain(), newElement, elementType);
+		configureRequest.setClientContext(((CreateElementRequest) getRequest())
+				.getClientContext());
 		configureRequest.addParameters(getRequest().getParameters());
-		ICommand configureCommand = elementType.getEditCommand(configureRequest);
-		if(configureCommand != null && configureCommand.canExecute()) {
+		ICommand configureCommand = elementType
+				.getEditCommand(configureRequest);
+		if (configureCommand != null && configureCommand.canExecute()) {
 			configureCommand.execute(monitor, info);
 		}
 	}

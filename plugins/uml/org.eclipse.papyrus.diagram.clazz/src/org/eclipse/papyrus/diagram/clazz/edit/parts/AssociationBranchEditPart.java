@@ -28,7 +28,8 @@ import org.eclipse.papyrus.diagram.clazz.edit.policies.AssociationBranchItemSema
 /**
  * @generated
  */
-public class AssociationBranchEditPart extends AbstractAssociationBranchEditPart implements ITreeBranchEditPart {
+public class AssociationBranchEditPart extends
+		AbstractAssociationBranchEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -46,7 +47,7 @@ public class AssociationBranchEditPart extends AbstractAssociationBranchEditPart
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
+		if (addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -56,12 +57,14 @@ public class AssociationBranchEditPart extends AbstractAssociationBranchEditPart
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof AssociationBranchRoleEditPart) {
-			((AssociationBranchRoleEditPart)childEditPart).setLabel(getPrimaryShape().getRoleSourceLabel());
+		if (childEditPart instanceof AssociationBranchRoleEditPart) {
+			((AssociationBranchRoleEditPart) childEditPart)
+					.setLabel(getPrimaryShape().getRoleSourceLabel());
 			return true;
 		}
-		if(childEditPart instanceof AssociationBranchMutliplicityEditPart) {
-			((AssociationBranchMutliplicityEditPart)childEditPart).setLabel(getPrimaryShape().getMultiplicitySourceLabel());
+		if (childEditPart instanceof AssociationBranchMutliplicityEditPart) {
+			((AssociationBranchMutliplicityEditPart) childEditPart)
+					.setLabel(getPrimaryShape().getMultiplicitySourceLabel());
 			return true;
 		}
 		return false;
@@ -85,23 +88,26 @@ public class AssociationBranchEditPart extends AbstractAssociationBranchEditPart
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new AssociationBranchItemSemanticEditPolicy());
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomAssociationBranchItemSemanticEditPolicy());
-		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+				new AssociationBranchItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+				new CustomAssociationBranchItemSemanticEditPolicy());
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE,
+				new CustomGraphicalNodeEditPolicy());
 	}
 
 	/**
 	 * @generated
 	 */
 	public AssociationFigure getPrimaryShape() {
-		return (AssociationFigure)getFigure();
+		return (AssociationFigure) getFigure();
 	}
 
 	/**
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
+		if (removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -111,10 +117,10 @@ public class AssociationBranchEditPart extends AbstractAssociationBranchEditPart
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof AssociationBranchRoleEditPart) {
+		if (childEditPart instanceof AssociationBranchRoleEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof AssociationBranchMutliplicityEditPart) {
+		if (childEditPart instanceof AssociationBranchMutliplicityEditPart) {
 			return true;
 		}
 		return false;

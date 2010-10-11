@@ -30,7 +30,8 @@ import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabe
 /**
  * @generated
  */
-public class AssociationEditPart extends AbstractAssociationEditPart implements ITreeBranchEditPart {
+public class AssociationEditPart extends AbstractAssociationEditPart implements
+		ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -48,7 +49,7 @@ public class AssociationEditPart extends AbstractAssociationEditPart implements 
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
+		if (addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -58,28 +59,35 @@ public class AssociationEditPart extends AbstractAssociationEditPart implements 
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof AppliedStereotypeAssociationEditPart) {
-			((AppliedStereotypeAssociationEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeAssociationLabel());
+		if (childEditPart instanceof AppliedStereotypeAssociationEditPart) {
+			((AppliedStereotypeAssociationEditPart) childEditPart)
+					.setLabel(getPrimaryShape()
+							.getAppliedStereotypeAssociationLabel());
 			return true;
 		}
-		if(childEditPart instanceof AssociationName2EditPart) {
-			((AssociationName2EditPart)childEditPart).setLabel(getPrimaryShape().getAssociationNameLabel());
+		if (childEditPart instanceof AssociationName2EditPart) {
+			((AssociationName2EditPart) childEditPart)
+					.setLabel(getPrimaryShape().getAssociationNameLabel());
 			return true;
 		}
-		if(childEditPart instanceof AssociationName3EditPart) {
-			((AssociationName3EditPart)childEditPart).setLabel(getPrimaryShape().getRoleTargetLabel());
+		if (childEditPart instanceof AssociationName3EditPart) {
+			((AssociationName3EditPart) childEditPart)
+					.setLabel(getPrimaryShape().getRoleTargetLabel());
 			return true;
 		}
-		if(childEditPart instanceof AssociationName5EditPart) {
-			((AssociationName5EditPart)childEditPart).setLabel(getPrimaryShape().getRoleSourceLabel());
+		if (childEditPart instanceof AssociationName5EditPart) {
+			((AssociationName5EditPart) childEditPart)
+					.setLabel(getPrimaryShape().getRoleSourceLabel());
 			return true;
 		}
-		if(childEditPart instanceof AssociationMultiplictySourceEditPart) {
-			((AssociationMultiplictySourceEditPart)childEditPart).setLabel(getPrimaryShape().getMultiplicitySourceLabel());
+		if (childEditPart instanceof AssociationMultiplictySourceEditPart) {
+			((AssociationMultiplictySourceEditPart) childEditPart)
+					.setLabel(getPrimaryShape().getMultiplicitySourceLabel());
 			return true;
 		}
-		if(childEditPart instanceof AssociationMultiplictyTargetEditPart) {
-			((AssociationMultiplictyTargetEditPart)childEditPart).setLabel(getPrimaryShape().getMultiplicityTargetLabel());
+		if (childEditPart instanceof AssociationMultiplictyTargetEditPart) {
+			((AssociationMultiplictyTargetEditPart) childEditPart)
+					.setLabel(getPrimaryShape().getMultiplicityTargetLabel());
 			return true;
 		}
 		return false;
@@ -103,24 +111,29 @@ public class AssociationEditPart extends AbstractAssociationEditPart implements 
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new AssociationItemSemanticEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomAssociationItemSemanticEditPolicy());
-		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+				new AssociationItemSemanticEditPolicy());
+		installEditPolicy(
+				AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+				new CustomAssociationItemSemanticEditPolicy());
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE,
+				new CustomGraphicalNodeEditPolicy());
 	}
 
 	/**
 	 * @generated
 	 */
 	public AssociationFigure getPrimaryShape() {
-		return (AssociationFigure)getFigure();
+		return (AssociationFigure) getFigure();
 	}
 
 	/**
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
+		if (removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -130,22 +143,22 @@ public class AssociationEditPart extends AbstractAssociationEditPart implements 
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof AppliedStereotypeAssociationEditPart) {
+		if (childEditPart instanceof AppliedStereotypeAssociationEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof AssociationName2EditPart) {
+		if (childEditPart instanceof AssociationName2EditPart) {
 			return true;
 		}
-		if(childEditPart instanceof AssociationName3EditPart) {
+		if (childEditPart instanceof AssociationName3EditPart) {
 			return true;
 		}
-		if(childEditPart instanceof AssociationName5EditPart) {
+		if (childEditPart instanceof AssociationName5EditPart) {
 			return true;
 		}
-		if(childEditPart instanceof AssociationMultiplictySourceEditPart) {
+		if (childEditPart instanceof AssociationMultiplictySourceEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof AssociationMultiplictyTargetEditPart) {
+		if (childEditPart instanceof AssociationMultiplictyTargetEditPart) {
 			return true;
 		}
 		return false;

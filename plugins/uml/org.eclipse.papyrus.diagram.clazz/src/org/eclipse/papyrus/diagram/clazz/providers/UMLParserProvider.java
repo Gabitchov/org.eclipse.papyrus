@@ -25,7 +25,6 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.ParserService;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.clazz.custom.parsers.ClassifierTemplateParameterParser;
 import org.eclipse.papyrus.diagram.clazz.custom.parsers.GeneralizationSetConstraintParser;
 import org.eclipse.papyrus.diagram.clazz.custom.parsers.SlotParser;
 import org.eclipse.papyrus.diagram.clazz.custom.parsers.TemplateParameterParser;
@@ -853,14 +852,14 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private ClassifierTemplateParameterParser classifierTemplateParameter_3031Parser;
+	private TemplateParameterParser classifierTemplateParameter_3031Parser;
 
 	/**
 	 * @generated
 	 */
 	private IParser getClassifierTemplateParameter_3031Parser() {
 		if(classifierTemplateParameter_3031Parser == null) {
-			classifierTemplateParameter_3031Parser = new ClassifierTemplateParameterParser();
+			classifierTemplateParameter_3031Parser = new TemplateParameterParser();
 		}
 		return classifierTemplateParameter_3031Parser;
 	}

@@ -21,7 +21,8 @@ import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 /**
  * @generated
  */
-public class InterfaceAttributeCompartmentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+public class InterfaceAttributeCompartmentItemSemanticEditPolicy extends
+		UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
@@ -34,7 +35,7 @@ public class InterfaceAttributeCompartmentItemSemanticEditPolicy extends UMLBase
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if(UMLElementTypes.Property_3006 == req.getElementType()) {
+		if (UMLElementTypes.Property_3006 == req.getElementType()) {
 			return getGEFWrapper(new Property3CreateCommand(req));
 		}
 		return super.getCreateCommand(req);
