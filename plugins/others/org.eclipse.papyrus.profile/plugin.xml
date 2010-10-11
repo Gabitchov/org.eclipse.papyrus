@@ -125,6 +125,17 @@
                label="Import package from file">
          </action>
       </objectContribution>
+      <objectContribution
+            adaptable="false"
+            id="org.eclipse.gmt.modisco.infra.importProfile"
+            objectClass="org.eclipse.gmt.modisco.infra.browser.uicore.internal.model.ModelElementItem">
+         <action
+               class="org.eclipse.papyrus.profile.ui.actions.ImportProfileAction"
+               icon="resources/icons/Profile.gif"
+               id="org.eclipse.papyrus.profile.importProfile"
+               label="Import profile from registered profile">
+         </action>
+      </objectContribution>
    </extension>
    <extension
          point="org.eclipse.ui.views.properties.tabbed.propertySections">
