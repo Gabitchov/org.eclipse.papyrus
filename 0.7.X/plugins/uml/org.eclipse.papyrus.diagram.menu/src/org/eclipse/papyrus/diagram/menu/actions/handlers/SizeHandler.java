@@ -34,7 +34,7 @@ public class SizeHandler extends ParametricAndListeningHandler {
 	 * 
 	 */
 	public SizeHandler() {
-		super("org.eclipse.papyrus.diagram.common.commandSizeParameter"); //$NON-NLS-1$
+		super("org.eclipse.papyrus.diagram.menu.commandSizeParameter"); //$NON-NLS-1$
 	}
 
 	/**

@@ -34,6 +34,4 @@ public class ShowHideContentsHandler extends AbstractShowHideHandler {
 		super(new ShowHideContentsAction(), ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY);
 	}
 
-
-
 }

@@ -212,20 +212,6 @@
          id="org.eclipse.papyrus.diagram.common.commands.PasteWithModelCommand"
          name="PasteWithModel">
    </command>
-   <command
-         categoryId="org.eclipse.papyrus.editor.category"
-         defaultHandler="org.eclipse.papyrus.diagram.common.actions.handlers.ShowHideCompartmentHandler"
-         description="Call the Show/Hide Compartments Action"
-         id="org.eclipse.papyrus.diagram.common.commands.ShowHideCompartmentCommand"
-         name="Show/Hide Compartments Command">
-   </command>
-   <command
-         categoryId="org.eclipse.papyrus.editor.category"
-         defaultHandler="org.eclipse.papyrus.diagram.common.actions.handlers.ShowHideContentsHandler"
-         description="Call the Show/Hide Contents Action"
-         id="org.eclipse.papyrus.diagram.common.commands.ShowHideContentsCommand"
-         name="Show/Hide Contents Command">
-   </command>
 </extension>
 <extension
       point="org.eclipse.ui.popupMenus">
