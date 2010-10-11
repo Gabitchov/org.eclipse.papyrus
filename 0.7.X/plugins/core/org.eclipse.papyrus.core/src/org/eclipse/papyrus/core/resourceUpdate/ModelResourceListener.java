@@ -183,7 +183,7 @@ public class ModelResourceListener implements IResourceChangeListener, IResource
 
 					String message = "The resource " + changedResourcePath + " that is in use by a Papyrus editor has changed. Do you want to reopen the editor in order to update its contents?";
 					if(editor.isDirty()) {
-						message += "CAVEAT: the editor contains unsaved modification that would be lost.";
+						message += " CAVEAT: the editor contains unsaved modifications that would be lost.";
 					}
 
 					if(MessageDialog.openQuestion(new Shell(), "Resource change", message)) {
