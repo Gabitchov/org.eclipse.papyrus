@@ -27,6 +27,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPart;
 import org.eclipse.papyrus.diagram.common.editpolicies.BorderItemResizableEditPolicy;
+import org.eclipse.papyrus.diagram.composite.custom.edit.policies.StructuredClassifierLayoutEditPolicy;
 import org.eclipse.papyrus.diagram.composite.custom.locators.PortPositionLocator;
 import org.eclipse.papyrus.diagram.composite.edit.parts.PortEditPart;
 import org.eclipse.papyrus.diagram.composite.part.UMLVisualIDRegistry;
@@ -43,6 +44,7 @@ public class BlockEditPart extends ClassEditPart {
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
+		installEditPolicy(EditPolicy.LAYOUT_ROLE, new StructuredClassifierLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new BlockItemSemanticEditPolicy());
 	}
 
@@ -51,6 +53,7 @@ public class BlockEditPart extends ClassEditPart {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				View childView = (View)child.getModel();
+				
 				switch(UMLVisualIDRegistry.getVisualID(childView)) {
 				case PortEditPart.VISUAL_ID:
 
