@@ -35,6 +35,7 @@ import org.eclipse.papyrus.core.lifecycleevents.ILifeCycleEventsProvider;
 import org.eclipse.papyrus.core.lifecycleevents.ISaveAndDirtyService;
 import org.eclipse.papyrus.core.lifecycleevents.ISaveEventListener;
 import org.eclipse.papyrus.resource.ModelSet;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorDescriptor;
 import org.eclipse.ui.IEditorInput;
@@ -114,13 +115,17 @@ public class ModelResourceListener implements IResourceChangeListener, IResource
 	 * A visitor for resource changes. Detects, whether a changed resource belongs to an opened editor
 	 */
 	public boolean visit(IResourceDelta delta) {
+		if(!isActive) {
+			// don't follow resource changes, once inactivated (either due to save or due to a pending user dialog) 
+			return false;
+		}
 		IResource changedResource = delta.getResource();
 		boolean resourceOfMainModelChanged = false;
 		// only proceed in case of Files (not projects, folders, ...) for the moment
 		if(!(changedResource instanceof IFile)) {
 			return true;
 		}
-		String changedResourcePath = changedResource.getFullPath().toString();
+		final String changedResourcePath = changedResource.getFullPath().toString();
 		IPath changedResourcePathWOExt = changedResource.getFullPath().removeFileExtension();
 		URIConverter uriConverter = modelSet.getURIConverter();
 
@@ -154,35 +159,57 @@ public class ModelResourceListener implements IResourceChangeListener, IResource
 		case IResourceDelta.ADDED:
 			break;
 		case IResourceDelta.REMOVED:
-			Shell shellR = new Shell();
-			MessageDialog.openInformation(shellR, "Resource removal", "The resource " + changedResourcePath + " that is in use by a Papyrus editor has been removed. Use save/save as, if you want to keep the model");
+			// asynchronous notification to avoid that the removal of multiple resource files
+			// belonging to the editor (e.g. .uml and .notation) at the same time leads to multiple
+			// user feedback.
+			isActive = false;
+			Display.getDefault().asyncExec(new Runnable() {
+
+				public void run() {
+
+					MessageDialog.openInformation(new Shell(), "Resource removal", "The resource " + changedResourcePath + " that is in use by a Papyrus editor has been removed. Use save/save as, if you want to keep the model");
+					isActive = true;
+				}
+			});
 			break;
 		case IResourceDelta.CHANGED:
-			String message = "The resource " + changedResource.getFullPath() + " that is in use by a Papyrus editor has changed. Do you want to reopen the editor in order to update its contents?";
-			if(editor.isDirty()) {
-				message += "CAVEAT: the editor contains unsaved modification that would be lost.";
-			}
+			// reopen the editor asynchronously to avoid that changes of multiple resource files
+			// belonging to the editor (e.g. .uml and .notation) lead to multiple reloads.
+			// de-activate until user responds to message dialog 
+			isActive = false;
+			Display.getDefault().asyncExec(new Runnable() {
 
-			if(MessageDialog.openQuestion(new Shell(), "Resource change", message)) {
-				// unloading and reloading all resources of the main causes the following problems
-				//  - since resources are removed during the modelSets unload operation, the call eResource().getContents ()
-				//    used by the model explorer leads to a null pointer exception
-				//  - diagrams in model explorer are not shown
-				//  - would need to reset dirty flags
-				// => clean & simple option is to close and reopen the editor.
+				public void run() {
 
-				IWorkbench wb = PlatformUI.getWorkbench();
-				IWorkbenchPage page = wb.getActiveWorkbenchWindow().getActivePage();
-				IEditorInput input = editor.getEditorInput();
-				isActive = false;
-				page.closeEditor(editor, false);
-				try {
-					IEditorDescriptor desc = wb.getEditorRegistry().getDefaultEditor(input.getName());
-					page.openEditor(input, desc.getId(), false);
-				} catch (PartInitException e) {
-					log.error(e);
+					String message = "The resource " + changedResourcePath + " that is in use by a Papyrus editor has changed. Do you want to reopen the editor in order to update its contents?";
+					if(editor.isDirty()) {
+						message += "CAVEAT: the editor contains unsaved modification that would be lost.";
+					}
+
+					if(MessageDialog.openQuestion(new Shell(), "Resource change", message)) {
+						// unloading and reloading all resources of the main causes the following problems
+						//  - since resources are removed during the modelSets unload operation, the call eResource().getContents ()
+						//    used by the model explorer leads to a null pointer exception
+						//  - diagrams in model explorer are not shown
+						//  - would need to reset dirty flags
+						// => clean & simple option is to close and reopen the editor.
+
+						IWorkbench wb = PlatformUI.getWorkbench();
+						IWorkbenchPage page = wb.getActiveWorkbenchWindow().getActivePage();
+						IEditorInput input = editor.getEditorInput();
+						page.closeEditor(editor, false);
+						try {
+							IEditorDescriptor desc = wb.getEditorRegistry().getDefaultEditor(input.getName());
+							page.openEditor(input, desc.getId(), false);
+						} catch (PartInitException e) {
+							log.error(e);
+						}
+					} else {
+						// response "no" => don't reload and reactivate listener
+						isActive = true;
+					}
 				}
-			}
+			});
 			break;
 		}
 		return true; // visit the children
