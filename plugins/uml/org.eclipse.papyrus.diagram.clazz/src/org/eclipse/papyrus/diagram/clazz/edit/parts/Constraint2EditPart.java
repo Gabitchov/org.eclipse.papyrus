@@ -881,6 +881,9 @@ AbstractConstraintEditPart {
 		if(targetEditPart instanceof ContainmentCircleEditPart) {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		}
+		if(targetEditPart instanceof TemplateSignatureEditPart) {
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
+		}
 		if(targetEditPart instanceof Dependency2EditPart) {
 			types.add(UMLElementTypes.Dependency_4022);
 		}
@@ -1176,6 +1179,7 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.Comment_3028);
 			types.add(UMLElementTypes.Constraint_3029);
 			types.add(UMLElementTypes.Port_3032);
+			types.add(UMLElementTypes.TemplateSignature_3033);
 		} else if(relationshipType == UMLElementTypes.Dependency_4022) {
 			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);

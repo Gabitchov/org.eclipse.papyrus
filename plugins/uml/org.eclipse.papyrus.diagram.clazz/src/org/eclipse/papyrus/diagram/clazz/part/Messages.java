@@ -197,6 +197,11 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String TemplateSignatureTemplateParameterCompartmentEditPart_title;
+
+	/**
+	 * @generated
+	 */
 	public static String InterfaceAttributeCompartment2EditPart_title;
 
 	/**
@@ -842,72 +847,92 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String createPackage15CreationTool_title;
+	public static String createOperationTemplateParameterCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createPackage15CreationTool_desc;
+	public static String createOperationTemplateParameterCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createProperty16CreationTool_title;
+	public static String createPackage16CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createProperty16CreationTool_desc;
+	public static String createPackage16CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createReception17CreationTool_title;
+	public static String createProperty17CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createReception17CreationTool_desc;
+	public static String createProperty17CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createRedefinableTemplateSignature18CreationTool_title;
+	public static String createReception18CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createRedefinableTemplateSignature18CreationTool_desc;
+	public static String createReception18CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createSignal19CreationTool_title;
+	public static String createRedefinableTemplateSignature19CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createSignal19CreationTool_desc;
+	public static String createRedefinableTemplateSignature19CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createSlot20CreationTool_title;
+	public static String createSignal20CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createSlot20CreationTool_desc;
+	public static String createSignal20CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createTemplateParameter21CreationTool_title;
+	public static String createSlot21CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createTemplateParameter21CreationTool_desc;
+	public static String createSlot21CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createTemplateParameter22CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createTemplateParameter22CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createTemplateSignatureCreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createTemplateSignatureCreationTool_desc;
 
 	/**
 	 * @generated
@@ -918,6 +943,16 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String createTimeObservation22CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createConnectableElementTemplateParameter25CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createConnectableElementTemplateParameter25CreationTool_desc;
 
 	/**
 	 * @generated

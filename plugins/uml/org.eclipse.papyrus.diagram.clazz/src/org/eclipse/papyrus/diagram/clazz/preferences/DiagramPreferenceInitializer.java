@@ -49,6 +49,8 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 
 		PackagePreferencePage.initDefaults(store);
 
+		ConnectableElementTemplateParameterPreferencePage.initDefaults(store);
+
 		InterfacePreferencePage.initDefaults(store);
 
 		ShortCutDiagramPreferencePage.initDefaults(store);
@@ -61,6 +63,8 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 
 		InstanceSpecificationPreferencePage.initDefaults(store);
 
+		TemplateSignaturePreferencePage.initDefaults(store);
+
 		AssociationClassPreferencePage.initDefaults(store);
 
 		OperationPreferencePage.initDefaults(store);
@@ -70,6 +74,8 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 		ShapeNamedElementPreferencePage.initDefaults(store);
 
 		TimeObservationPreferencePage.initDefaults(store);
+
+		OperationTemplateParameterPreferencePage.initDefaults(store);
 
 		ComponentPreferencePage.initDefaults(store);
 
