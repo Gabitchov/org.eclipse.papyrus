@@ -56,8 +56,7 @@ public class Dependency2CreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public static Dependency2CreateCommand create(CreateElementRequest req,
-			EObject eObject) {
+	public static Dependency2CreateCommand create(CreateElementRequest req, EObject eObject) {
 		return new Dependency2CreateCommand(req, eObject);
 	}
 
@@ -75,12 +74,11 @@ public class Dependency2CreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-		EObject container = ((CreateElementRequest) getRequest())
-				.getContainer();
-		if (container instanceof View) {
-			container = ((View) container).getElement();
+		EObject container = ((CreateElementRequest)getRequest()).getContainer();
+		if(container instanceof View) {
+			container = ((View)container).getElement();
 		}
-		if (container != null) {
+		if(container != null) {
 			return container;
 		}
 		return eObject;
@@ -98,35 +96,29 @@ public class Dependency2CreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		Dependency newElement = UMLFactory.eINSTANCE.createDependency();
 
-		Package owner = (Package) getElementToEdit();
+		Package owner = (Package)getElementToEdit();
 		owner.getPackagedElements().add(newElement);
 
 		doConfigure(newElement, monitor, info);
 
-		((CreateElementRequest) getRequest()).setNewElement(newElement);
+		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
 
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(Dependency newElement, IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
-		IElementType elementType = ((CreateElementRequest) getRequest())
-				.getElementType();
-		ConfigureRequest configureRequest = new ConfigureRequest(
-				getEditingDomain(), newElement, elementType);
-		configureRequest.setClientContext(((CreateElementRequest) getRequest())
-				.getClientContext());
+	protected void doConfigure(Dependency newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
+		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
+		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());
 		configureRequest.addParameters(getRequest().getParameters());
-		ICommand configureCommand = elementType
-				.getEditCommand(configureRequest);
-		if (configureCommand != null && configureCommand.canExecute()) {
+		ICommand configureCommand = elementType.getEditCommand(configureRequest);
+		if(configureCommand != null && configureCommand.canExecute()) {
 			configureCommand.execute(monitor, info);
 		}
 	}

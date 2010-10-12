@@ -28,8 +28,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.policies.AssociationClass2ItemSema
 /**
  * @generated
  */
-public class AssociationClass2EditPart extends AbstractAssociationEditPart
-		implements ITreeBranchEditPart {
+public class AssociationClass2EditPart extends AbstractAssociationEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -48,26 +47,21 @@ public class AssociationClass2EditPart extends AbstractAssociationEditPart
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new AssociationClass2ItemSemanticEditPolicy());
-		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE,
-				new CustomGraphicalNodeEditPolicy());
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new CustomAssociationClass2ItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new AssociationClass2ItemSemanticEditPolicy());
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomAssociationClass2ItemSemanticEditPolicy());
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof AssociationClassRoleSourceEditPart) {
-			((AssociationClassRoleSourceEditPart) childEditPart)
-					.setLabel(getPrimaryShape().getRoleSourceLabel());
+		if(childEditPart instanceof AssociationClassRoleSourceEditPart) {
+			((AssociationClassRoleSourceEditPart)childEditPart).setLabel(getPrimaryShape().getRoleSourceLabel());
 			return true;
 		}
-		if (childEditPart instanceof AssociationClassRoleTargetEditPart) {
-			((AssociationClassRoleTargetEditPart) childEditPart)
-					.setLabel(getPrimaryShape().getRoleTargetLabel());
+		if(childEditPart instanceof AssociationClassRoleTargetEditPart) {
+			((AssociationClassRoleTargetEditPart)childEditPart).setLabel(getPrimaryShape().getRoleTargetLabel());
 			return true;
 		}
 		return false;
@@ -77,7 +71,7 @@ public class AssociationClass2EditPart extends AbstractAssociationEditPart
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -87,10 +81,10 @@ public class AssociationClass2EditPart extends AbstractAssociationEditPart
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof AssociationClassRoleSourceEditPart) {
+		if(childEditPart instanceof AssociationClassRoleSourceEditPart) {
 			return true;
 		}
-		if (childEditPart instanceof AssociationClassRoleTargetEditPart) {
+		if(childEditPart instanceof AssociationClassRoleTargetEditPart) {
 			return true;
 		}
 		return false;
@@ -100,7 +94,7 @@ public class AssociationClass2EditPart extends AbstractAssociationEditPart
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -123,7 +117,7 @@ public class AssociationClass2EditPart extends AbstractAssociationEditPart
 	 * @generated
 	 */
 	public AssociationFigure getPrimaryShape() {
-		return (AssociationFigure) getFigure();
+		return (AssociationFigure)getFigure();
 	}
 
 }

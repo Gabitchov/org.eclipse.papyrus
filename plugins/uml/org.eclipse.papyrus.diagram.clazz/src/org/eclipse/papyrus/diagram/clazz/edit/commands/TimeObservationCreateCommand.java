@@ -48,8 +48,7 @@ public class TimeObservationCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public TimeObservationCreateCommand(CreateElementRequest req,
-			EObject eObject) {
+	public TimeObservationCreateCommand(CreateElementRequest req, EObject eObject) {
 		super(req.getLabel(), null, req);
 		this.eObject = eObject;
 		this.eClass = eObject != null ? eObject.eClass() : null;
@@ -58,8 +57,7 @@ public class TimeObservationCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public static TimeObservationCreateCommand create(CreateElementRequest req,
-			EObject eObject) {
+	public static TimeObservationCreateCommand create(CreateElementRequest req, EObject eObject) {
 		return new TimeObservationCreateCommand(req, eObject);
 	}
 
@@ -77,12 +75,11 @@ public class TimeObservationCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-		EObject container = ((CreateElementRequest) getRequest())
-				.getContainer();
-		if (container instanceof View) {
-			container = ((View) container).getElement();
+		EObject container = ((CreateElementRequest)getRequest()).getContainer();
+		if(container instanceof View) {
+			container = ((View)container).getElement();
 		}
-		if (container != null) {
+		if(container != null) {
 			return container;
 		}
 		return eObject;
@@ -100,39 +97,31 @@ public class TimeObservationCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		TimeObservation newElement = UMLFactory.eINSTANCE
-				.createTimeObservation();
+		TimeObservation newElement = UMLFactory.eINSTANCE.createTimeObservation();
 
-		Package owner = (Package) getElementToEdit();
+		Package owner = (Package)getElementToEdit();
 		owner.getPackagedElements().add(newElement);
 
 		ElementInitializers.getInstance().init_TimeObservation_2096(newElement);
 
 		doConfigure(newElement, monitor, info);
 
-		((CreateElementRequest) getRequest()).setNewElement(newElement);
+		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
 
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(TimeObservation newElement,
-			IProgressMonitor monitor, IAdaptable info)
-			throws ExecutionException {
-		IElementType elementType = ((CreateElementRequest) getRequest())
-				.getElementType();
-		ConfigureRequest configureRequest = new ConfigureRequest(
-				getEditingDomain(), newElement, elementType);
-		configureRequest.setClientContext(((CreateElementRequest) getRequest())
-				.getClientContext());
+	protected void doConfigure(TimeObservation newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
+		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
+		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());
 		configureRequest.addParameters(getRequest().getParameters());
-		ICommand configureCommand = elementType
-				.getEditCommand(configureRequest);
-		if (configureCommand != null && configureCommand.canExecute()) {
+		ICommand configureCommand = elementType.getEditCommand(configureRequest);
+		if(configureCommand != null && configureCommand.canExecute()) {
 			configureCommand.execute(monitor, info);
 		}
 	}

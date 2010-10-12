@@ -46,8 +46,7 @@ implements ITreeBranchEditPart {
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new ConnectorTimeObservationItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ConnectorTimeObservationItemSemanticEditPolicy());
 	}
 
 	/**
@@ -67,7 +66,7 @@ implements ITreeBranchEditPart {
 	 * @generated
 	 */
 	public LinkDescriptor getPrimaryShape() {
-		return (LinkDescriptor) getFigure();
+		return (LinkDescriptor)getFigure();
 	}
 
 	/**

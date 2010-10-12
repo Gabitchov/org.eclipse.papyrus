@@ -26,8 +26,7 @@ import org.eclipse.papyrus.diagram.common.figure.edge.DashedEdgeFigure;
 /**
  * @generated
  */
-public class DependencyBranchEditPart extends ConnectionNodeEditPart implements
-		ITreeBranchEditPart {
+public class DependencyBranchEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -46,10 +45,8 @@ public class DependencyBranchEditPart extends ConnectionNodeEditPart implements
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new DependencyBranchSemanticEditPolicy());
-		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE,
-				new CustomGraphicalNodeEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DependencyBranchSemanticEditPolicy());
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 	}
 
 	/**
@@ -68,7 +65,7 @@ public class DependencyBranchEditPart extends ConnectionNodeEditPart implements
 	 * @generated
 	 */
 	public DashedEdgeFigure getPrimaryShape() {
-		return (DashedEdgeFigure) getFigure();
+		return (DashedEdgeFigure)getFigure();
 	}
 
 }

@@ -21,8 +21,7 @@ import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 /**
  * @generated
  */
-public class ClassNestedClassifierCompartmentItemSemanticEditPolicy extends
-		UMLBaseItemSemanticEditPolicy {
+public class ClassNestedClassifierCompartmentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
@@ -35,7 +34,7 @@ public class ClassNestedClassifierCompartmentItemSemanticEditPolicy extends
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (UMLElementTypes.Class_3014 == req.getElementType()) {
+		if(UMLElementTypes.Class_3014 == req.getElementType()) {
 			return getGEFWrapper(new Class5CreateCommand(req));
 		}
 		return super.getCreateCommand(req);
