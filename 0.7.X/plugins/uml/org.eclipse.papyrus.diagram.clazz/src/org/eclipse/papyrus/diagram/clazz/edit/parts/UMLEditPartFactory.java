@@ -183,6 +183,12 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case RedefinableTemplateSignatureEditPart.VISUAL_ID:
 				return new RedefinableTemplateSignatureEditPart(view);
 
+			case ConnectableElementTemplateParameterEditPart.VISUAL_ID:
+				return new ConnectableElementTemplateParameterEditPart(view);
+
+			case OperationTemplateParameterEditPart.VISUAL_ID:
+				return new OperationTemplateParameterEditPart(view);
+
 			case ClassifierTemplateParameterEditPart.VISUAL_ID:
 				return new ClassifierTemplateParameterEditPart(view);
 
@@ -303,6 +309,9 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ContainmentCircleEditPart.VISUAL_ID:
 				return new ContainmentCircleEditPart(view);
 
+			case TemplateSignatureEditPart.VISUAL_ID:
+				return new TemplateSignatureEditPart(view);
+
 			case AssociationClassAttributeCompartmentEditPart.VISUAL_ID:
 				return new AssociationClassAttributeCompartmentEditPart(view);
 
@@ -410,6 +419,9 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case AssociationClassNestedClassifierCompartmentEditPart.VISUAL_ID:
 				return new AssociationClassNestedClassifierCompartmentEditPart(view);
+
+			case TemplateSignatureTemplateParameterCompartmentEditPart.VISUAL_ID:
+				return new TemplateSignatureTemplateParameterCompartmentEditPart(view);
 
 			case CommentLinkDescriptorEditPart.VISUAL_ID:
 				return new CommentLinkDescriptorEditPart(view);

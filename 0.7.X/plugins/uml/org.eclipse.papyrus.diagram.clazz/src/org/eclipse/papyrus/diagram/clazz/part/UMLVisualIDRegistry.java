@@ -254,12 +254,22 @@ public class UMLVisualIDRegistry {
 			) {
 				return RedefinableTemplateSignatureEditPart.VISUAL_ID;
 			}
+			if(UMLPackage.eINSTANCE.getTemplateSignature().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return TemplateSignatureEditPart.VISUAL_ID;
+			}
 			break;
 		case PackageEditPart.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getRedefinableTemplateSignature().isSuperTypeOf(domainElement.eClass())
 
 			) {
 				return RedefinableTemplateSignatureEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getTemplateSignature().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return TemplateSignatureEditPart.VISUAL_ID;
 			}
 			break;
 		case ClassEditPart.VISUAL_ID:
@@ -308,12 +318,22 @@ public class UMLVisualIDRegistry {
 			) {
 				return RedefinableTemplateSignatureEditPart.VISUAL_ID;
 			}
+			if(UMLPackage.eINSTANCE.getTemplateSignature().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return TemplateSignatureEditPart.VISUAL_ID;
+			}
 			break;
 		case PackageEditPartCN.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getRedefinableTemplateSignature().isSuperTypeOf(domainElement.eClass())
 
 			) {
 				return RedefinableTemplateSignatureEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getTemplateSignature().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return TemplateSignatureEditPart.VISUAL_ID;
 			}
 			break;
 		case ClassEditPartCN.VISUAL_ID:
@@ -370,6 +390,16 @@ public class UMLVisualIDRegistry {
 
 			) {
 				return ClassifierTemplateParameterEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getConnectableElementTemplateParameter().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ConnectableElementTemplateParameterEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getOperationTemplateParameter().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return OperationTemplateParameterEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getTemplateParameter().isSuperTypeOf(domainElement.eClass())
 
@@ -817,6 +847,23 @@ public class UMLVisualIDRegistry {
 				return Class2EditPart.VISUAL_ID;
 			}
 			break;
+		case TemplateSignatureTemplateParameterCompartmentEditPart.VISUAL_ID:
+			if(UMLPackage.eINSTANCE.getClassifierTemplateParameter().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ClassifierTemplateParameterEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getOperationTemplateParameter().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return OperationTemplateParameterEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getTemplateParameter().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return TemplateParameterEditPart.VISUAL_ID;
+			}
+			break;
 		}
 		return -1;
 	}
@@ -984,6 +1031,9 @@ public class UMLVisualIDRegistry {
 			if(RedefinableTemplateSignatureEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(TemplateSignatureEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case EnumerationEditPart.VISUAL_ID:
 			if(EnumerationNameEditPart.VISUAL_ID == nodeVisualID) {
@@ -1001,6 +1051,9 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(RedefinableTemplateSignatureEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(TemplateSignatureEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -1155,6 +1208,9 @@ public class UMLVisualIDRegistry {
 			if(RedefinableTemplateSignatureEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(TemplateSignatureEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case EnumerationEditPartCN.VISUAL_ID:
 			if(EnumerationNameEditPartCN.VISUAL_ID == nodeVisualID) {
@@ -1172,6 +1228,9 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(RedefinableTemplateSignatureEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(TemplateSignatureEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -1224,6 +1283,11 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
+		case TemplateSignatureEditPart.VISUAL_ID:
+			if(TemplateSignatureTemplateParameterCompartmentEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		case AssociationClassAttributeCompartmentEditPart.VISUAL_ID:
 			if(PropertyEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
@@ -1251,6 +1315,12 @@ public class UMLVisualIDRegistry {
 			break;
 		case RedefinableTemplateSignatureTemplateParameterCompartmentEditPart.VISUAL_ID:
 			if(ClassifierTemplateParameterEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ConnectableElementTemplateParameterEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(OperationTemplateParameterEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if(TemplateParameterEditPart.VISUAL_ID == nodeVisualID) {
@@ -1542,6 +1612,17 @@ public class UMLVisualIDRegistry {
 			break;
 		case AssociationClassNestedClassifierCompartmentEditPart.VISUAL_ID:
 			if(Class2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case TemplateSignatureTemplateParameterCompartmentEditPart.VISUAL_ID:
+			if(ClassifierTemplateParameterEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(OperationTemplateParameterEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(TemplateParameterEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -2075,13 +2156,27 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(2002, viewInfo);
 
+		viewInfo = new BaseViewInfo(3034, ViewInfo.Node, "ConnectableElementTemplateParameter");
+
+		root.addNode(7014, viewInfo);
+
+		viewInfo = new BaseViewInfo(3035, ViewInfo.Node, "OperationTemplateParameter");
+
+		root.addNode(7038, viewInfo);
+
+		root.addNode(7014, viewInfo);
+
 		viewInfo = new BaseViewInfo(3031, ViewInfo.Node, "ClassifierTemplateParameter");
 
 		root.addNode(7014, viewInfo);
 
+		root.addNode(7038, viewInfo);
+
 		viewInfo = new BaseViewInfo(3016, ViewInfo.Node, "TemplateParameter");
 
 		root.addNode(7014, viewInfo);
+
+		root.addNode(7038, viewInfo);
 
 		viewInfo = new BaseViewInfo(3005, ViewInfo.Node, "Property");
 
@@ -2278,6 +2373,16 @@ public class UMLVisualIDRegistry {
 		viewInfo = new BaseViewInfo(3032, ViewInfo.Node, "Port");
 
 		root.addNode(2008, viewInfo);
+
+		viewInfo = new BaseViewInfo(3033, ViewInfo.Node, "TemplateSignature");
+
+		root.addNode(2005, viewInfo);
+
+		root.addNode(2007, viewInfo);
+
+		root.addNode(3024, viewInfo);
+
+		root.addNode(3009, viewInfo);
 
 		return root;
 	}

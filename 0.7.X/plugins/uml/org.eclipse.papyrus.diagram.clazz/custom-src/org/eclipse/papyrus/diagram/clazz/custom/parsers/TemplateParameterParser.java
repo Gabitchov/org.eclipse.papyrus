@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.custom.parsers;
 
+import java.util.Iterator;
+
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
@@ -28,6 +30,9 @@ import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.ClassifierTemplateParameter;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Operation;
+import org.eclipse.uml2.uml.OperationTemplateParameter;
+import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.TemplateParameter;
 import org.eclipse.uml2.uml.UMLPackage;
 /**
@@ -82,13 +87,21 @@ public class TemplateParameterParser implements IParser {
 				return "<UNDEFINED>";
 			}
 			String out = "";
-
-
 			if(templateParam.getParameteredElement() instanceof NamedElement) {
 				NamedElement namedElement = (NamedElement)templateParam.getParameteredElement();
 				out = namedElement.getName() + ": " + namedElement.eClass().getName();
 			}
-			if( templateParam instanceof ClassifierTemplateParameter){
+
+			if(templateParam instanceof OperationTemplateParameter) {
+				if(templateParam.getParameteredElement()!=null) {
+					Operation op=(Operation)(templateParam.getParameteredElement());
+					out= displayOperation(op);
+
+				}
+			}
+
+
+			else if( templateParam instanceof ClassifierTemplateParameter){
 				if(!((ClassifierTemplateParameter)templateParam).getConstrainingClassifiers().isEmpty()) {
 					out = out + ">";
 					for(int i = 0; i < ((ClassifierTemplateParameter)templateParam).getConstrainingClassifiers().size(); i++) {
@@ -100,6 +113,12 @@ public class TemplateParameterParser implements IParser {
 
 				}
 			}
+			if(templateParam.getDefault() instanceof Operation){
+				out= out+"="+displayOperation((Operation)templateParam.getDefault());
+			}
+			else if(templateParam.getDefault() instanceof NamedElement){
+				out= out+"="+((NamedElement)templateParam.getDefault()).getName();
+			}
 			return out;
 
 		}
@@ -107,6 +126,20 @@ public class TemplateParameterParser implements IParser {
 		return "<UNDEFINED>";
 	}
 
+	protected String displayOperation(Operation op){
+		String out=op.getName()+"(";
+		Iterator<Parameter> iter=op.getOwnedParameters().iterator();
+		while(iter.hasNext()){
+			Parameter param=iter.next();
+			out=out+param.getName();
+			if( !param.equals(op.getOwnedParameters().get(op.getOwnedParameters().size()-1))){
+				out=out+", ";
+			}
+		}
+		out=out+")";
+		return out;
+
+	}
 	public boolean isAffectingEvent(Object event, int flags) {
 		return true;
 	}

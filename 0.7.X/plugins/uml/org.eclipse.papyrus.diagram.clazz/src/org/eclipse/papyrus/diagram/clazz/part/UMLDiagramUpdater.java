@@ -188,6 +188,8 @@ public class UMLDiagramUpdater {
 			return getAssociationClassOperationCompartment_7036SemanticChildren(view);
 		case AssociationClassNestedClassifierCompartmentEditPart.VISUAL_ID:
 			return getAssociationClassNestedClassifierCompartment_7037SemanticChildren(view);
+		case TemplateSignatureTemplateParameterCompartmentEditPart.VISUAL_ID:
+			return getTemplateSignatureTemplateParameterCompartment_7038SemanticChildren(view);
 		}
 		return Collections.emptyList();
 	}
@@ -264,6 +266,9 @@ public class UMLDiagramUpdater {
 			if(visualID == RedefinableTemplateSignatureEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
+			if(visualID == TemplateSignatureEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+			}
 		}
 		return result;
 	}
@@ -281,6 +286,9 @@ public class UMLDiagramUpdater {
 			TemplateSignature childElement = modelElement.getOwnedTemplateSignature();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if(visualID == RedefinableTemplateSignatureEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+			}
+			if(visualID == TemplateSignatureEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
 		}
@@ -405,6 +413,9 @@ public class UMLDiagramUpdater {
 			if(visualID == RedefinableTemplateSignatureEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
+			if(visualID == TemplateSignatureEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+			}
 		}
 		return result;
 	}
@@ -422,6 +433,9 @@ public class UMLDiagramUpdater {
 			TemplateSignature childElement = modelElement.getOwnedTemplateSignature();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if(visualID == RedefinableTemplateSignatureEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+			}
+			if(visualID == TemplateSignatureEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
 		}
@@ -603,6 +617,14 @@ public class UMLDiagramUpdater {
 			TemplateParameter childElement = (TemplateParameter)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if(visualID == ClassifierTemplateParameterEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == ConnectableElementTemplateParameterEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == OperationTemplateParameterEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -1545,6 +1567,38 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	public static List<UMLNodeDescriptor> getTemplateSignatureTemplateParameterCompartment_7038SemanticChildren(View view) {
+		if(false == view.eContainer() instanceof View) {
+			return Collections.emptyList();
+		}
+		View containerView = (View)view.eContainer();
+		if(!containerView.isSetElement()) {
+			return Collections.emptyList();
+		}
+		TemplateSignature modelElement = (TemplateSignature)containerView.getElement();
+		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
+		for(Iterator<?> it = modelElement.getParameters().iterator(); it.hasNext();) {
+			TemplateParameter childElement = (TemplateParameter)it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == ClassifierTemplateParameterEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == OperationTemplateParameterEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == TemplateParameterEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
 	public static List<UMLNodeDescriptor> getPackage_1000SemanticChildren(View view) {
 		if(!view.isSetElement()) {
 			return Collections.EMPTY_LIST;
@@ -1712,6 +1766,10 @@ public class UMLDiagramUpdater {
 			return getClass_3004ContainedLinks(view);
 		case RedefinableTemplateSignatureEditPart.VISUAL_ID:
 			return getRedefinableTemplateSignature_3015ContainedLinks(view);
+		case ConnectableElementTemplateParameterEditPart.VISUAL_ID:
+			return getConnectableElementTemplateParameter_3034ContainedLinks(view);
+		case OperationTemplateParameterEditPart.VISUAL_ID:
+			return getOperationTemplateParameter_3035ContainedLinks(view);
 		case ClassifierTemplateParameterEditPart.VISUAL_ID:
 			return getClassifierTemplateParameter_3031ContainedLinks(view);
 		case TemplateParameterEditPart.VISUAL_ID:
@@ -1766,6 +1824,8 @@ public class UMLDiagramUpdater {
 			return getSlot_3030ContainedLinks(view);
 		case ContainmentCircleEditPart.VISUAL_ID:
 			return getPort_3032ContainedLinks(view);
+		case TemplateSignatureEditPart.VISUAL_ID:
+			return getTemplateSignature_3033ContainedLinks(view);
 		case AssociationClass2EditPart.VISUAL_ID:
 			return getAssociationClass_4017ContainedLinks(view);
 		case AssociationEditPart.VISUAL_ID:
@@ -1859,6 +1919,10 @@ public class UMLDiagramUpdater {
 			return getClass_3004IncomingLinks(view);
 		case RedefinableTemplateSignatureEditPart.VISUAL_ID:
 			return getRedefinableTemplateSignature_3015IncomingLinks(view);
+		case ConnectableElementTemplateParameterEditPart.VISUAL_ID:
+			return getConnectableElementTemplateParameter_3034IncomingLinks(view);
+		case OperationTemplateParameterEditPart.VISUAL_ID:
+			return getOperationTemplateParameter_3035IncomingLinks(view);
 		case ClassifierTemplateParameterEditPart.VISUAL_ID:
 			return getClassifierTemplateParameter_3031IncomingLinks(view);
 		case TemplateParameterEditPart.VISUAL_ID:
@@ -1913,6 +1977,8 @@ public class UMLDiagramUpdater {
 			return getSlot_3030IncomingLinks(view);
 		case ContainmentCircleEditPart.VISUAL_ID:
 			return getPort_3032IncomingLinks(view);
+		case TemplateSignatureEditPart.VISUAL_ID:
+			return getTemplateSignature_3033IncomingLinks(view);
 		case AssociationClass2EditPart.VISUAL_ID:
 			return getAssociationClass_4017IncomingLinks(view);
 		case AssociationEditPart.VISUAL_ID:
@@ -2006,6 +2072,10 @@ public class UMLDiagramUpdater {
 			return getClass_3004OutgoingLinks(view);
 		case RedefinableTemplateSignatureEditPart.VISUAL_ID:
 			return getRedefinableTemplateSignature_3015OutgoingLinks(view);
+		case ConnectableElementTemplateParameterEditPart.VISUAL_ID:
+			return getConnectableElementTemplateParameter_3034OutgoingLinks(view);
+		case OperationTemplateParameterEditPart.VISUAL_ID:
+			return getOperationTemplateParameter_3035OutgoingLinks(view);
 		case ClassifierTemplateParameterEditPart.VISUAL_ID:
 			return getClassifierTemplateParameter_3031OutgoingLinks(view);
 		case TemplateParameterEditPart.VISUAL_ID:
@@ -2060,6 +2130,8 @@ public class UMLDiagramUpdater {
 			return getSlot_3030OutgoingLinks(view);
 		case ContainmentCircleEditPart.VISUAL_ID:
 			return getPort_3032OutgoingLinks(view);
+		case TemplateSignatureEditPart.VISUAL_ID:
+			return getTemplateSignature_3033OutgoingLinks(view);
 		case AssociationClass2EditPart.VISUAL_ID:
 			return getAssociationClass_4017OutgoingLinks(view);
 		case AssociationEditPart.VISUAL_ID:
@@ -2722,6 +2794,27 @@ public class UMLDiagramUpdater {
 	 * @generated
 	 */
 	public static List<UMLLinkDescriptor> getPort_3032ContainedLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getTemplateSignature_3033ContainedLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getConnectableElementTemplateParameter_3034ContainedLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getOperationTemplateParameter_3035ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
@@ -3791,6 +3884,33 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4024(modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4025(modelElement, crossReferences));
 		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getTemplateSignature_3033IncomingLinks(View view) {
+		TemplateSignature modelElement = (TemplateSignature)view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_TemplateBinding_4015(modelElement, crossReferences));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getConnectableElementTemplateParameter_3034IncomingLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getOperationTemplateParameter_3035IncomingLinks(View view) {
+		return Collections.emptyList();
 	}
 
 	/**
@@ -4917,6 +5037,27 @@ public class UMLDiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4018(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4022(modelElement));
 		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getTemplateSignature_3033OutgoingLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getConnectableElementTemplateParameter_3034OutgoingLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getOperationTemplateParameter_3035OutgoingLinks(View view) {
+		return Collections.emptyList();
 	}
 
 	/**

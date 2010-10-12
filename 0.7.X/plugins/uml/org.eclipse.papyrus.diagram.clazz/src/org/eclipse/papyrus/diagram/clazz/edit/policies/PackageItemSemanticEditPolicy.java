@@ -60,6 +60,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.commands.RealizationReorientComman
 import org.eclipse.papyrus.diagram.clazz.edit.commands.RedefinableTemplateSignatureCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.TemplateBindingCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.TemplateBindingReorientCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.TemplateSignatureCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.UsageCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.UsageReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AbstractionEditPart;
@@ -96,6 +97,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.RedefinableTemplateSignature
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SignalEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SubstitutionEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.TemplateBindingEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.TemplateSignatureEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.UsageEditPart;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
@@ -118,6 +120,9 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 	protected Command getCreateCommand(CreateElementRequest req) {
 		if(UMLElementTypes.RedefinableTemplateSignature_3015 == req.getElementType()) {
 			return getGEFWrapper(new RedefinableTemplateSignatureCreateCommand(req));
+		}
+		if(UMLElementTypes.TemplateSignature_3033 == req.getElementType()) {
+			return getGEFWrapper(new TemplateSignatureCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}
@@ -251,6 +256,29 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 						break;
 					}
 				}
+				cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), node.getElement(), false))); // directlyOwned: true
+				// don't need explicit deletion of node as parent's view deletion would clean child views as well 
+				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
+				break;
+			case TemplateSignatureEditPart.VISUAL_ID:
+
+				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
+					Edge incomingLink = (Edge)it.next();
+					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
+					case CommentAnnotatedElementEditPart.VISUAL_ID:
+					case ConstraintConstrainedElementEditPart.VISUAL_ID:
+						DestroyReferenceRequest destroyRefReq = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+						cmd.add(new DestroyReferenceCommand(destroyRefReq));
+						cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+						break;
+					case TemplateBindingEditPart.VISUAL_ID:
+						DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
+						cmd.add(new DestroyElementCommand(destroyEltReq));
+						cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+						break;
+					}
+				}
+
 				cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), node.getElement(), false))); // directlyOwned: true
 				// don't need explicit deletion of node as parent's view deletion would clean child views as well 
 				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));

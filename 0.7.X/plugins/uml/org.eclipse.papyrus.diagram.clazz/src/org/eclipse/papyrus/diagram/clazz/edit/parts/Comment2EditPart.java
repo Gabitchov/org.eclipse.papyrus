@@ -401,6 +401,9 @@ AbstractCommentEditPart {
 		if(targetEditPart instanceof ContainmentCircleEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
+		if(targetEditPart instanceof TemplateSignatureEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
+		}
 		return types;
 	}
 
@@ -443,6 +446,7 @@ AbstractCommentEditPart {
 			types.add(UMLElementTypes.Comment_3028);
 			types.add(UMLElementTypes.Constraint_3029);
 			types.add(UMLElementTypes.Port_3032);
+			types.add(UMLElementTypes.TemplateSignature_3033);
 		}
 		return types;
 	}

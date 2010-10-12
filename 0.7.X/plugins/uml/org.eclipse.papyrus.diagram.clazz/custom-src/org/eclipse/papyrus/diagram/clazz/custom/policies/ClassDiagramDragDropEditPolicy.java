@@ -57,6 +57,7 @@ import org.eclipse.uml2.uml.AssociationClass;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.PackageableElement;
+import org.eclipse.uml2.uml.internal.impl.ClassifierImpl;
 
 /**
  * The Class ClassDiagramDragDropEditPolicy.

@@ -59,6 +59,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.CommentBody2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.CommentBodyEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentNameEditPartCN;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ConnectableElementTemplateParameterEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintBodyEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintBodyEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintLabelEditPart;
@@ -86,6 +87,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.MultiDependencyLabelEditPart
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Operation2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Operation4EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationTemplateParameterEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageNameEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PrimitiveTypeNameEditPart;
@@ -812,6 +814,36 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private TemplateParameterParser connectableElementTemplateParameter_3034Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getConnectableElementTemplateParameter_3034Parser() {
+		if(connectableElementTemplateParameter_3034Parser == null) {
+			connectableElementTemplateParameter_3034Parser = new TemplateParameterParser();
+		}
+		return connectableElementTemplateParameter_3034Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private TemplateParameterParser operationTemplateParameter_3035Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getOperationTemplateParameter_3035Parser() {
+		if(operationTemplateParameter_3035Parser == null) {
+			operationTemplateParameter_3035Parser = new TemplateParameterParser();
+		}
+		return operationTemplateParameter_3035Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser associationClassName_6031Parser;
 
 	/**
@@ -1345,6 +1377,10 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getOperation_3003Parser();
 		case Class2EditPart.VISUAL_ID:
 			return getClass_3004Parser();
+		case ConnectableElementTemplateParameterEditPart.VISUAL_ID:
+			return getConnectableElementTemplateParameter_3034Parser();
+		case OperationTemplateParameterEditPart.VISUAL_ID:
+			return getOperationTemplateParameter_3035Parser();
 		case ClassifierTemplateParameterEditPart.VISUAL_ID:
 			return getClassifierTemplateParameter_3031Parser();
 		case TemplateParameterEditPart.VISUAL_ID:

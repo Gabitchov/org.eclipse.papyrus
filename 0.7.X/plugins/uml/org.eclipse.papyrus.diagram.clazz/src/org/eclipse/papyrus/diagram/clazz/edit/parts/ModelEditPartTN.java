@@ -133,6 +133,13 @@ NamedElementEditPart
 			return true;
 		}
 
+		//Papyrus Gencode :precise the locator for a template signature
+		if(childEditPart instanceof TemplateSignatureEditPart) {
+			IBorderItemLocator locator = new TemplateBorderItemLocator(getMainFigure(), PositionConstants.EAST);
+			getBorderedFigure().getBorderItemContainer().add(((TemplateSignatureEditPart)childEditPart).getFigure(), locator);
+			return true;
+		}
+
 		return false;
 	}
 
@@ -182,6 +189,7 @@ NamedElementEditPart
 				View childView = (View)child.getModel();
 				switch(UMLVisualIDRegistry.getVisualID(childView)) {
 				case RedefinableTemplateSignatureEditPart.VISUAL_ID:
+				case TemplateSignatureEditPart.VISUAL_ID:
 
 					return new BorderItemResizableEditPolicy();
 
@@ -956,6 +964,9 @@ NamedElementEditPart
 		if(targetEditPart instanceof ContainmentCircleEditPart) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
+		if(targetEditPart instanceof TemplateSignatureEditPart) {
+			types.add(UMLElementTypes.TemplateBinding_4015);
+		}
 		if(targetEditPart instanceof Dependency2EditPart) {
 			types.add(UMLElementTypes.Dependency_4022);
 		}
@@ -1590,6 +1601,7 @@ NamedElementEditPart
 			types.add(UMLElementTypes.Comment_3028);
 			types.add(UMLElementTypes.Constraint_3029);
 			types.add(UMLElementTypes.Port_3032);
+			types.add(UMLElementTypes.TemplateSignature_3033);
 		} else if(relationshipType == UMLElementTypes.Dependency_4022) {
 			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);
@@ -1699,6 +1711,10 @@ NamedElementEditPart
 		}
 		if(childEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			getBorderedFigure().getBorderItemContainer().remove(((RedefinableTemplateSignatureEditPart)childEditPart).getFigure());
+			return true;
+		}
+		if(childEditPart instanceof TemplateSignatureEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((TemplateSignatureEditPart)childEditPart).getFigure());
 			return true;
 		}
 		return false;

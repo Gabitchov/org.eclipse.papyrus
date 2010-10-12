@@ -47,6 +47,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.CommentLinkDescriptorEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentEditPartCN;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ConnectableElementTemplateParameterEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConnectorDurationObservationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConnectorTimeObservationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Constraint2EditPart;
@@ -80,6 +81,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.Operation2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Operation3EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Operation4EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationTemplateParameterEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageImportEditPart;
@@ -103,6 +105,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.SlotEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SubstitutionEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.TemplateBindingEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.TemplateParameterEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.TemplateSignatureEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.TimeObservationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.UsageEditPart;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin;
@@ -393,6 +396,21 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
+	public static final IElementType TemplateSignature_3033 = getElementType("org.eclipse.papyrus.diagram.clazz.TemplateSignature_3033"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ConnectableElementTemplateParameter_3034 = getElementType("org.eclipse.papyrus.diagram.clazz.ConnectableElementTemplateParameter_3034"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType OperationTemplateParameter_3035 = getElementType("org.eclipse.papyrus.diagram.clazz.OperationTemplateParameter_3035"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	public static final IElementType ClassifierTemplateParameter_3031 = getElementType("org.eclipse.papyrus.diagram.clazz.ClassifierTemplateParameter_3031"); //$NON-NLS-1$
 
 	/**
@@ -676,6 +694,10 @@ public class UMLElementTypes {
 
 			elements.put(RedefinableTemplateSignature_3015, UMLPackage.eINSTANCE.getRedefinableTemplateSignature());
 
+			elements.put(ConnectableElementTemplateParameter_3034, UMLPackage.eINSTANCE.getConnectableElementTemplateParameter());
+
+			elements.put(OperationTemplateParameter_3035, UMLPackage.eINSTANCE.getOperationTemplateParameter());
+
 			elements.put(ClassifierTemplateParameter_3031, UMLPackage.eINSTANCE.getClassifierTemplateParameter());
 
 			elements.put(TemplateParameter_3016, UMLPackage.eINSTANCE.getTemplateParameter());
@@ -729,6 +751,8 @@ public class UMLElementTypes {
 			elements.put(Slot_3030, UMLPackage.eINSTANCE.getSlot());
 
 			elements.put(Port_3032, UMLPackage.eINSTANCE.getPort());
+
+			elements.put(TemplateSignature_3033, UMLPackage.eINSTANCE.getTemplateSignature());
 
 			elements.put(AssociationClass_4017, UMLPackage.eINSTANCE.getAssociationClass());
 
@@ -815,6 +839,8 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(Operation_3003);
 			KNOWN_ELEMENT_TYPES.add(Class_3004);
 			KNOWN_ELEMENT_TYPES.add(RedefinableTemplateSignature_3015);
+			KNOWN_ELEMENT_TYPES.add(ConnectableElementTemplateParameter_3034);
+			KNOWN_ELEMENT_TYPES.add(OperationTemplateParameter_3035);
 			KNOWN_ELEMENT_TYPES.add(ClassifierTemplateParameter_3031);
 			KNOWN_ELEMENT_TYPES.add(TemplateParameter_3016);
 			KNOWN_ELEMENT_TYPES.add(Property_3005);
@@ -842,6 +868,7 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(Constraint_3029);
 			KNOWN_ELEMENT_TYPES.add(Slot_3030);
 			KNOWN_ELEMENT_TYPES.add(Port_3032);
+			KNOWN_ELEMENT_TYPES.add(TemplateSignature_3033);
 			KNOWN_ELEMENT_TYPES.add(Link_4016);
 			KNOWN_ELEMENT_TYPES.add(AssociationClass_4017);
 			KNOWN_ELEMENT_TYPES.add(Association_4001);
@@ -926,6 +953,10 @@ public class UMLElementTypes {
 			return Class_3004;
 		case RedefinableTemplateSignatureEditPart.VISUAL_ID:
 			return RedefinableTemplateSignature_3015;
+		case ConnectableElementTemplateParameterEditPart.VISUAL_ID:
+			return ConnectableElementTemplateParameter_3034;
+		case OperationTemplateParameterEditPart.VISUAL_ID:
+			return OperationTemplateParameter_3035;
 		case ClassifierTemplateParameterEditPart.VISUAL_ID:
 			return ClassifierTemplateParameter_3031;
 		case TemplateParameterEditPart.VISUAL_ID:
@@ -980,6 +1011,8 @@ public class UMLElementTypes {
 			return Slot_3030;
 		case ContainmentCircleEditPart.VISUAL_ID:
 			return Port_3032;
+		case TemplateSignatureEditPart.VISUAL_ID:
+			return TemplateSignature_3033;
 		case CommentLinkDescriptorEditPart.VISUAL_ID:
 			return Link_4016;
 		case AssociationClass2EditPart.VISUAL_ID:

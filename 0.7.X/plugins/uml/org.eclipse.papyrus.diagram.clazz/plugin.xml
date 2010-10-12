@@ -119,7 +119,7 @@
       <viewProvider class="org.eclipse.papyrus.diagram.clazz.providers.UMLViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="PapyrusUMLClassDiagram"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2014,2013,2015,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2016,2095,2096,2097,2098,3002,3003,3004,3015,3031,3016,3005,3006,3007,3008,3020,3021,3022,3023,3024,3025,3017,3009,3010,3011,3012,3013,3014,3026,3027,3018,3019,3028,3029,3030,3032"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2014,2013,2015,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2016,2095,2096,2097,2098,3002,3003,3004,3015,3034,3035,3031,3016,3005,3006,3007,3008,3020,3021,3022,3023,3024,3025,3017,3009,3010,3011,3012,3013,3014,3026,3027,3018,3019,3028,3029,3030,3032,3033"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4016,4017,4001,4019,4002,4003,4004,4005,4006,4007,4008,4018,4009,4010,4011,4012,4013,4014,4015,4020,4021,4022,4023,4024,4025"/>
       </viewProvider>
    </extension>
@@ -131,7 +131,7 @@
             <method name="getType()" value="PapyrusUMLClassDiagram"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2014,2013,2015,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2016,2095,2096,2097,2098,3002,3003,3004,3015,3031,3016,3005,3006,3007,3008,3020,3021,3022,3023,3024,3025,3017,3009,3010,3011,3012,3013,3014,3026,3027,3018,3019,3028,3029,3030,3032"/>
+            <method name="getType()" value="2014,2013,2015,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2016,2095,2096,2097,2098,3002,3003,3004,3015,3034,3035,3031,3016,3005,3006,3007,3008,3020,3021,3022,3023,3024,3025,3017,3009,3010,3011,3012,3013,3014,3026,3027,3018,3019,3028,3029,3030,3032,3033"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
             <method name="getType()" value="4016,4017,4001,4019,4002,4003,4004,4005,4006,4007,4008,4018,4009,4010,4011,4012,4013,4014,4015,4020,4021,4022,4023,4024,4025"/>
@@ -140,7 +140,7 @@
             <method name="getType()" value="1,5066,5002,5005,5008,5011,5020,5023,5026,5029,5032,5035,5037,5159,5038,0,5155,5156,5153,5154,5157,5158,5040,5043,5046,5049,5052,5055,5017,5014,5058,5061,5063,5064,5160"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
-            <method name="getType()" value="7034,7001,7002,7003,7004,7014,7005,7006,7007,7008,7009,7023,7024,7025,7026,7027,7028,7029,7030,7031,7010,7011,7012,7013,7032,7033,7015,7016,7017,7018,7019,7020,7021,7035,7036,7037"/>
+            <method name="getType()" value="7034,7001,7002,7003,7004,7014,7005,7006,7007,7008,7009,7023,7024,7025,7026,7027,7028,7029,7030,7031,7010,7011,7012,7013,7032,7033,7015,7016,7017,7018,7019,7020,7021,7035,7036,7037,7038"/>
          </object>
          <context views="generated-diagram,generated-nodes,generated-links,generated-labels,generated-compartments"/>
       </editpartProvider>
@@ -432,6 +432,26 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
+               id="org.eclipse.papyrus.diagram.clazz.ConnectableElementTemplateParameter_3034"
+               name="%metatype.name.ConnectableElementTemplateParameter_3034"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="ConnectableElementTemplateParameter"
+               edithelper="org.eclipse.papyrus.diagram.clazz.edit.helpers.ClassifierTemplateParameterEditHelper">
+            <param name="semanticHint" value="3034"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.clazz.OperationTemplateParameter_3035"
+               name="%metatype.name.OperationTemplateParameter_3035"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="OperationTemplateParameter"
+               edithelper="org.eclipse.papyrus.diagram.clazz.edit.helpers.ClassifierTemplateParameterEditHelper">
+            <param name="semanticHint" value="3035"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
                id="org.eclipse.papyrus.diagram.clazz.ClassifierTemplateParameter_3031"
                name="%metatype.name.ClassifierTemplateParameter_3031"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
@@ -682,6 +702,16 @@
                eclass="Port"
                edithelper="org.eclipse.papyrus.diagram.clazz.edit.helpers.PortEditHelper">
             <param name="semanticHint" value="3032"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.clazz.TemplateSignature_3033"
+               name="%metatype.name.TemplateSignature_3033"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="TemplateSignature"
+               edithelper="org.eclipse.papyrus.diagram.clazz.edit.helpers.RedefinableTemplateSignatureEditHelper">
+            <param name="semanticHint" value="3033"/>
          </metamodelType>
       </metamodel>
       <specializationType
@@ -949,6 +979,8 @@
          <elementType ref="org.eclipse.papyrus.diagram.clazz.Operation_3003"/>
          <elementType ref="org.eclipse.papyrus.diagram.clazz.Class_3004"/>
          <elementType ref="org.eclipse.papyrus.diagram.clazz.RedefinableTemplateSignature_3015"/>
+         <elementType ref="org.eclipse.papyrus.diagram.clazz.ConnectableElementTemplateParameter_3034"/>
+         <elementType ref="org.eclipse.papyrus.diagram.clazz.OperationTemplateParameter_3035"/>
          <elementType ref="org.eclipse.papyrus.diagram.clazz.ClassifierTemplateParameter_3031"/>
          <elementType ref="org.eclipse.papyrus.diagram.clazz.TemplateParameter_3016"/>
          <elementType ref="org.eclipse.papyrus.diagram.clazz.Property_3005"/>
@@ -976,6 +1008,7 @@
          <elementType ref="org.eclipse.papyrus.diagram.clazz.Constraint_3029"/>
          <elementType ref="org.eclipse.papyrus.diagram.clazz.Slot_3030"/>
          <elementType ref="org.eclipse.papyrus.diagram.clazz.ContainmentCircle_3032"/>
+         <elementType ref="org.eclipse.papyrus.diagram.clazz.TemplateSignature_3033"/>
          <elementType ref="org.eclipse.papyrus.diagram.clazz.Link_4016"/>
          <elementType ref="org.eclipse.papyrus.diagram.clazz.AssociationClass_4017"/>
          <elementType ref="org.eclipse.papyrus.diagram.clazz.Association_4001"/>
@@ -1500,6 +1533,13 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+			class="org.eclipse.papyrus.diagram.clazz.preferences.ConnectableElementTemplateParameterPreferencePage"
+            id="org.eclipse.papyrus.diagram.clazz.preferences.ConnectableElementTemplateParameterPreferencePage"
+            name="ConnectableElementTemplateParameter Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.InterfacePreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.InterfacePreferencePage"
             name="Interface Node" />
@@ -1542,6 +1582,13 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+			class="org.eclipse.papyrus.diagram.clazz.preferences.TemplateSignaturePreferencePage"
+            id="org.eclipse.papyrus.diagram.clazz.preferences.TemplateSignaturePreferencePage"
+            name="TemplateSignature Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.AssociationClassPreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.AssociationClassPreferencePage"
             name="AssociationClass Node" />
@@ -1573,6 +1620,13 @@
 			class="org.eclipse.papyrus.diagram.clazz.preferences.TimeObservationPreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.TimeObservationPreferencePage"
             name="TimeObservation Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+			class="org.eclipse.papyrus.diagram.clazz.preferences.OperationTemplateParameterPreferencePage"
+            id="org.eclipse.papyrus.diagram.clazz.preferences.OperationTemplateParameterPreferencePage"
+            name="OperationTemplateParameter Node" />
 	
 		
 	<?gmfgen generated="true"?>
@@ -2011,6 +2065,16 @@
  	</entry>
 	<entry
        defineOnly="true"
+       description="Create an OperationTemplateParameter"
+       id="clazz.tool.OperationTemplateParameter"
+       kind="tool"
+       label="OperationTemplateParameter"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OperationTemplateParameter.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OperationTemplateParameter.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
        description="Create new Package"
        id="clazz.tool.package"
        kind="tool"
@@ -2081,6 +2145,16 @@
  	</entry>
 	<entry
        defineOnly="true"
+       description="Create a TemplateSignature"
+       id="clazz.tool.templatesignature"
+       kind="tool"
+       label="TemplateSignature"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateSignature.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateSignature.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
        description="Create new TimeObservation"
        id="createTimeObservation22CreationTool"
        kind="tool"
@@ -2088,6 +2162,16 @@
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeObservation.gif"
        path=""
        small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeObservation.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create a ConnectableElementTemplateParameter"
+       id="clazz.tool.connectableelementtemplateparameter"
+       kind="tool"
+       label="ConnectableElementTemplateParameter"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConnectableElementTemplateParameter.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConnectableElementTemplateParameter.gif">
  	</entry>
 	<entry
        defineOnly="true"
@@ -2378,6 +2462,10 @@
           path="/clazz.group.nodes">
     </predefinedEntry>
  	<predefinedEntry
+          id="clazz.tool.OperationTemplateParameter"
+          path="/clazz.group.nodes">
+    </predefinedEntry>
+ 	<predefinedEntry
           id="clazz.tool.package"
           path="/clazz.group.nodes">
     </predefinedEntry>
@@ -2406,7 +2494,15 @@
           path="/clazz.group.nodes">
     </predefinedEntry>
  	<predefinedEntry
+          id="clazz.tool.templatesignature"
+          path="/clazz.group.nodes">
+    </predefinedEntry>
+ 	<predefinedEntry
           id="createTimeObservation22CreationTool"
+          path="/clazz.group.nodes">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="clazz.tool.connectableelementtemplateparameter"
           path="/clazz.group.nodes">
     </predefinedEntry>
 
