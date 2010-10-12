@@ -15,12 +15,15 @@ package org.eclipse.papyrus.diagram.clazz.custom.policies;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
+import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
@@ -45,6 +48,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPartTN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPartCN;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.RedefinableTemplateSignatureEditPart;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.common.editpolicies.CommonDiagramDragDropEditPolicy;
@@ -298,6 +302,34 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 		dropBinaryLink(cc, source, target, linkVISUALID, dropRequest.getLocation(), semanticLink);
 		return new ICommandProxy(cc);
 	}
-
+	
+	/**
+	 * 
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.DiagramDragDropEditPolicy#getDropCommand(org.eclipse.gef.requests.ChangeBoundsRequest)
+	 *
+	 */
+	protected Command getDropCommand(ChangeBoundsRequest request) {
+		//this is a drop done by user internal to the diagram
+		//prevent from the drop intra diagram of a template signature into the diagram
+		Iterator editPartsIter= request.getEditParts().iterator();
+		while(editPartsIter.hasNext()){
+			if(editPartsIter.next() instanceof RedefinableTemplateSignatureEditPart){
+				return UnexecutableCommand.INSTANCE;
+			}
+		}
+		//normal case
+		ChangeBoundsRequest req = new ChangeBoundsRequest(REQ_ADD);
+		req.setEditParts(request.getEditParts());
+		req.setMoveDelta(request.getMoveDelta());
+		req.setSizeDelta(request.getSizeDelta());
+		req.setLocation(request.getLocation());
+		req.setResizeDirection(request.getResizeDirection());
+		Command cmd = getHost().getCommand(req);
+		if (cmd == null || !cmd.canExecute()) {
+			return getDropObjectsCommand(castToDropObjectsRequest(request));
+		}
+		
+		return cmd;
+	}
 
 }
