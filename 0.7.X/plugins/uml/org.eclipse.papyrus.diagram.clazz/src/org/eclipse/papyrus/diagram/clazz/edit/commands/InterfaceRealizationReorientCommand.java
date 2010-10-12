@@ -48,8 +48,7 @@ public class InterfaceRealizationReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public InterfaceRealizationReorientCommand(
-			ReorientRelationshipRequest request) {
+	public InterfaceRealizationReorientCommand(ReorientRelationshipRequest request) {
 		super(request.getLabel(), request.getRelationship(), request);
 		reorientDirection = request.getDirection();
 		oldEnd = request.getOldRelationshipEnd();
@@ -60,13 +59,13 @@ public class InterfaceRealizationReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-		if (false == getElementToEdit() instanceof InterfaceRealization) {
+		if(false == getElementToEdit() instanceof InterfaceRealization) {
 			return false;
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return canReorientSource();
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return canReorientTarget();
 		}
 		return false;
@@ -76,45 +75,38 @@ public class InterfaceRealizationReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientSource() {
-		if (!(oldEnd instanceof BehavioredClassifier && newEnd instanceof BehavioredClassifier)) {
+		if(!(oldEnd instanceof BehavioredClassifier && newEnd instanceof BehavioredClassifier)) {
 			return false;
 		}
 		Interface target = getLink().getContract();
-		return UMLBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistInterfaceRealization_4003(getLink(), getNewSource(),
-						target);
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistInterfaceRealization_4003(getLink(), getNewSource(), target);
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean canReorientTarget() {
-		if (!(oldEnd instanceof Interface && newEnd instanceof Interface)) {
+		if(!(oldEnd instanceof Interface && newEnd instanceof Interface)) {
 			return false;
 		}
-		if (!(getLink().eContainer() instanceof BehavioredClassifier)) {
+		if(!(getLink().eContainer() instanceof BehavioredClassifier)) {
 			return false;
 		}
-		BehavioredClassifier source = (BehavioredClassifier) getLink()
-				.eContainer();
-		return UMLBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistInterfaceRealization_4003(getLink(), source,
-						getNewTarget());
+		BehavioredClassifier source = (BehavioredClassifier)getLink().eContainer();
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistInterfaceRealization_4003(getLink(), source, getNewTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
-		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in reorient link command"); //$NON-NLS-1$
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		if(!canExecute()) {
+			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return reorientTarget();
 		}
 		throw new IllegalStateException();
@@ -141,34 +133,34 @@ public class InterfaceRealizationReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected InterfaceRealization getLink() {
-		return (InterfaceRealization) getElementToEdit();
+		return (InterfaceRealization)getElementToEdit();
 	}
 
 	/**
 	 * @generated
 	 */
 	protected BehavioredClassifier getOldSource() {
-		return (BehavioredClassifier) oldEnd;
+		return (BehavioredClassifier)oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected BehavioredClassifier getNewSource() {
-		return (BehavioredClassifier) newEnd;
+		return (BehavioredClassifier)newEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Interface getOldTarget() {
-		return (Interface) oldEnd;
+		return (Interface)oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Interface getNewTarget() {
-		return (Interface) newEnd;
+		return (Interface)newEnd;
 	}
 }

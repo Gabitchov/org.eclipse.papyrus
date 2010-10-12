@@ -45,6 +45,7 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
+import org.eclipse.papyrus.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.ClazzDiagramChangeStereotypedShapeEditpolicy;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.CustomGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.PackageItemSemanticEditPolicyCN;
@@ -62,7 +63,6 @@ import org.eclipse.papyrus.diagram.common.editpolicies.QualifiedNameDisplayEditP
 import org.eclipse.papyrus.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.PackageFigure;
 import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
-import org.eclipse.papyrus.diagram.common.locator.PortPositionLocator;
 import org.eclipse.papyrus.diagram.common.locator.TemplateBorderItemLocator;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
@@ -103,7 +103,7 @@ NamedElementEditPart
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -113,29 +113,22 @@ NamedElementEditPart
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof PackageNameEditPartCN) {
-			((PackageNameEditPartCN) childEditPart).setLabel(getPrimaryShape()
-					.getNameLabel());
+		if(childEditPart instanceof PackageNameEditPartCN) {
+			((PackageNameEditPartCN)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
 
-		if (childEditPart instanceof PackagePackageableElementCompartmentEditPart) {
+		if(childEditPart instanceof PackagePackageableElementCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getPackageableElementFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.add(((PackagePackageableElementCompartmentEditPart) childEditPart)
-					.getFigure());
+			pane.add(((PackagePackageableElementCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
 
 		//Papyrus Gencode :precise the locator for a template signature
-		if (childEditPart instanceof RedefinableTemplateSignatureEditPart) {
-			IBorderItemLocator locator = new TemplateBorderItemLocator(
-					getMainFigure(), PositionConstants.EAST);
-			getBorderedFigure()
-					.getBorderItemContainer()
-					.add(((RedefinableTemplateSignatureEditPart) childEditPart)
-							.getFigure(),
-							locator);
+		if(childEditPart instanceof RedefinableTemplateSignatureEditPart) {
+			IBorderItemLocator locator = new TemplateBorderItemLocator(getMainFigure(), PositionConstants.EAST);
+			getBorderedFigure().getBorderItemContainer().add(((RedefinableTemplateSignatureEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
 
@@ -146,34 +139,23 @@ NamedElementEditPart
 	 * @generated
 	 */
 	protected void createDefaultEditPolicies() {
-		installEditPolicy(EditPolicyRoles.CREATION_ROLE,
-				new CreationEditPolicy());
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy());
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new PackageItemSemanticEditPolicyCN());
-		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE,
-				new DragDropEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new PackageItemSemanticEditPolicyCN());
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.clazz.edit.policies.PackageCanonicalEditPolicyCN());
 
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(
-				"RESIZE_BORDER_ITEMS", new ConstrainedItemBorderLayoutEditPolicy()); //$NON-NLS-1$
-		installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE,
-				new HyperLinkPopupBarEditPolicy());
-		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE,
-				new CustomGraphicalNodeEditPolicy());
-		installEditPolicy(
-				AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
-				new AppliedStereotypeNodeLabelDisplayEditPolicy());
-		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY,
-				new QualifiedNameDisplayEditPolicy());
-		installEditPolicy(ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY,
-				new ClazzDiagramChangeStereotypedShapeEditpolicy());
-		installEditPolicy(
-				ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY,
-				new ShowHideCompartmentEditPolicy());
+		installEditPolicy("RESIZE_BORDER_ITEMS", new ConstrainedItemBorderLayoutEditPolicy()); //$NON-NLS-1$
+		installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
+		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
+		installEditPolicy(ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY, new ClazzDiagramChangeStereotypedShapeEditpolicy());
+		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new ClassDiagramDragDropEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -185,16 +167,15 @@ NamedElementEditPart
 		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				View childView = (View) child.getModel();
-				switch (UMLVisualIDRegistry.getVisualID(childView)) {
+				View childView = (View)child.getModel();
+				switch(UMLVisualIDRegistry.getVisualID(childView)) {
 				case RedefinableTemplateSignatureEditPart.VISUAL_ID:
 
 					return new BorderItemResizableEditPolicy();
 
 				}
-				EditPolicy result = child
-						.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if (result == null) {
+				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
+				if(result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -233,17 +214,10 @@ NamedElementEditPart
 	 */
 	protected NodeFigure createNodePlate() {
 		String prefElementId = "Package";
-		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance()
-				.getPreferenceStore();
-		String preferenceConstantWitdh = PreferenceInitializerForElementHelper
-				.getpreferenceKey(getNotationView(), prefElementId,
-						PreferenceConstantHelper.WIDTH);
-		String preferenceConstantHeight = PreferenceInitializerForElementHelper
-				.getpreferenceKey(getNotationView(), prefElementId,
-						PreferenceConstantHelper.HEIGHT);
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(
-				store.getInt(preferenceConstantWitdh),
-				store.getInt(preferenceConstantHeight));
+		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
+		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
+		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
 
 		return result;
 	}
@@ -259,7 +233,7 @@ NamedElementEditPart
 	 * @generated
 	 */
 	public IFigure getContentPane() {
-		if (contentPane != null) {
+		if(contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -269,10 +243,10 @@ NamedElementEditPart
 	 * @generated
 	 */
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		if (editPart instanceof PackagePackageableElementCompartmentEditPart) {
+		if(editPart instanceof PackagePackageableElementCompartmentEditPart) {
 			return getPrimaryShape().getPackageableElementFigure();
 		}
-		if (editPart instanceof IBorderItemEditPart) {
+		if(editPart instanceof IBorderItemEditPart) {
 			return getBorderedFigure().getBorderItemContainer();
 		}
 		return getContentPane();
@@ -299,769 +273,768 @@ NamedElementEditPart
 	/**
 	 * @generated
 	 */
-	public List<IElementType> getMARelTypesOnSourceAndTarget(
-			IGraphicalEditPart targetEditPart) {
+	public List<IElementType> getMARelTypesOnSourceAndTarget(IGraphicalEditPart targetEditPart) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (targetEditPart instanceof Dependency2EditPart) {
+		if(targetEditPart instanceof Dependency2EditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof AssociationClassEditPart) {
+		if(targetEditPart instanceof AssociationClassEditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof AssociationNodeEditPart) {
+		if(targetEditPart instanceof AssociationNodeEditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof InstanceSpecificationEditPart) {
+		if(targetEditPart instanceof InstanceSpecificationEditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof ComponentEditPart) {
+		if(targetEditPart instanceof ComponentEditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof SignalEditPart) {
+		if(targetEditPart instanceof SignalEditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof InterfaceEditPart) {
+		if(targetEditPart instanceof InterfaceEditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof ModelEditPartTN) {
+		if(targetEditPart instanceof ModelEditPartTN) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof EnumerationEditPart) {
+		if(targetEditPart instanceof EnumerationEditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof PackageEditPart) {
+		if(targetEditPart instanceof PackageEditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof ClassEditPart) {
+		if(targetEditPart instanceof ClassEditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof PrimitiveTypeEditPart) {
+		if(targetEditPart instanceof PrimitiveTypeEditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof DataTypeEditPart) {
+		if(targetEditPart instanceof DataTypeEditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof ConstraintEditPart) {
+		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof DurationObservationEditPart) {
+		if(targetEditPart instanceof DurationObservationEditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof TimeObservationEditPart) {
+		if(targetEditPart instanceof TimeObservationEditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof DefaultNamedElementEditPart) {
+		if(targetEditPart instanceof DefaultNamedElementEditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof ShapeNamedElementEditPart) {
+		if(targetEditPart instanceof ShapeNamedElementEditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
+		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof InstanceSpecificationEditPartCN) {
+		if(targetEditPart instanceof InstanceSpecificationEditPartCN) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof ComponentEditPartCN) {
+		if(targetEditPart instanceof ComponentEditPartCN) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof SignalEditPartCN) {
+		if(targetEditPart instanceof SignalEditPartCN) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof InterfaceEditPartCN) {
+		if(targetEditPart instanceof InterfaceEditPartCN) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof ModelEditPartCN) {
+		if(targetEditPart instanceof ModelEditPartCN) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof EnumerationEditPartCN) {
+		if(targetEditPart instanceof EnumerationEditPartCN) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPartCN) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPartCN) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof ClassEditPartCN) {
+		if(targetEditPart instanceof ClassEditPartCN) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof PrimitiveTypeEditPartCN) {
+		if(targetEditPart instanceof PrimitiveTypeEditPartCN) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof DataTypeEditPartCN) {
+		if(targetEditPart instanceof DataTypeEditPartCN) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof Constraint2EditPart) {
+		if(targetEditPart instanceof Constraint2EditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof ContainmentCircleEditPart) {
+		if(targetEditPart instanceof ContainmentCircleEditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if (targetEditPart instanceof Dependency2EditPart) {
+		if(targetEditPart instanceof Dependency2EditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof AssociationClassEditPart) {
+		if(targetEditPart instanceof AssociationClassEditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof AssociationNodeEditPart) {
+		if(targetEditPart instanceof AssociationNodeEditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof InstanceSpecificationEditPart) {
+		if(targetEditPart instanceof InstanceSpecificationEditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof ComponentEditPart) {
+		if(targetEditPart instanceof ComponentEditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof SignalEditPart) {
+		if(targetEditPart instanceof SignalEditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof InterfaceEditPart) {
+		if(targetEditPart instanceof InterfaceEditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof ModelEditPartTN) {
+		if(targetEditPart instanceof ModelEditPartTN) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof EnumerationEditPart) {
+		if(targetEditPart instanceof EnumerationEditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof PackageEditPart) {
+		if(targetEditPart instanceof PackageEditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof ClassEditPart) {
+		if(targetEditPart instanceof ClassEditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof PrimitiveTypeEditPart) {
+		if(targetEditPart instanceof PrimitiveTypeEditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof DataTypeEditPart) {
+		if(targetEditPart instanceof DataTypeEditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof ConstraintEditPart) {
+		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof DurationObservationEditPart) {
+		if(targetEditPart instanceof DurationObservationEditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof TimeObservationEditPart) {
+		if(targetEditPart instanceof TimeObservationEditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof DefaultNamedElementEditPart) {
+		if(targetEditPart instanceof DefaultNamedElementEditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof ShapeNamedElementEditPart) {
+		if(targetEditPart instanceof ShapeNamedElementEditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
+		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof InstanceSpecificationEditPartCN) {
+		if(targetEditPart instanceof InstanceSpecificationEditPartCN) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof ComponentEditPartCN) {
+		if(targetEditPart instanceof ComponentEditPartCN) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof SignalEditPartCN) {
+		if(targetEditPart instanceof SignalEditPartCN) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof InterfaceEditPartCN) {
+		if(targetEditPart instanceof InterfaceEditPartCN) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof ModelEditPartCN) {
+		if(targetEditPart instanceof ModelEditPartCN) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof EnumerationEditPartCN) {
+		if(targetEditPart instanceof EnumerationEditPartCN) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPartCN) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPartCN) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof ClassEditPartCN) {
+		if(targetEditPart instanceof ClassEditPartCN) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof PrimitiveTypeEditPartCN) {
+		if(targetEditPart instanceof PrimitiveTypeEditPartCN) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof DataTypeEditPartCN) {
+		if(targetEditPart instanceof DataTypeEditPartCN) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof Constraint2EditPart) {
+		if(targetEditPart instanceof Constraint2EditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof ContainmentCircleEditPart) {
+		if(targetEditPart instanceof ContainmentCircleEditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
-		if (targetEditPart instanceof Dependency2EditPart) {
+		if(targetEditPart instanceof Dependency2EditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof AssociationClassEditPart) {
+		if(targetEditPart instanceof AssociationClassEditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof AssociationNodeEditPart) {
+		if(targetEditPart instanceof AssociationNodeEditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof InstanceSpecificationEditPart) {
+		if(targetEditPart instanceof InstanceSpecificationEditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof ComponentEditPart) {
+		if(targetEditPart instanceof ComponentEditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof SignalEditPart) {
+		if(targetEditPart instanceof SignalEditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof InterfaceEditPart) {
+		if(targetEditPart instanceof InterfaceEditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof ModelEditPartTN) {
+		if(targetEditPart instanceof ModelEditPartTN) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof EnumerationEditPart) {
+		if(targetEditPart instanceof EnumerationEditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof PackageEditPart) {
+		if(targetEditPart instanceof PackageEditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof ClassEditPart) {
+		if(targetEditPart instanceof ClassEditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof PrimitiveTypeEditPart) {
+		if(targetEditPart instanceof PrimitiveTypeEditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof DataTypeEditPart) {
+		if(targetEditPart instanceof DataTypeEditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof ConstraintEditPart) {
+		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof DurationObservationEditPart) {
+		if(targetEditPart instanceof DurationObservationEditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof TimeObservationEditPart) {
+		if(targetEditPart instanceof TimeObservationEditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof DefaultNamedElementEditPart) {
+		if(targetEditPart instanceof DefaultNamedElementEditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof ShapeNamedElementEditPart) {
+		if(targetEditPart instanceof ShapeNamedElementEditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
+		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof InstanceSpecificationEditPartCN) {
+		if(targetEditPart instanceof InstanceSpecificationEditPartCN) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof ComponentEditPartCN) {
+		if(targetEditPart instanceof ComponentEditPartCN) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof SignalEditPartCN) {
+		if(targetEditPart instanceof SignalEditPartCN) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof InterfaceEditPartCN) {
+		if(targetEditPart instanceof InterfaceEditPartCN) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof ModelEditPartCN) {
+		if(targetEditPart instanceof ModelEditPartCN) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof EnumerationEditPartCN) {
+		if(targetEditPart instanceof EnumerationEditPartCN) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPartCN) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPartCN) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof ClassEditPartCN) {
+		if(targetEditPart instanceof ClassEditPartCN) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof PrimitiveTypeEditPartCN) {
+		if(targetEditPart instanceof PrimitiveTypeEditPartCN) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof DataTypeEditPartCN) {
+		if(targetEditPart instanceof DataTypeEditPartCN) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof Constraint2EditPart) {
+		if(targetEditPart instanceof Constraint2EditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof ContainmentCircleEditPart) {
+		if(targetEditPart instanceof ContainmentCircleEditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if (targetEditPart instanceof Dependency2EditPart) {
+		if(targetEditPart instanceof Dependency2EditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof AssociationClassEditPart) {
+		if(targetEditPart instanceof AssociationClassEditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof AssociationNodeEditPart) {
+		if(targetEditPart instanceof AssociationNodeEditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof InstanceSpecificationEditPart) {
+		if(targetEditPart instanceof InstanceSpecificationEditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof ComponentEditPart) {
+		if(targetEditPart instanceof ComponentEditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof SignalEditPart) {
+		if(targetEditPart instanceof SignalEditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof InterfaceEditPart) {
+		if(targetEditPart instanceof InterfaceEditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof ModelEditPartTN) {
+		if(targetEditPart instanceof ModelEditPartTN) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof EnumerationEditPart) {
+		if(targetEditPart instanceof EnumerationEditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof PackageEditPart) {
+		if(targetEditPart instanceof PackageEditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof ClassEditPart) {
+		if(targetEditPart instanceof ClassEditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof PrimitiveTypeEditPart) {
+		if(targetEditPart instanceof PrimitiveTypeEditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof DataTypeEditPart) {
+		if(targetEditPart instanceof DataTypeEditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof ConstraintEditPart) {
+		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof DurationObservationEditPart) {
+		if(targetEditPart instanceof DurationObservationEditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof TimeObservationEditPart) {
+		if(targetEditPart instanceof TimeObservationEditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof DefaultNamedElementEditPart) {
+		if(targetEditPart instanceof DefaultNamedElementEditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof ShapeNamedElementEditPart) {
+		if(targetEditPart instanceof ShapeNamedElementEditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
+		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof InstanceSpecificationEditPartCN) {
+		if(targetEditPart instanceof InstanceSpecificationEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof ComponentEditPartCN) {
+		if(targetEditPart instanceof ComponentEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof SignalEditPartCN) {
+		if(targetEditPart instanceof SignalEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof InterfaceEditPartCN) {
+		if(targetEditPart instanceof InterfaceEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof ModelEditPartCN) {
+		if(targetEditPart instanceof ModelEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof EnumerationEditPartCN) {
+		if(targetEditPart instanceof EnumerationEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPartCN) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof ClassEditPartCN) {
+		if(targetEditPart instanceof ClassEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof PrimitiveTypeEditPartCN) {
+		if(targetEditPart instanceof PrimitiveTypeEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof DataTypeEditPartCN) {
+		if(targetEditPart instanceof DataTypeEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof Constraint2EditPart) {
+		if(targetEditPart instanceof Constraint2EditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof ContainmentCircleEditPart) {
+		if(targetEditPart instanceof ContainmentCircleEditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if (targetEditPart instanceof Dependency2EditPart) {
+		if(targetEditPart instanceof Dependency2EditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof AssociationClassEditPart) {
+		if(targetEditPart instanceof AssociationClassEditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof AssociationNodeEditPart) {
+		if(targetEditPart instanceof AssociationNodeEditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof InstanceSpecificationEditPart) {
+		if(targetEditPart instanceof InstanceSpecificationEditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof ComponentEditPart) {
+		if(targetEditPart instanceof ComponentEditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof SignalEditPart) {
+		if(targetEditPart instanceof SignalEditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof InterfaceEditPart) {
+		if(targetEditPart instanceof InterfaceEditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof ModelEditPartTN) {
+		if(targetEditPart instanceof ModelEditPartTN) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof EnumerationEditPart) {
+		if(targetEditPart instanceof EnumerationEditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof PackageEditPart) {
+		if(targetEditPart instanceof PackageEditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof ClassEditPart) {
+		if(targetEditPart instanceof ClassEditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof PrimitiveTypeEditPart) {
+		if(targetEditPart instanceof PrimitiveTypeEditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof DataTypeEditPart) {
+		if(targetEditPart instanceof DataTypeEditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof ConstraintEditPart) {
+		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof DurationObservationEditPart) {
+		if(targetEditPart instanceof DurationObservationEditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof TimeObservationEditPart) {
+		if(targetEditPart instanceof TimeObservationEditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof DefaultNamedElementEditPart) {
+		if(targetEditPart instanceof DefaultNamedElementEditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof ShapeNamedElementEditPart) {
+		if(targetEditPart instanceof ShapeNamedElementEditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
+		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof InstanceSpecificationEditPartCN) {
+		if(targetEditPart instanceof InstanceSpecificationEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof ComponentEditPartCN) {
+		if(targetEditPart instanceof ComponentEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof SignalEditPartCN) {
+		if(targetEditPart instanceof SignalEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof InterfaceEditPartCN) {
+		if(targetEditPart instanceof InterfaceEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof ModelEditPartCN) {
+		if(targetEditPart instanceof ModelEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof EnumerationEditPartCN) {
+		if(targetEditPart instanceof EnumerationEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPartCN) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof ClassEditPartCN) {
+		if(targetEditPart instanceof ClassEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof PrimitiveTypeEditPartCN) {
+		if(targetEditPart instanceof PrimitiveTypeEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof DataTypeEditPartCN) {
+		if(targetEditPart instanceof DataTypeEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof Constraint2EditPart) {
+		if(targetEditPart instanceof Constraint2EditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof ContainmentCircleEditPart) {
+		if(targetEditPart instanceof ContainmentCircleEditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if (targetEditPart instanceof Dependency2EditPart) {
+		if(targetEditPart instanceof Dependency2EditPart) {
 			types.add(UMLElementTypes.ElementImport_4009);
 		}
-		if (targetEditPart instanceof AssociationClassEditPart) {
+		if(targetEditPart instanceof AssociationClassEditPart) {
 			types.add(UMLElementTypes.ElementImport_4009);
 		}
-		if (targetEditPart instanceof AssociationNodeEditPart) {
+		if(targetEditPart instanceof AssociationNodeEditPart) {
 			types.add(UMLElementTypes.ElementImport_4009);
 		}
-		if (targetEditPart instanceof InstanceSpecificationEditPart) {
+		if(targetEditPart instanceof InstanceSpecificationEditPart) {
 			types.add(UMLElementTypes.ElementImport_4009);
 		}
-		if (targetEditPart instanceof ComponentEditPart) {
+		if(targetEditPart instanceof ComponentEditPart) {
 			types.add(UMLElementTypes.ElementImport_4009);
 		}
-		if (targetEditPart instanceof SignalEditPart) {
+		if(targetEditPart instanceof SignalEditPart) {
 			types.add(UMLElementTypes.ElementImport_4009);
 		}
-		if (targetEditPart instanceof InterfaceEditPart) {
+		if(targetEditPart instanceof InterfaceEditPart) {
 			types.add(UMLElementTypes.ElementImport_4009);
 		}
-		if (targetEditPart instanceof ModelEditPartTN) {
+		if(targetEditPart instanceof ModelEditPartTN) {
 			types.add(UMLElementTypes.ElementImport_4009);
 		}
-		if (targetEditPart instanceof EnumerationEditPart) {
+		if(targetEditPart instanceof EnumerationEditPart) {
 			types.add(UMLElementTypes.ElementImport_4009);
 		}
-		if (targetEditPart instanceof PackageEditPart) {
+		if(targetEditPart instanceof PackageEditPart) {
 			types.add(UMLElementTypes.ElementImport_4009);
 		}
-		if (targetEditPart instanceof ClassEditPart) {
+		if(targetEditPart instanceof ClassEditPart) {
 			types.add(UMLElementTypes.ElementImport_4009);
 		}
-		if (targetEditPart instanceof PrimitiveTypeEditPart) {
+		if(targetEditPart instanceof PrimitiveTypeEditPart) {
 			types.add(UMLElementTypes.ElementImport_4009);
 		}
-		if (targetEditPart instanceof DataTypeEditPart) {
+		if(targetEditPart instanceof DataTypeEditPart) {
 			types.add(UMLElementTypes.ElementImport_4009);
 		}
-		if (targetEditPart instanceof ConstraintEditPart) {
+		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.ElementImport_4009);
 		}
-		if (targetEditPart instanceof DurationObservationEditPart) {
+		if(targetEditPart instanceof DurationObservationEditPart) {
 			types.add(UMLElementTypes.ElementImport_4009);
 		}
-		if (targetEditPart instanceof TimeObservationEditPart) {
+		if(targetEditPart instanceof TimeObservationEditPart) {
 			types.add(UMLElementTypes.ElementImport_4009);
 		}
-		if (targetEditPart instanceof InstanceSpecificationEditPartCN) {
+		if(targetEditPart instanceof InstanceSpecificationEditPartCN) {
 			types.add(UMLElementTypes.ElementImport_4009);
 		}
-		if (targetEditPart instanceof ComponentEditPartCN) {
+		if(targetEditPart instanceof ComponentEditPartCN) {
 			types.add(UMLElementTypes.ElementImport_4009);
 		}
-		if (targetEditPart instanceof SignalEditPartCN) {
+		if(targetEditPart instanceof SignalEditPartCN) {
 			types.add(UMLElementTypes.ElementImport_4009);
 		}
-		if (targetEditPart instanceof InterfaceEditPartCN) {
+		if(targetEditPart instanceof InterfaceEditPartCN) {
 			types.add(UMLElementTypes.ElementImport_4009);
 		}
-		if (targetEditPart instanceof ModelEditPartCN) {
+		if(targetEditPart instanceof ModelEditPartCN) {
 			types.add(UMLElementTypes.ElementImport_4009);
 		}
-		if (targetEditPart instanceof EnumerationEditPartCN) {
+		if(targetEditPart instanceof EnumerationEditPartCN) {
 			types.add(UMLElementTypes.ElementImport_4009);
 		}
-		if (targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPartCN) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPartCN) {
 			types.add(UMLElementTypes.ElementImport_4009);
 		}
-		if (targetEditPart instanceof ClassEditPartCN) {
+		if(targetEditPart instanceof ClassEditPartCN) {
 			types.add(UMLElementTypes.ElementImport_4009);
 		}
-		if (targetEditPart instanceof PrimitiveTypeEditPartCN) {
+		if(targetEditPart instanceof PrimitiveTypeEditPartCN) {
 			types.add(UMLElementTypes.ElementImport_4009);
 		}
-		if (targetEditPart instanceof DataTypeEditPartCN) {
+		if(targetEditPart instanceof DataTypeEditPartCN) {
 			types.add(UMLElementTypes.ElementImport_4009);
 		}
-		if (targetEditPart instanceof Constraint2EditPart) {
+		if(targetEditPart instanceof Constraint2EditPart) {
 			types.add(UMLElementTypes.ElementImport_4009);
 		}
-		if (targetEditPart instanceof ModelEditPartTN) {
+		if(targetEditPart instanceof ModelEditPartTN) {
 			types.add(UMLElementTypes.PackageImport_4010);
 		}
-		if (targetEditPart instanceof PackageEditPart) {
+		if(targetEditPart instanceof PackageEditPart) {
 			types.add(UMLElementTypes.PackageImport_4010);
 		}
-		if (targetEditPart instanceof ModelEditPartCN) {
+		if(targetEditPart instanceof ModelEditPartCN) {
 			types.add(UMLElementTypes.PackageImport_4010);
 		}
-		if (targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPartCN) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPartCN) {
 			types.add(UMLElementTypes.PackageImport_4010);
 		}
-		if (targetEditPart instanceof ModelEditPartTN) {
+		if(targetEditPart instanceof ModelEditPartTN) {
 			types.add(UMLElementTypes.PackageMerge_4011);
 		}
-		if (targetEditPart instanceof PackageEditPart) {
+		if(targetEditPart instanceof PackageEditPart) {
 			types.add(UMLElementTypes.PackageMerge_4011);
 		}
-		if (targetEditPart instanceof ModelEditPartCN) {
+		if(targetEditPart instanceof ModelEditPartCN) {
 			types.add(UMLElementTypes.PackageMerge_4011);
 		}
-		if (targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPartCN) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPartCN) {
 			types.add(UMLElementTypes.PackageMerge_4011);
 		}
-		if (targetEditPart instanceof Dependency2EditPart) {
+		if(targetEditPart instanceof Dependency2EditPart) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
-		if (targetEditPart instanceof AssociationClassEditPart) {
+		if(targetEditPart instanceof AssociationClassEditPart) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
-		if (targetEditPart instanceof AssociationNodeEditPart) {
+		if(targetEditPart instanceof AssociationNodeEditPart) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
-		if (targetEditPart instanceof InstanceSpecificationEditPart) {
+		if(targetEditPart instanceof InstanceSpecificationEditPart) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
-		if (targetEditPart instanceof ComponentEditPart) {
+		if(targetEditPart instanceof ComponentEditPart) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
-		if (targetEditPart instanceof SignalEditPart) {
+		if(targetEditPart instanceof SignalEditPart) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
-		if (targetEditPart instanceof InterfaceEditPart) {
+		if(targetEditPart instanceof InterfaceEditPart) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
-		if (targetEditPart instanceof ModelEditPartTN) {
+		if(targetEditPart instanceof ModelEditPartTN) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
-		if (targetEditPart instanceof EnumerationEditPart) {
+		if(targetEditPart instanceof EnumerationEditPart) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
-		if (targetEditPart instanceof PackageEditPart) {
+		if(targetEditPart instanceof PackageEditPart) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
-		if (targetEditPart instanceof ClassEditPart) {
+		if(targetEditPart instanceof ClassEditPart) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
-		if (targetEditPart instanceof PrimitiveTypeEditPart) {
+		if(targetEditPart instanceof PrimitiveTypeEditPart) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
-		if (targetEditPart instanceof DataTypeEditPart) {
+		if(targetEditPart instanceof DataTypeEditPart) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
-		if (targetEditPart instanceof ConstraintEditPart) {
+		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
-		if (targetEditPart instanceof CommentEditPart) {
+		if(targetEditPart instanceof CommentEditPart) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
-		if (targetEditPart instanceof DurationObservationEditPart) {
+		if(targetEditPart instanceof DurationObservationEditPart) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
-		if (targetEditPart instanceof TimeObservationEditPart) {
+		if(targetEditPart instanceof TimeObservationEditPart) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
-		if (targetEditPart instanceof DefaultNamedElementEditPart) {
+		if(targetEditPart instanceof DefaultNamedElementEditPart) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
-		if (targetEditPart instanceof ShapeNamedElementEditPart) {
+		if(targetEditPart instanceof ShapeNamedElementEditPart) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
-		if (targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
+		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
-		if (targetEditPart instanceof InstanceSpecificationEditPartCN) {
+		if(targetEditPart instanceof InstanceSpecificationEditPartCN) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
-		if (targetEditPart instanceof ComponentEditPartCN) {
+		if(targetEditPart instanceof ComponentEditPartCN) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
-		if (targetEditPart instanceof SignalEditPartCN) {
+		if(targetEditPart instanceof SignalEditPartCN) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
-		if (targetEditPart instanceof InterfaceEditPartCN) {
+		if(targetEditPart instanceof InterfaceEditPartCN) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
-		if (targetEditPart instanceof ModelEditPartCN) {
+		if(targetEditPart instanceof ModelEditPartCN) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
-		if (targetEditPart instanceof EnumerationEditPartCN) {
+		if(targetEditPart instanceof EnumerationEditPartCN) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
-		if (targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPartCN) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPartCN) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
-		if (targetEditPart instanceof ClassEditPartCN) {
+		if(targetEditPart instanceof ClassEditPartCN) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
-		if (targetEditPart instanceof PrimitiveTypeEditPartCN) {
+		if(targetEditPart instanceof PrimitiveTypeEditPartCN) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
-		if (targetEditPart instanceof DataTypeEditPartCN) {
+		if(targetEditPart instanceof DataTypeEditPartCN) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
-		if (targetEditPart instanceof Comment2EditPart) {
+		if(targetEditPart instanceof Comment2EditPart) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
-		if (targetEditPart instanceof Constraint2EditPart) {
+		if(targetEditPart instanceof Constraint2EditPart) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
-		if (targetEditPart instanceof ContainmentCircleEditPart) {
+		if(targetEditPart instanceof ContainmentCircleEditPart) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
-		if (targetEditPart instanceof Dependency2EditPart) {
+		if(targetEditPart instanceof Dependency2EditPart) {
 			types.add(UMLElementTypes.Dependency_4022);
 		}
-		if (targetEditPart instanceof AssociationClassEditPart) {
+		if(targetEditPart instanceof AssociationClassEditPart) {
 			types.add(UMLElementTypes.Dependency_4022);
 		}
-		if (targetEditPart instanceof AssociationNodeEditPart) {
+		if(targetEditPart instanceof AssociationNodeEditPart) {
 			types.add(UMLElementTypes.Dependency_4022);
 		}
-		if (targetEditPart instanceof InstanceSpecificationEditPart) {
+		if(targetEditPart instanceof InstanceSpecificationEditPart) {
 			types.add(UMLElementTypes.Dependency_4022);
 		}
-		if (targetEditPart instanceof ComponentEditPart) {
+		if(targetEditPart instanceof ComponentEditPart) {
 			types.add(UMLElementTypes.Dependency_4022);
 		}
-		if (targetEditPart instanceof SignalEditPart) {
+		if(targetEditPart instanceof SignalEditPart) {
 			types.add(UMLElementTypes.Dependency_4022);
 		}
-		if (targetEditPart instanceof InterfaceEditPart) {
+		if(targetEditPart instanceof InterfaceEditPart) {
 			types.add(UMLElementTypes.Dependency_4022);
 		}
-		if (targetEditPart instanceof ModelEditPartTN) {
+		if(targetEditPart instanceof ModelEditPartTN) {
 			types.add(UMLElementTypes.Dependency_4022);
 		}
-		if (targetEditPart instanceof EnumerationEditPart) {
+		if(targetEditPart instanceof EnumerationEditPart) {
 			types.add(UMLElementTypes.Dependency_4022);
 		}
-		if (targetEditPart instanceof PackageEditPart) {
+		if(targetEditPart instanceof PackageEditPart) {
 			types.add(UMLElementTypes.Dependency_4022);
 		}
-		if (targetEditPart instanceof ClassEditPart) {
+		if(targetEditPart instanceof ClassEditPart) {
 			types.add(UMLElementTypes.Dependency_4022);
 		}
-		if (targetEditPart instanceof PrimitiveTypeEditPart) {
+		if(targetEditPart instanceof PrimitiveTypeEditPart) {
 			types.add(UMLElementTypes.Dependency_4022);
 		}
-		if (targetEditPart instanceof DataTypeEditPart) {
+		if(targetEditPart instanceof DataTypeEditPart) {
 			types.add(UMLElementTypes.Dependency_4022);
 		}
-		if (targetEditPart instanceof ConstraintEditPart) {
+		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Dependency_4022);
 		}
-		if (targetEditPart instanceof DurationObservationEditPart) {
+		if(targetEditPart instanceof DurationObservationEditPart) {
 			types.add(UMLElementTypes.Dependency_4022);
 		}
-		if (targetEditPart instanceof TimeObservationEditPart) {
+		if(targetEditPart instanceof TimeObservationEditPart) {
 			types.add(UMLElementTypes.Dependency_4022);
 		}
-		if (targetEditPart instanceof DefaultNamedElementEditPart) {
+		if(targetEditPart instanceof DefaultNamedElementEditPart) {
 			types.add(UMLElementTypes.Dependency_4022);
 		}
-		if (targetEditPart instanceof ShapeNamedElementEditPart) {
+		if(targetEditPart instanceof ShapeNamedElementEditPart) {
 			types.add(UMLElementTypes.Dependency_4022);
 		}
-		if (targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
+		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			types.add(UMLElementTypes.Dependency_4022);
 		}
-		if (targetEditPart instanceof InstanceSpecificationEditPartCN) {
+		if(targetEditPart instanceof InstanceSpecificationEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4022);
 		}
-		if (targetEditPart instanceof ComponentEditPartCN) {
+		if(targetEditPart instanceof ComponentEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4022);
 		}
-		if (targetEditPart instanceof SignalEditPartCN) {
+		if(targetEditPart instanceof SignalEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4022);
 		}
-		if (targetEditPart instanceof InterfaceEditPartCN) {
+		if(targetEditPart instanceof InterfaceEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4022);
 		}
-		if (targetEditPart instanceof ModelEditPartCN) {
+		if(targetEditPart instanceof ModelEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4022);
 		}
-		if (targetEditPart instanceof EnumerationEditPartCN) {
+		if(targetEditPart instanceof EnumerationEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4022);
 		}
-		if (targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPartCN) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4022);
 		}
-		if (targetEditPart instanceof ClassEditPartCN) {
+		if(targetEditPart instanceof ClassEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4022);
 		}
-		if (targetEditPart instanceof PrimitiveTypeEditPartCN) {
+		if(targetEditPart instanceof PrimitiveTypeEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4022);
 		}
-		if (targetEditPart instanceof DataTypeEditPartCN) {
+		if(targetEditPart instanceof DataTypeEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4022);
 		}
-		if (targetEditPart instanceof Constraint2EditPart) {
+		if(targetEditPart instanceof Constraint2EditPart) {
 			types.add(UMLElementTypes.Dependency_4022);
 		}
-		if (targetEditPart instanceof ContainmentCircleEditPart) {
+		if(targetEditPart instanceof ContainmentCircleEditPart) {
 			types.add(UMLElementTypes.Dependency_4022);
 		}
 		return types;
@@ -1094,7 +1067,7 @@ NamedElementEditPart
 	 */
 	public List<IElementType> getMATypesForSource(IElementType relationshipType) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);
 			types.add(UMLElementTypes.Association_2015);
@@ -1126,7 +1099,7 @@ NamedElementEditPart
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Constraint_3029);
 			types.add(UMLElementTypes.Port_3032);
-		} else if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		} else if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);
 			types.add(UMLElementTypes.Association_2015);
@@ -1158,7 +1131,7 @@ NamedElementEditPart
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Constraint_3029);
 			types.add(UMLElementTypes.Port_3032);
-		} else if (relationshipType == UMLElementTypes.Usage_4007) {
+		} else if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);
 			types.add(UMLElementTypes.Association_2015);
@@ -1190,7 +1163,7 @@ NamedElementEditPart
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Constraint_3029);
 			types.add(UMLElementTypes.Port_3032);
-		} else if (relationshipType == UMLElementTypes.Dependency_4008) {
+		} else if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);
 			types.add(UMLElementTypes.Association_2015);
@@ -1222,7 +1195,7 @@ NamedElementEditPart
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Constraint_3029);
 			types.add(UMLElementTypes.Port_3032);
-		} else if (relationshipType == UMLElementTypes.Dependency_4018) {
+		} else if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);
 			types.add(UMLElementTypes.Association_2015);
@@ -1254,7 +1227,7 @@ NamedElementEditPart
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Constraint_3029);
 			types.add(UMLElementTypes.Port_3032);
-		} else if (relationshipType == UMLElementTypes.ElementImport_4009) {
+		} else if(relationshipType == UMLElementTypes.ElementImport_4009) {
 			types.add(UMLElementTypes.AssociationClass_2013);
 			types.add(UMLElementTypes.Association_2015);
 			types.add(UMLElementTypes.Component_2002);
@@ -1275,7 +1248,7 @@ NamedElementEditPart
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
-		} else if (relationshipType == UMLElementTypes.PackageImport_4010) {
+		} else if(relationshipType == UMLElementTypes.PackageImport_4010) {
 			types.add(UMLElementTypes.AssociationClass_2013);
 			types.add(UMLElementTypes.Association_2015);
 			types.add(UMLElementTypes.Component_2002);
@@ -1296,18 +1269,18 @@ NamedElementEditPart
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
-		} else if (relationshipType == UMLElementTypes.PackageMerge_4011) {
+		} else if(relationshipType == UMLElementTypes.PackageMerge_4011) {
 			types.add(UMLElementTypes.Model_2005);
 			types.add(UMLElementTypes.Package_2007);
 			types.add(UMLElementTypes.Model_3024);
 			types.add(UMLElementTypes.Package_3009);
-		} else if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
+		} else if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
 			types.add(UMLElementTypes.Comment_2012);
 			types.add(UMLElementTypes.Comment_3028);
-		} else if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
+		} else if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
 			types.add(UMLElementTypes.Constraint_2011);
 			types.add(UMLElementTypes.Constraint_3029);
-		} else if (relationshipType == UMLElementTypes.TemplateBinding_4015) {
+		} else if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
 			types.add(UMLElementTypes.AssociationClass_2013);
 			types.add(UMLElementTypes.Association_2015);
 			types.add(UMLElementTypes.Component_2002);
@@ -1328,7 +1301,7 @@ NamedElementEditPart
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
-		} else if (relationshipType == UMLElementTypes.Dependency_4022) {
+		} else if(relationshipType == UMLElementTypes.Dependency_4022) {
 			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);
 			types.add(UMLElementTypes.Association_2015);
@@ -1360,9 +1333,9 @@ NamedElementEditPart
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Constraint_3029);
 			types.add(UMLElementTypes.Port_3032);
-		} else if (relationshipType == UMLElementTypes.TimeObservationEvent_4024) {
+		} else if(relationshipType == UMLElementTypes.TimeObservationEvent_4024) {
 			types.add(UMLElementTypes.TimeObservation_2096);
-		} else if (relationshipType == UMLElementTypes.DurationObservationEvent_4025) {
+		} else if(relationshipType == UMLElementTypes.DurationObservationEvent_4025) {
 			types.add(UMLElementTypes.DurationObservation_2095);
 		}
 		return types;
@@ -1373,7 +1346,7 @@ NamedElementEditPart
 	 */
 	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (relationshipType == UMLElementTypes.Realization_4005) {
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);
 			types.add(UMLElementTypes.Association_2015);
@@ -1405,7 +1378,7 @@ NamedElementEditPart
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Constraint_3029);
 			types.add(UMLElementTypes.Port_3032);
-		} else if (relationshipType == UMLElementTypes.Abstraction_4006) {
+		} else if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);
 			types.add(UMLElementTypes.Association_2015);
@@ -1437,7 +1410,7 @@ NamedElementEditPart
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Constraint_3029);
 			types.add(UMLElementTypes.Port_3032);
-		} else if (relationshipType == UMLElementTypes.Usage_4007) {
+		} else if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);
 			types.add(UMLElementTypes.Association_2015);
@@ -1469,7 +1442,7 @@ NamedElementEditPart
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Constraint_3029);
 			types.add(UMLElementTypes.Port_3032);
-		} else if (relationshipType == UMLElementTypes.Dependency_4008) {
+		} else if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);
 			types.add(UMLElementTypes.Association_2015);
@@ -1501,7 +1474,7 @@ NamedElementEditPart
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Constraint_3029);
 			types.add(UMLElementTypes.Port_3032);
-		} else if (relationshipType == UMLElementTypes.Dependency_4018) {
+		} else if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);
 			types.add(UMLElementTypes.Association_2015);
@@ -1533,7 +1506,7 @@ NamedElementEditPart
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Constraint_3029);
 			types.add(UMLElementTypes.Port_3032);
-		} else if (relationshipType == UMLElementTypes.ElementImport_4009) {
+		} else if(relationshipType == UMLElementTypes.ElementImport_4009) {
 			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);
 			types.add(UMLElementTypes.Association_2015);
@@ -1561,17 +1534,17 @@ NamedElementEditPart
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Constraint_3029);
-		} else if (relationshipType == UMLElementTypes.PackageImport_4010) {
+		} else if(relationshipType == UMLElementTypes.PackageImport_4010) {
 			types.add(UMLElementTypes.Model_2005);
 			types.add(UMLElementTypes.Package_2007);
 			types.add(UMLElementTypes.Model_3024);
 			types.add(UMLElementTypes.Package_3009);
-		} else if (relationshipType == UMLElementTypes.PackageMerge_4011) {
+		} else if(relationshipType == UMLElementTypes.PackageMerge_4011) {
 			types.add(UMLElementTypes.Model_2005);
 			types.add(UMLElementTypes.Package_2007);
 			types.add(UMLElementTypes.Model_3024);
 			types.add(UMLElementTypes.Package_3009);
-		} else if (relationshipType == UMLElementTypes.TemplateBinding_4015) {
+		} else if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
 			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);
 			types.add(UMLElementTypes.Association_2015);
@@ -1605,7 +1578,7 @@ NamedElementEditPart
 			types.add(UMLElementTypes.Comment_3028);
 			types.add(UMLElementTypes.Constraint_3029);
 			types.add(UMLElementTypes.Port_3032);
-		} else if (relationshipType == UMLElementTypes.Dependency_4022) {
+		} else if(relationshipType == UMLElementTypes.Dependency_4022) {
 			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);
 			types.add(UMLElementTypes.Association_2015);
@@ -1646,48 +1619,30 @@ NamedElementEditPart
 	 */
 	@Override
 	public Object getPreferredValue(EStructuralFeature feature) {
-		IPreferenceStore preferenceStore = (IPreferenceStore) getDiagramPreferencesHint()
-				.getPreferenceStore();
+		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
 
-		if (feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()
-				|| feature == NotationPackage.eINSTANCE
-						.getFontStyle_FontColor()
-				|| feature == NotationPackage.eINSTANCE
-						.getFillStyle_FillColor()) {
+		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
-			if (feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant(
-						"Package", PreferenceConstantHelper.COLOR_LINE);
-			} else if (feature == NotationPackage.eINSTANCE
-					.getFontStyle_FontColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant(
-						"Package", PreferenceConstantHelper.COLOR_FONT);
-			} else if (feature == NotationPackage.eINSTANCE
-					.getFillStyle_FillColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant(
-						"Package", PreferenceConstantHelper.COLOR_FILL);
+			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
+				prefColor = PreferenceConstantHelper.getElementConstant("Package", PreferenceConstantHelper.COLOR_LINE);
+			} else if(feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()) {
+				prefColor = PreferenceConstantHelper.getElementConstant("Package", PreferenceConstantHelper.COLOR_FONT);
+			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
+				prefColor = PreferenceConstantHelper.getElementConstant("Package", PreferenceConstantHelper.COLOR_FILL);
 			}
-			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor(
-					(IPreferenceStore) preferenceStore, prefColor));
-		} else if (feature == NotationPackage.eINSTANCE
-				.getFillStyle_Transparency()
-				|| feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
-			String prefGradient = PreferenceConstantHelper.getElementConstant(
-					"Package", PreferenceConstantHelper.COLOR_GRADIENT);
-			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(
-					preferenceStore.getString(prefGradient));
-			if (feature == NotationPackage.eINSTANCE
-					.getFillStyle_Transparency()) {
-				result = new Integer(
-						gradientPreferenceConverter.getTransparency());
-			} else if (feature == NotationPackage.eINSTANCE
-					.getFillStyle_Gradient()) {
+			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore)preferenceStore, prefColor));
+		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency() || feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
+			String prefGradient = PreferenceConstantHelper.getElementConstant("Package", PreferenceConstantHelper.COLOR_GRADIENT);
+			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore.getString(prefGradient));
+			if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()) {
+				result = new Integer(gradientPreferenceConverter.getTransparency());
+			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
 
-		if (result == null) {
+		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}
 		return result;
@@ -1697,15 +1652,14 @@ NamedElementEditPart
 	 * @generated
 	 */
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(UMLVisualIDRegistry
-				.getType(PackageNameEditPartCN.VISUAL_ID));
+		return getChildBySemanticHint(UMLVisualIDRegistry.getType(PackageNameEditPartCN.VISUAL_ID));
 	}
 
 	/**
 	 * @generated
 	 */
 	public PackageFigure getPrimaryShape() {
-		return (PackageFigure) primaryShape;
+		return (PackageFigure)primaryShape;
 	}
 
 	/**
@@ -1722,7 +1676,7 @@ NamedElementEditPart
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -1732,20 +1686,17 @@ NamedElementEditPart
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof PackageNameEditPartCN) {
+		if(childEditPart instanceof PackageNameEditPartCN) {
 			return true;
 		}
-		if (childEditPart instanceof PackagePackageableElementCompartmentEditPart) {
+		if(childEditPart instanceof PackagePackageableElementCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getPackageableElementFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.remove(((PackagePackageableElementCompartmentEditPart) childEditPart)
-					.getFigure());
+			pane.remove(((PackagePackageableElementCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
-		if (childEditPart instanceof RedefinableTemplateSignatureEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(
-					((RedefinableTemplateSignatureEditPart) childEditPart)
-							.getFigure());
+		if(childEditPart instanceof RedefinableTemplateSignatureEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((RedefinableTemplateSignatureEditPart)childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -1755,7 +1706,7 @@ NamedElementEditPart
 	 * @generated
 	 */
 	protected void setForegroundColor(Color color) {
-		if (primaryShape != null) {
+		if(primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -1764,8 +1715,8 @@ NamedElementEditPart
 	 * @generated
 	 */
 	protected void setLineType(int style) {
-		if (primaryShape instanceof Shape) {
-			((Shape) primaryShape).setLineStyle(style);
+		if(primaryShape instanceof Shape) {
+			((Shape)primaryShape).setLineStyle(style);
 		}
 	}
 
@@ -1773,8 +1724,8 @@ NamedElementEditPart
 	 * @generated
 	 */
 	protected void setLineWidth(int width) {
-		if (primaryShape instanceof Shape) {
-			((Shape) primaryShape).setLineWidth(width);
+		if(primaryShape instanceof Shape) {
+			((Shape)primaryShape).setLineWidth(width);
 		}
 	}
 
@@ -1787,7 +1738,7 @@ NamedElementEditPart
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
-		if (nodeShape.getLayoutManager() == null) {
+		if(nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
 			layout.setSpacing(5);
 			nodeShape.setLayoutManager(layout);

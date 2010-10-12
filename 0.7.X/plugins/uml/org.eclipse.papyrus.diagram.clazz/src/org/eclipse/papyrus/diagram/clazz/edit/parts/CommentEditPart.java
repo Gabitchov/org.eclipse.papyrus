@@ -90,16 +90,11 @@ AbstractCommentEditPart {
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new CommentItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CommentItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE,
-				new CustomGraphicalNodeEditPolicy());
-		installEditPolicy(
-				AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
-				new AppliedStereotypeNodeLabelDisplayEditPolicy());
-		installEditPolicy(ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY,
-				new ClazzDiagramChangeStereotypedShapeEditpolicy());
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
+		installEditPolicy(ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY, new ClazzDiagramChangeStereotypedShapeEditpolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -121,9 +116,8 @@ AbstractCommentEditPart {
 		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				EditPolicy result = child
-						.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if (result == null) {
+				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
+				if(result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -151,16 +145,15 @@ AbstractCommentEditPart {
 	 * @generated
 	 */
 	public HTMLCornerBentFigure getPrimaryShape() {
-		return (HTMLCornerBentFigure) primaryShape;
+		return (HTMLCornerBentFigure)primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof CommentBodyEditPart) {
-			((CommentBodyEditPart) childEditPart).setLabel(getPrimaryShape()
-					.getCornerBentFigure());
+		if(childEditPart instanceof CommentBodyEditPart) {
+			((CommentBodyEditPart)childEditPart).setLabel(getPrimaryShape().getCornerBentFigure());
 			return true;
 		}
 
@@ -171,7 +164,7 @@ AbstractCommentEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof CommentBodyEditPart) {
+		if(childEditPart instanceof CommentBodyEditPart) {
 			return true;
 		}
 		return false;
@@ -181,7 +174,7 @@ AbstractCommentEditPart {
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -191,7 +184,7 @@ AbstractCommentEditPart {
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -209,17 +202,10 @@ AbstractCommentEditPart {
 	 */
 	protected NodeFigure createNodePlate() {
 		String prefElementId = "Comment";
-		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance()
-				.getPreferenceStore();
-		String preferenceConstantWitdh = PreferenceInitializerForElementHelper
-				.getpreferenceKey(getNotationView(), prefElementId,
-						PreferenceConstantHelper.WIDTH);
-		String preferenceConstantHeight = PreferenceInitializerForElementHelper
-				.getpreferenceKey(getNotationView(), prefElementId,
-						PreferenceConstantHelper.HEIGHT);
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(
-				store.getInt(preferenceConstantWitdh),
-				store.getInt(preferenceConstantHeight));
+		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
+		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
+		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
 
 		return result;
 	}
@@ -250,7 +236,7 @@ AbstractCommentEditPart {
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
-		if (nodeShape.getLayoutManager() == null) {
+		if(nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
 			layout.setSpacing(5);
 			nodeShape.setLayoutManager(layout);
@@ -262,7 +248,7 @@ AbstractCommentEditPart {
 	 * @generated
 	 */
 	public IFigure getContentPane() {
-		if (contentPane != null) {
+		if(contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -272,7 +258,7 @@ AbstractCommentEditPart {
 	 * @generated
 	 */
 	protected void setForegroundColor(Color color) {
-		if (primaryShape != null) {
+		if(primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -281,8 +267,8 @@ AbstractCommentEditPart {
 	 * @generated
 	 */
 	protected void setLineWidth(int width) {
-		if (primaryShape instanceof Shape) {
-			((Shape) primaryShape).setLineWidth(width);
+		if(primaryShape instanceof Shape) {
+			((Shape)primaryShape).setLineWidth(width);
 		}
 	}
 
@@ -290,8 +276,8 @@ AbstractCommentEditPart {
 	 * @generated
 	 */
 	protected void setLineType(int style) {
-		if (primaryShape instanceof Shape) {
-			((Shape) primaryShape).setLineStyle(style);
+		if(primaryShape instanceof Shape) {
+			((Shape)primaryShape).setLineStyle(style);
 		}
 	}
 
@@ -299,8 +285,7 @@ AbstractCommentEditPart {
 	 * @generated
 	 */
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(UMLVisualIDRegistry
-				.getType(CommentBodyEditPart.VISUAL_ID));
+		return getChildBySemanticHint(UMLVisualIDRegistry.getType(CommentBodyEditPart.VISUAL_ID));
 	}
 
 	/**
@@ -315,106 +300,105 @@ AbstractCommentEditPart {
 	/**
 	 * @generated
 	 */
-	public List<IElementType> getMARelTypesOnSourceAndTarget(
-			IGraphicalEditPart targetEditPart) {
+	public List<IElementType> getMARelTypesOnSourceAndTarget(IGraphicalEditPart targetEditPart) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (targetEditPart instanceof Dependency2EditPart) {
+		if(targetEditPart instanceof Dependency2EditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof AssociationClassEditPart) {
+		if(targetEditPart instanceof AssociationClassEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof AssociationNodeEditPart) {
+		if(targetEditPart instanceof AssociationNodeEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof InstanceSpecificationEditPart) {
+		if(targetEditPart instanceof InstanceSpecificationEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof ComponentEditPart) {
+		if(targetEditPart instanceof ComponentEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof SignalEditPart) {
+		if(targetEditPart instanceof SignalEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof InterfaceEditPart) {
+		if(targetEditPart instanceof InterfaceEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof ModelEditPartTN) {
+		if(targetEditPart instanceof ModelEditPartTN) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof EnumerationEditPart) {
+		if(targetEditPart instanceof EnumerationEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof PackageEditPart) {
+		if(targetEditPart instanceof PackageEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof ClassEditPart) {
+		if(targetEditPart instanceof ClassEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof PrimitiveTypeEditPart) {
+		if(targetEditPart instanceof PrimitiveTypeEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof DataTypeEditPart) {
+		if(targetEditPart instanceof DataTypeEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof ConstraintEditPart) {
+		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.CommentEditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.CommentEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof DurationObservationEditPart) {
+		if(targetEditPart instanceof DurationObservationEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof TimeObservationEditPart) {
+		if(targetEditPart instanceof TimeObservationEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof DefaultNamedElementEditPart) {
+		if(targetEditPart instanceof DefaultNamedElementEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof ShapeNamedElementEditPart) {
+		if(targetEditPart instanceof ShapeNamedElementEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
+		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof InstanceSpecificationEditPartCN) {
+		if(targetEditPart instanceof InstanceSpecificationEditPartCN) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof ComponentEditPartCN) {
+		if(targetEditPart instanceof ComponentEditPartCN) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof SignalEditPartCN) {
+		if(targetEditPart instanceof SignalEditPartCN) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof InterfaceEditPartCN) {
+		if(targetEditPart instanceof InterfaceEditPartCN) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof ModelEditPartCN) {
+		if(targetEditPart instanceof ModelEditPartCN) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof EnumerationEditPartCN) {
+		if(targetEditPart instanceof EnumerationEditPartCN) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof PackageEditPartCN) {
+		if(targetEditPart instanceof PackageEditPartCN) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof ClassEditPartCN) {
+		if(targetEditPart instanceof ClassEditPartCN) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof PrimitiveTypeEditPartCN) {
+		if(targetEditPart instanceof PrimitiveTypeEditPartCN) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof DataTypeEditPartCN) {
+		if(targetEditPart instanceof DataTypeEditPartCN) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof Comment2EditPart) {
+		if(targetEditPart instanceof Comment2EditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof Constraint2EditPart) {
+		if(targetEditPart instanceof Constraint2EditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
-		if (targetEditPart instanceof ContainmentCircleEditPart) {
+		if(targetEditPart instanceof ContainmentCircleEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
 		return types;
@@ -425,7 +409,7 @@ AbstractCommentEditPart {
 	 */
 	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
+		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
 			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);
 			types.add(UMLElementTypes.Association_2015);
@@ -479,13 +463,13 @@ AbstractCommentEditPart {
 	 */
 	public List<IElementType> getMATypesForSource(IElementType relationshipType) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
+		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
 			types.add(UMLElementTypes.Comment_2012);
 			types.add(UMLElementTypes.Comment_3028);
-		} else if (relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
+		} else if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
 			types.add(UMLElementTypes.Constraint_2011);
 			types.add(UMLElementTypes.Constraint_3029);
-		} else if (relationshipType == UMLElementTypes.TemplateBinding_4015) {
+		} else if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
 			types.add(UMLElementTypes.AssociationClass_2013);
 			types.add(UMLElementTypes.Association_2015);
 			types.add(UMLElementTypes.Component_2002);
@@ -515,48 +499,30 @@ AbstractCommentEditPart {
 	 */
 	@Override
 	public Object getPreferredValue(EStructuralFeature feature) {
-		IPreferenceStore preferenceStore = (IPreferenceStore) getDiagramPreferencesHint()
-				.getPreferenceStore();
+		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
 
-		if (feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()
-				|| feature == NotationPackage.eINSTANCE
-						.getFontStyle_FontColor()
-				|| feature == NotationPackage.eINSTANCE
-						.getFillStyle_FillColor()) {
+		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
-			if (feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant(
-						"Comment", PreferenceConstantHelper.COLOR_LINE);
-			} else if (feature == NotationPackage.eINSTANCE
-					.getFontStyle_FontColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant(
-						"Comment", PreferenceConstantHelper.COLOR_FONT);
-			} else if (feature == NotationPackage.eINSTANCE
-					.getFillStyle_FillColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant(
-						"Comment", PreferenceConstantHelper.COLOR_FILL);
+			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
+				prefColor = PreferenceConstantHelper.getElementConstant("Comment", PreferenceConstantHelper.COLOR_LINE);
+			} else if(feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()) {
+				prefColor = PreferenceConstantHelper.getElementConstant("Comment", PreferenceConstantHelper.COLOR_FONT);
+			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
+				prefColor = PreferenceConstantHelper.getElementConstant("Comment", PreferenceConstantHelper.COLOR_FILL);
 			}
-			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor(
-					(IPreferenceStore) preferenceStore, prefColor));
-		} else if (feature == NotationPackage.eINSTANCE
-				.getFillStyle_Transparency()
-				|| feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
-			String prefGradient = PreferenceConstantHelper.getElementConstant(
-					"Comment", PreferenceConstantHelper.COLOR_GRADIENT);
-			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(
-					preferenceStore.getString(prefGradient));
-			if (feature == NotationPackage.eINSTANCE
-					.getFillStyle_Transparency()) {
-				result = new Integer(
-						gradientPreferenceConverter.getTransparency());
-			} else if (feature == NotationPackage.eINSTANCE
-					.getFillStyle_Gradient()) {
+			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore)preferenceStore, prefColor));
+		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency() || feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
+			String prefGradient = PreferenceConstantHelper.getElementConstant("Comment", PreferenceConstantHelper.COLOR_GRADIENT);
+			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore.getString(prefGradient));
+			if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()) {
+				result = new Integer(gradientPreferenceConverter.getTransparency());
+			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
 
-		if (result == null) {
+		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}
 		return result;

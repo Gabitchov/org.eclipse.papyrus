@@ -28,8 +28,7 @@ import org.eclipse.uml2.uml.NamedElement;
 /**
  * @generated
  */
-public class ConnectorDurationObservationReorientCommand extends
-		EditElementCommand {
+public class ConnectorDurationObservationReorientCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -54,8 +53,7 @@ public class ConnectorDurationObservationReorientCommand extends
 	/**
 	 * @generated
 	 */
-	public ConnectorDurationObservationReorientCommand(
-			ReorientReferenceRelationshipRequest request) {
+	public ConnectorDurationObservationReorientCommand(ReorientReferenceRelationshipRequest request) {
 		super(request.getLabel(), null, request);
 		reorientDirection = request.getDirection();
 		referenceOwner = request.getReferenceOwner();
@@ -67,13 +65,13 @@ public class ConnectorDurationObservationReorientCommand extends
 	 * @generated
 	 */
 	public boolean canExecute() {
-		if (false == referenceOwner instanceof DurationObservation) {
+		if(false == referenceOwner instanceof DurationObservation) {
 			return false;
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return canReorientSource();
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return canReorientTarget();
 		}
 		return false;
@@ -83,39 +81,33 @@ public class ConnectorDurationObservationReorientCommand extends
 	 * @generated
 	 */
 	protected boolean canReorientSource() {
-		if (!(oldEnd instanceof NamedElement && newEnd instanceof DurationObservation)) {
+		if(!(oldEnd instanceof NamedElement && newEnd instanceof DurationObservation)) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistDurationObservationEvent_4025(getNewSource(),
-						getOldTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistDurationObservationEvent_4025(getNewSource(), getOldTarget());
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean canReorientTarget() {
-		if (!(oldEnd instanceof NamedElement && newEnd instanceof NamedElement)) {
+		if(!(oldEnd instanceof NamedElement && newEnd instanceof NamedElement)) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.getLinkConstraints()
-				.canExistDurationObservationEvent_4025(getOldSource(),
-						getNewTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistDurationObservationEvent_4025(getOldSource(), getNewTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
-		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in reorient link command"); //$NON-NLS-1$
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		if(!canExecute()) {
+			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();
 		}
-		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return reorientTarget();
 		}
 		throw new IllegalStateException();
@@ -143,27 +135,27 @@ public class ConnectorDurationObservationReorientCommand extends
 	 * @generated
 	 */
 	protected DurationObservation getOldSource() {
-		return (DurationObservation) referenceOwner;
+		return (DurationObservation)referenceOwner;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected DurationObservation getNewSource() {
-		return (DurationObservation) newEnd;
+		return (DurationObservation)newEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected NamedElement getOldTarget() {
-		return (NamedElement) oldEnd;
+		return (NamedElement)oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected NamedElement getNewTarget() {
-		return (NamedElement) newEnd;
+		return (NamedElement)newEnd;
 	}
 }

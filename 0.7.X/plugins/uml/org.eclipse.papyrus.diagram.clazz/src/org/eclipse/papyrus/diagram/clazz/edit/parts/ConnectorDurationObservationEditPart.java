@@ -25,8 +25,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.policies.ConnectorDurationObservat
 /**
  * @generated
  */
-public class ConnectorDurationObservationEditPart extends
-		ConnectionNodeEditPart
+public class ConnectorDurationObservationEditPart extends ConnectionNodeEditPart
 
 implements ITreeBranchEditPart {
 
@@ -47,8 +46,7 @@ implements ITreeBranchEditPart {
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new ConnectorDurationObservationItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ConnectorDurationObservationItemSemanticEditPolicy());
 	}
 
 	/**
@@ -68,7 +66,7 @@ implements ITreeBranchEditPart {
 	 * @generated
 	 */
 	public LinkDescriptor getPrimaryShape() {
-		return (LinkDescriptor) getFigure();
+		return (LinkDescriptor)getFigure();
 	}
 
 	/**

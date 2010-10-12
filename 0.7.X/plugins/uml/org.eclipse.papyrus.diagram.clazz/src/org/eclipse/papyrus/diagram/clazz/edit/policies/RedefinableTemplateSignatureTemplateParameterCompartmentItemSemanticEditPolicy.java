@@ -22,8 +22,7 @@ import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 /**
  * @generated
  */
-public class RedefinableTemplateSignatureTemplateParameterCompartmentItemSemanticEditPolicy
-		extends UMLBaseItemSemanticEditPolicy {
+public class RedefinableTemplateSignatureTemplateParameterCompartmentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
@@ -36,12 +35,10 @@ public class RedefinableTemplateSignatureTemplateParameterCompartmentItemSemanti
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (UMLElementTypes.ClassifierTemplateParameter_3031 == req
-				.getElementType()) {
-			return getGEFWrapper(new ClassifierTemplateParameterCreateCommand(
-					req));
+		if(UMLElementTypes.ClassifierTemplateParameter_3031 == req.getElementType()) {
+			return getGEFWrapper(new ClassifierTemplateParameterCreateCommand(req));
 		}
-		if (UMLElementTypes.TemplateParameter_3016 == req.getElementType()) {
+		if(UMLElementTypes.TemplateParameter_3016 == req.getElementType()) {
 			return getGEFWrapper(new TemplateParameterCreateCommand(req));
 		}
 		return super.getCreateCommand(req);

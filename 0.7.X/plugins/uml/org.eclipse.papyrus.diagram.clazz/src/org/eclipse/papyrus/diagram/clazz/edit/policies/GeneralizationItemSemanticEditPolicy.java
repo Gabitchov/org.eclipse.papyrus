@@ -42,8 +42,7 @@ import org.eclipse.papyrus.diagram.common.command.wrappers.EMFtoGMFCommandWrappe
 /**
  * @generated
  */
-public class GeneralizationItemSemanticEditPolicy extends
-		UMLBaseItemSemanticEditPolicy {
+public class GeneralizationItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
@@ -56,14 +55,12 @@ public class GeneralizationItemSemanticEditPolicy extends
 	 * @generated
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
-		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(
-				getEditingDomain(), null);
+		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(true);
 		List<EObject> todestroy = new ArrayList<EObject>();
 		todestroy.add(req.getElementToDestroy());
 		//cmd.add(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(req));
-		cmd.add(new EMFtoGMFCommandWrapper(new DeleteCommand(
-				getEditingDomain(), todestroy)));
+		cmd.add(new EMFtoGMFCommandWrapper(new DeleteCommand(getEditingDomain(), todestroy)));
 		return getGEFWrapper(cmd.reduce());
 		//return getGEFWrapper(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(req));
 	}
@@ -72,31 +69,25 @@ public class GeneralizationItemSemanticEditPolicy extends
 	 * @generated
 	 */
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
-		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req)
-				: getCompleteCreateRelationshipCommand(req);
-		return command != null ? command : super
-				.getCreateRelationshipCommand(req);
+		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req) : getCompleteCreateRelationshipCommand(req);
+		return command != null ? command : super.getCreateRelationshipCommand(req);
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Command getStartCreateRelationshipCommand(
-			CreateRelationshipRequest req) {
-		if (UMLElementTypes.CommentAnnotatedElement_4013 == req
-				.getElementType()) {
+	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
+		if(UMLElementTypes.CommentAnnotatedElement_4013 == req.getElementType()) {
 			return null;
 		}
-		if (UMLElementTypes.ConstraintConstrainedElement_4014 == req
-				.getElementType()) {
+		if(UMLElementTypes.ConstraintConstrainedElement_4014 == req.getElementType()) {
 			return null;
 		}
-		if (UMLElementTypes.TemplateBinding_4015 == req.getElementType()) {
+		if(UMLElementTypes.TemplateBinding_4015 == req.getElementType()) {
 			return null;
 		}
-		if (UMLElementTypes.GeneralizationSet_4020 == req.getElementType()) {
-			return getGEFWrapper(new GeneralizationSetCreateCommand(req,
-					req.getSource(), req.getTarget()));
+		if(UMLElementTypes.GeneralizationSet_4020 == req.getElementType()) {
+			return getGEFWrapper(new GeneralizationSetCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -104,25 +95,18 @@ public class GeneralizationItemSemanticEditPolicy extends
 	/**
 	 * @generated
 	 */
-	protected Command getCompleteCreateRelationshipCommand(
-			CreateRelationshipRequest req) {
-		if (UMLElementTypes.CommentAnnotatedElement_4013 == req
-				.getElementType()) {
-			return getGEFWrapper(new CommentAnnotatedElementCreateCommand(req,
-					req.getSource(), req.getTarget()));
+	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
+		if(UMLElementTypes.CommentAnnotatedElement_4013 == req.getElementType()) {
+			return getGEFWrapper(new CommentAnnotatedElementCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.ConstraintConstrainedElement_4014 == req
-				.getElementType()) {
-			return getGEFWrapper(new ConstraintConstrainedElementCreateCommand(
-					req, req.getSource(), req.getTarget()));
+		if(UMLElementTypes.ConstraintConstrainedElement_4014 == req.getElementType()) {
+			return getGEFWrapper(new ConstraintConstrainedElementCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.TemplateBinding_4015 == req.getElementType()) {
-			return getGEFWrapper(new TemplateBindingCreateCommand(req,
-					req.getSource(), req.getTarget()));
+		if(UMLElementTypes.TemplateBinding_4015 == req.getElementType()) {
+			return getGEFWrapper(new TemplateBindingCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.GeneralizationSet_4020 == req.getElementType()) {
-			return getGEFWrapper(new GeneralizationSetCreateCommand(req,
-					req.getSource(), req.getTarget()));
+		if(UMLElementTypes.GeneralizationSet_4020 == req.getElementType()) {
+			return getGEFWrapper(new GeneralizationSetCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -133,9 +117,8 @@ public class GeneralizationItemSemanticEditPolicy extends
 	 * 
 	 * @generated
 	 */
-	protected Command getReorientRelationshipCommand(
-			ReorientRelationshipRequest req) {
-		switch (getVisualID(req)) {
+	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
+		switch(getVisualID(req)) {
 		case TemplateBindingEditPart.VISUAL_ID:
 			return getGEFWrapper(new TemplateBindingReorientCommand(req));
 		case GeneralizationSetEditPart.VISUAL_ID:
@@ -150,14 +133,12 @@ public class GeneralizationItemSemanticEditPolicy extends
 	 * 
 	 * @generated
 	 */
-	protected Command getReorientReferenceRelationshipCommand(
-			ReorientReferenceRelationshipRequest req) {
-		switch (getVisualID(req)) {
+	protected Command getReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest req) {
+		switch(getVisualID(req)) {
 		case CommentAnnotatedElementEditPart.VISUAL_ID:
 			return getGEFWrapper(new CommentAnnotatedElementReorientCommand(req));
 		case ConstraintConstrainedElementEditPart.VISUAL_ID:
-			return getGEFWrapper(new ConstraintConstrainedElementReorientCommand(
-					req));
+			return getGEFWrapper(new ConstraintConstrainedElementReorientCommand(req));
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
