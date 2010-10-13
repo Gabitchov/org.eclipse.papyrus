@@ -521,4 +521,20 @@
 	</command>
 			
 </extension>
+<extension
+      point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
+   <decoratorProvider
+         class="org.eclipse.papyrus.diagram.common.service.InheritedDecoratorProvider">
+      <Priority
+            name="Lowest">
+      </Priority>
+      <object
+            class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)"
+            id="NODE">
+      </object>
+      <context
+            decoratorTargets="NODE">
+      </context>
+   </decoratorProvider>
+</extension>
 </plugin>
