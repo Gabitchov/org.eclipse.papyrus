@@ -212,7 +212,6 @@ public class InheritedDecorator implements IDecorator {
 
 			IBorderItemLocator loc = ((BorderNamedElementEditPart)gep).getBorderItemLocator();
 			int location = loc.getCurrentSideOfParent();
-			System.out.println(location);
 			if(PositionConstants.NONE == location) { //sometimes getBorderItemLocator doesn't work correctly!
 				location = PositionConstants.NORTH_WEST;
 			}
