@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2010 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -13,7 +13,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.custom.policies;
 
+import java.util.Iterator;
+
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
 import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
@@ -23,52 +26,17 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.core.listenerservice.IPapyrusListener;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Operation;
+import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.TemplateParameter;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * It is used to refresh the label of all parameter element
+ * It is used to refresh the label of all operation parameter element
  */
-public class TemplateParamaterDisplayEditPolicy extends GraphicalEditPolicyEx implements NotificationListener, IPapyrusListener{
+public class OperationTemplateParamaterDisplayEditPolicy extends TemplateParamaterDisplayEditPolicy{
 
-	
-	public static String TEMPLATE_PARAMETER_DISPLAY="TEMPLATE_PARAMETER_DISPLAY";
-	/**
-	 * Stores the semantic element related to the edit policy. If resolveSemanticElement is used, there are problems when the edit part is getting
-	 * destroyed, i.e. the link to the semantic element is removed, but the listeners should still be removed
-	 */
-	protected Element hostSemanticElement;
-	
-	/**
-	 * Returns the view controlled by the host edit part
-	 * 
-	 * @return the view controlled by the host edit part
-	 */
-	protected View getView() {
-		return (View)getHost().getModel();
-	}
 
-	/**
-	 * Sets the semantic element which is linked to the edit policy
-	 * 
-	 * @return the element linked to the edit policy
-	 */
-	protected Element initSemanticElement() {
-		return (Element)getView().getElement();
-	}
-	
-	/**
-	 * Gets the diagram event broker from the editing domain.
-	 * 
-	 * @return the diagram event broker
-	 */
-	protected DiagramEventBroker getDiagramEventBroker() {
-		TransactionalEditingDomain theEditingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
-		if(theEditingDomain != null) {
-			return DiagramEventBroker.getInstance(theEditingDomain);
-		}
-		return null;
-	}
 	/**
 	 * 
 	 * {@inheritDoc}
@@ -96,7 +64,7 @@ public class TemplateParamaterDisplayEditPolicy extends GraphicalEditPolicyEx im
 			Activator.log.error("No semantic element was found during activation of the mask managed label edit policy", null);
 		}
 	}
-	
+
 	/**
 	 * 
 	 * {@inheritDoc}
@@ -115,17 +83,31 @@ public class TemplateParamaterDisplayEditPolicy extends GraphicalEditPolicyEx im
 		}
 		if(((TemplateParameter)hostSemanticElement).getParameteredElement()!=null){
 			getDiagramEventBroker().removeNotificationListener(((TemplateParameter)hostSemanticElement).getParameteredElement(), this);
+			if( ((TemplateParameter)hostSemanticElement).getParameteredElement() instanceof Operation){
+				Operation op=(Operation)((TemplateParameter)hostSemanticElement).getParameteredElement();
+				Iterator<Parameter> iter=op.getOwnedParameters().iterator();
+				while(iter.hasNext()){
+					Parameter param=iter.next();
+					getDiagramEventBroker().removeNotificationListener(param, this);
+				}
+			}
 		}
 		if(((TemplateParameter)hostSemanticElement).getDefault()!=null){
 			getDiagramEventBroker().removeNotificationListener(((TemplateParameter)hostSemanticElement).getDefault(), this);
+			if( ((TemplateParameter)hostSemanticElement).getDefault() instanceof Operation){
+				Operation op=(Operation)((TemplateParameter)hostSemanticElement).getDefault();
+				Iterator<Parameter> iter=op.getOwnedParameters().iterator();
+				while(iter.hasNext()){
+					Parameter param=iter.next();
+					getDiagramEventBroker().removeNotificationListener(param, this);
+				}
+			}
 		}
+
+
 
 		// removes the reference to the semantic element
 		hostSemanticElement = null;
-	}
-	protected void refreshDisplay() {
-		getHost().refresh();
-		
 	}
 
 	public void notifyChanged(Notification notification) {
@@ -133,13 +115,44 @@ public class TemplateParamaterDisplayEditPolicy extends GraphicalEditPolicyEx im
 			if(notification.getFeature().equals(UMLPackage.eINSTANCE.getTemplateParameter_ParameteredElement())){
 				//add a listener
 				getDiagramEventBroker().addNotificationListener(((TemplateParameter)hostSemanticElement).getParameteredElement(), this);
+				if( ((TemplateParameter)hostSemanticElement).getParameteredElement() instanceof Operation){
+					Operation op=(Operation)((TemplateParameter)hostSemanticElement).getParameteredElement();
+					Iterator<Parameter> iter=op.getOwnedParameters().iterator();
+					while(iter.hasNext()){
+						Parameter param=iter.next();
+						getDiagramEventBroker().addNotificationListener(param, this);
+					}
+				}
 			}
 			if(notification.getFeature().equals(UMLPackage.eINSTANCE.getTemplateParameter_Default())){
 				getDiagramEventBroker().addNotificationListener(((TemplateParameter)hostSemanticElement).getDefault(), this);
+				if( ((TemplateParameter)hostSemanticElement).getDefault() instanceof Operation){
+					Operation op=(Operation)((TemplateParameter)hostSemanticElement).getDefault();
+					Iterator<Parameter> iter=op.getOwnedParameters().iterator();
+					while(iter.hasNext()){
+						Parameter param=iter.next();
+						getDiagramEventBroker().addNotificationListener(param, this);
+					}
+				}
 			}
+			if(notification.getFeature().equals(UMLPackage.eINSTANCE.getBehavioralFeature_OwnedParameter())){
+				if(notification.getNewValue()!=null){
+					getDiagramEventBroker().addNotificationListener((EObject)notification.getNewValue(), this);}
+				else{
+					getDiagramEventBroker().removeNotificationListener((EObject)notification.getOldValue(), this);}
+
+			}
+
+
 		}
+		if(notification.getEventType()==Notification.REMOVE){
+			if(notification.getFeature().equals(UMLPackage.eINSTANCE.getBehavioralFeature_OwnedParameter())){
+				getDiagramEventBroker().removeNotificationListener((EObject)notification.getOldValue(), this);}
+
+		}
+
 		refreshDisplay();
 	}
-		
-	
+
+
 }

@@ -295,7 +295,7 @@
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.clazz.custom.policies.TemplateParamaterDisplayEditPolicy.TEMPLATE_PARAMETER_DISPLAY"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.TemplateParamaterDisplayEditPolicy"/>
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.OperationTemplateParamaterDisplayEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/OperationTemplateParameter"/>
