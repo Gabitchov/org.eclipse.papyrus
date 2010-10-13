@@ -24,8 +24,6 @@ import org.eclipse.papyrus.resource.ModelSet;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
 
@@ -43,14 +41,14 @@ import org.eclipse.ui.PlatformUI;
  */
 public class ServiceUtilsForActionHandlers {
 
-	private final static ServiceUtils instance = new ServiceUtils();
+	private final static ServiceUtilsForActionHandlers instance = new ServiceUtilsForActionHandlers();
 	
 	/**
 	 * Get the singleton instance of the class.
 	 * 
 	 * @return
 	 */
-	public static final ServiceUtils getInstance() {
+	public static final ServiceUtilsForActionHandlers getInstance() {
 		return instance;
 	}
 	
