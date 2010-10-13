@@ -118,14 +118,16 @@ public abstract class AbstractShapeEditPart extends AbstractBorderedShapeEditPar
 			String firstStereotypeName = tokenizer.nextToken();
 			Stereotype stereotype = getUMLElement().getAppliedStereotype(firstStereotypeName);
 			org.eclipse.uml2.uml.Image icon = ElementUtil.getStereotypeImage(getUMLElement(), stereotype, SHAPE_CONSTANT);
-			if(icon.getLocation() != "" && icon.getLocation() != null) {
-				try {
-					getPrimaryShape().setIcon(icon.getLocation());
-				} catch (MalformedURLException e) {
-					Activator.log.error(icon.getLocation() + " " + e.getLocalizedMessage(), e);
+			if(icon!=null){
+				if(icon.getLocation() != "" && icon.getLocation() != null) {
+					try {
+						getPrimaryShape().setIcon(icon.getLocation());
+					} catch (MalformedURLException e) {
+						Activator.log.error(icon.getLocation() + " " + e.getLocalizedMessage(), e);
+					}
+				} else {
+					getPrimaryShape().setIcon(Activator.getShape(getUMLElement(), stereotype, false));
 				}
-			} else {
-				getPrimaryShape().setIcon(Activator.getShape(getUMLElement(), stereotype, false));
 			}
 		}
 	}
