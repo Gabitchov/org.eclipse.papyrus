@@ -486,7 +486,7 @@
 		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.Block"
 		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
 		name="Block">
-		<specializes id="org.eclipse.papyrus.uml.Class"/>
+		<specializes id="org.eclipse.papyrus.diagram.clazz.Class_2008"/>
 		<param name="semanticHint" value="Block"/>
 		<matcher class = "org.eclipse.papyrus.sysml.diagram.blockdefinition.matcher.BlockMatcher" />
 	</specializationType>
