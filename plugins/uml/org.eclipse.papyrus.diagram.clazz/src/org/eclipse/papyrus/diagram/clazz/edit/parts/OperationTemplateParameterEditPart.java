@@ -43,6 +43,7 @@ import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.diagram.clazz.custom.policies.OperationTemplateParamaterDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.TemplateParamaterDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.OperationTemplateParameterItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.UMLTextNonResizableEditPolicy;
@@ -144,7 +145,7 @@ implements ITextAwareEditPart, IPrimaryEditPart {
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new UMLTextNonResizableEditPolicy());
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new ListItemComponentEditPolicy());
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
-		installEditPolicy(TemplateParamaterDisplayEditPolicy.TEMPLATE_PARAMETER_DISPLAY, new TemplateParamaterDisplayEditPolicy());
+		installEditPolicy(TemplateParamaterDisplayEditPolicy.TEMPLATE_PARAMETER_DISPLAY, new OperationTemplateParamaterDisplayEditPolicy());
 	}
 
 	/**
