@@ -160,7 +160,7 @@ public class XMLDefinitionPaletteFactory extends AbstractXMLDefinitionPaletteFac
 			properties.put(ASPECT_ACTION_KEY, node.getChildNodes());
 		}
 
-		final PaletteToolEntry entry = (PaletteToolEntry)predefinedEntries.get(refToolID);
+		final CombinedTemplateCreationEntry entry = (CombinedTemplateCreationEntry)predefinedEntries.get(refToolID);
 		if(entry == null) {
 			Activator.log.error("could not find entry " + refToolID, null);
 			return;
