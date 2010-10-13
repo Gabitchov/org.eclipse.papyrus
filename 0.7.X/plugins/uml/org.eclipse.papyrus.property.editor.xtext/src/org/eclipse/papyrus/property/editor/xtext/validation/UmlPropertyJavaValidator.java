@@ -14,7 +14,9 @@
 package org.eclipse.papyrus.property.editor.xtext.validation;
 
 
+import org.eclipse.papyrus.property.editor.xtext.umlProperty.MultiplicityRule;
 import org.eclipse.papyrus.property.editor.xtext.umlProperty.PropertyRule;
+import org.eclipse.papyrus.property.editor.xtext.umlProperty.UmlPropertyPackage;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Package;
@@ -45,13 +47,32 @@ public class UmlPropertyJavaValidator extends AbstractUmlPropertyJavaValidator {
 		return model ;
 	}
 	
+	public static Element getContextElement() {
+		return contextElement ;
+	}
+	
 	/**
-	 * Checks
-	 * @param rule
+	 * Custom validation for multiplicities. Raises an error in the case where the lower bound is upper than the upper bound.
+	 * 
 	 */
 	@Check
-	public void checkPropertyRule(PropertyRule rule) {
-		//TODO To be implented
+	public void checkMultiplicityRule (MultiplicityRule rule) {
+		int lowerValue = 0 ;
+		int upperValue = 0 ;
+		String errorMessage = "The upper bound of a multiplicity cannot be lower than the lower bound." ;
+		try {
+			if (rule.getBounds().size() == 2) {
+				lowerValue = rule.getBounds().get(0).getValue().equals("*") ? -1 : Integer.valueOf(rule.getBounds().get(0).getValue()) ;
+				upperValue = rule.getBounds().get(1).getValue().equals("*") ? -1 : Integer.valueOf(rule.getBounds().get(1).getValue()) ;
+				if ((lowerValue == -1 && upperValue != -1) ||
+					(lowerValue > upperValue && upperValue != -1))
+					error(errorMessage, rule, UmlPropertyPackage.BOUND_SPECIFICATION__VALUE) ;
+			}
+		}
+		catch (Exception e) {
+			// An exception may be raised only in the case where the syntax for multiplicities is not respected.
+			// No error needs to be generated (the syntax error is automatically handled by XText)
+		}
 	}
 	
 }
