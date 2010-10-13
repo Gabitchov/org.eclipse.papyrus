@@ -341,7 +341,7 @@ public class Activator extends AbstractUIPlugin {
 		}
 	}
 
-
+/** get the imageassociated to a image uml element**/
 	public static Image getShape(Element elt, Stereotype stereotype, boolean withVisibilityDecorator) {
 
 		VisibilityKind vis = null;
