@@ -218,28 +218,6 @@ public class StateMachineItemSemanticEditPolicy extends
 	/**
 	 * @generated
 	 */
-	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
-		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req)
-				: getCompleteCreateRelationshipCommand(req);
-		return command != null ? command : super
-				.getCreateRelationshipCommand(req);
-	}
-
-	/**
-	 * @generated
-	 */
-	protected Command getStartCreateRelationshipCommand(
-			CreateRelationshipRequest req) {
-		if (UMLElementTypes.Generalization_19000 == req.getElementType()) {
-			return getGEFWrapper(new GeneralizationCreateCommand(req,
-					req.getSource(), req.getTarget()));
-		}
-		return null;
-	}
-
-	/**
-	 * @generated
-	 */
 	protected Command getCompleteCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
 		if (UMLElementTypes.Generalization_19000 == req.getElementType()) {
@@ -247,21 +225,6 @@ public class StateMachineItemSemanticEditPolicy extends
 					req.getSource(), req.getTarget()));
 		}
 		return null;
-	}
-
-	/**
-	 * Returns command to reorient EClass based link. New link target or source
-	 * should be the domain model element associated with this node.
-	 * 
-	 * @generated
-	 */
-	protected Command getReorientRelationshipCommand(
-			ReorientRelationshipRequest req) {
-		switch (getVisualID(req)) {
-		case GeneralizationEditPart.VISUAL_ID:
-			return getGEFWrapper(new GeneralizationReorientCommand(req));
-		}
-		return super.getReorientRelationshipCommand(req);
 	}
 
 	/**
@@ -275,6 +238,16 @@ public class StateMachineItemSemanticEditPolicy extends
 			return getGEFWrapper(new PseudostateExitPointCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
+		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req)
+				: getCompleteCreateRelationshipCommand(req);
+		return command != null ? command : super
+				.getCreateRelationshipCommand(req);
 	}
 
 	/**
@@ -302,6 +275,33 @@ public class StateMachineItemSemanticEditPolicy extends
 			cmd.add(new DeleteCommand(getEditingDomain(), view));
 		}
 		return getGEFWrapper(cmd.reduce());
+	}
+
+	/**
+	 * Returns command to reorient EClass based link. New link target or source
+	 * should be the domain model element associated with this node.
+	 * 
+	 * @generated
+	 */
+	protected Command getReorientRelationshipCommand(
+			ReorientRelationshipRequest req) {
+		switch (getVisualID(req)) {
+		case GeneralizationEditPart.VISUAL_ID:
+			return getGEFWrapper(new GeneralizationReorientCommand(req));
+		}
+		return super.getReorientRelationshipCommand(req);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected Command getStartCreateRelationshipCommand(
+			CreateRelationshipRequest req) {
+		if (UMLElementTypes.Generalization_19000 == req.getElementType()) {
+			return getGEFWrapper(new GeneralizationCreateCommand(req,
+					req.getSource(), req.getTarget()));
+		}
+		return null;
 	}
 
 }

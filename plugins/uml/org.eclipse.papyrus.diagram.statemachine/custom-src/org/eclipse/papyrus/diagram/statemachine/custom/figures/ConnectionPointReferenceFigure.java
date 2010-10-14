@@ -18,8 +18,6 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.papyrus.diagram.common.figure.node.AffixedNamedElementFigure;
-import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.RGB;
 
 /**
  * ConnectionPointReferenceFigure.
@@ -31,10 +29,6 @@ public class ConnectionPointReferenceFigure extends AffixedNamedElementFigure {
 	 * kind
 	 */
 	protected int kind = 0;
-
-	public void setKind(int kind) {
-		this.kind = kind;
-	}
 
 	/**
 	 * Default Constructor.
@@ -48,7 +42,6 @@ public class ConnectionPointReferenceFigure extends AffixedNamedElementFigure {
 		this.setSize(dim1);
 
 	}
-
 
 	@Override
 	public void paint(Graphics graphics) {
@@ -119,5 +112,10 @@ public class ConnectionPointReferenceFigure extends AffixedNamedElementFigure {
 
 		
 		graphics.popState();
+	}
+
+
+	public void setKind(int kind) {
+		this.kind = kind;
 	}
 }

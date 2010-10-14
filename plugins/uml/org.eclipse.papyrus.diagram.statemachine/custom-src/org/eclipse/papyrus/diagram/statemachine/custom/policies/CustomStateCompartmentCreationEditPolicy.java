@@ -37,34 +37,6 @@ public class CustomStateCompartmentCreationEditPolicy extends CreationEditPolicy
 	String dropLocation = Zone.NONE;
 
 	@Override
-	public EditPart getTargetEditPart(Request request) {
-		if(request instanceof CreateUnspecifiedTypeRequest) {
-			CreateUnspecifiedTypeRequest createUnspecifiedTypeRequest = (CreateUnspecifiedTypeRequest)request;
-
-			if(understandsRequest(request)) {
-				List<?> elementTypes = createUnspecifiedTypeRequest.getElementTypes();
-				// Treat the case where only one element type is listed
-				// Only take EntryPoint or ExitPoint element type into account
-				if((elementTypes.size() == 1) && (((IElementType)(elementTypes.get(0)) == UMLElementTypes.ConnectionPointReference_18000))) {
-					// If the target is a compartment replace by its parent edit part
-					if((getHost() instanceof ShapeCompartmentEditPart)) {
-						return getHost().getParent();
-					}
-				}
-			}
-		}
-
-		return super.getTargetEditPart(request);
-	}
-//	@Override
-//	public void eraseTargetFeedback(Request request) {
-//		if(sizeOnDropFeedback != null) {
-//			LayerManager.Helper.find(getHost()).getLayer(LayerConstants.FEEDBACK_LAYER).remove(sizeOnDropFeedback);
-//			sizeOnDropFeedback = null;
-//		}
-//	}
-
-	@Override
 	public Command getCommand(Request request) {
 
 		// CHECK THIS
@@ -117,6 +89,34 @@ public class CustomStateCompartmentCreationEditPolicy extends CreationEditPolicy
 		}
 		return null;
 	}
+
+	@Override
+	public EditPart getTargetEditPart(Request request) {
+		if(request instanceof CreateUnspecifiedTypeRequest) {
+			CreateUnspecifiedTypeRequest createUnspecifiedTypeRequest = (CreateUnspecifiedTypeRequest)request;
+
+			if(understandsRequest(request)) {
+				List<?> elementTypes = createUnspecifiedTypeRequest.getElementTypes();
+				// Treat the case where only one element type is listed
+				// Only take EntryPoint or ExitPoint element type into account
+				if((elementTypes.size() == 1) && (((IElementType)(elementTypes.get(0)) == UMLElementTypes.ConnectionPointReference_18000))) {
+					// If the target is a compartment replace by its parent edit part
+					if((getHost() instanceof ShapeCompartmentEditPart)) {
+						return getHost().getParent();
+					}
+				}
+			}
+		}
+
+		return super.getTargetEditPart(request);
+	}
+//	@Override
+//	public void eraseTargetFeedback(Request request) {
+//		if(sizeOnDropFeedback != null) {
+//			LayerManager.Helper.find(getHost()).getLayer(LayerConstants.FEEDBACK_LAYER).remove(sizeOnDropFeedback);
+//			sizeOnDropFeedback = null;
+//		}
+//	}
 
 //	protected IFigure getSizeOnDropFeedback() {
 //		if(sizeOnDropFeedback == null) {

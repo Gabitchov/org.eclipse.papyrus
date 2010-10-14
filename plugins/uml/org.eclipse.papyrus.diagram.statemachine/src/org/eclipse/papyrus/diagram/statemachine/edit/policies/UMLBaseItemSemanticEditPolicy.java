@@ -61,14 +61,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public boolean canCreateTransition_7000(Region container,
-				Vertex source, Vertex target) {
-			return canExistTransition_7000(container, null, source, target);
-		}
-
-		/**
-		 * @generated
-		 */
 		public boolean canCreateGeneralization_19000(Classifier source,
 				Classifier target) {
 			return canExistGeneralization_19000(null, source, target);
@@ -77,9 +69,9 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public boolean canExistTransition_7000(Region container,
-				Transition linkInstance, Vertex source, Vertex target) {
-			return true;
+		public boolean canCreateTransition_7000(Region container,
+				Vertex source, Vertex target) {
+			return canExistTransition_7000(container, null, source, target);
 		}
 
 		/**
@@ -88,6 +80,14 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		public boolean canExistGeneralization_19000(
 				Generalization linkInstance, Classifier source,
 				Classifier target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean canExistTransition_7000(Region container,
+				Transition linkInstance, Vertex source, Vertex target) {
 			return true;
 		}
 

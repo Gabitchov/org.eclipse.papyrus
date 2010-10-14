@@ -34,6 +34,28 @@ public class ConnectionPointReferenceItemSemanticEditPolicy extends
 	/**
 	 * @generated
 	 */
+	protected Command getCompleteCreateRelationshipCommand(
+			CreateRelationshipRequest req) {
+		if (UMLElementTypes.Transition_7000 == req.getElementType()) {
+			return getGEFWrapper(new TransitionCreateCommand(req,
+					req.getSource(), req.getTarget()));
+		}
+		return null;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
+		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req)
+				: getCompleteCreateRelationshipCommand(req);
+		return command != null ? command : super
+				.getCreateRelationshipCommand(req);
+	}
+
+	/**
+	 * @generated
+	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		View view = (View) getHost().getModel();
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(
@@ -58,40 +80,6 @@ public class ConnectionPointReferenceItemSemanticEditPolicy extends
 	}
 
 	/**
-	 * @generated
-	 */
-	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
-		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req)
-				: getCompleteCreateRelationshipCommand(req);
-		return command != null ? command : super
-				.getCreateRelationshipCommand(req);
-	}
-
-	/**
-	 * @generated
-	 */
-	protected Command getStartCreateRelationshipCommand(
-			CreateRelationshipRequest req) {
-		if (UMLElementTypes.Transition_7000 == req.getElementType()) {
-			return getGEFWrapper(new TransitionCreateCommand(req,
-					req.getSource(), req.getTarget()));
-		}
-		return null;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected Command getCompleteCreateRelationshipCommand(
-			CreateRelationshipRequest req) {
-		if (UMLElementTypes.Transition_7000 == req.getElementType()) {
-			return getGEFWrapper(new TransitionCreateCommand(req,
-					req.getSource(), req.getTarget()));
-		}
-		return null;
-	}
-
-	/**
 	 * Returns command to reorient EClass based link. New link target or source
 	 * should be the domain model element associated with this node.
 	 * 
@@ -104,6 +92,18 @@ public class ConnectionPointReferenceItemSemanticEditPolicy extends
 			return getGEFWrapper(new TransitionReorientCommand(req));
 		}
 		return super.getReorientRelationshipCommand(req);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected Command getStartCreateRelationshipCommand(
+			CreateRelationshipRequest req) {
+		if (UMLElementTypes.Transition_7000 == req.getElementType()) {
+			return getGEFWrapper(new TransitionCreateCommand(req,
+					req.getSource(), req.getTarget()));
+		}
+		return null;
 	}
 
 }

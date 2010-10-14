@@ -233,6 +233,44 @@ public class UMLParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
+	private IParser connectionPointReferenceName_18001Parser;
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser connectionPointReferenceName_18002Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser generalizationIsSubstitutable_19002Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getConnectionPointReferenceName_18001Parser() {
+		if (connectionPointReferenceName_18001Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE
+					.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			connectionPointReferenceName_18001Parser = parser;
+		}
+		return connectionPointReferenceName_18001Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser getConnectionPointReferenceName_18002Parser() {
+		if (connectionPointReferenceName_18002Parser == null) {
+			connectionPointReferenceName_18002Parser = new AppliedStereotypeParser();
+		}
+		return connectionPointReferenceName_18002Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser getFinalStateName_5001Parser() {
 		if (finalStateName_5001Parser == null) {
 			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE
@@ -251,6 +289,22 @@ public class UMLParserProvider extends AbstractProvider implements
 			finalStateName_5002Parser = new AppliedStereotypeParser();
 		}
 		return finalStateName_5002Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser getGeneralizationIsSubstitutable_19002Parser() {
+		if (generalizationIsSubstitutable_19002Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE
+					.getGeneralization_IsSubstitutable() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("<<{0}>>"); //$NON-NLS-1$
+			parser.setEditorPattern("<<{0}>>"); //$NON-NLS-1$
+			parser.setEditPattern("<<{0}>>"); //$NON-NLS-1$
+			generalizationIsSubstitutable_19002Parser = parser;
+		}
+		return generalizationIsSubstitutable_19002Parser;
 	}
 
 	/**
@@ -524,39 +578,6 @@ public class UMLParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
-	private IParser connectionPointReferenceName_18001Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getConnectionPointReferenceName_18001Parser() {
-		if (connectionPointReferenceName_18001Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE
-					.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			connectionPointReferenceName_18001Parser = parser;
-		}
-		return connectionPointReferenceName_18001Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private AppliedStereotypeParser connectionPointReferenceName_18002Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getConnectionPointReferenceName_18002Parser() {
-		if (connectionPointReferenceName_18002Parser == null) {
-			connectionPointReferenceName_18002Parser = new AppliedStereotypeParser();
-		}
-		return connectionPointReferenceName_18002Parser;
-	}
-
-	/**
-	 * @generated
-	 */
 	private IParser getPseudostateName_8001Parser() {
 		if (pseudostateName_8001Parser == null) {
 			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE
@@ -657,27 +678,6 @@ public class UMLParserProvider extends AbstractProvider implements
 			transitionName_7003Parser = new AppliedStereotypeParser();
 		}
 		return transitionName_7003Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private IParser generalizationIsSubstitutable_19002Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getGeneralizationIsSubstitutable_19002Parser() {
-		if (generalizationIsSubstitutable_19002Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE
-					.getGeneralization_IsSubstitutable() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			parser.setViewPattern("<<{0}>>"); //$NON-NLS-1$
-			parser.setEditorPattern("<<{0}>>"); //$NON-NLS-1$
-			parser.setEditPattern("<<{0}>>"); //$NON-NLS-1$
-			generalizationIsSubstitutable_19002Parser = parser;
-		}
-		return generalizationIsSubstitutable_19002Parser;
 	}
 
 	/**

@@ -14,6 +14,13 @@ public class GeneralizationPreferencePage extends
 	/**
 	 * @generated
 	 */
+	public static void initDefaults(IPreferenceStore store) {
+
+	}
+
+	/**
+	 * @generated
+	 */
 	public GeneralizationPreferencePage() {
 		super();
 		setPreferenceKey(PackageEditPart.MODEL_ID + "_Generalization");
@@ -24,14 +31,7 @@ public class GeneralizationPreferencePage extends
 	 */
 	@Override
 	protected String getBundleId() {
-		return UMLDiagramEditorPlugin.getInstance().ID;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static void initDefaults(IPreferenceStore store) {
-
+		return UMLDiagramEditorPlugin.ID;
 	}
 
 }

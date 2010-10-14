@@ -15,22 +15,6 @@ public class ConnectionPointReferencePreferencePage extends
 	/**
 	 * @generated
 	 */
-	public ConnectionPointReferencePreferencePage() {
-		super();
-		setPreferenceKey(PackageEditPart.MODEL_ID + "_ConnectionPointReference");
-	}
-
-	/**
-	 * @generated
-	 */
-	@Override
-	protected String getBundleId() {
-		return UMLDiagramEditorPlugin.getInstance().ID;
-	}
-
-	/**
-	 * @generated
-	 */
 	public static void initDefaults(IPreferenceStore store) {
 
 		String key = PackageEditPart.MODEL_ID + "_ConnectionPointReference";
@@ -49,6 +33,22 @@ public class ConnectionPointReferencePreferencePage extends
 		//		new org.eclipse.swt.graphics.RGB(0, 0, 0), 0, 0);
 		//store.setDefault(org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_GRADIENT), gradientPreferenceConverter.getPreferenceValue());
 
+	}
+
+	/**
+	 * @generated
+	 */
+	public ConnectionPointReferencePreferencePage() {
+		super();
+		setPreferenceKey(PackageEditPart.MODEL_ID + "_ConnectionPointReference");
+	}
+
+	/**
+	 * @generated
+	 */
+	@Override
+	protected String getBundleId() {
+		return UMLDiagramEditorPlugin.ID;
 	}
 
 }

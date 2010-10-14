@@ -139,6 +139,55 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
+	public Node createConnectionPointReference_18000(EObject domainElement,
+			View containerView, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry
+				.getType(ConnectionPointReferenceEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
+				.getPreferenceStore();
+
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node,
+				prefStore, "ConnectionPointReference");
+
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node,
+				prefStore, "ConnectionPointReference");
+
+		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node,
+				prefStore, "ConnectionPointReference");
+
+		Node label18001 = createLabel(
+				node,
+				UMLVisualIDRegistry
+						.getType(ConnectionPointReferenceNameEditPart.VISUAL_ID));
+		label18001.setLayoutConstraint(NotationFactory.eINSTANCE
+				.createLocation());
+
+		Location location18001 = (Location) label18001.getLayoutConstraint();
+		location18001.setX(25);
+		location18001.setY(3);
+		Node label18002 = createLabel(
+				node,
+				UMLVisualIDRegistry
+						.getType(ConnectionPointReferenceStereotypeEditPart.VISUAL_ID));
+		label18002.setLayoutConstraint(NotationFactory.eINSTANCE
+				.createLocation());
+
+		Location location18002 = (Location) label18002.getLayoutConstraint();
+		location18002.setX(25);
+		location18002.setY(-10);
+
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
 	public Diagram createDiagram(IAdaptable semanticAdapter,
 			String diagramKind, PreferencesHint preferencesHint) {
 		Diagram diagram = NotationFactory.eINSTANCE.createDiagram();
@@ -213,6 +262,55 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		location5002.setY(-10);
 
 		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Edge createGeneralization_19000(EObject domainElement,
+			View containerView, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+		Connector edge = NotationFactory.eINSTANCE.createConnector();
+		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
+				.createRelativeBendpoints();
+		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(
+				2);
+		points.add(new RelativeBendpoint());
+		points.add(new RelativeBendpoint());
+		bendpoints.setPoints(points);
+		edge.setBendpoints(bendpoints);
+		ViewUtil.insertChildView(containerView, edge, index, persisted);
+		edge.setType(UMLVisualIDRegistry
+				.getType(GeneralizationEditPart.VISUAL_ID));
+		edge.setElement(domainElement);
+		// initializePreferences
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
+				.getPreferenceStore();
+
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(edge,
+				prefStore, "Generalization");
+
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge,
+				prefStore, "Generalization");
+
+		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
+		//if (routing != null) {
+		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		//}
+
+		PreferenceInitializerForElementHelper.initRountingFromPrefs(edge,
+				prefStore, "Generalization");
+
+		Node label19002 = createLabel(edge,
+				UMLVisualIDRegistry
+						.getType(GeneralizationStereotypeEditPart.VISUAL_ID));
+		label19002.setLayoutConstraint(NotationFactory.eINSTANCE
+				.createLocation());
+		Location location19002 = (Location) label19002.getLayoutConstraint();
+		location19002.setX(0);
+		location19002.setY(40);
+		return edge;
 	}
 
 	/**
@@ -676,55 +774,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createConnectionPointReference_18000(EObject domainElement,
-			View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
-		Shape node = NotationFactory.eINSTANCE.createShape();
-		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(UMLVisualIDRegistry
-				.getType(ConnectionPointReferenceEditPart.VISUAL_ID));
-		ViewUtil.insertChildView(containerView, node, index, persisted);
-		node.setElement(domainElement);
-		// initializeFromPreferences 
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
-				.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node,
-				prefStore, "ConnectionPointReference");
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node,
-				prefStore, "ConnectionPointReference");
-
-		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node,
-				prefStore, "ConnectionPointReference");
-
-		Node label18001 = createLabel(
-				node,
-				UMLVisualIDRegistry
-						.getType(ConnectionPointReferenceNameEditPart.VISUAL_ID));
-		label18001.setLayoutConstraint(NotationFactory.eINSTANCE
-				.createLocation());
-
-		Location location18001 = (Location) label18001.getLayoutConstraint();
-		location18001.setX(25);
-		location18001.setY(3);
-		Node label18002 = createLabel(
-				node,
-				UMLVisualIDRegistry
-						.getType(ConnectionPointReferenceStereotypeEditPart.VISUAL_ID));
-		label18002.setLayoutConstraint(NotationFactory.eINSTANCE
-				.createLocation());
-
-		Location location18002 = (Location) label18002.getLayoutConstraint();
-		location18002.setX(25);
-		location18002.setY(-10);
-
-		return node;
-	}
-
-	/**
-	 * @generated
-	 */
 	public Node createPseudostate_8000(EObject domainElement,
 			View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
@@ -979,55 +1028,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location7003 = (Location) label7003.getLayoutConstraint();
 		location7003.setX(0);
 		location7003.setY(60);
-		return edge;
-	}
-
-	/**
-	 * @generated
-	 */
-	public Edge createGeneralization_19000(EObject domainElement,
-			View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
-		Connector edge = NotationFactory.eINSTANCE.createConnector();
-		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
-		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
-				.createRelativeBendpoints();
-		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(
-				2);
-		points.add(new RelativeBendpoint());
-		points.add(new RelativeBendpoint());
-		bendpoints.setPoints(points);
-		edge.setBendpoints(bendpoints);
-		ViewUtil.insertChildView(containerView, edge, index, persisted);
-		edge.setType(UMLVisualIDRegistry
-				.getType(GeneralizationEditPart.VISUAL_ID));
-		edge.setElement(domainElement);
-		// initializePreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
-				.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initForegroundFromPrefs(edge,
-				prefStore, "Generalization");
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge,
-				prefStore, "Generalization");
-
-		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
-		//if (routing != null) {
-		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
-		//}
-
-		PreferenceInitializerForElementHelper.initRountingFromPrefs(edge,
-				prefStore, "Generalization");
-
-		Node label19002 = createLabel(edge,
-				UMLVisualIDRegistry
-						.getType(GeneralizationStereotypeEditPart.VISUAL_ID));
-		label19002.setLayoutConstraint(NotationFactory.eINSTANCE
-				.createLocation());
-		Location location19002 = (Location) label19002.getLayoutConstraint();
-		location19002.setX(0);
-		location19002.setY(40);
 		return edge;
 	}
 

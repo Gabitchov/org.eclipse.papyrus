@@ -55,6 +55,20 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
+	public void init_ConnectionPointReference_18000(
+			ConnectionPointReference instance) {
+		try {
+			Object value_0 = name_ConnectionPointReference_18000(instance);
+			instance.setName((java.lang.String) value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError(
+					"Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
 	public void init_FinalState_5000(FinalState instance) {
 		try {
 			Object value_0 = name_FinalState_5000(instance);
@@ -203,20 +217,6 @@ public class ElementInitializers {
 			instance.setKind((PseudostateKind) value_0);
 			Object value_1 = name_Pseudostate_17000(instance);
 			instance.setName((java.lang.String) value_1);
-		} catch (RuntimeException e) {
-			UMLDiagramEditorPlugin.getInstance().logError(
-					"Element initialization failed", e); //$NON-NLS-1$						
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	public void init_ConnectionPointReference_18000(
-			ConnectionPointReference instance) {
-		try {
-			Object value_0 = name_ConnectionPointReference_18000(instance);
-			instance.setName((java.lang.String) value_0);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError(
 					"Element initialization failed", e); //$NON-NLS-1$						
@@ -384,6 +384,44 @@ public class ElementInitializers {
 	 */
 	private PseudostateKind kind_Pseudostate_9000(Pseudostate self) {
 		return PseudostateKind.JOIN_LITERAL;
+	}
+
+	/**
+	 * @generated
+	 */
+	private java.lang.String name_ConnectionPointReference_18000(
+			ConnectionPointReference self) {
+		//provides a new name taking into account the pseudostatekind if any
+		String baseString = self.eClass().getName();
+		if (self instanceof Pseudostate) {
+			baseString = ((Pseudostate) self).getKind().getLiteral();
+			baseString = baseString.substring(0, 1).toUpperCase()
+					+ baseString.substring(1);
+		}
+		String name = ""; //$NON-NLS-1$
+
+		Element umlParent = self.getOwner();
+
+		boolean found = false;
+		// i <10000: avoid infinite loops
+		for (int i = 0; i < 10001; i++) {
+			found = false;
+			name = baseString + i;
+			Iterator it = umlParent.getOwnedElements().iterator();
+			while (it.hasNext() && !found) {
+				Object o = it.next();
+				if (o instanceof NamedElement) {
+					if (name.equals(((NamedElement) o).getName())) {
+						found = true;
+					}
+				}
+			}
+			if (!found) {
+				return name;
+			}
+		}
+		return baseString + "X"; //$NON-NLS-1$
+
 	}
 
 	/**
@@ -686,44 +724,6 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	private java.lang.String name_Pseudostate_17000(Pseudostate self) {
-		//provides a new name taking into account the pseudostatekind if any
-		String baseString = self.eClass().getName();
-		if (self instanceof Pseudostate) {
-			baseString = ((Pseudostate) self).getKind().getLiteral();
-			baseString = baseString.substring(0, 1).toUpperCase()
-					+ baseString.substring(1);
-		}
-		String name = ""; //$NON-NLS-1$
-
-		Element umlParent = self.getOwner();
-
-		boolean found = false;
-		// i <10000: avoid infinite loops
-		for (int i = 0; i < 10001; i++) {
-			found = false;
-			name = baseString + i;
-			Iterator it = umlParent.getOwnedElements().iterator();
-			while (it.hasNext() && !found) {
-				Object o = it.next();
-				if (o instanceof NamedElement) {
-					if (name.equals(((NamedElement) o).getName())) {
-						found = true;
-					}
-				}
-			}
-			if (!found) {
-				return name;
-			}
-		}
-		return baseString + "X"; //$NON-NLS-1$
-
-	}
-
-	/**
-	 * @generated
-	 */
-	private java.lang.String name_ConnectionPointReference_18000(
-			ConnectionPointReference self) {
 		//provides a new name taking into account the pseudostatekind if any
 		String baseString = self.eClass().getName();
 		if (self instanceof Pseudostate) {

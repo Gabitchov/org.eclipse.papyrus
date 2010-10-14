@@ -6,8 +6,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-
 import java.util.Set;
+
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -70,19 +70,19 @@ public class StateCompartmentCanonicalEditPolicy extends CanonicalEditPolicy {
 	/**
 	 * @generated
 	 */
-	protected boolean isOrphaned(Collection<EObject> semanticChildren,
-			final View view) {
-		return isMyDiagramElement(view)
-				&& !semanticChildren.contains(view.getElement());
+	private boolean isMyDiagramElement(View view) {
+		int visualID = UMLVisualIDRegistry.getVisualID(view);
+		return visualID == RegionEditPart.VISUAL_ID
+				|| visualID == ConnectionPointReferenceEditPart.VISUAL_ID;
 	}
 
 	/**
 	 * @generated
 	 */
-	private boolean isMyDiagramElement(View view) {
-		int visualID = UMLVisualIDRegistry.getVisualID(view);
-		return visualID == RegionEditPart.VISUAL_ID
-				|| visualID == ConnectionPointReferenceEditPart.VISUAL_ID;
+	protected boolean isOrphaned(Collection<EObject> semanticChildren,
+			final View view) {
+		return isMyDiagramElement(view)
+				&& !semanticChildren.contains(view.getElement());
 	}
 
 	/**

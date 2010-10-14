@@ -6,13 +6,11 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
-import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
@@ -141,6 +139,10 @@ public class CustomStateNameEditPart extends StateNameEditPart {
 		// TODO Auto-generated method stub
 		super.refreshVisuals();
 
+		StateFigure stateFigure = ((StateEditPart)getParent()).getPrimaryShape();
+		State state = (State)((View)getModel()).getElement();
+
+		stateFigure.fillInformation(getInformationFromState(state));
 
 	}
 }

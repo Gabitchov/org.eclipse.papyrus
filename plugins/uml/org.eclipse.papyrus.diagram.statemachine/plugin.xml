@@ -773,7 +773,7 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLStateMachineDiagram"
-			class="org.eclipse.papyrus.diagram.statemachine.custom.preferences.CustomStatePreferencePage"
+			class="org.eclipse.papyrus.diagram.statemachine.preferences.StatePreferencePage"
             id="org.eclipse.papyrus.diagram.statemachine.preferences.StatePreferencePage"
             name="State Node" />
 	

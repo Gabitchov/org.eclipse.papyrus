@@ -14,9 +14,7 @@ public class RegionPreferencePage extends AbstractPapyrusNodePreferencePage {
 	/**
 	 * @generated
 	 */
-	public static final String compartments[] = { "RegionCompartment"
-
-	};
+	public static final String compartments[] = { "RegionCompartment" };
 
 	/**
 	 * @generated
@@ -51,16 +49,6 @@ public class RegionPreferencePage extends AbstractPapyrusNodePreferencePage {
 	/**
 	 * @generated
 	 */
-	@Override
-	protected void initializeCompartmentsList() {
-		for (String name : compartments) {
-			this.compartmentsList.add(name);
-		}
-	}
-
-	/**
-	 * @generated
-	 */
 	public RegionPreferencePage() {
 		super();
 		setPreferenceKey(PackageEditPart.MODEL_ID + "_Region");
@@ -71,7 +59,17 @@ public class RegionPreferencePage extends AbstractPapyrusNodePreferencePage {
 	 */
 	@Override
 	protected String getBundleId() {
-		return UMLDiagramEditorPlugin.getInstance().ID;
+		return UMLDiagramEditorPlugin.ID;
+	}
+
+	/**
+	 * @generated
+	 */
+	@Override
+	protected void initializeCompartmentsList() {
+		for (String name : compartments) {
+			this.compartmentsList.add(name);
+		}
 	}
 
 }
