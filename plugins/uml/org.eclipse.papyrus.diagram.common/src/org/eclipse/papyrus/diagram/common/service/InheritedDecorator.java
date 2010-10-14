@@ -44,6 +44,7 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
+import org.eclipse.uml2.uml.UMLPackage;
 
 
 /**
@@ -302,7 +303,11 @@ public class InheritedDecorator implements IDecorator {
 
 
 	/**
-	 * Adds decoration if applicable.
+	 * Adds listeners on
+	 * <ul>
+	 * <li>Affixed Child Node</li>
+	 * <li>graphical parent, when its a {@link Property} (we add the listener on its Type)</li>
+	 * </ul>
 	 */
 	public void activate() {
 
@@ -316,10 +321,22 @@ public class InheritedDecorator implements IDecorator {
 			}
 		}
 
+		//if the graphical parent is a Property, we add a listener on the type of the property, to refresh the decoration
+		EObject parent = view.eContainer();
+		if(parent instanceof DecorationNode) {
+			parent = parent.eContainer();
+		}
+		if(parent instanceof View) {
+			EObject el = ((View)parent).getElement();
+			if(el instanceof Property) {
+				DiagramEventBroker.getInstance(gep.getEditingDomain()).addNotificationListener(el, UMLPackage.eINSTANCE.getTypedElement_Type(), notificationListener);
+			}
+		}
+
 	}
 
 	/**
-	 * Removes the decoration.
+	 * Removes the listeners and the decorations
 	 */
 	public void deactivate() {
 		removeDecoration();
@@ -327,6 +344,20 @@ public class InheritedDecorator implements IDecorator {
 		IGraphicalEditPart gep = (IGraphicalEditPart)getDecoratorTarget().getAdapter(IGraphicalEditPart.class);
 		assert gep != null;
 		DiagramEventBroker.getInstance(gep.getEditingDomain()).removeNotificationListener(gep.getNotationView(), notificationListener);
+		View view = ((View)gep.getModel());
+		if(view instanceof Node) {
+			//the location of the decorator can change if it's an Affixed Child Node
+			if(isInherited((Node)view) && Util.isAffixedChildNode(gep)) {
+				DiagramEventBroker.getInstance(gep.getEditingDomain()).removeNotificationListener(gep.getNotationView(), notificationListener);
+			}
+		}
+		EObject parent = view.eContainer();
+		if(parent instanceof View) {
+			EObject el = ((View)parent).getElement();
+			if(el instanceof Property) {
+				DiagramEventBroker.getInstance(gep.getEditingDomain()).removeNotificationListener(el, UMLPackage.eINSTANCE.getTypedElement_Type(), notificationListener);
+			}
+		}
 	}
 
 }
