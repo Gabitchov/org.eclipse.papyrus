@@ -8,6 +8,7 @@ import java.util.List;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -18,7 +19,6 @@ import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.handles.MoveHandle;
 import org.eclipse.gef.requests.CreateRequest;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolicy;
@@ -32,12 +32,14 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
+import org.eclipse.papyrus.diagram.common.editparts.UMLNodeEditPart;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.diagram.common.locator.ExternalLabelPositionLocator;
-import org.eclipse.papyrus.diagram.statemachine.custom.figures.PseudostateJoinFigure;
+import org.eclipse.papyrus.diagram.statemachine.custom.figures.PseudostateJoinForkFigure;
+import org.eclipse.papyrus.diagram.statemachine.custom.policies.CustomPseudostateForkJoinResizeEditPolicy;
 import org.eclipse.papyrus.diagram.statemachine.edit.policies.PseudostateJoinItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.statemachine.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.statemachine.part.UMLVisualIDRegistry;
@@ -51,7 +53,7 @@ import org.eclipse.swt.graphics.Color;
  */
 public class PseudostateJoinEditPart extends
 
-AbstractBorderedShapeEditPart {
+UMLNodeEditPart {
 
 	/**
 	 * @generated
@@ -106,6 +108,8 @@ AbstractBorderedShapeEditPart {
 		installEditPolicy(
 				AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
 				new AppliedStereotypeNodeLabelDisplayEditPolicy());
+		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE,
+				new CustomPseudostateForkJoinResizeEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -139,11 +143,11 @@ AbstractBorderedShapeEditPart {
 				return result;
 			}
 
-			protected Command getMoveChildrenCommand(Request request) {
+			protected Command getCreateCommand(CreateRequest request) {
 				return null;
 			}
 
-			protected Command getCreateCommand(CreateRequest request) {
+			protected Command getMoveChildrenCommand(Request request) {
 				return null;
 			}
 		};
@@ -191,7 +195,7 @@ AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		return primaryShape = new PseudostateJoinFigure();
+		return primaryShape = new PseudostateJoinForkFigure();
 	}
 
 	/**
@@ -379,8 +383,17 @@ AbstractBorderedShapeEditPart {
 	/**
 	 * @generated
 	 */
-	public PseudostateJoinFigure getPrimaryShape() {
-		return (PseudostateJoinFigure) primaryShape;
+	public PseudostateJoinForkFigure getPrimaryShape() {
+		return (PseudostateJoinForkFigure) primaryShape;
+	}
+
+	/**
+	 *Papyrus codeGen
+	 *@generated
+	 **/
+	protected void handleNotificationEvent(Notification event) {
+		super.handleNotificationEvent(event);
+
 	}
 
 	/**

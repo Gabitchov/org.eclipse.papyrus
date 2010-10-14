@@ -24,32 +24,6 @@ public class CustomTransitionGuardEditPart extends TransitionGuardEditPart {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	protected void handleNotificationEvent(Notification notification) {
-		// TODO Auto-generated method stub
-		super.handleNotificationEvent(notification);
-
-
-		refreshVisuals();
-	}
-	
-	private String retrieveBody(OpaqueExpression exp, String languageName) {
-		String body = "";
-		if(exp == null)
-			return body;
-		int index = 0;
-		for(String _languageName : exp.getLanguages()) {
-			if(_languageName.equals(languageName)) {
-				if(index < exp.getBodies().size())
-					return exp.getBodies().get(index);
-				else
-					return "";
-			}
-			index++;
-		}
-		return body;
-	}
-
 	public String getInformationFromTransition(Transition transition) {
 		String textToEdit = "";
 
@@ -94,6 +68,15 @@ public class CustomTransitionGuardEditPart extends TransitionGuardEditPart {
 
 		return textToEdit;
 	}
+	
+	@Override
+	protected void handleNotificationEvent(Notification notification) {
+		// TODO Auto-generated method stub
+		super.handleNotificationEvent(notification);
+
+
+		refreshVisuals();
+	}
 
 	@Override
 	protected void refreshVisuals() {
@@ -103,6 +86,23 @@ public class CustomTransitionGuardEditPart extends TransitionGuardEditPart {
 		WrappingLabel transitionGuardLabel = (WrappingLabel)getFigure();
 		Transition transition = (Transition)((View)getModel()).getElement();
 		transitionGuardLabel.setText(getInformationFromTransition(transition));
+	}
+
+	private String retrieveBody(OpaqueExpression exp, String languageName) {
+		String body = "";
+		if(exp == null)
+			return body;
+		int index = 0;
+		for(String _languageName : exp.getLanguages()) {
+			if(_languageName.equals(languageName)) {
+				if(index < exp.getBodies().size())
+					return exp.getBodies().get(index);
+				else
+					return "";
+			}
+			index++;
+		}
+		return body;
 	}
 
 }

@@ -7,6 +7,7 @@ import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.RectangleFigure;
+import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
@@ -62,18 +63,6 @@ public class StateFigure extends CompartmentFigure {
 		((AutomaticCompartmentLayoutManager)getLayoutManager()).setAddExtraHeight(false);
 	}
 
-	@Override
-	protected void createNameLabel() {
-		// TODO Auto-generated method stub
-		super.createNameLabel();
-
-		createInformationLabel();
-	}
-
-	public WrappingLabel getInformationLabel(){
-		return informationLabel;
-	}
-
 	/**
 	 * Create a label that contains the name of the element.
 	 */
@@ -87,10 +76,14 @@ public class StateFigure extends CompartmentFigure {
 		getInformationLabelContainer().add(informationLabel, getInformationLabelConstraint(), -1);
 	}
 
-	public boolean hasInformationChanged(){
-		return informationHasChanged;
+	@Override
+	protected void createNameLabel() {
+		// TODO Auto-generated method stub
+		super.createNameLabel();
+
+		createInformationLabel();
 	}
-	
+
 	public void fillInformation(String text) {
 		if(!informationLabel.getText().equals(text)){
 			informationLabel.setText(text);
@@ -101,6 +94,10 @@ public class StateFigure extends CompartmentFigure {
 			informationHasChanged = false;
 	}
 
+	public WrappingLabel getInformationLabel(){
+		return informationLabel;
+	}
+	
 	/**
 	 * Get the constraint for adding the information label.
 	 * Children should override and implement this method in case the label must be drawn with a specific constraint.
@@ -134,49 +131,75 @@ public class StateFigure extends CompartmentFigure {
 		return getCompartment(STATE_COMPARTMENT);
 	}
 
+	public boolean hasInformationChanged(){
+		return informationHasChanged;
+	}
+
 	@Override
 	protected void paintBackground(Graphics graphics, Rectangle rectangle) {
-		Rectangle r = rectangle;
-
 		if(isUsingGradient()) {
 			applyTransparency(graphics);
 			boolean isVertical = (getGradientStyle() == GradientStyle.VERTICAL) ? true : false;
-			graphics.setBackgroundColor(FigureUtilities.integerToColor(getGradientColor1()));
-			graphics.setForegroundColor(FigureUtilities.integerToColor(getGradientColor2()));
-			Rectangle tmp = new Rectangle(r.x + arcwidth / 2, r.y, r.width - arcwidth + 1, r.height);
-			graphics.fillGradient(tmp, isVertical);
-			tmp = new Rectangle(r.x, r.y + arcwidth / 2, r.width, r.height - arcwidth + 1);
-			graphics.fillGradient(tmp, isVertical);
-			if(isVertical) {
-				graphics.setBackgroundColor(FigureUtilities.integerToColor(getGradientColor1()));
-				graphics.fillArc(r.x + r.width - arcwidth, r.y + r.height - arcwidth, arcwidth, arcwidth, 270, 90);
-				graphics.fillArc(r.x, r.y + r.height - arcwidth, arcwidth, arcwidth, 180, 90);
+			if(isVertical && rectangle.height>((3*arcwidth)/2)){
+				Rectangle rect1= new Rectangle(rectangle.getLocation(),new Dimension(rectangle.width,arcwidth));
+				Rectangle rect2= new Rectangle(rectangle.x,rectangle.y+rectangle.height-arcwidth,rectangle.width,arcwidth);;
 				graphics.setBackgroundColor(FigureUtilities.integerToColor(getGradientColor2()));
-				graphics.fillArc(r.x + r.width - arcwidth, r.y, arcwidth, arcwidth, 0, 90);
-				graphics.fillArc(r.x, r.y, arcwidth, arcwidth, 90, 90);
-			} else {
+				graphics.fillRoundRectangle(rect1,arcwidth,arcwidth);
 				graphics.setBackgroundColor(FigureUtilities.integerToColor(getGradientColor1()));
-				graphics.fillArc(r.x + r.width - arcwidth, r.y + r.height - arcwidth, arcwidth, arcwidth, 270, 90);
-				graphics.fillArc(r.x + r.width - arcwidth, r.y, arcwidth, arcwidth, 0, 90);
-				graphics.setBackgroundColor(FigureUtilities.integerToColor(getGradientColor2()));
-				graphics.fillArc(r.x, r.y, arcwidth, arcwidth, 90, 90);
-				graphics.fillArc(r.x, r.y + r.height - arcwidth, arcwidth, arcwidth, 180, 90);
+				graphics.fillRoundRectangle(rect2,arcwidth,arcwidth);
+
+
+				graphics.setBackgroundColor(FigureUtilities.integerToColor(getGradientColor1()));
+				graphics.setForegroundColor(FigureUtilities.integerToColor(getGradientColor2()));
+				Rectangle rect= new Rectangle(rectangle.x,rectangle.y+arcwidth/2,rectangle.width,rectangle.height-arcwidth);
+				graphics.fillGradient(rect, true);
 			}
-		} else {
+			else if(!isVertical && rectangle.width>((3*arcwidth)/2)){
+				Rectangle rect1= new Rectangle(rectangle.getLocation(),new Dimension(arcwidth,rectangle.height));
+				Rectangle rect2= new Rectangle(rectangle.x+rectangle.width-arcwidth,rectangle.y,arcwidth,rectangle.height);
+				graphics.setBackgroundColor(FigureUtilities.integerToColor(getGradientColor2()));
+				graphics.fillRoundRectangle(rect1,arcwidth,arcwidth);
+				graphics.setBackgroundColor(FigureUtilities.integerToColor(getGradientColor1()));
+				graphics.fillRoundRectangle(rect2,arcwidth,arcwidth);
 
-			if(isShadow())
-				r = r.getCopy().shrink(1, 1).translate(-1, -1);
 
-			graphics.fillArc(r.x, r.y, arcwidth, arcwidth, 90, 90);
-			graphics.fillArc(r.x + r.width - arcwidth, r.y, arcwidth, arcwidth, 0, 90);
-			graphics.fillArc(r.x + r.width - arcwidth, r.y + r.height - arcwidth, arcwidth, arcwidth, 270, 90);
-			graphics.fillArc(r.x, r.y + r.height - arcwidth, arcwidth, arcwidth, 180, 90);
+				graphics.setBackgroundColor(FigureUtilities.integerToColor(getGradientColor1()));
+				graphics.setForegroundColor(FigureUtilities.integerToColor(getGradientColor2()));
+				Rectangle rect= new Rectangle(rectangle.x+arcwidth/2, rectangle.y,rectangle.width-arcwidth,rectangle.height);
+				graphics.fillGradient(rect, false);
+			}
+			else{
+				graphics.setBackgroundColor(FigureUtilities.integerToColor(getGradientColor1()));
+				graphics.setForegroundColor(FigureUtilities.integerToColor(getGradientColor2()));
+				graphics.fillRoundRectangle(rectangle,arcwidth,arcwidth);
+			}
+		}
+		else {
+			graphics.setBackgroundColor(getBackgroundColor());
+			graphics.setForegroundColor(getForegroundColor());
+			graphics.fillRoundRectangle(rectangle,arcwidth,arcwidth);
+		}
+	}
 
-			graphics.fillRectangle(r.x + arcwidth / 2, r.y, r.width - arcwidth + 1, r.height);
-			graphics.fillRectangle(r.x, r.y + arcwidth / 2, r.width, r.height - arcwidth + 1);
+	@Override
+	public void paintFigure(Graphics graphics) {
+		paintBackground(graphics, getBounds());
+
+		refreshInformationToShow();
+
+		if(isInformationShown) {
+			Rectangle rect = informationLabel.getBounds();
+			Rectangle rect2 = nameLabel.getBounds();
+
+			graphics.setForegroundColor(getBorderColor());
+			graphics.setLineStyle(SWT.BORDER_SOLID);
+			graphics.setLineWidth(SWT.BOLD);
+
+			graphics.drawLine(rect.x-2, rect.y, rect.x + rect.width - 1, rect.y);
 
 		}
 	}
+
 
 	/**
 	 * Refreshes the status of the label that displays information, depending on the text to display
@@ -189,26 +212,6 @@ public class StateFigure extends CompartmentFigure {
 		} else {
 			informationLabel.setVisible(true);
 			isInformationShown = true;
-		}
-	}
-
-
-	@Override
-	public void paintFigure(Graphics graphics) {
-		paintBackground(graphics, getBounds());
-
-		shadowborder.setColor(getForegroundColor());
-		refreshInformationToShow();
-
-		if(isInformationShown) {
-			Rectangle rect = informationLabel.getBounds();
-			Rectangle rect2 = nameLabel.getBounds();
-
-			graphics.setLineStyle(SWT.BORDER_SOLID);
-			graphics.setLineWidth(SWT.BOLD);
-
-			graphics.drawLine(rect.x, rect.y, rect.x + rect.width - 1, rect.y);
-
 		}
 	}
 

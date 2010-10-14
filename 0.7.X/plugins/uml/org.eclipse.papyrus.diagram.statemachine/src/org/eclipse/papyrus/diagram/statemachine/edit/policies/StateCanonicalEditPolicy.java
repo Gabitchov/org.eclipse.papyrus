@@ -7,8 +7,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-
 import java.util.Set;
+
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
@@ -84,15 +84,6 @@ public class StateCanonicalEditPolicy extends CanonicalEditPolicy {
 	/**
 	 * @generated
 	 */
-	protected boolean isOrphaned(Collection<EObject> semanticChildren,
-			final View view) {
-		return isMyDiagramElement(view)
-				&& !semanticChildren.contains(view.getElement());
-	}
-
-	/**
-	 * @generated
-	 */
 	private boolean isMyDiagramElement(View view) {
 		int visualID = UMLVisualIDRegistry.getVisualID(view);
 		switch (visualID) {
@@ -103,6 +94,15 @@ public class StateCanonicalEditPolicy extends CanonicalEditPolicy {
 			return true;
 		}
 		return false;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected boolean isOrphaned(Collection<EObject> semanticChildren,
+			final View view) {
+		return isMyDiagramElement(view)
+				&& !semanticChildren.contains(view.getElement());
 	}
 
 	/**

@@ -15,9 +15,7 @@ public class StateMachinePreferencePage extends
 	/**
 	 * @generated
 	 */
-	public static final String compartments[] = { "StateMachineCompartment"
-
-	};
+	public static final String compartments[] = { "StateMachineCompartment" };
 
 	/**
 	 * @generated
@@ -52,16 +50,6 @@ public class StateMachinePreferencePage extends
 	/**
 	 * @generated
 	 */
-	@Override
-	protected void initializeCompartmentsList() {
-		for (String name : compartments) {
-			this.compartmentsList.add(name);
-		}
-	}
-
-	/**
-	 * @generated
-	 */
 	public StateMachinePreferencePage() {
 		super();
 		setPreferenceKey(PackageEditPart.MODEL_ID + "_StateMachine");
@@ -72,7 +60,17 @@ public class StateMachinePreferencePage extends
 	 */
 	@Override
 	protected String getBundleId() {
-		return UMLDiagramEditorPlugin.getInstance().ID;
+		return UMLDiagramEditorPlugin.ID;
+	}
+
+	/**
+	 * @generated
+	 */
+	@Override
+	protected void initializeCompartmentsList() {
+		for (String name : compartments) {
+			this.compartmentsList.add(name);
+		}
 	}
 
 }

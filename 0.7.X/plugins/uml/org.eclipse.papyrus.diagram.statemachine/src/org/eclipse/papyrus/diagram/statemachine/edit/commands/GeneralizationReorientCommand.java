@@ -107,32 +107,8 @@ public class GeneralizationReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected CommandResult reorientSource() throws ExecutionException {
-		getOldSource().getGeneralizations().remove(getLink());
-		getNewSource().getGeneralizations().add(getLink());
-		return CommandResult.newOKCommandResult(getLink());
-	}
-
-	/**
-	 * @generated
-	 */
-	protected CommandResult reorientTarget() throws ExecutionException {
-		getLink().setGeneral(getNewTarget());
-		return CommandResult.newOKCommandResult(getLink());
-	}
-
-	/**
-	 * @generated
-	 */
 	protected Generalization getLink() {
 		return (Generalization) getElementToEdit();
-	}
-
-	/**
-	 * @generated
-	 */
-	protected Classifier getOldSource() {
-		return (Classifier) oldEnd;
 	}
 
 	/**
@@ -145,6 +121,20 @@ public class GeneralizationReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
+	protected Classifier getNewTarget() {
+		return (Classifier) newEnd;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected Classifier getOldSource() {
+		return (Classifier) oldEnd;
+	}
+
+	/**
+	 * @generated
+	 */
 	protected Classifier getOldTarget() {
 		return (Classifier) oldEnd;
 	}
@@ -152,7 +142,17 @@ public class GeneralizationReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected Classifier getNewTarget() {
-		return (Classifier) newEnd;
+	protected CommandResult reorientSource() throws ExecutionException {
+		getOldSource().getGeneralizations().remove(getLink());
+		getNewSource().getGeneralizations().add(getLink());
+		return CommandResult.newOKCommandResult(getLink());
+	}
+
+	/**
+	 * @generated
+	 */
+	protected CommandResult reorientTarget() throws ExecutionException {
+		getLink().setGeneral(getNewTarget());
+		return CommandResult.newOKCommandResult(getLink());
 	}
 }

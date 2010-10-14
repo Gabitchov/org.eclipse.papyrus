@@ -79,8 +79,8 @@ public class PseudostateExitPointFigure extends AffixedNamedElementFigure {
 		int y = (int)(bounds.height / (2 * Math.sqrt(2)));
 
 		// cross.
-		graphics.drawLine(bounds.getCenter().translate(x, -y), bounds.getCenter().translate(-x, y));
-		graphics.drawLine(bounds.getCenter().translate(-x, -y), bounds.getCenter().translate(x, y));
+		graphics.drawLine(bounds.getCenter().translate(x-1, -y), bounds.getCenter().translate(-x, y-2));
+		graphics.drawLine(bounds.getCenter().translate(-x, -y), bounds.getCenter().translate(x-1, y-2));
 
 		graphics.popState();
 	}

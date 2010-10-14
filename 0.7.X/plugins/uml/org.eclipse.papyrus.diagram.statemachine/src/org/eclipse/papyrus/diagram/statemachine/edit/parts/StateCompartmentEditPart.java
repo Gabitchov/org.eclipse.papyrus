@@ -47,23 +47,6 @@ extends ShapeCompartmentEditPart
 	/**
 	 * @generated
 	 */
-	public String getCompartmentName() {
-		return Messages.StateCompartmentEditPart_title;
-	}
-
-	/**
-	 * @generated
-	 */
-	public IFigure createFigure() {
-		ResizableCompartmentFigure result = (ResizableCompartmentFigure) super
-				.createFigure();
-		result.setTitleVisibility(false);
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
@@ -90,10 +73,18 @@ extends ShapeCompartmentEditPart
 	/**
 	 * @generated
 	 */
-	protected void setRatio(Double ratio) {
-		if (getFigure().getParent().getLayoutManager() instanceof ConstrainedToolbarLayout) {
-			super.setRatio(ratio);
-		}
+	public IFigure createFigure() {
+		ResizableCompartmentFigure result = (ResizableCompartmentFigure) super
+				.createFigure();
+		result.setTitleVisibility(false);
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public String getCompartmentName() {
+		return Messages.StateCompartmentEditPart_title;
 	}
 
 	/**
@@ -134,5 +125,14 @@ extends ShapeCompartmentEditPart
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshBounds();
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void setRatio(Double ratio) {
+		if (getFigure().getParent().getLayoutManager() instanceof ConstrainedToolbarLayout) {
+			super.setRatio(ratio);
+		}
 	}
 }

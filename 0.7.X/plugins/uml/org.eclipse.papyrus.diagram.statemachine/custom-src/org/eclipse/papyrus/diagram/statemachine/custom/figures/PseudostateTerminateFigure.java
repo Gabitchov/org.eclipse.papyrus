@@ -10,46 +10,79 @@
  *******************************************************************************/
 package org.eclipse.papyrus.diagram.statemachine.custom.figures;
 
+import org.eclipse.draw2d.Border;
 import org.eclipse.draw2d.Graphics;
-import org.eclipse.draw2d.Shape;
+import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.geometry.Insets;
+import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
+import org.eclipse.papyrus.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
+import org.eclipse.papyrus.diagram.common.figure.node.PapyrusNodeFigure;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Image;
 
 /**
  * PseudostateTerminateFigure.
  * 
  */
-public class PseudostateTerminateFigure extends Shape {
-
+public class PseudostateTerminateFigure  extends PapyrusNodeFigure implements IPapyrusNodeUMLElementFigure{
 	/**
-	 * Default Constructor.
+	 * {@inheritDoc}
 	 */
-	public PseudostateTerminateFigure() {
-		super();
-		Dimension dim1 = new Dimension(22, 22);
-		this.setPreferredSize(new Dimension(dim1));
-		this.setMaximumSize(new Dimension(dim1));
-		this.setMinimumSize(new Dimension(dim1));
-		this.setSize(dim1);
-
-
-		setLineWidth(2);
+	protected Border getDefaultBorder(Color borderColor) {
+		return null;
 	}
-
 	/**
-	 * Does nothing
-	 * 
-	 * @see org.eclipse.draw2d.Shape#fillShape(org.eclipse.draw2d.Graphics)
+	 * {@inheritDoc}
 	 */
 	@Override
-	protected void fillShape(Graphics graphics) {
+	public Dimension getPreferredSize(int wHint, int hHint) {
+		return new Dimension(20,20);
 	}
-
 	/**
-	 * @see org.eclipse.draw2d.Shape#outlineShape(org.eclipse.draw2d.Graphics)
+	 * {@inheritDoc}
 	 */
-	@Override
-	protected void outlineShape(Graphics graphics) {
-		graphics.drawLine(bounds.getTopLeft(), bounds.getBottomRight());
-		graphics.drawLine(bounds.getTopRight(), bounds.getBottomLeft());
+	public Label getStereotypesLabel() {
+		return new Label();
+	}
+	/**
+	 * {@inheritDoc}
+	 */
+	public void paintFigure(Graphics graphics) {
+		
+		graphics.setForegroundColor(getForegroundColor());
+		Rectangle r = getBounds().getCopy().crop(new Insets(0, 0, 1, 1));
+		if(isUsingGradient()) {
+			graphics.setBackgroundColor(FigureUtilities.integerToColor(getGradientColor2()));
+			//graphics.setForegroundColor(FigureUtilities.integerToColor(getGradientColor2()));
+		}
+		else{
+		graphics.setBackgroundColor(getBackgroundColor());
+		//graphics.setForegroundColor(getForegroundColor());
+		}
+		graphics.setLineWidth(1);
+		// intersection coordinates.
+		int x = (int)(r.width / (2 * Math.sqrt(2)));
+		int y = (int)(r.height / (2 * Math.sqrt(2)));
+
+		// cross.
+		graphics.drawLine(r.getCenter().translate(x, -y), r.getCenter().translate(-x, y));
+		graphics.drawLine(r.getCenter().translate(-x, -y), r.getCenter().translate(x, y));
+	}
+	/**
+	 * {@inheritDoc}
+	 */
+	public void setStereotypeDisplay(String stereotypes, Image image) {
+	}
+	/**
+	 * {@inheritDoc}
+	 */
+	public void setStereotypePropertiesInBrace(String stereotypeProperties) {
+	}
+	/**
+	 * {@inheritDoc}
+	 */
+	public void setStereotypePropertiesInCompartment(String stereotypeProperties) {
 	}
 }

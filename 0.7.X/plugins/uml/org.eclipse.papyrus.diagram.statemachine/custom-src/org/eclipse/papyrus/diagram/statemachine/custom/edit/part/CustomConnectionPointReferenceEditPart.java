@@ -3,11 +3,8 @@ package org.eclipse.papyrus.diagram.statemachine.custom.edit.part;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.statemachine.custom.figures.ConnectionPointReferenceFigure;
-import org.eclipse.papyrus.diagram.statemachine.custom.figures.StateFigure;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConnectionPointReferenceEditPart;
-import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateEditPart;
 import org.eclipse.uml2.uml.ConnectionPointReference;
-import org.eclipse.uml2.uml.State;
 
 
 public class CustomConnectionPointReferenceEditPart extends ConnectionPointReferenceEditPart {

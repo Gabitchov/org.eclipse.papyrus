@@ -14,9 +14,7 @@ public class StatePreferencePage extends AbstractPapyrusNodePreferencePage {
 	/**
 	 * @generated
 	 */
-	public static final String compartments[] = { "StateCompartment"
-
-	};
+	public static final String compartments[] = { "StateCompartment" };
 
 	/**
 	 * @generated
@@ -51,16 +49,6 @@ public class StatePreferencePage extends AbstractPapyrusNodePreferencePage {
 	/**
 	 * @generated
 	 */
-	@Override
-	protected void initializeCompartmentsList() {
-		for (String name : compartments) {
-			this.compartmentsList.add(name);
-		}
-	}
-
-	/**
-	 * @generated
-	 */
 	public StatePreferencePage() {
 		super();
 		setPreferenceKey(PackageEditPart.MODEL_ID + "_State");
@@ -71,7 +59,17 @@ public class StatePreferencePage extends AbstractPapyrusNodePreferencePage {
 	 */
 	@Override
 	protected String getBundleId() {
-		return UMLDiagramEditorPlugin.getInstance().ID;
+		return UMLDiagramEditorPlugin.ID;
+	}
+
+	/**
+	 * @generated
+	 */
+	@Override
+	protected void initializeCompartmentsList() {
+		for (String name : compartments) {
+			this.compartmentsList.add(name);
+		}
 	}
 
 }
