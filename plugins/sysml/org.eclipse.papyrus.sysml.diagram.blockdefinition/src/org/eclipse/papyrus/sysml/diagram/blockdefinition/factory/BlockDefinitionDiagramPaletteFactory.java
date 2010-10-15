@@ -28,6 +28,8 @@ public class BlockDefinitionDiagramPaletteFactory extends PaletteFactory.Adapter
 			put("blockdefinition.tool.block", new IElementType[]{ BlockDefinitionDiagramElementTypes.BLOCK });
 
 			put("blockdefinition.tool.constraint", new IElementType[]{ BlockDefinitionDiagramElementTypes.CONSTRAINT, BlockDefinitionDiagramElementTypes.CONSTRAINT_CN, BlockDefinitionDiagramElementTypes.BLOCK_CONSTRAINT_CLN });
+
+			put("blockdefinition.tool.part", new IElementType[]{ BlockDefinitionDiagramElementTypes.BLOCK_PART_CLN });
 		}
 	};
 

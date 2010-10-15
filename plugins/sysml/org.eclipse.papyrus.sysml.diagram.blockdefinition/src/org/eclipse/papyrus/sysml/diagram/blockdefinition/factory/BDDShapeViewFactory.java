@@ -6,11 +6,8 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
 
 
-public class ConstraintViewFactory extends AbstractShapeViewFactory {
+public class BDDShapeViewFactory extends AbstractShapeViewFactory {
 
-	/**
-	 * Should be moved in a common abstract class...
-	 */
 	@Override
 	protected void initializeFromPreferences(View view) {
 
