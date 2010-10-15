@@ -19,6 +19,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.core.commands.operations.IUndoableOperation;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EClass;
@@ -219,60 +220,79 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 		 */
 		ViewServiceUtil.forceLoad();
 
+		
+		if(dropRequest.getObjects().size() > 0 && dropRequest.getObjects().get(0) instanceof String) {
+			return getDropFileCommand(dropRequest);
+		}
+		
+		
 		// Create a view request from the drop request and then forward getting
 		// the command for that.
 		CompositeCommand cc = new CompositeCommand("Drop"); //$NON-NLS-1$
 		Iterator<?> iter = dropRequest.getObjects().iterator();
-		if(dropRequest.getObjects().size() > 0 && dropRequest.getObjects().get(0) instanceof String) {
-			return getDropFileCommand(dropRequest);
-		}
-		Point location = dropRequest.getLocation().getCopy();
-		((GraphicalEditPart)getHost()).getContentPane().translateToRelative(location);
-		((GraphicalEditPart)getHost()).getContentPane().translateFromParent(location);
-		location.translate(((GraphicalEditPart)getHost()).getContentPane().getClientArea().getLocation().getNegated());
+		Point location = getTranslatedLocation(dropRequest);
+		
 		while(iter.hasNext()) {
 			EObject droppedObject = (EObject)iter.next();
-			int nodeVISUALID = getNodeVisualID(((IGraphicalEditPart)getHost()).getNotationView(), droppedObject);
-			int linkVISUALID = getLinkWithClassVisualID(droppedObject);
-			if(getSpecificDrop().contains(nodeVISUALID) || getSpecificDrop().contains(linkVISUALID)) {
-				dropRequest.setLocation(location);
-				// TODO: add to composite command ?
-				cc.add(new CommandProxy(getSpecificDropCommand(dropRequest, (Element)droppedObject, nodeVISUALID, linkVISUALID)));
-				continue;
-			}
-
-			if(linkVISUALID == -1 && nodeVISUALID != -1) {
-				// The element to drop is a node
-				// Retrieve it's expected graphical parent
-				EObject graphicalParent = ((GraphicalEditPart)getHost()).resolveSemanticElement();
-
-				// Restrict the default node creation to the following cases:
-				// . Take the containment relationship into consideration
-				// . Release the constraint when GraphicalParent is a diagram
-				if(getHost().getModel() instanceof Diagram) {
-					cc.add(getDefaultDropNodeCommand(nodeVISUALID, location, droppedObject));
-
-				} else if((graphicalParent instanceof Element) && ((Element)graphicalParent).getOwnedElements().contains(droppedObject)) {
-					cc.add(getDefaultDropNodeCommand(nodeVISUALID, location, droppedObject));
-
-				} else {
-					return UnexecutableCommand.INSTANCE;
-				}
-
-			} else if(linkVISUALID != -1) {
-				Collection<?> sources = linkmappingHelper.getSource((Element)droppedObject);
-				Collection<?> targets = linkmappingHelper.getTarget((Element)droppedObject);
-				if(sources.size() == 0 || targets.size() == 0) {
-					return UnexecutableCommand.INSTANCE;
-				}
-				// binary association
-				Element source = (Element)sources.toArray()[0];
-				Element target = (Element)targets.toArray()[0];
-				dropBinaryLink(cc, source, target, linkVISUALID, dropRequest.getLocation(), (Element)droppedObject);
-			}
+			cc.add(getDropObjectCommand(dropRequest, droppedObject, location));
 		}
 
 		return new ICommandProxy(cc);
+	}
+
+	protected IUndoableOperation getDropObjectCommand(DropObjectsRequest dropRequest,
+			EObject droppedObject, Point location) {
+		int nodeVISUALID = getNodeVisualID(((IGraphicalEditPart)getHost()).getNotationView(), droppedObject);
+		int linkVISUALID = getLinkWithClassVisualID(droppedObject);
+		if(getSpecificDrop().contains(nodeVISUALID) || getSpecificDrop().contains(linkVISUALID)) {
+			dropRequest.setLocation(location);
+			// TODO: add to composite command ?
+			return new CommandProxy(getSpecificDropCommand(dropRequest, (Element)droppedObject, nodeVISUALID, linkVISUALID));
+		}
+
+		if(linkVISUALID == -1 && nodeVISUALID != -1) {
+			// The element to drop is a node
+			// Retrieve it's expected graphical parent
+			EObject graphicalParent = ((GraphicalEditPart)getHost()).resolveSemanticElement();
+
+			// Restrict the default node creation to the following cases:
+			// . Take the containment relationship into consideration
+			// . Release the constraint when GraphicalParent is a diagram
+			if(getHost().getModel() instanceof Diagram) {
+				return getDefaultDropNodeCommand(nodeVISUALID, location, droppedObject);
+
+			} else if((graphicalParent instanceof Element) && ((Element)graphicalParent).getOwnedElements().contains(droppedObject)) {
+				return getDefaultDropNodeCommand(nodeVISUALID, location, droppedObject);
+
+			}
+			return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
+
+		} 
+		if(linkVISUALID != -1) {
+			Collection<?> sources = linkmappingHelper.getSource((Element)droppedObject);
+			Collection<?> targets = linkmappingHelper.getTarget((Element)droppedObject);
+			if(sources.size() == 0 || targets.size() == 0) {
+				return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
+			}
+			// binary association
+			Element source = (Element)sources.toArray()[0];
+			Element target = (Element)targets.toArray()[0];
+			CompositeCommand cc = new CompositeCommand("Add Link"); //$NON-NLS-1$
+			dropBinaryLink(cc, source, target, linkVISUALID, dropRequest.getLocation(), (Element)droppedObject);
+			return cc;
+		}
+		return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;	
+	}
+	
+	private Point getTranslatedLocation(DropObjectsRequest dropRequest) {
+		Point location = dropRequest.getLocation().getCopy();
+		((GraphicalEditPart) getHost()).getContentPane().translateToRelative(
+				location);
+		((GraphicalEditPart) getHost()).getContentPane().translateFromParent(
+				location);
+		location.translate(((GraphicalEditPart) getHost()).getContentPane()
+				.getClientArea().getLocation().getNegated());
+		return location;
 	}
 
 	/**
