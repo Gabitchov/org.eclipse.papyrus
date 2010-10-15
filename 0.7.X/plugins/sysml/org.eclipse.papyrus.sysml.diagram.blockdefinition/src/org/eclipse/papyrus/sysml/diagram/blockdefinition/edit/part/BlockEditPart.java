@@ -176,6 +176,9 @@ public class BlockEditPart extends ClassEditPart {
 			if(type == BlockDefinitionDiagramElementTypes.BLOCK_CONSTRAINT_CLN) {
 				return getChildBySemanticHint(BlockDefinitionDiagramElementTypes.BLOCK_CONSTRAINT_COMPARTMENT_HINT);
 			}
+			if(type == BlockDefinitionDiagramElementTypes.BLOCK_PART_CLN) {
+				return getChildBySemanticHint(BlockDefinitionDiagramElementTypes.BLOCK_PART_COMPARTMENT_HINT);
+			}
 		}
 		return super.getTargetEditPart(request);
 	}

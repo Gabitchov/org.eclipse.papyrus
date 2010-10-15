@@ -23,6 +23,7 @@ import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockConstrai
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockDefinitionDiagramEditPart;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockEditPart;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockPartCompartmentEditPart;
+import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockPartEditPart;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockPropertyCompartmentEditPart;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockPropertyEditPart;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockReferenceCompartmentEditPart;
@@ -42,6 +43,7 @@ public class BlockEditPartProvider extends AbstractEditPartProvider {
 
 		nodeMap.put(BlockDefinitionDiagramElementTypes.CLASS_PROP_CLN.getSemanticHint(), BlockPropertyEditPart.class);
 		nodeMap.put(BlockDefinitionDiagramElementTypes.BLOCK_CONSTRAINT_CLN.getSemanticHint(), BlockConstraintEditPart.class);
+		nodeMap.put(BlockDefinitionDiagramElementTypes.BLOCK_PART_CLN.getSemanticHint(), BlockPartEditPart.class);
 	}
 
 	@Override

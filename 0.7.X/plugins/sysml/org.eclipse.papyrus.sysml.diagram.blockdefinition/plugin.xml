@@ -128,6 +128,15 @@
 			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif">
 		</entry>
 		
+		<entry
+			defineOnly="true"
+			description="Create new Part"
+			id="blockdefinition.tool.part"
+			kind="tool"
+			label="Part"
+			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
+			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif">
+		</entry>
 	</contribution>	
 	
 	</paletteProvider>	
@@ -145,7 +154,7 @@
 	<!-- Block view provider -->
 	<viewProvider class="org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.BlockViewProvider">
 		<Priority name="Low"/>
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="Block, Constraint"/>		
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="Block, Constraint, Part"/>		
 	</viewProvider>	
 
 	<!-- ViewProvider for inherited elements (from ClassDiagram UMLViewProvider) -->
@@ -226,7 +235,7 @@
 		<object
 			class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)"
 			id="org.eclipse.papyrus.sysml.diagram.blockdefinition.Block">
-			<method name="getType()" value="Block, Block_Constraint_Compartment, Constraint"/>
+			<method name="getType()" value="Block, Block_Constraint_Compartment, Constraint, Part"/>
 		</object>
 	</editpartProvider>
 
@@ -500,6 +509,15 @@
 		<param name="semanticHint" value="Constraint"/>
 	</specializationType>
 	
+	<specializationType
+		icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.Part"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+		name="Constraint">
+		<specializes id="org.eclipse.papyrus.diagram.clazz.Property_3005"/>
+		<param name="semanticHint" value="Part"/>
+	</specializationType>
+
 </extension>
 
 
