@@ -17,8 +17,10 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
@@ -31,6 +33,7 @@ import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.ConnectorEnd;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.StructuredClassifier;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
@@ -48,17 +51,17 @@ import org.eclipse.uml2.uml.UMLFactory;
  */
 public class ConnectorCreateCommand extends org.eclipse.papyrus.diagram.composite.edit.commands.ConnectorCreateCommand {
 
-	/** Source of Connector (cannot use original due to private visibility) **/
-	private final EObject source;
-
-	/** Target of Connector (cannot use original due to private visibility) **/
-	private final EObject target;
-
 	/** Graphical parent of Source **/
 	protected Property sourcePartWithPort = null;
 
 	/** Graphical parent of Target **/
 	protected Property targetPartWithPort = null;
+
+	/** Graphical EditPart of Source **/
+	protected GraphicalEditPart sourceGraphicalEditPart = null;
+
+	/** Graphical EditPart of Target **/
+	protected GraphicalEditPart targetGraphicalEditPart = null;
 
 	/**
 	 * Constructor of Connector custom creation command
@@ -73,17 +76,26 @@ public class ConnectorCreateCommand extends org.eclipse.papyrus.diagram.composit
 	public ConnectorCreateCommand(CreateRelationshipRequest req, EObject source, EObject target) {
 
 		super(req, source, target);
-		this.source = source;
-		this.target = target;
 
 		// Resolve graphical parents of source and target store in request as Parameters
 		// These parameters are added in request by (custom) GraphicalNodeEditPolicy
 		if(req.getParameter(GraphicalNodeEditPolicy.CONNECTOR_CREATE_REQUEST_SOURCE_PARENT) instanceof Property) {
 			sourcePartWithPort = (Property)req.getParameter(GraphicalNodeEditPolicy.CONNECTOR_CREATE_REQUEST_SOURCE_PARENT);
 		}
+
 		if(req.getParameter(GraphicalNodeEditPolicy.CONNECTOR_CREATE_REQUEST_TARGET_PARENT) instanceof Property) {
 			targetPartWithPort = (Property)req.getParameter(GraphicalNodeEditPolicy.CONNECTOR_CREATE_REQUEST_TARGET_PARENT);
 		}
+
+		if(req.getParameter(GraphicalNodeEditPolicy.CONNECTOR_CREATE_REQUEST_SOURCE_GRAPHICAL) instanceof GraphicalEditPart) {
+			sourceGraphicalEditPart = (GraphicalEditPart)req.getParameter(GraphicalNodeEditPolicy.CONNECTOR_CREATE_REQUEST_SOURCE_GRAPHICAL);
+		}
+
+		if(req.getParameter(GraphicalNodeEditPolicy.CONNECTOR_CREATE_REQUEST_TARGET_GRAPHICAL) instanceof GraphicalEditPart) {
+			targetGraphicalEditPart = (GraphicalEditPart)req.getParameter(GraphicalNodeEditPolicy.CONNECTOR_CREATE_REQUEST_TARGET_GRAPHICAL);
+		}
+
+		container = deduceContainer(_getSource(), _getTarget());
 	}
 
 	/**
@@ -113,20 +125,20 @@ public class ConnectorCreateCommand extends org.eclipse.papyrus.diagram.composit
 	 */
 	@Override
 	public boolean canExecute() {
-		if(source == null && target == null) {
+		if((source == null) && (target == null)) {
 			return false;
 		}
-		if(source != null && false == source instanceof ConnectableElement) {
+		if((source != null) && !(source instanceof ConnectableElement)) {
 			return false;
 		}
-		if(target != null && false == target instanceof ConnectableElement) {
+		if((target != null) && !(target instanceof ConnectableElement)) {
 			return false;
 		}
-		if(_getSource() == null) {
+		if(source == null) {
 			return true; // link creation is in progress; source is not defined yet
 		}
-		// target may be null here but it's possible to check constraint
-		if(getContainer() == null) {
+
+		if((target != null) && (getContainer() == null)) {
 			return false;
 		}
 		// return
@@ -207,5 +219,57 @@ public class ConnectorCreateCommand extends org.eclipse.papyrus.diagram.composit
 		if(configureCommand != null && configureCommand.canExecute()) {
 			configureCommand.execute(monitor, info);
 		}
+	}
+
+	/**
+	 * 
+	 * Tries to find a common StructuredClassifier container to add the new Connector.
+	 * 
+	 * @see org.eclipse.papyrus.diagram.composite.edit.commands.ConnectorCreateCommand#deduceContainer(org.eclipse.emf.ecore.EObject,
+	 *      org.eclipse.emf.ecore.EObject)
+	 * 
+	 * @param source
+	 *        the source object
+	 * @param target
+	 *        the target object
+	 * @return a common StructuredClassifier container (graphical search)
+	 */
+	@Override
+	protected StructuredClassifier deduceContainer(EObject source, EObject target) {
+
+		StructuredClassifier containerProposedBySource = proposedContainer(sourceGraphicalEditPart);
+		StructuredClassifier containerProposedByTarget = proposedContainer(targetGraphicalEditPart);
+
+		StructuredClassifier deducedContainer = null;
+
+		if((containerProposedBySource != null) && (containerProposedByTarget != null)) {
+			if(containerProposedBySource == containerProposedByTarget) {
+				deducedContainer = containerProposedBySource;
+			}
+		}
+
+		return deducedContainer;
+	}
+
+	/**
+	 * Parse graphical parent of the graphicalEditPart until a StructureClassifier is found.
+	 * 
+	 * @param graphicalEditPart
+	 *        the graphical edit part
+	 * @return null or a StructuredClassifier that graphically contains the graphicalEditPart
+	 */
+	private StructuredClassifier proposedContainer(GraphicalEditPart graphicalEditPart) {
+
+		for(EditPart ep = graphicalEditPart; ep != null; ep = ep.getParent()) {
+			if(ep instanceof GraphicalEditPart) {
+				GraphicalEditPart parent = (GraphicalEditPart)ep;
+				EObject semanticParent = parent.resolveSemanticElement();
+				if(semanticParent instanceof StructuredClassifier) {
+					return (StructuredClassifier)semanticParent;
+				}
+			}
+		}
+
+		return null;
 	}
 }

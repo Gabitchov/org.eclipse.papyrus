@@ -55,6 +55,16 @@ public class GraphicalNodeEditPolicy extends org.eclipse.gmf.runtime.diagram.ui.
 	public static final String CONNECTOR_CREATE_REQUEST_TARGET_PARENT = "TARGET_PARENT"; //$NON-NLS-1$
 
 	/**
+	 * The ID for the additional parameter SOURCE_GRAPHICAL used in creation request
+	 */
+	public static final String CONNECTOR_CREATE_REQUEST_SOURCE_GRAPHICAL = "SOURCE_GRAPHICAL"; //$NON-NLS-1$
+
+	/**
+	 * The ID for the additional parameter TARGET_GRAPHICAL used in creation request
+	 */
+	public static final String CONNECTOR_CREATE_REQUEST_TARGET_GRAPHICAL = "TARGET_GRAPHICAL"; //$NON-NLS-1$
+
+	/**
 	 * <pre>
 	 * This method is overridden in order to add information (graphical parent of Port)
 	 * in the CreationRelationshipRequest.
@@ -62,6 +72,8 @@ public class GraphicalNodeEditPolicy extends org.eclipse.gmf.runtime.diagram.ui.
 	 * These information is stored in the request as Parameters under the following keys:
 	 * - &quot;SOURCE_PARENT&quot; : UML Element used as Graphical parent of the source Port (end of Connector)
 	 * - &quot;TARGET_PARENT&quot; : UML Element used as Graphical parent of the target Port (end of Connector)
+	 * - &quot;SOURCE_GRAPHICAL&quot; : GraphicalEditPart of the source
+	 * - &quot;TARGET_GRAPHICAL&quot; : GraphicalEditPart of the target
 	 * 
 	 * This method is used too to call the custom command for InformationFlow creation.
 	 * 
@@ -99,6 +111,7 @@ public class GraphicalNodeEditPolicy extends org.eclipse.gmf.runtime.diagram.ui.
 		}
 
 		createElementRequest.setParameter(CONNECTOR_CREATE_REQUEST_SOURCE_PARENT, sourceParent);
+		createElementRequest.setParameter(CONNECTOR_CREATE_REQUEST_SOURCE_GRAPHICAL, request.getSourceEditPart());
 		createElementRequest.setSource(source);
 
 		// resolve the target
@@ -115,6 +128,7 @@ public class GraphicalNodeEditPolicy extends org.eclipse.gmf.runtime.diagram.ui.
 		}
 
 		createElementRequest.setParameter(CONNECTOR_CREATE_REQUEST_TARGET_PARENT, targetParent);
+		createElementRequest.setParameter(CONNECTOR_CREATE_REQUEST_TARGET_GRAPHICAL, request.getTargetEditPart());
 		createElementRequest.setTarget(target);
 
 		Command createElementCommand = null;

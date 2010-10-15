@@ -38,7 +38,7 @@ public class PortItemSemanticEditPolicy extends org.eclipse.papyrus.diagram.comp
 	@Override
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
 		if(UMLElementTypes.Connector_4013 == req.getElementType()) {
-			return getGEFWrapper(new ConnectorCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new ConnectorCreateCommand(req, req.getSource(), null));
 		}
 		if(UMLElementTypes.Dependency_4017 == req.getElementType()) {
 			return getGEFWrapper(new RoleBindingCreateCommand(req, req.getSource(), req.getTarget()));
