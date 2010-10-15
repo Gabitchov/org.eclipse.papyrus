@@ -9,19 +9,14 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy;
 
-import java.util.Iterator;
-
+import org.eclipse.core.commands.operations.IUndoableOperation;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gef.commands.Command;
-import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CreateCommand;
-import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
@@ -31,7 +26,6 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy;
-import org.eclipse.papyrus.diagram.common.util.ViewServiceUtil;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.BlockDefinitionDiagramElementTypes;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Port;
@@ -41,58 +35,29 @@ import org.eclipse.uml2.uml.Property;
 public class CustomDragDropEditPolicy extends ClassDiagramDragDropEditPolicy {
 	
 	private static final String QN_BLOCK_STEREOTYPE = "SysML::Blocks::Block";
-
+	
 	@Override
-	public Command getDropObjectsCommand(DropObjectsRequest dropRequest) {
-		// when it's the first action after the opening of Papyrus, the
-		// viewService is not loaded!
-		// see bug 302555
-		ViewServiceUtil.forceLoad();
-
-		if (dropRequest.getObjects().size() > 0
-				&& dropRequest.getObjects().get(0) instanceof String) {
-			return getDropFileCommand(dropRequest);
-		}
-		CompositeCommand cc = new CompositeCommand("Drop"); //$NON-NLS-1$
-
-		Point location = getTranslatedLocation(dropRequest);
+	protected IUndoableOperation getDropObjectCommand(
+			DropObjectsRequest dropRequest, EObject droppedObject,
+			Point location) {
 		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) getHost();
-
-		Iterator<?> iter = dropRequest.getObjects().iterator();
-		while (iter.hasNext()) {
-			EObject droppedObject = (EObject) iter.next();
-			IHintedType type = getHintedType(targetEditPart.getNotationView(),
-					droppedObject);
-			if (type == null) {
-				continue;
-			}
-
-			if (targetEditPart.getModel() instanceof Diagram) {
-				cc.add(getDefaultDropNodeCommand(type, location, droppedObject));
-				continue;
-			}
-			EObject graphicalParent = targetEditPart.resolveSemanticElement();
-			if ((graphicalParent instanceof Element)
-					&& ((Element) graphicalParent).getOwnedElements().contains(
-							droppedObject)) {
-				cc.add(getDefaultDropNodeCommand(type, location, droppedObject));
-				continue;
-			}
-			return UnexecutableCommand.INSTANCE;
+		
+		IHintedType type = getHintedType(targetEditPart.getNotationView(),
+				droppedObject);
+		if (type == null) {
+			return super.getDropObjectCommand(dropRequest, droppedObject, location);
 		}
 
-		return new ICommandProxy(cc);
-	}
-
-	private Point getTranslatedLocation(DropObjectsRequest dropRequest) {
-		Point location = dropRequest.getLocation().getCopy();
-		((GraphicalEditPart) getHost()).getContentPane().translateToRelative(
-				location);
-		((GraphicalEditPart) getHost()).getContentPane().translateFromParent(
-				location);
-		location.translate(((GraphicalEditPart) getHost()).getContentPane()
-				.getClientArea().getLocation().getNegated());
-		return location;
+		if (targetEditPart.getModel() instanceof Diagram) {
+			return getDefaultDropNodeCommand(type, location, droppedObject);
+		}
+		EObject graphicalParent = targetEditPart.resolveSemanticElement();
+		if ((graphicalParent instanceof Element)
+				&& ((Element) graphicalParent).getOwnedElements().contains(
+						droppedObject)) {
+			return getDefaultDropNodeCommand(type, location, droppedObject);
+		}
+		return super.getDropObjectCommand(dropRequest, droppedObject, location);
 	}
 
 	public IHintedType getHintedType(View containerView, EObject domainElement) {
@@ -116,17 +81,6 @@ public class CustomDragDropEditPolicy extends ClassDiagramDragDropEditPolicy {
 		return domainElement instanceof org.eclipse.uml2.uml.Class
 				&& ((org.eclipse.uml2.uml.Class) domainElement)
 						.getAppliedStereotype(QN_BLOCK_STEREOTYPE) != null;
-	}
-
-	@Override
-	public int getLinkWithClassVisualID(EObject domainElement) {
-		String semanticHint = "-1";
-		// if(domainElement instanceof Connector) {
-		// semanticHint =
-		// InternalBlockDiagramElementTypes.CONNECTOR.getSemanticHint();
-		// }
-
-		return new Integer(semanticHint);
 	}
 
 	private CompositeCommand getDefaultDropNodeCommand(IHintedType type,
