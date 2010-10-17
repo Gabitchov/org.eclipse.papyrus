@@ -39,6 +39,7 @@ Papyrus REM :
 Test to know how the delete of this EditPart is done : we used the DeleteService or the "Traditional method"
 «ENDREM»
 	«IF papyrusgmfgenextension::EditPartUsingDeleteService.allInstances()->select(v:papyrusgmfgenextension::EditPartUsingDeleteService|v.genView->includes(self))->size()<>0»
+		«EXPAND xpt::Common::generatedMemberComment»
 		«EXPAND xpt::diagram::editpolicies::UtilsItemSemanticEditPolicy::getDestroyElementCommandByService-»
 	«ELSE»
 		«EXPAND getDestroyElementCommand-»

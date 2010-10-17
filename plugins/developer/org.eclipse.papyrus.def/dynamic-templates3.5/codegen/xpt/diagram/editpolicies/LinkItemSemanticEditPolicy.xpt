@@ -55,6 +55,7 @@ Test to know which delete command should be used in the generated code : "Tradit
 «ENDREM»
 
 	«IF papyrusgmfgenextension::EditPartUsingDeleteService.allInstances()->select(v:papyrusgmfgenextension::EditPartUsingDeleteService|v.genView->includes(genLink))->size()<>0»
+		«EXPAND xpt::Common::generatedMemberComment»
 		«EXPAND xpt::diagram::editpolicies::UtilsItemSemanticEditPolicy::getDestroyElementCommandByService-»
 	«ELSE»
 		«EXPAND xpt::Common::generatedMemberComment»
