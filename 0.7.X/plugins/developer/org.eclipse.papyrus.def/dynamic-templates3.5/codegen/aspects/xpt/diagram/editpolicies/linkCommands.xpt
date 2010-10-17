@@ -53,19 +53,24 @@ for the link which uses the ReorientCommand provided by the EditService
 This function writes the code to call the ReorientCommand provided by the ReorientService
 «ENDREM»
 «DEFINE callReorientCommand FOR gmfgen::GenLinkEnd-»
-	«IF papyrusgmfgenextension::EditPartUsingReorientService.allInstances()->size()<>0-»
-			
-			//we use the reorient command provided by the EditService
+	«LET papyrusgmfgenextension::EditPartUsingReorientService.allInstances() AS rServiceNodes-»
+	«IF rServiceNodes->notEmpty()-»
+	«IF rServiceNodes->asSequence()
+					 ->select(rServiceNode | rServiceNode.genView->select(view | getReroutableTypeLinks(self)->includes(view))->notEmpty())
+					 ->notEmpty()-»	
 			 org.eclipse.papyrus.service.edit.service.IElementEditService provider = org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils.getCommandProvider(req.getRelationship());
 			 if(provider == null) {
 	             return org.eclipse.gef.commands.UnexecutableCommand.INSTANCE;
 	         }
+	         // Retrieve re-orient command from the Element Edit service
 			 org.eclipse.gmf.runtime.common.core.command.ICommand reorientCommand = provider.getEditCommand(req);
              if(reorientCommand == null) {
 	             return org.eclipse.gef.commands.UnexecutableCommand.INSTANCE;
              }
 			 return getGEFWrapper(reorientCommand.reduce());
 	«ENDIF-»
+	«ENDIF-»
+	«ENDLET-»
 «ENDDEFINE»
 
 «REM»
