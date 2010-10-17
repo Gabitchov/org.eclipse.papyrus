@@ -732,7 +732,7 @@
 	
 	<!-- IElementTypes for Generalization -->
 	<metamodelType eclass="Generalization" id="org.eclipse.papyrus.uml.Generalization"
-		edithelper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.GeneralizationEditHelper"
 		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Generalization">
 		<param name="semanticHint" value="UML::Generalization"/>
 	</metamodelType>

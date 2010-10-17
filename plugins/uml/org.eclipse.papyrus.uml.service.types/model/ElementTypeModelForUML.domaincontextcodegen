@@ -311,7 +311,7 @@
     <types specificName="GATE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Gate"/>
     </types>
-    <types specificName="GENERALIZATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types specificName="GENERALIZATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.GeneralizationEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Generalization"/>
     </types>
     <types specificName="GENERALIZATION_SET" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
