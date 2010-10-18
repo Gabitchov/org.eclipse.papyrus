@@ -27,14 +27,13 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.BlockDefinitionDiagramElementTypes;
+import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
 
-/** Customization of the DND edit policy for the Internal Block Diagram */
+/** Customization of the DND edit policy for the Block Definition Diagram */
 public class CustomDragDropEditPolicy extends ClassDiagramDragDropEditPolicy {
-	
-	private static final String QN_BLOCK_STEREOTYPE = "SysML::Blocks::Block";
 	
 	@Override
 	protected IUndoableOperation getDropObjectCommand(
@@ -80,8 +79,14 @@ public class CustomDragDropEditPolicy extends ClassDiagramDragDropEditPolicy {
 	private boolean isBlock(EObject domainElement) {
 		return domainElement instanceof org.eclipse.uml2.uml.Class
 				&& ((org.eclipse.uml2.uml.Class) domainElement)
-						.getAppliedStereotype(QN_BLOCK_STEREOTYPE) != null;
+						.getAppliedStereotype(SysmlResource.BLOCK_ID) != null;
 	}
+	
+	@Override
+	public int getNodeVisualID(View containerView, EObject domainElement) {
+		return super.getNodeVisualID(containerView, domainElement);
+	}
+
 
 	private CompositeCommand getDefaultDropNodeCommand(IHintedType type,
 			Point location, EObject droppedObject) {
