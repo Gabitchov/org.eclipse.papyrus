@@ -13,6 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.service;
 
+import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.ImageFigure;
+import org.eclipse.draw2d.Locator;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
@@ -28,6 +31,8 @@ import org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecorator;
 import org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoratorTarget;
 import org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoratorTarget.Direction;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.IBorderItemLocator;
+import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
+import org.eclipse.gmf.runtime.draw2d.ui.mapmode.MapModeUtil;
 import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.DescriptionStyle;
 import org.eclipse.gmf.runtime.notation.Diagram;
@@ -36,6 +41,7 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.editparts.BorderNamedElementEditPart;
+import org.eclipse.papyrus.diagram.common.layout.OverlayLocator;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.diagram.common.util.Util;
 import org.eclipse.swt.graphics.Image;
@@ -70,11 +76,11 @@ public class InheritedDecorator implements IDecorator {
 	/** the plugin where owning the icons for the UML Element */
 	public static final String pluginID = "org.eclipse.papyrus.diagram.common"; //$NON-NLS-1$
 
-	/** folder where are the UML Icon - We use a 15x15 image, because 16x16 is to big to be displayed in the compartment list with a police size to 8 */
-	public static final String imagePath = "/icons/Generalization-15x15.gif"; //$NON-NLS-1$
+	/** the image path */
+	public static final String imagePath = "/icons/hyperlink_13x13.gif"; //$NON-NLS-1$
 
 	/** the image used added to represent an inherited element */
-	private static final Image ICON_GENERALIZATION = Activator.getPluginIconImage(pluginID, imagePath);
+	private static final Image ICON_HYPERLINK = Activator.getPluginIconImage(pluginID, imagePath);
 
 
 	/**
@@ -156,39 +162,42 @@ public class InheritedDecorator implements IDecorator {
 		removeDecoration();
 
 		Node node = getDecoratorTargetNode(getDecoratorTarget());
+		IFigure figure = getFigure(ICON_HYPERLINK);
+		IGraphicalEditPart gep = (IGraphicalEditPart)getDecoratorTarget().getAdapter(IGraphicalEditPart.class);
 
 		if(node != null) {
-
 			DescriptionStyle descStyle = getDescriptionStyle(node);
+
 			if(descStyle != null) {
 				if(isInherited(node)) {
-					setDecoration(getDecoratorTarget().addShapeDecoration(ICON_GENERALIZATION, getDirection(node), getMargin(node), false));
+					if(Util.isAffixedChildNode(gep)) {
+						Locator locator = new OverlayLocator(gep.getFigure(), getDirection(node));
+						setDecoration(getDecoratorTarget().addDecoration(figure, locator, false));
+					} else {
+						setDecoration(getDecoratorTarget().addShapeDecoration(figure, getDirection(node), -1, false));
+					}
 				}
 			}
 		}
 	}
 
+
+
+
 	/**
-	 * Returns the margin to set the decorator for the node
+	 * Returns a figure corresponding to this image
 	 * 
-	 * @param node
-	 *        the node
+	 * @param image
+	 *        a image
 	 * @return
-	 *         the margin to set the decorator for the node
-	 *         margin can value :
-	 *         <ul>
-	 *         <li>0 : if the node is an Affixed Child Node</li>
-	 *         <li>-1 : in other case</li>
-	 *         </ul>
+	 *         a figure corresponding to this image
 	 */
-	private int getMargin(Node node) {
-		IGraphicalEditPart gep = (IGraphicalEditPart)getDecoratorTarget().getAdapter(IGraphicalEditPart.class);
-		assert gep != null;
-		//test if its an affixed child node
-		if(Util.isAffixedChildNode(gep)) {
-			return 0;
-		}
-		return -1;
+	public IFigure getFigure(Image image) {
+		IMapMode mm = MapModeUtil.getMapMode(((IGraphicalEditPart)getDecoratorTarget().getAdapter(IGraphicalEditPart.class)).getFigure());
+		ImageFigure fig = new ImageFigure();
+		fig.setImage(image);
+		fig.setSize(mm.DPtoLP(image.getBounds().width), mm.DPtoLP(image.getBounds().height));
+		return fig;
 	}
 
 	/**
@@ -205,7 +214,7 @@ public class InheritedDecorator implements IDecorator {
 	 *         <li>{@link PositionConstants#SOUTH_EAST}</li> in other cases
 	 *         </ul>
 	 */
-	private Direction getDirection(Node node) {
+	protected Direction getDirection(Node node) {
 		IGraphicalEditPart gep = (IGraphicalEditPart)getDecoratorTarget().getAdapter(IGraphicalEditPart.class);
 		assert gep != null;
 		//test if its an affixed ChildNode
@@ -247,7 +256,7 @@ public class InheritedDecorator implements IDecorator {
 	 * @return
 	 *         <code>true</code> if the node is an inherited element <code>false</code> if not
 	 */
-	private boolean isInherited(Node node) {
+	protected boolean isInherited(Node node) {
 		EObject element = node.getElement();
 		if(element instanceof Element) {
 			EObject container = node.eContainer();
@@ -284,18 +293,21 @@ public class InheritedDecorator implements IDecorator {
 	 *        Node to retrieve the description style from.
 	 * @return DescriptionStyle style object
 	 */
-	private DescriptionStyle getDescriptionStyle(Node node) {
+	protected DescriptionStyle getDescriptionStyle(Node node) {
 		return (DescriptionStyle)node.getStyle(NotationPackage.eINSTANCE.getDescriptionStyle());
 	}
 
+	/**
+	 * A listener used to listen the change of location and type (for Property)
+	 */
 	private NotificationListener notificationListener = new NotificationListener() {
 
-		/*
-		 * (non-Javadoc)
+		/**
 		 * 
 		 * @see org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener#notifyChanged(org.eclipse.emf.common.notify.Notification)
+		 * 
+		 * @param notification
 		 */
-
 		public void notifyChanged(Notification notification) {
 			refresh();
 		}
