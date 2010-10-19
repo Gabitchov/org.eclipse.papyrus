@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.papyrus.build"
-      label="%featureName"
+      label="Papyrus Build Site"
       version="0.7.1.qualifier"
-      provider-name="%providerName"
+      provider-name="Eclipse Modeling Project"
       image="eclipse_update_120.jpg">
 
    <description>
