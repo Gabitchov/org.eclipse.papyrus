@@ -6,6 +6,7 @@
 	<rm:property key="build.type" mutable="true" value="N"/>
 
 	<rm:locator pattern="^org\.eclipse\.mdt\.papyrus\.releng.*" searchPathRef="releng"/>
+	<rm:locator pattern="^org\.eclipse\.papyrus\.build.*" searchPathRef="releng"/>
 	<rm:locator pattern="^org\.eclipse\.papyrus.*" searchPathRef="sources"/>
 	<rm:locator pattern="^org\.eclipse\.xtext\.gmf\.glue.*" searchPathRef="sources"/>
 
