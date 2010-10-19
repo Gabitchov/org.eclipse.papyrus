@@ -16,6 +16,7 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy;
+import org.eclipse.papyrus.diagram.clazz.custom.policies.itemsemantic.CTemplateSignatureTemplateParameterCompartmentItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.TemplateSignatureTemplateParameterCompartmentItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.part.Messages;
 import org.eclipse.papyrus.diagram.common.editpolicies.DuplicatePasteEditPolicy;
@@ -78,6 +79,7 @@ extends ListCompartmentEditPart
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.clazz.edit.policies.TemplateSignatureTemplateParameterCompartmentCanonicalEditPolicy());
 
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CTemplateSignatureTemplateParameterCompartmentItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new ClassDiagramDragDropEditPolicy());
 	}
 

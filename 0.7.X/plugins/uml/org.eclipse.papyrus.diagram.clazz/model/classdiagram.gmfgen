@@ -5780,6 +5780,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.SEMANTIC_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.itemsemantic.CRedefinableTemplateSignatureTemplateParameterCompartmentItemSemanticEditPolicy"/>
       </compartments>
       <compartments
           visualID="7005"
@@ -6589,6 +6593,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.SEMANTIC_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.itemsemantic.CTemplateSignatureTemplateParameterCompartmentItemSemanticEditPolicy"/>
       </compartments>
       <palette>
         <groups
