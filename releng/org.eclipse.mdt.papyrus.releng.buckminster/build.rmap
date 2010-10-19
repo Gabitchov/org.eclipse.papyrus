@@ -14,7 +14,7 @@
 
 	<rm:searchPath name="releng">
 		<rm:provider componentTypes="buckminster,osgi.bundle" readerType="svn">
-			<rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/branches/0.7.X/releng/{1}?moduleAfterTag&amp;moduleAfterBranch">">
+			<rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/branches/0.7.X/releng/{1}">
 				<bc:propertyRef key="svn.repository"/>
 				<bc:propertyRef key="buckminster.component"/>
 			</rm:uri>
