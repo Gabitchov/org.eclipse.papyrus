@@ -720,16 +720,6 @@
             mnemonic="&amp;A"
             style="push"
             tooltip="Auto Size">
-         <visibleWhen>
-            <and>
-               <with
-                     variable="activeEditorId">
-                  <equals
-                        value="org.eclipse.papyrus.core.papyrusEditor">
-                  </equals>
-               </with>
-            </and>
-         </visibleWhen>
       </command>
       <menu
             icon="icons/size_to_control.gif"
@@ -1245,13 +1235,6 @@
          description="Call the Auto Size Action"
          id="org.eclipse.papyrus.diagram.menu.command.autosize"
          name="Auto Size">
-      <defaultHandler
-            class="org.eclipse.papyrus.diagram.menu.actions.handlers.SizeHandler">
-         <parameter
-               name="org.eclipse.papyrus.diagram.menu.commandSizeParameter"
-               value="parameter_autosize">
-         </parameter>
-      </defaultHandler>
    </command>
    <command
          categoryId="org.eclipse.papyrus.editor.category"
@@ -1323,5 +1306,38 @@
          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
          sequence="CTRL+SHIFT+ARROW_DOWN">
    </key>
+</extension>
+<extension
+      point="org.eclipse.ui.startup">
+   <startup
+         class="org.eclipse.papyrus.diagram.menu.Activator"></startup>
+</extension>
+<extension
+      point="org.eclipse.ui.handlers">
+   <handler
+         class="org.eclipse.papyrus.diagram.menu.actions.handlers.SizeHandler"
+         commandId="org.eclipse.papyrus.diagram.menu.command.autosize">
+      <enabledWhen>
+         <iterate>
+            <instanceof
+                  value="org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart">
+            </instanceof>
+            <and>
+               <not>
+                  <instanceof
+                        value="org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart">
+                  </instanceof>
+               </not>
+            </and>
+         </iterate>
+      </enabledWhen>
+      <class
+            class="org.eclipse.papyrus.diagram.menu.actions.handlers.SizeHandler">
+         <parameter
+               name="org.eclipse.papyrus.diagram.menu.commandSizeParameter"
+               value="parameter_autosize">
+         </parameter>
+      </class>
+   </handler>
 </extension>
 </plugin>
