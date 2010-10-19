@@ -36,6 +36,12 @@
 			</rm:uri>
 		</rm:provider>
 		<rm:provider componentTypes="osgi.bundle" readerType="svn">
+			<rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/branches/0.7.X/plugins/developer/{1}">
+				<bc:propertyRef key="svn.repository"/>
+				<bc:propertyRef key="buckminster.component"/>
+			</rm:uri>
+		</rm:provider>
+		<rm:provider componentTypes="osgi.bundle" readerType="svn">
 			<rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/branches/0.7.X/plugins/others/{1}">
 				<bc:propertyRef key="svn.repository"/>
 				<bc:propertyRef key="buckminster.component"/>
