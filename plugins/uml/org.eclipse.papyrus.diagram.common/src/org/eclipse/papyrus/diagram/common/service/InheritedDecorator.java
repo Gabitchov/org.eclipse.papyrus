@@ -30,7 +30,6 @@ import org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoration;
 import org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecorator;
 import org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoratorTarget;
 import org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoratorTarget.Direction;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.MapModeUtil;
 import org.eclipse.gmf.runtime.notation.DecorationNode;
@@ -40,7 +39,6 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.Activator;
-import org.eclipse.papyrus.diagram.common.editparts.BorderNamedElementEditPart;
 import org.eclipse.papyrus.diagram.common.layout.OverlayLocator;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.diagram.common.util.Util;
@@ -170,12 +168,21 @@ public class InheritedDecorator implements IDecorator {
 
 			if(descStyle != null) {
 				if(isInherited(node)) {
-					if(Util.isAffixedChildNode(gep)) {
+					//					if(Util.isAffixedChildNode(gep)) {
+
+					//						setDecoration(getDecoratorTarget().addDecoration(figure, locator, false));
+					//					} else {
+					//						setDecoration(getDecoratorTarget().addShapeDecoration(figure, getDirection(node), -1, false));
+					//					}
+					if(isInCompartmentList(node) && !Util.isAffixedChildNode(gep)) {
+						setDecoration(getDecoratorTarget().addShapeDecoration(figure, getDirection(node), -1, false));
+					} else {
 						Locator locator = new OverlayLocator(gep.getFigure(), getDirection(node));
 						setDecoration(getDecoratorTarget().addDecoration(figure, locator, false));
-					} else {
-						setDecoration(getDecoratorTarget().addShapeDecoration(figure, getDirection(node), -1, false));
 					}
+
+
+
 				}
 			}
 		}
@@ -218,34 +225,49 @@ public class InheritedDecorator implements IDecorator {
 		IGraphicalEditPart gep = (IGraphicalEditPart)getDecoratorTarget().getAdapter(IGraphicalEditPart.class);
 		assert gep != null;
 		//test if its an affixed ChildNode
-		if(Util.isAffixedChildNode(gep)) {
+		//		if(Util.isAffixedChildNode(gep)) {
+		//
+		//			IBorderItemLocator loc = ((BorderNamedElementEditPart)gep).getBorderItemLocator();
+		//			int location = loc.getCurrentSideOfParent();
+		//			if(PositionConstants.NONE == location) { //sometimes getBorderItemLocator doesn't work correctly!
+		//				location = PositionConstants.NORTH_WEST;
+		//			}
+		//			switch(location) {
+		//			case PositionConstants.NORTH:
+		//			case PositionConstants.NORTH_WEST:
+		//			case PositionConstants.WEST:
+		//			case PositionConstants.SOUTH_WEST:
+		//				//				return IDecoratorTarget.Direction.NORTH_WEST;
+		//			default:
+		//				return IDecoratorTarget.Direction.SOUTH_EAST;
+		//			}
+		//		}
 
-			IBorderItemLocator loc = ((BorderNamedElementEditPart)gep).getBorderItemLocator();
-			int location = loc.getCurrentSideOfParent();
-			if(PositionConstants.NONE == location) { //sometimes getBorderItemLocator doesn't work correctly!
-				location = PositionConstants.NORTH_WEST;
-			}
-			switch(location) {
-			case PositionConstants.NORTH:
-			case PositionConstants.NORTH_WEST:
-			case PositionConstants.WEST:
-			case PositionConstants.SOUTH_WEST:
-				return IDecoratorTarget.Direction.NORTH_WEST;
-			default:
-				return IDecoratorTarget.Direction.SOUTH_EAST;
-			}
+		if(isInCompartmentList(node) && !Util.isAffixedChildNode(gep)) {
+			return IDecoratorTarget.Direction.EAST;
 		}
+		return IDecoratorTarget.Direction.SOUTH_WEST;
+	}
 
-
+	/**
+	 * Tests if the compartment is a compartment list
+	 * 
+	 * @param node
+	 *        the node on which we want add an Overlay
+	 * @return
+	 *         <code>true</code> if the compartment is managed by an {@link XYLayoutEditPolicy}
+	 */
+	protected boolean isInCompartmentList(Node node) {
+		IGraphicalEditPart gep = (IGraphicalEditPart)getDecoratorTarget().getAdapter(IGraphicalEditPart.class);
 		EObject container = node.eContainer();
 		if(container instanceof View) {
 			EditPart EP = DiagramEditPartsUtil.getEditPartFromView((View)container, gep);
 			EditPolicy editPolicy = EP.getEditPolicy(EditPolicy.LAYOUT_ROLE);
 			if(!(editPolicy instanceof XYLayoutEditPolicy)) {//we are in a compartment list
-				return IDecoratorTarget.Direction.EAST;
+				return true;
 			}
 		}
-		return IDecoratorTarget.Direction.SOUTH_EAST;
+		return false;
 	}
 
 	/**
