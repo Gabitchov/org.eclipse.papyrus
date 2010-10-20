@@ -89,7 +89,7 @@ public class OverlayLocator implements Locator {
 		} else if(Direction.NORTH_EAST.equals(this.position)) {
 			target.setLocation(bounds.getTopRight().getTranslated(-halfWidth, -halfHeight));
 		} else if(Direction.SOUTH_WEST.equals(this.position)) {
-			target.setLocation(bounds.getBottom().getTranslated(-halfWidth, -halfHeight));
+			target.setLocation(bounds.getBottomLeft().getTranslated(-halfWidth, -halfHeight));
 		} else if(Direction.SOUTH.equals(this.position)) {
 			target.setLocation(bounds.getBottom().getTranslated(-halfWidth, -halfHeight));
 		} else if(Direction.SOUTH_EAST.equals(this.position)) {
