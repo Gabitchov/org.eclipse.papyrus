@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
+ *  Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr
  *****************************************************************************/
 package org.eclipse.papyrus.properties.runtime.uml.modelhandler;
 
@@ -19,6 +20,8 @@ import org.eclipse.core.commands.operations.IUndoableOperation;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.properties.runtime.controller.EMFPropertyEditorController;
 import org.eclipse.papyrus.properties.runtime.modelhandler.emf.IEMFModelHandler;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IBoundedValuesPropertyEditorDescriptor;
@@ -40,14 +43,14 @@ public class AssociationEndNavigationModelHandler implements IEMFModelHandler {
 	private final List<String> availableValues;
 
 	/** id of this model handler */
-	public final static String ID = "AssociationEndNavigation"; // $NON-NLS-1$
+	public final static String ID = "AssociationEndNavigation"; //$NON-NLS-1$
 
 	/**
 	 * Creates a new AssociationEndOwnerModelHandler.
 	 */
 	public AssociationEndNavigationModelHandler() {
 		super();
-		this.availableValues = Arrays.asList("true", "false");
+		this.availableValues = Arrays.asList("true", "false"); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -96,18 +99,18 @@ public class AssociationEndNavigationModelHandler implements IEMFModelHandler {
 	public Object getValueToEdit(EObject objectToEdit) {
 		if(!(objectToEdit instanceof Property)) {
 			Activator.log.warn("the object to edit is not a Property"); //$NON-NLS-1$
-			return "";
+			return ""; //$NON-NLS-1$
 		}
 		Property property = (Property)objectToEdit;
 		Association association = property.getAssociation();
 		if(association == null) {
 			Activator.log.warn("the property is not a member end of an association"); //$NON-NLS-1$
-			return "";
+			return ""; //$NON-NLS-1$
 		}
 		if(association.getNavigableOwnedEnds().contains(property)) {
-			return "true";
+			return "true"; //$NON-NLS-1$
 		}
-		return "false";
+		return "false"; //$NON-NLS-1$
 
 	}
 
@@ -267,5 +270,42 @@ public class AssociationEndNavigationModelHandler implements IEMFModelHandler {
 	 */
 	public boolean canCreateMoveValueOperation(List<? extends EObject> objectsToEdit, List<Integer> indexes, Composite parent, int delta) {
 		return false;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.properties.runtime.modelhandler.emf.IEMFModelHandler#getSetRequest(org.eclipse.emf.transaction.TransactionalEditingDomain,
+	 *      org.eclipse.emf.ecore.EObject, java.lang.Object)
+	 * 
+	 * @param domain
+	 * @param objectToEdit
+	 * @param newValue
+	 * @return
+	 */
+	public SetRequest[] getSetRequest(TransactionalEditingDomain domain, EObject objectToEdit, Object newValue) {
+		if(!(objectToEdit instanceof Property)) {
+			Activator.log.warn("the object to edit is not a Property"); //$NON-NLS-1$
+			return null;
+		}
+
+		boolean isNavigable = Boolean.parseBoolean((String)newValue);
+
+		Property property = (Property)objectToEdit;
+		Association association = property.getAssociation();
+		if(association == null) {
+			Activator.log.warn("the property is not a member end of an association"); //$NON-NLS-1$
+			return null;
+		}
+
+		EStructuralFeature feature = UMLPackage.eINSTANCE.getAssociation_NavigableOwnedEnd();
+		List<Property> attributeList = new ArrayList<Property>();
+		attributeList.addAll(association.getNavigableOwnedEnds());
+		if(isNavigable) {
+			attributeList.add(property);
+		} else {
+			attributeList.remove(property);
+		}
+
+		return new SetRequest[]{ new SetRequest(domain, association, feature, attributeList) };
 	}
 }

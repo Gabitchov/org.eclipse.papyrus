@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
+ *  Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr
  *****************************************************************************/
 package org.eclipse.papyrus.properties.runtime.uml.modelhandler;
 
@@ -17,6 +18,8 @@ import org.eclipse.core.commands.operations.IUndoableOperation;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.properties.runtime.controller.EMFPropertyEditorController;
 import org.eclipse.papyrus.properties.runtime.modelhandler.emf.EMFUtils;
 import org.eclipse.papyrus.properties.runtime.modelhandler.emf.IEMFModelHandler;
@@ -39,7 +42,7 @@ public class MultiplicityModelHandler implements IEMFModelHandler {
 	private final List<String> availableValues;
 
 	/** id of this model handler */
-	public final static String ID = "Multiplicity";
+	public final static String ID = "Multiplicity"; //$NON-NLS-1$
 
 	/**
 	 * Creates a new MultiplicityModelHandler.
@@ -60,7 +63,7 @@ public class MultiplicityModelHandler implements IEMFModelHandler {
 		// either m..n with m integer and n unlimited natural (including -1 or *)
 		// or n, with n integer (this is a shortcut for n..n) 
 		if(!(newValue instanceof String)) {
-			Activator.log.warn("the new value for the multiplicity model handler was no a String");
+			Activator.log.warn("the new value for the multiplicity model handler was no a String"); //$NON-NLS-1$
 			return;
 		}
 
@@ -71,8 +74,8 @@ public class MultiplicityModelHandler implements IEMFModelHandler {
 				int lower = values[0];
 				int upper = values[1];
 
-				EStructuralFeature lowerFeature = EMFUtils.getFeatureByName(objectToEdit, "lower");
-				EStructuralFeature upperFeature = EMFUtils.getFeatureByName(objectToEdit, "upper");
+				EStructuralFeature lowerFeature = EMFUtils.getFeatureByName(objectToEdit, "lower"); //$NON-NLS-1$
+				EStructuralFeature upperFeature = EMFUtils.getFeatureByName(objectToEdit, "upper"); //$NON-NLS-1$
 
 				if(lowerFeature != null && upperFeature != null) {
 					objectToEdit.eSet(lowerFeature, lower);
@@ -80,7 +83,7 @@ public class MultiplicityModelHandler implements IEMFModelHandler {
 				}
 			}
 		} catch (NumberFormatException e) {
-			Activator.log.error("Error during multiplicity parsing", e);
+			Activator.log.error("Error during multiplicity parsing", e); //$NON-NLS-1$
 		}
 
 	}
@@ -92,7 +95,7 @@ public class MultiplicityModelHandler implements IEMFModelHandler {
 		if(descriptor instanceof IBoundedValuesPropertyEditorDescriptor) {
 			((IBoundedValuesPropertyEditorDescriptor)descriptor).setAvailableValues(getAvailableValues(null));
 		} else {
-			Activator.log.warn(descriptor + "could not be completed.");
+			Activator.log.warn(descriptor + "could not be completed."); //$NON-NLS-1$
 		}
 	}
 
@@ -103,7 +106,7 @@ public class MultiplicityModelHandler implements IEMFModelHandler {
 		if(objectToEdit instanceof MultiplicityElement) {
 			return MultiplicityElementUtil.getMultiplicityAsStringWithoutSquareBrackets((MultiplicityElement)objectToEdit);
 		}
-		return "NaN";
+		return "NaN"; //$NON-NLS-1$
 	}
 
 	/**
@@ -125,14 +128,14 @@ public class MultiplicityModelHandler implements IEMFModelHandler {
 	 * {@inheritDoc}
 	 */
 	public String getText() {
-		return "MultiplicityHandler";
+		return "MultiplicityHandler"; //$NON-NLS-1$
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public Image getImage() {
-		return Activator.getImage("/icons/MultiplicityHandler.gif");
+		return Activator.getImage("/icons/MultiplicityHandler.gif"); //$NON-NLS-1$
 	}
 
 	/**
@@ -315,5 +318,46 @@ public class MultiplicityModelHandler implements IEMFModelHandler {
 	 */
 	public boolean canCreateMoveValueOperation(List<? extends EObject> objectsToEdit, List<Integer> indexes, Composite parent, int delta) {
 		return false;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.properties.runtime.modelhandler.emf.IEMFModelHandler#getSetRequest(org.eclipse.emf.transaction.TransactionalEditingDomain,
+	 *      org.eclipse.emf.ecore.EObject, java.lang.Object)
+	 * 
+	 * @param domain
+	 * @param objectToEdit
+	 * @param newValue
+	 * @return
+	 */
+	public SetRequest[] getSetRequest(TransactionalEditingDomain domain, EObject objectToEdit, Object newValue) {
+		// new Value should be a String with specific format: 
+		// either m..n with m integer and n unlimited natural (including -1 or *)
+		// or n, with n integer (this is a shortcut for n..n) 
+		if(!(newValue instanceof String)) {
+			Activator.log.warn("the new value for the multiplicity model handler was no a String"); //$NON-NLS-1$
+			return null;
+		}
+
+		String value = (String)newValue;
+		try {
+			int[] values = MultiplicityElementUtil.parseMultiplicity(value);
+			if(values.length == 2) {
+				int lower = values[0];
+				int upper = values[1];
+
+				EStructuralFeature lowerFeature = EMFUtils.getFeatureByName(objectToEdit, "lower"); //$NON-NLS-1$
+				EStructuralFeature upperFeature = EMFUtils.getFeatureByName(objectToEdit, "upper"); //$NON-NLS-1$
+
+				if(lowerFeature != null && upperFeature != null) {
+					SetRequest req1 = new SetRequest(domain, objectToEdit, lowerFeature, lower);
+					SetRequest req2 = new SetRequest(domain, objectToEdit, upperFeature, upper);
+					return new SetRequest[]{ req1, req2 };
+				}
+			}
+		} catch (NumberFormatException e) {
+			Activator.log.error("Error during multiplicity parsing", e); //$NON-NLS-1$
+		}
+		return null;
 	}
 }

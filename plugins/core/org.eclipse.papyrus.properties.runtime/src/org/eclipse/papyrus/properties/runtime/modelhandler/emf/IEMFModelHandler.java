@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
+ *  Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr
  *****************************************************************************/
 package org.eclipse.papyrus.properties.runtime.modelhandler.emf;
 
@@ -16,6 +17,8 @@ import java.util.List;
 import org.eclipse.core.commands.operations.IUndoableOperation;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.properties.runtime.controller.EMFPropertyEditorController;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.IConfigurableDescriptor;
@@ -218,4 +221,19 @@ public interface IEMFModelHandler extends IConfigurableDescriptor {
 	 */
 	public boolean canCreateMoveValueOperation(List<? extends EObject> objectsToEdit, List<Integer> indexes, Composite parent, int delta);
 
+
+
+	/**
+	 * Returns a list of SetRequest for this object, or <code>null</code> if a request can't be created
+	 * 
+	 * @param domain
+	 *        the transactional editing domain
+	 * @param objectToEdit
+	 *        the object to edit
+	 * @param newValue
+	 *        the new value for this object
+	 * @return
+	 *         a list of SetRequest for this object, or <code>null</code> if a request can't be created
+	 */
+	public SetRequest[] getSetRequest(TransactionalEditingDomain domain, EObject objectToEdit, Object newValue);
 }
