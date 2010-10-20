@@ -25,6 +25,7 @@
 						href="http://help.eclipse.org/galileo/index.jsp?topic=/org.eclipse.platform.doc.user/tasks/tasks-124.htm">
 						Eclipse Platform Help</a>.
 					<br/> 
+					</em>
 			</p>
 			<table border="0">
 				<tr>
