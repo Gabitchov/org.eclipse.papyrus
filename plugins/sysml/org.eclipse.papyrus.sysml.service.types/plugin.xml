@@ -13,6 +13,7 @@
 		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="SysML::Block">
 		<param name="semanticHint" value="SysML::Block" />
 		<specializes id="org.eclipse.papyrus.uml.Class" />
+		<matcher class = "org.eclipse.papyrus.sysml.service.types.matcher.BlockMatcher" />
 	</specializationType>
 
 	<specializationType id="org.eclipse.papyrus.sysml.FlowPort"
@@ -43,8 +44,15 @@
 <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
 
 	<!-- Binding declarations -->
+	<!-- 
+		Warning the Parametric diagram declares types with following (generated) ids 
+		org.eclipse.papyrus.sysml.diagram.* that should not be bound to shared context
+		The following regex "org.eclipse.papyrus.sysml.(?!diagram\\.parametric).*" is
+		expected to bind any ElementType with id starting with "org.eclipse.papyrus.sysml"
+		except those starting with "org.eclipse.papyrus.sysml.diagram.parametric".  
+	  -->
 	<binding context="org.eclipse.papyrus.service.edit.TypeContext">
-		<elementType pattern="org.eclipse.papyrus.sysml.*" />
+		<elementType pattern="org.eclipse.papyrus.sysml.(?!diagram\\.parametric).*" />
 	</binding>
 	
 </extension>
