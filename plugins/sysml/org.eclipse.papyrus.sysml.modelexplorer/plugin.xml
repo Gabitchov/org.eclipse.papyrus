@@ -12,7 +12,7 @@
 	<modelqueryset file="resources/SysMLDefaultExplorerQueries.querySet"/>
 </extension>
 
-<!-- This declaration is added in order command (DeleteCommandHandler) status to be
+<!-- This declaration is added in order command (CommandHandler) status to be
      verified (isVisible and isEnabled) before any attempt to execute the command, 
      and to mask the command in case it is not supported or executable.
   -->
