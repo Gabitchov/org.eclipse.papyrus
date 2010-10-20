@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
+ *  Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr
  *****************************************************************************/
 package org.eclipse.papyrus.properties.runtime.modelhandler.emf;
 
@@ -20,6 +21,8 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.controller.EMFPropertyEditorController;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
@@ -91,7 +94,7 @@ public abstract class EMFStereotypeFeatureModelHandler extends EMFFeatureModelHa
 		if(objectToEdit instanceof Element) {
 			return EMFUtils.getStereotypeFeatureByName((Element)objectToEdit, retrieveStereotype((Element)objectToEdit), getFeatureName());
 		}
-		Activator.log.error("Impossible to cast into UML element: " + objectToEdit, null);
+		Activator.log.error("Impossible to cast into UML element: " + objectToEdit, null); //$NON-NLS-1$
 		return null;
 	}
 
@@ -102,23 +105,23 @@ public abstract class EMFStereotypeFeatureModelHandler extends EMFFeatureModelHa
 	public Object getAvailableValues(EObject eObject) {
 		EClass eClass = eObject.eClass();
 		if(eClass == null) {
-			Activator.log.debug("problems during initialization, looking for availables values");
+			Activator.log.debug("problems during initialization, looking for availables values"); //$NON-NLS-1$
 			return null;
 		}
 		EStructuralFeature feature = getFeatureByName(eObject);
 		if(!(feature instanceof EReference)) {
-			Activator.log.debug("feature is not a reference, looking for availables values: " + feature);
+			Activator.log.debug("feature is not a reference, looking for availables values: " + feature); //$NON-NLS-1$
 			return null;
 		}
 
 		IItemPropertySource itemPropertySource = (IItemPropertySource)factory.adapt(((Element)eObject).getStereotypeApplication(retrieveStereotype((Element)eObject)), IItemPropertySource.class);
 		if(itemPropertySource == null) {
-			Activator.log.debug("impossible to find item Property source for " + retrieveStereotype((Element)eObject));
+			Activator.log.debug("impossible to find item Property source for " + retrieveStereotype((Element)eObject)); //$NON-NLS-1$
 			return null;
 		}
 		IItemPropertyDescriptor itemPropertyDescriptor = itemPropertySource.getPropertyDescriptor(retrieveStereotype((Element)eObject), feature);
 		if(itemPropertyDescriptor == null) {
-			Activator.log.debug("impossible to find item Property descriptor for " + retrieveStereotype((Element)eObject) + " and " + feature);
+			Activator.log.debug("impossible to find item Property descriptor for " + retrieveStereotype((Element)eObject) + " and " + feature); //$NON-NLS-1$ //$NON-NLS-2$
 			return null;
 		}
 		return itemPropertyDescriptor.getChoiceOfValues(eObject);
@@ -130,7 +133,7 @@ public abstract class EMFStereotypeFeatureModelHandler extends EMFFeatureModelHa
 	@Override
 	public Object getValueToEdit(EObject objectToEdit) {
 		if(!(objectToEdit instanceof Element)) {
-			Activator.log.warn("the object to edit is not a UML2 Element: " + objectToEdit);
+			Activator.log.warn("the object to edit is not a UML2 Element: " + objectToEdit); //$NON-NLS-1$
 			return null;
 		}
 		Element elementToEdit = (Element)objectToEdit;
@@ -138,7 +141,7 @@ public abstract class EMFStereotypeFeatureModelHandler extends EMFFeatureModelHa
 		if(stereotype != null) {
 			return getValueForElement(elementToEdit, stereotype);
 		} else {
-			Activator.log.warn("Impossible to get the stereotype: " + stereotypeName + " on the element: " + elementToEdit + " for feature " + getFeatureName());
+			Activator.log.warn("Impossible to get the stereotype: " + stereotypeName + " on the element: " + elementToEdit + " for feature " + getFeatureName()); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		}
 		return null;
 	}
@@ -162,7 +165,7 @@ public abstract class EMFStereotypeFeatureModelHandler extends EMFFeatureModelHa
 	@Override
 	public void setValueInModel(EObject objectToEdit, Object newValue) {
 		if(!(objectToEdit instanceof Element)) {
-			Activator.log.warn("the object to edit is not a UML2 Element: " + objectToEdit);
+			Activator.log.warn("the object to edit is not a UML2 Element: " + objectToEdit); //$NON-NLS-1$
 			return;
 		}
 		Element elementToEdit = (Element)objectToEdit;
@@ -170,7 +173,7 @@ public abstract class EMFStereotypeFeatureModelHandler extends EMFFeatureModelHa
 		if(stereotype != null) {
 			setValueForElement(elementToEdit, stereotype, newValue);
 		} else {
-			Activator.log.warn("Impossible to set value to the stereotype: " + stereotypeName + " on the element: " + elementToEdit);
+			Activator.log.warn("Impossible to set value to the stereotype: " + stereotypeName + " on the element: " + elementToEdit); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
@@ -254,7 +257,7 @@ public abstract class EMFStereotypeFeatureModelHandler extends EMFFeatureModelHa
 
 		EObject firstObject = objectToEdit.get(0);
 		if(!(firstObject instanceof Element)) {
-			Activator.log.warn("Object to edit should be a UML2 element: " + firstObject);
+			Activator.log.warn("Object to edit should be a UML2 element: " + firstObject); //$NON-NLS-1$
 			return null;
 		}
 
@@ -278,14 +281,30 @@ public abstract class EMFStereotypeFeatureModelHandler extends EMFFeatureModelHa
 				return property;
 			}
 		}
-		Activator.log.warn("No feature fond with name:" + getFeatureName() + " for stereotype " + stereotypeName);
+		Activator.log.warn("No feature fond with name:" + getFeatureName() + " for stereotype " + stereotypeName); //$NON-NLS-1$ //$NON-NLS-2$
 		return null;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public IEMFModelHandlerState createState(boolean readOnly) {
 		return new EMFStereotypeFeatureModelHandlerState(this, readOnly);
 	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.properties.runtime.modelhandler.emf.IEMFModelHandler#getSetRequest(org.eclipse.emf.transaction.TransactionalEditingDomain,
+	 *      org.eclipse.emf.ecore.EObject, java.lang.Object)
+	 * 
+	 * @param domain
+	 * @param objectToEdit
+	 * @param newValue
+	 * @return
+	 */
+	public SetRequest[] getSetRequest(TransactionalEditingDomain domain, EObject objectToEdit, Object newValue) {
+		return null; //TODO
+	}
+
 }

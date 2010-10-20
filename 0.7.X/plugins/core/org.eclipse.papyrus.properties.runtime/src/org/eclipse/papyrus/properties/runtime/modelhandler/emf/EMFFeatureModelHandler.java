@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
+ *  Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr
  *****************************************************************************/
 package org.eclipse.papyrus.properties.runtime.modelhandler.emf;
 
@@ -15,24 +16,21 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.operations.IUndoableOperation;
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.impl.BasicEObjectImpl;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gmf.runtime.common.core.command.CommandResult;
-import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.controller.EMFPropertyEditorController;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
@@ -128,14 +126,14 @@ public abstract class EMFFeatureModelHandler implements IEMFModelHandler {
 	 * {@inheritDoc}
 	 */
 	public String getText() {
-		return "EMF Handler \"" + getId() + "\" -> " + getFeatureName();
+		return "EMF Handler \"" + getId() + "\" -> " + getFeatureName(); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public Image getImage() {
-		return Activator.getImage("/icons/ModelHandler.gif");
+		return Activator.getImage("/icons/ModelHandler.gif"); //$NON-NLS-1$
 	}
 
 	/**
@@ -151,23 +149,23 @@ public abstract class EMFFeatureModelHandler implements IEMFModelHandler {
 	public Object getAvailableValues(EObject eObject) {
 		EClass eClass = eObject.eClass();
 		if(eClass == null) {
-			Activator.log.debug("problems during initialization, looking for availables values");
+			Activator.log.debug("problems during initialization, looking for availables values"); //$NON-NLS-1$
 			return null;
 		}
 		EStructuralFeature feature = getFeatureByName(eObject);
 		if(!(feature instanceof EReference)) {
-			Activator.log.debug("feature is not a reference, looking for availables values: " + feature);
+			Activator.log.debug("feature is not a reference, looking for availables values: " + feature); //$NON-NLS-1$
 			return null;
 		}
 
 		IItemPropertySource itemPropertySource = (IItemPropertySource)factory.adapt(eObject, IItemPropertySource.class);
 		if(itemPropertySource == null) {
-			Activator.log.debug("impossible to find item Property source for " + eObject);
+			Activator.log.debug("impossible to find item Property source for " + eObject); //$NON-NLS-1$
 			return null;
 		}
 		IItemPropertyDescriptor itemPropertyDescriptor = itemPropertySource.getPropertyDescriptor(eObject, feature);
 		if(itemPropertyDescriptor == null) {
-			Activator.log.debug("impossible to find item Property descriptor for " + eObject + " and " + feature);
+			Activator.log.debug("impossible to find item Property descriptor for " + eObject + " and " + feature); //$NON-NLS-1$ //$NON-NLS-2$
 			return null;
 		}
 		return itemPropertyDescriptor.getChoiceOfValues(eObject);
@@ -296,21 +294,72 @@ public abstract class EMFFeatureModelHandler implements IEMFModelHandler {
 	public IUndoableOperation getDeleteValueOperation(List<? extends EObject> objectsToEdit, Composite parent, List<Integer> indexes) {
 		TransactionalEditingDomain editingDomain = EMFUtils.getTransactionalEditingDomain(objectsToEdit);
 		if(editingDomain == null) {
-			Activator.log.error("Impossible during creation operation to find the editing domain for objects: " + objectsToEdit, null);
+			Activator.log.error("Impossible during creation operation to find the editing domain for objects: " + objectsToEdit, null); //$NON-NLS-1$
 			return null;
 		}
-		CompositeTransactionalCommand command = new CompositeTransactionalCommand(editingDomain, "Edit Value");
+		CompositeTransactionalCommand command = new CompositeTransactionalCommand(editingDomain, "Edit Value"); //$NON-NLS-1$
 		for(EObject objectToEdit : objectsToEdit) {
 			EStructuralFeature featureToEdit = getFeatureByName(objectToEdit);
 			if(featureToEdit == null) {
 				return null;
 			}
-			DeleteStringValueOperation operation = new DeleteStringValueOperation(editingDomain, "Edit Value", objectToEdit, indexes, parent);
+			//			DeleteStringValueOperation operation = new DeleteStringValueOperation(editingDomain, "Edit Value", objectToEdit, indexes, parent);
+			IUndoableOperation operation = getDeleteStringValueOperation(editingDomain, "Edit Value", objectToEdit, indexes, parent); //$NON-NLS-1$
 			if(operation != null) {
 				command.add(operation);
 			}
 		}
 		return command.reduce();
+	}
+
+	/**
+	 * Returns the command to remove String values
+	 * 
+	 * @param editingDomain
+	 *        the editing domain
+	 * @param string
+	 *        the name of the command
+	 * @param objectToEdit
+	 *        the object to edit
+	 * @param indexes
+	 *        the index of the element to remove
+	 * @param parent
+	 *        the composite parent
+	 * @return
+	 *         the command to remove String values
+	 */
+	protected IUndoableOperation getDeleteStringValueOperation(TransactionalEditingDomain editingDomain, String string, EObject objectToEdit, List<Integer> indexes, Composite parent) {
+		CompositeTransactionalCommand command = new CompositeTransactionalCommand(editingDomain, string);
+		// get the feature to modify
+		EStructuralFeature featureToEdit = getFeatureByName(objectToEdit);
+		if(featureToEdit == null) {
+			return null;
+		}
+		Object newValue;
+		if(featureToEdit.getUpperBound() == 1) {
+			newValue = featureToEdit.getDefaultValue();
+		} else {
+			@SuppressWarnings("unchecked")
+			List<Object> values = new ArrayList<Object>((List<Object>)getValueToEdit(objectToEdit));
+			for(int index : indexes) {
+				values.remove(index);
+			}
+			newValue = values;
+		}
+		SetRequest[] requests = getSetRequest(editingDomain, objectToEdit, newValue);
+		org.eclipse.papyrus.service.edit.service.IElementEditService provider = org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils.getCommandProvider(objectToEdit);
+		if(provider != null) {
+
+			ICommand editCommand = null;
+			for(SetRequest current : requests) {
+				editCommand = provider.getEditCommand(current);
+
+				if(editCommand != null && editCommand.canExecute()) {
+					command.add(editCommand);
+				}
+			}
+		}
+		return command;
 	}
 
 	/**
@@ -326,21 +375,72 @@ public abstract class EMFFeatureModelHandler implements IEMFModelHandler {
 	public IUndoableOperation getEditValueOperation(List<? extends EObject> objectsToEdit, int index, Composite parent, Object value) {
 		TransactionalEditingDomain editingDomain = EMFUtils.getTransactionalEditingDomain(objectsToEdit);
 		if(editingDomain == null) {
-			Activator.log.error("Impossible during creation operation to find the editing domain for objects: " + objectsToEdit, null);
+			Activator.log.error("Impossible during creation operation to find the editing domain for objects: " + objectsToEdit, null); //$NON-NLS-1$
 			return null;
 		}
-		CompositeTransactionalCommand command = new CompositeTransactionalCommand(editingDomain, "Edit Value");
+		CompositeTransactionalCommand command = new CompositeTransactionalCommand(editingDomain, "Edit Value"); //$NON-NLS-1$
 		for(EObject objectToEdit : objectsToEdit) {
 			EStructuralFeature featureToEdit = getFeatureByName(objectToEdit);
 			if(featureToEdit == null) {
 				return null;
 			}
-			EditStringValueOperation operation = new EditStringValueOperation(editingDomain, "Edit Value", objectToEdit, index, parent, value);
+			//			EditStringValueOperation operation = new EditStringValueOperation(editingDomain, "Edit Value", objectToEdit, index, parent, value);
+			IUndoableOperation operation = getEditStringValueOperation(editingDomain, "Edit Value", objectToEdit, index, parent, value); //$NON-NLS-1$
 			if(operation != null) {
 				command.add(operation);
 			}
 		}
 		return command.reduce();
+	}
+
+	/**
+	 * Returns the Operation to edit the String value
+	 * 
+	 * @param editingDomain
+	 *        the editing domain
+	 * @param string
+	 *        the name of the command
+	 * @param objectToEdit
+	 *        the object to edit
+	 * @param index
+	 *        the index of the String to edit
+	 * @param parent
+	 *        the composite parent
+	 * @param value
+	 *        the value to set
+	 * @return
+	 *         the Operation to edit the String value
+	 */
+	protected IUndoableOperation getEditStringValueOperation(TransactionalEditingDomain editingDomain, String string, EObject objectToEdit, int index, Composite parent, Object value) {
+		CompositeTransactionalCommand command = new CompositeTransactionalCommand(editingDomain, string);
+		// get the feature to modify
+		EStructuralFeature featureToEdit = getFeatureByName(objectToEdit);
+		if(featureToEdit == null) {
+			return null;
+		}
+		Object newValue;
+		if(featureToEdit.getUpperBound() == 1) {
+			newValue = value;
+		} else {
+			@SuppressWarnings("unchecked")
+			List<Object> values = new ArrayList<Object>((List<Object>)getValueToEdit(objectToEdit));
+			values.set(index, value);
+			newValue = values;
+		}
+		SetRequest[] requests = getSetRequest(editingDomain, objectToEdit, newValue);
+		org.eclipse.papyrus.service.edit.service.IElementEditService provider = org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils.getCommandProvider(objectToEdit);
+		if(provider != null) {
+
+			ICommand editCommand = null;
+			for(SetRequest current : requests) {
+				editCommand = provider.getEditCommand(current);
+
+				if(editCommand != null && editCommand.canExecute()) {
+					command.add(editCommand);
+				}
+			}
+		}
+		return command;
 	}
 
 	/**
@@ -354,133 +454,165 @@ public abstract class EMFFeatureModelHandler implements IEMFModelHandler {
 	}
 
 	/**
-	 * Operation to edit a String value for the controlled property
+	 * Returns the feature ID
+	 * 
+	 * @param feature
+	 *        the feature
+	 * @param elementToEdit
+	 *        the element to edit
+	 * @return
+	 *         the feature ID
 	 */
-	protected class EditStringValueOperation extends AbstractTransactionalCommand {
-
-		/** object to edit */
-		protected final EObject objectToEdit;
-
-		/** index of the value to edit */
-		protected final int index;
-
-		/** composite parent for the editor */
-		protected final Composite parent;
-
-		/** value to set */
-		protected final Object value;
-
-		/**
-		 * Initializes me with the editing domain, a label, transaction options, and
-		 * a list of {@link IFile}s that anticipate modifying when I am executed,
-		 * undone or redone.
-		 * 
-		 * @param domain
-		 *        the editing domain used to modify the model
-		 * @param label
-		 *        my user-readable label, should never be <code>null</code>.
-		 * @param objectToEdit
-		 *        object to edit
-		 * @param index
-		 *        the index of the value to edit
-		 * @param parent
-		 *        the graphical composite element
-		 * @param value
-		 */
-		public EditStringValueOperation(TransactionalEditingDomain domain, String label, EObject objectToEdit, int index, Composite parent, Object value) {
-			super(domain, (label == null) ? "" : label, null);
-			this.objectToEdit = objectToEdit;
-			this.index = index;
-			this.parent = parent;
-			this.value = value;
-		}
-
-		/**
-		 * {@inheritDoc}
-		 */
-		@Override
-		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-			// get the feature to modify
-			EStructuralFeature featureToEdit = getFeatureByName(objectToEdit);
-			if(featureToEdit == null) {
-				return CommandResult.newErrorCommandResult("Impossible to find the feature " + getFeatureName());
-			}
-			Object newValue;
-			if(featureToEdit.getUpperBound() == 1) {
-				newValue = value;
-			} else {
-				@SuppressWarnings("unchecked")
-				List<Object> values = new ArrayList<Object>((List<Object>)getValueToEdit(objectToEdit));
-				values.set(index, value);
-				newValue = values;
-			}
-			setValueInModel(objectToEdit, newValue);
-			return CommandResult.newOKCommandResult();
-		}
+	protected int getFeatureID(EStructuralFeature feature, BasicEObjectImpl elementToEdit) {
+		return (elementToEdit).eDerivedStructuralFeatureID(feature);
 	}
 
 	/**
-	 * Operation to edit a String value for the controlled property
+	 * Returns the structural feature of elementToEdit corresponding to this ID
+	 * 
+	 * @param ID
+	 *        the ID of the feature
+	 * @param elementToEdit
+	 *        the element to edit
+	 * @return
+	 *         the structural feature of elementToEdit corresponding to this ID
 	 */
-	protected class DeleteStringValueOperation extends AbstractTransactionalCommand {
-
-		/** object to edit */
-		protected final EObject objectToEdit;
-
-		/** indexes of the value to delete */
-		protected final List<Integer> indexes;
-
-		/** composite parent for the editor */
-		protected final Composite parent;
-
-		/**
-		 * Initializes me with the editing domain, a label, transaction options, and
-		 * a list of {@link IFile}s that anticipate modifying when I am executed,
-		 * undone or redone.
-		 * 
-		 * @param domain
-		 *        the editing domain used to modify the model
-		 * @param label
-		 *        my user-readable label, should never be <code>null</code>.
-		 * @param objectToEdit
-		 *        object to edit
-		 * @param indexes
-		 *        the indexes of the values to remove
-		 * @param parent
-		 *        the graphical composite element
-		 */
-		public DeleteStringValueOperation(TransactionalEditingDomain domain, String label, EObject objectToEdit, List<Integer> indexes, Composite parent) {
-			super(domain, (label == null) ? "" : label, null);
-			this.objectToEdit = objectToEdit;
-			this.indexes = indexes;
-			this.parent = parent;
+	protected EStructuralFeature getStructuralFeature(int ID, EObject elementToEdit) {
+		if(elementToEdit instanceof BasicEObjectImpl) {
+			EClass eClass = elementToEdit.eClass();
+			return eClass.getEStructuralFeature(ID);
 		}
-
-		/**
-		 * {@inheritDoc}
-		 */
-		@Override
-		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-			// get the feature to modify
-			EStructuralFeature featureToEdit = getFeatureByName(objectToEdit);
-			if(featureToEdit == null) {
-				return CommandResult.newErrorCommandResult("Impossible to find the feature " + getFeatureName());
-			}
-			Object newValue;
-			if(featureToEdit.getUpperBound() == 1) {
-				objectToEdit.eUnset(featureToEdit);
-			} else {
-				@SuppressWarnings("unchecked")
-				List<Object> values = new ArrayList<Object>((List<Object>)getValueToEdit(objectToEdit));
-				for(int index : indexes) {
-					values.remove(index);
-				}
-				newValue = values;
-				setValueInModel(objectToEdit, newValue);
-			}
-			return CommandResult.newOKCommandResult();
-		}
+		return null;
 	}
+
+	//	/**
+	//	 * Operation to edit a String value for the controlled property
+	//	 */
+	//	protected class EditStringValueOperation extends AbstractTransactionalCommand {
+	//
+	//		/** object to edit */
+	//		protected final EObject objectToEdit;
+	//
+	//		/** index of the value to edit */
+	//		protected final int index;
+	//
+	//		/** composite parent for the editor */
+	//		protected final Composite parent;
+	//
+	//		/** value to set */
+	//		protected final Object value;
+	//
+	//		/**
+	//		 * Initializes me with the editing domain, a label, transaction options, and
+	//		 * a list of {@link IFile}s that anticipate modifying when I am executed,
+	//		 * undone or redone.
+	//		 * 
+	//		 * @param domain
+	//		 *        the editing domain used to modify the model
+	//		 * @param label
+	//		 *        my user-readable label, should never be <code>null</code>.
+	//		 * @param objectToEdit
+	//		 *        object to edit
+	//		 * @param index
+	//		 *        the index of the value to edit
+	//		 * @param parent
+	//		 *        the graphical composite element
+	//		 * @param value
+	//		 */
+	//		public EditStringValueOperation(TransactionalEditingDomain domain, String label, EObject objectToEdit, int index, Composite parent, Object value) {
+	//			super(domain, (label == null) ? "" : label, null);
+	//			this.objectToEdit = objectToEdit;
+	//			this.index = index;
+	//			this.parent = parent;
+	//			this.value = value;
+	//		}
+	//
+	//		/**
+	//		 * {@inheritDoc}
+	//		 */
+	//		@Override
+	//		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	//			// get the feature to modify
+	//			EStructuralFeature featureToEdit = getFeatureByName(objectToEdit);
+	//			if(featureToEdit == null) {
+	//				return CommandResult.newErrorCommandResult("Impossible to find the feature " + getFeatureName());
+	//			}
+	//			Object newValue;
+	//			if(featureToEdit.getUpperBound() == 1) {
+	//				newValue = value;
+	//			} else {
+	//				@SuppressWarnings("unchecked")
+	//				List<Object> values = new ArrayList<Object>((List<Object>)getValueToEdit(objectToEdit));
+	//				values.set(index, value);
+	//				newValue = values;
+	//			}
+	//			setValueInModel(objectToEdit, newValue);
+	//			return CommandResult.newOKCommandResult();
+	//		}
+	//	}
+
+	//	/**
+	//	 * Operation to edit a String value for the controlled property
+	//	 */
+	//	protected class DeleteStringValueOperation extends AbstractTransactionalCommand {
+	//
+	//		/** object to edit */
+	//		protected final EObject objectToEdit;
+	//
+	//		/** indexes of the value to delete */
+	//		protected final List<Integer> indexes;
+	//
+	//		/** composite parent for the editor */
+	//		protected final Composite parent;
+	//
+	//		/**
+	//		 * Initializes me with the editing domain, a label, transaction options, and
+	//		 * a list of {@link IFile}s that anticipate modifying when I am executed,
+	//		 * undone or redone.
+	//		 * 
+	//		 * @param domain
+	//		 *        the editing domain used to modify the model
+	//		 * @param label
+	//		 *        my user-readable label, should never be <code>null</code>.
+	//		 * @param objectToEdit
+	//		 *        object to edit
+	//		 * @param indexes
+	//		 *        the indexes of the values to remove
+	//		 * @param parent
+	//		 *        the graphical composite element
+	//		 */
+	//		public DeleteStringValueOperation(TransactionalEditingDomain domain, String label, EObject objectToEdit, List<Integer> indexes, Composite parent) {
+	//			super(domain, (label == null) ? "" : label, null);
+	//			this.objectToEdit = objectToEdit;
+	//			this.indexes = indexes;
+	//			this.parent = parent;
+	//		}
+	//
+	//		/**
+	//		 * {@inheritDoc}
+	//		 */
+	//		@Override
+	//		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	//			// get the feature to modify
+	//			EStructuralFeature featureToEdit = getFeatureByName(objectToEdit);
+	//			if(featureToEdit == null) {
+	//				return CommandResult.newErrorCommandResult("Impossible to find the feature " + getFeatureName());
+	//			}
+	//			Object newValue;
+	//			if(featureToEdit.getUpperBound() == 1) {
+	//				objectToEdit.eUnset(featureToEdit);
+	//			} else {
+	//				@SuppressWarnings("unchecked")
+	//				List<Object> values = new ArrayList<Object>((List<Object>)getValueToEdit(objectToEdit));
+	//				for(int index : indexes) {
+	//					values.remove(index);
+	//				}
+	//				newValue = values;
+	//				setValueInModel(objectToEdit, newValue);
+	//			}
+	//			return CommandResult.newOKCommandResult();
+	//		}
+	//	}
 
 	/**
 	 * {@inheritDoc}
@@ -488,16 +620,17 @@ public abstract class EMFFeatureModelHandler implements IEMFModelHandler {
 	public IUndoableOperation getMoveValueOperation(List<? extends EObject> objectsToEdit, List<Integer> indexes, Composite parent, int delta) {
 		TransactionalEditingDomain editingDomain = EMFUtils.getTransactionalEditingDomain(objectsToEdit);
 		if(editingDomain == null) {
-			Activator.log.error("Impossible during move operation to find the editing domain for objects: " + objectsToEdit, null);
+			Activator.log.error("Impossible during move operation to find the editing domain for objects: " + objectsToEdit, null); //$NON-NLS-1$
 			return null;
 		}
-		CompositeTransactionalCommand command = new CompositeTransactionalCommand(editingDomain, "Move Values");
+		CompositeTransactionalCommand command = new CompositeTransactionalCommand(editingDomain, "Move Values"); //$NON-NLS-1$
 		for(EObject objectToEdit : objectsToEdit) {
 			EStructuralFeature featureToEdit = getFeatureByName(objectToEdit);
 			if(featureToEdit == null) {
 				return null;
 			}
-			MoveStringValueOperation operation = new MoveStringValueOperation(editingDomain, "Move Value", objectToEdit, indexes, parent, delta);
+			//			MoveStringValueOperation operation = new MoveStringValueOperation(editingDomain, "Move Value", objectToEdit, indexes, parent, delta);
+			IUndoableOperation operation = getMoveStringValueOperation(editingDomain, "Move Value", objectToEdit, indexes, parent, delta); //$NON-NLS-1$
 			if(operation != null) {
 				command.add(operation);
 			}
@@ -506,76 +639,30 @@ public abstract class EMFFeatureModelHandler implements IEMFModelHandler {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * Returns the command to move String values
+	 * 
+	 * @param editingDomain
+	 *        the editing domain
+	 * @param string
+	 *        the name of the command
+	 * @param objectToEdit
+	 *        the object to edit
+	 * @param indexes
+	 *        the index of the elements to move
+	 * @param parent
+	 *        the composite parent
+	 * @param delta
+	 *        the delta
+	 * @return
+	 *         the command to move String values
 	 */
-	public boolean canCreateMoveValueOperation(List<? extends EObject> objectsToEdit, List<Integer> indexes, Composite parent, int delta) {
-		TransactionalEditingDomain editingDomain = EMFUtils.getTransactionalEditingDomain(objectsToEdit);
-		if(editingDomain == null) {
-			Activator.log.error("Impossible during move operation to find the editing domain for objects: " + objectsToEdit, null);
-			return false;
-		}
-		CompositeTransactionalCommand command = new CompositeTransactionalCommand(editingDomain, "Move Values");
-		for(EObject objectToEdit : objectsToEdit) {
-			EStructuralFeature featureToEdit = getFeatureByName(objectToEdit);
-			if(featureToEdit == null) {
-				return false;
-			}
-			MoveStringValueOperation operation = new MoveStringValueOperation(editingDomain, "Move Value", objectToEdit, indexes, parent, delta);
-			if(operation != null) {
-				command.add(operation);
-			}
-		}
-		return command.canExecute();
-	}
+	protected IUndoableOperation getMoveStringValueOperation(TransactionalEditingDomain editingDomain, String string, EObject objectToEdit, List<Integer> indexes, Composite parent, int delta) {
+		CompositeTransactionalCommand command = new CompositeTransactionalCommand(editingDomain, string);
+		if(canMoveStringValue(objectToEdit, indexes, delta)) {
 
-	/**
-	 * Operation to edit a String value for the controlled property
-	 */
-	protected class MoveStringValueOperation extends AbstractTransactionalCommand {
-
-		/** object to edit */
-		protected final EObject objectToEdit;
-
-		/** indexes of the value to delete */
-		protected final List<Integer> indexes;
-
-		/** composite parent for the editor */
-		protected final Composite parent;
-
-		/** delta applied to all indexes */
-		protected final int delta;
-
-		/**
-		 * Initializes me with the editing domain, a label, transaction options, and
-		 * a list of {@link IFile}s that anticipate modifying when I am executed,
-		 * undone or redone.
-		 * 
-		 * @param domain
-		 *        the editing domain used to modify the model
-		 * @param label
-		 *        my user-readable label, should never be <code>null</code>.
-		 * @param objectToEdit
-		 *        object to edit
-		 * @param indexes
-		 *        the indexes of the values to remove
-		 * @param parent
-		 *        the graphical composite element
-		 * @param delta
-		 *        the delta applied to all indexes
-		 */
-		public MoveStringValueOperation(TransactionalEditingDomain domain, String label, EObject objectToEdit, List<Integer> indexes, Composite parent, int delta) {
-			super(domain, (label == null) ? "" : label, null);
-			this.objectToEdit = objectToEdit;
-			this.indexes = indexes;
-			this.parent = parent;
-			this.delta = delta;
-		}
-
-		@Override
-		public boolean canExecute() {
 			EClass eClass = objectToEdit.eClass();
 			if(eClass == null) {
-				return false;
+				return null;
 			}
 			// retrieve the current value (should be a list)
 			EStructuralFeature feature = getFeatureByName(objectToEdit);
@@ -604,55 +691,11 @@ public abstract class EMFFeatureModelHandler implements IEMFModelHandler {
 				max += delta;
 				// check the bounds of the list
 				if(min < 0) {
-					return false;
+					Activator.log.debug("Trying to move up the elements, with a move which will cause an IndexOutOfBound exception"); //$NON-NLS-1$
+					return null;
 				} else if(max >= copy.size()) {
-					return false;
-				}
-			}
-			return true;
-		}
-
-		/**
-		 * {@inheritDoc}
-		 */
-		@Override
-		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-			EClass eClass = objectToEdit.eClass();
-			if(eClass == null) {
-				return CommandResult.newErrorCommandResult("Impossible to find the EClass for object: " + objectToEdit);
-			}
-			// retrieve the current value (should be a list)
-			EStructuralFeature feature = getFeatureByName(objectToEdit);
-			Object currentValue = objectToEdit.eGet(feature);
-			if(currentValue instanceof List<?>) {
-				@SuppressWarnings("unchecked")
-				List<Object> values = (List<Object>)currentValue;
-				List<Object> copy = new ArrayList<Object>(values);
-				// make modification in copy list
-				// check indices
-				int min = copy.size();
-				int max = 0;
-
-				for(int index : indexes) {
-					if(index < min) {
-						min = index;
-					}
-					if(index > max) {
-						max = index;
-					}
-				}
-
-				// check that min and max are in the bounds of the list, with the
-				// delta applied
-				min += delta;
-				max += delta;
-				// check the bounds of the list
-				if(min < 0) {
-					Activator.log.debug("Trying to move up the elements, with a move which will cause an IndexOutOfBound exception");
-					return CommandResult.newErrorCommandResult("Trying to move up the elements, with a move which will cause an IndexOutOfBound exception");
-				} else if(max >= copy.size()) {
-					Activator.log.debug("Trying to move down the elements, with a move which will cause an IndexOutOfBound exception");
-					return CommandResult.newErrorCommandResult("Trying to move down the elements, with a move which will cause an IndexOutOfBound exception");
+					Activator.log.debug("Trying to move down the elements, with a move which will cause an IndexOutOfBound exception"); //$NON-NLS-1$
+					return null;
 				}
 
 				// now, do the move in the copy
@@ -662,68 +705,300 @@ public abstract class EMFFeatureModelHandler implements IEMFModelHandler {
 					moveDownElementsOperation(copy, indexes, delta);
 				}
 
-				setValueInModel(objectToEdit, copy);
-			}
+				//			setValueInModel(objectToEdit, copy);
+				SetRequest[] requests = getSetRequest(editingDomain, objectToEdit, copy);
+				if(requests != null) {
 
-			return CommandResult.newOKCommandResult();
-		}
+					org.eclipse.papyrus.service.edit.service.IElementEditService provider = org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils.getCommandProvider(objectToEdit);
+					if(provider != null) {
 
-		/**
-		 * Moves the element in the specified list, when the elements are moved down
-		 * in the list
-		 * 
-		 * @param modifiedElements
-		 *        list of elements modified
-		 * @param indexes
-		 *        list of indexes of objects to move
-		 * @param move
-		 *        delta for the move. should be positive integer
-		 */
-		protected void moveDownElementsOperation(List<Object> modifiedElements, List<Integer> indexes, int move) {
-			// if moving down, starting from the end to move elements, assuming they
-			// are in the increasing order by default
-			Collections.sort(indexes);
-			Collections.reverse(indexes);
-			for(int index : indexes) {
-				Object objectToMove = modifiedElements.get(index);
-				// remove element
-				modifiedElements.remove(index);
-				// change index
-				if(index == -1) {
-					return;
+						ICommand editCommand = null;
+						for(SetRequest current : requests) {
+							editCommand = provider.getEditCommand(current);
+
+							if(editCommand != null && editCommand.canExecute()) {
+								command.add(editCommand);
+							}
+						}
+					}
 				}
-				index += move;
-				// add the element to the new index
-				modifiedElements.add(index, objectToMove);
 			}
 		}
+		return command;
+	}
 
-		/**
-		 * Moves the element in the specified list, when the elements are moved up
-		 * in the list
-		 * 
-		 * @param modifiedElements
-		 *        list of elements modified
-		 * @param indexes
-		 *        list of indexes of objects to move
-		 * @param move
-		 *        delta for the move. should be positive integer
-		 */
-		protected void moveUpElementsInCollection(List<Object> modifiedElements, List<Integer> indexes, int move) {
-			Collections.sort(indexes);
+	/**
+	 * Tests if we can move values
+	 * 
+	 * @param objectToEdit
+	 *        the object to edit
+	 * @param indexes
+	 *        the indexes
+	 * @param delta
+	 *        the delta
+	 * @return
+	 *         <code>true</code> if we can move the values <code>false</code> if not
+	 */
+	protected boolean canMoveStringValue(EObject objectToEdit, List<Integer> indexes, int delta) {
+		EClass eClass = objectToEdit.eClass();
+		if(eClass == null) {
+			return false;
+		}
+		// retrieve the current value (should be a list)
+		EStructuralFeature feature = getFeatureByName(objectToEdit);
+		Object currentValue = objectToEdit.eGet(feature);
+		if(currentValue instanceof List<?>) {
+			@SuppressWarnings("unchecked")
+			List<Object> values = (List<Object>)currentValue;
+			List<Object> copy = new ArrayList<Object>(values);
+			// make modification in copy list
+			// check indices
+			int min = copy.size();
+			int max = 0;
+
 			for(int index : indexes) {
-				// retrieve index
-				Object objectToMove = modifiedElements.get(index);
-				// remove element
-				modifiedElements.remove(index);
-				// change index
-				if(index == -1) {
-					return;
+				if(index < min) {
+					min = index;
 				}
-				index += move;
-				// add the element to the new index
-				modifiedElements.add(index, objectToMove);
+				if(index > max) {
+					max = index;
+				}
 			}
+
+			// check that min and max are in the bounds of the list, with the
+			// delta applied
+			min += delta;
+			max += delta;
+			// check the bounds of the list
+			if(min < 0) {
+				return false;
+			} else if(max >= copy.size()) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public boolean canCreateMoveValueOperation(List<? extends EObject> objectsToEdit, List<Integer> indexes, Composite parent, int delta) {
+		TransactionalEditingDomain editingDomain = EMFUtils.getTransactionalEditingDomain(objectsToEdit);
+		if(editingDomain == null) {
+			Activator.log.error("Impossible during move operation to find the editing domain for objects: " + objectsToEdit, null); //$NON-NLS-1$
+			return false;
+		}
+		CompositeTransactionalCommand command = new CompositeTransactionalCommand(editingDomain, "Move Values"); //$NON-NLS-1$
+		for(EObject objectToEdit : objectsToEdit) {
+			EStructuralFeature featureToEdit = getFeatureByName(objectToEdit);
+			if(featureToEdit == null) {
+				return false;
+			}
+			//MoveStringValueOperation operation = new MoveStringValueOperation(editingDomain, "Move Value", objectToEdit, indexes, parent, delta);
+			IUndoableOperation operation = getMoveStringValueOperation(editingDomain, "Move Value", objectToEdit, indexes, parent, delta); //$NON-NLS-1$
+			if(operation != null) {
+				command.add(operation);
+			}
+		}
+		return command.canExecute();
+	}
+
+	/**
+	 * Moves the element in the specified list, when the elements are moved down
+	 * in the list
+	 * 
+	 * @param modifiedElements
+	 *        list of elements modified
+	 * @param indexes
+	 *        list of indexes of objects to move
+	 * @param move
+	 *        delta for the move. should be positive integer
+	 */
+	protected void moveDownElementsOperation(List<Object> modifiedElements, List<Integer> indexes, int move) {
+		// if moving down, starting from the end to move elements, assuming they
+		// are in the increasing order by default
+		Collections.sort(indexes);
+		Collections.reverse(indexes);
+		for(int index : indexes) {
+			Object objectToMove = modifiedElements.get(index);
+			// remove element
+			modifiedElements.remove(index);
+			// change index
+			if(index == -1) {
+				return;
+			}
+			index += move;
+			// add the element to the new index
+			modifiedElements.add(index, objectToMove);
 		}
 	}
+
+	/**
+	 * Moves the element in the specified list, when the elements are moved up
+	 * in the list
+	 * 
+	 * @param modifiedElements
+	 *        list of elements modified
+	 * @param indexes
+	 *        list of indexes of objects to move
+	 * @param move
+	 *        delta for the move. should be positive integer
+	 */
+	protected void moveUpElementsInCollection(List<Object> modifiedElements, List<Integer> indexes, int move) {
+		Collections.sort(indexes);
+		for(int index : indexes) {
+			// retrieve index
+			Object objectToMove = modifiedElements.get(index);
+			// remove element
+			modifiedElements.remove(index);
+			// change index
+			if(index == -1) {
+				return;
+			}
+			index += move;
+			// add the element to the new index
+			modifiedElements.add(index, objectToMove);
+		}
+	}
+
+	//	/**
+	//	 * Operation to edit a String value for the controlled property
+	//	 */
+	//	protected class MoveStringValueOperation extends AbstractTransactionalCommand {
+	//
+	//		/** object to edit */
+	//		protected final EObject objectToEdit;
+	//
+	//		/** indexes of the value to delete */
+	//		protected final List<Integer> indexes;
+	//
+	//		/** composite parent for the editor */
+	//		protected final Composite parent;
+	//
+	//		/** delta applied to all indexes */
+	//		protected final int delta;
+	//
+	//		/**
+	//		 * Initializes me with the editing domain, a label, transaction options, and
+	//		 * a list of {@link IFile}s that anticipate modifying when I am executed,
+	//		 * undone or redone.
+	//		 * 
+	//		 * @param domain
+	//		 *        the editing domain used to modify the model
+	//		 * @param label
+	//		 *        my user-readable label, should never be <code>null</code>.
+	//		 * @param objectToEdit
+	//		 *        object to edit
+	//		 * @param indexes
+	//		 *        the indexes of the values to remove
+	//		 * @param parent
+	//		 *        the graphical composite element
+	//		 * @param delta
+	//		 *        the delta applied to all indexes
+	//		 */
+	//		public MoveStringValueOperation(TransactionalEditingDomain domain, String label, EObject objectToEdit, List<Integer> indexes, Composite parent, int delta) {
+	//			super(domain, (label == null) ? "" : label, null);
+	//			this.objectToEdit = objectToEdit;
+	//			this.indexes = indexes;
+	//			this.parent = parent;
+	//			this.delta = delta;
+	//		}
+	//
+	//		@Override
+	//		public boolean canExecute() {
+	//			EClass eClass = objectToEdit.eClass();
+	//			if(eClass == null) {
+	//				return false;
+	//			}
+	//			// retrieve the current value (should be a list)
+	//			EStructuralFeature feature = getFeatureByName(objectToEdit);
+	//			Object currentValue = objectToEdit.eGet(feature);
+	//			if(currentValue instanceof List<?>) {
+	//				@SuppressWarnings("unchecked")
+	//				List<Object> values = (List<Object>)currentValue;
+	//				List<Object> copy = new ArrayList<Object>(values);
+	//				// make modification in copy list
+	//				// check indices
+	//				int min = copy.size();
+	//				int max = 0;
+	//
+	//				for(int index : indexes) {
+	//					if(index < min) {
+	//						min = index;
+	//					}
+	//					if(index > max) {
+	//						max = index;
+	//					}
+	//				}
+	//
+	//				// check that min and max are in the bounds of the list, with the
+	//				// delta applied
+	//				min += delta;
+	//				max += delta;
+	//				// check the bounds of the list
+	//				if(min < 0) {
+	//					return false;
+	//				} else if(max >= copy.size()) {
+	//					return false;
+	//				}
+	//			}
+	//			return true;
+	//		}
+	//
+	//		/**
+	//		 * {@inheritDoc}
+	//		 */
+	//		@Override
+	//		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	//			EClass eClass = objectToEdit.eClass();
+	//			if(eClass == null) {
+	//				return CommandResult.newErrorCommandResult("Impossible to find the EClass for object: " + objectToEdit);
+	//			}
+	//			// retrieve the current value (should be a list)
+	//			EStructuralFeature feature = getFeatureByName(objectToEdit);
+	//			Object currentValue = objectToEdit.eGet(feature);
+	//			if(currentValue instanceof List<?>) {
+	//				@SuppressWarnings("unchecked")
+	//				List<Object> values = (List<Object>)currentValue;
+	//				List<Object> copy = new ArrayList<Object>(values);
+	//				// make modification in copy list
+	//				// check indices
+	//				int min = copy.size();
+	//				int max = 0;
+	//
+	//				for(int index : indexes) {
+	//					if(index < min) {
+	//						min = index;
+	//					}
+	//					if(index > max) {
+	//						max = index;
+	//					}
+	//				}
+	//
+	//				// check that min and max are in the bounds of the list, with the
+	//				// delta applied
+	//				min += delta;
+	//				max += delta;
+	//				// check the bounds of the list
+	//				if(min < 0) {
+	//					Activator.log.debug("Trying to move up the elements, with a move which will cause an IndexOutOfBound exception");
+	//					return CommandResult.newErrorCommandResult("Trying to move up the elements, with a move which will cause an IndexOutOfBound exception");
+	//				} else if(max >= copy.size()) {
+	//					Activator.log.debug("Trying to move down the elements, with a move which will cause an IndexOutOfBound exception");
+	//					return CommandResult.newErrorCommandResult("Trying to move down the elements, with a move which will cause an IndexOutOfBound exception");
+	//				}
+	//
+	//				// now, do the move in the copy
+	//				if(delta < 0) {
+	//					moveUpElementsInCollection(copy, indexes, delta);
+	//				} else {
+	//					moveDownElementsOperation(copy, indexes, delta);
+	//				}
+	//
+	//				setValueInModel(objectToEdit, copy);
+	//			}
+	//
+	//			return CommandResult.newOKCommandResult();
+	//		}
+	//	}
 }

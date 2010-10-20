@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
+ *  Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr
  *****************************************************************************/
 package org.eclipse.papyrus.properties.runtime.uml.modelhandler;
 
@@ -19,6 +20,8 @@ import org.eclipse.core.commands.operations.IUndoableOperation;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.properties.runtime.controller.EMFPropertyEditorController;
 import org.eclipse.papyrus.properties.runtime.modelhandler.emf.IEMFModelHandler;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IBoundedValuesPropertyEditorDescriptor;
@@ -42,7 +45,7 @@ public class AssociationEndOwnerModelHandler implements IEMFModelHandler {
 	private final List<String> availableValues;
 
 	/** id of this model handler */
-	public final static String ID = "AssociationEndOwner"; // $NON-NLS-1$
+	public final static String ID = "AssociationEndOwner"; //$NON-NLS-1$
 
 	/**
 	 * Creates a new AssociationEndOwnerModelHandler.
@@ -83,9 +86,9 @@ public class AssociationEndOwnerModelHandler implements IEMFModelHandler {
 				//look for the owner of the property to Set
 				List<Type> ownerList = association.getEndTypes();
 				if(ownerList.get(0).equals(property.getType()) && ownerList.size() > 1) {
-					owner = (Type)ownerList.get(1);
+					owner = ownerList.get(1);
 				} else {
-					owner = (Type)ownerList.get(0);
+					owner = ownerList.get(0);
 				}
 			}
 			// this is a classifier , construct and run the command
@@ -97,7 +100,7 @@ public class AssociationEndOwnerModelHandler implements IEMFModelHandler {
 				((org.eclipse.uml2.uml.Class)owner).eSet(feature, attributeList);
 				return;
 			}
-			Activator.log.error("The owner was not a class: " + owner, null);
+			Activator.log.error("The owner was not a class: " + owner, null); //$NON-NLS-1$
 			return;
 		} else {
 			EStructuralFeature feature = UMLPackage.eINSTANCE.getAssociation_OwnedEnd();
@@ -126,14 +129,14 @@ public class AssociationEndOwnerModelHandler implements IEMFModelHandler {
 	public Object getValueToEdit(EObject objectToEdit) {
 		if(!(objectToEdit instanceof Property)) {
 			Activator.log.warn("the object to edit is not a Property"); //$NON-NLS-1$
-			return "";
+			return ""; //$NON-NLS-1$
 		}
 
 		Property property = (Property)objectToEdit;
 		Association association = property.getAssociation();
 		if(association == null) {
 			Activator.log.warn("the property is not a member end of an association"); //$NON-NLS-1$
-			return "";
+			return ""; //$NON-NLS-1$
 		}
 
 		if(association.equals(property.getOwner())) {
@@ -275,5 +278,67 @@ public class AssociationEndOwnerModelHandler implements IEMFModelHandler {
 	 */
 	public boolean canCreateMoveValueOperation(List<? extends EObject> objectsToEdit, List<Integer> indexes, Composite parent, int delta) {
 		return false;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.properties.runtime.modelhandler.emf.IEMFModelHandler#getSetRequest(org.eclipse.emf.transaction.TransactionalEditingDomain,
+	 *      org.eclipse.emf.ecore.EObject, java.lang.Object)
+	 * 
+	 * @param domain
+	 * @param objectToEdit
+	 * @param newValue
+	 * @return
+	 */
+	public SetRequest[] getSetRequest(TransactionalEditingDomain domain, EObject objectToEdit, Object newValue) {
+		if(!(newValue instanceof String)) {
+			Activator.log.warn("the new value for the association end owner handler was no a String"); //$NON-NLS-1$
+			return null;
+		}
+
+		if(!(objectToEdit instanceof Property)) {
+			Activator.log.warn("the object to edit is not a Property"); //$NON-NLS-1$
+			return null;
+		}
+
+		Property property = (Property)objectToEdit;
+		Association association = property.getAssociation();
+		if(association == null) {
+			Activator.log.warn("the property is not a member end of an association"); //$NON-NLS-1$
+			return null;
+		}
+		String value = (String)newValue;
+
+		Type owner = null;
+		if(Messages.AssociationEndOwnerModelHandler_ComboValue_Class.equals(value)) {
+			// it already belongs to the right component, does not change...
+			if(!(property.getOwner() instanceof Association)) {
+				return null;
+			} else {
+				//look for the owner of the property to Set
+				List<Type> ownerList = association.getEndTypes();
+				if(ownerList.get(0).equals(property.getType()) && ownerList.size() > 1) {
+					owner = ownerList.get(1);
+				} else {
+					owner = ownerList.get(0);
+				}
+			}
+			// this is a classifier , construct and run the command
+			EStructuralFeature feature = UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute();
+			if(owner instanceof org.eclipse.uml2.uml.Class) {
+				List<Property> attributeList = new ArrayList<Property>();
+				attributeList.addAll(((org.eclipse.uml2.uml.Class)owner).getAttributes());
+				attributeList.add(property);
+				return new SetRequest[]{ new SetRequest(domain, owner, feature, attributeList) };
+			}
+			Activator.log.error("The owner was not a class: " + owner, null); //$NON-NLS-1$
+			return null;
+		} else {
+			EStructuralFeature feature = UMLPackage.eINSTANCE.getAssociation_OwnedEnd();
+			List<Property> attributeList = new ArrayList<Property>();
+			attributeList.addAll(association.getOwnedEnds());
+			attributeList.add(property);
+			return new SetRequest[]{ new SetRequest(domain, association, feature, attributeList) };
+		}
 	}
 }

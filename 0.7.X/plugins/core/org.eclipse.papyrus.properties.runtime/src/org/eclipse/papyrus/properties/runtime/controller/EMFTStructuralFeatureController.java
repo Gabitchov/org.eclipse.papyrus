@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
+ *  Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr
  *****************************************************************************/
 package org.eclipse.papyrus.properties.runtime.controller;
 
@@ -41,10 +42,7 @@ public class EMFTStructuralFeatureController extends EMFTPropertyEditorControlle
 	private EMFTPropertyEditorControllerDescriptor descriptor;
 
 	/** identifier of the controller */
-	public final static String ID = "emftStructuralFeatureController";
-
-	/** model handler to interact with the model for this controller */
-	protected IEMFModelHandler modelHandler;
+	public final static String ID = "emftStructuralFeatureController"; //$NON-NLS-1$
 
 	/**
 	 * Creates a new EMFTStructuralFeatureController.
@@ -63,6 +61,7 @@ public class EMFTStructuralFeatureController extends EMFTPropertyEditorControlle
 	 * @param descriptor
 	 *        the descriptor that realize specific configuration for this controller
 	 */
+	@Override
 	public IStatus initController(Composite parent, List<Object> objectsToEdit, IPropertyEditorControllerDescriptor descriptor) {
 		setParent(parent);
 		IPropertyEditorControllerDescriptor realDescriptor = descriptor;
@@ -75,7 +74,7 @@ public class EMFTStructuralFeatureController extends EMFTPropertyEditorControlle
 		if(realDescriptor instanceof EMFTPropertyEditorControllerDescriptor) {
 			this.descriptor = (EMFTPropertyEditorControllerDescriptor)realDescriptor;
 		} else {
-			return new Status(IStatus.ERROR, Activator.ID, "impossible to adapt descriptor to an EMFTPropertyEditorControllerDescriptor");
+			return new Status(IStatus.ERROR, Activator.ID, "impossible to adapt descriptor to an EMFTPropertyEditorControllerDescriptor"); //$NON-NLS-1$
 		}
 
 		this.modelHandler = this.descriptor.getHandler();
@@ -83,7 +82,7 @@ public class EMFTStructuralFeatureController extends EMFTPropertyEditorControlle
 
 		TransactionalEditingDomain editingDomain = EMFUtils.getTransactionalEditingDomain(objectsToEdit);
 		if(editingDomain == null && !objectsToEdit.isEmpty()) {
-			return new Status(IStatus.ERROR, Activator.ID, "impossible to find an editing domain for the controller.");
+			return new Status(IStatus.ERROR, Activator.ID, "impossible to find an editing domain for the controller."); //$NON-NLS-1$
 		}
 		setEditingDomain(editingDomain);
 		return Status.OK_STATUS;
