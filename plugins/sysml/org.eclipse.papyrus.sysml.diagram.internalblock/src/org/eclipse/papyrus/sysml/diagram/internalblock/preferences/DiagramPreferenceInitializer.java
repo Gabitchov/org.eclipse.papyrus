@@ -26,5 +26,7 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 		PortPreferencePage.initDefaults(store);
 
 		BlockPreferencePage.initDefaults(store);
+		
+		PropertyPreferencePage.initDefaults(store);
 	}
 }
