@@ -51,7 +51,7 @@ public class Activator extends AbstractUIPlugin {
 	/** The Constant ID. */
 	public static final String ID = "org.eclipse.papyrus.diagram.common";
 
-	/** share instance of the plugin (singleton pattern) */
+	/** Shared instance of the plug-in (singleton pattern) */
 	private static Activator plugin;
 
 	/** Logging helper */
@@ -155,13 +155,13 @@ public class Activator extends AbstractUIPlugin {
 		if(image == null) { // Image not yet in registry
 
 			// Get the descriptor of the image without visibility
-			ImageDescriptor desc = AbstractUIPlugin.imageDescriptorFromPlugin(getDefault().ID, key);
+			ImageDescriptor desc = AbstractUIPlugin.imageDescriptorFromPlugin(ID, key);
 
 			if(!"".equals(visKey)) { // Add visibility overlay
 
 				Image initialImage = desc.createImage();
 				getDefault();
-				ImageDescriptor visDesc = Activator.getImageDescriptor(getDefault().UML_VIS_ICONS_16x16 + "VisibilityKind_" + visKey + ".gif");
+				ImageDescriptor visDesc = Activator.getImageDescriptor(UML_VIS_ICONS_16x16 + "VisibilityKind_" + visKey + ".gif");
 
 				// Overlay custom image over base image
 				OverlayVisibilityIcon overlayIcon = new OverlayVisibilityIcon(initialImage, visDesc);
@@ -401,7 +401,7 @@ public class Activator extends AbstractUIPlugin {
 			if(visibility != null) {
 
 				getDefault();
-				ImageDescriptor visDesc = Activator.getImageDescriptor(getDefault().UML_VIS_ICONS_16x16 + "VisibilityKind_" + visibility.getLiteral() + ".gif");
+				ImageDescriptor visDesc = Activator.getImageDescriptor(UML_VIS_ICONS_16x16 + "VisibilityKind_" + visibility.getLiteral() + ".gif");
 
 				// Overlay custom image over base image
 				OverlayVisibilityIcon overlayIcon = new OverlayVisibilityIcon(image, visDesc);
