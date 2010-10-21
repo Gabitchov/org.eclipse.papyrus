@@ -68,6 +68,7 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.core.utils.PapyrusEcoreUtils;
 import org.eclipse.papyrus.navigator.commands.EObjectInheritanceCopyCommand;
 import org.eclipse.papyrus.navigator.internal.Activator;
 import org.eclipse.swt.widgets.Display;
@@ -415,7 +416,7 @@ public class GenericTransformer {
 	public MultiStatus isTransformationPossible(EClass eclass) {
 		MultiStatus result = new MultiStatus(Activator.PLUGIN_ID, 0, "Type incompatibility", null);
 		if(element != null) {
-			Collection<Setting> usages = EObjectInheritanceCopyCommand.getUsages(element);
+			Collection<Setting> usages = PapyrusEcoreUtils.getUsages(element);
 			if(usages != null) {
 				for(EStructuralFeature.Setting nonNavigableInverseReference : usages) {
 					EStructuralFeature structuralFeature = nonNavigableInverseReference.getEStructuralFeature();
