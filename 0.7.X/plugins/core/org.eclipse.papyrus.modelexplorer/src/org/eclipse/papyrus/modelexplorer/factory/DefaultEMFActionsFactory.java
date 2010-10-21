@@ -21,7 +21,6 @@ import java.util.List;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.ui.action.CopyAction;
 import org.eclipse.emf.edit.ui.action.CutAction;
-import org.eclipse.emf.edit.ui.action.DeleteAction;
 import org.eclipse.emf.edit.ui.action.LoadResourceAction;
 import org.eclipse.emf.edit.ui.action.PasteAction;
 import org.eclipse.emf.workspace.ui.actions.RedoActionWrapper;
@@ -46,8 +45,6 @@ import org.eclipse.ui.navigator.CommonNavigator;
 public class DefaultEMFActionsFactory implements IActionHandlerFactory {
 
 	protected List<Action> actions = new LinkedList<Action>();
-
-	protected DeleteAction deleteAction;
 
 	protected CutAction cutAction;
 
@@ -84,20 +81,6 @@ public class DefaultEMFActionsFactory implements IActionHandlerFactory {
 		this.pasteAction.setImageDescriptor(sharedImages.getImageDescriptor(ISharedImages.IMG_TOOL_PASTE));
 		actions.add(pasteAction);
 
-		// YT - This action will be replaced by the delete action provider by
-		// the IElementEditService.
-		// This action is left here (with its label marked as @deprecated
-		// for testing reason and should probably be removed for V0.7.1 release.
-
-		// Create Delete action
-		this.deleteAction = new DeleteAction(editingDomain, true);
-		this.deleteAction.setImageDescriptor(sharedImages.getImageDescriptor(ISharedImages.IMG_TOOL_DELETE));
-		this.deleteAction.setDisabledImageDescriptor(sharedImages.getImageDescriptor(ISharedImages.IMG_TOOL_DELETE_DISABLED));
-
-		this.deleteAction.setText(deleteAction.getText() + " (deprecated)");
-
-		actions.add(deleteAction);
-
 		// Undo action
 		this.undoAction = new UndoActionWrapper();
 		this.undoAction.setImageDescriptor(sharedImages.getImageDescriptor(ISharedImages.IMG_TOOL_UNDO));
@@ -119,7 +102,6 @@ public class DefaultEMFActionsFactory implements IActionHandlerFactory {
 	 * {@inheritDoc}
 	 */
 	public void activate(CommonNavigator activeViewPart) {
-		deleteAction.setActiveWorkbenchPart(activeViewPart);
 		cutAction.setActiveWorkbenchPart(activeViewPart);
 		copyAction.setActiveWorkbenchPart(activeViewPart);
 		pasteAction.setActiveWorkbenchPart(activeViewPart);
@@ -130,7 +112,6 @@ public class DefaultEMFActionsFactory implements IActionHandlerFactory {
 		ISelectionProvider selectionProvider = null;
 		if(activeViewPart.getCommonViewer() instanceof ISelectionProvider) {
 			selectionProvider = activeViewPart.getCommonViewer();
-			selectionProvider.addSelectionChangedListener(deleteAction);
 			selectionProvider.addSelectionChangedListener(cutAction);
 			selectionProvider.addSelectionChangedListener(copyAction);
 			selectionProvider.addSelectionChangedListener(pasteAction);
@@ -141,7 +122,6 @@ public class DefaultEMFActionsFactory implements IActionHandlerFactory {
 	 * {@inheritDoc}
 	 */
 	public void deactivate(CommonNavigator activeViewPart) {
-		deleteAction.setActiveWorkbenchPart(null);
 		cutAction.setActiveWorkbenchPart(null);
 		copyAction.setActiveWorkbenchPart(null);
 		pasteAction.setActiveWorkbenchPart(null);
@@ -152,7 +132,6 @@ public class DefaultEMFActionsFactory implements IActionHandlerFactory {
 		ISelectionProvider selectionProvider = null;
 		if(activeViewPart.getCommonViewer() instanceof ISelectionProvider) {
 			selectionProvider = activeViewPart.getCommonViewer();
-			selectionProvider.removeSelectionChangedListener(deleteAction);
 			selectionProvider.removeSelectionChangedListener(cutAction);
 			selectionProvider.removeSelectionChangedListener(copyAction);
 			selectionProvider.removeSelectionChangedListener(pasteAction);
@@ -163,7 +142,6 @@ public class DefaultEMFActionsFactory implements IActionHandlerFactory {
 	 * {@inheritDoc}
 	 */
 	public void fillActionBars(IActionBars actionBars) {
-		actionBars.setGlobalActionHandler(ActionFactory.DELETE.getId(), deleteAction);
 		actionBars.setGlobalActionHandler(ActionFactory.CUT.getId(), cutAction);
 		actionBars.setGlobalActionHandler(ActionFactory.COPY.getId(), copyAction);
 		actionBars.setGlobalActionHandler(ActionFactory.PASTE.getId(), pasteAction);
@@ -185,8 +163,6 @@ public class DefaultEMFActionsFactory implements IActionHandlerFactory {
 			}
 		}
 		StructuredSelection st = new StructuredSelection(array);
-		deleteAction.updateSelection(st);
-		deleteAction.setEnabled((deleteAction.createCommand(st.toList())).canExecute());
 		cutAction.updateSelection(st);
 		cutAction.setEnabled((cutAction.createCommand(st.toList())).canExecute());
 		copyAction.updateSelection(st);
