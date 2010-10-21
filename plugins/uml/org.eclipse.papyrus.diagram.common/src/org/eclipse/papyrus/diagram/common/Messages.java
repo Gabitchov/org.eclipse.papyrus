@@ -384,16 +384,4 @@ public class Messages extends NLS {
 
 	public static String ShowHideContentsAction_Title;
 
-	/** Label for Hide Selected Element Action (when many elements are selected) */
-	public static String DeleteFromDiagramHandler_HideTextPlural;
-
-	/** Tooltip for Hide Selected Element Action (when many elements are selected) */
-	public static String DeleteFromDiagramHandler_HideToolTipPlural;
-
-	/** Label for Hide Selected Element Action (when only 1 element is selected) */
-	public static String DeleteFromDiagramHandler_HideTextSingular;
-
-	/** Tooltip for Hide Selected Element Action (when only 1 element is selected) */
-	public static String DeleteFromDiagramHandler_HideToolTipSingular;
-
 }

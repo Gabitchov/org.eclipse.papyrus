@@ -21,102 +21,6 @@
  <extension-point id="moskittEditorFactory" name="moskittEditorFactory" schema="schema/moskittEditorFactory.exsd"/>
  <extension-point id="paletteDefinition" name="PaletteDefinition" schema="schema/paletteDefinition.exsd"/>
  <extension-point id="aspectToolProvider" name="aspectToolProvider" schema="schema/aspectToolProvider.exsd"/>
-   <!--
-   <extension
-         point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
-       <contributionItemProvider
-            checkPluginLoaded="true"
-            class="org.eclipse.papyrus.diagram.common.actions.DeleteFromDiagramActionItemProvider">
-         <Priority name="Medium"/>
-		 <popupContribution
-               class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
-			 <popupMenuGroup
-                  id="DeleteFromDiagramGroup"
-                  path="/propertiesGroup">
-             </popupMenuGroup>
-             <popupAction
-                  path="/editGroup"
-                  id="delete_from_diagram">
-             </popupAction>
-             <popupStructuredContributionCriteria
-                   policyClass="org.eclipse.papyrus.diagram.common.actions.DeleteFromDiagramPopupMenuContributionPolicy">
-             </popupStructuredContributionCriteria>            
-		 </popupContribution>
-      </contributionItemProvider>
-       <contributionItemProvider
-             checkPluginLoaded="true"
-             class="org.eclipse.papyrus.diagram.common.actions.DeleteActionItemProvider">
-          <Priority
-                name="Medium">
-          </Priority>
-          <popupContribution
-                class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
-             <popupMenuGroup
-                   id="DeleteFromDiagramGroup"
-                   path="/propertiesGroup">
-             </popupMenuGroup>
-             <popupAction
-                   id="delete_from_model"
-                   path="/editGroup">
-             </popupAction>
-             <popupStructuredContributionCriteria
-                   policyClass="org.eclipse.papyrus.diagram.common.actions.DeleteActionMenuContributionPolicy">
-             </popupStructuredContributionCriteria>
-          </popupContribution>
-       </contributionItemProvider>
-   </extension>
-   -->
-   <!--
-   <extension
-         point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
-      <contributionItemProvider
-            checkPluginLoaded="true"
-            class="org.eclipse.papyrus.diagram.common.actions.ApplicableStereotypesItemProvider">
-         <Priority
-               name="Medium">
-         </Priority>
-         <popupContribution
-               class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
-            <popupMenuGroup
-                  id="ApplyStereotypeGroup"
-                  path="/propertiesGroup">
-            </popupMenuGroup>
-            <popupMenu
-                  id="menu_apply_unapply_stereotype"
-                  path="/ApplyStereotypeGroup">
-            </popupMenu>
-            <popupStructuredContributionCriteria
-                  policyClass="org.eclipse.papyrus.diagram.common.actions.StereotypePopupMenuContributionPolicy">
-            </popupStructuredContributionCriteria>
-         </popupContribution>
-      </contributionItemProvider>
-   </extension>
-   -->
-   <!--extension
-         point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
-      <contributionItemProvider
-            checkPluginLoaded="true"
-            class="org.eclipse.papyrus.diagram.common.actions.ApplicableProfilesItemProvider">
-         <Priority
-               name="Medium">
-         </Priority>
-         <popupContribution
-               class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
-            <popupMenuGroup
-                  id="ApplyProfileGroup"
-                  path="/propertiesGroup">
-            </popupMenuGroup>
-            <popupMenu
-                  id="menu_apply_unapply_profile"
-                  path="/ApplyProfileGroup">
-            </popupMenu>
-            <popupStructuredContributionCriteria
-                  policyClass="org.eclipse.papyrus.diagram.common.actions.ProfilePopupMenuContributionPolicy">
-            </popupStructuredContributionCriteria>
-         </popupContribution>
-      </contributionItemProvider>
-   </extension -->
-   
       
       <extension point="org.eclipse.ui.views">
    <category 
@@ -240,32 +144,6 @@
             id="org.eclipse.papyrus.diagram.common.objectContribution.pastewithmodelaction"
             label="Paste with model"
             menubarPath="editMenu/editGroup">
-      </action>
-   </objectContribution>
-   <objectContribution
-         adaptable="false"
-         id="org.eclipse.papyrus.diagram.common.deletefrommodelaction"
-         objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
-      <action
-            class="org.eclipse.papyrus.diagram.common.handlers.DeleteFromModelHandler"
-            definitionId="org.eclipse.papyrus.diagram.common.commands.DeleteFromModelCommand"
-            icon="icons/delete.gif"
-            id="org.eclipse.papyrus.diagram.common.objectContribution.deletefrommodelaction"
-            label="Delete Selected Element (deprecated)"
-            menubarPath="editMenu">
-      </action>
-   </objectContribution>
-   <objectContribution
-         adaptable="false"
-         id="org.eclipse.papyrus.diagram.common.deletefromdiagramaction"
-         objectClass="org.eclipse.gmf.runtime.diagram.ui.internal.editparts.IContainedEditPart">
-      <action
-            class="org.eclipse.papyrus.diagram.common.handlers.DeleteFromDiagramHandler"
-            definitionId="org.eclipse.papyrus.diagram.common.commands.DeleteFromDiagramCommand"
-            icon="icons/obj16/eraser.gif"
-            id="org.eclipse.papyrus.diagram.common.objectContribution.deletefromdiagramaction"
-            label="Hide Selected Element (deprecated)"
-            menubarPath="editMenu">
       </action>
    </objectContribution>
 </extension>
@@ -442,10 +320,12 @@
 	<menuContribution locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu?endof=editMenu"
 		allPopups="false">
 
-		<command commandId="org.eclipse.papyrus.diagram.common.commands.DeleteFromModel"
-			icon="icons/delete.gif"
-			label="Delete Selected Element"
-			style="push">
+		<command
+        commandId="org.eclipse.papyrus.diagram.common.commands.DeleteFromModel"
+        disabledIcon="IMG_TOOL_DELETE_DISABLED"
+        icon="IMG_TOOL_DELETE"
+        label="Delete Selected Element"
+        style="push">
 			<visibleWhen>
 				<and>
 					<with variable="activeEditorId">
@@ -501,26 +381,9 @@
 		description="Delete the selection from diagram"
 		id="org.eclipse.papyrus.diagram.common.commands.DeleteFromDiagram"
 		name="Delete From Diagram Command">
-	</command>
-
-	<!-- Deprecated command -->	
-	<command
-		categoryId="org.eclipse.papyrus.editor.category"
-		defaultHandler="org.eclipse.papyrus.diagram.common.handlers.DeleteFromModelHandler"
-		description="Delete the selection from model (deprecated)"
-		id="org.eclipse.papyrus.diagram.common.commands.DeleteFromModelCommand"
-		name="Delete From Model Command">
-	</command>
-	
-	<!-- Deprecated command -->	
-	<command
-		categoryId="org.eclipse.papyrus.editor.category"
-		description="Delete the selection from diagram (deprecated)"
-		id="org.eclipse.papyrus.diagram.common.commands.DeleteFromDiagramCommand"
-		name="Delete From Diagram Command">
-	</command>
-			
+	</command>		
 </extension>
+
 <extension
       point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
    <decoratorProvider
