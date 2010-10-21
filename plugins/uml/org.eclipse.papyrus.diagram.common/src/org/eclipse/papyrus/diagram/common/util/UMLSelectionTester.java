@@ -4,6 +4,7 @@ import org.eclipse.core.expressions.PropertyTester;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers;
+import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
 import org.eclipse.papyrus.resource.NotFoundException;
 import org.eclipse.papyrus.resource.uml.UmlModel;
@@ -72,9 +73,9 @@ public class UMLSelectionTester extends PropertyTester {
 				root = openedModel.lookupRoot();
 			}
 		} catch (ServiceException e) {
-			e.printStackTrace();
+			Activator.log.error(e);
 		} catch (NotFoundException e) {
-			e.printStackTrace();
+			Activator.log.error(e);
 		}
 
 		return root;

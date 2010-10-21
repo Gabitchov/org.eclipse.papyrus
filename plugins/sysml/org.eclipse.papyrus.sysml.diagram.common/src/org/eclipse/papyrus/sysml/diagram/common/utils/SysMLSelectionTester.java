@@ -7,6 +7,7 @@ import org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
 import org.eclipse.papyrus.resource.NotFoundException;
 import org.eclipse.papyrus.resource.uml.UmlModel;
+import org.eclipse.papyrus.sysml.diagram.common.Activator;
 import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
@@ -65,9 +66,9 @@ public class SysMLSelectionTester extends PropertyTester {
 			}
 
 		} catch (ServiceException e) {
-			e.printStackTrace();
+			Activator.log.error(e);
 		} catch (NotFoundException e) {
-			e.printStackTrace();
+			Activator.log.error(e);
 		}
 
 		return isSysMLModel;
