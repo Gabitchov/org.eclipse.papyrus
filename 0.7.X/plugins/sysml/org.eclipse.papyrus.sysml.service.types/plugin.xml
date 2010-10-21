@@ -47,12 +47,12 @@
 	<!-- 
 		Warning the Parametric diagram declares types with following (generated) ids 
 		org.eclipse.papyrus.sysml.diagram.* that should not be bound to shared context
-		The following regex "org.eclipse.papyrus.sysml.(?!diagram\\.parametric).*" is
+		The following regex "org.eclipse.papyrus.sysml.(?!diagram).*" is
 		expected to bind any ElementType with id starting with "org.eclipse.papyrus.sysml"
-		except those starting with "org.eclipse.papyrus.sysml.diagram.parametric".  
+		except those starting with "org.eclipse.papyrus.sysml.diagram".  
 	  -->
 	<binding context="org.eclipse.papyrus.service.edit.TypeContext">
-		<elementType pattern="org.eclipse.papyrus.sysml.(?!diagram\\.parametric).*" />
+		<elementType pattern="org.eclipse.papyrus.sysml.(?!diagram).*" />
 	</binding>
 	
 </extension>
