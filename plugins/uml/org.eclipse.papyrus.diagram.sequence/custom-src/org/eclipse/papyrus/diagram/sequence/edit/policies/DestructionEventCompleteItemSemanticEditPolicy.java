@@ -19,9 +19,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
@@ -31,6 +28,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.core.utils.PapyrusEcoreUtils;
 import org.eclipse.papyrus.diagram.common.helper.DurationConstraintHelper;
 import org.eclipse.papyrus.diagram.common.helper.DurationObservationHelper;
 import org.eclipse.papyrus.diagram.common.helper.TimeConstraintHelper;
@@ -77,7 +75,7 @@ public class DestructionEventCompleteItemSemanticEditPolicy extends DestructionE
 
 			if(eObject instanceof DestructionEvent) {
 				// Get the usage of this destructionEvent in the resourceSet. 
-				Collection<EStructuralFeature.Setting> usages = getUsages(eObject, getEditingDomain().getResourceSet());
+				Collection<EStructuralFeature.Setting> usages = PapyrusEcoreUtils.getUsages(eObject);
 
 				for(EStructuralFeature.Setting setting : usages) {
 					EObject settingEObj = setting.getEObject();
@@ -110,18 +108,6 @@ public class DestructionEventCompleteItemSemanticEditPolicy extends DestructionE
 
 		// Wrap and return the command
 		return getGEFWrapper(cmd.reduce());
-	}
-
-	//TODO : comment and extract this method into a generic class.
-	public static Collection<EStructuralFeature.Setting> getUsages(EObject source, ResourceSet r) {
-		Collection<EStructuralFeature.Setting> collection = null;
-		ECrossReferenceAdapter crossReferenceAdapter = ECrossReferenceAdapter.getCrossReferenceAdapter(source);
-		if(crossReferenceAdapter != null) {
-			collection = crossReferenceAdapter.getNonNavigableInverseReferences(source);
-		} else {
-			collection = EcoreUtil.UsageCrossReferencer.find(source, r);
-		}
-		return collection;
 	}
 
 	/**
