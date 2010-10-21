@@ -60,6 +60,7 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.sequence.util.SequenceDeleteHelper;
+import org.eclipse.uml2.uml.Message;
 
 /**
  * @generated
@@ -84,42 +85,49 @@ public class ActionExecutionSpecificationItemSemanticEditPolicy extends UMLBaseI
 			Edge incomingLink = (Edge)it.next();
 			if(UMLVisualIDRegistry.getVisualID(incomingLink) == MessageEditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+				SequenceDeleteHelper.completeDestroyMessageCommand((Message)incomingLink.getElement(), cmd);
 				cmd.add(new DestroyElementCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
 			if(UMLVisualIDRegistry.getVisualID(incomingLink) == Message2EditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+				SequenceDeleteHelper.completeDestroyMessageCommand((Message)incomingLink.getElement(), cmd);
 				cmd.add(new DestroyElementCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
 			if(UMLVisualIDRegistry.getVisualID(incomingLink) == Message3EditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+				SequenceDeleteHelper.completeDestroyMessageCommand((Message)incomingLink.getElement(), cmd);
 				cmd.add(new DestroyElementCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
 			if(UMLVisualIDRegistry.getVisualID(incomingLink) == Message4EditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+				SequenceDeleteHelper.completeDestroyMessageCommand((Message)incomingLink.getElement(), cmd);
 				cmd.add(new DestroyElementCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
 			if(UMLVisualIDRegistry.getVisualID(incomingLink) == Message5EditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+				SequenceDeleteHelper.completeDestroyMessageCommand((Message)incomingLink.getElement(), cmd);
 				cmd.add(new DestroyElementCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
 			if(UMLVisualIDRegistry.getVisualID(incomingLink) == Message6EditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+				SequenceDeleteHelper.completeDestroyMessageCommand((Message)incomingLink.getElement(), cmd);
 				cmd.add(new DestroyElementCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
 			if(UMLVisualIDRegistry.getVisualID(incomingLink) == Message7EditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+				SequenceDeleteHelper.completeDestroyMessageCommand((Message)incomingLink.getElement(), cmd);
 				cmd.add(new DestroyElementCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
@@ -142,42 +150,49 @@ public class ActionExecutionSpecificationItemSemanticEditPolicy extends UMLBaseI
 			if(UMLVisualIDRegistry.getVisualID(outgoingLink) == MessageEditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(r));
+				SequenceDeleteHelper.completeDestroyMessageCommand((Message)outgoingLink.getElement(), cmd);
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}
 			if(UMLVisualIDRegistry.getVisualID(outgoingLink) == Message2EditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(r));
+				SequenceDeleteHelper.completeDestroyMessageCommand((Message)outgoingLink.getElement(), cmd);
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}
 			if(UMLVisualIDRegistry.getVisualID(outgoingLink) == Message3EditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(r));
+				SequenceDeleteHelper.completeDestroyMessageCommand((Message)outgoingLink.getElement(), cmd);
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}
 			if(UMLVisualIDRegistry.getVisualID(outgoingLink) == Message4EditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(r));
+				SequenceDeleteHelper.completeDestroyMessageCommand((Message)outgoingLink.getElement(), cmd);
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}
 			if(UMLVisualIDRegistry.getVisualID(outgoingLink) == Message5EditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(r));
+				SequenceDeleteHelper.completeDestroyMessageCommand((Message)outgoingLink.getElement(), cmd);
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}
 			if(UMLVisualIDRegistry.getVisualID(outgoingLink) == Message6EditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(r));
+				SequenceDeleteHelper.completeDestroyMessageCommand((Message)outgoingLink.getElement(), cmd);
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}
 			if(UMLVisualIDRegistry.getVisualID(outgoingLink) == Message7EditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(r));
+				SequenceDeleteHelper.completeDestroyMessageCommand((Message)outgoingLink.getElement(), cmd);
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}

@@ -14,12 +14,15 @@
 package org.eclipse.papyrus.diagram.sequence.util;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
@@ -31,11 +34,9 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
-import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
-import org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand;
-import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.core.utils.PapyrusEcoreUtils;
 import org.eclipse.papyrus.diagram.common.commands.DestroyElementPapyrusCommand;
 import org.eclipse.papyrus.diagram.common.helper.DurationConstraintHelper;
 import org.eclipse.papyrus.diagram.common.helper.DurationObservationHelper;
@@ -43,11 +44,11 @@ import org.eclipse.papyrus.diagram.common.helper.TimeConstraintHelper;
 import org.eclipse.papyrus.diagram.common.helper.TimeObservationHelper;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.diagram.common.util.Util;
-import org.eclipse.papyrus.diagram.sequence.edit.commands.DurationConstraintInMessageCreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.DestructionEvent;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Event;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Gate;
 import org.eclipse.uml2.uml.GeneralOrdering;
@@ -58,7 +59,6 @@ import org.eclipse.uml2.uml.MessageEnd;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
-import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * An Helper to get deleting command for the sequence diagram elements.
@@ -136,10 +136,10 @@ public class SequenceDeleteHelper {
 	public static ICommand completeDestroyMessageCommand(Message message, CompositeTransactionalCommand cmd) {
 
 		// Destroy the send event
-		destroyMessageEnd(cmd, message.getSendEvent(), false);
+		destroyMessageEnd(cmd, message.getSendEvent());
 
 		// Destroy the receive event
-		destroyMessageEnd(cmd, message.getReceiveEvent(), false);
+		destroyMessageEnd(cmd, message.getReceiveEvent());
 
 		return cmd;
 	}
@@ -151,13 +151,10 @@ public class SequenceDeleteHelper {
 	 *        the composite transactional command where the new commands will be added
 	 * @param messageEnd
 	 *        the messageEnd to destroy
-	 * @param deleteStartedOrEndedMessage
-	 *        true if we must destroy the started or ended message as chain effect, false if this deletion is provoked by the deletion of the message
-	 *        itself.
 	 */
-	private static void destroyMessageEnd(CompositeTransactionalCommand cmd, MessageEnd messageEnd, boolean deleteStartedOrEndedMessage) {
+	private static void destroyMessageEnd(CompositeTransactionalCommand cmd, MessageEnd messageEnd) {
 		if(messageEnd instanceof MessageOccurrenceSpecification) {
-			destroyOccurrenceSpecification(cmd, (MessageOccurrenceSpecification)messageEnd, deleteStartedOrEndedMessage);
+			destroyOccurrenceSpecification(cmd, (MessageOccurrenceSpecification)messageEnd);
 		} else if(messageEnd instanceof Gate) {
 			destroyGate(cmd, (Gate)messageEnd);
 		}
@@ -188,10 +185,10 @@ public class SequenceDeleteHelper {
 	public static ICommand completeDestroyExecutionSpecificationCommand(CompositeTransactionalCommand cmd, ExecutionSpecification execution) {
 
 		// Destroy start execution occurrence specification
-		destroyOccurrenceSpecification(cmd, execution.getStart(), false);
+		destroyOccurrenceSpecification(cmd, execution.getStart());
 
 		// Destroy end execution occurrence specification
-		destroyOccurrenceSpecification(cmd, execution.getFinish(), false);
+		destroyOccurrenceSpecification(cmd, execution.getFinish());
 
 		return cmd;
 	}
@@ -214,15 +211,26 @@ public class SequenceDeleteHelper {
 	 *        the composite transactional command where the new commands will be added
 	 * @param os
 	 *        the occurrenceSpecification to destroy
-	 * @param deleteStartedOrEndedElement
-	 *        true if we must destroy the started or ended element as chain effect, false if this deletion is provoked by the deletion of the linked
-	 *        element itself.
 	 */
-	private static void destroyOccurrenceSpecification(CompositeTransactionalCommand cmd, OccurrenceSpecification os, boolean deleteStartedOrEndedElement) {
+	private static void destroyOccurrenceSpecification(CompositeTransactionalCommand cmd, OccurrenceSpecification os) {
 		cmd.add(createDestroyElementCommand(os));
-		if(deleteStartedOrEndedElement) {
-			// TODO delete started or ended execution and messages
+
+		Event event = os.getEvent();
+
+		Set<EObject> crossReferences = new HashSet<EObject>();
+		for(Setting setting : PapyrusEcoreUtils.getUsages(event)) {
+			crossReferences.add(setting.getEObject());
 		}
+
+		crossReferences.remove(event.getOwner());
+		crossReferences.remove(os);
+
+		if(crossReferences.isEmpty()) {
+			// no reference founded except the owner and the "to be deleted" occurence specification
+			// => delete the event
+			cmd.add(createDestroyElementCommand(event));
+		}
+
 		// delete linked time elements
 		List<NamedElement> timeElements = getLinkedTimeElements(os);
 		for(NamedElement elt : timeElements) {
