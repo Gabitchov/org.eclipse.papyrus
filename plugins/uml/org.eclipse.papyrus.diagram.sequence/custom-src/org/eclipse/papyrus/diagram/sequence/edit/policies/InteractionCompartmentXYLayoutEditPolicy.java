@@ -44,6 +44,7 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionOperandEditPar
 import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.diagram.sequence.util.SequenceUtil;
 import org.eclipse.uml2.uml.CombinedFragment;
+import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.InteractionOperand;
 
@@ -101,35 +102,37 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 		// be moved
 		int widthDelta;
 		for(ShapeNodeEditPart executionSpecificationEP : lifelineEditPart.getChildShapeNodeEditPart()) {
-			// Lifeline's figure where the child is drawn
-			Rectangle rDotLine = lifelineEditPart.getContentPane().getBounds();
+			if (executionSpecificationEP.resolveSemanticElement() instanceof ExecutionSpecification) {
+				// Lifeline's figure where the child is drawn
+				Rectangle rDotLine = lifelineEditPart.getContentPane().getBounds();
 
-			// The new bounds will be calculated from the current bounds
-			Rectangle newBounds = executionSpecificationEP.getFigure().getBounds().getCopy();
+				// The new bounds will be calculated from the current bounds
+				Rectangle newBounds = executionSpecificationEP.getFigure().getBounds().getCopy();
 
-			widthDelta = request.getSizeDelta().width;
+				widthDelta = request.getSizeDelta().width;
 
-			if(widthDelta != 0) {
+				if(widthDelta != 0) {
 
-				if(rDotLine.getSize().width + widthDelta < newBounds.width * 2) {
-					compoundCmd.add(UnexecutableCommand.INSTANCE);
+					if(rDotLine.getSize().width + widthDelta < newBounds.width * 2) {
+						compoundCmd.add(UnexecutableCommand.INSTANCE);
+					}
+
+					// Apply SizeDelta to the children
+					widthDelta = Math.round(widthDelta / ((float)2 * number));
+
+					newBounds.x += widthDelta;
+
+					// Convert to relative
+					newBounds.x -= rDotLine.x;
+					newBounds.y -= rDotLine.y;
+
+					SetBoundsCommand setBoundsCmd = new SetBoundsCommand(executionSpecificationEP.getEditingDomain(), "Re-location of a ExecutionSpecification due to a Lifeline movement", executionSpecificationEP, newBounds);
+					compoundCmd.add(new ICommandProxy(setBoundsCmd));
 				}
 
-				// Apply SizeDelta to the children
-				widthDelta = Math.round(widthDelta / ((float)2 * number));
-
-				newBounds.x += widthDelta;
-
-				// Convert to relative
-				newBounds.x -= rDotLine.x;
-				newBounds.y -= rDotLine.y;
-
-				SetBoundsCommand setBoundsCmd = new SetBoundsCommand(executionSpecificationEP.getEditingDomain(), "Re-location of a ExecutionSpecification due to a Lifeline movement", executionSpecificationEP, newBounds);
-				compoundCmd.add(new ICommandProxy(setBoundsCmd));
+				// update the enclosing interaction of a moved execution specification
+				compoundCmd.add(SequenceUtil.createUpdateEnclosingInteractionCommand(executionSpecificationEP, request.getMoveDelta(), new Dimension(widthDelta, 0)));
 			}
-
-			// update the enclosing interaction of a moved execution specification
-			compoundCmd.add(SequenceUtil.createUpdateEnclosingInteractionCommand(executionSpecificationEP, request.getMoveDelta(), new Dimension(widthDelta, 0)));
 		}
 
 		List<LifelineEditPart> innerConnectableElementList = lifelineEditPart.getInnerConnectableElementList();
