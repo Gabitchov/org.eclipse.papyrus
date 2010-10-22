@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.providers;
 
+import java.util.Collection;
+
 import org.eclipse.papyrus.diagram.sequence.expressions.UMLOCLFactory;
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.uml2.uml.CombinedFragment;
@@ -528,29 +530,36 @@ public class ElementInitializers {
 	 */
 	private static String getNamedElement(NamedElement namedElement, String prefix, String body, String suffix) {
 		String base = prefix + body + suffix;
-		Integer nextNumber = -1;
 
 		Namespace namespace = namedElement.getNamespace();
 		if(namespace != null) {
-			for(NamedElement e : namespace.getMembers()) {
-				String name = e.getName();
-				if(name != null && name.startsWith(base)) {
-					String end = name.substring(base.length());
-					int nextNumberTmp = -1;
+			return getNextNumberedName(namespace.getMembers(), base);
+		}
 
-					if(end.trim().equals("")) {
-						nextNumberTmp = 0;
-					} else {
-						try {
-							nextNumberTmp = Integer.parseInt(end) + 1;
-						} catch (NumberFormatException ex) {
-							nextNumberTmp = -1;
-						}
-					}
+		return base;
+	}
 
-					if(nextNumberTmp > nextNumber) {
-						nextNumber = nextNumberTmp;
+	public static String getNextNumberedName(Collection<NamedElement> currentElements, String base) {
+		int nextNumber = -1;
+
+		for(NamedElement e : currentElements) {
+			String name = e.getName();
+			if(name != null && name.startsWith(base)) {
+				String end = name.substring(base.length());
+				int nextNumberTmp = -1;
+
+				if(end.trim().equals("")) {
+					nextNumberTmp = 0;
+				} else {
+					try {
+						nextNumberTmp = Integer.parseInt(end) + 1;
+					} catch (NumberFormatException ex) {
+						nextNumberTmp = -1;
 					}
+				}
+
+				if(nextNumberTmp > nextNumber) {
+					nextNumber = nextNumberTmp;
 				}
 			}
 		}

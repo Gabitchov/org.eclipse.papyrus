@@ -18,6 +18,7 @@ import java.util.Set;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
@@ -107,14 +108,17 @@ public class InteractionOperandCreateCommand extends EditElementCommand {
 	 * 
 	 * @generated NOT
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		InteractionOperand newElement = UMLFactory.eINSTANCE.createInteractionOperand();
 
 		CombinedFragment owner = (CombinedFragment)getElementToEdit();
 		owner.getOperands().add(newElement);
 
-		ElementInitializers.init_NamedElement(newElement);
+		// we don't use ElementInitializers.init_NamedElement here because the standard algo using namespace is not suitable
+		String base = newElement.eClass().getName();
+		String name = ElementInitializers.getNextNumberedName((EList)owner.getOperands(), base);
+		newElement.setName(name);
 
 		// Add all combined fragment's covered lifelines on interaction operand
 		for(InteractionOperand operand : owner.getOperands()) {
