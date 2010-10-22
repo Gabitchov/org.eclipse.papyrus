@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2010 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -47,10 +47,16 @@ public class ValidateModelAction extends ValidateAction
 	    // Do not show a dialog, as in the original version since the user sees the result directly
 		Resource resource = eclipseResourcesUtil != null ? domain.getResourceSet().getResources().get(0) : null;
 		if (resource != null) {
-			eclipseResourcesUtil.deleteMarkers(resource);
+			// eclipseResourcesUtil.deleteMarkers(resource);
+			// the following 4 lines are required due to the uml/di manipulation 
+			IPath path = new Path(resource.getURI().toPlatformString (false).replace(".uml", ".di"));
+			IWorkspaceRoot wsRoot = ResourcesPlugin.getWorkspace().getRoot();
+			IFile file = wsRoot.getFile(path);
+			eclipseResourcesUtil.deleteMarkers (file);
+			
 			for (Diagnostic childDiagnostic : diagnostic.getChildren()) {
 				// eclipseResourcesUtil.createMarkers(resource, childDiagnostic);
-				createMarkersOnDi (resource, childDiagnostic);
+				createMarkersOnDi (file, childDiagnostic);
 			}
 		}
 	}
@@ -61,13 +67,8 @@ public class ValidateModelAction extends ValidateAction
 	 * @param resource
 	 * @param diagnostic
 	 */
-	private void createMarkersOnDi (Resource resource, Diagnostic diagnostic)
+	private void createMarkersOnDi (IFile file, Diagnostic diagnostic)
 	{
-		IWorkspaceRoot wsRoot = ResourcesPlugin.getWorkspace().getRoot();
-		
-		IPath path = new Path(resource.getURI().toPlatformString (false).replace(".uml", ".di"));
-		// EList<org.eclipse.emf.ecore.resource.Resource.Diagnostic> tst = res.getErrors ();
-		IFile file = wsRoot.getFile(path);
 		try {
 			if (!diagnostic.getData().isEmpty()) {
 				Object object = diagnostic.getData().get(0);
@@ -102,8 +103,6 @@ public class ValidateModelAction extends ValidateAction
 							name = "unknown";
 						}
 						marker.setAttribute (IMarker.LOCATION, name);
-							
-						// eclipseResourcesUtil.adjustMarker(marker, diagnostic, null);
 					}
 				}
 			}
