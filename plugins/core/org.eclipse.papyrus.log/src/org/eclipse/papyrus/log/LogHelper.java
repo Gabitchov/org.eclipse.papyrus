@@ -11,6 +11,7 @@
 package org.eclipse.papyrus.log;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.logging.Logger;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
@@ -32,6 +33,16 @@ public class LogHelper {
 	/** The plugin related to that helper. */
 	private Plugin activator;
 
+	
+	
+	/**
+	 * Default Constructor.
+	 * The associated plugin can be set later.
+	 * If no plugin is set, use java log.
+	 */
+	public LogHelper() {
+	}
+	
 	/**
 	 * Constructor.
 	 * 
@@ -39,10 +50,19 @@ public class LogHelper {
 	 *        The activator.
 	 */
 	public LogHelper(Plugin activator) {
-		this.pluginId = activator.getBundle().getSymbolicName();
-		this.activator = activator;
+		setPlugin(activator);
 	}
 
+	/**
+	 * Set the associated plugin.
+	 * This plugin log will be used as log.
+	 * @param activator
+	 */
+	public void setPlugin( Plugin activator ) {
+		this.pluginId = activator.getBundle().getSymbolicName();
+		this.activator = activator;		
+	}
+	
 	/**
 	 * Log an informative message into the Eclipse log file
 	 * 
@@ -71,7 +91,10 @@ public class LogHelper {
 	 * @return True if the platform is in debug mode.
 	 */
 	public boolean isDebugEnabled() {
-		return Platform.inDebugMode();
+		if( activator != null)
+		  return Platform.inDebugMode();
+		
+		return false;
 	}
 
 	/**
@@ -83,9 +106,23 @@ public class LogHelper {
 	 *        the message priority
 	 */
 	private void log(String message, int level) {
-		activator.getLog().log(new Status(level, pluginId, message));
+		log( new Status(level, pluginId, message ));
 	}
 
+	/**
+	 * 
+	 * @param status
+	 */
+	private void log( IStatus status ) {
+		
+		if( activator == null) {
+			// TODO Do log with java ?
+		}
+		else {
+			activator.getLog().log(status );
+		}
+	}
+	
 	/**
 	 * Log a warning message.
 	 * 
@@ -129,6 +166,6 @@ public class LogHelper {
 			status = new Status(IStatus.ERROR, pluginId, message, e);
 		}
 
-		activator.getLog().log(status);
+		log(status);
 	}
 }

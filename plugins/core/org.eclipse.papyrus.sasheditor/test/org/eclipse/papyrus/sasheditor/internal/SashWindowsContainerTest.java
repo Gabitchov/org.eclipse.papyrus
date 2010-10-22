@@ -23,10 +23,14 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.PlatformUI;
 
 
 /**
  * Run as normal test.
+ * 
+ * Can't be run as plugin test.
  * 
  * @author dumoulin
  * 
@@ -52,10 +56,34 @@ public class SashWindowsContainerTest extends TestCase {
 	 */
 	protected void setUp() throws Exception {
 		super.setUp();
-		display = new Display();
+		
 
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
+	protected Shell createShell() {
+		
+		Shell shell;
+		
+		try {
+			// Initialize display from the workbench if we are started as plugin
+			// This is not enough, because we aren't in the right thread :-(.
+			// As a consequence, this doesn't work.
+			display = PlatformUI.getWorkbench().getDisplay();
+			
+		} catch (Exception e) {
+			// create a display if we are started as java code
+			display = new Display();
+		}
+		
+		shell = new Shell(display);
+		return shell;
+
+	}
+	
 	/**
 	 * @see junit.framework.TestCase#tearDown()
 	 * @throws java.lang.Exception
@@ -63,7 +91,8 @@ public class SashWindowsContainerTest extends TestCase {
 	 */
 	protected void tearDown() throws Exception {
 		super.tearDown();
-		display.dispose();
+		if( display != null)
+		  display.dispose();
 	}
 
 	/**
@@ -73,7 +102,7 @@ public class SashWindowsContainerTest extends TestCase {
 	 * @return
 	 */
 	protected SashWindowsContainer createSashWindowsContainer(ISashWindowsContentProvider contentProvider) {
-		Shell shell = new Shell(display);
+		Shell shell = createShell();
 		shell.setLayout(new FillLayout());
 
 		//
