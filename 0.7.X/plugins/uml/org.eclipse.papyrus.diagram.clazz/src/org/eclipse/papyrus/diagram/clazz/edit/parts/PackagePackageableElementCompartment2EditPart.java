@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
@@ -39,7 +26,11 @@ import org.eclipse.papyrus.diagram.common.editpolicies.DuplicatePasteEditPolicy;
 /**
  * @generated
  */
-public class PackagePackageableElementCompartment2EditPart extends ShapeCompartmentEditPart {
+public class PackagePackageableElementCompartment2EditPart
+
+extends ShapeCompartmentEditPart
+
+{
 
 	/**
 	 * @generated
@@ -51,6 +42,22 @@ public class PackagePackageableElementCompartment2EditPart extends ShapeCompartm
 	 */
 	public PackagePackageableElementCompartment2EditPart(View view) {
 		super(view);
+	}
+
+	/**
+	 * @generated
+	 */
+	public String getCompartmentName() {
+		return Messages.PackagePackageableElementCompartment2EditPart_title;
+	}
+
+	/**
+	 * @generated
+	 */
+	public IFigure createFigure() {
+		ResizableCompartmentFigure result = (ResizableCompartmentFigure)super.createFigure();
+		result.setTitleVisibility(false);
+		return result;
 	}
 
 	/**
@@ -70,22 +77,6 @@ public class PackagePackageableElementCompartment2EditPart extends ShapeCompartm
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new ClassDiagramDragDropEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomContainerEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CustomContainmentCreationEditPolicy());
-	}
-
-	/**
-	 * @generated
-	 */
-	public IFigure createFigure() {
-		ResizableCompartmentFigure result = (ResizableCompartmentFigure)super.createFigure();
-		result.setTitleVisibility(false);
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public String getCompartmentName() {
-		return Messages.PackagePackageableElementCompartment2EditPart_title;
 	}
 
 	/**
@@ -128,5 +119,4 @@ public class PackagePackageableElementCompartment2EditPart extends ShapeCompartm
 		super.refreshVisuals();
 		refreshBounds();
 	}
-
 }

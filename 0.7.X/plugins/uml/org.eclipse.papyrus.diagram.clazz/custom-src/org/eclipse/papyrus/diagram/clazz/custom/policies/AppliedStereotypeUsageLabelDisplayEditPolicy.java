@@ -30,7 +30,7 @@ public class AppliedStereotypeUsageLabelDisplayEditPolicy extends AppliedStereot
 	 * Creates a new AppliedStereotypeUsageLabelDisplayEditPolicy, with the correct tag.
 	 */
 	public AppliedStereotypeUsageLabelDisplayEditPolicy() {
-		super(Messages.AppliedStereotypeLabel_UsageTag);
+		super("Usage");//$NON-NLS-N$
 	}
 
 }

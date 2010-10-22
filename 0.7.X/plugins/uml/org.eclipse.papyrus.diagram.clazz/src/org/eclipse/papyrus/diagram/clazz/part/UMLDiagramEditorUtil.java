@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.part;
 
 import java.io.IOException;
@@ -153,8 +140,7 @@ public class UMLDiagramEditorUtil {
 	}
 
 	/**
-	 * This method should be called within a workspace modify operation since it
-	 * creates resources.
+	 * This method should be called within a workspace modify operation since it creates resources.
 	 * 
 	 * @generated
 	 */
@@ -198,8 +184,9 @@ public class UMLDiagramEditorUtil {
 	}
 
 	/**
-	 * Create a new instance of domain element associated with canvas. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * Create a new instance of domain element associated with canvas.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -209,8 +196,8 @@ public class UMLDiagramEditorUtil {
 
 	/**
 	 * Store model element in the resource.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -300,6 +287,8 @@ public class UMLDiagramEditorUtil {
 	}
 
 	/**
+	 * XXX This is quite suspicious code (especially editPartTmpHolder) and likely to be removed soon
+	 * 
 	 * @generated
 	 */
 	public static class LazyElement2ViewMap {
@@ -374,6 +363,6 @@ public class UMLDiagramEditorUtil {
 			}
 			return complete;
 		}
-	} // LazyElement2ViewMap
+	} //LazyElement2ViewMap	
 
 }

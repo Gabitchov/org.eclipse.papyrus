@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.part;
 
 import org.eclipse.core.runtime.Platform;
@@ -27,8 +14,8 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * This registry is used to determine which type of visual object should be
- * created for the corresponding Diagram, Node, ChildNode or Link represented by
- * a domain model object.
+ * created for the corresponding Diagram, Node, ChildNode or Link represented
+ * by a domain model object.
  * 
  * @generated
  */
@@ -1848,8 +1835,7 @@ public class UMLVisualIDRegistry {
 	}
 
 	/**
-	 * User can change implementation of this method to handle some specific
-	 * situations not covered by default logic.
+	 * "User can change implementation of this method to handle some specific\n""situations not covered by default logic.\n"
 	 * 
 	 * @generated
 	 */
@@ -2387,5 +2373,4 @@ public class UMLVisualIDRegistry {
 		return root;
 	}
 
-	// test
 }
