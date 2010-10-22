@@ -8,8 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
+ *  Ansgar Radermacher (CEA LIST) ansgar.radermacher@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.modelexplorer;

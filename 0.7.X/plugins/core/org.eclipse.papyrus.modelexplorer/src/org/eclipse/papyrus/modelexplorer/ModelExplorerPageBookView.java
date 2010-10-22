@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Cedric Dumoulin (LIFL) cedric.dumoulin@lifl.fr - Initial API and implementation
+ *  Ansgar Radermacher (CEA) ansgar.radermacher@cea.fr - Added support for IGotoMarker
  *
  *****************************************************************************/
 
