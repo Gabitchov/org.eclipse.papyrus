@@ -104,12 +104,12 @@
                     href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction/fragment"/>
               </children>
               <children
-                  referencedChild="//@nodes.0/@ownedChild/@children.1/@ownedChild">
+                  referencedChild="//@nodes.0/@ownedChild/@children.0/@ownedChild">
                 <containmentFeature
                     href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction/fragment"/>
               </children>
               <children
-                  referencedChild="//@nodes.0/@ownedChild/@children.0/@ownedChild">
+                  referencedChild="//@nodes.0/@ownedChild/@children.1/@ownedChild">
                 <containmentFeature
                     href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction/fragment"/>
               </children>
@@ -946,7 +946,7 @@
       relatedDiagrams="//@diagram">
     <tool
         xsi:type="gmftool:CreationTool"
-        href="sequenceDiagram.gmftool#//@palette/@tools.1/@tools.7"/>
+        href="sequenceDiagram.gmftool#//@palette/@tools.1/@tools.8"/>
     <diagramLink
         href="../../org.eclipse.papyrus.diagram.common/model/Comment.gmfgraph#CommentLinkConnection"/>
     <linkMetaFeature
@@ -957,12 +957,35 @@
       relatedDiagrams="//@diagram">
     <tool
         xsi:type="gmftool:CreationTool"
-        href="sequenceDiagram.gmftool#//@palette/@tools.1/@tools.8"/>
+        href="sequenceDiagram.gmftool#//@palette/@tools.1/@tools.9"/>
     <diagramLink
-        href="../../org.eclipse.papyrus.diagram.common/model/Comment.gmfgraph#CommentLinkConnection"/>
+        href="../../org.eclipse.papyrus.diagram.common/model/Constraint.gmfgraph#ConstraintLinkConnection"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Constraint/constrainedElement"/>
+  </links>
+  <links
+      relatedDiagrams="//@diagram">
+    <domainMetaElement
+        href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//GeneralOrdering"/>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="sequenceDiagram.gmfgraph#GeneralOrderingStereotypeLabel"/>
+    </labelMappings>
+    <containmentFeature
+        href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InteractionFragment/generalOrdering"/>
+    <tool
+        xsi:type="gmftool:CreationTool"
+        href="sequenceDiagram.gmftool#//@palette/@tools.1/@tools.7"/>
+    <diagramLink
+        href="sequenceDiagram.gmfgraph#GeneralOrderingLink"/>
+    <sourceMetaFeature
+        xsi:type="ecore:EReference"
+        href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//GeneralOrdering/before"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//GeneralOrdering/after"/>
   </links>
   <diagram>
     <diagramCanvas

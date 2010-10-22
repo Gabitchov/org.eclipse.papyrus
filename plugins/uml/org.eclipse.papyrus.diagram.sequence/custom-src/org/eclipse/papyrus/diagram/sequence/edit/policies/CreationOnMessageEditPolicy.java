@@ -49,7 +49,7 @@ public class CreationOnMessageEditPolicy extends CreationEditPolicy {
 
 		// record the nearest event if necessary
 		String requestHint = request.getViewAndElementDescriptor().getSemanticHint();
-		if(isDurationHint(requestHint)) {
+		if(isCreatedOnOccurrenceSpecification(requestHint)) {
 			EditPart hostPart = getHost();
 			if(hostPart instanceof ConnectionNodeEditPart) {
 				LifelineEditPart sourceLifeline = SequenceUtil.getParentLifelinePart(((ConnectionNodeEditPart)hostPart).getSource());
@@ -84,17 +84,41 @@ public class CreationOnMessageEditPolicy extends CreationEditPolicy {
 	}
 
 	/**
-	 * Return true if request hint is hint of a duration element figure
+	 * Return true if creation must be performed on an occurrence specification
 	 * 
 	 * @param requestHint
-	 *        the hint to test
-	 * @return true if duration hint
+	 *        the hint of object to create
+	 * @return true if creation on an occurrence specification
+	 */
+	private boolean isCreatedOnOccurrenceSpecification(String requestHint) {
+		return isTimeHint(requestHint) || isDurationHint(requestHint);
+	}
+
+	/**
+	 * Return true if hint is for creating a duration observation/constraint
+	 * 
+	 * @param requestHint
+	 *        the hint of object to create
+	 * @return true if correct hint
 	 */
 	private boolean isDurationHint(String requestHint) {
 		String durCstOnLifelineHint = ((IHintedType)UMLElementTypes.DurationConstraint_3021).getSemanticHint();
 		String durCstOnMessage = ((IHintedType)UMLElementTypes.DurationConstraint_3023).getSemanticHint();
 		String durObsOnMessage = ((IHintedType)UMLElementTypes.DurationObservation_3024).getSemanticHint();
 		return durCstOnLifelineHint.equals(requestHint) || durCstOnMessage.equals(requestHint) || durObsOnMessage.equals(requestHint);
+	}
+
+	/**
+	 * Return true if hint is for creating a time observation/constraint
+	 * 
+	 * @param requestHint
+	 *        the hint of object to create
+	 * @return true if correct hint
+	 */
+	private boolean isTimeHint(String requestHint) {
+		String timeConstraintHint = ((IHintedType)UMLElementTypes.TimeConstraint_3019).getSemanticHint();
+		String timeObservationHint = ((IHintedType)UMLElementTypes.TimeObservation_3020).getSemanticHint();
+		return timeConstraintHint.equals(requestHint) || timeObservationHint.equals(requestHint);
 	}
 
 }

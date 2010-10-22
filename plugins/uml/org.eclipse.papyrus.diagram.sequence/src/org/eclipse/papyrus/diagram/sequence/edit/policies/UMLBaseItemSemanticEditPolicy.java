@@ -55,8 +55,11 @@ import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.GeneralOrdering;
 import org.eclipse.uml2.uml.Interaction;
+import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.Message;
+import org.eclipse.uml2.uml.OccurrenceSpecification;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -408,6 +411,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
+		public boolean canCreateGeneralOrdering_4012(InteractionFragment container, OccurrenceSpecification source, OccurrenceSpecification target) {
+			return canExistGeneralOrdering_4012(container, null, source, target);
+		}
+
+		/**
+		 * @generated
+		 */
 		public boolean canExistMessage_4003(Interaction container, Message linkInstance, Element source, Element target) {
 			try {
 				if(source == null) {
@@ -626,6 +636,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 * @generated
 		 */
 		public boolean canExistConstraintConstrainedElement_4011(Constraint source, Element target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean canExistGeneralOrdering_4012(InteractionFragment container, GeneralOrdering linkInstance, OccurrenceSpecification source, OccurrenceSpecification target) {
 			return true;
 		}
 

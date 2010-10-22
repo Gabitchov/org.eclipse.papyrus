@@ -86,8 +86,8 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(editPart instanceof InteractionOperandEditPart) {
 			ArrayList<IElementType> types = new ArrayList<IElementType>(4);
 			types.add(UMLElementTypes.InteractionUse_3002);
-			types.add(UMLElementTypes.CombinedFragment_3004);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
+			types.add(UMLElementTypes.CombinedFragment_3004);
 			types.add(UMLElementTypes.Continuation_3016);
 			return types;
 		}

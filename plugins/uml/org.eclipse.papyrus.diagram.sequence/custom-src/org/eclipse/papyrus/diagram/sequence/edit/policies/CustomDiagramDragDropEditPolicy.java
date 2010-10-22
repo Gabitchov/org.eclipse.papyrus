@@ -58,6 +58,7 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.DestructionEventEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInMessageEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationObservationEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.GeneralOrderingEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.Message2EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.Message3EditPart;
@@ -117,6 +118,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		elementsVisualId.add(Message6EditPart.VISUAL_ID);
 		elementsVisualId.add(Message7EditPart.VISUAL_ID);
 		elementsVisualId.add(Message6EditPart.VISUAL_ID);
+		elementsVisualId.add(GeneralOrderingEditPart.VISUAL_ID);
 		elementsVisualId.add(DestructionEventEditPart.VISUAL_ID);
 		elementsVisualId.add(StateInvariantEditPart.VISUAL_ID);
 		elementsVisualId.add(TimeConstraintEditPart.VISUAL_ID);
@@ -193,6 +195,8 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			case Message6EditPart.VISUAL_ID:
 			case Message7EditPart.VISUAL_ID:
 				return dropMessage(dropRequest, semanticLink, linkVISUALID);
+			case GeneralOrderingEditPart.VISUAL_ID:
+				return dropGeneralOrdering(dropRequest, semanticLink, linkVISUALID);
 			default:
 				return UnexecutableCommand.INSTANCE;
 			}
@@ -621,6 +625,19 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			Element source = (Element)sources.toArray()[0];
 			Element target = (Element)targets.toArray()[0];
 			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Message"), source, target, linkVISUALID, dropRequest.getLocation(), semanticLink));
+		} else {
+			return UnexecutableCommand.INSTANCE;
+		}
+	}
+
+	private Command dropGeneralOrdering(DropObjectsRequest dropRequest, Element semanticLink, int linkVISUALID) {
+		Collection<?> sources = SequenceLinkMappingHelper.getInstance().getSource(semanticLink);
+		Collection<?> targets = SequenceLinkMappingHelper.getInstance().getTarget(semanticLink);
+		if(!sources.isEmpty() && !targets.isEmpty()) {
+			//TODO : handle d&d like for messages.
+			Element source = (Element)sources.toArray()[0];
+			Element target = (Element)targets.toArray()[0];
+			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop General Ordering"), source, target, linkVISUALID, dropRequest.getLocation(), semanticLink));
 		} else {
 			return UnexecutableCommand.INSTANCE;
 		}

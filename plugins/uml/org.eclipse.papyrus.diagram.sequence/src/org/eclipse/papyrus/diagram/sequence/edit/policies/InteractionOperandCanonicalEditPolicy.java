@@ -81,8 +81,8 @@ public class InteractionOperandCanonicalEditPolicy extends CanonicalEditPolicy {
 		int visualID = UMLVisualIDRegistry.getVisualID(view);
 		switch(visualID) {
 		case InteractionUseEditPart.VISUAL_ID:
-		case CombinedFragmentEditPart.VISUAL_ID:
 		case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
+		case CombinedFragmentEditPart.VISUAL_ID:
 		case ContinuationEditPart.VISUAL_ID:
 			return true;
 		}

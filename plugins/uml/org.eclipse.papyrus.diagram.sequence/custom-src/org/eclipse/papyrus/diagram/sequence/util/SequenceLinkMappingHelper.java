@@ -24,6 +24,7 @@ import org.eclipse.papyrus.diagram.common.helper.LinkMappingHelper.CommonTargetU
 import org.eclipse.papyrus.diagram.sequence.edit.policies.CustomDiagramDragDropEditPolicy;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Gate;
+import org.eclipse.uml2.uml.GeneralOrdering;
 import org.eclipse.uml2.uml.MessageEnd;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 
@@ -77,6 +78,13 @@ public class SequenceLinkMappingHelper implements ILinkMappingHelper {
 				}
 				return Collections.EMPTY_LIST;
 			};
+
+			public Collection<?> caseGeneralOrdering(GeneralOrdering object) {
+				if(object.getBefore() != null) {
+					return Collections.singletonList(object.getBefore());
+				}
+				return Collections.EMPTY_LIST;
+			}
 		});
 	}
 
@@ -99,6 +107,13 @@ public class SequenceLinkMappingHelper implements ILinkMappingHelper {
 				}
 				return Collections.EMPTY_LIST;
 			};
+
+			public Collection<?> caseGeneralOrdering(GeneralOrdering object) {
+				if(object.getAfter() != null) {
+					return Collections.singletonList(object.getAfter());
+				}
+				return Collections.EMPTY_LIST;
+			}
 
 		});
 	}

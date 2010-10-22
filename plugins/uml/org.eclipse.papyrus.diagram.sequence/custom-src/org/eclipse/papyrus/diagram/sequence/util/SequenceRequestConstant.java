@@ -43,6 +43,6 @@ public interface SequenceRequestConstant {
 	/** The location of the occurrence specification which is the nearest from a creation request (2nd end of creation) */
 	public static final String OCCURRENCE_SPECIFICATION_LOCATION_2 = "Nearest occurrence specification location (end)"; //$NON-NLS-1$
 
-	/** The time element which must not be moved after reconnection command (when reconnection comes from a move command) */
-	public static final Object DO_NOT_MOVE_TIME_ELEMENT = "Do not move this time element"; //$NON-NLS-1$
+	/** Tag signifying that the edit parts must not be moved when an occurrence specification is moved (to avoid loop in chain effects) */
+	public static final Object DO_NOT_MOVE_EDIT_PARTS = "Do not move these edit parts"; //$NON-NLS-1$
 }

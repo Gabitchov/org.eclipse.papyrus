@@ -541,22 +541,32 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String createCommentlink8CreationTool_title;
+	public static String createGeneralOrdering8CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createCommentlink8CreationTool_desc;
+	public static String createGeneralOrdering8CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createConstraintlink9CreationTool_title;
+	public static String createCommentlink9CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createConstraintlink9CreationTool_desc;
+	public static String createCommentlink9CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createConstraintlink10CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createConstraintlink10CreationTool_desc;
 
 	/**
 	 * @generated

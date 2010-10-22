@@ -45,6 +45,7 @@ import org.eclipse.papyrus.diagram.sequence.edit.commands.ConstraintConstrainedE
 import org.eclipse.papyrus.diagram.sequence.edit.commands.DestructionEventCreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.DurationConstraintCreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.DurationObservationCreateCommand;
+import org.eclipse.papyrus.diagram.sequence.edit.commands.GeneralOrderingCreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.LifelineCreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.Message2CreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.Message2ReorientCommand;
@@ -699,7 +700,7 @@ public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT (update at each lifeline modification) add general ordering
 	 */
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
 		if(UMLElementTypes.Message_4003 == req.getElementType()) {
@@ -729,11 +730,15 @@ public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 		if(UMLElementTypes.ConstraintConstrainedElement_4011 == req.getElementType()) {
 			return null;
 		}
+		//add general ordering
+		if(UMLElementTypes.GeneralOrdering_4012 == req.getElementType()) {
+			return getGEFWrapper(new GeneralOrderingCreateCommand(req, req.getSource(), req.getTarget()));
+		}
 		return null;
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT (update at each lifeline modification) add general ordering
 	 */
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
 		if(UMLElementTypes.Message_4003 == req.getElementType()) {
@@ -762,6 +767,10 @@ public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 		}
 		if(UMLElementTypes.ConstraintConstrainedElement_4011 == req.getElementType()) {
 			return getGEFWrapper(new ConstraintConstrainedElementCreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		//add general ordering
+		if(UMLElementTypes.GeneralOrdering_4012 == req.getElementType()) {
+			return getGEFWrapper(new GeneralOrderingCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
