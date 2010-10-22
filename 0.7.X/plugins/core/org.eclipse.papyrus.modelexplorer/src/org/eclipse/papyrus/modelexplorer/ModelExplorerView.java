@@ -13,15 +13,20 @@
  *****************************************************************************/
 package org.eclipse.papyrus.modelexplorer;
 
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.eclipse.core.commands.operations.IUndoContext;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.ResourceSetChangeEvent;
 import org.eclipse.emf.transaction.ResourceSetListener;
 import org.eclipse.emf.transaction.ResourceSetListenerImpl;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.jface.viewers.ColumnViewerToolTipSupport;
+import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.window.ToolTip;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.lifecycleevents.IEditorInputChangedListener;
 import org.eclipse.papyrus.core.lifecycleevents.ISaveAndDirtyService;
@@ -39,6 +44,8 @@ import org.eclipse.ui.IViewSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.ActionFactory;
+import org.eclipse.ui.internal.navigator.NavigatorContentService;
+import org.eclipse.ui.internal.navigator.extensions.NavigatorContentDescriptor;
 import org.eclipse.ui.navigator.CommonNavigator;
 import org.eclipse.ui.navigator.CommonViewer;
 import org.eclipse.ui.operations.RedoActionHandler;
@@ -132,10 +139,36 @@ public class ModelExplorerView extends CommonNavigator {
 	}
 
 
+	// Use of internal class (NavigatorContentService) - in the hope that the bug gets fixed soon.
+	@SuppressWarnings("restriction")
 	protected CommonViewer createCommonViewerObject(Composite aParent) {
-		return new CustomCommonViewer(getViewSite().getId(), aParent,
+		CommonViewer viewer = new CustomCommonViewer(getViewSite().getId(), aParent,
 				SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
+		// enable tool-tips
+		// workaround for bug 311827: the Common Viewer always uses NavigatorDecoratingLabelProvider
+		// as a wrapper for the LabelProvider provided by the application. The NavigatorDecoratingLabelProvider
+		// does not delegate tooltip related functions but defines them as empty.
+		NavigatorContentService contentService = new NavigatorContentService(getViewSite().getId());
+		@SuppressWarnings("unchecked")
+		// get label provider from content service (which in turn evaluates extension points in
+		// function of the input)
+		Set<Object> descriptors =  contentService.findDescriptorsByTriggerPoint(getInitialInput(), false);
+		for (Object descriptor : descriptors) {
+			if (descriptor instanceof NavigatorContentDescriptor) {
+				try {
+					ILabelProvider labelProvider = ((NavigatorContentDescriptor) descriptor).createLabelProvider();
+					viewer.setLabelProvider(labelProvider);
+				}
+				catch (CoreException e) {
+					System.err.println(e);
+				}
+				break;
+			}
+		}
+		ColumnViewerToolTipSupport.enableFor(viewer,ToolTip.NO_RECREATE);
+		return viewer;
 	}
+	
 	@Override
 	public void createPartControl(Composite aParent) {
 		// TODO Auto-generated method stub

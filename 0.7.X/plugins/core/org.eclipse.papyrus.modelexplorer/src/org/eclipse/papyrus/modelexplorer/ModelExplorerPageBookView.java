@@ -14,9 +14,27 @@
 
 package org.eclipse.papyrus.modelexplorer;
 
+import static org.eclipse.papyrus.core.Activator.log;
+
+import java.util.LinkedList;
+
+import org.eclipse.core.resources.IMarker;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EValidator;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.jface.viewers.ITreeContentProvider;
+import org.eclipse.jface.viewers.TreePath;
+import org.eclipse.jface.viewers.TreeSelection;
+import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.papyrus.core.ui.pagebookview.MultiViewPageBookView;
 import org.eclipse.papyrus.core.ui.pagebookview.ViewPartPage;
+import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.ide.IGotoMarker;
+import org.eclipse.ui.navigator.CommonViewer;
 import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributor;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
@@ -28,7 +46,7 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
  * @author cedric dumoulin
  * 
  */
-public class ModelExplorerPageBookView extends MultiViewPageBookView implements ITabbedPropertySheetPageContributor {
+public class ModelExplorerPageBookView extends MultiViewPageBookView implements IGotoMarker, ITabbedPropertySheetPageContributor {
 
 	/**
 	 * Create the page handling the View for the specified part.
@@ -84,5 +102,73 @@ public class ModelExplorerPageBookView extends MultiViewPageBookView implements 
 
 	}
 
-
+	/**
+	 * Find an Element within the tree (a ModelElementItem) when given an EObject
+	 *
+	 * @param eObjectToFind
+	 * @param treeViewer
+	 * @return
+	 */
+	public Object findElementForEObject(TreeViewer treeViewer, EObject eObjectToFind) {
+		ITreeContentProvider contentProvider = (ITreeContentProvider) treeViewer.getContentProvider();
+		Object[] elements = contentProvider.getElements(treeViewer.getInput());
+			
+		LinkedList<Object> elementsToHandle = new LinkedList<Object>();
+		for (Object element : elements) {
+			elementsToHandle.add(element);
+		}
+		while (!elementsToHandle.isEmpty()) {
+			Object e = elementsToHandle.removeFirst();
+			EObject eObject = (EObject) Platform.getAdapterManager().getAdapter(e, EObject.class);
+			if (eObject != null && eObject.equals(eObjectToFind)) {
+				return e;
+			}
+			if (contentProvider.hasChildren(e)) {
+				Object[] children = contentProvider.getChildren(e);
+				if (children != null) {
+					for (Object child : children) {
+						elementsToHandle.addLast(child);
+					}
+				}
+			}
+		}
+		return null;
+	}
+	
+	public void gotoMarker(IMarker marker) {
+		try {
+			if (marker.isSubtypeOf((EValidator.MARKER))) {
+				String uriAttribute = marker.getAttribute(EValidator.URI_ATTRIBUTE, null);
+				if(uriAttribute != null) {
+					URI uri = URI.createURI(uriAttribute);
+					IViewPart viewPart = getActiveView();
+					if (viewPart instanceof ModelExplorerView) {
+						ModelExplorerView modelExplorerView =  (ModelExplorerView) viewPart;
+						EditingDomain domain = modelExplorerView.getEditingDomain();
+						EObject eObject = domain.getResourceSet().getEObject(uri, true);
+						if (eObject != null) {
+							CommonViewer treeViewer = ((ModelExplorerView) viewPart).getCommonViewer();
+							// The common viewer is in fact a tree viewer
+							Object modelElementItem = findElementForEObject (treeViewer, eObject);
+							if (modelElementItem != null) {
+								TreePath treePath = new TreePath(new Object[] {
+									modelElementItem
+								});
+								EObject parent = eObject.eContainer();
+								if (parent != null) {
+									// workaround: in case of a pseudo parent (like "ownedConnector", the expansion
+									// is not made automatically
+									Object parentElement = findElementForEObject (treeViewer, parent);
+									treeViewer.expandToLevel(parentElement, 1);
+								}
+								treeViewer.setSelection(new TreeSelection (treePath), true);
+							}
+						}
+					}
+				}
+			}
+		} catch (CoreException exception) {
+			log.error(exception);
+		}
+	}
 }

@@ -61,7 +61,7 @@ public class ModelExplorerPage extends ViewPartPage {
 	}
 
 	/**
-	 * Retun the control
+	 * Return the control
 	 * 
 	 * @see org.eclipse.papyrus.core.ui.pagebookview.ViewPartPage#getControl()
 	 * 
