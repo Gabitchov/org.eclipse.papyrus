@@ -1,43 +1,21 @@
-/*****************************************************************************
- * Copyright (c) 2009 CEA
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *   Atos Origin - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.edit.policies;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.emf.ecore.EAnnotation;
-import org.eclipse.gef.EditPart;
-import org.eclipse.gef.Request;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.command.DeleteCommand;
 import org.eclipse.gef.commands.Command;
-import org.eclipse.gef.requests.ReconnectRequest;
-import org.eclipse.gmf.runtime.common.core.command.ICompositeCommand;
-import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
-import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
-import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
-import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.sequence.edit.commands.CombinedFragmentCreateCommand;
+import org.eclipse.papyrus.diagram.common.command.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.CommentAnnotatedElementCreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.CommentAnnotatedElementReorientCommand;
-import org.eclipse.papyrus.diagram.sequence.edit.commands.ConsiderIgnoreFragmentCreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.ConstraintConstrainedElementCreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.ConstraintConstrainedElementReorientCommand;
-import org.eclipse.papyrus.diagram.sequence.edit.commands.ContinuationCreateCommand;
-import org.eclipse.papyrus.diagram.sequence.edit.commands.InteractionUseCreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.Message2CreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.Message2ReorientCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.Message3CreateCommand;
@@ -62,105 +40,37 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.Message6EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.Message7EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
-import org.eclipse.papyrus.diagram.sequence.util.SequenceDeleteHelper;
-import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.InteractionOperand;
 
 /**
  * @generated
  */
-public class InteractionOperandItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+public class GeneralOrderingItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
-	public InteractionOperandItemSemanticEditPolicy() {
-		super(UMLElementTypes.InteractionOperand_3005);
+	public GeneralOrderingItemSemanticEditPolicy() {
+		super(UMLElementTypes.GeneralOrdering_4012);
 	}
 
 	/**
 	 * @generated
-	 */
-	protected Command getCreateCommand(CreateElementRequest req) {
-		if(UMLElementTypes.InteractionUse_3002 == req.getElementType()) {
-			return getGEFWrapper(new InteractionUseCreateCommand(req));
-		}
-		if(UMLElementTypes.ConsiderIgnoreFragment_3007 == req.getElementType()) {
-			return getGEFWrapper(new ConsiderIgnoreFragmentCreateCommand(req));
-		}
-		if(UMLElementTypes.CombinedFragment_3004 == req.getElementType()) {
-			return getGEFWrapper(new CombinedFragmentCreateCommand(req));
-		}
-		if(UMLElementTypes.Continuation_3016 == req.getElementType()) {
-			return getGEFWrapper(new ContinuationCreateCommand(req));
-		}
-		return super.getCreateCommand(req);
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	@Override
-	public Command getCommand(Request request) {
-		if(request instanceof ReconnectRequest) {
-			EditPart combinedFragment = getHost().getParent().getParent();
-			((ReconnectRequest)request).setTargetEditPart(combinedFragment);
-			return combinedFragment.getCommand(request);
-		}
-		return super.getCommand(request);
-	}
-
-	/**
-	 * Generated not for handle CombinedFragment if no InteractionOperand left
-	 * 
-	 * @generated NOT
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
-		View view = (View)getHost().getModel();
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
-		cmd.setTransactionNestingEnabled(false);
-
-		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
-		if(annotation == null) {
-			if(req.getElementToDestroy() instanceof InteractionOperand) {
-				List<Element> destroyedElements = SequenceDeleteHelper.destroyInteractionOperandRelatives((InteractionOperand)req.getElementToDestroy(), cmd);
-				SequenceDeleteHelper.deleteView(cmd, destroyedElements, getEditingDomain());
-			}
-			// there are indirectly referenced children, need extra commands: false
-			addDestroyShortcutsCommand(cmd, view);
-			// delete host element
-			cmd.add(new DestroyElementCommand(req));
-		} else {
-			cmd.add(new DeleteCommand(getEditingDomain(), view));
-		}
-
-		// Delete parent CombinedFragment if no InteractionOperand left after this delete
-		EditPart compartmentEditPart = getHost().getParent();
-		if(compartmentEditPart.getChildren().size() == 1) {
-			View model = (View)compartmentEditPart.getParent().getModel();
-			DestroyElementRequest r = new DestroyElementRequest(model.getElement(), false);
-			cmd.add(new DestroyElementCommand(r));
-			cmd.add(new DeleteCommand(getEditingDomain(), model));
-		}
-
+		cmd.setTransactionNestingEnabled(true);
+		List<EObject> todestroy = new ArrayList<EObject>();
+		todestroy.add(req.getElementToDestroy());
+		//cmd.add(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(req));
+		cmd.add(new EMFtoGMFCommandWrapper(new DeleteCommand(getEditingDomain(), todestroy)));
 		return getGEFWrapper(cmd.reduce());
+		//return getGEFWrapper(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(req));
 	}
 
 	/**
-	 * @generated NOT
-	 */
-	@SuppressWarnings("unused")
-	private void addDestroyChildNodesCommand(ICompositeCommand cmd) {
-		// Not use anymore
-	}
-
-	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if(UMLElementTypes.Message_4004 == req.getElementType()) {
-			return null;
-		}
 		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req) : getCompleteCreateRelationshipCommand(req);
 		return command != null ? command : super.getCreateRelationshipCommand(req);
 	}
@@ -234,8 +144,8 @@ public class InteractionOperandItemSemanticEditPolicy extends UMLBaseItemSemanti
 	}
 
 	/**
-	 * Returns command to reorient EClass based link. New link target or source should be the domain
-	 * model element associated with this node.
+	 * Returns command to reorient EClass based link. New link target or source
+	 * should be the domain model element associated with this node.
 	 * 
 	 * @generated
 	 */

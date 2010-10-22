@@ -380,7 +380,7 @@ public class SequenceDeleteHelper {
 						if(lifelineChild instanceof IBorderItemEditPart) {
 							final IBorderItemEditPart timePart = (IBorderItemEditPart)lifelineChild;
 							//At most one destruction event. Only parts linked to it can not move for now.
-							boolean isNotLinked = SequenceUtil.canTimeElementPartBeYMoved(timePart);
+							boolean isNotLinked = OccurenceSpecificationMoveHelper.canTimeElementPartBeYMoved(timePart);
 							if(!isNotLinked) {
 								// time part is linked, delete the view
 								Command deleteTimeViewCommand = new ICommandProxy(new DeleteCommand(editingDomain, (View)timePart.getModel()));

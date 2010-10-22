@@ -43,21 +43,16 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
-import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
-import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.figures.BorderedNodeFigure;
-import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
-import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -88,13 +83,11 @@ import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.InteractionOperand;
 import org.eclipse.uml2.uml.InteractionUse;
-import org.eclipse.uml2.uml.IntervalConstraint;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageEnd;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 import org.eclipse.uml2.uml.MessageSort;
-import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
 import org.eclipse.uml2.uml.StateInvariant;
 import org.eclipse.uml2.uml.TimeConstraint;
@@ -499,41 +492,41 @@ public class SequenceUtil {
 	/**
 	 * The position of the part where the event is linked
 	 * 
-	 * @param event
+	 * @param occSpec
 	 *        the occurrence specification
 	 * @param timeElementPart
 	 *        the part representing time element (duration/time constraint/observation)
 	 * @return one of {@link PositionConstants#TOP}, {@link PositionConstants#CENTER}, {@link PositionConstants#BOTTOM},
 	 *         {@link PositionConstants#NONE}
 	 */
-	public static int positionWhereEventIsLinkedToPart(OccurrenceSpecification event, IBorderItemEditPart timeElementPart) {
+	public static int positionWhereEventIsLinkedToPart(OccurrenceSpecification occSpec, IBorderItemEditPart timeElementPart) {
 		EObject timeElement = timeElementPart.resolveSemanticElement();
 		if(timeElement instanceof TimeObservation) {
-			if(event.equals(((TimeObservation)timeElement).getEvent())) {
+			if(occSpec.equals(((TimeObservation)timeElement).getEvent())) {
 				return PositionConstants.CENTER;
 			} else {
 				return PositionConstants.NONE;
 			}
 		} else if(timeElement instanceof TimeConstraint) {
-			if(((TimeConstraint)timeElement).getConstrainedElements().contains(event)) {
+			if(((TimeConstraint)timeElement).getConstrainedElements().contains(occSpec)) {
 				return PositionConstants.CENTER;
 			} else {
 				return PositionConstants.NONE;
 			}
 		} else if(timeElement instanceof DurationConstraint) {
-			if(((DurationConstraint)timeElement).getConstrainedElements().contains(event)) {
+			if(((DurationConstraint)timeElement).getConstrainedElements().contains(occSpec)) {
 				List<Element> events = ((DurationConstraint)timeElement).getConstrainedElements();
 				LifelineEditPart lifelinePart = getParentLifelinePart(timeElementPart);
 				if(lifelinePart != null && events.size() >= 2) {
 					OccurrenceSpecification otherEvent = null;
-					if(!event.equals(events.get(0)) && events.get(0) instanceof OccurrenceSpecification) {
+					if(!occSpec.equals(events.get(0)) && events.get(0) instanceof OccurrenceSpecification) {
 						otherEvent = (OccurrenceSpecification)events.get(0);
-					} else if(!event.equals(events.get(1)) && events.get(1) instanceof OccurrenceSpecification) {
+					} else if(!occSpec.equals(events.get(1)) && events.get(1) instanceof OccurrenceSpecification) {
 						otherEvent = (OccurrenceSpecification)events.get(1);
 					}
 					if(otherEvent != null) {
 						Point otherLoc = findLocationOfEvent(lifelinePart, otherEvent);
-						Point thisLoc = findLocationOfEvent(lifelinePart, event);
+						Point thisLoc = findLocationOfEvent(lifelinePart, occSpec);
 						if(otherLoc != null && thisLoc != null) {
 							if(otherLoc.y > thisLoc.y) {
 								return PositionConstants.TOP;
@@ -570,141 +563,7 @@ public class SequenceUtil {
 	}
 
 	/**
-	 * Get commands to move time/duration constraints/observation associated to a given element.
-	 * The updatedBounds attribute enable to avoid erasing a previous set bounds command. Resizes on a same node are combined.
-	 * 
-	 * @param lifelinePart
-	 *        the edit part of the covered lifeline graphically containing time elements
-	 * @param event
-	 *        the occurrence specification which has moved
-	 * @param referencePoint
-	 *        the point where the event is moved (in absolute)
-	 * @param editPartsNotToMove
-	 *        the list of time elements edit parts which must not be moved
-	 * @param updatedBounds
-	 *        the map containing the new bounds for the nodes which bounds are to be changed
-	 * @return the command or null
-	 */
-	public static Command getTimeRelatedElementsMoveCommands(LifelineEditPart lifelinePart, OccurrenceSpecification event, Point referencePoint, List<IBorderItemEditPart> editPartsNotToMove, Map<IBorderItemEditPart, Rectangle> updatedBounds) {
-		CompoundCommand command = new CompoundCommand();
-		referencePoint = referencePoint.getCopy();
-		IFigure lifelineFigure = lifelinePart.getFigure();
-		lifelineFigure.translateToRelative(referencePoint);
-		referencePoint.translate(lifelineFigure.getBounds().getLocation().getCopy().negate());
-		// relocate each linked time element contained within the lifeline part
-		for(Object lifelineChild : lifelinePart.getChildren()) {
-			if(lifelineChild instanceof IBorderItemEditPart && !editPartsNotToMove.contains(lifelineChild)) {
-				final IBorderItemEditPart timePart = (IBorderItemEditPart)lifelineChild;
-				int position = positionWhereEventIsLinkedToPart(event, timePart);
-				if(position != PositionConstants.NONE) {
-					referencePoint.x = timePart.getFigure().getBounds().getLocation().x;
-					// Get old bounds information
-					int oldY = 0;
-					int oldHeight = 0;
-					if(!updatedBounds.containsKey(timePart) || updatedBounds.get(timePart) == null) {
-						// consult old figure
-						oldY = timePart.getFigure().getBounds().getLocation().y - lifelineFigure.getBounds().getLocation().y;
-						oldHeight = timePart.getFigure().getSize().height;
-					} else {
-						// take updated bounds rather than obsolete information
-						oldY = updatedBounds.get(timePart).y;
-						oldHeight = updatedBounds.get(timePart).height;
-					}
-					// Compute new bounds of the time element
-					Rectangle newBounds = null;
-					if(position == PositionConstants.CENTER) {
-						newBounds = new Rectangle(referencePoint.x, referencePoint.y - oldHeight / 2, -1, oldHeight);
-					} else {
-						int top = oldY;
-						int bottom = oldY + oldHeight;
-						EObject timeElement = timePart.resolveSemanticElement();
-						if(!updatedBounds.containsKey(timePart) || updatedBounds.get(timePart) == null) {
-							// bound is complex as it is based on two events. Recompute it in a better way
-							if(timeElement instanceof DurationConstraint) {
-								List<Element> contraineds = ((DurationConstraint)timeElement).getConstrainedElements();
-								IFigure parentFig = lifelinePart.getFigure();
-								if(contraineds.size() >= 2 && contraineds.get(0) instanceof OccurrenceSpecification && contraineds.get(1) instanceof OccurrenceSpecification) {
-									OccurrenceSpecification event1 = (OccurrenceSpecification)contraineds.get(0);
-									OccurrenceSpecification event2 = (OccurrenceSpecification)contraineds.get(1);
-									Point loc1 = findLocationOfEvent(lifelinePart, event1);
-									parentFig.translateToRelative(loc1);
-									loc1.translate(parentFig.getBounds().getLocation().getNegated());
-									Point loc2 = findLocationOfEvent(lifelinePart, event2);
-									parentFig.translateToRelative(loc2);
-									loc2.translate(parentFig.getBounds().getLocation().getNegated());
-									top = Math.min(loc1.y, loc2.y);
-									bottom = Math.max(loc1.y, loc2.y);
-								}
-							}
-						}
-						if(position == PositionConstants.TOP) {
-							newBounds = new Rectangle(referencePoint.x, referencePoint.y, -1, Math.abs(bottom - referencePoint.y));
-						} else {
-							newBounds = new Rectangle(referencePoint.x, top, -1, Math.abs(referencePoint.y - top));
-						}
-
-					}
-					if(newBounds != null) {
-						updatedBounds.put(timePart, newBounds);
-						TransactionalEditingDomain editingDomain = timePart.getEditingDomain();
-						// chain the resize command
-						ICommandProxy resize = new ICommandProxy(new SetBoundsCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter((View)timePart.getModel()), newBounds));
-						command.add(resize);
-					}
-				}
-			}
-		}
-
-		// refresh layout commands :
-		// one before the commands for the undo and one after for classic execution
-		if(!command.isEmpty() && lifelineFigure instanceof BorderedNodeFigure) {
-			Command relayout = getReLayoutCmd((BorderedNodeFigure)lifelineFigure, false);
-			Command relayoutUndo = getReLayoutCmd((BorderedNodeFigure)lifelineFigure, true);
-			if(relayout != null && relayoutUndo != null) {
-				CompoundCommand commandWithRelayout = new CompoundCommand();
-				commandWithRelayout.add(relayoutUndo);
-				commandWithRelayout.add(command);
-				commandWithRelayout.add(relayout);
-				return commandWithRelayout;
-			}
-		}
-		return null;
-	}
-
-	/**
-	 * Get a command which refreshes the bordered layout of the node.
-	 * 
-	 * @param node
-	 *        the node figure with bordered items
-	 * @param onUndo
-	 *        if true the relayout will be done on undo only, if false it will be done on classic execute only
-	 * @return the refresh command
-	 */
-	public static Command getReLayoutCmd(BorderedNodeFigure node, boolean onUndo) {
-		// relayout the border container figure so that time elements are refreshed
-		final IFigure container = node.getBorderItemContainer();
-
-		if(onUndo) {
-			return new Command() {
-
-				@Override
-				public void undo() {
-					container.getLayoutManager().layout(container);
-				}
-			};
-		} else {
-			return new Command() {
-
-				@Override
-				public void execute() {
-					container.getLayoutManager().layout(container);
-				}
-			};
-		}
-	}
-
-	/**
-	 * Get the edit part which starts or finishes with the event on the given lifeline part
+	 * Get the edit part (message, execution, or destruction event) which starts or finishes with the event on the given lifeline part
 	 * 
 	 * @param lifelinePart
 	 *        the lifeline edit part on which the event is located
@@ -770,35 +629,6 @@ public class SequenceUtil {
 			}
 		}
 		return null;
-	}
-
-	/**
-	 * Know whether this time element part can be moved within the lifeline or not.
-	 * Parts linked with a destruction event can not be moved since the destruction event is always at the end.
-	 * 
-	 * @param timeElementPart
-	 *        the part representing a time/duration constraint/observation
-	 * @return true if the part can be moved
-	 */
-	public static boolean canTimeElementPartBeYMoved(IBorderItemEditPart timeElementPart) {
-		EObject timeElement = timeElementPart.resolveSemanticElement();
-		List<? extends Element> occurrences = Collections.emptyList();
-		if(timeElement instanceof TimeObservation) {
-			NamedElement occurence = ((TimeObservation)timeElement).getEvent();
-			occurrences = Collections.singletonList(occurence);
-		} else if(timeElement instanceof TimeConstraint || timeElement instanceof DurationConstraint) {
-			occurrences = ((IntervalConstraint)timeElement).getConstrainedElements();
-		}
-		// check whether one of the time occurrences correspond to a DestructionEvent
-		for(Element occurrence : occurrences) {
-			if(occurrence instanceof OccurrenceSpecification) {
-				Event event = ((OccurrenceSpecification)occurrence).getEvent();
-				if(event instanceof DestructionEvent) {
-					return false;
-				}
-			}
-		}
-		return true;
 	}
 
 	/**
@@ -1192,5 +1022,45 @@ public class SequenceUtil {
 		} else {
 			return null;
 		}
+	}
+
+	/**
+	 * Find the edit part a connection should be reconnected to at a given reference point on a lifeline
+	 * 
+	 * @param lifelinePart
+	 *        lifeline part on which the reconnection must be performed
+	 * @param referencePoint
+	 *        the reference point
+	 * @return lifeline or execution specification edit part to reconnect to (the most external in the lifeline)
+	 */
+	public static EditPart findPartToReconnectTo(LifelineEditPart lifelinePart, Point referencePoint) {
+		Rectangle absoluteLifelineBounds = lifelinePart.getFigure().getBounds().getCopy();
+		lifelinePart.getFigure().getParent().translateToAbsolute(absoluteLifelineBounds);
+		// inspect children nodes of lifeline
+		List<?> children = lifelinePart.getChildren();
+		GraphicalEditPart adequateExecutionPart = null;
+		int maxDeltaWithMiddle = 0;
+		for(Object child : children) {
+			// children executions
+			if(child instanceof ActionExecutionSpecificationEditPart || child instanceof BehaviorExecutionSpecificationEditPart) {
+				GraphicalEditPart childPart = (GraphicalEditPart)child;
+				Rectangle absoluteBounds = childPart.getFigure().getBounds().getCopy();
+				childPart.getFigure().getParent().translateToAbsolute(absoluteBounds);
+				// enlarge absolute bounds to contain also the right and bottom edges.
+				absoluteBounds.expand(1, 1);
+				if(absoluteBounds.contains(referencePoint)) {
+					// this is an adequate execution part, take the most external one
+					int deltaWithMiddle = Math.abs(absoluteBounds.getTop().x - absoluteLifelineBounds.getTop().x);
+					if(deltaWithMiddle >= maxDeltaWithMiddle) {
+						maxDeltaWithMiddle = deltaWithMiddle;
+						adequateExecutionPart = childPart;
+					}
+				}
+			}
+		}
+		if(adequateExecutionPart != null) {
+			return adequateExecutionPart;
+		}
+		return lifelinePart;
 	}
 }

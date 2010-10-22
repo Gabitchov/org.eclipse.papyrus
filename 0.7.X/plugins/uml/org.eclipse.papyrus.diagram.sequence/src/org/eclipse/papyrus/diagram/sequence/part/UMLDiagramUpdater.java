@@ -42,6 +42,7 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.DestructionEventEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInMessageEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationObservationEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.GeneralOrderingEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionOperandEditPart;
@@ -70,12 +71,14 @@ import org.eclipse.uml2.uml.DestructionEvent;
 import org.eclipse.uml2.uml.DurationConstraint;
 import org.eclipse.uml2.uml.DurationObservation;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.GeneralOrdering;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.InteractionOperand;
 import org.eclipse.uml2.uml.InteractionUse;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
+import org.eclipse.uml2.uml.OccurrenceSpecification;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.StateInvariant;
@@ -138,11 +141,11 @@ public class UMLDiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(visualID == CombinedFragmentEditPart.VISUAL_ID) {
+			if(visualID == ConsiderIgnoreFragmentEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(visualID == ConsiderIgnoreFragmentEditPart.VISUAL_ID) {
+			if(visualID == CombinedFragmentEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -407,6 +410,8 @@ public class UMLDiagramUpdater {
 			return getMessage_4008ContainedLinks(view);
 		case Message7EditPart.VISUAL_ID:
 			return getMessage_4009ContainedLinks(view);
+		case GeneralOrderingEditPart.VISUAL_ID:
+			return getGeneralOrdering_4012ContainedLinks(view);
 		}
 		return Collections.emptyList();
 	}
@@ -468,6 +473,8 @@ public class UMLDiagramUpdater {
 			return getMessage_4008IncomingLinks(view);
 		case Message7EditPart.VISUAL_ID:
 			return getMessage_4009IncomingLinks(view);
+		case GeneralOrderingEditPart.VISUAL_ID:
+			return getGeneralOrdering_4012IncomingLinks(view);
 		}
 		return Collections.emptyList();
 	}
@@ -529,6 +536,8 @@ public class UMLDiagramUpdater {
 			return getMessage_4008OutgoingLinks(view);
 		case Message7EditPart.VISUAL_ID:
 			return getMessage_4009OutgoingLinks(view);
+		case GeneralOrderingEditPart.VISUAL_ID:
+			return getGeneralOrdering_4012OutgoingLinks(view);
 		}
 		return Collections.emptyList();
 	}
@@ -553,6 +562,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_Message_4007(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_Message_4008(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_Message_4009(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_GeneralOrdering_4012(modelElement));
 		return result;
 	}
 
@@ -567,21 +577,30 @@ public class UMLDiagramUpdater {
 	 * @generated
 	 */
 	public static List<UMLLinkDescriptor> getBehaviorExecutionSpecification_3003ContainedLinks(View view) {
-		return Collections.emptyList();
+		BehaviorExecutionSpecification modelElement = (BehaviorExecutionSpecification)view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getContainedTypeModelFacetLinks_GeneralOrdering_4012(modelElement));
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
 	public static List<UMLLinkDescriptor> getStateInvariant_3017ContainedLinks(View view) {
-		return Collections.emptyList();
+		StateInvariant modelElement = (StateInvariant)view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getContainedTypeModelFacetLinks_GeneralOrdering_4012(modelElement));
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
 	public static List<UMLLinkDescriptor> getCombinedFragment_3018ContainedLinks(View view) {
-		return Collections.emptyList();
+		CombinedFragment modelElement = (CombinedFragment)view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getContainedTypeModelFacetLinks_GeneralOrdering_4012(modelElement));
+		return result;
 	}
 
 	/**
@@ -622,35 +641,50 @@ public class UMLDiagramUpdater {
 	 * @generated
 	 */
 	public static List<UMLLinkDescriptor> getActionExecutionSpecification_3006ContainedLinks(View view) {
-		return Collections.emptyList();
+		ActionExecutionSpecification modelElement = (ActionExecutionSpecification)view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getContainedTypeModelFacetLinks_GeneralOrdering_4012(modelElement));
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
 	public static List<UMLLinkDescriptor> getInteractionUse_3002ContainedLinks(View view) {
-		return Collections.emptyList();
+		InteractionUse modelElement = (InteractionUse)view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getContainedTypeModelFacetLinks_GeneralOrdering_4012(modelElement));
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
 	public static List<UMLLinkDescriptor> getCombinedFragment_3004ContainedLinks(View view) {
-		return Collections.emptyList();
+		CombinedFragment modelElement = (CombinedFragment)view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getContainedTypeModelFacetLinks_GeneralOrdering_4012(modelElement));
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
 	public static List<UMLLinkDescriptor> getInteractionOperand_3005ContainedLinks(View view) {
-		return Collections.emptyList();
+		InteractionOperand modelElement = (InteractionOperand)view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getContainedTypeModelFacetLinks_GeneralOrdering_4012(modelElement));
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
 	public static List<UMLLinkDescriptor> getContinuation_3016ContainedLinks(View view) {
-		return Collections.emptyList();
+		Continuation modelElement = (Continuation)view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getContainedTypeModelFacetLinks_GeneralOrdering_4012(modelElement));
+		return result;
 	}
 
 	/**
@@ -694,7 +728,10 @@ public class UMLDiagramUpdater {
 	 * @generated
 	 */
 	public static List<UMLLinkDescriptor> getConsiderIgnoreFragment_3007ContainedLinks(View view) {
-		return Collections.emptyList();
+		ConsiderIgnoreFragment modelElement = (ConsiderIgnoreFragment)view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getContainedTypeModelFacetLinks_GeneralOrdering_4012(modelElement));
+		return result;
 	}
 
 	/**
@@ -743,6 +780,13 @@ public class UMLDiagramUpdater {
 	 * @generated
 	 */
 	public static List<UMLLinkDescriptor> getMessage_4009ContainedLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getGeneralOrdering_4012ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
@@ -1243,6 +1287,25 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	public static List<UMLLinkDescriptor> getGeneralOrdering_4012IncomingLinks(View view) {
+		GeneralOrdering modelElement = (GeneralOrdering)view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4003(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4005(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4006(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4007(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4008(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4009(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4010(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement, crossReferences));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
 	public static List<UMLLinkDescriptor> getInteraction_2001OutgoingLinks(View view) {
 		Interaction modelElement = (Interaction)view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
@@ -1664,6 +1727,22 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	public static List<UMLLinkDescriptor> getGeneralOrdering_4012OutgoingLinks(View view) {
+		GeneralOrdering modelElement = (GeneralOrdering)view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4003(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4004(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4005(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4006(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4007(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4008(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4009(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
 	private static Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Message_4003(Interaction container) {
 		Collection result = new LinkedList();
 		for(Iterator links = container.getMessages().iterator(); links.hasNext();) {
@@ -1886,6 +1965,34 @@ public class UMLDiagramUpdater {
 			Element dst = (Element)theTarget;
 			Element src = link.getOwner();
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_4009, Message7EditPart.VISUAL_ID));
+
+
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	private static Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_GeneralOrdering_4012(InteractionFragment container) {
+		Collection result = new LinkedList();
+		for(Iterator links = container.getGeneralOrderings().iterator(); links.hasNext();) {
+			EObject linkObject = (EObject)links.next();
+			if(false == linkObject instanceof GeneralOrdering) {
+				continue;
+			}
+			GeneralOrdering link = (GeneralOrdering)linkObject;
+			if(GeneralOrderingEditPart.VISUAL_ID != UMLVisualIDRegistry.getLinkWithClassVisualID(link)) {
+				continue;
+			}
+
+
+
+
+
+			OccurrenceSpecification dst = link.getAfter();
+			OccurrenceSpecification src = link.getBefore();
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.GeneralOrdering_4012, GeneralOrderingEditPart.VISUAL_ID));
 
 
 		}

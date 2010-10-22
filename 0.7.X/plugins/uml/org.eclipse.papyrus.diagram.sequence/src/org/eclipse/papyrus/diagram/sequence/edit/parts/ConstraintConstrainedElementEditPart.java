@@ -59,28 +59,34 @@ implements ITreeBranchEditPart {
 	 */
 
 	protected Connection createConnectionFigure() {
-		return new CommentLinkDescriptor();
+		return new ConstraintLinkDescriptor();
 	}
 
 	/**
 	 * @generated
 	 */
-	public CommentLinkDescriptor getPrimaryShape() {
-		return (CommentLinkDescriptor)getFigure();
+	public ConstraintLinkDescriptor getPrimaryShape() {
+		return (ConstraintLinkDescriptor)getFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public class CommentLinkDescriptor extends PolylineConnectionEx {
+	public class ConstraintLinkDescriptor extends PolylineConnectionEx {
+
+
+
 
 		/**
 		 * @generated
 		 */
-		public CommentLinkDescriptor() {
+		public ConstraintLinkDescriptor() {
 			this.setLineStyle(Graphics.LINE_DASH);
 
 		}
+
+
+
 
 	}
 

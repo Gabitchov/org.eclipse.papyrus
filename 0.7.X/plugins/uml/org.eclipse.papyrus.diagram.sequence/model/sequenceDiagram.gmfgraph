@@ -528,6 +528,21 @@
           name="AppliedStereotypeWrappingLabel"
           qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.AppliedStereotypeWrappingLabelFigure"/>
     </descriptors>
+    <descriptors
+        name="GeneralOrderingDescriptor">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="GeneralOrderingConnection"
+          lineKind="LINE_DASH"
+          targetDecoration="//@figures.0/@figures.2">
+        <foregroundColor
+            xsi:type="gmfgraph:ConstantColor"
+            value="black"/>
+      </actualFigure>
+      <accessors
+          accessor="getAppliedStereotypeLabel"
+          figure="//@figures.0/@descriptors.7/@actualFigure/@children.0"/>
+    </descriptors>
   </figures>
   <nodes
       name="InteractionNode"
@@ -608,6 +623,9 @@
   <connections
       name="FoundLink"
       figure="MessageFound"/>
+  <connections
+      name="GeneralOrderingLink"
+      figure="GeneralOrderingDescriptor"/>
   <compartments
       name="InteractionCompartment"
       figure="CustomInteractionRectangleFigure"
@@ -877,4 +895,16 @@
   <labels
       name="AppliedStereotypeExternalLabel"
       figure="AppliedStereotypeWrappingLabelFigure"/>
+  <labels
+      name="GeneralOrderingStereotypeLabel"
+      figure="GeneralOrderingDescriptor"
+      accessor="//@figures.0/@descriptors.21/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        x="1"
+        y="-33"/>
+  </labels>
 </gmfgraph:Canvas>

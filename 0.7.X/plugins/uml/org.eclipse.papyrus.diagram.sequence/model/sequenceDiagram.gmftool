@@ -333,6 +333,19 @@
       </tools>
       <tools
           xsi:type="gmftool:CreationTool"
+          title="General Ordering"
+          description="Create GeneralOrdering">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/GeneralOrdering.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/GeneralOrdering.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
           title="Comment link"
           description="Create a comment link">
         <smallIcon

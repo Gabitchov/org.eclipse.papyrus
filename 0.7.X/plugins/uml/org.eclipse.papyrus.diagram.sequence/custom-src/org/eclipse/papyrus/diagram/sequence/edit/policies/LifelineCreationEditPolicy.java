@@ -47,7 +47,7 @@ import org.eclipse.uml2.uml.OccurrenceSpecification;
  * A specific creation edit policy for the Lifeline.
  * Execution Specification is created graphically on the lifeline, but depending on its graphical position determines also its model container.
  * 
- * 
+ * Occurrence Specification is located on the lifeline, but not visible. Though, elements must be created on it.
  */
 public class LifelineCreationEditPolicy extends CreationEditPolicy {
 
@@ -84,7 +84,7 @@ public class LifelineCreationEditPolicy extends CreationEditPolicy {
 
 		// record the nearest event if necessary
 		String requestHint = request.getViewAndElementDescriptor().getSemanticHint();
-		if(isTimeHint(requestHint)) {
+		if(isCreatedOnOccurrenceSpecification(requestHint)) {
 			EditPart hostPart = getHost();
 			if(hostPart instanceof LifelineEditPart) {
 				Entry<Point, List<OccurrenceSpecification>> eventAndLocation = SequenceUtil.findNearestEvent(request.getLocation(), (LifelineEditPart)hostPart);
@@ -136,13 +136,42 @@ public class LifelineCreationEditPolicy extends CreationEditPolicy {
 		return new ICommandProxy(cc);
 	}
 
-	private boolean isTimeHint(String requestHint) {
-		String timeConstraintHint = ((IHintedType)UMLElementTypes.TimeConstraint_3019).getSemanticHint();
-		String timeObservationHint = ((IHintedType)UMLElementTypes.TimeObservation_3020).getSemanticHint();
+	/**
+	 * Return true if creation must be performed on an occurrence specification
+	 * 
+	 * @param requestHint
+	 *        the hint of object to create
+	 * @return true if creation on an occurrence specification
+	 */
+	private boolean isCreatedOnOccurrenceSpecification(String requestHint) {
+		return isTimeHint(requestHint) || isDurationHint(requestHint);
+	}
+
+	/**
+	 * Return true if hint is for creating a duration observation/constraint
+	 * 
+	 * @param requestHint
+	 *        the hint of object to create
+	 * @return true if correct hint
+	 */
+	private boolean isDurationHint(String requestHint) {
 		String durCstOnLifelineHint = ((IHintedType)UMLElementTypes.DurationConstraint_3021).getSemanticHint();
 		String durCstOnMessage = ((IHintedType)UMLElementTypes.DurationConstraint_3023).getSemanticHint();
 		String durObsOnMessage = ((IHintedType)UMLElementTypes.DurationObservation_3024).getSemanticHint();
-		return timeConstraintHint.equals(requestHint) || timeObservationHint.equals(requestHint) || durCstOnLifelineHint.equals(requestHint) || durCstOnMessage.equals(requestHint) || durObsOnMessage.equals(requestHint);
+		return durCstOnLifelineHint.equals(requestHint) || durCstOnMessage.equals(requestHint) || durObsOnMessage.equals(requestHint);
+	}
+
+	/**
+	 * Return true if hint is for creating a time observation/constraint
+	 * 
+	 * @param requestHint
+	 *        the hint of object to create
+	 * @return true if correct hint
+	 */
+	private boolean isTimeHint(String requestHint) {
+		String timeConstraintHint = ((IHintedType)UMLElementTypes.TimeConstraint_3019).getSemanticHint();
+		String timeObservationHint = ((IHintedType)UMLElementTypes.TimeObservation_3020).getSemanticHint();
+		return timeConstraintHint.equals(requestHint) || timeObservationHint.equals(requestHint);
 	}
 
 }

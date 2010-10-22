@@ -265,7 +265,7 @@ public class TimeMarkElementPositionLocator extends AdvancedBorderItemLocator {
 						ConnectionEditPart conn = (ConnectionEditPart)part;
 						Message message = ((MessageOccurrenceSpecification)occurrence).getMessage();
 						if(message != null) {
-							boolean start = message.getSendEvent().equals(occurrence);
+							boolean start = message.getSendEvent() != null && message.getSendEvent().equals(occurrence);
 							if(start) {
 								part = conn.getSource();
 							} else {
