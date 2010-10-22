@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -35,29 +22,6 @@ import org.eclipse.uml2.uml.Type;
 public class AssociationCreateCommand extends EditElementCommand {
 
 	/**
-	 * Default approach is to traverse ancestors of the source to find instance
-	 * of container. Modify with appropriate logic.
-	 * 
-	 * @generated
-	 */
-	private static Package deduceContainer(EObject source, EObject target) {
-		// Find container element for the new link.
-		// Climb up by containment hierarchy starting from the source
-		// and return the first element that is instance of the container class.
-		for(EObject element = source; element != null; element = element.eContainer()) {
-			if(element instanceof Package) {
-				return (Package)element;
-			}
-		}
-		return null;
-	}
-
-	/**
-	 * @generated
-	 */
-	private final Package container;
-
-	/**
 	 * @generated
 	 */
 	private final EObject source;
@@ -66,6 +30,11 @@ public class AssociationCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	private final EObject target;
+
+	/**
+	 * @generated
+	 */
+	private final Package container;
 
 	/**
 	 * @generated
@@ -103,6 +72,18 @@ public class AssociationCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		if(!canExecute()) {
+			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
+		}
+
+		throw new UnsupportedOperationException();
+
+	}
+
+	/**
+	 * @generated
+	 */
 	protected void doConfigure(Association newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
@@ -119,20 +100,8 @@ public class AssociationCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		if(!canExecute()) {
-			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
-		}
-
+	protected void setElementToEdit(EObject element) {
 		throw new UnsupportedOperationException();
-
-	}
-
-	/**
-	 * @generated
-	 */
-	public Package getContainer() {
-		return container;
 	}
 
 	/**
@@ -152,8 +121,26 @@ public class AssociationCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected void setElementToEdit(EObject element) {
-		throw new UnsupportedOperationException();
+	public Package getContainer() {
+		return container;
+	}
+
+	/**
+	 * Default approach is to traverse ancestors of the source to find instance of container.
+	 * Modify with appropriate logic.
+	 * 
+	 * @generated
+	 */
+	private static Package deduceContainer(EObject source, EObject target) {
+		// Find container element for the new link.
+		// Climb up by containment hierarchy starting from the source
+		// and return the first element that is instance of the container class.
+		for(EObject element = source; element != null; element = element.eContainer()) {
+			if(element instanceof Package) {
+				return (Package)element;
+			}
+		}
+		return null;
 	}
 
 }

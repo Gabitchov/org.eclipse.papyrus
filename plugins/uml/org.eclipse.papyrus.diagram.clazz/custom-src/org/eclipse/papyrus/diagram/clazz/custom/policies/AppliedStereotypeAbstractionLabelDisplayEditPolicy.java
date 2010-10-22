@@ -30,7 +30,7 @@ public class AppliedStereotypeAbstractionLabelDisplayEditPolicy extends AppliedS
 	 * Creates a new AppliedStereotypeAbstractionLabelDisplayEditPolicy, with the correct tag.
 	 */
 	public AppliedStereotypeAbstractionLabelDisplayEditPolicy() {
-		super(Messages.AppliedStereotypeLabel_AbstractionTag);
+		super("Abstraction");//$NON-NLS-N$
 	}
 
 }

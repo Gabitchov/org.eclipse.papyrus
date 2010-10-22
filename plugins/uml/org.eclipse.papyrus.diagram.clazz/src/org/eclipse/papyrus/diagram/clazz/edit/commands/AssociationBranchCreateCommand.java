@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -62,7 +49,6 @@ public class AssociationBranchCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	@Override
 	public boolean canExecute() {
 		if(source == null && target == null) {
 			return false;
@@ -86,7 +72,6 @@ public class AssociationBranchCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
@@ -99,7 +84,6 @@ public class AssociationBranchCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	// @unused
 	protected void doConfigure(Association newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
@@ -116,7 +100,6 @@ public class AssociationBranchCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setElementToEdit(EObject element) {
 		throw new UnsupportedOperationException();
 	}
@@ -143,8 +126,8 @@ public class AssociationBranchCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Default approach is to traverse ancestors of the source to find instance
-	 * of container. Modify with appropriate logic.
+	 * Default approach is to traverse ancestors of the source to find instance of container.
+	 * Modify with appropriate logic.
 	 * 
 	 * @generated
 	 */

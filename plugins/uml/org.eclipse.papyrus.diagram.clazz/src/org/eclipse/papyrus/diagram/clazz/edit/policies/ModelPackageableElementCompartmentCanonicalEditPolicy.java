@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.edit.policies;
 
 import java.util.ArrayList;
@@ -60,6 +47,18 @@ public class ModelPackageableElementCompartmentCanonicalEditPolicy extends Canon
 	 * @generated
 	 */
 	private Set<EStructuralFeature> myFeaturesToSynchronize;
+
+	/**
+	 * @generated
+	 */
+	protected Set getFeaturesToSynchronize() {
+		if(myFeaturesToSynchronize == null) {
+			myFeaturesToSynchronize = new HashSet<EStructuralFeature>();
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getPackage_PackagedElement());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getElement_OwnedComment());
+		}
+		return myFeaturesToSynchronize;
+	}
 
 	/**
 	 * @generated
@@ -182,17 +181,4 @@ public class ModelPackageableElementCompartmentCanonicalEditPolicy extends Canon
 
 		makeViewsImmutable(createdViews);
 	}
-
-	/**
-	 * @generated
-	 */
-	protected Set getFeaturesToSynchronize() {
-		if(myFeaturesToSynchronize == null) {
-			myFeaturesToSynchronize = new HashSet<EStructuralFeature>();
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getPackage_PackagedElement());
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getElement_OwnedComment());
-		}
-		return myFeaturesToSynchronize;
-	}
-
 }

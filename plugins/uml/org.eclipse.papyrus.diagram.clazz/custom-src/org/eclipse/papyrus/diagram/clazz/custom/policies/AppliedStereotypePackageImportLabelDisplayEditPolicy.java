@@ -30,7 +30,7 @@ public class AppliedStereotypePackageImportLabelDisplayEditPolicy extends Applie
 	 * Creates a new AppliedStereotypePackageImportLabelDisplayEditPolicy, with the correct tag.
 	 */
 	public AppliedStereotypePackageImportLabelDisplayEditPolicy() {
-		super(Messages.AppliedStereotypeLabel_PackageImportTag);
+		super("Import");//$NON-NLS-N$
 	}
 
 }

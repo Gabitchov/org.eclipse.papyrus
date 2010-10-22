@@ -79,8 +79,8 @@ extends ListCompartmentEditPart
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.clazz.edit.policies.TemplateSignatureTemplateParameterCompartmentCanonicalEditPolicy());
 
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CTemplateSignatureTemplateParameterCompartmentItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new ClassDiagramDragDropEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CTemplateSignatureTemplateParameterCompartmentItemSemanticEditPolicy());
 	}
 
 	/**

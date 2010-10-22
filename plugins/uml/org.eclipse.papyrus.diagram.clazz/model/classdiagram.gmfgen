@@ -230,7 +230,7 @@
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
-                value="/0/@expressionProviders/@providers.0/@expressions.1">
+                value="/0/@expressionProviders/@providers.0/@expressions.0">
               <feature
                   href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
@@ -2067,7 +2067,7 @@
             </initializers>
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
-                value="/0/@expressionProviders/@providers.0/@expressions.2">
+                value="/0/@expressionProviders/@providers.0/@expressions.1">
               <feature
                   href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint/specification"/>
             </initializers>
@@ -3446,7 +3446,7 @@
             </initializers>
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
-                value="/0/@expressionProviders/@providers.0/@expressions.2">
+                value="/0/@expressionProviders/@providers.0/@expressions.1">
               <feature
                   href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint/specification"/>
             </initializers>
@@ -3666,7 +3666,7 @@
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
-                value="/0/@expressionProviders/@providers.0/@expressions.1">
+                value="/0/@expressionProviders/@providers.0/@expressions.0">
               <feature
                   href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
@@ -3774,7 +3774,7 @@
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
-                value="/0/@expressionProviders/@providers.0/@expressions.1">
+                value="/0/@expressionProviders/@providers.0/@expressions.0">
               <feature
                   href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
@@ -7045,8 +7045,6 @@
       <providers
           xsi:type="gmfgen:GenJavaExpressionProvider"
           injectExpressionBody="true">
-        <expressions
-            body="return getName(self);"/>
         <expressions
             body="return org.eclipse.papyrus.diagram.common.helper.NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());"/>
         <expressions

@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.edit.parts;
 
 import java.util.Collections;
@@ -88,19 +75,6 @@ AbstractShortCutDiagramEditPart {
 	/**
 	 * @generated
 	 */
-	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
-		if(borderItemEditPart instanceof DiagramNameEditPart) {
-			BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.SOUTH);
-			locator.setBorderItemOffset(new Dimension(-20, -20));
-			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
-		} else {
-			super.addBorderItem(borderItemContainer, borderItemEditPart);
-		}
-	}
-
-	/**
-	 * @generated
-	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ShortCutDiagramItemSemanticEditPolicy());
@@ -160,20 +134,30 @@ AbstractShortCutDiagramEditPart {
 	}
 
 	/**
-	 * Creates figure for this edit part.
-	 * 
-	 * Body of this method does not depend on settings in generation model so
-	 * you may safely remove <i>generated</i> tag and modify it.
-	 * 
 	 * @generated
 	 */
-	protected NodeFigure createMainFigure() {
-		NodeFigure figure = createNodePlate();
-		figure.setLayoutManager(new StackLayout());
-		IFigure shape = createNodeShape();
-		figure.add(shape);
-		contentPane = setupContentPane(shape);
-		return figure;
+	protected IFigure createNodeShape() {
+		return primaryShape = new DiagramNodeFigure();
+	}
+
+	/**
+	 * @generated
+	 */
+	public DiagramNodeFigure getPrimaryShape() {
+		return (DiagramNodeFigure)primaryShape;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
+		if(borderItemEditPart instanceof DiagramNameEditPart) {
+			BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.SOUTH);
+			locator.setBorderItemOffset(new Dimension(-20, -20));
+			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
+		} else {
+			super.addBorderItem(borderItemContainer, borderItemEditPart);
+		}
 	}
 
 	/**
@@ -190,10 +174,32 @@ AbstractShortCutDiagramEditPart {
 	}
 
 	/**
+	 * Creates figure for this edit part.
+	 * 
+	 * Body of this method does not depend on settings in generation model
+	 * so you may safely remove <i>generated</i> tag and modify it.
+	 * 
 	 * @generated
 	 */
-	protected IFigure createNodeShape() {
-		return primaryShape = new DiagramNodeFigure();
+	protected NodeFigure createMainFigure() {
+		NodeFigure figure = createNodePlate();
+		figure.setLayoutManager(new StackLayout());
+		IFigure shape = createNodeShape();
+		figure.add(shape);
+		contentPane = setupContentPane(shape);
+		return figure;
+	}
+
+	/**
+	 * Default implementation treats passed figure as content pane.
+	 * Respects layout one may have set for generated figure.
+	 * 
+	 * @param nodeShape
+	 *        instance of generated figure class
+	 * @generated
+	 */
+	protected IFigure setupContentPane(IFigure nodeShape) {
+		return nodeShape; // use nodeShape itself as contentPane
 	}
 
 	/**
@@ -204,6 +210,40 @@ AbstractShortCutDiagramEditPart {
 			return contentPane;
 		}
 		return super.getContentPane();
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void setForegroundColor(Color color) {
+		if(primaryShape != null) {
+			primaryShape.setForegroundColor(color);
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void setLineWidth(int width) {
+		if(primaryShape instanceof Shape) {
+			((Shape)primaryShape).setLineWidth(width);
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void setLineType(int style) {
+		if(primaryShape instanceof Shape) {
+			((Shape)primaryShape).setLineStyle(style);
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public EditPart getPrimaryChildEditPart() {
+		return getChildBySemanticHint(UMLVisualIDRegistry.getType(DiagramNameEditPart.VISUAL_ID));
 	}
 
 	/**
@@ -239,58 +279,4 @@ AbstractShortCutDiagramEditPart {
 		}
 		return result;
 	}
-
-	/**
-	 * @generated
-	 */
-	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(UMLVisualIDRegistry.getType(DiagramNameEditPart.VISUAL_ID));
-	}
-
-	/**
-	 * @generated
-	 */
-	public DiagramNodeFigure getPrimaryShape() {
-		return (DiagramNodeFigure)primaryShape;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void setForegroundColor(Color color) {
-		if(primaryShape != null) {
-			primaryShape.setForegroundColor(color);
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void setLineType(int style) {
-		if(primaryShape instanceof Shape) {
-			((Shape)primaryShape).setLineStyle(style);
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void setLineWidth(int width) {
-		if(primaryShape instanceof Shape) {
-			((Shape)primaryShape).setLineWidth(width);
-		}
-	}
-
-	/**
-	 * Default implementation treats passed figure as content pane. Respects
-	 * layout one may have set for generated figure.
-	 * 
-	 * @param nodeShape
-	 *        instance of generated figure class
-	 * @generated
-	 */
-	protected IFigure setupContentPane(IFigure nodeShape) {
-		return nodeShape; // use nodeShape itself as contentPane
-	}
-
 }

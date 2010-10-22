@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -33,7 +20,7 @@ public class AssociationReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	private final EObject newEnd;
+	private final int reorientDirection;
 
 	/**
 	 * @generated
@@ -43,7 +30,7 @@ public class AssociationReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	private final int reorientDirection;
+	private final EObject newEnd;
 
 	/**
 	 * @generated
@@ -126,22 +113,22 @@ public class AssociationReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
+	protected CommandResult reorientSource() throws ExecutionException {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * @generated
+	 */
+	protected CommandResult reorientTarget() throws ExecutionException {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * @generated
+	 */
 	protected Association getLink() {
 		return (Association)getElementToEdit();
-	}
-
-	/**
-	 * @generated
-	 */
-	protected Type getNewSource() {
-		return (Type)newEnd;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected Type getNewTarget() {
-		return (Type)newEnd;
 	}
 
 	/**
@@ -154,6 +141,13 @@ public class AssociationReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
+	protected Type getNewSource() {
+		return (Type)newEnd;
+	}
+
+	/**
+	 * @generated
+	 */
 	protected Type getOldTarget() {
 		return (Type)oldEnd;
 	}
@@ -161,14 +155,7 @@ public class AssociationReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected CommandResult reorientSource() throws ExecutionException {
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * @generated
-	 */
-	protected CommandResult reorientTarget() throws ExecutionException {
-		throw new UnsupportedOperationException();
+	protected Type getNewTarget() {
+		return (Type)newEnd;
 	}
 }
