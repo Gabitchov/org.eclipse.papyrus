@@ -18,9 +18,12 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import org.eclipse.draw2d.Connection;
+import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
@@ -31,12 +34,20 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.XYLayoutEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.BaseSlidableAnchor;
+import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
+import org.eclipse.gmf.runtime.notation.Edge;
+import org.eclipse.gmf.runtime.notation.IdentityAnchor;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.papyrus.diagram.common.commands.PreserveAnchorsPositionCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentEditPart;
@@ -68,7 +79,7 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 				if(child instanceof LifelineEditPart) {
 					addLifelineResizeChildrenCommand(compoundCmd, request, (LifelineEditPart)child, 1);
 				} else if(child instanceof CombinedFragmentEditPart) {
-					Command resizeChildrenCommand = getCombinedFragmentResizeChildrenCommand(request.getMoveDelta(), request.getSizeDelta(), (CombinedFragmentEditPart)child);
+					Command resizeChildrenCommand = getCombinedFragmentResizeChildrenCommand(request, (CombinedFragmentEditPart)child);
 					if(resizeChildrenCommand == null) {
 						return null;
 					}
@@ -102,7 +113,7 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 		// be moved
 		int widthDelta;
 		for(ShapeNodeEditPart executionSpecificationEP : lifelineEditPart.getChildShapeNodeEditPart()) {
-			if (executionSpecificationEP.resolveSemanticElement() instanceof ExecutionSpecification) {
+			if(executionSpecificationEP.resolveSemanticElement() instanceof ExecutionSpecification) {
 				// Lifeline's figure where the child is drawn
 				Rectangle rDotLine = lifelineEditPart.getContentPane().getBounds();
 
@@ -154,7 +165,10 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 	 *        The CF edit part.
 	 */
 	@SuppressWarnings("unchecked")
-	public static Command getCombinedFragmentResizeChildrenCommand(Point moveDelta, Dimension sizeDelta, CombinedFragmentEditPart combinedFragmentEditPart) {
+	public static Command getCombinedFragmentResizeChildrenCommand(ChangeBoundsRequest request, CombinedFragmentEditPart combinedFragmentEditPart) {
+		Point moveDelta = request.getMoveDelta();
+		Dimension sizeDelta = request.getSizeDelta();
+
 		Rectangle origCFBounds = combinedFragmentEditPart.getFigure().getBounds().getCopy();
 
 		combinedFragmentEditPart.getFigure().translateToAbsolute(origCFBounds);
@@ -162,27 +176,72 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 		CompoundCommand compoundCmd = new CompoundCommand();
 
 		// specific case for move :
-		// we want the execution specifications graphically owned by the lifeline to move with the combined fragment
+		// we want the execution specifications graphically owned by the lifeline to move with the combined fragment, and the contained messages too
 		if(sizeDelta.equals(0, 0)) {
-			Set<ShapeEditPart> interactionFragmentEPs = getCoveredInteractionFragmentEditParts(origCFBounds, combinedFragmentEditPart);
+			// retrieve all the edit parts in the registry
+			Set<Entry<Object, EditPart>> allEditPartEntries = combinedFragmentEditPart.getViewer().getEditPartRegistry().entrySet();
+			for(Entry<Object, EditPart> epEntry : allEditPartEntries) {
+				EditPart ep = epEntry.getValue();
 
-			for(ShapeEditPart sep : interactionFragmentEPs) {
-				EditPart parentEP = sep.getParent();
+				// handle move of object graphically owned by the lifeline
+				if(ep instanceof ShapeEditPart) {
+					ShapeEditPart sep = (ShapeEditPart)ep;
+					EObject elem = sep.getNotationView().getElement();
 
-				if(parentEP instanceof LifelineEditPart) {
-					ChangeBoundsRequest request = new ChangeBoundsRequest(RequestConstants.REQ_MOVE);
-					request.setEditParts(sep);
-					request.setMoveDelta(moveDelta);
+					if(elem instanceof InteractionFragment) {
+						IFigure figure = sep.getFigure();
 
-					Command moveESCommand = LifelineXYLayoutEditPolicy.getResizeOrMoveChildrenCommand((LifelineEditPart)parentEP, request, true, false, true);
+						Rectangle figureBounds = figure.getBounds().getCopy();
+						figure.getParent().translateToAbsolute(figureBounds);
 
-					if(moveESCommand == null || !moveESCommand.canExecute()) {
-						// forbid move if the es can't be moved correctly
-						return null;
+						if(origCFBounds.contains(figureBounds)) {
+							EditPart parentEP = sep.getParent();
+
+							if(parentEP instanceof LifelineEditPart) {
+								ChangeBoundsRequest esRequest = new ChangeBoundsRequest(RequestConstants.REQ_MOVE);
+								esRequest.setEditParts(sep);
+								esRequest.setMoveDelta(moveDelta);
+
+								Command moveESCommand = LifelineXYLayoutEditPolicy.getResizeOrMoveChildrenCommand((LifelineEditPart)parentEP, esRequest, true, false, true);
+
+								if(moveESCommand == null || !moveESCommand.canExecute()) {
+									// forbid move if the es can't be moved correctly
+									return null;
+								}
+								compoundCmd.add(moveESCommand);
+							}
+						}
+
 					}
-					compoundCmd.add(moveESCommand);
+				}
+
+				// handle move of messages directly attached to a lifeline
+				if(ep instanceof ConnectionEditPart) {
+					ConnectionEditPart cep = (ConnectionEditPart)ep;
+
+					Connection msgFigure = cep.getConnectionFigure();
+
+					ConnectionAnchor sourceAnchor = msgFigure.getSourceAnchor();
+					ConnectionAnchor targetAnchor = msgFigure.getTargetAnchor();
+
+					Point sourcePoint = sourceAnchor.getReferencePoint();
+					Point targetPoint = targetAnchor.getReferencePoint();
+
+					Edge edge = (Edge)cep.getModel();
+
+					if(origCFBounds.contains(sourcePoint) && cep.getSource() instanceof LifelineEditPart) {
+						IdentityAnchor gmfAnchor = (IdentityAnchor)edge.getSourceAnchor();
+						Rectangle figureBounds = sourceAnchor.getOwner().getBounds();
+						compoundCmd.add(new ICommandProxy(getMoveAnchorCommand(moveDelta.y, figureBounds, gmfAnchor)));
+					}
+					if(origCFBounds.contains(targetPoint) && cep.getTarget() instanceof LifelineEditPart) {
+						IdentityAnchor gmfAnchor = (IdentityAnchor)edge.getTargetAnchor();
+						Rectangle figureBounds = targetAnchor.getOwner().getBounds();
+						compoundCmd.add(new ICommandProxy(getMoveAnchorCommand(moveDelta.y, figureBounds, gmfAnchor)));
+					}
 				}
 			}
+
 		} else {
 			// calculate the new CF bounds
 			Rectangle newBoundsCF = origCFBounds.getCopy();
@@ -251,34 +310,24 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 		return compoundCmd;
 	}
 
-	@SuppressWarnings("unchecked")
-	private static Set<ShapeEditPart> getCoveredInteractionFragmentEditParts(Rectangle selectionRect, EditPart hostEditPart) {
-		Set<ShapeEditPart> coveredInteractionFragmentEPs = new HashSet<ShapeEditPart>();
+	private static ICommand getMoveAnchorCommand(int yDelta, Rectangle figureBounds, IdentityAnchor gmfAnchor) {
+		String oldTerminal = gmfAnchor.getId();
+		PrecisionPoint pp = BaseSlidableAnchor.parseTerminalString(oldTerminal);
 
-		// retrieve all the edit parts in the registry
-		Set<Entry<Object, EditPart>> allEditPartEntries = hostEditPart.getViewer().getEditPartRegistry().entrySet();
-		for(Entry<Object, EditPart> epEntry : allEditPartEntries) {
-			EditPart ep = epEntry.getValue();
+		int yPos = (int)Math.round(figureBounds.height * pp.preciseY);
+		yPos += yDelta;
 
-			if(ep instanceof ShapeEditPart) {
-				ShapeEditPart sep = (ShapeEditPart)ep;
-				EObject elem = sep.getNotationView().getElement();
+		pp.preciseY = (double)yPos / figureBounds.height;
 
-				if(elem instanceof InteractionFragment) {
-					IFigure figure = sep.getFigure();
-
-					Rectangle figureBounds = figure.getBounds().getCopy();
-					figure.getParent().translateToAbsolute(figureBounds);
-
-					if(selectionRect.contains(figureBounds)) {
-						coveredInteractionFragmentEPs.add(sep);
-					}
-
-				}
-
-			}
+		if(pp.preciseY > 1.0) {
+			pp.preciseY = 1.0;
+		} else if(pp.preciseY < 0.0) {
+			pp.preciseY = 0.0;
 		}
-		return coveredInteractionFragmentEPs;
+
+		String newTerminal = (new BaseSlidableAnchor(null, pp)).getTerminal();
+
+		return new SetValueCommand(new SetRequest(gmfAnchor, NotationPackage.Literals.IDENTITY_ANCHOR__ID, newTerminal));
 	}
 
 	/**
