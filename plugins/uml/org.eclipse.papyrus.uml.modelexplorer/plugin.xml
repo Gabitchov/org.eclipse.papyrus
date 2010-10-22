@@ -20,7 +20,7 @@
             contentProvider="org.eclipse.papyrus.uml.modelexplorer.UMLContentProvider"
             icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Model.gif"
             id="org.eclipse.papyrus.modelexplorer.UMLnavigatorContent"
-            labelProvider="org.eclipse.papyrus.modelexplorer.MoDiscoLabelProvider"
+            labelProvider="org.eclipse.papyrus.modelexplorer.MoDiscoLabelProviderWTooltips"
             name="UML Model Contents"
             priority="lower">
          <triggerPoints>
