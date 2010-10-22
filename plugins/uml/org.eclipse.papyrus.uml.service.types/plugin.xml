@@ -1741,29 +1741,29 @@
 	</metamodel>
 </extension>
 
-<!-- Helper advice for element name initialization -->
+<!-- Helper advice declarations -->
 <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
 
 	<metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
-		
+
+	<!-- Helper advice for element name initialization -->		
 	<adviceBinding id="org.eclipse.papyrus.uml.advice.NameElementInitializer"
-		class="org.eclipse.papyrus.uml.service.types.helper.NamedElementInitializerHelperAdvice"
+		class="org.eclipse.papyrus.uml.service.types.helper.advice.NamedElementInitializerHelperAdvice"
 		inheritance="all" typeId="org.eclipse.papyrus.uml.NamedElement">
 	</adviceBinding>
 	
-	</metamodel>
-</extension>
-
-<!-- Helper advice for unapplication of applied stereotype before delete -->
-<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
-
-	<metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
-		
+	<!-- Helper advice for unapplication of applied stereotype before delete -->			
 	<adviceBinding id="org.eclipse.papyrus.uml.advice.ElementUnapplyStereotype"
-		class="org.eclipse.papyrus.uml.service.types.helper.ElementUnapplyStereotypeHelperAdvice"
+		class="org.eclipse.papyrus.uml.service.types.helper.advice.ElementUnapplyStereotypeHelperAdvice"
 		inheritance="all" typeId="org.eclipse.papyrus.uml.Element">
 	</adviceBinding>
-	
+
+	<!-- Helper advice for OccurrenceSpecification -->
+	<adviceBinding id="org.eclipse.papyrus.uml.advice.OccurrenceSpecificationHelperAdvice"
+		class="org.eclipse.papyrus.uml.service.types.helper.advice.OccurrenceSpecificationHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.uml.OccurrenceSpecification">
+	</adviceBinding>
+			
 	</metamodel>
 </extension>
 	
@@ -1776,7 +1776,8 @@
 		<elementType pattern="org.eclipse.papyrus.uml.*" />
 		<advice ref="org.eclipse.papyrus.uml.advice.NameElementInitializer" />
 		<advice ref="org.eclipse.papyrus.uml.advice.ElementUnapplyStereotype" />
-	
+		<advice ref="org.eclipse.papyrus.uml.advice.OccurrenceSpecificationHelperAdvice" />
+		
 	</binding>
 		
 </extension>

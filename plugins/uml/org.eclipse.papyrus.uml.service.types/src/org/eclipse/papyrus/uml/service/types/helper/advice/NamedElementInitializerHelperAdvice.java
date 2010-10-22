@@ -12,7 +12,7 @@
  * 		Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.service.types.helper;
+package org.eclipse.papyrus.uml.service.types.helper.advice;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
