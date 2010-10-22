@@ -23,6 +23,7 @@ import org.eclipse.emf.edit.ui.action.CopyAction;
 import org.eclipse.emf.edit.ui.action.CutAction;
 import org.eclipse.emf.edit.ui.action.LoadResourceAction;
 import org.eclipse.emf.edit.ui.action.PasteAction;
+import org.eclipse.emf.edit.ui.action.ValidateAction;
 import org.eclipse.emf.workspace.ui.actions.RedoActionWrapper;
 import org.eclipse.emf.workspace.ui.actions.UndoActionWrapper;
 import org.eclipse.jface.action.Action;
@@ -30,6 +31,7 @@ import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.modelexplorer.NavigatorUtils;
+import org.eclipse.papyrus.modelexplorer.actions.ValidateModelAction;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
@@ -58,7 +60,7 @@ public class DefaultEMFActionsFactory implements IActionHandlerFactory {
 
 	protected LoadResourceAction loadResourceAction;
 
-	// protected ValidateAction validateAction;
+	protected ValidateAction validateAction;
 
 	/**
 	 * {@inheritDoc}
@@ -95,6 +97,10 @@ public class DefaultEMFActionsFactory implements IActionHandlerFactory {
 		this.loadResourceAction = new LoadResourceAction(editingDomain);
 		actions.add(loadResourceAction);
 
+		// Create validation action
+		this.validateAction = new ValidateModelAction(editingDomain);
+		this.validateAction.setImageDescriptor(sharedImages.getImageDescriptor(ISharedImages.IMG_TOOL_FORWARD));
+		actions.add(validateAction);
 		return actions;
 	}
 
@@ -108,6 +114,7 @@ public class DefaultEMFActionsFactory implements IActionHandlerFactory {
 		undoAction.setActiveWorkbenchPart(activeViewPart);
 		redoAction.setActiveWorkbenchPart(activeViewPart);
 		loadResourceAction.setActiveWorkbenchPart(activeViewPart);
+		validateAction.setActiveWorkbenchPart(activeViewPart);
 
 		ISelectionProvider selectionProvider = null;
 		if(activeViewPart.getCommonViewer() instanceof ISelectionProvider) {
@@ -115,6 +122,7 @@ public class DefaultEMFActionsFactory implements IActionHandlerFactory {
 			selectionProvider.addSelectionChangedListener(cutAction);
 			selectionProvider.addSelectionChangedListener(copyAction);
 			selectionProvider.addSelectionChangedListener(pasteAction);
+			selectionProvider.addSelectionChangedListener(validateAction);
 		}
 	}
 
@@ -127,6 +135,7 @@ public class DefaultEMFActionsFactory implements IActionHandlerFactory {
 		pasteAction.setActiveWorkbenchPart(null);
 		undoAction.setActiveWorkbenchPart(null);
 		redoAction.setActiveWorkbenchPart(null);
+		validateAction.setActiveWorkbenchPart(null);
 		loadResourceAction.setActiveWorkbenchPart(null);
 
 		ISelectionProvider selectionProvider = null;
@@ -135,6 +144,7 @@ public class DefaultEMFActionsFactory implements IActionHandlerFactory {
 			selectionProvider.removeSelectionChangedListener(cutAction);
 			selectionProvider.removeSelectionChangedListener(copyAction);
 			selectionProvider.removeSelectionChangedListener(pasteAction);
+			selectionProvider.removeSelectionChangedListener(validateAction);
 		}
 	}
 
@@ -169,6 +179,9 @@ public class DefaultEMFActionsFactory implements IActionHandlerFactory {
 		copyAction.setEnabled((copyAction.createCommand(st.toList())).canExecute());
 		pasteAction.updateSelection(st);
 		pasteAction.setEnabled((pasteAction.createCommand(st.toList())).canExecute());
+		validateAction.updateSelection(st);
+		validateAction.setEnabled(true);
+		// validateAction.setEnabled((validateAction.createCommand(st.toList())).canExecute());
 		loadResourceAction.update();
 	}
 

@@ -24,6 +24,8 @@ import org.eclipse.core.resources.IResourceDelta;
 import org.eclipse.core.resources.IResourceDeltaVisitor;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.NotificationImpl;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.URIConverter;
@@ -120,6 +122,12 @@ public class ModelResourceListener implements IResourceChangeListener, IResource
 			return false;
 		}
 		IResource changedResource = delta.getResource();
+		if(delta.getFlags() == IResourceDelta.MARKERS) {
+			// only markers have been changed. Refresh their display only (no need to reload resources)
+			// TODO called once for each new marker => assure asynchronous refresh
+			modelSet.eNotify(new NotificationImpl(Notification.SET, null, delta.getMarkerDeltas()));
+			return false;
+		}
 		boolean resourceOfMainModelChanged = false;
 		// only proceed in case of Files (not projects, folders, ...) for the moment
 		if(!(changedResource instanceof IFile)) {
