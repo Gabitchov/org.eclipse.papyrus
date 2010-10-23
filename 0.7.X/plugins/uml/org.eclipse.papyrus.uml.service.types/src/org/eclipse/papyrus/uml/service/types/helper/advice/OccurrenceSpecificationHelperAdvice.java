@@ -13,11 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.helper.advice;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
@@ -47,19 +42,8 @@ public class OccurrenceSpecificationHelperAdvice extends AbstractEditHelperAdvic
 		OccurrenceSpecification os = (OccurrenceSpecification)request.getElementToDestroy();
 		Event event = os.getEvent();
 
-		// Retrieve the list of elements referencing the Event.
-		Set<EObject> crossReferences = new HashSet<EObject>();
-		for(Setting setting : PapyrusEcoreUtils.getUsages(event)) {
-			crossReferences.add(setting.getEObject());
-		}
-
-		// Remove the OccurrenceSpecification to be deleted and the container
-		// of the referenced event from the list of referencer.
-		crossReferences.remove(event.getOwner());
-		crossReferences.remove(os);
-
 		// Delete referenced event if it is not referenced itself by another element.
-		if(crossReferences.isEmpty()) {
+		if((event != null) && (PapyrusEcoreUtils.isOnlyUsage(event, os))) {
 			return request.getDestroyDependentCommand(event);
 		}
 

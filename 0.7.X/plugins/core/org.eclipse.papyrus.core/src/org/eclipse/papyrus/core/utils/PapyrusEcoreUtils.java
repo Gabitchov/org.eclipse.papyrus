@@ -1,9 +1,12 @@
 package org.eclipse.papyrus.core.utils;
 
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
@@ -27,5 +30,39 @@ public class PapyrusEcoreUtils {
 			collection = EcoreUtil.UsageCrossReferencer.find(source, source.eResource().getResourceSet());
 		}
 		return collection;
+	}
+
+	/**
+	 * <pre>
+	 * Test if the used element is referenced by other elements than the known
+	 * referencer (except its container).
+	 * </pre>
+	 * 
+	 * @param usedObject
+	 *        the used object
+	 * @param knownReferencer
+	 *        the known referencer
+	 * @return true if the known referencer is the only referencer.
+	 */
+	public static boolean isOnlyUsage(EObject usedObject, EObject knownReferencer) {
+		boolean isUsed = false;
+			
+			// Retrieve the list of elements referencing the usedObject.
+			Set<EObject> crossReferences = new HashSet<EObject>();
+			for(Setting setting : PapyrusEcoreUtils.getUsages(usedObject)) {
+				crossReferences.add(setting.getEObject());
+			}
+
+			// Remove the container of used object.
+			crossReferences.remove(usedObject.eContainer());
+			// Remove the knownReferencer from the list of references.
+			crossReferences.remove(knownReferencer);
+			
+			// If no referencer remains in the list, the known element is the only usage. 
+			if (crossReferences.isEmpty()) {
+				isUsed = true;
+			}
+
+		return isUsed;
 	}
 }
