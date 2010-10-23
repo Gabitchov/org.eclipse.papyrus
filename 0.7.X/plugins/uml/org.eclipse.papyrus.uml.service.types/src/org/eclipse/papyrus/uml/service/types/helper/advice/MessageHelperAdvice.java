@@ -22,19 +22,19 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
 import org.eclipse.papyrus.core.utils.PapyrusEcoreUtils;
-import org.eclipse.uml2.uml.ExecutionSpecification;
-import org.eclipse.uml2.uml.OccurrenceSpecification;
+import org.eclipse.uml2.uml.Message;
+import org.eclipse.uml2.uml.MessageEnd;
 
 /**
- * Helper advice for all {@link ExecutionSpecification} elements.
+ * Helper advice for all {@link Message} elements.
  */
-public class ExecutionSpecificationHelperAdvice extends AbstractEditHelperAdvice {
+public class MessageHelperAdvice extends AbstractEditHelperAdvice {
 
 	/**
 	 * <pre>
-	 * Add a command to destroy {@link OccurrenceSpecification} referenced by the {@link ExecutionSpecification} 
+	 * Add a command to destroy {@link MessageEnd} referenced by the {@link Message} 
 	 * to delete.
-	 * This command is only added if the start - finish referenced {@link OccurrenceSpecification} is not 
+	 * This command is only added if the send - receive event referenced is not 
 	 * referenced by another element.
 	 * </pre>
 	 * 
@@ -48,21 +48,21 @@ public class ExecutionSpecificationHelperAdvice extends AbstractEditHelperAdvice
 
 		List<EObject> dependentsToDestroy = new ArrayList<EObject>();
 
-		ExecutionSpecification es = (ExecutionSpecification)request.getElementToDestroy();
+		Message message = (Message)request.getElementToDestroy();
 
-		// Add start - finish referenced OccurrenceSpecification to the dependents list
+		// Add send - receive referenced MessageEnd to the dependents list
 		// if they are not used by another element.
-		OccurrenceSpecification osStart = es.getStart();
-		if((osStart != null) && (PapyrusEcoreUtils.isOnlyUsage(osStart, es))) {
-			dependentsToDestroy.add(osStart);
+		MessageEnd sendEvent = message.getSendEvent();
+		if((sendEvent != null) && (PapyrusEcoreUtils.isOnlyUsage(sendEvent, message))) {
+			dependentsToDestroy.add(sendEvent);
 		}
 
-		OccurrenceSpecification osFinish = es.getFinish();
-		if((osFinish != null) && (PapyrusEcoreUtils.isOnlyUsage(osFinish, es))) {
-			dependentsToDestroy.add(osFinish);
+		MessageEnd recvEvent = message.getReceiveEvent();
+		if((recvEvent != null) && (PapyrusEcoreUtils.isOnlyUsage(recvEvent, message))) {
+			dependentsToDestroy.add(recvEvent);
 		}
 
-		// Add command to destroy dependents OccurrenceSpecification 
+		// Add command to destroy dependents MessageEnd 
 		if(!dependentsToDestroy.isEmpty()) {
 			return request.getDestroyDependentsCommand(dependentsToDestroy);
 		}
