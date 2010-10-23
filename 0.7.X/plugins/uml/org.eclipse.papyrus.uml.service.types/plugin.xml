@@ -1763,7 +1763,13 @@
 		class="org.eclipse.papyrus.uml.service.types.helper.advice.OccurrenceSpecificationHelperAdvice"
 		inheritance="all" typeId="org.eclipse.papyrus.uml.OccurrenceSpecification">
 	</adviceBinding>
-			
+
+	<!-- Helper advice for ExecutionSpecification -->
+	<adviceBinding id="org.eclipse.papyrus.uml.advice.ExecutionSpecificationHelperAdvice"
+		class="org.eclipse.papyrus.uml.service.types.helper.advice.ExecutionSpecificationHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.uml.ExecutionSpecification">
+	</adviceBinding>
+				
 	</metamodel>
 </extension>
 	
@@ -1777,6 +1783,7 @@
 		<advice ref="org.eclipse.papyrus.uml.advice.NameElementInitializer" />
 		<advice ref="org.eclipse.papyrus.uml.advice.ElementUnapplyStereotype" />
 		<advice ref="org.eclipse.papyrus.uml.advice.OccurrenceSpecificationHelperAdvice" />
+		<advice ref="org.eclipse.papyrus.uml.advice.ExecutionSpecificationHelperAdvice" />
 		
 	</binding>
 		
