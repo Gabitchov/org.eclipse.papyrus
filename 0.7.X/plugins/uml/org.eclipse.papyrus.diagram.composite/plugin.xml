@@ -2797,12 +2797,19 @@
 <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
 
 	<metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
-		
+
+	<!-- Generalizarion specific advices (remove inconsistent views when a Generalization is deleted -->		
 	<adviceBinding id="org.eclipse.papyrus.uml.diagram.composite.GeneralizationHelperAdvice"
 		class="org.eclipse.papyrus.diagram.composite.custom.helper.advice.GeneralizationHelperAdvice"
 		inheritance="all" typeId="org.eclipse.papyrus.uml.Generalization">
 	</adviceBinding>
-	
+
+	<!-- Property specific advices (remove inconsistent views when a Property type is set -->		
+	<adviceBinding id="org.eclipse.papyrus.uml.diagram.composite.PropertyHelperAdvice"
+		class="org.eclipse.papyrus.diagram.composite.custom.helper.advice.PropertyHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.uml.Property">
+	</adviceBinding>
+		
 	</metamodel>
 </extension>
 	
@@ -2811,6 +2818,7 @@
 
 	<!-- Bindings declaration to shared IClientContext -->
 	<binding context="org.eclipse.papyrus.service.edit.TypeContext">	
+		<elementType ref="org.eclipse.papyrus.uml.diagram.composite.GeneralizationHelperAdvice"/>
 		<elementType ref="org.eclipse.papyrus.uml.diagram.composite.GeneralizationHelperAdvice"/>		
 	</binding>
 		
