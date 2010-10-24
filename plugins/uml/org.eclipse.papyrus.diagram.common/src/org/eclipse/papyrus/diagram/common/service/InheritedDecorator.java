@@ -160,7 +160,6 @@ public class InheritedDecorator implements IDecorator {
 		removeDecoration();
 
 		Node node = getDecoratorTargetNode(getDecoratorTarget());
-		IFigure figure = getFigure(ICON_HYPERLINK);
 		IGraphicalEditPart gep = (IGraphicalEditPart)getDecoratorTarget().getAdapter(IGraphicalEditPart.class);
 
 		if(node != null) {
@@ -174,6 +173,7 @@ public class InheritedDecorator implements IDecorator {
 					//					} else {
 					//						setDecoration(getDecoratorTarget().addShapeDecoration(figure, getDirection(node), -1, false));
 					//					}
+					IFigure figure = getFigure(ICON_HYPERLINK);
 					if(isInCompartmentList(node) && !Util.isAffixedChildNode(gep)) {
 						setDecoration(getDecoratorTarget().addShapeDecoration(figure, getDirection(node), -1, false));
 					} else {
