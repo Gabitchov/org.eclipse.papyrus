@@ -29,6 +29,7 @@ public class CommandFilter {
 
 			visibleCommands.add(UMLElementTypes.COMMENT);
 			visibleCommands.add(UMLElementTypes.PACKAGE);
+			visibleCommands.add(UMLElementTypes.CLASS);
 			//			visibleCommands.add(UMLElementTypes.DEPENDENCY);
 			visibleCommands.add(UMLElementTypes.ELEMENT_IMPORT);
 			visibleCommands.add(UMLElementTypes.PACKAGE_IMPORT);
