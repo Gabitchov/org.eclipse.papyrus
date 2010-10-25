@@ -331,8 +331,23 @@ public class InheritedDecorator implements IDecorator {
 		 * @param notification
 		 */
 		public void notifyChanged(Notification notification) {
+
+
+
+			if(notification.getEventType() == Notification.REMOVE) {
+				if(notification.getNotifier() instanceof Classifier) {
+					IGraphicalEditPart gep = (IGraphicalEditPart)getDecoratorTarget().getAdapter(IGraphicalEditPart.class);
+					assert gep != null;
+					//we remove the listener on the container (because it's changing
+					DiagramEventBroker.getInstance(gep.getEditingDomain()).removeNotificationListener((EObject)notification.getNotifier(), notificationListener);
+				}
+			}
+			//we update the listeners It's useful when an Element with overlay changes of parent
+			deactivate();
+			activate();
 			refresh();
 		}
+
 	};
 
 
@@ -348,6 +363,9 @@ public class InheritedDecorator implements IDecorator {
 		IGraphicalEditPart gep = (IGraphicalEditPart)getDecoratorTarget().getAdapter(IGraphicalEditPart.class);
 		assert gep != null;
 		View view = ((View)gep.getModel());
+
+
+
 		if(view instanceof Node) {
 			//the location of the decorator can change if it's an Affixed Child Node
 			if(isInherited((Node)view) && Util.isAffixedChildNode(gep)) {
@@ -367,6 +385,22 @@ public class InheritedDecorator implements IDecorator {
 			}
 		}
 
+		/*
+		 * We listen the changes on the UML parent, in order to know if the element is changing of parent
+		 * Adding a listener using the following EReference doesn't work
+		 * UMLPackage.eINSTANCE.getElement_Owner();
+		 * UMLPackage.eINSTANCE.getProperty_Class();
+		 * UMLPackage.eINSTANCE.getNamedElement_Namespace();
+		 * that's why we listen the parent
+		 */
+
+		Element semanticElement = (Element)view.getElement();
+		if(semanticElement != null) {
+			//we listen if the container of the element changes!
+			if(semanticElement.eContainer() != null) {
+				DiagramEventBroker.getInstance(gep.getEditingDomain()).addNotificationListener(semanticElement.eContainer(), notificationListener);
+			}
+		}
 	}
 
 	/**
@@ -375,10 +409,12 @@ public class InheritedDecorator implements IDecorator {
 	public void deactivate() {
 		removeDecoration();
 
+
 		IGraphicalEditPart gep = (IGraphicalEditPart)getDecoratorTarget().getAdapter(IGraphicalEditPart.class);
 		assert gep != null;
 		DiagramEventBroker.getInstance(gep.getEditingDomain()).removeNotificationListener(gep.getNotationView(), notificationListener);
 		View view = ((View)gep.getModel());
+
 		if(view instanceof Node) {
 			//the location of the decorator can change if it's an Affixed Child Node
 			if(isInherited((Node)view) && Util.isAffixedChildNode(gep)) {
@@ -392,6 +428,12 @@ public class InheritedDecorator implements IDecorator {
 				DiagramEventBroker.getInstance(gep.getEditingDomain()).removeNotificationListener(el, UMLPackage.eINSTANCE.getTypedElement_Type(), notificationListener);
 			}
 		}
-	}
 
+		Element semanticElement = (Element)view.getElement();
+		if(semanticElement != null) {
+			if(semanticElement.eContainer() != null) {
+				DiagramEventBroker.getInstance(gep.getEditingDomain()).addNotificationListener(semanticElement.eContainer(), notificationListener);
+			}
+		}
+	}
 }
