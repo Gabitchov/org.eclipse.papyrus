@@ -636,7 +636,7 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 					}
 				}
 			} else if(parentElement instanceof ClassifierRepresentation) {
-				localMembers = ((ClassifierRepresentation)parentElement).getRepresentedClassifier().getMembers();
+				localMembers = ((ClassifierRepresentation)parentElement).getRepresentedClassifier().getOwnedMembers();
 				for(NamedElement namedElement : localMembers) {
 					if(((ClassifierRepresentation)parentElement).getEditPartRepresentation().getPossibleElement().contains(namedElement)) {
 						members.add(namedElement);
