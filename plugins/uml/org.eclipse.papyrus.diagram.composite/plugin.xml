@@ -2819,7 +2819,7 @@
 	<!-- Bindings declaration to shared IClientContext -->
 	<binding context="org.eclipse.papyrus.service.edit.TypeContext">	
 		<elementType ref="org.eclipse.papyrus.uml.diagram.composite.GeneralizationHelperAdvice"/>
-		<elementType ref="org.eclipse.papyrus.uml.diagram.composite.GeneralizationHelperAdvice"/>		
+		<elementType ref="org.eclipse.papyrus.uml.diagram.composite.PropertyHelperAdvice"/>		
 	</binding>
 		
 </extension>
