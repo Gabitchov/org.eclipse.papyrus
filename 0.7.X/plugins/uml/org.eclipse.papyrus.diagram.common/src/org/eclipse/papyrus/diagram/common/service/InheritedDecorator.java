@@ -173,14 +173,17 @@ public class InheritedDecorator implements IDecorator {
 					//					} else {
 					//						setDecoration(getDecoratorTarget().addShapeDecoration(figure, getDirection(node), -1, false));
 					//					}
-					IFigure figure = getFigure(ICON_HYPERLINK);
-					if(isInCompartmentList(node) && !Util.isAffixedChildNode(gep)) {
-						setDecoration(getDecoratorTarget().addShapeDecoration(figure, getDirection(node), -1, false));
-					} else {
-						Locator locator = new OverlayLocator(gep.getFigure(), getDirection(node));
-						setDecoration(getDecoratorTarget().addDecoration(figure, locator, false));
-					}
 
+
+					if(gep.getParent() != null) {//if the gep has no parent, we can't test if the container is a compartment list (because, we call the method DiagramEditPartsUtil.getEditPartFromView((View)container, gep);
+						IFigure figure = getFigure(ICON_HYPERLINK);
+						if(isInCompartmentList(node) && !Util.isAffixedChildNode(gep)) {
+							setDecoration(getDecoratorTarget().addShapeDecoration(figure, getDirection(node), -1, false));
+						} else {
+							Locator locator = new OverlayLocator(gep.getFigure(), getDirection(node));
+							setDecoration(getDecoratorTarget().addDecoration(figure, locator, false));
+						}
+					}
 
 
 				}
