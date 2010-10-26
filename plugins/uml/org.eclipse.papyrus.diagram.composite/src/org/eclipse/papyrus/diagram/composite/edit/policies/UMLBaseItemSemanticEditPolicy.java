@@ -102,6 +102,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	public static final String VISUAL_ID_KEY = "visual_id"; //$NON-NLS-1$
 
 	/**
+	 * Extended request data key to hold the edge view during a reconnect request.
+	 * 
+	 * @generated
+	 */
+	public static final String GRAPHICAL_RECONNECTED_EDGE = "graphical_edge"; //$NON-NLS-1$
+
+	/**
 	 * @generated
 	 */
 	private final IElementType myElementType;
@@ -119,15 +126,20 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * so command switch can decide what kind of diagram element is being edited.
 	 * It is done in those cases when it's not possible to deduce diagram
 	 * element kind from domain element.
+	 * Add the reoriented view to the request extended data so that the view
+	 * currently edited can be distinguished from other views of the same element
+	 * and these latter possibly removed if they become inconsistent after reconnect
 	 * 
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public Command getCommand(Request request) {
 		if(request instanceof ReconnectRequest) {
 			Object view = ((ReconnectRequest)request).getConnectionEditPart().getModel();
 			if(view instanceof View) {
 				Integer id = new Integer(UMLVisualIDRegistry.getVisualID((View)view));
 				request.getExtendedData().put(VISUAL_ID_KEY, id);
+				request.getExtendedData().put(GRAPHICAL_RECONNECTED_EDGE, (View)view);
 			}
 		}
 		return super.getCommand(request);
