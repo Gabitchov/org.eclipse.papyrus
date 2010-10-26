@@ -175,7 +175,7 @@ public class InheritedDecorator implements IDecorator {
 					//					}
 
 
-					if(gep.getParent() != null) {//if the gep has no parent, we can't test if the container is a compartment list (because, we call the method DiagramEditPartsUtil.getEditPartFromView((View)container, gep);
+					if(gep != null && gep.getRoot() != null) {//if the gep has no parent, we can't test if the container is a compartment list (because, we call the method DiagramEditPartsUtil.getEditPartFromView((View)container, gep);
 						IFigure figure = getFigure(ICON_HYPERLINK);
 						if(isInCompartmentList(node) && !Util.isAffixedChildNode(gep)) {
 							setDecoration(getDecoratorTarget().addShapeDecoration(figure, getDirection(node), -1, false));
@@ -245,9 +245,10 @@ public class InheritedDecorator implements IDecorator {
 		//				return IDecoratorTarget.Direction.SOUTH_EAST;
 		//			}
 		//		}
-
-		if(isInCompartmentList(node) && !Util.isAffixedChildNode(gep)) {
-			return IDecoratorTarget.Direction.EAST;
+		if(gep.getParent() != null) {
+			if(isInCompartmentList(node) && !Util.isAffixedChildNode(gep)) {
+				return IDecoratorTarget.Direction.EAST;
+			}
 		}
 		return IDecoratorTarget.Direction.SOUTH_WEST;
 	}
@@ -262,12 +263,14 @@ public class InheritedDecorator implements IDecorator {
 	 */
 	protected boolean isInCompartmentList(Node node) {
 		IGraphicalEditPart gep = (IGraphicalEditPart)getDecoratorTarget().getAdapter(IGraphicalEditPart.class);
-		EObject container = node.eContainer();
-		if(container instanceof View) {
-			EditPart EP = DiagramEditPartsUtil.getEditPartFromView((View)container, gep);
-			EditPolicy editPolicy = EP.getEditPolicy(EditPolicy.LAYOUT_ROLE);
-			if(!(editPolicy instanceof XYLayoutEditPolicy)) {//we are in a compartment list
-				return true;
+		if(gep != null && gep.getRoot() != null) {
+			EObject container = node.eContainer();
+			if(container instanceof View) {
+				EditPart EP = DiagramEditPartsUtil.getEditPartFromView((View)container, gep);
+				EditPolicy editPolicy = EP.getEditPolicy(EditPolicy.LAYOUT_ROLE);
+				if(!(editPolicy instanceof XYLayoutEditPolicy)) {//we are in a compartment list
+					return true;
+				}
 			}
 		}
 		return false;
