@@ -27,7 +27,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.composite.custom.utils.CrossReferencedUtil;
+import org.eclipse.papyrus.core.utils.CrossReferencerUtil;
 import org.eclipse.papyrus.diagram.composite.edit.parts.CompositeStructureDiagramEditPart;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.NamedElement;
@@ -41,7 +41,6 @@ import org.eclipse.uml2.uml.UMLPackage;
  * 
  */
 public class PropertyHelperAdvice extends AbstractEditHelperAdvice {
-
 
 	/**
 	 * Returns the command to destroy the views of the parts which are not owned by the new type
@@ -64,7 +63,7 @@ public class PropertyHelperAdvice extends AbstractEditHelperAdvice {
 		if((elementToEdit instanceof Property) && (request.getFeature() == UMLPackage.eINSTANCE.getTypedElement_Type())) {
 
 			Property propertyToEdit = (Property)elementToEdit;
-			List<View> propertyToEditViews = CrossReferencedUtil.getCrossReferencingViews(propertyToEdit, CompositeStructureDiagramEditPart.MODEL_ID);
+			Set<View> propertyToEditViews = CrossReferencerUtil.getCrossReferencingViews(propertyToEdit, CompositeStructureDiagramEditPart.MODEL_ID);
 
 			oldType = propertyToEdit.getType();
 			newType = (Type)request.getValue();
@@ -85,7 +84,7 @@ public class PropertyHelperAdvice extends AbstractEditHelperAdvice {
 				for(NamedElement possiblyInconsistentMember : possiblyInconsistentMembers) {
 
 					// Retrieve views of the current possiblyInconsistentMember
-					Iterator<View> viewIt = CrossReferencedUtil.getCrossReferencingViews(possiblyInconsistentMember, CompositeStructureDiagramEditPart.MODEL_ID).iterator();
+					Iterator<View> viewIt = CrossReferencerUtil.getCrossReferencingViews(possiblyInconsistentMember, CompositeStructureDiagramEditPart.MODEL_ID).iterator();
 					while(viewIt.hasNext()) {
 						View possiblyInconsistentMemberView = viewIt.next();
 						if(isConcerned(possiblyInconsistentMemberView, propertyToEditViews)) {
@@ -114,13 +113,13 @@ public class PropertyHelperAdvice extends AbstractEditHelperAdvice {
 	 * @return
 	 *         <code>true</code> if the view need to be removed <code>false</code> if not
 	 */
-	protected boolean isConcerned(View view, List<View> list) {
+	protected boolean isConcerned(View view, Set<View> propertyViews) {
 
 		EObject parentView = view.eContainer();
 		if(parentView instanceof DecorationNode) {
 			parentView = parentView.eContainer();
 		}
-		return list.contains(parentView);
+		return propertyViews.contains(parentView);
 
 	}
 }
