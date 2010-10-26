@@ -35,11 +35,13 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.command.BranchDependenctReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.command.CAssociationClassCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.command.CAssociationReorientCommand;
+import org.eclipse.papyrus.diagram.clazz.custom.command.CTemplateBindingCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.command.ContainmentLinkReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.command.CustomAssociationBranchReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.helper.ContainmentHelper;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.CommentAnnotatedElementReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.ConstraintConstrainedElementReorientCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.TemplateBindingCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AbstractionEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AddedLinkEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationBranchEditPart;
@@ -80,6 +82,9 @@ public class CustomClassItemSemanticEditPolicy extends ClassItemSemanticEditPoli
 		if(UMLElementTypes.AssociationClass_4017 == req.getElementType()) {
 			return getGEFWrapper(new CAssociationClassCreateCommand(req, req.getSource(), req.getTarget()));
 		}
+		if(UMLElementTypes.TemplateBinding_4015 == req.getElementType()) {
+			return getGEFWrapper(new CTemplateBindingCreateCommand(req, req.getSource(), req.getTarget()));
+		}
 		return super.getCompleteCreateRelationshipCommand(req);
 	}
 
@@ -91,8 +96,12 @@ public class CustomClassItemSemanticEditPolicy extends ClassItemSemanticEditPoli
 			return getGEFWrapper(new BranchDependenctReorientCommand(req));
 		case AssociationBranchEditPart.VISUAL_ID:
 			return getGEFWrapper(new CustomAssociationBranchReorientCommand(req));
+		case TemplateBindingEditPart.VISUAL_ID:
+			return UnexecutableCommand.INSTANCE;
 
+		
 		}
+		
 		return super.getReorientRelationshipCommand(req);
 	}
 
@@ -110,6 +119,9 @@ public class CustomClassItemSemanticEditPolicy extends ClassItemSemanticEditPoli
 		//forbid creation of association branch from it.
 		if(UMLElementTypes.Association_4019 == req.getElementType()) {
 			return UnexecutableCommand.INSTANCE;
+		}
+		if(UMLElementTypes.TemplateBinding_4015 == req.getElementType()) {
+			return getGEFWrapper(new CTemplateBindingCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return super.getStartCreateRelationshipCommand(req);
 	}

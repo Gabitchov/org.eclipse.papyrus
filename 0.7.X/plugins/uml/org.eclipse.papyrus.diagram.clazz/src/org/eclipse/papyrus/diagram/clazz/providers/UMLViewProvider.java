@@ -1,3 +1,15 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ */
 package org.eclipse.papyrus.diagram.clazz.providers;
 
 import java.util.ArrayList;
@@ -2445,11 +2457,16 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		PreferenceInitializerForElementHelper.initRountingFromPrefs(edge, prefStore, "TemplateBinding");
 
-		Node label6023 = createLabel(edge, UMLVisualIDRegistry.getType(WrappingLabelEditPart.VISUAL_ID));
+		Node label6023 = createLabel(edge, UMLVisualIDRegistry.getType(BindingSubstitutionEditPart.VISUAL_ID));
 		label6023.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6023 = (Location)label6023.getLayoutConstraint();
 		location6023.setX(0);
 		location6023.setY(40);
+		Node label6036 = createLabel(edge, UMLVisualIDRegistry.getType(AppliedStereotypeTemplateBindingEditPart.VISUAL_ID));
+		label6036.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6036 = (Location)label6036.getLayoutConstraint();
+		location6036.setX(0);
+		location6036.setY(20);
 		return edge;
 	}
 

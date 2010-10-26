@@ -1,3 +1,15 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ */
 package org.eclipse.papyrus.diagram.clazz.part;
 
 import org.eclipse.core.runtime.Platform;
@@ -1721,7 +1733,10 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case TemplateBindingEditPart.VISUAL_ID:
-			if(WrappingLabelEditPart.VISUAL_ID == nodeVisualID) {
+			if(BindingSubstitutionEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(AppliedStereotypeTemplateBindingEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -2065,6 +2080,9 @@ public class UMLVisualIDRegistry {
 		root.addNode(1000, viewInfo);
 
 		labelInfo = new BaseViewInfo(6023, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+		labelInfo = new BaseViewInfo(6036, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
 		viewInfo = new BaseViewInfo(4020, ViewInfo.Edge, "");

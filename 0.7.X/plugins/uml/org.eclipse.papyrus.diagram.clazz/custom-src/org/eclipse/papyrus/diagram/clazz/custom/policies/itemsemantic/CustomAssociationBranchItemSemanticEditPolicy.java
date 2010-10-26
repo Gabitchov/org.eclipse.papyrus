@@ -23,10 +23,13 @@ import org.eclipse.papyrus.diagram.clazz.custom.command.BranchDependenctReorient
 import org.eclipse.papyrus.diagram.clazz.custom.command.CAssociationClassCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.command.CAssociationReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.command.CustomAssociationBranchReorientCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.TemplateBindingCreateCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.TemplateBindingReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationBranchEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClass2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyBranchEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.TemplateBindingEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.AssociationBranchItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.common.helper.AssociationHelper;
@@ -46,6 +49,9 @@ public class CustomAssociationBranchItemSemanticEditPolicy extends AssociationBr
 		}
 		if(UMLElementTypes.AssociationClass_4017 == req.getElementType()) {
 			return getGEFWrapper(new CAssociationClassCreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if(UMLElementTypes.TemplateBinding_4015 == req.getElementType()) {
+			return UnexecutableCommand.INSTANCE;
 		}
 		return super.getCompleteCreateRelationshipCommand(req);
 	}
@@ -76,6 +82,9 @@ public class CustomAssociationBranchItemSemanticEditPolicy extends AssociationBr
 			return UnexecutableCommand.INSTANCE;
 		}
 
+		if(UMLElementTypes.TemplateBinding_4015 == req.getElementType()) {
+			return UnexecutableCommand.INSTANCE;
+		}
 		return super.getStartCreateRelationshipCommand(req);
 	}
 
