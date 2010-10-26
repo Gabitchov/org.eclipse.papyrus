@@ -1,3 +1,15 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ */
 package org.eclipse.papyrus.diagram.clazz.edit.parts;
 
 import org.eclipse.draw2d.Connection;
@@ -6,6 +18,7 @@ import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.clazz.custom.figure.TemplateBindingFigure;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.CustomGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.TemplateBindingItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.common.editparts.UMLConnectionNodeEditPart;
@@ -46,8 +59,12 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof WrappingLabelEditPart) {
-			((WrappingLabelEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
+		if(childEditPart instanceof BindingSubstitutionEditPart) {
+			((BindingSubstitutionEditPart)childEditPart).setLabel(getPrimaryShape().getBindingSubstitutionFigure());
+			return true;
+		}
+		if(childEditPart instanceof AppliedStereotypeTemplateBindingEditPart) {
+			((AppliedStereotypeTemplateBindingEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 			return true;
 		}
 		return false;
@@ -67,7 +84,10 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof WrappingLabelEditPart) {
+		if(childEditPart instanceof BindingSubstitutionEditPart) {
+			return true;
+		}
+		if(childEditPart instanceof AppliedStereotypeTemplateBindingEditPart) {
 			return true;
 		}
 		return false;
@@ -92,14 +112,14 @@ UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 	 * @generated
 	 */
 	protected Connection createConnectionFigure() {
-		return new InterfaceRealizationFigure();
+		return new TemplateBindingFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public InterfaceRealizationFigure getPrimaryShape() {
-		return (InterfaceRealizationFigure)getFigure();
+	public TemplateBindingFigure getPrimaryShape() {
+		return (TemplateBindingFigure)getFigure();
 	}
 
 }

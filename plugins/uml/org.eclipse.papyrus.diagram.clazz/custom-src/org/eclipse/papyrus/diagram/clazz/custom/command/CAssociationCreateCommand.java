@@ -31,7 +31,7 @@ import org.eclipse.uml2.uml.Type;
 public class CAssociationCreateCommand extends org.eclipse.papyrus.diagram.clazz.edit.commands.AssociationCreateCommand {
 
 	// code copy from the super class!
-	private static Package deduceContainer(EObject source, EObject target) {
+	protected   Package deduceContainer(EObject source, EObject target) {
 		// Find container element for the new link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.

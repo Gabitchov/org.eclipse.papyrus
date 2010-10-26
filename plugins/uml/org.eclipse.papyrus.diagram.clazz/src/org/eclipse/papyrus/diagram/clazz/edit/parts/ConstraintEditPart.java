@@ -1,3 +1,15 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ */
 package org.eclipse.papyrus.diagram.clazz.edit.parts;
 
 import java.util.ArrayList;
@@ -1207,7 +1219,7 @@ AbstractConstraintEditPart {
 	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnTarget() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(12);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(11);
 		types.add(UMLElementTypes.Realization_4005);
 		types.add(UMLElementTypes.Abstraction_4006);
 		types.add(UMLElementTypes.Usage_4007);
@@ -1216,7 +1228,6 @@ AbstractConstraintEditPart {
 		types.add(UMLElementTypes.ElementImport_4009);
 		types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
-		types.add(UMLElementTypes.TemplateBinding_4015);
 		types.add(UMLElementTypes.Dependency_4022);
 		types.add(UMLElementTypes.TimeObservationEvent_4024);
 		types.add(UMLElementTypes.DurationObservationEvent_4025);
@@ -1415,27 +1426,6 @@ AbstractConstraintEditPart {
 		} else if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
 			types.add(UMLElementTypes.Constraint_2011);
 			types.add(UMLElementTypes.Constraint_3029);
-		} else if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
-			types.add(UMLElementTypes.AssociationClass_2013);
-			types.add(UMLElementTypes.Association_2015);
-			types.add(UMLElementTypes.Component_2002);
-			types.add(UMLElementTypes.Signal_2003);
-			types.add(UMLElementTypes.Interface_2004);
-			types.add(UMLElementTypes.Model_2005);
-			types.add(UMLElementTypes.Enumeration_2006);
-			types.add(UMLElementTypes.Package_2007);
-			types.add(UMLElementTypes.Class_2008);
-			types.add(UMLElementTypes.PrimitiveType_2009);
-			types.add(UMLElementTypes.DataType_2010);
-			types.add(UMLElementTypes.Component_3021);
-			types.add(UMLElementTypes.Signal_3022);
-			types.add(UMLElementTypes.Interface_3023);
-			types.add(UMLElementTypes.Model_3024);
-			types.add(UMLElementTypes.Enumeration_3025);
-			types.add(UMLElementTypes.Package_3009);
-			types.add(UMLElementTypes.Class_3010);
-			types.add(UMLElementTypes.PrimitiveType_3026);
-			types.add(UMLElementTypes.DataType_3027);
 		} else if(relationshipType == UMLElementTypes.Dependency_4022) {
 			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);

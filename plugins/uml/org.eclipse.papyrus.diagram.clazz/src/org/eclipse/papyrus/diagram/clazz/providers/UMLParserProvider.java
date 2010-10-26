@@ -1,3 +1,15 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ */
 package org.eclipse.papyrus.diagram.clazz.providers;
 
 import org.eclipse.core.runtime.IAdaptable;
@@ -14,6 +26,7 @@ import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.parsers.GeneralizationSetConstraintParser;
 import org.eclipse.papyrus.diagram.clazz.custom.parsers.SlotParser;
+import org.eclipse.papyrus.diagram.clazz.custom.parsers.TemplateBindingParser;
 import org.eclipse.papyrus.diagram.clazz.custom.parsers.TemplateParameterParser;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AbstractionNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeAbstractionEditPart;
@@ -25,6 +38,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypePackageImpo
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypePackageMergeEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeRealizationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeSubstitutionEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeTemplateBindingEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeUsageEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotyperGeneralizationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationBranchMutliplicityEditPart;
@@ -36,6 +50,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationMultiplictyTarget
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName3EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName5EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.BindingSubstitutionEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Class2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Class3EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Class5EditPart;
@@ -94,6 +109,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.TemplateParameterEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.TimeObservationNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.TimeObservationStereotypeLabelEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.UsageNameEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.WrappingLabelEditPart;
 import org.eclipse.papyrus.diagram.clazz.parsers.MessageFormatParser;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.common.parser.CommentParser;
@@ -1417,6 +1433,36 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private TemplateBindingParser templateBindingLabel_6023Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getTemplateBindingLabel_6023Parser() {
+		if(templateBindingLabel_6023Parser == null) {
+			templateBindingLabel_6023Parser = new TemplateBindingParser();
+		}
+		return templateBindingLabel_6023Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser templateBindingLabel_6036Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getTemplateBindingLabel_6036Parser() {
+		if(templateBindingLabel_6036Parser == null) {
+			templateBindingLabel_6036Parser = new AppliedStereotypeParser();
+		}
+		return templateBindingLabel_6036Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private GeneralizationSetConstraintParser generalizationSetIsCoveringIsDisjoint_5067Parser;
 
 	/**
@@ -1590,6 +1636,10 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getPackageImportVisibility_6022Parser();
 		case AppliedStereotypePackageMergeEditPart.VISUAL_ID:
 			return getPackageMergeLabel_6030Parser();
+		case BindingSubstitutionEditPart.VISUAL_ID:
+			return getTemplateBindingLabel_6023Parser();
+		case AppliedStereotypeTemplateBindingEditPart.VISUAL_ID:
+			return getTemplateBindingLabel_6036Parser();
 		case ConstraintLabelEditPart.VISUAL_ID:
 			return getGeneralizationSetIsCoveringIsDisjoint_5067Parser();
 		}

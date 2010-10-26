@@ -128,7 +128,9 @@ public class ClassLinkMappingHelper implements ILinkMappingHelper {
 			};
 
 			public java.util.Collection<?> caseTemplateBinding(org.eclipse.uml2.uml.TemplateBinding object) {
-				return object.getTargets();
+				ArrayList result = new ArrayList();
+				result.add(object.getSignature().getOwner());
+				return result;
 			};
 
 		});

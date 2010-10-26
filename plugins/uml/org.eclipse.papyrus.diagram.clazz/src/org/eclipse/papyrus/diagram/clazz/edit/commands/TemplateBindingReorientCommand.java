@@ -1,3 +1,15 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ */
 package org.eclipse.papyrus.diagram.clazz.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -65,10 +77,7 @@ public class TemplateBindingReorientCommand extends EditElementCommand {
 		if(!(oldEnd instanceof TemplateableElement && newEnd instanceof TemplateableElement)) {
 			return false;
 		}
-		if(getLink().getTargets().size() != 1) {
-			return false;
-		}
-		Element target = (Element)getLink().getTargets().get(0);
+		TemplateableElement target = getLink().getBoundElement();
 		if(!(getLink().eContainer() instanceof TemplateableElement)) {
 			return false;
 		}
@@ -80,7 +89,7 @@ public class TemplateBindingReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientTarget() {
-		if(!(oldEnd instanceof Element && newEnd instanceof Element)) {
+		if(!(oldEnd instanceof TemplateableElement && newEnd instanceof TemplateableElement)) {
 			return false;
 		}
 		TemplateableElement source = getLink().getBoundElement();
@@ -119,7 +128,8 @@ public class TemplateBindingReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
-		throw new UnsupportedOperationException();
+		getLink().setBoundElement(getNewTarget());
+		return CommandResult.newOKCommandResult(getLink());
 	}
 
 	/**
@@ -146,14 +156,14 @@ public class TemplateBindingReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected Element getOldTarget() {
-		return (Element)oldEnd;
+	protected TemplateableElement getOldTarget() {
+		return (TemplateableElement)oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Element getNewTarget() {
-		return (Element)newEnd;
+	protected TemplateableElement getNewTarget() {
+		return (TemplateableElement)newEnd;
 	}
 }

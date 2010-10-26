@@ -19,6 +19,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.command.DeleteCommand;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
@@ -26,6 +27,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import org.eclipse.papyrus.diagram.clazz.custom.command.BranchDependenctReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.command.CAssociationClassCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.command.CAssociationReorientCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.TemplateBindingCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClass2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyBranchEditPart;
@@ -49,6 +51,9 @@ public class CustomAssociationItemSemanticEditPolicy extends org.eclipse.papyrus
 		}
 		if(UMLElementTypes.AssociationClass_4017 == req.getElementType()) {
 			return getGEFWrapper(new CAssociationClassCreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if(UMLElementTypes.TemplateBinding_4015 == req.getElementType()) {
+			return UnexecutableCommand.INSTANCE;
 		}
 		return super.getCompleteCreateRelationshipCommand(req);
 	}
@@ -99,7 +104,9 @@ public class CustomAssociationItemSemanticEditPolicy extends org.eclipse.papyrus
 		if(UMLElementTypes.AssociationClass_4017 == req.getElementType()) {
 			return getGEFWrapper(new CAssociationClassCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-
+		if(UMLElementTypes.TemplateBinding_4015 == req.getElementType()) {
+			return UnexecutableCommand.INSTANCE;
+		}
 
 		return super.getStartCreateRelationshipCommand(req);
 	}

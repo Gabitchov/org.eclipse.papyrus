@@ -5409,7 +5409,7 @@
             editHelperClassName="TemplateBindingEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
-            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.edge.InterfaceRealizationFigure"/>
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.figure.TemplateBindingFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
@@ -5429,25 +5429,42 @@
           <sourceMetaFeature
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/TemplateBinding/boundElement"/>
           <targetMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DirectedRelationship/target"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/TemplateBinding/boundElement"/>
         </modelFacet>
         <labels
             visualID="6023"
-            editPartClassName="WrappingLabelEditPart"
-            itemSemanticEditPolicyClassName="WrappingLabelItemSemanticEditPolicy"
-            readOnly="true">
+            editPartClassName="BindingSubstitutionEditPart"
+            itemSemanticEditPolicyClassName="BindingSubstitutionItemSemanticEditPolicy">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getNameLabel"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+              getterName="getBindingSubstitutionFigure"
+              figureQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.figure.BindingSubstitutionFigure">
             <attributes
                 xsi:type="gmfgen:LabelOffsetAttributes"
                 y="40"/>
           </viewmap>
           <modelFacet
-              parser="/0/@labelParsers/@implementations.0"/>
+              parser="/0/@labelParsers/@implementations.10"/>
+        </labels>
+        <labels
+            visualID="6036"
+            editPartClassName="AppliedStereotypeTemplateBindingEditPart"
+            itemSemanticEditPolicyClassName="AppliedStereotypeTemplateBindingItemSemanticEditPolicy"
+            readOnly="true">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:ParentAssignedViewmap"
+              getterName="getAppliedStereotypeLabel"
+              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+            <attributes
+                xsi:type="gmfgen:LabelOffsetAttributes"
+                y="20"/>
+          </viewmap>
+          <modelFacet
+              parser="/0/@labelParsers/@implementations.3"/>
         </labels>
       </links>
       <links
@@ -7075,7 +7092,7 @@
         extensibleViaService="true">
       <implementations
           xsi:type="gmfgen:ExternalParser"
-          uses="/0/@diagram/@links.18/@labels.0/@modelFacet /0/@diagram/@links.3/@labels.0/@modelFacet /0/@diagram/@childNodes.22/@labelModelFacet /0/@diagram/@childNodes.23/@labelModelFacet"/>
+          uses="/0/@diagram/@links.3/@labels.0/@modelFacet /0/@diagram/@childNodes.22/@labelModelFacet /0/@diagram/@childNodes.23/@labelModelFacet"/>
       <implementations
           xsi:type="gmfgen:PredefinedParser"
           uses="/0/@diagram/@childNodes.0/@labelModelFacet /0/@diagram/@childNodes.1/@labelModelFacet /0/@diagram/@childNodes.2/@labelModelFacet /0/@diagram/@childNodes.8/@labelModelFacet /0/@diagram/@childNodes.9/@labelModelFacet /0/@diagram/@childNodes.10/@labelModelFacet /0/@diagram/@childNodes.11/@labelModelFacet /0/@diagram/@childNodes.18/@labelModelFacet /0/@diagram/@childNodes.21/@labelModelFacet /0/@diagram/@childNodes.24/@labelModelFacet /0/@diagram/@childNodes.27/@labelModelFacet /0/@diagram/@childNodes.28/@labelModelFacet /0/@diagram/@childNodes.12/@labels.0/@modelFacet /0/@diagram/@childNodes.13/@labels.0/@modelFacet /0/@diagram/@childNodes.14/@labels.0/@modelFacet /0/@diagram/@childNodes.15/@labels.0/@modelFacet /0/@diagram/@childNodes.16/@labels.0/@modelFacet /0/@diagram/@childNodes.17/@labels.0/@modelFacet /0/@diagram/@childNodes.19/@labels.0/@modelFacet /0/@diagram/@childNodes.20/@labels.0/@modelFacet /0/@diagram/@childNodes.25/@labels.0/@modelFacet /0/@diagram/@childNodes.26/@labels.0/@modelFacet /0/@diagram/@childNodes.30/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.1/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.3/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.4/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.5/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.6/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.7/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.8/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.9/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.10/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.11/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.12/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.13/@labels.0/@modelFacet /0/@diagram/@links.2/@labels.1/@modelFacet /0/@diagram/@links.2/@labels.2/@modelFacet /0/@diagram/@links.2/@labels.3/@modelFacet /0/@diagram/@links.4/@labels.0/@modelFacet /0/@diagram/@links.5/@labels.1/@modelFacet /0/@diagram/@links.6/@labels.1/@modelFacet /0/@diagram/@links.7/@labels.1/@modelFacet /0/@diagram/@links.8/@labels.0/@modelFacet /0/@diagram/@links.9/@labels.0/@modelFacet /0/@diagram/@links.10/@labels.0/@modelFacet /0/@diagram/@links.12/@labels.0/@modelFacet /0/@diagram/@links.1/@labels.1/@modelFacet /0/@diagram/@links.1/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.0/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.16/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.17/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.18/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.19/@labels.0/@modelFacet /0/@diagram/@links.2/@labels.4/@modelFacet /0/@diagram/@links.2/@labels.5/@modelFacet /0/@diagram/@links.3/@labels.1/@modelFacet"/>
@@ -7085,7 +7102,7 @@
           qualifiedName="org.eclipse.papyrus.diagram.clazz.custom.parsers.GeneralizationSetConstraintParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@links.2/@labels.0/@modelFacet /0/@diagram/@links.5/@labels.0/@modelFacet /0/@diagram/@links.6/@labels.0/@modelFacet /0/@diagram/@links.7/@labels.0/@modelFacet /0/@diagram/@links.8/@labels.1/@modelFacet /0/@diagram/@links.9/@labels.1/@modelFacet /0/@diagram/@links.10/@labels.1/@modelFacet /0/@diagram/@links.12/@labels.1/@modelFacet /0/@diagram/@links.14/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.17/@labels.1/@modelFacet /0/@diagram/@topLevelNodes.16/@labels.1/@modelFacet"
+          uses="/0/@diagram/@links.2/@labels.0/@modelFacet /0/@diagram/@links.5/@labels.0/@modelFacet /0/@diagram/@links.6/@labels.0/@modelFacet /0/@diagram/@links.7/@labels.0/@modelFacet /0/@diagram/@links.8/@labels.1/@modelFacet /0/@diagram/@links.9/@labels.1/@modelFacet /0/@diagram/@links.10/@labels.1/@modelFacet /0/@diagram/@links.12/@labels.1/@modelFacet /0/@diagram/@links.14/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.17/@labels.1/@modelFacet /0/@diagram/@topLevelNodes.16/@labels.1/@modelFacet /0/@diagram/@links.18/@labels.1/@modelFacet"
           qualifiedName="org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
@@ -7111,6 +7128,10 @@
           xsi:type="gmfgen:CustomParser"
           uses="/0/@diagram/@topLevelNodes.15/@labels.0/@modelFacet"
           qualifiedName="org.eclipse.papyrus.diagram.common.parser.ShortcutDiagramParser"/>
+      <implementations
+          xsi:type="gmfgen:CustomParser"
+          uses="/0/@diagram/@links.18/@labels.0/@modelFacet"
+          qualifiedName="org.eclipse.papyrus.diagram.clazz.custom.parsers.TemplateBindingParser"/>
     </labelParsers>
     <contextMenus
         context="/0/@diagram">

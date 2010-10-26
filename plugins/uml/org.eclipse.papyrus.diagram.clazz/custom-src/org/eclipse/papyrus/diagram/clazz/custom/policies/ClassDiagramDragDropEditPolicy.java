@@ -49,6 +49,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPartTN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.RedefinableTemplateSignatureEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.TemplateBindingEditPart;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.common.editpolicies.CommonDiagramDragDropEditPolicy;
@@ -57,6 +58,7 @@ import org.eclipse.uml2.uml.AssociationClass;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.PackageableElement;
+import org.eclipse.uml2.uml.TemplateBinding;
 import org.eclipse.uml2.uml.internal.impl.ClassifierImpl;
 
 /**
@@ -128,6 +130,8 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 			return UnexecutableCommand.INSTANCE;
 		}
 	}
+
+	
 
 	/**
 	 * {@inheritDoc}
@@ -264,7 +268,7 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 	protected Command dropChildNodeWithContainmentLink(DropObjectsRequest dropRequest, Element droppedElement, int nodeVISUALID) {
 		ContainmentHelper containmentHelper = new ContainmentHelper(getEditingDomain());
 		CompositeCommand cc = new CompositeCommand(CONTAINED_CLASS_DROP_TO_COMPARTMENT);
-		cc = getDefaultDropNodeCommand(nodeVISUALID, dropRequest.getLocation(), droppedElement);
+		cc.add(getDefaultDropNodeCommand(nodeVISUALID, dropRequest.getLocation(), droppedElement));
 
 		if((View)containmentHelper.findEditPartFor(getViewer().getEditPartRegistry(), droppedElement) != null) {
 			View droppedView = (View)containmentHelper.findEditPartFor(getViewer().getEditPartRegistry(), droppedElement).getModel();

@@ -20,11 +20,14 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import org.eclipse.papyrus.diagram.clazz.custom.command.BranchDependenctReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.command.CAssociationClassCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.command.CAssociationReorientCommand;
+import org.eclipse.papyrus.diagram.clazz.custom.command.CTemplateBindingCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.command.CustomAssociationBranchReorientCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.TemplateBindingCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationBranchEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClass2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyBranchEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.TemplateBindingEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.PrimitiveTypeItemSemanticEditPolicyCN;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 
@@ -44,6 +47,9 @@ public class CustomPrimitiveTypeItemSemanticEditPolicyCN extends PrimitiveTypeIt
 		if(UMLElementTypes.AssociationClass_4017 == req.getElementType()) {
 			return getGEFWrapper(new CAssociationClassCreateCommand(req, req.getSource(), req.getTarget()));
 		}
+		if(UMLElementTypes.TemplateBinding_4015 == req.getElementType()) {
+			return getGEFWrapper(new CTemplateBindingCreateCommand(req, req.getSource(), req.getTarget()));
+		}
 		return super.getCompleteCreateRelationshipCommand(req);
 	}
 
@@ -57,6 +63,8 @@ public class CustomPrimitiveTypeItemSemanticEditPolicyCN extends PrimitiveTypeIt
 			return getGEFWrapper(new BranchDependenctReorientCommand(req));
 		case AssociationBranchEditPart.VISUAL_ID:
 			return getGEFWrapper(new CustomAssociationBranchReorientCommand(req));
+		case TemplateBindingEditPart.VISUAL_ID:
+			return UnexecutableCommand.INSTANCE;
 		}
 		return super.getReorientRelationshipCommand(req);
 	}
@@ -76,7 +84,9 @@ public class CustomPrimitiveTypeItemSemanticEditPolicyCN extends PrimitiveTypeIt
 		if(UMLElementTypes.Association_4019 == req.getElementType()) {
 			return UnexecutableCommand.INSTANCE;
 		}
-
+		if(UMLElementTypes.TemplateBinding_4015 == req.getElementType()) {
+			return getGEFWrapper(new CTemplateBindingCreateCommand(req, req.getSource(), req.getTarget()));
+		}
 		return super.getStartCreateRelationshipCommand(req);
 	}
 }

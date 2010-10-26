@@ -1,3 +1,15 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ */
 package org.eclipse.papyrus.diagram.clazz.edit.policies;
 
 import java.util.ArrayList;
@@ -67,9 +79,6 @@ public class PackageMergeItemSemanticEditPolicy extends UMLBaseItemSemanticEditP
 		if(UMLElementTypes.ConstraintConstrainedElement_4014 == req.getElementType()) {
 			return null;
 		}
-		if(UMLElementTypes.TemplateBinding_4015 == req.getElementType()) {
-			return null;
-		}
 		return null;
 	}
 
@@ -83,24 +92,7 @@ public class PackageMergeItemSemanticEditPolicy extends UMLBaseItemSemanticEditP
 		if(UMLElementTypes.ConstraintConstrainedElement_4014 == req.getElementType()) {
 			return getGEFWrapper(new ConstraintConstrainedElementCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.TemplateBinding_4015 == req.getElementType()) {
-			return getGEFWrapper(new TemplateBindingCreateCommand(req, req.getSource(), req.getTarget()));
-		}
 		return null;
-	}
-
-	/**
-	 * Returns command to reorient EClass based link. New link target or source
-	 * should be the domain model element associated with this node.
-	 * 
-	 * @generated
-	 */
-	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
-		switch(getVisualID(req)) {
-		case TemplateBindingEditPart.VISUAL_ID:
-			return getGEFWrapper(new TemplateBindingReorientCommand(req));
-		}
-		return super.getReorientRelationshipCommand(req);
 	}
 
 	/**

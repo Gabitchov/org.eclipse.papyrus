@@ -1,3 +1,15 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ */
 package org.eclipse.papyrus.diagram.clazz.edit.parts;
 
 import java.util.ArrayList;
@@ -944,16 +956,10 @@ NamedElementEditPart {
 		if(targetEditPart instanceof PackageEditPartCN) {
 			types.add(UMLElementTypes.PackageMerge_4011);
 		}
-		if(targetEditPart instanceof Dependency2EditPart) {
-			types.add(UMLElementTypes.TemplateBinding_4015);
-		}
 		if(targetEditPart instanceof AssociationClassEditPart) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
 		if(targetEditPart instanceof AssociationNodeEditPart) {
-			types.add(UMLElementTypes.TemplateBinding_4015);
-		}
-		if(targetEditPart instanceof InstanceSpecificationEditPart) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
 		if(targetEditPart instanceof ComponentEditPart) {
@@ -983,30 +989,6 @@ NamedElementEditPart {
 		if(targetEditPart instanceof DataTypeEditPart) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
-		if(targetEditPart instanceof ConstraintEditPart) {
-			types.add(UMLElementTypes.TemplateBinding_4015);
-		}
-		if(targetEditPart instanceof CommentEditPart) {
-			types.add(UMLElementTypes.TemplateBinding_4015);
-		}
-		if(targetEditPart instanceof DurationObservationEditPart) {
-			types.add(UMLElementTypes.TemplateBinding_4015);
-		}
-		if(targetEditPart instanceof TimeObservationEditPart) {
-			types.add(UMLElementTypes.TemplateBinding_4015);
-		}
-		if(targetEditPart instanceof DefaultNamedElementEditPart) {
-			types.add(UMLElementTypes.TemplateBinding_4015);
-		}
-		if(targetEditPart instanceof ShapeNamedElementEditPart) {
-			types.add(UMLElementTypes.TemplateBinding_4015);
-		}
-		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
-			types.add(UMLElementTypes.TemplateBinding_4015);
-		}
-		if(targetEditPart instanceof InstanceSpecificationEditPartCN) {
-			types.add(UMLElementTypes.TemplateBinding_4015);
-		}
 		if(targetEditPart instanceof ComponentEditPartCN) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
@@ -1032,18 +1014,6 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
 		if(targetEditPart instanceof DataTypeEditPartCN) {
-			types.add(UMLElementTypes.TemplateBinding_4015);
-		}
-		if(targetEditPart instanceof Comment2EditPart) {
-			types.add(UMLElementTypes.TemplateBinding_4015);
-		}
-		if(targetEditPart instanceof Constraint2EditPart) {
-			types.add(UMLElementTypes.TemplateBinding_4015);
-		}
-		if(targetEditPart instanceof ContainmentCircleEditPart) {
-			types.add(UMLElementTypes.TemplateBinding_4015);
-		}
-		if(targetEditPart instanceof TemplateSignatureEditPart) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
 		if(targetEditPart instanceof Dependency2EditPart) {
@@ -1346,10 +1316,8 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.Model_3024);
 			types.add(UMLElementTypes.Package_3009);
 		} else if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
-			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);
 			types.add(UMLElementTypes.Association_2015);
-			types.add(UMLElementTypes.InstanceSpecification_2001);
 			types.add(UMLElementTypes.Component_2002);
 			types.add(UMLElementTypes.Signal_2003);
 			types.add(UMLElementTypes.Interface_2004);
@@ -1359,14 +1327,6 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.Class_2008);
 			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
-			types.add(UMLElementTypes.Constraint_2011);
-			types.add(UMLElementTypes.Comment_2012);
-			types.add(UMLElementTypes.DurationObservation_2095);
-			types.add(UMLElementTypes.TimeObservation_2096);
-			types.add(UMLElementTypes.NamedElement_2097);
-			types.add(UMLElementTypes.NamedElement_2098);
-			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
-			types.add(UMLElementTypes.InstanceSpecification_3020);
 			types.add(UMLElementTypes.Component_3021);
 			types.add(UMLElementTypes.Signal_3022);
 			types.add(UMLElementTypes.Interface_3023);
@@ -1376,10 +1336,6 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
-			types.add(UMLElementTypes.Comment_3028);
-			types.add(UMLElementTypes.Constraint_3029);
-			types.add(UMLElementTypes.Port_3032);
-			types.add(UMLElementTypes.TemplateSignature_3033);
 		} else if(relationshipType == UMLElementTypes.Dependency_4022) {
 			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);

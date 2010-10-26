@@ -1,3 +1,15 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ */
 package org.eclipse.papyrus.diagram.clazz.edit.policies;
 
 import java.util.ArrayList;
@@ -156,9 +168,6 @@ public class InstanceSpecificationItemSemanticEditPolicyCN extends UMLBaseItemSe
 		if(UMLElementTypes.ConstraintConstrainedElement_4014 == req.getElementType()) {
 			return null;
 		}
-		if(UMLElementTypes.TemplateBinding_4015 == req.getElementType()) {
-			return null;
-		}
 		if(UMLElementTypes.Dependency_4022 == req.getElementType()) {
 			return getGEFWrapper(new AddedLinkCreateCommand(req, req.getSource(), req.getTarget()));
 		}
@@ -199,9 +208,6 @@ public class InstanceSpecificationItemSemanticEditPolicyCN extends UMLBaseItemSe
 		if(UMLElementTypes.ConstraintConstrainedElement_4014 == req.getElementType()) {
 			return getGEFWrapper(new ConstraintConstrainedElementCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.TemplateBinding_4015 == req.getElementType()) {
-			return getGEFWrapper(new TemplateBindingCreateCommand(req, req.getSource(), req.getTarget()));
-		}
 		if(UMLElementTypes.Dependency_4022 == req.getElementType()) {
 			return getGEFWrapper(new AddedLinkCreateCommand(req, req.getSource(), req.getTarget()));
 		}
@@ -234,8 +240,6 @@ public class InstanceSpecificationItemSemanticEditPolicyCN extends UMLBaseItemSe
 			return getGEFWrapper(new Dependency2ReorientCommand(req));
 		case ElementImportEditPart.VISUAL_ID:
 			return getGEFWrapper(new ElementImportReorientCommand(req));
-		case TemplateBindingEditPart.VISUAL_ID:
-			return getGEFWrapper(new TemplateBindingReorientCommand(req));
 		case AddedLinkEditPart.VISUAL_ID:
 			return getGEFWrapper(new AddedLinkReorientCommand(req));
 		}

@@ -1,3 +1,15 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ */
 package org.eclipse.papyrus.diagram.clazz.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -15,6 +27,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.policies.UMLBaseItemSemanticEditPo
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.TemplateBinding;
 import org.eclipse.uml2.uml.TemplateableElement;
+import org.eclipse.uml2.uml.UMLFactory;
 
 /**
  * @generated
@@ -24,17 +37,17 @@ public class TemplateBindingCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	private final EObject source;
+	protected final EObject source;
 
 	/**
 	 * @generated
 	 */
-	private final EObject target;
+	protected final EObject target;
 
 	/**
 	 * @generated
 	 */
-	private final TemplateableElement container;
+	protected TemplateableElement container;
 
 	/**
 	 * @generated
@@ -56,7 +69,7 @@ public class TemplateBindingCreateCommand extends EditElementCommand {
 		if(source != null && false == source instanceof TemplateableElement) {
 			return false;
 		}
-		if(target != null && false == target instanceof Element) {
+		if(target != null && false == target instanceof TemplateableElement) {
 			return false;
 		}
 		if(getSource() == null) {
@@ -77,7 +90,13 @@ public class TemplateBindingCreateCommand extends EditElementCommand {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 
-		throw new UnsupportedOperationException();
+		TemplateBinding newElement = UMLFactory.eINSTANCE.createTemplateBinding();
+		getContainer().getTemplateBindings().add(newElement);
+		newElement.setBoundElement(getSource());
+		newElement.setBoundElement(getTarget());
+		doConfigure(newElement, monitor, info);
+		((CreateElementRequest)getRequest()).setNewElement(newElement);
+		return CommandResult.newOKCommandResult(newElement);
 
 	}
 
@@ -114,8 +133,8 @@ public class TemplateBindingCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected Element getTarget() {
-		return (Element)target;
+	protected TemplateableElement getTarget() {
+		return (TemplateableElement)target;
 	}
 
 	/**
@@ -131,7 +150,7 @@ public class TemplateBindingCreateCommand extends EditElementCommand {
 	 * 
 	 * @generated
 	 */
-	private static TemplateableElement deduceContainer(EObject source, EObject target) {
+	protected TemplateableElement deduceContainer(EObject source, EObject target) {
 		// Find container element for the new link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
