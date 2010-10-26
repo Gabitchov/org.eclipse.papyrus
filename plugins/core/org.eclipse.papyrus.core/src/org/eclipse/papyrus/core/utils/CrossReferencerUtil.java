@@ -10,11 +10,11 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.diagram.composite.custom.utils;
+package org.eclipse.papyrus.core.utils;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -23,7 +23,7 @@ import org.eclipse.gmf.runtime.emf.core.util.CrossReferenceAdapter;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 
-public class CrossReferencedUtil {
+public class CrossReferencerUtil {
 
 	/**
 	 * Returns the {@link CrossReferenceAdapter} corresponding to an {@link EObject}
@@ -48,20 +48,20 @@ public class CrossReferencedUtil {
 
 	/**
 	 * <pre>
-	 * This method looks for any views in Composite Structure Diagram that are currently
+	 * This method looks for any views (possibly filtered by a kind of diagram) that are currently
 	 * referencing the referencedObject.
 	 * </pre>
 	 * 
 	 * @param referencedObject
 	 * @param diagramType
-	 *        type of diagram containing the list of {@link View}
+	 *        type of diagram containing the list of {@link View} (may be null)
 	 * @return the list of {@link View} referencing the referencedObject
 	 */
-	public static List<View> getCrossReferencingViews(EObject referencedObject, String diagramType) {
+	public static Set<View> getCrossReferencingViews(EObject referencedObject, String diagramType) {
 
-		List<View> referencingObjects = new ArrayList<View>();
+		Set<View> referencingObjects = new HashSet<View>();
 
-		CrossReferenceAdapter crossReferenceAdapter = CrossReferencedUtil.getCrossReferenceAdapter(referencedObject);
+		CrossReferenceAdapter crossReferenceAdapter = CrossReferencerUtil.getCrossReferenceAdapter(referencedObject);
 		if(crossReferenceAdapter != null) {
 
 			// Retrieve all views referencing the referencedObject
@@ -69,8 +69,14 @@ public class CrossReferencedUtil {
 			while(views.hasNext()) {
 
 				View view = (View)views.next();
-				// Check if current view is owned by a diagram which type conforms to diagramType
-				if(diagramType.equals(view.getDiagram().getType())) {
+				if(diagramType != null) { // Filter to get only view from this kind of diagram
+
+					// Check if current view is owned by a diagram which type conforms to diagramType
+					if(diagramType.equals(view.getDiagram().getType())) {
+						referencingObjects.add(view);
+					}
+
+				} else { // Return all views
 					referencingObjects.add(view);
 				}
 			}

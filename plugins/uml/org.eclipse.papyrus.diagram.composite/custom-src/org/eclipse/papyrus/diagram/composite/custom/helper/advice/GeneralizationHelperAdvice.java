@@ -18,15 +18,12 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.composite.custom.utils.CrossReferencedUtil;
+import org.eclipse.papyrus.core.utils.CrossReferencerUtil;
 import org.eclipse.papyrus.diagram.composite.custom.utils.GeneralizationUtil;
 import org.eclipse.papyrus.diagram.composite.edit.parts.CompositeStructureDiagramEditPart;
 import org.eclipse.uml2.uml.Classifier;
@@ -45,27 +42,19 @@ public class GeneralizationHelperAdvice extends AbstractEditHelperAdvice {
 	@Override
 	protected ICommand getBeforeReorientRelationshipCommand(ReorientRelationshipRequest request) {
 
+		// The list of member views becoming inconsistent after re-orient that should be deleted.
 		Set<View> viewsToDestroy = new HashSet<View>();
 
 		if(request.getRelationship() instanceof Generalization) {
-			viewsToDestroy = getMemberViewsToDestroy((Generalization)request.getRelationship());
+			viewsToDestroy.addAll(getMemberViewsToDestroy((Generalization)request.getRelationship()));
 		}
 
 		//return the command to destroy all these views
-		ICommand gmfCommand = null;
 		if(!viewsToDestroy.isEmpty()) {
-			Iterator<View> it = viewsToDestroy.iterator();
-			while(it.hasNext()) {
-				DestroyElementRequest der = new DestroyElementRequest(request.getEditingDomain(), it.next(), false);
-				// Add current EObject destroy command to the global command
-				gmfCommand = CompositeCommand.compose(gmfCommand, new DestroyElementCommand(der));
-			}
 
-			if(gmfCommand == null) {
-				return null;
-			}
+			DestroyDependentsRequest ddr = new DestroyDependentsRequest(request.getEditingDomain(), request.getRelationship(), false);
+			return ddr.getDestroyDependentsCommand(viewsToDestroy);
 
-			return gmfCommand.reduce();
 		}
 		return null;
 	}
@@ -106,7 +95,7 @@ public class GeneralizationHelperAdvice extends AbstractEditHelperAdvice {
 		for(NamedElement member : members) {
 
 			// Find Views in Composite Structure Diagram that are referencing current member
-			Iterator<View> viewIt = CrossReferencedUtil.getCrossReferencingViews(member, CompositeStructureDiagramEditPart.MODEL_ID).iterator();
+			Iterator<View> viewIt = CrossReferencerUtil.getCrossReferencingViews(member, CompositeStructureDiagramEditPart.MODEL_ID).iterator();
 			while(viewIt.hasNext()) {
 				View view = (View)viewIt.next();
 
