@@ -1,16 +1,9 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+/**
+ * <copyright>
+ * </copyright>
  *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
+
+ */
 package org.eclipse.papyrus.state.editor.xtext.umlState;
 
 import org.eclipse.emf.ecore.EFactory;
@@ -41,6 +34,24 @@ public interface UmlStateFactory extends EFactory
    * @generated
    */
   StateRule createStateRule();
+
+  /**
+   * Returns a new object of class '<em>Submachine Rule</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Submachine Rule</em>'.
+   * @generated
+   */
+  SubmachineRule createSubmachineRule();
+
+  /**
+   * Returns a new object of class '<em>Qualified Name</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Qualified Name</em>'.
+   * @generated
+   */
+  QualifiedName createQualifiedName();
 
   /**
    * Returns a new object of class '<em>Entry Rule</em>'.

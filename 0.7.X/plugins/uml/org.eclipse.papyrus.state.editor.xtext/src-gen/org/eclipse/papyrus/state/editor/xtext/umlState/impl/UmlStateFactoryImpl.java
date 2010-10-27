@@ -1,16 +1,9 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+/**
+ * <copyright>
+ * </copyright>
  *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
+
+ */
 package org.eclipse.papyrus.state.editor.xtext.umlState.impl;
 
 import org.eclipse.emf.ecore.EClass;
@@ -77,6 +70,8 @@ public class UmlStateFactoryImpl extends EFactoryImpl implements UmlStateFactory
     switch (eClass.getClassifierID())
     {
       case UmlStatePackage.STATE_RULE: return createStateRule();
+      case UmlStatePackage.SUBMACHINE_RULE: return createSubmachineRule();
+      case UmlStatePackage.QUALIFIED_NAME: return createQualifiedName();
       case UmlStatePackage.ENTRY_RULE: return createEntryRule();
       case UmlStatePackage.DO_RULE: return createDoRule();
       case UmlStatePackage.EXIT_RULE: return createExitRule();
@@ -128,6 +123,28 @@ public class UmlStateFactoryImpl extends EFactoryImpl implements UmlStateFactory
   {
     StateRuleImpl stateRule = new StateRuleImpl();
     return stateRule;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public SubmachineRule createSubmachineRule()
+  {
+    SubmachineRuleImpl submachineRule = new SubmachineRuleImpl();
+    return submachineRule;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public QualifiedName createQualifiedName()
+  {
+    QualifiedNameImpl qualifiedName = new QualifiedNameImpl();
+    return qualifiedName;
   }
 
   /**

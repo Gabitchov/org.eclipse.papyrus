@@ -1,16 +1,9 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+/**
+ * <copyright>
+ * </copyright>
  *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
+
+ */
 package org.eclipse.papyrus.state.editor.xtext.umlState.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -25,7 +18,9 @@ import org.eclipse.papyrus.state.editor.xtext.umlState.BehaviorKind;
 import org.eclipse.papyrus.state.editor.xtext.umlState.DoRule;
 import org.eclipse.papyrus.state.editor.xtext.umlState.EntryRule;
 import org.eclipse.papyrus.state.editor.xtext.umlState.ExitRule;
+import org.eclipse.papyrus.state.editor.xtext.umlState.QualifiedName;
 import org.eclipse.papyrus.state.editor.xtext.umlState.StateRule;
+import org.eclipse.papyrus.state.editor.xtext.umlState.SubmachineRule;
 import org.eclipse.papyrus.state.editor.xtext.umlState.UmlStateFactory;
 import org.eclipse.papyrus.state.editor.xtext.umlState.UmlStatePackage;
 
@@ -45,6 +40,20 @@ public class UmlStatePackageImpl extends EPackageImpl implements UmlStatePackage
    * @generated
    */
   private EClass stateRuleEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass submachineRuleEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass qualifiedNameEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -165,7 +174,7 @@ public class UmlStatePackageImpl extends EPackageImpl implements UmlStatePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getStateRule_Entry()
+  public EReference getStateRule_Submachine()
   {
     return (EReference)stateRuleEClass.getEStructuralFeatures().get(1);
   }
@@ -175,7 +184,7 @@ public class UmlStatePackageImpl extends EPackageImpl implements UmlStatePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getStateRule_Do()
+  public EReference getStateRule_Entry()
   {
     return (EReference)stateRuleEClass.getEStructuralFeatures().get(2);
   }
@@ -185,9 +194,79 @@ public class UmlStatePackageImpl extends EPackageImpl implements UmlStatePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getStateRule_Exit()
+  public EReference getStateRule_Do()
   {
     return (EReference)stateRuleEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getStateRule_Exit()
+  {
+    return (EReference)stateRuleEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getSubmachineRule()
+  {
+    return submachineRuleEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getSubmachineRule_Path()
+  {
+    return (EReference)submachineRuleEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getSubmachineRule_Submachine()
+  {
+    return (EReference)submachineRuleEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getQualifiedName()
+  {
+    return qualifiedNameEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getQualifiedName_Path()
+  {
+    return (EReference)qualifiedNameEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getQualifiedName_Remaining()
+  {
+    return (EReference)qualifiedNameEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -322,9 +401,18 @@ public class UmlStatePackageImpl extends EPackageImpl implements UmlStatePackage
     // Create classes and their features
     stateRuleEClass = createEClass(STATE_RULE);
     createEAttribute(stateRuleEClass, STATE_RULE__NAME);
+    createEReference(stateRuleEClass, STATE_RULE__SUBMACHINE);
     createEReference(stateRuleEClass, STATE_RULE__ENTRY);
     createEReference(stateRuleEClass, STATE_RULE__DO);
     createEReference(stateRuleEClass, STATE_RULE__EXIT);
+
+    submachineRuleEClass = createEClass(SUBMACHINE_RULE);
+    createEReference(submachineRuleEClass, SUBMACHINE_RULE__PATH);
+    createEReference(submachineRuleEClass, SUBMACHINE_RULE__SUBMACHINE);
+
+    qualifiedNameEClass = createEClass(QUALIFIED_NAME);
+    createEReference(qualifiedNameEClass, QUALIFIED_NAME__PATH);
+    createEReference(qualifiedNameEClass, QUALIFIED_NAME__REMAINING);
 
     entryRuleEClass = createEClass(ENTRY_RULE);
     createEAttribute(entryRuleEClass, ENTRY_RULE__KIND);
@@ -366,6 +454,9 @@ public class UmlStatePackageImpl extends EPackageImpl implements UmlStatePackage
     setNsPrefix(eNS_PREFIX);
     setNsURI(eNS_URI);
 
+    // Obtain other dependent packages
+    UMLPackage theUMLPackage = (UMLPackage)EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI);
+
     // Create type parameters
 
     // Set bounds for type parameters
@@ -375,9 +466,18 @@ public class UmlStatePackageImpl extends EPackageImpl implements UmlStatePackage
     // Initialize classes and features; add operations and parameters
     initEClass(stateRuleEClass, StateRule.class, "StateRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getStateRule_Name(), ecorePackage.getEString(), "name", null, 0, 1, StateRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getStateRule_Submachine(), this.getSubmachineRule(), null, "submachine", null, 0, 1, StateRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getStateRule_Entry(), this.getEntryRule(), null, "entry", null, 0, 1, StateRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getStateRule_Do(), this.getDoRule(), null, "do", null, 0, 1, StateRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getStateRule_Exit(), this.getExitRule(), null, "exit", null, 0, 1, StateRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(submachineRuleEClass, SubmachineRule.class, "SubmachineRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getSubmachineRule_Path(), this.getQualifiedName(), null, "path", null, 0, 1, SubmachineRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSubmachineRule_Submachine(), theUMLPackage.getStateMachine(), null, "submachine", null, 0, 1, SubmachineRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(qualifiedNameEClass, QualifiedName.class, "QualifiedName", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getQualifiedName_Path(), theUMLPackage.getNamespace(), null, "path", null, 0, 1, QualifiedName.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getQualifiedName_Remaining(), this.getQualifiedName(), null, "remaining", null, 0, 1, QualifiedName.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(entryRuleEClass, EntryRule.class, "EntryRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getEntryRule_Kind(), this.getBehaviorKind(), "kind", null, 0, 1, EntryRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -5,10 +5,22 @@
     nsURI="http://www.eclipse.org/papyrus/state/editor/xtext/UmlState" nsPrefix="umlState">
   <eClassifiers xsi:type="ecore:EClass" name="StateRule">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="submachine" eType="#//SubmachineRule"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="entry" eType="#//EntryRule"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="do" eType="#//DoRule" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="exit" eType="#//ExitRule"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SubmachineRule">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="path" eType="#//QualifiedName"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="submachine" eType="ecore:EClass ../../../../../../../model/UML.ecore#//StateMachine"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="QualifiedName">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="path" eType="ecore:EClass ../../../../../../../model/UML.ecore#//Namespace"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="remaining" eType="#//QualifiedName"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EntryRule">
