@@ -43,7 +43,7 @@ public class CombinedFragmentPreferencePage extends AbstractPapyrusNodePreferenc
 	 */
 	@Override
 	protected String getBundleId() {
-		return UMLDiagramEditorPlugin.getInstance().ID;
+		return UMLDiagramEditorPlugin.ID;
 	}
 
 	/**

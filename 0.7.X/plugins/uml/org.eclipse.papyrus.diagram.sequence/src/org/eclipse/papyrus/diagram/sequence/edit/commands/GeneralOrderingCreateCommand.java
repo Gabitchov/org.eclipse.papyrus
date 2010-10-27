@@ -30,18 +30,18 @@ public class GeneralOrderingCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	private final EObject source;
+	protected final EObject source;
 
 	/**
 	 * @generated
 	 */
-	private final EObject target;
+	protected final EObject target;
 
 
 	/**
 	 * @generated
 	 */
-	private final InteractionFragment container;
+	protected InteractionFragment container;
 
 	/**
 	 * Non generated, completely redefined to find correct ends and correct container
@@ -172,7 +172,7 @@ public class GeneralOrderingCreateCommand extends EditElementCommand {
 	 * 
 	 * @generated
 	 */
-	private static InteractionFragment deduceContainer(EObject source, EObject target) {
+	protected InteractionFragment deduceContainer(EObject source, EObject target) {
 		// Find container element for the new link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
