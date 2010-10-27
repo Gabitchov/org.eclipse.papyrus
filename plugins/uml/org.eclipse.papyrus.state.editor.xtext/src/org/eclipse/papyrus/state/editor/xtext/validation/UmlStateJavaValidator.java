@@ -93,6 +93,12 @@ public class UmlStateJavaValidator extends AbstractUmlStateJavaValidator {
 		if (alreadyUsedNames.contains("" + newName))
 			warning("Name " + newName + " is already used by another State in this Region", UmlStatePackage.STATE_RULE__NAME) ;
 		
+		
+		// Check if ConnectionPointReference exist when one delete the submachine reference: not allowed!
+		if((stateRule.getSubmachine() == null) && !editedState.getConnections().isEmpty()){
+			error(getErrorMessageForSubmachineState(), stateRule, UmlStatePackage.STATE_RULE) ;
+	
+		}
 		//
 		// Then, checks if the textual specification implies deletion of the DoActivity, Entry or Exit behavior
 		// and raises warnings accordingly
@@ -271,7 +277,11 @@ public class UmlStateJavaValidator extends AbstractUmlStateJavaValidator {
 	private String getErrorMessageForCompositeState() {
 		return "A composite state cannot reference a submachine." ;
 	}
-	
+
+	private String getErrorMessageForSubmachineState() {
+		return "A simple state cannot have ConnectionPointReferences. You should delete them before removing the reference to the submachine." ;
+	}
+
 	private static BehaviorKind getBehaviorKind(Behavior behavior) {
 		if (behavior == null)
 			return null ;
