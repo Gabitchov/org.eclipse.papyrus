@@ -196,19 +196,9 @@ public class UmlTransitionPackageImpl extends EPackageImpl implements UmlTransit
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getTransitionRule_Name()
-  {
-    return (EAttribute)transitionRuleEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EReference getTransitionRule_Triggers()
   {
-    return (EReference)transitionRuleEClass.getEStructuralFeatures().get(1);
+    return (EReference)transitionRuleEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -218,7 +208,7 @@ public class UmlTransitionPackageImpl extends EPackageImpl implements UmlTransit
    */
   public EReference getTransitionRule_Guard()
   {
-    return (EReference)transitionRuleEClass.getEStructuralFeatures().get(2);
+    return (EReference)transitionRuleEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -228,7 +218,7 @@ public class UmlTransitionPackageImpl extends EPackageImpl implements UmlTransit
    */
   public EReference getTransitionRule_Effect()
   {
-    return (EReference)transitionRuleEClass.getEStructuralFeatures().get(3);
+    return (EReference)transitionRuleEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -432,7 +422,6 @@ public class UmlTransitionPackageImpl extends EPackageImpl implements UmlTransit
 
     // Create classes and their features
     transitionRuleEClass = createEClass(TRANSITION_RULE);
-    createEAttribute(transitionRuleEClass, TRANSITION_RULE__NAME);
     createEReference(transitionRuleEClass, TRANSITION_RULE__TRIGGERS);
     createEReference(transitionRuleEClass, TRANSITION_RULE__GUARD);
     createEReference(transitionRuleEClass, TRANSITION_RULE__EFFECT);
@@ -507,7 +496,6 @@ public class UmlTransitionPackageImpl extends EPackageImpl implements UmlTransit
 
     // Initialize classes and features; add operations and parameters
     initEClass(transitionRuleEClass, TransitionRule.class, "TransitionRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getTransitionRule_Name(), ecorePackage.getEString(), "name", null, 0, 1, TransitionRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getTransitionRule_Triggers(), this.getEventRule(), null, "triggers", null, 0, -1, TransitionRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getTransitionRule_Guard(), this.getGuardRule(), null, "guard", null, 0, 1, TransitionRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getTransitionRule_Effect(), this.getEffectRule(), null, "effect", null, 0, 1, TransitionRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

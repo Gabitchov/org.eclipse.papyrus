@@ -140,9 +140,6 @@ public class TransitionPopupEditorConfigurationContribution extends PopupEditorC
 			Transition transition = (Transition)editedObject;
 			String textToEdit = "";
 
-			// Name
-			textToEdit = textToEdit + transition.getName() + "\n";
-
 			// Triggers
 			if(!transition.getTriggers().isEmpty()) {
 				boolean isFirstTrigger = true;
@@ -257,9 +254,7 @@ public class TransitionPopupEditorConfigurationContribution extends PopupEditorC
 			//////////////////////////////////////////////////////////////////////////////////////////////////
 			// Then extract any relevant information from the TransitionRuleObject, and update the Transition
 			//////////////////////////////////////////////////////////////////////////////////////////////////
-			// Extract the new name for the transition
-			this.newName = "" + transitionRuleObject.getName();
-			transition.setName(this.newName);
+
 			// Create the new triggers
 			if(transitionRuleObject.getTriggers() != null) {
 				for(EventRule eventRule : transitionRuleObject.getTriggers()) {

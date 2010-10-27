@@ -72,22 +72,13 @@ public interface UmlTransitionPackage extends EPackage
   int TRANSITION_RULE = 0;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TRANSITION_RULE__NAME = 0;
-
-  /**
    * The feature id for the '<em><b>Triggers</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int TRANSITION_RULE__TRIGGERS = 1;
+  int TRANSITION_RULE__TRIGGERS = 0;
 
   /**
    * The feature id for the '<em><b>Guard</b></em>' containment reference.
@@ -96,7 +87,7 @@ public interface UmlTransitionPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TRANSITION_RULE__GUARD = 2;
+  int TRANSITION_RULE__GUARD = 1;
 
   /**
    * The feature id for the '<em><b>Effect</b></em>' containment reference.
@@ -105,7 +96,7 @@ public interface UmlTransitionPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TRANSITION_RULE__EFFECT = 3;
+  int TRANSITION_RULE__EFFECT = 2;
 
   /**
    * The number of structural features of the '<em>Transition Rule</em>' class.
@@ -114,7 +105,7 @@ public interface UmlTransitionPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TRANSITION_RULE_FEATURE_COUNT = 4;
+  int TRANSITION_RULE_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.eclipse.papyrus.transition.editor.xtext.umlTransition.impl.EventRuleImpl <em>Event Rule</em>}' class.
@@ -390,17 +381,6 @@ public interface UmlTransitionPackage extends EPackage
   EClass getTransitionRule();
 
   /**
-   * Returns the meta object for the attribute '{@link org.eclipse.papyrus.transition.editor.xtext.umlTransition.TransitionRule#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.eclipse.papyrus.transition.editor.xtext.umlTransition.TransitionRule#getName()
-   * @see #getTransitionRule()
-   * @generated
-   */
-  EAttribute getTransitionRule_Name();
-
-  /**
    * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.transition.editor.xtext.umlTransition.TransitionRule#getTriggers <em>Triggers</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -642,14 +622,6 @@ public interface UmlTransitionPackage extends EPackage
      * @generated
      */
     EClass TRANSITION_RULE = eINSTANCE.getTransitionRule();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute TRANSITION_RULE__NAME = eINSTANCE.getTransitionRule_Name();
 
     /**
      * The meta object literal for the '<em><b>Triggers</b></em>' containment reference list feature.
