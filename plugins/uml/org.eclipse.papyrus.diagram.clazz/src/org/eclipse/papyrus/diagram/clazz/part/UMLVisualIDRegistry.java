@@ -1744,6 +1744,9 @@ public class UMLVisualIDRegistry {
 			if(ConstraintLabelEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(AppliedStereotypeGeneralizationSetLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		}
 		return false;
@@ -2089,6 +2092,9 @@ public class UMLVisualIDRegistry {
 		root.addNode(1000, viewInfo);
 
 		labelInfo = new BaseViewInfo(5067, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+		labelInfo = new BaseViewInfo(6037, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
 		viewInfo = new BaseViewInfo(4021, ViewInfo.Edge, "");

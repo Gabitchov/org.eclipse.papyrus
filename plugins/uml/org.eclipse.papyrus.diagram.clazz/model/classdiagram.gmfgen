@@ -5445,6 +5445,10 @@
                 xsi:type="gmfgen:LabelOffsetAttributes"
                 y="40"/>
           </viewmap>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.diagram.clazz.custom.policies.TemplateBindingDisplayEditPolicy.TEMPLATE_PARAMETER_DISPLAY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.TemplateBindingDisplayEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.10"/>
         </labels>
@@ -5463,10 +5467,6 @@
                 xsi:type="gmfgen:LabelOffsetAttributes"
                 y="20"/>
           </viewmap>
-          <behaviour
-              xsi:type="gmfgen:CustomBehaviour"
-              key="org.eclipse.papyrus.diagram.clazz.custom.policies.TemplateBindingDisplayEditPolicy.TEMPLATE_PARAMETER_DISPLAY"
-              editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.TemplateBindingDisplayEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.3"/>
         </labels>
@@ -5537,6 +5537,23 @@
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/GeneralizationSet/isDisjoint"/>
           </modelFacet>
+        </labels>
+        <labels
+            visualID="6037"
+            editPartClassName="AppliedStereotypeGeneralizationSetLabelEditPart"
+            itemSemanticEditPolicyClassName="AppliedStereotypeGeneralizationSetLabelItemSemanticEditPolicy">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:ParentAssignedViewmap"
+              getterName="getAppliedStereotypeLabel"
+              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+            <attributes
+                xsi:type="gmfgen:LabelOffsetAttributes"
+                y="40"/>
+          </viewmap>
+          <modelFacet
+              parser="/0/@labelParsers/@implementations.3"/>
         </labels>
       </links>
       <links
@@ -7106,7 +7123,7 @@
           qualifiedName="org.eclipse.papyrus.diagram.clazz.custom.parsers.GeneralizationSetConstraintParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@links.2/@labels.0/@modelFacet /0/@diagram/@links.5/@labels.0/@modelFacet /0/@diagram/@links.6/@labels.0/@modelFacet /0/@diagram/@links.7/@labels.0/@modelFacet /0/@diagram/@links.8/@labels.1/@modelFacet /0/@diagram/@links.9/@labels.1/@modelFacet /0/@diagram/@links.10/@labels.1/@modelFacet /0/@diagram/@links.12/@labels.1/@modelFacet /0/@diagram/@links.14/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.17/@labels.1/@modelFacet /0/@diagram/@topLevelNodes.16/@labels.1/@modelFacet /0/@diagram/@links.18/@labels.1/@modelFacet"
+          uses="/0/@diagram/@links.2/@labels.0/@modelFacet /0/@diagram/@links.5/@labels.0/@modelFacet /0/@diagram/@links.6/@labels.0/@modelFacet /0/@diagram/@links.7/@labels.0/@modelFacet /0/@diagram/@links.8/@labels.1/@modelFacet /0/@diagram/@links.9/@labels.1/@modelFacet /0/@diagram/@links.10/@labels.1/@modelFacet /0/@diagram/@links.12/@labels.1/@modelFacet /0/@diagram/@links.14/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.17/@labels.1/@modelFacet /0/@diagram/@topLevelNodes.16/@labels.1/@modelFacet /0/@diagram/@links.18/@labels.1/@modelFacet /0/@diagram/@links.19/@labels.1/@modelFacet"
           qualifiedName="org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"

@@ -33,6 +33,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeAbstraction
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeAssociationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeDependencyEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeElementImportEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeGeneralizationSetLabelEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeInterfaceRealizationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypePackageImportEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypePackageMergeEditPart;
@@ -1478,6 +1479,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private AppliedStereotypeParser generalizationSetLabel_6037Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getGeneralizationSetLabel_6037Parser() {
+		if(generalizationSetLabel_6037Parser == null) {
+			generalizationSetLabel_6037Parser = new AppliedStereotypeParser();
+		}
+		return generalizationSetLabel_6037Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	protected IParser getParser(int visualID) {
 		switch(visualID) {
 		case MultiDependencyLabelEditPart.VISUAL_ID:
@@ -1642,6 +1658,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getTemplateBindingLabel_6036Parser();
 		case ConstraintLabelEditPart.VISUAL_ID:
 			return getGeneralizationSetIsCoveringIsDisjoint_5067Parser();
+		case AppliedStereotypeGeneralizationSetLabelEditPart.VISUAL_ID:
+			return getGeneralizationSetLabel_6037Parser();
 		}
 		return null;
 	}
