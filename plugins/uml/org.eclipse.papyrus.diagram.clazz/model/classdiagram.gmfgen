@@ -5463,6 +5463,10 @@
                 xsi:type="gmfgen:LabelOffsetAttributes"
                 y="20"/>
           </viewmap>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.diagram.clazz.custom.policies.TemplateBindingDisplayEditPolicy.TEMPLATE_PARAMETER_DISPLAY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.TemplateBindingDisplayEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.3"/>
         </labels>
