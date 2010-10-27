@@ -44,13 +44,7 @@ public class Messages extends NLS {
 	 */
 	public static String CommandHelper_signatureslection;
 
-	public static String MessageInverseOrientation_setconnectionends;
 
-	public static String MessageInverseOrientation_setconnectionanchors;
-
-	public static String MessageLabelInverseOrientation_setconnectionends;
-
-	public static String MessageLabelInverseOrientation_setconnectionanchors;
 
 	/** The Message parser. */
 	public static String MessageParser_undefined;

@@ -57,14 +57,6 @@ public class MessageFigure extends PolylineConnectionEx implements IPapyrusUMLEl
 
 	private void createContents() {
 
-		fFigureMessageCreateLabelFigure = new CustomWrappingLabel();
-		fFigureMessageCreateLabelFigure.setText("Message"); //$NON-NLS-1$
-
-
-		fFigureMessageCreateLabelFigure.setOpaque(false);
-		fFigureMessageCreateLabelFigure.setTextJustification(PositionConstants.CENTER);
-
-		this.add(fFigureMessageCreateLabelFigure);
 		appliedStereotypeLabelFigure = new CustomWrappingLabel();
 		appliedStereotypeLabelFigure.setText(""); //$NON-NLS-1$
 
@@ -72,7 +64,7 @@ public class MessageFigure extends PolylineConnectionEx implements IPapyrusUMLEl
 		appliedStereotypeLabelFigure.setTextWrap(true);
 		appliedStereotypeLabelFigure.setTextJustification(PositionConstants.CENTER);
 
-		appliedStereotypeLabelFigure.setText(""); //$NON-NLS-1$
+
 
 		this.add(appliedStereotypeLabelFigure);
 	}
@@ -81,6 +73,7 @@ public class MessageFigure extends PolylineConnectionEx implements IPapyrusUMLEl
 	 * 
 	 * @return fFigureMessageCreateLabelFigure
 	 */
+
 	public CustomWrappingLabel getFigureMessageCreateLabelFigure() {
 		return fFigureMessageCreateLabelFigure;
 	}

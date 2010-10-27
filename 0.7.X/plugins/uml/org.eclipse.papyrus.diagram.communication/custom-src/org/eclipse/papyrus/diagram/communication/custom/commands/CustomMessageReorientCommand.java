@@ -26,7 +26,7 @@ import org.eclipse.uml2.uml.Interaction;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class CustomMessageReorientCommand.
+ * The Class CustomMessageReorientCommand permits to reorient a UML message.
  */
 public class CustomMessageReorientCommand extends MessageReorientCommand {
 
@@ -86,7 +86,7 @@ public class CustomMessageReorientCommand extends MessageReorientCommand {
 		if(!(oldEnd instanceof Element && newEnd instanceof Element)) {
 			return false;
 		}
-		Element source = getLink().getOwner();
+
 		if(!(getLink().eContainer() instanceof Interaction)) {
 			return false;
 		}

@@ -91,7 +91,6 @@ public class CustomWrappingLabel extends WrappingLabel
 
 		this.rotation = Math.toDegrees(angle);
 
-
 	}
 
 	static final String PATH = "/icons/arrow1.gif"; //$NON-NLS-1$
@@ -132,6 +131,8 @@ public class CustomWrappingLabel extends WrappingLabel
 			graphics.translate(-figBounds.x, -figBounds.y);
 		}
 		graphics.popState();
+
+
 	}
 
 
@@ -141,9 +142,9 @@ public class CustomWrappingLabel extends WrappingLabel
 		// super.paintFigure(graphics);
 
 		if(hasIcons()) {
-			// System.out.println("This Connection hasIcon \n");
 			CustomPaintIcons(graphics);
-
+			//call repaint to refresh
+			repaint();
 		}
 	}
 

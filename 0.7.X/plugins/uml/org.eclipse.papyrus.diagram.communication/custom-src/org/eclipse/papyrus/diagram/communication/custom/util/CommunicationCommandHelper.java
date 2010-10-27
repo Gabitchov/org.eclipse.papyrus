@@ -36,6 +36,10 @@ import org.eclipse.uml2.uml.UMLFactory;
 
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CommunicationCommandHelper.
+ */
 public class CommunicationCommandHelper {
 
 	/**
@@ -146,6 +150,8 @@ public class CommunicationCommandHelper {
 	 *        the containing interaction
 	 * @param messageSort
 	 *        the messageSort.
+	 * @param signature
+	 *        the signature
 	 * @return the created message
 	 */
 	public static Message doCreateMessage(Interaction interaction, MessageSort messageSort, NamedElement signature) {
@@ -168,12 +174,14 @@ public class CommunicationCommandHelper {
 	}
 
 	/**
-	 * Create message occurence specification
+	 * Create message occurence specification.
 	 * 
-	 * @param interaction
-	 *        The interaction
+	 * @param fragment
+	 *        the fragment
 	 * @param event
 	 *        The event to attach
+	 * @param lifeline
+	 *        the lifeline
 	 * @return The message occurence specification
 	 */
 	public static MessageOccurrenceSpecification doCreateMessageOccurrence(InteractionFragment fragment, Event event, Lifeline lifeline) {
@@ -188,7 +196,7 @@ public class CommunicationCommandHelper {
 	}
 
 	/**
-	 * Configure an OccurrenceSpecification
+	 * Configure an OccurrenceSpecification.
 	 * 
 	 * @param os
 	 *        the occurrenceSpecification to configure
@@ -215,13 +223,12 @@ public class CommunicationCommandHelper {
 	}
 
 	/**
-	 * Create a MessageEnd
+	 * Create a MessageEnd.
 	 * 
-	 * @param interaction
-	 *        fragment
-	 *        The Interaction fragment
-	 * @param callEvent
-	 *        The call event
+	 * @param interactionFragment
+	 *        the interaction fragment
+	 * @param event
+	 *        the event
 	 * @param element
 	 *        The element
 	 * @param direction

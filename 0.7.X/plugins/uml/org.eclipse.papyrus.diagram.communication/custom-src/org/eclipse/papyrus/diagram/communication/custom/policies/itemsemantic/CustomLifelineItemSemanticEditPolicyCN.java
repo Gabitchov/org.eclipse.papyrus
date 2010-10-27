@@ -18,7 +18,7 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.papyrus.diagram.communication.custom.commands.CustomMessageCreateCommand;
-import org.eclipse.papyrus.diagram.communication.custom.commands.CustomMessageReorientCommand;
+import org.eclipse.papyrus.diagram.communication.custom.commands.CustomMessagesReorientCommand;
 import org.eclipse.papyrus.diagram.communication.edit.commands.CommentAnnotatedElementCreateCommand;
 import org.eclipse.papyrus.diagram.communication.edit.commands.ConnectorDurationObservationCreateCommand;
 import org.eclipse.papyrus.diagram.communication.edit.commands.ConnectorTimeObservationCreateCommand;
@@ -74,7 +74,9 @@ public class CustomLifelineItemSemanticEditPolicyCN extends LifelineItemSemantic
 
 		switch(getVisualID(req)) {
 		case MessageEditPart.VISUAL_ID:
-			return getGEFWrapper(new CustomMessageReorientCommand(req));
+			//return getGEFWrapper(new CustomMessageReorientCommand(req));
+			return getGEFWrapper(new CustomMessagesReorientCommand(req));
+
 		}
 		return super.getReorientRelationshipCommand(req);
 	}

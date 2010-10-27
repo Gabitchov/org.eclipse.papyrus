@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
+ *  Saadia Dhouib saadia.dhouib@cea.fr  
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.edit.parts;
@@ -105,19 +105,21 @@ public class CommentBodyEditPartCN extends CompartmentEditPart implements ITextA
 	 */
 	private String defaultText;
 
+
+
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
-	 * 
 	 * @generated
 	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
 	/**
 	 * configuration from a registered edit dialog
-	 * 
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
+
+
 
 	/**
 	 * @generated
@@ -570,11 +572,12 @@ public class CommentBodyEditPartCN extends CompartmentEditPart implements ITextA
 		return (View)getModel();
 	}
 
+
+
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
-	 * @return an <code>int</code> corresponding to the kind of direct editor, @see
-	 *         org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
+	 * @return an <code>int</code> corresponding to the kind of direct editor, @see org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
 	 * @generated
 	 */
 	public int getDirectEditionType() {
@@ -615,7 +618,6 @@ public class CommentBodyEditPartCN extends CompartmentEditPart implements ITextA
 
 	/**
 	 * Initializes the extended editor configuration
-	 * 
 	 * @generated
 	 */
 	protected void initExtendedEditorConfiguration() {
@@ -631,7 +633,6 @@ public class CommentBodyEditPartCN extends CompartmentEditPart implements ITextA
 
 	/**
 	 * Updates the preference configuration
-	 * 
 	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
@@ -645,9 +646,7 @@ public class CommentBodyEditPartCN extends CompartmentEditPart implements ITextA
 
 	/**
 	 * Performs the direct edit usually used by GMF editors.
-	 * 
-	 * @param theRequest
-	 *        the direct edit request that starts the direct edit system
+	 * @param theRequest the direct edit request that starts the direct edit system
 	 * @generated
 	 */
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {
@@ -674,6 +673,8 @@ public class CommentBodyEditPartCN extends CompartmentEditPart implements ITextA
 		}
 	}
 
+
+
 	/**
 	 * @generated
 	 */
@@ -689,6 +690,7 @@ public class CommentBodyEditPartCN extends CompartmentEditPart implements ITextA
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
+
 
 	/**
 	 * @generated
@@ -733,10 +735,13 @@ public class CommentBodyEditPartCN extends CompartmentEditPart implements ITextA
 		return null;
 	}
 
+
+
 	/**
 	 * @generated
 	 */
 	private static final String ADD_PARENT_MODEL = "AddParentModel";
+
 
 	/**
 	 * @generated
@@ -763,6 +768,7 @@ public class CommentBodyEditPartCN extends CompartmentEditPart implements ITextA
 
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -770,5 +776,6 @@ public class CommentBodyEditPartCN extends CompartmentEditPart implements ITextA
 		removeListenerFilter(ADD_PARENT_MODEL);
 
 	}
+
 
 }

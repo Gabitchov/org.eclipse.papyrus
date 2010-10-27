@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
+ *  Saadia Dhouib saadia.dhouib@cea.fr  
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.edit.commands;
@@ -70,7 +70,6 @@ public class ConstraintCreateCommandCN extends EditElementCommand {
 
 	/**
 	 * FIXME: replace with setElementToEdit()
-	 * 
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {

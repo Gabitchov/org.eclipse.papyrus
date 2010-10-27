@@ -56,7 +56,6 @@ import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.diagram.common.helper.ILinkMappingHelper;
 import org.eclipse.papyrus.diagram.common.util.ViewServiceUtil;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Package;
 
 /**
  * This class is used to execute the drag and drop from the outline. It can manage the drop of nodes
@@ -366,7 +365,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 	 * 
 	 * @return the edits the part or null if not found
 	 */
-	private EditPart lookForEditPart(EObject semantic) {
+	protected EditPart lookForEditPart(EObject semantic) {
 		Collection<EditPart> editPartSet = getHost().getViewer().getEditPartRegistry().values();
 		Iterator<EditPart> editPartIterator = editPartSet.iterator();
 		EditPart existedEditPart = null;

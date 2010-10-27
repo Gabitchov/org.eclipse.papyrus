@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
+ *  Saadia Dhouib saadia.dhouib@cea.fr  
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.providers;
@@ -30,7 +30,6 @@ import org.eclipse.papyrus.diagram.common.parser.ConstraintParser;
 import org.eclipse.papyrus.diagram.common.parser.ShortcutDiagramParser;
 import org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser;
 import org.eclipse.papyrus.diagram.communication.custom.parser.LifelineCustomParsers;
-import org.eclipse.papyrus.diagram.communication.custom.parser.MessageParser;
 import org.eclipse.papyrus.diagram.communication.edit.parts.AppliedStereotypeMessageEditPart;
 import org.eclipse.papyrus.diagram.communication.edit.parts.CommentBodyEditPartCN;
 import org.eclipse.papyrus.diagram.communication.edit.parts.ConstraintBodyEditPartCN;
@@ -71,6 +70,22 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		}
 		return interactionName_5001Parser;
 	}
+
+	/**
+	 * @generated
+	 */
+	private ShortcutDiagramParser diagramName_0Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDiagramName_0Parser() {
+		if(diagramName_0Parser == null) {
+			diagramName_0Parser = new ShortcutDiagramParser();
+		}
+		return diagramName_0Parser;
+	}
+
 
 	/**
 	 * @generated
@@ -198,20 +213,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		return durationObservationName_5156Parser;
 	}
 
-	/**
-	 * @generated
-	 */
-	private ShortcutDiagramParser diagramName_0Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getDiagramName_0Parser() {
-		if(diagramName_0Parser == null) {
-			diagramName_0Parser = new ShortcutDiagramParser();
-		}
-		return diagramName_0Parser;
-	}
 
 	/**
 	 * @generated
@@ -246,6 +247,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		}
 		return messageName_6012Parser;
 	}
+
 
 	/**
 	 * @generated
@@ -282,7 +284,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 
 	/**
 	 * Utility method that consults ParserService
-	 * 
 	 * @generated
 	 */
 	public static IParser getParser(IElementType type, EObject object, String parserHint) {

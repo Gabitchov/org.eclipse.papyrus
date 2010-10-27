@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
+ *  Saadia Dhouib saadia.dhouib@cea.fr  
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.expressions;
@@ -79,6 +79,7 @@ public abstract class UMLAbstractExpression {
 		return myContext;
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -116,10 +117,7 @@ public abstract class UMLAbstractExpression {
 	}
 
 	/**
-	 * Expression may return number value which is not directly compatible with
-	 * feature type (e.g. Double when Integer is expected), or EEnumLiteral
-	 * meta-object when literal instance is expected
-	 * 
+	 * Expression may return number value which is not directly compatible with feature type (e.g. Double when Integer is expected), or EEnumLiteral meta-object when literal instance is expected
 	 * @generated
 	 */
 	public static Object performCast(Object value, EDataType targetType) {

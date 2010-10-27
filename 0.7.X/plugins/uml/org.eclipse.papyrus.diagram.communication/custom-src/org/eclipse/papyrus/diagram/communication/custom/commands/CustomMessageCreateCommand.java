@@ -72,6 +72,7 @@ public class CustomMessageCreateCommand extends MessageCreateCommand {
 		this.target = target;
 		container = deduceContainer(source, target);
 
+
 	}
 
 	/**
@@ -148,7 +149,7 @@ public class CustomMessageCreateCommand extends MessageCreateCommand {
 	 * 
 	 * 
 	 */
-	private static Interaction deduceContainer(EObject source, EObject target) {
+	protected Interaction deduceContainer(EObject source, EObject target) {
 		// Find container element for the new link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.

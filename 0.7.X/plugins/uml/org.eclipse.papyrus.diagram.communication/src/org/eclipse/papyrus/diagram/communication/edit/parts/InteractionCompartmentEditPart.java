@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
+ *  Saadia Dhouib saadia.dhouib@cea.fr  
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.edit.parts;
@@ -39,6 +39,8 @@ import org.eclipse.papyrus.diagram.communication.part.Messages;
  */
 public class InteractionCompartmentEditPart
 
+
+
 extends ShapeCompartmentEditPart
 
 {
@@ -54,6 +56,7 @@ extends ShapeCompartmentEditPart
 	public InteractionCompartmentEditPart(View view) {
 		super(view);
 	}
+
 
 	/**
 	 * @generated
@@ -90,6 +93,9 @@ extends ShapeCompartmentEditPart
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomInteractionCompartmentSemanticEditPolicy());
 	}
 
+
+
+
 	/**
 	 * @generated
 	 */
@@ -98,6 +104,8 @@ extends ShapeCompartmentEditPart
 			super.setRatio(ratio);
 		}
 	}
+
+
 
 	/**
 	 * @generated

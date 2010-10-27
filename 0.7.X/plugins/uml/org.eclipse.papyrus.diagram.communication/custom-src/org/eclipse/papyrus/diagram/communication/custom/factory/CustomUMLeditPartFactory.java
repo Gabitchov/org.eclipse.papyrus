@@ -15,27 +15,30 @@ package org.eclipse.papyrus.diagram.communication.custom.factory;
 
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.communication.custom.edit.parts.CustomInteractionEditPart;
 import org.eclipse.papyrus.diagram.communication.custom.edit.parts.CustomLifelineEditPartCN;
+import org.eclipse.papyrus.diagram.communication.custom.edit.parts.CustomMessageEditPart;
 import org.eclipse.papyrus.diagram.communication.custom.edit.parts.CustomMessageNameEditPart;
+import org.eclipse.papyrus.diagram.communication.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.diagram.communication.edit.parts.LifelineEditPartCN;
+import org.eclipse.papyrus.diagram.communication.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.diagram.communication.edit.parts.MessageNameEditPart;
 import org.eclipse.papyrus.diagram.communication.edit.parts.UMLEditPartFactory;
 import org.eclipse.papyrus.diagram.communication.part.UMLVisualIDRegistry;
 
+// TODO: Auto-generated Javadoc
 /**
- * 
- * This class is used to create the custom edit parts
- * 
+ * This class is used to create the custom edit parts.
  */
 public class CustomUMLeditPartFactory extends UMLEditPartFactory {
 
 	/**
-	 * 
-	 * @see org.eclipse.papyrus.diagram.communication.edit.parts.UMLEditPartFactory#createEditPart(org.eclipse.gef.EditPart, java.lang.Object)
-	 * 
-	 * @param context
-	 * @param model
+	 * Creates a new CustomUMLeditPart object.
+	 *
+	 * @param context the context
+	 * @param model the model
 	 * @return the custom edit part
+	 * @see org.eclipse.papyrus.diagram.communication.edit.parts.UMLEditPartFactory#createEditPart(org.eclipse.gef.EditPart, java.lang.Object)
 	 */
 	@Override
 	public EditPart createEditPart(EditPart context, Object model) {
@@ -46,6 +49,10 @@ public class CustomUMLeditPartFactory extends UMLEditPartFactory {
 				return new CustomLifelineEditPartCN(view);
 			case MessageNameEditPart.VISUAL_ID:
 				return new CustomMessageNameEditPart(view);
+			case MessageEditPart.VISUAL_ID:
+				return new CustomMessageEditPart(view);
+			case InteractionEditPart.VISUAL_ID:
+				return new CustomInteractionEditPart(view);
 			}
 		}
 		return super.createEditPart(context, model);

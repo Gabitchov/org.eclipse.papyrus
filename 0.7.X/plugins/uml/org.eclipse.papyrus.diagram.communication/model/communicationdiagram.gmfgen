@@ -28,7 +28,7 @@
       <behaviour
           xsi:type="gmfgen:CustomBehaviour"
           key="&quot;RemoveOrphanView&quot;"
-          editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.OrphanViewPolicy"/>
+          editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.communication.custom.edit.policies.CustomOrphanViewPolicy"/>
       <behaviour
           xsi:type="gmfgen:CustomBehaviour"
           key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
@@ -664,6 +664,10 @@
           </viewmap>
           <behaviour
               xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.communication.custom.policies.itemsemantic.CustomMessageNameItemSemanticEditPolicy"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
               key="&quot;CustomDisplay&quot;"
               editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.communication.custom.edit.policies.MessageNameEditPolicy"/>
           <modelFacet
@@ -835,6 +839,7 @@
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Lifeline.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Lifeline.gif"
               createMethodName="createLifelineComCreationTool"
+              id="&quot;communication.tool.lifeline&quot;"
               genNodes="/0/@diagram/@childNodes.0"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -843,6 +848,7 @@
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
               createMethodName="createComment7CreationTool"
+              id="&quot;communication.tool.comment&quot;"
               genNodes="/0/@diagram/@childNodes.2"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -860,6 +866,7 @@
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationObservation.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationObservation.gif"
               createMethodName="createDurationObservation4CreationTool"
+              id="&quot;communication.tool.durationobservation&quot;"
               genNodes="/0/@diagram/@childNodes.4"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -868,6 +875,7 @@
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeObservation.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeObservation.gif"
               createMethodName="createTimeObservation6CreationTool"
+              id="&quot;communication.tool.timeobservation&quot;"
               qualifiedToolName=""
               genNodes="/0/@diagram/@childNodes.3"/>
         </groups>

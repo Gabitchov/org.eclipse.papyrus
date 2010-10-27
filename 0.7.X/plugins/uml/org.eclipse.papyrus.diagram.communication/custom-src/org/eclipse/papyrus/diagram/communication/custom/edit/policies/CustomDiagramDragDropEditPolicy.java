@@ -13,27 +13,45 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.custom.edit.policies;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gef.EditPart;
+import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
+import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.commands.CreateCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
+import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.diagram.common.editpolicies.CommonDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.diagram.common.util.ViewServiceUtil;
+import org.eclipse.papyrus.diagram.communication.custom.commands.CommunicationDeferredCreateConnectionViewCommand;
+import org.eclipse.papyrus.diagram.communication.custom.commands.CustomMessageViewCreateCommand;
 import org.eclipse.papyrus.diagram.communication.custom.util.CommunicationLinkMappingHelper;
+import org.eclipse.papyrus.diagram.communication.custom.util.CommunicationUtil;
 import org.eclipse.papyrus.diagram.communication.custom.util.DiagramShortCutHelper;
 import org.eclipse.papyrus.diagram.communication.custom.util.DurationObservationHelper;
 import org.eclipse.papyrus.diagram.communication.custom.util.TimeObservationHelper;
@@ -48,6 +66,8 @@ import org.eclipse.papyrus.diagram.communication.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.communication.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.DurationObservation;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Lifeline;
+import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.TimeObservation;
 
@@ -267,24 +287,132 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * 
 	 */
 
-	private Command dropMessage(DropObjectsRequest dropRequest, Element semanticLink, int linkVISUALID) {
+	public Command dropMessage(DropObjectsRequest dropRequest, Element semanticLink, int linkVISUALID) {
 		// Test canvas element
 		GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart)getHost();
 		EObject graphicalParentObject = graphicalParentEditPart.resolveSemanticElement();
 		if(!(graphicalParentObject instanceof org.eclipse.uml2.uml.Interaction)) {
 			return UnexecutableCommand.INSTANCE;
 		}
+		if(semanticLink instanceof Message) {//if the drop request concerns a UML message
+			//1. verify if source and target of the message are already connected 
+			Collection<?> sources = CommunicationLinkMappingHelper.getInstance().getSource(semanticLink);
+			Collection<?> targets = CommunicationLinkMappingHelper.getInstance().getTarget(semanticLink);
+			if(!sources.isEmpty() && !targets.isEmpty()) {
+				Element source = (Element)sources.toArray()[0];
+				Element target = (Element)targets.toArray()[0];
+				if((source instanceof Lifeline) && (target instanceof Lifeline)) {
+					Set<Message> messages = CommunicationUtil.verifyUMLLifelinesConnected((Lifeline)source, (Lifeline)target);
+					if(!(messages == null) && (messages.size() >= 1)) {//the UML lifelines are already connected by one or more than one more message
 
-		Collection<?> sources = CommunicationLinkMappingHelper.getInstance().getSource(semanticLink);
-		Collection<?> targets = CommunicationLinkMappingHelper.getInstance().getTarget(semanticLink);
-		if(!sources.isEmpty() && !targets.isEmpty()) {
-			Element source = (Element)sources.toArray()[0];
-			Element target = (Element)targets.toArray()[0];
-			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Message"), source, target, linkVISUALID, dropRequest.getLocation(), semanticLink)); //$NON-NLS-1$
-		} else {
-			return UnexecutableCommand.INSTANCE;
+						//1. search for the edit parts of the messages
+						List<EditPart> messagesEP = null;
+						for(Message current : messages) {
+							EditPart messageEP = lookForEditPart(current);
+							if(!(messageEP == null)) {
+								if(messagesEP == null) {
+									messagesEP = new ArrayList<EditPart>();
+									messagesEP.add(messageEP);
+								} else {
+									messagesEP.add(messageEP);
+								}
+
+							}
+						}
+						//System.err.println("Messages edit parts on the link :" + messagesEP);
+						//System.err.println("Semantic messages  on the link :" + messages);
+
+						//2. Create the drop commands
+						if(messagesEP == null) {//There is no graphical connection between the two lifelines (in  this diagram)
+							//create a dropMessageAsConnector Command
+							return new ICommandProxy(dropMessageAsConnector(new CompositeCommand("drop Message"), source, target, linkVISUALID, dropRequest.getLocation(), semanticLink)); //$NON-NLS-1$
+						} else {//add the message as a label of the graphical connector
+							ConnectionEditPart conEP = (ConnectionEditPart)messagesEP.get(0).getParent();
+							IAdaptable linkAdapter = new SemanticAdapter(semanticLink, null);
+							//location where the label will be dropped
+							Point loc = new Point(1, -23);
+							//reuse of the CustomMessageViewCreateCommand
+							return new ICommandProxy(new CustomMessageViewCreateCommand(((IGraphicalEditPart)getHost()).getEditingDomain(), (EditPartViewer)conEP.getViewer(), ((IGraphicalEditPart)conEP).getDiagramPreferencesHint(), loc, linkAdapter, conEP));
+
+						}
+					}
+				}
+			}
+
 		}
+
+
+		return UnexecutableCommand.INSTANCE;
 	}
+
+	/**
+	 * the method provides command to drop the messages into the diagram.
+	 * If the source and the target views do not exist, these views will be created.
+	 * 
+	 * @param cc
+	 *        the composite command that will contain the set of command to create the message
+	 * @param source
+	 *        the source the element source of the link
+	 * @param target
+	 *        the target the element target of the link
+	 * @param linkVISUALID
+	 *        the link VISUALID used to create the view
+	 * @param location
+	 *        the location the location where the view will be be created
+	 * @param semanticLink
+	 *        the semantic link that will be attached to the view
+	 * 
+	 * @return the composite command
+	 */
+	public CompositeCommand dropMessageAsConnector(CompositeCommand cc, Element source, Element target, int linkVISUALID, Point location, Element semanticLink) {
+		// look for editpart
+		GraphicalEditPart sourceEditPart = (GraphicalEditPart)lookForEditPart(source);
+		GraphicalEditPart targetEditPart = (GraphicalEditPart)lookForEditPart(target);
+
+		// descriptor of the link
+		CreateConnectionViewRequest.ConnectionViewDescriptor linkdescriptor = new CreateConnectionViewRequest.ConnectionViewDescriptor(getUMLElementType(linkVISUALID), ((IHintedType)getUMLElementType(linkVISUALID)).getSemanticHint(), getDiagramPreferencesHint());
+
+		IAdaptable sourceAdapter = null;
+		IAdaptable targetAdapter = null;
+		if(sourceEditPart == null) {
+			// creation of the node
+			ViewDescriptor descriptor = new ViewDescriptor(new EObjectAdapter(source), Node.class, null, ViewUtil.APPEND, false, ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint());
+
+			// get the command and execute it.
+			CreateCommand nodeCreationCommand = new CreateCommand(((IGraphicalEditPart)getHost()).getEditingDomain(), descriptor, ((View)getHost().getModel()));
+			cc.compose(nodeCreationCommand);
+			SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue(), new Point(location.x, location.y + 100)); //$NON-NLS-1$
+			cc.compose(setBoundsCommand);
+
+			sourceAdapter = (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue();
+		} else {
+			sourceAdapter = new SemanticAdapter(null, sourceEditPart.getModel());
+		}
+		if(targetEditPart == null) {
+			// creation of the node
+			ViewDescriptor descriptor = new ViewDescriptor(new EObjectAdapter(target), Node.class, null, ViewUtil.APPEND, false, ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint());
+
+			// get the command and execute it.
+			CreateCommand nodeCreationCommand = new CreateCommand(((IGraphicalEditPart)getHost()).getEditingDomain(), descriptor, ((View)getHost().getModel()));
+			cc.compose(nodeCreationCommand);
+			SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue(), new Point(location.x, location.y - 100)); //$NON-NLS-1$
+			cc.compose(setBoundsCommand);
+			targetAdapter = (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue();
+
+		} else {
+			targetAdapter = new SemanticAdapter(null, targetEditPart.getModel());
+		}
+
+		CommunicationDeferredCreateConnectionViewCommand aLinkCommand = new CommunicationDeferredCreateConnectionViewCommand(((IGraphicalEditPart)getHost()).getEditingDomain(), ((IHintedType)getUMLElementType(linkVISUALID)).getSemanticHint(), sourceAdapter, targetAdapter, getViewer(), getDiagramPreferencesHint(), linkdescriptor, null);
+		aLinkCommand.setElement(semanticLink);
+		//	View connView = (View)((ICommand)aLinkCommand).getCommandResult().getReturnValue();
+		//connView.getChildren().get(1)
+		cc.compose(aLinkCommand);
+
+		return cc;
+
+	}
+
 
 
 	/**

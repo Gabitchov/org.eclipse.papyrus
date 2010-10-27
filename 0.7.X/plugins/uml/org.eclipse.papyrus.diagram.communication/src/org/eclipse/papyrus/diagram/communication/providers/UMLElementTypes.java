@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
+ *  Saadia Dhouib saadia.dhouib@cea.fr  
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.providers;
@@ -84,6 +84,11 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
+	public static final IElementType Diagram_8016 = getElementType("org.eclipse.papyrus.diagram.communication.Diagram_8016"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	public static final IElementType Lifeline_8001 = getElementType("org.eclipse.papyrus.diagram.communication.Lifeline_8001"); //$NON-NLS-1$
 
 	/**
@@ -105,11 +110,6 @@ public class UMLElementTypes {
 	 * @generated
 	 */
 	public static final IElementType DurationObservation_8007 = getElementType("org.eclipse.papyrus.diagram.communication.DurationObservation_8007"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType Diagram_8016 = getElementType("org.eclipse.papyrus.diagram.communication.Diagram_8016"); //$NON-NLS-1$
 
 	/**
 	 * @generated
