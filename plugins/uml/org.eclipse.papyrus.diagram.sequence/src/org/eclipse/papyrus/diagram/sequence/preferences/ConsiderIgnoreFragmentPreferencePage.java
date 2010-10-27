@@ -43,7 +43,7 @@ public class ConsiderIgnoreFragmentPreferencePage extends AbstractPapyrusNodePre
 	 */
 	@Override
 	protected String getBundleId() {
-		return UMLDiagramEditorPlugin.getInstance().ID;
+		return UMLDiagramEditorPlugin.ID;
 	}
 
 	/**

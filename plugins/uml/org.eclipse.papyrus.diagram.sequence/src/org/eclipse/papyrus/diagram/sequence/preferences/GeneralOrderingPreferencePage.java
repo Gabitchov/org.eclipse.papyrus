@@ -23,7 +23,7 @@ public class GeneralOrderingPreferencePage extends AbstractPapyrusLinkPreference
 	 */
 	@Override
 	protected String getBundleId() {
-		return UMLDiagramEditorPlugin.getInstance().ID;
+		return UMLDiagramEditorPlugin.ID;
 	}
 
 	/**
