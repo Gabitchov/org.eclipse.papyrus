@@ -90,36 +90,12 @@ ruleTransitionRule returns [EObject current=null]
     @after { resetLookahead(); 
     	lastConsumedNode = currentNode;
     }:
-((
-(
-		lv_name_0_0=RULE_ID
-		{
-			createLeafNode(grammarAccess.getTransitionRuleAccess().getNameIDTerminalRuleCall_0_0(), "name"); 
-		}
-		{
-	        if ($current==null) {
-	            $current = factory.create(grammarAccess.getTransitionRuleRule().getType().getClassifier());
-	            associateNodeWithAstElement(currentNode, $current);
-	        }
-	        try {
-	       		set(
-	       			$current, 
-	       			"name",
-	        		lv_name_0_0, 
-	        		"ID", 
-	        		lastConsumedNode);
-	        } catch (ValueConverterException vce) {
-				handleValueConverterException(vce);
-	        }
-	    }
-
-)
-)((
+(((
 (
 		{ 
-	        currentNode=createCompositeNode(grammarAccess.getTransitionRuleAccess().getTriggersEventRuleParserRuleCall_1_0_0(), currentNode); 
+	        currentNode=createCompositeNode(grammarAccess.getTransitionRuleAccess().getTriggersEventRuleParserRuleCall_0_0_0(), currentNode); 
 	    }
-		lv_triggers_1_0=ruleEventRule		{
+		lv_triggers_0_0=ruleEventRule		{
 	        if ($current==null) {
 	            $current = factory.create(grammarAccess.getTransitionRuleRule().getType().getClassifier());
 	            associateNodeWithAstElement(currentNode.getParent(), $current);
@@ -128,7 +104,7 @@ ruleTransitionRule returns [EObject current=null]
 	       		add(
 	       			$current, 
 	       			"triggers",
-	        		lv_triggers_1_0, 
+	        		lv_triggers_0_0, 
 	        		"EventRule", 
 	        		currentNode);
 	        } catch (ValueConverterException vce) {
@@ -140,14 +116,14 @@ ruleTransitionRule returns [EObject current=null]
 )
 )(	',' 
     {
-        createLeafNode(grammarAccess.getTransitionRuleAccess().getCommaKeyword_1_1_0(), null); 
+        createLeafNode(grammarAccess.getTransitionRuleAccess().getCommaKeyword_0_1_0(), null); 
     }
 (
 (
 		{ 
-	        currentNode=createCompositeNode(grammarAccess.getTransitionRuleAccess().getTriggersEventRuleParserRuleCall_1_1_1_0(), currentNode); 
+	        currentNode=createCompositeNode(grammarAccess.getTransitionRuleAccess().getTriggersEventRuleParserRuleCall_0_1_1_0(), currentNode); 
 	    }
-		lv_triggers_3_0=ruleEventRule		{
+		lv_triggers_2_0=ruleEventRule		{
 	        if ($current==null) {
 	            $current = factory.create(grammarAccess.getTransitionRuleRule().getType().getClassifier());
 	            associateNodeWithAstElement(currentNode.getParent(), $current);
@@ -156,7 +132,7 @@ ruleTransitionRule returns [EObject current=null]
 	       		add(
 	       			$current, 
 	       			"triggers",
-	        		lv_triggers_3_0, 
+	        		lv_triggers_2_0, 
 	        		"EventRule", 
 	        		currentNode);
 	        } catch (ValueConverterException vce) {
@@ -169,9 +145,9 @@ ruleTransitionRule returns [EObject current=null]
 ))*)?(
 (
 		{ 
-	        currentNode=createCompositeNode(grammarAccess.getTransitionRuleAccess().getGuardGuardRuleParserRuleCall_2_0(), currentNode); 
+	        currentNode=createCompositeNode(grammarAccess.getTransitionRuleAccess().getGuardGuardRuleParserRuleCall_1_0(), currentNode); 
 	    }
-		lv_guard_4_0=ruleGuardRule		{
+		lv_guard_3_0=ruleGuardRule		{
 	        if ($current==null) {
 	            $current = factory.create(grammarAccess.getTransitionRuleRule().getType().getClassifier());
 	            associateNodeWithAstElement(currentNode.getParent(), $current);
@@ -180,7 +156,7 @@ ruleTransitionRule returns [EObject current=null]
 	       		set(
 	       			$current, 
 	       			"guard",
-	        		lv_guard_4_0, 
+	        		lv_guard_3_0, 
 	        		"GuardRule", 
 	        		currentNode);
 	        } catch (ValueConverterException vce) {
@@ -193,9 +169,9 @@ ruleTransitionRule returns [EObject current=null]
 )?(
 (
 		{ 
-	        currentNode=createCompositeNode(grammarAccess.getTransitionRuleAccess().getEffectEffectRuleParserRuleCall_3_0(), currentNode); 
+	        currentNode=createCompositeNode(grammarAccess.getTransitionRuleAccess().getEffectEffectRuleParserRuleCall_2_0(), currentNode); 
 	    }
-		lv_effect_5_0=ruleEffectRule		{
+		lv_effect_4_0=ruleEffectRule		{
 	        if ($current==null) {
 	            $current = factory.create(grammarAccess.getTransitionRuleRule().getType().getClassifier());
 	            associateNodeWithAstElement(currentNode.getParent(), $current);
@@ -204,7 +180,7 @@ ruleTransitionRule returns [EObject current=null]
 	       		set(
 	       			$current, 
 	       			"effect",
-	        		lv_effect_5_0, 
+	        		lv_effect_4_0, 
 	        		"EffectRule", 
 	        		currentNode);
 	        } catch (ValueConverterException vce) {
