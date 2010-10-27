@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
+ *  Saadia Dhouib saadia.dhouib@cea.fr  
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.preferences;
@@ -24,6 +24,8 @@ import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
  */
 public class DurationObservationPreferencePage extends AbstractPapyrusNodePreferencePage {
 
+
+
 	/**
 	 * @generated
 	 */
@@ -37,7 +39,7 @@ public class DurationObservationPreferencePage extends AbstractPapyrusNodePrefer
 	 */
 	@Override
 	protected String getBundleId() {
-		return UMLDiagramEditorPlugin.getInstance().ID;
+		return UMLDiagramEditorPlugin.ID;
 	}
 
 	/**
@@ -48,7 +50,6 @@ public class DurationObservationPreferencePage extends AbstractPapyrusNodePrefer
 		String key = ModelEditPart.MODEL_ID + "_DurationObservation";
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.WIDTH), 40);
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.HEIGHT), 40);
-
 
 
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_FILL), new org.eclipse.swt.graphics.RGB(255, 255, 255));
@@ -62,5 +63,6 @@ public class DurationObservationPreferencePage extends AbstractPapyrusNodePrefer
 		//store.setDefault(org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_GRADIENT), gradientPreferenceConverter.getPreferenceValue());
 
 	}
+
 
 }

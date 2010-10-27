@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
+ *  Saadia Dhouib saadia.dhouib@cea.fr  
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.edit.parts;
@@ -110,14 +110,12 @@ public class AppliedStereotypeMessageEditPart extends LabelEditPart implements I
 
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
-	 * 
 	 * @generated
 	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
 	/**
 	 * configuration from a registered edit dialog
-	 * 
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
@@ -635,7 +633,6 @@ public class AppliedStereotypeMessageEditPart extends LabelEditPart implements I
 
 	/**
 	 * Initializes the extended editor configuration
-	 * 
 	 * @generated
 	 */
 	protected void initExtendedEditorConfiguration() {
@@ -651,7 +648,6 @@ public class AppliedStereotypeMessageEditPart extends LabelEditPart implements I
 
 	/**
 	 * Updates the preference configuration
-	 * 
 	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
@@ -665,9 +661,7 @@ public class AppliedStereotypeMessageEditPart extends LabelEditPart implements I
 
 	/**
 	 * Performs the direct edit usually used by GMF editors.
-	 * 
-	 * @param theRequest
-	 *        the direct edit request that starts the direct edit system
+	 * @param theRequest the direct edit request that starts the direct edit system
 	 * @generated
 	 */
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {

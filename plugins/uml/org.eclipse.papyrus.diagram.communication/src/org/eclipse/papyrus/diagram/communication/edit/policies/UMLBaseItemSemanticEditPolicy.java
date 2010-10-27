@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
+ *  Saadia Dhouib saadia.dhouib@cea.fr  
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.edit.policies;
@@ -69,10 +69,15 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Extended request data key to hold editpart visual id.
-	 * 
 	 * @generated
 	 */
 	public static final String VISUAL_ID_KEY = "visual_id"; //$NON-NLS-1$
+
+	/**
+	 * Extended request data key to hold the edge view during a reconnect request.
+	 * @generated
+	 */
+	public static final String GRAPHICAL_RECONNECTED_EDGE = "graphical_edge"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -87,20 +92,25 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	}
 
 	/**
-	 * Extended request data key to hold editpart visual id. Add visual id of
-	 * edited editpart to extended data of the request so command switch can
-	 * decide what kind of diagram element is being edited. It is done in those
-	 * cases when it's not possible to deduce diagram element kind from domain
-	 * element.
+	 * Extended request data key to hold editpart visual id.
+	 * Add visual id of edited editpart to extended data of the request
+	 * so command switch can decide what kind of diagram element is being edited.
+	 * It is done in those cases when it's not possible to deduce diagram
+	 * element kind from domain element.
+	 * Add the reoriented view to the request extended data so that the view
+	 *  currently edited can be distinguished from other views of the same element
+	 *  and these latter possibly removed if they become inconsistent after reconnect
 	 * 
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public Command getCommand(Request request) {
 		if(request instanceof ReconnectRequest) {
 			Object view = ((ReconnectRequest)request).getConnectionEditPart().getModel();
 			if(view instanceof View) {
 				Integer id = new Integer(UMLVisualIDRegistry.getVisualID((View)view));
 				request.getExtendedData().put(VISUAL_ID_KEY, id);
+				request.getExtendedData().put(GRAPHICAL_RECONNECTED_EDGE, (View)view);
 			}
 		}
 		return super.getCommand(request);
@@ -108,7 +118,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Returns visual id from request parameters.
-	 * 
 	 * @generated
 	 */
 	protected int getVisualID(IEditCommandRequest request) {
@@ -288,7 +297,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Returns editing domain from the host edit part.
-	 * 
 	 * @generated
 	 */
 	protected TransactionalEditingDomain getEditingDomain() {
@@ -297,7 +305,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Clean all shortcuts to the host element from the same diagram
-	 * 
 	 * @generated
 	 */
 	protected void addDestroyShortcutsCommand(ICompositeCommand cmd, View view) {
@@ -311,6 +318,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -321,6 +329,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 		return cached;
 	}
+
 
 	/**
 	 * @generated
@@ -334,12 +343,14 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			// use static method #getLinkConstraints() to access instance
 		}
 
+
 		/**
 		 * @generated
 		 */
 		public boolean canCreateMessage_8009(Interaction container, Element source, Element target) {
 			return canExistMessage_8009(container, null, source, target);
 		}
+
 
 		/**
 		 * @generated
@@ -354,6 +365,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistCommentAnnotatedElement_8010(source, target);
 		}
 
+
 		/**
 		 * @generated
 		 */
@@ -366,6 +378,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 			return canExistConstraintConstrainedElement_8011(source, target);
 		}
+
 
 		/**
 		 * @generated
@@ -380,6 +393,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistDurationObservationEvent_8012(source, target);
 		}
 
+
 		/**
 		 * @generated
 		 */
@@ -392,6 +406,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 			return canExistTimeObservationEvent_8013(source, target);
 		}
+
 
 		/**
 		 * @generated

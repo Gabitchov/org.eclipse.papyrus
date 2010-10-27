@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.custom.util;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -22,7 +21,6 @@ import org.eclipse.papyrus.diagram.common.helper.LinkMappingHelper;
 import org.eclipse.papyrus.diagram.common.helper.LinkMappingHelper.CommonSourceUMLSwitch;
 import org.eclipse.papyrus.diagram.common.helper.LinkMappingHelper.CommonTargetUMLSwitch;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Gate;
 import org.eclipse.uml2.uml.MessageEnd;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 
@@ -69,10 +67,6 @@ public class CommunicationLinkMappingHelper implements ILinkMappingHelper {
 					MessageEnd messageEnd = object.getSendEvent();
 					if(messageEnd instanceof MessageOccurrenceSpecification) {
 						return ((MessageOccurrenceSpecification)messageEnd).getCovereds();
-					} else if(messageEnd instanceof Gate) {
-						ArrayList<Element> sources = new ArrayList<Element>();
-						sources.add(((Gate)messageEnd).getOwner());
-						return sources;
 					}
 				}
 				return Collections.EMPTY_LIST;
@@ -92,10 +86,6 @@ public class CommunicationLinkMappingHelper implements ILinkMappingHelper {
 					MessageEnd messageEnd = object.getReceiveEvent();
 					if(messageEnd instanceof MessageOccurrenceSpecification) {
 						return ((MessageOccurrenceSpecification)messageEnd).getCovereds();
-					} else if(messageEnd instanceof Gate) {
-						ArrayList<Element> sources = new ArrayList<Element>();
-						sources.add(((Gate)messageEnd).getOwner());
-						return sources;
 					}
 				}
 				return Collections.EMPTY_LIST;

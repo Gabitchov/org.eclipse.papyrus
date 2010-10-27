@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
+ *  Saadia Dhouib saadia.dhouib@cea.fr  
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.navigator;
@@ -131,6 +131,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 		}
 		return getUnknownElementText(view);
 	}
+
 
 	/**
 	 * @generated

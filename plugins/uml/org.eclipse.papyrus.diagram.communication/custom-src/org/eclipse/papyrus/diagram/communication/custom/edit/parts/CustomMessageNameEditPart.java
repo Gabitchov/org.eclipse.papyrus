@@ -17,7 +17,6 @@ import java.awt.Label;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.diagram.communication.custom.figures.CustomWrappingLabel;
@@ -69,7 +68,7 @@ public class CustomMessageNameEditPart extends MessageNameEditPart {
 			((CustomWrappingLabel)figure).setText(text);
 			// added to precise the position of the text relative to
 			// the icon
-			((WrappingLabel)figure).setTextPlacement(PositionConstants.NORTH);
+			((CustomWrappingLabel)figure).setTextPlacement(PositionConstants.NORTH);
 		} else if(figure instanceof ILabelFigure) {
 			((ILabelFigure)figure).setText(text);
 		}
@@ -78,5 +77,9 @@ public class CustomMessageNameEditPart extends MessageNameEditPart {
 			((Label)figure).setText(text);
 		}
 	}
+
+
+
+
 
 }

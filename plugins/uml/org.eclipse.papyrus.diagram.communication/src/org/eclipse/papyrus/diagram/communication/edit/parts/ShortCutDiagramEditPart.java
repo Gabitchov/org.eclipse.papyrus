@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
+ *  Saadia Dhouib saadia.dhouib@cea.fr  
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.edit.parts;
@@ -60,6 +60,7 @@ import org.eclipse.swt.graphics.Color;
  */
 public class ShortCutDiagramEditPart extends
 
+
 AbstractShortCutDiagramEditPart {
 
 	/**
@@ -100,7 +101,6 @@ AbstractShortCutDiagramEditPart {
 
 
 
-
 	/**
 	 * Papyrus codeGen
 	 * 
@@ -110,6 +110,10 @@ AbstractShortCutDiagramEditPart {
 		super.handleNotificationEvent(event);
 
 	}
+
+
+
+
 
 	/**
 	 * @generated

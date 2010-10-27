@@ -13,31 +13,30 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.custom.commands;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.commands.CompoundCommand;
-import org.eclipse.gmf.runtime.diagram.core.commands.SetConnectionAnchorsCommand;
-import org.eclipse.gmf.runtime.diagram.core.commands.SetConnectionEndsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
-import org.eclipse.gmf.runtime.notation.Edge;
-import org.eclipse.gmf.runtime.notation.IdentityAnchor;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.diagram.communication.custom.messages.Messages;
 import org.eclipse.papyrus.diagram.communication.edit.parts.LifelineEditPartCN;
 import org.eclipse.papyrus.diagram.communication.edit.parts.MessageNameEditPart;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.uml2.uml.InteractionFragment;
+import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
+import org.eclipse.uml2.uml.MessageEnd;
 
 
 
 /**
- * The Class MessageLabelInverseOrientation.
+ * The Class MessageLabelInverseOrientation is intended to reverse the orientation of the message arrow
  */
 public class MessageLabelInverseOrientation implements IObjectActionDelegate {
 
@@ -65,54 +64,84 @@ public class MessageLabelInverseOrientation implements IObjectActionDelegate {
 		CompoundCommand command = new CompoundCommand();
 		TransactionalEditingDomain domain = ((IGraphicalEditPart)selectedElement.getParent()).getEditingDomain();
 
-		//The source Lifeline of the message
+		//The source Lifeline of the connection
 		source = (EObject)((LifelineEditPartCN)((ConnectionEditPart)selectedElement.getParent()).getSource()).resolveSemanticElement();
-		//The target Lifeline of the message
+		//The target Lifeline of the connection
 		target = (EObject)((LifelineEditPartCN)((ConnectionEditPart)selectedElement.getParent()).getTarget()).resolveSemanticElement();
 
-		//request to change the source by the target (semantically)
-		ReorientRelationshipRequest req = new ReorientRelationshipRequest(domain, getLink(), target, source, 1);
-
-		//request to change the target by the source (semantically)
-		ReorientRelationshipRequest req2 = new ReorientRelationshipRequest(domain, getLink(), source, target, 2);
-
-		//create a command to execute the request req
-		CustomMessageReorientCommand reorientcommandSrc = new CustomMessageReorientCommand(req);
-
-		//create a command to execute the request req2
-		CustomMessageReorientCommand reorientcommandTarget = new CustomMessageReorientCommand(req2);
 
 
-		//Create two command to change graphically the orientation of the message
-		//the first command is to reverse the connection ends
-		//the second command is to reverse the connection anchors
-		org.eclipse.gmf.runtime.diagram.core.commands.SetConnectionEndsCommand setconnectionendscommand = new SetConnectionEndsCommand(domain, Messages.MessageLabelInverseOrientation_setconnectionends);
-		org.eclipse.gmf.runtime.diagram.core.commands.SetConnectionAnchorsCommand setconnectionanchorscommand = new SetConnectionAnchorsCommand(domain, Messages.MessageLabelInverseOrientation_setconnectionanchors);
-		setconnectionendscommand.setEdgeAdaptor(selectedElement.getParent());
-		setconnectionendscommand.setNewSourceAdaptor(((ConnectionEditPart)selectedElement.getParent()).getTarget());
-		setconnectionendscommand.setNewTargetAdaptor(((ConnectionEditPart)selectedElement.getParent()).getSource());
+		//if the selected element is a label that represents a message
+		if(selectedElement.resolveSemanticElement() instanceof Message) {
+			//request to change the source by the target (semantically)
 
-		setconnectionanchorscommand.setEdgeAdaptor(selectedElement);
-		Edge edge = (Edge)selectedElement.getParent().getModel();
-		IdentityAnchor aSrc = (IdentityAnchor)edge.getSourceAnchor();
-		IdentityAnchor aTarget = (IdentityAnchor)edge.getTargetAnchor();
-		if(aTarget != null) {
-			setconnectionanchorscommand.setNewSourceTerminal(aTarget.getId());
+			ReorientRelationshipRequest req = null;
+
+			//request to change the target by the source (semantically)
+
+			ReorientRelationshipRequest req2 = null;
+
+			//create a command to execute the request req
+
+			CustomMessageReorientCommand reorientcommandSrc = null;
+
+			//create a command to execute the request req2
+
+			CustomMessageReorientCommand reorientcommandTarget = null;
+
+
+			Message message = (Message)selectedElement.resolveSemanticElement();
+			MessageEnd sendEvent = message.getSendEvent();
+			MessageEnd rcvEvent = message.getReceiveEvent();
+
+			EList<InteractionFragment> listSrc = ((Lifeline)source).getCoveredBys();
+
+
+
+			//get the source and target lifelines of the message
+			EObject srcLifeline = null;
+			EObject targetLifeline = null;
+			if(!listSrc.isEmpty()) {
+				done: for(int i = 0; i < listSrc.size(); i++) {
+					if(listSrc.get(i).equals(rcvEvent)) {
+						srcLifeline = target;
+						targetLifeline = source;
+						break done;
+
+					} else if(listSrc.get(i).equals(sendEvent)) {
+						srcLifeline = source;
+						targetLifeline = target;
+
+						break done;
+
+					}
+				}
+				//request to change the source by the target (semantically)
+				req = new ReorientRelationshipRequest(domain, (EObject)message, targetLifeline, srcLifeline, 1);
+
+				//request to change the target by the source (semantically)
+				req2 = new ReorientRelationshipRequest(domain, (EObject)message, srcLifeline, targetLifeline, 2);
+
+				//create a command to execute the request req
+				reorientcommandSrc = new CustomMessageReorientCommand(req);
+
+				//create a command to execute the request req2
+				reorientcommandTarget = new CustomMessageReorientCommand(req2);
+
+
+				//only change semantically the source and target of the message			
+				command.add(new ICommandProxy(reorientcommandSrc));
+
+				command.add(new ICommandProxy(reorientcommandTarget));
+
+
+			}
+			//Execute the command
+			selectedElement.getDiagramEditDomain().getDiagramCommandStack().execute(command);
+
+			((IGraphicalEditPart)selectedElement).refresh();
+
 		}
-		if(aSrc != null) {
-			setconnectionanchorscommand.setNewTargetTerminal(aSrc.getId());
-		}
-
-		command.add(new ICommandProxy(reorientcommandSrc));
-
-		command.add(new ICommandProxy(reorientcommandTarget));
-
-		command.add(new ICommandProxy(setconnectionendscommand));
-
-		command.add(new ICommandProxy(setconnectionanchorscommand));
-
-		//Execute the command
-		selectedElement.getDiagramEditDomain().getDiagramCommandStack().execute(command);
 	}
 
 
@@ -128,7 +157,6 @@ public class MessageLabelInverseOrientation implements IObjectActionDelegate {
 			Object selectedobject = ((IStructuredSelection)selection).getFirstElement();
 			if(selectedobject instanceof MessageNameEditPart) {
 				selectedElement = (MessageNameEditPart)selectedobject;
-				//link = (Message)selectedElement.resolveSemanticElement();
 			}
 		}
 
@@ -147,12 +175,12 @@ public class MessageLabelInverseOrientation implements IObjectActionDelegate {
 	}
 
 	/**
-	 * Gets the link.
+	 * Gets the UML message.
 	 * 
-	 * @return the link
+	 * @return the UML message
 	 */
-	protected Message getLink() {
-		return (Message)((ConnectionEditPart)selectedElement.getParent()).resolveSemanticElement();
+	protected Message getMessage() {
+		return (Message)selectedElement.resolveSemanticElement();
 	}
 
 }

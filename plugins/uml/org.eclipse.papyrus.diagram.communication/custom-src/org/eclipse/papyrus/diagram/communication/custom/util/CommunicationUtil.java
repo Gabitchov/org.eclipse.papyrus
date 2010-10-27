@@ -16,10 +16,13 @@ package org.eclipse.papyrus.diagram.communication.custom.util;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -48,7 +51,9 @@ import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.InteractionOperand;
 import org.eclipse.uml2.uml.IntervalConstraint;
+import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
+import org.eclipse.uml2.uml.MessageEnd;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
@@ -245,4 +250,86 @@ public class CommunicationUtil {
 		return null;
 	}
 
+	/**
+	 * This methods verifies if two UML Lifelines are already connected
+	 * 
+	 * @return
+	 *         the list of messages between the two lifelines if Lifelines are connected
+	 *         else it returns null
+	 */
+
+	public static Set<Message> verifyUMLLifelinesConnected(Lifeline lifeline1, Lifeline lifeline2) {
+		EList<InteractionFragment> lifeline1Events = lifeline1.getCoveredBys();
+		EList<InteractionFragment> lifeline2Events = lifeline2.getCoveredBys();
+		Set<Message> messages = null;
+		for(InteractionFragment current1 : lifeline1Events) {
+			MessageEnd me1 = (MessageEnd)current1;
+			if(!(me1.getMessage() == null)) {
+				for(InteractionFragment current2 : lifeline2Events) {
+					MessageEnd me2 = (MessageEnd)current2;
+					if(!(me2.getMessage() == null)) {
+						if(me1.getMessage().equals(me2.getMessage())) {
+							if(messages == null) {
+								messages = new HashSet<Message>();
+								messages.add(me1.getMessage());
+							} else {
+								messages.add(me1.getMessage());
+							}
+
+						}
+					}
+				}
+			}
+		}
+		return messages;
+	}
+
+	/**
+	 * Verify if lifelines Ediparts are connected.
+	 * 
+	 * @param lifeline1EditPart
+	 *        the first lifeline edit part
+	 * @param lifeline2EditPart
+	 *        the second lifeline edit part
+	 * @return the connection edit part if lifelines are connected, else it returns null
+	 */
+	@SuppressWarnings({ "rawtypes" })
+	public static ConnectionEditPart verifyIfLifelinesEPConnected(EditPart lifeline1EditPart, EditPart lifeline2EditPart) {
+		List sourceConnectionslifeline1 = ((GraphicalEditPart)lifeline1EditPart).getSourceConnections();
+		List targetConnectionslifeline2 = ((GraphicalEditPart)lifeline2EditPart).getTargetConnections();
+		List sourceConnectionslifeline2 = ((GraphicalEditPart)lifeline2EditPart).getSourceConnections();
+		List targetConnectionslifeline1 = ((GraphicalEditPart)lifeline1EditPart).getTargetConnections();
+		if((!sourceConnectionslifeline1.isEmpty()) && (!targetConnectionslifeline2.isEmpty())) {
+
+			for(int i = 0; i < sourceConnectionslifeline1.size(); i++) {
+				for(int j = 0; j < targetConnectionslifeline2.size(); j++) {
+					ConnectionEditPart link1 = (ConnectionEditPart)sourceConnectionslifeline1.get(i);
+					ConnectionEditPart link2 = (ConnectionEditPart)targetConnectionslifeline2.get(j);
+					//System.err.println("+-> ConnectionEditPart link1:" + link1);
+					if(link1.equals(link2)) {
+						//System.out.println("Source and target have existent same connection");
+						return link1;
+					}
+
+				}
+			}
+
+		} else if((!sourceConnectionslifeline2.isEmpty()) && (!targetConnectionslifeline1.isEmpty())) {
+
+			for(int i = 0; i < sourceConnectionslifeline2.size(); i++) {
+				for(int j = 0; j < targetConnectionslifeline1.size(); j++) {
+					ConnectionEditPart link1 = (ConnectionEditPart)sourceConnectionslifeline2.get(i);
+					ConnectionEditPart link2 = (ConnectionEditPart)targetConnectionslifeline1.get(j);
+					//System.err.println("+-> ConnectionEditPart link1:" + link1);
+					if(link1.equals(link2)) {
+						//System.out.println("Source and target have existent same connection");
+						return link1;
+					}
+
+				}
+			}
+
+		}
+		return null;
+	}
 }

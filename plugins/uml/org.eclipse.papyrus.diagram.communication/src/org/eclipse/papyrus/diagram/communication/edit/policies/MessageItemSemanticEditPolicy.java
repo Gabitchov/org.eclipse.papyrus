@@ -8,18 +8,18 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
+ *  Saadia Dhouib saadia.dhouib@cea.fr  
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.edit.policies;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.command.DeleteCommand;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
-import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
@@ -53,6 +53,10 @@ public class MessageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 	public MessageItemSemanticEditPolicy() {
 		super(UMLElementTypes.Message_8009);
 	}
+
+
+
+
 
 	/**
 	 * @generated
@@ -135,8 +139,8 @@ public class MessageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 	}
 
 	/**
-	 * Returns command to reorient EReference based link. New link target or
-	 * source should be the domain model element associated with this node.
+	 * Returns command to reorient EReference based link. New link target or source
+	 * should be the domain model element associated with this node.
 	 * 
 	 * @generated
 	 */

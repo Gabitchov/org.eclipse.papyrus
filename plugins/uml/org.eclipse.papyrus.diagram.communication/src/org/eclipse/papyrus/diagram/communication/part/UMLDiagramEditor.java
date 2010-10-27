@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
+ *  Saadia Dhouib saadia.dhouib@cea.fr  
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.part;
@@ -438,7 +438,7 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 						 * Override to support double-clicking a palette tool entry to create a
 						 * shape or connection (between two selected shapes).
 						 * 
-						 * @see MouseListener#mouseDoubleClick(MouseEvent)
+						 * @see org.eclipse.swt.events.MouseListener#mouseDoubleClick(org.eclipse.swt.events.MouseEvent)
 						 */
 						public void mouseDoubleClick(MouseEvent e) {
 							Tool tool = getPaletteViewer().getActiveTool().createTool();

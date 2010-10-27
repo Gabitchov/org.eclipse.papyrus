@@ -160,7 +160,7 @@
 					<entry
        defineOnly="true"
        description="Create a Lifeline"
-       id="createLifelineComCreationTool"
+       id="communication.tool.lifeline"
        kind="tool"
        label="Lifeline"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Lifeline.gif"
@@ -170,7 +170,7 @@
 	<entry
        defineOnly="true"
        description="Create new Comment"
-       id="createComment7CreationTool"
+       id="communication.tool.comment"
        kind="tool"
        label="Comment"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
@@ -190,7 +190,7 @@
 	<entry
        defineOnly="true"
        description="Create a Duration Observation on a Message"
-       id="createDurationObservation4CreationTool"
+       id="communication.tool.durationobservation"
        kind="tool"
        label="Duration Observation"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationObservation.gif"
@@ -200,7 +200,7 @@
 	<entry
        defineOnly="true"
        description="Create a Time Observation"
-       id="createTimeObservation6CreationTool"
+       id="communication.tool.timeobservation"
        kind="tool"
        label="Time Observation"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeObservation.gif"
@@ -260,11 +260,11 @@
  	</entry>
  	 
  	 	<predefinedEntry
-          id="createLifelineComCreationTool"
+          id="communication.tool.lifeline"
           path="/communication.group.nodes">
     </predefinedEntry>
  	<predefinedEntry
-          id="createComment7CreationTool"
+          id="communication.tool.comment"
           path="/communication.group.nodes">
     </predefinedEntry>
  	<predefinedEntry
@@ -272,11 +272,11 @@
           path="/communication.group.nodes">
     </predefinedEntry>
  	<predefinedEntry
-          id="createDurationObservation4CreationTool"
+          id="communication.tool.durationobservation"
           path="/communication.group.nodes">
     </predefinedEntry>
  	<predefinedEntry
-          id="createTimeObservation6CreationTool"
+          id="communication.tool.timeobservation"
           path="/communication.group.nodes">
     </predefinedEntry>
 
@@ -795,20 +795,6 @@
       point="org.eclipse.ui.popupMenus">
    <objectContribution
          adaptable="false"
-         id="org.eclipse.papyrus.diagram.communication.objectContribution.messageReorient"
-         objectClass="org.eclipse.papyrus.diagram.communication.edit.parts.MessageEditPart">
-      <action
-            class="org.eclipse.papyrus.diagram.communication.custom.commands.MessageInverseOrientation"
-            definitionId="org.eclipse.papyrus.diagram.communication.messagereorientID"
-            enablesFor="1"
-            icon="icons/arrow-rotate.gif"
-            id="org.eclipse.papyrus.diagram.communication.MessagereorientID"
-            label="Inverse message orientation"
-            menubarPath="editGroup">
-      </action>
-   </objectContribution>
-   <objectContribution
-         adaptable="false"
          id="org.eclipse.papyrus.diagram.communication.objectContribution.messageLabelReorient"
          objectClass="org.eclipse.papyrus.diagram.communication.edit.parts.MessageNameEditPart">
       <action
@@ -817,7 +803,7 @@
             enablesFor="1"
             icon="icons/arrow-rotate.gif"
             id="org.eclipse.papyrus.diagram.communication.MessagelabelreorientID"
-            label="Inverse message orientation"
+            label="Reverse message orientation"
             menubarPath="editGroup">
       </action>
    </objectContribution>
@@ -830,8 +816,48 @@
       </menuContribution -->
    </extension>
 
-
-
+<extension
+      point="org.eclipse.gmf.runtime.diagram.core.viewProviders">
+   <viewProvider
+         class="org.eclipse.papyrus.diagram.communication.custom.providers.CustomUMLViewProvider">
+      <Priority
+            name="High">
+      </Priority>
+      <context
+            semanticHints="PapyrusUMLCommunicationDiagram"
+            viewClass="org.eclipse.gmf.runtime.notation.Diagram">
+      </context>
+      <context
+            semanticHints="8002,8016,8001,8004,8005,8006,8007"
+            viewClass="org.eclipse.gmf.runtime.notation.Node">
+      </context>
+      <context
+            semanticHints="8009,8010,8011,8012,8013"
+            viewClass="org.eclipse.gmf.runtime.notation.Edge">
+      </context>
+   </viewProvider>
+</extension>
+<extension
+      point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
+   <binding
+         context="org.eclipse.papyrus.service.edit.TypeContext">
+      <elementType
+            ref="org.eclipse.papyrus.uml.advice.Message">
+      </elementType>
+   </binding>
+</extension>
+<extension
+      point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
+   <metamodel
+         nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <adviceBinding
+            class="org.eclipse.papyrus.diagram.communication.custom.advices.DestroyMessageAdvice"
+            id="org.eclipse.papyrus.uml.advice.Message"
+            inheritance="none"
+            typeId="org.eclipse.papyrus.uml.Message">
+      </adviceBinding>
+   </metamodel>
+</extension>
 
 
 </plugin>

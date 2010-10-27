@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
+ *  Saadia Dhouib saadia.dhouib@cea.fr  
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.part;
@@ -108,10 +108,8 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	 * content of the document is not changed. This default implementation is empty.
 	 * Subclasses may reimplement.
 	 * 
-	 * @param element
-	 *        the blue-print element
-	 * @param document
-	 *        the document to set up
+	 * @param element the blue-print element
+	 * @param document the document to set up
 	 * @generated
 	 */
 	protected void setupDocument(Object element, IDocument document) {

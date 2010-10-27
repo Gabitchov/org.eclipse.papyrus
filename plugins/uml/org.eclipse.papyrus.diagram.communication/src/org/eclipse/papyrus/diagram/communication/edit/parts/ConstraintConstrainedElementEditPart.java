@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
+ *  Saadia Dhouib saadia.dhouib@cea.fr  
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.edit.parts;
@@ -49,11 +49,15 @@ implements ITreeBranchEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ConstraintConstrainedElementItemSemanticEditPolicy());
 	}
 
+
+
+
+
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model so
-	 * you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model
+	 * so you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -69,10 +73,14 @@ implements ITreeBranchEditPart {
 		return (CommentLinkDescriptor)getFigure();
 	}
 
+
 	/**
 	 * @generated
 	 */
 	public class CommentLinkDescriptor extends PolylineConnectionEx {
+
+
+
 
 		/**
 		 * @generated
@@ -83,6 +91,11 @@ implements ITreeBranchEditPart {
 
 		}
 
+
+
+
 	}
+
+
 
 }

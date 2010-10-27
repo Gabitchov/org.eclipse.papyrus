@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
+ *  Saadia Dhouib saadia.dhouib@cea.fr  
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.part;
@@ -32,7 +32,6 @@ import org.eclipse.swt.widgets.Label;
 
 /**
  * Wizard page that allows to select element from model.
- * 
  * @generated
  */
 public class ModelElementSelectionPage extends WizardPage {
@@ -117,7 +116,6 @@ public class ModelElementSelectionPage extends WizardPage {
 
 	/**
 	 * Override to provide custom model element description.
-	 * 
 	 * @generated
 	 */
 	protected String getSelectionTitle() {
@@ -146,7 +144,6 @@ public class ModelElementSelectionPage extends WizardPage {
 
 	/**
 	 * Override to provide specific validation of the selected model element.
-	 * 
 	 * @generated
 	 */
 	protected boolean validatePage() {

@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
+ *  Saadia Dhouib saadia.dhouib@cea.fr  
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.providers;
@@ -296,6 +296,39 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Interaction");
 
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createDiagram_8016(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry.getType(ShortCutDiagramEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		stampShortcut(containerView, node);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+
+
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "ShortCutDiagram");
+
+
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ShortCutDiagram");
+
+
+
+		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "ShortCutDiagram");
+
+		Node label0 = createLabel(node, UMLVisualIDRegistry.getType(DiagramNameEditPart.VISUAL_ID));
+		label0.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+
+		Location location0 = (Location)label0.getLayoutConstraint();
+		location0.setX(0);
+		location0.setY(5);
+
 
 		return node;
 	}
@@ -323,7 +356,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Lifeline");
 
 		Node label5002 = createLabel(node, UMLVisualIDRegistry.getType(LifelineNameEditPart.VISUAL_ID));
-
 
 
 		return node;
@@ -355,7 +387,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Node label5160 = createLabel(node, UMLVisualIDRegistry.getType(ConstraintBodyEditPartCN.VISUAL_ID));
 
 
-
 		return node;
 	}
 
@@ -383,7 +414,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Comment");
 
 		Node label5150 = createLabel(node, UMLVisualIDRegistry.getType(CommentBodyEditPartCN.VISUAL_ID));
-
 
 
 		return node;
@@ -425,7 +455,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		location5154.setY(-10);
 
 
-
 		return node;
 	}
 
@@ -463,42 +492,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5156 = (Location)label5156.getLayoutConstraint();
 		location5156.setX(25);
 		location5156.setY(-10);
-
-
-
-		return node;
-	}
-
-	/**
-	 * @generated
-	 */
-	public Node createDiagram_8016(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
-		Shape node = NotationFactory.eINSTANCE.createShape();
-		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(UMLVisualIDRegistry.getType(ShortCutDiagramEditPart.VISUAL_ID));
-		ViewUtil.insertChildView(containerView, node, index, persisted);
-		node.setElement(domainElement);
-		stampShortcut(containerView, node);
-		// initializeFromPreferences 
-		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
-
-
-		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "ShortCutDiagram");
-
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ShortCutDiagram");
-
-
-
-		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "ShortCutDiagram");
-
-		Node label0 = createLabel(node, UMLVisualIDRegistry.getType(DiagramNameEditPart.VISUAL_ID));
-		label0.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-
-		Location location0 = (Location)label0.getLayoutConstraint();
-		location0.setX(0);
-		location0.setY(5);
-
 
 
 		return node;
@@ -689,6 +682,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		return edge;
 	}
 
+
+
 	/**
 	 * @generated
 	 */
@@ -701,6 +696,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		}
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -710,6 +706,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		ViewUtil.insertChildView(owner, rv, ViewUtil.APPEND, true);
 		return rv;
 	}
+
 
 	/**
 	 * @generated
@@ -756,6 +753,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		return null;
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -765,6 +763,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		}
 		return (IElementType)semanticAdapter.getAdapter(IElementType.class);
 	}
+
 
 	/**
 	 * @generated
@@ -818,5 +817,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			fillStyle.setTransparency(gradientPreferenceConverter.getTransparency());
 		}
 	}
+
 
 }

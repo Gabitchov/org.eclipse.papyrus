@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
+ *  Saadia Dhouib saadia.dhouib@cea.fr  
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.edit.policies;
@@ -53,6 +53,7 @@ public class InteractionCompartmentCanonicalEditPolicy extends CanonicalEditPoli
 	 * @generated
 	 */
 	private Set<EStructuralFeature> myFeaturesToSynchronize;
+
 
 	/**
 	 * @generated
