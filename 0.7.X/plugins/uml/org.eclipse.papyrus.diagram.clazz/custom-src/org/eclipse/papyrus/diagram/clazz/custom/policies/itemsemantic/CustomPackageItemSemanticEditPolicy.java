@@ -121,71 +121,7 @@ public class CustomPackageItemSemanticEditPolicy extends PackageItemSemanticEdit
 		return super.getDestroyReferenceCommand(req);
 	}
 
-	protected Command getDestroyElementCommandGen(DestroyElementRequest req) {
-		View view = (View)getHost().getModel();
-		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
-		cmd.setTransactionNestingEnabled(false);
 
-		for(Iterator<?> it = view.getTargetEdges().iterator(); it.hasNext();) {
-			Edge incomingLink = (Edge)it.next();
-			switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
-			case CommentAnnotatedElementEditPart.VISUAL_ID:
-			case ConstraintConstrainedElementEditPart.VISUAL_ID:
-			case ConnectorTimeObservationEditPart.VISUAL_ID:
-			case ConnectorDurationObservationEditPart.VISUAL_ID:
-				DestroyReferenceRequest destroyRefReq = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
-				cmd.add(new DestroyReferenceCommand(destroyRefReq));
-				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
-				break;
-			case RealizationEditPart.VISUAL_ID:
-			case AbstractionEditPart.VISUAL_ID:
-			case UsageEditPart.VISUAL_ID:
-			case DependencyEditPart.VISUAL_ID:
-			case DependencyBranchEditPart.VISUAL_ID:
-			case ElementImportEditPart.VISUAL_ID:
-			case PackageImportEditPart.VISUAL_ID:
-			case PackageMergeEditPart.VISUAL_ID:
-			case TemplateBindingEditPart.VISUAL_ID:
-				//			case AddedLinkEditPart.VISUAL_ID:
-				DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
-				cmd.add(new DestroyElementCommand(destroyEltReq));
-				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
-				break;
-			}
-		}
-
-		for(Iterator<?> it = view.getSourceEdges().iterator(); it.hasNext();) {
-			Edge outgoingLink = (Edge)it.next();
-			switch(UMLVisualIDRegistry.getVisualID(outgoingLink)) {
-			case RealizationEditPart.VISUAL_ID:
-			case AbstractionEditPart.VISUAL_ID:
-			case UsageEditPart.VISUAL_ID:
-			case DependencyEditPart.VISUAL_ID:
-			case DependencyBranchEditPart.VISUAL_ID:
-			case ElementImportEditPart.VISUAL_ID:
-			case PackageImportEditPart.VISUAL_ID:
-			case PackageMergeEditPart.VISUAL_ID:
-			case ProfileApplicationEditPart.VISUAL_ID:
-			case TemplateBindingEditPart.VISUAL_ID:
-				//			case AddedLinkEditPart.VISUAL_ID:
-				DestroyElementRequest destroyEltReq = new DestroyElementRequest(outgoingLink.getElement(), false);
-				cmd.add(new DestroyElementCommand(destroyEltReq));
-				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
-				break;
-			}
-		}
-		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
-		if(annotation == null) {
-			// there are indirectly referenced children, need extra commands: false
-			addDestroyChildNodesCommand(cmd);
-			addDestroyShortcutsCommand(cmd, view);
-			// delete host element
-			cmd.add(new DestroyElementCommand(req));
-		} else {
-			cmd.add(new DeleteCommand(getEditingDomain(), view));
-		}
-		return getGEFWrapper(cmd.reduce());
-	}
 
 	/**
 	 * 
@@ -193,10 +129,11 @@ public class CustomPackageItemSemanticEditPolicy extends PackageItemSemanticEdit
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 
-		ICommandProxy command = (ICommandProxy)getDestroyElementCommandGen(req);
+		ICommandProxy command = (ICommandProxy)super.getDestroyElementCommand(req);
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.add(command.getICommand());
 
+		//to ensure the deletion of link and also the undo!
 		addDestroyIncomingContainmentLinksCommand(cmd);
 		ContainmentHelper.addDeleteOutgoingContainmentLinkViewCommands(getEditingDomain(), (View)getHost().getModel(), cmd);
 		return getGEFWrapper(cmd.reduce());
