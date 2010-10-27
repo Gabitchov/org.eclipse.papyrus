@@ -1,16 +1,9 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+/**
+ * <copyright>
+ * </copyright>
  *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
+
+ */
 package org.eclipse.papyrus.state.editor.xtext.umlState;
 
 import org.eclipse.emf.ecore.EObject;
@@ -24,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.papyrus.state.editor.xtext.umlState.StateRule#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.state.editor.xtext.umlState.StateRule#getSubmachine <em>Submachine</em>}</li>
  *   <li>{@link org.eclipse.papyrus.state.editor.xtext.umlState.StateRule#getEntry <em>Entry</em>}</li>
  *   <li>{@link org.eclipse.papyrus.state.editor.xtext.umlState.StateRule#getDo <em>Do</em>}</li>
  *   <li>{@link org.eclipse.papyrus.state.editor.xtext.umlState.StateRule#getExit <em>Exit</em>}</li>
@@ -61,6 +55,32 @@ public interface StateRule extends EObject
    * @generated
    */
   void setName(String value);
+
+  /**
+   * Returns the value of the '<em><b>Submachine</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Submachine</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Submachine</em>' containment reference.
+   * @see #setSubmachine(SubmachineRule)
+   * @see org.eclipse.papyrus.state.editor.xtext.umlState.UmlStatePackage#getStateRule_Submachine()
+   * @model containment="true"
+   * @generated
+   */
+  SubmachineRule getSubmachine();
+
+  /**
+   * Sets the value of the '{@link org.eclipse.papyrus.state.editor.xtext.umlState.StateRule#getSubmachine <em>Submachine</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Submachine</em>' containment reference.
+   * @see #getSubmachine()
+   * @generated
+   */
+  void setSubmachine(SubmachineRule value);
 
   /**
    * Returns the value of the '<em><b>Entry</b></em>' containment reference.

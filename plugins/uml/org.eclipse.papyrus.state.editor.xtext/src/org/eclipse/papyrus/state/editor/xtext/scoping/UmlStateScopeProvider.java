@@ -19,8 +19,16 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.papyrus.state.editor.xtext.umlState.StateRule;
-import org.eclipse.uml2.uml.Behavior;
+import org.eclipse.papyrus.state.editor.xtext.umlState.QualifiedName;
+import org.eclipse.papyrus.state.editor.xtext.umlState.SubmachineRule;
+import org.eclipse.papyrus.state.editor.xtext.validation.UmlStateJavaValidator;
+import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.ElementImport;
+import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Namespace;
+import org.eclipse.uml2.uml.PackageImport;
+import org.eclipse.uml2.uml.StateMachine;
+import org.eclipse.xtext.gmf.glue.edit.part.PopupXtextEditorHelper;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.Scopes;
@@ -35,5 +43,130 @@ import org.eclipse.xtext.scoping.impl.SimpleScope;
  *
  */
 public class UmlStateScopeProvider extends AbstractDeclarativeScopeProvider {
+	
+	/**
+	 * Rule for computing the scope of PropertyRule
+	 * @param ctx
+	 * @param ref
+	 * @return scope
+	 */
+	public IScope scope_SubmachineRule_submachine(SubmachineRule ctx, EReference ref) {
+		return create___SubmachineRule_submachine___Scope(ctx) ;
+	}
+	
+	private IScope create___SubmachineRule_submachine___Scope(SubmachineRule ctx) {
+		if (ctx.getPath() == null) {
+			Iterator<EObject> i = PopupXtextEditorHelper.context.eResource().getAllContents() ;
+			List<EObject> allContent = new ArrayList<EObject>() ;
+			while (i.hasNext()) {
+				EObject object = i.next() ;
+				if (object instanceof StateMachine)
+					allContent.add(object) ;
+			}
+			Iterable<IEObjectDescription> visibleParameterBoxes = Scopes.scopedElementsFor(allContent) ;
+			return new SimpleScope(visibleParameterBoxes) ;
+		}
+		else {
+			// In the case where a path (qualified name prefix) has been specified,
+			// retrieves visible elements from this name space
+			List<Element> tmpVisibleElementsFromPath = new ArrayList<Element>() ;
+			if (ctx.getPath() != null) {
+				QualifiedName qualifiedName = ctx.getPath() ;
+				while (qualifiedName.getRemaining() != null) {
+					qualifiedName = qualifiedName.getRemaining() ;
+				}
+				Namespace nearestNamespace = qualifiedName.getPath() ;
+				if (nearestNamespace != null) {
+					List<Element> tmpVisiblePropertiesFromPath = new ArrayList<Element>() ;
+					tmpVisiblePropertiesFromPath.addAll(new Visitor_GetOwnedAndImportedStatemachines().visit(nearestNamespace)) ;
+					for (Element e : tmpVisiblePropertiesFromPath) {
+						tmpVisibleElementsFromPath.add(e) ;
+					}
+				}
+			}
+			
+			// builds the nested scope based on hierarchy and then inheritance
+			SimpleScope resultScope = null;
+			
+			Iterable<IEObjectDescription> iterableIEobjectDescriptions ;
+			if (! tmpVisibleElementsFromPath.isEmpty()) {
+				iterableIEobjectDescriptions = Scopes.scopedElementsFor(tmpVisibleElementsFromPath) ;
+				resultScope = resultScope != null ? new SimpleScope(resultScope, iterableIEobjectDescriptions) : new SimpleScope(iterableIEobjectDescriptions) ;
+			}
+			
+			return resultScope != null ? resultScope : new SimpleScope(Scopes.scopedElementsFor(new ArrayList<Element>())) ;
+		}
+	}
+	
+	/**
+	 * @param ctx
+	 * @param ref
+	 * @return scope
+	 */
+	public IScope scope_QualifiedName_path (QualifiedName ctx, EReference ref) {
+		List<Namespace> visibleNamespaces = new ArrayList<Namespace>() ;				
+		if (ctx != null && ctx.eContainer() != null && ctx.eContainer() instanceof QualifiedName) {
+			Namespace parentNameSpace = ((QualifiedName)ctx.eContainer()).getPath() ;
+			visibleNamespaces.addAll(new Visitor_GetOwnedNamespacesAndImportedNamespaces().visit(parentNameSpace)) ;
+		}
+		else {
+			visibleNamespaces.add(UmlStateJavaValidator.getModel()) ;
+			visibleNamespaces.addAll(new Visitor_GetImportedNamespaces().visit(UmlStateJavaValidator.getModel())) ;
+		}
+		Iterable<IEObjectDescription> iterableIEobjectDescription = Scopes.scopedElementsFor(visibleNamespaces) ;		
+		return new SimpleScope(iterableIEobjectDescription) ;
+	}
+
+	private class Visitor_GetImportedNamespaces { 
+		public List<Namespace> visit(Namespace visited) {
+			List<Namespace> namespaces = new ArrayList<Namespace>() ;
+
+			// retrieves imported namespaces
+			for (PackageImport pImport : visited.getPackageImports()) {
+				namespaces.add(pImport.getImportedPackage()) ;
+			}
+			for (ElementImport eImport : visited.getElementImports()) {
+				if (eImport.getImportedElement() instanceof Namespace)
+					namespaces.add((Namespace)eImport.getImportedElement()) ;
+			}
+
+			return namespaces;
+		}
+	}
+	
+	private class Visitor_GetOwnedNamespacesAndImportedNamespaces extends Visitor_GetImportedNamespaces {
+		@Override
+		public List<Namespace> visit(Namespace visited) {
+			List<Namespace> namespaces = new ArrayList<Namespace>() ;
+			// first retrieves imported namespaces
+			namespaces.addAll(super.visit(visited)) ;
+			// 	then retrieves owned namespaces
+			for (NamedElement n : visited.getOwnedMembers()) {
+				if (n instanceof Namespace)
+					namespaces.add((Namespace)n) ;
+			}
+			return namespaces;
+		}
+	}
+	
+	private class Visitor_GetOwnedAndImportedStatemachines {
+		
+		public List<Element> visit(Namespace visited) {
+			List<Element> visibleElements = new ArrayList<Element>() ;
+			// first retrieves imported statemachines
+			for (ElementImport eImport : visited.getElementImports()) {
+				if (eImport.getImportedElement() instanceof StateMachine)
+					visibleElements.add(eImport.getImportedElement()) ;
+			}
+			// then retrieves owned statemachines
+			for (Element n : visited.getOwnedElements()) {
+				if (n instanceof StateMachine)
+					visibleElements.add(n) ;
+			}
+			
+			return visibleElements;
+		}
+		
+	}
 	
 }

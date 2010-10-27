@@ -1,16 +1,9 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+/**
+ * <copyright>
+ * </copyright>
  *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
+
+ */
 package org.eclipse.papyrus.state.editor.xtext.umlState;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -88,13 +81,22 @@ public interface UmlStatePackage extends EPackage
   int STATE_RULE__NAME = 0;
 
   /**
+   * The feature id for the '<em><b>Submachine</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STATE_RULE__SUBMACHINE = 1;
+
+  /**
    * The feature id for the '<em><b>Entry</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int STATE_RULE__ENTRY = 1;
+  int STATE_RULE__ENTRY = 2;
 
   /**
    * The feature id for the '<em><b>Do</b></em>' containment reference.
@@ -103,7 +105,7 @@ public interface UmlStatePackage extends EPackage
    * @generated
    * @ordered
    */
-  int STATE_RULE__DO = 2;
+  int STATE_RULE__DO = 3;
 
   /**
    * The feature id for the '<em><b>Exit</b></em>' containment reference.
@@ -112,7 +114,7 @@ public interface UmlStatePackage extends EPackage
    * @generated
    * @ordered
    */
-  int STATE_RULE__EXIT = 3;
+  int STATE_RULE__EXIT = 4;
 
   /**
    * The number of structural features of the '<em>State Rule</em>' class.
@@ -121,7 +123,81 @@ public interface UmlStatePackage extends EPackage
    * @generated
    * @ordered
    */
-  int STATE_RULE_FEATURE_COUNT = 4;
+  int STATE_RULE_FEATURE_COUNT = 5;
+
+  /**
+   * The meta object id for the '{@link org.eclipse.papyrus.state.editor.xtext.umlState.impl.SubmachineRuleImpl <em>Submachine Rule</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.eclipse.papyrus.state.editor.xtext.umlState.impl.SubmachineRuleImpl
+   * @see org.eclipse.papyrus.state.editor.xtext.umlState.impl.UmlStatePackageImpl#getSubmachineRule()
+   * @generated
+   */
+  int SUBMACHINE_RULE = 1;
+
+  /**
+   * The feature id for the '<em><b>Path</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SUBMACHINE_RULE__PATH = 0;
+
+  /**
+   * The feature id for the '<em><b>Submachine</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SUBMACHINE_RULE__SUBMACHINE = 1;
+
+  /**
+   * The number of structural features of the '<em>Submachine Rule</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SUBMACHINE_RULE_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link org.eclipse.papyrus.state.editor.xtext.umlState.impl.QualifiedNameImpl <em>Qualified Name</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.eclipse.papyrus.state.editor.xtext.umlState.impl.QualifiedNameImpl
+   * @see org.eclipse.papyrus.state.editor.xtext.umlState.impl.UmlStatePackageImpl#getQualifiedName()
+   * @generated
+   */
+  int QUALIFIED_NAME = 2;
+
+  /**
+   * The feature id for the '<em><b>Path</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int QUALIFIED_NAME__PATH = 0;
+
+  /**
+   * The feature id for the '<em><b>Remaining</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int QUALIFIED_NAME__REMAINING = 1;
+
+  /**
+   * The number of structural features of the '<em>Qualified Name</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int QUALIFIED_NAME_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link org.eclipse.papyrus.state.editor.xtext.umlState.impl.EntryRuleImpl <em>Entry Rule</em>}' class.
@@ -131,7 +207,7 @@ public interface UmlStatePackage extends EPackage
    * @see org.eclipse.papyrus.state.editor.xtext.umlState.impl.UmlStatePackageImpl#getEntryRule()
    * @generated
    */
-  int ENTRY_RULE = 1;
+  int ENTRY_RULE = 3;
 
   /**
    * The feature id for the '<em><b>Kind</b></em>' attribute.
@@ -168,7 +244,7 @@ public interface UmlStatePackage extends EPackage
    * @see org.eclipse.papyrus.state.editor.xtext.umlState.impl.UmlStatePackageImpl#getDoRule()
    * @generated
    */
-  int DO_RULE = 2;
+  int DO_RULE = 4;
 
   /**
    * The feature id for the '<em><b>Kind</b></em>' attribute.
@@ -205,7 +281,7 @@ public interface UmlStatePackage extends EPackage
    * @see org.eclipse.papyrus.state.editor.xtext.umlState.impl.UmlStatePackageImpl#getExitRule()
    * @generated
    */
-  int EXIT_RULE = 3;
+  int EXIT_RULE = 5;
 
   /**
    * The feature id for the '<em><b>Kind</b></em>' attribute.
@@ -242,7 +318,7 @@ public interface UmlStatePackage extends EPackage
    * @see org.eclipse.papyrus.state.editor.xtext.umlState.impl.UmlStatePackageImpl#getBehaviorKind()
    * @generated
    */
-  int BEHAVIOR_KIND = 4;
+  int BEHAVIOR_KIND = 6;
 
 
   /**
@@ -265,6 +341,17 @@ public interface UmlStatePackage extends EPackage
    * @generated
    */
   EAttribute getStateRule_Name();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.state.editor.xtext.umlState.StateRule#getSubmachine <em>Submachine</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Submachine</em>'.
+   * @see org.eclipse.papyrus.state.editor.xtext.umlState.StateRule#getSubmachine()
+   * @see #getStateRule()
+   * @generated
+   */
+  EReference getStateRule_Submachine();
 
   /**
    * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.state.editor.xtext.umlState.StateRule#getEntry <em>Entry</em>}'.
@@ -298,6 +385,70 @@ public interface UmlStatePackage extends EPackage
    * @generated
    */
   EReference getStateRule_Exit();
+
+  /**
+   * Returns the meta object for class '{@link org.eclipse.papyrus.state.editor.xtext.umlState.SubmachineRule <em>Submachine Rule</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Submachine Rule</em>'.
+   * @see org.eclipse.papyrus.state.editor.xtext.umlState.SubmachineRule
+   * @generated
+   */
+  EClass getSubmachineRule();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.state.editor.xtext.umlState.SubmachineRule#getPath <em>Path</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Path</em>'.
+   * @see org.eclipse.papyrus.state.editor.xtext.umlState.SubmachineRule#getPath()
+   * @see #getSubmachineRule()
+   * @generated
+   */
+  EReference getSubmachineRule_Path();
+
+  /**
+   * Returns the meta object for the reference '{@link org.eclipse.papyrus.state.editor.xtext.umlState.SubmachineRule#getSubmachine <em>Submachine</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Submachine</em>'.
+   * @see org.eclipse.papyrus.state.editor.xtext.umlState.SubmachineRule#getSubmachine()
+   * @see #getSubmachineRule()
+   * @generated
+   */
+  EReference getSubmachineRule_Submachine();
+
+  /**
+   * Returns the meta object for class '{@link org.eclipse.papyrus.state.editor.xtext.umlState.QualifiedName <em>Qualified Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Qualified Name</em>'.
+   * @see org.eclipse.papyrus.state.editor.xtext.umlState.QualifiedName
+   * @generated
+   */
+  EClass getQualifiedName();
+
+  /**
+   * Returns the meta object for the reference '{@link org.eclipse.papyrus.state.editor.xtext.umlState.QualifiedName#getPath <em>Path</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Path</em>'.
+   * @see org.eclipse.papyrus.state.editor.xtext.umlState.QualifiedName#getPath()
+   * @see #getQualifiedName()
+   * @generated
+   */
+  EReference getQualifiedName_Path();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.state.editor.xtext.umlState.QualifiedName#getRemaining <em>Remaining</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Remaining</em>'.
+   * @see org.eclipse.papyrus.state.editor.xtext.umlState.QualifiedName#getRemaining()
+   * @see #getQualifiedName()
+   * @generated
+   */
+  EReference getQualifiedName_Remaining();
 
   /**
    * Returns the meta object for class '{@link org.eclipse.papyrus.state.editor.xtext.umlState.EntryRule <em>Entry Rule</em>}'.
@@ -447,6 +598,14 @@ public interface UmlStatePackage extends EPackage
     EAttribute STATE_RULE__NAME = eINSTANCE.getStateRule_Name();
 
     /**
+     * The meta object literal for the '<em><b>Submachine</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference STATE_RULE__SUBMACHINE = eINSTANCE.getStateRule_Submachine();
+
+    /**
      * The meta object literal for the '<em><b>Entry</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -469,6 +628,58 @@ public interface UmlStatePackage extends EPackage
      * @generated
      */
     EReference STATE_RULE__EXIT = eINSTANCE.getStateRule_Exit();
+
+    /**
+     * The meta object literal for the '{@link org.eclipse.papyrus.state.editor.xtext.umlState.impl.SubmachineRuleImpl <em>Submachine Rule</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.papyrus.state.editor.xtext.umlState.impl.SubmachineRuleImpl
+     * @see org.eclipse.papyrus.state.editor.xtext.umlState.impl.UmlStatePackageImpl#getSubmachineRule()
+     * @generated
+     */
+    EClass SUBMACHINE_RULE = eINSTANCE.getSubmachineRule();
+
+    /**
+     * The meta object literal for the '<em><b>Path</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference SUBMACHINE_RULE__PATH = eINSTANCE.getSubmachineRule_Path();
+
+    /**
+     * The meta object literal for the '<em><b>Submachine</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference SUBMACHINE_RULE__SUBMACHINE = eINSTANCE.getSubmachineRule_Submachine();
+
+    /**
+     * The meta object literal for the '{@link org.eclipse.papyrus.state.editor.xtext.umlState.impl.QualifiedNameImpl <em>Qualified Name</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.papyrus.state.editor.xtext.umlState.impl.QualifiedNameImpl
+     * @see org.eclipse.papyrus.state.editor.xtext.umlState.impl.UmlStatePackageImpl#getQualifiedName()
+     * @generated
+     */
+    EClass QUALIFIED_NAME = eINSTANCE.getQualifiedName();
+
+    /**
+     * The meta object literal for the '<em><b>Path</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference QUALIFIED_NAME__PATH = eINSTANCE.getQualifiedName_Path();
+
+    /**
+     * The meta object literal for the '<em><b>Remaining</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference QUALIFIED_NAME__REMAINING = eINSTANCE.getQualifiedName_Remaining();
 
     /**
      * The meta object literal for the '{@link org.eclipse.papyrus.state.editor.xtext.umlState.impl.EntryRuleImpl <em>Entry Rule</em>}' class.
