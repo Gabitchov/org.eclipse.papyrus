@@ -142,7 +142,7 @@ public class CollaborationUseLabelEditPolicy extends AbstractMaskManagedEditPoli
 		// - the annotation corresponding to the display of the stereotype changes
 		// - the stereotype application list has changed
 		Object object = notification.getNotifier();
-		CollaborationUse collaborationUse = getUMLElement();
+		CollaborationUse collaborationUse = (CollaborationUse)hostSemanticElement;
 
 		if(object == null) {
 			return;
