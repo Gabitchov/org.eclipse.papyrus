@@ -31,6 +31,11 @@ public class StateFigure extends CompartmentFigure {
 	protected boolean informationHasChanged = false;
 
 	protected boolean isInformationShown = false;
+
+	protected String submachineStateName = "";
+
+	protected boolean isSubmachineState = false;
+
 	/** The State Compartment */
 	private final static String STATE_COMPARTMENT = "stateCompartment";
 
@@ -76,6 +81,21 @@ public class StateFigure extends CompartmentFigure {
 		getInformationLabelContainer().add(informationLabel, getInformationLabelConstraint(), -1);
 	}
 
+	public void setSubmachineStateName(String text){
+		submachineStateName = text;
+	}
+
+	public void setIsSubmachineState(boolean b){
+		isSubmachineState = b;
+	}
+
+
+	protected void refreshName(){
+		if(isSubmachineState){
+			nameLabel.setText(submachineStateName);
+		}
+	}
+	
 	@Override
 	protected void createNameLabel() {
 		// TODO Auto-generated method stub
@@ -97,7 +117,7 @@ public class StateFigure extends CompartmentFigure {
 	public WrappingLabel getInformationLabel(){
 		return informationLabel;
 	}
-	
+
 	/**
 	 * Get the constraint for adding the information label.
 	 * Children should override and implement this method in case the label must be drawn with a specific constraint.
@@ -186,6 +206,8 @@ public class StateFigure extends CompartmentFigure {
 		paintBackground(graphics, getBounds());
 
 		refreshInformationToShow();
+		
+		refreshName();
 
 		if(isInformationShown) {
 			Rectangle rect = informationLabel.getBounds();

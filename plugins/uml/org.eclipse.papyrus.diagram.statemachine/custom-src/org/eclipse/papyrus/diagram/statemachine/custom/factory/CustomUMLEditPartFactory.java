@@ -2,7 +2,7 @@ package org.eclipse.papyrus.diagram.statemachine.custom.factory;
 
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.statemachine.custom.edit.part.CustomConnectionPointReferenceEditPart;
+import org.eclipse.papyrus.diagram.statemachine.custom.edit.part.CustomConnectionPointReferenceNameEditPart;
 import org.eclipse.papyrus.diagram.statemachine.custom.edit.part.CustomFinalStateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.custom.edit.part.CustomPackageEditPart;
 import org.eclipse.papyrus.diagram.statemachine.custom.edit.part.CustomRegionCompartmentEditPart;
@@ -14,7 +14,7 @@ import org.eclipse.papyrus.diagram.statemachine.custom.edit.part.CustomStateMach
 import org.eclipse.papyrus.diagram.statemachine.custom.edit.part.CustomStateMachineNameEditPart;
 import org.eclipse.papyrus.diagram.statemachine.custom.edit.part.CustomStateNameEditPart;
 import org.eclipse.papyrus.diagram.statemachine.custom.edit.part.CustomTransitionGuardEditPart;
-import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConnectionPointReferenceEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConnectionPointReferenceNameEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionCompartmentEditPart;
@@ -58,8 +58,8 @@ public class CustomUMLEditPartFactory extends UMLEditPartFactory {
 				return new CustomStateCompartmentEditPart(view);
 			case TransitionGuardEditPart.VISUAL_ID:
 				return new CustomTransitionGuardEditPart(view);
-			case ConnectionPointReferenceEditPart.VISUAL_ID:
-				return new CustomConnectionPointReferenceEditPart(view);
+			case ConnectionPointReferenceNameEditPart.VISUAL_ID:
+				return new CustomConnectionPointReferenceNameEditPart(view);
 
 			}
 

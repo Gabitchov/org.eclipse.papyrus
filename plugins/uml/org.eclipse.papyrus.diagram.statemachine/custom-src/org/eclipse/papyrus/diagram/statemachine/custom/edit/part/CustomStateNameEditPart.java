@@ -85,6 +85,9 @@ public class CustomStateNameEditPart extends StateNameEditPart {
 		StateFigure stateFigure = ((StateEditPart)getParent()).getPrimaryShape();
 		State state = (State)((View)getModel()).getElement();
 
+		
+			
+
 		stateFigure.fillInformation(getInformationFromState(state));
 
 
@@ -143,6 +146,13 @@ public class CustomStateNameEditPart extends StateNameEditPart {
 		State state = (State)((View)getModel()).getElement();
 
 		stateFigure.fillInformation(getInformationFromState(state));
+
+		if (state.isSubmachineState()) {
+			stateFigure.setSubmachineStateName(state.getName()+" : " + state.getSubmachine().getQualifiedName()) ;
+			stateFigure.setIsSubmachineState(true);
+		}
+		else
+			stateFigure.setIsSubmachineState(false);
 
 	}
 }
