@@ -572,6 +572,9 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ConstraintLabelEditPart.VISUAL_ID:
 				return new ConstraintLabelEditPart(view);
 
+			case AppliedStereotypeGeneralizationSetLabelEditPart.VISUAL_ID:
+				return new AppliedStereotypeGeneralizationSetLabelEditPart(view);
+
 			case InstanceSpecificationLinkEditPart.VISUAL_ID:
 				return new InstanceSpecificationLinkEditPart(view);
 
