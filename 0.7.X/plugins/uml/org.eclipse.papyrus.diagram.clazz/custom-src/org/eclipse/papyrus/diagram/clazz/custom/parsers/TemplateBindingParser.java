@@ -77,7 +77,7 @@ public class TemplateBindingParser implements IParser {
 			Iterator<TemplateParameterSubstitution> bindIter= binding.getParameterSubstitutions().iterator();
 			while(bindIter.hasNext()){
 				TemplateParameterSubstitution substitution=bindIter.next();
-				if(substitution.getFormal().getParameteredElement() instanceof NamedElement){
+				if(substitution.getFormal()!=null &&substitution.getFormal().getParameteredElement() instanceof NamedElement){
 					out=out+ ((NamedElement)substitution.getFormal().getParameteredElement()).getName();
 				}
 				if(substitution.getActual() instanceof NamedElement){
