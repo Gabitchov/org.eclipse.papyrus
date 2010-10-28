@@ -33,6 +33,7 @@ import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.xtext.gmf.glue.PopupEditorConfiguration;
+import org.eclipse.xtext.gmf.glue.edit.part.DefaultXtextSemanticValidator;
 import org.eclipse.xtext.gmf.glue.edit.part.IXtextEMFReconciler;
 
 import com.google.inject.Injector;
@@ -180,7 +181,12 @@ public class MessagePopupEditor extends PopupEditorConfiguration {
 
 
 		};
-		return super.createPopupEditorHelper(graphicalEditPart, injector, reconciler, textToEdit, fileExtension);
+		return super.createPopupEditorHelper(graphicalEditPart, 
+											injector, 
+											reconciler, 
+											textToEdit, 
+											fileExtension,
+											new DefaultXtextSemanticValidator());
 	}
 
 	/**

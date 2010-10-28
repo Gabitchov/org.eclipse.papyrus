@@ -29,6 +29,7 @@ import org.eclipse.papyrus.property.editor.xtext.umlProperty.ModifierSpecificati
 import org.eclipse.papyrus.property.editor.xtext.umlProperty.PropertyRule;
 import org.eclipse.papyrus.property.editor.xtext.umlProperty.QualifiedName;
 import org.eclipse.papyrus.property.editor.xtext.umlProperty.TypeRule;
+import org.eclipse.papyrus.property.editor.xtext.validation.SemanticValidator;
 import org.eclipse.papyrus.property.editor.xtext.validation.UmlPropertyJavaValidator;
 import org.eclipse.papyrus.umlutils.PropertyUtil;
 import org.eclipse.uml2.uml.Classifier;
@@ -207,7 +208,12 @@ public class PropertyPopupEditorConfigurationContribution extends PopupEditorCon
 				}
 			}
 		};
-		return super.createPopupEditorHelper(graphicalEditPart, injector, reconciler, textToEdit, fileExtension);
+		return super.createPopupEditorHelper(graphicalEditPart, 
+											injector, 
+											reconciler, 
+											textToEdit, 
+											fileExtension,
+											new SemanticValidator());
 	}
 
 	/*

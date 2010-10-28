@@ -22,7 +22,12 @@ import org.eclipse.xtext.validation.Check;
 
 public class StereotypeApplicationWithVSLJavaValidator extends AbstractStereotypeApplicationWithVSLJavaValidator {
 
+	private static boolean valid_Stereotype = true ;
+	private static boolean valid_Expression = true ;
 	
+	public static boolean validate() {
+		return valid_Stereotype && valid_Expression ;
+	}
 	
 //	@Check
 //	public void checkGreetingStartsWithCapital(Greeting greeting) {
@@ -34,6 +39,7 @@ public class StereotypeApplicationWithVSLJavaValidator extends AbstractStereotyp
 	@Check
 	public void checkStereotypeApplicationRule_Stereotype(StereotypeApplicationRule stereotypeApplicationRule) {
 		Stereotype appliedStereotype = stereotypeApplicationRule.getStereotype() ;
+		valid_Stereotype = true ;
 		if (appliedStereotype != null) {
 			// checks if all the mandatory properties have been fixed
 			List<Property> mandatoryProperties = new ArrayList<Property>() ;
@@ -42,8 +48,10 @@ public class StereotypeApplicationWithVSLJavaValidator extends AbstractStereotyp
 					mandatoryProperties.add(p) ;
 				}
 			}
-			if (mandatoryProperties.isEmpty()) // not necessary to go further...
+			if (mandatoryProperties.isEmpty()) {// not necessary to go further...
+				valid_Stereotype = true ;
 				return ;
+			}
 			// determines which mandatory properties have not been specified
 			List<Property> actuallySpecifiedProperties = new ArrayList<Property>() ;
 			for (TagSpecificationRule tagSpec : stereotypeApplicationRule.getTagSpecification()) {
@@ -54,9 +62,12 @@ public class StereotypeApplicationWithVSLJavaValidator extends AbstractStereotyp
 				if (! actuallySpecifiedProperties.contains(mandatoryProperty))
 					missingPropertyNames.add(mandatoryProperty.getName()) ;
 			}
-			if (missingPropertyNames.isEmpty()) // not necessary to go further...
+			if (missingPropertyNames.isEmpty()) {// not necessary to go further...
+				valid_Stereotype = true ;
 				return ;
+			}
 			// builds the error message
+			valid_Stereotype = false ;
 			String errorMessage = (missingPropertyNames.size() > 1 ? "Properties " : "Property ") + missingPropertyNames.get(0) ;
 			for (int i = 1 ; i < missingPropertyNames.size() ; i++) {
 				errorMessage += ", " + missingPropertyNames.get(i);
@@ -68,10 +79,13 @@ public class StereotypeApplicationWithVSLJavaValidator extends AbstractStereotyp
 	
 	@Check
 	public void checkExpressionValueRule_Expression (ExpressionValueRule expressionValueRule) {
+		valid_Expression = true ;
 		if (expressionValueRule != null && expressionValueRule.getExpression() != null) {
 			Property valuedProperty = ((TagSpecificationRule)expressionValueRule.eContainer()).getProperty() ;
-			if (valuedProperty == null)
+			if (valuedProperty == null) {
+				valid_Expression = true ;
 				return ;
+			}
 			VSLJavaValidator.setExpectedType(valuedProperty.getType()) ;
 //			Type inferedType = new VSLTypeInferenceUtil(valuedProperty.getType())
 //									.typeOfExpression(expressionValueRule.getExpression()) ;
@@ -104,6 +118,10 @@ public class StereotypeApplicationWithVSLJavaValidator extends AbstractStereotyp
 									"Found an expression of type " + inferedType.getName()+ ". ");
 						message += "Expecting an expression of type " + valuedProperty.getType().getName() ;
 						error(message, StereotypeApplicationWithVSLPackage.EXPRESSION_VALUE_RULE__EXPRESSION) ;
+						valid_Expression = false ;
+					}
+					else {
+						valid_Expression = true ;
 					}
 				}
 				else if (VSLContextUtil.isAnIntervalType((Classifier)valuedProperty.getType())) {
@@ -118,6 +136,10 @@ public class StereotypeApplicationWithVSLJavaValidator extends AbstractStereotyp
 									"Found an expression of type " + inferedType.getName()+ ". ");
 						message += "Expecting an expression of type " + valuedProperty.getType().getName() ;
 						error(message, StereotypeApplicationWithVSLPackage.EXPRESSION_VALUE_RULE__EXPRESSION) ;
+						valid_Expression = false ;
+					}
+					else {
+						valid_Expression = true ;
 					}
 				}
 				else if (inferedType != valuedProperty.getType()) {
@@ -132,6 +154,10 @@ public class StereotypeApplicationWithVSLJavaValidator extends AbstractStereotyp
 									"Found an expression of type " + inferedType.getName()+ ". ");
 						message += "Expecting an expression of type " + valuedProperty.getType().getName() ;
 						error(message, StereotypeApplicationWithVSLPackage.EXPRESSION_VALUE_RULE__EXPRESSION) ;
+						valid_Expression = false ;
+					}
+					else {
+						valid_Expression = true ;
 					}
 				}
 				if (valuedProperty.getUpper() > 1 || valuedProperty.getUpper() == -1) {
@@ -164,6 +190,10 @@ public class StereotypeApplicationWithVSLJavaValidator extends AbstractStereotyp
 							message += "The VSL syntax for collections must be used, i.e., '{'<EXPRESSION>(','<EXPRESSION>)*'}'" ;
 						}
 						error(message, expressionValueRule, VSLPackage.EXPRESSION) ;
+						valid_Expression = false ;
+					}
+					else {
+						valid_Expression = true ;
 					}
 				}
 				else {
@@ -173,6 +203,10 @@ public class StereotypeApplicationWithVSLJavaValidator extends AbstractStereotyp
 							+ valuedProperty.getName() 
 							+ " is not a collection. The expression doest not match the expected multiplicity.";
 						error(message, expressionValueRule, VSLPackage.EXPRESSION) ;
+						valid_Expression = false ;
+					}
+					else {
+						valid_Expression = true ;
 					}
 				}
 			}
@@ -180,6 +214,7 @@ public class StereotypeApplicationWithVSLJavaValidator extends AbstractStereotyp
 				error(validationResult.errorMessage(),
 						validationResult.validatedRule(),
 						validationResult.validatedFeature()) ;
+				valid_Expression = false ;
 			}
 		}
 	}

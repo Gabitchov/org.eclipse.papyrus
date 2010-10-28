@@ -68,6 +68,7 @@ import org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeA
 import org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL.TagSpecificationRule;
 import org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL.ValueRule;
 import org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.ui.internal.StereotypeApplicationWithVSLActivator;
+import org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.validation.SemanticValidator;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.EnumerationLiteral;
 import org.eclipse.uml2.uml.NamedElement;
@@ -150,7 +151,8 @@ public class StereotypeApplicationPopupEditorConfigurationContribution extends P
 				injector,
 				reconciler,
 				textToEdit, 
-				fileExtension);
+				fileExtension,
+				new SemanticValidator());
 	}
 	
 	/* (non-Javadoc)

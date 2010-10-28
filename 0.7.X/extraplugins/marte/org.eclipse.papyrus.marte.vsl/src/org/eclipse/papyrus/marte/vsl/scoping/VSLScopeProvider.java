@@ -125,9 +125,11 @@ public class VSLScopeProvider extends AbstractDeclarativeScopeProvider {
 			if (eObjectHierarchy.isEmpty())
 				return ;
 			Classifier expectedType = (Classifier)VSLContextUtil.getExpectedType(analyzedRule) ;
-			MultiplicityElement expectedMultiplicity = (MultiplicityElement)VSLContextUtil.getContextElement(analyzedRule) ;
 			ruleToClassifierBinding.put(eObjectHierarchy.get(0), expectedType) ;
-			ruleToMultiplicityInformation.put(eObjectHierarchy.get(0), expectedMultiplicity) ;
+			if (analyzedRule instanceof MultiplicityElement) {
+				MultiplicityElement expectedMultiplicity = (MultiplicityElement)VSLContextUtil.getContextElement(analyzedRule) ;
+				ruleToMultiplicityInformation.put(eObjectHierarchy.get(0), expectedMultiplicity) ;
+			}
 			bindingKeys = new ArrayList<EObject>() ;
 			bindingKeys.add(eObjectHierarchy.get(0)) ;
 			if (! isExpectedTypeAStereotype() && ! isExpectedTypeAUMLMetaclass()) {

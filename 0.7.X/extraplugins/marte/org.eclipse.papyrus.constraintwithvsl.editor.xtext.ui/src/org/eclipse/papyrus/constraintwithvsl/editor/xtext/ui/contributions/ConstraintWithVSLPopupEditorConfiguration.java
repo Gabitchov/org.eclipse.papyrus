@@ -17,6 +17,7 @@ import org.eclipse.papyrus.constraintwithvsl.editor.xtext.constraintWithVSLl.Con
 import org.eclipse.papyrus.constraintwithvsl.editor.xtext.constraintWithVSLl.ConstraintSpecification;
 import org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui.internal.ConstraintWithVSLlActivator;
 import org.eclipse.papyrus.constraintwithvsl.editor.xtext.validation.ConstraintWithVSLlJavaValidator;
+import org.eclipse.papyrus.constraintwithvsl.editor.xtext.validation.SemanticValidator;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IPopupEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
@@ -118,7 +119,12 @@ public class ConstraintWithVSLPopupEditorConfiguration extends PopupEditorConfig
 				}
 			}
 		};
-		return super.createPopupEditorHelper(graphicalEditPart, injector, reconciler, textToEdit, fileExtension);
+		return super.createPopupEditorHelper(graphicalEditPart, 
+											injector, 
+											reconciler, 
+											textToEdit, 
+											fileExtension,
+											new SemanticValidator());
 	}
 	
 	/**
