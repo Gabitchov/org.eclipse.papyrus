@@ -149,7 +149,7 @@
 		
 		<!-- some info about java, pack200, etc. -->
 		<echo message="Pack200: ${org.eclipse.update.jarprocessor.pack200}"/>
-		<java><arg value="-version"/></java>
+		<echo message="Java version: ${ant.java.version}"/>
 	</target>
 
 	<target name="get.director" unless="director.exists">
