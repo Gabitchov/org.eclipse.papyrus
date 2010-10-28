@@ -163,9 +163,11 @@
 
 	<target name="install.buckminster" unless="buckminster.exists" depends="get.director">
 		<echo message="Configuring headless buckminster with needed features" />
+		<echo message="Pack200 to use: ${org.eclipse.update.jarprocessor.pack200}" />
 		<eclipse.launch app="director">
 			<args>
 				<jvmarg value="-Declipse.p2.mirrors=false" />
+				<jvmarg value="-Dorg.eclipse.update.jarprocessor.pack200=${org.eclipse.update.jarprocessor.pack200}" />
 				<!--
 				Hudson Ant property: org.eclipse.update.jarprocessor.pack200=${jdk1.5.dir}/jre/bin
 				<jvmarg value="-Dorg.eclipse.update.jarprocessor.pack200=${org.eclipse.update.jarprocessor.pack200}" />
@@ -193,6 +195,7 @@
 		<eclipse.launch app="director">
 					<args>
 						<jvmarg value="-Declipse.p2.mirrors=false" />
+						<jvmarg value="-Dorg.eclipse.update.jarprocessor.pack200=${org.eclipse.update.jarprocessor.pack200}" />
 						<arg value="-r" />
 						<arg value="http://download.cloudsmith.com/buckminster/external-3.6" />
 						<arg value="-d" />
