@@ -108,7 +108,7 @@ public class ContainmentCircleViewCreateCommand extends AbstractTransactionalCom
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		UMLViewProvider viewProvider = new UMLViewProvider();
-		this.node = viewProvider.createPort_3032(null, this.containerView, -1, true, preferenceHint);
+		this.node = viewProvider.createNode_3032(null, this.containerView, -1, true, preferenceHint);
 		IAdaptable nodeview = new SemanticAdapter(null, getNode());
 		descriptor.setView(node);
 		return CommandResult.newOKCommandResult(node);

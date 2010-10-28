@@ -694,16 +694,13 @@
             <param name="semanticHint" value="3030"/>
          </metamodelType>
       </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.diagram.clazz.ContainmentCircle_3032"
-               name="%metatype.name.Port_3032"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Port"
-               edithelper="org.eclipse.papyrus.diagram.clazz.edit.helpers.PortEditHelper">
-            <param name="semanticHint" value="3032"/>
-         </metamodelType>
-      </metamodel>
+      <specializationType
+            id="org.eclipse.papyrus.diagram.clazz.ContainementCircle_3032"
+            name="%metatype.name.Node_3032"
+            kind="org.eclipse.gmf.runtime.diagram.ui.util.INotationType">
+         <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+         <param name="semanticHint" value="3032"/>
+      </specializationType>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.diagram.clazz.TemplateSignature_3033"
@@ -1007,7 +1004,7 @@
          <elementType ref="org.eclipse.papyrus.diagram.clazz.Comment_3028"/>
          <elementType ref="org.eclipse.papyrus.diagram.clazz.Constraint_3029"/>
          <elementType ref="org.eclipse.papyrus.diagram.clazz.Slot_3030"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.ContainmentCircle_3032"/>
+         <elementType ref="org.eclipse.papyrus.diagram.clazz.ContainementCircle_3032"/>
          <elementType ref="org.eclipse.papyrus.diagram.clazz.TemplateSignature_3033"/>
          <elementType ref="org.eclipse.papyrus.diagram.clazz.Link_4016"/>
          <elementType ref="org.eclipse.papyrus.diagram.clazz.AssociationClass_4017"/>
@@ -1638,9 +1635,9 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
-			class="org.eclipse.papyrus.diagram.clazz.preferences.PortPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.PortPreferencePage"
-            name="Port Node" />
+			class="org.eclipse.papyrus.diagram.clazz.preferences.ContainementCirclePreferencePage"
+            id="org.eclipse.papyrus.diagram.clazz.preferences.ContainementCirclePreferencePage"
+            name="ContainementCircle Node" />
 	
 		
 	<?gmfgen generated="true"?>

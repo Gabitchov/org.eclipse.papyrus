@@ -129,9 +129,6 @@ public class ClassItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 		if(UMLElementTypes.RedefinableTemplateSignature_3015 == req.getElementType()) {
 			return getGEFWrapper(new RedefinableTemplateSignatureCreateCommand(req));
 		}
-		if(UMLElementTypes.Port_3032 == req.getElementType()) {
-			return getGEFWrapper(new ContainmentCircleCreateCommand(req));
-		}
 		return super.getCreateCommand(req);
 	}
 

@@ -48,18 +48,8 @@ public class ClassCanonicalEditPolicy extends CanonicalEditPolicy {
 	/**
 	 * @generated
 	 */
-	private Set<EStructuralFeature> myFeaturesToSynchronize;
-
-	/**
-	 * @generated
-	 */
-	protected Set getFeaturesToSynchronize() {
-		if(myFeaturesToSynchronize == null) {
-			myFeaturesToSynchronize = new HashSet<EStructuralFeature>();
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getTemplateableElement_OwnedTemplateSignature());
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getEncapsulatedClassifier_OwnedPort());
-		}
-		return myFeaturesToSynchronize;
+	protected EStructuralFeature getFeatureToSynchronize() {
+		return UMLPackage.eINSTANCE.getTemplateableElement_OwnedTemplateSignature();
 	}
 
 	/**
@@ -87,8 +77,7 @@ public class ClassCanonicalEditPolicy extends CanonicalEditPolicy {
 	 * @generated
 	 */
 	private boolean isMyDiagramElement(View view) {
-		int visualID = UMLVisualIDRegistry.getVisualID(view);
-		return visualID == RedefinableTemplateSignatureEditPart.VISUAL_ID || visualID == ContainmentCircleEditPart.VISUAL_ID;
+		return RedefinableTemplateSignatureEditPart.VISUAL_ID == UMLVisualIDRegistry.getVisualID(view);
 	}
 
 	/**

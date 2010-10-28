@@ -70,7 +70,7 @@ public class ContainmentCircleItemSemanticEditPolicy extends UMLBaseItemSemantic
 	 * @generated
 	 */
 	public ContainmentCircleItemSemanticEditPolicy() {
-		super(UMLElementTypes.Port_3032);
+		super(null);
 	}
 
 	/**

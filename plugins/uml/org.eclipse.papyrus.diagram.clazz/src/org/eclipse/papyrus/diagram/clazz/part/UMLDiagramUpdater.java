@@ -418,14 +418,6 @@ public class UMLDiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
 		}
-		for(Iterator<?> it = modelElement.getOwnedPorts().iterator(); it.hasNext();) {
-			Port childElement = (Port)it.next();
-			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == ContainmentCircleEditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
-		}
 		return result;
 	}
 
@@ -1821,8 +1813,6 @@ public class UMLDiagramUpdater {
 			return getConstraint_3029ContainedLinks(view);
 		case SlotEditPart.VISUAL_ID:
 			return getSlot_3030ContainedLinks(view);
-		case ContainmentCircleEditPart.VISUAL_ID:
-			return getPort_3032ContainedLinks(view);
 		case TemplateSignatureEditPart.VISUAL_ID:
 			return getTemplateSignature_3033ContainedLinks(view);
 		case AssociationClass2EditPart.VISUAL_ID:
@@ -1974,8 +1964,6 @@ public class UMLDiagramUpdater {
 			return getConstraint_3029IncomingLinks(view);
 		case SlotEditPart.VISUAL_ID:
 			return getSlot_3030IncomingLinks(view);
-		case ContainmentCircleEditPart.VISUAL_ID:
-			return getPort_3032IncomingLinks(view);
 		case TemplateSignatureEditPart.VISUAL_ID:
 			return getTemplateSignature_3033IncomingLinks(view);
 		case AssociationClass2EditPart.VISUAL_ID:
@@ -2127,8 +2115,6 @@ public class UMLDiagramUpdater {
 			return getConstraint_3029OutgoingLinks(view);
 		case SlotEditPart.VISUAL_ID:
 			return getSlot_3030OutgoingLinks(view);
-		case ContainmentCircleEditPart.VISUAL_ID:
-			return getPort_3032OutgoingLinks(view);
 		case TemplateSignatureEditPart.VISUAL_ID:
 			return getTemplateSignature_3033OutgoingLinks(view);
 		case AssociationClass2EditPart.VISUAL_ID:
@@ -2807,13 +2793,6 @@ public class UMLDiagramUpdater {
 	 * @generated
 	 */
 	public static List<UMLLinkDescriptor> getSlot_3030ContainedLinks(View view) {
-		return Collections.emptyList();
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getPort_3032ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
@@ -3871,26 +3850,6 @@ public class UMLDiagramUpdater {
 	 */
 	public static List<UMLLinkDescriptor> getSlot_3030IncomingLinks(View view) {
 		return Collections.emptyList();
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getPort_3032IncomingLinks(View view) {
-		Port modelElement = (Port)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Realization_4005(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4006(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4007(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4008(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4018(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4022(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4024(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4025(modelElement, crossReferences));
-		return result;
 	}
 
 	/**
@@ -5013,21 +4972,6 @@ public class UMLDiagramUpdater {
 	 */
 	public static List<UMLLinkDescriptor> getSlot_3030OutgoingLinks(View view) {
 		return Collections.emptyList();
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getPort_3032OutgoingLinks(View view) {
-		Port modelElement = (Port)view.getElement();
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Realization_4005(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4008(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4018(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4022(modelElement));
-		return result;
 	}
 
 	/**
