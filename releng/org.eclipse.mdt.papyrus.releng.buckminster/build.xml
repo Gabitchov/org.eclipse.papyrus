@@ -146,6 +146,10 @@
 		<echo message="Sourcing ${properties.file}" />
 		<available file="${tools}/director/director" property="director.exists" />
 		<available file="${tools}/buckminster/buckminster" property="buckminster.exists" />
+		
+		<!-- some info about java, pack200, etc. -->
+		<echo message="Pack200: ${org.eclipse.update.jarprocessor.pack200}"/>
+		<java><arg value="-version"/></java>
 	</target>
 
 	<target name="get.director" unless="director.exists">
