@@ -76,33 +76,35 @@ public class InheritedClassDiagramElementViewProvider extends UMLViewProvider {
 		}
 
 		IElementType elementType = (IElementType)op.getSemanticAdapter().getAdapter(IElementType.class);
+		return InheritedClassDiagramElementViewProvider.provides(elementType);
+	}
+	
+	public static boolean provides(IElementType elementType) {
 		if((elementType == BlockDefinitionDiagramElementTypes.PACKAGE) || (elementType == BlockDefinitionDiagramElementTypes.PACKAGE_CN)
 
-		|| (elementType == BlockDefinitionDiagramElementTypes.MODEL) || (elementType == BlockDefinitionDiagramElementTypes.MODEL_CN)
+				|| (elementType == BlockDefinitionDiagramElementTypes.MODEL) || (elementType == BlockDefinitionDiagramElementTypes.MODEL_CN)
 
-		|| (elementType == BlockDefinitionDiagramElementTypes.CLASS) || (elementType == BlockDefinitionDiagramElementTypes.CLASS_CN) || (elementType == BlockDefinitionDiagramElementTypes.CLASS_PROP_CLN) || (elementType == BlockDefinitionDiagramElementTypes.CLASS_OPER_CLN) || (elementType == BlockDefinitionDiagramElementTypes.CLASS_RECP_CLN) || (elementType == BlockDefinitionDiagramElementTypes.CLASS_NEST_CLN)
+				|| (elementType == BlockDefinitionDiagramElementTypes.CLASS) || (elementType == BlockDefinitionDiagramElementTypes.CLASS_CN) || (elementType == BlockDefinitionDiagramElementTypes.CLASS_PROP_CLN) || (elementType == BlockDefinitionDiagramElementTypes.CLASS_OPER_CLN) || (elementType == BlockDefinitionDiagramElementTypes.CLASS_RECP_CLN) || (elementType == BlockDefinitionDiagramElementTypes.CLASS_NEST_CLN)
 
-		|| (elementType == BlockDefinitionDiagramElementTypes.INTERFACE) || (elementType == BlockDefinitionDiagramElementTypes.INTERFACE_CN) || (elementType == BlockDefinitionDiagramElementTypes.INTERFACE_PROP_CLN) || (elementType == BlockDefinitionDiagramElementTypes.INTERFACE_OPER_CLN) || (elementType == BlockDefinitionDiagramElementTypes.INTERFACE_NEST_CLN)
+				|| (elementType == BlockDefinitionDiagramElementTypes.INTERFACE) || (elementType == BlockDefinitionDiagramElementTypes.INTERFACE_CN) || (elementType == BlockDefinitionDiagramElementTypes.INTERFACE_PROP_CLN) || (elementType == BlockDefinitionDiagramElementTypes.INTERFACE_OPER_CLN) || (elementType == BlockDefinitionDiagramElementTypes.INTERFACE_NEST_CLN)
 
-		|| (elementType == BlockDefinitionDiagramElementTypes.PRIMITIVETYPE) || (elementType == BlockDefinitionDiagramElementTypes.PRIMITIVETYPE_CN)
+				|| (elementType == BlockDefinitionDiagramElementTypes.PRIMITIVETYPE) || (elementType == BlockDefinitionDiagramElementTypes.PRIMITIVETYPE_CN)
 
-		|| (elementType == BlockDefinitionDiagramElementTypes.ENUMERATION) || (elementType == BlockDefinitionDiagramElementTypes.ENUMERATION_CN) || (elementType == BlockDefinitionDiagramElementTypes.ENUMERATION_LITERAL_CLN)
+				|| (elementType == BlockDefinitionDiagramElementTypes.ENUMERATION) || (elementType == BlockDefinitionDiagramElementTypes.ENUMERATION_CN) || (elementType == BlockDefinitionDiagramElementTypes.ENUMERATION_LITERAL_CLN)
 
-		|| (elementType == BlockDefinitionDiagramElementTypes.DATATYPE) || (elementType == BlockDefinitionDiagramElementTypes.DATATYPE_CN) || (elementType == BlockDefinitionDiagramElementTypes.DATATYPE_PROP_CLN) || (elementType == BlockDefinitionDiagramElementTypes.DATATYPE_OPER_CLN)
+				|| (elementType == BlockDefinitionDiagramElementTypes.DATATYPE) || (elementType == BlockDefinitionDiagramElementTypes.DATATYPE_CN) || (elementType == BlockDefinitionDiagramElementTypes.DATATYPE_PROP_CLN) || (elementType == BlockDefinitionDiagramElementTypes.DATATYPE_OPER_CLN)
 
-		|| (elementType == BlockDefinitionDiagramElementTypes.INSTANCE_SPEC) || (elementType == BlockDefinitionDiagramElementTypes.INSTANCE_SPEC_CN) || (elementType == BlockDefinitionDiagramElementTypes.INSTANCE_SPEC_SLOT_CLN)
+				|| (elementType == BlockDefinitionDiagramElementTypes.INSTANCE_SPEC) || (elementType == BlockDefinitionDiagramElementTypes.INSTANCE_SPEC_CN) || (elementType == BlockDefinitionDiagramElementTypes.INSTANCE_SPEC_SLOT_CLN)
 
-		|| (elementType == BlockDefinitionDiagramElementTypes.ASSOCIATION_CLASS) || (elementType == BlockDefinitionDiagramElementTypes.ASSOCIATION_CLASS_PROP_CLN) || (elementType == BlockDefinitionDiagramElementTypes.ASSOCIATION_CLASS_OPER_CLN) || (elementType == BlockDefinitionDiagramElementTypes.ASSOCIATION_CLASS_NEST_CLN)
+				|| (elementType == BlockDefinitionDiagramElementTypes.ASSOCIATION_CLASS) || (elementType == BlockDefinitionDiagramElementTypes.ASSOCIATION_CLASS_PROP_CLN) || (elementType == BlockDefinitionDiagramElementTypes.ASSOCIATION_CLASS_OPER_CLN) || (elementType == BlockDefinitionDiagramElementTypes.ASSOCIATION_CLASS_NEST_CLN)
 
-		|| (elementType == BlockDefinitionDiagramElementTypes.COMMENT) || (elementType == BlockDefinitionDiagramElementTypes.COMMENT_CN)
+				|| (elementType == BlockDefinitionDiagramElementTypes.COMMENT) || (elementType == BlockDefinitionDiagramElementTypes.COMMENT_CN)
 
-		|| (elementType == BlockDefinitionDiagramElementTypes.CONSTRAINT) || (elementType == BlockDefinitionDiagramElementTypes.CONSTRAINT_CN)
+				|| (elementType == BlockDefinitionDiagramElementTypes.CONSTRAINT) || (elementType == BlockDefinitionDiagramElementTypes.CONSTRAINT_CN)
 
-		|| (elementType == BlockDefinitionDiagramElementTypes.CONTAINMENT_CIRCLE)) {
-			return true;
-		}
-
-		// else : unknown element
+				|| (elementType == BlockDefinitionDiagramElementTypes.CONTAINMENT_CIRCLE)) {
+					return true;
+				}
 		return false;
 	}
 
