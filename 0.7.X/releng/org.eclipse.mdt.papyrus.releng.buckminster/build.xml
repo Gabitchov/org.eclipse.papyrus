@@ -167,7 +167,7 @@
 			<args>
 				<jvmarg value="-Declipse.p2.mirrors=false" />
 				<!--
-				Hudson Ant property: org.eclipse.update.jarprocessor.pack200=/shared/common/ibm-java2-ppc-50/jre/bin
+				Hudson Ant property: org.eclipse.update.jarprocessor.pack200=${jdk1.5.dir}/jre/bin
 				<jvmarg value="-Dorg.eclipse.update.jarprocessor.pack200=${org.eclipse.update.jarprocessor.pack200}" />
 				-->
 				<arg value="-r" />
@@ -232,6 +232,13 @@
 
 	<target name="provision" depends="init.checks,init.workspace,install.buckminster,init.build.properties">
 		<echo message="Importing projects into workspace ${workspace} and binaries into target platform ${targetPlatformPath}" />
+		<buckminster command="installJRE">
+			<cmdargs>
+				<arg value="--location" />
+				<arg value="${jdk1.5.dir}" />
+			</cmdargs>
+		</buckminster>
+		
 		<buckminster command="setpref">
 			<cmdargs>
 				<arg value="targetPlatformPath=${targetPlatformPath}" />
