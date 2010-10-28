@@ -111,6 +111,7 @@
 				</properties>
 				<args>
 					<jvmarg value="-Xmx4096m" />
+					<jvmarg value="-Dorg.eclipse.update.jarprocessor.pack200=${org.eclipse.update.jarprocessor.pack200}" />
 					<arg value="-data" />
 					<arg value="@{workspace}" />
 					<arg value="--loglevel" />
