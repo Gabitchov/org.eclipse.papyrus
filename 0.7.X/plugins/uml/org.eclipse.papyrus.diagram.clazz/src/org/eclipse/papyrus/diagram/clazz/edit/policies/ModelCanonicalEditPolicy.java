@@ -685,16 +685,6 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 			}
 			break;
 		}
-		case ContainmentCircleEditPart.VISUAL_ID:
-		{
-			if(!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(UMLDiagramUpdater.getPort_3032ContainedLinks(view));
-			}
-			if(!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
-			break;
-		}
 		case TemplateSignatureEditPart.VISUAL_ID:
 		{
 			if(!domain2NotationMap.containsKey(view.getElement())) {

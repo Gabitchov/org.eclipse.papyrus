@@ -71,7 +71,7 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 
 		ComponentPreferencePage.initDefaults(store);
 
-		PortPreferencePage.initDefaults(store);
+		ContainementCirclePreferencePage.initDefaults(store);
 
 		DurationObservationPreferencePage.initDefaults(store);
 

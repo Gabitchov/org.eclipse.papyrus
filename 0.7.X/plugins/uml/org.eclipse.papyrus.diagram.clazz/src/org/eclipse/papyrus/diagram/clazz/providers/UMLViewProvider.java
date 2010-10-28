@@ -138,6 +138,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 					return false; // foreign diagram
 				}
 				switch(visualID) {
+				case ContainmentCircleEditPart.VISUAL_ID:
+					break; // pure design element
 				case Dependency2EditPart.VISUAL_ID:
 				case AssociationClassEditPart.VISUAL_ID:
 				case AssociationNodeEditPart.VISUAL_ID:
@@ -167,7 +169,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				case Comment2EditPart.VISUAL_ID:
 				case Constraint2EditPart.VISUAL_ID:
 				case SlotEditPart.VISUAL_ID:
-				case ContainmentCircleEditPart.VISUAL_ID:
 				case TemplateSignatureEditPart.VISUAL_ID:
 				case EnumerationEditPart.VISUAL_ID:
 				case PackageEditPart.VISUAL_ID:
@@ -353,7 +354,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		case SlotEditPart.VISUAL_ID:
 			return createSlot_3030(domainElement, containerView, index, persisted, preferencesHint);
 		case ContainmentCircleEditPart.VISUAL_ID:
-			return createPort_3032(domainElement, containerView, index, persisted, preferencesHint);
+			return createNode_3032(domainElement, containerView, index, persisted, preferencesHint);
 		case TemplateSignatureEditPart.VISUAL_ID:
 			return createTemplateSignature_3033(domainElement, containerView, index, persisted, preferencesHint);
 		}
@@ -1674,7 +1675,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createPort_3032(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createNode_3032(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(ContainmentCircleEditPart.VISUAL_ID));
@@ -1683,11 +1684,11 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
-		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "Port");
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "ContainementCircle");
 
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Port");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ContainementCircle");
 
-		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Port");
+		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "ContainementCircle");
 
 		return node;
 	}

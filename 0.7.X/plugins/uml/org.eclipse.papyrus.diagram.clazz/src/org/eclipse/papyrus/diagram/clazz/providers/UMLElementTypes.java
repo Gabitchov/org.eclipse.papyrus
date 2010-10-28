@@ -405,7 +405,7 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType Port_3032 = getElementType("org.eclipse.papyrus.diagram.clazz.ContainmentCircle_3032"); //$NON-NLS-1$
+	public static final IElementType Node_3032 = getElementType("org.eclipse.papyrus.diagram.clazz.ContainementCircle_3032"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -749,8 +749,6 @@ public class UMLElementTypes {
 
 			elements.put(Slot_3030, UMLPackage.eINSTANCE.getSlot());
 
-			elements.put(Port_3032, UMLPackage.eINSTANCE.getPort());
-
 			elements.put(TemplateSignature_3033, UMLPackage.eINSTANCE.getTemplateSignature());
 
 			elements.put(AssociationClass_4017, UMLPackage.eINSTANCE.getAssociationClass());
@@ -866,7 +864,7 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(Comment_3028);
 			KNOWN_ELEMENT_TYPES.add(Constraint_3029);
 			KNOWN_ELEMENT_TYPES.add(Slot_3030);
-			KNOWN_ELEMENT_TYPES.add(Port_3032);
+			KNOWN_ELEMENT_TYPES.add(Node_3032);
 			KNOWN_ELEMENT_TYPES.add(TemplateSignature_3033);
 			KNOWN_ELEMENT_TYPES.add(Link_4016);
 			KNOWN_ELEMENT_TYPES.add(AssociationClass_4017);
@@ -1009,7 +1007,7 @@ public class UMLElementTypes {
 		case SlotEditPart.VISUAL_ID:
 			return Slot_3030;
 		case ContainmentCircleEditPart.VISUAL_ID:
-			return Port_3032;
+			return Node_3032;
 		case TemplateSignatureEditPart.VISUAL_ID:
 			return TemplateSignature_3033;
 		case CommentLinkDescriptorEditPart.VISUAL_ID:

@@ -406,9 +406,6 @@ AbstractConstraintEditPart {
 		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.Constraint2EditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if(targetEditPart instanceof ContainmentCircleEditPart) {
-			types.add(UMLElementTypes.Realization_4005);
-		}
 		if(targetEditPart instanceof Dependency2EditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
@@ -497,9 +494,6 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
 		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.Constraint2EditPart) {
-			types.add(UMLElementTypes.Abstraction_4006);
-		}
-		if(targetEditPart instanceof ContainmentCircleEditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
 		if(targetEditPart instanceof Dependency2EditPart) {
@@ -592,9 +586,6 @@ AbstractConstraintEditPart {
 		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.Constraint2EditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if(targetEditPart instanceof ContainmentCircleEditPart) {
-			types.add(UMLElementTypes.Usage_4007);
-		}
 		if(targetEditPart instanceof Dependency2EditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
@@ -685,9 +676,6 @@ AbstractConstraintEditPart {
 		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.Constraint2EditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if(targetEditPart instanceof ContainmentCircleEditPart) {
-			types.add(UMLElementTypes.Dependency_4008);
-		}
 		if(targetEditPart instanceof Dependency2EditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
@@ -776,9 +764,6 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
 		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.Constraint2EditPart) {
-			types.add(UMLElementTypes.Dependency_4018);
-		}
-		if(targetEditPart instanceof ContainmentCircleEditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
 		if(targetEditPart instanceof Dependency2EditPart) {
@@ -877,9 +862,6 @@ AbstractConstraintEditPart {
 		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.Constraint2EditPart) {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		}
-		if(targetEditPart instanceof ContainmentCircleEditPart) {
-			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
-		}
 		if(targetEditPart instanceof TemplateSignatureEditPart) {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		}
@@ -973,9 +955,6 @@ AbstractConstraintEditPart {
 		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.Constraint2EditPart) {
 			types.add(UMLElementTypes.Dependency_4022);
 		}
-		if(targetEditPart instanceof ContainmentCircleEditPart) {
-			types.add(UMLElementTypes.Dependency_4022);
-		}
 		return types;
 	}
 
@@ -1015,7 +994,6 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Constraint_3029);
-			types.add(UMLElementTypes.Port_3032);
 		} else if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);
@@ -1047,7 +1025,6 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Constraint_3029);
-			types.add(UMLElementTypes.Port_3032);
 		} else if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);
@@ -1079,7 +1056,6 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Constraint_3029);
-			types.add(UMLElementTypes.Port_3032);
 		} else if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);
@@ -1111,7 +1087,6 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Constraint_3029);
-			types.add(UMLElementTypes.Port_3032);
 		} else if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);
@@ -1143,7 +1118,6 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Constraint_3029);
-			types.add(UMLElementTypes.Port_3032);
 		} else if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
 			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);
@@ -1177,7 +1151,6 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Comment_3028);
 			types.add(UMLElementTypes.Constraint_3029);
-			types.add(UMLElementTypes.Port_3032);
 			types.add(UMLElementTypes.TemplateSignature_3033);
 		} else if(relationshipType == UMLElementTypes.Dependency_4022) {
 			types.add(UMLElementTypes.Dependency_2014);
@@ -1210,7 +1183,6 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Constraint_3029);
-			types.add(UMLElementTypes.Port_3032);
 		}
 		return types;
 	}
@@ -1270,7 +1242,6 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Constraint_3029);
-			types.add(UMLElementTypes.Port_3032);
 		} else if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);
@@ -1302,7 +1273,6 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Constraint_3029);
-			types.add(UMLElementTypes.Port_3032);
 		} else if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);
@@ -1334,7 +1304,6 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Constraint_3029);
-			types.add(UMLElementTypes.Port_3032);
 		} else if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);
@@ -1366,7 +1335,6 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Constraint_3029);
-			types.add(UMLElementTypes.Port_3032);
 		} else if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);
@@ -1398,7 +1366,6 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Constraint_3029);
-			types.add(UMLElementTypes.Port_3032);
 		} else if(relationshipType == UMLElementTypes.ElementImport_4009) {
 			types.add(UMLElementTypes.AssociationClass_2013);
 			types.add(UMLElementTypes.Association_2015);
@@ -1457,7 +1424,6 @@ AbstractConstraintEditPart {
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Constraint_3029);
-			types.add(UMLElementTypes.Port_3032);
 		} else if(relationshipType == UMLElementTypes.TimeObservationEvent_4024) {
 			types.add(UMLElementTypes.TimeObservation_2096);
 		} else if(relationshipType == UMLElementTypes.DurationObservationEvent_4025) {

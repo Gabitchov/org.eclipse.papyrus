@@ -162,7 +162,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(editPart instanceof ClassEditPart) {
 			ArrayList<IElementType> types = new ArrayList<IElementType>(6);
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
-			types.add(UMLElementTypes.Port_3032);
+			types.add(UMLElementTypes.Node_3032);
 			types.add(UMLElementTypes.Property_3012);
 			types.add(UMLElementTypes.Reception_3011);
 			types.add(UMLElementTypes.Operation_3013);
@@ -419,9 +419,6 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof Constraint2EditPart) {
 			return ((Constraint2EditPart)sourceEditPart).getMARelTypesOnSource();
 		}
-		if(sourceEditPart instanceof ContainmentCircleEditPart) {
-			return ((ContainmentCircleEditPart)sourceEditPart).getMARelTypesOnSource();
-		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -525,9 +522,6 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if(targetEditPart instanceof Constraint2EditPart) {
 			return ((Constraint2EditPart)targetEditPart).getMARelTypesOnTarget();
-		}
-		if(targetEditPart instanceof ContainmentCircleEditPart) {
-			return ((ContainmentCircleEditPart)targetEditPart).getMARelTypesOnTarget();
 		}
 		if(targetEditPart instanceof TemplateSignatureEditPart) {
 			return ((TemplateSignatureEditPart)targetEditPart).getMARelTypesOnTarget();
@@ -637,9 +631,6 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof Constraint2EditPart) {
 			return ((Constraint2EditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
-		if(sourceEditPart instanceof ContainmentCircleEditPart) {
-			return ((ContainmentCircleEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -743,9 +734,6 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if(targetEditPart instanceof Constraint2EditPart) {
 			return ((Constraint2EditPart)targetEditPart).getMATypesForSource(relationshipType);
-		}
-		if(targetEditPart instanceof ContainmentCircleEditPart) {
-			return ((ContainmentCircleEditPart)targetEditPart).getMATypesForSource(relationshipType);
 		}
 		if(targetEditPart instanceof TemplateSignatureEditPart) {
 			return ((TemplateSignatureEditPart)targetEditPart).getMATypesForSource(relationshipType);
@@ -853,9 +841,6 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if(sourceEditPart instanceof Constraint2EditPart) {
 			return ((Constraint2EditPart)sourceEditPart).getMATypesForTarget(relationshipType);
-		}
-		if(sourceEditPart instanceof ContainmentCircleEditPart) {
-			return ((ContainmentCircleEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
 		return Collections.EMPTY_LIST;
 	}

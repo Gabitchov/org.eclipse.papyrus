@@ -2167,10 +2167,9 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:MetamodelType"
-            uniqueIdentifier="org.eclipse.papyrus.diagram.clazz.ContainmentCircle_3032"
-            displayName="Port"
-            editHelperClassName="PortEditHelper"/>
+            xsi:type="gmfgen:NotationType"
+            uniqueIdentifier="org.eclipse.papyrus.diagram.clazz.ContainementCircle_3032"
+            displayName="ContainementCircle"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.figure.ContainmentFigure"/>
@@ -2182,14 +2181,6 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.clazz.custom.policies.CustomListenerContainmentCircleEditPolicy.CUSTOM_DISPLAY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.CustomListenerContainmentCircleEditPolicy"/>
-        <modelFacet>
-          <metaClass
-              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Port"/>
-          <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/EncapsulatedClassifier/ownedPort"/>
-          <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/EncapsulatedClassifier/ownedPort"/>
-        </modelFacet>
       </childNodes>
       <childNodes
           xsi:type="gmfgen:GenChildSideAffixedNode"

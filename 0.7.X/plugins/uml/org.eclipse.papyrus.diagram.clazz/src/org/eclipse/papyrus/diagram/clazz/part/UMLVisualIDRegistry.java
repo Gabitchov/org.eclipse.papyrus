@@ -277,11 +277,6 @@ public class UMLVisualIDRegistry {
 			) {
 				return RedefinableTemplateSignatureEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return ContainmentCircleEditPart.VISUAL_ID;
-			}
 			break;
 		case DataTypeEditPart.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getRedefinableTemplateSignature().isSuperTypeOf(domainElement.eClass())
@@ -2380,7 +2375,7 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7035, viewInfo);
 
-		viewInfo = new BaseViewInfo(3032, ViewInfo.Node, "Port");
+		viewInfo = new BaseViewInfo(3032, ViewInfo.Node, "org.eclipse.emf.ecore.impl.DynamicEObjectImpl@dc604d (eClass: org.eclipse.emf.ecore.impl.EClassImpl@36711c (name: OclInvalid_Class) (instanceClassName: null) (abstract: false, interface: false))");
 
 		root.addNode(2008, viewInfo);
 
