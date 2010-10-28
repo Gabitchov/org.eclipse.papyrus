@@ -62,7 +62,7 @@ public class MessageHelperAdvice extends AbstractEditHelperAdvice {
 			dependentsToDestroy.add(recvEvent);
 		}
 
-		// Add command to destroy dependents MessageEnd 
+		// return command to destroy dependents MessageEnd 
 		if(!dependentsToDestroy.isEmpty()) {
 			return request.getDestroyDependentsCommand(dependentsToDestroy);
 		}

@@ -39,7 +39,8 @@ Require-Bundle: org.eclipse.core.expressions,
  org.eclipse.emf.ecore.edit;visibility:=reexport,
  org.eclipse.gef,
  org.eclipse.emf.validation;visibility:=reexport,
- org.eclipse.papyrus.ui.toolbox
+ org.eclipse.papyrus.ui.toolbox,
+ org.eclipse.papyrus.service.edit
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ClassPath: .

@@ -18,6 +18,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
@@ -48,7 +49,7 @@ public class PapyrusEcoreUtils {
 	/**
 	 * <pre>
 	 * Test if the used element is referenced by other elements than the known
-	 * referencer (except its container).
+	 * referencer (except its container). It ignores references from an other meta-model.
 	 * </pre>
 	 * 
 	 * @param usedObject
@@ -59,22 +60,26 @@ public class PapyrusEcoreUtils {
 	 */
 	public static boolean isOnlyUsage(EObject usedObject, EObject knownReferencer) {
 		boolean isUsed = false;
-			
-			// Retrieve the list of elements referencing the usedObject.
-			Set<EObject> crossReferences = new HashSet<EObject>();
-			for(Setting setting : PapyrusEcoreUtils.getUsages(usedObject)) {
-				crossReferences.add(setting.getEObject());
-			}
+		EPackage mmPackage = usedObject.eClass().getEPackage();
 
-			// Remove the container of used object.
-			crossReferences.remove(usedObject.eContainer());
-			// Remove the knownReferencer from the list of references.
-			crossReferences.remove(knownReferencer);
-			
-			// If no referencer remains in the list, the known element is the only usage. 
-			if (crossReferences.isEmpty()) {
-				isUsed = true;
+		// Retrieve the list of elements referencing the usedObject.
+		Set<EObject> crossReferences = new HashSet<EObject>();
+		for(Setting setting : PapyrusEcoreUtils.getUsages(usedObject)) {
+			EObject eObj = setting.getEObject();
+			if (eObj.eClass().getEPackage().equals(mmPackage)) {
+				crossReferences.add(eObj);
 			}
+		}
+
+		// Remove the container of used object.
+		crossReferences.remove(usedObject.eContainer());
+		// Remove the knownReferencer from the list of references.
+		crossReferences.remove(knownReferencer);
+
+		// If no referencer remains in the list, the known element is the only usage. 
+		if (crossReferences.isEmpty()) {
+			isUsed = true;
+		}
 
 		return isUsed;
 	}
