@@ -35,7 +35,9 @@ import org.eclipse.emf.workspace.AbstractEMFOperation;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.editpolicies.AbstractEditPolicy;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.util.StringStatics;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
@@ -44,7 +46,6 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.util.EditPartUtil;
-import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.core.listenerservice.IPapyrusListener;
@@ -53,6 +54,8 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeConstraintEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeObservationEditPart;
 import org.eclipse.papyrus.diagram.sequence.util.SequenceUtil;
+import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.service.edit.service.IElementEditService;
 import org.eclipse.uml2.uml.DurationConstraint;
 import org.eclipse.uml2.uml.DurationObservation;
 import org.eclipse.uml2.uml.Element;
@@ -325,8 +328,27 @@ public class DeleteTimeElementWithoutEventPolicy extends AbstractEditPolicy impl
 			return new ICommandProxy(new DeleteCommand(editingDomain, (View)getHost().getModel()));
 		} else {
 			DestroyElementRequest req = new DestroyElementRequest(hostSemanticElement, false);
-			return new ICommandProxy(new DestroyElementCommand(req));
+			return getDestroyElementCommand(req);
 		}
+	}
+
+	/**
+	 * Copied from a generated method from a semantic edit policy which supports the edit element service
+	 * @param req the DestroyElementRequest
+	 * @return the destroy command
+	 */
+	protected Command getDestroyElementCommand(DestroyElementRequest req) {
+		EObject selectedEObject = req.getElementToDestroy();
+		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(selectedEObject);
+		if(provider != null) {
+			// Retrieve delete command from the Element Edit service
+			ICommand deleteCommand = provider.getEditCommand(req);
+
+			if(deleteCommand != null) {
+				return new ICommandProxy(deleteCommand);
+			}
+		}
+		return UnexecutableCommand.INSTANCE;
 	}
 
 	/**

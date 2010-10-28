@@ -833,9 +833,7 @@ public class SequenceUtil {
 					Connection msgFigure = cep.getConnectionFigure();
 
 					Point sourcePoint = msgFigure.getSourceAnchor().getReferencePoint();
-					sourcePoint = msgFigure.getSourceAnchor().getLocation(sourcePoint);
 					Point targetPoint = msgFigure.getTargetAnchor().getReferencePoint();
-					targetPoint = msgFigure.getTargetAnchor().getLocation(targetPoint);
 
 					if(selectionRect.contains(sourcePoint)) {
 						MessageEnd msgSendEnd = msg.getSendEvent();
