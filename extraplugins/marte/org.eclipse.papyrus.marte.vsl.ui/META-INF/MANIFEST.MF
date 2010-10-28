@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-Vendor: %providerName
+Bundle-Version: 0.7.1.qualifier
+Bundle-SymbolicName: org.eclipse.papyrus.marte.vsl.ui; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.papyrus.marte.vsl;visibility:=reexport,
+ org.eclipse.xtext.ui,
+ org.eclipse.ui.editors;bundle-version="3.5.0",
+ org.eclipse.ui.ide;bundle-version="3.5.0",
+ org.eclipse.xtext.ui.shared,
+ org.eclipse.ui,
+ org.eclipse.xtext.builder,
+ org.antlr.runtime,
+ org.eclipse.uml2.uml;bundle-version="3.1.0",
+ org.eclipse.papyrus.core;bundle-version="0.7.0"
+Import-Package: org.apache.log4j
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.eclipse.papyrus.marte.vsl.ui.contentassist,
+ org.eclipse.papyrus.marte.vsl.ui.contentassist.antlr
+Bundle-Activator: org.eclipse.papyrus.marte.vsl.ui.internal.VSLActivator
+Bundle-ClassPath: .
