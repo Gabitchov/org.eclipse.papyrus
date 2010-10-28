@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.papyrus.constraintwithvsl.editor.xtext/src-gen"
+    editDirectory="/org.eclipse.papyrus.constraintwithvsl.editor.xtext.edit/src" editorDirectory="/org.eclipse.papyrus.constraintwithvsl.editor.xtext.editor/src"
+    modelPluginID="org.eclipse.papyrus.constraintwithvsl.editor.xtext" forceOverwrite="true"
+    modelName="ConstraintWithVSLl" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    complianceLevel="5.0" copyrightFields="false" editPluginID="org.eclipse.papyrus.constraintwithvsl.editor.xtext.edit"
+    editorPluginID="org.eclipse.papyrus.constraintwithvsl.editor.xtext.editor" usedGenPackages="../../../../../../../../org.eclipse.papyrus.marte.vsl/src-gen/org/eclipse/papyrus/marte/vsl/VSL.genmodel#//vSL">
+  <genPackages prefix="ConstraintWithVSLl" basePackage="org.eclipse.papyrus.constraintwithvsl.editor.xtext"
+      resource="XML" disposableProviderFactory="true" ecorePackage="ConstraintWithVSLl.ecore#/">
+    <genClasses ecoreClass="ConstraintWithVSLl.ecore#//ConstraintRule">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ConstraintWithVSLl.ecore#//ConstraintRule/specification"/>
+      <genOperations ecoreOperation="ConstraintWithVSLl.ecore#//ConstraintRule/getExpectedType"/>
+      <genOperations ecoreOperation="ConstraintWithVSLl.ecore#//ConstraintRule/getContextElement"/>
+    </genClasses>
+    <genClasses ecoreClass="ConstraintWithVSLl.ecore#//ConstraintSpecification">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ConstraintWithVSLl.ecore#//ConstraintSpecification/expression"/>
+      <genOperations ecoreOperation="ConstraintWithVSLl.ecore#//ConstraintSpecification/getExpectedType"/>
+      <genOperations ecoreOperation="ConstraintWithVSLl.ecore#//ConstraintSpecification/getContextElement"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

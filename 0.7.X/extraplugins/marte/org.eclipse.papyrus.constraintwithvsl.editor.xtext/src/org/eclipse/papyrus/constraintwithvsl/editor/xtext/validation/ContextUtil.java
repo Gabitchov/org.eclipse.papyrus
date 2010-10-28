@@ -1,0 +1,35 @@
+package org.eclipse.papyrus.constraintwithvsl.editor.xtext.validation;
+
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.marte.vsl.validation.VSLJavaValidator;
+import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Type;
+
+public class ContextUtil {
+	public static Type getExpectedType(EObject rule) {
+//		EObject context = rule ;
+//		while (context != null && !(context instanceof TagSpecificationRule)) {
+//			context = context.eContainer() ;
+//		}
+//		if (context != null) {
+//			TagSpecificationRule tag = (TagSpecificationRule) context ;
+//			if (tag.getProperty() != null)
+//				return tag.getProperty().getType() ;
+//		}
+//		return null ;
+		return VSLJavaValidator._boolean ;
+	}
+	
+	public static Element getContextElement(EObject rule) {
+//		EObject context = rule ;
+//		while (context != null && !(context instanceof TagSpecificationRule)) {
+//			context = context.eContainer() ;
+//		}
+//		if (context != null) {
+//			TagSpecificationRule tag = (TagSpecificationRule) context ;
+//			return tag.getProperty() ;
+//		}
+//		return null ;
+		return VSLJavaValidator.getContextElement() ;
+	}
+}

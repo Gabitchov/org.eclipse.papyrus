@@ -1,0 +1,51 @@
+import ecore;
+//import uml ;
+
+process(xtext::GeneratedMetamodel this) :
+	process(ePackage)
+;
+ 
+process(EPackage this) :
+	eClassifiers.typeSelect(EClass).process()
+;
+ 
+/*process(EClass this) :
+	switch (name) {
+		case "Foo": (addOperation("doFoo", getEcoreDataType("EString")) -> addOperation("getBar", ePackage.getEClassifier("Bar")))
+		default:	null
+	}
+;*/
+
+process(EClass this) :
+	addOperation(this, "getExpectedType", getTypeEClass())
+;
+
+EClass getTypeEClass () : 
+	JAVA org.eclipse.papyrus.marte.vsl.extensions.XtendUtil.getTypeEClass() ;
+
+addOperation(EClass this, String name, EClassifier type) :
+	let op  = newOperation(this, name, type) :
+		newDelegatingBodyAnnotation(op)
+;
+ 
+create EOperation newOperation(EClass owner, String name, EClassifier type) :
+	setName(name) -> setEType(type) -> owner.eOperations.add(this)
+;
+ 
+create EAnnotation newDelegatingBodyAnnotation(EOperation op) :
+	let d = new EStringToStringMapEntry :
+		setSource("http://www.eclipse.org/emf/2002/GenModel") ->
+		d.setKey("body") ->
+		//d.setValue((op.eType != null ? "return " : "") + op.delegateMethodName() + "(this);") ->
+		//d.setValue((op.eType != null ? "return " : "") + op.delegateMethodName() ) ->
+		d.setValue(op.delegateMethodName() ) ->
+		details.add(d) ->
+		op.eAnnotations.add(this)
+;
+ 
+delegateMethodName(EOperation this) :
+	//"com.mycompany." + eContainingClass.name + "Helper." +	name
+	"
+		return org.eclipse.papyrus.marte.vsl.validation.VSLContextUtil.getExpectedType(this) ;
+	"
+;
