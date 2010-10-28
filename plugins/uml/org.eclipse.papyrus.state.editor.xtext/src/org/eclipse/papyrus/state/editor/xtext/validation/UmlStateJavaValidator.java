@@ -38,6 +38,8 @@ public class UmlStateJavaValidator extends AbstractUmlStateJavaValidator {
 
 	private static Namespace model ;
 	private static Element contextElement ;
+	private static boolean valid_StateName = true ;
+	private static boolean valid_SubMachineRule = true ;
 	
 	public static void init(Element _contextElement) {
 		contextElement = _contextElement ;
@@ -56,6 +58,10 @@ public class UmlStateJavaValidator extends AbstractUmlStateJavaValidator {
 	
 	public static Element getContextElement() {
 		return contextElement ;
+	}
+	
+	public static boolean validate() {
+		return valid_StateName && valid_SubMachineRule ;
 	}
 	
 	/**
@@ -97,7 +103,10 @@ public class UmlStateJavaValidator extends AbstractUmlStateJavaValidator {
 		// Check if ConnectionPointReference exist when one delete the submachine reference: not allowed!
 		if((stateRule.getSubmachine() == null) && !editedState.getConnections().isEmpty()){
 			error(getErrorMessageForSubmachineState(), stateRule, UmlStatePackage.STATE_RULE) ;
-	
+			valid_StateName = false ;
+		}
+		else {
+			valid_StateName = true ;
 		}
 		//
 		// Then, checks if the textual specification implies deletion of the DoActivity, Entry or Exit behavior
@@ -260,9 +269,17 @@ public class UmlStateJavaValidator extends AbstractUmlStateJavaValidator {
 		org.eclipse.uml2.uml.State contextState = (org.eclipse.uml2.uml.State)contextElement ;
 		if (contextState.isOrthogonal()) {
 			error(getErrorMessageForOrthogonalState(), rule, UmlStatePackage.SUBMACHINE_RULE__SUBMACHINE) ;
+			valid_SubMachineRule = false ;
 		}
-		else if (contextState.isComposite()) {
+		else {
+			valid_SubMachineRule = true ;
+		}
+		if (contextState.isComposite()) {
 			error(getErrorMessageForCompositeState(), rule, UmlStatePackage.SUBMACHINE_RULE__SUBMACHINE) ;
+			valid_SubMachineRule = false ;
+		}
+		else {
+			valid_SubMachineRule = true ;
 		}
 	}
 	

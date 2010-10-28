@@ -48,6 +48,7 @@ public class PopupXtextEditorKeyListener extends KeyAdapter implements VerifyKey
 			if (isIgnoreNextESC) {
 				isIgnoreNextESC = false;
 			} else {
+				PopupXtextEditorHelper.ignoreFocusLost = true ;
 				this.popupXtextEditorHelper.closeEditor(false);
 			}
 		}

@@ -28,6 +28,7 @@ import org.eclipse.papyrus.state.editor.xtext.ui.contentassist.UmlStateProposalP
 import org.eclipse.papyrus.state.editor.xtext.ui.internal.UmlStateActivator;
 import org.eclipse.papyrus.state.editor.xtext.umlState.BehaviorKind;
 import org.eclipse.papyrus.state.editor.xtext.umlState.StateRule;
+import org.eclipse.papyrus.state.editor.xtext.validation.SemanticValidator;
 import org.eclipse.papyrus.state.editor.xtext.validation.UmlStateJavaValidator;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.Behavior;
@@ -160,7 +161,12 @@ public class StatePopupEditorConfigurationContribution extends PopupEditorConfig
 				}
 			}
 		};
-		return super.createPopupEditorHelper(graphicalEditPart, injector, reconciler, textToEdit, fileExtension);
+		return super.createPopupEditorHelper(graphicalEditPart, 
+											injector, 
+											reconciler, 
+											textToEdit, 
+											fileExtension,
+											new SemanticValidator());
 	}
 
 	/*
