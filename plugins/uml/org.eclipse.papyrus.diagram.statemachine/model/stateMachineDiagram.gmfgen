@@ -20,6 +20,8 @@
         creationWizardIconPath="icons/UMLDiagramFile.gif"
         creationWizardCategoryID="org.eclipse.ui.Examples"
         editingDomainID="org.eclipse.papyrus.diagram.statemachine.EditingDomain"
+        liveValidationUIFeedback="true"
+        validationDecorators="true"
         validationEnabled="true">
       <diagramRunTimeClass
           href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>

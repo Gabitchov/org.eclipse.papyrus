@@ -21,6 +21,9 @@
         baseEditHelperClassName="UMLBaseEditHelper"
         creationWizardIconPath="icons/obj16/Diagram_CompositeStructure.gif"
         validationProviderPriority="Low"
+        validationEnabled="true"
+        liveValidationUIFeedback="true"
+        validationDecorators="true"
         synchronized="false">
       <diagramRunTimeClass
           href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
