@@ -39,7 +39,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
-import org.eclipse.papyrus.diagram.common.editpolicies.CommonDiagramDragDropEditPolicy;
+import org.eclipse.papyrus.diagram.common.editpolicies.OldCommonDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.diagram.statemachine.custom.commands.CreateViewCommand;
 import org.eclipse.papyrus.diagram.statemachine.custom.commands.CustomFirstRegionInCompositeStateCreateElementCommand;
 import org.eclipse.papyrus.diagram.statemachine.custom.commands.CustomRegionCreateElementCommand;
@@ -69,7 +69,7 @@ import org.eclipse.uml2.uml.Region;
 import org.eclipse.uml2.uml.State;
 import org.eclipse.uml2.uml.StateMachine;
 
-public class CustomStateMachineDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPolicy {
+public class CustomStateMachineDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEditPolicy {
 
 	IFigure sizeOnDropFeedback = null;
 
