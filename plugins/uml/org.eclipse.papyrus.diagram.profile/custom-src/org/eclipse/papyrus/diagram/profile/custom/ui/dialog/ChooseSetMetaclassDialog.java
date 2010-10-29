@@ -19,6 +19,7 @@ import java.util.Collections;
 import java.util.Iterator;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.jface.viewers.ITableLabelProvider;
@@ -34,6 +35,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
@@ -170,6 +172,36 @@ public class ChooseSetMetaclassDialog extends ChooseSetAssistedDialog implements
 		}
 	}
 
+
+	/**
+	 * adds the element to the list of selected elements and remove it from the
+	 * list of possible elements.
+	 * 
+	 * @param element
+	 *        the element to add to the selected elements list
+	 */
+	@Override
+	public void runActionAdd(Object element) {
+		super.runActionAdd(element);
+		//update the OK button status
+		updateOKButtonStatus();
+	}
+
+
+	/**
+	 * adds the element to the list of possible elements and remove it from the
+	 * list of selected elements.
+	 * 
+	 * @param element
+	 *        the element to remove from the selected elements list
+	 */
+	@Override
+	protected void runActionRemove(Object element) {
+		super.runActionRemove(element);
+		//update the OK button status
+		updateOKButtonStatus();
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -196,6 +228,28 @@ public class ChooseSetMetaclassDialog extends ChooseSetAssistedDialog implements
 		return false;
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.profile.ui.dialogs.ChooseSetAssistedDialog#createButtonsForButtonBar(org.eclipse.swt.widgets.Composite)
+	 * 
+	 * @param parent
+	 */
+	@Override
+	protected void createButtonsForButtonBar(Composite parent) {
+		super.createButtonsForButtonBar(parent);
+		//init the status of the OKButton to false;
+		getButton(IDialogConstants.OK_ID).setEnabled(false);
+	}
+
+	/**
+	 * Update the status of the OK Button
+	 */
+	protected void updateOKButtonStatus() {
+		Button OKButton = this.getButton(IDialogConstants.OK_ID);
+		if(OKButton != null) {
+			OKButton.setEnabled(!selectedElementList.getElements().isEmpty());
+		}
+	}
 
 	/**
 	 * 
