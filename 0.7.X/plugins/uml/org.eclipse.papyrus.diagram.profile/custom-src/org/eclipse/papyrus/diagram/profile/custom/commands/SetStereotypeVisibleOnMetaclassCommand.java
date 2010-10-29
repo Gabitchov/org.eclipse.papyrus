@@ -24,11 +24,13 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.profile.utils.Util;
 import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.papyrus.umlutils.ui.helper.AppliedStereotypeHelper;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ElementImport;
+import org.eclipse.uml2.uml.Type;
 
 /**
  * 
@@ -40,7 +42,7 @@ import org.eclipse.uml2.uml.ElementImport;
 public class SetStereotypeVisibleOnMetaclassCommand extends AbstractTransactionalCommand {
 
 	/** the semantic link */
-	private Element semanticLink;
+	private Element semanticElement;
 
 	/** the view descriptor */
 	private CreateViewRequest.ViewDescriptor cmdResult = null;
@@ -55,14 +57,14 @@ public class SetStereotypeVisibleOnMetaclassCommand extends AbstractTransactiona
 	 *        the label for the command
 	 * @param affectedFiles
 	 *        the affected files
-	 * @param semanticLink
-	 *        the link
+	 * @param semanticElement
+	 *        the Element Import or the Metaclass (i.e. a Class)
 	 * @param descriptor
 	 *        the view descriptor for the metaclass
 	 */
-	public SetStereotypeVisibleOnMetaclassCommand(TransactionalEditingDomain domain, String label, List<?> affectedFiles, Element semanticLink, CreateViewRequest.ViewDescriptor descriptor) {
+	public SetStereotypeVisibleOnMetaclassCommand(TransactionalEditingDomain domain, String label, List<?> affectedFiles, Element semanticElement, CreateViewRequest.ViewDescriptor descriptor) {
 		super(domain, label, affectedFiles);
-		this.semanticLink = semanticLink;
+		this.semanticElement = semanticElement;
 		this.cmdResult = descriptor;
 	}
 
@@ -78,8 +80,17 @@ public class SetStereotypeVisibleOnMetaclassCommand extends AbstractTransactiona
 	 */
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		if(semanticLink instanceof ElementImport) {
-			Class metaclass = (Class)((ElementImport)semanticLink).getImportedElement();
+		if(semanticElement instanceof ElementImport) {
+			Class metaclass = (Class)((ElementImport)semanticElement).getImportedElement();
+			View node = (View)(this.cmdResult).getAdapter(View.class);
+			Element UMLelement = metaclass;
+			String stereotypeName = UMLelement.getAppliedStereotypes().get(0).getQualifiedName();
+			Command command = AppliedStereotypeHelper.getAddAppliedStereotypeCommand(getEditingDomain(), node, stereotypeName, VisualInformationPapyrusConstant.STEREOTYPE_TEXT_HORIZONTAL_PRESENTATION);
+			if(command.canExecute()) {
+				command.execute();
+			}
+		} else if(semanticElement instanceof Class && semanticElement instanceof Type && Util.isMetaclass((Type)semanticElement)) {
+			Class metaclass = (Class)semanticElement;
 			View node = (View)(this.cmdResult).getAdapter(View.class);
 			Element UMLelement = metaclass;
 			String stereotypeName = UMLelement.getAppliedStereotypes().get(0).getQualifiedName();
