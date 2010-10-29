@@ -50,11 +50,11 @@ import org.eclipse.papyrus.diagram.common.editpolicies.OldCommonDiagramDragDropE
 import org.eclipse.papyrus.diagram.common.util.ViewServiceUtil;
 import org.eclipse.papyrus.diagram.communication.custom.commands.CommunicationDeferredCreateConnectionViewCommand;
 import org.eclipse.papyrus.diagram.communication.custom.commands.CustomMessageViewCreateCommand;
-import org.eclipse.papyrus.diagram.communication.custom.util.CommunicationLinkMappingHelper;
-import org.eclipse.papyrus.diagram.communication.custom.util.CommunicationUtil;
-import org.eclipse.papyrus.diagram.communication.custom.util.DiagramShortCutHelper;
-import org.eclipse.papyrus.diagram.communication.custom.util.DurationObservationHelper;
-import org.eclipse.papyrus.diagram.communication.custom.util.TimeObservationHelper;
+import org.eclipse.papyrus.diagram.communication.custom.helper.CommunicationLinkMappingHelper;
+import org.eclipse.papyrus.diagram.communication.custom.helper.CommunicationUtil;
+import org.eclipse.papyrus.diagram.communication.custom.helper.DiagramShortCutHelper;
+import org.eclipse.papyrus.diagram.communication.custom.helper.DurationObservationHelper;
+import org.eclipse.papyrus.diagram.communication.custom.helper.TimeObservationHelper;
 import org.eclipse.papyrus.diagram.communication.edit.parts.CommentEditPartCN;
 import org.eclipse.papyrus.diagram.communication.edit.parts.ConstraintEditPartCN;
 import org.eclipse.papyrus.diagram.communication.edit.parts.DurationObservationEditPartCN;

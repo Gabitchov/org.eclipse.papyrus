@@ -39,7 +39,7 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
-import org.eclipse.papyrus.diagram.communication.edit.parts.MessageNameEditPart;
+import org.eclipse.papyrus.diagram.communication.custom.edit.parts.CustomMessageNameEditPart;
 import org.eclipse.papyrus.diagram.communication.part.UMLVisualIDRegistry;
 
 
@@ -104,7 +104,7 @@ public class CustomMessageViewCreateCommand extends AbstractTransactionalCommand
 	 *        the link
 	 */
 	public CustomMessageViewCreateCommand(TransactionalEditingDomain domain, EditPartViewer viewer, PreferencesHint preferencesHint, Point point, IAdaptable semanticAdapter, ConnectionEditPart link) {
-		super(domain, "MessageClassViewCreateCommand", null);
+		super(domain, "MessageClassViewCreateCommand", null); //$NON-NLS-1$
 		//this.containerView = container;
 		this.viewer = viewer;
 		this.preferenceHint = preferencesHint;
@@ -137,7 +137,7 @@ public class CustomMessageViewCreateCommand extends AbstractTransactionalCommand
 		View linkView = ((IGraphicalEditPart)existingLink).getNotationView();
 		//Connector linkConnector = linkView.get
 
-		this.node = customCreateLabel(((EObject)semanticApdater.getAdapter(EObject.class)), linkView, UMLVisualIDRegistry.getType(MessageNameEditPart.VISUAL_ID));
+		this.node = customCreateLabel(((EObject)semanticApdater.getAdapter(EObject.class)), linkView, UMLVisualIDRegistry.getType(CustomMessageNameEditPart.VISUAL_ID));
 
 		// put to the good position
 		Location notationLocation = NotationFactory.eINSTANCE.createLocation();

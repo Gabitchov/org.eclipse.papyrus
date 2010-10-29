@@ -11,7 +11,7 @@
  *  Saadia Dhouib saadia.dhouib@cea.fr  - Adapted from Sequence Diagram
  *
  *****************************************************************************/
-package org.eclipse.papyrus.diagram.communication.custom.util;
+package org.eclipse.papyrus.diagram.communication.custom.helper;
 
 import java.util.ArrayList;
 import java.util.List;

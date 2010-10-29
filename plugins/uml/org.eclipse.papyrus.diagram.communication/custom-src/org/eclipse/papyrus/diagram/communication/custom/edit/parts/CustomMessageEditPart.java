@@ -70,7 +70,7 @@ public class CustomMessageEditPart extends MessageEditPart {
 					childFigure.setParent(this.getPrimaryShape());
 				}
 				if(childFigure.getBounds() == new Rectangle(0, 0, 0, 0)) {
-					System.out.println("The bound have changed!!!! ");
+					//System.out.println("The bound have changed!!!! ");
 					childFigure.setBounds(childFigureBefore.getBounds());
 				}
 

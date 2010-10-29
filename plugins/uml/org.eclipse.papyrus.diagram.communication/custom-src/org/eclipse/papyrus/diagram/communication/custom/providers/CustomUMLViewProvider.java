@@ -104,9 +104,9 @@ public class CustomUMLViewProvider extends UMLViewProvider {
 		// initializePreferences
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
-		PreferenceInitializerForElementHelper.initForegroundFromPrefs(edge, prefStore, "Message");
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(edge, prefStore, "Message"); //$NON-NLS-1$
 
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "Message");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "Message"); //$NON-NLS-1$
 
 		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
 		//if (routing != null) {
@@ -114,7 +114,7 @@ public class CustomUMLViewProvider extends UMLViewProvider {
 		//}
 
 
-		PreferenceInitializerForElementHelper.initRountingFromPrefs(edge, prefStore, "Message");
+		PreferenceInitializerForElementHelper.initRountingFromPrefs(edge, prefStore, "Message"); //$NON-NLS-1$
 
 		Node label6001 = createLabel(edge, UMLVisualIDRegistry.getType(MessageNameEditPart.VISUAL_ID));
 		label6001.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());

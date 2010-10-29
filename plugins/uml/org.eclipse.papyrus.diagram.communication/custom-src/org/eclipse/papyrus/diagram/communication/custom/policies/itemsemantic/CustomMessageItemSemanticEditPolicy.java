@@ -72,6 +72,7 @@ public class CustomMessageItemSemanticEditPolicy extends org.eclipse.papyrus.dia
 
 	@Override
 	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
+		//System.err.println("getReorientRelationshipCommand VisualID of element to reorient" + getVisualID(req));
 		switch(getVisualID(req)) {
 		case MessageEditPart.VISUAL_ID:
 			return getGEFWrapper(new MessageReorientCommand(req));
@@ -113,24 +114,8 @@ public class CustomMessageItemSemanticEditPolicy extends org.eclipse.papyrus.dia
 				if(obj instanceof Message) {
 					Message message = (Message)obj;
 
-
 					//1. Add the message to the list of elements to destroy
 					elementsToDestroy.add(message);
-
-
-
-					//2. Command to destroy all the views associated to the message
-					//					IElementEditService provider = ElementEditServiceUtils.getCommandProvider(obj);
-					//					if(provider == null) {
-					//						return org.eclipse.gef.commands.UnexecutableCommand.INSTANCE;
-					//					}
-					//
-					//					ICommand destroyCommand = provider.getEditCommand(reqDestroyMessage);
-					//
-					//					if(destroyCommand == null) {
-					//						return org.eclipse.gef.commands.UnexecutableCommand.INSTANCE;
-					//					}
-					//					cmd.add(destroyCommand);
 
 				}
 			}

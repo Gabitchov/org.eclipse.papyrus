@@ -25,9 +25,9 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.impl.DecorationNodeImpl;
-import org.eclipse.papyrus.diagram.communication.custom.util.CommunicationUtil;
-import org.eclipse.papyrus.diagram.communication.custom.util.MessageInfo;
-import org.eclipse.papyrus.diagram.communication.custom.util.ReconnectMessageHelper;
+import org.eclipse.papyrus.diagram.communication.custom.helper.CommunicationUtil;
+import org.eclipse.papyrus.diagram.communication.custom.helper.MessageInfo;
+import org.eclipse.papyrus.diagram.communication.custom.helper.ReconnectMessageHelper;
 import org.eclipse.papyrus.diagram.communication.edit.commands.MessageReorientCommand;
 import org.eclipse.papyrus.diagram.communication.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.uml2.uml.Element;
@@ -40,6 +40,7 @@ import org.eclipse.uml2.uml.MessageEnd;
 // TODO: Auto-generated Javadoc
 /**
  * The Class CustomMessageReorientCommand is intended to reorient the messages on a connector between two lifelines
+ * This command is used when a connector is reoriented
  */
 public class CustomMessagesReorientCommand extends MessageReorientCommand {
 
@@ -168,19 +169,19 @@ public class CustomMessagesReorientCommand extends MessageReorientCommand {
 							//								}
 							//
 							//							}
-							done: for(int i = 0; i < listEventsOldLifeline.size(); i++) {//find the source and target of the message represented by a label
+							for(int i = 0; i < listEventsOldLifeline.size(); i++) {//find the source and target of the message represented by a label
 								if(listEventsOldLifeline.get(i).equals(rcvEvent)) {//the host lifeline is the target of the connection, 
 									//it's not important to set the source of the message, we dont need it because we are going to update one end of the message
 									MessageInfo messInfo = new MessageInfo(mess, null, (Lifeline)oldEnd);
 									listMessagesOnConnection.add(messInfo);
 
-									break done;
+									break;
 								} else if(listEventsOldLifeline.get(i).equals(sendEvent)) {//the host lifeline is the source of the connection
 									//it's not important to set the target of the message,  we dont need it because we are going to update one end of the message
 									MessageInfo messInfo = new MessageInfo(mess, (Lifeline)oldEnd, null);
 									listMessagesOnConnection.add(messInfo);
 
-									break done;
+									break;
 								}
 							}
 						}
@@ -202,6 +203,7 @@ public class CustomMessagesReorientCommand extends MessageReorientCommand {
 	 */
 	public boolean canExecute() {
 		return !areConnected();
+		//return true;
 	}
 
 

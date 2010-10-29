@@ -27,7 +27,7 @@ import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.editpolicies.AbstractEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.papyrus.diagram.communication.custom.figures.CustomWrappingLabel;
-import org.eclipse.papyrus.diagram.communication.custom.util.RotationHelper;
+import org.eclipse.papyrus.diagram.communication.custom.helper.RotationHelper;
 import org.eclipse.papyrus.diagram.communication.edit.parts.LifelineEditPartCN;
 import org.eclipse.papyrus.diagram.communication.edit.parts.MessageNameEditPart;
 import org.eclipse.uml2.uml.InteractionFragment;

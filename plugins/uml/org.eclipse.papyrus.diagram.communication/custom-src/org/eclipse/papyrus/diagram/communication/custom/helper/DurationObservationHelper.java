@@ -12,7 +12,7 @@
  *  Saadia Dhouib (CEA LIST) saadia.dhouib@cea.fr - adapted from composite diagram
  *
  *****************************************************************************/
-package org.eclipse.papyrus.diagram.communication.custom.util;
+package org.eclipse.papyrus.diagram.communication.custom.helper;
 
 import java.util.ArrayList;
 import java.util.Collection;

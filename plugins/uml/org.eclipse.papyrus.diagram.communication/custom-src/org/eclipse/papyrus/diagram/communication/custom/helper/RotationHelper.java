@@ -11,7 +11,7 @@
  *  Saadia Dhouib saadia.dhouib@cea.fr  - Adapted from Composite Structure Diagram
  *
  *****************************************************************************/
-package org.eclipse.papyrus.diagram.communication.custom.util;
+package org.eclipse.papyrus.diagram.communication.custom.helper;
 
 import java.awt.Graphics2D;
 import java.awt.GraphicsConfiguration;
