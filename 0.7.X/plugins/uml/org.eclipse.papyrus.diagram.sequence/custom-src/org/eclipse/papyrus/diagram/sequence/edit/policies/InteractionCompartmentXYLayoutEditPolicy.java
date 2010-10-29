@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.edit.policies;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map.Entry;
@@ -56,6 +57,7 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.diagram.sequence.util.SequenceUtil;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.ExecutionSpecification;
+import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.InteractionOperand;
 
@@ -253,55 +255,85 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 			if(combinedFragmentEditPart.getChildren().size() > 0 && combinedFragmentEditPart.getChildren().get(0) instanceof CombinedFragmentCombinedFragmentCompartmentEditPart) {
 
 				CombinedFragmentCombinedFragmentCompartmentEditPart compartment = (CombinedFragmentCombinedFragmentCompartmentEditPart)combinedFragmentEditPart.getChildren().get(0);
-				List<EditPart> interactionOperandEditParts = compartment.getChildren();
+				List<EditPart> combinedFragmentChildrenEditParts = compartment.getChildren();
+				List<InteractionOperandEditPart> interactionOperandEditParts = new ArrayList<InteractionOperandEditPart>();
 
-				InteractionOperand firstOperand = null;
+				InteractionOperand firstOperand = cf.getOperands().get(0);
 
-				for(EditPart ep : interactionOperandEditParts) {
+
+				Set<InteractionFragment> notCoveredAnymoreInteractionFragments = new HashSet<InteractionFragment>();
+				int headerHeight = 0;
+				
+				for(EditPart ep : combinedFragmentChildrenEditParts) {
 					if(ep instanceof InteractionOperandEditPart) {
 						InteractionOperandEditPart ioEP = (InteractionOperandEditPart)ep;
+						interactionOperandEditParts.add(ioEP);
+
 						InteractionOperand io = (InteractionOperand)ioEP.resolveSemanticElement();
-
-						Rectangle newBoundsIO = ioEP.getFigure().getBounds().getCopy();
-
-						// used to compensate the height of the "header" where the OperandKind is stored
-						if(firstOperand == null) {
-							firstOperand = io;
-							int heightDiff = newBoundsIO.y - origCFBounds.y;
-							newBoundsIO.y = origCFBounds.y;
-							newBoundsIO.height += heightDiff;
+						if (firstOperand.equals(io)) {
+							Rectangle boundsIO = ioEP.getFigure().getBounds().getCopy();
+							headerHeight = boundsIO.y - origCFBounds.y;
 						}
+						
+						notCoveredAnymoreInteractionFragments.addAll(io.getFragments());
+					}
+				}
 
-						// calculate the new bounds of the interaction operand
-						// this is currently wrong for a resize of a CF with multiple IO
-						ioEP.getFigure().translateToAbsolute(newBoundsIO);
-						newBoundsIO.translate(moveDelta);
-						newBoundsIO.resize(sizeDelta);
+				double heightRatio = (double)(newBoundsCF.height - headerHeight) / (double)(origCFBounds.height - headerHeight);
+				double widthRatio = (double)newBoundsCF.width / (double)origCFBounds.width;
+				
+				for(InteractionOperandEditPart ioEP : interactionOperandEditParts) {
+					InteractionOperand io = (InteractionOperand)ioEP.resolveSemanticElement();
 
-						Set<InteractionFragment> coveredInteractionFragments = SequenceUtil.getCoveredInteractionFragments(newBoundsIO, combinedFragmentEditPart);
+					Rectangle newBoundsIO = ioEP.getFigure().getBounds().getCopy();
 
-						// retrieve fragments currently owned by the interaction operand so we can remove fragments that are not covered anymore
-						Set<InteractionFragment> notCoveredAnymoreInteractionFragments = new HashSet<InteractionFragment>(io.getFragments());
-						notCoveredAnymoreInteractionFragments.removeAll(coveredInteractionFragments);
+					// scale according to the ratio
+					newBoundsIO.height = (int)(newBoundsIO.height * heightRatio);
+					newBoundsIO.width = (int)(newBoundsIO.width * widthRatio);
 
-						for(InteractionFragment ift : notCoveredAnymoreInteractionFragments) {
-							if(cf.getEnclosingOperand() != null) {
-								compoundCmd.add(new ICommandProxy(SequenceUtil.getSetEnclosingInteractionCommand(ioEP.getEditingDomain(), ift, cf.getEnclosingOperand())));
-							} else {
-								compoundCmd.add(new ICommandProxy(SequenceUtil.getSetEnclosingInteractionCommand(ioEP.getEditingDomain(), ift, cf.getEnclosingInteraction())));
+//					if (firstOperand.equals(io)) {
+//						// used to compensate the height of the "header" where the OperandKind is stored
+//						newBoundsIO.y = origCFBounds.y;
+//						newBoundsIO.height += headerHeight;
+//					}
+
+					// calculate the new bounds of the interaction operand
+					// this is currently wrong for a resize of a CF with multiple IO
+					ioEP.getFigure().translateToAbsolute(newBoundsIO);
+					newBoundsIO.translate(moveDelta);
+
+					Set<InteractionFragment> coveredInteractionFragments = SequenceUtil.getCoveredInteractionFragments(newBoundsIO, combinedFragmentEditPart);
+
+					// remove fragments that are covered by this operand from the notCovered set
+					notCoveredAnymoreInteractionFragments.removeAll(coveredInteractionFragments);
+
+					// set the enclosing operand to the moved/resized one if the current enclosing interaction is the enclosing interaction
+					// of the moved/resized operand or of another.
+					// => the interaction fragment that are inside an other container (like an enclosed CF) are not modified
+					System.out.println("io : "+ io);
+					System.out.println("ifts : ");
+					for(InteractionFragment ift : coveredInteractionFragments) {
+
+						if(!cf.equals(ift)) {
+							Interaction interactionOwner = ift.getEnclosingInteraction();
+							InteractionOperand ioOwner = ift.getEnclosingOperand();
+
+							if ((ioOwner != null && (ioOwner.equals(cf.getEnclosingOperand()) || cf.equals(ioOwner.getOwner()))) ||
+								(interactionOwner != null && (interactionOwner.equals(cf.getEnclosingInteraction()) || cf.equals(interactionOwner.getOwner())))) {
+								System.out.println(ift);
+								compoundCmd.add(new ICommandProxy(SequenceUtil.getSetEnclosingInteractionCommand(ioEP.getEditingDomain(), ift, io)));
 							}
 						}
-
-						// set the enclosing operand to the moved/resized one if the current enclosing interaction is the enclosing interaction
-						// of the moved/resized operand.
-						// => the interaction fragment that are inside an other container (like an enclosed CF) are not modified
-						for(InteractionFragment ift : coveredInteractionFragments) {
-							if(!cf.equals(ift)) {
-								if((cf.getEnclosingOperand() != null && cf.getEnclosingOperand().equals(ift.getEnclosingOperand())) || (cf.getEnclosingInteraction() != null && cf.getEnclosingInteraction().equals(ift.getEnclosingInteraction()))) {
-									compoundCmd.add(new ICommandProxy(SequenceUtil.getSetEnclosingInteractionCommand(ioEP.getEditingDomain(), ift, io)));
-								}
-							}
-						}
+					}
+				}
+				
+				for(InteractionFragment ift : notCoveredAnymoreInteractionFragments) {
+					if(cf.getEnclosingOperand() != null) {
+						System.out.println("gniark");
+						compoundCmd.add(new ICommandProxy(SequenceUtil.getSetEnclosingInteractionCommand(combinedFragmentEditPart.getEditingDomain(), ift, cf.getEnclosingOperand())));
+					} else {
+						System.out.println("booh");
+						compoundCmd.add(new ICommandProxy(SequenceUtil.getSetEnclosingInteractionCommand(combinedFragmentEditPart.getEditingDomain(), ift, cf.getEnclosingInteraction())));
 					}
 				}
 			}
