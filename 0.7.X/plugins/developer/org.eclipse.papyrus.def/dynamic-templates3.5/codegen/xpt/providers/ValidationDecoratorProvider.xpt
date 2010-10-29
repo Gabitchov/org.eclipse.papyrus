@@ -8,6 +8,7 @@
  *
  * Contributors:
  *    Dmitry Stadnik (Borland) - initial API and implementation
+ *    Ansgar Radermacher (CEA LIST) - added support for EMF validation
  */
 
 «IMPORT 'http://www.eclipse.org/gmf/2009/GenModel'»
@@ -124,7 +125,15 @@ public class «validationDecoratorProviderClassName»
 		}
 		if(uriAttribute != null) {
 			// get EObject from marker via resourceSet of domain
-			return domain.getResourceSet().getEObject(org.eclipse.emf.common.util.URI.createURI(uriAttribute), true);
+			try {
+				return domain.getResourceSet().getEObject(org.eclipse.emf.common.util.URI.createURI(uriAttribute), true);
+			}
+			catch (java.util.MissingResourceException e) {
+				// can happen after renaming
+			}
+			catch (org.eclipse.emf.common.util.WrappedException e) {
+				// can happen after renaming		
+			}
 		}
 		return null;
 	}
@@ -201,6 +210,7 @@ public class «validationDecoratorProviderClassName»
 			«EXPAND xpt::editor::ValidationMarker::qualifiedClassName» foundMarker = null;
 			«EXPAND xpt::editor::ValidationMarker::qualifiedClassName»[] gmfMarkers =
 					«EXPAND xpt::editor::ValidationMarker::qualifiedClassName».getMarkers(editPart.getViewer(), viewId);
+			org.eclipse.core.resources.IMarker[] emfMarkers = new org.eclipse.core.resources.IMarker [0];
 			«ENDIF-»
 			if(gmfMarkers == null) {
 				// indicates an exception, findMarkers returns an empty array, if there are no markers
