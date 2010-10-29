@@ -30,8 +30,10 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.sequence.providers.ElementInitializers;
 import org.eclipse.papyrus.diagram.sequence.util.CommandHelper;
 import org.eclipse.uml2.uml.Interaction;
+import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.InteractionOperand;
 import org.eclipse.uml2.uml.Lifeline;
+import org.eclipse.uml2.uml.PartDecomposition;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLFactory;
 
@@ -113,28 +115,38 @@ public class LifelineCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		EObject object = getElementToEdit();
-		Interaction owner;
+		Interaction interactionOwner = null;
 		Property property = null;
+
+		Lifeline newElement = UMLFactory.eINSTANCE.createLifeline();
+
 		if(object instanceof Lifeline) {
-			Lifeline lifeline = (Lifeline)object;
+			Lifeline parentLifeline = (Lifeline)object;
 			property = CommandHelper.getProperties(availableProperties);
 
 			if(property == null) {
 				return CommandResult.newCancelledCommandResult();
 			}
-
-			owner = lifeline.getInteraction();
-		} else {
-			owner = (Interaction)getElementToEdit();
-		}
-
-		Lifeline newElement = UMLFactory.eINSTANCE.createLifeline();
-
-		if(property != null) {
 			newElement.setRepresents(property);
+
+			interactionOwner = parentLifeline.getInteraction();
+
+			// create or retrieve a PartDecomposition
+			PartDecomposition partDecomposition = parentLifeline.getDecomposedAs();
+			if(partDecomposition == null) {
+				List<InteractionFragment> ifts = interactionOwner.getFragments();
+				partDecomposition = UMLFactory.eINSTANCE.createPartDecomposition();
+				partDecomposition.setName(ElementInitializers.getNextNumberedName(ifts, partDecomposition.eClass().getName()));
+				ifts.add(partDecomposition);
+				parentLifeline.setDecomposedAs(partDecomposition);
+			}
+
+			partDecomposition.getCovereds().add(newElement);
+		} else {
+			interactionOwner = (Interaction)getElementToEdit();
 		}
 
-		owner.getLifelines().add(newElement);
+		interactionOwner.getLifelines().add(newElement);
 
 		ElementInitializers.getInstance().init_Lifeline_3001(newElement);
 
