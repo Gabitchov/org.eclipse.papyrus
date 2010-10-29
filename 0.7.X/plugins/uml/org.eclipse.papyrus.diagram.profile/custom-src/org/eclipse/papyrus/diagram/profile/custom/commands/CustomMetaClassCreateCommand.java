@@ -114,16 +114,23 @@ public class CustomMetaClassCreateCommand extends org.eclipse.gmf.runtime.diagra
 			//creation of the nodes!
 			while(adapterIterator.hasNext()) {
 				CreateElementRequestAdapter adapter = (CreateElementRequestAdapter)adapterIterator.next();
-				Node node = viewProvider.createNode(adapter, containerView, myViewDescriptor.getSemanticHint(), myViewDescriptor.getIndex(), myViewDescriptor.isPersisted(), myViewDescriptor.getPreferencesHint());
-				Location notationLocation = NotationFactory.eINSTANCE.createBounds();
-				notationLocation.setX(location.x);
-				notationLocation.setY(location.y + iterNbAddedMetaclasses++ * HEIGHT_BETWEEN_TWO_METACLASS);
-				node.setLayoutConstraint(notationLocation);
-				//display stereotype
 				Element UMLelement = (Element)adapter.getAdapter(EObject.class);
-				String stereotypeName = UMLelement.getAppliedStereotypes().get(0).getQualifiedName();
-				Command command = AppliedStereotypeHelper.getAddAppliedStereotypeCommand(getEditingDomain(), node, stereotypeName, VisualInformationPapyrusConstant.STEREOTYPE_TEXT_HORIZONTAL_PRESENTATION);
-				command.execute();
+
+				//can be null, when the user click on OK and no Metaclass is selected
+				if(UMLelement != null) {
+					Node node = viewProvider.createNode(adapter, containerView, myViewDescriptor.getSemanticHint(), myViewDescriptor.getIndex(), myViewDescriptor.isPersisted(), myViewDescriptor.getPreferencesHint());
+					Location notationLocation = NotationFactory.eINSTANCE.createBounds();
+					notationLocation.setX(location.x);
+					notationLocation.setY(location.y + iterNbAddedMetaclasses++ * HEIGHT_BETWEEN_TWO_METACLASS);
+					node.setLayoutConstraint(notationLocation);
+					//display stereotype
+
+
+					String stereotypeName = UMLelement.getAppliedStereotypes().get(0).getQualifiedName();
+					Command command = AppliedStereotypeHelper.getAddAppliedStereotypeCommand(getEditingDomain(), node, stereotypeName, VisualInformationPapyrusConstant.STEREOTYPE_TEXT_HORIZONTAL_PRESENTATION);
+					command.execute();
+				}
+
 			}
 			return CommandResult.newOKCommandResult(myViewDescriptor);
 		}
