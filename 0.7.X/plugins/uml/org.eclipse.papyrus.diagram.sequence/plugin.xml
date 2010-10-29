@@ -816,20 +816,6 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.diagram.sequence.preferences.InteractionPreferencePage"
-            id="org.eclipse.papyrus.diagram.sequence.preferences.InteractionPreferencePage"
-            name="Interaction Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.diagram.sequence.preferences.TimeConstraintPreferencePage"
-            id="org.eclipse.papyrus.diagram.sequence.preferences.TimeConstraintPreferencePage"
-            name="TimeConstraint Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
 			class="org.eclipse.papyrus.diagram.sequence.preferences.TimeObservationPreferencePage"
             id="org.eclipse.papyrus.diagram.sequence.preferences.TimeObservationPreferencePage"
             name="TimeObservation Node" />
@@ -844,23 +830,9 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.diagram.sequence.preferences.ConstraintPreferencePage"
-            id="org.eclipse.papyrus.diagram.sequence.preferences.ConstraintPreferencePage"
-            name="Constraint Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.diagram.sequence.preferences.LifelinePreferencePage"
-            id="org.eclipse.papyrus.diagram.sequence.preferences.LifelinePreferencePage"
-            name="Lifeline Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.diagram.sequence.preferences.InteractionUsePreferencePage"
-            id="org.eclipse.papyrus.diagram.sequence.preferences.InteractionUsePreferencePage"
-            name="InteractionUse Node" />
+			class="org.eclipse.papyrus.diagram.sequence.preferences.StateInvariantPreferencePage"
+            id="org.eclipse.papyrus.diagram.sequence.preferences.StateInvariantPreferencePage"
+            name="StateInvariant Node" />
 	
 		
 	<?gmfgen generated="true"?>
@@ -872,30 +844,9 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.diagram.sequence.preferences.DurationConstraintPreferencePage"
-            id="org.eclipse.papyrus.diagram.sequence.preferences.DurationConstraintPreferencePage"
-            name="DurationConstraint Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.diagram.sequence.preferences.BehaviorExecutionSpecificationPreferencePage"
-            id="org.eclipse.papyrus.diagram.sequence.preferences.BehaviorExecutionSpecificationPreferencePage"
-            name="BehaviorExecutionSpecification Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.diagram.sequence.preferences.DurationObservationPreferencePage"
-            id="org.eclipse.papyrus.diagram.sequence.preferences.DurationObservationPreferencePage"
-            name="DurationObservation Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.diagram.sequence.preferences.DestructionEventPreferencePage"
-            id="org.eclipse.papyrus.diagram.sequence.preferences.DestructionEventPreferencePage"
-            name="DestructionEvent Node" />
+			class="org.eclipse.papyrus.diagram.sequence.preferences.ConstraintPreferencePage"
+            id="org.eclipse.papyrus.diagram.sequence.preferences.ConstraintPreferencePage"
+            name="Constraint Node" />
 	
 		
 	<?gmfgen generated="true"?>
@@ -914,16 +865,37 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.diagram.sequence.preferences.ContinuationPreferencePage"
-            id="org.eclipse.papyrus.diagram.sequence.preferences.ContinuationPreferencePage"
-            name="Continuation Node" />
+			class="org.eclipse.papyrus.diagram.sequence.preferences.DestructionEventPreferencePage"
+            id="org.eclipse.papyrus.diagram.sequence.preferences.DestructionEventPreferencePage"
+            name="DestructionEvent Node" />
 	
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.diagram.sequence.preferences.StateInvariantPreferencePage"
-            id="org.eclipse.papyrus.diagram.sequence.preferences.StateInvariantPreferencePage"
-            name="StateInvariant Node" />
+			class="org.eclipse.papyrus.diagram.sequence.preferences.InteractionPreferencePage"
+            id="org.eclipse.papyrus.diagram.sequence.preferences.InteractionPreferencePage"
+            name="Interaction Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
+			class="org.eclipse.papyrus.diagram.sequence.preferences.DurationConstraintPreferencePage"
+            id="org.eclipse.papyrus.diagram.sequence.preferences.DurationConstraintPreferencePage"
+            name="DurationConstraint Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
+			class="org.eclipse.papyrus.diagram.sequence.preferences.InteractionUsePreferencePage"
+            id="org.eclipse.papyrus.diagram.sequence.preferences.InteractionUsePreferencePage"
+            name="InteractionUse Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
+			class="org.eclipse.papyrus.diagram.sequence.preferences.ContinuationPreferencePage"
+            id="org.eclipse.papyrus.diagram.sequence.preferences.ContinuationPreferencePage"
+            name="Continuation Node" />
 	
 		
 	<?gmfgen generated="true"?>
@@ -932,8 +904,38 @@
             id="org.eclipse.papyrus.diagram.sequence.preferences.ConsiderIgnoreFragmentPreferencePage"
             name="ConsiderIgnoreFragment Node" />
 	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
+			class="org.eclipse.papyrus.diagram.sequence.preferences.DurationObservationPreferencePage"
+            id="org.eclipse.papyrus.diagram.sequence.preferences.DurationObservationPreferencePage"
+            name="DurationObservation Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
+			class="org.eclipse.papyrus.diagram.sequence.preferences.TimeConstraintPreferencePage"
+            id="org.eclipse.papyrus.diagram.sequence.preferences.TimeConstraintPreferencePage"
+            name="TimeConstraint Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
+			class="org.eclipse.papyrus.diagram.sequence.preferences.LifelinePreferencePage"
+            id="org.eclipse.papyrus.diagram.sequence.preferences.LifelinePreferencePage"
+            name="Lifeline Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
+			class="org.eclipse.papyrus.diagram.sequence.preferences.BehaviorExecutionSpecificationPreferencePage"
+            id="org.eclipse.papyrus.diagram.sequence.preferences.BehaviorExecutionSpecificationPreferencePage"
+            name="BehaviorExecutionSpecification Node" />
+	
 
 
+		
+		
 		
 
 	<?gmfgen generated="true"?>
@@ -949,8 +951,6 @@
 			class="org.eclipse.papyrus.diagram.sequence.preferences.GeneralOrderingPreferencePage"
             id="org.eclipse.papyrus.diagram.sequence.preferences.GeneralOrderingPreferencePage"
             name="GeneralOrdering Link" />
-		
-		
 		
 
 </extension>
@@ -1408,8 +1408,9 @@
       <super type="org.eclipse.core.resources.problemmarker"/>
       <super type="org.eclipse.gmf.runtime.common.ui.services.marker"/>
       <persistent value="true"/>
-   </extension><extension point="org.eclipse.emf.validation.constraintProviders">
-      <?gmfgen generated="true"?>
+   </extension>   
+   <extension point="org.eclipse.emf.validation.constraintProviders">
+      <?gmfgen generated="false"?>
             <category id="org.eclipse.uml2.uml.util.UMLValidator.validate" mandatory="false" name="validateUMLModel">
          <![CDATA[Validate the UML model]]>
       </category>
@@ -1418,6 +1419,7 @@
       </category>
       <constraintProvider cache="true">
          <package namespaceUri="http://www.eclipse.org/uml2/3.0.0/UML"/>
+         <package namespaceUri="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
                <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate">
                   </constraints>
          <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.papyrus.diagram.sequence.validation.FragmentOrderingKeeper">
@@ -1441,6 +1443,18 @@
             <message><![CDATA[There is no valid trace sequencing the InteractionFragments in the fragment property. Some of them can not be organized as a valid sequence :{0}]]></message>
             <target class="uml.InteractionOperand"/>
          </constraint>
+                  <constraint id="FragmentOrderingKeeper.LifelineFigure"
+            lang="Java" class="org.eclipse.papyrus.diagram.sequence.providers.UMLValidationProvider$Adapter3"
+            name="Fragment ordering"
+            mode="Live"
+            severity="ERROR" statusCode="200">
+            
+            <description><![CDATA[The fragment property of an Interaction or InteractionOperand must be ordered as a valid trace.]]></description>
+            <message><![CDATA[There is no valid trace sequencing the InteractionFragments in the fragment property. Some of them can not be organized as a valid sequence :{0}]]></message>
+            <?use View and Bounds to detect moves?>
+      		<target class="notation.View"/>
+            <target class="notation.Bounds"/>
+         </constraint>
                   </constraints>
       </constraintProvider>
    </extension>
@@ -1453,6 +1467,13 @@
       <binding context="org.eclipse.papyrus.diagram.sequenceDefaultCtx">
                   <constraint ref="org.eclipse.papyrus.diagram.sequence.FragmentOrderingKeeper.Interaction"/>
                   <constraint ref="org.eclipse.papyrus.diagram.sequence.FragmentOrderingKeeper.InteractionOperand"/>
+               </binding>
+
+      <clientContext default="false" id="org.eclipse.papyrus.diagram.sequenceCtx_3001">
+         <selector class="org.eclipse.papyrus.diagram.sequence.providers.UMLValidationProvider$Ctx_3001"/>
+      </clientContext>
+      <binding context="org.eclipse.papyrus.diagram.sequenceCtx_3001">
+                  <constraint ref="org.eclipse.papyrus.diagram.sequence.FragmentOrderingKeeper.LifelineFigure"/>
                </binding>
 
    </extension>
@@ -1468,6 +1489,7 @@
 <extension point="org.eclipse.emf.validation.ui.UIRegisteredClientContext">
       <?gmfgen generated="true"?>
       <clientContext id="org.eclipse.papyrus.diagram.sequenceDefaultCtx"/>
+      <clientContext id="org.eclipse.papyrus.diagram.sequenceCtx_3001"/>
    </extension>
 
 

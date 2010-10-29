@@ -87,12 +87,13 @@ public class FragmentOrderingKeeper {
 	 * 
 	 * @see org.eclipse.emf.validation.AbstractModelConstraint#validate(org.eclipse.emf.validation.IValidationContext)
 	 * 
+	 * @param target
+	 *        the target to validate
 	 * @param ctx
 	 *        validation context
 	 * @return status
 	 */
-	public IStatus validate(IValidationContext ctx) {
-		EObject target = ctx.getTarget();
+	public IStatus validate(EObject target, IValidationContext ctx) {
 		if(target instanceof Interaction) {
 			Interaction interaction = (Interaction)target;
 			boolean valid = validateOrder(interaction);
@@ -144,12 +145,22 @@ public class FragmentOrderingKeeper {
 		// orderedFragments is an EList, hence, we must not empty it.
 		orderedFragments = null;
 		// other lists can be cleared.
-		constrainingLifelineParts.clear();
-		constrainingMessages.clear();
-		constrainingExecutions.clear();
-		constrainingGeneralOrderings.clear();
+		if(constrainingLifelineParts != null) {
+			constrainingLifelineParts.clear();
+		}
+		if(constrainingMessages != null) {
+			constrainingMessages.clear();
+		}
+		if(constrainingExecutions != null) {
+			constrainingExecutions.clear();
+		}
+		if(constrainingGeneralOrderings != null) {
+			constrainingGeneralOrderings.clear();
+		}
 		//constrainingCombinedFragments.clear();
-		orderConstraints.clear();
+		if(orderConstraints != null) {
+			orderConstraints.clear();
+		}
 		if(conflictingFragments != null) {
 			conflictingFragments.clear();
 		}
@@ -345,11 +356,11 @@ public class FragmentOrderingKeeper {
 			List<InteractionFragment> constraint = new ArrayList<InteractionFragment>(2);
 			//fill constraint : send > receive
 			MessageEnd frag = mess.getSendEvent();
-			if(frag instanceof InteractionFragment && orderConstraints.contains(frag)) {
+			if(frag instanceof InteractionFragment && orderedFragments.contains(frag)) {
 				constraint.add((InteractionFragment)frag);
 			}
 			frag = mess.getReceiveEvent();
-			if(frag instanceof InteractionFragment && orderConstraints.contains(frag)) {
+			if(frag instanceof InteractionFragment && orderedFragments.contains(frag)) {
 				constraint.add((InteractionFragment)frag);
 			}
 			// store constraint
@@ -361,15 +372,15 @@ public class FragmentOrderingKeeper {
 			List<InteractionFragment> constraint = new ArrayList<InteractionFragment>(3);
 			//fill constraint : start > execution > finish
 			InteractionFragment frag = exe.getStart();
-			if(frag != null && orderConstraints.contains(frag)) {
+			if(frag != null && orderedFragments.contains(frag)) {
 				constraint.add(frag);
 			}
 			frag = exe;
-			if(orderConstraints.contains(frag)) {
+			if(orderedFragments.contains(frag)) {
 				constraint.add(frag);
 			}
 			frag = exe.getFinish();
-			if(frag != null && orderConstraints.contains(frag)) {
+			if(frag != null && orderedFragments.contains(frag)) {
 				constraint.add(frag);
 			}
 			// store constraint
@@ -381,11 +392,11 @@ public class FragmentOrderingKeeper {
 			List<InteractionFragment> constraint = new ArrayList<InteractionFragment>(2);
 			//fill constraint : before > after
 			InteractionFragment frag = genOrd.getBefore();
-			if(frag != null && orderConstraints.contains(frag)) {
+			if(frag != null && orderedFragments.contains(frag)) {
 				constraint.add(frag);
 			}
 			frag = genOrd.getAfter();
-			if(frag != null && orderConstraints.contains(frag)) {
+			if(frag != null && orderedFragments.contains(frag)) {
 				constraint.add(frag);
 			}
 			// store constraint
@@ -421,16 +432,16 @@ public class FragmentOrderingKeeper {
 			}
 			// add not drawn events according to their old order in the valid trace
 			InteractionFragment lastMetSortedFragment = null;
-			for(InteractionFragment fragment : nonLocalizedEvents) {
+			for(InteractionFragment fragment : orderedFragments) {
 				if(((Lifeline)lifeline).getCoveredBys().contains(fragment)) {
 					// this is a fragment of the lifeline.
 					if(constraint.containsValue(fragment)) {
 						lastMetSortedFragment = fragment;
-					} else if(lastMetSortedFragment == null) {
+					} else if(nonLocalizedEvents.contains(fragment) && lastMetSortedFragment == null) {
 						// insert it at the very beginning
 						constraint.put((float)0, fragment);
 						lastMetSortedFragment = fragment;
-					} else {
+					} else if(nonLocalizedEvents.contains(fragment)){
 						// insert it just after lastMetSortedFragment
 						Iterator<Entry<Float, InteractionFragment>> entryIt = constraint.entrySet().iterator();
 						// find float key of lastMetSortedFragment
