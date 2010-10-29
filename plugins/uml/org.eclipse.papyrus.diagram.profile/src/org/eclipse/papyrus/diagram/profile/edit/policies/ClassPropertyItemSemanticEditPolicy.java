@@ -39,6 +39,8 @@ public class ClassPropertyItemSemanticEditPolicy extends UMLBaseItemSemanticEdit
 	}
 
 
+
+
 	/**
 	 * @generated
 	 */
@@ -61,5 +63,6 @@ public class ClassPropertyItemSemanticEditPolicy extends UMLBaseItemSemanticEdit
 		}
 		return getGEFWrapper(cmd.reduce());
 	}
+
 
 }

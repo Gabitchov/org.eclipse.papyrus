@@ -39,6 +39,8 @@ public class ShortCutDiagramItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 	}
 
 
+
+
 	/**
 	 * @generated
 	 */
@@ -61,5 +63,6 @@ public class ShortCutDiagramItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 		}
 		return getGEFWrapper(cmd.reduce());
 	}
+
 
 }

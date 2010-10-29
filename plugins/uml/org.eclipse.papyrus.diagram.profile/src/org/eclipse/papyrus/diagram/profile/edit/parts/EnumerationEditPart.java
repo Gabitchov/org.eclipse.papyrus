@@ -67,6 +67,7 @@ import org.eclipse.swt.graphics.Color;
  */
 public class EnumerationEditPart extends
 
+
 ClassifierEditPart {
 
 	/**
@@ -113,7 +114,6 @@ ClassifierEditPart {
 
 
 
-
 	/**
 	 * Papyrus codeGen
 	 * 
@@ -123,6 +123,10 @@ ClassifierEditPart {
 		super.handleNotificationEvent(event);
 
 	}
+
+
+
+
 
 	/**
 	 * @generated

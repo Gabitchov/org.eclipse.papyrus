@@ -95,6 +95,8 @@ public class PackageItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPoli
 		return super.getCreateCommand(req);
 	}
 
+
+
 	/**
 	 * @generated
 	 */
@@ -508,6 +510,7 @@ public class PackageItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPoli
 			}
 		}
 	}
+
 
 	/**
 	 * @generated

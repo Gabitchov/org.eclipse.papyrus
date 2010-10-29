@@ -54,6 +54,10 @@ public class DependencyBranchItemSemanticEditPolicy extends UMLBaseItemSemanticE
 		super(UMLElementTypes.Dependency_4018);
 	}
 
+
+
+
+
 	/**
 	 * @generated
 	 */

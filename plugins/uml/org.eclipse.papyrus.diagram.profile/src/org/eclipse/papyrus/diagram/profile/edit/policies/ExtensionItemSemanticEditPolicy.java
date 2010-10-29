@@ -66,6 +66,10 @@ public class ExtensionItemSemanticEditPolicy extends UMLBaseItemSemanticEditPoli
 		super(UMLElementTypes.Extension_1013);
 	}
 
+
+
+
+
 	/**
 	 * @generated
 	 */

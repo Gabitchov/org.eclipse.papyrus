@@ -72,6 +72,8 @@ public class MetaclassItemSemanticEditPolicy extends UMLBaseItemSemanticEditPoli
 	}
 
 
+
+
 	/**
 	 * @generated
 	 */
@@ -94,6 +96,7 @@ public class MetaclassItemSemanticEditPolicy extends UMLBaseItemSemanticEditPoli
 		}
 		return getGEFWrapper(cmd.reduce());
 	}
+
 
 	/**
 	 * @generated

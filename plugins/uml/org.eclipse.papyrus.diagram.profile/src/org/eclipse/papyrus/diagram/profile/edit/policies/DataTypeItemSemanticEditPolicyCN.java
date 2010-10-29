@@ -78,6 +78,8 @@ public class DataTypeItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPol
 	}
 
 
+
+
 	/**
 	 * @generated
 	 */
@@ -143,6 +145,7 @@ public class DataTypeItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPol
 			}
 		}
 	}
+
 
 	/**
 	 * @generated

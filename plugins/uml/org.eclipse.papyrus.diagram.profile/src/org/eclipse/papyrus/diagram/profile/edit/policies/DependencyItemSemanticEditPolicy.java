@@ -54,6 +54,10 @@ public class DependencyItemSemanticEditPolicy extends UMLBaseItemSemanticEditPol
 		super(UMLElementTypes.Dependency_4008);
 	}
 
+
+
+
+
 	/**
 	 * @generated
 	 */

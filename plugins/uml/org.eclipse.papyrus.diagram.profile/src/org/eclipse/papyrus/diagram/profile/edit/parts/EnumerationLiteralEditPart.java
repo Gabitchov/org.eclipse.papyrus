@@ -85,7 +85,13 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class EnumerationLiteralEditPart extends CompartmentEditPart implements ITextAwareEditPart, IPrimaryEditPart {
+public class EnumerationLiteralEditPart
+
+
+
+extends CompartmentEditPart
+
+implements ITextAwareEditPart, IPrimaryEditPart {
 
 	/**
 	 * @generated

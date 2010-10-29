@@ -389,6 +389,7 @@ public class UMLDiagramUpdater {
 
 
 
+
 	/**
 	 * @generated
 	 */
@@ -459,6 +460,7 @@ public class UMLDiagramUpdater {
 
 
 
+
 	/**
 	 * @generated
 	 */
@@ -526,6 +528,7 @@ public class UMLDiagramUpdater {
 		}
 		return result;
 	}
+
 
 
 
