@@ -1843,6 +1843,12 @@
        class="org.eclipse.papyrus.diagram.clazz.custom.preferences.OperationPreferencePage"
        id="org.eclipse.papyrus.diagram.clazz.custom.preferences.OperationPreferencePage"
        name="Operation">
+ </page>
+ <page
+       category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+       class="org.eclipse.papyrus.diagram.clazz.custom.preferences.InstanceSpecificationPreferencePage"
+       id="org.eclipse.papyrus.diagram.clazz.custom.preferences.InstanceSpecificationPreferencePage"
+       name="InstanceSpecification">
  </page>	
 </extension>
 <extension
