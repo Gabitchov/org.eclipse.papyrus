@@ -17,6 +17,9 @@
         notationViewFactoryClassName="PackageViewFactory"
         canonicalEditPolicyClassName="UseCaseDiagramCanonicalEditPolicy"
         iconProviderPriority="Low"
+        validationEnabled="true"
+        liveValidationUIFeedback="true"
+        validationDecorators="true"
         validationProviderPriority="Low">
       <diagramRunTimeClass
           href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>

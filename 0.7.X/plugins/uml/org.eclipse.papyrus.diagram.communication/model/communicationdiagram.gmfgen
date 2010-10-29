@@ -16,6 +16,8 @@
         editPartClassName="ModelEditPart"
         canonicalEditPolicyClassName="ModelCanonicalEditPolicy"
         editingDomainID="org.eclipse.papyrus.diagram.communication.EditingDomain"
+        liveValidationUIFeedback="true"
+        validationDecorators="true"
         validationEnabled="true">
       <diagramRunTimeClass
           href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
