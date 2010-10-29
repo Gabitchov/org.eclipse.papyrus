@@ -10,6 +10,7 @@
  * Contributors:
 
  *   Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr
+ *   Vincent LORENZO (CEA-LIST) vincent.lorenzo@cea.fr
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.custom.edit.policies;
 
@@ -24,7 +25,6 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
-import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
@@ -64,21 +64,21 @@ import org.eclipse.papyrus.diagram.communication.edit.parts.ShortCutDiagramEditP
 import org.eclipse.papyrus.diagram.communication.edit.parts.TimeObservationEditPartCN;
 import org.eclipse.papyrus.diagram.communication.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.communication.providers.UMLElementTypes;
+import org.eclipse.uml2.uml.Comment;
+import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.DurationObservation;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.TimeObservation;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * A policy to support dNd from the Model Explorer in the communication diagram.
  */
 public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPolicy {
-
-	/** The specific drop node. */
-	public int[] specificDropNode = { ShortCutDiagramEditPart.VISUAL_ID };
 
 	/**
 	 * Instantiates a new custom diagram drag drop edit policy.
@@ -151,22 +151,66 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			switch(nodeVISUALID) {
 			case LifelineEditPartCN.VISUAL_ID:
 				return dropChildNode(dropRequest, semanticElement, nodeVISUALID);
-			case CommentEditPartCN.VISUAL_ID:
-				return dropChildNode(dropRequest, semanticElement, nodeVISUALID);
-			case ConstraintEditPartCN.VISUAL_ID:
-				return dropChildNode(dropRequest, semanticElement, nodeVISUALID);
+				//			case CommentEditPartCN.VISUAL_ID:
+				//				return dropChildNode(dropRequest, semanticElement, nodeVISUALID);
+				//			case ConstraintEditPartCN.VISUAL_ID:
+				//				return dropChildNode(dropRequest, semanticElement, nodeVISUALID);
 			case TimeObservationEditPartCN.VISUAL_ID:
 				return dropTimeObservation(dropRequest, (TimeObservation)semanticElement, nodeVISUALID);
 			case DurationObservationEditPartCN.VISUAL_ID:
 				return dropDurationObservation(dropRequest, (DurationObservation)semanticElement, nodeVISUALID);
-
+			case CommentEditPartCN.VISUAL_ID:
+				return dropComment(dropRequest, semanticElement, nodeVISUALID);
+			case ConstraintEditPartCN.VISUAL_ID:
+				return dropConstraint(dropRequest, semanticElement, nodeVISUALID);
 			default:
 				return super.getSpecificDropCommand(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 
 			}
 		}
+	}
 
+	/**
+	 * Returns the command to drop the Comment + the link to attach it to its annotated elements
+	 * 
+	 * @param dropRequest
+	 *        the drop request
+	 * @param semanticLink
+	 *        the semantic link
+	 * @param nodeVISUALID
+	 *        the node visual id
+	 * 
+	 * @return the command
+	 */
+	protected Command dropComment(DropObjectsRequest dropRequest, Element semanticLink, int nodeVISUALID) {
+		GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart)getHost();
+		EObject graphicalParentObject = graphicalParentEditPart.resolveSemanticElement();
+		if(!(graphicalParentObject instanceof Interaction)) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		return getDropCommentCommand((Comment)semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost()).getNotationView(), (IHintedType)UMLElementTypes.Comment_8005, (IHintedType)UMLElementTypes.CommentAnnotatedElement_8010);
 
+	}
+
+	/**
+	 * Returns the command to drop the Constraint + the link to attach it to its contrainted elements
+	 * 
+	 * @param dropRequest
+	 *        the drop request
+	 * @param semanticLink
+	 *        the semantic link
+	 * @param nodeVISUALID
+	 *        the node visual id
+	 * 
+	 * @return the command
+	 */
+	protected Command dropConstraint(DropObjectsRequest dropRequest, Element semanticLink, int nodeVISUALID) {
+		GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart)getHost();
+		EObject graphicalParentObject = graphicalParentEditPart.resolveSemanticElement();
+		if(!(graphicalParentObject instanceof Interaction)) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		return getDropConstraintCommand((Constraint)semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost()).getNotationView(), (IHintedType)UMLElementTypes.Constraint_8004, (IHintedType)UMLElementTypes.ConstraintConstrainedElement_8011);
 	}
 
 	/**
@@ -332,7 +376,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 							//location where the label will be dropped
 							Point loc = new Point(1, -23);
 							//reuse of the CustomMessageViewCreateCommand
-							return new ICommandProxy(new CustomMessageViewCreateCommand(((IGraphicalEditPart)getHost()).getEditingDomain(), (EditPartViewer)conEP.getViewer(), ((IGraphicalEditPart)conEP).getDiagramPreferencesHint(), loc, linkAdapter, conEP));
+							return new ICommandProxy(new CustomMessageViewCreateCommand(((IGraphicalEditPart)getHost()).getEditingDomain(), conEP.getViewer(), ((IGraphicalEditPart)conEP).getDiagramPreferencesHint(), loc, linkAdapter, conEP));
 
 						}
 					}
@@ -444,6 +488,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * @return the drop command
 	 */
 
+	@Override
 	public Command getDropObjectsCommand(DropObjectsRequest dropRequest) {
 		ViewServiceUtil.forceLoad();
 

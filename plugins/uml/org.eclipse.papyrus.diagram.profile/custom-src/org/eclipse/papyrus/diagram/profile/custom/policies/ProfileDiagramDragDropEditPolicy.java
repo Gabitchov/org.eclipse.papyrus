@@ -26,6 +26,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
@@ -56,6 +57,10 @@ import org.eclipse.papyrus.diagram.profile.custom.helper.ClassLinkMappingHelper;
 import org.eclipse.papyrus.diagram.profile.custom.helper.MultiAssociationHelper;
 import org.eclipse.papyrus.diagram.profile.custom.helper.MultiDependencyHelper;
 import org.eclipse.papyrus.diagram.profile.edit.parts.AssociationNodeEditPart;
+import org.eclipse.papyrus.diagram.profile.edit.parts.CommentEditPart;
+import org.eclipse.papyrus.diagram.profile.edit.parts.CommentEditPartCN;
+import org.eclipse.papyrus.diagram.profile.edit.parts.ConstraintEditPart;
+import org.eclipse.papyrus.diagram.profile.edit.parts.ConstraintEditPartCN;
 import org.eclipse.papyrus.diagram.profile.edit.parts.DependencyNodeEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.ElementImportEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.ExtensionEditPart;
@@ -65,6 +70,8 @@ import org.eclipse.papyrus.diagram.profile.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.profile.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.Comment;
+import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ElementImport;
@@ -91,7 +98,10 @@ public class ProfileDiagramDragDropEditPolicy extends CommonDiagramDragDropEditP
 		droppableElementsVisualID.add(ElementImportEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(ExtensionEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(AssociationNodeEditPart.VISUAL_ID);
-
+		droppableElementsVisualID.add(CommentEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(CommentEditPartCN.VISUAL_ID);
+		droppableElementsVisualID.add(ConstraintEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(ConstraintEditPartCN.VISUAL_ID);
 		return droppableElementsVisualID;
 	}
 
@@ -280,11 +290,83 @@ public class ProfileDiagramDragDropEditPolicy extends CommonDiagramDragDropEditP
 			//		case 2008:
 			//			return outlineDropContainedClass(dropRequest, semanticLink, nodeVISUALID);
 
+		case CommentEditPart.VISUAL_ID:
+		case CommentEditPartCN.VISUAL_ID:
+			return dropComment(dropRequest, semanticLink, nodeVISUALID);
+
+		case ConstraintEditPart.VISUAL_ID:
+		case ConstraintEditPartCN.VISUAL_ID:
+			return dropConstraint(dropRequest, semanticLink, nodeVISUALID);
 		default:
 			return UnexecutableCommand.INSTANCE;
 		}
 
 
+	}
+
+	/**
+	 * Returns the command to drop the Comment + the link to attach it to its annotated elements
+	 * 
+	 * @param dropRequest
+	 *        the drop request
+	 * @param semanticLink
+	 *        the semantic link
+	 * @param nodeVISUALID
+	 *        the node visual id
+	 * 
+	 * @return the command
+	 */
+	protected Command dropComment(DropObjectsRequest dropRequest, Element semanticLink, int nodeVISUALID) {
+		// Test canvas element
+		GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart)getHost();
+		EObject graphicalParentObject = graphicalParentEditPart.resolveSemanticElement();
+		if(!(graphicalParentObject instanceof org.eclipse.uml2.uml.Package)) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		if(nodeVISUALID == CommentEditPart.VISUAL_ID) {
+			return getDropCommentCommand((Comment)semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost()).getNotationView(), (IHintedType)UMLElementTypes.Comment_1002, (IHintedType)UMLElementTypes.CommentAnnotatedElement_1022);
+		} else if(nodeVISUALID == CommentEditPartCN.VISUAL_ID) {
+			return getDropCommentCommand((Comment)semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost()).getNotationView(), (IHintedType)UMLElementTypes.Comment_1007, (IHintedType)UMLElementTypes.CommentAnnotatedElement_1022);
+		}
+		return UnexecutableCommand.INSTANCE;
+	}
+
+	/**
+	 * Returns the command to drop the Constraint + the link to attach it to its contrainted elements
+	 * 
+	 * @param dropRequest
+	 *        the drop request
+	 * @param semanticLink
+	 *        the semantic link
+	 * @param nodeVISUALID
+	 *        the node visual id
+	 * 
+	 * @return the command
+	 */
+	protected Command dropConstraint(DropObjectsRequest dropRequest, Element semanticLink, int nodeVISUALID) {
+		// Test canvas element
+		GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart)getHost();
+		EObject graphicalParentObject = graphicalParentEditPart.resolveSemanticElement();
+		if(!(graphicalParentObject instanceof org.eclipse.uml2.uml.Package)) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		if(nodeVISUALID == ConstraintEditPart.VISUAL_ID) {
+			return getDropConstraintCommand((Constraint)semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost()).getNotationView(), (IHintedType)UMLElementTypes.Constraint_1014, (IHintedType)UMLElementTypes.ConstraintConstrainedElement_4014);
+		} else if(nodeVISUALID == ConstraintEditPartCN.VISUAL_ID) {
+			return getDropConstraintCommand((Constraint)semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost()).getNotationView(), (IHintedType)UMLElementTypes.Constraint_1028, (IHintedType)UMLElementTypes.ConstraintConstrainedElement_4014);
+		}
+		return UnexecutableCommand.INSTANCE;
+	}
+
+
+	/**
+	 * Gets the editing domain.
+	 * 
+	 * @return the editing domain
+	 */
+	@Override
+	protected TransactionalEditingDomain getEditingDomain() {
+		return ((IGraphicalEditPart)getHost()).getEditingDomain();
 	}
 
 	/**
