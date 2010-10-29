@@ -11,7 +11,7 @@
  *   Atos Origin - Initial API and implementation
  *  Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - adapted from sequence diagram
  *****************************************************************************/
-package org.eclipse.papyrus.diagram.communication.custom.util;
+package org.eclipse.papyrus.diagram.communication.custom.helper;
 
 import java.util.ArrayList;
 import java.util.Collection;

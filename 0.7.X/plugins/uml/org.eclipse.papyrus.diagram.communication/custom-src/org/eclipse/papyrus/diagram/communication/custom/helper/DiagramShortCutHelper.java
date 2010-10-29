@@ -11,7 +11,7 @@
  *  Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.diagram.communication.custom.util;
+package org.eclipse.papyrus.diagram.communication.custom.helper;
 
 
 

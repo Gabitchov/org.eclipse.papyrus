@@ -842,7 +842,7 @@
    <binding
          context="org.eclipse.papyrus.service.edit.TypeContext">
       <elementType
-            ref="org.eclipse.papyrus.uml.advice.Message">
+            ref="org.eclipse.papyrus.uml.diagram.communication.MessageHelperAdvice">
       </elementType>
    </binding>
 </extension>
@@ -851,9 +851,9 @@
    <metamodel
          nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
       <adviceBinding
-            class="org.eclipse.papyrus.diagram.communication.custom.advices.DestroyMessageAdvice"
-            id="org.eclipse.papyrus.uml.advice.Message"
-            inheritance="none"
+            class="org.eclipse.papyrus.diagram.communication.custom.helper.advice.MessageHelperAdvice"
+            id="org.eclipse.papyrus.uml.diagram.communication.MessageHelperAdvice"
+            inheritance="all"
             typeId="org.eclipse.papyrus.uml.Message">
       </adviceBinding>
    </metamodel>

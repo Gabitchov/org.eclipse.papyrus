@@ -17,7 +17,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
-import org.eclipse.papyrus.diagram.communication.custom.util.ReconnectMessageHelper;
+import org.eclipse.papyrus.diagram.communication.custom.helper.ReconnectMessageHelper;
 import org.eclipse.papyrus.diagram.communication.edit.commands.MessageReorientCommand;
 import org.eclipse.papyrus.diagram.communication.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.uml2.uml.Element;

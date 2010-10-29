@@ -24,7 +24,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
-import org.eclipse.papyrus.diagram.communication.custom.util.CommunicationCommandHelper;
+import org.eclipse.papyrus.diagram.communication.custom.helper.CommunicationCommandHelper;
 import org.eclipse.papyrus.diagram.communication.edit.commands.MessageCreateCommand;
 import org.eclipse.papyrus.diagram.communication.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.uml2.uml.Element;

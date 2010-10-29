@@ -32,9 +32,9 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.internal.commands.SetConnectionBendpointsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
-import org.eclipse.papyrus.diagram.communication.custom.util.CommunicationRequestConstant;
-import org.eclipse.papyrus.diagram.communication.custom.util.CommunicationUtil;
-import org.eclipse.papyrus.diagram.communication.custom.util.MessageHelper;
+import org.eclipse.papyrus.diagram.communication.custom.helper.CommunicationRequestConstant;
+import org.eclipse.papyrus.diagram.communication.custom.helper.CommunicationUtil;
+import org.eclipse.papyrus.diagram.communication.custom.helper.MessageHelper;
 import org.eclipse.papyrus.diagram.communication.edit.parts.LifelineEditPartCN;
 
 // TODO: Auto-generated Javadoc

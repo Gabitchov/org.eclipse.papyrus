@@ -110,7 +110,9 @@ public class CustomOrphanViewPolicy extends OrphanViewPolicy {
 			if(view instanceof View) {
 				//Verify if the view is  a message connector, in this case it should not be considered as an orphan view, 
 				//because the message connector has no semantic element associated to it
+
 				if(((View)view).getType().equals(UMLVisualIDRegistry.getType(MessageEditPart.VISUAL_ID))) {
+					//if(!((View)view).getChildren().isEmpty())
 					continue;
 				}
 				if(isOrphaned((View)view)) {
