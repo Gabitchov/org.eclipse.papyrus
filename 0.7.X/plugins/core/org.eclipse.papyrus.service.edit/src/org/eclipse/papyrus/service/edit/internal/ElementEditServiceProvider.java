@@ -123,7 +123,7 @@ public class ElementEditServiceProvider implements IElementEditServiceProvider {
 	public List<IElementEditService> getContainedTypeEditServices(EObject eContainer, EReference reference) throws ServiceException {
 		List<IElementEditService> services = new ArrayList<IElementEditService>();
 
-		for(IElementType type : ElementTypeRegistry.getInstance().getContainedTypes(eContainer, reference)) {
+		for(IElementType type : ElementTypeRegistry.getInstance().getContainedTypes(eContainer, reference, sharedClientContext)) {
 			services.add(new ElementEditService(type, sharedClientContext));
 		}
 
