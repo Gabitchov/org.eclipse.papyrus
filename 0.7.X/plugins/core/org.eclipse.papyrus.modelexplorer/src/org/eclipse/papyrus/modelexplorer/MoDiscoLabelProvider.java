@@ -68,7 +68,7 @@ public class MoDiscoLabelProvider extends CustomizableModelLabelProvider {
 					catch (CoreException e) {
 					}
 				}
-				if (examineChilds) {
+				if (examineChilds && (eObjectOfMarker != null)) {
 					eObjectOfMarker = eObjectOfMarker.eContainer();
 					while (eObjectOfMarker != null) {
 						if (eObjectOfMarker == vt.getEObject ()) {
