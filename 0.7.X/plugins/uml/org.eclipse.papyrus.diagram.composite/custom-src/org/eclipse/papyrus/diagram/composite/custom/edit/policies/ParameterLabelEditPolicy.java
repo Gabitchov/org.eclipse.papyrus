@@ -137,7 +137,7 @@ public class ParameterLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		Object object = notification.getNotifier();
 		Parameter parameter = (Parameter)hostSemanticElement;
 
-		if(object == null) {
+		if((object == null) || (hostSemanticElement == null)) {
 			return;
 		}
 

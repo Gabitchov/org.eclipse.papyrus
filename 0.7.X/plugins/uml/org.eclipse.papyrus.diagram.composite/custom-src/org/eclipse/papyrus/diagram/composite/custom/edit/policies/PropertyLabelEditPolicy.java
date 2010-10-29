@@ -140,7 +140,7 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		Object object = notification.getNotifier();
 		Property property = (Property)hostSemanticElement;
 
-		if(object == null) {
+		if((object == null) || (hostSemanticElement == null)) {
 			return;
 		}
 
