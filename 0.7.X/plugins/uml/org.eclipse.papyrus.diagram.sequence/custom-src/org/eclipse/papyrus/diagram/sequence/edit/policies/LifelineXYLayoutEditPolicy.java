@@ -61,7 +61,7 @@ import org.eclipse.papyrus.diagram.sequence.util.SequenceUtil;
 public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 
 	/** Initialization width of Execution Specification. */
-	private final static int EXECUTION_INIT_WIDTH = 16;
+	public final static int EXECUTION_INIT_WIDTH = 16;
 
 	/** Initialization height of Execution Specification. */
 	private final static int EXECUTION_INIT_HEIGHT = 50;

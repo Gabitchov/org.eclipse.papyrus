@@ -44,6 +44,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.common.command.wrappers.CommandProxyWithResult;
 import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.diagram.common.editpolicies.CommonDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.diagram.common.helper.DurationConstraintHelper;
@@ -518,22 +519,137 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		return UnexecutableCommand.INSTANCE;
 	}
 
+	/**
+	 * Get the command to drop an execution specification node
+	 * 
+	 * @param es
+	 *        execution specification
+	 * @param nodeVISUALID
+	 *        the execution specification's visual id
+	 * @param location
+	 *        the location of the drop request
+	 * @return the drop command
+	 */
 	private Command dropExecutionSpecification(ExecutionSpecification es, int nodeVISUALID, Point location) {
 		List<View> existingViews = DiagramEditPartsUtil.findViews(es, getViewer());
+		// only allow one view instance of a single element by diagram
 		if(existingViews.isEmpty()) {
 			// Find the lifeline of the ES
-
-			if(es.getStart() != null) {
-				// an Occurrence Specification covereds systematically a unique lifeline
+			if(es.getStart() != null && !es.getStart().getCovereds().isEmpty()) {
+				// an Occurrence Specification covers systematically a unique lifeline
 				Lifeline lifeline = es.getStart().getCovereds().get(0);
 				// Check that the container view is the view of the lifeline
 				if(lifeline.equals(getHostObject())) {
-					return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, location, es));
+					//return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, location, es));
+
+
+					IHintedType type = ((IHintedType)getUMLElementType(nodeVISUALID));
+
+					String semanticHint = null;
+					if(type != null) {
+						semanticHint = type.getSemanticHint();
+					}
+
+					IAdaptable elementAdapter = new EObjectAdapter(es);
+
+					ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, semanticHint, ViewUtil.APPEND, false, getDiagramPreferencesHint());
+					CreateViewRequest createViewRequest = new CreateViewRequest(descriptor);
+					// find best bounds
+					Rectangle bounds = getExecutionSpecificationBounds(es);
+					if(bounds != null) {
+						createViewRequest.setLocation(bounds.getLocation());
+						createViewRequest.setSize(bounds.getSize());
+					} else {
+						createViewRequest.setLocation(location);
+					}
+
+					// "ask" the host for a command associated with the CreateViewRequest
+					Command command = getHost().getCommand(createViewRequest);
+					// set the viewdescriptor as result
+					// it then can be used as an adaptable to retrieve the View
+					return new ICommandProxy(new CommandProxyWithResult(command, descriptor));
 				}
 			}
 		}
 
 		return UnexecutableCommand.INSTANCE;
+	}
+
+	/**
+	 * Get the advised bounds to drop an execution specification
+	 * 
+	 * @param es
+	 *        the dropped execution specification
+	 * @return bounds of the es in absolute coordinates or null
+	 */
+	private Rectangle getExecutionSpecificationBounds(ExecutionSpecification es) {
+		Point startLocation = null;
+		Point finishLocation = null;
+		Rectangle possibleStartLocations = null;
+		Rectangle possibleFinishLocations = null;
+		// end events of the link
+		OccurrenceSpecification startEvent = es.getStart();
+		OccurrenceSpecification finishEvent = es.getFinish();
+		if(startEvent != null && finishEvent != null && getHost() instanceof LifelineEditPart) {
+			LifelineEditPart hostLifeline = (LifelineEditPart)getHost();
+			// find location constraints for source
+			startLocation = SequenceUtil.findLocationOfEvent((LifelineEditPart)getHost(), startEvent);
+			if(startLocation == null) {
+				possibleStartLocations = SequenceUtil.findPossibleLocationsForEvent(hostLifeline, startEvent);
+			}
+			// find location constraints for target
+			finishLocation = SequenceUtil.findLocationOfEvent(hostLifeline, finishEvent);
+			if(finishLocation == null) {
+				possibleFinishLocations = SequenceUtil.findPossibleLocationsForEvent(hostLifeline, finishEvent);
+			}
+			// find start and finish locations with correct y (start.y < finish.y) and proportions
+			if(startLocation == null) {
+				if(finishLocation != null) {
+					int top = possibleStartLocations.x;
+					int bottom = possibleStartLocations.bottom();
+					if(top > finishLocation.y) {
+						return null;
+					} else {
+						startLocation = possibleStartLocations.getTop();
+						startLocation.y = (top + Math.min(bottom, finishLocation.y)) / 2;
+					}
+				} else {
+					int topS = possibleStartLocations.y;
+					int bottomS = possibleStartLocations.bottom();
+					int topF = possibleFinishLocations.y;
+					int bottomF = possibleFinishLocations.bottom();
+					if(topS > bottomF) {
+						return null;
+					} else {
+						startLocation = possibleStartLocations.getTop();
+						finishLocation = possibleFinishLocations.getBottom();
+						if(bottomS<topF){
+							startLocation.y = (topS + bottomS) / 2;
+							finishLocation.y = (topF + bottomF) / 2;
+						} else {
+							startLocation.y = (topS + bottomS + topS + topF) / 4;
+							finishLocation.y = (bottomF + topF + bottomF + bottomS) / 4;
+						}
+					}
+				}
+			}
+			if(finishLocation == null) {
+				// startLocation != null
+				int top = possibleFinishLocations.y;
+				int bottom = possibleFinishLocations.bottom();
+				if(bottom < startLocation.y) {
+					return null;
+				} else {
+					finishLocation = possibleFinishLocations.getBottom();
+					finishLocation.y = (bottom + Math.max(top, startLocation.y)) / 2;
+				}
+			}
+			// deduce bounds
+			Rectangle result = new Rectangle(startLocation, finishLocation);
+			result.width = LifelineXYLayoutEditPolicy.EXECUTION_INIT_WIDTH;
+			return result;
+		}
+		return null;
 	}
 
 	/**
