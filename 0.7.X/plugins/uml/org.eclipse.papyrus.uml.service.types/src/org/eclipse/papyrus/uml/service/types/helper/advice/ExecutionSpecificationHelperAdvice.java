@@ -10,6 +10,7 @@
  * Contributors:
  * 
  * 		Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
+ *  	Mathieu Velten (Atos Origin) mathieu.velten@atosorigin.com - remove linked messages too
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.helper.advice;
