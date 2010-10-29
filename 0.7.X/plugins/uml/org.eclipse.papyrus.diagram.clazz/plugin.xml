@@ -902,7 +902,7 @@
          </metamodelType>
       </metamodel>
       <specializationType
-            id="org.eclipse.papyrus.diagram.clazz.SlotLink_4021"
+            id="org.eclipse.papyrus.diagram.clazz.InstanceSpecification_4021"
             name="%metatype.name.Link_4021"
             kind="org.eclipse.gmf.runtime.diagram.ui.util.INotationType">
          <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
@@ -1026,7 +1026,7 @@
          <elementType ref="org.eclipse.papyrus.diagram.clazz.ConstraintConstrainedElement_4014"/>
          <elementType ref="org.eclipse.papyrus.diagram.clazz.TemplateBinding_4015"/>
          <elementType ref="org.eclipse.papyrus.diagram.clazz.GeneralizationSet_4020"/>
-         <elementType ref="org.eclipse.papyrus.diagram.clazz.SlotLink_4021"/>
+         <elementType ref="org.eclipse.papyrus.diagram.clazz.InstanceSpecification_4021"/>
          <elementType ref="org.eclipse.papyrus.diagram.clazz.AddedLink_4022"/>
          <elementType ref="org.eclipse.papyrus.diagram.clazz.ContainmentLink_4023"/>
          <elementType ref="org.eclipse.papyrus.diagram.clazz.TimeObservationEvent_4024"/>
@@ -1791,6 +1791,14 @@
 			class="org.eclipse.papyrus.diagram.clazz.preferences.AssociationPreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.AssociationPreferencePage"
             name="Association Link" />
+		
+		
+
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+			class="org.eclipse.papyrus.diagram.clazz.preferences.InstanceSpecificationLinkPreferencePage"
+            id="org.eclipse.papyrus.diagram.clazz.preferences.InstanceSpecificationLinkPreferencePage"
+            name="InstanceSpecificationLink Link" />
 		
 		
 
