@@ -34,7 +34,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.papyrus.diagram.sequence.draw2d.routers.MessageRouter;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
-import org.eclipse.papyrus.diagram.sequence.util.OccurenceSpecificationMoveHelper;
+import org.eclipse.papyrus.diagram.sequence.util.OccurrenceSpecificationMoveHelper;
 import org.eclipse.papyrus.diagram.sequence.util.SequenceRequestConstant;
 
 
@@ -138,7 +138,7 @@ public class LifelineChildGraphicalNodeEditPolicy extends SequenceGraphicalNodeE
 	protected Command getReconnectSourceCommand(ReconnectRequest request) {
 		Command command = super.getReconnectSourceCommand(request);
 		if(command != null) {
-			command = OccurenceSpecificationMoveHelper.completeReconnectConnectionCommand(command, request, getConnectableEditPart());
+			command = OccurrenceSpecificationMoveHelper.completeReconnectConnectionCommand(command, request, getConnectableEditPart());
 		}
 		return command;
 	}
@@ -156,7 +156,7 @@ public class LifelineChildGraphicalNodeEditPolicy extends SequenceGraphicalNodeE
 	protected Command getReconnectTargetCommand(ReconnectRequest request) {
 		Command command = super.getReconnectTargetCommand(request);
 		if(command != null) {
-			command = OccurenceSpecificationMoveHelper.completeReconnectConnectionCommand(command, request, getConnectableEditPart());
+			command = OccurrenceSpecificationMoveHelper.completeReconnectConnectionCommand(command, request, getConnectableEditPart());
 		}
 		return command;
 	}

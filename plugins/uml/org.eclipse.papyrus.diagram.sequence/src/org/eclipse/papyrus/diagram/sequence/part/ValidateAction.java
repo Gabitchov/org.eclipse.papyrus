@@ -147,6 +147,9 @@ public class ValidateAction extends Action {
 			IStatus status = validator.validate(view.getElement());
 			createMarkers(target, status, diagramEditPart);
 		}
+		validator.setTraversalStrategy(UMLValidationProvider.getNotationTraversalStrategy(validator));
+		IStatus status = validator.validate(view);
+		createMarkers(target, status, diagramEditPart);
 	}
 
 	/**

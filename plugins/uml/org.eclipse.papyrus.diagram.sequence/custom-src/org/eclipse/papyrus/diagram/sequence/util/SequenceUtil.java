@@ -37,6 +37,7 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -50,6 +51,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
@@ -224,7 +226,7 @@ public class SequenceUtil {
 				boolean isInteraction = part instanceof InteractionEditPart;
 				if(isCombinedFragment || isContinuation || isInteractionOperand || isInteractionUse || isInteraction) {
 					Rectangle bounds = ((GraphicalEditPart)part).getFigure().getBounds().getCopy();
-					lifelineEditPart.getFigure().translateToAbsolute(bounds);
+					((GraphicalEditPart)part).getFigure().getParent().translateToAbsolute(bounds);
 					return bounds.getTop();
 				}
 			}
@@ -240,7 +242,7 @@ public class SequenceUtil {
 						Event destEvent = ((OccurrenceSpecification)fragment).getEvent();
 						if(destEvent != null && destEvent.equals(destructionEvent)) {
 							Rectangle bounds = ((GraphicalEditPart)child).getFigure().getBounds().getCopy();
-							lifelineEditPart.getFigure().translateToAbsolute(bounds);
+							((GraphicalEditPart)child).getFigure().getParent().translateToAbsolute(bounds);
 							return bounds.getCenter();
 						}
 					}
@@ -253,7 +255,7 @@ public class SequenceUtil {
 						if(element instanceof ExecutionSpecification) {
 							if(fragment.equals(element)) {
 								Rectangle bounds = ((GraphicalEditPart)child).getFigure().getBounds().getCopy();
-								lifelineEditPart.getFigure().translateToAbsolute(bounds);
+								((GraphicalEditPart)child).getFigure().getParent().translateToAbsolute(bounds);
 								return bounds.getTop();
 							}
 						}
@@ -263,11 +265,11 @@ public class SequenceUtil {
 						if(element instanceof ExecutionSpecification) {
 							if(fragment.equals(((ExecutionSpecification)element).getStart())) {
 								Rectangle bounds = ((GraphicalEditPart)child).getFigure().getBounds().getCopy();
-								lifelineEditPart.getFigure().translateToAbsolute(bounds);
+								((GraphicalEditPart)child).getFigure().getParent().translateToAbsolute(bounds);
 								return bounds.getTop();
 							} else if(fragment.equals(((ExecutionSpecification)element).getFinish())) {
 								Rectangle bounds = ((GraphicalEditPart)child).getFigure().getBounds().getCopy();
-								lifelineEditPart.getFigure().translateToAbsolute(bounds);
+								((GraphicalEditPart)child).getFigure().getParent().translateToAbsolute(bounds);
 								return bounds.getBottom();
 							}
 						}
@@ -287,7 +289,7 @@ public class SequenceUtil {
 						if(element instanceof StateInvariant) {
 							if(fragment.equals(element)) {
 								Rectangle bounds = ((GraphicalEditPart)child).getFigure().getBounds().getCopy();
-								lifelineEditPart.getFigure().translateToAbsolute(bounds);
+								((GraphicalEditPart)child).getFigure().getParent().translateToAbsolute(bounds);
 								return bounds.getTop();
 							}
 						}
@@ -381,7 +383,7 @@ public class SequenceUtil {
 				if(element instanceof ExecutionSpecification) {
 					// find start and finish events of the execution
 					Rectangle bounds = ((GraphicalEditPart)child).getFigure().getBounds().getCopy();
-					lifelineEditPart.getFigure().translateToAbsolute(bounds);
+					((GraphicalEditPart)child).getFigure().getParent().translateToAbsolute(bounds);
 					if(!occurrences.containsKey(bounds.getTop())) {
 						// there should be at most 2 occurrences (with starting message)
 						occurrences.put(bounds.getTop(), new ArrayList<OccurrenceSpecification>(2));
@@ -405,7 +407,7 @@ public class SequenceUtil {
 							Event event = ((OccurrenceSpecification)occurence).getEvent();
 							if(destructionEvent.equals(event)) {
 								Rectangle bounds = ((GraphicalEditPart)child).getFigure().getBounds().getCopy();
-								lifelineEditPart.getFigure().translateToAbsolute(bounds);
+								((GraphicalEditPart)child).getFigure().getParent().translateToAbsolute(bounds);
 								if(!occurrences.containsKey(bounds.getCenter())) {
 									occurrences.put(bounds.getCenter(), new ArrayList<OccurrenceSpecification>(2));
 								}
@@ -1060,5 +1062,272 @@ public class SequenceUtil {
 			return adequateExecutionPart;
 		}
 		return lifelinePart;
+	}
+
+	/**
+	 * Find the range of possible locations an occurrence specification should be drawn in.
+	 * 
+	 * @param lifelineEditPart
+	 *        the lifeline on which the occurrence specification appears.
+	 * @param occSpec
+	 *        the occurrence specification to find locations for.
+	 * @return rectangle within which the occurrence specification must be drawn (width is not significative)
+	 */
+	public static Rectangle findPossibleLocationsForEvent(LifelineEditPart lifelineEditPart, OccurrenceSpecification occSpec) {
+		// at least, we know the event is in the drawn lifeline
+		Rectangle result = lifelineEditPart.getContentPane().getBounds().getCopy();
+		lifelineEditPart.getFigure().translateToAbsolute(result);
+
+
+		// find the containing pane
+		IGraphicalEditPart containerPart = findDrawnContainerEditPart(lifelineEditPart, occSpec);
+		IFigure drawnContentPane = getContentPaneThatCanContainFragments(containerPart);
+		if(drawnContentPane != null) {
+			// content pane is the smallest drawn owning rectangle
+			Rectangle bounds = drawnContentPane.getBounds().getCopy();
+			drawnContentPane.getParent().translateToAbsolute(bounds);
+			// intersect with the lifeline's content
+			result.intersect(bounds);
+		}
+
+		// we must search surrounding interaction fragments within uppestContainerToSearchInto
+		EObject uppestContainerToSearchInto = containerPart.resolveSemanticElement();
+
+		InteractionFragment after = findNextFragment(occSpec, uppestContainerToSearchInto);
+		boolean foundNextFragment = false;
+		while(!foundNextFragment && after != null) {
+			Point bottom = findLocationOfEvent(lifelineEditPart, after);
+			if(bottom != null && result.contains(bottom)) {
+				int diff = bottom.y - result.bottom();
+				result.resize(0, diff);
+				foundNextFragment = true;
+			} else {
+				// fragment not represented on lifeline, search next fragment
+				after = findNextFragment(after, uppestContainerToSearchInto);
+			}
+		}
+		InteractionFragment before = findPreviousFragment(occSpec, uppestContainerToSearchInto);
+		boolean foundPreviousFragment = false;
+		while(!foundPreviousFragment && before != null) {
+			Point top = findLocationOfEvent(lifelineEditPart, before);
+			if(top != null && result.contains(top)) {
+				int diff = top.y - result.y;
+				result.translate(0, diff);
+				result.resize(0, -diff);
+				foundPreviousFragment = true;
+				/*
+				 * In case before is contained in an interaction operand or
+				 * combined fragment which does not contain the searched event,
+				 * we must also take in account the bottom border of this node.
+				 */
+				reduceByNodeContainingBefore(result, before, occSpec, lifelineEditPart);
+			} else {
+				// fragment not represented on lifeline, search next fragment
+				before = findPreviousFragment(before, uppestContainerToSearchInto);
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * Reduce the possible bounds by removing the area of an eventual interaction operand or combined fragment which contains the fragment "before"
+	 * and not the occurrence specification for which we search a location.
+	 * 
+	 * @param possibleBounds
+	 *        bounds to reduce, in which the location will be possible
+	 * @param before
+	 *        the fragment which happens before
+	 * @param occSpec
+	 *        the occurrence specification for which we search a location
+	 * @param lifelineEditPart
+	 *        the lifeline on which the occurrence specification appears.
+	 */
+	private static void reduceByNodeContainingBefore(Rectangle possibleBounds, InteractionFragment before, OccurrenceSpecification occSpec, LifelineEditPart lifelineEditPart) {
+		Element eventualNodeElement = before;
+		// inspect each container of before, until it is common with occSpec
+		while(!EcoreUtil.isAncestor(eventualNodeElement, occSpec)) {
+			// test if eventualNodeElement has bounds excluding occSpec
+			// search for the eventualNodeElement's edit part
+			List<View> views = DiagramEditPartsUtil.findViews(eventualNodeElement, lifelineEditPart.getViewer());
+			for(View view : views) {
+				EditPart part = DiagramEditPartsUtil.getEditPartFromView(view, lifelineEditPart);
+				// test if edit part is an adequate node
+				if(part instanceof IGraphicalEditPart && getContentPaneThatCanContainFragments(part) != null) {
+					IFigure containerFigure = ((IGraphicalEditPart)part).getFigure();
+					Rectangle bounds = containerFigure.getBounds().getCopy();
+					containerFigure.getParent().translateToAbsolute(bounds);
+					// reduce so that the bounds are excluded
+					int newPossibleTop = bounds.bottom();
+					if(possibleBounds.y < newPossibleTop) {
+						int diff = newPossibleTop - possibleBounds.y;
+						possibleBounds.translate(0, diff);
+						possibleBounds.resize(0, -diff);
+					}
+				}
+			}
+			eventualNodeElement = eventualNodeElement.getOwner();
+		}
+	}
+
+	/**
+	 * Find the fragment happening just after this one.
+	 * 
+	 * @param interactionFragment
+	 *        interaction fragment to search the one after
+	 * @param uppestContainerToSearchInto
+	 *        the container which we will not search further if encountered (may be null)
+	 * @return the fragment found happening just after, or null
+	 */
+	private static InteractionFragment findNextFragment(InteractionFragment interactionFragment, EObject uppestContainerToSearchInto) {
+		Element paramElement;
+		if(uppestContainerToSearchInto instanceof Element) {
+			paramElement = (Element)uppestContainerToSearchInto;
+		} else {
+			// search in the parent interaction.
+			paramElement = interactionFragment;
+			while(paramElement.getOwner() != null && !(paramElement instanceof Interaction)) {
+				paramElement = paramElement.getOwner();
+			}
+		}
+		return findInteractionFragment(paramElement, false, interactionFragment, false);
+	}
+
+	/**
+	 * Find the fragment happening just before this one.
+	 * 
+	 * @param interactionFragment
+	 *        interaction fragment to search the one before
+	 * @param uppestContainerToSearchInto
+	 *        the container which we will not search further if encountered (may be null)
+	 * @return the fragment found happening just before, or null
+	 */
+	private static InteractionFragment findPreviousFragment(InteractionFragment interactionFragment, EObject uppestContainerToSearchInto) {
+		Element paramElement;
+		if(uppestContainerToSearchInto instanceof Element) {
+			paramElement = (Element)uppestContainerToSearchInto;
+		} else {
+			// search in the parent interaction.
+			paramElement = interactionFragment;
+			while(paramElement.getOwner() != null && !(paramElement instanceof Interaction)) {
+				paramElement = paramElement.getOwner();
+			}
+		}
+		return findInteractionFragment(paramElement, true, interactionFragment, false);
+	}
+
+	/**
+	 * Find the next or previous interaction fragment
+	 * 
+	 * @param uppestContainerToSearchInto
+	 *        the container in which we restrain our search
+	 * @param reverseOrder
+	 *        true if we search the fragment before, false for the one after
+	 * @param fragmentToStartFrom
+	 *        the reference fragment
+	 * @param startFragmentFound
+	 *        use false for an external call, true for recursive internal call when the fragmentToStartFrom has already been found
+	 * @return the found interaction fragment or null if it is not in uppestContainerToSearchInto
+	 */
+	private static InteractionFragment findInteractionFragment(Element uppestContainerToSearchInto, boolean reverseOrder, InteractionFragment fragmentToStartFrom, boolean startFragmentFound) {
+		List<? extends Element> listToSearchInto;
+		if(uppestContainerToSearchInto instanceof InteractionOperand) {
+			listToSearchInto = ((InteractionOperand)uppestContainerToSearchInto).getFragments();
+		} else if(uppestContainerToSearchInto instanceof Interaction) {
+			listToSearchInto = ((Interaction)uppestContainerToSearchInto).getFragments();
+		} else {
+			listToSearchInto = uppestContainerToSearchInto.getOwnedElements();
+		}
+		// search recursively in all the child tree.
+		for(int i = 0; i < listToSearchInto.size(); i++) {
+			int searchIndex = i;
+			if(reverseOrder) {
+				searchIndex = listToSearchInto.size() - 1 - i;
+			}
+			Element searchElement = listToSearchInto.get(searchIndex);
+
+
+			if(fragmentToStartFrom.equals(searchElement)) {
+				startFragmentFound = true;
+				if(reverseOrder) {
+					// search in the previous child
+					continue;
+				} else {
+					// search deeper for children (which we consider they come after)
+				}
+			} else if(!startFragmentFound) {
+				// go quicker to skip every node until we find the appropriate starting fragment
+				if(!EcoreUtil.isAncestor(searchElement, fragmentToStartFrom)) {
+					continue;
+				} else {
+					// search deeper for starting fragment
+					// startFragmentFound == false
+				}
+			} else if(searchElement instanceof InteractionFragment && !reverseOrder) {
+				// next fragment found, do not search deeper
+				return (InteractionFragment)searchElement;
+			}
+			// search deeper for a fragment
+			InteractionFragment fragment = findInteractionFragment(searchElement, reverseOrder, fragmentToStartFrom, startFragmentFound);
+			if(fragment != null) {
+				return fragment;
+			} else if(reverseOrder && searchElement instanceof InteractionFragment) {
+				// we searched ineffectively in the children, stop here and return the element
+				return (InteractionFragment)searchElement;
+			}
+			// else, continue
+		}
+		return null;
+	}
+
+	/**
+	 * Get the content pane of an edit part that can directly or indirectly contain interaction fragments (this excludes lifeline, which references)
+	 * 
+	 * @param containerPart
+	 *        container edit part
+	 * @return its content pane if the container can contain fragments, null otherwise.
+	 */
+	private static IFigure getContentPaneThatCanContainFragments(EditPart containerPart) {
+		// test all owner edit parts which can contain an interaction fragment
+		if(containerPart instanceof InteractionOperandEditPart) {
+			return ((InteractionOperandEditPart)containerPart).getContentPane();
+		} else if(containerPart instanceof CombinedFragmentEditPart) {
+			return ((CombinedFragmentEditPart)containerPart).getContentPane();
+		} else if(containerPart instanceof CombinedFragment2EditPart) {
+			return ((CombinedFragment2EditPart)containerPart).getContentPane();
+		} else if(containerPart instanceof ContinuationEditPart) {
+			return ((ContinuationEditPart)containerPart).getContentPane();
+		} else if(containerPart instanceof InteractionUseEditPart) {
+			return ((InteractionUseEditPart)containerPart).getContentPane();
+		} else if(containerPart instanceof InteractionEditPart) {
+			return ((InteractionEditPart)containerPart).getContentPane();
+		}
+		return null;
+	}
+
+	/**
+	 * Find the smallest drawn edit part containing the occurrence specification.
+	 * 
+	 * @param lifelineEditPart
+	 *        support lifeline edit part
+	 * @param occSpec
+	 *        occurrence specification to localize
+	 * @return a drawn edit part which element contains the occurrence specification or null
+	 */
+	private static IGraphicalEditPart findDrawnContainerEditPart(LifelineEditPart lifelineEditPart, OccurrenceSpecification occSpec) {
+		// find containing drawn edit parts
+		Element owner = occSpec.getOwner();
+		while(owner != null) {
+			// search for the owner's edit part
+			List<View> views = DiagramEditPartsUtil.findViews(owner, lifelineEditPart.getViewer());
+			for(View view : views) {
+				EditPart part = DiagramEditPartsUtil.getEditPartFromView(view, lifelineEditPart);
+				// test if edit part can contain the occurrence specification
+				if(part instanceof IGraphicalEditPart && getContentPaneThatCanContainFragments(part) != null) {
+					return (IGraphicalEditPart)part;
+				}
+			}
+			owner = owner.getOwner();
+		}
+		return null;
 	}
 }
