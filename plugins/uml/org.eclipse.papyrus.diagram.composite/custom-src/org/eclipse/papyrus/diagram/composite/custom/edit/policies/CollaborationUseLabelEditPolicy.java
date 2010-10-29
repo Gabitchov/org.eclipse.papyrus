@@ -144,7 +144,7 @@ public class CollaborationUseLabelEditPolicy extends AbstractMaskManagedEditPoli
 		Object object = notification.getNotifier();
 		CollaborationUse collaborationUse = (CollaborationUse)hostSemanticElement;
 
-		if(object == null) {
+		if((object == null) || (hostSemanticElement == null)) {
 			return;
 		}
 
