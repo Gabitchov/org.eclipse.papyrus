@@ -1035,6 +1035,19 @@
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InteractionOperand"/>
         </target>
       </audits>
+      <audits
+          name="Fragment ordering"
+          description="The fragment property of an Interaction or InteractionOperand must be ordered as a valid trace."
+          id="FragmentOrderingKeeper.LifelineFigure"
+          useInLiveMode="true"
+          message="There is no valid trace sequencing the InteractionFragments in the fragment property. Some of them can not be organized as a valid sequence :{0}">
+        <rule
+            body="return UMLValidationHelper.validateFragmentsOrder(context, ctx);"
+            language="java"/>
+        <target
+            xsi:type="gmfmap:DiagramElementTarget"
+            element="//@nodes.0/@ownedChild/@children.2/@ownedChild"/>
+      </audits>
     </childContainers>
   </audits>
 </gmfmap:Mapping>
