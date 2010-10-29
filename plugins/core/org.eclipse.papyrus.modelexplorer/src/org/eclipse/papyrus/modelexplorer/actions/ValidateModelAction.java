@@ -15,10 +15,6 @@ package org.eclipse.papyrus.modelexplorer.actions;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
-import org.eclipse.core.resources.IWorkspaceRoot;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
@@ -47,26 +43,29 @@ public class ValidateModelAction extends ValidateAction
 	    // Do not show a dialog, as in the original version since the user sees the result directly
 		Resource resource = eclipseResourcesUtil != null ? domain.getResourceSet().getResources().get(0) : null;
 		if (resource != null) {
-			// eclipseResourcesUtil.deleteMarkers(resource);
-			// the following 4 lines are required due to the uml/di manipulation 
-			IPath path = new Path(resource.getURI().toPlatformString (false).replace(".uml", ".di"));
+			eclipseResourcesUtil.deleteMarkers(resource);
+			
+			// the following 4 lines are required due to the uml/di manipulation
+			/*
+			IPath path = new Path(resource.getURI().toPlatformString (false).replace(".uml", ".uml"));
 			IWorkspaceRoot wsRoot = ResourcesPlugin.getWorkspace().getRoot();
 			IFile file = wsRoot.getFile(path);
 			eclipseResourcesUtil.deleteMarkers (file);
-			
+			*/
 			for (Diagnostic childDiagnostic : diagnostic.getChildren()) {
-				// eclipseResourcesUtil.createMarkers(resource, childDiagnostic);
-				createMarkersOnDi (file, childDiagnostic);
+				eclipseResourcesUtil.createMarkers(resource, childDiagnostic);
+				// createMarkersOnDi (file, childDiagnostic);
 			}
 		}
 	}
 
 	/**
-	 * create resources on di instead of on UML file. Probably already obsolete, since we want to create these files
+	 * create resources on di instead of on UML file. Probably already obsolete, since we want to create the markers
 	 * on a UML resource.
 	 * @param resource
 	 * @param diagnostic
 	 */
+	@Deprecated
 	private void createMarkersOnDi (IFile file, Diagnostic diagnostic)
 	{
 		try {

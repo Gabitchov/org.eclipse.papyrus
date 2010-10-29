@@ -60,7 +60,7 @@ public class ValidationTool {
 				URI uri = eObject.eResource().getURI();
 				String platformResourceString = uri.toPlatformString(true);
 				IFile file = (platformResourceString != null ?
-				      ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(platformResourceString.replace(".uml", ".di"))) : null);
+				      ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(platformResourceString)) : null);
 				if (file != null) {
 					try {
 						// TODO: quite inefficient, since requested for each element (could cache markers, already done
