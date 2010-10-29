@@ -52,6 +52,7 @@ import org.eclipse.papyrus.diagram.common.commands.CommonDeferredCreateConnectio
 import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.diagram.common.editpolicies.OldCommonDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
+import org.eclipse.papyrus.diagram.common.util.Util;
 import org.eclipse.papyrus.diagram.profile.custom.commands.SetStereotypeVisibleOnMetaclassCommand;
 import org.eclipse.papyrus.diagram.profile.custom.helper.ClassLinkMappingHelper;
 import org.eclipse.papyrus.diagram.profile.custom.helper.MultiAssociationHelper;
@@ -75,6 +76,7 @@ import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ElementImport;
+import org.eclipse.uml2.uml.Type;
 
 /**
  * The Class ClassDiagramDragDropEditPolicy.
@@ -102,6 +104,8 @@ public class ProfileDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEd
 		droppableElementsVisualID.add(CommentEditPartCN.VISUAL_ID);
 		droppableElementsVisualID.add(ConstraintEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(ConstraintEditPartCN.VISUAL_ID);
+		droppableElementsVisualID.add(MetaclassEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(MetaclassEditPartCN.VISUAL_ID);
 		return droppableElementsVisualID;
 	}
 
@@ -268,23 +272,23 @@ public class ProfileDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEd
 	 * {@inheritedDoc}
 	 */
 	@Override
-	protected Command getSpecificDropCommand(DropObjectsRequest dropRequest, Element semanticLink, int nodeVISUALID, int linkVISUALID) {
+	protected Command getSpecificDropCommand(DropObjectsRequest dropRequest, Element semanticElement, int nodeVISUALID, int linkVISUALID) {
 		// /!\ Warning the order is important! test on the superclass and AssociationNode is a super class for ExtensionEditPart!
 		switch(linkVISUALID) {
 		case ElementImportEditPart.VISUAL_ID:
-			return dropElementImport(dropRequest, semanticLink, nodeVISUALID);
+			return dropElementImport(dropRequest, semanticElement, nodeVISUALID);
 		case ExtensionEditPart.VISUAL_ID:
-			return dropExtension(dropRequest, semanticLink, linkVISUALID);
+			return dropExtension(dropRequest, semanticElement, linkVISUALID);
 		default:
 
 		}
 		switch(nodeVISUALID) {
 		case 2014:
-			return dropDependency(dropRequest, semanticLink, nodeVISUALID);
+			return dropDependency(dropRequest, semanticElement, nodeVISUALID);
 			//		case 2013:
 			//			return dropAssociationClass(dropRequest, semanticLink, nodeVISUALID);
 		case 2015:
-			return dropAssociation(dropRequest, semanticLink, nodeVISUALID);
+			return dropAssociation(dropRequest, semanticElement, nodeVISUALID);
 			//		case 3014:
 			//			return compartmentDropContainedClass(dropRequest, semanticLink, nodeVISUALID);
 			//		case 2008:
@@ -292,16 +296,55 @@ public class ProfileDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEd
 
 		case CommentEditPart.VISUAL_ID:
 		case CommentEditPartCN.VISUAL_ID:
-			return dropComment(dropRequest, semanticLink, nodeVISUALID);
+			return dropComment(dropRequest, semanticElement, nodeVISUALID);
 
 		case ConstraintEditPart.VISUAL_ID:
 		case ConstraintEditPartCN.VISUAL_ID:
-			return dropConstraint(dropRequest, semanticLink, nodeVISUALID);
+			return dropConstraint(dropRequest, semanticElement, nodeVISUALID);
+
+		case MetaclassEditPart.VISUAL_ID:
+		case MetaclassEditPartCN.VISUAL_ID:
+			return dropMetaclass(dropRequest, semanticElement, nodeVISUALID);
 		default:
 			return UnexecutableCommand.INSTANCE;
 		}
 
 
+	}
+
+	/**
+	 * Returns the command to drop the metaclass
+	 * 
+	 * @param dropRequest
+	 *        the drop request
+	 * @param semanticElement
+	 *        the metaclass to drop
+	 * @param nodeVISUALID
+	 *        the node VISUAL ID
+	 * @return
+	 *         the command to drop the metaclass
+	 */
+	protected Command dropMetaclass(DropObjectsRequest dropRequest, Element semanticElement, int nodeVISUALID) {
+		//we test if the element to drop is a Class or a Metaclass
+		if(Util.isMetaclass((Type)semanticElement)) {
+			CompositeCommand cc = new CompositeCommand("Drop"); //$NON-NLS-1$
+			CompositeCommand dropCommand = super.getDefaultDropNodeCommand(nodeVISUALID, dropRequest.getLocation(), semanticElement);
+			cc.compose(dropCommand);
+			Object returnedValue = dropCommand.getCommandResult().getReturnValue();
+			if(returnedValue instanceof ArrayList<?>) {//we look for the view descriptor of the created metaclass
+				ViewDescriptor desc = (ViewDescriptor)((ArrayList<?>)returnedValue).get(0);
+
+				//we set the stereotype to visible
+				SetStereotypeVisibleOnMetaclassCommand command = new SetStereotypeVisibleOnMetaclassCommand(getEditingDomain(), "Apply Stereotype", null, semanticElement, desc);
+				if(command.canExecute()) {
+					cc.compose(command);
+				}
+
+			}
+			return new ICommandProxy(cc);
+		} else {
+			return UnexecutableCommand.INSTANCE;
+		}
 	}
 
 	/**
