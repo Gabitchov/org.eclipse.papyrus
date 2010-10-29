@@ -44,7 +44,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.common.editpolicies.CommonDiagramDragDropEditPolicy;
+import org.eclipse.papyrus.diagram.common.editpolicies.OldCommonDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.diagram.composite.custom.edit.command.CreateViewCommand;
 import org.eclipse.papyrus.diagram.composite.custom.helper.CollaborationHelper;
 import org.eclipse.papyrus.diagram.composite.custom.helper.CompositeLinkMappingHelper;
@@ -150,7 +150,7 @@ import org.eclipse.uml2.uml.TypedElement;
  * This class provides an implementation for specific behavior of Drag and Drop
  * in the Composite Diagram.
  */
-public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPolicy {
+public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEditPolicy {
 
 	/**
 	 * Default constructor
@@ -773,7 +773,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * modified in derived diagrams.
 	 * </pre>
 	 * 
-	 * @see org.eclipse.papyrus.diagram.common.editpolicies.CommonDiagramDragDropEditPolicy#getDropObjectsCommand(org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest)
+	 * @see org.eclipse.papyrus.diagram.common.editpolicies.OldCommonDiagramDragDropEditPolicy#getDropObjectsCommand(org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest)
 	 * 
 	 * @param dropRequest
 	 *        the drop request

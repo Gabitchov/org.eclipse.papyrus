@@ -65,7 +65,7 @@ import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.common.commands.CommonDeferredCreateConnectionViewCommand;
 import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
-import org.eclipse.papyrus.diagram.common.editpolicies.CommonDiagramDragDropEditPolicy;
+import org.eclipse.papyrus.diagram.common.editpolicies.OldCommonDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.uml2.uml.Action;
 import org.eclipse.uml2.uml.Activity;
@@ -80,7 +80,7 @@ import org.eclipse.uml2.uml.ObjectFlow;
  * and binary links. To manage specific drop the method
  * CommonDiagramDragDropEditPolicy.getSpecificDropCommand has to be implemented
  */
-public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPolicy {
+public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEditPolicy {
 
 	/** DropActionLocalConditionsAfterActionCommand label */
 	private static final String LABEL = "DropLocalConditions";
@@ -362,7 +362,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	/**
 	 * Avoid selection of label edit parts
 	 * 
-	 * @see org.eclipse.papyrus.diagram.common.editpolicies.CommonDiagramDragDropEditPolicy#isEditPartTypeSuitableForEClass(java.lang.Class,
+	 * @see org.eclipse.papyrus.diagram.common.editpolicies.OldCommonDiagramDragDropEditPolicy#isEditPartTypeSuitableForEClass(java.lang.Class,
 	 *      org.eclipse.emf.ecore.EClass)
 	 */
 	@Override

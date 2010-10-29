@@ -52,7 +52,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.RedefinableTemplateSignature
 import org.eclipse.papyrus.diagram.clazz.edit.parts.TemplateBindingEditPart;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
-import org.eclipse.papyrus.diagram.common.editpolicies.CommonDiagramDragDropEditPolicy;
+import org.eclipse.papyrus.diagram.common.editpolicies.OldCommonDiagramDragDropEditPolicy;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.AssociationClass;
 import org.eclipse.uml2.uml.Dependency;
@@ -64,7 +64,7 @@ import org.eclipse.uml2.uml.internal.impl.ClassifierImpl;
 /**
  * The Class ClassDiagramDragDropEditPolicy.
  */
-public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPolicy {
+public class ClassDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEditPolicy {
 
 	public static final String CONTAINED_CLASS_DROP_TO_COMPARTMENT = "ContainedClassDropToCompartment";
 

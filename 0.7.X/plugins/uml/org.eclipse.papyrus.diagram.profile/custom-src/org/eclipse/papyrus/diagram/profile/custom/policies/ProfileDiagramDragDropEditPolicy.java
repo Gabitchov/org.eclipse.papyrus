@@ -50,7 +50,7 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.commands.CommonDeferredCreateConnectionViewCommand;
 import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
-import org.eclipse.papyrus.diagram.common.editpolicies.CommonDiagramDragDropEditPolicy;
+import org.eclipse.papyrus.diagram.common.editpolicies.OldCommonDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.diagram.profile.custom.commands.SetStereotypeVisibleOnMetaclassCommand;
 import org.eclipse.papyrus.diagram.profile.custom.helper.ClassLinkMappingHelper;
@@ -79,7 +79,7 @@ import org.eclipse.uml2.uml.ElementImport;
 /**
  * The Class ClassDiagramDragDropEditPolicy.
  */
-public class ProfileDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPolicy {
+public class ProfileDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEditPolicy {
 
 	/**
 	 * Instantiates a new class diagram drag drop edit policy.

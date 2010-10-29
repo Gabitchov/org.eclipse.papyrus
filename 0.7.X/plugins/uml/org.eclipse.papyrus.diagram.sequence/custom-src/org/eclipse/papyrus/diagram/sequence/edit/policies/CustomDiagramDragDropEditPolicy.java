@@ -25,26 +25,21 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
-import org.eclipse.gmf.runtime.diagram.core.commands.AddCommand;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
-import org.eclipse.gmf.runtime.diagram.ui.commands.CreateCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
-import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyReferenceCommand;
-import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
-import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.editpolicies.CommonDiagramDragDropEditPolicy;
@@ -89,7 +84,6 @@ import org.eclipse.uml2.uml.OccurrenceSpecification;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.StateInvariant;
 import org.eclipse.uml2.uml.TimeObservation;
-import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * A policy to support dNd from the Model Explorer in the sequence diagram
@@ -158,6 +152,8 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 
 	@Override
 	protected Command getSpecificDropCommand(DropObjectsRequest dropRequest, Element semanticLink, int nodeVISUALID, int linkVISUALID) {
+		Point location = dropRequest.getLocation().getCopy();
+
 		// handle specifically the case when node is on a message
 		Command cmd = handleNodeOnMessage(semanticLink, nodeVISUALID, linkVISUALID);
 		if(cmd != null) {
@@ -168,18 +164,18 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			switch(nodeVISUALID) {
 			case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
 			case ActionExecutionSpecificationEditPart.VISUAL_ID:
-				return dropExecutionSpecification((ExecutionSpecification)semanticLink, nodeVISUALID);
+				return dropExecutionSpecification((ExecutionSpecification)semanticLink, nodeVISUALID, location);
 			case DestructionEventEditPart.VISUAL_ID:
-				return dropDestructionEvent((DestructionEvent)semanticLink, nodeVISUALID);
+				return dropDestructionEvent((DestructionEvent)semanticLink, nodeVISUALID, location);
 			case StateInvariantEditPart.VISUAL_ID:
-				return dropStateInvariant((StateInvariant)semanticLink, nodeVISUALID);
+				return dropStateInvariant((StateInvariant)semanticLink, nodeVISUALID, location);
 			case TimeConstraintEditPart.VISUAL_ID:
 			case DurationConstraintEditPart.VISUAL_ID:
 				return dropIntervalConstraintInLifeline((IntervalConstraint)semanticLink, nodeVISUALID);
 			case TimeObservationEditPart.VISUAL_ID:
 				return dropTimeObservationInLifeline((TimeObservation)semanticLink, nodeVISUALID);
 			case LifelineEditPart.VISUAL_ID:
-				return dropLifeline((Lifeline)semanticLink, nodeVISUALID);
+				return dropLifeline((Lifeline)semanticLink, nodeVISUALID, location);
 			default:
 				return UnexecutableCommand.INSTANCE;
 			}
@@ -213,12 +209,9 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 *        the node visual id
 	 * @return the drop command if the lifeline can be dropped
 	 */
-	private Command dropLifeline(Lifeline lifeline, int nodeVISUALID) {
+	private Command dropLifeline(Lifeline lifeline, int nodeVISUALID, Point location) {
 		if(getHostObject().equals(lifeline.getOwner())) {
-			List<View> existingViews = DiagramEditPartsUtil.findViews(lifeline, getViewer());
-			if(existingViews.isEmpty()) {
-				return getCreateCommand(lifeline, nodeVISUALID);
-			}
+			return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, location, lifeline));
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
@@ -337,13 +330,10 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * @return the command or UnexecutableCommand
 	 */
 	private Command dropNodeOnMessage(PackageableElement durationLabelElement, ConnectionNodeEditPart messageEditPart, int nodeVISUALID) {
-		CompositeCommand cc = new CompositeCommand("Drop");
 		IAdaptable elementAdapter = new EObjectAdapter(durationLabelElement);
 
 		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType)getUMLElementType(nodeVISUALID)).getSemanticHint(), ViewUtil.APPEND, false, getDiagramPreferencesHint());
-		CreateCommand createCommand = new CreateCommand(getEditingDomain(), descriptor, ((View)messageEditPart.getModel()));
-		cc.compose(createCommand);
-		return new ICommandProxy(cc);
+		return messageEditPart.getCommand(new CreateViewRequest(descriptor));
 	}
 
 	/**
@@ -356,12 +346,11 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * @return the command if the lifeline is the correct one or UnexecutableCommand
 	 */
 	private Command dropTimeObservationInLifeline(TimeObservation observation, int nodeVISUALID) {
-		CompositeCommand cc = new CompositeCommand("Drop");
+		CompoundCommand cc = new CompoundCommand("Drop");
 		IAdaptable elementAdapter = new EObjectAdapter(observation);
 
 		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType)getUMLElementType(nodeVISUALID)).getSemanticHint(), ViewUtil.APPEND, false, getDiagramPreferencesHint());
-		CreateCommand createCommand = new CreateCommand(getEditingDomain(), descriptor, ((View)getHost().getModel()));
-		cc.compose(createCommand);
+		cc.add(getHost().getCommand(new CreateViewRequest(descriptor)));
 
 		LifelineEditPart lifelinePart = SequenceUtil.getParentLifelinePart(getHost());
 		if(lifelinePart != null) {
@@ -378,9 +367,9 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 					lifelinePart.getFigure().translateToRelative(newBounds);
 					Point parentLoc = lifelinePart.getLocation();
 					newBounds.translate(parentLoc.getNegated());
-					SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)createCommand.getCommandResult().getReturnValue(), newBounds);
-					cc.compose(setBoundsCommand);
-					return new ICommandProxy(cc);
+					SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", descriptor, newBounds);
+					cc.add(new ICommandProxy(setBoundsCommand));
+					return cc;
 				}
 			}
 		}
@@ -397,12 +386,11 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * @return the command if the lifeline is the correct one or UnexecutableCommand
 	 */
 	private Command dropIntervalConstraintInLifeline(IntervalConstraint constraint, int nodeVISUALID) {
-		CompositeCommand cc = new CompositeCommand("Drop");
+		CompoundCommand cc = new CompoundCommand("Drop");
 		IAdaptable elementAdapter = new EObjectAdapter(constraint);
 
 		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType)getUMLElementType(nodeVISUALID)).getSemanticHint(), ViewUtil.APPEND, false, getDiagramPreferencesHint());
-		CreateCommand createCommand = new CreateCommand(getEditingDomain(), descriptor, ((View)getHost().getModel()));
-		cc.compose(createCommand);
+		cc.add(getHost().getCommand(new CreateViewRequest(descriptor)));
 
 		LifelineEditPart lifelinePart = SequenceUtil.getParentLifelinePart(getHost());
 		if(lifelinePart != null && constraint.getConstrainedElements().size() >= 2) {
@@ -422,9 +410,9 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 					lifelinePart.getFigure().translateToRelative(newBounds);
 					Point parentLoc = lifelinePart.getLocation();
 					newBounds.translate(parentLoc.getNegated());
-					SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)createCommand.getCommandResult().getReturnValue(), newBounds);
-					cc.compose(setBoundsCommand);
-					return new ICommandProxy(cc);
+					SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", descriptor, newBounds);
+					cc.add(new ICommandProxy(setBoundsCommand));
+					return cc;
 				}
 			}
 		} else if(lifelinePart != null && constraint.getConstrainedElements().size() == 1) {
@@ -441,9 +429,9 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 					lifelinePart.getFigure().translateToRelative(newBounds);
 					Point parentLoc = lifelinePart.getLocation();
 					newBounds.translate(parentLoc.getNegated());
-					SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)createCommand.getCommandResult().getReturnValue(), newBounds);
-					cc.compose(setBoundsCommand);
-					return new ICommandProxy(cc);
+					SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", descriptor, newBounds);
+					cc.add(new ICommandProxy(setBoundsCommand));
+					return cc;
 				}
 			}
 		}
@@ -464,29 +452,13 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		return -1;
 	}
 
-	private Command dropStateInvariant(StateInvariant stateInvariant, int nodeVISUALID) {
-		List<View> existingViews = DiagramEditPartsUtil.findViews(stateInvariant, getViewer());
-		if(existingViews.isEmpty()) {
+	private Command dropStateInvariant(StateInvariant stateInvariant, int nodeVISUALID, Point location) {
 
-			// an StateInvariant covereds systematically a unique lifeline
-			Lifeline lifeline = stateInvariant.getCovereds().get(0);
-			// Check that the container view is the view of the lifeline
-			if(lifeline.equals(getHostObject())) {
-				return getCreateCommand(stateInvariant, nodeVISUALID);
-			}
-		} else {
-			CompositeCommand cc = new CompositeCommand("Moving a StateInvariant");
-
-			// Add the view to the new container
-			AddCommand addCommand = new AddCommand(getEditingDomain(), new EObjectAdapter((View)getHost().getModel()), new EObjectAdapter(existingViews.get(0)));
-			cc.add(addCommand);
-
-			Lifeline oldCoveredLifeline = (Lifeline)ViewUtil.resolveSemanticElement((View)existingViews.get(0).eContainer());
-
-			// Update the ES covered lifeline
-			updateCoveredLifeline(stateInvariant, cc, oldCoveredLifeline);
-
-			return new ICommandProxy(cc);
+		// an StateInvariant covereds systematically a unique lifeline
+		Lifeline lifeline = stateInvariant.getCovereds().get(0);
+		// Check that the container view is the view of the lifeline
+		if(lifeline.equals(getHostObject())) {
+			return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, location, stateInvariant));
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
@@ -518,7 +490,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 *        the node visualID
 	 * @return the command to drop the destructionEvent on a lifeline if allowed.
 	 */
-	private Command dropDestructionEvent(DestructionEvent destructionEvent, int nodeVISUALID) {
+	private Command dropDestructionEvent(DestructionEvent destructionEvent, int nodeVISUALID, Point location) {
 		// Get all the view of this destructionEvent.
 		List<View> existingViews = DiagramEditPartsUtil.findViews(destructionEvent, getViewer());
 		// Get the lifelines containing the graphical destructionEvent
@@ -532,7 +504,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 					OccurrenceSpecification occurrenceSpecification = (OccurrenceSpecification)ift;
 					// if the event of the occurrenceSpecification is the DestructionEvent, create the command
 					if(destructionEvent.equals(occurrenceSpecification.getEvent())) {
-						return getCreateCommand(destructionEvent, nodeVISUALID);
+						return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, location, destructionEvent));
 					}
 				}
 			}
@@ -540,22 +512,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		return UnexecutableCommand.INSTANCE;
 	}
 
-	/**
-	 * Get the create command
-	 * 
-	 * @param semanticLink
-	 *        the element
-	 * @param nodeVISUALID
-	 *        the visualID
-	 * @return the command
-	 */
-	private Command getCreateCommand(Element semanticLink, int nodeVISUALID) {
-		ViewDescriptor viewDescriptor = new ViewDescriptor(new EObjectAdapter(semanticLink), Node.class, String.valueOf(nodeVISUALID), ViewUtil.APPEND, true, ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint());
-		CreateCommand cc = new CreateCommand(getEditingDomain(), viewDescriptor, (View)getHost().getModel());
-		return new ICommandProxy(cc);
-	}
-
-	private Command dropExecutionSpecification(ExecutionSpecification es, int nodeVISUALID) {
+	private Command dropExecutionSpecification(ExecutionSpecification es, int nodeVISUALID, Point location) {
 		List<View> existingViews = DiagramEditPartsUtil.findViews(es, getViewer());
 		if(existingViews.isEmpty()) {
 			// Find the lifeline of the ES
@@ -565,57 +522,12 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 				Lifeline lifeline = es.getStart().getCovereds().get(0);
 				// Check that the container view is the view of the lifeline
 				if(lifeline.equals(getHostObject())) {
-					return getCreateCommand(es, nodeVISUALID);
+					return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, location, es));
 				}
 			}
-		} else {
-
-			CompositeCommand cc = new CompositeCommand("Moving an ES");
-
-			// Add the view to the new container
-			AddCommand addCommand = new AddCommand(getEditingDomain(), new EObjectAdapter((View)getHost().getModel()), new EObjectAdapter(existingViews.get(0)));
-			cc.add(addCommand);
-
-			Lifeline oldCoveredLifeline = (Lifeline)ViewUtil.resolveSemanticElement((View)existingViews.get(0).eContainer());
-
-			// Update the ES covered lifeline
-			updateCoveredLifeline(es, cc, oldCoveredLifeline);
-
-			// Update the start and finish occurrence specification covered lifeline
-			updateCoveredLifeline(es.getStart(), cc, oldCoveredLifeline);
-			updateCoveredLifeline(es.getFinish(), cc, oldCoveredLifeline);
-
-			//TODO  Set the new location of the view. 
-			// Actually there is some layout problems, so it is disable. 
-			//				SetBoundsCommand boundsCommand = new SetBoundsCommand(getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(existingViews.get(0)), dropRequest.getLocation());
-			//				cc.add(boundsCommand);
-
-			return new ICommandProxy(cc);
 		}
 
 		return UnexecutableCommand.INSTANCE;
-	}
-
-	/**
-	 * Update the covered feature of the interactionFragment : remove the old lifeline and add the new lifeline.
-	 * 
-	 * @param interactionFragment
-	 *        the interaction fragment impacted
-	 * @param cc
-	 *        the composite command to add the new commands
-	 * @param oldCoveredLifeline
-	 *        the old covered lifeline
-	 */
-	private void updateCoveredLifeline(InteractionFragment interactionFragment, CompositeCommand cc, Lifeline oldCoveredLifeline) {
-		// Remove old covered lifeline 
-		DestroyReferenceRequest destroyReferenceRequest = new DestroyReferenceRequest(interactionFragment, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), oldCoveredLifeline, false);
-		DestroyReferenceCommand destroyReferenceCommand = new DestroyReferenceCommand(destroyReferenceRequest);
-		cc.add(destroyReferenceCommand);
-
-		// Add new covered lifeline
-		SetRequest setRequest = new SetRequest(interactionFragment, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), ViewUtil.resolveSemanticElement((View)getHost().getModel()));
-		SetValueCommand coveredLifelineCommand = new SetValueCommand(setRequest);
-		cc.add(coveredLifelineCommand);
 	}
 
 	private Command dropMessage(DropObjectsRequest dropRequest, Element semanticLink, int linkVISUALID) {

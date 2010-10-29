@@ -14,6 +14,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.editpolicies;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -30,17 +31,19 @@ import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
-import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.commands.CreateCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DiagramDragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest.ConnectionViewDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
@@ -50,19 +53,20 @@ import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.common.command.wrappers.CommandProxyWithResult;
 import org.eclipse.papyrus.diagram.common.commands.CommonDeferredCreateConnectionViewCommand;
 import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.diagram.common.helper.ILinkMappingHelper;
-import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.diagram.common.util.ViewServiceUtil;
+import org.eclipse.uml2.uml.Comment;
+import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Element;
 
 /**
+ * @deprecated
  * This class is used to execute the drag and drop from the outline. It can manage the drop of nodes
  * and binary links.
  */
-public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEditPolicy {
+public abstract class OldCommonDiagramDragDropEditPolicy extends DiagramDragDropEditPolicy {
 
 	/** The specific drop. */
 	private Set<Integer> specificDrop = null;
@@ -76,7 +80,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 	 * @param mappingHelper
 	 *        the mapping helper
 	 */
-	public CommonDiagramDragDropEditPolicy(ILinkMappingHelper mappingHelper) {
+	public OldCommonDiagramDragDropEditPolicy(ILinkMappingHelper mappingHelper) {
 		linkmappingHelper = mappingHelper;
 	}
 
@@ -140,7 +144,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 	 * 
 	 * @return the composite command
 	 */
-	public CompositeCommand dropBinaryLink(CompositeCommand cc, Element source, Element target, int linkVISUALID, Point absoluteLocation, Element semanticLink) {
+	public CompositeCommand dropBinaryLink(CompositeCommand cc, Element source, Element target, int linkVISUALID, Point location, Element semanticLink) {
 		// look for editpart
 		GraphicalEditPart sourceEditPart = (GraphicalEditPart)lookForEditPart(source);
 		GraphicalEditPart targetEditPart = (GraphicalEditPart)lookForEditPart(target);
@@ -151,18 +155,30 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 		IAdaptable sourceAdapter = null;
 		IAdaptable targetAdapter = null;
 		if(sourceEditPart == null) {
-			ICommand createCommand = getDefaultDropNodeCommand(getLinkSourceDropLocation(absoluteLocation,source, target), source);
-			cc.add(createCommand);
+			// creation of the node
+			ViewDescriptor descriptor = new ViewDescriptor(new EObjectAdapter(source), Node.class, null, ViewUtil.APPEND, false, ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint());
 
-			sourceAdapter = (IAdaptable)createCommand.getCommandResult().getReturnValue();
+			// get the command and execute it.
+			CreateCommand nodeCreationCommand = new CreateCommand(((IGraphicalEditPart)getHost()).getEditingDomain(), descriptor, ((View)getHost().getModel()));
+			cc.compose(nodeCreationCommand);
+			SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue(), new Point(location.x, location.y + 100)); //$NON-NLS-1$
+			cc.compose(setBoundsCommand);
+
+			sourceAdapter = (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue();
 		} else {
 			sourceAdapter = new SemanticAdapter(null, sourceEditPart.getModel());
 		}
 		if(targetEditPart == null) {
-			ICommand createCommand = getDefaultDropNodeCommand(getLinkTargetDropLocation(absoluteLocation,source, target), target);
-			cc.add(createCommand);
+			// creation of the node
+			ViewDescriptor descriptor = new ViewDescriptor(new EObjectAdapter(target), Node.class, null, ViewUtil.APPEND, false, ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint());
 
-			targetAdapter = (IAdaptable)createCommand.getCommandResult().getReturnValue();
+			// get the command and execute it.
+			CreateCommand nodeCreationCommand = new CreateCommand(((IGraphicalEditPart)getHost()).getEditingDomain(), descriptor, ((View)getHost().getModel()));
+			cc.compose(nodeCreationCommand);
+			SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue(), new Point(location.x, location.y - 100)); //$NON-NLS-1$
+			cc.compose(setBoundsCommand);
+			targetAdapter = (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue();
+
 		} else {
 			targetAdapter = new SemanticAdapter(null, targetEditPart.getModel());
 		}
@@ -172,35 +188,6 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 		cc.compose(aLinkCommand);
 		return cc;
 
-	}
-
-	/**
-	 * This method allows to specify a location for the creation of a node at the source of a dropped link.
-	 * Overriding implementations must not modify the absoluteLocation parameter (use {@link Point#getCopy()})
-	 * 
-	 * @param absoluteLocation the request's drop location
-	 * @param source the source of the dropped link
-	 * @param target the target of the dropped link
-	 * @return the new location for the node
-	 */
-	protected Point getLinkSourceDropLocation(Point absoluteLocation, Element source, Element target) {
-		return absoluteLocation;
-	}
-
-	/**
-	 * This method allows to specify a location for the creation of a node at the target of a dropped link.
-	 * Overriding implementations must not modify the absoluteLocation parameter (use {@link Point#getCopy()})
-	 * 
-	 * @param absoluteLocation the request's drop location
-	 * @param source the source of the dropped link
-	 * @param target the target of the dropped link
-	 * @return the new location for the node
-	 */
-	protected Point getLinkTargetDropLocation(Point absoluteLocation, Element source, Element target) {
-		if (lookForEditPart(source) == null && lookForEditPart(target) == null) {
-			return absoluteLocation.getTranslated(100, 0);
-		}
-		return absoluteLocation;
 	}
 
 	/**
@@ -247,21 +234,21 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 		// the command for that.
 		CompositeCommand cc = new CompositeCommand("Drop"); //$NON-NLS-1$
 		Iterator<?> iter = dropRequest.getObjects().iterator();
+		Point location = getTranslatedLocation(dropRequest);
 
 		while(iter.hasNext()) {
 			EObject droppedObject = (EObject)iter.next();
-			cc.add(getDropObjectCommand(dropRequest, droppedObject));
+			cc.add(getDropObjectCommand(dropRequest, droppedObject, location));
 		}
 
 		return new ICommandProxy(cc);
 	}
 
-	protected IUndoableOperation getDropObjectCommand(DropObjectsRequest dropRequest, EObject droppedObject) {
-		Point location = dropRequest.getLocation().getCopy();
-
+	protected IUndoableOperation getDropObjectCommand(DropObjectsRequest dropRequest, EObject droppedObject, Point location) {
 		int nodeVISUALID = getNodeVisualID(((IGraphicalEditPart)getHost()).getNotationView(), droppedObject);
 		int linkVISUALID = getLinkWithClassVisualID(droppedObject);
 		if(getSpecificDrop().contains(nodeVISUALID) || getSpecificDrop().contains(linkVISUALID)) {
+			dropRequest.setLocation(location);
 			// TODO: add to composite command ?
 			return new CommandProxy(getSpecificDropCommand(dropRequest, (Element)droppedObject, nodeVISUALID, linkVISUALID));
 		}
@@ -276,8 +263,10 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 			// . Release the constraint when GraphicalParent is a diagram
 			if(getHost().getModel() instanceof Diagram) {
 				return getDefaultDropNodeCommand(nodeVISUALID, location, droppedObject);
+
 			} else if((graphicalParent instanceof Element) && ((Element)graphicalParent).getOwnedElements().contains(droppedObject)) {
 				return getDefaultDropNodeCommand(nodeVISUALID, location, droppedObject);
+
 			}
 			return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
 
@@ -292,30 +281,24 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 			Element source = (Element)sources.toArray()[0];
 			Element target = (Element)targets.toArray()[0];
 			CompositeCommand cc = new CompositeCommand("Add Link"); //$NON-NLS-1$
-			dropBinaryLink(cc, source, target, linkVISUALID, location, (Element)droppedObject);
+			dropBinaryLink(cc, source, target, linkVISUALID, dropRequest.getLocation(), (Element)droppedObject);
 			return cc;
 		}
 		return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
 	}
 
-	/**
-	 * Get a new Point translated to relative coordinate
-	 * 
-	 * @param absoluteLocation
-	 *        the absolute point
-	 * @return the relative point
-	 */
-	protected Point getTranslatedToRelative(Point absoluteLocation) {
-		Point relativeLocation = absoluteLocation.getCopy();
-		((GraphicalEditPart)getHost()).getContentPane().translateToRelative(relativeLocation);
-		((GraphicalEditPart)getHost()).getContentPane().translateFromParent(relativeLocation);
-		relativeLocation.translate(((GraphicalEditPart)getHost()).getContentPane().getClientArea().getLocation().getNegated());
-		return relativeLocation;
+	private Point getTranslatedLocation(DropObjectsRequest dropRequest) {
+		Point location = dropRequest.getLocation().getCopy();
+		((GraphicalEditPart)getHost()).getContentPane().translateToRelative(location);
+		((GraphicalEditPart)getHost()).getContentPane().translateFromParent(location);
+		location.translate(((GraphicalEditPart)getHost()).getContentPane().getClientArea().getLocation().getNegated());
+		return location;
 	}
 
 	/**
-	 * This method returns the default drop command for node. It create the view at the specified location,
-	 * using the gmf command framework so the policies are used.
+	 * This method returns the default drop command for node. Default here means the no
+	 * consideration is made regarding the semantic elements, the expected figure is basically
+	 * created where expected.
 	 * 
 	 * @param nodeVISUALID
 	 *        the node visual identifier
@@ -323,100 +306,19 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 	 *        the drop location
 	 * @param droppedObject
 	 *        the object to drop
-	 * @return the creation node command
+	 * @return a CompositeCommand for Drop
 	 */
-	protected ICommand getDefaultDropNodeCommand(int nodeVISUALID, Point absoluteLocation, EObject droppedObject) {
-		return getDefaultDropNodeCommand(getHost(), nodeVISUALID, absoluteLocation, droppedObject);
-	}
+	protected CompositeCommand getDefaultDropNodeCommand(int nodeVISUALID, Point location, EObject droppedObject) {
+		CompositeCommand cc = new CompositeCommand("Drop"); //$NON-NLS-1$
+		IAdaptable elementAdapter = new EObjectAdapter(droppedObject);
 
-	/**
-	 * This method returns the default drop command for node. It create the view at the specified location,
-	 * using the gmf command framework so the policies are used.
-	 * 
-	 * @param location
-	 *        the drop location
-	 * @param droppedObject
-	 *        the object to drop
-	 * @return the creation node command
-	 */
-	protected ICommand getDefaultDropNodeCommand(Point absoluteLocation, EObject droppedObject) {
-		return getDefaultDropNodeCommand(getHost(), null, absoluteLocation, droppedObject);
-	}
+		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType)getUMLElementType(nodeVISUALID)).getSemanticHint(), ViewUtil.APPEND, false, getDiagramPreferencesHint());
+		CreateCommand createCommand = new CreateCommand(getEditingDomain(), descriptor, ((View)(getHost().getModel())));
+		cc.compose(createCommand);
 
-	/**
-	 * This method returns the default drop command for node. It create the view at the specified location,
-	 * using the gmf command framework so the policies are used.
-	 * 
-	 * @param hostEP
-	 *        The host edit part which will be the parent of the new node
-	 * @param location
-	 *        the drop location
-	 * @param droppedObject
-	 *        the object to drop
-	 * @return the creation node command
-	 */
-	protected ICommand getDefaultDropNodeCommand(EditPart hostEP, Point absoluteLocation, EObject droppedObject) {
-		return getDefaultDropNodeCommand(hostEP, null, absoluteLocation, droppedObject);
-	}
-
-	/**
-	 * This method returns the default drop command for node. It create the view at the specified location,
-	 * using the gmf command framework so the policies are used.
-	 * 
-	 * @param hostEP
-	 *        The host edit part which will be the parent of the new node
-	 * @param nodeVISUALID
-	 *        the node visual identifier
-	 * @param location
-	 *        the drop location
-	 * @param droppedObject
-	 *        the object to drop
-	 * @return the creation node command
-	 */
-	protected ICommand getDefaultDropNodeCommand(EditPart hostEP, int nodeVISUALID, Point absoluteLocation, EObject droppedObject) {
-		IHintedType type = ((IHintedType)getUMLElementType(nodeVISUALID));
-
-		String semanticHint = null;
-		if(type != null) {
-			semanticHint = type.getSemanticHint();
-		}
-
-		return getDefaultDropNodeCommand(getHost(), semanticHint, absoluteLocation, droppedObject);
-	}
-
-	/**
-	 * This method returns the default drop command for node. It create the view at the specified location,
-	 * using the gmf command framework so the policies are used.
-	 * 
-	 * @param hostEP
-	 *        The host edit part which will be the parent of the new node
-	 * @param semanticHint
-	 *        the semantic hint of the view to create
-	 * @param location
-	 *        the drop location
-	 * @param droppedObject
-	 *        the object to drop
-	 * @return the creation node command
-	 */
-	protected ICommand getDefaultDropNodeCommand(EditPart hostEP, String semanticHint, Point absoluteLocation, EObject droppedObject) {
-		List<View> existingViews = DiagramEditPartsUtil.findViews(droppedObject, getViewer());
-
-		// only allow one view instance of a single element by diagram
-		if(existingViews.isEmpty()) {
-			IAdaptable elementAdapter = new EObjectAdapter(droppedObject);
-
-			ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, semanticHint, ViewUtil.APPEND, false, getDiagramPreferencesHint());
-			CreateViewRequest createViewRequest = new CreateViewRequest(descriptor);
-			createViewRequest.setLocation(absoluteLocation);
-
-			// "ask" the host for a command associated with the CreateViewRequest
-			Command command = hostEP.getCommand(createViewRequest);
-			// set the viewdescriptor as result
-			// it then can be used as an adaptable to retrieve the View
-			return new CommandProxyWithResult(command, descriptor);
-		}
-
-		return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
+		SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)createCommand.getCommandResult().getReturnValue(), location); //$NON-NLS-1$
+		cc.compose(setBoundsCommand);
+		return cc;
 	}
 
 	/**
@@ -517,4 +419,157 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 	protected boolean isEditPartTypeSuitableForEClass(Class<? extends GraphicalEditPart> editPartClass, EClass eClass) {
 		return true;
 	}
+
+	/**
+	 * Returns The command to drop the {@link Constraint} and the links, if the constraints elements are on the diagram
+	 * 
+	 * @param comment
+	 *        the comment to drop
+	 * @param viewer
+	 *        the viewer
+	 * @param diagramPreferencesHint
+	 *        the diagram preference hint
+	 * @param location
+	 *        the location for the drop
+	 * @param containerView
+	 *        the container view for the drop
+	 * @param commentType
+	 *        the IHintedType for the {@link Comment}
+	 * @param linkForComment
+	 *        the IHintedType for the link which attach the {@link Comment} to the annotated Element
+	 * @return
+	 *         The command to drop the {@link Constraint} and the links, if the constraints elements are on the diagram
+	 */
+	protected Command getDropConstraintCommand(Constraint constraint, EditPartViewer viewer, PreferencesHint diagramPreferencesHint, Point location, View containerView, IHintedType commentType, IHintedType linkForComment) {
+		/* for further information, see bug 302555 */
+		CompositeCommand cc = new CompositeCommand("dropConstraint");
+		int nbAnnotated = constraint.getConstrainedElements().size();
+
+		// 0. Obtain list of the annotatedElement
+		ArrayList<Element> endToConnect = new ArrayList<Element>(constraint.getConstrainedElements());
+		GraphicalEditPart[] endEditPart = new GraphicalEditPart[nbAnnotated];
+
+		// 1. Look for if each annotated element is on the diagram
+		Iterator<Element> iteratorProp = endToConnect.iterator();
+		int index = 0;
+		while(iteratorProp.hasNext()) {
+			Element currentAnnotatedElement = iteratorProp.next();
+			endEditPart[index] = (GraphicalEditPart)lookForEditPart(currentAnnotatedElement);
+			index += 1;
+		}
+
+		// 2. creation of the node Comment
+		IAdaptable elementAdapter = new EObjectAdapter(constraint);
+		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, commentType.getSemanticHint(), ViewUtil.APPEND, false, diagramPreferencesHint);
+		CreateCommand nodeCreationCommand = new CreateCommand(getEditingDomain(), descriptor, (containerView));
+		cc.compose(nodeCreationCommand);
+
+		SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue(), location);
+		cc.compose(setBoundsCommand);
+
+		if(nbAnnotated != 0) {
+			IAdaptable sourceEventAdapter = null;
+			IAdaptable targetEventAdapter = null;
+
+			// obtain the node figure
+			sourceEventAdapter = (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue();
+
+			// used in the creation command of each event
+			ConnectionViewDescriptor dashedLineViewDescriptor = new ConnectionViewDescriptor(linkForComment, linkForComment.getSemanticHint(), diagramPreferencesHint);
+
+			// 3. creation of the dashed line between the Comment and the annotated element
+			for(GraphicalEditPart current : endEditPart) {
+				if(current != null) {
+					targetEventAdapter = new SemanticAdapter(null, current.getModel());
+					CommonDeferredCreateConnectionViewCommand dashedLineCmd = new CommonDeferredCreateConnectionViewCommand(getEditingDomain(), linkForComment.getSemanticHint(), (sourceEventAdapter), (targetEventAdapter), viewer, diagramPreferencesHint, dashedLineViewDescriptor, null);
+					//					dashedLineCmd.setElement(constraint);
+					dashedLineCmd.setElement(null);
+					if(dashedLineCmd.canExecute()) {
+						cc.compose(dashedLineCmd);
+					}
+				}
+			}
+
+		}
+		return new ICommandProxy(cc);
+	}
+
+	/**
+	 * Returns The command to drop the {@link Comment} and the links, if the attached elements are on the diagram
+	 * 
+	 * @param comment
+	 *        the comment to drop
+	 * @param viewer
+	 *        the viewer
+	 * @param diagramPreferencesHint
+	 *        the diagram preference hint
+	 * @param location
+	 *        the location for the drop
+	 * @param containerView
+	 *        the container view for the drop
+	 * @param commentType
+	 *        the IHintedType for the {@link Comment}
+	 * @param linkForComment
+	 *        the IHintedType for the link which attach the {@link Comment} to the annotated Element
+	 * @return
+	 *         The command to drop the {@link Comment} and the link, if the attached elements are on the diagram
+	 */
+	protected Command getDropCommentCommand(Comment comment, EditPartViewer viewer, PreferencesHint diagramPreferencesHint, Point location, View containerView, IHintedType commentType, IHintedType linkForComment) {
+		/* for further information, see bug 302555 */
+		ViewServiceUtil.forceLoad();
+		CompositeCommand cc = new CompositeCommand("dropComment");
+		int nbAnnotated = comment.getAnnotatedElements().size();
+
+		// 0. Obtain list of the annotatedElement
+		ArrayList<Element> endToConnect = new ArrayList<Element>(comment.getAnnotatedElements());
+		GraphicalEditPart[] endEditPart = new GraphicalEditPart[nbAnnotated];
+
+		// 1. Look for if each annotated element is on the diagram
+		Iterator<Element> iteratorProp = endToConnect.iterator();
+		int index = 0;
+		while(iteratorProp.hasNext()) {
+			Element currentAnnotatedElement = iteratorProp.next();
+			endEditPart[index] = (GraphicalEditPart)lookForEditPart(currentAnnotatedElement);
+			index += 1;
+		}
+
+
+		// 2. creation of the node Comment
+		IAdaptable elementAdapter = new EObjectAdapter(comment);
+		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, commentType.getSemanticHint(), ViewUtil.APPEND, false, diagramPreferencesHint);
+		CreateCommand nodeCreationCommand = new CreateCommand(getEditingDomain(), descriptor, (containerView));
+		cc.compose(nodeCreationCommand);
+
+		SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue(), location);
+		cc.compose(setBoundsCommand);
+		// obtain the node figure
+		IAdaptable sourceEventAdapter = (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue();
+		IAdaptable targetEventAdapter = null;
+		if(nbAnnotated != 0) {
+
+
+
+
+			// used in the creation command of each event
+			ConnectionViewDescriptor dashedLineViewDescriptor = new ConnectionViewDescriptor(linkForComment, linkForComment.getSemanticHint(), diagramPreferencesHint);
+
+			// 3. creation of the dashed line between the Constraint and the constrained element
+			for(GraphicalEditPart current : endEditPart) {
+				if(current != null) {
+					targetEventAdapter = new SemanticAdapter(null, current.getModel());
+					CommonDeferredCreateConnectionViewCommand dashedLineCmd = new CommonDeferredCreateConnectionViewCommand(getEditingDomain(), linkForComment.getSemanticHint(), (sourceEventAdapter), (targetEventAdapter), viewer, diagramPreferencesHint, dashedLineViewDescriptor, null);
+					//dashedLineCmd.setElement(comment);
+					dashedLineCmd.setElement(null);
+					if(dashedLineCmd.canExecute()) {
+						cc.compose(dashedLineCmd);
+					}
+				}
+			}
+
+		}
+		return new ICommandProxy(cc);
+	}
+
+
+
 }

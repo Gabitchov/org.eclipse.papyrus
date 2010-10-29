@@ -46,7 +46,7 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
-import org.eclipse.papyrus.diagram.common.editpolicies.CommonDiagramDragDropEditPolicy;
+import org.eclipse.papyrus.diagram.common.editpolicies.OldCommonDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.diagram.common.util.ViewServiceUtil;
 import org.eclipse.papyrus.diagram.communication.custom.commands.CommunicationDeferredCreateConnectionViewCommand;
 import org.eclipse.papyrus.diagram.communication.custom.commands.CustomMessageViewCreateCommand;
@@ -78,7 +78,7 @@ import org.eclipse.uml2.uml.TimeObservation;
 /**
  * A policy to support dNd from the Model Explorer in the communication diagram.
  */
-public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPolicy {
+public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEditPolicy {
 
 	/**
 	 * Instantiates a new custom diagram drag drop edit policy.

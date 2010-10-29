@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.common.editpolicies.CommonDiagramDragDropEditPolicy;
+import org.eclipse.papyrus.diagram.common.editpolicies.OldCommonDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.AssociationEditPart;
 import org.eclipse.papyrus.diagram.usecase.helper.UseCaseLinkMappingHelper;
 import org.eclipse.papyrus.diagram.usecase.part.UMLVisualIDRegistry;
@@ -37,7 +37,7 @@ import org.eclipse.uml2.uml.Element;
  * and binary links. To manage specific drop the method
  * CommonDiagramDragDropEditPolicy.getSpecificDropCommand has to be implemented
  */
-public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPolicy {
+public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEditPolicy {
 
 	/**
 	 * Instantiates a new custom diagram drag drop edit policy with the right link mapping helper
