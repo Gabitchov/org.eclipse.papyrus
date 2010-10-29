@@ -163,4 +163,8 @@ public interface ICustomAppearence {
 	 */
 	// @unused
 	public final static int DEFAULT_UML_PARAMETER = DISP_PARAMETER_DIRECTION | DISP_PARAMETER_NAME | DISP_PARAMETER_TYPE;
+	/**
+	 * default uml instancespecification .
+	 */
+	public final static int DEFAULT_UML_INSTANCESPECIFICATION = DISP_NAME | DISP_TYPE;
 }
