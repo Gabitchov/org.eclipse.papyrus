@@ -111,7 +111,10 @@ public class CustomSemanticCreateCommand extends org.eclipse.gmf.runtime.diagram
 
 		if(cmcd.getReturnCode() == IStatus.OK) {
 			this.addedMetaclasses = cmcd.getSelectedElements();
-			result = applyModification();
+			if(!this.addedMetaclasses.isEmpty()) {
+				result = applyModification();
+			}
+			//else we return a cancelled command result (avoid an Undo for nothing for the user!)
 		}
 		return result;
 
