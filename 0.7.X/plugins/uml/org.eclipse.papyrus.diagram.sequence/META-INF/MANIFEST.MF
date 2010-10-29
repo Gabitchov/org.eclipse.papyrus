@@ -40,7 +40,8 @@ Require-Bundle: org.eclipse.core.expressions,
  org.eclipse.gef,
  org.eclipse.emf.validation;visibility:=reexport,
  org.eclipse.papyrus.ui.toolbox,
- org.eclipse.papyrus.service.edit
+ org.eclipse.papyrus.service.edit,
+ org.eclipse.gmf.runtime.notation;visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ClassPath: .

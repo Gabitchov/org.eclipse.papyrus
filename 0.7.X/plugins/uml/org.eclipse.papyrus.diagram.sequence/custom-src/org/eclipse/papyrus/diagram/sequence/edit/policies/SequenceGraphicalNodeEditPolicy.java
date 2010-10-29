@@ -37,6 +37,7 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.internal.commands.SetConnectionBendpointsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.jface.viewers.ILabelProvider;
@@ -189,8 +190,8 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 			return UnexecutableCommand.INSTANCE;
 		}
 		// disable the following code if we are not creating a message.
-		if(request instanceof CreateConnectionViewAndElementRequest) {
-			String requestHint = ((CreateConnectionViewAndElementRequest)request).getConnectionViewAndElementDescriptor().getSemanticHint();
+		if(request instanceof CreateConnectionViewRequest) {
+			String requestHint = ((CreateConnectionViewRequest)request).getConnectionViewDescriptor().getSemanticHint();
 			if(!isMessageHint(requestHint)) {
 				return command;
 			}

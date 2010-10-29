@@ -88,7 +88,7 @@ public class Message4ReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected boolean canReorientTarget() {
 		if(!(oldEnd instanceof Element && newEnd instanceof Element)) {

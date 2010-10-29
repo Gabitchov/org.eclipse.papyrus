@@ -21,7 +21,6 @@ import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
-import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
@@ -69,7 +68,7 @@ import org.eclipse.uml2.uml.TimeObservation;
  * 
  * @author vhemery
  */
-public class OccurenceSpecificationMoveHelper {
+public class OccurrenceSpecificationMoveHelper {
 
 	/**
 	 * Get the complete command to move or reconnect all edit parts attached to one or two occurrence specification(s).
@@ -88,7 +87,7 @@ public class OccurenceSpecificationMoveHelper {
 	 *        list of edit parts which must not be moved in the created command
 	 * @return command to move all edit parts linked to the occurrence specifications or null
 	 */
-	private static Command getMoveOccurrenceSpecificationsCommand(OccurrenceSpecification movedOccurrenceSpecification1, OccurrenceSpecification movedOccurrenceSpecification2, int yLocation1, int yLocation2, LifelineEditPart lifelinePart, List<EditPart> notToMoveEditParts) {
+	public static Command getMoveOccurrenceSpecificationsCommand(OccurrenceSpecification movedOccurrenceSpecification1, OccurrenceSpecification movedOccurrenceSpecification2, int yLocation1, int yLocation2, LifelineEditPart lifelinePart, List<EditPart> notToMoveEditParts) {
 		// the global command which shall be completed and returned
 		CompoundCommand globalCmd = new CompoundCommand();
 		// move the corresponding execution specification if necessary
@@ -335,8 +334,8 @@ public class OccurenceSpecificationMoveHelper {
 			// both bounds may have changed
 			Point referencePoint1 = getReferencePoint(lifelinePart, movedOccurrenceSpecification1, yLocation1);
 			Point referencePoint2 = getReferencePoint(lifelinePart, movedOccurrenceSpecification2, yLocation2);
-			makeRelativeToLifeline(referencePoint1, lifelinePart);
-			makeRelativeToLifeline(referencePoint2, lifelinePart);
+			makeRelativeToLifeline(referencePoint1, lifelinePart, false);
+			makeRelativeToLifeline(referencePoint2, lifelinePart, false);
 			// Get old bounds information by consulting old figure
 			int oldY = timePart.getFigure().getBounds().getLocation().y - lifelineFigure.getBounds().getLocation().y;
 			int oldHeight = timePart.getFigure().getSize().height;
@@ -363,7 +362,7 @@ public class OccurenceSpecificationMoveHelper {
 			}
 		} else if(position1 != PositionConstants.NONE) {
 			Point referencePoint1 = getReferencePoint(lifelinePart, movedOccurrenceSpecification1, yLocation1);
-			makeRelativeToLifeline(referencePoint1, lifelinePart);
+			makeRelativeToLifeline(referencePoint1, lifelinePart, false);
 			// Get old bounds information by consulting old figure
 			int oldY = timePart.getFigure().getBounds().getLocation().y - lifelineFigure.getBounds().getLocation().y;
 			int oldHeight = timePart.getFigure().getSize().height;
@@ -384,7 +383,7 @@ public class OccurenceSpecificationMoveHelper {
 			}
 		} else if(position2 != PositionConstants.NONE) {
 			Point referencePoint2 = getReferencePoint(lifelinePart, movedOccurrenceSpecification2, yLocation2);
-			makeRelativeToLifeline(referencePoint2, lifelinePart);
+			makeRelativeToLifeline(referencePoint2, lifelinePart, false);
 			// Get old bounds information by consulting old figure
 			int oldY = timePart.getFigure().getBounds().getLocation().y - lifelineFigure.getBounds().getLocation().y;
 			int oldHeight = timePart.getFigure().getSize().height;
@@ -421,25 +420,15 @@ public class OccurenceSpecificationMoveHelper {
 	 * @param lifelinePart
 	 *        the containing lifeline edit part
 	 */
-	private static void makeRelativeToLifeline(Point absolutePoint, LifelineEditPart lifelinePart) {
-		IFigure figure = lifelinePart.getFigure();
+	private static void makeRelativeToLifeline(Point absolutePoint, LifelineEditPart lifelinePart, boolean relativeToContentPane) {
+		IFigure figure;
+		if(relativeToContentPane) {
+			figure = lifelinePart.getContentPane();
+		} else {
+			figure = lifelinePart.getFigure();
+		}
 		figure.translateToRelative(absolutePoint);
 		absolutePoint.translate(figure.getBounds().getLocation().getNegated());
-	}
-
-	/**
-	 * Translate bounds to use for an execution specification in order to take in account the difference with the content pane.
-	 * 
-	 * @param bounds
-	 *        bounds to translate
-	 * @param lifelinePart
-	 *        the containing lifeline edit part
-	 */
-	private static void adjustBoundsToExecutionSpecificationContainer(Rectangle bounds, LifelineEditPart lifelinePart) {
-		Rectangle paneBounds = lifelinePart.getContentPane().getBounds();
-		Rectangle figureBounds = lifelinePart.getFigure().getBounds();
-		Dimension diff = figureBounds.getLocation().getDifference(paneBounds.getLocation());
-		bounds.translate(diff.width, diff.height);
 	}
 
 	/**
@@ -534,8 +523,8 @@ public class OccurenceSpecificationMoveHelper {
 				// both bounds have changed
 				Point referencePoint1 = getReferencePoint(lifelinePart, movedOccurrenceSpecification1, yLocation1);
 				Point referencePoint2 = getReferencePoint(lifelinePart, movedOccurrenceSpecification2, yLocation2);
-				makeRelativeToLifeline(referencePoint1, lifelinePart);
-				makeRelativeToLifeline(referencePoint2, lifelinePart);
+				makeRelativeToLifeline(referencePoint1, lifelinePart, true);
+				makeRelativeToLifeline(referencePoint2, lifelinePart, true);
 				// Get old bounds information by consulting old figure
 				int oldX = executionSpecificationPart.getFigure().getBounds().getLocation().x - lifelineFigure.getBounds().getLocation().x;
 				int oldY = executionSpecificationPart.getFigure().getBounds().getLocation().y - lifelineFigure.getBounds().getLocation().y;
@@ -559,7 +548,7 @@ public class OccurenceSpecificationMoveHelper {
 				newBounds = new Rectangle(oldX, Math.min(top, bottom), oldWidth, Math.abs(bottom - top));
 			} else if(position1 != PositionConstants.NONE) {
 				Point referencePoint1 = getReferencePoint(lifelinePart, movedOccurrenceSpecification1, yLocation1);
-				makeRelativeToLifeline(referencePoint1, lifelinePart);
+				makeRelativeToLifeline(referencePoint1, lifelinePart, true);
 				// Get old bounds information by consulting old figure
 				int oldX = executionSpecificationPart.getFigure().getBounds().getLocation().x - lifelineFigure.getBounds().getLocation().x;
 				int oldY = executionSpecificationPart.getFigure().getBounds().getLocation().y - lifelineFigure.getBounds().getLocation().y;
@@ -578,7 +567,7 @@ public class OccurenceSpecificationMoveHelper {
 				newBounds = new Rectangle(oldX, Math.min(top, bottom), oldWidth, Math.abs(bottom - top));
 			} else if(position2 != PositionConstants.NONE) {
 				Point referencePoint2 = getReferencePoint(lifelinePart, movedOccurrenceSpecification2, yLocation2);
-				makeRelativeToLifeline(referencePoint2, lifelinePart);
+				makeRelativeToLifeline(referencePoint2, lifelinePart, true);
 				// Get old bounds information by consulting old figure
 				int oldX = executionSpecificationPart.getFigure().getBounds().getLocation().x - lifelineFigure.getBounds().getLocation().x;
 				int oldY = executionSpecificationPart.getFigure().getBounds().getLocation().y - lifelineFigure.getBounds().getLocation().y;
@@ -598,7 +587,6 @@ public class OccurenceSpecificationMoveHelper {
 			}
 			if(newBounds != null) {
 				// adjust bounds for execution specification
-				adjustBoundsToExecutionSpecificationContainer(newBounds, lifelinePart);
 				TransactionalEditingDomain editingDomain = executionSpecificationPart.getEditingDomain();
 				// return the resize command
 				ICommandProxy resize = new ICommandProxy(new SetBoundsCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter((View)executionSpecificationPart.getModel()), newBounds));

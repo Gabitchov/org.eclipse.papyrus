@@ -51,7 +51,7 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.DestructionEventEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
-import org.eclipse.papyrus.diagram.sequence.util.OccurenceSpecificationMoveHelper;
+import org.eclipse.papyrus.diagram.sequence.util.OccurrenceSpecificationMoveHelper;
 import org.eclipse.papyrus.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.papyrus.diagram.sequence.util.SequenceUtil;
 
@@ -375,7 +375,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 
 					newBounds = getExecutionSpecificationNewBounds(isMove, lifelineEP, oldBounds, newBounds, notToCheckExecutionSpecificationList, useFixedXPos);
 					if(newBounds == null) {
-						return null; // UnexecutableCommand.INSTANCE
+						return UnexecutableCommand.INSTANCE;
 					}
 
 					// Create and add the command to the compound command
@@ -392,7 +392,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 					}
 
 					// Move also linked Time elements
-					compoundCmd = OccurenceSpecificationMoveHelper.completeMoveExecutionSpecificationCommand(compoundCmd, executionSpecificationEP, newBounds, request);
+					compoundCmd = OccurrenceSpecificationMoveHelper.completeMoveExecutionSpecificationCommand(compoundCmd, executionSpecificationEP, newBounds, request);
 
 					IFigure parentFigure = executionSpecificationEP.getFigure().getParent();
 					parentFigure.translateToAbsolute(newBounds);

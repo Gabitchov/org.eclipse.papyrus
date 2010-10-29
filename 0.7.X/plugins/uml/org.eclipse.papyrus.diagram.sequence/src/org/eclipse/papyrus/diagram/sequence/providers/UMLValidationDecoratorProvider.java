@@ -37,7 +37,6 @@ import org.eclipse.gmf.runtime.draw2d.ui.mapmode.MapModeUtil;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.core.utils.CrossReferencerUtil;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditor;
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
@@ -217,47 +216,24 @@ public class UMLValidationDecoratorProvider extends AbstractProvider implements 
 			}
 			int severity = IMarker.SEVERITY_INFO;
 			IMarker foundMarker = null;
-			IResource gmfResource = WorkspaceSynchronizer.getFile(view.eResource());
-			if(gmfResource == null || !gmfResource.exists()) {
+			IResource resource = WorkspaceSynchronizer.getFile(view.eResource());
+			if(resource == null || !resource.exists()) {
 				return;
 			}
-			IResource emfResource = null;
-			if(view.getElement() != null) {
-				emfResource = WorkspaceSynchronizer.getFile(view.getElement().eResource());
-				// allow emfResource being empty, since there might be gmf views without an EObject behind;
-			}
-
-			IMarker[] gmfMarkers = null;
-			IMarker[] emfMarkers = new IMarker[0];
+			IMarker[] markers = null;
 			try {
-				gmfMarkers = gmfResource.findMarkers(MARKER_TYPE, true, IResource.DEPTH_INFINITE);
-				if(emfResource != null) {
-					emfMarkers = emfResource.findMarkers(IMarker.PROBLEM, true, IResource.DEPTH_INFINITE);
-				}
+				markers = resource.findMarkers(MARKER_TYPE, true, IResource.DEPTH_INFINITE);
 			} catch (CoreException e) {
 				UMLDiagramEditorPlugin.getInstance().logError("Validation markers refresh failure", e); //$NON-NLS-1$
 			}
-			if(gmfMarkers == null) {
-				// indicates an exception, findMarkers returns an empty array, if there are no markers
+			if(markers == null || markers.length == 0) {
 				return;
 			}
 			Label toolTip = null;
-			// look for GMF markers
-			for(int i = 0; i < gmfMarkers.length + emfMarkers.length; i++) {
-				IMarker marker;
-				boolean markerIsForMe = false;
-				if(i < gmfMarkers.length) {
-					// get marker from GMF list
-					marker = gmfMarkers[i];
-					String attribute = marker.getAttribute(org.eclipse.gmf.runtime.common.ui.resources.IMarker.ELEMENT_ID, ""); //$NON-NLS-1$
-					markerIsForMe = attribute.equals(elementId);
-				} else {
-					// get marker from EMF list
-					marker = emfMarkers[i - gmfMarkers.length];
-					EObject eObjectOfMarker = getEObjectFromMarkerOrMap(marker, null, TransactionUtil.getEditingDomain(view));
-					markerIsForMe = (eObjectOfMarker == view.getElement());
-				}
-				if(markerIsForMe) {
+			for(int i = 0; i < markers.length; i++) {
+				IMarker marker = markers[i];
+				String attribute = marker.getAttribute(org.eclipse.gmf.runtime.common.ui.resources.IMarker.ELEMENT_ID, ""); //$NON-NLS-1$
+				if(attribute.equals(elementId)) {
 					int nextSeverity = marker.getAttribute(IMarker.SEVERITY, IMarker.SEVERITY_INFO);
 					Image nextImage = getImage(nextSeverity);
 					if(foundMarker == null) {
@@ -419,7 +395,9 @@ public class UMLValidationDecoratorProvider extends AbstractProvider implements 
 		 * @generated
 		 */
 		public void handleMarkerAdded(IMarker marker) {
-			handleMarkerChanged(marker);
+			if(marker.getAttribute(org.eclipse.gmf.runtime.common.ui.resources.IMarker.ELEMENT_ID, null) != null) {
+				handleMarkerChanged(marker);
+			}
 		}
 
 		/**
@@ -427,38 +405,18 @@ public class UMLValidationDecoratorProvider extends AbstractProvider implements 
 		 */
 		public void handleMarkerDeleted(IMarker marker, Map attributes) {
 			String viewId = (String)attributes.get(org.eclipse.gmf.runtime.common.ui.resources.IMarker.ELEMENT_ID);
-			if(viewId != null) {
-				refreshDecorators(viewId, diagram);
-			} else /* if (getType(marker).equals(IMarker.PROBLEM)) */{
-				// no viewID => assume EMF validation marker
-				EObject eObjectFromMarker = getEObjectFromMarkerOrMap(null, attributes, TransactionUtil.getEditingDomain(diagram));
-
-				if(eObjectFromMarker != null) {
-					// loop over all views that reference the eObject from the marker
-					for(View view : CrossReferencerUtil.getCrossReferencingViews(eObjectFromMarker, null)) {
-						refreshDecorators(view);
-					}
-				}
-			}
+			refreshDecorators(viewId, diagram);
 		}
 
 		/**
 		 * @generated
 		 */
 		public void handleMarkerChanged(IMarker marker) {
-			if(getType(marker).equals(MARKER_TYPE)) {
-				String viewId = marker.getAttribute(org.eclipse.gmf.runtime.common.ui.resources.IMarker.ELEMENT_ID, ""); //$NON-NLS-1$
-				refreshDecorators(viewId, diagram);
-			} else /* if (getType(marker).equals(IMarker.PROBLEM)) */{
-				EObject eObjectFromMarker = getEObjectFromMarkerOrMap(marker, null, TransactionUtil.getEditingDomain(diagram));
-
-				if(eObjectFromMarker != null) {
-					// loop over all views that reference the eObject from the marker
-					for(View view : CrossReferencerUtil.getCrossReferencingViews(eObjectFromMarker, null)) {
-						refreshDecorators(view);
-					}
-				}
+			if(!MARKER_TYPE.equals(getType(marker))) {
+				return;
 			}
+			String viewId = marker.getAttribute(org.eclipse.gmf.runtime.common.ui.resources.IMarker.ELEMENT_ID, ""); //$NON-NLS-1$
+			refreshDecorators(viewId, diagram);
 		}
 
 		/**

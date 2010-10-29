@@ -2185,237 +2185,12 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 
 
 
-		case DurationConstraintEditPart.VISUAL_ID:
-		{
-
-
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForDurationConstraintEditPart(view, parentElement);
-
-		}
-
-		case CombinedFragment2EditPart.VISUAL_ID:
-		{
-
-
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForCombinedFragment2EditPart(view, parentElement);
-
-		}
-
-		case Message4EditPart.VISUAL_ID:
-		{
-
-
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForMessage4EditPart(view, parentElement);
-
-		}
-
-		case ConstraintConstrainedElementEditPart.VISUAL_ID:
-		{
-
-
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForConstraintConstrainedElementEditPart(view, parentElement);
-
-		}
-
-		case PackageEditPart.VISUAL_ID:
-		{
-
-
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForPackageEditPart(view, parentElement);
-
-		}
-
-		case InteractionEditPart.VISUAL_ID:
-		{
-
-
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForInteractionEditPart(view, parentElement);
-
-		}
-
-		case LifelineEditPart.VISUAL_ID:
-		{
-
-
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForLifelineEditPart(view, parentElement);
-
-		}
-
-		case StateInvariantEditPart.VISUAL_ID:
-		{
-
-
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForStateInvariantEditPart(view, parentElement);
-
-		}
-
-		case ConstraintEditPart.VISUAL_ID:
-		{
-
-
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForConstraintEditPart(view, parentElement);
-
-		}
-
-		case Message2EditPart.VISUAL_ID:
-		{
-
-
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForMessage2EditPart(view, parentElement);
-
-		}
-
 		case ActionExecutionSpecificationEditPart.VISUAL_ID:
 		{
 
 
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForActionExecutionSpecificationEditPart(view, parentElement);
-
-		}
-
-		case Message6EditPart.VISUAL_ID:
-		{
-
-
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForMessage6EditPart(view, parentElement);
-
-		}
-
-		case CommentAnnotatedElementEditPart.VISUAL_ID:
-		{
-
-
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForCommentAnnotatedElementEditPart(view, parentElement);
-
-		}
-
-		case InteractionOperandEditPart.VISUAL_ID:
-		{
-
-
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForInteractionOperandEditPart(view, parentElement);
-
-		}
-
-		case DurationConstraintInMessageEditPart.VISUAL_ID:
-		{
-
-
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForDurationConstraintInMessageEditPart(view, parentElement);
-
-		}
-
-		case InteractionUseEditPart.VISUAL_ID:
-		{
-
-
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForInteractionUseEditPart(view, parentElement);
-
-		}
-
-		case MessageEditPart.VISUAL_ID:
-		{
-
-
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForMessageEditPart(view, parentElement);
-
-		}
-
-		case DestructionEventEditPart.VISUAL_ID:
-		{
-
-
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForDestructionEventEditPart(view, parentElement);
-
-		}
-
-		case TimeObservationEditPart.VISUAL_ID:
-		{
-
-
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForTimeObservationEditPart(view, parentElement);
-
-		}
-
-		case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
-		{
-
-
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForBehaviorExecutionSpecificationEditPart(view, parentElement);
-
-		}
-
-		case Message3EditPart.VISUAL_ID:
-		{
-
-
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForMessage3EditPart(view, parentElement);
-
-		}
-
-		case DurationObservationEditPart.VISUAL_ID:
-		{
-
-
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForDurationObservationEditPart(view, parentElement);
-
-		}
-
-		case CommentEditPart.VISUAL_ID:
-		{
-
-
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForCommentEditPart(view, parentElement);
-
-		}
-
-		case TimeConstraintEditPart.VISUAL_ID:
-		{
-
-
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForTimeConstraintEditPart(view, parentElement);
-
-		}
-
-		case Message7EditPart.VISUAL_ID:
-		{
-
-
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForMessage7EditPart(view, parentElement);
-
-		}
-
-		case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
-		{
-
-
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForConsiderIgnoreFragmentEditPart(view, parentElement);
 
 		}
 
@@ -2428,12 +2203,57 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 
 		}
 
-		case ContinuationEditPart.VISUAL_ID:
+		case DurationConstraintInMessageEditPart.VISUAL_ID:
 		{
 
 
 			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForContinuationEditPart(view, parentElement);
+			return getViewChildrenForDurationConstraintInMessageEditPart(view, parentElement);
+
+		}
+
+		case Message7EditPart.VISUAL_ID:
+		{
+
+
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForMessage7EditPart(view, parentElement);
+
+		}
+
+		case Message6EditPart.VISUAL_ID:
+		{
+
+
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForMessage6EditPart(view, parentElement);
+
+		}
+
+		case InteractionOperandEditPart.VISUAL_ID:
+		{
+
+
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForInteractionOperandEditPart(view, parentElement);
+
+		}
+
+		case CombinedFragment2EditPart.VISUAL_ID:
+		{
+
+
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForCombinedFragment2EditPart(view, parentElement);
+
+		}
+
+		case Message2EditPart.VISUAL_ID:
+		{
+
+
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForMessage2EditPart(view, parentElement);
 
 		}
 
@@ -2443,6 +2263,186 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForCombinedFragmentEditPart(view, parentElement);
+
+		}
+
+		case ConstraintConstrainedElementEditPart.VISUAL_ID:
+		{
+
+
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForConstraintConstrainedElementEditPart(view, parentElement);
+
+		}
+
+		case ConstraintEditPart.VISUAL_ID:
+		{
+
+
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForConstraintEditPart(view, parentElement);
+
+		}
+
+		case CommentEditPart.VISUAL_ID:
+		{
+
+
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForCommentEditPart(view, parentElement);
+
+		}
+
+		case InteractionEditPart.VISUAL_ID:
+		{
+
+
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForInteractionEditPart(view, parentElement);
+
+		}
+
+		case InteractionUseEditPart.VISUAL_ID:
+		{
+
+
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForInteractionUseEditPart(view, parentElement);
+
+		}
+
+		case StateInvariantEditPart.VISUAL_ID:
+		{
+
+
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForStateInvariantEditPart(view, parentElement);
+
+		}
+
+		case DurationConstraintEditPart.VISUAL_ID:
+		{
+
+
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForDurationConstraintEditPart(view, parentElement);
+
+		}
+
+		case CommentAnnotatedElementEditPart.VISUAL_ID:
+		{
+
+
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForCommentAnnotatedElementEditPart(view, parentElement);
+
+		}
+
+		case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
+		{
+
+
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForBehaviorExecutionSpecificationEditPart(view, parentElement);
+
+		}
+
+		case DurationObservationEditPart.VISUAL_ID:
+		{
+
+
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForDurationObservationEditPart(view, parentElement);
+
+		}
+
+		case DestructionEventEditPart.VISUAL_ID:
+		{
+
+
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForDestructionEventEditPart(view, parentElement);
+
+		}
+
+		case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
+		{
+
+
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForConsiderIgnoreFragmentEditPart(view, parentElement);
+
+		}
+
+		case ContinuationEditPart.VISUAL_ID:
+		{
+
+
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForContinuationEditPart(view, parentElement);
+
+		}
+
+		case PackageEditPart.VISUAL_ID:
+		{
+
+
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForPackageEditPart(view, parentElement);
+
+		}
+
+		case TimeObservationEditPart.VISUAL_ID:
+		{
+
+
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForTimeObservationEditPart(view, parentElement);
+
+		}
+
+		case Message4EditPart.VISUAL_ID:
+		{
+
+
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForMessage4EditPart(view, parentElement);
+
+		}
+
+		case TimeConstraintEditPart.VISUAL_ID:
+		{
+
+
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForTimeConstraintEditPart(view, parentElement);
+
+		}
+
+		case Message3EditPart.VISUAL_ID:
+		{
+
+
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForMessage3EditPart(view, parentElement);
+
+		}
+
+		case MessageEditPart.VISUAL_ID:
+		{
+
+
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForMessageEditPart(view, parentElement);
+
+		}
+
+		case LifelineEditPart.VISUAL_ID:
+		{
+
+
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForLifelineEditPart(view, parentElement);
 
 		}
 

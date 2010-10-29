@@ -69,6 +69,41 @@ public class Messages extends NLS {
 	public static String CommandHelper_CreateMessage;
 
 	/**
+	 * Error message for when an error occurs in FragmentOrderingKeeper evaluation.
+	 * 
+	 * @generated NOT
+	 */
+	public static String FragmentOrderingKeeper_error;
+
+	/**
+	 * Error notification title when a link can not be dropped
+	 * 
+	 * @generated NOT
+	 */
+	public static String DropError_DefaultTitle;
+
+	/**
+	 * Error notification message when a link can not be dropped
+	 * 
+	 * @generated NOT
+	 */
+	public static String DropError_DefaultTxt;
+
+	/**
+	 * Error notification title when a message can not be dropped because it goes uphill
+	 * 
+	 * @generated NOT
+	 */
+	public static String DropError_UphillMessageTitle;
+
+	/**
+	 * Error notification message when a message can not be dropped because it goes uphill
+	 * 
+	 * @generated NOT
+	 */
+	public static String DropError_UphillMessageTxt;
+
+	/**
 	 * @generated
 	 */
 	public static String UMLCreationWizardTitle;
@@ -974,11 +1009,4 @@ public class Messages extends NLS {
 	public static String UMLModelingAssistantProviderMessage;
 
 	// TODO: put accessor fields manually
-
-	/**
-	 * Error message for when an error occurs in FragmentOrderingKeeper evaluation.
-	 * 
-	 * @generated NOT
-	 */
-	public static String FragmentOrderingKeeper_error;
 }

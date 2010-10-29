@@ -27,6 +27,7 @@ import org.eclipse.uml2.uml.Gate;
 import org.eclipse.uml2.uml.GeneralOrdering;
 import org.eclipse.uml2.uml.MessageEnd;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
+import org.eclipse.uml2.uml.OccurrenceSpecification;
 
 /**
  * A link mapping helper used for dNd.
@@ -67,7 +68,7 @@ public class SequenceLinkMappingHelper implements ILinkMappingHelper {
 
 			public java.util.Collection<?> caseMessage(org.eclipse.uml2.uml.Message object) {
 				if(object.getSendEvent() != null) {
-					MessageEnd messageEnd = (MessageEnd)object.getSendEvent();
+					MessageEnd messageEnd = object.getSendEvent();
 					if(messageEnd instanceof MessageOccurrenceSpecification) {
 						return ((MessageOccurrenceSpecification)messageEnd).getCovereds();
 					} else if(messageEnd instanceof Gate) {
@@ -75,13 +76,16 @@ public class SequenceLinkMappingHelper implements ILinkMappingHelper {
 						sources.add(((Gate)messageEnd).getOwner());
 						return sources;
 					}
+				} else {
+					return Collections.singletonList(object.getInteraction());
 				}
 				return Collections.EMPTY_LIST;
 			};
 
 			public Collection<?> caseGeneralOrdering(GeneralOrdering object) {
 				if(object.getBefore() != null) {
-					return Collections.singletonList(object.getBefore());
+					OccurrenceSpecification before = object.getBefore();
+					return before.getCovereds();
 				}
 				return Collections.EMPTY_LIST;
 			}
@@ -104,13 +108,16 @@ public class SequenceLinkMappingHelper implements ILinkMappingHelper {
 						sources.add(((Gate)messageEnd).getOwner());
 						return sources;
 					}
+				} else {
+					return Collections.singletonList(object.getInteraction());
 				}
 				return Collections.EMPTY_LIST;
 			};
 
 			public Collection<?> caseGeneralOrdering(GeneralOrdering object) {
 				if(object.getAfter() != null) {
-					return Collections.singletonList(object.getAfter());
+					OccurrenceSpecification after = object.getAfter();
+					return after.getCovereds();
 				}
 				return Collections.EMPTY_LIST;
 			}

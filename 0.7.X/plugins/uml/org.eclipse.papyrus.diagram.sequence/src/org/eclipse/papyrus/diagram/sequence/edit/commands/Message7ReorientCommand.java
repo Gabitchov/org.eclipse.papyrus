@@ -56,19 +56,20 @@ public class Message7ReorientCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Block reorient source or target
+	 * Block reorient source
 	 * 
-	 * @generated NOT
+	 * @generated NOT do not reorient source
 	 */
 	public boolean canExecute() {
 		if(false == getElementToEdit() instanceof Message) {
 			return false;
 		}
 		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+			// do not reorient source
 			// return canReorientSource();
 		}
 		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
-			// return canReorientTarget();
+			return canReorientTarget();
 		}
 		return false;
 	}

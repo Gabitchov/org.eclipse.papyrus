@@ -17,7 +17,7 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolicy;
-import org.eclipse.papyrus.diagram.sequence.util.OccurenceSpecificationMoveHelper;
+import org.eclipse.papyrus.diagram.sequence.util.OccurrenceSpecificationMoveHelper;
 
 /**
  * Edit policy to restrict border item movement. This edit policy moves the related events when a Time/Duration Observation/Constraint is moved.
@@ -28,11 +28,11 @@ public class TimeRelatedSelectionEditPolicy extends BorderItemSelectionEditPolic
 	protected Command getMoveCommand(ChangeBoundsRequest request) {
 		// Prepare request
 		if(getHost() instanceof IBorderItemEditPart) {
-			OccurenceSpecificationMoveHelper.prepareTimeRelatedElementMoveRequest(request, (IBorderItemEditPart)getHost());
+			OccurrenceSpecificationMoveHelper.prepareTimeRelatedElementMoveRequest(request, (IBorderItemEditPart)getHost());
 		}
 		Command command = super.getMoveCommand(request);
 		if(command != null) {
-			command = OccurenceSpecificationMoveHelper.completeMoveTimeRelatedElementCommand(command, request, getHost(), getHostFigure());
+			command = OccurrenceSpecificationMoveHelper.completeMoveTimeRelatedElementCommand(command, request, getHost(), getHostFigure());
 		}
 		return command;
 	}
