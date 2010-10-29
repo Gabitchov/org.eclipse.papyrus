@@ -14,24 +14,19 @@
 package org.eclipse.papyrus.uml.service.types.helper.advice;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
-import org.eclipse.gmf.runtime.notation.Shape;
-import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.core.utils.PapyrusEcoreUtils;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
+import org.eclipse.uml2.uml.PartDecomposition;
 
 /**
  * Helper advice for all {@link Lifeline} elements.
@@ -61,13 +56,10 @@ public class LifelineHelperAdvice extends AbstractEditHelperAdvice {
 			}
 		}
 
-		// remove child lifelines
-		Collection<Setting> usages = PapyrusEcoreUtils.getUsages(lifeline);
-
-		for(Setting usage : usages) {
-			if(usage.getEObject() instanceof View) {
-				dependentsToDestroy.addAll(getChildLifelinesFromView((View)usage.getEObject()));
-			}
+		// Destroy decomposed lifelines
+		PartDecomposition decomposition = lifeline.getDecomposedAs();
+		if (decomposition != null && PapyrusEcoreUtils.isOnlyUsage(decomposition, lifeline)) {
+			dependentsToDestroy.add(decomposition);
 		}
 
 		// return command to destroy dependents
@@ -77,28 +69,4 @@ public class LifelineHelperAdvice extends AbstractEditHelperAdvice {
 
 		return null;
 	}
-
-	/**
-	 * Child lifelines are not linked to the parent lifeline in the UML model, but they are visually.
-	 * Use this "visual" information from the notation model to complete the destroy with all child lifelines.
-	 * 
-	 * @param lifelineView
-	 *        the view of a Lifeline
-	 * @return the child lifelines
-	 */
-	public static Set<Lifeline> getChildLifelinesFromView(View lifelineView) {
-		Set<Lifeline> childLifelines = new HashSet<Lifeline>();
-
-		for(Object view : lifelineView.getChildren()) {
-			if (view instanceof Shape) {
-				EObject elem = ((Shape)view).getElement();
-				if(elem instanceof Lifeline) {
-					childLifelines.add((Lifeline)elem);
-				}
-			}
-		}
-
-		return childLifelines;
-	}
-
 }

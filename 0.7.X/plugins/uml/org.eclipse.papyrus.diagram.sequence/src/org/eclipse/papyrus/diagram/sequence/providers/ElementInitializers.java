@@ -539,27 +539,30 @@ public class ElementInitializers {
 		return base;
 	}
 
-	public static String getNextNumberedName(Collection<NamedElement> currentElements, String base) {
+	@SuppressWarnings("rawtypes")
+	public static String getNextNumberedName(Collection currentElements, String base) {
 		int nextNumber = -1;
 
-		for(NamedElement e : currentElements) {
-			String name = e.getName();
-			if(name != null && name.startsWith(base)) {
-				String end = name.substring(base.length());
-				int nextNumberTmp = -1;
+		for(Object o : currentElements) {
+			if(o instanceof NamedElement) {
+				String name = ((NamedElement)o).getName();
+				if(name != null && name.startsWith(base)) {
+					String end = name.substring(base.length());
+					int nextNumberTmp = -1;
 
-				if(end.trim().equals("")) {
-					nextNumberTmp = 0;
-				} else {
-					try {
-						nextNumberTmp = Integer.parseInt(end) + 1;
-					} catch (NumberFormatException ex) {
-						nextNumberTmp = -1;
+					if(end.trim().equals("")) {
+						nextNumberTmp = 0;
+					} else {
+						try {
+							nextNumberTmp = Integer.parseInt(end) + 1;
+						} catch (NumberFormatException ex) {
+							nextNumberTmp = -1;
+						}
 					}
-				}
 
-				if(nextNumberTmp > nextNumber) {
-					nextNumber = nextNumberTmp;
+					if(nextNumberTmp > nextNumber) {
+						nextNumber = nextNumberTmp;
+					}
 				}
 			}
 		}

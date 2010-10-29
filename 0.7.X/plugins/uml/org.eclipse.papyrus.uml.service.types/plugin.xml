@@ -1799,6 +1799,12 @@
        inheritance="none"
        typeId="org.eclipse.papyrus.uml.Generalization">
  </adviceBinding>
+ <adviceBinding
+       class="org.eclipse.papyrus.uml.service.types.helper.advice.PartDecompositionHelperAdvice"
+       id="org.eclipse.papyrus.uml.advice.PartDecomposition"
+       inheritance="none"
+       typeId="org.eclipse.papyrus.uml.PartDecomposition">
+ </adviceBinding>
 					
 	</metamodel>
 </extension>
@@ -1824,6 +1830,9 @@
   </advice>
   <advice
         ref="org.eclipse.papyrus.uml.advice.MessageEnd">
+  </advice>
+  <advice
+        ref="org.eclipse.papyrus.uml.advice.PartDecomposition">
   </advice>
 				
 	</binding>
