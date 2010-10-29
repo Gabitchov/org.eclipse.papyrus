@@ -15,6 +15,7 @@
 package org.eclipse.papyrus.modelexplorer.validation;
 
 import java.util.List;
+import java.util.MissingResourceException;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
@@ -84,8 +85,13 @@ public class ValidationTool {
 				if (marker.isSubtypeOf((EValidator.MARKER))) {
 					String uriAttribute = marker.getAttribute(EValidator.URI_ATTRIBUTE, null);
 					if(uriAttribute != null) {
-						URI uriOfMarker = URI.createURI(uriAttribute);
-						return domain.getResourceSet().getEObject(uriOfMarker, true);
+						try {
+							URI uriOfMarker = URI.createURI(uriAttribute);
+							return domain.getResourceSet().getEObject(uriOfMarker, true);
+						}
+						catch (MissingResourceException e) {
+							// can happen after renaming
+						}
 					}
 				}
 			}
