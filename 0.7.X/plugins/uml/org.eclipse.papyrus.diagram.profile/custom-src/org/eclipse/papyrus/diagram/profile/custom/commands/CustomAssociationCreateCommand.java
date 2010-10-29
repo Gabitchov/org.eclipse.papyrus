@@ -30,18 +30,6 @@ import org.eclipse.uml2.uml.Type;
  */
 public class CustomAssociationCreateCommand extends org.eclipse.papyrus.diagram.profile.edit.commands.AssociationCreateCommand {
 
-	// code copy from the super class!
-	private static Package deduceContainer(EObject source, EObject target) {
-		// Find container element for the new link.
-		// Climb up by containment hierarchy starting from the source
-		// and return the first element that is instance of the container class.
-		for(EObject element = source; element != null; element = element.eContainer()) {
-			if(element instanceof Package) {
-				return (Package)element;
-			}
-		}
-		return null;
-	}
 
 	/**
 	 * the container

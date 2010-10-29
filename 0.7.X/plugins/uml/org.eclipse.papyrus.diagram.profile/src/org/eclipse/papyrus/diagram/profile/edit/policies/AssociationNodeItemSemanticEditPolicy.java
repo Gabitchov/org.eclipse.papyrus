@@ -69,6 +69,8 @@ public class AssociationNodeItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 	}
 
 
+
+
 	/**
 	 * @generated
 	 */
@@ -91,6 +93,7 @@ public class AssociationNodeItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 		}
 		return getGEFWrapper(cmd.reduce());
 	}
+
 
 	/**
 	 * @generated

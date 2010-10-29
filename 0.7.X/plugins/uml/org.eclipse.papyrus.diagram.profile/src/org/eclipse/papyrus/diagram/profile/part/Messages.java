@@ -418,92 +418,82 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String createCommentlink3CreationTool_title;
+	public static String createLink3CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createCommentlink3CreationTool_desc;
+	public static String createLink3CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createConstraintLink4CreationTool_title;
+	public static String createProfileApplication4CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createConstraintLink4CreationTool_desc;
+	public static String createProfileApplication4CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createProfileApplication5CreationTool_title;
+	public static String createElementImport5CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createProfileApplication5CreationTool_desc;
+	public static String createElementImport5CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createElementImport6CreationTool_title;
+	public static String createPackageImport6CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createElementImport6CreationTool_desc;
+	public static String createPackageImport6CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createPackageImport7CreationTool_title;
+	public static String createDependency7CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createPackageImport7CreationTool_desc;
+	public static String createDependency7CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createDependency8CreationTool_title;
+	public static String createDependencyBranch8CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createDependency8CreationTool_desc;
+	public static String createDependencyBranch8CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createDependencyBranch9CreationTool_title;
+	public static String createAssociation9CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createDependencyBranch9CreationTool_desc;
+	public static String createAssociation9CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createAssociation10CreationTool_title;
+	public static String createAssociationBranch10CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createAssociation10CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String createAssociationBranch11CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String createAssociationBranch11CreationTool_desc;
+	public static String createAssociationBranch10CreationTool_desc;
 
 	/**
 	 * @generated

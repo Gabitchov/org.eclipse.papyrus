@@ -907,7 +907,7 @@
             </initializers>
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
-                value="/0/@expressionProviders/@providers.0/@expressions.8">
+                value="/0/@expressionProviders/@providers.0/@expressions.7">
               <feature
                   href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint/specification"/>
             </initializers>
@@ -1477,7 +1477,7 @@
             </initializers>
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
-                value="/0/@expressionProviders/@providers.0/@expressions.8">
+                value="/0/@expressionProviders/@providers.0/@expressions.7">
               <feature
                   href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint/specification"/>
             </initializers>
@@ -2094,8 +2094,8 @@
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Extension/metaclass"/>
         </modelFacet>
         <creationConstraints
-            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.6"
-            targetEnd="/0/@expressionProviders/@providers.0/@expressions.7"/>
+            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.5"
+            targetEnd="/0/@expressionProviders/@providers.0/@expressions.6"/>
       </links>
       <links
           visualID="4001">
@@ -2240,6 +2240,8 @@
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
+        <creationConstraints
+            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.9"/>
       </links>
       <links
           visualID="1045">
@@ -2329,6 +2331,8 @@
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
+        <creationConstraints
+            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.9"/>
       </links>
       <links
           visualID="4002">
@@ -2387,6 +2391,8 @@
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Generalization/isSubstitutable"/>
           </modelFacet>
         </labels>
+        <creationConstraints
+            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.8"/>
       </links>
       <links
           visualID="4008">
@@ -2473,6 +2479,8 @@
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
+        <creationConstraints
+            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.10"/>
       </links>
       <links
           visualID="4018"
@@ -2514,6 +2522,8 @@
           <targetMetaFeature
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Dependency/supplier"/>
         </modelFacet>
+        <creationConstraints
+            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.10"/>
       </links>
       <links
           visualID="1064">
@@ -2544,7 +2554,7 @@
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
-                value="/0/@expressionProviders/@providers.0/@expressions.5">
+                value="/0/@expressionProviders/@providers.0/@expressions.4">
               <feature
                   href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ElementImport/alias"/>
             </initializers>
@@ -2597,6 +2607,8 @@
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ElementImport/alias"/>
           </modelFacet>
         </labels>
+        <creationConstraints
+            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.11"/>
       </links>
       <links
           visualID="1065">
@@ -2653,6 +2665,8 @@
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/PackageImport/visibility"/>
           </modelFacet>
         </labels>
+        <creationConstraints
+            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.12"/>
       </links>
       <links
           visualID="1022"
@@ -2679,6 +2693,8 @@
           <metaFeature
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Comment/annotatedElement"/>
         </modelFacet>
+        <creationConstraints
+            targetEnd="/0/@expressionProviders/@providers.0/@expressions.13"/>
       </links>
       <links
           visualID="4014">
@@ -2701,6 +2717,8 @@
           <metaFeature
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint/constrainedElement"/>
         </modelFacet>
+        <creationConstraints
+            targetEnd="/0/@expressionProviders/@providers.0/@expressions.14"/>
       </links>
       <compartments
           visualID="1005"
@@ -3258,18 +3276,11 @@
               genLinks="/0/@diagram/@links.4"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
-              title="Comment link"
-              description="Create a comment link"
+              title="Link"
+              description="Create a link for Comment, Constraint"
               largeIconPath="icons/obj16/Link.gif"
               smallIconPath="icons/obj16/Link.gif"
-              genLinks="/0/@diagram/@links.9"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="Constraint Link"
-              description="Create a constaint link"
-              largeIconPath="icons/obj16/Link.gif"
-              smallIconPath="icons/obj16/Link.gif"
-              genLinks="/0/@diagram/@links.10"/>
+              genLinks="/0/@diagram/@links.9 /0/@diagram/@links.10"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
               title="ProfileApplication"
@@ -3425,8 +3436,6 @@
         <expressions
             body="//isAbstract = true&#xD;&#xA;return true;"/>
         <expressions
-            body="//POUR TEST : &#xD;&#xA;&#xD;&#xA;VisibilityKind vis=true;&#xD;&#xA;return vis;"/>
-        <expressions
             body="return &quot;Metaclass&quot;;"/>
         <expressions
             body="if (self.getImportedElement() != null) {&#xD;&#xA;&#x9;&#x9;&#x9;return (self.getImportedElement().getLabel());&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;return &quot;elementimport&quot;;"/>
@@ -3438,6 +3447,27 @@
             body="//ExtensionTarget&#xD;&#xA;&#xD;&#xA;/**we can't make a test here, because, the source must be a Property (ExtensionEnd) and it's a Stereotype&#xD;&#xA; * &#xD;&#xA; * @see org.eclipse.papyrus.diagram.profile.custom.policies.CUMLBaseItemSemanticEditPolicy for the good test!&#xD;&#xA;*/"/>
         <expressions
             body="org.eclipse.uml2.uml.LiteralString literalString=org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createLiteralString();&#xD;&#xA;literalString.setValue(&quot;&quot;);&#xD;&#xA;return literalString;"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="//GeneralizationSource&#xD;&#xA;if((source instanceof org.eclipse.uml2.uml.Type) &amp;&amp; org.eclipse.papyrus.profile.utils.Util.isMetaclass((org.eclipse.uml2.uml.Type)source)) {&#xD;&#xA;&#x9;return false;&#xD;&#xA;}"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="//AssociationSource&#xD;&#xA;if((source instanceof org.eclipse.uml2.uml.Type) &amp;&amp; org.eclipse.papyrus.profile.utils.Util.isMetaclass((org.eclipse.uml2.uml.Type)source)) {&#xD;&#xA;&#x9;return false;&#xD;&#xA;}"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="//DependencySource&#xD;&#xA;if((source instanceof org.eclipse.uml2.uml.Type) &amp;&amp; org.eclipse.papyrus.profile.utils.Util.isMetaclass((org.eclipse.uml2.uml.Type)source)) {&#xD;&#xA;&#x9;return false;&#xD;&#xA;}"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="//ElementImportSource&#xD;&#xA;if((source instanceof org.eclipse.uml2.uml.Type) &amp;&amp; org.eclipse.papyrus.profile.utils.Util.isMetaclass((org.eclipse.uml2.uml.Type)source)) {&#xD;&#xA;&#x9;return false;&#xD;&#xA;}"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="//PackageImportSource&#xD;&#xA;if((source instanceof org.eclipse.uml2.uml.Type) &amp;&amp; org.eclipse.papyrus.profile.utils.Util.isMetaclass((org.eclipse.uml2.uml.Type)source)) {&#xD;&#xA;&#x9;return false;&#xD;&#xA;}"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="//AnnotatedElementLink target&#xD;&#xA;if((target instanceof org.eclipse.uml2.uml.Type) &amp;&amp; org.eclipse.papyrus.profile.utils.Util.isMetaclass((org.eclipse.uml2.uml.Type)target)) {&#xD;&#xA;&#x9;return false;&#xD;&#xA;}"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="//ConstraintedElementLink&#xD;&#xA;if((target instanceof org.eclipse.uml2.uml.Type) &amp;&amp; org.eclipse.papyrus.profile.utils.Util.isMetaclass((org.eclipse.uml2.uml.Type)target)) {&#xD;&#xA;&#x9;return false;&#xD;&#xA;}"/>
       </providers>
     </expressionProviders>
     <labelParsers>

@@ -88,7 +88,13 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class DataTypePropertyEditPart extends CompartmentEditPart implements ITextAwareEditPart, IPrimaryEditPart {
+public class DataTypePropertyEditPart
+
+
+
+extends CompartmentEditPart
+
+implements ITextAwareEditPart, IPrimaryEditPart {
 
 	/**
 	 * @generated

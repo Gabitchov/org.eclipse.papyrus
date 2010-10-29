@@ -189,20 +189,10 @@
  	</entry>
 	<entry
        defineOnly="true"
-       description="Create a comment link"
-       id="createCommentlink3CreationTool"
+       description="Create a link for Comment, Constraint"
+       id="createLink3CreationTool"
        kind="tool"
-       label="Comment link"
-       large_icon="icons/obj16/Link.gif"
-       path=""
-       small_icon="icons/obj16/Link.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create a constaint link"
-       id="createConstraintLink4CreationTool"
-       kind="tool"
-       label="Constraint Link"
+       label="Link"
        large_icon="icons/obj16/Link.gif"
        path=""
        small_icon="icons/obj16/Link.gif">
@@ -210,7 +200,7 @@
 	<entry
        defineOnly="true"
        description="Create a ProfileApplication"
-       id="createProfileApplication5CreationTool"
+       id="createProfileApplication4CreationTool"
        kind="tool"
        label="ProfileApplication"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ProfileApplication.gif"
@@ -220,7 +210,7 @@
 	<entry
        defineOnly="true"
        description="Create an ElementImport"
-       id="createElementImport6CreationTool"
+       id="createElementImport5CreationTool"
        kind="tool"
        label="ElementImport"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ElementImport.gif"
@@ -230,7 +220,7 @@
 	<entry
        defineOnly="true"
        description="Create a PackageImport"
-       id="createPackageImport7CreationTool"
+       id="createPackageImport6CreationTool"
        kind="tool"
        label="PackageImport"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PackageImport.gif"
@@ -240,7 +230,7 @@
 	<entry
        defineOnly="true"
        description="Create a Dependency"
-       id="createDependency8CreationTool"
+       id="createDependency7CreationTool"
        kind="tool"
        label="Dependency"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
@@ -250,7 +240,7 @@
 	<entry
        defineOnly="true"
        description="Create a DependencyBranch"
-       id="createDependencyBranch9CreationTool"
+       id="createDependencyBranch8CreationTool"
        kind="tool"
        label="DependencyBranch"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
@@ -260,7 +250,7 @@
 	<entry
        defineOnly="true"
        description="Create an Association"
-       id="createAssociation10CreationTool"
+       id="createAssociation9CreationTool"
        kind="tool"
        label="Association"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif"
@@ -270,7 +260,7 @@
 	<entry
        defineOnly="true"
        description="Create an AssociationBranch"
-       id="createAssociationBranch11CreationTool"
+       id="createAssociationBranch10CreationTool"
        kind="tool"
        label="AssociationBranch"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif"
@@ -421,39 +411,35 @@
           path="/createRelationShips3Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createCommentlink3CreationTool"
+          id="createLink3CreationTool"
           path="/createRelationShips3Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createConstraintLink4CreationTool"
+          id="createProfileApplication4CreationTool"
           path="/createRelationShips3Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createProfileApplication5CreationTool"
+          id="createElementImport5CreationTool"
           path="/createRelationShips3Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createElementImport6CreationTool"
+          id="createPackageImport6CreationTool"
           path="/createRelationShips3Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createPackageImport7CreationTool"
+          id="createDependency7CreationTool"
           path="/createRelationShips3Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createDependency8CreationTool"
+          id="createDependencyBranch8CreationTool"
           path="/createRelationShips3Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createDependencyBranch9CreationTool"
+          id="createAssociation9CreationTool"
           path="/createRelationShips3Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createAssociation10CreationTool"
-          path="/createRelationShips3Group">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="createAssociationBranch11CreationTool"
+          id="createAssociationBranch10CreationTool"
           path="/createRelationShips3Group">
     </predefinedEntry>
 

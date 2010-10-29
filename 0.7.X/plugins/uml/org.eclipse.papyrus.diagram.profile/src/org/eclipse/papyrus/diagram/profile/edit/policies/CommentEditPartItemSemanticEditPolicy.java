@@ -47,6 +47,8 @@ public class CommentEditPartItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 	}
 
 
+
+
 	/**
 	 * @generated
 	 */
@@ -69,6 +71,7 @@ public class CommentEditPartItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 		}
 		return getGEFWrapper(cmd.reduce());
 	}
+
 
 	/**
 	 * @generated

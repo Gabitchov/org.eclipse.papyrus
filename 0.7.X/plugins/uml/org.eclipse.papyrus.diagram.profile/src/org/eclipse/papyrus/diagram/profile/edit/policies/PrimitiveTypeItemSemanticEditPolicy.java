@@ -69,6 +69,8 @@ public class PrimitiveTypeItemSemanticEditPolicy extends UMLBaseItemSemanticEdit
 	}
 
 
+
+
 	/**
 	 * @generated
 	 */
@@ -91,6 +93,7 @@ public class PrimitiveTypeItemSemanticEditPolicy extends UMLBaseItemSemanticEdit
 		}
 		return getGEFWrapper(cmd.reduce());
 	}
+
 
 	/**
 	 * @generated

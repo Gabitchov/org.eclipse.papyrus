@@ -83,6 +83,8 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 	}
 
 
+
+
 	/**
 	 * @generated
 	 */
@@ -455,6 +457,7 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 			}
 		}
 	}
+
 
 	/**
 	 * @generated
