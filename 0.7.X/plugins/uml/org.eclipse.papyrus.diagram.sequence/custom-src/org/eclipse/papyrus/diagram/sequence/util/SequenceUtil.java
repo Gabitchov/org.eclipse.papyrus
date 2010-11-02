@@ -55,6 +55,9 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.gmf.runtime.notation.Bounds;
+import org.eclipse.gmf.runtime.notation.LayoutConstraint;
+import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -154,10 +157,8 @@ public class SequenceUtil {
 				EObject eObject = sep.resolveSemanticElement();
 
 				if(eObject instanceof Interaction || eObject instanceof InteractionOperand) {
-					IFigure figure = sep.getFigure();
 
-					Rectangle figureBounds = figure.getBounds().getCopy();
-					figure.getParent().translateToAbsolute(figureBounds);
+					Rectangle figureBounds = getAbsoluteBounds(sep);
 
 					if(figureBounds.contains(bounds)) {
 						coveredInteractions.add((InteractionFragment)eObject);
@@ -225,8 +226,7 @@ public class SequenceUtil {
 				boolean isInteractionUse = part instanceof InteractionUseEditPart;
 				boolean isInteraction = part instanceof InteractionEditPart;
 				if(isCombinedFragment || isContinuation || isInteractionOperand || isInteractionUse || isInteraction) {
-					Rectangle bounds = ((GraphicalEditPart)part).getFigure().getBounds().getCopy();
-					((GraphicalEditPart)part).getFigure().getParent().translateToAbsolute(bounds);
+					Rectangle bounds = getAbsoluteBounds((GraphicalEditPart)part);
 					return bounds.getTop();
 				}
 			}
@@ -241,8 +241,7 @@ public class SequenceUtil {
 					if(destructionEvent instanceof DestructionEvent && lifeline instanceof Lifeline && fragment instanceof OccurrenceSpecification) {
 						Event destEvent = ((OccurrenceSpecification)fragment).getEvent();
 						if(destEvent != null && destEvent.equals(destructionEvent)) {
-							Rectangle bounds = ((GraphicalEditPart)child).getFigure().getBounds().getCopy();
-							((GraphicalEditPart)child).getFigure().getParent().translateToAbsolute(bounds);
+							Rectangle bounds = getAbsoluteBounds((GraphicalEditPart)child);
 							return bounds.getCenter();
 						}
 					}
@@ -254,8 +253,7 @@ public class SequenceUtil {
 						EObject element = ((GraphicalEditPart)child).resolveSemanticElement();
 						if(element instanceof ExecutionSpecification) {
 							if(fragment.equals(element)) {
-								Rectangle bounds = ((GraphicalEditPart)child).getFigure().getBounds().getCopy();
-								((GraphicalEditPart)child).getFigure().getParent().translateToAbsolute(bounds);
+								Rectangle bounds = getAbsoluteBounds((GraphicalEditPart)child);
 								return bounds.getTop();
 							}
 						}
@@ -264,12 +262,10 @@ public class SequenceUtil {
 						EObject element = ((GraphicalEditPart)child).resolveSemanticElement();
 						if(element instanceof ExecutionSpecification) {
 							if(fragment.equals(((ExecutionSpecification)element).getStart())) {
-								Rectangle bounds = ((GraphicalEditPart)child).getFigure().getBounds().getCopy();
-								((GraphicalEditPart)child).getFigure().getParent().translateToAbsolute(bounds);
+								Rectangle bounds = getAbsoluteBounds((GraphicalEditPart)child);
 								return bounds.getTop();
 							} else if(fragment.equals(((ExecutionSpecification)element).getFinish())) {
-								Rectangle bounds = ((GraphicalEditPart)child).getFigure().getBounds().getCopy();
-								((GraphicalEditPart)child).getFigure().getParent().translateToAbsolute(bounds);
+								Rectangle bounds = getAbsoluteBounds((GraphicalEditPart)child);
 								return bounds.getBottom();
 							}
 						}
@@ -288,8 +284,7 @@ public class SequenceUtil {
 						EObject element = ((GraphicalEditPart)child).resolveSemanticElement();
 						if(element instanceof StateInvariant) {
 							if(fragment.equals(element)) {
-								Rectangle bounds = ((GraphicalEditPart)child).getFigure().getBounds().getCopy();
-								((GraphicalEditPart)child).getFigure().getParent().translateToAbsolute(bounds);
+								Rectangle bounds = getAbsoluteBounds((GraphicalEditPart)child);
 								return bounds.getTop();
 							}
 						}
@@ -311,6 +306,34 @@ public class SequenceUtil {
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * Get the bounds of an edit part
+	 * 
+	 * @param part
+	 *        edit part to find bounds
+	 * @return part's bounds
+	 */
+	private static Rectangle getAbsoluteBounds(IGraphicalEditPart part) {
+		if(((IGraphicalEditPart)part).getNotationView() instanceof Node) {
+			// rather take up to date model bounds
+			Node node = (Node)((IGraphicalEditPart)part).getNotationView();
+			LayoutConstraint cst = node.getLayoutConstraint();
+			if(cst instanceof Bounds) {
+				Bounds b = (Bounds)cst;
+				Rectangle bounds = new Rectangle(b.getX(), b.getY(), b.getWidth(), b.getHeight());
+
+				part.getFigure().getParent().translateToAbsolute(bounds);
+				Point parentLoc = part.getFigure().getParent().getBounds().getLocation();
+				bounds.translate(parentLoc);
+				return bounds;
+			}
+		}
+		// take bounds from figure
+		Rectangle bounds = ((IGraphicalEditPart)part).getFigure().getBounds().getCopy();
+		part.getFigure().getParent().translateToAbsolute(bounds);
+		return bounds;
 	}
 
 	/**
@@ -382,8 +405,7 @@ public class SequenceUtil {
 				EObject element = ((GraphicalEditPart)child).resolveSemanticElement();
 				if(element instanceof ExecutionSpecification) {
 					// find start and finish events of the execution
-					Rectangle bounds = ((GraphicalEditPart)child).getFigure().getBounds().getCopy();
-					((GraphicalEditPart)child).getFigure().getParent().translateToAbsolute(bounds);
+					Rectangle bounds = getAbsoluteBounds((GraphicalEditPart)child);
 					if(!occurrences.containsKey(bounds.getTop())) {
 						// there should be at most 2 occurrences (with starting message)
 						occurrences.put(bounds.getTop(), new ArrayList<OccurrenceSpecification>(2));
@@ -406,8 +428,7 @@ public class SequenceUtil {
 						if(occurence instanceof OccurrenceSpecification) {
 							Event event = ((OccurrenceSpecification)occurence).getEvent();
 							if(destructionEvent.equals(event)) {
-								Rectangle bounds = ((GraphicalEditPart)child).getFigure().getBounds().getCopy();
-								((GraphicalEditPart)child).getFigure().getParent().translateToAbsolute(bounds);
+								Rectangle bounds = getAbsoluteBounds((GraphicalEditPart)child);
 								if(!occurrences.containsKey(bounds.getCenter())) {
 									occurrences.put(bounds.getCenter(), new ArrayList<OccurrenceSpecification>(2));
 								}
@@ -758,10 +779,7 @@ public class SequenceUtil {
 				EObject elem = sep.getNotationView().getElement();
 
 				if(elem instanceof Lifeline) {
-					IFigure figure = sep.getFigure();
-
-					Rectangle figureBounds = figure.getBounds().getCopy();
-					figure.getParent().translateToAbsolute(figureBounds);
+					Rectangle figureBounds = getAbsoluteBounds(sep);
 
 					if(selectionRect.intersects(figureBounds)) {
 						coveredLifelines.add((Lifeline)elem);
@@ -798,10 +816,7 @@ public class SequenceUtil {
 				EObject elem = sep.getNotationView().getElement();
 
 				if(elem instanceof InteractionFragment) {
-					IFigure figure = sep.getFigure();
-
-					Rectangle figureBounds = figure.getBounds().getCopy();
-					figure.getParent().translateToAbsolute(figureBounds);
+					Rectangle figureBounds = getAbsoluteBounds(sep);
 
 					if(selectionRect.contains(figureBounds)) {
 						coveredInteractionFragments.add((InteractionFragment)elem);
@@ -1034,8 +1049,7 @@ public class SequenceUtil {
 	 * @return lifeline or execution specification edit part to reconnect to (the most external in the lifeline)
 	 */
 	public static EditPart findPartToReconnectTo(LifelineEditPart lifelinePart, Point referencePoint) {
-		Rectangle absoluteLifelineBounds = lifelinePart.getFigure().getBounds().getCopy();
-		lifelinePart.getFigure().getParent().translateToAbsolute(absoluteLifelineBounds);
+		Rectangle absoluteLifelineBounds = getAbsoluteBounds(lifelinePart);
 		// inspect children nodes of lifeline
 		List<?> children = lifelinePart.getChildren();
 		GraphicalEditPart adequateExecutionPart = null;
@@ -1044,8 +1058,7 @@ public class SequenceUtil {
 			// children executions
 			if(child instanceof ActionExecutionSpecificationEditPart || child instanceof BehaviorExecutionSpecificationEditPart) {
 				GraphicalEditPart childPart = (GraphicalEditPart)child;
-				Rectangle absoluteBounds = childPart.getFigure().getBounds().getCopy();
-				childPart.getFigure().getParent().translateToAbsolute(absoluteBounds);
+				Rectangle absoluteBounds = getAbsoluteBounds(childPart);
 				// enlarge absolute bounds to contain also the right and bottom edges.
 				absoluteBounds.expand(1, 1);
 				if(absoluteBounds.contains(referencePoint)) {
@@ -1153,9 +1166,7 @@ public class SequenceUtil {
 				EditPart part = DiagramEditPartsUtil.getEditPartFromView(view, lifelineEditPart);
 				// test if edit part is an adequate node
 				if(part instanceof IGraphicalEditPart && getContentPaneThatCanContainFragments(part) != null) {
-					IFigure containerFigure = ((IGraphicalEditPart)part).getFigure();
-					Rectangle bounds = containerFigure.getBounds().getCopy();
-					containerFigure.getParent().translateToAbsolute(bounds);
+					Rectangle bounds = getAbsoluteBounds((IGraphicalEditPart)part);
 					// reduce so that the bounds are excluded
 					int newPossibleTop = bounds.bottom();
 					if(possibleBounds.y < newPossibleTop) {
