@@ -14,6 +14,8 @@
 package org.eclipse.papyrus.diagram.sequence.providers;
 
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.eclipse.papyrus.diagram.sequence.expressions.UMLOCLFactory;
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
@@ -27,6 +29,7 @@ import org.eclipse.uml2.uml.Duration;
 import org.eclipse.uml2.uml.DurationConstraint;
 import org.eclipse.uml2.uml.DurationInterval;
 import org.eclipse.uml2.uml.DurationObservation;
+import org.eclipse.uml2.uml.GeneralOrdering;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.InteractionUse;
 import org.eclipse.uml2.uml.Lifeline;
@@ -330,6 +333,18 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
+	public void init_GeneralOrdering_4012(GeneralOrdering instance) {
+		try {
+			Object value_0 = name_GeneralOrdering_4012(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
 	private String name_Interaction_2001(Interaction self) {
 		return getNamedElement(self, "", self.eClass().getName(), "");
 	}
@@ -456,6 +471,13 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
+	private String name_GeneralOrdering_4012(GeneralOrdering self) {
+		return getNamedElement(self, "", self.eClass().getName(), "");
+	}
+
+	/**
+	 * @generated
+	 */
 	public static ElementInitializers getInstance() {
 		ElementInitializers cached = UMLDiagramEditorPlugin.getInstance().getElementInitializers();
 		if(cached == null) {
@@ -533,7 +555,13 @@ public class ElementInitializers {
 
 		Namespace namespace = namedElement.getNamespace();
 		if(namespace != null) {
-			return getNextNumberedName(namespace.getMembers(), base);
+			Set<NamedElement> members = new HashSet<NamedElement>();
+			members.addAll(namespace.getMembers());
+			// add general orderings which are not in initial selection
+			if(namespace instanceof Interaction) {
+				members.addAll(((Interaction)namespace).getGeneralOrderings());
+			}
+			return getNextNumberedName(members, base);
 		}
 
 		return base;

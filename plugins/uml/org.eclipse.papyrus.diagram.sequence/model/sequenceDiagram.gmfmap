@@ -968,6 +968,18 @@
       relatedDiagrams="//@diagram">
     <domainMetaElement
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//GeneralOrdering"/>
+    <domainInitializer
+        xsi:type="gmfmap:FeatureSeqInitializer">
+      <initializers
+          xsi:type="gmfmap:FeatureValueSpec">
+        <feature
+            xsi:type="ecore:EAttribute"
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+        <value
+            body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"
+            language="java"/>
+      </initializers>
+    </domainInitializer>
     <labelMappings
         readOnly="true">
       <diagramLabel

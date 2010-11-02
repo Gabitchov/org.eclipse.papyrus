@@ -26,7 +26,7 @@
           name="Interaction fragment ordering"
           description="The fragment property of an Interaction must be ordered as a valid trace."
           id="FragmentOrderingKeeper.Interaction"
-          rule="/0/@expressionProviders/@providers.0/@expressions.18"
+          rule="/0/@expressionProviders/@providers.0/@expressions.19"
           message="There is no valid trace sequencing the InteractionFragments in the fragment property. Some of them can not be organized as a valid sequence :{0}"
           useInLiveMode="true"
           category="/0/@audits/@categories.1">
@@ -41,7 +41,7 @@
           name="InteractionOperand fragment ordering"
           description="The fragment property of an InteractionOperand must be ordered as a valid trace."
           id="FragmentOrderingKeeper.InteractionOperand"
-          rule="/0/@expressionProviders/@providers.0/@expressions.19"
+          rule="/0/@expressionProviders/@providers.0/@expressions.20"
           message="There is no valid trace sequencing the InteractionFragments in the fragment property. Some of them can not be organized as a valid sequence :{0}"
           useInLiveMode="true"
           category="/0/@audits/@categories.1">
@@ -56,7 +56,7 @@
           name="Fragment ordering"
           description="The fragment property of an Interaction or InteractionOperand must be ordered as a valid trace."
           id="FragmentOrderingKeeper.LifelineFigure"
-          rule="/0/@expressionProviders/@providers.0/@expressions.20"
+          rule="/0/@expressionProviders/@providers.0/@expressions.21"
           message="There is no valid trace sequencing the InteractionFragments in the fragment property. Some of them can not be organized as a valid sequence :{0}"
           useInLiveMode="true"
           category="/0/@audits/@categories.1">
@@ -2230,6 +2230,15 @@
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InteractionFragment/generalOrdering"/>
           <childMetaFeature
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InteractionFragment/generalOrdering"/>
+          <modelElementInitializer
+              xsi:type="gmfgen:GenFeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.0/@expressions.18">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+            </initializers>
+          </modelElementInitializer>
           <sourceMetaFeature
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/GeneralOrdering/before"/>
           <targetMetaFeature
@@ -7278,6 +7287,8 @@
         <expressions
             body="return getNamedElement(self, &quot;&quot;, &quot;d&quot;, &quot;&quot;);"/>
         <expressions
+            body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"/>
+        <expressions
             xsi:type="gmfgen:GenConstraint"
             body="return UMLValidationHelper.validateFragmentsOrder(context, ctx);"/>
         <expressions
@@ -7371,7 +7382,7 @@
           qualifiedName=" org.eclipse.papyrus.diagram.sequence.parser.custom.InteractionUseCustomParsers"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@links.5/@labels.0/@modelFacet /0/@diagram/@links.1/@labels.0/@modelFacet /0/@diagram/@links.0/@labels.0/@modelFacet /0/@diagram/@links.3/@labels.0/@modelFacet /0/@diagram/@links.4/@labels.0/@modelFacet /0/@diagram/@links.6/@labels.0/@modelFacet /0/@diagram/@links.2/@labels.0/@modelFacet"
+          uses="/0/@diagram/@links.3/@labels.0/@modelFacet /0/@diagram/@links.0/@labels.0/@modelFacet /0/@diagram/@links.5/@labels.0/@modelFacet /0/@diagram/@links.6/@labels.0/@modelFacet /0/@diagram/@links.1/@labels.0/@modelFacet /0/@diagram/@links.4/@labels.0/@modelFacet /0/@diagram/@links.2/@labels.0/@modelFacet"
           qualifiedName=" org.eclipse.papyrus.diagram.sequence.parser.custom.MessageCustomParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
@@ -7383,7 +7394,7 @@
           qualifiedName="org.eclipse.papyrus.diagram.sequence.parser.custom.DurationObservationParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@childNodes.16/@labels.0/@modelFacet /0/@diagram/@childNodes.10/@labels.0/@modelFacet /0/@diagram/@childNodes.12/@labels.0/@modelFacet"
+          uses="/0/@diagram/@childNodes.10/@labels.0/@modelFacet /0/@diagram/@childNodes.12/@labels.0/@modelFacet /0/@diagram/@childNodes.16/@labels.0/@modelFacet"
           qualifiedName="org.eclipse.papyrus.diagram.sequence.parser.custom.TimeConstraintParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
@@ -7391,7 +7402,7 @@
           qualifiedName="org.eclipse.papyrus.diagram.sequence.parser.custom.TimeObservationParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@links.3/@labels.1/@modelFacet /0/@diagram/@links.5/@labels.1/@modelFacet /0/@diagram/@links.4/@labels.1/@modelFacet /0/@diagram/@links.2/@labels.1/@modelFacet /0/@diagram/@links.6/@labels.1/@modelFacet /0/@diagram/@childNodes.10/@labels.1/@modelFacet /0/@diagram/@childNodes.17/@labels.1/@modelFacet /0/@diagram/@links.9/@labels.0/@modelFacet /0/@diagram/@childNodes.16/@labels.1/@modelFacet /0/@diagram/@links.0/@labels.1/@modelFacet /0/@diagram/@childNodes.12/@labels.1/@modelFacet /0/@diagram/@links.1/@labels.1/@modelFacet /0/@diagram/@childNodes.11/@labels.1/@modelFacet"
+          uses="/0/@diagram/@links.5/@labels.1/@modelFacet /0/@diagram/@links.0/@labels.1/@modelFacet /0/@diagram/@links.9/@labels.0/@modelFacet /0/@diagram/@links.1/@labels.1/@modelFacet /0/@diagram/@links.2/@labels.1/@modelFacet /0/@diagram/@childNodes.16/@labels.1/@modelFacet /0/@diagram/@childNodes.12/@labels.1/@modelFacet /0/@diagram/@links.6/@labels.1/@modelFacet /0/@diagram/@childNodes.11/@labels.1/@modelFacet /0/@diagram/@links.3/@labels.1/@modelFacet /0/@diagram/@childNodes.10/@labels.1/@modelFacet /0/@diagram/@links.4/@labels.1/@modelFacet /0/@diagram/@childNodes.17/@labels.1/@modelFacet"
           qualifiedName="org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
