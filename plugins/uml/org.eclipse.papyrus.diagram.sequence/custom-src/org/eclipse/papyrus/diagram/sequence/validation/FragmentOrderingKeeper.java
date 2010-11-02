@@ -441,7 +441,7 @@ public class FragmentOrderingKeeper {
 						// insert it at the very beginning
 						constraint.put((float)0, fragment);
 						lastMetSortedFragment = fragment;
-					} else if(nonLocalizedEvents.contains(fragment)){
+					} else if(nonLocalizedEvents.contains(fragment)) {
 						// insert it just after lastMetSortedFragment
 						Iterator<Entry<Float, InteractionFragment>> entryIt = constraint.entrySet().iterator();
 						// find float key of lastMetSortedFragment
@@ -626,8 +626,10 @@ public class FragmentOrderingKeeper {
 				// increment pointers of constraints whose fragment has been added.
 				for(int k = 0; k < n; k++) {
 					InteractionFragment frag = getFragmentToInspect(k, pointers);
-					if(frag == addedFragment) {
+					while(reorderedFragments.contains(frag)) {
+						// either frag == addedFragment and has just been added, or it has been added earlier after a conflict
 						pointers[k]++;
+						frag = getFragmentToInspect(k, pointers);
 					}
 				}
 			} else {
@@ -640,7 +642,12 @@ public class FragmentOrderingKeeper {
 				reorderedFragments.addAll(fragmentsSet);
 				// increment pointers of constraints whose fragment has been added.
 				for(int incrementingPointerIndex : matureFragments.keySet()) {
-					pointers[incrementingPointerIndex]++;
+					InteractionFragment frag = getFragmentToInspect(incrementingPointerIndex, pointers);
+					while(reorderedFragments.contains(frag)) {
+						// either frag == addedFragment and has just been added, or it has been added earlier after a conflict
+						pointers[incrementingPointerIndex]++;
+						frag = getFragmentToInspect(incrementingPointerIndex, pointers);
+					}
 				}
 			}
 		}
