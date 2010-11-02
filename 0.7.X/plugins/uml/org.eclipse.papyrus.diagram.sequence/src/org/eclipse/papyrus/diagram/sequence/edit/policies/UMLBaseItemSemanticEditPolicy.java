@@ -649,9 +649,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 
 		/**
-		 * @generated
+		 * @generated NOT disable general ordering on same lifeline
 		 */
 		public boolean canExistGeneralOrdering_4012(InteractionFragment container, GeneralOrdering linkInstance, OccurrenceSpecification source, OccurrenceSpecification target) {
+			// disable general ordering on same lifeline
+			if(source != null && target != null) {
+				return Collections.disjoint(source.getCovereds(), target.getCovereds());
+			}
 			return true;
 		}
 
