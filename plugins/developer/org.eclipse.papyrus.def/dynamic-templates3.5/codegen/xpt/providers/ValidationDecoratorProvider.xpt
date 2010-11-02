@@ -106,15 +106,13 @@ public class «validationDecoratorProviderClassName»
 		});
 	}
 
-	«EXPAND xpt::Common::generatedMemberComment»
-	/**
-	 * Return the EObject retrieved from the URI attribute in the map. Retrieve it either via the marker itself
-	 * or via the attribute mapping (required in case a deleted marker)
-	 * @param marker the problem marker
-	 * @param attributes a map of the problem marker
-	 * @param domain the editing domain used for the conversion from URI to eObecjt
-	 * @return
-	 */
+	«EXPAND xpt::Common::generatedMemberComment(
+	 'Return the EObject retrieved from the URI attribute in the map. Retrieve it either via the marker itself\n' +
+	 'or via the attribute mapping (required in case a deleted marker)\n' +
+	 '@param marker the problem marker\n' +
+	 '@param attributes a map of the problem marker\n' +
+	 '@param domain the editing domain used for the conversion from URI to eObject\n' +
+	 '@return')»
 	private static org.eclipse.emf.ecore.EObject getEObjectFromMarkerOrMap (org.eclipse.core.resources.IMarker marker, java.util.Map attributes, org.eclipse.emf.edit.domain.EditingDomain domain) {
 		String uriAttribute;
 		if (marker != null) {
