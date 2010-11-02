@@ -435,6 +435,10 @@ public class FragmentOrderingKeeper {
 			for(InteractionFragment fragment : orderedFragments) {
 				if(((Lifeline)lifeline).getCoveredBys().contains(fragment)) {
 					// this is a fragment of the lifeline.
+					if(fragment instanceof ExecutionSpecification){
+						// skip it to only take start and finish events
+						continue;
+					}
 					if(constraint.containsValue(fragment)) {
 						lastMetSortedFragment = fragment;
 					} else if(nonLocalizedEvents.contains(fragment) && lastMetSortedFragment == null) {
