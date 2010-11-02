@@ -316,23 +316,32 @@ public class SequenceUtil {
 	 * @return part's bounds
 	 */
 	private static Rectangle getAbsoluteBounds(IGraphicalEditPart part) {
+		// take bounds from figure
+		Rectangle bounds = ((IGraphicalEditPart)part).getFigure().getBounds().getCopy();
+
 		if(((IGraphicalEditPart)part).getNotationView() instanceof Node) {
 			// rather take up to date model bounds
 			Node node = (Node)((IGraphicalEditPart)part).getNotationView();
 			LayoutConstraint cst = node.getLayoutConstraint();
 			if(cst instanceof Bounds) {
 				Bounds b = (Bounds)cst;
-				Rectangle bounds = new Rectangle(b.getX(), b.getY(), b.getWidth(), b.getHeight());
+				bounds.x = b.getX();
+				bounds.y = b.getY();
 
-				part.getFigure().getParent().translateToAbsolute(bounds);
+				if(b.getHeight() != -1) {
+					bounds.height = b.getHeight();
+				}
+				if(b.getWidth() != -1) {
+					bounds.width = b.getWidth();
+				}
+
 				Point parentLoc = part.getFigure().getParent().getBounds().getLocation();
 				bounds.translate(parentLoc);
-				return bounds;
 			}
 		}
-		// take bounds from figure
-		Rectangle bounds = ((IGraphicalEditPart)part).getFigure().getBounds().getCopy();
+
 		part.getFigure().getParent().translateToAbsolute(bounds);
+
 		return bounds;
 	}
 
