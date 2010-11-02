@@ -13,14 +13,22 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.edit.policies;
 
+import java.util.Collections;
+import java.util.List;
+
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.FigureCanvas;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gef.ConnectionEditPart;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.CompoundCommand;
+import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.BendpointRequest;
 import org.eclipse.gef.ui.parts.ScrollingGraphicalViewer;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
@@ -35,6 +43,12 @@ import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.gef.ui.internal.editpolicies.LineMode;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.papyrus.diagram.sequence.draw2d.routers.MessageRouter.RouterKind;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
+import org.eclipse.papyrus.diagram.sequence.util.OccurrenceSpecificationMoveHelper;
+import org.eclipse.papyrus.diagram.sequence.util.SequenceUtil;
+import org.eclipse.uml2.uml.Message;
+import org.eclipse.uml2.uml.MessageEnd;
+import org.eclipse.uml2.uml.OccurrenceSpecification;
 
 /**
  * This bendpoint edit policy is used to allow drag of horizontal messages and forbid drag otherwise.
@@ -65,44 +79,29 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 		if((getHost().getViewer() instanceof ScrollingGraphicalViewer) && (getHost().getViewer().getControl() instanceof FigureCanvas)) {
 			SelectInDiagramHelper.exposeLocation((FigureCanvas)getHost().getViewer().getControl(), request.getLocation().getCopy());
 		}
-		Connection connection = getConnection();
-		Edge edge = (Edge)request.getSource().getModel();
 
-		PointList points = connection.getPoints();
-		Point sourcePoint = points.getFirstPoint().getCopy();
-		Point targetPoint = points.getLastPoint().getCopy();
-
-		Point relativeSourcePoint = sourcePoint.getCopy();
-		Point relativeTargetPoint = targetPoint.getCopy();
-
-		// calculate relative anchor positions.
-		connection.getSourceAnchor().getOwner().translateToRelative(relativeSourcePoint);
-		connection.getSourceAnchor().getOwner().translateToRelative(relativeTargetPoint);
-
-		// convert into a precision point which is stored by the GMF model
-		PrecisionPoint spp = BaseSlidableAnchor.getAnchorRelativeLocation(relativeSourcePoint, connection.getSourceAnchor().getOwner().getBounds());
-		PrecisionPoint tpp = BaseSlidableAnchor.getAnchorRelativeLocation(relativeTargetPoint, connection.getTargetAnchor().getOwner().getBounds());
-
-		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
-
-		CompositeCommand compositeCommand = new CompositeCommand("");
-
-		// set the new anchor position
-		SetConnectionAnchorsCommand setAnchorsCommand = new SetConnectionAnchorsCommand(editingDomain, null);
-		setAnchorsCommand.setNewSourceTerminal(composeTerminalString(spp));
-		setAnchorsCommand.setNewTargetTerminal(composeTerminalString(tpp));
-		setAnchorsCommand.setEdgeAdaptor(new EObjectAdapter(edge));
-
-		compositeCommand.add(setAnchorsCommand);
-
-		// update bendpoints according to the new anchor positions
-		SetConnectionBendpointsCommand setBendpointsCommand = new SetConnectionBendpointsCommand(editingDomain);
-		setBendpointsCommand.setEdgeAdapter(new EObjectAdapter(edge));
-		setBendpointsCommand.setNewPointList(connection.getPoints(), sourcePoint, targetPoint);
-
-		compositeCommand.add(setBendpointsCommand);
-
-		return new ICommandProxy(compositeCommand);
+		if(getHost() instanceof ConnectionEditPart && getHost() instanceof IGraphicalEditPart) {
+			EObject message = ((IGraphicalEditPart)getHost()).resolveSemanticElement();
+			if(message instanceof Message) {
+				MessageEnd send = ((Message)message).getSendEvent();
+				MessageEnd rcv = ((Message)message).getReceiveEvent();
+				EditPart srcPart = ((ConnectionEditPart)getHost()).getSource();
+				LifelineEditPart srcLifelinePart = SequenceUtil.getParentLifelinePart(srcPart);
+				EditPart tgtPart = ((ConnectionEditPart)getHost()).getTarget();
+				LifelineEditPart tgtLifelinePart = SequenceUtil.getParentLifelinePart(tgtPart);
+				if(send instanceof OccurrenceSpecification && rcv instanceof OccurrenceSpecification && srcLifelinePart != null && tgtLifelinePart != null) {
+					int y = request.getLocation().y;
+					List<EditPart> empty = Collections.emptyList();
+					Command srcCmd = OccurrenceSpecificationMoveHelper.getMoveOccurrenceSpecificationsCommand((OccurrenceSpecification)send, null, y, -1, srcLifelinePart, empty);
+					Command tgtCmd = OccurrenceSpecificationMoveHelper.getMoveOccurrenceSpecificationsCommand((OccurrenceSpecification)rcv, null, y, -1, tgtLifelinePart, empty);
+					CompoundCommand compoudCmd = new CompoundCommand();
+					compoudCmd.add(srcCmd);
+					compoudCmd.add(tgtCmd);
+					return compoudCmd;
+				}
+			}
+		}
+		return UnexecutableCommand.INSTANCE;
 	}
 
 	/**
