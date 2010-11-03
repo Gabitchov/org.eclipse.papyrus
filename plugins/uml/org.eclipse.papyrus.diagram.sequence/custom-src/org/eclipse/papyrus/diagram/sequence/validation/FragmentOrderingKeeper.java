@@ -15,6 +15,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
@@ -435,10 +436,6 @@ public class FragmentOrderingKeeper {
 			for(InteractionFragment fragment : orderedFragments) {
 				if(((Lifeline)lifeline).getCoveredBys().contains(fragment)) {
 					// this is a fragment of the lifeline.
-					if(fragment instanceof ExecutionSpecification){
-						// skip it to only take start and finish events
-						continue;
-					}
 					if(constraint.containsValue(fragment)) {
 						lastMetSortedFragment = fragment;
 					} else if(nonLocalizedEvents.contains(fragment) && lastMetSortedFragment == null) {
@@ -518,17 +515,17 @@ public class FragmentOrderingKeeper {
 			return true;
 		}
 		// a receiving message event should trigger any other event
-		if(firstFragment instanceof MessageOccurrenceSpecification && ((MessageOccurrenceSpecification)firstFragment).getMessage().getReceiveEvent().equals(firstFragment)) {
+		if(firstFragment instanceof MessageOccurrenceSpecification && EcoreUtil.equals(((MessageOccurrenceSpecification)firstFragment).getMessage().getReceiveEvent(), firstFragment)) {
 			return true;
 		}
-		if(secondFragment instanceof MessageOccurrenceSpecification && ((MessageOccurrenceSpecification)secondFragment).getMessage().getReceiveEvent().equals(secondFragment)) {
+		if(secondFragment instanceof MessageOccurrenceSpecification && EcoreUtil.equals(((MessageOccurrenceSpecification)secondFragment).getMessage().getReceiveEvent(), secondFragment)) {
 			return false;
 		}
 		// a starting execution event should happen before subsequent execution's events (except creation message receive)
-		if(firstFragment instanceof ExecutionOccurrenceSpecification && ((ExecutionOccurrenceSpecification)firstFragment).getExecution().getStart().equals(firstFragment)) {
+		if(firstFragment instanceof ExecutionOccurrenceSpecification && EcoreUtil.equals(((ExecutionOccurrenceSpecification)firstFragment).getExecution().getStart(), firstFragment)) {
 			return true;
 		}
-		if(secondFragment instanceof ExecutionOccurrenceSpecification && ((ExecutionOccurrenceSpecification)secondFragment).getExecution().getStart().equals(secondFragment)) {
+		if(secondFragment instanceof ExecutionOccurrenceSpecification && EcoreUtil.equals(((ExecutionOccurrenceSpecification)secondFragment).getExecution().getStart(), secondFragment)) {
 			return false;
 		}
 		// an execution event should happen before subsequent execution's events (except starting)
@@ -539,17 +536,17 @@ public class FragmentOrderingKeeper {
 			return false;
 		}
 		// a finishing execution event should happen after terminated execution's events
-		if(firstFragment instanceof ExecutionOccurrenceSpecification && ((ExecutionOccurrenceSpecification)firstFragment).getExecution().getFinish().equals(firstFragment)) {
+		if(firstFragment instanceof ExecutionOccurrenceSpecification && EcoreUtil.equals(((ExecutionOccurrenceSpecification)firstFragment).getExecution().getFinish(), firstFragment)) {
 			return false;
 		}
-		if(secondFragment instanceof ExecutionOccurrenceSpecification && ((ExecutionOccurrenceSpecification)secondFragment).getExecution().getFinish().equals(secondFragment)) {
+		if(secondFragment instanceof ExecutionOccurrenceSpecification && EcoreUtil.equals(((ExecutionOccurrenceSpecification)secondFragment).getExecution().getFinish(), secondFragment)) {
 			return true;
 		}
 		// a sending message event should happen preferably after an unspecified event
-		if(firstFragment instanceof MessageOccurrenceSpecification && ((MessageOccurrenceSpecification)firstFragment).getMessage().getSendEvent().equals(firstFragment)) {
+		if(firstFragment instanceof MessageOccurrenceSpecification && EcoreUtil.equals(((MessageOccurrenceSpecification)firstFragment).getMessage().getSendEvent(), firstFragment)) {
 			return false;
 		}
-		if(secondFragment instanceof MessageOccurrenceSpecification && ((MessageOccurrenceSpecification)secondFragment).getMessage().getSendEvent().equals(secondFragment)) {
+		if(secondFragment instanceof MessageOccurrenceSpecification && EcoreUtil.equals(((MessageOccurrenceSpecification)secondFragment).getMessage().getSendEvent(), secondFragment)) {
 			return true;
 		}
 		// otherwise, no importance
