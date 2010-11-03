@@ -660,34 +660,47 @@ public class CommandHelper {
 	 * @return the created executionSpecification
 	 */
 	public static ExecutionSpecification doCreateExecutionSpecification(ExecutionSpecification es, Lifeline lifeline, Object modelContainer) {
-
 		InteractionFragment interactionFragment = null;
 		// Get the enclosing interaction fragment
 		if(modelContainer instanceof InteractionOperand) {
 			InteractionOperand interactionOperand = (InteractionOperand)modelContainer;
-			// Create the ES 
-			es = (ExecutionSpecification)interactionOperand.createFragment(null, es.eClass());
-
 			interactionFragment = interactionOperand;
 		} else {
 			Interaction interaction = lifeline.getInteraction();
-			// Create the ES 
-			es = (ExecutionSpecification)interaction.createFragment(null, es.eClass());
-
 			interactionFragment = interaction;
 		}
 
-		// Get the covered lifeline
-		es.getCovereds().add(lifeline);
-
+		// Create events
 		org.eclipse.uml2.uml.Package eventContainer = interactionFragment.getNearestPackage();
 
 		ExecutionEvent startingExecutionEvent = EventHelper.doCreateExecutionEvent(eventContainer);
 		ExecutionEvent finishingExecutionEvent = EventHelper.doCreateExecutionEvent(eventContainer);
 
-		// Get the start and the finish ExecutionOccurrenceSpecification
-		es.setStart(CommandHelper.doCreateExecutionOccurenceSpecification(es, startingExecutionEvent, interactionFragment, lifeline));
-		es.setFinish(CommandHelper.doCreateExecutionOccurenceSpecification(es, finishingExecutionEvent, interactionFragment, lifeline));
+		// Create fragments in the correct order : start OccurenceSpecification, ExecutionSpecification, finish OccurenceSpecification
+		// start
+		ExecutionOccurrenceSpecification start = CommandHelper.doCreateExecutionOccurenceSpecification(null, startingExecutionEvent, interactionFragment, lifeline);
+
+		// Create the ExecutionSpecification
+		if(modelContainer instanceof InteractionOperand) {
+			InteractionOperand interactionOperand = (InteractionOperand)modelContainer;
+			// Create the ES 
+			es = (ExecutionSpecification)interactionOperand.createFragment(null, es.eClass());
+		} else {
+			Interaction interaction = lifeline.getInteraction();
+			// Create the ES 
+			es = (ExecutionSpecification)interaction.createFragment(null, es.eClass());
+		}
+
+		// finish
+		ExecutionOccurrenceSpecification finish = CommandHelper.doCreateExecutionOccurenceSpecification(es, finishingExecutionEvent, interactionFragment, lifeline);
+
+		// Get the covered lifeline
+		es.getCovereds().add(lifeline);
+
+		// Set the start and the finish ExecutionOccurrenceSpecification
+		es.setStart(start);
+		es.setFinish(finish);
+		start.setExecution(es);
 
 		// Init the name of the ES and its EOS
 		initExecutionSpecificationName(es);

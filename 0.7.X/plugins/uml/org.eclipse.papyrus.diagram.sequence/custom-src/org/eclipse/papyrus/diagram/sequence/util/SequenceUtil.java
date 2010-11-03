@@ -59,7 +59,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.BaseSlidableAnchor;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.Anchor;
-import org.eclipse.gmf.runtime.notation.Bendpoints;
 import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.IdentityAnchor;
@@ -310,6 +309,31 @@ public class SequenceUtil {
 				Point loc = findLocationOfMessageOccurrence(lifelineEditPart, (MessageOccurrenceSpecification)fragment);
 				if(loc != null) {
 					return loc;
+				}
+			}
+		}
+		// If we found nothing, this may be a sync message receive
+		if(fragment instanceof MessageOccurrenceSpecification) {
+			boolean isSync = MessageSort.SYNCH_CALL_LITERAL.equals(((MessageOccurrenceSpecification)fragment).getMessage().getMessageSort());
+			if(isSync) {
+				// sync message should trigger an execution specification start. Find and return the corresponding start.
+				EObject container = fragment.eContainer();
+				EObject lifeline = lifelineEditPart.resolveSemanticElement();
+				InteractionFragment nextFragment = InteractionFragmentHelper.findNextFragment(fragment, container);
+				while(nextFragment != null && nextFragment.getCovereds().contains(lifeline)) {
+					if(nextFragment.getCovereds().contains(lifeline)) {
+						// Found next event of lifeline. Check if it really is a start.
+						if(nextFragment instanceof ExecutionOccurrenceSpecification) {
+							ExecutionSpecification exe = ((ExecutionOccurrenceSpecification)nextFragment).getExecution();
+							if(exe != null && EcoreUtil.equals(exe.getStart(), nextFragment)) {
+								// return location of the start.
+								return findLocationOfEvent(lifelineEditPart, nextFragment);
+							}
+						}
+						break;
+					} else {
+						nextFragment = InteractionFragmentHelper.findNextFragment(nextFragment, container);
+					}
 				}
 			}
 		}
