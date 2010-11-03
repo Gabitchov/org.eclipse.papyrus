@@ -106,36 +106,6 @@ public class «validationDecoratorProviderClassName»
 		});
 	}
 
-	«EXPAND xpt::Common::generatedMemberComment(
-	 'Return the EObject retrieved from the URI attribute in the map. Retrieve it either via the marker itself\n' +
-	 'or via the attribute mapping (required in case a deleted marker)\n' +
-	 '@param marker the problem marker\n' +
-	 '@param attributes a map of the problem marker\n' +
-	 '@param domain the editing domain used for the conversion from URI to eObject\n' +
-	 '@return')»
-	private static org.eclipse.emf.ecore.EObject getEObjectFromMarkerOrMap (org.eclipse.core.resources.IMarker marker, java.util.Map attributes, org.eclipse.emf.edit.domain.EditingDomain domain) {
-		String uriAttribute;
-		if (marker != null) {
-			uriAttribute = marker.getAttribute(org.eclipse.emf.ecore.EValidator.URI_ATTRIBUTE, null);
-		}
-		else {
-			uriAttribute = (String) attributes.get(org.eclipse.emf.ecore.EValidator.URI_ATTRIBUTE);
-		}
-		if(uriAttribute != null) {
-			// get EObject from marker via resourceSet of domain
-			try {
-				return domain.getResourceSet().getEObject(org.eclipse.emf.common.util.URI.createURI(uriAttribute), true);
-			}
-			catch (java.util.MissingResourceException e) {
-				// can happen after renaming
-			}
-			catch (org.eclipse.emf.common.util.WrappedException e) {
-				// can happen after renaming		
-			}
-		}
-		return null;
-	}
-
 	«EXPAND xpt::Common::generatedMemberComment»
 	public static class StatusDecorator extends org.eclipse.gmf.runtime.diagram.ui.services.decorator.AbstractDecorator {
 
@@ -229,7 +199,7 @@ public class «validationDecoratorProviderClassName»
 				else {
 					// get marker from EMF list
 					marker = emfMarkers[i-gmfMarkers.length];
-					org.eclipse.emf.ecore.EObject eObjectOfMarker = getEObjectFromMarkerOrMap(marker, null, TransactionUtil.getEditingDomain(view));
+					org.eclipse.emf.ecore.EObject eObjectOfMarker = org.eclipse.papyrus.core.utils.ValidationUtils.eObjectFromMarkerOrMap(marker, null, org.eclipse.emf.transaction.util.TransactionUtil.getEditingDomain(view));
 					markerIsForMe = (eObjectOfMarker == view.getElement());
 				}
 				if (markerIsForMe) {
@@ -416,9 +386,9 @@ public class «validationDecoratorProviderClassName»
 			if(viewId != null) {
 				refreshDecorators(viewId, diagram);
 			}
-			else /* if (getType(marker).equals(IMarker.PROBLEM)) */ {
+			else {
 				// no viewID => assume EMF validation marker
-				org.eclipse.emf.ecore.EObject eObjectFromMarker = getEObjectFromMarkerOrMap (null, attributes, TransactionUtil.getEditingDomain(diagram));
+				org.eclipse.emf.ecore.EObject eObjectFromMarker = org.eclipse.papyrus.core.utils.ValidationUtils.eObjectFromMarkerOrMap (null, attributes, org.eclipse.emf.transaction.util.TransactionUtil.getEditingDomain(diagram));
 
 				if (eObjectFromMarker != null) {
 					// loop over all views that reference the eObject from the marker
@@ -431,20 +401,25 @@ public class «validationDecoratorProviderClassName»
 
 		«EXPAND xpt::Common::generatedMemberComment»
 		public void handleMarkerChanged(org.eclipse.core.resources.IMarker marker) {
-			if(getType(marker).equals(MARKER_TYPE)) {
-				String viewId = marker.getAttribute(org.eclipse.gmf.runtime.common.ui.resources.IMarker.ELEMENT_ID, ""); //$NON-NLS-1$
-				refreshDecorators(viewId, diagram);
-			}
-			else /* if (getType(marker).equals(IMarker.PROBLEM)) */ {
-				org.eclipse.emf.ecore.EObject eObjectFromMarker = getEObjectFromMarkerOrMap (marker, null, TransactionUtil.getEditingDomain(diagram));
+			try {
+				if(getType(marker).equals(MARKER_TYPE)) {
+					String viewId = marker.getAttribute(org.eclipse.gmf.runtime.common.ui.resources.IMarker.ELEMENT_ID, ""); //$NON-NLS-1$
+					refreshDecorators(viewId, diagram);
+				}
+				else if (marker.isSubtypeOf((org.eclipse.emf.ecore.EValidator.MARKER))) {
+					org.eclipse.emf.ecore.EObject eObjectFromMarker = org.eclipse.papyrus.core.utils.ValidationUtils.eObjectFromMarkerOrMap (marker, null, org.eclipse.emf.transaction.util.TransactionUtil.getEditingDomain(diagram));
 
-				if (eObjectFromMarker != null) {
-					// loop over all views that reference the eObject from the marker
-					for (org.eclipse.gmf.runtime.notation.View view : org.eclipse.papyrus.core.utils.CrossReferencerUtil.getCrossReferencingViews(eObjectFromMarker, null)) {
-						refreshDecorators(view);
+					if (eObjectFromMarker != null) {
+						// loop over all views that reference the eObject from the marker
+						for (org.eclipse.gmf.runtime.notation.View view : org.eclipse.papyrus.core.utils.CrossReferencerUtil.getCrossReferencingViews(eObjectFromMarker, null)) {
+							refreshDecorators(view);
+						}
 					}
 				}
 			}
+			catch (org.eclipse.core.runtime.CoreException e) {
+				// only reason: marker does not exist (ignore, shoudl not happen)
+			} 
 		}
 
 		«EXPAND xpt::Common::generatedMemberComment»
