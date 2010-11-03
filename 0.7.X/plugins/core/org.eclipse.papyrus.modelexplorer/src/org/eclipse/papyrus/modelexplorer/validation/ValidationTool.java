@@ -15,7 +15,6 @@
 package org.eclipse.papyrus.modelexplorer.validation;
 
 import java.util.List;
-import java.util.MissingResourceException;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
@@ -29,6 +28,7 @@ import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gmt.modisco.infra.browser.uicore.internal.model.LinkItem;
+import org.eclipse.papyrus.core.utils.ValidationUtils;
 
 public class ValidationTool {
 	
@@ -79,23 +79,13 @@ public class ValidationTool {
 	public EObject eObjectOfMarker (IMarker marker) {
 		if (eObject != null) {
 			domain = AdapterFactoryEditingDomain.getEditingDomainFor(eObject);
-
 			try {
-				
 				if (marker.isSubtypeOf((EValidator.MARKER))) {
-					String uriAttribute = marker.getAttribute(EValidator.URI_ATTRIBUTE, null);
-					if(uriAttribute != null) {
-						try {
-							URI uriOfMarker = URI.createURI(uriAttribute);
-							return domain.getResourceSet().getEObject(uriOfMarker, true);
-						}
-						catch (MissingResourceException e) {
-							// can happen after renaming
-						}
-					}
+					return ValidationUtils.eObjectFromMarkerOrMap (marker, null, domain);
 				}
 			}
 			catch (CoreException e) {
+				// only reason: marker does not exist
 			}
 		}
 		return null;
