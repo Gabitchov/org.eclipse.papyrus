@@ -247,6 +247,14 @@ public class CustomMessagesReorientCommand extends MessageReorientCommand {
 				if(!(elementsToEdit.get(k).getTarget() == null)) {
 					if(elementsToEdit.get(k).getTarget().equals(oldEnd)) {
 						ReconnectMessageHelper.updateMessageEnd(mess.getReceiveEvent(), (Element)oldEnd, (Element)newEnd);
+						//refresh the other message end
+						//						done: for(Lifeline current : ((MessageOccurrenceSpecification)mess.getSendEvent()).getCovereds()) {
+						//							if(current != null) {
+						//								ReconnectMessageHelper.updateMessageEnd(mess.getSendEvent(), current, current);
+						//								break done;
+						//							}
+						//						}
+
 					}
 				} else {
 					if(!(elementsToEdit.get(k).getSource() == null)) {

@@ -438,7 +438,7 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 						 * Override to support double-clicking a palette tool entry to create a
 						 * shape or connection (between two selected shapes).
 						 * 
-						 * @see org.eclipse.swt.events.MouseListener#mouseDoubleClick(org.eclipse.swt.events.MouseEvent)
+						 * @see MouseListener#mouseDoubleClick(MouseEvent)
 						 */
 						public void mouseDoubleClick(MouseEvent e) {
 							Tool tool = getPaletteViewer().getActiveTool().createTool();

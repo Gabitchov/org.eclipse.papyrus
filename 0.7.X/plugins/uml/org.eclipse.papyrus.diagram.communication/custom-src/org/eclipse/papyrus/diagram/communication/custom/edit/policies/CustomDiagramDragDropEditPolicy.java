@@ -332,7 +332,7 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 	 */
 
 	public Command dropMessage(DropObjectsRequest dropRequest, Element semanticLink, int linkVISUALID) {
-		// Test canvas element
+
 		GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart)getHost();
 		EObject graphicalParentObject = graphicalParentEditPart.resolveSemanticElement();
 		if(!(graphicalParentObject instanceof org.eclipse.uml2.uml.Interaction)) {
@@ -447,10 +447,8 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 			targetAdapter = new SemanticAdapter(null, targetEditPart.getModel());
 		}
 
-		CommunicationDeferredCreateConnectionViewCommand aLinkCommand = new CommunicationDeferredCreateConnectionViewCommand(((IGraphicalEditPart)getHost()).getEditingDomain(), ((IHintedType)getUMLElementType(linkVISUALID)).getSemanticHint(), sourceAdapter, targetAdapter, getViewer(), getDiagramPreferencesHint(), linkdescriptor, null);
-		aLinkCommand.setElement(semanticLink);
-		//	View connView = (View)((ICommand)aLinkCommand).getCommandResult().getReturnValue();
-		//connView.getChildren().get(1)
+		CommunicationDeferredCreateConnectionViewCommand aLinkCommand = new CommunicationDeferredCreateConnectionViewCommand(((IGraphicalEditPart)getHost()).getEditingDomain(), ((IHintedType)getUMLElementType(linkVISUALID)).getSemanticHint(), sourceAdapter, targetAdapter, getViewer(), getDiagramPreferencesHint(), linkdescriptor, null, semanticLink);
+
 		cc.compose(aLinkCommand);
 
 		return cc;

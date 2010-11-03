@@ -17,6 +17,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
@@ -25,12 +26,10 @@ import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest.ConnectionViewDescriptor;
-import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.commands.CommonDeferredCreateConnectionViewCommand;
 import org.eclipse.papyrus.diagram.communication.edit.parts.MessageNameEditPart;
 import org.eclipse.papyrus.diagram.communication.part.UMLVisualIDRegistry;
-import org.eclipse.uml2.uml.Interaction;
 
 
 
@@ -40,7 +39,8 @@ import org.eclipse.uml2.uml.Interaction;
  */
 public class CommunicationDeferredCreateConnectionViewCommand extends CommonDeferredCreateConnectionViewCommand {
 
-
+	/** the element for the connection's label semantic element */
+	protected EObject labelElement = null;
 
 
 	/**
@@ -63,8 +63,9 @@ public class CommunicationDeferredCreateConnectionViewCommand extends CommonDefe
 	 * @param command
 	 *        the command
 	 */
-	public CommunicationDeferredCreateConnectionViewCommand(TransactionalEditingDomain editingDomain, String semanticHint, IAdaptable sourceViewAdapter, IAdaptable targetViewAdapter, EditPartViewer viewer, PreferencesHint preferencesHint, ConnectionViewDescriptor viewDescriptor, ICommand command) {
+	public CommunicationDeferredCreateConnectionViewCommand(TransactionalEditingDomain editingDomain, String semanticHint, IAdaptable sourceViewAdapter, IAdaptable targetViewAdapter, EditPartViewer viewer, PreferencesHint preferencesHint, ConnectionViewDescriptor viewDescriptor, ICommand command, EObject labelElement) {
 		super(editingDomain, semanticHint, sourceViewAdapter, targetViewAdapter, viewer, preferencesHint, viewDescriptor, command);
+		this.labelElement = labelElement;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -97,18 +98,25 @@ public class CommunicationDeferredCreateConnectionViewCommand extends CommonDefe
 		if(createConnectionCmd.canExecute()) {
 			createConnectionCmd.execute();
 		}
-		if(element != null) {
+		if(labelElement != null) {
 
-			//Set element of the connector to Interaction !! This has to be changed in the next release, because it is incoherent !!!
-			//If setElement(null) , I can not do the reorient anymore !!
-			View temp = (View)(createRequest.getConnectionViewDescriptor().getAdapter(View.class));
-			if(temp instanceof Connector) {
-				if(((View)((Connector)temp).getTarget().eContainer()).getElement() instanceof Interaction) {
-					((View)(createRequest.getConnectionViewDescriptor().getAdapter(View.class))).setElement(((View)((Connector)temp).getTarget().eContainer()).getElement());
-				} else {
-					((View)(createRequest.getConnectionViewDescriptor().getAdapter(View.class))).setElement(null); // in this case, the reorient does not work anymore !! :((
-				}
-			}
+			/*
+			 * Code Commented to no more set the the semantic element of the connector
+			 * 
+			 * //Set element of the connector to Interaction !! This has to be changed in the next release, because it is incoherent !!!
+			 * //If setElement(null) , I can not do the reorient anymore !!
+			 * // View temp = (View)(createRequest.getConnectionViewDescriptor().getAdapter(View.class));
+			 * // if(temp instanceof Connector) {
+			 * // if(((View)((Connector)temp).getTarget().eContainer()).getElement() instanceof Interaction) {
+			 * //
+			 * ((View)(createRequest.getConnectionViewDescriptor().getAdapter(View.class))).setElement(((View)((Connector)temp).getTarget().eContainer
+			 * ()).getElement());
+			 * // } else {
+			 * // ((View)(createRequest.getConnectionViewDescriptor().getAdapter(View.class))).setElement(null); // in this case, the reorient does
+			 * not work anymore !! :((
+			 * // }
+			 * // }
+			 */
 
 			//set element of the label of the connector to element
 			if(((View)(createRequest.getConnectionViewDescriptor().getAdapter(View.class))).getChildren().size() > 1) {
@@ -121,7 +129,7 @@ public class CommunicationDeferredCreateConnectionViewCommand extends CommonDefe
 					//System.err.println("VisualID  of MessageNameEditPart :" + ((View)(((View)(createRequest.getConnectionViewDescriptor().getAdapter(View.class))).getChildren().get(i))).getType());
 					// ---------------------------------------------------------
 					if(((View)(((View)(createRequest.getConnectionViewDescriptor().getAdapter(View.class))).getChildren().get(i))).getType().equals(UMLVisualIDRegistry.getType(MessageNameEditPart.VISUAL_ID))) {//this is the label that coresponds to the message
-						((View)(((View)(createRequest.getConnectionViewDescriptor().getAdapter(View.class))).getChildren().get(i))).setElement(element);
+						((View)(((View)(createRequest.getConnectionViewDescriptor().getAdapter(View.class))).getChildren().get(i))).setElement(labelElement);
 						//System.err.println("VisualID  of MessageNameEditPart == VisualID of Child of connector view ");
 					}
 				}
