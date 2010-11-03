@@ -29,7 +29,6 @@ import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CreateCommand;
@@ -49,6 +48,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.common.commands.DeleteLinkDuringCreationCommand;
 import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.diagram.common.helper.ElementHelper;
 import org.eclipse.papyrus.diagram.profile.custom.commands.DependencyDiamondViewCreateCommand;
@@ -339,8 +339,8 @@ public class MultiDependencyHelper extends ElementHelper {
 			// 2. Remove the view of the dependency
 			View dependencyViewSource = ((Edge)dependencyView).getSource();
 			View dependencyViewTarget = ((Edge)dependencyView).getTarget();
-
-			((CompoundCommand)command).add(new ICommandProxy(new DeleteCommand(getEditingDomain(), dependencyView)));
+			((CompoundCommand)command).add(new ICommandProxy(new DeleteLinkDuringCreationCommand(getEditingDomain(), (Edge)dependencyView, sourceEditPart.getViewer())));
+			//			((CompoundCommand)command).add(new ICommandProxy(new DeleteCommand(getEditingDomain(), dependencyView)));
 
 			// ---------------------------------------------------------
 			// help to debug
