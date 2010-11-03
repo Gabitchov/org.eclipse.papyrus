@@ -55,9 +55,11 @@ import org.eclipse.papyrus.diagram.common.directedit.MultilineLabelDirectEditMan
 import org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure;
-import org.eclipse.papyrus.diagram.profile.custom.policies.DisplayAssociationEndSourceEditPolicy;
+import org.eclipse.papyrus.diagram.profile.custom.policies.DisplayAssociationEndTargetEditPolicy;
+import org.eclipse.papyrus.diagram.profile.custom.policies.DisplayAssociationEndTargetMultiplicityEditPolicy;
 import org.eclipse.papyrus.diagram.profile.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.diagram.profile.part.UMLVisualIDRegistry;
+import org.eclipse.papyrus.diagram.profile.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.profile.providers.UMLParserProvider;
 import org.eclipse.papyrus.extensionpoints.editors.Activator;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IAdvancedEditorConfiguration;
@@ -78,12 +80,12 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class AssociationMultiplicityTargetLabelEditPart extends LabelEditPart implements ITextAwareEditPart {
+public class AssociationBranchMultiplicityEditPart extends LabelEditPart implements ITextAwareEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 6005;
+	public static final int VISUAL_ID = 6035;
 
 	/**
 	 * @generated
@@ -109,14 +111,12 @@ public class AssociationMultiplicityTargetLabelEditPart extends LabelEditPart im
 
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
-	 * 
 	 * @generated
 	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
 	/**
 	 * configuration from a registered edit dialog
-	 * 
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
@@ -127,13 +127,13 @@ public class AssociationMultiplicityTargetLabelEditPart extends LabelEditPart im
 	 * @generated
 	 */
 	static {
-		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.profile.edit.parts.AssociationMultiplicityTargetLabelEditPart.VISUAL_ID), new Point(0, 20));
+		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.profile.edit.parts.AssociationBranchMultiplicityEditPart.VISUAL_ID), new Point(0, 20));
 	}
 
 	/**
 	 * @generated
 	 */
-	public AssociationMultiplicityTargetLabelEditPart(View view) {
+	public AssociationBranchMultiplicityEditPart(View view) {
 		super(view);
 	}
 
@@ -145,14 +145,14 @@ public class AssociationMultiplicityTargetLabelEditPart extends LabelEditPart im
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
 		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new UMLTextSelectionEditPolicy());
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new ProfileDiagramEditPart.LinkLabelDragPolicy());
-		installEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY, new DisplayAssociationEndSourceEditPolicy());
+		installEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY, new DisplayAssociationEndTargetMultiplicityEditPolicy());
 	}
 
 	/**
 	 * @generated
 	 */
 	public int getKeyPoint() {
-		return ConnectionLocator.TARGET;
+		return ConnectionLocator.SOURCE;
 	}
 
 	/**
@@ -290,7 +290,7 @@ public class AssociationMultiplicityTargetLabelEditPart extends LabelEditPart im
 	 * @generated
 	 */
 	protected boolean isEditable() {
-		return getParser() != null;
+		return false;
 	}
 
 	/**
@@ -344,7 +344,7 @@ public class AssociationMultiplicityTargetLabelEditPart extends LabelEditPart im
 	 */
 	public IParser getParser() {
 		if(parser == null) {
-			parser = UMLParserProvider.get().getAssociationName_6005Parser();
+			parser = UMLParserProvider.getParser(UMLElementTypes.Association_4019, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.profile.edit.parts.AssociationBranchMultiplicityEditPart.VISUAL_ID));
 		}
 		return parser;
 	}
@@ -635,7 +635,6 @@ public class AssociationMultiplicityTargetLabelEditPart extends LabelEditPart im
 
 	/**
 	 * Initializes the extended editor configuration
-	 * 
 	 * @generated
 	 */
 	protected void initExtendedEditorConfiguration() {
@@ -651,7 +650,6 @@ public class AssociationMultiplicityTargetLabelEditPart extends LabelEditPart im
 
 	/**
 	 * Updates the preference configuration
-	 * 
 	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
@@ -665,9 +663,7 @@ public class AssociationMultiplicityTargetLabelEditPart extends LabelEditPart im
 
 	/**
 	 * Performs the direct edit usually used by GMF editors.
-	 * 
-	 * @param theRequest
-	 *        the direct edit request that starts the direct edit system
+	 * @param theRequest the direct edit request that starts the direct edit system
 	 * @generated
 	 */
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {

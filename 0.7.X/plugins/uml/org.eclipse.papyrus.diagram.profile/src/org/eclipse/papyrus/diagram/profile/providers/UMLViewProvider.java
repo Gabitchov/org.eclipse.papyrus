@@ -56,12 +56,15 @@ import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElement
 import org.eclipse.papyrus.diagram.profile.edit.parts.AppliedStereotypeElementImportEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.AssociationAppliedStereotypeEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.AssociationBranchEditPart;
+import org.eclipse.papyrus.diagram.profile.edit.parts.AssociationBranchMultiplicityEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.AssociationBranchRoleEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.AssociationEditPart;
-import org.eclipse.papyrus.diagram.profile.edit.parts.AssociationMultiplicityTargetLabelEditPart;
+import org.eclipse.papyrus.diagram.profile.edit.parts.AssociationMultiplicitySourceEditPart;
+import org.eclipse.papyrus.diagram.profile.edit.parts.AssociationMultiplicityTargetEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.AssociationNameEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.AssociationNodeEditPart;
-import org.eclipse.papyrus.diagram.profile.edit.parts.AssociationRoleSourceLabelEditPart;
+import org.eclipse.papyrus.diagram.profile.edit.parts.AssociationRoleSourceEditPart;
+import org.eclipse.papyrus.diagram.profile.edit.parts.AssociationRoleTargetEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.ClassOperationEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.ClassPropertyEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.CommentAnnotatedElementEditPart;
@@ -178,10 +181,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	 */
 	protected boolean provides(CreateViewForKindOperation op) {
 		/*
-		 * if (op.getViewKind() == Node.class)
-		 * return getNodeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
-		 * if (op.getViewKind() == Edge.class)
-		 * return getEdgeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
+		 if (op.getViewKind() == Node.class)
+		 return getNodeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
+		 if (op.getViewKind() == Edge.class)
+		 return getEdgeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
 		 */
 		return true;
 	}
@@ -1268,17 +1271,27 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		label6002.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6002 = (Location)label6002.getLayoutConstraint();
 		location6002.setX(0);
-		location6002.setY(40);
-		Node label6003 = createLabel(edge, UMLVisualIDRegistry.getType(AssociationRoleSourceLabelEditPart.VISUAL_ID));
+		location6002.setY(20);
+		Node label6003 = createLabel(edge, UMLVisualIDRegistry.getType(AssociationRoleTargetEditPart.VISUAL_ID));
 		label6003.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6003 = (Location)label6003.getLayoutConstraint();
 		location6003.setX(0);
-		location6003.setY(-20);
-		Node label6005 = createLabel(edge, UMLVisualIDRegistry.getType(AssociationMultiplicityTargetLabelEditPart.VISUAL_ID));
+		location6003.setY(20);
+		Node label6005 = createLabel(edge, UMLVisualIDRegistry.getType(AssociationRoleSourceEditPart.VISUAL_ID));
 		label6005.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6005 = (Location)label6005.getLayoutConstraint();
 		location6005.setX(0);
-		location6005.setY(20);
+		location6005.setY(-20);
+		Node label6033 = createLabel(edge, UMLVisualIDRegistry.getType(AssociationMultiplicitySourceEditPart.VISUAL_ID));
+		label6033.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6033 = (Location)label6033.getLayoutConstraint();
+		location6033.setX(0);
+		location6033.setY(20);
+		Node label6034 = createLabel(edge, UMLVisualIDRegistry.getType(AssociationMultiplicityTargetEditPart.VISUAL_ID));
+		label6034.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6034 = (Location)label6034.getLayoutConstraint();
+		location6034.setX(0);
+		location6034.setY(-20);
 		return edge;
 	}
 
@@ -1354,6 +1367,11 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6024 = (Location)label6024.getLayoutConstraint();
 		location6024.setX(0);
 		location6024.setY(-20);
+		Node label6035 = createLabel(edge, UMLVisualIDRegistry.getType(AssociationBranchMultiplicityEditPart.VISUAL_ID));
+		label6035.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6035 = (Location)label6035.getLayoutConstraint();
+		location6035.setX(0);
+		location6035.setY(20);
 		return edge;
 	}
 

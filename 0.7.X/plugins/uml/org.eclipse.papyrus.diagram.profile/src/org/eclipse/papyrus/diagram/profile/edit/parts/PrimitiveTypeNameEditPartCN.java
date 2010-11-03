@@ -57,6 +57,7 @@ import org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPoli
 import org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.diagram.profile.edit.policies.UMLTextSelectionEditPolicy;
+import org.eclipse.papyrus.diagram.profile.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.profile.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.profile.providers.UMLParserProvider;
 import org.eclipse.papyrus.extensionpoints.editors.Activator;
@@ -111,14 +112,12 @@ public class PrimitiveTypeNameEditPartCN extends CompartmentEditPart implements 
 
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
-	 * 
 	 * @generated
 	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
 	/**
 	 * configuration from a registered edit dialog
-	 * 
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
@@ -343,7 +342,7 @@ public class PrimitiveTypeNameEditPartCN extends CompartmentEditPart implements 
 	 */
 	public IParser getParser() {
 		if(parser == null) {
-			parser = UMLParserProvider.get().getPrimitiveTypeName_5058Parser();
+			parser = UMLParserProvider.getParser(UMLElementTypes.PrimitiveType_3026, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.profile.edit.parts.PrimitiveTypeNameEditPartCN.VISUAL_ID));
 		}
 		return parser;
 	}
@@ -634,7 +633,6 @@ public class PrimitiveTypeNameEditPartCN extends CompartmentEditPart implements 
 
 	/**
 	 * Initializes the extended editor configuration
-	 * 
 	 * @generated
 	 */
 	protected void initExtendedEditorConfiguration() {
@@ -650,7 +648,6 @@ public class PrimitiveTypeNameEditPartCN extends CompartmentEditPart implements 
 
 	/**
 	 * Updates the preference configuration
-	 * 
 	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
@@ -664,9 +661,7 @@ public class PrimitiveTypeNameEditPartCN extends CompartmentEditPart implements 
 
 	/**
 	 * Performs the direct edit usually used by GMF editors.
-	 * 
-	 * @param theRequest
-	 *        the direct edit request that starts the direct edit system
+	 * @param theRequest the direct edit request that starts the direct edit system
 	 * @generated
 	 */
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {

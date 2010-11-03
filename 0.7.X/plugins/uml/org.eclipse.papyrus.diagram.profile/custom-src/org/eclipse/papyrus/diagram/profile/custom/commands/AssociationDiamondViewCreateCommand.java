@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Adapted code from the class diagram to the profile diagram
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Adapted code from Class Diagram
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.profile.custom.commands;
 
@@ -39,28 +39,33 @@ import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.diagram.profile.providers.UMLViewProvider;
 
 /**
- * Custom class to create the associationClass node
+ * Custom class to create the association node
  * 
  * @author Patrick Tessier
  */
+
+//In this file, we need of the UMLViewProviderToCreateTheAssociation
 public class AssociationDiamondViewCreateCommand extends AbstractTransactionalCommand {
 
+	/** the created association node */
 	private static View node;
 
+	/** the conainer */
 	private View containerView;
 
-	private EObject element;
-
-	private EObject eobject;
-
+	/** the location for the node */
 	private Point location;
 
+	/** the {@link PreferencesHint} */
 	private PreferencesHint preferenceHint;
 
+	/** the result of the command */
 	public EObjectAdapter result;
 
+	/** the semantic adapter */
 	private SemanticAdapter semanticApdater;
 
+	/** the viewer */
 	private EditPartViewer viewer;
 
 	/**
@@ -80,7 +85,7 @@ public class AssociationDiamondViewCreateCommand extends AbstractTransactionalCo
 	 *        the location of the future association node
 	 */
 	public AssociationDiamondViewCreateCommand(TransactionalEditingDomain domain, View container, EditPartViewer viewer, PreferencesHint preferencesHint, Point point, SemanticAdapter semanticAdapter) {
-		super(domain, "AssociationDiamonViewCreateCommand", null); //$NON-NLS-1$
+		super(domain, "AssociationDiamondViewCreateCommand", null); //$NON-NLS-1$
 		this.containerView = container;
 		this.viewer = viewer;
 		this.preferenceHint = preferencesHint;
@@ -94,6 +99,7 @@ public class AssociationDiamondViewCreateCommand extends AbstractTransactionalCo
 	 * 
 	 * {@inheritDoc}
 	 */
+	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		// / get the factory of the viewer
 		// Dependency2ViewFactory factory = new Dependency2ViewFactory();
@@ -117,6 +123,7 @@ public class AssociationDiamondViewCreateCommand extends AbstractTransactionalCo
 	 * 
 	 * {@inheritDoc}
 	 */
+	@Override
 	public List getAffectedFiles() {
 		if(viewer != null) {
 			EditPart editpart = viewer.getRootEditPart().getContents();

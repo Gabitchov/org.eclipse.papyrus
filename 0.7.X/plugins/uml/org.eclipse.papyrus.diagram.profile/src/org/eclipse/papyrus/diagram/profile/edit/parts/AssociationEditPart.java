@@ -68,12 +68,20 @@ AbstractAssociationEditPart implements ITreeBranchEditPart {
 			((AssociationNameEditPart)childEditPart).setLabel(getPrimaryShape().getAssociationNameLabel());
 			return true;
 		}
-		if(childEditPart instanceof AssociationRoleSourceLabelEditPart) {
-			((AssociationRoleSourceLabelEditPart)childEditPart).setLabel(getPrimaryShape().getRoleSourceLabel());
+		if(childEditPart instanceof AssociationRoleTargetEditPart) {
+			((AssociationRoleTargetEditPart)childEditPart).setLabel(getPrimaryShape().getRoleTargetLabel());
 			return true;
 		}
-		if(childEditPart instanceof AssociationMultiplicityTargetLabelEditPart) {
-			((AssociationMultiplicityTargetLabelEditPart)childEditPart).setLabel(getPrimaryShape().getMultiplicityTargetLabel());
+		if(childEditPart instanceof AssociationRoleSourceEditPart) {
+			((AssociationRoleSourceEditPart)childEditPart).setLabel(getPrimaryShape().getRoleSourceLabel());
+			return true;
+		}
+		if(childEditPart instanceof AssociationMultiplicitySourceEditPart) {
+			((AssociationMultiplicitySourceEditPart)childEditPart).setLabel(getPrimaryShape().getMultiplicitySourceLabel());
+			return true;
+		}
+		if(childEditPart instanceof AssociationMultiplicityTargetEditPart) {
+			((AssociationMultiplicityTargetEditPart)childEditPart).setLabel(getPrimaryShape().getMultiplicityTargetLabel());
 			return true;
 		}
 		return false;
@@ -101,10 +109,16 @@ AbstractAssociationEditPart implements ITreeBranchEditPart {
 		if(childEditPart instanceof AssociationNameEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof AssociationRoleSourceLabelEditPart) {
+		if(childEditPart instanceof AssociationRoleTargetEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof AssociationMultiplicityTargetLabelEditPart) {
+		if(childEditPart instanceof AssociationRoleSourceEditPart) {
+			return true;
+		}
+		if(childEditPart instanceof AssociationMultiplicitySourceEditPart) {
+			return true;
+		}
+		if(childEditPart instanceof AssociationMultiplicityTargetEditPart) {
 			return true;
 		}
 		return false;

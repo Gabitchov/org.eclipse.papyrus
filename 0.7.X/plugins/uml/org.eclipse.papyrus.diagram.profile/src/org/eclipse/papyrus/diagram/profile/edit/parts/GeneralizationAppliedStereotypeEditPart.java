@@ -57,6 +57,7 @@ import org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPoli
 import org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.diagram.profile.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.diagram.profile.part.UMLVisualIDRegistry;
+import org.eclipse.papyrus.diagram.profile.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.profile.providers.UMLParserProvider;
 import org.eclipse.papyrus.extensionpoints.editors.Activator;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IAdvancedEditorConfiguration;
@@ -108,14 +109,12 @@ public class GeneralizationAppliedStereotypeEditPart extends LabelEditPart imple
 
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
-	 * 
 	 * @generated
 	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
 	/**
 	 * configuration from a registered edit dialog
-	 * 
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
@@ -342,7 +341,7 @@ public class GeneralizationAppliedStereotypeEditPart extends LabelEditPart imple
 	 */
 	public IParser getParser() {
 		if(parser == null) {
-			parser = UMLParserProvider.get().getGeneralizationIsSubstitutable_6007Parser();
+			parser = UMLParserProvider.getParser(UMLElementTypes.Generalization_4002, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.profile.edit.parts.GeneralizationAppliedStereotypeEditPart.VISUAL_ID));
 		}
 		return parser;
 	}
@@ -633,7 +632,6 @@ public class GeneralizationAppliedStereotypeEditPart extends LabelEditPart imple
 
 	/**
 	 * Initializes the extended editor configuration
-	 * 
 	 * @generated
 	 */
 	protected void initExtendedEditorConfiguration() {
@@ -649,7 +647,6 @@ public class GeneralizationAppliedStereotypeEditPart extends LabelEditPart imple
 
 	/**
 	 * Updates the preference configuration
-	 * 
 	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
@@ -663,9 +660,7 @@ public class GeneralizationAppliedStereotypeEditPart extends LabelEditPart imple
 
 	/**
 	 * Performs the direct edit usually used by GMF editors.
-	 * 
-	 * @param theRequest
-	 *        the direct edit request that starts the direct edit system
+	 * @param theRequest the direct edit request that starts the direct edit system
 	 * @generated
 	 */
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {

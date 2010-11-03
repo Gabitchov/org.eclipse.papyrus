@@ -144,7 +144,6 @@ public class AssociationBranchCreateCommand extends EditElementCommand {
 	/**
 	 * Default approach is to traverse ancestors of the source to find instance of container.
 	 * Modify with appropriate logic.
-	 * 
 	 * @generated
 	 */
 	protected Package deduceContainer(EObject source, EObject target) {

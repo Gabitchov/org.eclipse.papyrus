@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
-import org.eclipse.papyrus.diagram.profile.custom.helper.ClazzDiagramAssociationHelper;
+import org.eclipse.papyrus.diagram.profile.custom.helper.ProfileDiagramAssociationHelper;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Type;
@@ -30,22 +30,26 @@ import org.eclipse.uml2.uml.Type;
  */
 public class CustomAssociationCreateCommand extends org.eclipse.papyrus.diagram.profile.edit.commands.AssociationCreateCommand {
 
-
-	/**
-	 * the container
-	 */
+	/** the container */
 	protected Package container;
 
-	/**
-	 * the source
-	 */
+	/** the source of the association */
 	protected EObject source;
 
-	/**
-	 * the target
-	 */
+	/** the target of the association */
 	protected EObject target;
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param request
+	 *        the request
+	 * @param source
+	 *        the source of the association to create
+	 * @param target
+	 *        the target of the association to create
+	 */
 	public CustomAssociationCreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
 		super(request, source, target);
 		this.source = source;
@@ -64,7 +68,7 @@ public class CustomAssociationCreateCommand extends org.eclipse.papyrus.diagram.
 		}
 		if(source instanceof Type && target instanceof Type && container instanceof Package) {
 
-			Association newElement = (Association)ClazzDiagramAssociationHelper.createAssociation(getEditingDomain(), (Type)source, (Type)target, container);
+			Association newElement = (Association)ProfileDiagramAssociationHelper.createAssociation(getEditingDomain(), (Type)source, (Type)target, container);
 			((CreateElementRequest)getRequest()).setNewElement(newElement);
 			return CommandResult.newOKCommandResult(newElement);
 		}

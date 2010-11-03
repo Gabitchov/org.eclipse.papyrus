@@ -262,11 +262,17 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case AssociationNameEditPart.VISUAL_ID:
 				return new AssociationNameEditPart(view);
 
-			case AssociationRoleSourceLabelEditPart.VISUAL_ID:
-				return new AssociationRoleSourceLabelEditPart(view);
+			case AssociationRoleTargetEditPart.VISUAL_ID:
+				return new AssociationRoleTargetEditPart(view);
 
-			case AssociationMultiplicityTargetLabelEditPart.VISUAL_ID:
-				return new AssociationMultiplicityTargetLabelEditPart(view);
+			case AssociationRoleSourceEditPart.VISUAL_ID:
+				return new AssociationRoleSourceEditPart(view);
+
+			case AssociationMultiplicitySourceEditPart.VISUAL_ID:
+				return new AssociationMultiplicitySourceEditPart(view);
+
+			case AssociationMultiplicityTargetEditPart.VISUAL_ID:
+				return new AssociationMultiplicityTargetEditPart(view);
 
 
 			case ProfileApplicationEditPart.VISUAL_ID:
@@ -278,6 +284,9 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case AssociationBranchRoleEditPart.VISUAL_ID:
 				return new AssociationBranchRoleEditPart(view);
+
+			case AssociationBranchMultiplicityEditPart.VISUAL_ID:
+				return new AssociationBranchMultiplicityEditPart(view);
 
 
 			case GeneralizationEditPart.VISUAL_ID:

@@ -58,6 +58,7 @@ import org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.diagram.profile.custom.policies.DisplayAssociationEndTargetEditPolicy;
 import org.eclipse.papyrus.diagram.profile.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.diagram.profile.part.UMLVisualIDRegistry;
+import org.eclipse.papyrus.diagram.profile.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.profile.providers.UMLParserProvider;
 import org.eclipse.papyrus.extensionpoints.editors.Activator;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IAdvancedEditorConfiguration;
@@ -78,7 +79,7 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class AssociationRoleSourceLabelEditPart extends LabelEditPart implements ITextAwareEditPart {
+public class AssociationRoleTargetEditPart extends LabelEditPart implements ITextAwareEditPart {
 
 	/**
 	 * @generated
@@ -109,14 +110,12 @@ public class AssociationRoleSourceLabelEditPart extends LabelEditPart implements
 
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
-	 * 
 	 * @generated
 	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
 	/**
 	 * configuration from a registered edit dialog
-	 * 
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
@@ -127,13 +126,13 @@ public class AssociationRoleSourceLabelEditPart extends LabelEditPart implements
 	 * @generated
 	 */
 	static {
-		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.profile.edit.parts.AssociationRoleSourceLabelEditPart.VISUAL_ID), new Point(0, -20));
+		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.profile.edit.parts.AssociationRoleTargetEditPart.VISUAL_ID), new Point(0, 20));
 	}
 
 	/**
 	 * @generated
 	 */
-	public AssociationRoleSourceLabelEditPart(View view) {
+	public AssociationRoleTargetEditPart(View view) {
 		super(view);
 	}
 
@@ -290,7 +289,7 @@ public class AssociationRoleSourceLabelEditPart extends LabelEditPart implements
 	 * @generated
 	 */
 	protected boolean isEditable() {
-		return getParser() != null;
+		return false;
 	}
 
 	/**
@@ -344,7 +343,7 @@ public class AssociationRoleSourceLabelEditPart extends LabelEditPart implements
 	 */
 	public IParser getParser() {
 		if(parser == null) {
-			parser = UMLParserProvider.get().getAssociationName_6003Parser();
+			parser = UMLParserProvider.getParser(UMLElementTypes.Association_4001, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.profile.edit.parts.AssociationRoleTargetEditPart.VISUAL_ID));
 		}
 		return parser;
 	}
@@ -635,7 +634,6 @@ public class AssociationRoleSourceLabelEditPart extends LabelEditPart implements
 
 	/**
 	 * Initializes the extended editor configuration
-	 * 
 	 * @generated
 	 */
 	protected void initExtendedEditorConfiguration() {
@@ -651,7 +649,6 @@ public class AssociationRoleSourceLabelEditPart extends LabelEditPart implements
 
 	/**
 	 * Updates the preference configuration
-	 * 
 	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
@@ -665,9 +662,7 @@ public class AssociationRoleSourceLabelEditPart extends LabelEditPart implements
 
 	/**
 	 * Performs the direct edit usually used by GMF editors.
-	 * 
-	 * @param theRequest
-	 *        the direct edit request that starts the direct edit system
+	 * @param theRequest the direct edit request that starts the direct edit system
 	 * @generated
 	 */
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {

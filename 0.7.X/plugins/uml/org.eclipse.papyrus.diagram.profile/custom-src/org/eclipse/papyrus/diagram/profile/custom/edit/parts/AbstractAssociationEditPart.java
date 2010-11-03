@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Adapted code from the class diagram to the profile diagram
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Adapted code from Class Diagram
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.profile.custom.edit.parts;
 
@@ -29,14 +29,10 @@ import org.eclipse.uml2.uml.Property;
  */
 public abstract class AbstractAssociationEditPart extends UMLConnectionNodeEditPart {
 
-	/**
-	 * name of the Association End Source Listener
-	 */
+	/** Filter ID for the end source listener */
 	protected static final String ASSOCIATION_END_LISTENERS_SOURCE = "AssociationEndListenersSource"; //$NON-NLS-1$
 
-	/**
-	 * name of the Association End Target Listener
-	 */
+	/** Filter ID for the end target listener */
 	protected static final String ASSOCIATION_END_LISTENERS_TARGET = "AssociationEndListenersTarget"; //$NON-NLS-1$
 
 	/**
@@ -44,6 +40,7 @@ public abstract class AbstractAssociationEditPart extends UMLConnectionNodeEditP
 	 * Constructor.
 	 * 
 	 * @param view
+	 *        the view
 	 */
 	public AbstractAssociationEditPart(View view) {
 		super(view);

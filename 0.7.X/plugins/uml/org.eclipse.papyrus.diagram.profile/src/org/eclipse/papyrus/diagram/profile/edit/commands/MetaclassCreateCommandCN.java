@@ -70,7 +70,6 @@ public class MetaclassCreateCommandCN extends EditElementCommand {
 
 	/**
 	 * FIXME: replace with setElementToEdit()
-	 * 
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
