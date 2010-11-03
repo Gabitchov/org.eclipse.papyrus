@@ -18,7 +18,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.MissingResourceException;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
@@ -26,11 +25,8 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.draw2d.FlowLayout;
 import org.eclipse.draw2d.Label;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EValidator;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gef.EditDomain;
@@ -53,6 +49,7 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.core.utils.CrossReferencerUtil;
+import org.eclipse.papyrus.core.utils.ValidationUtils;
 import org.eclipse.papyrus.diagram.composite.edit.parts.CompositeStructureDiagramEditPart;
 import org.eclipse.papyrus.diagram.composite.part.UMLDiagramEditor;
 import org.eclipse.papyrus.diagram.composite.part.UMLDiagramEditorPlugin;
@@ -158,39 +155,6 @@ public class UMLValidationDecoratorProvider extends AbstractProvider implements 
 	}
 
 	/**
-	 * Return the EObject retrieved from the URI attribute in the map. Retrieve it either via the marker itself
-	 * or via the attribute mapping (required in case a deleted marker)
-	 * 
-	 * @param marker
-	 *        the problem marker
-	 * @param attributes
-	 *        a map of the problem marker
-	 * @param domain
-	 *        the editing domain used for the conversion from URI to eObject
-	 * @return
-	 * @generated
-	 */
-	private static EObject getEObjectFromMarkerOrMap(IMarker marker, Map attributes, EditingDomain domain) {
-		String uriAttribute;
-		if(marker != null) {
-			uriAttribute = marker.getAttribute(EValidator.URI_ATTRIBUTE, null);
-		} else {
-			uriAttribute = (String)attributes.get(EValidator.URI_ATTRIBUTE);
-		}
-		if(uriAttribute != null) {
-			// get EObject from marker via resourceSet of domain
-			try {
-				return domain.getResourceSet().getEObject(URI.createURI(uriAttribute), true);
-			} catch (MissingResourceException e) {
-				// can happen after renaming
-			} catch (WrappedException e) {
-				// can happen after renaming		
-			}
-		}
-		return null;
-	}
-
-	/**
 	 * @generated
 	 */
 	public static class StatusDecorator extends AbstractDecorator {
@@ -276,7 +240,7 @@ public class UMLValidationDecoratorProvider extends AbstractProvider implements 
 				} else {
 					// get marker from EMF list
 					marker = emfMarkers[i - gmfMarkers.length];
-					EObject eObjectOfMarker = getEObjectFromMarkerOrMap(marker, null, TransactionUtil.getEditingDomain(view));
+					EObject eObjectOfMarker = ValidationUtils.eObjectFromMarkerOrMap(marker, null, TransactionUtil.getEditingDomain(view));
 					markerIsForMe = (eObjectOfMarker == view.getElement());
 				}
 				if(markerIsForMe) {
@@ -451,9 +415,9 @@ public class UMLValidationDecoratorProvider extends AbstractProvider implements 
 			String viewId = (String)attributes.get(org.eclipse.gmf.runtime.common.ui.resources.IMarker.ELEMENT_ID);
 			if(viewId != null) {
 				refreshDecorators(viewId, diagram);
-			} else /* if (getType(marker).equals(IMarker.PROBLEM)) */{
+			} else {
 				// no viewID => assume EMF validation marker
-				EObject eObjectFromMarker = getEObjectFromMarkerOrMap(null, attributes, TransactionUtil.getEditingDomain(diagram));
+				EObject eObjectFromMarker = ValidationUtils.eObjectFromMarkerOrMap(null, attributes, TransactionUtil.getEditingDomain(diagram));
 
 				if(eObjectFromMarker != null) {
 					// loop over all views that reference the eObject from the marker
@@ -468,18 +432,22 @@ public class UMLValidationDecoratorProvider extends AbstractProvider implements 
 		 * @generated
 		 */
 		public void handleMarkerChanged(IMarker marker) {
-			if(getType(marker).equals(MARKER_TYPE)) {
-				String viewId = marker.getAttribute(org.eclipse.gmf.runtime.common.ui.resources.IMarker.ELEMENT_ID, ""); //$NON-NLS-1$
-				refreshDecorators(viewId, diagram);
-			} else /* if (getType(marker).equals(IMarker.PROBLEM)) */{
-				EObject eObjectFromMarker = getEObjectFromMarkerOrMap(marker, null, TransactionUtil.getEditingDomain(diagram));
+			try {
+				if(getType(marker).equals(MARKER_TYPE)) {
+					String viewId = marker.getAttribute(org.eclipse.gmf.runtime.common.ui.resources.IMarker.ELEMENT_ID, ""); //$NON-NLS-1$
+					refreshDecorators(viewId, diagram);
+				} else if(marker.isSubtypeOf((EValidator.MARKER))) {
+					EObject eObjectFromMarker = ValidationUtils.eObjectFromMarkerOrMap(marker, null, TransactionUtil.getEditingDomain(diagram));
 
-				if(eObjectFromMarker != null) {
-					// loop over all views that reference the eObject from the marker
-					for(View view : CrossReferencerUtil.getCrossReferencingViews(eObjectFromMarker, null)) {
-						refreshDecorators(view);
+					if(eObjectFromMarker != null) {
+						// loop over all views that reference the eObject from the marker
+						for(View view : CrossReferencerUtil.getCrossReferencingViews(eObjectFromMarker, null)) {
+							refreshDecorators(view);
+						}
 					}
 				}
+			} catch (CoreException e) {
+				// only reason: marker does not exist (ignore, shoudl not happen)
 			}
 		}
 
