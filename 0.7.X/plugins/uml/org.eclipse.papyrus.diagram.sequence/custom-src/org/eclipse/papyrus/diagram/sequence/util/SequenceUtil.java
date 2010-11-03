@@ -29,10 +29,12 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.draw2d.AbstractPointListShape;
 import org.eclipse.draw2d.Connection;
+import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
@@ -54,8 +56,13 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.BaseSlidableAnchor;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.gmf.runtime.notation.Anchor;
+import org.eclipse.gmf.runtime.notation.Bendpoints;
 import org.eclipse.gmf.runtime.notation.Bounds;
+import org.eclipse.gmf.runtime.notation.Edge;
+import org.eclipse.gmf.runtime.notation.IdentityAnchor;
 import org.eclipse.gmf.runtime.notation.LayoutConstraint;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
@@ -314,37 +321,92 @@ public class SequenceUtil {
 	 * 
 	 * @param part
 	 *        edit part to find bounds
-	 * @return part's bounds
+	 * @return part's bounds in absolute coordinates
 	 */
 	private static Rectangle getAbsoluteBounds(IGraphicalEditPart part) {
 		// take bounds from figure
-		Rectangle bounds = ((IGraphicalEditPart)part).getFigure().getBounds().getCopy();
+		Rectangle bounds = part.getFigure().getBounds().getCopy();
 
-		if(((IGraphicalEditPart)part).getNotationView() instanceof Node) {
-			// rather take up to date model bounds
-			Node node = (Node)((IGraphicalEditPart)part).getNotationView();
+		if(part.getNotationView() instanceof Node) {
+			// rather update with up to date model bounds
+			Node node = (Node)part.getNotationView();
 			LayoutConstraint cst = node.getLayoutConstraint();
 			if(cst instanceof Bounds) {
 				Bounds b = (Bounds)cst;
-				bounds.x = b.getX();
-				bounds.y = b.getY();
-
+				Point parentLoc = part.getFigure().getParent().getBounds().getLocation();
+				if(b.getX() > 0) {
+					bounds.x = b.getX() + parentLoc.x;
+				}
+				if(b.getY() > 0) {
+					bounds.y = b.getY() + parentLoc.y;
+				}
 				if(b.getHeight() != -1) {
 					bounds.height = b.getHeight();
 				}
 				if(b.getWidth() != -1) {
 					bounds.width = b.getWidth();
 				}
-
-				Point parentLoc = part.getFigure().getParent().getBounds().getLocation();
-				bounds.translate(parentLoc);
-				return bounds;
 			}
 		}
 
 		part.getFigure().getParent().translateToAbsolute(bounds);
-
 		return bounds;
+	}
+
+	/**
+	 * Get the extremity of a connection edit part
+	 * 
+	 * @param connection
+	 *        the connection edit part to find extremity
+	 * @param isStart
+	 *        true to find the start, false for the end
+	 * @return connection's extremity in absolute coordinates or null
+	 */
+	private static Point getAbsoluteEdgeExtremity(ConnectionNodeEditPart connection, boolean isStart) {
+		Connection msgFigure = connection.getConnectionFigure();
+		if(connection.getNotationView() instanceof Edge) {
+			// rather take up to date model information
+			Edge edge = (Edge)connection.getNotationView();
+			Anchor idAnchor = null;
+			ConnectionAnchor conAnchor = null;
+			EditPart part = null;
+			if(isStart && connection.getSource() instanceof IGraphicalEditPart) {
+				part = connection.getSource();
+				idAnchor = edge.getSourceAnchor();
+				conAnchor = msgFigure.getSourceAnchor();
+			} else if(!isStart && connection.getTarget() instanceof IGraphicalEditPart) {
+				part = connection.getTarget();
+				idAnchor = edge.getTargetAnchor();
+				conAnchor = msgFigure.getTargetAnchor();
+			}
+			if(part instanceof IGraphicalEditPart && idAnchor instanceof IdentityAnchor && conAnchor != null) {
+				// take up to date bounds of the linked part in case it is moved
+				Rectangle linkedPartBounds = getAbsoluteBounds((IGraphicalEditPart)part);
+				IFigure anchorOwningFigure = conAnchor.getOwner();
+				IFigure partFigure = ((IGraphicalEditPart)part).getFigure();
+				Dimension delta = anchorOwningFigure.getBounds().getLocation().getDifference(partFigure.getBounds().getLocation());
+				// get position from anchor id
+				String oldTerminal = ((IdentityAnchor)idAnchor).getId();
+				PrecisionPoint pp = BaseSlidableAnchor.parseTerminalString(oldTerminal);
+				int xPos = linkedPartBounds.x + delta.width + (int)Math.round(anchorOwningFigure.getBounds().width * pp.preciseX);
+				int yPos = linkedPartBounds.y + delta.height + (int)Math.round(anchorOwningFigure.getBounds().height * pp.preciseY);
+				return new Point(xPos, yPos);
+			}
+		}
+		// can not get from model, rely on figure
+		if(msgFigure instanceof AbstractPointListShape) {
+			Point extremity;
+			if(isStart) {
+				// start event of the message
+				extremity = ((AbstractPointListShape)msgFigure).getStart().getCopy();
+			} else {
+				// finish event of the message
+				extremity = ((AbstractPointListShape)msgFigure).getEnd().getCopy();
+			}
+			msgFigure.getParent().translateToAbsolute(extremity);
+			return extremity;
+		}
+		return null;
 	}
 
 	/**
@@ -366,9 +428,7 @@ public class SequenceUtil {
 					// finish event of the message
 					IFigure figure = ((ConnectionNodeEditPart)conn).getFigure();
 					if(figure instanceof AbstractPointListShape) {
-						Point end = ((AbstractPointListShape)figure).getEnd().getCopy();
-						((AbstractPointListShape)figure).getParent().translateToAbsolute(end);
-						return end;
+						return getAbsoluteEdgeExtremity((ConnectionNodeEditPart)conn, false);
 					}
 				}
 			}
@@ -382,9 +442,7 @@ public class SequenceUtil {
 					// start event of the message
 					IFigure figure = ((ConnectionNodeEditPart)conn).getFigure();
 					if(figure instanceof AbstractPointListShape) {
-						Point start = ((AbstractPointListShape)figure).getStart().getCopy();
-						((AbstractPointListShape)figure).getParent().translateToAbsolute(start);
-						return start;
+						return getAbsoluteEdgeExtremity((ConnectionNodeEditPart)conn, true);
 					}
 				}
 			}
@@ -492,8 +550,7 @@ public class SequenceUtil {
 					// finish events of the message
 					IFigure figure = ((ConnectionNodeEditPart)conn).getFigure();
 					if(figure instanceof AbstractPointListShape) {
-						Point end = ((AbstractPointListShape)figure).getEnd().getCopy();
-						((AbstractPointListShape)figure).getParent().translateToAbsolute(end);
+						Point end = getAbsoluteEdgeExtremity((ConnectionNodeEditPart)conn, false);
 						if(!occurrencesMap.containsKey(end)) {
 							occurrencesMap.put(end, new ArrayList<OccurrenceSpecification>(1));
 						}
@@ -511,8 +568,7 @@ public class SequenceUtil {
 					// start events of the message
 					IFigure figure = ((ConnectionNodeEditPart)conn).getFigure();
 					if(figure instanceof AbstractPointListShape) {
-						Point start = ((AbstractPointListShape)figure).getStart().getCopy();
-						((AbstractPointListShape)figure).getParent().translateToAbsolute(start);
+						Point start = getAbsoluteEdgeExtremity((ConnectionNodeEditPart)conn, true);
 						if(!occurrencesMap.containsKey(start)) {
 							occurrencesMap.put(start, new ArrayList<OccurrenceSpecification>(1));
 						}
