@@ -154,7 +154,7 @@
 	<!-- Block view provider -->
 	<viewProvider class="org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.BlockViewProvider">
 		<Priority name="Low"/>
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="Block, Constraint, Part"/>		
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="SysML::Block, Constraint, Part"/>		
 	</viewProvider>	
 
 	<!-- ViewProvider for inherited elements (from ClassDiagram UMLViewProvider) -->
@@ -235,7 +235,7 @@
 		<object
 			class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)"
 			id="org.eclipse.papyrus.sysml.diagram.blockdefinition.Block">
-			<method name="getType()" value="Block, Block_Constraint_Compartment, Constraint, Part"/>
+			<method name="getType()" value="SysML::Block, Block_Constraint_Compartment, Constraint, Part"/>
 		</object>
 	</editpartProvider>
 
@@ -488,17 +488,6 @@
 <!-- A kind type should be created for diagram elements       -->
 <extension
 		point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
-           
-	<specializationType
-		edithelperadvice="org.eclipse.papyrus.sysml.diagram.blockdefinition.helper.BlockEditHelperAdvice"
-		icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Block.gif"
-		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.Block"
-		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-		name="Block">
-		<specializes id="org.eclipse.papyrus.diagram.clazz.Class_2008"/>
-		<param name="semanticHint" value="Block"/>
-		<matcher class = "org.eclipse.papyrus.sysml.diagram.blockdefinition.matcher.BlockMatcher" />
-	</specializationType>
 	
 	<specializationType
 		icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"

@@ -10,6 +10,7 @@
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.provider;
 
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
+import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 
 public class BlockDefinitionDiagramElementTypes extends InheritedElementTypes {
 
@@ -21,7 +22,7 @@ public class BlockDefinitionDiagramElementTypes extends InheritedElementTypes {
 	public static final IHintedType BLOCK_DEFINITION_DIAGRAM = (IHintedType)getElementType("BlockDefinition"); //$NON-NLS-1$
 
 	/** Block Definition Diagram :: Block */
-	public static final IHintedType BLOCK = (IHintedType)getElementType("org.eclipse.papyrus.sysml.diagram.blockdefinition.Block"); //$NON-NLS-1$
+	public static final IHintedType BLOCK = SysMLElementTypes.BLOCK; //$NON-NLS-1$
 
 	public static final String BLOCK_NAME_LABEL_HINT = CLASS_NAME_LABEL_HINT;
 
