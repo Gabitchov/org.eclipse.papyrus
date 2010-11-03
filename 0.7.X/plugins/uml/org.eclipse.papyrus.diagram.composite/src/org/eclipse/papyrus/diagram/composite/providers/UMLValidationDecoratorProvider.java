@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.MissingResourceException;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
@@ -26,6 +27,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.draw2d.FlowLayout;
 import org.eclipse.draw2d.Label;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -156,9 +158,6 @@ public class UMLValidationDecoratorProvider extends AbstractProvider implements 
 	}
 
 	/**
-	 * @generated
-	 */
-	/**
 	 * Return the EObject retrieved from the URI attribute in the map. Retrieve it either via the marker itself
 	 * or via the attribute mapping (required in case a deleted marker)
 	 * 
@@ -167,8 +166,9 @@ public class UMLValidationDecoratorProvider extends AbstractProvider implements 
 	 * @param attributes
 	 *        a map of the problem marker
 	 * @param domain
-	 *        the editing domain used for the conversion from URI to eObecjt
+	 *        the editing domain used for the conversion from URI to eObject
 	 * @return
+	 * @generated
 	 */
 	private static EObject getEObjectFromMarkerOrMap(IMarker marker, Map attributes, EditingDomain domain) {
 		String uriAttribute;
@@ -179,7 +179,13 @@ public class UMLValidationDecoratorProvider extends AbstractProvider implements 
 		}
 		if(uriAttribute != null) {
 			// get EObject from marker via resourceSet of domain
-			return domain.getResourceSet().getEObject(URI.createURI(uriAttribute), true);
+			try {
+				return domain.getResourceSet().getEObject(URI.createURI(uriAttribute), true);
+			} catch (MissingResourceException e) {
+				// can happen after renaming
+			} catch (WrappedException e) {
+				// can happen after renaming		
+			}
 		}
 		return null;
 	}
