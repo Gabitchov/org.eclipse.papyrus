@@ -338,6 +338,7 @@ public class SequenceUtil {
 
 				Point parentLoc = part.getFigure().getParent().getBounds().getLocation();
 				bounds.translate(parentLoc);
+				return bounds;
 			}
 		}
 
