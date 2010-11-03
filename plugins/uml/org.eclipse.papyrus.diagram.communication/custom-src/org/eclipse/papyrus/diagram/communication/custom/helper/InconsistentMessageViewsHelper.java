@@ -36,8 +36,9 @@ import org.eclipse.uml2.uml.Message;
 
 
 /**
- * The Class InconsistentMessageViewsHelper is intended to give methods to help searching for inconsistent views of messages xhen they are deleted or
- * re-oriented.
+ * The Class InconsistentMessageViewsHelper is intended to give methods to help searching for inconsistent
+ * views of messages when they are deleted or re-oriented.
+ * 
  */
 public class InconsistentMessageViewsHelper {
 
