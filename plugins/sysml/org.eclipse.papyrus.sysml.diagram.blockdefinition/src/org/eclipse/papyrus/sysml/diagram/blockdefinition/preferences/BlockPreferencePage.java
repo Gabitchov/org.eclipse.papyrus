@@ -19,18 +19,26 @@ import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockPartComp
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockPropertyCompartmentEditPart;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockReferenceCompartmentEditPart;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockValueCompartmentEditPart;
+import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 
 public class BlockPreferencePage extends BlockDefinitionDiagramNodePreferencePage {
 
 	/**
 	 * the list of the compartments for this node
 	 */
-	public static final String compartments[] = { BlockPropertyCompartmentEditPart.COMPARTMENT_NAME, Messages.ClassOperationCompartment2EditPart_title, BlockConstraintCompartmentEditPart.COMPARTMENT_NAME, BlockPartCompartmentEditPart.COMPARTMENT_NAME, BlockReferenceCompartmentEditPart.COMPARTMENT_NAME, BlockValueCompartmentEditPart.COMPARTMENT_NAME };
+	public static final String compartments[] = { 
+		//BlockPropertyCompartmentEditPart.COMPARTMENT_NAME, 
+		//Messages.ClassOperationCompartment2EditPart_title, 
+		//BlockConstraintCompartmentEditPart.COMPARTMENT_NAME, 
+		BlockPartCompartmentEditPart.COMPARTMENT_NAME, 
+		BlockReferenceCompartmentEditPart.COMPARTMENT_NAME, 
+		//BlockValueCompartmentEditPart.COMPARTMENT_NAME 
+		};
 
 
 	public BlockPreferencePage() {
 		super();
-		setPreferenceKey(BlockDefinitionDiagramEditPart.DIAGRAM_ID + "_Block"); //$NON-NLS-1$
+		setPreferenceKey(BlockDefinitionDiagramEditPart.DIAGRAM_ID + "_" + SysMLElementTypes.BLOCK.getSemanticHint()); //$NON-NLS-1$
 	}
 
 	/**
@@ -39,7 +47,7 @@ public class BlockPreferencePage extends BlockDefinitionDiagramNodePreferencePag
 	 */
 	public static void initDefaults(IPreferenceStore store) {
 
-		String key = BlockDefinitionDiagramEditPart.DIAGRAM_ID + "_Block";
+		String key = BlockDefinitionDiagramEditPart.DIAGRAM_ID + "_" + SysMLElementTypes.BLOCK.getSemanticHint();
 		// set the true value for the compartment visibility
 		for(String name : compartments) {
 			String preferenceName = PreferenceConstantHelper.getCompartmentElementConstant(key, name, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
