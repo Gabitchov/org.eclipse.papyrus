@@ -62,6 +62,10 @@ AbstractAssociationBranchEditPart implements ITreeBranchEditPart {
 			((AssociationBranchRoleEditPart)childEditPart).setLabel(getPrimaryShape().getRoleSourceLabel());
 			return true;
 		}
+		if(childEditPart instanceof AssociationBranchMultiplicityEditPart) {
+			((AssociationBranchMultiplicityEditPart)childEditPart).setLabel(getPrimaryShape().getMultiplicitySourceLabel());
+			return true;
+		}
 		return false;
 	}
 
@@ -82,6 +86,9 @@ AbstractAssociationBranchEditPart implements ITreeBranchEditPart {
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
 		if(childEditPart instanceof AssociationBranchRoleEditPart) {
+			return true;
+		}
+		if(childEditPart instanceof AssociationBranchMultiplicityEditPart) {
 			return true;
 		}
 		return false;

@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Adapted code from the class diagram
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Adapted code from Class Diagram
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.profile.custom.policies.itemsemantic;
 
@@ -18,12 +18,13 @@ import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.papyrus.diagram.profile.custom.commands.CustomAssociationReorientCommand;
+import org.eclipse.papyrus.diagram.profile.edit.parts.AssociationBranchEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.AssociationEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.policies.AssociationNodeItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.profile.providers.UMLElementTypes;
 
 /**
- * this a specialization to manage creation of association and associationClass
+ * this a specialization to manage creation of association
  */
 public class CustomAssociationNodeItemSemanticEditPolicy extends AssociationNodeItemSemanticEditPolicy {
 
@@ -39,11 +40,20 @@ public class CustomAssociationNodeItemSemanticEditPolicy extends AssociationNode
 		return super.getCompleteCreateRelationshipCommand(req);
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.diagram.profile.edit.policies.AssociationNodeItemSemanticEditPolicy#getReorientRelationshipCommand(org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest)
+	 * 
+	 * @param req
+	 * @return
+	 */
 	@Override
 	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 		switch(getVisualID(req)) {
 		case AssociationEditPart.VISUAL_ID:
 			return getGEFWrapper(new CustomAssociationReorientCommand(req));
+		case AssociationBranchEditPart.VISUAL_ID:
+			return UnexecutableCommand.INSTANCE;
 		}
 		return super.getReorientRelationshipCommand(req);
 	}

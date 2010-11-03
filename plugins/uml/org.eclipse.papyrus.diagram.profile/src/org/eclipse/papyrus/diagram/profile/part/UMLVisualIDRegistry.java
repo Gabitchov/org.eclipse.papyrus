@@ -24,12 +24,15 @@ import org.eclipse.papyrus.diagram.common.providers.ViewInfo;
 import org.eclipse.papyrus.diagram.profile.edit.parts.AppliedStereotypeElementImportEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.AssociationAppliedStereotypeEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.AssociationBranchEditPart;
+import org.eclipse.papyrus.diagram.profile.edit.parts.AssociationBranchMultiplicityEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.AssociationBranchRoleEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.AssociationEditPart;
-import org.eclipse.papyrus.diagram.profile.edit.parts.AssociationMultiplicityTargetLabelEditPart;
+import org.eclipse.papyrus.diagram.profile.edit.parts.AssociationMultiplicitySourceEditPart;
+import org.eclipse.papyrus.diagram.profile.edit.parts.AssociationMultiplicityTargetEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.AssociationNameEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.AssociationNodeEditPart;
-import org.eclipse.papyrus.diagram.profile.edit.parts.AssociationRoleSourceLabelEditPart;
+import org.eclipse.papyrus.diagram.profile.edit.parts.AssociationRoleSourceEditPart;
+import org.eclipse.papyrus.diagram.profile.edit.parts.AssociationRoleTargetEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.ClassOperationEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.ClassPropertyEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.CommentBodyEditPart;
@@ -1085,15 +1088,24 @@ public class UMLVisualIDRegistry {
 			if(AssociationNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if(AssociationRoleSourceLabelEditPart.VISUAL_ID == nodeVisualID) {
+			if(AssociationRoleTargetEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if(AssociationMultiplicityTargetLabelEditPart.VISUAL_ID == nodeVisualID) {
+			if(AssociationRoleSourceEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(AssociationMultiplicitySourceEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(AssociationMultiplicityTargetEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
 		case AssociationBranchEditPart.VISUAL_ID:
 			if(AssociationBranchRoleEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(AssociationBranchMultiplicityEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -1202,7 +1214,6 @@ public class UMLVisualIDRegistry {
 
 	/**
 	 * "User can change implementation of this method to handle some specific\n""situations not covered by default logic.\n"
-	 * 
 	 * @generated
 	 */
 	private static boolean isDiagram(Profile element) {
@@ -1302,6 +1313,14 @@ public class UMLVisualIDRegistry {
 		viewInfo.getChildren().add(labelInfo);
 
 
+		labelInfo = new BaseViewInfo(6033, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+
+		labelInfo = new BaseViewInfo(6034, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+
 		viewInfo = new BaseViewInfo(1045, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
@@ -1311,6 +1330,10 @@ public class UMLVisualIDRegistry {
 
 
 		labelInfo = new BaseViewInfo(6024, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+
+		labelInfo = new BaseViewInfo(6035, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
 

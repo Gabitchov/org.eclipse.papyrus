@@ -9,14 +9,14 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Adapted code from the class diagram 
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Adapted code from Class Diagram
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.profile.custom.edit.parts;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.profile.custom.helper.AssociationEndSourceLabelHelper;
-import org.eclipse.papyrus.diagram.profile.edit.parts.AssociationMultiplicityTargetLabelEditPart;
+import org.eclipse.papyrus.diagram.profile.edit.parts.AssociationRoleTargetEditPart;
 import org.eclipse.ui.views.properties.IPropertySource;
 
 
@@ -24,7 +24,7 @@ import org.eclipse.ui.views.properties.IPropertySource;
  * The Class AssociationEndTargetEditPart.
  * Ensure the edition of ends in the diagram
  */
-public class AssociationEndTargetEditPart extends AssociationMultiplicityTargetLabelEditPart {
+public class AssociationEndTargetEditPart extends AssociationRoleTargetEditPart {
 
 	/**
 	 * Instantiates a new association end target edit part.

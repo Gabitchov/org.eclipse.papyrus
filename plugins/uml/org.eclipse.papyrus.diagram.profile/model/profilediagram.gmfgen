@@ -2179,7 +2179,7 @@
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes
                 xsi:type="gmfgen:LabelOffsetAttributes"
-                y="40"/>
+                y="20"/>
           </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
@@ -2191,9 +2191,40 @@
         </labels>
         <labels
             visualID="6003"
-            editPartClassName="AssociationRoleSourceLabelEditPart"
-            itemSemanticEditPolicyClassName="AssociationRoleSourceLabelItemSemanticEditPolicy"
+            editPartClassName="AssociationRoleTargetEditPart"
+            itemSemanticEditPolicyClassName="AssociationRoleTargetItemSemanticEditPolicy"
+            readOnly="true"
             alignment="SOURCE">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:ParentAssignedViewmap"
+              getterName="getRoleTargetLabel"
+              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+            <attributes
+                xsi:type="gmfgen:LabelOffsetAttributes"
+                y="20"/>
+          </viewmap>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.profile.custom.policies.DisplayAssociationEndTargetEditPolicy"/>
+          <modelFacet
+              xsi:type="gmfgen:FeatureLabelModelFacet"
+              parser="/0/@labelParsers/@implementations.0"
+              viewPattern="srcRole{0}"
+              editorPattern="srcRole{0}"
+              editPattern="srcRole{0}">
+            <metaFeatures
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+          </modelFacet>
+        </labels>
+        <labels
+            visualID="6005"
+            editPartClassName="AssociationRoleSourceEditPart"
+            itemSemanticEditPolicyClassName="AssociationRoleSourceItemSemanticEditPolicy"
+            readOnly="true"
+            alignment="TARGET">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -2207,25 +2238,27 @@
           <behaviour
               xsi:type="gmfgen:CustomBehaviour"
               key="org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
-              editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.profile.custom.policies.DisplayAssociationEndTargetEditPolicy"/>
+              editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.profile.custom.policies.DisplayAssociationEndSourceEditPolicy"/>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
               parser="/0/@labelParsers/@implementations.0"
-              editPattern="">
+              viewPattern="targMul{0}"
+              editorPattern="targMul{0}"
+              editPattern="targMul{0}">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
-            visualID="6005"
-            editPartClassName="AssociationMultiplicityTargetLabelEditPart"
-            itemSemanticEditPolicyClassName="AssociationMultiplicityTargetLabelItemSemanticEditPolicy"
+            visualID="6033"
+            editPartClassName="AssociationMultiplicitySourceEditPart"
+            itemSemanticEditPolicyClassName="AssociationMultiplicitySourceItemSemanticEditPolicy"
             alignment="TARGET">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getMultiplicityTargetLabel"
+              getterName="getMultiplicitySourceLabel"
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes
                 xsi:type="gmfgen:LabelOffsetAttributes"
@@ -2234,11 +2267,42 @@
           <behaviour
               xsi:type="gmfgen:CustomBehaviour"
               key="org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
-              editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.profile.custom.policies.DisplayAssociationEndSourceEditPolicy"/>
+              editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.profile.custom.policies.DisplayAssociationEndSourceMultiplicityEditPolicy"/>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
               parser="/0/@labelParsers/@implementations.0"
-              editPattern="">
+              viewPattern="srcMul{0}"
+              editorPattern="srcMul{0}"
+              editPattern="srcMul{0}">
+            <metaFeatures
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+          </modelFacet>
+        </labels>
+        <labels
+            visualID="6034"
+            editPartClassName="AssociationMultiplicityTargetEditPart"
+            itemSemanticEditPolicyClassName="AssociationMultiplicityTargetItemSemanticEditPolicy"
+            alignment="SOURCE">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:ParentAssignedViewmap"
+              getterName="getMultiplicityTargetLabel"
+              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+            <attributes
+                xsi:type="gmfgen:LabelOffsetAttributes"
+                y="-20"/>
+          </viewmap>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.profile.custom.policies.DisplayAssociationEndTargetMultiplicityEditPolicy"/>
+          <modelFacet
+              xsi:type="gmfgen:FeatureLabelModelFacet"
+              parser="/0/@labelParsers/@implementations.0"
+              viewPattern="srcMul{0}"
+              editorPattern="srcMul{0}"
+              editPattern="srcMul{0}">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
@@ -2309,6 +2373,7 @@
             visualID="6024"
             editPartClassName="AssociationBranchRoleEditPart"
             itemSemanticEditPolicyClassName="AssociationBranchRoleItemSemanticEditPolicy"
+            readOnly="true"
             alignment="SOURCE">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -2327,6 +2392,36 @@
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
               parser="/0/@labelParsers/@implementations.4"
+              viewPattern="srcRole{0}"
+              editorPattern="srcRole{0}"
+              editPattern="srcRole{0}">
+            <metaFeatures
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+          </modelFacet>
+        </labels>
+        <labels
+            visualID="6035"
+            editPartClassName="AssociationBranchMultiplicityEditPart"
+            itemSemanticEditPolicyClassName="AssociationBranchMultiplicityItemSemanticEditPolicy"
+            readOnly="true"
+            alignment="SOURCE">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:ParentAssignedViewmap"
+              getterName="getMultiplicitySourceLabel"
+              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+            <attributes
+                xsi:type="gmfgen:LabelOffsetAttributes"
+                y="20"/>
+          </viewmap>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.profile.custom.policies.DisplayAssociationEndTargetMultiplicityEditPolicy"/>
+          <modelFacet
+              xsi:type="gmfgen:FeatureLabelModelFacet"
+              parser="/0/@labelParsers/@implementations.0"
               viewPattern="srcRole{0}"
               editorPattern="srcRole{0}"
               editPattern="srcRole{0}">
@@ -3473,10 +3568,11 @@
             body="//ConstraintedElementLink&#xD;&#xA;if((target instanceof org.eclipse.uml2.uml.Type) &amp;&amp; org.eclipse.papyrus.profile.utils.Util.isMetaclass((org.eclipse.uml2.uml.Type)target)) {&#xD;&#xA;&#x9;return false;&#xD;&#xA;}"/>
       </providers>
     </expressionProviders>
-    <labelParsers>
+    <labelParsers
+        extensibleViaService="true">
       <implementations
           xsi:type="gmfgen:PredefinedParser"
-          uses="/0/@diagram/@topLevelNodes.8/@labels.0/@modelFacet /0/@diagram/@childNodes.11/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.5/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.2/@labels.0/@modelFacet /0/@diagram/@links.4/@labels.0/@modelFacet /0/@diagram/@childNodes.6/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.7/@labels.0/@modelFacet /0/@diagram/@childNodes.10/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.6/@labels.0/@modelFacet /0/@diagram/@childNodes.9/@labels.0/@modelFacet /0/@diagram/@childNodes.12/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.9/@labels.0/@modelFacet /0/@diagram/@childNodes.2/@labelModelFacet /0/@diagram/@childNodes.13/@labels.0/@modelFacet /0/@diagram/@childNodes.14/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.11/@labels.0/@modelFacet /0/@diagram/@childNodes.1/@labelModelFacet /0/@diagram/@childNodes.3/@labelModelFacet /0/@diagram/@topLevelNodes.3/@labels.0/@modelFacet /0/@diagram/@links.5/@labels.0/@modelFacet /0/@diagram/@links.1/@labels.1/@modelFacet /0/@diagram/@links.1/@labels.3/@modelFacet /0/@diagram/@links.1/@labels.2/@modelFacet /0/@diagram/@childNodes.4/@labelModelFacet /0/@diagram/@links.7/@labels.0/@modelFacet /0/@diagram/@childNodes.5/@labelModelFacet /0/@diagram/@childNodes.7/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.0/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.12/@labels.0/@modelFacet /0/@diagram/@childNodes.0/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.10/@labels.0/@modelFacet"/>
+          uses="/0/@diagram/@topLevelNodes.8/@labels.0/@modelFacet /0/@diagram/@childNodes.11/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.5/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.2/@labels.0/@modelFacet /0/@diagram/@links.4/@labels.0/@modelFacet /0/@diagram/@childNodes.6/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.7/@labels.0/@modelFacet /0/@diagram/@childNodes.10/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.6/@labels.0/@modelFacet /0/@diagram/@childNodes.9/@labels.0/@modelFacet /0/@diagram/@childNodes.12/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.9/@labels.0/@modelFacet /0/@diagram/@childNodes.2/@labelModelFacet /0/@diagram/@childNodes.13/@labels.0/@modelFacet /0/@diagram/@childNodes.14/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.11/@labels.0/@modelFacet /0/@diagram/@childNodes.1/@labelModelFacet /0/@diagram/@childNodes.3/@labelModelFacet /0/@diagram/@topLevelNodes.3/@labels.0/@modelFacet /0/@diagram/@links.5/@labels.0/@modelFacet /0/@diagram/@links.1/@labels.1/@modelFacet /0/@diagram/@links.1/@labels.5/@modelFacet /0/@diagram/@links.1/@labels.3/@modelFacet /0/@diagram/@childNodes.4/@labelModelFacet /0/@diagram/@links.7/@labels.0/@modelFacet /0/@diagram/@childNodes.5/@labelModelFacet /0/@diagram/@childNodes.7/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.0/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.12/@labels.0/@modelFacet /0/@diagram/@childNodes.0/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.10/@labels.0/@modelFacet /0/@diagram/@links.1/@labels.4/@modelFacet /0/@diagram/@links.1/@labels.2/@modelFacet /0/@diagram/@links.3/@labels.1/@modelFacet"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
           uses="/0/@diagram/@links.5/@labels.1/@modelFacet /0/@diagram/@links.1/@labels.0/@modelFacet /0/@diagram/@links.7/@labels.1/@modelFacet"

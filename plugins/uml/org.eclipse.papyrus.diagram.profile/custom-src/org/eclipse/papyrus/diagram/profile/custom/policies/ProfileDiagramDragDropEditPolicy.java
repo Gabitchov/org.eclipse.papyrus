@@ -54,7 +54,7 @@ import org.eclipse.papyrus.diagram.common.editpolicies.OldCommonDiagramDragDropE
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.diagram.common.util.Util;
 import org.eclipse.papyrus.diagram.profile.custom.commands.SetStereotypeVisibleOnMetaclassCommand;
-import org.eclipse.papyrus.diagram.profile.custom.helper.ClassLinkMappingHelper;
+import org.eclipse.papyrus.diagram.profile.custom.helper.ProfileLinkMappingHelper;
 import org.eclipse.papyrus.diagram.profile.custom.helper.MultiAssociationHelper;
 import org.eclipse.papyrus.diagram.profile.custom.helper.MultiDependencyHelper;
 import org.eclipse.papyrus.diagram.profile.edit.parts.AssociationNodeEditPart;
@@ -87,7 +87,7 @@ public class ProfileDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEd
 	 * Instantiates a new class diagram drag drop edit policy.
 	 */
 	public ProfileDiagramDragDropEditPolicy() {
-		super(ClassLinkMappingHelper.getInstance());
+		super(ProfileLinkMappingHelper.getInstance());
 	}
 
 	/**
@@ -148,7 +148,7 @@ public class ProfileDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEd
 	 * @return the command
 	 */
 	protected Command dropAssociation(DropObjectsRequest dropRequest, Element semanticLink, int nodeVISUALID) {
-		Collection endtypes = ClassLinkMappingHelper.getInstance().getSource(semanticLink);
+		Collection endtypes = ProfileLinkMappingHelper.getInstance().getSource(semanticLink);
 		if(endtypes.size() == 2) {
 			Element source = (Element)endtypes.toArray()[0];
 			Element target = (Element)endtypes.toArray()[1];
@@ -156,7 +156,7 @@ public class ProfileDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEd
 		}
 		if(endtypes.size() > 2) {
 			MultiAssociationHelper associationHelper = new MultiAssociationHelper(getEditingDomain());
-			return associationHelper.dropMutliAssociation((Association)semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost()).getNotationView());
+			return associationHelper.dropMultiAssociation((Association)semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost()).getNotationView());
 		}
 		return UnexecutableCommand.INSTANCE;
 
@@ -192,8 +192,8 @@ public class ProfileDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEd
 	 * @return the command
 	 */
 	protected Command dropDependency(DropObjectsRequest dropRequest, Element semanticLink, int nodeVISUALID) {
-		Collection sources = ClassLinkMappingHelper.getInstance().getSource(semanticLink);
-		Collection targets = ClassLinkMappingHelper.getInstance().getTarget(semanticLink);
+		Collection sources = ProfileLinkMappingHelper.getInstance().getSource(semanticLink);
+		Collection targets = ProfileLinkMappingHelper.getInstance().getTarget(semanticLink);
 		if(sources.size() == 1 && targets.size() == 1) {
 			Element source = (Element)sources.toArray()[0];
 			Element target = (Element)targets.toArray()[0];
@@ -335,7 +335,7 @@ public class ProfileDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEd
 				ViewDescriptor desc = (ViewDescriptor)((ArrayList<?>)returnedValue).get(0);
 
 				//we set the stereotype to visible
-				SetStereotypeVisibleOnMetaclassCommand command = new SetStereotypeVisibleOnMetaclassCommand(getEditingDomain(), "Apply Stereotype", null, semanticElement, desc);
+				SetStereotypeVisibleOnMetaclassCommand command = new SetStereotypeVisibleOnMetaclassCommand(getEditingDomain(), "Apply Stereotype", null, semanticElement, desc); //$NON-NLS-1$
 				if(command.canExecute()) {
 					cc.compose(command);
 				}
@@ -425,8 +425,8 @@ public class ProfileDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEd
 	 * @return
 	 */
 	protected Command dropExtension(DropObjectsRequest dropRequest, Element semanticLink, int linkVISUALID) {
-		Collection<?> sources = ClassLinkMappingHelper.getInstance().getSource(semanticLink);
-		Collection<?> targets = ClassLinkMappingHelper.getInstance().getTarget(semanticLink);
+		Collection<?> sources = ProfileLinkMappingHelper.getInstance().getSource(semanticLink);
+		Collection<?> targets = ProfileLinkMappingHelper.getInstance().getTarget(semanticLink);
 
 		Element source = (Element)sources.toArray()[0];
 		Element target = (Element)targets.toArray()[0];

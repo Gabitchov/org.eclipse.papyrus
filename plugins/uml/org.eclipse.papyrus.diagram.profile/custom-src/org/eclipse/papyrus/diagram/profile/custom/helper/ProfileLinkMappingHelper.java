@@ -31,14 +31,14 @@ import org.eclipse.uml2.uml.Type;
 /**
  * The Class LinkMappingHelper is specialization of the link mapping helper for the Class diagram
  */
-public class ClassLinkMappingHelper implements ILinkMappingHelper {
+public class ProfileLinkMappingHelper implements ILinkMappingHelper {
 
 	/**
 	 * SingletonHolder is loaded at the first execution of getInstance() method
 	 */
 	private static class SingletonHolder {
 
-		private final static ClassLinkMappingHelper instance = new ClassLinkMappingHelper();
+		private final static ProfileLinkMappingHelper instance = new ProfileLinkMappingHelper();
 	}
 
 	/**
@@ -46,14 +46,14 @@ public class ClassLinkMappingHelper implements ILinkMappingHelper {
 	 * 
 	 * @return single instance of ClassLinkMappingHelper
 	 */
-	public static ClassLinkMappingHelper getInstance() {
+	public static ProfileLinkMappingHelper getInstance() {
 		return SingletonHolder.instance;
 	}
 
 	/**
 	 * private constructor
 	 */
-	private ClassLinkMappingHelper() {
+	private ProfileLinkMappingHelper() {
 		// do nothing
 	}
 

@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) - Initial API and implementation
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Adapted code from the class diagram
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Adapted code from Class Diagram
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.profile.custom.helper;
 
@@ -28,16 +28,8 @@ import org.eclipse.uml2.uml.Property;
  */
 public class AssociationEndTargetLabelHelper extends PropertyLabelHelper {
 
-	/**
-	 * the labelHelper
-	 */
 	private static AssociationEndTargetLabelHelper labelHelper;
 
-	/**
-	 * 
-	 * @return
-	 *         the labelHelper
-	 */
 	public static AssociationEndTargetLabelHelper getInstance() {
 		if(labelHelper == null) {
 			labelHelper = new AssociationEndTargetLabelHelper();
@@ -51,6 +43,9 @@ public class AssociationEndTargetLabelHelper extends PropertyLabelHelper {
 	@Override
 	public Property getUMLElement(GraphicalEditPart editPart) {
 		if((View)editPart.getModel() != null && ((View)editPart.getModel()).eContainer() != null) {
+			if(((Edge)((View)editPart.getModel()).eContainer()).getTarget() == null) {
+				return null;
+			}
 			Classifier target = (Classifier)((Edge)((View)editPart.getModel()).eContainer()).getTarget().getElement();
 			Property propertyToDisplay = null;
 			if(((View)editPart.getModel()) != null && (((View)editPart.getModel()).getElement() instanceof Association)) {

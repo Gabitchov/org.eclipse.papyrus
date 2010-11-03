@@ -9,10 +9,11 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Adapted code from the class diagram
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Adapted code from Class Diagram
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.profile.custom.helper;
 
+import java.awt.Container;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
@@ -35,12 +36,27 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * this is an helper that is specific for the class diagram
  */
-public class ClazzDiagramAssociationHelper {
+public class ProfileDiagramAssociationHelper {
 
+	/**
+	 * Returns the created Association corresponding to these parameters
+	 * 
+	 * @param domain
+	 *        the {@link TransactionalEditingDomain}
+	 * @param source
+	 *        the source of the {@link Association}
+	 * @param target
+	 *        the target of the {@link Association}
+	 * @param container
+	 *        the {@link Container} of the {@link Association}
+	 * @return
+	 *         The created Association corresponding to these parameters
+	 */
 	public static EObject createAssociation(TransactionalEditingDomain domain, Type source, Type target, Package container) {
 
 		Association association = UMLFactory.eINSTANCE.createAssociation();
-
+		String targetString = target.getName().substring(0, 1).toLowerCase() + target.getName().substring(1, target.getName().length());
+		String sourceString = source.getName().substring(0, 1).toLowerCase() + source.getName().substring(1, source.getName().length());
 		// create target property
 		CreateElementRequest request = new CreateElementRequest(domain, association, UMLElementTypes.Property_3002, UMLPackage.eINSTANCE.getAssociation_OwnedEnd());
 		EditElementCommand c = new PropertyCommandForAssociation(request);
@@ -49,7 +65,7 @@ public class ClazzDiagramAssociationHelper {
 		assert (c.getCommandResult().getReturnValue() == null);
 		Property targetProperty = (Property)c.getCommandResult().getReturnValue();
 		targetProperty.setType(target);
-		targetProperty.setName(target.getName().toLowerCase());
+		targetProperty.setName(targetString);
 		targetProperty.setLower(1);
 		targetProperty.setUpper(1);
 
@@ -66,7 +82,7 @@ public class ClazzDiagramAssociationHelper {
 		assert (c.getCommandResult().getReturnValue() == null);
 		Property sourceProperty = (Property)c.getCommandResult().getReturnValue();
 		sourceProperty.setType(source);
-		sourceProperty.setName(source.getName().toLowerCase());
+		sourceProperty.setName(sourceString);
 		sourceProperty.setLower(1);
 		sourceProperty.setUpper(1);
 		List<Property> memberEnds = association.getMemberEnds();
@@ -84,6 +100,7 @@ public class ClazzDiagramAssociationHelper {
 
 		container.getPackagedElements().add(association);
 		ElementInitializers.getInstance().init_Association_4001(association);
+		association.setName(sourceString + "_" + targetString); //$NON-NLS-1$
 		return association;
 	}
 }

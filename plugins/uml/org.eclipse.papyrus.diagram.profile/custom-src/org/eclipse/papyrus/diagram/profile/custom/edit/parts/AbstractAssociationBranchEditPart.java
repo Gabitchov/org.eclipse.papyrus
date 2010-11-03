@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Adapted code from the class diagram 
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Adapted code from Class Diagram
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.profile.custom.edit.parts;
 
@@ -28,6 +28,13 @@ import org.eclipse.uml2.uml.Property;
  */
 public abstract class AbstractAssociationBranchEditPart extends ConnectionNodeEditPart {
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param view
+	 *        the view
+	 */
 	public AbstractAssociationBranchEditPart(View view) {
 		super(view);
 
