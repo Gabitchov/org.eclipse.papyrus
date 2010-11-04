@@ -17,8 +17,8 @@
         canonicalEditPolicyClassName="ModelCanonicalEditPolicy"
         iconProviderPriority="Low"
         validationEnabled="true"
-        liveValidationUIFeedback="true"
-        validationDecorators="true">
+        validationDecorators="true"
+        liveValidationUIFeedback="true">
       <diagramRunTimeClass
           href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
       <elementType
@@ -2174,8 +2174,8 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:NotationType"
-            uniqueIdentifier="org.eclipse.papyrus.diagram.clazz.ContainementCircle_3032"
-            displayName="ContainementCircle"/>
+            uniqueIdentifier="org.eclipse.papyrus.diagram.clazz.ContainmentCircle_3032"
+            displayName="ContainmentCircle"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.figure.ContainmentFigure"/>
