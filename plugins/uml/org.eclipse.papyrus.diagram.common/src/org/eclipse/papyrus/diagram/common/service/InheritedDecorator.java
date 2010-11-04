@@ -46,6 +46,7 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -370,8 +371,6 @@ public class InheritedDecorator implements IDecorator {
 		assert gep != null;
 		View view = ((View)gep.getModel());
 
-
-
 		if(view instanceof Node) {
 			//the location of the decorator can change if it's an Affixed Child Node
 			if(isInherited((Node)view) && Util.isAffixedChildNode(gep)) {
@@ -399,14 +398,42 @@ public class InheritedDecorator implements IDecorator {
 		 * UMLPackage.eINSTANCE.getNamedElement_Namespace();
 		 * that's why we listen the parent
 		 */
+		if(view.getElement() instanceof Element) {
+			Element semanticElement = (Element)view.getElement();
 
-		Element semanticElement = (Element)view.getElement();
-		if(semanticElement != null) {
-			//we listen if the container of the element changes!
-			if(semanticElement.eContainer() != null) {
-				DiagramEventBroker.getInstance(gep.getEditingDomain()).addNotificationListener(semanticElement.eContainer(), notificationListener);
+			/*
+			 * We need add a listener only if the element is an element which can be inherited, like Property, Operation, Signal, Classifier...
+			 */
+			if(semanticElement != null && canBeInherited(semanticElement)) {
+				//we listen if the container of the element changes!
+				if(semanticElement.eContainer() != null) {
+					DiagramEventBroker.getInstance(gep.getEditingDomain()).addNotificationListener(semanticElement.eContainer(), notificationListener);
+				}
 			}
 		}
+	}
+
+	/**
+	 * Tests if the element can be inherited
+	 * 
+	 * @param semanticElement
+	 *        the element to test
+	 * @return
+	 *         <code>true</code> if the element can be inherited
+	 */
+	protected boolean canBeInherited(Element semanticElement) {
+		/*
+		 * maybe we could replace these tests by RedefinableElement? or not?
+		 */
+
+		if(semanticElement instanceof Classifier) {
+			return true;
+		} else if(semanticElement instanceof Property) {
+			return true;
+		} else if(semanticElement instanceof Operation) {
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -435,10 +462,12 @@ public class InheritedDecorator implements IDecorator {
 			}
 		}
 
-		Element semanticElement = (Element)view.getElement();
-		if(semanticElement != null) {
-			if(semanticElement.eContainer() != null) {
-				DiagramEventBroker.getInstance(gep.getEditingDomain()).addNotificationListener(semanticElement.eContainer(), notificationListener);
+		if(view.getElement() instanceof Element) {
+			Element semanticElement = (Element)view.getElement();
+			if(semanticElement != null) {
+				if(semanticElement.eContainer() != null) {
+					DiagramEventBroker.getInstance(gep.getEditingDomain()).addNotificationListener(semanticElement.eContainer(), notificationListener);
+				}
 			}
 		}
 	}
