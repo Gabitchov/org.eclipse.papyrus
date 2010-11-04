@@ -102,7 +102,7 @@ public class InheritedClassDiagramElementEditPartProvider extends CUMLEditPartPr
 			}
 
 			/** InstanceSpecification */
-			if(InheritedElementTypes.INSTANCE_SPEC.getSemanticHint().equals(hint) || InheritedElementTypes.INSTANCE_SPEC_NAME_LABEL_HINT.equals(hint) || InheritedElementTypes.INSTANCE_SPEC_COMPARTMENT_SLOT_HINT.equals(hint) || InheritedElementTypes.INSTANCE_SPEC_SLOT_CLN.getSemanticHint().equals(hint)) {
+			if(InheritedElementTypes.INSTANCE_SPECIFICATION.getSemanticHint().equals(hint) || InheritedElementTypes.INSTANCE_SPEC_NAME_LABEL_HINT.equals(hint) || InheritedElementTypes.INSTANCE_SPEC_COMPARTMENT_SLOT_HINT.equals(hint) || InheritedElementTypes.INSTANCE_SPEC_SLOT_CLN.getSemanticHint().equals(hint)) {
 				return true;
 			}
 

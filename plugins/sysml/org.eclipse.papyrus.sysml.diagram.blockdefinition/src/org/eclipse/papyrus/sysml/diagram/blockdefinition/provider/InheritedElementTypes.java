@@ -16,7 +16,23 @@ public class InheritedElementTypes extends AbstractElementTypeEnumerator {
 
 	/** ********************************************************* */
 	/** Block Definition Diagram - Class Diagram related elements */
+	/**  
+	 * Top level nodes:
+	 * 
+	 * AssociationClass_2013
+	 * Class_2008
+	 * Comment_2012
+	 * Constraint_2011
+	 * DataType_2010
+	 * Enumeration_2006
+	 * Interface_2004
+	 * InstanceSpecification_2001
+	 * Model_2005
+	 * Package_2007
+	 * PrimitiveType_2009
+	 * 
 	/** ********************************************************* */
+
 
 	/** Class Diagram :: Package ChildNode */
 	public static final IHintedType PACKAGE_CN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Package_3009"); //$NON-NLS-1$
@@ -160,7 +176,7 @@ public class InheritedElementTypes extends AbstractElementTypeEnumerator {
 	public static final String INSTANCE_SPEC_CN_COMPARTMENT_SLOT_HINT = "7035";
 
 	/** Class Diagram :: InstanceSpecification TopLevelNode */
-	public static final IHintedType INSTANCE_SPEC = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.InstanceSpecification_2001"); //$NON-NLS-1$
+	public static final IHintedType INSTANCE_SPECIFICATION = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.InstanceSpecification_2001"); //$NON-NLS-1$
 
 	public static final String INSTANCE_SPEC_NAME_LABEL_HINT = "5002";
 
@@ -288,4 +304,5 @@ public class InheritedElementTypes extends AbstractElementTypeEnumerator {
 	public static final String PORT_CN_NAME_LABEL_HINT = "5125";
 
 	public static final String PORT_CN_STEREOTYPE_LABEL_HINT = "6029";
+	
 }
