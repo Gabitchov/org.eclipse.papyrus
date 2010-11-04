@@ -26,13 +26,12 @@ import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
 import org.eclipse.papyrus.core.utils.PapyrusEcoreUtils;
 import org.eclipse.papyrus.diagram.common.helper.InteractionFragmentHelper;
-import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ExecutionSpecification;
-import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
+import org.eclipse.uml2.uml.MessageSort;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
 
 /**
@@ -73,24 +72,31 @@ public class ExecutionSpecificationHelperAdvice extends AbstractEditHelperAdvice
 
 		Set<Lifeline> coveredLifelines = new HashSet<Lifeline>(es.getCovereds());
 
-		// find the interaction
-		Element owner = es.getOwner();
-		while(owner != null && !(owner instanceof Interaction)) {
-			owner = owner.getOwner();
+		// find initiating MOS of a synch message
+		InteractionFragment previousIft = InteractionFragmentHelper.findPreviousFragment(osStart, es.getOwner());
+		while(previousIft != null) {
+			// keep the first ift with the same lifelines, and check it
+			if(coveredLifelines.equals(new HashSet<Lifeline>(previousIft.getCovereds()))) {
+				if(previousIft instanceof MessageOccurrenceSpecification) {
+					Message msg = ((MessageOccurrenceSpecification)previousIft).getMessage();
+					if(msg != null && MessageSort.ASYNCH_CALL_LITERAL.equals(msg.getMessageSort())) {
+						dependentsToDestroy.add(previousIft);
+					}
+				}
+				break;
+			}
+			previousIft = InteractionFragmentHelper.findPreviousFragment(previousIft, es.getOwner());
 		}
-		Interaction interaction = (Interaction)owner;
 
 		// find MOS between the start and finish
-		if(interaction != null) {
-			InteractionFragment fragment = osStart;
-			while(fragment != null && !fragment.equals(osFinish)) {
-				// remove MOS if it have the same covered lifelines as the ES
-				if(fragment instanceof MessageOccurrenceSpecification && coveredLifelines.equals(new HashSet<Lifeline>(fragment.getCovereds()))) {
-					dependentsToDestroy.add(fragment);
-				}
-
-				fragment = InteractionFragmentHelper.findNextFragment(fragment, interaction);
+		InteractionFragment fragment = osStart;
+		while(fragment != null && !fragment.equals(osFinish)) {
+			// remove MOS if it have the same covered lifelines as the ES
+			if(fragment instanceof MessageOccurrenceSpecification && coveredLifelines.equals(new HashSet<Lifeline>(fragment.getCovereds()))) {
+				dependentsToDestroy.add(fragment);
 			}
+
+			fragment = InteractionFragmentHelper.findNextFragment(fragment, es.getOwner());
 		}
 
 		// return command to destroy dependents
