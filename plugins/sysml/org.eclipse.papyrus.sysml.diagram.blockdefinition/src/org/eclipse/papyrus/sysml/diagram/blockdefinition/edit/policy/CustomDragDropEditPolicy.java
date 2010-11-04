@@ -34,42 +34,37 @@ import org.eclipse.uml2.uml.Property;
 
 /** Customization of the DND edit policy for the Block Definition Diagram */
 public class CustomDragDropEditPolicy extends ClassDiagramDragDropEditPolicy {
-	
+
 	@Override
-	protected IUndoableOperation getDropObjectCommand(
-			DropObjectsRequest dropRequest, EObject droppedObject,
-			Point location) {
-		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) getHost();
-		
-		IHintedType type = getHintedType(targetEditPart.getNotationView(),
-				droppedObject);
-		if (type == null) {
+	protected IUndoableOperation getDropObjectCommand(DropObjectsRequest dropRequest, EObject droppedObject, Point location) {
+		IGraphicalEditPart targetEditPart = (IGraphicalEditPart)getHost();
+
+		IHintedType type = getHintedType(targetEditPart.getNotationView(), droppedObject);
+		if(type == null) {
 			return super.getDropObjectCommand(dropRequest, droppedObject, location);
 		}
 
-		if (targetEditPart.getModel() instanceof Diagram) {
+		if(targetEditPart.getModel() instanceof Diagram) {
 			return getDefaultDropNodeCommand(type, location, droppedObject);
 		}
 		EObject graphicalParent = targetEditPart.resolveSemanticElement();
-		if ((graphicalParent instanceof Element)
-				&& ((Element) graphicalParent).getOwnedElements().contains(
-						droppedObject)) {
+		if((graphicalParent instanceof Element) && ((Element)graphicalParent).getOwnedElements().contains(droppedObject)) {
 			return getDefaultDropNodeCommand(type, location, droppedObject);
 		}
 		return super.getDropObjectCommand(dropRequest, droppedObject, location);
 	}
 
 	public IHintedType getHintedType(View containerView, EObject domainElement) {
-		if (containerView instanceof Diagram) { // Top Nodes
-			if (isBlock(domainElement)) {
+		if(containerView instanceof Diagram) { // Top Nodes
+			if(isBlock(domainElement)) {
 				return BlockDefinitionDiagramElementTypes.BLOCK;
 			}
 
 		}
-		if (domainElement instanceof Port) {
+		if(domainElement instanceof Port) {
 			return BlockDefinitionDiagramElementTypes.PORT_CN;
 		}
-		if (domainElement instanceof Property) {
+		if(domainElement instanceof Property) {
 			// semanticHint =
 			// BlockDefinitionDiagramElementTypes.PROPERTY_CN.getSemanticHint();
 		}
@@ -77,32 +72,24 @@ public class CustomDragDropEditPolicy extends ClassDiagramDragDropEditPolicy {
 	}
 
 	private boolean isBlock(EObject domainElement) {
-		return domainElement instanceof org.eclipse.uml2.uml.Class
-				&& ((org.eclipse.uml2.uml.Class) domainElement)
-						.getAppliedStereotype(SysmlResource.BLOCK_ID) != null;
+		return domainElement instanceof org.eclipse.uml2.uml.Class && ((org.eclipse.uml2.uml.Class)domainElement).getAppliedStereotype(SysmlResource.BLOCK_ID) != null;
 	}
-	
+
 	@Override
 	public int getNodeVisualID(View containerView, EObject domainElement) {
 		return super.getNodeVisualID(containerView, domainElement);
 	}
 
 
-	private CompositeCommand getDefaultDropNodeCommand(IHintedType type,
-			Point location, EObject droppedObject) {
+	private CompositeCommand getDefaultDropNodeCommand(IHintedType type, Point location, EObject droppedObject) {
 		CompositeCommand cc = new CompositeCommand("Drop"); //$NON-NLS-1$
 		IAdaptable elementAdapter = new EObjectAdapter(droppedObject);
 
-		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter,
-				Node.class, type.getSemanticHint(), ViewUtil.APPEND, false,
-				getDiagramPreferencesHint());
-		CreateCommand createCommand = new CreateCommand(getEditingDomain(),
-				descriptor, ((View) (getHost().getModel())));
+		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, type.getSemanticHint(), ViewUtil.APPEND, false, getDiagramPreferencesHint());
+		CreateCommand createCommand = new CreateCommand(getEditingDomain(), descriptor, ((View)(getHost().getModel())));
 		cc.compose(createCommand);
 
-		SetBoundsCommand setBoundsCommand = new SetBoundsCommand(
-				getEditingDomain(),
-				"move", (IAdaptable) createCommand.getCommandResult().getReturnValue(), location); //$NON-NLS-1$
+		SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)createCommand.getCommandResult().getReturnValue(), location); //$NON-NLS-1$
 		cc.compose(setBoundsCommand);
 		return cc;
 	}
