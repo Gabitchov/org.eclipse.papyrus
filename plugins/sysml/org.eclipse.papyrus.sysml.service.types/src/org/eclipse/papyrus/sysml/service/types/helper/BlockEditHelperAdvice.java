@@ -20,8 +20,10 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
+import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
+import org.eclipse.papyrus.sysml.service.types.utils.NamedElementHelper;
 import org.eclipse.papyrus.sysml.util.SysmlResource;
-import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
 
 /** SysML Block edit helper advice */
@@ -39,12 +41,17 @@ public class BlockEditHelperAdvice extends AbstractStereotypedElementEditHelperA
 		return new ConfigureElementCommand(request) {
 
 			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
-				Element type = (Element)request.getElementToConfigure();
-				if(type != null) {
-					Stereotype blockSt = type.getApplicableStereotype(SysmlResource.BLOCK_ID);
+				NamedElement element = (NamedElement)request.getElementToConfigure();
+				if(element != null) {
+					Stereotype blockSt = element.getApplicableStereotype(SysmlResource.BLOCK_ID);
 					if(blockSt != null) {
-						type.applyStereotype(blockSt);
+						element.applyStereotype(blockSt);
 					}
+
+					// Set default name
+					// Initialize the element name based on the created IElementType
+					String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(), BlocksPackage.eINSTANCE.getBlock());
+					element.setName(initializedName);
 				}
 				return CommandResult.newOKCommandResult();
 			}

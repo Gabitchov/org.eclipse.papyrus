@@ -17,25 +17,43 @@
 	</specializationType>
 
 	<specializationType id="org.eclipse.papyrus.sysml.FlowPort"
-		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.InOutFlowPortEditHelperAdvice"    
+		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.FlowPortEditHelperAdvice"    
 		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="SysML::FLowPort">
 		<param name="semanticHint" value="SysML::FLowPort" />
 		<specializes id="org.eclipse.papyrus.uml.Port" />
+		<matcher class = "org.eclipse.papyrus.sysml.service.types.matcher.FlowPortMatcher" />		
 	</specializationType>
 	
+	<specializationType id="org.eclipse.papyrus.sysml.InOutFlowPort"
+		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.InOutFlowPortEditHelperAdvice"    
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="SysML::FLowPort">
+		<param name="semanticHint" value="SysML::FLowPort_INOUT" />
+		<specializes id="org.eclipse.papyrus.sysml.FlowPort" />
+		<matcher class = "org.eclipse.papyrus.sysml.service.types.matcher.FlowPortInOutMatcher" />		
+	</specializationType>
+		
 	<specializationType id="org.eclipse.papyrus.sysml.InFlowPort"
 		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.InFlowPortEditHelperAdvice"
 		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="SysML::InFLowPort">
-		<param name="semanticHint" value="SysML::FLowPort" />
-		<specializes id="org.eclipse.papyrus.uml.Port" />
+		<param name="semanticHint" value="SysML::FLowPort_IN" />
+		<specializes id="org.eclipse.papyrus.sysml.FlowPort" />
+		<matcher class = "org.eclipse.papyrus.sysml.service.types.matcher.FlowPortInMatcher" />		
 	</specializationType>
 	
 	<specializationType id="org.eclipse.papyrus.sysml.OutFlowPort"
 		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.OutFlowPortEditHelperAdvice"  
-		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-		name="SysML::OutFLowPort">
-		<param name="semanticHint" value="SysML::FLowPort" />
-		<specializes id="org.eclipse.papyrus.uml.Port" />
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="SysML::OutFLowPort">
+		<param name="semanticHint" value="SysML::FLowPort_OUT" />
+		<specializes id="org.eclipse.papyrus.sysml.FlowPort" />
+		<matcher class = "org.eclipse.papyrus.sysml.service.types.matcher.FlowPortOutMatcher" />		
+	</specializationType>
+	
+	<specializationType id="org.eclipse.papyrus.sysml.Requirement"
+		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.RequirementEditHelperAdvice"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="SysML::Requirement">
+		<param name="semanticHint" value="SysML::Requirement" />
+		<specializes id="org.eclipse.papyrus.uml.Class" />
+		<matcher class = "org.eclipse.papyrus.sysml.service.types.matcher.RequirementMatcher" />
 	</specializationType>
 	
 </extension>

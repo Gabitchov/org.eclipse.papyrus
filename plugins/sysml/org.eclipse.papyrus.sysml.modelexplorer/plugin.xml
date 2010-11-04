@@ -50,6 +50,13 @@
 		defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.OutFlowPortHandler"
 		id="org.eclipse.papyrus.sysml.modelexplorer.OutFlowPortCreateCommand">
 	</command>
+	
+	<!-- Creation command : Requirement -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		name="Create a new Requirement" description="Create a new Requirement"
+		defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.RequirementHandler"
+		id="org.eclipse.papyrus.sysml.modelexplorer.RequirementCreateCommand">
+	</command>
 
 </extension>
 
@@ -90,6 +97,12 @@
 			<visibleWhen checkEnabled="true"/>
 		</command>		
 	
+		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.RequirementCreateCommand"
+			icon="platform:/plugin/org.eclipse.papyrus.sysml.edit/icons/full/obj16/Requirement.gif"
+			label="Create a new Requirement" tooltip="Create a new Requirement" style="push">
+			<visibleWhen checkEnabled="true"/>
+		</command>
+			
 	</menuContribution>
 </extension>
 

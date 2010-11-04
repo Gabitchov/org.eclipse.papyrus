@@ -23,8 +23,11 @@ public class SysMLElementTypes extends AbstractElementTypeEnumerator {
 	/** IHintedType of SysML Block */
 	public static final IHintedType BLOCK = (IHintedType)getElementType("org.eclipse.papyrus.sysml.Block");
 
-	/** IHintedType of SysML FlowPort (direction = #INOUT - default) */
+	/** IHintedType of SysML FlowPort */
 	public static final IHintedType FLOWPORT = (IHintedType)getElementType("org.eclipse.papyrus.sysml.FlowPort");
+
+	/** IHintedType of SysML FlowPort (direction = #INOUT - default) */
+	public static final IHintedType INOUT_FLOWPORT = (IHintedType)getElementType("org.eclipse.papyrus.sysml.InOutFlowPort");
 
 	/** IHintedType of SysML FlowPort (direction = #IN) */
 	public static final IHintedType IN_FLOWPORT = (IHintedType)getElementType("org.eclipse.papyrus.sysml.InFlowPort");
@@ -32,4 +35,6 @@ public class SysMLElementTypes extends AbstractElementTypeEnumerator {
 	/** IHintedType of SysML FlowPort (direction = #OUT) */
 	public static final IHintedType OUT_FLOWPORT = (IHintedType)getElementType("org.eclipse.papyrus.sysml.OutFlowPort");
 
+	/** IHintedType of SysML Requirement */
+	public static final IHintedType REQUIREMENT = (IHintedType)getElementType("org.eclipse.papyrus.sysml.Requirement");
 }

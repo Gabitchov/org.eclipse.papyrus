@@ -22,9 +22,9 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.papyrus.sysml.portandflows.FlowDirection;
 import org.eclipse.papyrus.sysml.portandflows.FlowPort;
+import org.eclipse.papyrus.sysml.service.types.utils.ElementUtil;
 import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.uml2.uml.Port;
-import org.eclipse.uml2.uml.Stereotype;
 
 /** SysML FlowPort#InOut edit helper advice */
 public class InOutFlowPortEditHelperAdvice extends AbstractStereotypedElementEditHelperAdvice {
@@ -42,14 +42,10 @@ public class InOutFlowPortEditHelperAdvice extends AbstractStereotypedElementEdi
 
 			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 
-				Port type = (Port)request.getElementToConfigure();
-				if(type != null) {
-					Stereotype partStereotype = type.getApplicableStereotype(SysmlResource.FLOW_PORT_ID);
-
-					if(partStereotype != null) {
-						FlowPort flowportApplication = (FlowPort)type.applyStereotype(partStereotype);
-						flowportApplication.setDirection(FlowDirection.INOUT);
-					}
+				Port port = (Port)request.getElementToConfigure();
+				FlowPort flowPort = ElementUtil.getStereotypeApplication(port, FlowPort.class);
+				if(flowPort != null) {
+					flowPort.setDirection(FlowDirection.INOUT);
 				}
 
 				return CommandResult.newOKCommandResult();
