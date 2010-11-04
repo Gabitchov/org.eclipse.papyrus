@@ -20,18 +20,18 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
-import org.eclipse.papyrus.sysml.portandflows.FlowDirection;
-import org.eclipse.papyrus.sysml.portandflows.FlowPort;
-import org.eclipse.papyrus.sysml.service.types.utils.ElementUtil;
+import org.eclipse.papyrus.sysml.requirements.RequirementsPackage;
+import org.eclipse.papyrus.sysml.service.types.utils.NamedElementHelper;
 import org.eclipse.papyrus.sysml.util.SysmlResource;
-import org.eclipse.uml2.uml.Port;
+import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Stereotype;
 
-/** SysML FlowPort#In edit helper advice */
-public class InFlowPortEditHelperAdvice extends AbstractStereotypedElementEditHelperAdvice {
+/** SysML Block edit helper advice */
+public class RequirementEditHelperAdvice extends AbstractStereotypedElementEditHelperAdvice {
 
 	/** Default constructor */
-	public InFlowPortEditHelperAdvice() {
-		requiredProfileIDs.add(SysmlResource.PORT_AND_FLOWS_ID);
+	public RequirementEditHelperAdvice() {
+		requiredProfileIDs.add(SysmlResource.REQUIREMENTS_ID);
 	}
 
 	/** Complete creation process by applying the expected stereotype */
@@ -41,16 +41,20 @@ public class InFlowPortEditHelperAdvice extends AbstractStereotypedElementEditHe
 		return new ConfigureElementCommand(request) {
 
 			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
+				NamedElement element = (NamedElement)request.getElementToConfigure();
+				if(element != null) {
+					Stereotype stereotypeToApply = element.getApplicableStereotype(SysmlResource.REQUIREMENT_ID);
+					if(stereotypeToApply != null) {
+						element.applyStereotype(stereotypeToApply);
+					}
 
-				Port port = (Port)request.getElementToConfigure();
-				FlowPort flowPort = ElementUtil.getStereotypeApplication(port, FlowPort.class);
-				if(flowPort != null) {
-					flowPort.setDirection(FlowDirection.IN);
+					// Set default name
+					// Initialize the element name based on the created IElementType
+					String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(), RequirementsPackage.eINSTANCE.getRequirement());
+					element.setName(initializedName);
 				}
-
 				return CommandResult.newOKCommandResult();
 			}
 		};
 	}
-
 }

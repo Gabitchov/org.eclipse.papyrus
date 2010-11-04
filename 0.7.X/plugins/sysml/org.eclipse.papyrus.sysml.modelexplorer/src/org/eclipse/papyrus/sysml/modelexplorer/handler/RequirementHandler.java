@@ -19,13 +19,13 @@ import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 
 /**
  * <pre>
- * Command handler for InOut FlowPort creation
+ * Command handler for Requirement creation
  * 
  * </pre>
  * 
  * @generated
  */
-public class InOutFlowPortHandler extends CreateCommandHandler implements IHandler {
+public class RequirementHandler extends CreateCommandHandler implements IHandler {
 
 	/**
 	 * <pre>
@@ -38,6 +38,6 @@ public class InOutFlowPortHandler extends CreateCommandHandler implements IHandl
 	 * @generated
 	 */
 	protected IElementType getElementTypeToCreate() {
-		return SysMLElementTypes.INOUT_FLOWPORT;
+		return SysMLElementTypes.REQUIREMENT;
 	}
 }

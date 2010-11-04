@@ -20,17 +20,17 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
-import org.eclipse.papyrus.sysml.portandflows.FlowDirection;
-import org.eclipse.papyrus.sysml.portandflows.FlowPort;
-import org.eclipse.papyrus.sysml.service.types.utils.ElementUtil;
+import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
+import org.eclipse.papyrus.sysml.service.types.utils.NamedElementHelper;
 import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.uml2.uml.Port;
+import org.eclipse.uml2.uml.Stereotype;
 
-/** SysML FlowPort#In edit helper advice */
-public class InFlowPortEditHelperAdvice extends AbstractStereotypedElementEditHelperAdvice {
+/** SysML FlowPort#InOut edit helper advice */
+public class FlowPortEditHelperAdvice extends AbstractStereotypedElementEditHelperAdvice {
 
 	/** Default constructor */
-	public InFlowPortEditHelperAdvice() {
+	public FlowPortEditHelperAdvice() {
 		requiredProfileIDs.add(SysmlResource.PORT_AND_FLOWS_ID);
 	}
 
@@ -43,14 +43,23 @@ public class InFlowPortEditHelperAdvice extends AbstractStereotypedElementEditHe
 			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 
 				Port port = (Port)request.getElementToConfigure();
-				FlowPort flowPort = ElementUtil.getStereotypeApplication(port, FlowPort.class);
-				if(flowPort != null) {
-					flowPort.setDirection(FlowDirection.IN);
+				if(port != null) {
+
+					// Apply FlowPort stereotype
+					Stereotype flowPortStereotype = port.getApplicableStereotype(SysmlResource.FLOW_PORT_ID);
+
+					if(flowPortStereotype != null) {
+						port.applyStereotype(flowPortStereotype);
+					}
+
+					// Set default name
+					// Initialize the element name based on the created IElementType
+					String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(port.getOwner(), PortandflowsPackage.eINSTANCE.getFlowPort());
+					port.setName(initializedName);
 				}
 
 				return CommandResult.newOKCommandResult();
 			}
 		};
 	}
-
 }
