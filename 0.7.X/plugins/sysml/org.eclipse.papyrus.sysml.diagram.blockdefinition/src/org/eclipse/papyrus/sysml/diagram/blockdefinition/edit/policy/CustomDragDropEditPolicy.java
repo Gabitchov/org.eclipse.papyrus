@@ -26,6 +26,7 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy;
+import org.eclipse.papyrus.sysml.diagram.blockdefinition.part.BlockDefinitionDiagramVisualIDRegistry;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.BlockDefinitionDiagramElementTypes;
 import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.uml2.uml.Element;
@@ -38,10 +39,13 @@ public class CustomDragDropEditPolicy extends ClassDiagramDragDropEditPolicy {
 	@Override
 	protected IUndoableOperation getDropObjectCommand(DropObjectsRequest dropRequest, EObject droppedObject, Point location) {
 		IGraphicalEditPart targetEditPart = (IGraphicalEditPart)getHost();
+		IHintedType hintedType = getHintedType(targetEditPart.getNotationView(), droppedObject);
 
-		IHintedType type = getHintedType(targetEditPart.getNotationView(), droppedObject);
-		if(type == null) {
-			return super.getDropObjectCommand(dropRequest, droppedObject, location);
+		String type;
+		if(hintedType == null) {
+			type = BlockDefinitionDiagramVisualIDRegistry.getNodeVisualID(targetEditPart.getNotationView(), droppedObject);
+		} else {
+			 type = hintedType.getSemanticHint();
 		}
 
 		if(targetEditPart.getModel() instanceof Diagram) {
@@ -91,6 +95,22 @@ public class CustomDragDropEditPolicy extends ClassDiagramDragDropEditPolicy {
 
 		SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)createCommand.getCommandResult().getReturnValue(), location); //$NON-NLS-1$
 		cc.compose(setBoundsCommand);
+		return cc;
+	}
+
+	private CompositeCommand getDefaultDropNodeCommand(String type, Point location, EObject droppedObject) {
+		System.out.println("CustomDragDropEditPolicy.getDefaultDropNodeCommand() " + type + " " + droppedObject);
+		CompositeCommand cc = new CompositeCommand("Drop"); //$NON-NLS-1$
+		IAdaptable elementAdapter = new EObjectAdapter(droppedObject);
+
+		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, type, ViewUtil.APPEND, false, getDiagramPreferencesHint());
+		CreateCommand createCommand = new CreateCommand(getEditingDomain(), descriptor, ((View)(getHost().getModel())));
+		cc.compose(createCommand);
+
+		SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)createCommand.getCommandResult().getReturnValue(), location); //$NON-NLS-1$
+		cc.compose(setBoundsCommand);
+		
+		System.out.println("cc.canExecute()" + createCommand.canExecute());
 		return cc;
 	}
 
