@@ -9,14 +9,14 @@ import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 /**
  * @generated
  */
-public class ContainementCirclePreferencePage extends AbstractPapyrusNodePreferencePage {
+public class ContainmentCirclePreferencePage extends AbstractPapyrusNodePreferencePage {
 
 	/**
 	 * @generated
 	 */
-	public ContainementCirclePreferencePage() {
+	public ContainmentCirclePreferencePage() {
 		super();
-		setPreferenceKey(ModelEditPart.MODEL_ID + "_ContainementCircle");
+		setPreferenceKey(ModelEditPart.MODEL_ID + "_ContainmentCircle");
 	}
 
 	/**
@@ -32,7 +32,7 @@ public class ContainementCirclePreferencePage extends AbstractPapyrusNodePrefere
 	 */
 	public static void initDefaults(IPreferenceStore store) {
 
-		String key = ModelEditPart.MODEL_ID + "_ContainementCircle";
+		String key = ModelEditPart.MODEL_ID + "_ContainmentCircle";
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.WIDTH), 40);
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.HEIGHT), 40);
 

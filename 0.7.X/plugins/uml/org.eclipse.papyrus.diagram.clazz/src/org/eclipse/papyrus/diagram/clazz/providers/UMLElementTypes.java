@@ -405,7 +405,7 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType Node_3032 = getElementType("org.eclipse.papyrus.diagram.clazz.ContainementCircle_3032"); //$NON-NLS-1$
+	public static final IElementType Node_3032 = getElementType("org.eclipse.papyrus.diagram.clazz.ContainmentCircle_3032"); //$NON-NLS-1$
 
 	/**
 	 * @generated
