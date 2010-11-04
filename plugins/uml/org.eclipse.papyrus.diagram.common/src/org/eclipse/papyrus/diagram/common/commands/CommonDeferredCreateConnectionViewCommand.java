@@ -9,10 +9,11 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.commands;
 
+import java.util.Iterator;
 import java.util.Map;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -21,13 +22,16 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.commands.DeferredCreateConnectionViewCommand;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest.ConnectionViewDescriptor;
 import org.eclipse.gmf.runtime.notation.View;
@@ -102,11 +106,46 @@ public class CommonDeferredCreateConnectionViewCommand extends DeferredCreateCon
 	 */
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
-		Map epRegistry = viewer.getEditPartRegistry();
+		Map<?, ?> epRegistry = viewer.getEditPartRegistry();
 		IGraphicalEditPart sourceEP = (IGraphicalEditPart)epRegistry.get(sourceViewAdapter.getAdapter(View.class));
 		IGraphicalEditPart targetEP = (IGraphicalEditPart)epRegistry.get(targetViewAdapter.getAdapter(View.class));
 
+
+		/*
+		 * when the source or the target of a link is an other link, the previous method returns something like ElementNameEditPart
+		 * A such EditPart does not allow to get a Command for the creation of the link
+		 */
+		if(sourceEP instanceof LabelEditPart) {
+			sourceEP = findEditPartForCreation((View)sourceViewAdapter.getAdapter(View.class));
+		}
+
+		if(targetEP instanceof LabelEditPart) {
+			targetEP = findEditPartForCreation((View)targetViewAdapter.getAdapter(View.class));
+		}
+
 		return doExecuteWithResult(progressMonitor, info, sourceEP, targetEP);
+	}
+
+	/**
+	 * Returns the EditPart for the creation
+	 * 
+	 * @param adapter
+	 *        the view of the element for which we are looking for a valid EditPart
+	 * @return
+	 *         the EditPart for the creation
+	 */
+	protected IGraphicalEditPart findEditPartForCreation(View view) {
+		Iterator<?> editPartIterator = viewer.getEditPartRegistry().values().iterator();
+		EObject semanticElement = view.getElement();
+		while(editPartIterator.hasNext()) {
+			EditPart currentEditPart = (EditPart)editPartIterator.next();
+			if((!(currentEditPart instanceof CompartmentEditPart)) && currentEditPart instanceof IGraphicalEditPart && semanticElement == (((IGraphicalEditPart)currentEditPart).resolveSemanticElement())) {
+				if(!(currentEditPart instanceof LabelEditPart)) {
+					return (IGraphicalEditPart)currentEditPart;
+				}
+			}
+		}
+		return null;
 	}
 
 	/**
@@ -129,6 +168,7 @@ public class CommonDeferredCreateConnectionViewCommand extends DeferredCreateCon
 		if(createConnectionCmd.canExecute()) {
 			createConnectionCmd.execute();
 		}
+
 		if(element != null) {
 			((View)(createRequest.getConnectionViewDescriptor().getAdapter(View.class))).setElement(element);
 		}
