@@ -5,7 +5,6 @@ import org.eclipse.papyrus.diagram.clazz.part.Messages;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.sysml.diagram.requirement.edit.part.RequirementDiagramEditPart;
 
-
 /**
  * Preference Page for Class usage in Requirement Diagram
  * 
@@ -16,7 +15,6 @@ public class ClassPreferencePage extends RequirementDiagramNodePreferencePage {
 	 * the list of the compartments for this node
 	 */
 	public static final String compartments[] = { Messages.ClassAttributeCompartmentEditPart_title, Messages.ClassOperationCompartmentEditPart_title, Messages.ClassNestedClassifierCompartmentEditPart_title };
-
 
 	/**
 	 * Constructor.
@@ -34,13 +32,21 @@ public class ClassPreferencePage extends RequirementDiagramNodePreferencePage {
 	public static void initDefaults(IPreferenceStore store) {
 
 		String key = RequirementDiagramEditPart.DIAGRAM_ID + "_Class";
-		// set the true value for the compartment visibility
+		// Compartment visibility is set to false by default as
+		// Property, Operation, NestedClassifier compartment are 
+		// not useful for most users in Requirement diagram.
+
+		// These compartment can still be shown after creation (creation Preference may also be modified).
 		for(String name : compartments) {
 			String preferenceName = PreferenceConstantHelper.getCompartmentElementConstant(key, name, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
-			store.setDefault(preferenceName, true);
+			store.setDefault(preferenceName, false);
 		}
-	}
 
+		// Requirement default size
+		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.WIDTH), 120);
+		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.HEIGHT), 80);
+
+	}
 
 	/**
 	 * 
