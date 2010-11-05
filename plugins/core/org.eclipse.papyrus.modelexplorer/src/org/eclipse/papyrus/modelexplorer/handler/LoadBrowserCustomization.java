@@ -43,6 +43,7 @@ import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.modelexplorer.Activator;
+import org.eclipse.papyrus.modelexplorer.ModelExplorerPageBookView;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.navigator.CommonNavigator;
@@ -61,9 +62,13 @@ public class LoadBrowserCustomization extends AbstractHandler {
 	 */
 	protected CommonNavigator getCommonNavigator() {
 		IViewPart part = org.eclipse.papyrus.modelexplorer.NavigatorUtils
-				.findViewPart("org.eclipse.papyrus.modelexplorer.modelexplorer");
-		if (part instanceof CommonNavigator) {
-			return ((CommonNavigator) part);
+.findViewPart("org.eclipse.papyrus.modelexplorer.modelexplorer"); // FIXME should use a constant here!
+		// the part is only a book, retrieving correct page
+		if (part instanceof ModelExplorerPageBookView) {
+			IViewPart page = ((ModelExplorerPageBookView)part).getActiveView();
+			if(page instanceof CommonNavigator) {
+				return ((CommonNavigator)page);
+			}
 		}
 		return null;
 	}
