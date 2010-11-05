@@ -176,7 +176,6 @@
 		<eclipse.launch app="director">
 			<args>
 				<jvmarg value="-Declipse.p2.mirrors=false" />
-				<jvmarg value="-Dorg.eclipse.update.jarprocessor.pack200=${org.eclipse.update.jarprocessor.pack200}" />
 				<!--
 				Hudson Ant property: org.eclipse.update.jarprocessor.pack200=${jdk1.5.dir}/jre/bin
 				<jvmarg value="-Dorg.eclipse.update.jarprocessor.pack200=${org.eclipse.update.jarprocessor.pack200}" />
@@ -247,7 +246,7 @@
 		<buckminster command="installJRE">
 			<cmdargs>
 				<arg value="--location" />
-				<arg value="${jdk1.5.dir}" />
+				<arg value="${env.JAVA_HOME}" />
 			</cmdargs>
 		</buckminster>
 		
