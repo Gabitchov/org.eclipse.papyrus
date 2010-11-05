@@ -141,33 +141,33 @@ public class InheritedClassDiagramElementViewProvider extends UMLViewProvider {
 
 		return InheritedClassDiagramElementViewProvider.provides(elementType);
 	}
-	
+
 	public static boolean provides(IElementType elementType) {
 		if((elementType == BlockDefinitionDiagramElementTypes.PACKAGE) || (elementType == BlockDefinitionDiagramElementTypes.PACKAGE_CN)
 
-				|| (elementType == BlockDefinitionDiagramElementTypes.MODEL) || (elementType == BlockDefinitionDiagramElementTypes.MODEL_CN)
+		|| (elementType == BlockDefinitionDiagramElementTypes.MODEL) || (elementType == BlockDefinitionDiagramElementTypes.MODEL_CN)
 
-				|| (elementType == BlockDefinitionDiagramElementTypes.CLASS) || (elementType == BlockDefinitionDiagramElementTypes.CLASS_CN) || (elementType == BlockDefinitionDiagramElementTypes.CLASS_PROP_CLN) || (elementType == BlockDefinitionDiagramElementTypes.CLASS_OPER_CLN) || (elementType == BlockDefinitionDiagramElementTypes.CLASS_RECP_CLN) || (elementType == BlockDefinitionDiagramElementTypes.CLASS_NEST_CLN)
+		|| (elementType == BlockDefinitionDiagramElementTypes.CLASS) || (elementType == BlockDefinitionDiagramElementTypes.CLASS_CN) || (elementType == BlockDefinitionDiagramElementTypes.CLASS_PROP_CLN) || (elementType == BlockDefinitionDiagramElementTypes.CLASS_OPER_CLN) || (elementType == BlockDefinitionDiagramElementTypes.CLASS_RECP_CLN) || (elementType == BlockDefinitionDiagramElementTypes.CLASS_NEST_CLN)
 
-				|| (elementType == BlockDefinitionDiagramElementTypes.INTERFACE) || (elementType == BlockDefinitionDiagramElementTypes.INTERFACE_CN) || (elementType == BlockDefinitionDiagramElementTypes.INTERFACE_PROP_CLN) || (elementType == BlockDefinitionDiagramElementTypes.INTERFACE_OPER_CLN) || (elementType == BlockDefinitionDiagramElementTypes.INTERFACE_NEST_CLN)
+		|| (elementType == BlockDefinitionDiagramElementTypes.INTERFACE) || (elementType == BlockDefinitionDiagramElementTypes.INTERFACE_CN) || (elementType == BlockDefinitionDiagramElementTypes.INTERFACE_PROP_CLN) || (elementType == BlockDefinitionDiagramElementTypes.INTERFACE_OPER_CLN) || (elementType == BlockDefinitionDiagramElementTypes.INTERFACE_NEST_CLN)
 
-				|| (elementType == BlockDefinitionDiagramElementTypes.PRIMITIVETYPE) || (elementType == BlockDefinitionDiagramElementTypes.PRIMITIVETYPE_CN)
+		|| (elementType == BlockDefinitionDiagramElementTypes.PRIMITIVETYPE) || (elementType == BlockDefinitionDiagramElementTypes.PRIMITIVETYPE_CN)
 
-				|| (elementType == BlockDefinitionDiagramElementTypes.ENUMERATION) || (elementType == BlockDefinitionDiagramElementTypes.ENUMERATION_CN) || (elementType == BlockDefinitionDiagramElementTypes.ENUMERATION_LITERAL_CLN)
+		|| (elementType == BlockDefinitionDiagramElementTypes.ENUMERATION) || (elementType == BlockDefinitionDiagramElementTypes.ENUMERATION_CN) || (elementType == BlockDefinitionDiagramElementTypes.ENUMERATION_LITERAL_CLN)
 
-				|| (elementType == BlockDefinitionDiagramElementTypes.DATATYPE) || (elementType == BlockDefinitionDiagramElementTypes.DATATYPE_CN) || (elementType == BlockDefinitionDiagramElementTypes.DATATYPE_PROP_CLN) || (elementType == BlockDefinitionDiagramElementTypes.DATATYPE_OPER_CLN)
+		|| (elementType == BlockDefinitionDiagramElementTypes.DATATYPE) || (elementType == BlockDefinitionDiagramElementTypes.DATATYPE_CN) || (elementType == BlockDefinitionDiagramElementTypes.DATATYPE_PROP_CLN) || (elementType == BlockDefinitionDiagramElementTypes.DATATYPE_OPER_CLN)
 
-				|| (elementType == BlockDefinitionDiagramElementTypes.INSTANCE_SPECIFICATION) || (elementType == BlockDefinitionDiagramElementTypes.INSTANCE_SPEC_CN) || (elementType == BlockDefinitionDiagramElementTypes.INSTANCE_SPEC_SLOT_CLN)
+		|| (elementType == BlockDefinitionDiagramElementTypes.INSTANCE_SPECIFICATION) || (elementType == BlockDefinitionDiagramElementTypes.INSTANCE_SPEC_CN) || (elementType == BlockDefinitionDiagramElementTypes.INSTANCE_SPEC_SLOT_CLN)
 
-				|| (elementType == BlockDefinitionDiagramElementTypes.ASSOCIATION_CLASS) || (elementType == BlockDefinitionDiagramElementTypes.ASSOCIATION_CLASS_PROP_CLN) || (elementType == BlockDefinitionDiagramElementTypes.ASSOCIATION_CLASS_OPER_CLN) || (elementType == BlockDefinitionDiagramElementTypes.ASSOCIATION_CLASS_NEST_CLN)
+		|| (elementType == BlockDefinitionDiagramElementTypes.ASSOCIATION_CLASS) || (elementType == BlockDefinitionDiagramElementTypes.ASSOCIATION_CLASS_PROP_CLN) || (elementType == BlockDefinitionDiagramElementTypes.ASSOCIATION_CLASS_OPER_CLN) || (elementType == BlockDefinitionDiagramElementTypes.ASSOCIATION_CLASS_NEST_CLN)
 
-				|| (elementType == BlockDefinitionDiagramElementTypes.COMMENT) || (elementType == BlockDefinitionDiagramElementTypes.COMMENT_CN)
+		|| (elementType == BlockDefinitionDiagramElementTypes.COMMENT) || (elementType == BlockDefinitionDiagramElementTypes.COMMENT_CN)
 
-				|| (elementType == BlockDefinitionDiagramElementTypes.CONSTRAINT) || (elementType == BlockDefinitionDiagramElementTypes.CONSTRAINT_CN)
+		|| (elementType == BlockDefinitionDiagramElementTypes.CONSTRAINT) || (elementType == BlockDefinitionDiagramElementTypes.CONSTRAINT_CN)
 
-				|| (elementType == BlockDefinitionDiagramElementTypes.CONTAINMENT_CIRCLE)) {
-					return true;
-				}
+		|| (elementType == BlockDefinitionDiagramElementTypes.CONTAINMENT_CIRCLE)) {
+			return true;
+		}
 		return false;
 	}
 
@@ -176,10 +176,10 @@ public class InheritedClassDiagramElementViewProvider extends UMLViewProvider {
 		final int visualID;
 		if(semanticHint == null) {
 			semanticHint = BlockDefinitionDiagramVisualIDRegistry.getNodeVisualID(containerView, domainElement);
-		} 
-		
+		}
+
 		visualID = UMLVisualIDRegistry.getVisualID(semanticHint);
-		
+
 		switch(visualID) {
 		case Dependency2EditPart.VISUAL_ID:
 			return createDependency_2014(domainElement, containerView, index, persisted, preferencesHint);
@@ -286,7 +286,7 @@ public class InheritedClassDiagramElementViewProvider extends UMLViewProvider {
 		case SlotEditPart.VISUAL_ID:
 			return createSlot_3030(domainElement, containerView, index, persisted, preferencesHint);
 		case ContainmentCircleEditPart.VISUAL_ID:
-			return createPort_3032(domainElement, containerView, index, persisted, preferencesHint);
+			return createNode_3032(domainElement, containerView, index, persisted, preferencesHint);
 		case TemplateSignatureEditPart.VISUAL_ID:
 			return createTemplateSignature_3033(domainElement, containerView, index, persisted, preferencesHint);
 		}
