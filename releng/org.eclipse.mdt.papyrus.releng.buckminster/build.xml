@@ -111,7 +111,6 @@
 				</properties>
 				<args>
 					<jvmarg value="-Xmx4096m" />
-					<jvmarg value="-Dorg.eclipse.update.jarprocessor.pack200=${org.eclipse.update.jarprocessor.pack200}" />
 					<arg value="-data" />
 					<arg value="@{workspace}" />
 					<arg value="--loglevel" />
@@ -147,18 +146,6 @@
 		<echo message="Sourcing ${properties.file}" />
 		<available file="${tools}/director/director" property="director.exists" />
 		<available file="${tools}/buckminster/buckminster" property="buckminster.exists" />
-		
-		<!-- some info about java, pack200, etc. -->
-		<echo message="Pack200: ${org.eclipse.update.jarprocessor.pack200}"/>
-		
-		  <!-- root directory of ant. -->
-		  <echo message="The Project name is: ${ant.project.name}"/>
-		  <echo message="The Ant home directory is: ${ant.home}"/>
-		  <echo message="The Ant version is: ${ant.version}"/> 
-		  <echo message="The Java version is: ${ant.java.version}"/>
-		  
-		  <!-- System properties. -->
-		  <echo message="The Java home directory is: ${java.home}"/>
 	</target>
 
 	<target name="get.director" unless="director.exists">
@@ -172,7 +159,6 @@
 
 	<target name="install.buckminster" unless="buckminster.exists" depends="get.director">
 		<echo message="Configuring headless buckminster with needed features" />
-		<echo message="Pack200 to use: ${org.eclipse.update.jarprocessor.pack200}" />
 		<eclipse.launch app="director">
 			<args>
 				<jvmarg value="-Declipse.p2.mirrors=false" />
