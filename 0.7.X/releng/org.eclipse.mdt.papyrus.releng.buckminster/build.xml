@@ -150,7 +150,15 @@
 		
 		<!-- some info about java, pack200, etc. -->
 		<echo message="Pack200: ${org.eclipse.update.jarprocessor.pack200}"/>
-		<echo message="Java version: ${ant.java.version}"/>
+		
+		  <!-- root directory of ant. -->
+		  <echo message="The Project name is: ${ant.project.name}"/>
+		  <echo message="The Ant home directory is: ${ant.home}"/>
+		  <echo message="The Ant version is: ${ant.version}"/> 
+		  <echo message="The Java version is: ${ant.java.version}"/>
+		  
+		  <!-- System properties. -->
+		  <echo message="The Java home directory is: ${java.home}"/>
 	</target>
 
 	<target name="get.director" unless="director.exists">
