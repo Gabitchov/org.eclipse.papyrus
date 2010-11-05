@@ -153,7 +153,7 @@ public class Configuration {
 
 									for(int ii = 0; ii < valuesList.getLength(); ii++) {//we iterate on the values
 										Node valueNode = valuesList.item(ii);
-										if(valueNode.getLocalName().equals(VALUE)) {//this node is really a value?
+										if(VALUE.equals(valueNode.getLocalName())) {//this node is really a value?
 											Value myValue = new Value(valueNode.getTextContent());
 											proper.addValue(myValue);
 										}
