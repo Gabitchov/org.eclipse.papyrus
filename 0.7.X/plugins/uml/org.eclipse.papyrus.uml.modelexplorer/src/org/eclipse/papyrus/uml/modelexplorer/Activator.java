@@ -1,7 +1,10 @@
 package org.eclipse.papyrus.uml.modelexplorer;
 
+import org.eclipse.emf.ecore.EValidator;
+import org.eclipse.gmt.modisco.infra.facet.validation.EValidatorAdapter;
 import org.eclipse.papyrus.log.LogHelper;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.uml2.uml.UMLPackage;
 import org.osgi.framework.BundleContext;
 
 /**
@@ -33,6 +36,10 @@ public class Activator extends AbstractUIPlugin implements org.eclipse.ui.IStart
 		super.start(context);
 		plugin = this;
 		log = new LogHelper(plugin);
+		// register EValidatorAdapter for selected elements
+		// TODO: discouraged access
+		EValidator.Registry.INSTANCE.put(
+			UMLPackage.eINSTANCE, new EValidatorAdapter());
 	}
 
 	/*
