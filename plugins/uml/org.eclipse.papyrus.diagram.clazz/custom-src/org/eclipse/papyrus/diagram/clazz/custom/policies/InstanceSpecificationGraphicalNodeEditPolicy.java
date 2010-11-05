@@ -48,35 +48,38 @@ public class InstanceSpecificationGraphicalNodeEditPolicy extends CustomGraphica
 			return null;
 		AttachInstanceSpecifcationCommand instanceSpecifcationCommand = null;
 		CreateConnectionViewRequest req = (CreateConnectionViewRequest)request;
-		CompositeCommand cc = new CompositeCommand(DiagramUIMessages.Commands_CreateCommand_Connection_Label);
-		Diagram diagramView = ((View)getHost().getModel()).getDiagram();
-		TransactionalEditingDomain editingDomain = getEditingDomain();
-		CreateCommand createCommand = new CreateCommand(editingDomain, req.getConnectionViewDescriptor(), diagramView.getDiagram());
-
 		if(req.getConnectionViewDescriptor().getSemanticHint().equals("" + InstanceSpecificationLinkEditPart.VISUAL_ID)) {
-			instanceSpecifcationCommand = new AttachInstanceSpecifcationCommand(getEditingDomain(), ((IAdaptable)createCommand.getCommandResult().getReturnValue()), getViewer());
-		}
-		setViewAdapter((IAdaptable)createCommand.getCommandResult().getReturnValue());
 
-		SetConnectionEndsCommand sceCommand = new SetConnectionEndsCommand(editingDomain, StringStatics.BLANK);
-		sceCommand.setEdgeAdaptor(getViewAdapter());
-		sceCommand.setNewSourceAdaptor(new EObjectAdapter(getView()));
-		ConnectionAnchor sourceAnchor = getConnectableEditPart().getSourceConnectionAnchor(request);
-		SetConnectionAnchorsCommand scaCommand = new SetConnectionAnchorsCommand(editingDomain, StringStatics.BLANK);
-		scaCommand.setEdgeAdaptor(getViewAdapter());
-		scaCommand.setNewSourceTerminal(getConnectableEditPart().mapConnectionAnchorToTerminal(sourceAnchor));
-		SetConnectionBendpointsCommand sbbCommand = new SetConnectionBendpointsCommand(editingDomain);
-		sbbCommand.setEdgeAdapter(getViewAdapter());
-		cc.compose(createCommand);
-		cc.compose(sceCommand);
-		cc.compose(scaCommand);
-		cc.compose(sbbCommand);
-		if(instanceSpecifcationCommand != null) {
+
+			CompositeCommand cc = new CompositeCommand(DiagramUIMessages.Commands_CreateCommand_Connection_Label);
+			Diagram diagramView = ((View)getHost().getModel()).getDiagram();
+			TransactionalEditingDomain editingDomain = getEditingDomain();
+			CreateCommand createCommand = new CreateCommand(editingDomain, req.getConnectionViewDescriptor(), diagramView.getDiagram());
+			instanceSpecifcationCommand = new AttachInstanceSpecifcationCommand(getEditingDomain(),req, ((IAdaptable)createCommand.getCommandResult().getReturnValue()), getViewer());
+			setViewAdapter((IAdaptable)createCommand.getCommandResult().getReturnValue());
+
+			SetConnectionEndsCommand sceCommand = new SetConnectionEndsCommand(editingDomain, StringStatics.BLANK);
+			sceCommand.setEdgeAdaptor(getViewAdapter());
+			sceCommand.setNewSourceAdaptor(new EObjectAdapter(getView()));
+			ConnectionAnchor sourceAnchor = getConnectableEditPart().getSourceConnectionAnchor(request);
+			SetConnectionAnchorsCommand scaCommand = new SetConnectionAnchorsCommand(editingDomain, StringStatics.BLANK);
+			scaCommand.setEdgeAdaptor(getViewAdapter());
+			scaCommand.setNewSourceTerminal(getConnectableEditPart().mapConnectionAnchorToTerminal(sourceAnchor));
+			SetConnectionBendpointsCommand sbbCommand = new SetConnectionBendpointsCommand(editingDomain);
+			sbbCommand.setEdgeAdapter(getViewAdapter());
+			cc.compose(createCommand);
+			cc.compose(sceCommand);
+			cc.compose(scaCommand);
+			cc.compose(sbbCommand);
 			cc.compose(instanceSpecifcationCommand);
+			Command c = new ICommandProxy(cc);
+			request.setStartCommand(c);
+
+			return c;
 		}
-		Command c = new ICommandProxy(cc);
-		request.setStartCommand(c);
-		return c;
+		else{
+			return super.getConnectionCreateCommand(request);
+		}
 	}
 
 	protected TransactionalEditingDomain getEditingDomain() {
