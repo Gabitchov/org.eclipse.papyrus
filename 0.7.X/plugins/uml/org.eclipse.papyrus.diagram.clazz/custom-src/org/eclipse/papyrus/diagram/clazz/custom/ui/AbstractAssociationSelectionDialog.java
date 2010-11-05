@@ -1,3 +1,15 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ */
 package org.eclipse.papyrus.diagram.clazz.custom.ui;
 
 import org.eclipse.papyrus.diagram.common.Activator;
@@ -14,7 +26,9 @@ import org.eclipse.swt.widgets.ExpandItem;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.Button;
 
-
+/**
+ * code generated to create this chooser of association
+ */
 public class AbstractAssociationSelectionDialog extends Dialog {
 
 	protected Object result;
@@ -32,7 +46,7 @@ public class AbstractAssociationSelectionDialog extends Dialog {
 	 * @param style
 	 */
 	public AbstractAssociationSelectionDialog(Shell parent, int style) {
-		super(parent, style);
+		super(parent, SWT.DIALOG_TRIM | SWT.PRIMARY_MODAL);
 		setText("SWT Dialog");
 	}
 
