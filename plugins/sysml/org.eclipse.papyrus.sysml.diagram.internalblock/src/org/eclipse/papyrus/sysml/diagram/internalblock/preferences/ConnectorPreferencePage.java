@@ -9,12 +9,16 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.internalblock.preferences;
 
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.part.InternalBlockDiagramEditPart;
 
-public class ConnectorPreferencePage extends InternalBlockDiagramNodePreferencePage {
+public class ConnectorPreferencePage extends InternalBlockDiagramLinkPreferencePage {
 
 	public ConnectorPreferencePage() {
 		super();
 		setPreferenceKey(InternalBlockDiagramEditPart.DIAGRAM_ID + "_Connector"); //$NON-NLS-1$
+	}
+
+	public static void initDefaults(IPreferenceStore store) {
 	}
 }

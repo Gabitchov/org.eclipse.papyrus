@@ -18,9 +18,7 @@ import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.CreateEditPolicies
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.IEditPolicyProvider;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.composite.edit.parts.ClassCompositeCompartmentEditPart;
-import org.eclipse.papyrus.diagram.composite.edit.parts.ClassCompositeCompartmentEditPartCN;
 import org.eclipse.papyrus.diagram.composite.edit.parts.ClassCompositeEditPart;
-import org.eclipse.papyrus.diagram.composite.edit.parts.ClassCompositeEditPartCN;
 import org.eclipse.papyrus.diagram.composite.edit.parts.PortEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.PropertyPartCompartmentEditPartCN;
 import org.eclipse.papyrus.diagram.composite.edit.parts.PropertyPartEditPartCN;
@@ -42,8 +40,7 @@ public class InheritedElementEditPolicyProvider extends AbstractProvider impleme
 			return false;
 		}
 
-		if((gep instanceof ClassCompositeEditPart) || (gep instanceof ClassCompositeEditPartCN) || (gep instanceof ClassCompositeCompartmentEditPart) || (gep instanceof ClassCompositeCompartmentEditPartCN) || (gep instanceof PropertyPartEditPartCN) || (gep instanceof PropertyPartCompartmentEditPartCN) || (gep instanceof PortEditPart)) {
-
+		if((gep instanceof ClassCompositeEditPart) || (gep instanceof ClassCompositeCompartmentEditPart) || (gep instanceof PropertyPartEditPartCN) || (gep instanceof PropertyPartCompartmentEditPartCN) || (gep instanceof PortEditPart)) {
 			return true;
 		}
 

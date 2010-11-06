@@ -25,7 +25,7 @@ public class PropertyPreferencePage extends InternalBlockDiagramNodePreferencePa
 		super();
 		setPreferenceKey(InternalBlockDiagramEditPart.DIAGRAM_ID + "_Property"); //$NON-NLS-1$
 	}
-	
+
 	/**
 	 * 
 	 * @param store
@@ -38,7 +38,7 @@ public class PropertyPreferencePage extends InternalBlockDiagramNodePreferencePa
 			String preferenceName = PreferenceConstantHelper.getCompartmentElementConstant(key, name, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
 			store.setDefault(preferenceName, true);
 		}
-		
+
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.WIDTH), 20);
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.HEIGHT), 20);
 	}
