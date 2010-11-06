@@ -152,7 +152,11 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 
 		TimeExpressionPreferencePage.initDefaults(store);
 
+		ConstraintConstrainedElementPreferencePage.initDefaults(store);
+
 		AbstractionPreferencePage.initDefaults(store);
+
+		DurationObservationEventPreferencePage.initDefaults(store);
 
 		InformationFlowPreferencePage.initDefaults(store);
 
@@ -161,6 +165,8 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 		ConnectorPreferencePage.initDefaults(store);
 
 		ManifestationPreferencePage.initDefaults(store);
+
+		TimeObservationEventPreferencePage.initDefaults(store);
 
 		DependencyPreferencePage.initDefaults(store);
 
@@ -173,6 +179,8 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 		ComponentRealizationPreferencePage.initDefaults(store);
 
 		SubstitutionPreferencePage.initDefaults(store);
+
+		CommentAnnotatedElementPreferencePage.initDefaults(store);
 
 		DeploymentPreferencePage.initDefaults(store);
 

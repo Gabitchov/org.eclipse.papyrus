@@ -12337,7 +12337,7 @@ public class UMLDiagramUpdater {
 		Collection<EStructuralFeature.Setting> settings = crossReferences.get(target);
 		for(EStructuralFeature.Setting setting : settings) {
 			if(setting.getEStructuralFeature() == UMLPackage.eINSTANCE.getTimeObservation_Event()) {
-				result.add(new UMLLinkDescriptor(setting.getEObject(), target, UMLElementTypes.TimeObservationEvent_4018, ConnectorTimeObservationEditPart.VISUAL_ID));
+				result.add(new UMLLinkDescriptor(setting.getEObject(), target, UMLElementTypes.TimeObservationEvent_4018, TimeObservationEventEditPart.VISUAL_ID));
 			}
 		}
 		return result;
@@ -12351,7 +12351,7 @@ public class UMLDiagramUpdater {
 		Collection<EStructuralFeature.Setting> settings = crossReferences.get(target);
 		for(EStructuralFeature.Setting setting : settings) {
 			if(setting.getEStructuralFeature() == UMLPackage.eINSTANCE.getDurationObservation_Event()) {
-				result.add(new UMLLinkDescriptor(setting.getEObject(), target, UMLElementTypes.DurationObservationEvent_4019, ConnectorDurationObservationEditPart.VISUAL_ID));
+				result.add(new UMLLinkDescriptor(setting.getEObject(), target, UMLElementTypes.DurationObservationEvent_4019, DurationObservationEventEditPart.VISUAL_ID));
 			}
 		}
 		return result;
@@ -12969,7 +12969,7 @@ public class UMLDiagramUpdater {
 		if(destination == null) {
 			return result;
 		}
-		result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.TimeObservationEvent_4018, ConnectorTimeObservationEditPart.VISUAL_ID));
+		result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.TimeObservationEvent_4018, TimeObservationEventEditPart.VISUAL_ID));
 		return result;
 	}
 
@@ -12980,7 +12980,7 @@ public class UMLDiagramUpdater {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		for(Iterator<?> destinations = source.getEvents().iterator(); destinations.hasNext();) {
 			NamedElement destination = (NamedElement)destinations.next();
-			result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.DurationObservationEvent_4019, ConnectorDurationObservationEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.DurationObservationEvent_4019, DurationObservationEventEditPart.VISUAL_ID));
 		}
 		return result;
 	}
