@@ -22,13 +22,13 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.papyrus.diagram.composite.edit.policies.UMLBaseItemSemanticEditPolicy;
+import org.eclipse.uml2.uml.DurationObservation;
 import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.TimeObservation;
 
 /**
  * @generated
  */
-public class ConnectorTimeObservationReorientCommand extends EditElementCommand {
+public class DurationObservationEventReorientCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -53,7 +53,7 @@ public class ConnectorTimeObservationReorientCommand extends EditElementCommand 
 	/**
 	 * @generated
 	 */
-	public ConnectorTimeObservationReorientCommand(ReorientReferenceRelationshipRequest request) {
+	public DurationObservationEventReorientCommand(ReorientReferenceRelationshipRequest request) {
 		super(request.getLabel(), null, request);
 		reorientDirection = request.getDirection();
 		referenceOwner = request.getReferenceOwner();
@@ -65,7 +65,7 @@ public class ConnectorTimeObservationReorientCommand extends EditElementCommand 
 	 * @generated
 	 */
 	public boolean canExecute() {
-		if(false == referenceOwner instanceof TimeObservation) {
+		if(false == referenceOwner instanceof DurationObservation) {
 			return false;
 		}
 		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
@@ -81,10 +81,10 @@ public class ConnectorTimeObservationReorientCommand extends EditElementCommand 
 	 * @generated
 	 */
 	protected boolean canReorientSource() {
-		if(!(oldEnd instanceof NamedElement && newEnd instanceof TimeObservation)) {
+		if(!(oldEnd instanceof NamedElement && newEnd instanceof DurationObservation)) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistTimeObservationEvent_4018(getNewSource(), getOldTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistDurationObservationEvent_4019(getNewSource(), getOldTarget());
 	}
 
 	/**
@@ -94,7 +94,7 @@ public class ConnectorTimeObservationReorientCommand extends EditElementCommand 
 		if(!(oldEnd instanceof NamedElement && newEnd instanceof NamedElement)) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistTimeObservationEvent_4018(getOldSource(), getNewTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistDurationObservationEvent_4019(getOldSource(), getNewTarget());
 	}
 
 	/**
@@ -117,8 +117,8 @@ public class ConnectorTimeObservationReorientCommand extends EditElementCommand 
 	 * @generated
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
-		getOldSource().setEvent(null);
-		getNewSource().setEvent(getOldTarget());
+		getOldSource().getEvents().remove(getOldTarget());
+		getNewSource().getEvents().add(getOldTarget());
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 
@@ -126,22 +126,23 @@ public class ConnectorTimeObservationReorientCommand extends EditElementCommand 
 	 * @generated
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
-		getOldSource().setEvent(getNewTarget());
+		getOldSource().getEvents().remove(getOldTarget());
+		getOldSource().getEvents().add(getNewTarget());
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 
 	/**
 	 * @generated
 	 */
-	protected TimeObservation getOldSource() {
-		return (TimeObservation)referenceOwner;
+	protected DurationObservation getOldSource() {
+		return (DurationObservation)referenceOwner;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected TimeObservation getNewSource() {
-		return (TimeObservation)newEnd;
+	protected DurationObservation getNewSource() {
+		return (DurationObservation)newEnd;
 	}
 
 	/**

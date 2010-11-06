@@ -1409,9 +1409,9 @@ public class UMLElementTypes {
 			return Connector_4013;
 		case GeneralizationEditPart.VISUAL_ID:
 			return Generalization_4015;
-		case ConnectorTimeObservationEditPart.VISUAL_ID:
+		case TimeObservationEventEditPart.VISUAL_ID:
 			return TimeObservationEvent_4018;
-		case ConnectorDurationObservationEditPart.VISUAL_ID:
+		case DurationObservationEventEditPart.VISUAL_ID:
 			return DurationObservationEvent_4019;
 		case RepresentationEditPart.VISUAL_ID:
 			return InformationItemRepresented_4020;

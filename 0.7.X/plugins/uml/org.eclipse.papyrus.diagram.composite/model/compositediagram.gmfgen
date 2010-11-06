@@ -22,8 +22,8 @@
         creationWizardIconPath="icons/obj16/Diagram_CompositeStructure.gif"
         validationProviderPriority="Low"
         validationEnabled="true"
-        liveValidationUIFeedback="true"
         validationDecorators="true"
+        liveValidationUIFeedback="true"
         synchronized="false">
       <diagramRunTimeClass
           href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
@@ -8266,7 +8266,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType"/>
+            xsi:type="gmfgen:SpecializationType"
+            displayName="CommentAnnotatedElement"/>
         <viewmap
             xsi:type="gmfgen:InnerClassViewmap"
             className="LinkDescriptor"
@@ -8286,7 +8287,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType"/>
+            xsi:type="gmfgen:SpecializationType"
+            displayName="ConstraintConstrainedElement"/>
         <viewmap
             xsi:type="gmfgen:InnerClassViewmap"
             className="LinkDescriptor"
@@ -9291,14 +9293,15 @@
       </links>
       <links
           visualID="4018"
-          editPartClassName="ConnectorTimeObservationEditPart"
-          itemSemanticEditPolicyClassName="ConnectorTimeObservationItemSemanticEditPolicy"
-          createCommandClassName="ConnectorTimeObservationCreateCommand"
-          reorientCommandClassName="ConnectorTimeObservationReorientCommand">
+          editPartClassName="TimeObservationEventEditPart"
+          itemSemanticEditPolicyClassName="TimeObservationEventSemanticEditPolicy"
+          createCommandClassName="TimeObservationEventCreateCommand"
+          reorientCommandClassName="TimeObservationEventReorientCommand">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType"/>
+            xsi:type="gmfgen:SpecializationType"
+            displayName="TimeObservationEvent"/>
         <viewmap
             xsi:type="gmfgen:InnerClassViewmap"
             className="LinkDescriptor"
@@ -9311,14 +9314,15 @@
       </links>
       <links
           visualID="4019"
-          editPartClassName="ConnectorDurationObservationEditPart"
-          itemSemanticEditPolicyClassName="ConnectorDurationObservationItemSemanticEditPolicy"
-          createCommandClassName="ConnectorDurationObservationCreateCommand"
-          reorientCommandClassName="ConnectorDurationObservationReorientCommand">
+          editPartClassName="DurationObservationEventEditPart"
+          itemSemanticEditPolicyClassName="DurationObservationEventItemSemanticEditPolicy"
+          createCommandClassName="DurationObservationEventCreateCommand"
+          reorientCommandClassName="DurationObservationEventReorientCommand">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType"/>
+            xsi:type="gmfgen:SpecializationType"
+            displayName="DurationObservationEvent"/>
         <viewmap
             xsi:type="gmfgen:InnerClassViewmap"
             className="LinkDescriptor"

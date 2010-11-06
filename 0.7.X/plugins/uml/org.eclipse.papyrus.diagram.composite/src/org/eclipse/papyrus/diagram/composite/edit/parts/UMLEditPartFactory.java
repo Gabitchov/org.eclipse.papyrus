@@ -867,11 +867,11 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case GeneralizationAppliedStereotypeEditPart.VISUAL_ID:
 				return new GeneralizationAppliedStereotypeEditPart(view);
 
-			case ConnectorTimeObservationEditPart.VISUAL_ID:
-				return new ConnectorTimeObservationEditPart(view);
+			case TimeObservationEventEditPart.VISUAL_ID:
+				return new TimeObservationEventEditPart(view);
 
-			case ConnectorDurationObservationEditPart.VISUAL_ID:
-				return new ConnectorDurationObservationEditPart(view);
+			case DurationObservationEventEditPart.VISUAL_ID:
+				return new DurationObservationEventEditPart(view);
 
 			case RepresentationEditPart.VISUAL_ID:
 				return new RepresentationEditPart(view);

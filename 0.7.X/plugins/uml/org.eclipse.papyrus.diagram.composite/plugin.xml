@@ -2144,9 +2144,25 @@
 
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
+			class="org.eclipse.papyrus.diagram.composite.preferences.ConstraintConstrainedElementPreferencePage"
+            id="org.eclipse.papyrus.diagram.composite.preferences.ConstraintConstrainedElementPreferencePage"
+            name="ConstraintConstrainedElement Link" />
+		
+		
+
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.AbstractionPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.AbstractionPreferencePage"
             name="Abstraction Link" />
+		
+		
+
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
+			class="org.eclipse.papyrus.diagram.composite.preferences.DurationObservationEventPreferencePage"
+            id="org.eclipse.papyrus.diagram.composite.preferences.DurationObservationEventPreferencePage"
+            name="DurationObservationEvent Link" />
 		
 		
 
@@ -2179,6 +2195,14 @@
 			class="org.eclipse.papyrus.diagram.composite.preferences.ManifestationPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.ManifestationPreferencePage"
             name="Manifestation Link" />
+		
+		
+
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
+			class="org.eclipse.papyrus.diagram.composite.preferences.TimeObservationEventPreferencePage"
+            id="org.eclipse.papyrus.diagram.composite.preferences.TimeObservationEventPreferencePage"
+            name="TimeObservationEvent Link" />
 		
 		
 
@@ -2227,6 +2251,14 @@
 			class="org.eclipse.papyrus.diagram.composite.preferences.SubstitutionPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.SubstitutionPreferencePage"
             name="Substitution Link" />
+		
+		
+
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
+			class="org.eclipse.papyrus.diagram.composite.preferences.CommentAnnotatedElementPreferencePage"
+            id="org.eclipse.papyrus.diagram.composite.preferences.CommentAnnotatedElementPreferencePage"
+            name="CommentAnnotatedElement Link" />
 		
 		
 		
@@ -2806,7 +2838,8 @@
       <super type="org.eclipse.core.resources.problemmarker"/>
       <super type="org.eclipse.gmf.runtime.common.ui.services.marker"/>
       <persistent value="true"/>
-   </extension>
+</extension>
+
 <extension id="validationDecoratorProvider" name="ValidationDecorations" point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
       <?gmfgen generated="true"?>
       <decoratorProvider class="org.eclipse.papyrus.diagram.composite.providers.UMLValidationDecoratorProvider">
@@ -2814,7 +2847,7 @@
          <object class="org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart(org.eclipse.gmf.runtime.diagram.ui)" id="PRIMARY_VIEW"/>
          <context decoratorTargets="PRIMARY_VIEW"/>
       </decoratorProvider>
-   </extension>
+</extension>
    
 <!-- Diagram specific advices -->
 <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">

@@ -21,13 +21,13 @@ import org.eclipse.papyrus.diagram.composite.providers.UMLElementTypes;
 /**
  * @generated
  */
-public class ConnectorTimeObservationItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+public class DurationObservationEventItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
-	public ConnectorTimeObservationItemSemanticEditPolicy() {
-		super(UMLElementTypes.TimeObservationEvent_4018);
+	public DurationObservationEventItemSemanticEditPolicy() {
+		super(UMLElementTypes.DurationObservationEvent_4019);
 	}
 
 	/**

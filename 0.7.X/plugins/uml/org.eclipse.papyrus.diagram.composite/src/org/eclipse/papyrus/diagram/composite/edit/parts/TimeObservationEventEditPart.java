@@ -20,12 +20,12 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.composite.edit.policies.ConnectorTimeObservationItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.composite.edit.policies.TimeObservationEventSemanticEditPolicy;
 
 /**
  * @generated
  */
-public class ConnectorTimeObservationEditPart extends ConnectionNodeEditPart
+public class TimeObservationEventEditPart extends ConnectionNodeEditPart
 
 implements ITreeBranchEditPart {
 
@@ -37,7 +37,7 @@ implements ITreeBranchEditPart {
 	/**
 	 * @generated
 	 */
-	public ConnectorTimeObservationEditPart(View view) {
+	public TimeObservationEventEditPart(View view) {
 		super(view);
 	}
 
@@ -46,7 +46,7 @@ implements ITreeBranchEditPart {
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ConnectorTimeObservationItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new TimeObservationEventSemanticEditPolicy());
 	}
 
 	/**

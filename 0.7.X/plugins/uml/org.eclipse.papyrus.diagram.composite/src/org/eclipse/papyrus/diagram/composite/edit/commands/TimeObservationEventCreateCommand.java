@@ -27,7 +27,7 @@ import org.eclipse.uml2.uml.TimeObservation;
 /**
  * @generated
  */
-public class ConnectorTimeObservationCreateCommand extends EditElementCommand {
+public class TimeObservationEventCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -42,7 +42,7 @@ public class ConnectorTimeObservationCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public ConnectorTimeObservationCreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
+	public TimeObservationEventCreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
 		super(request.getLabel(), null, request);
 		this.source = source;
 		this.target = target;
