@@ -6,7 +6,6 @@ import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.sysml.diagram.internalblock.Activator;
 
-
 public class InternalBlockDiagramEditor extends org.eclipse.papyrus.diagram.composite.part.UMLDiagramEditor {
 
 	public InternalBlockDiagramEditor(ServicesRegistry servicesRegistry, Diagram diagram) throws ServiceException {

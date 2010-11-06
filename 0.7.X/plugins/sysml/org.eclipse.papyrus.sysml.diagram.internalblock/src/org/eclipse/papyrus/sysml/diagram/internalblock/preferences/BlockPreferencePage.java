@@ -21,7 +21,6 @@ public class BlockPreferencePage extends InternalBlockDiagramNodePreferencePage 
 	 */
 	public static final String compartments[] = { Messages.ClassCompositeCompartmentEditPart_title };;
 
-
 	/**
 	 * 
 	 * Constructor.
@@ -45,7 +44,6 @@ public class BlockPreferencePage extends InternalBlockDiagramNodePreferencePage 
 			store.setDefault(preferenceName, true);
 		}
 	}
-
 
 	/**
 	 * 

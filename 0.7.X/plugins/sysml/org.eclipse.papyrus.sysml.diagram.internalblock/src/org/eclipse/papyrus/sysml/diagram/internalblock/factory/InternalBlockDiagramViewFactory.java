@@ -12,7 +12,6 @@ package org.eclipse.papyrus.sysml.diagram.internalblock.factory;
 import org.eclipse.gmf.runtime.diagram.ui.view.factories.DiagramViewFactory;
 import org.eclipse.gmf.runtime.notation.MeasurementUnit;
 
-
 public class InternalBlockDiagramViewFactory extends DiagramViewFactory {
 
 	protected MeasurementUnit getMeasurementUnit() {
