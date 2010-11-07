@@ -3,7 +3,7 @@
       id="org.eclipse.papyrus.diagram.requirement"
       label="%featureName"
       version="0.7.1.qualifier"
-      provider-name="%featureProvider">
+      provider-name="%providerName">
 
    <description>
       %description
