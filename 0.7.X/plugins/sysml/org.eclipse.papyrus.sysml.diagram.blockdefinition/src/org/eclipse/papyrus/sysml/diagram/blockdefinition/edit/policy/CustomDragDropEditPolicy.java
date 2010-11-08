@@ -79,38 +79,21 @@ public class CustomDragDropEditPolicy extends ClassDiagramDragDropEditPolicy {
 		return domainElement instanceof org.eclipse.uml2.uml.Class && ((org.eclipse.uml2.uml.Class)domainElement).getAppliedStereotype(SysmlResource.BLOCK_ID) != null;
 	}
 
-	@Override
-	public int getNodeVisualID(View containerView, EObject domainElement) {
-		return super.getNodeVisualID(containerView, domainElement);
-	}
-
-
 	private CompositeCommand getDefaultDropNodeCommand(IHintedType type, Point location, EObject droppedObject) {
-		CompositeCommand cc = new CompositeCommand("Drop"); //$NON-NLS-1$
-		IAdaptable elementAdapter = new EObjectAdapter(droppedObject);
-
-		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, type.getSemanticHint(), ViewUtil.APPEND, false, getDiagramPreferencesHint());
-		CreateCommand createCommand = new CreateCommand(getEditingDomain(), descriptor, ((View)(getHost().getModel())));
-		cc.compose(createCommand);
-
-		SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)createCommand.getCommandResult().getReturnValue(), location); //$NON-NLS-1$
-		cc.compose(setBoundsCommand);
-		return cc;
+		return getDefaultDropNodeCommand(type.getSemanticHint(), location, droppedObject);
 	}
 
 	private CompositeCommand getDefaultDropNodeCommand(String type, Point location, EObject droppedObject) {
-		System.out.println("CustomDragDropEditPolicy.getDefaultDropNodeCommand() " + type + " " + droppedObject);
-		CompositeCommand cc = new CompositeCommand("Drop"); //$NON-NLS-1$
+		CompositeCommand cc = new CompositeCommand("Add Element to Diagram"); //$NON-NLS-1$
 		IAdaptable elementAdapter = new EObjectAdapter(droppedObject);
 
 		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, type, ViewUtil.APPEND, false, getDiagramPreferencesHint());
 		CreateCommand createCommand = new CreateCommand(getEditingDomain(), descriptor, ((View)(getHost().getModel())));
 		cc.compose(createCommand);
 
-		SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)createCommand.getCommandResult().getReturnValue(), location); //$NON-NLS-1$
+		SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "Set Location", (IAdaptable)createCommand.getCommandResult().getReturnValue(), location); //$NON-NLS-1$
 		cc.compose(setBoundsCommand);
 		
-		System.out.println("cc.canExecute()" + createCommand.canExecute());
 		return cc;
 	}
 
