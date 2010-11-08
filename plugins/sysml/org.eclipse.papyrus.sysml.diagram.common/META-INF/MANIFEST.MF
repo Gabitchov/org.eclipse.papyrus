@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: SysML Diagrams Common Plugin
+Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.sysml.diagram.common;singleton:=true
 Bundle-Version: 0.7.1.qualifier
 Bundle-Activator: org.eclipse.papyrus.sysml.diagram.common.Activator
@@ -16,7 +16,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.editor;bundle-version="0.7.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-Vendor: CEA LIST
+Bundle-Vendor: %providerName
 Export-Package: org.eclipse.papyrus.sysml.diagram.common,
  org.eclipse.papyrus.sysml.diagram.common.commands,
  org.eclipse.papyrus.sysml.diagram.common.utils
