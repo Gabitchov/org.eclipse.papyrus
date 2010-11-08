@@ -118,6 +118,15 @@ public class PopupXtextEditorHelper implements IPopupEditorHelper {
 	private IXtextEMFReconciler modelReconciler;
 	private ISyntheticResourceProvider resourceProvider ;
 	private SourceViewerHandle sourceViewerHandle ;
+	
+	/**
+	 * @return The source viewer handle for this PopupXtextEditorHelper
+	 *
+	 */
+	public SourceViewerHandle getSourceViewerHandle() {
+		return sourceViewerHandle;
+	}
+
 	private PartialModelEditor partialEditor ;
 	private Shell diagramShell ;
 	private OperationHistoryListener operationHistoryListener;
@@ -259,10 +268,12 @@ public class PopupXtextEditorHelper implements IPopupEditorHelper {
 			public void focusLost(FocusEvent e) {
 				// TODO Auto-generated method stub
 				context = semanticElement ;
-				if (!ignoreFocusLost)
-					closeEditor(true) ;
-				else
-					closeEditor(false) ;
+				if (! keyListener.isContentAssistActive()) {
+					if (!ignoreFocusLost)
+						closeEditor(true) ;
+					else
+						closeEditor(false) ;
+				}
 			}
 			
 			public void focusGained(FocusEvent e) {
