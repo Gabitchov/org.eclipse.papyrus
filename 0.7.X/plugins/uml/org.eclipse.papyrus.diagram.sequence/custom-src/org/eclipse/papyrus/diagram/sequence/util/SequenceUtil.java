@@ -347,7 +347,7 @@ public class SequenceUtil {
 	 *        edit part to find bounds
 	 * @return part's bounds in absolute coordinates
 	 */
-	private static Rectangle getAbsoluteBounds(IGraphicalEditPart part) {
+	public static Rectangle getAbsoluteBounds(IGraphicalEditPart part) {
 		// take bounds from figure
 		Rectangle bounds = part.getFigure().getBounds().getCopy();
 
@@ -889,13 +889,18 @@ public class SequenceUtil {
 	 *        the rectangle where to look for ift.
 	 * @param hostEditPart
 	 *        the host edit part used to retrieve all the edit parts in the registry.
-	 * @param coveredRatio
-	 *        the minimum covering ratio of a figure to be included in the set.
+	 * @param ignoreSet
+	 *        a set of ift to ignore.
 	 * @return
+	 *         a set containing the covered ift or null if an ift not ignored is not fully covered.
 	 */
 	@SuppressWarnings("unchecked")
-	public static Set<InteractionFragment> getCoveredInteractionFragments(Rectangle selectionRect, EditPart hostEditPart) {
+	public static Set<InteractionFragment> getCoveredInteractionFragments(Rectangle selectionRect, EditPart hostEditPart, Set<InteractionFragment> ignoreSet) {
 		Set<InteractionFragment> coveredInteractionFragments = new HashSet<InteractionFragment>();
+
+		if (ignoreSet == null) {
+			ignoreSet = new HashSet<InteractionFragment>();
+		}
 
 		// retrieve all the edit parts in the registry
 		Set<Entry<Object, EditPart>> allEditPartEntries = hostEditPart.getViewer().getEditPartRegistry().entrySet();
@@ -906,26 +911,22 @@ public class SequenceUtil {
 				ShapeEditPart sep = (ShapeEditPart)ep;
 				EObject elem = sep.getNotationView().getElement();
 
-				if(elem instanceof InteractionFragment) {
+				if(elem instanceof InteractionFragment && !ignoreSet.contains(elem)) {
 					Rectangle figureBounds = getAbsoluteBounds(sep);
 
+					// keep the fragment if its figure is completely in the selection
+					// if it is inside but not completely this method return null
 					if(selectionRect.contains(figureBounds)) {
 						coveredInteractionFragments.add((InteractionFragment)elem);
-					}
-					if(elem instanceof ExecutionSpecification) {
-						ExecutionSpecification es = (ExecutionSpecification)elem;
-						Point center = figureBounds.getCenter();
-						Point top = center.getCopy();
-						top.y = figureBounds.y;
-
-						if(selectionRect.contains(top) && es.getStart() != null) {
+						if(elem instanceof ExecutionSpecification) {
+							ExecutionSpecification es = (ExecutionSpecification)elem;
 							coveredInteractionFragments.add(es.getStart());
-						}
-
-						Point bottom = center.getCopy();
-						bottom.y = figureBounds.bottom();
-						if(selectionRect.contains(bottom) && es.getFinish() != null) {
 							coveredInteractionFragments.add(es.getFinish());
+						}
+					} else {
+						Rectangle intersection = selectionRect.getIntersection(figureBounds);
+						if(!intersection.equals(new Rectangle()) && !intersection.equals(selectionRect)) {
+							return null;
 						}
 					}
 				}
