@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Gmf Plug-in
+Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.layouttool.subeditor.gmf;singleton:=true
 Bundle-Version: 0.7.1.qualifier
 Bundle-Activator: org.eclipse.papyrus.layouttool.subeditor.gmf.Activator
@@ -8,4 +8,4 @@ Require-Bundle: org.eclipse.gmf.runtime.diagram.ui,
  org.eclipse.papyrus.layouttool
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-Vendor: Atos Origin
+Bundle-Vendor: %providerName
