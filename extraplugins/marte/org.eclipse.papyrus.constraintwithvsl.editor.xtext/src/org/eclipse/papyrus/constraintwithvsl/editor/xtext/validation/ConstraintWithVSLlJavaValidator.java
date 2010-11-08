@@ -28,8 +28,11 @@ public class ConstraintWithVSLlJavaValidator extends AbstractConstraintWithVSLlJ
 	private static Namespace model ;
 	private static Element contextElement ;
 	
+	private static boolean valid_Expression = true ;
+	
 	public static void init(Element _contextElement) {
 		contextElement = _contextElement ;
+		valid_Expression = true ;
 		if (contextElement != null) {
 			Element elem = contextElement.getOwner() ;
 			while (elem.getOwner() != null) {
@@ -47,22 +50,15 @@ public class ConstraintWithVSLlJavaValidator extends AbstractConstraintWithVSLlJ
 		return contextElement ;
 	}
 	
+	public static boolean validate() {
+		return valid_Expression ;
+	}
+	
 	@Check
 	public void checkConstraintSpecification_Expression(ConstraintSpecification constraintSpecificationRule) {
 		if (constraintSpecificationRule != null && constraintSpecificationRule.getExpression() != null) {
 			
 			VSLJavaValidator.setExpectedType(VSLJavaValidator._boolean) ;
-//			Type inferedType = new VSLTypeInferenceUtil(valuedProperty.getType())
-//									.typeOfExpression(expressionValueRule.getExpression()) ;
-//			
-//			if (inferedType != valuedProperty.getType()) {
-//				String message = "" +
-//					(inferedType == null ? 
-//							"Could not infer type of expression. " :
-//								"Found an expression of type " + inferedType.getName()+ ". ");
-//				message += "Expecting an expression of type " + valuedProperty.getType().getName() ;
-//				error(message, StereotypeApplicationWithVSLPackage.EXPRESSION_VALUE_RULE__EXPRESSION) ;
-//			}
 			
 			VSLValidationResult validationResult = VSLJavaValidator.eInstance.checkExpressionRule(constraintSpecificationRule.getExpression()) ;
 			if (! validationResult.errorFound()) {
@@ -71,12 +67,17 @@ public class ConstraintWithVSLlJavaValidator extends AbstractConstraintWithVSLlJ
 					error("Expecting an expression of type Boolean. Found an expression of type " + inferedTypeName,
 							constraintSpecificationRule.getExpression(),
 							ConstraintWithVSLlPackage.CONSTRAINT_SPECIFICATION__EXPRESSION) ;
+					valid_Expression = false ;
+				}
+				else {
+					valid_Expression = true ;
 				}
 			}
 			else {
 				error(validationResult.errorMessage(),
 						validationResult.validatedRule(),
 						validationResult.validatedFeature()) ;
+				valid_Expression = false ;
 			}
 		}
 	}
