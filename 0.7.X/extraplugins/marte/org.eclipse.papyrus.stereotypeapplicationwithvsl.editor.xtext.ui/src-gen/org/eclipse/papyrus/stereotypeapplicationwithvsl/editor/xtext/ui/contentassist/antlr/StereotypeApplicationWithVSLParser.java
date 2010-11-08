@@ -37,7 +37,6 @@ public class StereotypeApplicationWithVSLParser extends AbstractContentAssistPar
 			nameMappings = new HashMap<AbstractElement, String>() {
 				private static final long serialVersionUID = 1L;
 				{
-					put(grammarAccess.getValueRuleAccess().getAlternatives(), "rule__ValueRule__Alternatives");
 					put(grammarAccess.getAndOrXorExpressionAccess().getOpAlternatives_1_0_0(), "rule__AndOrXorExpression__OpAlternatives_1_0_0");
 					put(grammarAccess.getEqualityExpressionAccess().getOpAlternatives_1_0_0(), "rule__EqualityExpression__OpAlternatives_1_0_0");
 					put(grammarAccess.getRelationalExpressionAccess().getOpAlternatives_1_0_0(), "rule__RelationalExpression__OpAlternatives_1_0_0");
@@ -58,7 +57,6 @@ public class StereotypeApplicationWithVSLParser extends AbstractContentAssistPar
 					put(grammarAccess.getStereotypeApplicationRuleAccess().getGroup_3(), "rule__StereotypeApplicationRule__Group_3__0");
 					put(grammarAccess.getStereotypeApplicationRuleAccess().getGroup_3_1(), "rule__StereotypeApplicationRule__Group_3_1__0");
 					put(grammarAccess.getTagSpecificationRuleAccess().getGroup(), "rule__TagSpecificationRule__Group__0");
-					put(grammarAccess.getReferenceValueRuleAccess().getGroup(), "rule__ReferenceValueRule__Group__0");
 					put(grammarAccess.getExpressionValueRuleAccess().getGroup(), "rule__ExpressionValueRule__Group__0");
 					put(grammarAccess.getModelAccess().getGroup(), "rule__Model__Group__0");
 					put(grammarAccess.getModelAccess().getGroup_2(), "rule__Model__Group_2__0");
@@ -116,7 +114,6 @@ public class StereotypeApplicationWithVSLParser extends AbstractContentAssistPar
 					put(grammarAccess.getStereotypeApplicationRuleAccess().getTagSpecificationAssignment_3_1_1(), "rule__StereotypeApplicationRule__TagSpecificationAssignment_3_1_1");
 					put(grammarAccess.getTagSpecificationRuleAccess().getPropertyAssignment_0(), "rule__TagSpecificationRule__PropertyAssignment_0");
 					put(grammarAccess.getTagSpecificationRuleAccess().getValueAssignment_1(), "rule__TagSpecificationRule__ValueAssignment_1");
-					put(grammarAccess.getReferenceValueRuleAccess().getReferencedElementAssignment_1(), "rule__ReferenceValueRule__ReferencedElementAssignment_1");
 					put(grammarAccess.getExpressionValueRuleAccess().getExpressionAssignment_1(), "rule__ExpressionValueRule__ExpressionAssignment_1");
 					put(grammarAccess.getModelAccess().getImportsAssignment_0(), "rule__Model__ImportsAssignment_0");
 					put(grammarAccess.getModelAccess().getContextAssignment_1(), "rule__Model__ContextAssignment_1");

@@ -102,13 +102,13 @@ public class StereotypeApplicationWithVSLGrammarAccess extends AbstractGrammarEl
 		private final CrossReference cPropertyPropertyCrossReference_0_0 = (CrossReference)cPropertyAssignment_0.eContents().get(0);
 		private final RuleCall cPropertyPropertyIDTerminalRuleCall_0_0_1 = (RuleCall)cPropertyPropertyCrossReference_0_0.eContents().get(1);
 		private final Assignment cValueAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cValueValueRuleParserRuleCall_1_0 = (RuleCall)cValueAssignment_1.eContents().get(0);
+		private final RuleCall cValueExpressionValueRuleParserRuleCall_1_0 = (RuleCall)cValueAssignment_1.eContents().get(0);
 		
 		//TagSpecificationRule:
-		//	property=[uml::Property] value=ValueRule;
+		//	property=[uml::Property] value=ExpressionValueRule;
 		public ParserRule getRule() { return rule; }
 
-		//property=[uml::Property] value=ValueRule
+		//property=[uml::Property] value=ExpressionValueRule
 		public Group getGroup() { return cGroup; }
 
 		//property=[uml::Property]
@@ -120,59 +120,11 @@ public class StereotypeApplicationWithVSLGrammarAccess extends AbstractGrammarEl
 		//ID
 		public RuleCall getPropertyPropertyIDTerminalRuleCall_0_0_1() { return cPropertyPropertyIDTerminalRuleCall_0_0_1; }
 
-		//value=ValueRule
+		//value=ExpressionValueRule
 		public Assignment getValueAssignment_1() { return cValueAssignment_1; }
 
-		//ValueRule
-		public RuleCall getValueValueRuleParserRuleCall_1_0() { return cValueValueRuleParserRuleCall_1_0; }
-	}
-
-	public class ValueRuleElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ValueRule");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cReferenceValueRuleParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cExpressionValueRuleParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		
-		//ValueRule:
-		//	ReferenceValueRule | ExpressionValueRule;
-		public ParserRule getRule() { return rule; }
-
-		//ReferenceValueRule | ExpressionValueRule
-		public Alternatives getAlternatives() { return cAlternatives; }
-
-		//ReferenceValueRule
-		public RuleCall getReferenceValueRuleParserRuleCall_0() { return cReferenceValueRuleParserRuleCall_0; }
-
 		//ExpressionValueRule
-		public RuleCall getExpressionValueRuleParserRuleCall_1() { return cExpressionValueRuleParserRuleCall_1; }
-	}
-
-	public class ReferenceValueRuleElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ReferenceValueRule");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cHyphenMinusGreaterThanSignKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cReferencedElementAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final CrossReference cReferencedElementNamedElementCrossReference_1_0 = (CrossReference)cReferencedElementAssignment_1.eContents().get(0);
-		private final RuleCall cReferencedElementNamedElementIDTerminalRuleCall_1_0_1 = (RuleCall)cReferencedElementNamedElementCrossReference_1_0.eContents().get(1);
-		
-		//ReferenceValueRule:
-		//	"->" referencedElement=[uml::NamedElement];
-		public ParserRule getRule() { return rule; }
-
-		//"->" referencedElement=[uml::NamedElement]
-		public Group getGroup() { return cGroup; }
-
-		//"->"
-		public Keyword getHyphenMinusGreaterThanSignKeyword_0() { return cHyphenMinusGreaterThanSignKeyword_0; }
-
-		//referencedElement=[uml::NamedElement]
-		public Assignment getReferencedElementAssignment_1() { return cReferencedElementAssignment_1; }
-
-		//[uml::NamedElement]
-		public CrossReference getReferencedElementNamedElementCrossReference_1_0() { return cReferencedElementNamedElementCrossReference_1_0; }
-
-		//ID
-		public RuleCall getReferencedElementNamedElementIDTerminalRuleCall_1_0_1() { return cReferencedElementNamedElementIDTerminalRuleCall_1_0_1; }
+		public RuleCall getValueExpressionValueRuleParserRuleCall_1_0() { return cValueExpressionValueRuleParserRuleCall_1_0; }
 	}
 
 	public class ExpressionValueRuleElements extends AbstractParserRuleElementFinder {
@@ -203,8 +155,6 @@ public class StereotypeApplicationWithVSLGrammarAccess extends AbstractGrammarEl
 	private StereotypeApplicationsRuleElements pStereotypeApplicationsRule;
 	private StereotypeApplicationRuleElements pStereotypeApplicationRule;
 	private TagSpecificationRuleElements pTagSpecificationRule;
-	private ValueRuleElements pValueRule;
-	private ReferenceValueRuleElements pReferenceValueRule;
 	private ExpressionValueRuleElements pExpressionValueRule;
 	
 	private final GrammarProvider grammarProvider;
@@ -250,33 +200,13 @@ public class StereotypeApplicationWithVSLGrammarAccess extends AbstractGrammarEl
 	}
 
 	//TagSpecificationRule:
-	//	property=[uml::Property] value=ValueRule;
+	//	property=[uml::Property] value=ExpressionValueRule;
 	public TagSpecificationRuleElements getTagSpecificationRuleAccess() {
 		return (pTagSpecificationRule != null) ? pTagSpecificationRule : (pTagSpecificationRule = new TagSpecificationRuleElements());
 	}
 	
 	public ParserRule getTagSpecificationRuleRule() {
 		return getTagSpecificationRuleAccess().getRule();
-	}
-
-	//ValueRule:
-	//	ReferenceValueRule | ExpressionValueRule;
-	public ValueRuleElements getValueRuleAccess() {
-		return (pValueRule != null) ? pValueRule : (pValueRule = new ValueRuleElements());
-	}
-	
-	public ParserRule getValueRuleRule() {
-		return getValueRuleAccess().getRule();
-	}
-
-	//ReferenceValueRule:
-	//	"->" referencedElement=[uml::NamedElement];
-	public ReferenceValueRuleElements getReferenceValueRuleAccess() {
-		return (pReferenceValueRule != null) ? pReferenceValueRule : (pReferenceValueRule = new ReferenceValueRuleElements());
-	}
-	
-	public ParserRule getReferenceValueRuleRule() {
-		return getReferenceValueRuleAccess().getRule();
 	}
 
 	//ExpressionValueRule:

@@ -117,26 +117,10 @@ public class StereotypeApplicationWithVSLSwitch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case StereotypeApplicationWithVSLPackage.VALUE_RULE:
-      {
-        ValueRule valueRule = (ValueRule)theEObject;
-        T result = caseValueRule(valueRule);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case StereotypeApplicationWithVSLPackage.REFERENCE_VALUE_RULE:
-      {
-        ReferenceValueRule referenceValueRule = (ReferenceValueRule)theEObject;
-        T result = caseReferenceValueRule(referenceValueRule);
-        if (result == null) result = caseValueRule(referenceValueRule);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case StereotypeApplicationWithVSLPackage.EXPRESSION_VALUE_RULE:
       {
         ExpressionValueRule expressionValueRule = (ExpressionValueRule)theEObject;
         T result = caseExpressionValueRule(expressionValueRule);
-        if (result == null) result = caseValueRule(expressionValueRule);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -188,38 +172,6 @@ public class StereotypeApplicationWithVSLSwitch<T>
    * @generated
    */
   public T caseTagSpecificationRule(TagSpecificationRule object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Value Rule</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Value Rule</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseValueRule(ValueRule object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Reference Value Rule</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Reference Value Rule</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseReferenceValueRule(ReferenceValueRule object)
   {
     return null;
   }

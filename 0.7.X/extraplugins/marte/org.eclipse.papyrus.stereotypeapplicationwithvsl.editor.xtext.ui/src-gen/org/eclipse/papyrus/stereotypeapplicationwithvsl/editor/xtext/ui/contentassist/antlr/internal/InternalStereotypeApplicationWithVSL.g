@@ -141,62 +141,6 @@ finally {
 
 
 
-// Entry rule entryRuleValueRule
-entryRuleValueRule 
-:
-{ before(grammarAccess.getValueRuleRule()); }
-	 ruleValueRule
-{ after(grammarAccess.getValueRuleRule()); } 
-	 EOF 
-;
-
-// Rule ValueRule
-ruleValueRule
-    @init {
-		int stackSize = keepStackSize();
-    }
-	:
-(
-{ before(grammarAccess.getValueRuleAccess().getAlternatives()); }
-(rule__ValueRule__Alternatives)
-{ after(grammarAccess.getValueRuleAccess().getAlternatives()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-
-
-// Entry rule entryRuleReferenceValueRule
-entryRuleReferenceValueRule 
-:
-{ before(grammarAccess.getReferenceValueRuleRule()); }
-	 ruleReferenceValueRule
-{ after(grammarAccess.getReferenceValueRuleRule()); } 
-	 EOF 
-;
-
-// Rule ReferenceValueRule
-ruleReferenceValueRule
-    @init {
-		int stackSize = keepStackSize();
-    }
-	:
-(
-{ before(grammarAccess.getReferenceValueRuleAccess().getGroup()); }
-(rule__ReferenceValueRule__Group__0)
-{ after(grammarAccess.getReferenceValueRuleAccess().getGroup()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-
-
 // Entry rule entryRuleExpressionValueRule
 entryRuleExpressionValueRule 
 :
@@ -1404,28 +1348,6 @@ finally {
 
 
 
-rule__ValueRule__Alternatives
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-(
-{ before(grammarAccess.getValueRuleAccess().getReferenceValueRuleParserRuleCall_0()); }
-	ruleReferenceValueRule
-{ after(grammarAccess.getValueRuleAccess().getReferenceValueRuleParserRuleCall_0()); }
-)
-
-    |(
-{ before(grammarAccess.getValueRuleAccess().getExpressionValueRuleParserRuleCall_1()); }
-	ruleExpressionValueRule
-{ after(grammarAccess.getValueRuleAccess().getExpressionValueRuleParserRuleCall_1()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
 rule__AndOrXorExpression__OpAlternatives_1_0_0
     @init {
 		int stackSize = keepStackSize();
@@ -2232,69 +2154,6 @@ rule__TagSpecificationRule__Group__1__Impl
 { before(grammarAccess.getTagSpecificationRuleAccess().getValueAssignment_1()); }
 (rule__TagSpecificationRule__ValueAssignment_1)
 { after(grammarAccess.getTagSpecificationRuleAccess().getValueAssignment_1()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-
-
-
-
-
-rule__ReferenceValueRule__Group__0
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-	rule__ReferenceValueRule__Group__0__Impl
-	rule__ReferenceValueRule__Group__1
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__ReferenceValueRule__Group__0__Impl
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-(
-{ before(grammarAccess.getReferenceValueRuleAccess().getHyphenMinusGreaterThanSignKeyword_0()); }
-
-	'->' 
-
-{ after(grammarAccess.getReferenceValueRuleAccess().getHyphenMinusGreaterThanSignKeyword_0()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-
-rule__ReferenceValueRule__Group__1
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-	rule__ReferenceValueRule__Group__1__Impl
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__ReferenceValueRule__Group__1__Impl
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-(
-{ before(grammarAccess.getReferenceValueRuleAccess().getReferencedElementAssignment_1()); }
-(rule__ReferenceValueRule__ReferencedElementAssignment_1)
-{ after(grammarAccess.getReferenceValueRuleAccess().getReferencedElementAssignment_1()); }
 )
 
 ;
@@ -6532,27 +6391,8 @@ rule__TagSpecificationRule__ValueAssignment_1
     }
 :
 (
-{ before(grammarAccess.getTagSpecificationRuleAccess().getValueValueRuleParserRuleCall_1_0()); }
-	ruleValueRule{ after(grammarAccess.getTagSpecificationRuleAccess().getValueValueRuleParserRuleCall_1_0()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__ReferenceValueRule__ReferencedElementAssignment_1
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-(
-{ before(grammarAccess.getReferenceValueRuleAccess().getReferencedElementNamedElementCrossReference_1_0()); }
-(
-{ before(grammarAccess.getReferenceValueRuleAccess().getReferencedElementNamedElementIDTerminalRuleCall_1_0_1()); }
-	RULE_ID{ after(grammarAccess.getReferenceValueRuleAccess().getReferencedElementNamedElementIDTerminalRuleCall_1_0_1()); }
-)
-{ after(grammarAccess.getReferenceValueRuleAccess().getReferencedElementNamedElementCrossReference_1_0()); }
+{ before(grammarAccess.getTagSpecificationRuleAccess().getValueExpressionValueRuleParserRuleCall_1_0()); }
+	ruleExpressionValueRule{ after(grammarAccess.getTagSpecificationRuleAccess().getValueExpressionValueRuleParserRuleCall_1_0()); }
 )
 
 ;

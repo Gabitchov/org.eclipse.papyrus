@@ -34,51 +34,49 @@ protected class ThisRootNode extends RootToken {
 			case 0: return new StereotypeApplicationsRule_StereotypeApplicationsAssignment(this, this, 0, inst);
 			case 1: return new StereotypeApplicationRule_Group(this, this, 1, inst);
 			case 2: return new TagSpecificationRule_Group(this, this, 2, inst);
-			case 3: return new ValueRule_Alternatives(this, this, 3, inst);
-			case 4: return new ReferenceValueRule_Group(this, this, 4, inst);
-			case 5: return new ExpressionValueRule_Group(this, this, 5, inst);
-			case 6: return new Model_Group(this, this, 6, inst);
-			case 7: return new Import_Group(this, this, 7, inst);
-			case 8: return new Context_Group(this, this, 8, inst);
-			case 9: return new Expression_ExpAssignment(this, this, 9, inst);
-			case 10: return new AndOrXorExpression_Group(this, this, 10, inst);
-			case 11: return new EqualityExpression_Group(this, this, 11, inst);
-			case 12: return new RelationalExpression_Group(this, this, 12, inst);
-			case 13: return new ConditionalExpression_Group(this, this, 13, inst);
-			case 14: return new AdditiveExpression_Group(this, this, 14, inst);
-			case 15: return new MultiplicativeExpression_Group(this, this, 15, inst);
-			case 16: return new UnaryExpression_Alternatives(this, this, 16, inst);
-			case 17: return new PrimaryExpression_Group(this, this, 17, inst);
-			case 18: return new ValueSpecification_Alternatives(this, this, 18, inst);
-			case 19: return new SuffixExpression_Alternatives(this, this, 19, inst);
-			case 20: return new PropertyCallExpression_Group(this, this, 20, inst);
-			case 21: return new OperationCallExpression_Group(this, this, 21, inst);
-			case 22: return new Literal_Alternatives(this, this, 22, inst);
-			case 23: return new NameOrChoiceOrBehaviorCall_Group(this, this, 23, inst);
-			case 24: return new QualifiedName_Group(this, this, 24, inst);
-			case 25: return new Interval_Group(this, this, 25, inst);
-			case 26: return new CollectionOrTuple_Group(this, this, 26, inst);
-			case 27: return new Tuple_Group(this, this, 27, inst);
-			case 28: return new ListOfValues_Group(this, this, 28, inst);
-			case 29: return new ListOfValueNamePairs_Group(this, this, 29, inst);
-			case 30: return new ValueNamePair_Group(this, this, 30, inst);
-			case 31: return new TimeExpression_Alternatives(this, this, 31, inst);
-			case 32: return new InstantObsExpression_Group(this, this, 32, inst);
-			case 33: return new InstantObsName_Group(this, this, 33, inst);
-			case 34: return new DurationObsExpression_Group(this, this, 34, inst);
-			case 35: return new DurationObsName_Group(this, this, 35, inst);
-			case 36: return new JitterExp_Group(this, this, 36, inst);
-			case 37: return new VariableDeclaration_Group(this, this, 37, inst);
-			case 38: return new DataTypeName_Group(this, this, 38, inst);
-			case 39: return new NumberLiteralRule_Alternatives(this, this, 39, inst);
-			case 40: return new IntegerLiteralRule_ValueAssignment(this, this, 40, inst);
-			case 41: return new UnlimitedLiteralRule_ValueAssignment(this, this, 41, inst);
-			case 42: return new RealLiteralRule_ValueAssignment(this, this, 42, inst);
-			case 43: return new DateTimeLiteralRule_ValueAssignment(this, this, 43, inst);
-			case 44: return new BooleanLiteralRule_ValueAssignment(this, this, 44, inst);
-			case 45: return new NullLiteralRule_ValueAssignment(this, this, 45, inst);
-			case 46: return new DefaultLiteralRule_ValueAssignment(this, this, 46, inst);
-			case 47: return new StringLiteralRule_ValueAssignment(this, this, 47, inst);
+			case 3: return new ExpressionValueRule_Group(this, this, 3, inst);
+			case 4: return new Model_Group(this, this, 4, inst);
+			case 5: return new Import_Group(this, this, 5, inst);
+			case 6: return new Context_Group(this, this, 6, inst);
+			case 7: return new Expression_ExpAssignment(this, this, 7, inst);
+			case 8: return new AndOrXorExpression_Group(this, this, 8, inst);
+			case 9: return new EqualityExpression_Group(this, this, 9, inst);
+			case 10: return new RelationalExpression_Group(this, this, 10, inst);
+			case 11: return new ConditionalExpression_Group(this, this, 11, inst);
+			case 12: return new AdditiveExpression_Group(this, this, 12, inst);
+			case 13: return new MultiplicativeExpression_Group(this, this, 13, inst);
+			case 14: return new UnaryExpression_Alternatives(this, this, 14, inst);
+			case 15: return new PrimaryExpression_Group(this, this, 15, inst);
+			case 16: return new ValueSpecification_Alternatives(this, this, 16, inst);
+			case 17: return new SuffixExpression_Alternatives(this, this, 17, inst);
+			case 18: return new PropertyCallExpression_Group(this, this, 18, inst);
+			case 19: return new OperationCallExpression_Group(this, this, 19, inst);
+			case 20: return new Literal_Alternatives(this, this, 20, inst);
+			case 21: return new NameOrChoiceOrBehaviorCall_Group(this, this, 21, inst);
+			case 22: return new QualifiedName_Group(this, this, 22, inst);
+			case 23: return new Interval_Group(this, this, 23, inst);
+			case 24: return new CollectionOrTuple_Group(this, this, 24, inst);
+			case 25: return new Tuple_Group(this, this, 25, inst);
+			case 26: return new ListOfValues_Group(this, this, 26, inst);
+			case 27: return new ListOfValueNamePairs_Group(this, this, 27, inst);
+			case 28: return new ValueNamePair_Group(this, this, 28, inst);
+			case 29: return new TimeExpression_Alternatives(this, this, 29, inst);
+			case 30: return new InstantObsExpression_Group(this, this, 30, inst);
+			case 31: return new InstantObsName_Group(this, this, 31, inst);
+			case 32: return new DurationObsExpression_Group(this, this, 32, inst);
+			case 33: return new DurationObsName_Group(this, this, 33, inst);
+			case 34: return new JitterExp_Group(this, this, 34, inst);
+			case 35: return new VariableDeclaration_Group(this, this, 35, inst);
+			case 36: return new DataTypeName_Group(this, this, 36, inst);
+			case 37: return new NumberLiteralRule_Alternatives(this, this, 37, inst);
+			case 38: return new IntegerLiteralRule_ValueAssignment(this, this, 38, inst);
+			case 39: return new UnlimitedLiteralRule_ValueAssignment(this, this, 39, inst);
+			case 40: return new RealLiteralRule_ValueAssignment(this, this, 40, inst);
+			case 41: return new DateTimeLiteralRule_ValueAssignment(this, this, 41, inst);
+			case 42: return new BooleanLiteralRule_ValueAssignment(this, this, 42, inst);
+			case 43: return new NullLiteralRule_ValueAssignment(this, this, 43, inst);
+			case 44: return new DefaultLiteralRule_ValueAssignment(this, this, 44, inst);
+			case 45: return new StringLiteralRule_ValueAssignment(this, this, 45, inst);
 			default: return null;
 		}	
 	}	
@@ -429,11 +427,11 @@ protected class StereotypeApplicationRule_TagSpecificationAssignment_3_1_1 exten
 /************ begin Rule TagSpecificationRule ****************
  *
  * TagSpecificationRule:
- * 	property=[uml::Property] value=ValueRule;
+ * 	property=[uml::Property] value=ExpressionValueRule;
  *
  **/
 
-// property=[uml::Property] value=ValueRule
+// property=[uml::Property] value=ExpressionValueRule
 protected class TagSpecificationRule_Group extends GroupToken {
 	
 	public TagSpecificationRule_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -498,7 +496,7 @@ protected class TagSpecificationRule_PropertyAssignment_0 extends AssignmentToke
 
 }
 
-// value=ValueRule
+// value=ExpressionValueRule
 protected class TagSpecificationRule_ValueAssignment_1 extends AssignmentToken  {
 	
 	public TagSpecificationRule_ValueAssignment_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -513,7 +511,7 @@ protected class TagSpecificationRule_ValueAssignment_1 extends AssignmentToken  
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new ValueRule_Alternatives(this, this, 0, inst);
+			case 0: return new ExpressionValueRule_Group(this, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -524,9 +522,9 @@ protected class TagSpecificationRule_ValueAssignment_1 extends AssignmentToken  
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("value");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getValueRuleRule().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getExpressionValueRuleRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getTagSpecificationRuleAccess().getValueValueRuleParserRuleCall_1_0(); 
+				element = grammarAccess.getTagSpecificationRuleAccess().getValueExpressionValueRuleParserRuleCall_1_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -546,218 +544,6 @@ protected class TagSpecificationRule_ValueAssignment_1 extends AssignmentToken  
 
 
 /************ end Rule TagSpecificationRule ****************/
-
-
-/************ begin Rule ValueRule ****************
- *
- * ValueRule:
- * 	ReferenceValueRule | ExpressionValueRule;
- *
- **/
-
-// ReferenceValueRule | ExpressionValueRule
-protected class ValueRule_Alternatives extends AlternativesToken {
-
-	public ValueRule_Alternatives(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
-	
-	@Override
-	public Alternatives getGrammarElement() {
-		return grammarAccess.getValueRuleAccess().getAlternatives();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
-		switch(index) {
-			case 0: return new ValueRule_ReferenceValueRuleParserRuleCall_0(lastRuleCallOrigin, this, 0, inst);
-			case 1: return new ValueRule_ExpressionValueRuleParserRuleCall_1(lastRuleCallOrigin, this, 1, inst);
-			default: return null;
-		}	
-	}
-
-    @Override
-	public IEObjectConsumer tryConsume() {
-		if(getEObject().eClass() != grammarAccess.getExpressionValueRuleRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getReferenceValueRuleRule().getType().getClassifier())
-			return null;
-		return eObjectConsumer;
-	}
-
-}
-
-// ReferenceValueRule
-protected class ValueRule_ReferenceValueRuleParserRuleCall_0 extends RuleCallToken {
-	
-	public ValueRule_ReferenceValueRuleParserRuleCall_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
-	
-	@Override
-	public RuleCall getGrammarElement() {
-		return grammarAccess.getValueRuleAccess().getReferenceValueRuleParserRuleCall_0();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
-		switch(index) {
-			case 0: return new ReferenceValueRule_Group(this, this, 0, inst);
-			default: return null;
-		}	
-	}
-
-    @Override
-	public IEObjectConsumer tryConsume() {
-		if(getEObject().eClass() != grammarAccess.getReferenceValueRuleRule().getType().getClassifier())
-			return null;
-		if(checkForRecursion(ReferenceValueRule_Group.class, eObjectConsumer)) return null;
-		return eObjectConsumer;
-	}
-	
-    @Override
-	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
-		switch(index) {
-			default: return lastRuleCallOrigin.createFollowerAfterReturn(next, actIndex , index, inst);
-		}	
-	}	
-}
-
-// ExpressionValueRule
-protected class ValueRule_ExpressionValueRuleParserRuleCall_1 extends RuleCallToken {
-	
-	public ValueRule_ExpressionValueRuleParserRuleCall_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
-	
-	@Override
-	public RuleCall getGrammarElement() {
-		return grammarAccess.getValueRuleAccess().getExpressionValueRuleParserRuleCall_1();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
-		switch(index) {
-			case 0: return new ExpressionValueRule_Group(this, this, 0, inst);
-			default: return null;
-		}	
-	}
-
-    @Override
-	public IEObjectConsumer tryConsume() {
-		if(getEObject().eClass() != grammarAccess.getExpressionValueRuleRule().getType().getClassifier())
-			return null;
-		if(checkForRecursion(ExpressionValueRule_Group.class, eObjectConsumer)) return null;
-		return eObjectConsumer;
-	}
-	
-    @Override
-	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
-		switch(index) {
-			default: return lastRuleCallOrigin.createFollowerAfterReturn(next, actIndex , index, inst);
-		}	
-	}	
-}
-
-
-/************ end Rule ValueRule ****************/
-
-
-/************ begin Rule ReferenceValueRule ****************
- *
- * ReferenceValueRule:
- * 	"->" referencedElement=[uml::NamedElement];
- *
- **/
-
-// "->" referencedElement=[uml::NamedElement]
-protected class ReferenceValueRule_Group extends GroupToken {
-	
-	public ReferenceValueRule_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
-	
-	@Override
-	public Group getGrammarElement() {
-		return grammarAccess.getReferenceValueRuleAccess().getGroup();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
-		switch(index) {
-			case 0: return new ReferenceValueRule_ReferencedElementAssignment_1(lastRuleCallOrigin, this, 0, inst);
-			default: return null;
-		}	
-	}
-
-    @Override
-	public IEObjectConsumer tryConsume() {
-		if(getEObject().eClass() != grammarAccess.getReferenceValueRuleRule().getType().getClassifier())
-			return null;
-		return eObjectConsumer;
-	}
-
-}
-
-// "->"
-protected class ReferenceValueRule_HyphenMinusGreaterThanSignKeyword_0 extends KeywordToken  {
-	
-	public ReferenceValueRule_HyphenMinusGreaterThanSignKeyword_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
-	
-	@Override
-	public Keyword getGrammarElement() {
-		return grammarAccess.getReferenceValueRuleAccess().getHyphenMinusGreaterThanSignKeyword_0();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
-		switch(index) {
-			default: return lastRuleCallOrigin.createFollowerAfterReturn(this, index, index, inst);
-		}	
-	}
-
-}
-
-// referencedElement=[uml::NamedElement]
-protected class ReferenceValueRule_ReferencedElementAssignment_1 extends AssignmentToken  {
-	
-	public ReferenceValueRule_ReferencedElementAssignment_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
-	
-	@Override
-	public Assignment getGrammarElement() {
-		return grammarAccess.getReferenceValueRuleAccess().getReferencedElementAssignment_1();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
-		switch(index) {
-			case 0: return new ReferenceValueRule_HyphenMinusGreaterThanSignKeyword_0(lastRuleCallOrigin, this, 0, inst);
-			default: return null;
-		}	
-	}
-
-    @Override	
-	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("referencedElement",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("referencedElement");
-		if(value instanceof EObject) { // org::eclipse::xtext::impl::CrossReferenceImpl
-			IEObjectConsumer param = createEObjectConsumer((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getReferenceValueRuleAccess().getReferencedElementNamedElementCrossReference_1_0().getType().getClassifier())) {
-				type = AssignmentType.CROSS_REFERENCE;
-				element = grammarAccess.getReferenceValueRuleAccess().getReferencedElementNamedElementCrossReference_1_0(); 
-				return obj;
-			}
-		}
-		return null;
-	}
-
-}
-
-
-/************ end Rule ReferenceValueRule ****************/
 
 
 /************ begin Rule ExpressionValueRule ****************

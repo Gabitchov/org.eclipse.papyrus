@@ -71,8 +71,6 @@ public class StereotypeApplicationWithVSLFactoryImpl extends EFactoryImpl implem
       case StereotypeApplicationWithVSLPackage.STEREOTYPE_APPLICATIONS_RULE: return createStereotypeApplicationsRule();
       case StereotypeApplicationWithVSLPackage.STEREOTYPE_APPLICATION_RULE: return createStereotypeApplicationRule();
       case StereotypeApplicationWithVSLPackage.TAG_SPECIFICATION_RULE: return createTagSpecificationRule();
-      case StereotypeApplicationWithVSLPackage.VALUE_RULE: return createValueRule();
-      case StereotypeApplicationWithVSLPackage.REFERENCE_VALUE_RULE: return createReferenceValueRule();
       case StereotypeApplicationWithVSLPackage.EXPRESSION_VALUE_RULE: return createExpressionValueRule();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -110,28 +108,6 @@ public class StereotypeApplicationWithVSLFactoryImpl extends EFactoryImpl implem
   {
     TagSpecificationRuleImpl tagSpecificationRule = new TagSpecificationRuleImpl();
     return tagSpecificationRule;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ValueRule createValueRule()
-  {
-    ValueRuleImpl valueRule = new ValueRuleImpl();
-    return valueRule;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ReferenceValueRule createReferenceValueRule()
-  {
-    ReferenceValueRuleImpl referenceValueRule = new ReferenceValueRuleImpl();
-    return referenceValueRule;
   }
 
   /**

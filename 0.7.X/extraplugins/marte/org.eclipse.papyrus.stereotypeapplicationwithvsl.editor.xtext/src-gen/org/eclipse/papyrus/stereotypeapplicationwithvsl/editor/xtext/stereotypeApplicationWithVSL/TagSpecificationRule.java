@@ -66,12 +66,12 @@ public interface TagSpecificationRule extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Value</em>' containment reference.
-   * @see #setValue(ValueRule)
+   * @see #setValue(ExpressionValueRule)
    * @see org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL.StereotypeApplicationWithVSLPackage#getTagSpecificationRule_Value()
    * @model containment="true"
    * @generated
    */
-  ValueRule getValue();
+  ExpressionValueRule getValue();
 
   /**
    * Sets the value of the '{@link org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL.TagSpecificationRule#getValue <em>Value</em>}' containment reference.
@@ -81,7 +81,7 @@ public interface TagSpecificationRule extends EObject
    * @see #getValue()
    * @generated
    */
-  void setValue(ValueRule value);
+  void setValue(ExpressionValueRule value);
 
   /**
    * <!-- begin-user-doc -->

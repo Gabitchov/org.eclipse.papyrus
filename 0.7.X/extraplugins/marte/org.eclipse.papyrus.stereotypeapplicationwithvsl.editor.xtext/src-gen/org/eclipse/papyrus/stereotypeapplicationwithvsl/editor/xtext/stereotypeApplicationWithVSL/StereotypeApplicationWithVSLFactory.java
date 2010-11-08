@@ -54,24 +54,6 @@ public interface StereotypeApplicationWithVSLFactory extends EFactory
   TagSpecificationRule createTagSpecificationRule();
 
   /**
-   * Returns a new object of class '<em>Value Rule</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Value Rule</em>'.
-   * @generated
-   */
-  ValueRule createValueRule();
-
-  /**
-   * Returns a new object of class '<em>Reference Value Rule</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Reference Value Rule</em>'.
-   * @generated
-   */
-  ReferenceValueRule createReferenceValueRule();
-
-  /**
    * Returns a new object of class '<em>Expression Value Rule</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

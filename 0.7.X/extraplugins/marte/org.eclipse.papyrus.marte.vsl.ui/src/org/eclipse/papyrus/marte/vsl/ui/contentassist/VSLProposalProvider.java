@@ -44,6 +44,7 @@ import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.TypedElement;
 import org.eclipse.xtext.Assignment;
 import org.eclipse.xtext.RuleCall;
+import org.eclipse.xtext.gmf.glue.contentassist.CompletionProposalUtils;
 import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
 import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor;
 
@@ -52,52 +53,6 @@ import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor;
  * see http://www.eclipse.org/Xtext/documentation/latest/xtext.html#contentAssist on how to customize content assistant
  */
 public class VSLProposalProvider extends AbstractVSLProposalProvider {
-
-	private ILabelProvider labelProvider = DisplayUtils.getLabelProvider() ;
-
-	protected ICompletionProposal createCompletionProposal( 
-			String completionString, 
-			String displayString, 
-			ContentAssistContext context) {
-
-		ICompletionProposal completionProposal = new CompletionProposal(completionString, 	// String to be inserted 
-				context.getOffset(),  							// Offset
-				context.getSelectedText().length(),				// Replacement length
-				completionString.length(),						// cursorPosition
-				null	,	// image
-				" " + displayString,									// displayString
-				null							,				// contextInformation
-				""							// additionalProposalInfo
-		);
-		return completionProposal ;
-	}
-	
-	/**
-	 * Private Utility method for creating a completion proposal with replacement of prefix
-	 * 
-	 * @param namedElement The named element for which completion proposal must be created
-	 * @param completionString The actual completion string
-	 * @param displayString The way the completion is displayed in the completion list
-	 * @param context Some information related to the context of the completion
-	 * @return
-	 */
-	protected ICompletionProposal createCompletionProposalWithReplacementOfPrefix(NamedElement namedElement, 
-														String completionString, 
-														String displayString, 
-														ContentAssistContext context) {
-		String additionalProposalInfo = "" + namedElement.getQualifiedName() + "\n" + '(' + namedElement.eClass().getName() + ')' ;
-		
-		ICompletionProposal completionProposal = new CompletionProposal(completionString, 	// String to be inserted 
-				context.getOffset() - context.getPrefix().length(),  							// Offset
-				context.getPrefix().length(),				// Replacement length
-				completionString.length(),						// cursorPosition
-				labelProvider.getImage(namedElement)	,	// image
-				" " + displayString,									// displayString
-				null							,				// contextInformation
-				additionalProposalInfo							// additionalProposalInfo
-				);
-		return completionProposal ;
-	}
 	
 	@Override
 	public void completeExpression_Exp(EObject model, Assignment assignment,
@@ -415,7 +370,7 @@ public class VSLProposalProvider extends AbstractVSLProposalProvider {
 		
 		Property p = valueNamePairRuleRule.getProperty() ;
 		
-		Map<String,Element> allProposals = ProposalUtils.buildProposalForType((Classifier)p.getType()) ;
+		Map<String,Element> allProposals = VSLProposalUtils.buildProposalForType((Classifier)p.getType()) ;
 		for (String s : allProposals.keySet()) {
 			String completionString = s.substring(context.getPrefix().length()) ;
 			String displayString = s ;
@@ -423,12 +378,12 @@ public class VSLProposalProvider extends AbstractVSLProposalProvider {
 			if (allProposals.get(s) == null) {
 				completionString = s.substring(context.getPrefix().length()) ;
 				displayString = s ;
-				completionProposal = createCompletionProposal(completionString, displayString, context) ;
+				completionProposal = CompletionProposalUtils.createCompletionProposal(completionString, displayString, context) ;
 			}
 			else {
 				completionString = s ;
 				displayString = s ;
-				completionProposal = createCompletionProposalWithReplacementOfPrefix((NamedElement)allProposals.get(s), completionString, displayString, context) ;
+				completionProposal = CompletionProposalUtils.createCompletionProposalWithReplacementOfPrefix((NamedElement)allProposals.get(s), completionString, displayString, context) ;
 			}
 			acceptor.accept(completionProposal) ;
 		}

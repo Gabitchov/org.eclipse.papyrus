@@ -10,11 +10,8 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.jface.text.contentassist.CompletionProposal;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
-import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.papyrus.core.utils.DisplayUtils;
-import org.eclipse.papyrus.marte.vsl.ui.contentassist.ProposalUtils;
+import org.eclipse.papyrus.marte.vsl.ui.contentassist.VSLProposalUtils;
 import org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL.StereotypeApplicationRule;
 import org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL.TagSpecificationRule;
 import org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.ui.contentassist.AbstractStereotypeApplicationWithVSLProposalProvider;
@@ -24,6 +21,7 @@ import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.TypedElement;
 import org.eclipse.xtext.Assignment;
+import org.eclipse.xtext.gmf.glue.contentassist.CompletionProposalUtils;
 import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
 import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor;
 /**
@@ -31,77 +29,6 @@ import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor;
  */
 public class StereotypeApplicationWithVSLProposalProvider extends AbstractStereotypeApplicationWithVSLProposalProvider {
 
-	private ILabelProvider labelProvider = DisplayUtils.getLabelProvider() ;
-	
-	
-	/* *************************************************
-	 * 
-	 * Private Utility method for creating a completion proposal
-	 * 
-	 **************************************************/
-	
-	protected ICompletionProposal createCompletionProposal(NamedElement namedElement, 
-														String completionString, 
-														String displayString, 
-														ContentAssistContext context) {
-		String additionalProposalInfo = "" + namedElement.getQualifiedName() + "\n" + '(' + namedElement.eClass().getName() + ')' ;
-		
-		ICompletionProposal completionProposal = new CompletionProposal(completionString, 	// String to be inserted 
-				context.getOffset(),  							// Offset
-				context.getSelectedText().length(),				// Replacement length
-				completionString.length(),						// cursorPosition
-				labelProvider.getImage(namedElement)	,	// image
-				" " + displayString,									// displayString
-				null							,				// contextInformation
-				additionalProposalInfo							// additionalProposalInfo
-				);
-		return completionProposal ;
-	}
-	
-	protected ICompletionProposal createCompletionProposal( 
-			String completionString, 
-			String displayString, 
-			ContentAssistContext context) {
-
-		ICompletionProposal completionProposal = new CompletionProposal(completionString, 	// String to be inserted 
-				context.getOffset(),  							// Offset
-				context.getSelectedText().length(),				// Replacement length
-				completionString.length(),						// cursorPosition
-				null	,	// image
-				" " + displayString,									// displayString
-				null							,				// contextInformation
-				""							// additionalProposalInfo
-		);
-		return completionProposal ;
-	}
-	
-	/**
-	 * Private Utility method for creating a completion proposal with replacement of prefix
-	 * 
-	 * @param namedElement The named element for which completion proposal must be created
-	 * @param completionString The actual completion string
-	 * @param displayString The way the completion is displayed in the completion list
-	 * @param context Some information related to the context of the completion
-	 * @return
-	 */
-	protected ICompletionProposal createCompletionProposalWithReplacementOfPrefix(NamedElement namedElement, 
-														String completionString, 
-														String displayString, 
-														ContentAssistContext context) {
-		String additionalProposalInfo = "" + namedElement.getQualifiedName() + "\n" + '(' + namedElement.eClass().getName() + ')' ;
-		
-		ICompletionProposal completionProposal = new CompletionProposal(completionString, 	// String to be inserted 
-				context.getOffset() - context.getPrefix().length(),  							// Offset
-				context.getPrefix().length(),				// Replacement length
-				completionString.length(),						// cursorPosition
-				labelProvider.getImage(namedElement)	,	// image
-				" " + displayString,									// displayString
-				null							,				// contextInformation
-				additionalProposalInfo							// additionalProposalInfo
-				);
-		return completionProposal ;
-	}
-	
 	@Override
 	public void completeTagSpecificationRule_Property(EObject model,
 			Assignment assignment, ContentAssistContext context,
@@ -110,7 +37,7 @@ public class StereotypeApplicationWithVSLProposalProvider extends AbstractStereo
 		visibleProperties = this.sortByKindAndName(visibleProperties) ;
 		for (EObject o : visibleProperties) {
 			NamedElement namedElement = (NamedElement) o ;
-			if (namedElement.getName().startsWith(context.getPrefix())) {
+			if (namedElement.getName().toLowerCase().contains(context.getPrefix().toLowerCase())) {
 				String completionString = namedElement.getName().substring(context.getPrefix().length()) ;
 				String displayString = namedElement.getName() ;
 				if (namedElement instanceof TypedElement) {
@@ -119,7 +46,7 @@ public class StereotypeApplicationWithVSLProposalProvider extends AbstractStereo
 										" : " + typedElement.getType().getName():
 										"" ;
 				}
-				ICompletionProposal completionProposal = createCompletionProposal(namedElement, completionString, displayString, context) ;
+				ICompletionProposal completionProposal = CompletionProposalUtils.createCompletionProposalWithReplacementOfPrefix(namedElement, completionString, displayString, context) ;
 				acceptor.accept(completionProposal) ;
 			}
 		}
@@ -157,8 +84,45 @@ public class StereotypeApplicationWithVSLProposalProvider extends AbstractStereo
 		}
 		return visibleProperties ;
 	}
-
 	
+	@Override
+	public void completeExpressionValueRule_Expression(EObject model,
+			Assignment assignment, ContentAssistContext context,
+			ICompletionProposalAcceptor acceptor) {
+		if (model.eContainer() == null || !(model.eContainer() instanceof TagSpecificationRule))
+			return ;
+		TagSpecificationRule tagSpecificationRule = (TagSpecificationRule)model.eContainer() ;
+		
+		if (tagSpecificationRule.getProperty() == null || tagSpecificationRule.getProperty().getType() == null)
+			return ;
+		
+		Property p = tagSpecificationRule.getProperty() ;
+		
+		Map<String, Element> allProposals = VSLProposalUtils.buildProposalForType((Classifier)p.getType(), p) ; 
+		
+		// List<String> allProposals = ProposalUtils.buildProposalForType((Classifier)p.getType()) ;
+		for (String s : allProposals.keySet()) {
+			String completionString = s.substring(context.getPrefix().length()) ;
+			String displayString = s ;
+			ICompletionProposal completionProposal = null ;
+			if (allProposals.get(s) == null) {
+				completionString = s.substring(context.getPrefix().length()) ;
+				displayString = s ;
+				completionProposal = CompletionProposalUtils.createCompletionProposal(completionString, displayString, context) ;
+				acceptor.accept(completionProposal) ;
+			}
+			else {
+				completionString = s ;
+				displayString = s ;
+				if (displayString.contains(context.getPrefix())) {
+					completionProposal = CompletionProposalUtils.createCompletionProposalWithReplacementOfPrefix((NamedElement)allProposals.get(s), completionString, displayString, context) ;
+					acceptor.accept(completionProposal) ;
+				}
+			}
+		}
+		//super.completeExpressionValueRule_Expression(model, assignment, context,
+		//		acceptor);
+	}
 	
 	/* *************************************************
 	 * 
@@ -196,46 +160,5 @@ public class StereotypeApplicationWithVSLProposalProvider extends AbstractStereo
 		}
 		
 		return sortedList ;
-	}
-	
-	
-	@Override
-	public void completeExpressionValueRule_Expression(EObject model,
-			Assignment assignment, ContentAssistContext context,
-			ICompletionProposalAcceptor acceptor) {
-		// TODO Auto-generated method stub
-		if (model.eContainer() == null || !(model.eContainer() instanceof TagSpecificationRule))
-			return ;
-		TagSpecificationRule tagSpecificationRule = (TagSpecificationRule)model.eContainer() ;
-		
-		if (tagSpecificationRule.getProperty() == null || tagSpecificationRule.getProperty().getType() == null)
-			return ;
-		
-		Property p = tagSpecificationRule.getProperty() ;
-		
-		Map<String, Element> allProposals = ProposalUtils.buildProposalForType((Classifier)p.getType(), p) ; 
-		
-		// List<String> allProposals = ProposalUtils.buildProposalForType((Classifier)p.getType()) ;
-		for (String s : allProposals.keySet()) {
-			String completionString = s.substring(context.getPrefix().length()) ;
-			String displayString = s ;
-			ICompletionProposal completionProposal = null ;
-			if (allProposals.get(s) == null) {
-				completionString = s.substring(context.getPrefix().length()) ;
-				displayString = s ;
-				completionProposal = createCompletionProposal(completionString, displayString, context) ;
-				acceptor.accept(completionProposal) ;
-			}
-			else {
-				completionString = s ;
-				displayString = s ;
-				if (displayString.contains(context.getPrefix())) {
-					completionProposal = createCompletionProposalWithReplacementOfPrefix((NamedElement)allProposals.get(s), completionString, displayString, context) ;
-					acceptor.accept(completionProposal) ;
-				}
-			}
-		}
-		//super.completeExpressionValueRule_Expression(model, assignment, context,
-		//		acceptor);
 	}
 }

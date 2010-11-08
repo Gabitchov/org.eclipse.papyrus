@@ -23,7 +23,7 @@ import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.Type;
 
-public class ProposalUtils {
+public class VSLProposalUtils {
 
 	public static Map<String, Element> buildProposalForType(Classifier classifier, MultiplicityElement elem) {
 		Map<String, Element> allProposals = buildProposalForType(classifier) ;
@@ -45,6 +45,9 @@ public class ProposalUtils {
 		}
 		else if (VSLContextUtil.isAChoiceType(classifier)) {
 			allProposals.putAll(buildProposalForChoiceType(classifier)) ;
+		}
+		else if (VSLContextUtil.isACollectionType(classifier)) {
+			allProposals.putAll(buildProposalForCollectionType(classifier)) ;
 		}
 		else if (classifier instanceof Enumeration) {
 			allProposals.putAll(buildProposalForEnumeration(classifier)) ;
@@ -95,6 +98,20 @@ public class ProposalUtils {
 			Map<String, Element> nestedProposals = buildProposalForType((Classifier)p.getType()) ;
 			for (String nestedProposal : nestedProposals.keySet()) {
 				allProposals.put(choiceProposal + nestedProposal + ")", null) ;
+			}
+		}
+		return allProposals ;
+	}
+	
+	protected static Map<String, Element> buildProposalForCollectionType(Classifier classifier) {
+		Map<String, Element> allProposals = new HashMap<String, Element>() ;
+		Property p = null ;
+		if (VSLContextUtil.getCollectionAttrib(classifier) != null)
+			p = (Property) VSLContextUtil.getCollectionAttrib(classifier);
+		if (p.getType() != null) {
+			Map<String, Element> nestedProposals = buildProposalForType((Classifier)p.getType()) ;
+			for (String nestedProposal : nestedProposals.keySet()) {
+				allProposals.put("{" + nestedProposal + "}", null) ;
 			}
 		}
 		return allProposals ;

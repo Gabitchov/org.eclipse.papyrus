@@ -6,6 +6,8 @@
  */
 package org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL;
 
+import org.eclipse.emf.ecore.EObject;
+
 import org.eclipse.papyrus.marte.vsl.vSL.Expression;
 
 import org.eclipse.uml2.uml.Element;
@@ -27,7 +29,7 @@ import org.eclipse.uml2.uml.Type;
  * @model
  * @generated
  */
-public interface ExpressionValueRule extends ValueRule
+public interface ExpressionValueRule extends EObject
 {
   /**
    * Returns the value of the '<em><b>Expression</b></em>' containment reference.
