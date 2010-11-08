@@ -62,7 +62,7 @@ public abstract class AbstractStereotypedElementEditHelperAdvice extends Abstrac
 			// Ensure all necessary profiles are effectively applied
 			if(profileApplicationContext != null) {
 				for(String requiredProfileID : requiredProfileIDs) {
-					if(profileApplicationContext.getAppliedProfile(requiredProfileID) == null) {
+					if(profileApplicationContext.getAppliedProfile(requiredProfileID, true) == null) {
 						isApproved = false;
 					}
 				}
