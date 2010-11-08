@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Acceleo DomainCodegen Module IDE Plug-in
+Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.domaincodegen.ui;singleton:=true
 Bundle-Version: 0.7.1.qualifier
 Bundle-Activator: org.eclipse.papyrus.domaincodegen.ui.Activator
-Bundle-Vendor: Eclipse.org
+Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.core.resources, 
