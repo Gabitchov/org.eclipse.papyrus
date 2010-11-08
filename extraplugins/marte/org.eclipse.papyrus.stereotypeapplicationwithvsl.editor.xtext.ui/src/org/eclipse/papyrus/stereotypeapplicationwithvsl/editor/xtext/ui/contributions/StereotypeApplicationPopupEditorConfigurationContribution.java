@@ -22,57 +22,26 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.marte.vsl.extensions.VSLSerializationUtil;
-import org.eclipse.papyrus.marte.vsl.ui.contentassist.ProposalUtils;
-import org.eclipse.papyrus.marte.vsl.vSL.AdditiveExpression;
-import org.eclipse.papyrus.marte.vsl.vSL.AndOrXorExpression;
+import org.eclipse.papyrus.marte.vsl.ui.contentassist.VSLProposalUtils;
 import org.eclipse.papyrus.marte.vsl.vSL.CollectionOrTuple;
-import org.eclipse.papyrus.marte.vsl.vSL.ConditionalExpression;
-import org.eclipse.papyrus.marte.vsl.vSL.DataTypeName;
-import org.eclipse.papyrus.marte.vsl.vSL.DurationObsExpression;
-import org.eclipse.papyrus.marte.vsl.vSL.DurationObsName;
-import org.eclipse.papyrus.marte.vsl.vSL.EqualityExpression;
 import org.eclipse.papyrus.marte.vsl.vSL.Expression;
-import org.eclipse.papyrus.marte.vsl.vSL.InstantObsExpression;
-import org.eclipse.papyrus.marte.vsl.vSL.InstantObsName;
-import org.eclipse.papyrus.marte.vsl.vSL.Interval;
-import org.eclipse.papyrus.marte.vsl.vSL.JitterExp;
-import org.eclipse.papyrus.marte.vsl.vSL.ListOfValueNamePairs;
-import org.eclipse.papyrus.marte.vsl.vSL.ListOfValues;
-import org.eclipse.papyrus.marte.vsl.vSL.Literal;
-import org.eclipse.papyrus.marte.vsl.vSL.MultiplicativeExpression;
 import org.eclipse.papyrus.marte.vsl.vSL.NameOrChoiceOrBehaviorCall;
-import org.eclipse.papyrus.marte.vsl.vSL.OperationCallExpression;
-import org.eclipse.papyrus.marte.vsl.vSL.PrimaryExpression;
-import org.eclipse.papyrus.marte.vsl.vSL.PropertyCallExpression;
-import org.eclipse.papyrus.marte.vsl.vSL.QualifiedName;
-import org.eclipse.papyrus.marte.vsl.vSL.RelationalExpression;
-import org.eclipse.papyrus.marte.vsl.vSL.StringLiteralRule;
-import org.eclipse.papyrus.marte.vsl.vSL.SuffixExpression;
-import org.eclipse.papyrus.marte.vsl.vSL.TimeExpression;
-import org.eclipse.papyrus.marte.vsl.vSL.Tuple;
-import org.eclipse.papyrus.marte.vsl.vSL.UnaryExpression;
-import org.eclipse.papyrus.marte.vsl.vSL.ValueNamePair;
-import org.eclipse.papyrus.marte.vsl.vSL.ValueSpecification;
-import org.eclipse.papyrus.marte.vsl.vSL.VariableDeclaration;
 import org.eclipse.papyrus.marte.vsl.validation.VSLJavaValidator;
 import org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL.ExpressionValueRule;
 import org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL.StereotypeApplicationRule;
 import org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL.StereotypeApplicationsRule;
 import org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL.TagSpecificationRule;
-import org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL.ValueRule;
 import org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.ui.internal.StereotypeApplicationWithVSLActivator;
 import org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.validation.SemanticValidator;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.EnumerationLiteral;
 import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.util.UMLUtil;
@@ -172,15 +141,15 @@ public class StereotypeApplicationPopupEditorConfigurationContribution extends P
 						Object value = stereotypedElement.getValue(stereotype, p.getName()) ;
 						if (value instanceof EnumerationLiteral)
 							if (p.getType() instanceof Stereotype || p.getType() instanceof org.eclipse.uml2.uml.Class)
-								value = ProposalUtils.getNameLabel((NamedElement)value) ;
+								value = VSLProposalUtils.getNameLabel((NamedElement)value) ;
 							else
 								value = ((NamedElement)value).getName() ;
 						else if (value instanceof NamedElement)
-							value = ProposalUtils.getNameLabel((NamedElement)value);
+							value = VSLProposalUtils.getNameLabel((NamedElement)value);
 						else if (value instanceof EObject) {
 							Element stereoElement = UMLUtil.getBaseElement((EObject)value);
 							if(stereoElement!=null && stereoElement instanceof NamedElement)
-								value = ProposalUtils.getNameLabel(((NamedElement)stereoElement));
+								value = VSLProposalUtils.getNameLabel(((NamedElement)stereoElement));
 							else {
 								// TODO ... Compute a label in case of Element without Name
 								value = "/* The referenced element is not a named element. You should edit this stereotype with the property view */" ;
@@ -201,11 +170,11 @@ public class StereotypeApplicationPopupEditorConfigurationContribution extends P
 									}
 									if (o instanceof EnumerationLiteral)
 										if (p.getType() instanceof Stereotype || p.getType() instanceof org.eclipse.uml2.uml.Class)
-											value = ProposalUtils.getNameLabel((NamedElement)value) ;
+											value = VSLProposalUtils.getNameLabel((NamedElement)value) ;
 										else
 											value = ((NamedElement)value).getName() ;
 									else if (o instanceof NamedElement)
-										collString += ProposalUtils.getNameLabel((NamedElement)o) ;
+										collString += VSLProposalUtils.getNameLabel((NamedElement)o) ;
 									//else if (o instanceof DynamicEObjectImpl) {
 										//DynamicEObjectImpl stereotypeApplication = (DynamicEObjectImpl)o ;
 										// TODO ... Retrieve the element that the stereotypeApplication is refering to
@@ -214,7 +183,7 @@ public class StereotypeApplicationPopupEditorConfigurationContribution extends P
 									else if (o instanceof EObject) {
 										Element stereoElement = UMLUtil.getBaseElement((EObject)o);
 										if(stereoElement!=null && stereoElement instanceof NamedElement)
-											collString += ProposalUtils.getNameLabel((NamedElement)stereoElement);
+											collString += VSLProposalUtils.getNameLabel((NamedElement)stereoElement);
 										else {
 											// TODO ... Compute a label in case of Element without Name
 											collString += "/* The referenced element is not a named element. You should edit this stereotype with the property view */" ;
@@ -289,63 +258,62 @@ public class StereotypeApplicationPopupEditorConfigurationContribution extends P
 				stereotypedElement.applyStereotype(stereotype) ;
 				for (TagSpecificationRule tag : sApp.getTagSpecification()) {
 					Property property = tag.getProperty() ;
-					ValueRule value = tag.getValue() ; 
-					if (value instanceof ExpressionValueRule) {
-						Object valueRepresentation = null ;
-						
-						// TODO shouldStoreObjectsAndNotStrings is not enough. Should have a specific boolean for the case of stereotype applications
-						boolean shouldStoreObjectsAndNotStrings = 
-									(property.getType() instanceof Stereotype ||
-									 property.getType() instanceof org.eclipse.uml2.uml.Class) ;  
-						boolean propertyIsACollection = 
-									VSLJavaValidator.isACollection(((ExpressionValueRule) value).getExpression()) != null;
-						
-						if (! propertyIsACollection) {
-							if (! shouldStoreObjectsAndNotStrings) {
-								valueRepresentation = VSLSerializationUtil.printExpression(((ExpressionValueRule)value).getExpression()) ;
+					ExpressionValueRule value = tag.getValue() ; 
+					Object valueRepresentation = null ;
+
+					// TODO shouldStoreObjectsAndNotStrings is not enough. Should have a specific boolean for the case of stereotype applications
+					boolean shouldStoreObjectsAndNotStrings = 
+						(property.getType() instanceof Stereotype ||
+								property.getType() instanceof org.eclipse.uml2.uml.Class) ;  
+					boolean propertyIsACollection = 
+						VSLJavaValidator.isACollection(((ExpressionValueRule) value).getExpression()) != null;
+
+					if (! propertyIsACollection) {
+						if (! shouldStoreObjectsAndNotStrings) {
+							valueRepresentation = VSLSerializationUtil.printExpression(((ExpressionValueRule)value).getExpression()) ;
+						}
+						else {
+							NameOrChoiceOrBehaviorCall nameRule = VSLSerializationUtil.extractNameReference(((ExpressionValueRule)value).getExpression()) ;
+							if (nameRule != null) {
+								if (! (property.getType() instanceof Stereotype)) {
+									valueRepresentation = nameRule.getId() ;
+								}
+								else {
+									valueRepresentation = nameRule.getId().getStereotypeApplication(((Stereotype)property.getType())) ;
+								}
 							}
-							else {
-								NameOrChoiceOrBehaviorCall nameRule = VSLSerializationUtil.extractNameReference(((ExpressionValueRule)value).getExpression()) ;
+							// TODO: specific case of stereotype applications
+						}
+					}
+					else {
+						// the property has an upper bound > 1
+						if (! shouldStoreObjectsAndNotStrings) {
+							List<String> listOfValues = new ArrayList<String>() ;
+							CollectionOrTuple collection = VSLJavaValidator.isACollection(((ExpressionValueRule)value).getExpression()) ;
+							for (Expression e : collection.getListOfValues().getValues()) {
+								listOfValues.add(VSLSerializationUtil.printExpression(e)) ;
+							}
+							valueRepresentation = listOfValues ;
+						}
+						else {
+							List<Object> listOfValues = new ArrayList<Object>() ;
+							CollectionOrTuple collection = VSLJavaValidator.isACollection(((ExpressionValueRule)value).getExpression()) ;
+							for (Expression e : collection.getListOfValues().getValues()) {
+								NameOrChoiceOrBehaviorCall nameRule = VSLSerializationUtil.extractNameReference(e) ;
 								if (nameRule != null) {
-									if (! (property.getType() instanceof Stereotype)) {
-										valueRepresentation = nameRule.getId() ;
-									}
-									else {
-										valueRepresentation = nameRule.getId().getStereotypeApplication(((Stereotype)property.getType())) ;
-									}
+									if (! (property.getType() instanceof Stereotype))
+										listOfValues.add(nameRule.getId()) ;
+									else
+										listOfValues.add(nameRule.getId().getStereotypeApplication(((Stereotype)property.getType()))) ;
 								}
 								// TODO: specific case of stereotype applications
 							}
+							valueRepresentation = listOfValues ;
 						}
-						else {
-							// the property has an upper bound > 1
-							if (! shouldStoreObjectsAndNotStrings) {
-								List<String> listOfValues = new ArrayList<String>() ;
-								CollectionOrTuple collection = VSLJavaValidator.isACollection(((ExpressionValueRule)value).getExpression()) ;
-								for (Expression e : collection.getListOfValues().getValues()) {
-									listOfValues.add(VSLSerializationUtil.printExpression(e)) ;
-								}
-								valueRepresentation = listOfValues ;
-							}
-							else {
-								List<Object> listOfValues = new ArrayList<Object>() ;
-								CollectionOrTuple collection = VSLJavaValidator.isACollection(((ExpressionValueRule)value).getExpression()) ;
-								for (Expression e : collection.getListOfValues().getValues()) {
-									NameOrChoiceOrBehaviorCall nameRule = VSLSerializationUtil.extractNameReference(e) ;
-									if (nameRule != null) {
-										if (! (property.getType() instanceof Stereotype))
-											listOfValues.add(nameRule.getId()) ;
-										else
-											listOfValues.add(nameRule.getId().getStereotypeApplication(((Stereotype)property.getType()))) ;
-									}
-									// TODO: specific case of stereotype applications
-								}
-								valueRepresentation = listOfValues ;
-							}
-						}
-							
-						stereotypedElement.setValue(stereotype, property.getName(), valueRepresentation) ;
 					}
+
+					stereotypedElement.setValue(stereotype, property.getName(), valueRepresentation) ;
+
 				}
 			}
 			

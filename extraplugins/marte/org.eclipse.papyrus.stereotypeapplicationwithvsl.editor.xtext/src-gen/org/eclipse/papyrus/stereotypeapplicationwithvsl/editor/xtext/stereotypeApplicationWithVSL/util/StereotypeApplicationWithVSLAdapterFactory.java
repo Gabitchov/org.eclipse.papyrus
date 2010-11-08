@@ -94,16 +94,6 @@ public class StereotypeApplicationWithVSLAdapterFactory extends AdapterFactoryIm
         return createTagSpecificationRuleAdapter();
       }
       @Override
-      public Adapter caseValueRule(ValueRule object)
-      {
-        return createValueRuleAdapter();
-      }
-      @Override
-      public Adapter caseReferenceValueRule(ReferenceValueRule object)
-      {
-        return createReferenceValueRuleAdapter();
-      }
-      @Override
       public Adapter caseExpressionValueRule(ExpressionValueRule object)
       {
         return createExpressionValueRuleAdapter();
@@ -171,36 +161,6 @@ public class StereotypeApplicationWithVSLAdapterFactory extends AdapterFactoryIm
    * @generated
    */
   public Adapter createTagSpecificationRuleAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL.ValueRule <em>Value Rule</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL.ValueRule
-   * @generated
-   */
-  public Adapter createValueRuleAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL.ReferenceValueRule <em>Reference Value Rule</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL.ReferenceValueRule
-   * @generated
-   */
-  public Adapter createReferenceValueRuleAdapter()
   {
     return null;
   }

@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.papyrus.marte.vsl.vSL.Expression;
 
@@ -35,7 +36,7 @@ import org.eclipse.uml2.uml.Type;
  *
  * @generated
  */
-public class ExpressionValueRuleImpl extends ValueRuleImpl implements ExpressionValueRule
+public class ExpressionValueRuleImpl extends MinimalEObjectImpl.Container implements ExpressionValueRule
 {
   /**
    * The cached value of the '{@link #getExpression() <em>Expression</em>}' containment reference.

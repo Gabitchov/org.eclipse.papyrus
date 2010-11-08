@@ -162,53 +162,6 @@ public interface StereotypeApplicationWithVSLPackage extends EPackage
   int TAG_SPECIFICATION_RULE_FEATURE_COUNT = 2;
 
   /**
-   * The meta object id for the '{@link org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL.impl.ValueRuleImpl <em>Value Rule</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL.impl.ValueRuleImpl
-   * @see org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL.impl.StereotypeApplicationWithVSLPackageImpl#getValueRule()
-   * @generated
-   */
-  int VALUE_RULE = 3;
-
-  /**
-   * The number of structural features of the '<em>Value Rule</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int VALUE_RULE_FEATURE_COUNT = 0;
-
-  /**
-   * The meta object id for the '{@link org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL.impl.ReferenceValueRuleImpl <em>Reference Value Rule</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL.impl.ReferenceValueRuleImpl
-   * @see org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL.impl.StereotypeApplicationWithVSLPackageImpl#getReferenceValueRule()
-   * @generated
-   */
-  int REFERENCE_VALUE_RULE = 4;
-
-  /**
-   * The feature id for the '<em><b>Referenced Element</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int REFERENCE_VALUE_RULE__REFERENCED_ELEMENT = VALUE_RULE_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>Reference Value Rule</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int REFERENCE_VALUE_RULE_FEATURE_COUNT = VALUE_RULE_FEATURE_COUNT + 1;
-
-  /**
    * The meta object id for the '{@link org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL.impl.ExpressionValueRuleImpl <em>Expression Value Rule</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -216,7 +169,7 @@ public interface StereotypeApplicationWithVSLPackage extends EPackage
    * @see org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL.impl.StereotypeApplicationWithVSLPackageImpl#getExpressionValueRule()
    * @generated
    */
-  int EXPRESSION_VALUE_RULE = 5;
+  int EXPRESSION_VALUE_RULE = 3;
 
   /**
    * The feature id for the '<em><b>Expression</b></em>' containment reference.
@@ -225,7 +178,7 @@ public interface StereotypeApplicationWithVSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPRESSION_VALUE_RULE__EXPRESSION = VALUE_RULE_FEATURE_COUNT + 0;
+  int EXPRESSION_VALUE_RULE__EXPRESSION = 0;
 
   /**
    * The number of structural features of the '<em>Expression Value Rule</em>' class.
@@ -234,7 +187,7 @@ public interface StereotypeApplicationWithVSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPRESSION_VALUE_RULE_FEATURE_COUNT = VALUE_RULE_FEATURE_COUNT + 1;
+  int EXPRESSION_VALUE_RULE_FEATURE_COUNT = 1;
 
 
   /**
@@ -321,37 +274,6 @@ public interface StereotypeApplicationWithVSLPackage extends EPackage
    * @generated
    */
   EReference getTagSpecificationRule_Value();
-
-  /**
-   * Returns the meta object for class '{@link org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL.ValueRule <em>Value Rule</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Value Rule</em>'.
-   * @see org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL.ValueRule
-   * @generated
-   */
-  EClass getValueRule();
-
-  /**
-   * Returns the meta object for class '{@link org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL.ReferenceValueRule <em>Reference Value Rule</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Reference Value Rule</em>'.
-   * @see org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL.ReferenceValueRule
-   * @generated
-   */
-  EClass getReferenceValueRule();
-
-  /**
-   * Returns the meta object for the reference '{@link org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL.ReferenceValueRule#getReferencedElement <em>Referenced Element</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Referenced Element</em>'.
-   * @see org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL.ReferenceValueRule#getReferencedElement()
-   * @see #getReferenceValueRule()
-   * @generated
-   */
-  EReference getReferenceValueRule_ReferencedElement();
 
   /**
    * Returns the meta object for class '{@link org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL.ExpressionValueRule <em>Expression Value Rule</em>}'.
@@ -466,34 +388,6 @@ public interface StereotypeApplicationWithVSLPackage extends EPackage
      * @generated
      */
     EReference TAG_SPECIFICATION_RULE__VALUE = eINSTANCE.getTagSpecificationRule_Value();
-
-    /**
-     * The meta object literal for the '{@link org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL.impl.ValueRuleImpl <em>Value Rule</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL.impl.ValueRuleImpl
-     * @see org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL.impl.StereotypeApplicationWithVSLPackageImpl#getValueRule()
-     * @generated
-     */
-    EClass VALUE_RULE = eINSTANCE.getValueRule();
-
-    /**
-     * The meta object literal for the '{@link org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL.impl.ReferenceValueRuleImpl <em>Reference Value Rule</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL.impl.ReferenceValueRuleImpl
-     * @see org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL.impl.StereotypeApplicationWithVSLPackageImpl#getReferenceValueRule()
-     * @generated
-     */
-    EClass REFERENCE_VALUE_RULE = eINSTANCE.getReferenceValueRule();
-
-    /**
-     * The meta object literal for the '<em><b>Referenced Element</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference REFERENCE_VALUE_RULE__REFERENCED_ELEMENT = eINSTANCE.getReferenceValueRule_ReferencedElement();
 
     /**
      * The meta object literal for the '{@link org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL.impl.ExpressionValueRuleImpl <em>Expression Value Rule</em>}' class.

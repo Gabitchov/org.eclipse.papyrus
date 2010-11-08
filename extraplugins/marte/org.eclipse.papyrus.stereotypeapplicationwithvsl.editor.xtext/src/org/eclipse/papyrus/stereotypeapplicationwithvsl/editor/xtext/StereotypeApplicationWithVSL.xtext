@@ -14,13 +14,7 @@ StereotypeApplicationRule :
 	(tagSpecification += TagSpecificationRule (',' tagSpecification += TagSpecificationRule)*)?;
 	
 TagSpecificationRule :
-	property = [uml::Property] (value = ValueRule) ; 
-
-ValueRule :
-	ReferenceValueRule | ExpressionValueRule ;
-
-ReferenceValueRule :
-	'->' referencedElement = [uml::NamedElement] ;
+	property = [uml::Property] (value = ExpressionValueRule) ; 
 	
 ExpressionValueRule :
 	'=' expression = Expression ;

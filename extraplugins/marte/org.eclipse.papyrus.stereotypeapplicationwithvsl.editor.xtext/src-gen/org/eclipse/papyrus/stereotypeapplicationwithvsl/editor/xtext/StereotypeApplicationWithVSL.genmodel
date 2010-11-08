@@ -29,15 +29,6 @@
       <genOperations ecoreOperation="StereotypeApplicationWithVSL.ecore#//TagSpecificationRule/getExpectedType"/>
       <genOperations ecoreOperation="StereotypeApplicationWithVSL.ecore#//TagSpecificationRule/getContextElement"/>
     </genClasses>
-    <genClasses ecoreClass="StereotypeApplicationWithVSL.ecore#//ValueRule">
-      <genOperations ecoreOperation="StereotypeApplicationWithVSL.ecore#//ValueRule/getExpectedType"/>
-      <genOperations ecoreOperation="StereotypeApplicationWithVSL.ecore#//ValueRule/getContextElement"/>
-    </genClasses>
-    <genClasses ecoreClass="StereotypeApplicationWithVSL.ecore#//ReferenceValueRule">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference StereotypeApplicationWithVSL.ecore#//ReferenceValueRule/referencedElement"/>
-      <genOperations ecoreOperation="StereotypeApplicationWithVSL.ecore#//ReferenceValueRule/getExpectedType"/>
-      <genOperations ecoreOperation="StereotypeApplicationWithVSL.ecore#//ReferenceValueRule/getContextElement"/>
-    </genClasses>
     <genClasses ecoreClass="StereotypeApplicationWithVSL.ecore#//ExpressionValueRule">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference StereotypeApplicationWithVSL.ecore#//ExpressionValueRule/expression"/>
       <genOperations ecoreOperation="StereotypeApplicationWithVSL.ecore#//ExpressionValueRule/getExpectedType"/>

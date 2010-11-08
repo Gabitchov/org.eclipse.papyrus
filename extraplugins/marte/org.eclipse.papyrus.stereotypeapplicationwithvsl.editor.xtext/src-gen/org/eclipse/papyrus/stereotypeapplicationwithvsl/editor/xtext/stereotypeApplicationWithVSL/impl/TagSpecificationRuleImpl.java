@@ -15,9 +15,9 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL.ExpressionValueRule;
 import org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL.StereotypeApplicationWithVSLPackage;
 import org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL.TagSpecificationRule;
-import org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL.ValueRule;
 
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Property;
@@ -57,7 +57,7 @@ public class TagSpecificationRuleImpl extends MinimalEObjectImpl.Container imple
    * @generated
    * @ordered
    */
-  protected ValueRule value;
+  protected ExpressionValueRule value;
 
   /**
    * <!-- begin-user-doc -->
@@ -128,7 +128,7 @@ public class TagSpecificationRuleImpl extends MinimalEObjectImpl.Container imple
    * <!-- end-user-doc -->
    * @generated
    */
-  public ValueRule getValue()
+  public ExpressionValueRule getValue()
   {
     return value;
   }
@@ -138,9 +138,9 @@ public class TagSpecificationRuleImpl extends MinimalEObjectImpl.Container imple
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetValue(ValueRule newValue, NotificationChain msgs)
+  public NotificationChain basicSetValue(ExpressionValueRule newValue, NotificationChain msgs)
   {
-    ValueRule oldValue = value;
+    ExpressionValueRule oldValue = value;
     value = newValue;
     if (eNotificationRequired())
     {
@@ -155,7 +155,7 @@ public class TagSpecificationRuleImpl extends MinimalEObjectImpl.Container imple
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setValue(ValueRule newValue)
+  public void setValue(ExpressionValueRule newValue)
   {
     if (newValue != value)
     {
@@ -240,7 +240,7 @@ public class TagSpecificationRuleImpl extends MinimalEObjectImpl.Container imple
         setProperty((Property)newValue);
         return;
       case StereotypeApplicationWithVSLPackage.TAG_SPECIFICATION_RULE__VALUE:
-        setValue((ValueRule)newValue);
+        setValue((ExpressionValueRule)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -260,7 +260,7 @@ public class TagSpecificationRuleImpl extends MinimalEObjectImpl.Container imple
         setProperty((Property)null);
         return;
       case StereotypeApplicationWithVSLPackage.TAG_SPECIFICATION_RULE__VALUE:
-        setValue((ValueRule)null);
+        setValue((ExpressionValueRule)null);
         return;
     }
     super.eUnset(featureID);

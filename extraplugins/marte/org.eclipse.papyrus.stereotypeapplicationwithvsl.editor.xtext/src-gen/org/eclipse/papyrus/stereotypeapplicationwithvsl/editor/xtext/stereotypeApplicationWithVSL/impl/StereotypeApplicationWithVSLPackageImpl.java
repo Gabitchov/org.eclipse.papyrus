@@ -15,13 +15,11 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.papyrus.marte.vsl.vSL.VSLPackage;
 
 import org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL.ExpressionValueRule;
-import org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL.ReferenceValueRule;
 import org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL.StereotypeApplicationRule;
 import org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL.StereotypeApplicationWithVSLFactory;
 import org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL.StereotypeApplicationWithVSLPackage;
 import org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL.StereotypeApplicationsRule;
 import org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL.TagSpecificationRule;
-import org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.stereotypeApplicationWithVSL.ValueRule;
 
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -53,20 +51,6 @@ public class StereotypeApplicationWithVSLPackageImpl extends EPackageImpl implem
    * @generated
    */
   private EClass tagSpecificationRuleEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass valueRuleEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass referenceValueRuleEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -226,36 +210,6 @@ public class StereotypeApplicationWithVSLPackageImpl extends EPackageImpl implem
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getValueRule()
-  {
-    return valueRuleEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getReferenceValueRule()
-  {
-    return referenceValueRuleEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getReferenceValueRule_ReferencedElement()
-  {
-    return (EReference)referenceValueRuleEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EClass getExpressionValueRule()
   {
     return expressionValueRuleEClass;
@@ -312,11 +266,6 @@ public class StereotypeApplicationWithVSLPackageImpl extends EPackageImpl implem
     createEReference(tagSpecificationRuleEClass, TAG_SPECIFICATION_RULE__PROPERTY);
     createEReference(tagSpecificationRuleEClass, TAG_SPECIFICATION_RULE__VALUE);
 
-    valueRuleEClass = createEClass(VALUE_RULE);
-
-    referenceValueRuleEClass = createEClass(REFERENCE_VALUE_RULE);
-    createEReference(referenceValueRuleEClass, REFERENCE_VALUE_RULE__REFERENCED_ELEMENT);
-
     expressionValueRuleEClass = createEClass(EXPRESSION_VALUE_RULE);
     createEReference(expressionValueRuleEClass, EXPRESSION_VALUE_RULE__EXPRESSION);
   }
@@ -354,8 +303,6 @@ public class StereotypeApplicationWithVSLPackageImpl extends EPackageImpl implem
     // Set bounds for type parameters
 
     // Add supertypes to classes
-    referenceValueRuleEClass.getESuperTypes().add(this.getValueRule());
-    expressionValueRuleEClass.getESuperTypes().add(this.getValueRule());
 
     // Initialize classes and features; add operations and parameters
     initEClass(stereotypeApplicationsRuleEClass, StereotypeApplicationsRule.class, "StereotypeApplicationsRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -375,24 +322,11 @@ public class StereotypeApplicationWithVSLPackageImpl extends EPackageImpl implem
 
     initEClass(tagSpecificationRuleEClass, TagSpecificationRule.class, "TagSpecificationRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getTagSpecificationRule_Property(), theUMLPackage.getProperty(), null, "property", null, 0, 1, TagSpecificationRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getTagSpecificationRule_Value(), this.getValueRule(), null, "value", null, 0, 1, TagSpecificationRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getTagSpecificationRule_Value(), this.getExpressionValueRule(), null, "value", null, 0, 1, TagSpecificationRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     addEOperation(tagSpecificationRuleEClass, theUMLPackage.getType(), "getExpectedType", 0, 1, IS_UNIQUE, IS_ORDERED);
 
     addEOperation(tagSpecificationRuleEClass, theUMLPackage.getElement(), "getContextElement", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-    initEClass(valueRuleEClass, ValueRule.class, "ValueRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-    addEOperation(valueRuleEClass, theUMLPackage.getType(), "getExpectedType", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-    addEOperation(valueRuleEClass, theUMLPackage.getElement(), "getContextElement", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-    initEClass(referenceValueRuleEClass, ReferenceValueRule.class, "ReferenceValueRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getReferenceValueRule_ReferencedElement(), theUMLPackage.getNamedElement(), null, "referencedElement", null, 0, 1, ReferenceValueRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    addEOperation(referenceValueRuleEClass, theUMLPackage.getType(), "getExpectedType", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-    addEOperation(referenceValueRuleEClass, theUMLPackage.getElement(), "getContextElement", 0, 1, IS_UNIQUE, IS_ORDERED);
 
     initEClass(expressionValueRuleEClass, ExpressionValueRule.class, "ExpressionValueRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getExpressionValueRule_Expression(), theVSLPackage.getExpression(), null, "expression", null, 0, 1, ExpressionValueRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

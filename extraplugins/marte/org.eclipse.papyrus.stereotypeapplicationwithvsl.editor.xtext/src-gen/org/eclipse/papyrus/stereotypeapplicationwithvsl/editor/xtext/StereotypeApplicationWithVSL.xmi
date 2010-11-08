@@ -61,31 +61,6 @@
         </elements>
       </alternatives>
     </rules>
-    <rules xsi:type="xtext:ParserRule" name="ValueRule">
-      <type metamodel="/0/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/stereotypeapplicationwithvsl/editor/xtext/StereotypeApplicationWithVSL#//ValueRule"/>
-      </type>
-      <alternatives xsi:type="xtext:Alternatives">
-        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.4"/>
-        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.5"/>
-      </alternatives>
-    </rules>
-    <rules xsi:type="xtext:ParserRule" name="ReferenceValueRule">
-      <type metamodel="/0/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/stereotypeapplicationwithvsl/editor/xtext/StereotypeApplicationWithVSL#//ReferenceValueRule"/>
-      </type>
-      <alternatives xsi:type="xtext:Group">
-        <elements xsi:type="xtext:Keyword" value="->"/>
-        <elements xsi:type="xtext:Assignment" feature="referencedElement" operator="=">
-          <terminal xsi:type="xtext:CrossReference">
-            <type metamodel="/0/@metamodelDeclarations.0">
-              <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//NamedElement"/>
-            </type>
-            <terminal xsi:type="xtext:RuleCall" rule="/2/@rules.0"/>
-          </terminal>
-        </elements>
-      </alternatives>
-    </rules>
     <rules xsi:type="xtext:ParserRule" name="ExpressionValueRule">
       <type metamodel="/0/@metamodelDeclarations.1">
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/stereotypeapplicationwithvsl/editor/xtext/StereotypeApplicationWithVSL#//ExpressionValueRule"/>
