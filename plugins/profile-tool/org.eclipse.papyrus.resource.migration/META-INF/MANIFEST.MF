@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Migration
+Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.resource.migration;singleton:=true
 Bundle-Version: 0.7.1.qualifier
 Bundle-Activator: org.eclipse.papyrus.resource.migration.Activator
@@ -12,3 +12,4 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.codegen.ecore
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Vendor: %providerName
