@@ -111,7 +111,8 @@ public class UmlPropertyScopeProvider extends AbstractDeclarativeScopeProvider {
 		}
 		else {
 			visibleNamespaces.add(UmlPropertyJavaValidator.getModel()) ;
-			visibleNamespaces.addAll(new Visitor_GetImportedNamespaces().visit(UmlPropertyJavaValidator.getModel())) ;
+			//visibleNamespaces.addAll(new Visitor_GetImportedNamespaces().visit(UmlPropertyJavaValidator.getModel())) ;
+			visibleNamespaces.addAll(new Visitor_GetOwnedNamespacesAndImportedNamespaces().visit(UmlPropertyJavaValidator.getModel())) ;
 		}
 		Iterable<IEObjectDescription> iterableIEobjectDescription = Scopes.scopedElementsFor(visibleNamespaces) ;		
 		return new SimpleScope(iterableIEobjectDescription) ;

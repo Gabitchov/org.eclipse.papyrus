@@ -9,10 +9,12 @@ import org.eclipse.papyrus.umlutils.NamedElementUtil;
 import org.eclipse.papyrus.umlutils.PropertyUtil;
 import org.eclipse.papyrus.umlutils.TypeUtil;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.Package ;
+import org.eclipse.xtext.gmf.glue.contentassist.CompletionProposalUtils;
 
 public class UMLPropertyEditorPropertyUtil extends PropertyUtil {
 
@@ -31,7 +33,7 @@ public class UMLPropertyEditorPropertyUtil extends PropertyUtil {
 
 		// type
 		if(property.getType() != null) {
-			buffer.append(" : " + getTypeLabel(property.getType()));
+			buffer.append(" : " + CompletionProposalUtils.getQualifiedNameLabelWithSufficientDepth(property.getType(), UmlPropertyJavaValidator.getModel()));
 		} else {
 			buffer.append(" : " + TypeUtil.UNDEFINED_TYPE_NAME);
 		}
@@ -57,33 +59,4 @@ public class UMLPropertyEditorPropertyUtil extends PropertyUtil {
 		return buffer.toString();
 	}
 	
-	public static String getTypeLabel(Type type) {
-		String label = "" ;
-		
-		Namespace model = UmlPropertyJavaValidator.getModel() ;
-		List<Package> importedPackages = new ArrayList<Package>(model.getImportedPackages()) ;
-		
-		List<Package> visitedPackages = new ArrayList<Package>() ;
-		Package currentPackage = type.getNearestPackage() ;
-		
-		boolean rootFound = false ;
-		
-		while (currentPackage != null && !rootFound) {
-			visitedPackages.add(currentPackage) ;
-			if (importedPackages.contains(currentPackage) || currentPackage == model) {
-				rootFound = true ;
-			}
-			Element owner = currentPackage.getOwner() ;
-			while (owner != null && !(owner instanceof Package))
-				owner = owner.getOwner() ;
-			
-			currentPackage = owner != null ? (Package)owner : null ;
-		}
-		
-		for (int i = visitedPackages.size() - 1 ; i >= 0 ; i--) {
-			label += visitedPackages.get(i).getName() + "::" ; 
-		}
-		
-		return label + type.getName() ;
-	}
 }

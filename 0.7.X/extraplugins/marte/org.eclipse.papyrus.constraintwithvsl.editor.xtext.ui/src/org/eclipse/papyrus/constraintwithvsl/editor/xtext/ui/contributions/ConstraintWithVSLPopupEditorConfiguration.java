@@ -1,6 +1,9 @@
 package org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui.contributions;
 
+import static org.eclipse.papyrus.properties.runtime.Activator.log;
+
 import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.operations.OperationHistoryFactory;
@@ -8,9 +11,13 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.jface.dialogs.IInputValidator;
 import org.eclipse.jface.text.source.SourceViewerConfiguration;
 import org.eclipse.papyrus.constraintwithvsl.editor.xtext.constraintWithVSLl.ConstraintRule;
@@ -23,13 +30,19 @@ import org.eclipse.papyrus.extensionpoints.editors.configuration.IPopupEditorCon
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.marte.vsl.extensions.VSLSerializationUtil;
 import org.eclipse.papyrus.marte.vsl.validation.VSLJavaValidator;
+import org.eclipse.papyrus.properties.runtime.modelhandler.emf.EMFUtils;
+import org.eclipse.papyrus.properties.runtime.modelhandler.emf.TransactionUtil;
+import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.service.edit.service.IElementEditService;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.uml2.uml.ConnectionPointReference;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.OpaqueExpression;
+import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Pseudostate;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.xtext.gmf.glue.PopupEditorConfiguration;
 import org.eclipse.xtext.gmf.glue.edit.part.IXtextEMFReconciler;
 
@@ -109,14 +122,25 @@ public class ConstraintWithVSLPopupEditorConfiguration extends PopupEditorConfig
 				}
 				
 				// Creates and executes the update command
-				UpdateConstraintWithVSLCommand updateCommand = new UpdateConstraintWithVSLCommand((Constraint)VSLJavaValidator.getContextElement());
+				org.eclipse.gmf.runtime.common.core.command.CompositeCommand updateCommand = getUpdateCommand(constraint) ;
+				List<Constraint> editedObjects = new ArrayList<Constraint>() ; editedObjects.add(constraint) ;
+				TransactionalEditingDomain editingDomain = EMFUtils.getTransactionalEditingDomain(editedObjects);
+				
+				if(updateCommand.canExecute() && !(TransactionUtil.isReadTransactionInProgress(editingDomain, true, true))) {
+					try {
+						OperationHistoryFactory.getOperationHistory().execute(updateCommand, new NullProgressMonitor(), null);
+					} catch (ExecutionException e) {
+						log.error(e);
+					}
+					return;
+				}
 				
 				try {
-					OperationHistoryFactory.getOperationHistory().execute(updateCommand, new NullProgressMonitor(), null) ;
-				}
-				catch (ExecutionException e) {
+					OperationHistoryFactory.getOperationHistory().execute(updateCommand, new NullProgressMonitor(), null);
+				} catch (ExecutionException e) {
 					org.eclipse.papyrus.properties.runtime.Activator.log.error(e);
 				}
+
 			}
 		};
 		return super.createPopupEditorHelper(graphicalEditPart, 
@@ -127,38 +151,50 @@ public class ConstraintWithVSLPopupEditorConfiguration extends PopupEditorConfig
 											new SemanticValidator());
 	}
 	
-	/**
-	 * @author CEA LIST
-	 *
-	 * A command for updating the context UML model
-	 */
-	protected class UpdateConstraintWithVSLCommand extends AbstractTransactionalCommand {
-
-		private Constraint theConstraint ;
+	private CompositeCommand getUpdateCommand(EObject editedObject) {
+		org.eclipse.gmf.runtime.common.core.command.CompositeCommand updateCommand = new CompositeCommand("Property update") ;
+		//IElementEditService provider = ElementEditServiceUtils.getCommandProvider(editedObject);
 		
-		/* (non-Javadoc)
-		 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor, org.eclipse.core.runtime.IAdaptable)
-		 */
-		@Override
-		protected CommandResult doExecuteWithResult(IProgressMonitor arg0,
-				IAdaptable arg1) throws ExecutionException {
-			
-			theConstraint.setSpecification(null) ;
-			
-			OpaqueExpression opaqueExp = UMLFactory.eINSTANCE.createOpaqueExpression() ;
-			opaqueExp.getLanguages().add("VSL") ;
-			opaqueExp.getBodies().add(newBody) ;
-			
-			theConstraint.setSpecification(opaqueExp) ;
-			
-			return CommandResult.newOKCommandResult(theConstraint);
-		}
+		//SetRequest setIsDerivedRequest = new SetRequest(editedObject, UMLPackage.eINSTANCE.getProperty_IsDerived(), newIsDerived) ;
+		//ICommand setIsDerivedCommand = provider.getEditCommand(setIsDerivedRequest) ;
+		//updateCommand.add(setIsDerivedCommand) ;
 		
-		public UpdateConstraintWithVSLCommand(Constraint constraint) {
-			super(EditorUtils.getTransactionalEditingDomain(), 
-					"Constraint Update", 
-					getWorkspaceFiles(constraint));
-			this.theConstraint = constraint ;
-		}	
+		
+		return updateCommand ;
 	}
+	
+//	/**
+//	 * @author CEA LIST
+//	 *
+//	 * A command for updating the context UML model
+//	 */
+//	protected class UpdateConstraintWithVSLCommand extends AbstractTransactionalCommand {
+//
+//		private Constraint theConstraint ;
+//		
+//		/* (non-Javadoc)
+//		 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor, org.eclipse.core.runtime.IAdaptable)
+//		 */
+//		@Override
+//		protected CommandResult doExecuteWithResult(IProgressMonitor arg0,
+//				IAdaptable arg1) throws ExecutionException {
+//			
+//			theConstraint.setSpecification(null) ;
+//			
+//			OpaqueExpression opaqueExp = UMLFactory.eINSTANCE.createOpaqueExpression() ;
+//			opaqueExp.getLanguages().add("VSL") ;
+//			opaqueExp.getBodies().add(newBody) ;
+//			
+//			theConstraint.setSpecification(opaqueExp) ;
+//			
+//			return CommandResult.newOKCommandResult(theConstraint);
+//		}
+//		
+//		public UpdateConstraintWithVSLCommand(Constraint constraint) {
+//			super(EditorUtils.getTransactionalEditingDomain(), 
+//					"Constraint Update", 
+//					getWorkspaceFiles(constraint));
+//			this.theConstraint = constraint ;
+//		}	
+//	}
 }

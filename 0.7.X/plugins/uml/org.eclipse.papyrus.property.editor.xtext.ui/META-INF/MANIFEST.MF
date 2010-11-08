@@ -20,7 +20,8 @@ Require-Bundle: org.eclipse.papyrus.property.editor.xtext;visibility:=reexport,
  org.eclipse.papyrus.umlutils;bundle-version="0.7.0",
  org.eclipse.core.expressions;bundle-version="3.4.200",
  org.eclipse.papyrus.core;bundle-version="0.7.0",
- org.eclipse.papyrus.properties.runtime;bundle-version="0.7.0"
+ org.eclipse.papyrus.properties.runtime;bundle-version="0.7.0",
+ org.eclipse.papyrus.service.edit;bundle-version="0.7.1"
 Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.papyrus.property.editor.xtext.ui.contentassist.antlr

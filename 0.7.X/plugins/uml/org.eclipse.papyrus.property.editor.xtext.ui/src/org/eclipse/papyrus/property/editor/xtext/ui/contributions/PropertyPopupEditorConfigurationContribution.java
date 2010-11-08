@@ -13,27 +13,39 @@
  *****************************************************************************/
 package org.eclipse.papyrus.property.editor.xtext.ui.contributions;
 
+import static org.eclipse.papyrus.properties.runtime.Activator.log;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.operations.OperationHistoryFactory;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
+import org.eclipse.papyrus.properties.runtime.modelhandler.emf.EMFUtils;
+import org.eclipse.papyrus.properties.runtime.modelhandler.emf.TransactionUtil;
 import org.eclipse.papyrus.property.editor.xtext.ui.internal.UmlPropertyActivator;
 import org.eclipse.papyrus.property.editor.xtext.umlProperty.ModifierSpecification;
 import org.eclipse.papyrus.property.editor.xtext.umlProperty.PropertyRule;
-import org.eclipse.papyrus.property.editor.xtext.umlProperty.QualifiedName;
 import org.eclipse.papyrus.property.editor.xtext.umlProperty.TypeRule;
 import org.eclipse.papyrus.property.editor.xtext.validation.SemanticValidator;
 import org.eclipse.papyrus.property.editor.xtext.validation.UmlPropertyJavaValidator;
-import org.eclipse.papyrus.umlutils.PropertyUtil;
+import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.service.edit.service.IElementEditService;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.xtext.gmf.glue.PopupEditorConfiguration;
 import org.eclipse.xtext.gmf.glue.edit.part.IXtextEMFReconciler;
 
@@ -199,8 +211,19 @@ public class PropertyPopupEditorConfigurationContribution extends PopupEditorCon
 					break;
 				}
 
-				UpdateUMLPropertyCommand updateCommand = new UpdateUMLPropertyCommand(property);
-
+				org.eclipse.gmf.runtime.common.core.command.CompositeCommand updateCommand = getUpdateCommand(property) ;
+				List<Property> editedObjects = new ArrayList<Property>() ; editedObjects.add(property) ;
+				TransactionalEditingDomain editingDomain = EMFUtils.getTransactionalEditingDomain(editedObjects);
+				
+				if(updateCommand.canExecute() && !(TransactionUtil.isReadTransactionInProgress(editingDomain, true, true))) {
+					try {
+						OperationHistoryFactory.getOperationHistory().execute(updateCommand, new NullProgressMonitor(), null);
+					} catch (ExecutionException e) {
+						log.error(e);
+					}
+					return;
+				}
+				
 				try {
 					OperationHistoryFactory.getOperationHistory().execute(updateCommand, new NullProgressMonitor(), null);
 				} catch (ExecutionException e) {
@@ -216,6 +239,53 @@ public class PropertyPopupEditorConfigurationContribution extends PopupEditorCon
 											new SemanticValidator());
 	}
 
+	private CompositeCommand getUpdateCommand(EObject editedObject) {
+		org.eclipse.gmf.runtime.common.core.command.CompositeCommand updateCommand = new CompositeCommand("Property update") ;
+		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(editedObject);
+		
+		SetRequest setIsDerivedRequest = new SetRequest(editedObject, UMLPackage.eINSTANCE.getProperty_IsDerived(), newIsDerived) ;
+		ICommand setIsDerivedCommand = provider.getEditCommand(setIsDerivedRequest) ;
+		updateCommand.add(setIsDerivedCommand) ;
+		
+		SetRequest setIsReadOnlyRequest = new SetRequest(editedObject, UMLPackage.eINSTANCE.getStructuralFeature_IsReadOnly(), newIsReadOnly) ;
+		ICommand setIsReadOnlyCommand = provider.getEditCommand(setIsReadOnlyRequest) ;
+		updateCommand.add(setIsReadOnlyCommand) ;
+
+		SetRequest setIsUniqueRequest = new SetRequest(editedObject, UMLPackage.eINSTANCE.getMultiplicityElement_IsUnique(), newIsUnique) ;
+		ICommand setIsUniqueCommand = provider.getEditCommand(setIsUniqueRequest) ;
+		updateCommand.add(setIsUniqueCommand) ;
+		
+		SetRequest setIsDerivedUnionRequest = new SetRequest(editedObject, UMLPackage.eINSTANCE.getProperty_IsDerivedUnion(), newIsUnion) ;
+		ICommand setIsDerivedUnionCommand = provider.getEditCommand(setIsDerivedUnionRequest) ;
+		updateCommand.add(setIsDerivedUnionCommand) ;
+
+		SetRequest setIsOrderedRequest = new SetRequest(editedObject, UMLPackage.eINSTANCE.getMultiplicityElement_IsOrdered(), newIsOrdered) ;
+		ICommand setIsOrderedCommand = provider.getEditCommand(setIsOrderedRequest) ;
+		updateCommand.add(setIsOrderedCommand) ;
+
+		SetRequest setLowerRequest = new SetRequest(editedObject, UMLPackage.eINSTANCE.getMultiplicityElement_Lower(), newLowerBound) ;
+		ICommand setLowerCommand = provider.getEditCommand(setLowerRequest) ;
+		updateCommand.add(setLowerCommand) ;
+		
+		SetRequest setUpperRequest = new SetRequest(editedObject, UMLPackage.eINSTANCE.getMultiplicityElement_Upper(), newUpperBound) ;
+		ICommand setUpperCommand = provider.getEditCommand(setUpperRequest) ;
+		updateCommand.add(setUpperCommand) ;
+		
+		SetRequest setNameRequest = new SetRequest(editedObject, UMLPackage.eINSTANCE.getNamedElement_Name(), newName) ;
+		ICommand setNameCommand = provider.getEditCommand(setNameRequest) ;
+		updateCommand.add(setNameCommand) ;
+
+		SetRequest setTypeRequest = new SetRequest(editedObject, UMLPackage.eINSTANCE.getTypedElement_Type(), newType) ;
+		ICommand setTypeCommand = provider.getEditCommand(setTypeRequest) ;
+		updateCommand.add(setTypeCommand) ;
+
+		SetRequest setVisibilityRequest = new SetRequest(editedObject, UMLPackage.eINSTANCE.getNamedElement_Visibility(), newVisibility) ;
+		ICommand setVisibilityCommand = provider.getEditCommand(setVisibilityRequest) ;
+		updateCommand.add(setVisibilityCommand) ;
+		
+		return updateCommand ;
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -229,47 +299,6 @@ public class PropertyPopupEditorConfigurationContribution extends PopupEditorCon
 			// TODO: either complete the grammar, or use another label provider
 		}
 		return "not a Property";
-	}
-
-
-
-	/**
-	 * @author CEA LIST
-	 * 
-	 *         A command for updating the context UML model
-	 */
-	protected class UpdateUMLPropertyCommand extends AbstractTransactionalCommand {
-
-		private Property property;
-
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see
-		 * org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor
-		 * , org.eclipse.core.runtime.IAdaptable)
-		 */
-		@Override
-		protected CommandResult doExecuteWithResult(IProgressMonitor arg0, IAdaptable arg1) throws ExecutionException {
-
-			this.property.setIsDerived(newIsDerived);
-			this.property.setIsReadOnly(newIsReadOnly);
-			this.property.setIsUnique(newIsUnique);
-			this.property.setIsDerivedUnion(newIsUnion);
-			this.property.setIsOrdered(newIsOrdered);
-			this.property.setLower(newLowerBound);
-			this.property.setUpper(newUpperBound);
-			this.property.setName(newName);
-			this.property.setType(newType);
-			this.property.setVisibility(newVisibility);
-			return CommandResult.newOKCommandResult(property);
-		}
-
-		public UpdateUMLPropertyCommand(Property property) {
-			super(EditorUtils.getTransactionalEditingDomain(), "Property Update", getWorkspaceFiles(property));
-			this.property = property;
-		}
-
 	}
 
 }
