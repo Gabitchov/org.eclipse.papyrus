@@ -1,6 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: org.eclipse.papyrus.def
+Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.def; singleton:=true
 Bundle-Version: 0.7.1.qualifier
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Vendor: %providerName

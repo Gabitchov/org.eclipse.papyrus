@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Papyrus Documenation and Help Plugin
+Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.doc;singleton:=true
 Bundle-Version: 0.7.1.qualifier
-Bundle-Vendor: CEA LIST
+Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.equinox.app,
  org.eclipse.ui,
  org.eclipse.help,
