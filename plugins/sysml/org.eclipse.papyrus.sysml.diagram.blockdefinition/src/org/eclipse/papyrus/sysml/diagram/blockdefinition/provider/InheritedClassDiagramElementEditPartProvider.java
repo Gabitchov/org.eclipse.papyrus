@@ -70,7 +70,7 @@ public class InheritedClassDiagramElementEditPartProvider extends CUMLEditPartPr
 			}
 
 			/** AssociationClass */
-			if(InheritedElementTypes.ASSOCIATION_CLASS.getSemanticHint().equals(hint) || InheritedElementTypes.ASSOCIATION_CLASS_NAME_LABEL_HINT.equals(hint) || InheritedElementTypes.ASSOCIATION_CLASS_COMPARTMENT_PROP_HINT.equals(hint) || InheritedElementTypes.ASSOCIATION_CLASS_COMPARTMENT_OPER_HINT.equals(hint) || InheritedElementTypes.ASSOCIATION_CLASS_COMPARTMENT_NEST_HINT.equals(hint) || InheritedElementTypes.ASSOCIATION_CLASS_PROPERTY_CLN.getSemanticHint().equals(hint) || InheritedElementTypes.COMPONENT_OPERATION_CLN.getSemanticHint().equals(hint) || InheritedElementTypes.COMPONENT_CLASS_CLN.getSemanticHint().equals(hint)) {
+			if(InheritedElementTypes.ASSOCIATION_CLASS.getSemanticHint().equals(hint) || InheritedElementTypes.ASSOCIATION_CLASS_LABEL_NAME2_HINT.equals(hint) || InheritedElementTypes.ASSOCIATION_CLASS_COMPARTMENT_ATTRIBUTE_HINT.equals(hint) || InheritedElementTypes.ASSOCIATION_CLASS_COMPARTMENT_OPERATION_HINT.equals(hint) || InheritedElementTypes.ASSOCIATION_CLASS_COMPARTMENT_NESTED_CLASSIFIER_HINT.equals(hint) || InheritedElementTypes.ASSOCIATION_CLASS_PROPERTY_CLN.getSemanticHint().equals(hint) || InheritedElementTypes.COMPONENT_OPERATION_CLN.getSemanticHint().equals(hint) || InheritedElementTypes.COMPONENT_CLASS_CLN.getSemanticHint().equals(hint)) {
 				return true;
 			}
 
@@ -165,7 +165,7 @@ public class InheritedClassDiagramElementEditPartProvider extends CUMLEditPartPr
 			}
 
 			/** AssociationClass */
-			if(InheritedElementTypes.ASSOCIATION_CLASS_EDGE.getSemanticHint().equals(hint) || InheritedElementTypes.ASSOCIATION_CLASS_NAME_LABEL_HINT.equals(hint) || InheritedElementTypes.ASSOCIATION_CLASS_EDGE_ROLE_SOURCE_LABEL_HINT.equals(hint) || InheritedElementTypes.ASSOCIATION_CLASS_EDGE_ROLE_TARGET_LABEL_HINT.equals(hint) || InheritedElementTypes.ASSOCIATION_CLASS_LINK.getSemanticHint().equals(hint)) {
+			if(InheritedElementTypes.ASSOCIATION_CLASS_EDGE.getSemanticHint().equals(hint) || InheritedElementTypes.ASSOCIATION_CLASS_LABEL_NAME2_HINT.equals(hint) || InheritedElementTypes.ASSOCIATION_CLASS_EDGE_ROLE_SOURCE_LABEL_HINT.equals(hint) || InheritedElementTypes.ASSOCIATION_CLASS_EDGE_ROLE_TARGET_LABEL_HINT.equals(hint) || InheritedElementTypes.ASSOCIATION_CLASS_LINK.getSemanticHint().equals(hint)) {
 				return true;
 			}
 

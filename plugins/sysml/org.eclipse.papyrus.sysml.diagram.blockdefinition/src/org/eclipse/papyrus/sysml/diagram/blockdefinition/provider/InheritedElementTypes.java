@@ -34,6 +34,21 @@ public class InheritedElementTypes extends AbstractElementTypeEnumerator {
 	/** ********************************************************* */
 
 
+	/** ClassDiagram :: ASSOCIATION_CLASS */
+	public static final IHintedType ASSOCIATION_CLASS = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.AssociationClass_2013"); //$NON-NLS-1$
+	
+	/** Class Diagram :: AssociationClass TopLevelNode */
+
+	public static final String ASSOCIATION_CLASS_LABEL_NAME2_HINT = "5066";
+
+	public static final String ASSOCIATION_CLASS_COMPARTMENT_ATTRIBUTE_HINT = "7034";
+
+	public static final String ASSOCIATION_CLASS_COMPARTMENT_OPERATION_HINT = "7036";
+
+	public static final String ASSOCIATION_CLASS_COMPARTMENT_NESTED_CLASSIFIER_HINT = "7037";
+
+
+	
 	/** Class Diagram :: Package ChildNode */
 	public static final IHintedType PACKAGE_CN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Package_3009"); //$NON-NLS-1$
 
@@ -208,22 +223,7 @@ public class InheritedElementTypes extends AbstractElementTypeEnumerator {
 
 	public static final String CONSTRAINT_SPEC_LABEL_HINT = "5159";
 
-	/** Class Diagram :: AssociationClass TopLevelNode */
-	public static final IHintedType ASSOCIATION_CLASS = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.AssociationClass_2013"); //$NON-NLS-1$
 
-	public static final String ASSOCIATION_CLASS_NAME_LABEL_HINT = "5066";
-
-	public static final String ASSOCIATION_CLASS_COMPARTMENT_PROP_HINT = "7034";
-
-	public static final String ASSOCIATION_CLASS_COMPARTMENT_OPER_HINT = "7036";
-
-	public static final String ASSOCIATION_CLASS_COMPARTMENT_NEST_HINT = "7037";
-
-	public static final IHintedType ASSOCIATION_CLASS_PROPERTY_CLN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Property_3002"); //$NON-NLS-1$
-
-	public static final IHintedType COMPONENT_OPERATION_CLN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Operation_3003"); //$NON-NLS-1$
-
-	public static final IHintedType COMPONENT_CLASS_CLN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Class_3004"); //$NON-NLS-1$
 
 	/** Class Diagram :: Dependency */
 	public static final IHintedType DEPENDENCY = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Dependency_4008"); //$NON-NLS-1$
@@ -305,4 +305,12 @@ public class InheritedElementTypes extends AbstractElementTypeEnumerator {
 
 	public static final String PORT_CN_STEREOTYPE_LABEL_HINT = "6029";
 	
+	
+	
+	public static final IHintedType ASSOCIATION_CLASS_PROPERTY_CLN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Property_3002"); //$NON-NLS-1$
+
+	public static final IHintedType COMPONENT_OPERATION_CLN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Operation_3003"); //$NON-NLS-1$
+
+	public static final IHintedType COMPONENT_CLASS_CLN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Class_3004"); //$NON-NLS-1$
+
 }
