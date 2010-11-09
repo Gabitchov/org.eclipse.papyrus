@@ -490,6 +490,15 @@
 		point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
 	
 	<specializationType
+		icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.BlockDefinition"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+		name="BlockDefinition">
+		<specializes id="org.eclipse.papyrus.diagram.clazz.Package_1000"/>
+		<param name="semanticHint" value="BlockDefinition"/>
+	</specializationType>
+
+	<specializationType
 		icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
 		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.Constraint"
 		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
