@@ -28,7 +28,7 @@ public class BlockPropertyCompartmentItemSemanticEditPolicy extends UMLBaseItemS
 	}
 
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if(BlockDefinitionDiagramElementTypes.CLASS_PROP_CLN == req.getElementType()) {
+		if(BlockDefinitionDiagramElementTypes.CLASS_PROPERTY_CLN == req.getElementType()) {
 			return getGEFWrapper(new Property4CreateCommand(req));
 		}
 

@@ -41,7 +41,7 @@ public class BlockEditPartProvider extends AbstractEditPartProvider {
 		nodeMap.put(BlockDefinitionDiagramElementTypes.BLOCK_REFERENCE_COMPARTMENT_HINT, BlockReferenceCompartmentEditPart.class);
 		nodeMap.put(BlockDefinitionDiagramElementTypes.BLOCK_VALUE_COMPARTMENT_HINT, BlockValueCompartmentEditPart.class);
 
-		nodeMap.put(BlockDefinitionDiagramElementTypes.CLASS_PROP_CLN.getSemanticHint(), BlockPropertyEditPart.class);
+		nodeMap.put(BlockDefinitionDiagramElementTypes.CLASS_PROPERTY_CLN.getSemanticHint(), BlockPropertyEditPart.class);
 		nodeMap.put(BlockDefinitionDiagramElementTypes.BLOCK_CONSTRAINT_CLN.getSemanticHint(), BlockConstraintEditPart.class);
 		nodeMap.put(BlockDefinitionDiagramElementTypes.BLOCK_PART_CLN.getSemanticHint(), BlockPartEditPart.class);
 	}
