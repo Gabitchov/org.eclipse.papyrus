@@ -49,12 +49,15 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.IdentityAnchor;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.diagram.common.commands.PreserveAnchorsPositionCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
+import org.eclipse.papyrus.diagram.sequence.part.Messages;
 import org.eclipse.papyrus.diagram.sequence.util.SequenceUtil;
+import org.eclipse.papyrus.ui.toolbox.notification.builders.NotificationBuilder;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Interaction;
@@ -342,6 +345,30 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 					} else {
 						compoundCmd.add(new ICommandProxy(SequenceUtil.getSetEnclosingInteractionCommand(combinedFragmentEditPart.getEditingDomain(), ift, cf.getEnclosingInteraction())));
 					}
+				}
+			}
+		}
+
+		// Print a user notification when we are not sure the command is appropriated
+		EObject combinedFragment = combinedFragmentEditPart.resolveSemanticElement();
+		if(combinedFragment instanceof CombinedFragment && !sizeDelta.equals(0, 0)) {
+			if(((CombinedFragment)combinedFragment).getOperands().size() > 1) {
+				// append a command which notifies
+				Command notifyCmd = new Command() {
+
+					@Override
+					public void execute() {
+						NotificationBuilder warning = NotificationBuilder.createAsyncPopup(Messages.Warning_ResizeInteractionOperandTitle, NLS.bind(Messages.Warning_ResizeInteractionOperandTxt, System.getProperty("line.separator")));
+						warning.run();
+					}
+
+					@Override
+					public void undo() {
+						execute();
+					}
+				};
+				if(notifyCmd.canExecute()) {
+					compoundCmd.add(notifyCmd);
 				}
 			}
 		}

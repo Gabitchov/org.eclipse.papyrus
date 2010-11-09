@@ -104,6 +104,20 @@ public class Messages extends NLS {
 	public static String DropError_UphillMessageTxt;
 
 	/**
+	 * Warning notification title when the resize of an interaction operand may have an erratic behavior
+	 * 
+	 * @generated NOT
+	 */
+	public static String Warning_ResizeInteractionOperandTitle;
+
+	/**
+	 * Warning notification message when the resize of an interaction operand may have an erratic behavior
+	 * 
+	 * @generated NOT
+	 */
+	public static String Warning_ResizeInteractionOperandTxt;
+
+	/**
 	 * @generated
 	 */
 	public static String UMLCreationWizardTitle;
