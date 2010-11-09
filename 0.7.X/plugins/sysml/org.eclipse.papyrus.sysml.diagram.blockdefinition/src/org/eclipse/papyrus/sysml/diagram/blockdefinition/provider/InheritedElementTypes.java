@@ -39,7 +39,7 @@ public class InheritedElementTypes extends AbstractElementTypeEnumerator {
 
 	public static final String ASSOCIATION_CLASS_COMPARTMENT_ATTRIBUTE_HINT = "7034";
 
-	public static final String ASSOCIATION_CLASS_COMPARTMENT_OPERATIONATION_HINT = "7036";
+	public static final String ASSOCIATION_CLASS_COMPARTMENT_OPERATION_HINT = "7036";
 
 	public static final String ASSOCIATION_CLASS_COMPARTMENT_NESTED_CLASSIFIER_HINT = "7037";
 
@@ -65,11 +65,11 @@ public class InheritedElementTypes extends AbstractElementTypeEnumerator {
 	public static final String ENUMERATION_CN_LABEL_NAME_HINT = "5055";
 
 	/** ClassDiagram :: DATA_TYPE */
-	public static final IHintedType DATA_TYPE = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.DATA_TYPE_2010"); //$NON-NLS-1$
+	public static final IHintedType DATA_TYPE = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.DataType_2010"); //$NON-NLS-1$
 
 	public static final String DATA_TYPE_COMPARTMENT_ATTRIBUTE_HINT = "7020";
 
-	public static final String DATA_TYPE_COMPARTMENT_OPERATIONATION_HINT = "7021";
+	public static final String DATA_TYPE_COMPARTMENT_OPERATION_HINT = "7021";
 
 	public static final String DATA_TYPE_LABEL_NAME_HINT = "5035";
 
@@ -78,7 +78,7 @@ public class InheritedElementTypes extends AbstractElementTypeEnumerator {
 
 	public static final String INTERFACE_COMPARTMENT_ATTRIBUTE_HINT = "7006";
 
-	public static final String INTERFACE_COMPARTMENT_OPERATIONATION_HINT = "7007";
+	public static final String INTERFACE_COMPARTMENT_OPERATION_HINT = "7007";
 
 	public static final String INTERFACE_COMPARTMENT_NESTED_CLASSIFIER_HINT = "7008";
 
@@ -121,15 +121,12 @@ public class InheritedElementTypes extends AbstractElementTypeEnumerator {
 
 	public static final String CLASS_LABEL_NAME_HINT = "5029";
 
-
-
 	/** ClassDiagram :: PACKAGE_CN */
 	public static final IHintedType PACKAGE_CN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Package_3009"); //$NON-NLS-1$
 
 	public static final String PACKAGE_CN_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT = "7010";
 
 	public static final String PACKAGE_CN_LABEL_NAME_HINT = "5017";
-
 
 	/** ClassDiagram :: MODEL_CN */
 	public static final IHintedType MODEL_CN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Model_3024"); //$NON-NLS-1$
@@ -143,7 +140,7 @@ public class InheritedElementTypes extends AbstractElementTypeEnumerator {
 
 	public static final String CLASS_CN_COMPARTMENT_ATTRIBUTE_HINT = "7011";
 
-	public static final String CLASS_CN_COMPARTMENT_OPERATIONATION_HINT = "7012";
+	public static final String CLASS_CN_COMPARTMENT_OPERATION_HINT = "7012";
 
 	public static final String CLASS_CN_COMPARTMENT_NESTED_CLASSIFIER_HINT = "7013";
 
@@ -165,9 +162,8 @@ public class InheritedElementTypes extends AbstractElementTypeEnumerator {
 
 	public static final String PRIMITIVE_TYPE_CN_LABEL_NAME_HINT = "5058";
 
-
 	/** ClassDiagram :: DATA_TYPE_CN */
-	public static final IHintedType DATA_TYPE_CN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.DATA_TYPE_3027"); //$NON-NLS-1$
+	public static final IHintedType DATA_TYPE_CN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.DataType_3027"); //$NON-NLS-1$
 
 	public static final String DATA_TYPE_CN_COMPARTMENT_ATTRIBUTE_HINT = "7032";
 
@@ -175,14 +171,12 @@ public class InheritedElementTypes extends AbstractElementTypeEnumerator {
 
 	public static final String DATA_TYPE_CN_LABEL_NAME_HINT = "5061";
 
-
 	/** ClassDiagram :: INSTANCE_SPECIFICATION_CN */
 	public static final IHintedType INSTANCE_SPECIFICATION_CN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.InstanceSpecification_3020"); //$NON-NLS-1$
 
 	public static final String INSTANCE_SPECIFICATION_CN_COMPARTMENT_SLOT_HINT = "7035";
 
 	public static final String INSTANCE_SPECIFICATION_CN_LABEL_NAME_HINT = "5040";
-
 
 	/** ClassDiagram :: COMMENT_CN */
 	public static final IHintedType COMMENT_CN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Comment_3028"); //$NON-NLS-1$
@@ -232,9 +226,6 @@ public class InheritedElementTypes extends AbstractElementTypeEnumerator {
 	public static final IHintedType CLASS_OPERATION_CLN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Operation_3013"); //$NON-NLS-1$
 
 	public static final IHintedType CLASS_CLASS_CLN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Class_3014"); //$NON-NLS-1$
-
-
-
 
 
 	/** Class Diagram :: Enumeration TopLevelNode */

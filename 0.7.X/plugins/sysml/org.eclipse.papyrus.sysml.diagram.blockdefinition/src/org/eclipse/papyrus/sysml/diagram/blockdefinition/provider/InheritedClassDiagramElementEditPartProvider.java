@@ -56,12 +56,12 @@ public class InheritedClassDiagramElementEditPartProvider extends CUMLEditPartPr
 				return true;
 			}
 
-			if(InheritedElementTypes.CLASS_CN.getSemanticHint().equals(hint) || InheritedElementTypes.CLASS_CN_LABEL_NAME_HINT.equals(hint) || InheritedElementTypes.CLASS_CN_COMPARTMENT_ATTRIBUTE_HINT.equals(hint) || InheritedElementTypes.CLASS_CN_COMPARTMENT_OPERATIONATION_HINT.equals(hint) || InheritedElementTypes.CLASS_CN_COMPARTMENT_NESTED_CLASSIFIER_HINT.equals(hint)) {
+			if(InheritedElementTypes.CLASS_CN.getSemanticHint().equals(hint) || InheritedElementTypes.CLASS_CN_LABEL_NAME_HINT.equals(hint) || InheritedElementTypes.CLASS_CN_COMPARTMENT_ATTRIBUTE_HINT.equals(hint) || InheritedElementTypes.CLASS_CN_COMPARTMENT_OPERATION_HINT.equals(hint) || InheritedElementTypes.CLASS_CN_COMPARTMENT_NESTED_CLASSIFIER_HINT.equals(hint)) {
 				return true;
 			}
 
 			/** Interface */
-			if(InheritedElementTypes.INTERFACE.getSemanticHint().equals(hint) || InheritedElementTypes.INTERFACE_LABEL_NAME_HINT.equals(hint) || InheritedElementTypes.INTERFACE_COMPARTMENT_ATTRIBUTE_HINT.equals(hint) || InheritedElementTypes.INTERFACE_COMPARTMENT_OPERATIONATION_HINT.equals(hint) || InheritedElementTypes.INTERFACE_COMPARTMENT_NESTED_CLASSIFIER_HINT.equals(hint) || InheritedElementTypes.INTERFACE_PROPERTY_CLN.getSemanticHint().equals(hint) || InheritedElementTypes.INTERFACE_OPERATION_CLN.getSemanticHint().equals(hint) || InheritedElementTypes.INTERFACE_CLASS_CLN.getSemanticHint().equals(hint)) {
+			if(InheritedElementTypes.INTERFACE.getSemanticHint().equals(hint) || InheritedElementTypes.INTERFACE_LABEL_NAME_HINT.equals(hint) || InheritedElementTypes.INTERFACE_COMPARTMENT_ATTRIBUTE_HINT.equals(hint) || InheritedElementTypes.INTERFACE_COMPARTMENT_OPERATION_HINT.equals(hint) || InheritedElementTypes.INTERFACE_COMPARTMENT_NESTED_CLASSIFIER_HINT.equals(hint) || InheritedElementTypes.INTERFACE_PROPERTY_CLN.getSemanticHint().equals(hint) || InheritedElementTypes.INTERFACE_OPERATION_CLN.getSemanticHint().equals(hint) || InheritedElementTypes.INTERFACE_CLASS_CLN.getSemanticHint().equals(hint)) {
 				return true;
 			}
 
@@ -70,12 +70,12 @@ public class InheritedClassDiagramElementEditPartProvider extends CUMLEditPartPr
 			}
 
 			/** AssociationClass */
-			if(InheritedElementTypes.ASSOCIATION_CLASS.getSemanticHint().equals(hint) || InheritedElementTypes.ASSOCIATION_CLASS_LABEL_NAME2_HINT.equals(hint) || InheritedElementTypes.ASSOCIATION_CLASS_COMPARTMENT_ATTRIBUTE_HINT.equals(hint) || InheritedElementTypes.ASSOCIATION_CLASS_COMPARTMENT_OPERATIONATION_HINT.equals(hint) || InheritedElementTypes.ASSOCIATION_CLASS_COMPARTMENT_NESTED_CLASSIFIER_HINT.equals(hint) || InheritedElementTypes.ASSOCIATION_CLASS_PROPERTY_CLN.getSemanticHint().equals(hint) || InheritedElementTypes.COMPONENT_OPERATION_CLN.getSemanticHint().equals(hint) || InheritedElementTypes.COMPONENT_CLASS_CLN.getSemanticHint().equals(hint)) {
+			if(InheritedElementTypes.ASSOCIATION_CLASS.getSemanticHint().equals(hint) || InheritedElementTypes.ASSOCIATION_CLASS_LABEL_NAME2_HINT.equals(hint) || InheritedElementTypes.ASSOCIATION_CLASS_COMPARTMENT_ATTRIBUTE_HINT.equals(hint) || InheritedElementTypes.ASSOCIATION_CLASS_COMPARTMENT_OPERATION_HINT.equals(hint) || InheritedElementTypes.ASSOCIATION_CLASS_COMPARTMENT_NESTED_CLASSIFIER_HINT.equals(hint) || InheritedElementTypes.ASSOCIATION_CLASS_PROPERTY_CLN.getSemanticHint().equals(hint) || InheritedElementTypes.COMPONENT_OPERATION_CLN.getSemanticHint().equals(hint) || InheritedElementTypes.COMPONENT_CLASS_CLN.getSemanticHint().equals(hint)) {
 				return true;
 			}
 
 			/** DATA_TYPE */
-			if(InheritedElementTypes.DATA_TYPE.getSemanticHint().equals(hint) || InheritedElementTypes.DATA_TYPE_LABEL_NAME_HINT.equals(hint) || InheritedElementTypes.DATA_TYPE_COMPARTMENT_ATTRIBUTE_HINT.equals(hint) || InheritedElementTypes.DATA_TYPE_COMPARTMENT_OPERATIONATION_HINT.equals(hint) || InheritedElementTypes.DATA_TYPE_PROPERTY_CLN.getSemanticHint().equals(hint) || InheritedElementTypes.DATA_TYPE_OPERATION_CLN.getSemanticHint().equals(hint)) {
+			if(InheritedElementTypes.DATA_TYPE.getSemanticHint().equals(hint) || InheritedElementTypes.DATA_TYPE_LABEL_NAME_HINT.equals(hint) || InheritedElementTypes.DATA_TYPE_COMPARTMENT_ATTRIBUTE_HINT.equals(hint) || InheritedElementTypes.DATA_TYPE_COMPARTMENT_OPERATION_HINT.equals(hint) || InheritedElementTypes.DATA_TYPE_PROPERTY_CLN.getSemanticHint().equals(hint) || InheritedElementTypes.DATA_TYPE_OPERATION_CLN.getSemanticHint().equals(hint)) {
 				return true;
 			}
 
