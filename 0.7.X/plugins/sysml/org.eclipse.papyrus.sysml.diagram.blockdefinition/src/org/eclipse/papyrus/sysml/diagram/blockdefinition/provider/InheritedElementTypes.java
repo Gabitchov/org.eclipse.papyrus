@@ -15,23 +15,8 @@ import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 public class InheritedElementTypes extends AbstractElementTypeEnumerator {
 
 	/** ********************************************************* */
-	/** Block Definition Diagram - Class Diagram related elements */
-	/**
-	 * Top level nodes:
-	 * 
-	 * AssociationClass_2013
-	 * Class_2008
-	 * Comment_2012
-	 * Constraint_2011
-	 * DATA_TYPE_2010
-	 * Enumeration_2006
-	 * Interface_2004
-	 * InstanceSpecification_2001
-	 * Model_2005
-	 * Package_2007
-	 * PrimitiveType_2009
-	 * 
-	 */
+	/** SysML Block Definition Diagram - ClassDiagram related elements */
+	/** ********************************************************* */
 
 
 	/** ClassDiagram :: ASSOCIATION_CLASS */
@@ -219,7 +204,6 @@ public class InheritedElementTypes extends AbstractElementTypeEnumerator {
 
 	public static final String INTERFACE_REALIZATION_LABEL_NAME2_HINT = "6009";
 
-
 	/** ClassDiagram :: GENERALIZATION */
 	public static final IHintedType GENERALIZATION = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Generalization_4002"); //$NON-NLS-1$
 
@@ -234,11 +218,13 @@ public class InheritedElementTypes extends AbstractElementTypeEnumerator {
 
 	public static final String ASSOCIATION_LABEL_NAME3_HINT = "6003";
 
-	public static final String SSOCIATION_LABEL_NAME5_HINT = "6005";
+	public static final String ASSOCIATION_LABEL_NAME5_HINT = "6005";
 
 	public static final String ASSOCIATION_LABEL_MULTIPLICTY_SOURCE_HINT = "6033";
 
 	public static final String ASSOCIATION_LABEL_MULTIPLICTY_TARGET_HINT = "6034";
+
+
 
 	/** ClassDiagram :: COMMENT_ANNOTATED_ELEMENT */
 	public static final IHintedType COMMENT_ANNOTATED_ELEMENT = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.CommentAnnotatedElement_4013"); //$NON-NLS-1$
@@ -281,12 +267,13 @@ public class InheritedElementTypes extends AbstractElementTypeEnumerator {
 	public static final String ASSOCIATION_CLASS_EDGE_ROLE_SOURCE_LABEL_HINT = "6031";
 
 	public static final String ASSOCIATION_CLASS_EDGE_ROLE_TARGET_LABEL_HINT = "6032";
-//	/** ClassDiagram :: ASSOCIATION_CLASS */
-//	Duplicate class names
-//	public static final IHintedType ASSOCIATION_CLASS = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.AssociationClass_4017"); //$NON-NLS-1$
-//	public static final String ASSOCIATION_CLASS_LABEL_ROLE_SOURCE_HINT = "6031";
-//	public static final String ASSOCIATION_CLASS_LABEL_ROLE_TARGET_HINT = "6032";
-	
+
+	//	/** ClassDiagram :: ASSOCIATION_CLASS */
+	//	Duplicate class names
+	//	public static final IHintedType ASSOCIATION_CLASS = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.AssociationClass_4017"); //$NON-NLS-1$
+	//	public static final String ASSOCIATION_CLASS_LABEL_ROLE_SOURCE_HINT = "6031";
+	//	public static final String ASSOCIATION_CLASS_LABEL_ROLE_TARGET_HINT = "6032";
+
 
 
 	/** Class Diagram :: GeneralizationSet */
