@@ -133,6 +133,34 @@ public class InheritedElementTypes extends AbstractElementTypeEnumerator {
 
 	public static final String DEPENDENCY_LABEL_APPLIED_STEREOTYPE_HINT = "6027";
 
+	/** ClassDiagram :: ChildLabelNodes */
+	public static final IHintedType ASSOCIATION_CLASS_PROPERTY_CLN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Property_3002"); //$NON-NLS-1$
+
+	public static final IHintedType COMPONENT_OPERATION_CLN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Operation_3003"); //$NON-NLS-1$
+
+	public static final IHintedType COMPONENT_CLASS_CLN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Class_3004"); //$NON-NLS-1$
+
+	public static final IHintedType ENUMERATION_ENUMERATION_LITERAL_CLN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.EnumerationLiteral_3017"); //$NON-NLS-1$
+
+	public static final IHintedType DATA_TYPE_PROPERTY_CLN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Property_3018"); //$NON-NLS-1$
+
+	public static final IHintedType DATA_TYPE_OPERATION_CLN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Operation_3019"); //$NON-NLS-1$
+
+	public static final IHintedType INTERFACE_PROPERTY_CLN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Property_3006"); //$NON-NLS-1$
+
+	public static final IHintedType INTERFACE_OPERATION_CLN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Operation_3007"); //$NON-NLS-1$
+
+	public static final IHintedType INTERFACE_CLASS_CLN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Class_3008"); //$NON-NLS-1$
+
+	public static final IHintedType INSTANCE_SPECIFICATION_SLOT_CLN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Slot_3030"); //$NON-NLS-1$
+
+	public static final IHintedType CLASS_PROPERTY_CLN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Property_3012"); //$NON-NLS-1$
+
+	public static final IHintedType CLASS_RECEPTION_CLN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Reception_3011"); //$NON-NLS-1$
+
+	public static final IHintedType CLASS_OPERATION_CLN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Operation_3013"); //$NON-NLS-1$
+
+	public static final IHintedType CLASS_CLASS_CLN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Class_3014"); //$NON-NLS-1$
 
 
 
@@ -301,34 +329,6 @@ public class InheritedElementTypes extends AbstractElementTypeEnumerator {
 
 
 
-	/** ClassDiagram :: ChildLabelNodes */
-	public static final IHintedType ASSOCIATION_CLASS_PROPERTY_CLN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Property_3002"); //$NON-NLS-1$
-
-	public static final IHintedType COMPONENT_OPERATION_CLN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Operation_3003"); //$NON-NLS-1$
-
-	public static final IHintedType COMPONENT_CLASS_CLN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Class_3004"); //$NON-NLS-1$
-
-	public static final IHintedType ENUMERATION_ENUMERATION_LITERAL_CLN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.EnumerationLiteral_3017"); //$NON-NLS-1$
-
-	public static final IHintedType DATA_TYPE_PROPERTY_CLN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Property_3018"); //$NON-NLS-1$
-
-	public static final IHintedType DATA_TYPE_OPERATION_CLN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Operation_3019"); //$NON-NLS-1$
-
-	public static final IHintedType INTERFACE_PROPERTY_CLN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Property_3006"); //$NON-NLS-1$
-
-	public static final IHintedType INTERFACE_OPERATION_CLN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Operation_3007"); //$NON-NLS-1$
-
-	public static final IHintedType INTERFACE_CLASS_CLN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Class_3008"); //$NON-NLS-1$
-
-	public static final IHintedType INSTANCE_SPECIFICATION_SLOT_CLN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Slot_3030"); //$NON-NLS-1$
-
-	public static final IHintedType CLASS_PROPERTY_CLN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Property_3012"); //$NON-NLS-1$
-
-	public static final IHintedType CLASS_RECEPTION_CLN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Reception_3011"); //$NON-NLS-1$
-
-	public static final IHintedType CLASS_OPERATION_CLN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Operation_3013"); //$NON-NLS-1$
-
-	public static final IHintedType CLASS_CLASS_CLN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Class_3014"); //$NON-NLS-1$
 
 
 }
