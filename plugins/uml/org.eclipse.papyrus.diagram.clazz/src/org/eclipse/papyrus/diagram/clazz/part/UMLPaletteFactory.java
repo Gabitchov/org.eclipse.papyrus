@@ -824,7 +824,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 */
 	private Tool createInstanceSpecificationLinkCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.Link_4021);
+		types.add(UMLElementTypes.InstanceSpecification_4021);
 
 		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
 		return tool;

@@ -13,12 +13,15 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.custom.policies;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
@@ -30,10 +33,12 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.helper.AssociationClassHelper;
 import org.eclipse.papyrus.diagram.clazz.custom.helper.ClassLinkMappingHelper;
 import org.eclipse.papyrus.diagram.clazz.custom.helper.ContainmentHelper;
+import org.eclipse.papyrus.diagram.clazz.custom.helper.InstanceSpecificationLinkHelper;
 import org.eclipse.papyrus.diagram.clazz.custom.helper.MultiAssociationHelper;
 import org.eclipse.papyrus.diagram.clazz.custom.helper.MultiDependencyHelper;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassEditPart;
@@ -43,6 +48,8 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.Class5EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Dependency2EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationLinkEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceRealizationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPartTN;
@@ -57,6 +64,7 @@ import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.AssociationClass;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.TemplateBinding;
 import org.eclipse.uml2.uml.internal.impl.ClassifierImpl;
@@ -96,6 +104,8 @@ public class ClassDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdit
 		droppableElementsVisualID.add(ModelEditPartTN.VISUAL_ID);
 		droppableElementsVisualID.add(ClassEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(PackageEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(InstanceSpecificationEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(InstanceSpecificationLinkEditPart.VISUAL_ID);
 
 		return droppableElementsVisualID;
 	}
@@ -104,6 +114,10 @@ public class ClassDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdit
 	 * {@inheritedDoc}
 	 */
 	protected Command getSpecificDropCommand(DropObjectsRequest dropRequest, Element semanticLink, int nodeVISUALID, int linkVISUALID) {
+		if(nodeVISUALID== InstanceSpecificationEditPart.VISUAL_ID||linkVISUALID ==InstanceSpecificationLinkEditPart.VISUAL_ID) {
+			return dropInstanceSpecification(dropRequest, semanticLink, linkVISUALID);
+		}
+
 		if(linkVISUALID == InterfaceRealizationEditPart.VISUAL_ID) {
 			return dropInterfaceRealization(dropRequest, semanticLink, linkVISUALID);
 		}
@@ -131,7 +145,45 @@ public class ClassDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdit
 		}
 	}
 
-	
+
+/**
+ * drop a instance specification as a link or as a node
+ * @param dropRequest the drop request
+ * @param semanticLink the element
+ * @param linkVISUALID the visualID
+ * @return the command in charge of the drop
+ */
+	protected Command dropInstanceSpecification(DropObjectsRequest dropRequest, Element semanticLink, int linkVISUALID) {
+		if( semanticLink instanceof InstanceSpecification){
+			if( ((InstanceSpecification)semanticLink).getClassifiers().size()>0){
+				if(((InstanceSpecification)semanticLink).getClassifiers().get(0)instanceof Association){
+					//DROP AS LINK
+					ArrayList<InstanceSpecification> endTypes=InstanceSpecificationLinkHelper.getEnds(((InstanceSpecification)semanticLink));
+					if( endTypes.size()>0){		
+						Element source = endTypes.get(0);
+						Element target = endTypes.get(1);
+						return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Instance"), source, target, InstanceSpecificationLinkEditPart.VISUAL_ID, dropRequest.getLocation(), semanticLink));
+					}
+				}
+
+			}
+			//DROP AS A NODE
+			EObject graphicalParent = ((GraphicalEditPart)getHost()).resolveSemanticElement();
+			Point location = getTranslatedLocation(dropRequest);
+			// Restrict the default node creation to the following cases:
+			// . Take the containment relationship into consideration
+			// . Release the constraint when GraphicalParent is a diagram
+			if(getHost().getModel() instanceof Diagram) {
+				return new ICommandProxy(getDefaultDropNodeCommand(InstanceSpecificationEditPart.VISUAL_ID, location, semanticLink));
+
+			} else if((graphicalParent instanceof Element) && ((Element)graphicalParent).getOwnedElements().contains(semanticLink)) {
+				return new ICommandProxy(getDefaultDropNodeCommand(InstanceSpecificationEditPart.VISUAL_ID, location, semanticLink));
+
+			}
+
+		}
+		return UnexecutableCommand.INSTANCE;
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -307,7 +359,7 @@ public class ClassDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdit
 		dropBinaryLink(cc, source, target, linkVISUALID, dropRequest.getLocation(), semanticLink);
 		return new ICommandProxy(cc);
 	}
-	
+
 	/**
 	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.DiagramDragDropEditPolicy#getDropCommand(org.eclipse.gef.requests.ChangeBoundsRequest)
@@ -333,7 +385,7 @@ public class ClassDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdit
 		if (cmd == null || !cmd.canExecute()) {
 			return getDropObjectsCommand(castToDropObjectsRequest(request));
 		}
-		
+
 		return cmd;
 	}
 

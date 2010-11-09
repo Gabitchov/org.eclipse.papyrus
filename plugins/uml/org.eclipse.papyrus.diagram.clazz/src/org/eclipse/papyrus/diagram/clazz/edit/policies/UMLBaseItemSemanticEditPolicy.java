@@ -60,6 +60,7 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ElementImport;
 import org.eclipse.uml2.uml.Generalization;
 import org.eclipse.uml2.uml.GeneralizationSet;
+import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.InterfaceRealization;
 import org.eclipse.uml2.uml.NamedElement;
@@ -71,6 +72,7 @@ import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.ProfileApplication;
 import org.eclipse.uml2.uml.Realization;
+import org.eclipse.uml2.uml.Slot;
 import org.eclipse.uml2.uml.Substitution;
 import org.eclipse.uml2.uml.TemplateBinding;
 import org.eclipse.uml2.uml.TemplateableElement;
@@ -512,8 +514,8 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public boolean canCreateLink_4021() {
-			return canExistLink_4021();
+		public boolean canCreateInstanceSpecification_4021(Package container, Slot source, Slot target) {
+			return canExistInstanceSpecification_4021(container, null, source, target);
 		}
 
 		/**
@@ -699,7 +701,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public boolean canExistLink_4021() {
+		public boolean canExistInstanceSpecification_4021(Package container, InstanceSpecification linkInstance, Slot source, Slot target) {
 			return true;
 		}
 

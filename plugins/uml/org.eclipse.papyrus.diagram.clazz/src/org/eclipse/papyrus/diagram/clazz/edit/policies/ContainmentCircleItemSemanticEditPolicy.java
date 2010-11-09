@@ -43,8 +43,6 @@ import org.eclipse.papyrus.diagram.clazz.edit.commands.DependencyCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.DependencyReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.RealizationCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.RealizationReorientCommand;
-import org.eclipse.papyrus.diagram.clazz.edit.commands.TemplateBindingCreateCommand;
-import org.eclipse.papyrus.diagram.clazz.edit.commands.TemplateBindingReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.UsageCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.UsageReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AbstractionEditPart;
@@ -56,7 +54,6 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintConstrainedElement
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyBranchEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.RealizationEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.TemplateBindingEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.UsageEditPart;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.common.command.wrappers.EMFtoGMFCommandWrapper;
