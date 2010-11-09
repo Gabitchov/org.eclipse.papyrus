@@ -135,7 +135,7 @@ public class InheritedClassDiagramElementEditPartProvider extends CUMLEditPartPr
 			/** Edges *********** */
 
 			/** Dependency */
-			if(InheritedElementTypes.DEPENDENCY.getSemanticHint().equals(hint) || InheritedElementTypes.DEPENDENCY_LABEL_NAME_HINT.equals(hint) || InheritedElementTypes.DEPENDENCY_STEREOTYPE_LABEL_HINT.equals(hint)) {
+			if(InheritedElementTypes.DEPENDENCY.getSemanticHint().equals(hint) || InheritedElementTypes.DEPENDENCY_LABEL_NAME_HINT.equals(hint) || InheritedElementTypes.DEPENDENCY_LABEL_APPLIED_STEREOTYPE_HINT.equals(hint)) {
 				return true;
 			}
 
