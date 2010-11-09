@@ -158,21 +158,74 @@ public class InheritedElementTypes extends AbstractElementTypeEnumerator {
 
 	public static final IHintedType CLASS_CLASS_CLN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Class_3014"); //$NON-NLS-1$
 
-	/** Class Diagram :: Package ChildNode */
+
+	/**
+	 * "2007, 3009" = Package
+	 * "2005, 3024" = Model
+	 * "2008, 3010" = Class
+	 * "2004, 3023" = Interface
+	 * "2009, 3026" = PrimitiveType
+	 * "2010, 3027" = DataType
+	 * "2006, 3025" = Enumeration
+	 * "2001, 3020" = InstanceSpecification
+	 * "2013" = AssociationClass
+	 * "2012, 3028" = Comment
+	 * "2011, 3029" = Constraint
+	 * "3032" = ContainmentCircle
+	 * "3018, 3012, 3006, 3002" = Property CLN
+	 * "3019, 3013, 3007, 3003" = Operation CLN
+	 * "3011" = Reception CLN
+	 * "3014, 3008, 3004" = Class CLN
+	 * "3017" = EnumerationLiteral CLN
+	 * "3030" = Slot CLN
+	 * 
+	 * 
+	 */
+
+	/** ClassDiagram :: PACKAGE_CN */
 	public static final IHintedType PACKAGE_CN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Package_3009"); //$NON-NLS-1$
+
+	public static final String PACKAGE_CN_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT = "7010";
 
 	public static final String PACKAGE_CN_LABEL_NAME_HINT = "5017";
 
-	public static final String PACKAGE_CN_COMPARTMENT_HINT = "7010";
 
-	/** Class Diagram :: Model ChildNode */
+	/** ClassDiagram :: MODEL_CN */
 	public static final IHintedType MODEL_CN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Model_3024"); //$NON-NLS-1$
+
+	public static final String MODEL_CN_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT = "7030";
 
 	public static final String MODEL_CN_LABEL_NAME_HINT = "5052";
 
-	public static final String MODEL_CN_COMPARTMENT_HINT = "7030";
+	/** ClassDiagram :: CLASS_CN */
+	public static final IHintedType CLASS_CN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Class_3010"); //$NON-NLS-1$
+
+	public static final String CLASS_CN_COMPARTMENT_ATTRIBUTE_HINT = "7011";
+
+	public static final String CLASS_CN_COMPARTMENT_OPERATION_HINT = "7012";
+
+	public static final String CLASS_CN_COMPARTMENT_NESTED_CLASSIFIER_HINT = "7013";
+
+	public static final String CLASS_CN_LABEL_NAME_HINT = "5014";
+
+	/** ClassDiagram :: INTERFACE_CN */
+	public static final IHintedType INTERFACE_CN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Interface_3023"); //$NON-NLS-1$
+	public static final String INTERFACE_CN_COMPARTMENT_ATTRIBUTE_HINT = "7027";
+	public static final String INTERFACE_CN_COMPARTMENT_OPERATION_HINT = "7028";
+	public static final String INTERFACE_CN_COMPARTMENT_NESTED_CLASSIFIER_HINT = "7029";
 
 
+	public static final String INTERFACE_CN_COMPARTMENT_PROP_HINT = "7027";
+
+	public static final String INTERFACE_CN_COMPARTMENT_OPER_HINT = "7028";
+
+	public static final String INTERFACE_CN_COMPARTMENT_NEST_HINT = "7029";
+	
+	public static final String INTERFACE_CN_LABEL_NAME_HINT = "5049";
+	
+	
+	
+	
 	/** Class Diagram :: DataType ChildNode */
 	public static final IHintedType DATATYPE_CN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.DataType_3027"); //$NON-NLS-1$
 
@@ -195,28 +248,8 @@ public class InheritedElementTypes extends AbstractElementTypeEnumerator {
 
 	public static final String ENUMERATION_COMPARTMENT_LITERAL_HINT = "7015";
 
-	/** Class Diagram :: Class ChildNode */
-	public static final IHintedType CLASS_CN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Class_3010"); //$NON-NLS-1$
-
-	public static final String CLASS_CN_LABEL_NAME_HINT = "5014";
-
-	public static final String CLASS_CN_COMPARTMENT_PROP_HINT = "7011";
-
-	public static final String CLASS_CN_COMPARTMENT_OPER_HINT = "7012";
-
-	public static final String CLASS_CN_COMPARTMENT_NEST_HINT = "7013";
 
 
-	/** Class Diagram :: Interface ChildNode */
-	public static final IHintedType INTERFACE_CN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Interface_3023"); //$NON-NLS-1$
-
-	public static final String INTERFACE_CN_LABEL_NAME_HINT = "5049";
-
-	public static final String INTERFACE_CN_COMPARTMENT_PROP_HINT = "7027";
-
-	public static final String INTERFACE_CN_COMPARTMENT_OPER_HINT = "7028";
-
-	public static final String INTERFACE_CN_COMPARTMENT_NEST_HINT = "7029";
 
 
 	/** Class Diagram :: PrimitiveType ChildNode */
