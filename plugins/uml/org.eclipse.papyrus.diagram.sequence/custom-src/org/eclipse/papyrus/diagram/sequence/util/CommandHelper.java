@@ -621,7 +621,7 @@ public class CommandHelper {
 
 	/**
 	 * Create a CoRegion element :
-	 * a CombinedFragment with InteractionOperator set to 'Parallel' and with at least two InteractionOperand
+	 * a CombinedFragment with InteractionOperator set to 'Parallel'
 	 * 
 	 * @param modelContainer
 	 *        the parent element of the CoRegion
@@ -632,14 +632,18 @@ public class CommandHelper {
 	public static CombinedFragment doCreateCoRegion(Object modelContainer, Lifeline coveredLifeline) {
 
 		// Create a Parallel CombinedFragment
-		CombinedFragment combinedFragment = doCreateCombinedFragment(modelContainer, InteractionOperatorKind.PAR_LITERAL, Collections.singletonList(coveredLifeline));
+		Element element = createElement(modelContainer, UMLPackage.eINSTANCE.getCombinedFragment());
+		if(element instanceof CombinedFragment) {
+			CombinedFragment combinedFragment = (CombinedFragment)element;
+			combinedFragment = (CombinedFragment)element;
+			combinedFragment.getCovereds().add(coveredLifeline);
 
-		if(combinedFragment != null) {
+			// Set the operator kind
+			combinedFragment.setInteractionOperator(InteractionOperatorKind.PAR_LITERAL);
 
-			// Create a second operand
-			createCoRegionInteractionOperand(combinedFragment);
+			return combinedFragment;
 		}
-		return combinedFragment;
+		return null;
 	}
 
 
