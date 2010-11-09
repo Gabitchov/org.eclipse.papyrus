@@ -75,11 +75,11 @@ public class BlockDefinitionDiagramVisualIDRegistry {
 			}
 
 			if(domainElement instanceof org.eclipse.uml2.uml.PrimitiveType) {
-				return BlockDefinitionDiagramElementTypes.PRIMITIVETYPE.getSemanticHint();
+				return BlockDefinitionDiagramElementTypes.PRIMITIVE_TYPE.getSemanticHint();
 			}
 
 			if(domainElement instanceof org.eclipse.uml2.uml.DataType) {
-				return BlockDefinitionDiagramElementTypes.DATATYPE.getSemanticHint();
+				return BlockDefinitionDiagramElementTypes.DATA_TYPE.getSemanticHint();
 			}
 
 			if(domainElement instanceof org.eclipse.uml2.uml.Constraint) {
@@ -121,7 +121,7 @@ public class BlockDefinitionDiagramVisualIDRegistry {
 		};
 
 
-		if(BlockDefinitionDiagramElementTypes.DATATYPE.getSemanticHint().equals(containerVisualID)) {
+		if(BlockDefinitionDiagramElementTypes.DATA_TYPE.getSemanticHint().equals(containerVisualID)) {
 
 		};
 

@@ -72,7 +72,7 @@ public class InheritedElementTypes extends AbstractElementTypeEnumerator {
 	public static final String DATATYPE_CN_COMPARTMENT_OPER_HINT = "7033";
 
 	/** Class Diagram :: DataType TopLevelNode */
-	public static final IHintedType DATATYPE = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.DataType_2010"); //$NON-NLS-1$
+	public static final IHintedType DATA_TYPE = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.DataType_2010"); //$NON-NLS-1$
 
 	public static final String DATATYPE_NAME_LABEL_HINT = "5035";
 
@@ -164,7 +164,7 @@ public class InheritedElementTypes extends AbstractElementTypeEnumerator {
 	public static final String PRIMITIVETYPE_CN_NAME_LABEL_HINT = "5058";
 
 	/** Class Diagram :: PrimitiveType TopLevelNode */
-	public static final IHintedType PRIMITIVETYPE = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.PrimitiveType_2009"); //$NON-NLS-1$
+	public static final IHintedType PRIMITIVE_TYPE = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.PrimitiveType_2009"); //$NON-NLS-1$
 
 	public static final String PRIMITIVETYPE_NAME_LABEL_HINT = "5032";
 
