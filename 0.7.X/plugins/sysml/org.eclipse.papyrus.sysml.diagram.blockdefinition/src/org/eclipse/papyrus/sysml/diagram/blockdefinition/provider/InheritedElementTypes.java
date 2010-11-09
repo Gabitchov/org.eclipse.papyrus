@@ -237,45 +237,51 @@ public class InheritedElementTypes extends AbstractElementTypeEnumerator {
 
 
 
-
-	/** Class Diagram :: Usage */
+	/** ClassDiagram :: USAGE */
 	public static final IHintedType USAGE = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Usage_4007"); //$NON-NLS-1$
 
 	public static final String USAGE_LABEL_NAME_HINT = "6016";
 
-	public static final String USAGE_STEREOTYPE_LABEL_HINT = "6017";
+	public static final String USAGE_LABEL_APPLIED_STEREOTYPE_HINT = "6017";
 
-	/** Class Diagram :: InterfaceRealization */
+	/** ClassDiagram :: INTERFACE_REALIZATION */
 	public static final IHintedType INTERFACE_REALIZATION = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.InterfaceRealization_4003"); //$NON-NLS-1$
 
-	public static final String INTERFACE_REALIZATION_LABEL_NAME_HINT = "6009";
+	public static final String INTERFACE_REALIZATION_LABEL_APPLIED_STEREOTYPE_HINT = "6008";
 
-	public static final String INTERFACE_REALIZATION_STEREOTYPE_LABEL_HINT = "6008";
+	public static final String INTERFACE_REALIZATION_LABEL_NAME2_HINT = "6009";
 
-	/** Class Diagram :: Generalization */
+
+	/** ClassDiagram :: GENERALIZATION */
 	public static final IHintedType GENERALIZATION = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Generalization_4002"); //$NON-NLS-1$
 
-	public static final String GENERALIZATION_STEREOTYPE_LABEL_HINT = "6007";
+	public static final String GENERALIZATION_LABEL_APPLIED_STEREOTYPER_HINT = "6007";
+
+	/** ClassDiagram :: ASSOCIATION */
+	public static final IHintedType ASSOCIATION = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Association_4001"); //$NON-NLS-1$
+
+	public static final String ASSOCIATION_LABEL_APPLIED_STEREOTYPE_HINT = "6001";
+
+	public static final String ASSOCIATION_LABEL_NAME2_HINT = "6002";
+
+	public static final String ASSOCIATION_LABEL_NAME3_HINT = "6003";
+
+	public static final String SSOCIATION_LABEL_NAME5_HINT = "6005";
+
+	public static final String ASSOCIATION_LABEL_MULTIPLICTY_SOURCE_HINT = "6033";
+
+	public static final String ASSOCIATION_LABEL_MULTIPLICTY_TARGET_HINT = "6034";
+
+
+
+	
+
 
 	/** Class Diagram :: GeneralizationSet */
 	public static final IHintedType GENERALIZATION_SET = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.GeneralizationSet_4020"); //$NON-NLS-1$
 
 	public static final String GENERALIZATION_SET_LABEL_HINT = "5067";
 
-	/** Class Diagram :: Association */
-	public static final IHintedType ASSOCIATION = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Association_4001"); //$NON-NLS-1$
-
-	public static final String ASSOCIATION_LABEL_NAME_HINT = "6002";
-
-	public static final String ASSOCIATION_STEREOTYPE_LABEL_HINT = "6001";
-
-	public static final String ASSOCIATION_ROLE_SOURCE_LABEL_HINT = "6003";
-
-	public static final String ASSOCIATION_ROLE_TARGET_LABEL_HINT = "6005";
-
-	public static final String ASSOCIATION_MULT_SOURCE_LABEL_HINT = "6033";
-
-	public static final String ASSOCIATION_MULT_TARGET_LABEL_HINT = "6034";
 
 	/** Class Diagram :: AssociationClass */
 	public static final IHintedType ASSOCIATION_CLASS_EDGE = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.AssociationClass_4017"); //$NON-NLS-1$
@@ -309,7 +315,7 @@ public class InheritedElementTypes extends AbstractElementTypeEnumerator {
 
 	public static final String PORT_CN_LABEL_NAME_HINT = "5125";
 
-	public static final String PORT_CN_STEREOTYPE_LABEL_HINT = "6029";
+	public static final String PORT_CN_LABEL_APPLIED_STEREOTYPE_HINT = "6029";
 
 
 

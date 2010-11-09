@@ -34,7 +34,7 @@ public class InheritedCompositeDiagramElementEditPartProvider extends UMLEditPar
 			/** Nodes *********** */
 
 			/** Port */
-			if(InheritedElementTypes.PORT_CN.getSemanticHint().equals(hint) || InheritedElementTypes.PORT_CN_LABEL_NAME_HINT.equals(hint) || InheritedElementTypes.PORT_CN_STEREOTYPE_LABEL_HINT.equals(hint)) {
+			if(InheritedElementTypes.PORT_CN.getSemanticHint().equals(hint) || InheritedElementTypes.PORT_CN_LABEL_NAME_HINT.equals(hint) || InheritedElementTypes.PORT_CN_LABEL_APPLIED_STEREOTYPE_HINT.equals(hint)) {
 				return true;
 			}
 		}
