@@ -24,7 +24,7 @@ public class BlockDefinitionDiagramElementTypes extends InheritedElementTypes {
 	/** Block Definition Diagram :: Block */
 	public static final IHintedType BLOCK = SysMLElementTypes.BLOCK; //$NON-NLS-1$
 
-	public static final String BLOCK_NAME_LABEL_HINT = CLASS_NAME_LABEL_HINT;
+	public static final String BLOCK_NAME_LABEL_HINT = CLASS_LABEL_NAME_HINT;
 
 	public static final String BLOCK_PROPERTY_COMPARTMENT_HINT = CLASS_COMPARTMENT_PROP_HINT;
 
