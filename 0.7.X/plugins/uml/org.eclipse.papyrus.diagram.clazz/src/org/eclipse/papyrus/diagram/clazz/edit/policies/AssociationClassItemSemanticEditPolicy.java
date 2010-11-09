@@ -12,26 +12,15 @@
  */
 package org.eclipse.papyrus.diagram.clazz.edit.policies;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
-import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.command.DeleteCommand;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.common.core.command.ICompositeCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
-import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
-import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
-import org.eclipse.gmf.runtime.notation.Node;
-import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.AbstractionCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.AbstractionReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.AddedLinkCreateCommand;
@@ -57,7 +46,6 @@ import org.eclipse.papyrus.diagram.clazz.edit.commands.DependencyReorientCommand
 import org.eclipse.papyrus.diagram.clazz.edit.commands.ElementImportCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.ElementImportReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.GeneralizationCreateCommand;
-import org.eclipse.papyrus.diagram.clazz.edit.commands.GeneralizationReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.InterfaceRealizationCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.InterfaceRealizationReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.PackageImportCreateCommand;
@@ -74,11 +62,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.AbstractionEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AddedLinkEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationBranchEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClass2EditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassAttributeCompartmentEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassNestedClassifierCompartmentEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassOperationCompartmentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Class2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConnectorDurationObservationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConnectorTimeObservationEditPart;
@@ -88,16 +72,12 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ElementImportEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.GeneralizationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceRealizationEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageImportEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.PropertyEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.RealizationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SubstitutionEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.TemplateBindingEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.UsageEditPart;
-import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
-import org.eclipse.papyrus.diagram.common.command.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.service.edit.service.IElementEditService;
 

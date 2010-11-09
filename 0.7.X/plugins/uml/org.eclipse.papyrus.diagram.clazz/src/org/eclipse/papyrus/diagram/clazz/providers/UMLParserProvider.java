@@ -25,6 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.parsers.GeneralizationSetConstraintParser;
+import org.eclipse.papyrus.diagram.clazz.custom.parsers.RoleInstanceSpecificationLinkParser;
 import org.eclipse.papyrus.diagram.clazz.custom.parsers.SlotParser;
 import org.eclipse.papyrus.diagram.clazz.custom.parsers.TemplateBindingParser;
 import org.eclipse.papyrus.diagram.clazz.custom.parsers.TemplateParameterParser;
@@ -105,12 +106,13 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.ShapeNamedElementNameEditPar
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SignalNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SignalNameEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SlotEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.SourceISLinkLabelEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SubstitutionName2EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.TargetISLinkLabelEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.TemplateParameterEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.TimeObservationNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.TimeObservationStereotypeLabelEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.UsageNameEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.WrappingLabelEditPart;
 import org.eclipse.papyrus.diagram.clazz.parsers.MessageFormatParser;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.common.parser.CommentParser;
@@ -1494,6 +1496,36 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private RoleInstanceSpecificationLinkParser instanceSpecificationLabel_6039Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getInstanceSpecificationLabel_6039Parser() {
+		if(instanceSpecificationLabel_6039Parser == null) {
+			instanceSpecificationLabel_6039Parser = new RoleInstanceSpecificationLinkParser();
+		}
+		return instanceSpecificationLabel_6039Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private RoleInstanceSpecificationLinkParser instanceSpecificationLabel_6038Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getInstanceSpecificationLabel_6038Parser() {
+		if(instanceSpecificationLabel_6038Parser == null) {
+			instanceSpecificationLabel_6038Parser = new RoleInstanceSpecificationLinkParser();
+		}
+		return instanceSpecificationLabel_6038Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	protected IParser getParser(int visualID) {
 		switch(visualID) {
 		case MultiDependencyLabelEditPart.VISUAL_ID:
@@ -1660,6 +1692,10 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getGeneralizationSetIsCoveringIsDisjoint_5067Parser();
 		case AppliedStereotypeGeneralizationSetLabelEditPart.VISUAL_ID:
 			return getGeneralizationSetLabel_6037Parser();
+		case SourceISLinkLabelEditPart.VISUAL_ID:
+			return getInstanceSpecificationLabel_6039Parser();
+		case TargetISLinkLabelEditPart.VISUAL_ID:
+			return getInstanceSpecificationLabel_6038Parser();
 		}
 		return null;
 	}

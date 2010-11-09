@@ -628,10 +628,6 @@
         </viewmap>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.CustomGraphicalNodeEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy"/>
         <behaviour
@@ -2432,10 +2428,6 @@
               width="100"
               height="100"/>
         </viewmap>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.InstanceSpecificationGraphicalNodeEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
@@ -5566,15 +5558,74 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
-            xsi:type="gmfgen:NotationType"
-            uniqueIdentifier="org.eclipse.papyrus.diagram.clazz.SlotLink_4021"/>
+            xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.diagram.clazz.InstanceSpecificationLink_4021"
+            displayName="InstanceSpecificationLink"
+            editHelperClassName="InstanceSpecificationLinkEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
-            figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx"/>
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.figure.InstanceSpecificationLinkFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.CustomGraphicalNodeEditPolicy"/>
+        <modelFacet
+            xsi:type="gmfgen:TypeLinkModelFacet">
+          <metaClass
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InstanceSpecification"/>
+          <containmentMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+          <sourceMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InstanceSpecification/slot"/>
+          <targetMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InstanceSpecification/slot"/>
+        </modelFacet>
+        <labels
+            visualID="6039"
+            editPartClassName="SourceISLinkLabelEditPart"
+            itemSemanticEditPolicyClassName="SourceISLinkLabelItemSemanticEditPolicy"
+            readOnly="true"
+            alignment="SOURCE">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/DecorationNode"/>
+          <viewmap
+              xsi:type="gmfgen:ParentAssignedViewmap"
+              getterName="getSourceLabel"
+              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+            <attributes
+                xsi:type="gmfgen:LabelOffsetAttributes"
+                y="20"/>
+          </viewmap>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.diagram.clazz.custom.policies.InstanceSpecificationRoleDisplayEditPolicy.INSTANCE_SPECIFICATION_ROLE_DISPLAY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.ISRoleSourceDisplayEditPolicy"/>
+          <modelFacet
+              parser="/0/@labelParsers/@implementations.11"/>
+        </labels>
+        <labels
+            visualID="6038"
+            editPartClassName="TargetISLinkLabelEditPart"
+            itemSemanticEditPolicyClassName="TargetISLinkLabelItemSemanticEditPolicy"
+            readOnly="true"
+            alignment="TARGET">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/DecorationNode"/>
+          <viewmap
+              xsi:type="gmfgen:ParentAssignedViewmap"
+              getterName="getTargetLabel"
+              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+            <attributes
+                xsi:type="gmfgen:LabelOffsetAttributes"
+                y="20"/>
+          </viewmap>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.diagram.clazz.custom.policies.InstanceSpecificationRoleDisplayEditPolicy.INSTANCE_SPECIFICATION_ROLE_DISPLAY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.ISRoleTargetDisplayEditPolicy"/>
+          <modelFacet
+              parser="/0/@labelParsers/@implementations.11"/>
+        </labels>
       </links>
       <links
           visualID="4022"
@@ -7154,6 +7205,10 @@
           xsi:type="gmfgen:CustomParser"
           uses="/0/@diagram/@links.18/@labels.0/@modelFacet"
           qualifiedName="org.eclipse.papyrus.diagram.clazz.custom.parsers.TemplateBindingParser"/>
+      <implementations
+          xsi:type="gmfgen:CustomParser"
+          uses="/0/@diagram/@links.20/@labels.0/@modelFacet /0/@diagram/@links.20/@labels.1/@modelFacet"
+          qualifiedName="org.eclipse.papyrus.diagram.clazz.custom.parsers.RoleInstanceSpecificationLinkParser"/>
     </labelParsers>
     <contextMenus
         context="/0/@diagram">
