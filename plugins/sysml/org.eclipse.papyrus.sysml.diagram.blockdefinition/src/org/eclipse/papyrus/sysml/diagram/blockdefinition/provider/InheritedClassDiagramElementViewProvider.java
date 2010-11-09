@@ -157,7 +157,7 @@ public class InheritedClassDiagramElementViewProvider extends UMLViewProvider {
 
 		|| (elementType == BlockDefinitionDiagramElementTypes.DATA_TYPE) || (elementType == BlockDefinitionDiagramElementTypes.DATA_TYPE_CN) || (elementType == BlockDefinitionDiagramElementTypes.DATA_TYPE_PROPERTY_CLN) || (elementType == BlockDefinitionDiagramElementTypes.DATA_TYPE_OPERATION_CLN)
 
-		|| (elementType == BlockDefinitionDiagramElementTypes.INSTANCE_SPECIFICATION) || (elementType == BlockDefinitionDiagramElementTypes.INSTANCE_SPEC_CN) || (elementType == BlockDefinitionDiagramElementTypes.INSTANCE_SPECIFICATION_SLOT_CLN)
+		|| (elementType == BlockDefinitionDiagramElementTypes.INSTANCE_SPECIFICATION) || (elementType == BlockDefinitionDiagramElementTypes.INSTANCE_SPECIFICATION_CN) || (elementType == BlockDefinitionDiagramElementTypes.INSTANCE_SPECIFICATION_SLOT_CLN)
 
 		|| (elementType == BlockDefinitionDiagramElementTypes.ASSOCIATION_CLASS) || (elementType == BlockDefinitionDiagramElementTypes.ASSOCIATION_CLASS_PROPERTY_CLN) || (elementType == BlockDefinitionDiagramElementTypes.COMPONENT_OPERATION_CLN) || (elementType == BlockDefinitionDiagramElementTypes.COMPONENT_CLASS_CLN)
 
