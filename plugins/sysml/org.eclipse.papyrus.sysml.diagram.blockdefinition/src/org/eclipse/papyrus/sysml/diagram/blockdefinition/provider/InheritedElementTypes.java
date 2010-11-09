@@ -16,7 +16,7 @@ public class InheritedElementTypes extends AbstractElementTypeEnumerator {
 
 	/** ********************************************************* */
 	/** Block Definition Diagram - Class Diagram related elements */
-	/**  
+	/**
 	 * Top level nodes:
 	 * 
 	 * AssociationClass_2013
@@ -36,10 +36,6 @@ public class InheritedElementTypes extends AbstractElementTypeEnumerator {
 
 	/** ClassDiagram :: ASSOCIATION_CLASS */
 	public static final IHintedType ASSOCIATION_CLASS = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.AssociationClass_2013"); //$NON-NLS-1$
-	
-	/** Class Diagram :: AssociationClass TopLevelNode */
-
-	public static final String ASSOCIATION_CLASS_LABEL_NAME2_HINT = "5066";
 
 	public static final String ASSOCIATION_CLASS_COMPARTMENT_ATTRIBUTE_HINT = "7034";
 
@@ -47,8 +43,30 @@ public class InheritedElementTypes extends AbstractElementTypeEnumerator {
 
 	public static final String ASSOCIATION_CLASS_COMPARTMENT_NESTED_CLASSIFIER_HINT = "7037";
 
+	public static final String ASSOCIATION_CLASS_LABEL_NAME2_HINT = "5066";
 
+
+	/** ClassDiagram :: COMMENT */
+	public static final IHintedType COMMENT = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Comment_2012"); //$NON-NLS-1$
+
+	public static final String COMMENT_LABEL_BODY_HINT = "5038";
+
+	/** ClassDiagram :: CONSTRAINT */
+	public static final IHintedType CONSTRAINT = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Constraint_2011"); //$NON-NLS-1$
+
+	public static final String CONSTRAINT_LABEL_NAME_HINT = "5037";
+
+	public static final String CONSTRAINT_LABEL_BODY_HINT = "5159";
+
+	/** ClassDiagram :: ENUMERATION_CN */
+	public static final IHintedType ENUMERATION_CN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Enumeration_3025"); //$NON-NLS-1$
+
+	public static final String ENUMERATION_CN_LABEL_NAME_HINT = "5055";
+
+	public static final String ENUMERATION_CN_COMPARTMENT_ENUMERATION_LITERAL_HINT = "7031";
 	
+	
+
 	/** Class Diagram :: Package ChildNode */
 	public static final IHintedType PACKAGE_CN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Package_3009"); //$NON-NLS-1$
 
@@ -99,12 +117,6 @@ public class InheritedElementTypes extends AbstractElementTypeEnumerator {
 
 	public static final IHintedType DATATYPE_OPERATION_CLN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Operation_3019"); //$NON-NLS-1$
 
-	/** Class Diagram :: Enumeration ChildNode */
-	public static final IHintedType ENUMERATION_CN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Enumeration_3025"); //$NON-NLS-1$
-
-	public static final String ENUMERATION_CN_NAME_LABEL_HINT = "5055";
-
-	public static final String ENUMERATION_CN_COMPARTMENT_LITERAL_HINT = "7031";
 
 	/** Class Diagram :: Enumeration TopLevelNode */
 	public static final IHintedType ENUMERATION = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Enumeration_2006"); //$NON-NLS-1$
@@ -136,7 +148,7 @@ public class InheritedElementTypes extends AbstractElementTypeEnumerator {
 	public static final String CLASS_COMPARTMENT_OPER_HINT = "7018";
 
 	public static final String CLASS_COMPARTMENT_NEST_HINT = "7019";
-	
+
 	public static final IHintedType CLASS_PROPERTY_CLN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Property_3012"); //$NON-NLS-1$
 
 	public static final IHintedType CLASS_OPERATION_CLN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Operation_3013"); //$NON-NLS-1$
@@ -204,10 +216,6 @@ public class InheritedElementTypes extends AbstractElementTypeEnumerator {
 
 	public static final String COMMENT_CN_BODY_LABEL_HINT = "5063";
 
-	/** Class Diagram :: Comment TopLevelNode */
-	public static final IHintedType COMMENT = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Comment_2012"); //$NON-NLS-1$
-
-	public static final String COMMENT_BODY_LABEL_HINT = "5038";
 
 	/** Class Diagram :: Constraint ChildNode */
 	public static final IHintedType CONSTRAINT_CN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Constraint_3029"); //$NON-NLS-1$
@@ -215,13 +223,6 @@ public class InheritedElementTypes extends AbstractElementTypeEnumerator {
 	public static final String CONSTRAINT_CN_NAME_LABEL_HINT = "5064";
 
 	public static final String CONSTRAINT_CN_SPEC_LABEL_HINT = "5160";
-
-	/** Class Diagram :: Constraint TopLevelNode */
-	public static final IHintedType CONSTRAINT = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Constraint_2011"); //$NON-NLS-1$
-
-	public static final String CONSTRAINT_NAME_LABEL_HINT = "5037";
-
-	public static final String CONSTRAINT_SPEC_LABEL_HINT = "5159";
 
 
 
@@ -304,9 +305,9 @@ public class InheritedElementTypes extends AbstractElementTypeEnumerator {
 	public static final String PORT_CN_NAME_LABEL_HINT = "5125";
 
 	public static final String PORT_CN_STEREOTYPE_LABEL_HINT = "6029";
-	
-	
-	
+
+
+
 	public static final IHintedType ASSOCIATION_CLASS_PROPERTY_CLN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Property_3002"); //$NON-NLS-1$
 
 	public static final IHintedType COMPONENT_OPERATION_CLN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Operation_3003"); //$NON-NLS-1$
