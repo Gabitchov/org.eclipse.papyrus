@@ -34,7 +34,7 @@ public class InheritedClassDiagramElementEditPartProvider extends CUMLEditPartPr
 			/** Nodes *********** */
 
 			/** Package */
-			if(InheritedElementTypes.PACKAGE.getSemanticHint().equals(hint) || InheritedElementTypes.PACKAGE_LABEL_NAME_HINT.equals(hint) || InheritedElementTypes.PACKAGE_COMPARTMENT_HINT.equals(hint)) {
+			if(InheritedElementTypes.PACKAGE.getSemanticHint().equals(hint) || InheritedElementTypes.PACKAGE_LABEL_NAME_HINT.equals(hint) || InheritedElementTypes.PACKAGE_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(hint)) {
 				return true;
 			}
 
@@ -43,7 +43,7 @@ public class InheritedClassDiagramElementEditPartProvider extends CUMLEditPartPr
 			}
 
 			/** Model */
-			if(InheritedElementTypes.MODEL.getSemanticHint().equals(hint) || InheritedElementTypes.MODEL_LABEL_NAME_HINT.equals(hint) || InheritedElementTypes.MODEL_COMPARTMENT_HINT.equals(hint)) {
+			if(InheritedElementTypes.MODEL.getSemanticHint().equals(hint) || InheritedElementTypes.MODEL_LABEL_NAME_TN_HINT.equals(hint) || InheritedElementTypes.MODEL_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT.equals(hint)) {
 				return true;
 			}
 
@@ -52,7 +52,7 @@ public class InheritedClassDiagramElementEditPartProvider extends CUMLEditPartPr
 			}
 
 			/** Class */
-			if(InheritedElementTypes.CLASS.getSemanticHint().equals(hint) || InheritedElementTypes.CLASS_LABEL_NAME_HINT.equals(hint) || InheritedElementTypes.CLASS_COMPARTMENT_PROP_HINT.equals(hint) || InheritedElementTypes.CLASS_COMPARTMENT_OPER_HINT.equals(hint) || InheritedElementTypes.CLASS_COMPARTMENT_NEST_HINT.equals(hint) || InheritedElementTypes.CLASS_PROPERTY_CLN.getSemanticHint().equals(hint) || InheritedElementTypes.CLASS_OPERATION_CLN.getSemanticHint().equals(hint) || InheritedElementTypes.CLASS_RECEPTION_CLN.getSemanticHint().equals(hint) || InheritedElementTypes.CLASS_CLASS_CLN.getSemanticHint().equals(hint)) {
+			if(InheritedElementTypes.CLASS.getSemanticHint().equals(hint) || InheritedElementTypes.CLASS_LABEL_NAME_HINT.equals(hint) || InheritedElementTypes.CLASS_COMPARTMENT_ATTRIBUTE_HINT.equals(hint) || InheritedElementTypes.CLASS_COMPARTMENT_OPERATION_HINT.equals(hint) || InheritedElementTypes.CLASS_COMPARTMENT_NESTED_CLASSIFIER_HINT.equals(hint) || InheritedElementTypes.CLASS_PROPERTY_CLN.getSemanticHint().equals(hint) || InheritedElementTypes.CLASS_OPERATION_CLN.getSemanticHint().equals(hint) || InheritedElementTypes.CLASS_RECEPTION_CLN.getSemanticHint().equals(hint) || InheritedElementTypes.CLASS_CLASS_CLN.getSemanticHint().equals(hint)) {
 				return true;
 			}
 
@@ -93,7 +93,7 @@ public class InheritedClassDiagramElementEditPartProvider extends CUMLEditPartPr
 			}
 
 			/** PrimitiveType */
-			if(InheritedElementTypes.PRIMITIVE_TYPE.getSemanticHint().equals(hint) || InheritedElementTypes.PRIMITIVETYPE_LABEL_NAME_HINT.equals(hint)) {
+			if(InheritedElementTypes.PRIMITIVE_TYPE.getSemanticHint().equals(hint) || InheritedElementTypes.PRIMITIVE_TYPE_LABEL_NAME_HINT.equals(hint)) {
 				return true;
 			}
 
