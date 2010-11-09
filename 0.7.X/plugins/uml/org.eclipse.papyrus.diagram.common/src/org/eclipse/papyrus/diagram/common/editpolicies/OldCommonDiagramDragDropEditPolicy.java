@@ -287,7 +287,7 @@ public abstract class OldCommonDiagramDragDropEditPolicy extends DiagramDragDrop
 		return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
 	}
 
-	private Point getTranslatedLocation(DropObjectsRequest dropRequest) {
+	protected Point getTranslatedLocation(DropObjectsRequest dropRequest) {
 		Point location = dropRequest.getLocation().getCopy();
 		((GraphicalEditPart)getHost()).getContentPane().translateToRelative(location);
 		((GraphicalEditPart)getHost()).getContentPane().translateFromParent(location);
