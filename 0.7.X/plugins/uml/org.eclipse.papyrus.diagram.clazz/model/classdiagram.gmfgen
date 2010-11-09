@@ -2140,6 +2140,10 @@
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.clazz.custom.policies.SlotDisplayEditPolicy.SLOT_DISPLAY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.SlotDisplayEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Slot"/>
