@@ -74,12 +74,12 @@ public class InheritedClassDiagramElementEditPartProvider extends CUMLEditPartPr
 				return true;
 			}
 
-			/** DataType */
-			if(InheritedElementTypes.DATA_TYPE.getSemanticHint().equals(hint) || InheritedElementTypes.DATA_TYPE_LABEL_NAME_HINT.equals(hint) || InheritedElementTypes.DATA_TYPE_COMPARTMENT_ATTRIBUTE_HINT.equals(hint) || InheritedElementTypes.DATA_TYPE_COMPARTMENT_OPERATIONATION_HINT.equals(hint) || InheritedElementTypes.DATATYPE_PROPERTY_CLN.getSemanticHint().equals(hint) || InheritedElementTypes.DATATYPE_OPERATION_CLN.getSemanticHint().equals(hint)) {
+			/** DATA_TYPE */
+			if(InheritedElementTypes.DATA_TYPE.getSemanticHint().equals(hint) || InheritedElementTypes.DATA_TYPE_LABEL_NAME_HINT.equals(hint) || InheritedElementTypes.DATA_TYPE_COMPARTMENT_ATTRIBUTE_HINT.equals(hint) || InheritedElementTypes.DATA_TYPE_COMPARTMENT_OPERATIONATION_HINT.equals(hint) || InheritedElementTypes.DATA_TYPE_PROPERTY_CLN.getSemanticHint().equals(hint) || InheritedElementTypes.DATA_TYPE_OPERATION_CLN.getSemanticHint().equals(hint)) {
 				return true;
 			}
 
-			if(InheritedElementTypes.DATATYPE_CN.getSemanticHint().equals(hint) || InheritedElementTypes.DATATYPE_CN_LABEL_NAME_HINT.equals(hint) || InheritedElementTypes.DATATYPE_CN_COMPARTMENT_ATTRIBUTE_HINT.equals(hint) || InheritedElementTypes.DATATYPE_CN_COMPARTMENT_OPERATION_HINT.equals(hint)) {
+			if(InheritedElementTypes.DATA_TYPE_CN.getSemanticHint().equals(hint) || InheritedElementTypes.DATA_TYPE_CN_LABEL_NAME_HINT.equals(hint) || InheritedElementTypes.DATA_TYPE_CN_COMPARTMENT_ATTRIBUTE_HINT.equals(hint) || InheritedElementTypes.DATA_TYPE_CN_COMPARTMENT_OPERATION_HINT.equals(hint)) {
 				return true;
 			}
 
@@ -97,7 +97,7 @@ public class InheritedClassDiagramElementEditPartProvider extends CUMLEditPartPr
 				return true;
 			}
 
-			if(InheritedElementTypes.PRIMITIVETYPE_CN.getSemanticHint().equals(hint) || InheritedElementTypes.PRIMITIVETYPE_CN_LABEL_NAME_HINT.equals(hint)) {
+			if(InheritedElementTypes.PRIMITIVE_TYPE_CN.getSemanticHint().equals(hint) || InheritedElementTypes.PRIMITIVE_TYPE_CN_LABEL_NAME_HINT.equals(hint)) {
 				return true;
 			}
 
