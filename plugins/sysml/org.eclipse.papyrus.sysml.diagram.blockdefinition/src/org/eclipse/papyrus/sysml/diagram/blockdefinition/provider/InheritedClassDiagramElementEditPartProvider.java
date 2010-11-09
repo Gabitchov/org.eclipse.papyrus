@@ -175,11 +175,11 @@ public class InheritedClassDiagramElementEditPartProvider extends CUMLEditPartPr
 			}
 
 			/** CommentLink - ConstraintLink */
-			if((InheritedElementTypes.COMMENT_LINK.getSemanticHint().equals(hint))) {
+			if((InheritedElementTypes.COMMENT_ANNOTATED_ELEMENT.getSemanticHint().equals(hint))) {
 				return true;
 			}
 
-			if(InheritedElementTypes.CONSTRAINT_LINK.getSemanticHint().equals(hint)) {
+			if(InheritedElementTypes.CONSTRAINT_CONSTRAINED_ELEMENT.getSemanticHint().equals(hint)) {
 				return true;
 			}
 		}
