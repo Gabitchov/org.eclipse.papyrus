@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.diagram.sequence.util;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -37,7 +38,6 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.core.modelsetquery.ModelSetQuery;
 import org.eclipse.papyrus.core.utils.EditorUtils;
-import org.eclipse.papyrus.diagram.common.actions.LabelHelper;
 import org.eclipse.papyrus.diagram.common.util.MessageDirection;
 import org.eclipse.papyrus.diagram.sequence.part.Messages;
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
@@ -537,7 +537,7 @@ public class CommandHelper {
 
 		EClass destructionEventEClass = UMLPackage.eINSTANCE.getDestructionEvent();
 		// Add the destructionEvent to the Package
-		DestructionEvent destructionEvent = (DestructionEvent)pack.createPackagedElement(LabelHelper.INSTANCE.findName(pack, destructionEventEClass), destructionEventEClass);
+		DestructionEvent destructionEvent = (DestructionEvent)pack.createPackagedElement(ElementInitializers.getNextNumberedName(pack.getOwnedElements(), destructionEventEClass.getName()), destructionEventEClass);
 
 		// Create an occurrenceSpecification
 		Element element = createElement(modelContainer, UMLPackage.eINSTANCE.getOccurrenceSpecification());
@@ -570,7 +570,7 @@ public class CommandHelper {
 			stateInvariant.getCovereds().add(lifeline);
 
 			// Create the associated invariant
-			stateInvariant.createInvariant(LabelHelper.INSTANCE.findName(stateInvariant, UMLPackage.eINSTANCE.getConstraint()));
+			stateInvariant.createInvariant("");
 		}
 
 		return stateInvariant;
@@ -582,11 +582,11 @@ public class CommandHelper {
 		if(modelContainer instanceof InteractionOperand) {
 			InteractionOperand interactionOperand = (InteractionOperand)modelContainer;
 			// Create the ES 
-			return interactionOperand.createFragment(LabelHelper.INSTANCE.findName(interactionOperand, eClass), eClass);
+			return interactionOperand.createFragment(ElementInitializers.getNextNumberedName(interactionOperand.getFragments(), eClass.getName()), eClass);
 		} else if(modelContainer instanceof Interaction) {
 			Interaction interaction = (Interaction)modelContainer;
 			// Create the ES 
-			return interaction.createFragment(LabelHelper.INSTANCE.findName(interaction, eClass), eClass);
+			return interaction.createFragment(ElementInitializers.getNextNumberedName(interaction.getFragments(), eClass.getName()), eClass);
 		}
 		return null;
 	}
@@ -601,19 +601,20 @@ public class CommandHelper {
 	 *        the operatorKind of the combinedFragment
 	 * @return the created CombinedFragment or null
 	 */
-	public static CombinedFragment doCreateCombinedFragment(Object modelContainer, InteractionOperatorKind operatorKind) {
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public static CombinedFragment doCreateCombinedFragment(Object modelContainer, InteractionOperatorKind operatorKind, Collection coveredLifelines) {
 		CombinedFragment combinedFragment = null;
 
 		Element element = createElement(modelContainer, UMLPackage.eINSTANCE.getCombinedFragment());
 		if(element instanceof CombinedFragment) {
 			combinedFragment = (CombinedFragment)element;
+			combinedFragment.getCovereds().addAll(coveredLifelines);
 
 			// Set the operator kind
 			combinedFragment.setInteractionOperator(operatorKind);
 
 			// Create the operand
-			combinedFragment.createOperand(LabelHelper.INSTANCE.findName(combinedFragment, UMLPackage.eINSTANCE.getInteractionOperand()));
-
+			createCoRegionInteractionOperand(combinedFragment);
 		}
 		return combinedFragment;
 	}
@@ -631,19 +632,12 @@ public class CommandHelper {
 	public static CombinedFragment doCreateCoRegion(Object modelContainer, Lifeline coveredLifeline) {
 
 		// Create a Parallel CombinedFragment
-		CombinedFragment combinedFragment = doCreateCombinedFragment(modelContainer, InteractionOperatorKind.PAR_LITERAL);
+		CombinedFragment combinedFragment = doCreateCombinedFragment(modelContainer, InteractionOperatorKind.PAR_LITERAL, Collections.singletonList(coveredLifeline));
 
 		if(combinedFragment != null) {
+
 			// Create a second operand
-			combinedFragment.createOperand(LabelHelper.INSTANCE.findName(combinedFragment, UMLPackage.eINSTANCE.getInteractionOperand()));
-
-			// Add the lifeline where the CoRegion is drawn as a covered lifeline.
-			combinedFragment.getCovereds().add(coveredLifeline);
-
-			// Each operand must covered the same lifeline
-			for(InteractionOperand operand : combinedFragment.getOperands()) {
-				operand.getCovereds().add(coveredLifeline);
-			}
+			createCoRegionInteractionOperand(combinedFragment);
 		}
 		return combinedFragment;
 	}
@@ -827,15 +821,19 @@ public class CommandHelper {
 		InteractionFragment sourceContainer = (InteractionFragment)params.get(SequenceRequestConstant.SOURCE_MODEL_CONTAINER);
 		InteractionFragment targetContainer = (InteractionFragment)params.get(SequenceRequestConstant.TARGET_MODEL_CONTAINER);
 
-		Object lifeline = params.get(SequenceRequestConstant.LIFELINE_GRAPHICAL_CONTAINER);
+		Lifeline lifeline = (Lifeline)params.get(SequenceRequestConstant.LIFELINE_GRAPHICAL_CONTAINER);
 		if(lifeline != null) {
 			if(source instanceof CombinedFragment) {
 				CombinedFragment cf = (CombinedFragment)source;
+
 				if(InteractionOperatorKind.PAR_LITERAL.equals(cf.getInteractionOperator())) {
 					InteractionOperand interactionOperand = getCoRegionInteractionOperand(cf);
 					sourceContainer = interactionOperand;
 					targetContainer = interactionOperand;
-					source = (Lifeline)lifeline;
+					source = lifeline;
+					if(target instanceof Lifeline) {
+						addCoveredLifelineToCombinedFragment((Lifeline)target, cf);
+					}
 				}
 			} else if(target instanceof CombinedFragment) {
 				CombinedFragment cf = (CombinedFragment)target;
@@ -843,11 +841,22 @@ public class CommandHelper {
 					InteractionOperand interactionOperand = getCoRegionInteractionOperand(cf);
 					sourceContainer = interactionOperand;
 					targetContainer = interactionOperand;
-					target = (Lifeline)lifeline;
+					target = lifeline;
+					if(source instanceof Lifeline) {
+						addCoveredLifelineToCombinedFragment((Lifeline)source, cf);
+					}
 				}
 			}
 		}
 		return doCreateMessage(interaction, messageSort, source, target, sourceContainer, targetContainer);
+	}
+
+	private static void addCoveredLifelineToCombinedFragment(Lifeline coveredLifeline, CombinedFragment cf) {
+		cf.getCovereds().add(coveredLifeline);
+
+		for(InteractionOperand io : cf.getOperands()) {
+			io.getCovereds().add(coveredLifeline);
+		}
 	}
 
 	/**
@@ -858,7 +867,7 @@ public class CommandHelper {
 
 		// Search in the existing operands if there are any operand without fragments.
 		for(InteractionOperand existingOperand : cf.getOperands()) {
-			if(existingOperand.getFragments().size() == 0) {
+			if(existingOperand.getFragments().isEmpty()) {
 				interactionOperand = existingOperand;
 				break;
 			}
@@ -866,8 +875,15 @@ public class CommandHelper {
 
 		// If the operand is still null, we create a new operand in the combinedFragment.
 		if(interactionOperand == null) {
-			interactionOperand = cf.createOperand(LabelHelper.INSTANCE.findName(cf, UMLPackage.eINSTANCE.getInteractionOperand()));
+			interactionOperand = createCoRegionInteractionOperand(cf);
 		}
+		return interactionOperand;
+	}
+
+	private static InteractionOperand createCoRegionInteractionOperand(CombinedFragment cf) {
+		InteractionOperand interactionOperand = cf.createOperand("");
+		interactionOperand.getCovereds().addAll(cf.getCovereds());
+		interactionOperand.setName(ElementInitializers.getNextNumberedName(cf.getOperands(), interactionOperand.eClass().getName()));
 		return interactionOperand;
 	}
 
