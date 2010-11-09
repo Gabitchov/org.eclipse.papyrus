@@ -117,7 +117,6 @@ public class PropertyPopupEditorConfigurationContribution extends PopupEditorCon
 		// and then merge it in the context UML model if necessary
 		IXtextEMFReconciler reconciler = new IXtextEMFReconciler() {
 
-			@Override
 			public void reconcile(EObject modelObject, EObject xtextObject) {
 				// first: retrieves / determines if the xtextObject is a PropertyRule object
 				EObject modifiedObject = xtextObject;
