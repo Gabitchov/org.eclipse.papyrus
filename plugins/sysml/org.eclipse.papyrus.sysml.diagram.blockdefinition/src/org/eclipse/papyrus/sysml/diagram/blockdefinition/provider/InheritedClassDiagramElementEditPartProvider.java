@@ -84,7 +84,7 @@ public class InheritedClassDiagramElementEditPartProvider extends CUMLEditPartPr
 			}
 
 			/** Enumeration */
-			if(InheritedElementTypes.ENUMERATION.getSemanticHint().equals(hint) || InheritedElementTypes.ENUMERATION_LABEL_NAME_HINT.equals(hint) || InheritedElementTypes.ENUMERATION_COMPARTMENT_LITERAL_HINT.equals(hint) || InheritedElementTypes.ENUMERATION_ENUMERATION_LITERAL_CLN.getSemanticHint().equals(hint)) {
+			if(InheritedElementTypes.ENUMERATION.getSemanticHint().equals(hint) || InheritedElementTypes.ENUMERATION_LABEL_NAME_HINT.equals(hint) || InheritedElementTypes.ENUMERATION_COMPARTMENT_ENUMERATION_LITERAL_HINT.equals(hint) || InheritedElementTypes.ENUMERATION_ENUMERATION_LITERAL_CLN.getSemanticHint().equals(hint)) {
 				return true;
 			}
 

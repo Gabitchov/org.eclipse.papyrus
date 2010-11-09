@@ -57,12 +57,12 @@ public class InheritedElementTypes extends AbstractElementTypeEnumerator {
 
 	public static final String CONSTRAINT_LABEL_BODY_HINT = "5159";
 
-	/** ClassDiagram :: ENUMERATION_CN */
-	public static final IHintedType ENUMERATION_CN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Enumeration_3025"); //$NON-NLS-1$
+	/** ClassDiagram :: ENUMERATION */
+	public static final IHintedType ENUMERATION = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Enumeration_2006"); //$NON-NLS-1$
 
-	public static final String ENUMERATION_CN_COMPARTMENT_ENUMERATION_LITERAL_HINT = "7031";
+	public static final String ENUMERATION_COMPARTMENT_ENUMERATION_LITERAL_HINT = "7015";
 
-	public static final String ENUMERATION_CN_LABEL_NAME_HINT = "5055";
+	public static final String ENUMERATION_LABEL_NAME_HINT = "5023";
 
 	/** ClassDiagram :: DATA_TYPE */
 	public static final IHintedType DATA_TYPE = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.DataType_2010"); //$NON-NLS-1$
@@ -171,6 +171,13 @@ public class InheritedElementTypes extends AbstractElementTypeEnumerator {
 
 	public static final String DATA_TYPE_CN_LABEL_NAME_HINT = "5061";
 
+	/** ClassDiagram :: ENUMERATION_CN */
+	public static final IHintedType ENUMERATION_CN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Enumeration_3025"); //$NON-NLS-1$
+
+	public static final String ENUMERATION_CN_COMPARTMENT_ENUMERATION_LITERAL_HINT = "7031";
+
+	public static final String ENUMERATION_CN_LABEL_NAME_HINT = "5055";
+
 	/** ClassDiagram :: INSTANCE_SPECIFICATION_CN */
 	public static final IHintedType INSTANCE_SPECIFICATION_CN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.InstanceSpecification_3020"); //$NON-NLS-1$
 
@@ -228,12 +235,6 @@ public class InheritedElementTypes extends AbstractElementTypeEnumerator {
 	public static final IHintedType CLASS_CLASS_CLN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Class_3014"); //$NON-NLS-1$
 
 
-	/** Class Diagram :: Enumeration TopLevelNode */
-	public static final IHintedType ENUMERATION = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Enumeration_2006"); //$NON-NLS-1$
-
-	public static final String ENUMERATION_LABEL_NAME_HINT = "5023";
-
-	public static final String ENUMERATION_COMPARTMENT_LITERAL_HINT = "7015";
 
 
 
