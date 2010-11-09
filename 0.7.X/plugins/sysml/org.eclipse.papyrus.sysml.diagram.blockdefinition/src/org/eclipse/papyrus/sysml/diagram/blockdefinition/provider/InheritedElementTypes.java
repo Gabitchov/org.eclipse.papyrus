@@ -39,7 +39,7 @@ public class InheritedElementTypes extends AbstractElementTypeEnumerator {
 
 	public static final String ASSOCIATION_CLASS_COMPARTMENT_ATTRIBUTE_HINT = "7034";
 
-	public static final String ASSOCIATION_CLASS_COMPARTMENT_OPERATION_HINT = "7036";
+	public static final String ASSOCIATION_CLASS_COMPARTMENT_OPERATIONATION_HINT = "7036";
 
 	public static final String ASSOCIATION_CLASS_COMPARTMENT_NESTED_CLASSIFIER_HINT = "7037";
 
@@ -69,7 +69,7 @@ public class InheritedElementTypes extends AbstractElementTypeEnumerator {
 
 	public static final String DATA_TYPE_COMPARTMENT_ATTRIBUTE_HINT = "7020";
 
-	public static final String DATA_TYPE_COMPARTMENT_OPERATION_HINT = "7021";
+	public static final String DATA_TYPE_COMPARTMENT_OPERATIONATION_HINT = "7021";
 
 	public static final String DATA_TYPE_LABEL_NAME_HINT = "5035";
 
@@ -78,7 +78,7 @@ public class InheritedElementTypes extends AbstractElementTypeEnumerator {
 
 	public static final String INTERFACE_COMPARTMENT_ATTRIBUTE_HINT = "7006";
 
-	public static final String INTERFACE_COMPARTMENT_OPERATION_HINT = "7007";
+	public static final String INTERFACE_COMPARTMENT_OPERATIONATION_HINT = "7007";
 
 	public static final String INTERFACE_COMPARTMENT_NESTED_CLASSIFIER_HINT = "7008";
 
@@ -202,7 +202,7 @@ public class InheritedElementTypes extends AbstractElementTypeEnumerator {
 
 	public static final String CLASS_CN_COMPARTMENT_ATTRIBUTE_HINT = "7011";
 
-	public static final String CLASS_CN_COMPARTMENT_OPERATION_HINT = "7012";
+	public static final String CLASS_CN_COMPARTMENT_OPERATIONATION_HINT = "7012";
 
 	public static final String CLASS_CN_COMPARTMENT_NESTED_CLASSIFIER_HINT = "7013";
 
@@ -210,16 +210,12 @@ public class InheritedElementTypes extends AbstractElementTypeEnumerator {
 
 	/** ClassDiagram :: INTERFACE_CN */
 	public static final IHintedType INTERFACE_CN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Interface_3023"); //$NON-NLS-1$
+
 	public static final String INTERFACE_CN_COMPARTMENT_ATTRIBUTE_HINT = "7027";
+
 	public static final String INTERFACE_CN_COMPARTMENT_OPERATION_HINT = "7028";
+
 	public static final String INTERFACE_CN_COMPARTMENT_NESTED_CLASSIFIER_HINT = "7029";
-
-
-	public static final String INTERFACE_CN_COMPARTMENT_PROP_HINT = "7027";
-
-	public static final String INTERFACE_CN_COMPARTMENT_OPER_HINT = "7028";
-
-	public static final String INTERFACE_CN_COMPARTMENT_NEST_HINT = "7029";
 	
 	public static final String INTERFACE_CN_LABEL_NAME_HINT = "5049";
 	
@@ -231,9 +227,9 @@ public class InheritedElementTypes extends AbstractElementTypeEnumerator {
 
 	public static final String DATATYPE_CN_LABEL_NAME_HINT = "5061";
 
-	public static final String DATATYPE_CN_COMPARTMENT_PROP_HINT = "7032";
+	public static final String DATATYPE_CN_COMPARTMENT_ATTRIBUTE_HINT = "7032";
 
-	public static final String DATATYPE_CN_COMPARTMENT_OPER_HINT = "7033";
+	public static final String DATATYPE_CN_COMPARTMENT_OPERATION_HINT = "7033";
 
 
 	public static final IHintedType DATATYPE_PROPERTY_CLN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Property_3018"); //$NON-NLS-1$
