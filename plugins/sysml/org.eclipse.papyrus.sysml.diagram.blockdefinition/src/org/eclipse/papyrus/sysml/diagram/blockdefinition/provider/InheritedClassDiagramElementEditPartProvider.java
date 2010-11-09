@@ -140,17 +140,17 @@ public class InheritedClassDiagramElementEditPartProvider extends CUMLEditPartPr
 			}
 
 			/** Usage */
-			if(InheritedElementTypes.USAGE.getSemanticHint().equals(hint) || InheritedElementTypes.USAGE_LABEL_NAME_HINT.equals(hint) || InheritedElementTypes.USAGE_STEREOTYPE_LABEL_HINT.equals(hint)) {
+			if(InheritedElementTypes.USAGE.getSemanticHint().equals(hint) || InheritedElementTypes.USAGE_LABEL_NAME_HINT.equals(hint) || InheritedElementTypes.USAGE_LABEL_APPLIED_STEREOTYPE_HINT.equals(hint)) {
 				return true;
 			}
 
 			/** InterfaceRealization */
-			if(InheritedElementTypes.INTERFACE_REALIZATION.getSemanticHint().equals(hint) || InheritedElementTypes.INTERFACE_REALIZATION_LABEL_NAME_HINT.equals(hint) || InheritedElementTypes.INTERFACE_REALIZATION_STEREOTYPE_LABEL_HINT.equals(hint)) {
+			if(InheritedElementTypes.INTERFACE_REALIZATION.getSemanticHint().equals(hint) || InheritedElementTypes.INTERFACE_REALIZATION_LABEL_NAME2_HINT.equals(hint) || InheritedElementTypes.INTERFACE_REALIZATION_LABEL_APPLIED_STEREOTYPE_HINT.equals(hint)) {
 				return true;
 			}
 
 			/** Generalization */
-			if(InheritedElementTypes.GENERALIZATION.getSemanticHint().equals(hint) || InheritedElementTypes.GENERALIZATION_STEREOTYPE_LABEL_HINT.equals(hint)) {
+			if(InheritedElementTypes.GENERALIZATION.getSemanticHint().equals(hint) || InheritedElementTypes.GENERALIZATION_LABEL_APPLIED_STEREOTYPER_HINT.equals(hint)) {
 				return true;
 			}
 
@@ -160,7 +160,7 @@ public class InheritedClassDiagramElementEditPartProvider extends CUMLEditPartPr
 			}
 
 			/** Association */
-			if(InheritedElementTypes.ASSOCIATION.getSemanticHint().equals(hint) || InheritedElementTypes.ASSOCIATION_LABEL_NAME_HINT.equals(hint) || InheritedElementTypes.ASSOCIATION_STEREOTYPE_LABEL_HINT.equals(hint) || InheritedElementTypes.ASSOCIATION_ROLE_SOURCE_LABEL_HINT.equals(hint) || InheritedElementTypes.ASSOCIATION_ROLE_TARGET_LABEL_HINT.equals(hint) || InheritedElementTypes.ASSOCIATION_MULT_SOURCE_LABEL_HINT.equals(hint) || InheritedElementTypes.ASSOCIATION_MULT_TARGET_LABEL_HINT.equals(hint)) {
+			if(InheritedElementTypes.ASSOCIATION.getSemanticHint().equals(hint) || InheritedElementTypes.ASSOCIATION_LABEL_NAME2_HINT.equals(hint) || InheritedElementTypes.ASSOCIATION_LABEL_APPLIED_STEREOTYPE_HINT.equals(hint) || InheritedElementTypes.ASSOCIATION_LABEL_NAME3_HINT.equals(hint) || InheritedElementTypes.SSOCIATION_LABEL_NAME5_HINT.equals(hint) || InheritedElementTypes.ASSOCIATION_LABEL_MULTIPLICTY_SOURCE_HINT.equals(hint) || InheritedElementTypes.ASSOCIATION_LABEL_MULTIPLICTY_TARGET_HINT.equals(hint)) {
 				return true;
 			}
 
