@@ -147,19 +147,19 @@ public class InheritedClassDiagramElementViewProvider extends UMLViewProvider {
 
 		|| (elementType == BlockDefinitionDiagramElementTypes.MODEL) || (elementType == BlockDefinitionDiagramElementTypes.MODEL_CN)
 
-		|| (elementType == BlockDefinitionDiagramElementTypes.CLASS) || (elementType == BlockDefinitionDiagramElementTypes.CLASS_CN) || (elementType == BlockDefinitionDiagramElementTypes.CLASS_PROP_CLN) || (elementType == BlockDefinitionDiagramElementTypes.CLASS_OPER_CLN) || (elementType == BlockDefinitionDiagramElementTypes.CLASS_RECP_CLN) || (elementType == BlockDefinitionDiagramElementTypes.CLASS_NEST_CLN)
+		|| (elementType == BlockDefinitionDiagramElementTypes.CLASS) || (elementType == BlockDefinitionDiagramElementTypes.CLASS_CN) || (elementType == BlockDefinitionDiagramElementTypes.CLASS_PROPERTY_CLN) || (elementType == BlockDefinitionDiagramElementTypes.CLASS_OPERATION_CLN) || (elementType == BlockDefinitionDiagramElementTypes.CLASS_RECEPTION_CLN) || (elementType == BlockDefinitionDiagramElementTypes.CLASS_CLASS_CLN)
 
-		|| (elementType == BlockDefinitionDiagramElementTypes.INTERFACE) || (elementType == BlockDefinitionDiagramElementTypes.INTERFACE_CN) || (elementType == BlockDefinitionDiagramElementTypes.INTERFACE_PROP_CLN) || (elementType == BlockDefinitionDiagramElementTypes.INTERFACE_OPER_CLN) || (elementType == BlockDefinitionDiagramElementTypes.INTERFACE_NEST_CLN)
+		|| (elementType == BlockDefinitionDiagramElementTypes.INTERFACE) || (elementType == BlockDefinitionDiagramElementTypes.INTERFACE_CN) || (elementType == BlockDefinitionDiagramElementTypes.INTERFACE_PROPERTY_CLN) || (elementType == BlockDefinitionDiagramElementTypes.INTERFACE_OPERATION_CLN) || (elementType == BlockDefinitionDiagramElementTypes.INTERFACE_CLASS_CLN)
 
 		|| (elementType == BlockDefinitionDiagramElementTypes.PRIMITIVE_TYPE) || (elementType == BlockDefinitionDiagramElementTypes.PRIMITIVETYPE_CN)
 
-		|| (elementType == BlockDefinitionDiagramElementTypes.ENUMERATION) || (elementType == BlockDefinitionDiagramElementTypes.ENUMERATION_CN) || (elementType == BlockDefinitionDiagramElementTypes.ENUMERATION_LITERAL_CLN)
+		|| (elementType == BlockDefinitionDiagramElementTypes.ENUMERATION) || (elementType == BlockDefinitionDiagramElementTypes.ENUMERATION_CN) || (elementType == BlockDefinitionDiagramElementTypes.ENUMERATION_ENUMERATION_LITERAL_CLN)
 
-		|| (elementType == BlockDefinitionDiagramElementTypes.DATA_TYPE) || (elementType == BlockDefinitionDiagramElementTypes.DATATYPE_CN) || (elementType == BlockDefinitionDiagramElementTypes.DATATYPE_PROP_CLN) || (elementType == BlockDefinitionDiagramElementTypes.DATATYPE_OPER_CLN)
+		|| (elementType == BlockDefinitionDiagramElementTypes.DATA_TYPE) || (elementType == BlockDefinitionDiagramElementTypes.DATATYPE_CN) || (elementType == BlockDefinitionDiagramElementTypes.DATATYPE_PROPERTY_CLN) || (elementType == BlockDefinitionDiagramElementTypes.DATATYPE_OPERATION_CLN)
 
-		|| (elementType == BlockDefinitionDiagramElementTypes.INSTANCE_SPECIFICATION) || (elementType == BlockDefinitionDiagramElementTypes.INSTANCE_SPEC_CN) || (elementType == BlockDefinitionDiagramElementTypes.INSTANCE_SPEC_SLOT_CLN)
+		|| (elementType == BlockDefinitionDiagramElementTypes.INSTANCE_SPECIFICATION) || (elementType == BlockDefinitionDiagramElementTypes.INSTANCE_SPEC_CN) || (elementType == BlockDefinitionDiagramElementTypes.INSTANCE_SPECIFICATION_SLOT_CLN)
 
-		|| (elementType == BlockDefinitionDiagramElementTypes.ASSOCIATION_CLASS) || (elementType == BlockDefinitionDiagramElementTypes.ASSOCIATION_CLASS_PROP_CLN) || (elementType == BlockDefinitionDiagramElementTypes.ASSOCIATION_CLASS_OPER_CLN) || (elementType == BlockDefinitionDiagramElementTypes.ASSOCIATION_CLASS_NEST_CLN)
+		|| (elementType == BlockDefinitionDiagramElementTypes.ASSOCIATION_CLASS) || (elementType == BlockDefinitionDiagramElementTypes.ASSOCIATION_CLASS_PROPERTY_CLN) || (elementType == BlockDefinitionDiagramElementTypes.COMPONENT_OPERATION_CLN) || (elementType == BlockDefinitionDiagramElementTypes.COMPONENT_CLASS_CLN)
 
 		|| (elementType == BlockDefinitionDiagramElementTypes.COMMENT) || (elementType == BlockDefinitionDiagramElementTypes.COMMENT_CN)
 
