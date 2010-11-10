@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.papyrus.core.tests
+Bundle-Version: 0.7.1.qualifier
+Bundle-Vendor: %providerName
+Fragment-Host: org.eclipse.papyrus.core;bundle-version="0.7.1"
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: org.junit;bundle-version="3.8.2",
+ org.eclipse.uml2.uml;bundle-version="3.1.0"
