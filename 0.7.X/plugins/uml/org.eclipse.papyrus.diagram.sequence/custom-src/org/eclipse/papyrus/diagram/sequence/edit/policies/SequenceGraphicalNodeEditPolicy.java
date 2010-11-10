@@ -15,7 +15,6 @@ package org.eclipse.papyrus.diagram.sequence.edit.policies;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -23,7 +22,6 @@ import java.util.Map.Entry;
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.Polyline;
 import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
@@ -31,11 +29,8 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
-import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy;
-import org.eclipse.gmf.runtime.diagram.ui.internal.commands.SetConnectionBendpointsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
@@ -180,6 +175,12 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 		return messageHints.contains(requestHint);
 	}
 
+	@Override
+	protected Command getConnectionCreateCommand(CreateConnectionRequest request) {
+		request.getExtendedData().put(SequenceRequestConstant.SOURCE_LOCATION_DATA, request.getLocation());
+		return super.getConnectionCreateCommand(request);
+	}
+
 	/**
 	 * Overrides to disable uphill message
 	 */
@@ -196,26 +197,30 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 				return command;
 			}
 		}
-		ICommandProxy proxy = (ICommandProxy)request.getStartCommand();
-		CompositeCommand cc = (CompositeCommand)proxy.getICommand();
-		Iterator<?> commandItr = cc.iterator();
-		while(commandItr.hasNext()) {
-			Object obj = commandItr.next();
-			if(obj instanceof SetConnectionBendpointsCommand) {
-				SetConnectionBendpointsCommand sbbCommand = (SetConnectionBendpointsCommand)obj;
-				final PointList pointList = sbbCommand.getNewPointList();
-				if(pointList.getFirstPoint().y >= pointList.getLastPoint().y + MARGIN) {
-					return UnexecutableCommand.INSTANCE;
-				}
-				request.getExtendedData().put(SequenceRequestConstant.SOURCE_MODEL_CONTAINER, SequenceUtil.findInteractionFragmentContainerAt(pointList.getFirstPoint(), getHost()));
-				request.getExtendedData().put(SequenceRequestConstant.TARGET_MODEL_CONTAINER, SequenceUtil.findInteractionFragmentContainerAt(pointList.getLastPoint(), getHost()));
-				// In case we are creating a connection to/from a CoRegion, we will need the lifeline element where is drawn the CoRegion later in the process.
-				EditPart targetEditPart = getTargetEditPart(request);
-				if(targetEditPart instanceof CombinedFragment2EditPart) {
-					request.getExtendedData().put(SequenceRequestConstant.LIFELINE_GRAPHICAL_CONTAINER, ((CombinedFragment2EditPart)targetEditPart).getAttachedLifeline());
-				}
-			}
+		//		ICommandProxy proxy = (ICommandProxy)request.getStartCommand();
+		//		CompositeCommand cc = (CompositeCommand)proxy.getICommand();
+		//		Iterator<?> commandItr = cc.iterator();
+		//		while(commandItr.hasNext()) {
+		//			Object obj = commandItr.next();
+		//			if(obj instanceof SetConnectionBendpointsCommand) {
+		//				SetConnectionBendpointsCommand sbbCommand = (SetConnectionBendpointsCommand)obj;
+		//final PointList pointList = sbbCommand.getNewPointList();
+
+		Point sourcePoint = (Point)request.getExtendedData().get(SequenceRequestConstant.SOURCE_LOCATION_DATA);
+		Point targetPoint = request.getLocation();
+
+		if(sourcePoint.y >= targetPoint.y + MARGIN) {
+			return UnexecutableCommand.INSTANCE;
 		}
+		request.getExtendedData().put(SequenceRequestConstant.SOURCE_MODEL_CONTAINER, SequenceUtil.findInteractionFragmentContainerAt(sourcePoint, getHost()));
+		request.getExtendedData().put(SequenceRequestConstant.TARGET_MODEL_CONTAINER, SequenceUtil.findInteractionFragmentContainerAt(targetPoint, getHost()));
+		// In case we are creating a connection to/from a CoRegion, we will need the lifeline element where is drawn the CoRegion later in the process.
+		EditPart targetEditPart = getTargetEditPart(request);
+		if(targetEditPart instanceof CombinedFragment2EditPart) {
+			request.getExtendedData().put(SequenceRequestConstant.LIFELINE_GRAPHICAL_CONTAINER, ((CombinedFragment2EditPart)targetEditPart).getAttachedLifeline());
+		}
+		//			}
+		//		}
 
 		return command;
 	}

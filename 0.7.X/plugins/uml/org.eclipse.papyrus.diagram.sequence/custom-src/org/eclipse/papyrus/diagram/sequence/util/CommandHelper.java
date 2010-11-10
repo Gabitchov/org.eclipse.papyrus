@@ -32,6 +32,7 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalCommandStack;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ILabelProvider;
@@ -1000,18 +1001,64 @@ public class CommandHelper {
 	 * @return false if the container of the source or the target is null and if the two container are not equals
 	 */
 	public static boolean hasValidContainer(IEditCommandRequest request) {
-		if(request.getParameter(SequenceRequestConstant.SOURCE_MODEL_CONTAINER) == null) {
-			return false;
-		}
-		if(request.getParameter(SequenceRequestConstant.TARGET_MODEL_CONTAINER) == null) {
-			return false;
-		}
-		// Message cannot cross InteractionFragment. The two mos must be contained into the same InteractionFragment
-		if(!request.getParameter(SequenceRequestConstant.SOURCE_MODEL_CONTAINER).equals(request.getParameter(SequenceRequestConstant.TARGET_MODEL_CONTAINER))) {
+		Object srcEndContainer = request.getParameter(SequenceRequestConstant.SOURCE_MODEL_CONTAINER);
+		Object tgtEndContainer = request.getParameter(SequenceRequestConstant.TARGET_MODEL_CONTAINER);
+		if(srcEndContainer == null || tgtEndContainer == null) {
 			return false;
 		}
 
-		return true;
+		/*
+		 * Message cannot cross InteractionFragment.
+		 * Either the two message ends are contained into the same InteractionFragment,
+		 * or one is a gate and the other is in the InteractionFragment containing the gate's CF,
+		 * or one is a gate and the other is a gate in a CF containing the first gate's CF.
+		 */
+		// into the same InteractionFragment
+		if(srcEndContainer.equals(tgtEndContainer)) {
+			return true;
+		}
+		// one is a gate
+		if(request instanceof CreateRelationshipRequest) {
+			EObject src = ((CreateRelationshipRequest)request).getSource();
+			EObject tgt = ((CreateRelationshipRequest)request).getTarget();
+			if(!(src instanceof Lifeline)) {
+				// send is a gate
+				if(src instanceof InteractionOperand) {
+					// consider the containing CF
+					src = src.eContainer();
+				}
+				if(src instanceof InteractionFragment) {
+					// check whether container of gate is in the target's fragment container
+					if(tgtEndContainer instanceof Interaction) {
+						if(((Interaction)tgtEndContainer).getFragments().contains(src)) {
+							return true;
+						}
+					}
+					if(tgtEndContainer instanceof InteractionOperand) {
+						if(((InteractionOperand)tgtEndContainer).getFragments().contains(src)) {
+							return true;
+						}
+					}
+				}
+			}
+			if(!(tgt instanceof Lifeline)) {
+				// receive is a gate
+				if(tgt instanceof InteractionOperand) {
+					// consider the containing CF
+					tgt = tgt.eContainer();
+				}
+				if(tgt instanceof InteractionFragment) {
+					// check whether container of gate is in the source's fragment container
+					if(srcEndContainer instanceof Interaction && ((Interaction)srcEndContainer).getFragments().contains(tgt)) {
+						return true;
+					}
+					if(srcEndContainer instanceof InteractionOperand && ((InteractionOperand)srcEndContainer).getFragments().contains(tgt)) {
+						return true;
+					}
+				}
+			}
+		}
+		return false;
 	}
 
 
