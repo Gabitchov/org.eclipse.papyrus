@@ -28,6 +28,7 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.sequence.util.SequenceUtil;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.DestructionEvent;
 import org.eclipse.uml2.uml.ExecutionOccurrenceSpecification;
 import org.eclipse.uml2.uml.ExecutionSpecification;
@@ -35,6 +36,7 @@ import org.eclipse.uml2.uml.GeneralOrdering;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.InteractionOperand;
+import org.eclipse.uml2.uml.InteractionOperatorKind;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageEnd;
@@ -64,6 +66,9 @@ public class FragmentOrderingKeeper {
 
 	/** Format for displaying an element's name */
 	private static final String NAME_FORMAT = "<{0}> {1}";
+
+	/** map with, for a given index, the fragments which have been put with an optional order (may change) */
+	private Map<Integer, List<InteractionFragment>> optionallyOrderedFragments;
 
 	private EList<InteractionFragment> orderedFragments;
 
@@ -164,6 +169,9 @@ public class FragmentOrderingKeeper {
 		}
 		if(conflictingFragments != null) {
 			conflictingFragments.clear();
+		}
+		if(optionallyOrderedFragments != null) {
+			optionallyOrderedFragments.clear();
 		}
 	}
 
@@ -312,6 +320,7 @@ public class FragmentOrderingKeeper {
 	 * </li>
 	 */
 	private void constructPartialOrders() {
+		optionallyOrderedFragments = new HashMap<Integer, List<InteractionFragment>>();
 		int numberOfConstraints = constrainingNotRepresentedLifelines.size() + constrainingLifelineParts.size() + constrainingMessages.size() + constrainingExecutions.size() + constrainingGeneralOrderings.size();
 		/*
 		 * + constrainingCombinedFragments.size();
@@ -335,7 +344,7 @@ public class FragmentOrderingKeeper {
 		for(LifelineEditPart part : constrainingLifelineParts) {
 			TreeMap<Float, InteractionFragment> constraint = new TreeMap<Float, InteractionFragment>();
 			//fill constraint : graphical location and previous order of elements not drawn
-			fillConstraintWithLifelineEvents(constraint, part);
+			fillConstraintWithLifelineEvents(constraint, part, indexConstraint);
 			// store constraint
 			orderConstraints.add(indexConstraint, new ArrayList<InteractionFragment>(constraint.values()));
 			indexConstraint++;
@@ -413,8 +422,10 @@ public class FragmentOrderingKeeper {
 	 *        the tree map for hosting the constraint
 	 * @param lifelinePart
 	 *        the lifeline edit part
+	 * @param indexConstraint
+	 *        index of constraint
 	 */
-	private void fillConstraintWithLifelineEvents(TreeMap<Float, InteractionFragment> constraint, LifelineEditPart lifelinePart) {
+	private void fillConstraintWithLifelineEvents(TreeMap<Float, InteractionFragment> constraint, LifelineEditPart lifelinePart, int indexConstraint) {
 		EObject lifeline = lifelinePart.resolveSemanticElement();
 		if(lifeline instanceof Lifeline) {
 			List<InteractionFragment> nonLocalizedEvents = new ArrayList<InteractionFragment>();
@@ -431,6 +442,7 @@ public class FragmentOrderingKeeper {
 				}
 				// else, it is not in the list, must be in a child element.
 			}
+			optionallyOrderedFragments.put(indexConstraint, nonLocalizedEvents);
 			// add not drawn events according to their old order in the valid trace
 			InteractionFragment lastMetSortedFragment = null;
 			for(InteractionFragment fragment : orderedFragments) {
@@ -606,33 +618,121 @@ public class FragmentOrderingKeeper {
 				}
 			}
 			if(matureFragments.isEmpty()) {
-				// no valid trace.
-				if(valid) {
-					// store first conflicting fragments for user explanation
-					conflictingFragments = new HashSet<InteractionFragment>(n);
-					for(int k = 0; k < n; k++) {
-						InteractionFragment frag = getFragmentToInspect(k, pointers);
-						if(frag != null) {
-							conflictingFragments.add(frag);
+				//FIXME duplicated code : try again, without optional order
+				// inspect each constraint list to know whether fragment is mature enough, in such a case, store it with constraint index
+				matureFragments = new HashMap<Integer, InteractionFragment>(n);
+				for(int i = 0; i < n; i++) {
+
+					InteractionFragment fragmentToInspect = getFragmentToInspect(i, pointers);
+					// if no more fragment in this constraint (fragmentToInspect == null), nothing to do
+					if(fragmentToInspect != null) {
+						/*
+						 * Check whether fragment is mature enough :
+						 * Fragment can happen only if other constraints do not impose it to happen after their current fragment.
+						 */
+						boolean wait = false;
+						for(int j = 0; j < n; j++) {
+							if(i != j) {
+								// check that current fragment of constraint j must not occur before
+								if(pointers[j] < orderConstraints.get(j).size()) {
+									// only difference : ignore order for fragments in optionallyOrderedFragments
+									int updatedPointer = pointers[j];
+									if(optionallyOrderedFragments.containsKey(j)) {
+										List<InteractionFragment> ignore = optionallyOrderedFragments.get(j);
+										// hack for coregion
+										while(ignore.contains(orderConstraints.get(j).get(updatedPointer)) || (orderConstraints.get(j).get(updatedPointer) instanceof CombinedFragment && InteractionOperatorKind.PAR_LITERAL.equals(((CombinedFragment)orderConstraints.get(j).get(updatedPointer)).getInteractionOperator()))) {
+											updatedPointer++;
+										}
+									}
+									List<InteractionFragment> waitingList = orderConstraints.get(j).subList(updatedPointer + 1, orderConstraints.get(j).size());
+
+									if(waitingList.contains(fragmentToInspect)) {
+										wait = true;
+										break;
+									}
+								}
+							}
+						}
+						if(!wait) {
+							//Fragment is ready to happen.
+							matureFragments.put(i, fragmentToInspect);
 						}
 					}
 				}
-				valid = false;
-				/*
-				 * We must at least keep order of constraints with higher priority.
-				 * Take the next event in the first available constraint.
-				 */
-				InteractionFragment addedFragment = getFragmentToInspect(-1, pointers);
-				reorderedFragments.add(addedFragment);
-				// increment pointers of constraints whose fragment has been added.
-				for(int k = 0; k < n; k++) {
-					InteractionFragment frag = getFragmentToInspect(k, pointers);
-					while(reorderedFragments.contains(frag)) {
-						// either frag == addedFragment and has just been added, or it has been added earlier after a conflict
-						pointers[k]++;
-						frag = getFragmentToInspect(k, pointers);
+				if(matureFragments.isEmpty()) {
+					// no valid trace.
+					if(valid) {
+						// store first conflicting fragments for user explanation
+						conflictingFragments = new HashSet<InteractionFragment>(n);
+						for(int k = 0; k < n; k++) {
+							InteractionFragment frag = getFragmentToInspect(k, pointers);
+							if(frag != null) {
+								conflictingFragments.add(frag);
+							}
+						}
+					}
+					valid = false;
+					/*
+					 * We must at least keep order of constraints with higher priority.
+					 * Take the next event in the first available constraint.
+					 */
+					InteractionFragment addedFragment = getFragmentToInspect(-1, pointers);
+					reorderedFragments.add(addedFragment);
+					// increment pointers of constraints whose fragment has been added.
+					for(int k = 0; k < n; k++) {
+						InteractionFragment frag = getFragmentToInspect(k, pointers);
+						while(reorderedFragments.contains(frag)) {
+							// either frag == addedFragment and has just been added, or it has been added earlier after a conflict
+							pointers[k]++;
+							frag = getFragmentToInspect(k, pointers);
+						}
+					}
+				} else {
+					/*
+					 * NOTE : to compute every traces, fork here by making fragmentsSet.size() branches, adding only one mature fragment for each
+					 * branch and continuing the algorithm.
+					 */
+					// All matureFragments can happen in any order. Add them all (without doubles).
+					Set<InteractionFragment> fragmentsSet = new HashSet<InteractionFragment>(matureFragments.values());
+					reorderedFragments.addAll(fragmentsSet);
+					// increment pointers of constraints whose fragment has been added.
+					for(int incrementingPointerIndex : matureFragments.keySet()) {
+						InteractionFragment frag = getFragmentToInspect(incrementingPointerIndex, pointers);
+						while(reorderedFragments.contains(frag)) {
+							// either frag == addedFragment and has just been added, or it has been added earlier after a conflict
+							pointers[incrementingPointerIndex]++;
+							frag = getFragmentToInspect(incrementingPointerIndex, pointers);
+						}
 					}
 				}
+
+				//				// no valid trace.
+				//				if(valid) {
+				//					// store first conflicting fragments for user explanation
+				//					conflictingFragments = new HashSet<InteractionFragment>(n);
+				//					for(int k = 0; k < n; k++) {
+				//						InteractionFragment frag = getFragmentToInspect(k, pointers);
+				//						if(frag != null) {
+				//							conflictingFragments.add(frag);
+				//						}
+				//					}
+				//				}
+				//				valid = false;
+				//				/*
+				//				 * We must at least keep order of constraints with higher priority.
+				//				 * Take the next event in the first available constraint.
+				//				 */
+				//				InteractionFragment addedFragment = getFragmentToInspect(-1, pointers);
+				//				reorderedFragments.add(addedFragment);
+				//				// increment pointers of constraints whose fragment has been added.
+				//				for(int k = 0; k < n; k++) {
+				//					InteractionFragment frag = getFragmentToInspect(k, pointers);
+				//					while(reorderedFragments.contains(frag)) {
+				//						// either frag == addedFragment and has just been added, or it has been added earlier after a conflict
+				//						pointers[k]++;
+				//						frag = getFragmentToInspect(k, pointers);
+				//					}
+				//				}
 			} else {
 				/*
 				 * NOTE : to compute every traces, fork here by making fragmentsSet.size() branches, adding only one mature fragment for each
