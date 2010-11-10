@@ -44,5 +44,8 @@ public interface SequenceRequestConstant {
 	public static final String OCCURRENCE_SPECIFICATION_LOCATION_2 = "Nearest occurrence specification location (end)"; //$NON-NLS-1$
 
 	/** Tag signifying that the edit parts must not be moved when an occurrence specification is moved (to avoid loop in chain effects) */
-	public static final Object DO_NOT_MOVE_EDIT_PARTS = "Do not move these edit parts"; //$NON-NLS-1$
+	public static final String DO_NOT_MOVE_EDIT_PARTS = "Do not move these edit parts"; //$NON-NLS-1$
+
+	/** The location of the connection start creation request */
+	public static final String SOURCE_LOCATION_DATA = "Location of connection source point"; //$NON-NLS-1$
 }

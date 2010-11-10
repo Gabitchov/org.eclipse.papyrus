@@ -72,6 +72,9 @@ public class MessageRouter extends ObliqueRouter {
 		 * It is self if the parent lifeline is the same.
 		 */
 		private static boolean isSelfConnection(Connection conn) {
+			if(conn == null || conn.getSourceAnchor() == null || conn.getTargetAnchor() == null) {
+				return false;
+			}
 			IFigure sourceLifeline = conn.getSourceAnchor().getOwner();
 			while(sourceLifeline != null && !(sourceLifeline instanceof LifelineFigure)) {
 				sourceLifeline = sourceLifeline.getParent();
