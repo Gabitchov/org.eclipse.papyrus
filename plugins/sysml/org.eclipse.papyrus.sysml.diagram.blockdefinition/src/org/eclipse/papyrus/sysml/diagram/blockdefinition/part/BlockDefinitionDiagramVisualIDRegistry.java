@@ -3,25 +3,13 @@ package org.eclipse.papyrus.sysml.diagram.blockdefinition.part;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPart;
-import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockDefinitionDiagramEditPart;
+
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.BlockDefinitionDiagramElementTypes;
 
 /**
  * @generated
  */
 public class BlockDefinitionDiagramVisualIDRegistry {
-
-	public static String getVisualID(View view) {
-		if(view instanceof Diagram) {
-			if(BlockDefinitionDiagramEditPart.DIAGRAM_ID.equals(view.getType())) {
-				return BlockDefinitionDiagramEditPart.DIAGRAM_ID;
-			} else {
-				return null;
-			}
-		}
-		return view.getType();
-	}
 
 	/**
 	 * @generated
@@ -44,7 +32,7 @@ public class BlockDefinitionDiagramVisualIDRegistry {
 				return null;
 			}
 		}
-		if(BlockDefinitionDiagramEditPart.DIAGRAM_ID.equals(containerVisualID)) {
+		if(org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockDefinitionDiagramEditPart.DIAGRAM_ID.equals(containerVisualID)) {
 
 			if(domainElement instanceof org.eclipse.uml2.uml.AssociationClass) {
 				return BlockDefinitionDiagramElementTypes.ASSOCIATION_CLASS.getSemanticHint();
@@ -65,6 +53,9 @@ public class BlockDefinitionDiagramVisualIDRegistry {
 				return BlockDefinitionDiagramElementTypes.MODEL.getSemanticHint();
 			}
 
+			if(domainElement instanceof org.eclipse.uml2.uml.Enumeration) {
+				return BlockDefinitionDiagramElementTypes.ENUMERATION.getSemanticHint();
+			}
 
 			if(domainElement instanceof org.eclipse.uml2.uml.Package) {
 				return BlockDefinitionDiagramElementTypes.PACKAGE.getSemanticHint();
@@ -103,6 +94,24 @@ public class BlockDefinitionDiagramVisualIDRegistry {
 		if(BlockDefinitionDiagramElementTypes.INTERFACE.getSemanticHint().equals(containerVisualID)) {
 
 		};
+		if(BlockDefinitionDiagramElementTypes.INTERFACE_COMPARTMENT_ATTRIBUTE_HINT.equals(containerVisualID)) {
+			if(domainElement instanceof org.eclipse.uml2.uml.Property) {
+				return BlockDefinitionDiagramElementTypes.INTERFACE_PROPERTY_CLN.getSemanticHint();
+			}
+		};
+
+		if(BlockDefinitionDiagramElementTypes.INTERFACE_COMPARTMENT_OPERATION_HINT.equals(containerVisualID)) {
+			if(domainElement instanceof org.eclipse.uml2.uml.Operation) {
+				return BlockDefinitionDiagramElementTypes.INTERFACE_OPERATION_CLN.getSemanticHint();
+			}
+		};
+
+		if(BlockDefinitionDiagramElementTypes.INTERFACE_COMPARTMENT_NESTED_CLASSIFIER_HINT.equals(containerVisualID)) {
+			if(domainElement instanceof org.eclipse.uml2.uml.Class) {
+				return BlockDefinitionDiagramElementTypes.INTERFACE_CLASS_CLN.getSemanticHint();
+			}
+		};
+
 
 		if(BlockDefinitionDiagramElementTypes.MODEL.getSemanticHint().equals(containerVisualID)) {
 
@@ -110,19 +119,135 @@ public class BlockDefinitionDiagramVisualIDRegistry {
 		};
 
 
+
 		if(BlockDefinitionDiagramElementTypes.PACKAGE.getSemanticHint().equals(containerVisualID)) {
 
 
 		};
 
+
 		if(BlockDefinitionDiagramElementTypes.CLASS.getSemanticHint().equals(containerVisualID)) {
+
+		};
+		if(BlockDefinitionDiagramElementTypes.CLASS_COMPARTMENT_ATTRIBUTE_HINT.equals(containerVisualID)) {
+			if(domainElement instanceof org.eclipse.uml2.uml.Property) {
+				return BlockDefinitionDiagramElementTypes.CLASS_PROPERTY_CLN.getSemanticHint();
+			}
+		};
+
+		if(BlockDefinitionDiagramElementTypes.CLASS_COMPARTMENT_OPERATION_HINT.equals(containerVisualID)) {
+			if(domainElement instanceof org.eclipse.uml2.uml.Reception) {
+				return BlockDefinitionDiagramElementTypes.CLASS_RECEPTION_CLN.getSemanticHint();
+			}
+			if(domainElement instanceof org.eclipse.uml2.uml.Operation) {
+				return BlockDefinitionDiagramElementTypes.CLASS_OPERATION_CLN.getSemanticHint();
+			}
+		};
+
+		if(BlockDefinitionDiagramElementTypes.CLASS_COMPARTMENT_NESTED_CLASSIFIER_HINT.equals(containerVisualID)) {
+			if(domainElement instanceof org.eclipse.uml2.uml.Class) {
+				return BlockDefinitionDiagramElementTypes.CLASS_CLASS_CLN.getSemanticHint();
+			}
+		};
+
+
+
+		if(BlockDefinitionDiagramElementTypes.DATA_TYPE.getSemanticHint().equals(containerVisualID)) {
+
+		};
+		if(BlockDefinitionDiagramElementTypes.DATA_TYPE_COMPARTMENT_ATTRIBUTE_HINT.equals(containerVisualID)) {
+			if(domainElement instanceof org.eclipse.uml2.uml.Property) {
+				return BlockDefinitionDiagramElementTypes.DATA_TYPE_PROPERTY_CLN.getSemanticHint();
+			}
+		};
+
+		if(BlockDefinitionDiagramElementTypes.DATA_TYPE_COMPARTMENT_OPERATION_HINT.equals(containerVisualID)) {
+			if(domainElement instanceof org.eclipse.uml2.uml.Operation) {
+				return BlockDefinitionDiagramElementTypes.DATA_TYPE_OPERATION_CLN.getSemanticHint();
+			}
+		};
+
+
+
+
+
+		if(BlockDefinitionDiagramElementTypes.INTERFACE_CN.getSemanticHint().equals(containerVisualID)) {
+
+		};
+		if(BlockDefinitionDiagramElementTypes.INTERFACE_CN_COMPARTMENT_ATTRIBUTE_HINT.equals(containerVisualID)) {
+			if(domainElement instanceof org.eclipse.uml2.uml.Property) {
+				return BlockDefinitionDiagramElementTypes.INTERFACE_PROPERTY_CLN.getSemanticHint();
+			}
+		};
+
+		if(BlockDefinitionDiagramElementTypes.INTERFACE_CN_COMPARTMENT_OPERATION_HINT.equals(containerVisualID)) {
+			if(domainElement instanceof org.eclipse.uml2.uml.Operation) {
+				return BlockDefinitionDiagramElementTypes.INTERFACE_OPERATION_CLN.getSemanticHint();
+			}
+		};
+
+		if(BlockDefinitionDiagramElementTypes.INTERFACE_CN_COMPARTMENT_NESTED_CLASSIFIER_HINT.equals(containerVisualID)) {
+			if(domainElement instanceof org.eclipse.uml2.uml.Class) {
+				return BlockDefinitionDiagramElementTypes.INTERFACE_CLASS_CLN.getSemanticHint();
+			}
+		};
+
+
+		if(BlockDefinitionDiagramElementTypes.MODEL_CN.getSemanticHint().equals(containerVisualID)) {
 
 
 		};
 
 
-		if(BlockDefinitionDiagramElementTypes.DATA_TYPE.getSemanticHint().equals(containerVisualID)) {
 
+
+		if(BlockDefinitionDiagramElementTypes.PACKAGE_CN.getSemanticHint().equals(containerVisualID)) {
+
+
+		};
+
+
+		if(BlockDefinitionDiagramElementTypes.CLASS_CN.getSemanticHint().equals(containerVisualID)) {
+
+		};
+		if(BlockDefinitionDiagramElementTypes.CLASS_CN_COMPARTMENT_ATTRIBUTE_HINT.equals(containerVisualID)) {
+			if(domainElement instanceof org.eclipse.uml2.uml.Property) {
+				return BlockDefinitionDiagramElementTypes.CLASS_PROPERTY_CLN.getSemanticHint();
+			}
+		};
+
+		if(BlockDefinitionDiagramElementTypes.CLASS_CN_COMPARTMENT_OPERATION_HINT.equals(containerVisualID)) {
+			if(domainElement instanceof org.eclipse.uml2.uml.Reception) {
+				return BlockDefinitionDiagramElementTypes.CLASS_RECEPTION_CLN.getSemanticHint();
+			}
+			if(domainElement instanceof org.eclipse.uml2.uml.Operation) {
+				return BlockDefinitionDiagramElementTypes.CLASS_OPERATION_CLN.getSemanticHint();
+			}
+		};
+
+		if(BlockDefinitionDiagramElementTypes.CLASS_CN_COMPARTMENT_NESTED_CLASSIFIER_HINT.equals(containerVisualID)) {
+			if(domainElement instanceof org.eclipse.uml2.uml.Class) {
+				return BlockDefinitionDiagramElementTypes.CLASS_CLASS_CLN.getSemanticHint();
+			}
+		};
+
+
+
+
+
+		if(BlockDefinitionDiagramElementTypes.DATA_TYPE_CN.getSemanticHint().equals(containerVisualID)) {
+
+		};
+		if(BlockDefinitionDiagramElementTypes.DATA_TYPE_CN_COMPARTMENT_ATTRIBUTE_HINT.equals(containerVisualID)) {
+			if(domainElement instanceof org.eclipse.uml2.uml.Property) {
+				return BlockDefinitionDiagramElementTypes.DATA_TYPE_PROPERTY_CLN.getSemanticHint();
+			}
+		};
+
+		if(BlockDefinitionDiagramElementTypes.DATA_TYPE_CN_COMPARTMENT_OPERATION_HINT.equals(containerVisualID)) {
+			if(domainElement instanceof org.eclipse.uml2.uml.Operation) {
+				return BlockDefinitionDiagramElementTypes.DATA_TYPE_OPERATION_CLN.getSemanticHint();
+			}
 		};
 
 
@@ -145,5 +270,19 @@ public class BlockDefinitionDiagramVisualIDRegistry {
 			view = (org.eclipse.gmf.runtime.notation.View)view.eContainer();
 		}
 		return diagram != null ? diagram.getType() : null;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static String getVisualID(View view) {
+		if(view instanceof Diagram) {
+			if(org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockDefinitionDiagramEditPart.DIAGRAM_ID.equals(view.getType())) {
+				return org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockDefinitionDiagramEditPart.DIAGRAM_ID;
+			} else {
+				return null;
+			}
+		}
+		return view.getType();
 	}
 }
