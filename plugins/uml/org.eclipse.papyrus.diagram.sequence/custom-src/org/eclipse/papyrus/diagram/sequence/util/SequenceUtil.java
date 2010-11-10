@@ -898,7 +898,7 @@ public class SequenceUtil {
 	public static Set<InteractionFragment> getCoveredInteractionFragments(Rectangle selectionRect, EditPart hostEditPart, Set<InteractionFragment> ignoreSet) {
 		Set<InteractionFragment> coveredInteractionFragments = new HashSet<InteractionFragment>();
 
-		if (ignoreSet == null) {
+		if(ignoreSet == null) {
 			ignoreSet = new HashSet<InteractionFragment>();
 		}
 
@@ -978,22 +978,27 @@ public class SequenceUtil {
 
 			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-				if(ift != null) {
-					if(interaction instanceof Interaction) {
-						if(!interaction.equals(ift.getEnclosingInteraction())) {
-							ift.setEnclosingOperand(null);
-							ift.setEnclosingInteraction((Interaction)interaction);
-						}
-					} else if(interaction instanceof InteractionOperand) {
-						if(!interaction.equals(ift.getEnclosingOperand())) {
-							ift.setEnclosingInteraction(null);
-							ift.setEnclosingOperand((InteractionOperand)interaction);
-						}
-					}
-				}
+				setEnclosingInteraction(ift, interaction);
+
 				return CommandResult.newOKCommandResult();
 			}
 		};
+	}
+
+	public static void setEnclosingInteraction(InteractionFragment ift, EObject interaction) {
+		if(ift != null) {
+			if(interaction instanceof Interaction) {
+				if(!interaction.equals(ift.getEnclosingInteraction())) {
+					ift.setEnclosingOperand(null);
+					ift.setEnclosingInteraction((Interaction)interaction);
+				}
+			} else if(interaction instanceof InteractionOperand) {
+				if(!interaction.equals(ift.getEnclosingOperand())) {
+					ift.setEnclosingInteraction(null);
+					ift.setEnclosingOperand((InteractionOperand)interaction);
+				}
+			}
+		}
 	}
 
 	/**
@@ -1148,7 +1153,7 @@ public class SequenceUtil {
 		int maxDeltaWithMiddle = 0;
 		for(Object child : children) {
 			// children executions
-			if(child instanceof ActionExecutionSpecificationEditPart || child instanceof BehaviorExecutionSpecificationEditPart) {
+			if(child instanceof ActionExecutionSpecificationEditPart || child instanceof BehaviorExecutionSpecificationEditPart || child instanceof CombinedFragment2EditPart) {
 				GraphicalEditPart childPart = (GraphicalEditPart)child;
 				Rectangle absoluteBounds = getAbsoluteBounds(childPart);
 				// enlarge absolute bounds to contain also the right and bottom edges.

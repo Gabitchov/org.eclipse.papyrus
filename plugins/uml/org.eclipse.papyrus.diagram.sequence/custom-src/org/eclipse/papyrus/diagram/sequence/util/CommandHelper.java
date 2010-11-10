@@ -867,7 +867,7 @@ public class CommandHelper {
 	/**
 	 * Get the interactionOperand where the occurrenceSpecification will be created
 	 */
-	private static InteractionOperand getCoRegionInteractionOperand(CombinedFragment cf) {
+	public static InteractionOperand getCoRegionInteractionOperand(CombinedFragment cf) {
 		InteractionOperand interactionOperand = null;
 
 		// Search in the existing operands if there are any operand without fragments.
