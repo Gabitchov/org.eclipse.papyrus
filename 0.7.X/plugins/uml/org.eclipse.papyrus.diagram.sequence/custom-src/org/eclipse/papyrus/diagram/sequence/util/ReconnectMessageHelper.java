@@ -13,9 +13,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.util;
 
+import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Gate;
+import org.eclipse.uml2.uml.InteractionOperand;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageEnd;
@@ -67,7 +69,42 @@ public class ReconnectMessageHelper {
 			if(lifeline != null) {
 				updateOccurenceSpecification(messageEnd, lifeline);
 			}
+		} else if(newElement instanceof CombinedFragment) {
+			CombinedFragment cf = (CombinedFragment)newElement;
+			InteractionOperand io = CommandHelper.getCoRegionInteractionOperand(cf);
+			messageEnd.setEnclosingOperand(io);
+
+			// try to find and put in the io the other mos of the message
+			MessageEnd messageEnd2 = findSecondMessageEnd(messageEnd);
+
+			if(messageEnd2 instanceof MessageOccurrenceSpecification) {
+				((MessageOccurrenceSpecification)messageEnd2).setEnclosingOperand(io);
+			}
+		} else if(oldElement instanceof CombinedFragment) {
+			CombinedFragment cf = (CombinedFragment)oldElement;
+			Element backInteraction = cf.getOwner();
+
+			SequenceUtil.setEnclosingInteraction(messageEnd, backInteraction);
+
+			MessageEnd messageEnd2 = findSecondMessageEnd(messageEnd);
+			if(messageEnd2 instanceof MessageOccurrenceSpecification) {
+				SequenceUtil.setEnclosingInteraction((MessageOccurrenceSpecification)messageEnd2, backInteraction);
+			}
 		}
+	}
+
+	public static MessageEnd findSecondMessageEnd(MessageEnd messageEnd) {
+		Message msg = messageEnd.getMessage();
+
+		MessageEnd messageEnd2 = null;
+		if(msg != null) {
+			if(messageEnd.equals(msg.getSendEvent())) {
+				messageEnd2 = msg.getReceiveEvent();
+			} else {
+				messageEnd2 = msg.getSendEvent();
+			}
+		}
+		return messageEnd2;
 	}
 
 
