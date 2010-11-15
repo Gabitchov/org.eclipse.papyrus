@@ -175,6 +175,10 @@
         id="org.eclipse.papyrus.postaction.changeStereotypeDisplayProvider">
         </postAction>
       </aspectTool>
+      
+      <stack id="blockdefinition.tool.stack.datatype">
+      <aspectTool id="blockdefinition.tool.datatype"
+      refToolId="clazz.tool.datatype" />
       <aspectTool description="Create a new ValueType (DataType)"
       iconpath="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/ValueType.gif"
       id="blockdefinition.tool.valuetype_datatype"
@@ -189,6 +193,12 @@
         displayPlace="Compartment"
         id="org.eclipse.papyrus.postaction.changeStereotypeDisplayProvider" />
       </aspectTool>
+      </stack>
+      
+      <aspectTool id="blockdefinition.tool.enumeration"
+      refToolId="clazz.tool.enumeration" />
+
+      <stack id="blockdefinition.tool.stack.valuetype">
       <aspectTool description="Create a new ValueType (Enumeration)"
       iconpath="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/ValueType.gif"
       id="blockdefinition.tool.valuetype_enumeration"
@@ -204,6 +214,7 @@
         displayPlace="Compartment"
         id="org.eclipse.papyrus.postaction.changeStereotypeDisplayProvider" />
       </aspectTool>
+      
       <aspectTool description="Create a new ValueType (PrimitiveType)"
       iconpath="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/ValueType.gif"
       id="blockdefinition.tool.valuetype_primitivetype"
@@ -219,6 +230,9 @@
         displayPlace="Compartment"
         id="org.eclipse.papyrus.postaction.changeStereotypeDisplayProvider" />
       </aspectTool>
+      </stack>
+      
+      <stack id="blockdefinition.tool.stack.instancespecification">
       <aspectTool description="Create a new Unit (InstanceSpecification)"
       iconpath="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Unit.gif"
       id="blockdefinition.tool.unit_instancespecification"
@@ -234,21 +248,7 @@
         displayPlace="Compartment"
         id="org.eclipse.papyrus.postaction.changeStereotypeDisplayProvider" />
       </aspectTool>
-      <aspectTool description="Create a new Unit (Enumeration literal)"
-      iconpath="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Unit.gif"
-      id="blockdefinition.tool.unit_enumerationliteral"
-      name="Unit (Enumeration literal)"
-      refToolId="clazz.tool.enumerationliteral">
-        <postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
 
-          <stereotypesToApply>
-            <stereotype stereotypeName="SysML::Blocks::Unit" />
-          </stereotypesToApply>
-        </postAction>
-        <postAction displayKind="IconStereotype"
-        displayPlace="Compartment"
-        id="org.eclipse.papyrus.postaction.changeStereotypeDisplayProvider" />
-      </aspectTool>
       <aspectTool description="Create a new Dimension (InstanceSpecification)"
       iconpath="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Dimension.gif"
       id="blockdefinition.tool.dimension_instancespecification"
@@ -264,6 +264,28 @@
         displayPlace="Compartment"
         id="org.eclipse.papyrus.postaction.changeStereotypeDisplayProvider" />
       </aspectTool>
+      </stack>
+      
+      <stack id="blockdefinition.tool.stack.enumerationliteral">
+      <aspectTool id="blockdefinition.tool.enumerationliteral"
+      refToolId="clazz.tool.enumerationliteral" />
+
+      <aspectTool description="Create a new Unit (Enumeration literal)"
+      iconpath="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Unit.gif"
+      id="blockdefinition.tool.unit_enumerationliteral"
+      name="Unit (Enumeration literal)"
+      refToolId="clazz.tool.enumerationliteral">
+        <postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+
+          <stereotypesToApply>
+            <stereotype stereotypeName="SysML::Blocks::Unit" />
+          </stereotypesToApply>
+        </postAction>
+        <postAction displayKind="IconStereotype"
+        displayPlace="Compartment"
+        id="org.eclipse.papyrus.postaction.changeStereotypeDisplayProvider" />
+      </aspectTool>
+
       <aspectTool description="Create a new Dimension (Enumeration literal)"
       iconpath="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Dimension.gif"
       id="blockdefinition.tool.dimension_enumerationliteral"
@@ -279,19 +301,17 @@
         displayPlace="Compartment"
         id="org.eclipse.papyrus.postaction.changeStereotypeDisplayProvider" />
       </aspectTool>
-      <aspectTool id="blockdefinition.tool.datatype"
-      refToolId="clazz.tool.datatype" />
-      <aspectTool id="blockdefinition.tool.enumeration"
-      refToolId="clazz.tool.enumeration" />
-      <aspectTool id="blockdefinition.tool.enumerationliteral"
-      refToolId="clazz.tool.enumerationliteral" />
+      </stack>
+      
       <aspectTool id="blockdefinition.tool.comment"
       refToolId="clazz.tool.comment"></aspectTool>
+      
       <aspectTool id="blockdefinition.tool.constraint"
       refToolId="blockdefinition.tool.constraint"
       description="Create a new Constraint"
       iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
       name="Constraint"></aspectTool>
+      
       <aspectTool description="Create a new Part Property"
       iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
       id="clazz.tool.property_1286878079362" name="Part"
