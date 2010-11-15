@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<diagramcontent:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:diagramcontent="http://www.eclipse.org/papyrus/0.7.0/diagramcontent" xmlns:gmfgen="http://www.eclipse.org/gmf/2009/GenModel" name="Block Definition" label="SysML Block Definition Diagram" icon="icons/obj16/Diagram_Package.gif" hint="BlockDefinitionDiagram" javaPackagePrefix="org.eclipse.papyrus.sysml.diagram.blockdefinition" javaClassPrefix="BlockDefinitionDiagram" language="sysml" createCommandLabel="Create a new Block Definition Diagram">
+  <diagramEditPart name="BlockDefinitionDiagramEditPart">
+    <behaviors javaClassQualifiedName="org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy.BlockDefinitionDiagramItemSemanticEditPolicy" key="EditPolicyRoles.SEMANTIC_ROLE"/>
+    <behaviors name="" javaClassQualifiedName="org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy.CustomDragDropEditPolicy" key="EditPolicyRoles.DRAG_DROP_ROLE"/>
+  </diagramEditPart>
+  <inheritedDiagrams name="ClassDiagram" viewProviderClassQualifiedName="" editPartProviderClassQualifiedName="" dndEditPolicyClassQualifiedName="org.eclipse.papyrus.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy" paletteToolPrefix="clazz.tool">
+    <genInheritedEditor href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#PapyrusUMLClassDiagram"/>
+    <genNodes>
+      <genNode xsi:type="gmfgen:GenTopLevelNode" href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@topLevelNodes.1"/>
+    </genNodes>
+    <genNodes>
+      <genNode xsi:type="gmfgen:GenTopLevelNode" href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@topLevelNodes.14"/>
+    </genNodes>
+    <genNodes>
+      <genNode xsi:type="gmfgen:GenTopLevelNode" href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@topLevelNodes.13"/>
+    </genNodes>
+    <genNodes generatePreferencePage="false" generateTool="false">
+      <genNode xsi:type="gmfgen:GenTopLevelNode" href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@topLevelNodes.8"/>
+    </genNodes>
+    <genNodes>
+      <genNode xsi:type="gmfgen:GenTopLevelNode" href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@topLevelNodes.12"/>
+    </genNodes>
+    <genNodes name="">
+      <genNode xsi:type="gmfgen:GenTopLevelNode" href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@topLevelNodes.6"/>
+    </genNodes>
+    <genNodes name="">
+      <genNode xsi:type="gmfgen:GenTopLevelNode" href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@topLevelNodes.3"/>
+    </genNodes>
+    <genNodes name="">
+      <genNode xsi:type="gmfgen:GenTopLevelNode" href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@topLevelNodes.7"/>
+    </genNodes>
+    <genNodes>
+      <genNode xsi:type="gmfgen:GenTopLevelNode" href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@topLevelNodes.9"/>
+    </genNodes>
+    <genNodes name="">
+      <genNode xsi:type="gmfgen:GenTopLevelNode" href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@topLevelNodes.11"/>
+    </genNodes>
+    <genNodes>
+      <genNode xsi:type="gmfgen:GenTopLevelNode" href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@topLevelNodes.10"/>
+    </genNodes>
+    <genNodes>
+      <genNode xsi:type="gmfgen:GenChildNode" href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@childNodes.19"/>
+    </genNodes>
+    <genNodes>
+      <genNode xsi:type="gmfgen:GenChildNode" href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@childNodes.16"/>
+    </genNodes>
+    <genNodes>
+      <genNode xsi:type="gmfgen:GenChildNode" href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@childNodes.20"/>
+    </genNodes>
+    <genNodes>
+      <genNode xsi:type="gmfgen:GenChildNode" href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@childNodes.15"/>
+    </genNodes>
+    <genNodes>
+      <genNode xsi:type="gmfgen:GenChildNode" href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@childNodes.25"/>
+    </genNodes>
+    <genNodes>
+      <genNode xsi:type="gmfgen:GenChildNode" href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@childNodes.26"/>
+    </genNodes>
+    <genNodes>
+      <genNode xsi:type="gmfgen:GenChildNode" href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@childNodes.17"/>
+    </genNodes>
+    <genNodes>
+      <genNode xsi:type="gmfgen:GenChildNode" href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@childNodes.12"/>
+    </genNodes>
+    <genNodes>
+      <genNode xsi:type="gmfgen:GenChildNode" href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@childNodes.29"/>
+    </genNodes>
+    <genNodes>
+      <genNode xsi:type="gmfgen:GenChildNode" href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@childNodes.30"/>
+    </genNodes>
+    <genLinks>
+      <genLink href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@links.10"/>
+    </genLinks>
+    <genLinks>
+      <genLink href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@links.9"/>
+    </genLinks>
+    <genLinks>
+      <genLink href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@links.5"/>
+    </genLinks>
+    <genLinks>
+      <genLink href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@links.4"/>
+    </genLinks>
+    <genLinks generateTool="false">
+      <genLink href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@links.2"/>
+    </genLinks>
+    <genLinks generateTool="false">
+      <genLink href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@links.1"/>
+    </genLinks>
+    <genLinks generateTool="false">
+      <genLink href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@links.3"/>
+    </genLinks>
+    <genLinks>
+      <genLink href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@links.16"/>
+    </genLinks>
+    <genLinks>
+      <genLink href="../../org.eclipse.papyrus.diagram.clazz/model/classdiagram.gmfgen#/0/@diagram/@links.17"/>
+    </genLinks>
+  </inheritedDiagrams>
+</diagramcontent:Diagram>
