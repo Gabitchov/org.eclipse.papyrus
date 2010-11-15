@@ -23,7 +23,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.GetEditContextRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
-import org.eclipse.papyrus.sysml.requirements.RequirementsPackage;
+import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
 import org.eclipse.papyrus.sysml.service.types.matcher.FlowSpecificationMatcher;
 import org.eclipse.papyrus.sysml.service.types.utils.NamedElementHelper;
 import org.eclipse.papyrus.sysml.util.SysmlResource;
@@ -31,16 +31,16 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
 
-/** SysML Requirement edit helper advice */
-public class RequirementEditHelperAdvice extends AbstractStereotypedElementEditHelperAdvice {
+/** SysML FlowProperty edit helper advice */
+public class FlowPropertyEditHelperAdvice extends AbstractStereotypedElementEditHelperAdvice {
 
 	/** Default constructor */
-	public RequirementEditHelperAdvice() {
-		requiredProfileIDs.add(SysmlResource.REQUIREMENTS_ID);
+	public FlowPropertyEditHelperAdvice() {
+		requiredProfileIDs.add(SysmlResource.PORT_AND_FLOWS_ID);
 	}
 
 	/**
-	 * Check if the creation context is allowed.
+	 * Check if the creation context is a FlowSpecification.
 	 * 
 	 * @see org.eclipse.papyrus.sysml.service.types.helper.AbstractStereotypedElementEditHelperAdvice#approveRequest(org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest)
 	 * 
@@ -56,15 +56,12 @@ public class RequirementEditHelperAdvice extends AbstractStereotypedElementEditH
 			// Retrieve the edit context from request
 			GetEditContextRequest editContextRequest = (GetEditContextRequest)request;
 
-			// Test context type
+			// Test if the edit context is a FlowSpecification
 			if(editContextRequest.getEditContext() instanceof Element) {
 				Element contextElement = (Element)editContextRequest.getEditContext();
 
-				IElementMatcher matcher;
-
-				// Cannot create a nested requirement in FlowSpecification
-				matcher = new FlowSpecificationMatcher();
-				if(matcher.matches(contextElement)) {
+				IElementMatcher matcher = new FlowSpecificationMatcher();
+				if(!matcher.matches(contextElement)) {
 					isApproved = false;
 				}
 			}
@@ -82,14 +79,14 @@ public class RequirementEditHelperAdvice extends AbstractStereotypedElementEditH
 			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 				NamedElement element = (NamedElement)request.getElementToConfigure();
 				if(element != null) {
-					Stereotype stereotypeToApply = element.getApplicableStereotype(SysmlResource.REQUIREMENT_ID);
+					Stereotype stereotypeToApply = element.getApplicableStereotype(SysmlResource.FLOW_PROPERTY_ID);
 					if(stereotypeToApply != null) {
 						element.applyStereotype(stereotypeToApply);
 					}
 
 					// Set default name
 					// Initialize the element name based on the created IElementType
-					String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(), RequirementsPackage.eINSTANCE.getRequirement());
+					String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(), PortandflowsPackage.eINSTANCE.getFlowProperty());
 					element.setName(initializedName);
 				}
 				return CommandResult.newOKCommandResult();

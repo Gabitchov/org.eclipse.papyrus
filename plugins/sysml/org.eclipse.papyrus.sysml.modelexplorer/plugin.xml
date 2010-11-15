@@ -50,7 +50,21 @@
 		defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.OutFlowPortHandler"
 		id="org.eclipse.papyrus.sysml.modelexplorer.OutFlowPortCreateCommand">
 	</command>
+
+	<!-- Creation command : FlowProperty -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		name="Create a new FlowProperty" description="Create a new FlowProperty"
+		defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.FlowPropertyHandler"
+		id="org.eclipse.papyrus.sysml.modelexplorer.FlowPropertyCreateCommand">
+	</command>
 	
+	<!-- Creation command : FlowSpecification -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		name="Create a new FlowSpecification" description="Create a new FlowSpecification"
+		defaultHandler="org.eclipse.papyrus.sysml.modelexplorer.handler.FlowSpecificationHandler"
+		id="org.eclipse.papyrus.sysml.modelexplorer.FlowSpecificationCreateCommand">
+	</command>
+		
 	<!-- Creation command : Requirement -->
 	<command categoryId="org.eclipse.papyrus.editor.category"
 		name="Create a new Requirement" description="Create a new Requirement"
@@ -96,7 +110,19 @@
 			label="Create a new Out FlowPort" tooltip="Create a new Out FlowPort" style="push">
 			<visibleWhen checkEnabled="true"/>
 		</command>		
-	
+
+		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.FlowPropertyCreateCommand"
+			icon="platform:/plugin/org.eclipse.papyrus.sysml.edit/icons/full/obj16/FlowProperty.gif"
+			label="Create a new FlowProperty" tooltip="Create a new FlowProperty" style="push">
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.FlowSpecificationCreateCommand"
+			icon="platform:/plugin/org.eclipse.papyrus.sysml.edit/icons/full/obj16/FlowSpecification.gif"
+			label="Create a new FlowSpecification" tooltip="Create a new FlowSpecification" style="push">
+			<visibleWhen checkEnabled="true"/>
+		</command>
+			
 		<command commandId="org.eclipse.papyrus.sysml.modelexplorer.RequirementCreateCommand"
 			icon="platform:/plugin/org.eclipse.papyrus.sysml.edit/icons/full/obj16/Requirement.gif"
 			label="Create a new Requirement" tooltip="Create a new Requirement" style="push">

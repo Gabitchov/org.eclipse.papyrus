@@ -47,7 +47,23 @@
 		<specializes id="org.eclipse.papyrus.sysml.FlowPort" />
 		<matcher class = "org.eclipse.papyrus.sysml.service.types.matcher.FlowPortOutMatcher" />		
 	</specializationType>
+
+	<specializationType id="org.eclipse.papyrus.sysml.FlowProperty"
+		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.FlowPropertyEditHelperAdvice"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="SysML::FlowProperty">
+		<param name="semanticHint" value="SysML::FlowProperty" />
+		<specializes id="org.eclipse.papyrus.uml.Property" />
+		<matcher class = "org.eclipse.papyrus.sysml.service.types.matcher.FlowPropertyMatcher" />
+	</specializationType>
 	
+	<specializationType id="org.eclipse.papyrus.sysml.FlowSpecification"
+		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.FlowSpecificationEditHelperAdvice"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="SysML::FlowSpecification">
+		<param name="semanticHint" value="SysML::FlowSpecification" />
+		<specializes id="org.eclipse.papyrus.uml.Interface" />
+		<matcher class = "org.eclipse.papyrus.sysml.service.types.matcher.FlowSpecificationMatcher" />
+	</specializationType>
+		
 	<specializationType id="org.eclipse.papyrus.sysml.Requirement"
 		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.RequirementEditHelperAdvice"
 		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="SysML::Requirement">
