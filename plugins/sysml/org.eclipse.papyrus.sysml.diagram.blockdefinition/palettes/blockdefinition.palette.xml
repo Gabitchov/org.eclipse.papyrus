@@ -38,8 +38,25 @@
       </aspectTool>
       <aspectTool id="blockdefinition.tool.interface"
       refToolId="clazz.tool.interface"></aspectTool>
+      
       <aspectTool id="blockdefinition.tool.property"
       refToolId="clazz.tool.property" />
+      
+      <aspectTool description="Create a new Part Property"
+      iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
+      id="clazz.tool.property_1286878079362" name="Part"
+      refToolId="blockdefinition.tool.part">
+        <postAction id="org.eclipse.papyrus.postaction.semanticactionprovider">
+
+          <feature name="aggregation" separator=",,"
+          value="composite" />
+        </postAction>
+      </aspectTool>
+
+      <aspectTool id="blockdefinition.tool.operation"
+      refToolId="clazz.tool.operation" />
+      
+      
       <aspectTool description="Create a new BlockProperty"
       iconpath="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/BlockProperty.gif"
       id="blockdefinition.tool.blockproperty" name="BlockProperty"
@@ -54,6 +71,7 @@
         displayPlace="Compartment"
         id="org.eclipse.papyrus.postaction.changeStereotypeDisplayProvider" />
       </aspectTool>
+      
       <aspectTool description="Create a new ConstraintProperty"
       iconpath="platform:/plugin/org.eclipse.papyrus.sysml/icons/constraints/ConstraintProperty.gif"
       id="blockdefinition.tool.constraintproperty"
@@ -68,6 +86,7 @@
         displayPlace="Compartment"
         id="org.eclipse.papyrus.postaction.changeStereotypeDisplayProvider" />
       </aspectTool>
+      
       <aspectTool description="Create a new DistributedProperty"
       id="blockdefinition.tool.distributedproperty"
       name="DistributedProperty" refToolId="clazz.tool.property">
@@ -80,8 +99,6 @@
       </aspectTool>
       <aspectTool id="blockdefinition.tool.port"
       refToolId="composite.tool.port"></aspectTool>
-      <aspectTool id="blockdefinition.tool.operation"
-      refToolId="clazz.tool.operation" />
       <aspectTool description="Create a new FlowSpecification"
       iconpath="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowSpecification.gif"
       id="blockdefinition.tool.flowspecification"
@@ -312,16 +329,6 @@
       iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
       name="Constraint"></aspectTool>
       
-      <aspectTool description="Create a new Part Property"
-      iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
-      id="clazz.tool.property_1286878079362" name="Part"
-      refToolId="blockdefinition.tool.part">
-        <postAction id="org.eclipse.papyrus.postaction.semanticactionprovider">
-
-          <feature name="aggregation" separator=",,"
-          value="composite" />
-        </postAction>
-      </aspectTool>
     </drawer>
     <drawer iconpath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
     id="blockdefinition.drawer.edges" name="Edges">
