@@ -991,7 +991,7 @@
 	
 	<!-- IElementTypes for Message -->
 	<metamodelType eclass="Message" id="org.eclipse.papyrus.uml.Message"
-		edithelper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.MessageEditHelper"
 		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Message">
 		<param name="semanticHint" value="UML::Message"/>
 	</metamodelType>
@@ -1775,36 +1775,36 @@
 		class="org.eclipse.papyrus.uml.service.types.helper.advice.MessageHelperAdvice"
 		inheritance="all" typeId="org.eclipse.papyrus.uml.Message">
 	</adviceBinding>
- <adviceBinding
-       class="org.eclipse.papyrus.uml.service.types.helper.advice.LifelineHelperAdvice"
-       id="org.eclipse.papyrus.uml.advice.Lifeline"
-       inheritance="all"
-       typeId="org.eclipse.papyrus.uml.Lifeline">
- </adviceBinding>
- <adviceBinding
-       class="org.eclipse.papyrus.uml.service.types.helper.advice.DestructionEventHelperAdvice"
-       id="org.eclipse.papyrus.uml.advice.DestructionEvent"
-       inheritance="all"
-       typeId="org.eclipse.papyrus.uml.DestructionEvent">
- </adviceBinding>
- <adviceBinding
-       class="org.eclipse.papyrus.uml.service.types.helper.advice.MessageEndHelperAdvice"
-       id="org.eclipse.papyrus.uml.advice.MessageEnd"
-       inheritance="all"
-       typeId="org.eclipse.papyrus.uml.MessageEnd">
- </adviceBinding>
- <adviceBinding
-       class="org.eclipse.papyrus.uml.service.types.helper.advice.GeneralizationHelperAdvice"
-       id="org.eclipse.papyrus.uml.advice.Generalization"
-       inheritance="none"
-       typeId="org.eclipse.papyrus.uml.Generalization">
- </adviceBinding>
- <adviceBinding
-       class="org.eclipse.papyrus.uml.service.types.helper.advice.PartDecompositionHelperAdvice"
-       id="org.eclipse.papyrus.uml.advice.PartDecomposition"
-       inheritance="none"
-       typeId="org.eclipse.papyrus.uml.PartDecomposition">
- </adviceBinding>
+	
+	<!-- Helper advice for Lifeline -->
+	<adviceBinding id="org.eclipse.papyrus.uml.advice.Lifeline"
+		class="org.eclipse.papyrus.uml.service.types.helper.advice.LifelineHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.uml.Lifeline">
+ 	</adviceBinding>
+ 	
+ 	<!-- Helper advice for DestructionEvent -->
+	<adviceBinding id="org.eclipse.papyrus.uml.advice.DestructionEvent"
+		class="org.eclipse.papyrus.uml.service.types.helper.advice.DestructionEventHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.uml.DestructionEvent">
+	</adviceBinding>
+	
+	<!-- Helper advice for MessageEnd -->
+	<adviceBinding id="org.eclipse.papyrus.uml.advice.MessageEnd"
+		class="org.eclipse.papyrus.uml.service.types.helper.advice.MessageEndHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.uml.MessageEnd">
+	</adviceBinding>
+	
+	<!-- Helper advice for Generalization -->
+	<adviceBinding id="org.eclipse.papyrus.uml.advice.Generalization"
+		class="org.eclipse.papyrus.uml.service.types.helper.advice.GeneralizationHelperAdvice"
+		inheritance="none" typeId="org.eclipse.papyrus.uml.Generalization">
+	</adviceBinding>
+	
+	<!-- Helper advice for PartDecomposition -->
+	<adviceBinding id="org.eclipse.papyrus.uml.advice.PartDecomposition"
+		class="org.eclipse.papyrus.uml.service.types.helper.advice.PartDecompositionHelperAdvice"
+		inheritance="none" typeId="org.eclipse.papyrus.uml.PartDecomposition">
+	</adviceBinding>
 					
 	</metamodel>
 </extension>
@@ -1822,18 +1822,10 @@
 		<advice ref="org.eclipse.papyrus.uml.advice.ExecutionSpecification" />
 		<advice ref="org.eclipse.papyrus.uml.advice.Message" />
 		<advice ref="org.eclipse.papyrus.uml.advice.Generalization" />
-  <advice
-        ref="org.eclipse.papyrus.uml.advice.Lifeline">
-  </advice>
-  <advice
-        ref="org.eclipse.papyrus.uml.advice.DestructionEvent">
-  </advice>
-  <advice
-        ref="org.eclipse.papyrus.uml.advice.MessageEnd">
-  </advice>
-  <advice
-        ref="org.eclipse.papyrus.uml.advice.PartDecomposition">
-  </advice>
+  		<advice ref="org.eclipse.papyrus.uml.advice.Lifeline" />
+		<advice ref="org.eclipse.papyrus.uml.advice.DestructionEvent" />
+		<advice ref="org.eclipse.papyrus.uml.advice.MessageEnd" />
+		<advice ref="org.eclipse.papyrus.uml.advice.PartDecomposition" />
 				
 	</binding>
 		

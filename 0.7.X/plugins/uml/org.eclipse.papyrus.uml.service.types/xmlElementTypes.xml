@@ -990,7 +990,7 @@
 	
 	<!-- IElementTypes for Message -->
 	<metamodelType eclass="Message" id="org.eclipse.papyrus.uml.Message"
-		edithelper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.MessageEditHelper"
 		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Message">
 		<param name="semanticHint" value="UML::Message"/>
 	</metamodelType>
