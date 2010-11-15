@@ -2563,6 +2563,7 @@ and self.decisionInput.ownedParameter->select(
        path=""
        small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadSelfAction.gif">
  	</entry>
+ 	<!-- Temporarily disable activity partitions
 	<entry
        defineOnly="true"
        description="Create an Activity Partition"
@@ -2573,6 +2574,7 @@ and self.decisionInput.ownedParameter->select(
        path=""
        small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActivityPartition.gif">
  	</entry>
+ 	-->
 	<entry
        defineOnly="true"
        description="Create an Interruptible Activity Region"
@@ -2933,10 +2935,12 @@ and self.decisionInput.ownedParameter->select(
           id="createReadSelfActionCreationTool"
           path="/createNodes1Group">
     </predefinedEntry>
+ 	<!-- Temporarily disable activity partitions
  	<predefinedEntry
           id="createActivityPartition18CreationTool"
           path="/createNodes1Group">
     </predefinedEntry>
+    -->
  	<predefinedEntry
           id="createInterruptibleActivityRegion19CreationTool"
           path="/createNodes1Group">
