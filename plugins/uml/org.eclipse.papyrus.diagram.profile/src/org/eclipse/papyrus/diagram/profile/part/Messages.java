@@ -468,32 +468,12 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String createDependencyBranch8CreationTool_title;
+	public static String createAssociation8CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createDependencyBranch8CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String createAssociation9CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String createAssociation9CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String createAssociationBranch10CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String createAssociationBranch10CreationTool_desc;
+	public static String createAssociation8CreationTool_desc;
 
 	/**
 	 * @generated

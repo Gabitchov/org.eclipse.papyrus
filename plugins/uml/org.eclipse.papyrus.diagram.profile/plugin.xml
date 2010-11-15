@@ -239,30 +239,10 @@
  	</entry>
 	<entry
        defineOnly="true"
-       description="Create a DependencyBranch"
-       id="createDependencyBranch8CreationTool"
-       kind="tool"
-       label="DependencyBranch"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
        description="Create an Association"
-       id="createAssociation9CreationTool"
+       id="createAssociation8CreationTool"
        kind="tool"
        label="Association"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create an AssociationBranch"
-       id="createAssociationBranch10CreationTool"
-       kind="tool"
-       label="AssociationBranch"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif"
        path=""
        small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif">
@@ -431,15 +411,7 @@
           path="/createRelationShips3Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createDependencyBranch8CreationTool"
-          path="/createRelationShips3Group">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="createAssociation9CreationTool"
-          path="/createRelationShips3Group">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="createAssociationBranch10CreationTool"
+          id="createAssociation8CreationTool"
           path="/createRelationShips3Group">
     </predefinedEntry>
 
@@ -1570,6 +1542,28 @@
          <Priority name="Lowest"/>
       </ParserProvider>
    </extension>
+<extension point="org.eclipse.gmf.runtime.common.ui.services.markerNavigationProviders" id="markers-navigation">
+      <?gmfgen generated="true"?>
+      <MarkerNavigationProvider class="org.eclipse.papyrus.diagram.profile.providers.UMLMarkerNavigationProvider">
+         <MarkerType name="org.eclipse.papyrus.diagram.profile.diagnostic"/>
+         <Priority name="Lowest"/>
+      </MarkerNavigationProvider>
+   </extension>
+
+<extension id="diagnostic" name="PapyrusUMLProfileDiagram problems" point="org.eclipse.core.resources.markers">
+      <?gmfgen generated="true"?>
+      <super type="org.eclipse.core.resources.problemmarker"/>
+      <super type="org.eclipse.gmf.runtime.common.ui.services.marker"/>
+      <persistent value="true"/>
+   </extension><extension id="validationDecoratorProvider" name="ValidationDecorations" point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
+      <?gmfgen generated="true"?>
+      <decoratorProvider class="org.eclipse.papyrus.diagram.profile.providers.UMLValidationDecoratorProvider">
+         <Priority name="Lowest"/>
+         <object class="org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart(org.eclipse.gmf.runtime.diagram.ui)" id="PRIMARY_VIEW"/>
+         <context decoratorTargets="PRIMARY_VIEW"/>
+      </decoratorProvider>
+   </extension>
+
 
 
 

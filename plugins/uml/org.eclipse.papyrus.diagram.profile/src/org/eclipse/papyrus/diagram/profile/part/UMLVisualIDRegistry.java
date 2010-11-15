@@ -1214,6 +1214,7 @@ public class UMLVisualIDRegistry {
 
 	/**
 	 * "User can change implementation of this method to handle some specific\n""situations not covered by default logic.\n"
+	 * 
 	 * @generated
 	 */
 	private static boolean isDiagram(Profile element) {
