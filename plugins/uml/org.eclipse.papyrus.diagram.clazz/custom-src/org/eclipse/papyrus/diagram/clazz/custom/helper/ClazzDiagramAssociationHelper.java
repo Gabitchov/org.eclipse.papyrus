@@ -23,6 +23,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.diagram.clazz.custom.command.PropertyCommandForAssociation;
 import org.eclipse.papyrus.diagram.clazz.providers.ElementInitializers;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.common.helper.NamedElementHelper;
 import org.eclipse.papyrus.ui.toolbox.LookForElement;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Package;
@@ -72,20 +73,21 @@ public class ClazzDiagramAssociationHelper {
 		sourceProperty.setUpper(1);
 		List<Property> memberEnds = association.getMemberEnds();
 
-		if((memberEnds.indexOf(((Property)sourceProperty)) >= 0)) {
-			association.getMemberEnds().move(0, ((Property)sourceProperty));
+		if((memberEnds.indexOf((sourceProperty)) >= 0)) {
+			association.getMemberEnds().move(0, (sourceProperty));
 		} else {
-			association.getMemberEnds().add(0, ((Property)sourceProperty));
+			association.getMemberEnds().add(0, (sourceProperty));
 		}
-		if((memberEnds.indexOf(((Property)targetProperty)) >= 0)) {
-			association.getMemberEnds().move(1, ((Property)targetProperty));
+		if((memberEnds.indexOf((targetProperty)) >= 0)) {
+			association.getMemberEnds().move(1, (targetProperty));
 		} else {
-			association.getMemberEnds().add(1, ((Property)targetProperty));
+			association.getMemberEnds().add(1, (targetProperty));
 		}
 
 		container.getPackagedElements().add(association);
 		ElementInitializers.getInstance().init_Association_4001(association);
-		association.setName(sourceString + "_" + targetString);
+		String associationName = NamedElementHelper.EINSTANCE.getNewUMLElementName(container, sourceString + "_" + targetString + "_"); //$NON-NLS-1$ //$NON-NLS-2$
+		association.setName(associationName); //$NON-NLS-1$
 		return association;
 	}
 }
