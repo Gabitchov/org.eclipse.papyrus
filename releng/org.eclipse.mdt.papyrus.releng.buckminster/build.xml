@@ -247,6 +247,8 @@
 			<cmdargs>
 				<arg value="-P" />
 				<arg value="${basedir}/${properties.file}" />
+				<arg value="--bomfile"/>
+				<arg value="${build.root}/papyrus_bom.xml"/>
 				<arg value="${basedir}/${mspec.file}" />
 			</cmdargs>
 		</buckminster>
