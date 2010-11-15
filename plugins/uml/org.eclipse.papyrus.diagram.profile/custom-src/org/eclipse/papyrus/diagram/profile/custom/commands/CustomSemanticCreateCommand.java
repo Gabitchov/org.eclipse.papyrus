@@ -26,9 +26,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
-import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.profile.custom.messages.Messages;
@@ -114,7 +114,7 @@ public class CustomSemanticCreateCommand extends org.eclipse.gmf.runtime.diagram
 			if(!this.addedMetaclasses.isEmpty()) {
 				result = applyModification();
 			}
-			//else we return a cancelled command result (avoid an Undo for nothing for the user!)
+			//else we return a canceled command result (avoid an Undo for nothing for the user!)
 		}
 		return result;
 
@@ -164,11 +164,15 @@ public class CustomSemanticCreateCommand extends org.eclipse.gmf.runtime.diagram
 
 				//we add the metaclass in metaclassReference
 				SetRequest setRequest = new SetRequest(profile, UMLPackage.eINSTANCE.getProfile_MetaclassReference(), added);
-				SetValueCommand setValueCommand = new SetValueCommand(setRequest);
-				if(setValueCommand != null && setValueCommand.canExecute()) {
-					addingCommand.add(new ICommandProxy(setValueCommand));
-				}
+				org.eclipse.papyrus.service.edit.service.IElementEditService provider = org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils.getCommandProvider(profile);
 
+				if(provider != null) {
+					ICommand editCommand = null;
+					editCommand = provider.getEditCommand(setRequest);
+					if(editCommand != null && editCommand.canExecute()) {
+						addingCommand.add(new ICommandProxy(editCommand));
+					}
+				}
 			} else {
 				//the metaclass is already imported, nothing to do here!
 			}
@@ -177,6 +181,7 @@ public class CustomSemanticCreateCommand extends org.eclipse.gmf.runtime.diagram
 		if(addingCommand != null && addingCommand.canExecute()) {
 			try {
 				LookForElement.getCommandStack().execute(addingCommand);
+				//				addingCommand.execute();
 				result = CommandResult.newOKCommandResult(this.customRequestAdapter);
 			} catch (Exception e) {
 				Activator.log.error(e);

@@ -19,11 +19,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.editpolicies.AbstractEditPolicy;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
 import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.core.listenerservice.IPapyrusListener;
@@ -141,8 +141,6 @@ public class ExtensionCustomNameEditPolicy extends AbstractEditPolicy implements
 
 
 									public void run() {
-										String oldName = ((Extension)hostSemanticElement).getName();
-										String deducedName = ExtensionHelper.deduceExtensionNameFromProperties(((Extension)hostSemanticElement));
 
 										CompositeCommand cc = new CompositeCommand("Change Extension Name"); //$NON-NLS-1$
 										Extension ext = ((Extension)hostSemanticElement);
@@ -150,12 +148,18 @@ public class ExtensionCustomNameEditPolicy extends AbstractEditPolicy implements
 										String newExtEndName = ExtensionHelper.EXTENSION + ste.getName();
 
 										//Command to change the Extension's name
-										//only if the used doesn't have modify its name
+										//only if the user doesn't have modify its name
 										String newExtensionName = ExtensionHelper.getExtensionName((Element)hostSemanticElement, ((Extension)hostSemanticElement).getStereotype(), ((Extension)hostSemanticElement).getMetaclass());
 										if(systemExtensionName.equals(((Extension)hostSemanticElement).getName())) {
 											SetRequest setRequestExt = new SetRequest(domain, ext, UMLPackage.eINSTANCE.getNamedElement_Name(), newExtensionName);
-											SetValueCommand setValueCommandExt = new SetValueCommand(setRequestExt);
-											cc.add(setValueCommandExt);
+											org.eclipse.papyrus.service.edit.service.IElementEditService provider = org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils.getCommandProvider(ext);
+											if(provider != null) {
+												ICommand editCommand = null;
+												editCommand = provider.getEditCommand(setRequestExt);
+												if(editCommand != null && editCommand.canExecute()) {
+													cc.add(editCommand);
+												}
+											}
 											systemExtensionName = newExtensionName;
 										}
 										//command to change the ExtensionEnd's name 
@@ -163,8 +167,14 @@ public class ExtensionCustomNameEditPolicy extends AbstractEditPolicy implements
 										//There is only ONE ExtensionEnd
 										ExtensionEnd extEnd = (ExtensionEnd)((Extension)hostSemanticElement).getOwnedEnds().get(0);
 										SetRequest setRequestExtEnd = new SetRequest(domain, extEnd, UMLPackage.eINSTANCE.getNamedElement_Name(), newExtEndName.replaceFirst("E", "e")); //$NON-NLS-1$ //$NON-NLS-2$
-										SetValueCommand setValueCommandExtEnd = new SetValueCommand(setRequestExtEnd);
-										cc.add(setValueCommandExtEnd);
+										org.eclipse.papyrus.service.edit.service.IElementEditService provider = org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils.getCommandProvider(extEnd);
+										if(provider != null) {
+											ICommand editCommand = null;
+											editCommand = provider.getEditCommand(setRequestExtEnd);
+											if(editCommand != null && editCommand.canExecute()) {
+												cc.add(editCommand);
+											}
+										}
 										((IGraphicalEditPart)getHost()).getDiagramEditDomain().getDiagramCommandStack().execute(new ICommandProxy(cc));
 									}
 								});
