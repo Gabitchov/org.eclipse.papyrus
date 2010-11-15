@@ -38,6 +38,7 @@ public class BlockViewProvider extends AbstractViewProvider {
 
 		nodeMap.put(BlockDefinitionDiagramElementTypes.BLOCK_CONSTRAINT_CLN.getSemanticHint(), BDDShapeViewFactory.class);
 		nodeMap.put(BlockDefinitionDiagramElementTypes.BLOCK_PART_CLN.getSemanticHint(), BDDShapeViewFactory.class);
+		nodeMap.put(BlockDefinitionDiagramElementTypes.BLOCK_REFERENCE_CLN.getSemanticHint(), BDDShapeViewFactory.class);
 	}
 
 	@Override
