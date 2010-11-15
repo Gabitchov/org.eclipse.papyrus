@@ -23,20 +23,21 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.GetEditContextRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
-import org.eclipse.papyrus.sysml.requirements.RequirementsPackage;
+import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
 import org.eclipse.papyrus.sysml.service.types.matcher.FlowSpecificationMatcher;
+import org.eclipse.papyrus.sysml.service.types.matcher.RequirementMatcher;
 import org.eclipse.papyrus.sysml.service.types.utils.NamedElementHelper;
 import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
 
-/** SysML Requirement edit helper advice */
-public class RequirementEditHelperAdvice extends AbstractStereotypedElementEditHelperAdvice {
+/** SysML FlowSpecification edit helper advice */
+public class FlowSpecificationEditHelperAdvice extends AbstractStereotypedElementEditHelperAdvice {
 
 	/** Default constructor */
-	public RequirementEditHelperAdvice() {
-		requiredProfileIDs.add(SysmlResource.REQUIREMENTS_ID);
+	public FlowSpecificationEditHelperAdvice() {
+		requiredProfileIDs.add(SysmlResource.PORT_AND_FLOWS_ID);
 	}
 
 	/**
@@ -62,8 +63,14 @@ public class RequirementEditHelperAdvice extends AbstractStereotypedElementEditH
 
 				IElementMatcher matcher;
 
-				// Cannot create a nested requirement in FlowSpecification
+				// Cannot create a nested FlowSpecification in FlowSpecification
 				matcher = new FlowSpecificationMatcher();
+				if(matcher.matches(contextElement)) {
+					isApproved = false;
+				}
+
+				// Cannot create a nested FlowSpecification in Requirement
+				matcher = new RequirementMatcher();
 				if(matcher.matches(contextElement)) {
 					isApproved = false;
 				}
@@ -82,14 +89,14 @@ public class RequirementEditHelperAdvice extends AbstractStereotypedElementEditH
 			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 				NamedElement element = (NamedElement)request.getElementToConfigure();
 				if(element != null) {
-					Stereotype stereotypeToApply = element.getApplicableStereotype(SysmlResource.REQUIREMENT_ID);
+					Stereotype stereotypeToApply = element.getApplicableStereotype(SysmlResource.FLOW_SPECIFICATION_ID);
 					if(stereotypeToApply != null) {
 						element.applyStereotype(stereotypeToApply);
 					}
 
 					// Set default name
 					// Initialize the element name based on the created IElementType
-					String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(), RequirementsPackage.eINSTANCE.getRequirement());
+					String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(), PortandflowsPackage.eINSTANCE.getFlowSpecification());
 					element.setName(initializedName);
 				}
 				return CommandResult.newOKCommandResult();
