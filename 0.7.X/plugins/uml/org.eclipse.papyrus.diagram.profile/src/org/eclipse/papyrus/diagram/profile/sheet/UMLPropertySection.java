@@ -69,6 +69,7 @@ public class UMLPropertySection extends AdvancedPropertySection implements IProp
 
 	/**
 	 * Modify/unwrap selection.
+	 * 
 	 * @generated
 	 */
 	protected Object transformSelection(Object selected) {

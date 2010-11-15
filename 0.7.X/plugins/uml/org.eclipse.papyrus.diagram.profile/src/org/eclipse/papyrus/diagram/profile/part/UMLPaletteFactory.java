@@ -120,17 +120,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private final static String CREATEDEPENDENCYBRANCH8CREATIONTOOL = "createDependencyBranch8CreationTool"; //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	private final static String CREATEASSOCIATION9CREATIONTOOL = "createAssociation9CreationTool"; //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	private final static String CREATEASSOCIATIONBRANCH10CREATIONTOOL = "createAssociationBranch10CreationTool"; //$NON-NLS-1$
+	private final static String CREATEASSOCIATION8CREATIONTOOL = "createAssociation8CreationTool"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -213,14 +203,8 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		if(toolId.equals(CREATEDEPENDENCY7CREATIONTOOL)) {
 			return createDependency7CreationTool();
 		}
-		if(toolId.equals(CREATEDEPENDENCYBRANCH8CREATIONTOOL)) {
-			return createDependencyBranch8CreationTool();
-		}
-		if(toolId.equals(CREATEASSOCIATION9CREATIONTOOL)) {
-			return createAssociation9CreationTool();
-		}
-		if(toolId.equals(CREATEASSOCIATIONBRANCH10CREATIONTOOL)) {
-			return createAssociationBranch10CreationTool();
+		if(toolId.equals(CREATEASSOCIATION8CREATIONTOOL)) {
+			return createAssociation8CreationTool();
 		}
 		if(toolId.equals(CREATEPROPERTY1CREATIONTOOL)) {
 			return createProperty1CreationTool();
@@ -451,31 +435,9 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createDependencyBranch8CreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.Dependency_4018);
-
-		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
-		return tool;
-	}
-
-	/**
-	 * @generated
-	 */
-	private Tool createAssociation9CreationTool() {
+	private Tool createAssociation8CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Association_4001);
-
-		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
-		return tool;
-	}
-
-	/**
-	 * @generated
-	 */
-	private Tool createAssociationBranch10CreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.Association_4019);
 
 		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
 		return tool;

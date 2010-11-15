@@ -895,6 +895,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 
 	/**
 	 * Utility method that consults ParserService
+	 * 
 	 * @generated
 	 */
 	public static IParser getParser(IElementType type, EObject object, String parserHint) {
@@ -960,12 +961,4 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		}
 	}
 
-	private static org.eclipse.papyrus.diagram.profile.providers.UMLParserProvider ourInstance;
-
-	public static org.eclipse.papyrus.diagram.profile.providers.UMLParserProvider get() {
-		if(ourInstance == null) {
-			ourInstance = new org.eclipse.papyrus.diagram.profile.providers.UMLParserProvider();
-		}
-		return ourInstance;
-	}
 }
