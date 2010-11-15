@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
  	<feature id="org.eclipse.papyrus" version="0.0.0">
+      <category name="papyrus.runtime"/>
+   </feature>
+   <feature id="org.eclipse.papyrus.sdk" version="0.0.0">
       <category name="papyrus.all"/>
    </feature>
 	<feature id="org.eclipse.papyrus.backbone" version="0.0.0">
