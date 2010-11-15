@@ -27,9 +27,13 @@ http://www.eclipse.org/legal/epl-v10.html
    <includes
          id="org.eclipse.papyrus"
          version="0.0.0"/>
-         
    <includes
-         id="org.eclipse.papyrus.source"
+         id="org.eclipse.papyrus.sdk.source"
          version="0.0.0"/>
-
+   <includes
+         id="org.eclipse.papyrus.doc"
+         version="0.0.0"/>
+   <includes
+         id="org.eclipse.papyrus.doc.source"
+         version="0.0.0"/>
 </feature>
