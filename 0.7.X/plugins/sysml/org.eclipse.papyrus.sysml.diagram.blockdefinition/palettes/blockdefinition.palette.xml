@@ -53,6 +53,17 @@
         </postAction>
       </aspectTool>
 
+      <aspectTool description="Create a new Reference Property"
+      iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
+      id="blockdefinition.tool.Reference" name="Reference"
+      refToolId="blockdefinition.tool.reference">
+        <postAction id="org.eclipse.papyrus.postaction.semanticactionprovider">
+
+          <feature name="aggregation" separator=",,"
+          value="none" />
+        </postAction>
+      </aspectTool>
+
       <aspectTool id="blockdefinition.tool.operation"
       refToolId="clazz.tool.operation" />
       

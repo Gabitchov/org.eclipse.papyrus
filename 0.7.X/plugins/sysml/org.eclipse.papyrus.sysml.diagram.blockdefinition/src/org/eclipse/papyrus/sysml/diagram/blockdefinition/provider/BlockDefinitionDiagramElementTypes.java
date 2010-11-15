@@ -44,4 +44,6 @@ public class BlockDefinitionDiagramElementTypes extends InheritedElementTypes {
 
 	public static final IHintedType BLOCK_PART_CLN = (IHintedType)getElementType("org.eclipse.papyrus.sysml.diagram.blockdefinition.Part"); //$NON-NLS-1$	
 
+	public static final IHintedType BLOCK_REFERENCE_CLN = (IHintedType)getElementType("org.eclipse.papyrus.sysml.diagram.blockdefinition.Reference"); //$NON-NLS-1$	
+
 }

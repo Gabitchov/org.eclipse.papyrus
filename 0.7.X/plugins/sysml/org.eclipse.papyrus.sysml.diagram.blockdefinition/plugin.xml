@@ -137,6 +137,17 @@
 			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
 			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif">
 		</entry>
+
+		<entry
+			defineOnly="true"
+			description="Create new Reference"
+			id="blockdefinition.tool.reference"
+			kind="tool"
+			label="Reference"
+			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
+			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif">
+		</entry>
+
 	</contribution>	
 	
 	</paletteProvider>	
@@ -154,7 +165,7 @@
 	<!-- Block view provider -->
 	<viewProvider class="org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.BlockViewProvider">
 		<Priority name="Low"/>
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="SysML::Block, Constraint, Part"/>		
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="SysML::Block, Constraint, Part, Reference"/>		
 	</viewProvider>	
 
 	<!-- ViewProvider for inherited elements (from ClassDiagram UMLViewProvider) -->
@@ -235,7 +246,7 @@
 		<object
 			class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)"
 			id="org.eclipse.papyrus.sysml.diagram.blockdefinition.Block">
-			<method name="getType()" value="SysML::Block, Block_Constraint_Compartment, Constraint, Part"/>
+			<method name="getType()" value="SysML::Block, Block_Constraint_Compartment, Constraint, Part, Reference"/>
 		</object>
 	</editpartProvider>
 
@@ -514,6 +525,15 @@
 		name="Part">
 		<specializes id="org.eclipse.papyrus.diagram.clazz.Property_3005"/>
 		<param name="semanticHint" value="Part"/>
+	</specializationType>
+
+	<specializationType
+		icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.Reference"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+		name="Reference">
+		<specializes id="org.eclipse.papyrus.diagram.clazz.Property_3005"/>
+		<param name="semanticHint" value="Reference"/>
 	</specializationType>
 
 </extension>
