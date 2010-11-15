@@ -21,6 +21,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.papyrus.diagram.common.helper.NamedElementHelper;
 import org.eclipse.papyrus.diagram.profile.custom.commands.PropertyCommandForAssociation;
 import org.eclipse.papyrus.diagram.profile.providers.ElementInitializers;
 import org.eclipse.papyrus.diagram.profile.providers.UMLElementTypes;
@@ -100,7 +101,8 @@ public class ProfileDiagramAssociationHelper {
 
 		container.getPackagedElements().add(association);
 		ElementInitializers.getInstance().init_Association_4001(association);
-		association.setName(sourceString + "_" + targetString); //$NON-NLS-1$
+		String associationName = NamedElementHelper.EINSTANCE.getNewUMLElementName(container, sourceString + "_" + targetString + "_"); //$NON-NLS-1$ //$NON-NLS-2$
+		association.setName(associationName); //$NON-NLS-1$
 		return association;
 	}
 }
