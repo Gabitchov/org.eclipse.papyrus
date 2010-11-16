@@ -148,6 +148,16 @@
 			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif">
 		</entry>
 
+		<entry
+			defineOnly="true"
+			description="Create new Constraint Property"
+			id="blockdefinition.tool.constraintproperty"
+			kind="tool"
+			label="Constraint Property"
+			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
+			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif">
+		</entry>
+
 	</contribution>	
 	
 	</paletteProvider>	
@@ -165,7 +175,7 @@
 	<!-- Block view provider -->
 	<viewProvider class="org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.BlockViewProvider">
 		<Priority name="Low"/>
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="SysML::Block, Constraint, Part, Reference"/>		
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="SysML::Block, Constraint, Part, Reference, ConstraintProperty"/>		
 	</viewProvider>	
 
 	<!-- ViewProvider for inherited elements (from ClassDiagram UMLViewProvider) -->
@@ -246,7 +256,7 @@
 		<object
 			class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)"
 			id="org.eclipse.papyrus.sysml.diagram.blockdefinition.Block">
-			<method name="getType()" value="SysML::Block, Block_Constraint_Compartment, Constraint, Part, Reference"/>
+			<method name="getType()" value="SysML::Block, Block_Constraint_Compartment, Constraint, Part, Reference, ConstraintProperty"/>
 		</object>
 	</editpartProvider>
 
@@ -510,15 +520,6 @@
 	</specializationType>
 
 	<specializationType
-		icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
-		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.Constraint"
-		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-		name="Constraint">
-		<specializes id="org.eclipse.papyrus.diagram.clazz.Constraint_3029"/>
-		<param name="semanticHint" value="Constraint"/>
-	</specializationType>
-	
-	<specializationType
 		icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
 		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.Part"
 		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
@@ -534,6 +535,15 @@
 		name="Reference">
 		<specializes id="org.eclipse.papyrus.diagram.clazz.Property_3005"/>
 		<param name="semanticHint" value="Reference"/>
+	</specializationType>
+
+	<specializationType
+		icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.ConstraintProperty"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+		name="ConstraintProperty">
+		<specializes id="org.eclipse.papyrus.diagram.clazz.Property_3005"/>
+		<param name="semanticHint" value="ConstraintProperty"/>
 	</specializationType>
 
 </extension>

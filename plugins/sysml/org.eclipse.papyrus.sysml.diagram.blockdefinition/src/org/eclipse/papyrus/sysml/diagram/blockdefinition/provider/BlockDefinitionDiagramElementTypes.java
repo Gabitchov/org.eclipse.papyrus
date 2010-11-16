@@ -40,7 +40,7 @@ public class BlockDefinitionDiagramElementTypes extends InheritedElementTypes {
 
 	public static final String BLOCK_REFERENCE_COMPARTMENT_HINT = "Block_Reference_Compartment";
 
-	public static final IHintedType BLOCK_CONSTRAINT_CLN = (IHintedType)getElementType("org.eclipse.papyrus.sysml.diagram.blockdefinition.Constraint"); //$NON-NLS-1$	
+	public static final IHintedType BLOCK_CONSTRAINT_CLN = (IHintedType)getElementType("org.eclipse.papyrus.sysml.diagram.blockdefinition.ConstraintProperty"); //$NON-NLS-1$	
 
 	public static final IHintedType BLOCK_PART_CLN = (IHintedType)getElementType("org.eclipse.papyrus.sysml.diagram.blockdefinition.Part"); //$NON-NLS-1$	
 

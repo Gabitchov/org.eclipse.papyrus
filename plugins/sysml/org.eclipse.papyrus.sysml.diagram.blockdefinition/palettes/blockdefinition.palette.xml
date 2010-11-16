@@ -64,6 +64,21 @@
         </postAction>
       </aspectTool>
 
+      <aspectTool description="Create a new Constraint Property"
+      iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
+      id="blockdefinition.tool.ConstraintProperty"
+      name="ConstraintProperty" refToolId="blockdefinition.tool.constraintproperty">
+        <postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+
+          <stereotypesToApply>
+            <stereotype stereotypeName="SysML::Constraints::ConstraintProperty" />
+          </stereotypesToApply>
+        </postAction>
+        <postAction displayKind="IconStereotype"
+        displayPlace="Compartment"
+        id="org.eclipse.papyrus.postaction.changeStereotypeDisplayProvider" />
+      </aspectTool>
+
       <aspectTool id="blockdefinition.tool.operation"
       refToolId="clazz.tool.operation" />
       
@@ -76,21 +91,6 @@
 
           <stereotypesToApply>
             <stereotype stereotypeName="SysML::Blocks::ParticipantProperty" />
-          </stereotypesToApply>
-        </postAction>
-        <postAction displayKind="IconStereotype"
-        displayPlace="Compartment"
-        id="org.eclipse.papyrus.postaction.changeStereotypeDisplayProvider" />
-      </aspectTool>
-      
-      <aspectTool description="Create a new ConstraintProperty"
-      iconpath="platform:/plugin/org.eclipse.papyrus.sysml/icons/constraints/ConstraintProperty.gif"
-      id="blockdefinition.tool.constraintproperty"
-      name="ConstraintProperty" refToolId="clazz.tool.property">
-        <postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
-
-          <stereotypesToApply>
-            <stereotype stereotypeName="SysML::Constraints::ConstraintProperty" />
           </stereotypesToApply>
         </postAction>
         <postAction displayKind="IconStereotype"
