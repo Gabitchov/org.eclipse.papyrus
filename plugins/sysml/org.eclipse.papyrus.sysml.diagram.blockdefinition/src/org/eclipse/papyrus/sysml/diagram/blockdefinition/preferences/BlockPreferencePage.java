@@ -27,6 +27,15 @@ public class BlockPreferencePage extends BlockDefinitionDiagramNodePreferencePag
 	 * the list of the compartments for this node
 	 */
 	public static final String compartments[] = { 
+		BlockPropertyCompartmentEditPart.COMPARTMENT_NAME, 
+		Messages.ClassOperationCompartment2EditPart_title, 
+		BlockConstraintCompartmentEditPart.COMPARTMENT_NAME, 
+		BlockPartCompartmentEditPart.COMPARTMENT_NAME, 
+		BlockReferenceCompartmentEditPart.COMPARTMENT_NAME, 
+		BlockValueCompartmentEditPart.COMPARTMENT_NAME 
+		};
+
+	public static final String default_compartments[] = { 
 		//BlockPropertyCompartmentEditPart.COMPARTMENT_NAME, 
 		//Messages.ClassOperationCompartment2EditPart_title, 
 		//BlockConstraintCompartmentEditPart.COMPARTMENT_NAME, 
@@ -34,7 +43,6 @@ public class BlockPreferencePage extends BlockDefinitionDiagramNodePreferencePag
 		BlockReferenceCompartmentEditPart.COMPARTMENT_NAME, 
 		//BlockValueCompartmentEditPart.COMPARTMENT_NAME 
 		};
-
 
 	public BlockPreferencePage() {
 		super();
@@ -48,8 +56,12 @@ public class BlockPreferencePage extends BlockDefinitionDiagramNodePreferencePag
 	public static void initDefaults(IPreferenceStore store) {
 
 		String key = BlockDefinitionDiagramEditPart.DIAGRAM_ID + "_" + SysMLElementTypes.BLOCK.getSemanticHint();
-		// set the true value for the compartment visibility
 		for(String name : compartments) {
+			String preferenceName = PreferenceConstantHelper.getCompartmentElementConstant(key, name, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
+			store.setDefault(preferenceName, false);
+		}
+		// set the true value for the compartment visibility
+		for(String name : default_compartments) {
 			String preferenceName = PreferenceConstantHelper.getCompartmentElementConstant(key, name, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
 			store.setDefault(preferenceName, true);
 		}
