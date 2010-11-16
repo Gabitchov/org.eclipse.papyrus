@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 Atos Origin.
+ * Copyright (c) 2010 Atos Origin, CEA LIST
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Mathieu Velten (Atos Origin) mathieu.velten@atosorigin.com - Initial API and implementation
+ *  Tatiana Fesenko (CEA LIST) - [330182] [Block Definition Diagram] Papyrus shall provide an editor for SysML Block Defintion Diagrams
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part;
@@ -31,6 +32,7 @@ public class BlockValueCompartmentEditPart extends ClassAttributeCompartment2Edi
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultItemSemanticEditPolicy(BlockDefinitionDiagramElementTypes.BLOCK));
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy.CustomDragDropEditPolicy());
 	}
 
 	@Override
