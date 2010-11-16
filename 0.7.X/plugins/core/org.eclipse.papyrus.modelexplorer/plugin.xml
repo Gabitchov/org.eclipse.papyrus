@@ -145,6 +145,49 @@
                label="Create Query">
          </action>
       </objectContribution>
+      <objectContribution
+            adaptable="true"
+            id="org.eclipse.papyrus.papyrusgmfgenextension.popupactions"
+            objectClass="org.eclipse.emf.ecore.EObject">
+         <menu
+               icon="icons/etool16/validate.gif"
+               id="org.eclipse.papyrus.modelexplorer.popupaction.validation"
+               label="Validation"
+               path="papyrus">
+         </menu>
+         <action
+               class="org.eclipse.papyrus.modelexplorer.actions.ValidateModelAction"
+               enablesFor="*"
+               icon="icons/etool16/validate.gif"
+               id="org.eclipse.papyrus.modelexplorer.popupaction.ValidateModel"
+               label="Validate model"
+               menubarPath="org.eclipse.papyrus.modelexplorer.popupaction.validation/modelOps">
+         </action>
+         <action
+               class="org.eclipse.papyrus.modelexplorer.actions.ValidateModelAction"
+               enablesFor="*"
+               icon="icons/etool16/deletemarkers.gif"
+               id="org.eclipse.papyrus.modelexplorer.popupaction.DeleteMarkersModel"
+               label="Remove markers from model"
+               menubarPath="org.eclipse.papyrus.modelexplorer.popupaction.validation/modelOps">
+         </action>
+         <action
+               class="org.eclipse.papyrus.modelexplorer.actions.ValidateModelAction"
+               enablesFor="*"
+               icon="icons/etool16/validate.gif"
+               id="org.eclipse.papyrus.modelexplorer.popupaction.ValidateSubTree"
+               label="Validate subtree"
+               menubarPath="org.eclipse.papyrus.modelexplorer.popupaction.validation/subtreeOps">
+         </action>
+         <action
+               class="org.eclipse.papyrus.modelexplorer.actions.ValidateModelAction"
+               enablesFor="*"
+               icon="icons/etool16/deletemarkers.gif"
+               id="org.eclipse.papyrus.modelexplorer.popupaction.DeleteMarkersSubTree"
+               label="Remove markers from subtree"
+               menubarPath="org.eclipse.papyrus.modelexplorer.popupaction.validation/subtreeOps">
+         </action>
+      </objectContribution>
    </extension>
     <extension
          point="org.eclipse.papyrus.modelexplorer.actionHandler">

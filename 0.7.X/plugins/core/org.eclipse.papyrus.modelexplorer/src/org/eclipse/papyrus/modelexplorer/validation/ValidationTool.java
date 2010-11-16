@@ -35,8 +35,12 @@ public class ValidationTool {
 	public ValidationTool (Object element) {
 		this.element = element;
 		eObject = (EObject) Platform.getAdapterManager().getAdapter(element, EObject.class);
-	}
-	
+	}	
+
+	public ValidationTool (EObject eObject) {
+		this.eObject = eObject;
+	}	
+
 	public void tryChildIfEmpty() {
 		// element has no eObject. try parent
 		if (eObject == null) {
@@ -89,6 +93,32 @@ public class ValidationTool {
 			}
 		}
 		return null;
+	}
+	
+	/**
+	 * Delete all markers that refer to eObjects owned by the passed parentEObj
+	 * @param eObj
+	 */
+	public void deleteSubMarkers() {
+		for (IMarker marker : getMarkers ()) {
+			EObject eObjOfMarker = eObjectOfMarker (marker);
+			if (isContainedBy (eObjOfMarker, eObject)) {
+				try {
+					marker.delete ();
+				}
+				catch (CoreException e) {
+				}
+			}
+		}
+	}
+	
+	private boolean isContainedBy (EObject subEObj, EObject eObj) {
+		if (eObj == subEObj) return true;
+		else if (subEObj != null) {
+			return isContainedBy (subEObj.eContainer(), eObj);
+		}
+		// reached, if subEObj == null
+		return false;
 	}
 	
 	private Object element;
