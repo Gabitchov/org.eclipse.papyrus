@@ -28,7 +28,7 @@ import org.eclipse.ui.PartInitException;
 public class PapyrusMatchingStrategy implements IEditorMatchingStrategy {
 
 	/**
-	 * Check whether an existing editor matches a new editor input, i.e. if the existing editor shouldthis function is only called for Papyrus editors
+	 * Check whether an existing editor matches a new editor input, i.e. if the existing editor should
 	 * get focus instead of opening a second one. Whereas the passed editor reference always refers to a Papyrus
 	 * editor, the passed editor input may not be related to UML, it might for instance be a Java or text
 	 * file. Therefore, the code verifies that the new editor input is either a notation, uml or di file
