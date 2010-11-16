@@ -1,10 +1,14 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
  *
+ *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Tatiana Fesenko (CEA LIST) - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy;
@@ -29,6 +33,7 @@ import org.eclipse.papyrus.diagram.clazz.custom.policies.ClassDiagramDragDropEdi
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.part.BlockDefinitionDiagramVisualIDRegistry;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.BlockDefinitionDiagramElementTypes;
 import org.eclipse.papyrus.sysml.util.SysmlResource;
+import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
@@ -59,6 +64,7 @@ public class CustomDragDropEditPolicy extends ClassDiagramDragDropEditPolicy {
 	}
 
 	public IHintedType getHintedType(View containerView, EObject domainElement) {
+		System.out.println("dnd " + domainElement);
 		if(containerView instanceof Diagram) { // Top Nodes
 			if(isBlock(domainElement)) {
 				return BlockDefinitionDiagramElementTypes.BLOCK;
@@ -69,8 +75,16 @@ public class CustomDragDropEditPolicy extends ClassDiagramDragDropEditPolicy {
 			return BlockDefinitionDiagramElementTypes.PORT_CN;
 		}
 		if(domainElement instanceof Property) {
-			// semanticHint =
-			// BlockDefinitionDiagramElementTypes.PROPERTY_CN.getSemanticHint();
+			Property property = (Property)domainElement;
+			if (property.getAppliedStereotype(SysmlResource.CONSTRAINT_PROPERTY_ID) != null) {
+				System.out.println("BLOCK_CONSTRAINT_CLN");
+				return  BlockDefinitionDiagramElementTypes.BLOCK_CONSTRAINT_CLN;
+			}
+			
+			if (property.getAggregation() == AggregationKind.COMPOSITE_LITERAL) {
+				return  BlockDefinitionDiagramElementTypes.BLOCK_PART_CLN;
+			}
+			return  BlockDefinitionDiagramElementTypes.BLOCK_REFERENCE_CLN;
 		}
 		return null;
 	}
