@@ -274,12 +274,16 @@
 		<xslt style="xsl/content2html.xsl" in="${site.p2.dir}/content.xml" out="${site.p2.dir}/index.html" />
 		<xslt style="xsl/content2xml.xsl" in="${site.p2.dir}/content.xml" out="${site.p2.dir}/index.xml" />
 		<delete file="${site.p2.dir}/content.xml" />
+		
+		<echo message="Generating psf" />
+		<xslt style="xsl/psf/bom2repository.xsl" in="${build.root}/papyrus_bom.xml" out="repository.xml" />
+		<xslt style="xsl/psf/repository2subversive.xsl" in="repository.xml" out="${result}/subversive_${build.type}.psf" />
+		<delete file="repository.xml" />
 	</target>
-
 	
 	<target name="test" depends="site.p2">
-		<echo message="Running JUnit tests" />
-	</target>
+			<echo message="Running JUnit tests" />
+		</target>
 
 	<target name="promote.sites" depends="provision">
 		<echo message="Building all projects in workspace ${workspace}... FIXME" />

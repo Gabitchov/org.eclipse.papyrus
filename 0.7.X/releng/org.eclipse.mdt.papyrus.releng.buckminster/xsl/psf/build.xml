@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<project name="Bom2PSF" default="default">
+
+	<target name="default" >
+		<xslt style="bom2repository.xsl" in="papyrus_bom.xml" out="repository.xml" />
+		<xslt style="repository2subversive.xsl" in="repository.xml" out="subversive.psf" />
+	</target>
+
+</project>
