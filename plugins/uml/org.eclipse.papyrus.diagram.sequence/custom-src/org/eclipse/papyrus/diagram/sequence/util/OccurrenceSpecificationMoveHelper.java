@@ -220,6 +220,11 @@ public class OccurrenceSpecificationMoveHelper {
 							Request reconnectRequest = makeReconnectRequest((ConnectionEditPart)part, true, referencePoint);
 							Command reconnect = childToReconnectTo.getCommand(reconnectRequest);
 							command.add(reconnect);
+							// update enclosing interaction fragment
+							Command updateIFrag = SequenceUtil.createUpdateEnclosingInteractionCommand((MessageOccurrenceSpecification)movedOccurrenceSpecification, referencePoint, lifelinePart);
+							if(updateIFrag != null && updateIFrag.canExecute()) {
+								command.add(updateIFrag);
+							}
 						}
 					}
 				}
@@ -236,6 +241,11 @@ public class OccurrenceSpecificationMoveHelper {
 							Request reconnectRequest = makeReconnectRequest((ConnectionEditPart)part, false, referencePoint);
 							Command reconnect = childToReconnectTo.getCommand(reconnectRequest);
 							command.add(reconnect);
+							// update enclosing interaction fragment
+							Command updateIFrag = SequenceUtil.createUpdateEnclosingInteractionCommand((MessageOccurrenceSpecification)movedOccurrenceSpecification, referencePoint, lifelinePart);
+							if(updateIFrag != null && updateIFrag.canExecute()) {
+								command.add(updateIFrag);
+							}
 						}
 					}
 				}

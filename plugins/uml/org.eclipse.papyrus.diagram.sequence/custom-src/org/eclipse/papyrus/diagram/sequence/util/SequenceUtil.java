@@ -143,6 +143,8 @@ public class SequenceUtil {
 	 * 
 	 * @param bounds
 	 *        the bounds
+	 * @param hostEditPart
+	 *        any adit part in the corresponding diagram
 	 * @return the interaction or null
 	 */
 	@SuppressWarnings("unchecked")
@@ -1043,6 +1045,99 @@ public class SequenceUtil {
 				return CommandResult.newOKCommandResult();
 			}
 		};
+	}
+
+	/**
+	 * Create a command to update the enclosing interaction of a message end according to its new location.
+	 * 
+	 * @param movedMos
+	 *        the moved Message Occurrence Specification
+	 * @param newLocation
+	 *        the new absolute location
+	 * @param editPart
+	 *        any adit part of the corresponding diagram
+	 * @return the command or null if nothing changes
+	 */
+	//@SuppressWarnings("unchecked")
+	public static Command createUpdateEnclosingInteractionCommand(MessageOccurrenceSpecification movedMos, Point newLocation, GraphicalEditPart editPart) {
+
+		//		// calculate new bounds for the execution specification
+		//		Rectangle absoluteNewBounds = executionSpecificationEP.getFigure().getBounds().getCopy();
+		//
+		//		executionSpecificationEP.getFigure().getParent().translateToAbsolute(absoluteNewBounds);
+		//
+		//		absoluteNewBounds.translate(moveDelta);
+		//		absoluteNewBounds.resize(sizeDelta);
+		//
+		//		int xCenter = absoluteNewBounds.getCenter().x;
+		//
+		//		Rectangle top = new Rectangle(xCenter, absoluteNewBounds.y, 0, 0);
+		//		Rectangle bottom = new Rectangle(xCenter, absoluteNewBounds.bottom(), 0, 0);
+		//
+		//		// associate es with its bounds, and start and finish event with the top and bottom of the bounds
+		HashMap<InteractionFragment, Rectangle> iftToCheckForUpdate = new HashMap<InteractionFragment, Rectangle>();
+		//
+		//		ExecutionSpecification es = (ExecutionSpecification)executionSpecificationEP.resolveSemanticElement();
+
+		iftToCheckForUpdate.put(movedMos, new Rectangle(newLocation, new Dimension()));
+
+		//		iftToCheckForUpdate.put(es.getStart(), top);
+		//
+		//		iftToCheckForUpdate.put(es.getFinish(), bottom);
+		//
+		//		List<ConnectionEditPart> sourceConnectionEPs = executionSpecificationEP.getSourceConnections();
+		//
+		//		// find possible ifts associated with messages connected to the moved es
+		//		for(ConnectionEditPart sourceConnectionEP : sourceConnectionEPs) {
+		//			EObject elem = sourceConnectionEP.getNotationView().getElement();
+		//
+		//			// for connections, messages have ends that can be ift but don't have theirs own edit parts
+		//			// => use anchors to determine position
+		//			if(elem instanceof Message) {
+		//				Message msg = (Message)elem;
+		//				MessageEnd sendEvent = msg.getSendEvent();
+		//				if(sendEvent instanceof InteractionFragment) {
+		//					Connection msgFigure = sourceConnectionEP.getConnectionFigure();
+		//
+		//					Point sourcePoint = msgFigure.getSourceAnchor().getLocation(msgFigure.getTargetAnchor().getReferencePoint());
+		//
+		//					iftToCheckForUpdate.put((InteractionFragment)sendEvent, new Rectangle(sourcePoint.x + moveDelta.x, sourcePoint.y + moveDelta.y, 0, 0));
+		//				}
+		//			}
+		//		}
+		//
+		//		List<ConnectionEditPart> targetConnectionEPs = executionSpecificationEP.getTargetConnections();
+		//
+		//		for(ConnectionEditPart targetConnectionEP : targetConnectionEPs) {
+		//			EObject elem = targetConnectionEP.getNotationView().getElement();
+		//
+		//			if(elem instanceof Message) {
+		//				Message msg = (Message)elem;
+		//				MessageEnd receiveEvent = msg.getReceiveEvent();
+		//				if(receiveEvent instanceof InteractionFragment) {
+		//					Connection msgFigure = targetConnectionEP.getConnectionFigure();
+		//
+		//					Point targetPoint = msgFigure.getTargetAnchor().getLocation(msgFigure.getSourceAnchor().getReferencePoint());
+		//
+		//					iftToCheckForUpdate.put((InteractionFragment)receiveEvent, new Rectangle(targetPoint.x + moveDelta.x, targetPoint.y + moveDelta.y, 0, 0));
+		//				}
+		//			}
+		//		}
+
+		CompoundCommand cmd = new CompoundCommand();
+
+		for(Map.Entry<InteractionFragment, Rectangle> entry : iftToCheckForUpdate.entrySet()) {
+			InteractionFragment newEnclosingInteraction = findInteractionFragmentContainerAt(entry.getValue(), editPart);
+			if(newEnclosingInteraction != null) {
+				cmd.add(new ICommandProxy(getSetEnclosingInteractionCommand(editPart.getEditingDomain(), entry.getKey(), newEnclosingInteraction)));
+			}
+		}
+
+		if(!cmd.isEmpty()) {
+			return cmd;
+		} else {
+			return null;
+		}
 	}
 
 	/**

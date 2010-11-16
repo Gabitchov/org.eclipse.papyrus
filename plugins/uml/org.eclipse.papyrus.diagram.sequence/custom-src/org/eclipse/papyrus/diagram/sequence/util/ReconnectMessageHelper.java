@@ -17,6 +17,7 @@ import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Gate;
+import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.InteractionOperand;
 import org.eclipse.uml2.uml.InteractionOperatorKind;
 import org.eclipse.uml2.uml.Lifeline;
@@ -82,7 +83,9 @@ public class ReconnectMessageHelper {
 			if(messageEnd2 instanceof MessageOccurrenceSpecification) {
 				((MessageOccurrenceSpecification)messageEnd2).setEnclosingOperand(io);
 			}
-		} else if(oldElement instanceof CombinedFragment && InteractionOperatorKind.PAR_LITERAL.equals(((CombinedFragment)newElement).getInteractionOperator())) {
+			// update interaction operands covered lifelines
+			updateCoveredLifelinesOfCoregionOperand(cf);
+		} else if(oldElement instanceof CombinedFragment && InteractionOperatorKind.PAR_LITERAL.equals(((CombinedFragment)oldElement).getInteractionOperator())) {
 			// handle reorient from coregion
 			CombinedFragment cf = (CombinedFragment)oldElement;
 			Element backInteraction = cf.getOwner();
@@ -93,6 +96,8 @@ public class ReconnectMessageHelper {
 			if(messageEnd2 instanceof MessageOccurrenceSpecification) {
 				SequenceUtil.setEnclosingInteraction((MessageOccurrenceSpecification)messageEnd2, backInteraction);
 			}
+			// update interaction operands covered lifelines
+			updateCoveredLifelinesOfCoregionOperand(cf);
 		}
 	}
 
@@ -124,5 +129,25 @@ public class ReconnectMessageHelper {
 		// An occurrence specification covers a unique lifeline
 		os.getCovereds().clear();
 		os.getCovereds().add(newLifeline);
+	}
+
+	/**
+	 * Update the list of lifelines covered by the Interaction Operands of a coregion.
+	 * These are the lifelines covered by all contained Message Occurrence Specifications.
+	 * 
+	 * @param coregion
+	 *        the coregion to update operands
+	 */
+	public static void updateCoveredLifelinesOfCoregionOperand(CombinedFragment coregion) {
+		coregion.getCovereds().clear();
+		for(InteractionOperand operand : coregion.getOperands()) {
+			operand.getCovereds().clear();
+			for(InteractionFragment fragment : operand.getFragments()) {
+				if(fragment instanceof MessageOccurrenceSpecification) {
+					operand.getCovereds().addAll(fragment.getCovereds());
+					coregion.getCovereds().addAll(fragment.getCovereds());
+				}
+			}
+		}
 	}
 }

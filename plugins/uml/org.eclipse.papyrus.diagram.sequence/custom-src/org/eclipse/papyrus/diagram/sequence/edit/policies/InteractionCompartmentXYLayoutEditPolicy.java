@@ -372,7 +372,10 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 				}
 			}
 		}
-
+		// return null instead of unexecutable empty compound command
+		if(compoundCmd.isEmpty()) {
+			return null;
+		}
 		return compoundCmd;
 	}
 
