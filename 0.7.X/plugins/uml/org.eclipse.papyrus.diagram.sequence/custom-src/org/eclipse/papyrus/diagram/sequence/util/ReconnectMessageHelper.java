@@ -18,6 +18,7 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Gate;
 import org.eclipse.uml2.uml.InteractionOperand;
+import org.eclipse.uml2.uml.InteractionOperatorKind;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageEnd;
@@ -69,18 +70,20 @@ public class ReconnectMessageHelper {
 			if(lifeline != null) {
 				updateOccurenceSpecification(messageEnd, lifeline);
 			}
-		} else if(newElement instanceof CombinedFragment) {
+		} else if(newElement instanceof CombinedFragment && InteractionOperatorKind.PAR_LITERAL.equals(((CombinedFragment)newElement).getInteractionOperator())) {
+			// handle reorient on coregion
 			CombinedFragment cf = (CombinedFragment)newElement;
 			InteractionOperand io = CommandHelper.getCoRegionInteractionOperand(cf);
 			messageEnd.setEnclosingOperand(io);
 
-			// try to find and put in the io the other mos of the message
+			// try to find and put in the operand the other mos of the message
 			MessageEnd messageEnd2 = findSecondMessageEnd(messageEnd);
 
 			if(messageEnd2 instanceof MessageOccurrenceSpecification) {
 				((MessageOccurrenceSpecification)messageEnd2).setEnclosingOperand(io);
 			}
-		} else if(oldElement instanceof CombinedFragment) {
+		} else if(oldElement instanceof CombinedFragment && InteractionOperatorKind.PAR_LITERAL.equals(((CombinedFragment)newElement).getInteractionOperator())) {
+			// handle reorient from coregion
 			CombinedFragment cf = (CombinedFragment)oldElement;
 			Element backInteraction = cf.getOwner();
 
