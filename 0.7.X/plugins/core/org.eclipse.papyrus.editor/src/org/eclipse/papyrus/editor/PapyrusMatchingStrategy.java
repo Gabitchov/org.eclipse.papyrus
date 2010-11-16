@@ -29,24 +29,23 @@ public class PapyrusMatchingStrategy implements IEditorMatchingStrategy {
 	 */
 	public boolean matches(IEditorReference editorRef, IEditorInput newEInput) {
 		if(newEInput instanceof IFileEditorInput) {
-			return false;
-		}
-		IFile newFile = ((IFileEditorInput)newEInput).getFile();
-		String extension = newFile.getFileExtension();
-		if("uml".equals(extension) || "di".equals(extension) || "notation".equals(extension)) {
-			try {
-				IEditorInput exiEInput = editorRef.getEditorInput();
-				if((exiEInput instanceof IFileEditorInput)) {
-					IFile exiFile = ((IFileEditorInput)exiEInput).getFile();
-					IPath exiFilenameWOE = exiFile.getFullPath().removeFileExtension();
-					IPath newFilenameWOE = newFile.getFullPath().removeFileExtension();
+			IFile newFile = ((IFileEditorInput)newEInput).getFile();
+			String extension = newFile.getFileExtension();
+			if("uml".equals(extension) || "di".equals(extension) || "notation".equals(extension)) {
+				try {
+					IEditorInput exiEInput = editorRef.getEditorInput();
+					if((exiEInput instanceof IFileEditorInput)) {
+						IFile exiFile = ((IFileEditorInput)exiEInput).getFile();
+						IPath exiFilenameWOE = exiFile.getFullPath().removeFileExtension();
+						IPath newFilenameWOE = newFile.getFullPath().removeFileExtension();
 
-					if(exiFilenameWOE.equals(newFilenameWOE)) {
-						return true;
+						if(exiFilenameWOE.equals(newFilenameWOE)) {
+							return true;
+						}
 					}
+				} catch (PartInitException e) {
+					Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getLocalizedMessage(), e));
 				}
-			} catch (PartInitException e) {
-				Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getLocalizedMessage(), e));
 			}
 		}
 		return false;
