@@ -278,6 +278,7 @@
 		<echo message="Generating psf" />
 		<xslt style="xsl/psf/bom2repository.xsl" in="${build.root}/papyrus_bom.xml" out="repository.xml" />
 		<xslt style="xsl/psf/repository2subversive.xsl" in="repository.xml" out="${result}/subversive_${build.type}.psf" />
+		<xslt style="xsl/psf/repository2subclipse.xsl" in="repository.xml" out="${result}/subclipse_${build.type}.psf" />
 		<delete file="repository.xml" />
 	</target>
 	
