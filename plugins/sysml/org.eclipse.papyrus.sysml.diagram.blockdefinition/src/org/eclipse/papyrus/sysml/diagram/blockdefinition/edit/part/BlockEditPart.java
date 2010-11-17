@@ -111,6 +111,11 @@ public class BlockEditPart extends ClassEditPart {
 			setupContentPane(pane);
 			pane.add(((BlockPropertyCompartmentEditPart)childEditPart).getFigure());
 			return true;
+		} else if(childEditPart instanceof BlockOperationCompartmentEditPart) {
+			IFigure pane = getPrimaryShape().getOperationCompartmentFigure();
+			setupContentPane(pane);
+			pane.add(((BlockOperationCompartmentEditPart)childEditPart).getFigure());
+			return true;
 		}
 
 		return super.addFixedChild(childEditPart);
@@ -148,8 +153,12 @@ public class BlockEditPart extends ClassEditPart {
 			setupContentPane(pane);
 			pane.remove(((BlockPropertyCompartmentEditPart)childEditPart).getFigure());
 			return true;
+		} else if(childEditPart instanceof BlockOperationCompartmentEditPart) {
+			IFigure pane = getPrimaryShape().getOperationCompartmentFigure();
+			setupContentPane(pane);
+			pane.remove(((BlockOperationCompartmentEditPart)childEditPart).getFigure());
+			return true;
 		}
-
 		return super.removeFixedChild(childEditPart);
 	}
 
@@ -164,8 +173,9 @@ public class BlockEditPart extends ClassEditPart {
 			return getPrimaryShape().getBlockPartCompartmentFigure();
 		} else if(editPart instanceof BlockPropertyCompartmentEditPart) {
 			return getPrimaryShape().getAttributeCompartmentFigure();
+		} else if(editPart instanceof BlockOperationCompartmentEditPart) {
+			return getPrimaryShape().getOperationCompartmentFigure();
 		}
-
 		return super.getContentPaneFor(editPart);
 	}
 
