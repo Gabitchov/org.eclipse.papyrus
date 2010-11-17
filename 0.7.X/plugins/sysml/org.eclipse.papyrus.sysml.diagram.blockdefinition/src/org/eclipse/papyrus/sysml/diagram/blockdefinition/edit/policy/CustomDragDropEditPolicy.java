@@ -35,8 +35,10 @@ import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.BlockDefinitio
 import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Type;
 
 /** Customization of the DND edit policy for the Block Definition Diagram */
 public class CustomDragDropEditPolicy extends ClassDiagramDragDropEditPolicy {
@@ -50,7 +52,10 @@ public class CustomDragDropEditPolicy extends ClassDiagramDragDropEditPolicy {
 		if(hintedType == null) {
 			type = BlockDefinitionDiagramVisualIDRegistry.getNodeVisualID(targetEditPart.getNotationView(), droppedObject);
 		} else {
-			 type = hintedType.getSemanticHint();
+			type = hintedType.getSemanticHint();
+		}
+		if (type == null) {
+			return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
 		}
 
 		if(targetEditPart.getModel() instanceof Diagram) {
@@ -64,7 +69,7 @@ public class CustomDragDropEditPolicy extends ClassDiagramDragDropEditPolicy {
 	}
 
 	public IHintedType getHintedType(View containerView, EObject domainElement) {
-		System.out.println("dnd " + domainElement);
+		String containerVisualID = org.eclipse.papyrus.sysml.diagram.blockdefinition.part.BlockDefinitionDiagramVisualIDRegistry.getVisualID(containerView);
 		if(containerView instanceof Diagram) { // Top Nodes
 			if(isBlock(domainElement)) {
 				return BlockDefinitionDiagramElementTypes.BLOCK;
@@ -74,17 +79,35 @@ public class CustomDragDropEditPolicy extends ClassDiagramDragDropEditPolicy {
 		if(domainElement instanceof Port) {
 			return BlockDefinitionDiagramElementTypes.PORT_CN;
 		}
+		if(domainElement instanceof Operation && BlockDefinitionDiagramElementTypes.BLOCK_OPERATION_COMPARTMENT_HINT.equals(containerView)) {
+			return BlockDefinitionDiagramElementTypes.CLASS_OPERATION_CLN;
+		}
 		if(domainElement instanceof Property) {
 			Property property = (Property)domainElement;
+			if (BlockDefinitionDiagramElementTypes.BLOCK_PROPERTY_COMPARTMENT_HINT.equals(containerVisualID)) {
+				return BlockDefinitionDiagramElementTypes.CLASS_PROPERTY_CLN;
+			}
 			if (property.getAppliedStereotype(SysmlResource.CONSTRAINT_PROPERTY_ID) != null) {
-				System.out.println("BLOCK_CONSTRAINT_CLN");
-				return  BlockDefinitionDiagramElementTypes.BLOCK_CONSTRAINT_CLN;
+				if (BlockDefinitionDiagramElementTypes.BLOCK_CONSTRAINT_COMPARTMENT_HINT.equals(containerVisualID)) {
+					return  BlockDefinitionDiagramElementTypes.BLOCK_CONSTRAINT_CLN;
+				}
+				return null;
 			}
-			
 			if (property.getAggregation() == AggregationKind.COMPOSITE_LITERAL) {
-				return  BlockDefinitionDiagramElementTypes.BLOCK_PART_CLN;
+				Type propertyType = property.getType();
+				if (propertyType.getAppliedStereotype(SysmlResource.VALUE_TYPE_ID) != null) {
+					if (BlockDefinitionDiagramElementTypes.BLOCK_VALUE_COMPARTMENT_HINT.equals(containerVisualID)) {  
+					// return ValueType;
+					}
+				}
+				if (BlockDefinitionDiagramElementTypes.BLOCK_PART_COMPARTMENT_HINT.equals(containerVisualID)) {
+					//check that it is typed by block
+					return  BlockDefinitionDiagramElementTypes.BLOCK_PART_CLN;
+				}
 			}
-			return  BlockDefinitionDiagramElementTypes.BLOCK_REFERENCE_CLN;
+			if (BlockDefinitionDiagramElementTypes.BLOCK_REFERENCE_COMPARTMENT_HINT.equals(containerVisualID)) {
+				return  BlockDefinitionDiagramElementTypes.BLOCK_REFERENCE_CLN;
+			}
 		}
 		return null;
 	}
@@ -107,7 +130,7 @@ public class CustomDragDropEditPolicy extends ClassDiagramDragDropEditPolicy {
 
 		SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "Set Location", (IAdaptable)createCommand.getCommandResult().getReturnValue(), location); //$NON-NLS-1$
 		cc.compose(setBoundsCommand);
-		
+
 		return cc;
 	}
 
