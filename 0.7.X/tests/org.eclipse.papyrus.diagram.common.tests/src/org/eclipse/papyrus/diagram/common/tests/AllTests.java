@@ -11,23 +11,21 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.diagram.common.tests.parser;
+package org.eclipse.papyrus.diagram.common.tests;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import org.eclipse.papyrus.diagram.common.tests.parser.HTMLCleanerTestCase;
+import org.eclipse.papyrus.diagram.common.tests.parser.HTMLCornerBentFigureTestCase;
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+import org.junit.runners.Suite.SuiteClasses;
 
 
 /**
  * All tests together
  */
+@RunWith(Suite.class)
+@SuiteClasses({ HTMLCleanerTestCase.class, HTMLCornerBentFigureTestCase.class })
 public class AllTests {
 
-	public static Test suite() {
-		TestSuite suite = new TestSuite("Test for org.eclipse.papyrus.diagram.common.tests.parser");
-		//$JUnit-BEGIN$
-		suite.addTestSuite(HTMLCleanerTestCase.class);
-		//$JUnit-END$
-		return suite;
-	}
 
 }
