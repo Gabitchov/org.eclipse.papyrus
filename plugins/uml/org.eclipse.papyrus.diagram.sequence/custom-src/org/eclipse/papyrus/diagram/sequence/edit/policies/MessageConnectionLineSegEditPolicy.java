@@ -18,9 +18,12 @@ import java.util.List;
 
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.FigureCanvas;
+import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.Polyline;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.ConnectionEditPart;
@@ -34,6 +37,7 @@ import org.eclipse.gef.ui.parts.ScrollingGraphicalViewer;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.diagram.core.commands.SetConnectionAnchorsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ConnectionBendpointEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.internal.commands.SetConnectionBendpointsCommand;
@@ -80,14 +84,15 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 			SelectInDiagramHelper.exposeLocation((FigureCanvas)getHost().getViewer().getControl(), request.getLocation().getCopy());
 		}
 
-		if(getHost() instanceof ConnectionEditPart && getHost() instanceof IGraphicalEditPart) {
-			EObject message = ((IGraphicalEditPart)getHost()).resolveSemanticElement();
+		if(getHost() instanceof ConnectionNodeEditPart) {
+			ConnectionNodeEditPart connectionPart = (ConnectionNodeEditPart)getHost();
+			EObject message = connectionPart.resolveSemanticElement();
 			if(message instanceof Message) {
 				MessageEnd send = ((Message)message).getSendEvent();
 				MessageEnd rcv = ((Message)message).getReceiveEvent();
-				EditPart srcPart = ((ConnectionEditPart)getHost()).getSource();
+				EditPart srcPart = connectionPart.getSource();
 				LifelineEditPart srcLifelinePart = SequenceUtil.getParentLifelinePart(srcPart);
-				EditPart tgtPart = ((ConnectionEditPart)getHost()).getTarget();
+				EditPart tgtPart = connectionPart.getTarget();
 				LifelineEditPart tgtLifelinePart = SequenceUtil.getParentLifelinePart(tgtPart);
 				if(send instanceof OccurrenceSpecification && rcv instanceof OccurrenceSpecification && srcLifelinePart != null && tgtLifelinePart != null) {
 					int y = request.getLocation().y;
@@ -95,9 +100,24 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 					Command srcCmd = OccurrenceSpecificationMoveHelper.getMoveOccurrenceSpecificationsCommand((OccurrenceSpecification)send, null, y, -1, srcLifelinePart, empty);
 					Command tgtCmd = OccurrenceSpecificationMoveHelper.getMoveOccurrenceSpecificationsCommand((OccurrenceSpecification)rcv, null, y, -1, tgtLifelinePart, empty);
 					CompoundCommand compoudCmd = new CompoundCommand();
-					compoudCmd.add(srcCmd);
-					compoudCmd.add(tgtCmd);
-					return compoudCmd;
+					/*
+					 * Take care of the order of commands, to make sure target is always bellow the source.
+					 * Otherwise, moving the target above the source would cause order conflict with existing CF.
+					 */
+					Point oldLocation = SequenceUtil.getAbsoluteEdgeExtremity(connectionPart, true);
+					if(oldLocation != null) {
+						int oldY = oldLocation.y;
+						if(oldY < y) {
+							tgtCmd.setLabel("target from " + oldY + " to " + y);
+							compoudCmd.add(tgtCmd);
+							compoudCmd.add(srcCmd);
+						} else {
+							srcCmd.setLabel("source from " + oldY + " to " + y);
+							compoudCmd.add(srcCmd);
+							compoudCmd.add(tgtCmd);
+						}
+						return compoudCmd;
+					}
 				}
 			}
 		}

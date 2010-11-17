@@ -94,6 +94,7 @@ import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.InteractionOperand;
+import org.eclipse.uml2.uml.InteractionOperatorKind;
 import org.eclipse.uml2.uml.InteractionUse;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
@@ -996,17 +997,52 @@ public class SequenceUtil {
 
 			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-				setEnclosingInteraction(ift, interaction);
+				setEnclosingInteraction(ift, interaction, false);
 
 				return CommandResult.newOKCommandResult();
 			}
 		};
 	}
 
-	public static void setEnclosingInteraction(InteractionFragment ift, EObject interaction) {
+	/**
+	 * Set the interaction or interaction operand which contains a fragment
+	 * 
+	 * @param ift
+	 *        fragment to update container
+	 * @param interaction
+	 *        new containing interaction or interaction operand
+	 * @param forceIfCoregion
+	 *        force the set even if fragment belong to a coregion. Use true only when you are sure the fragment no longer belongs to a coregion's
+	 *        operand.
+	 */
+	public static void setEnclosingInteraction(InteractionFragment ift, EObject interaction, boolean forceIfCoregion) {
 		if(ift != null) {
 			if(interaction instanceof Interaction) {
 				if(!interaction.equals(ift.getEnclosingInteraction())) {
+					// check case when mos looks outside but is in a coregion.
+					if(!forceIfCoregion && ift instanceof MessageOccurrenceSpecification) {
+						InteractionOperand operand = ift.getEnclosingOperand();
+						if(operand != null) {
+							Element cf = operand.getOwner();
+							if(cf instanceof CombinedFragment && InteractionOperatorKind.PAR_LITERAL.equals(((CombinedFragment)cf).getInteractionOperator())) {
+								// was in a coregion. Check whether other mos is still in the coregion
+								Message mess = ((MessageOccurrenceSpecification)ift).getMessage();
+								// find other mos
+								MessageOccurrenceSpecification otherMos = null;
+								if(ift.equals(mess.getSendEvent()) && mess.getReceiveEvent() instanceof MessageOccurrenceSpecification) {
+									otherMos = (MessageOccurrenceSpecification)mess.getReceiveEvent();
+								} else if(ift.equals(mess.getReceiveEvent()) && mess.getSendEvent() instanceof MessageOccurrenceSpecification) {
+									otherMos = (MessageOccurrenceSpecification)mess.getSendEvent();
+								}
+								if(otherMos != null) {
+									// check that it is in a coregion (specific code is in charge of taking it out in ReconnectMessageHelper)
+									if(operand.equals(otherMos.getEnclosingOperand())) {
+										return;
+									}
+								}
+							}
+						}
+					}
 					ift.setEnclosingOperand(null);
 					ift.setEnclosingInteraction((Interaction)interaction);
 				}
