@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.papyrus.tests
+Bundle-Version: 0.7.1.qualifier
+Bundle-Activator: org.eclipse.papyrus.tests.Activator
+Bundle-Vendor: %providerName
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.junit;bundle-version="4.8.1",
+ org.apache.log4j;bundle-version="1.2.15",
+ org.eclipse.papyrus.diagram.common;bundle-version="0.7.1"
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy
