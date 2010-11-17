@@ -11,10 +11,10 @@ package org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences;
 
 
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.diagram.clazz.part.Messages;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockConstraintCompartmentEditPart;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockDefinitionDiagramEditPart;
+import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockOperationCompartmentEditPart;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockPartCompartmentEditPart;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockPropertyCompartmentEditPart;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockReferenceCompartmentEditPart;
@@ -28,7 +28,7 @@ public class BlockPreferencePage extends BlockDefinitionDiagramNodePreferencePag
 	 */
 	public static final String compartments[] = { 
 		BlockPropertyCompartmentEditPart.COMPARTMENT_NAME, 
-		Messages.ClassOperationCompartment2EditPart_title, 
+		BlockOperationCompartmentEditPart.COMPARTMENT_NAME, 
 		BlockConstraintCompartmentEditPart.COMPARTMENT_NAME, 
 		BlockPartCompartmentEditPart.COMPARTMENT_NAME, 
 		BlockReferenceCompartmentEditPart.COMPARTMENT_NAME, 
