@@ -289,9 +289,13 @@
 						<arg value="-l" />
 						<arg value="org.eclipse.papyrus.tests/Papyrus ALL tests.launch" />
 						<arg value="-o" />
-						<arg value="${result}/testReport.xml" />
+						<arg value="${result}/testresults/xml/testReport.xml" />
 						<arg value="--terseXML" />
 						<arg value="--flatXML" />
+						<arg value="--stderr" />
+						<arg value="${result}/testresults/consoleLog/ErrorLogJunitPapyrus.txt" />
+						<arg value="--stdout" />
+						<arg value="${result}/testresults/consoleLog/OutputLogJunitPapyrus.txt" />
 					</cmdargs>
 				</buckminster>
 		<echo message="End of JUnit tests" />
