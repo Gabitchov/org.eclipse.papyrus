@@ -34,7 +34,10 @@ public class AllTests {
 	// {oep}.core.tests
 	//new SuiteClasses("org.eclipse.papyrus.core", "org.eclipse.papyrus.core.tests.AllTests"),
 	// {oep}.diagram.common.tests
-	new SuiteClasses("org.eclipse.papyrus.diagram.common", "org.eclipse.papyrus.diagram.common.tests.AllTests"));
+	new SuiteClasses("org.eclipse.papyrus.diagram.common", "org.eclipse.papyrus.diagram.common.tests.AllTests"),
+	// {oep}.diagram.clazz.test
+	new SuiteClasses("org.eclipse.papyrus.diagram.clazz.test", "org.eclipse.papyrus.diagram.clazz.test.AllTests"));
+
 	
 
 	/**
