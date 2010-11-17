@@ -1423,17 +1423,15 @@
         </ownedOperation>
       </packagedElement>
       <packagedElement xmi:type="uml:DataType" xmi:id="_MgXXkBEDEdyx6M3BlUjlCQ" name="Array">
-        <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_KuPowBXcEdyC88-N-gXBsQ" parameter="_NXhYIBXcEdyC88-N-gXBsQ">
+        <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_KuPowBXcEdyC88-N-gXBsQ" parameter="_NXhYIBXcEdyC88-N-gXBsQ _sTfRkPITEd-bDvjz4njK7A">
           <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_NXhYIBXcEdyC88-N-gXBsQ" parameteredElement="_mg4UsEB8Ed6UTJZnztgOLw">
             <ownedParameteredElement xmi:type="uml:DataType" xmi:id="_mg4UsEB8Ed6UTJZnztgOLw" name="T" templateParameter="_NXhYIBXcEdyC88-N-gXBsQ"/>
           </ownedParameter>
+          <ownedParameter xmi:id="_sTfRkPITEd-bDvjz4njK7A" parameteredElement="_1lrhUBXgEdyC88-N-gXBsQ"/>
         </ownedTemplateSignature>
         <ownedAttribute xmi:id="_gdsBoBEDEdyx6M3BlUjlCQ" name="vectorElement" visibility="public" type="_mg4UsEB8Ed6UTJZnztgOLw">
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1lrhUBXgEdyC88-N-gXBsQ" value="*"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1lrhUBXgEdyC88-N-gXBsQ" name="k" templateParameter="_sTfRkPITEd-bDvjz4njK7A" value="*"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1lhwUBXgEdyC88-N-gXBsQ"/>
-          <defaultValue xmi:type="uml:LiteralString" xmi:id="_l-jCIREDEdyx6M3BlUjlCQ">
-            <value xsi:nil="true"/>
-          </defaultValue>
         </ownedAttribute>
         <ownedOperation xmi:id="_7RLsIECCEd6UTJZnztgOLw" name="at">
           <ownedParameter xmi:id="_9RU-8ECCEd6UTJZnztgOLw" name="i">
