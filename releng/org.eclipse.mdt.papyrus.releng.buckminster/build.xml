@@ -284,6 +284,17 @@
 	
 	<target name="test" depends="site.p2">
 			<echo message="Running JUnit tests" />
+				<buckminster command="junit">
+					<cmdargs>
+						<arg value="-l" />
+						<arg value="org.eclipse.papyrus.tests/Papyrus ALL tests.launch" />
+						<arg value="-o" />
+						<arg value="${result}/testReport.xml" />
+						<arg value="--terseXML" />
+						<arg value="--flatXML" />
+					</cmdargs>
+				</buckminster>
+		<echo message="End of JUnit tests" />
 		</target>
 
 	<target name="promote.sites" depends="provision">
