@@ -11,10 +11,10 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
+package org.eclipse.papyrus.diagram.clazz.test;
 
-package org.eclipse.papyrus.diagram.clazz.test.load;
-
-
+import org.eclipse.papyrus.diagram.clazz.test.canonical.AllCanonicalTests;
+import org.eclipse.papyrus.diagram.clazz.test.load.LoadTests;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
@@ -24,19 +24,12 @@ import org.junit.runners.Suite.SuiteClasses;
  */
 @RunWith(Suite.class)
 @SuiteClasses({
-// 10 classes
-Load10ClassTest.class,
-// 100 classes
-Load100ClassTest.class,
-// 200 classes
-Load200ClassTest.class,
-// 300 classes
-Load300ClassTest.class,
-// 400 classes
-Load400ClassTest.class,
-// 500 classes
-Load500ClassTest.class,
+	// canonical
+AllCanonicalTests.class,
+
+// load
+LoadTests.class
 })
-public class LoadTests {
+public class AllTests {
 
 }

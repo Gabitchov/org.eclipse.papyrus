@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
- *
+ * Copyright (c) 2010 CEA LIST.
  *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,35 +7,29 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
+ *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
  *****************************************************************************/
-
-package org.eclipse.papyrus.diagram.clazz.test.load;
-
+package org.eclipse.papyrus.diagram.clazz.test.canonical;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
+
 /**
- * All tests together.
+ * All test in canonical package
  */
 @RunWith(Suite.class)
 @SuiteClasses({
-// 10 classes
-Load10ClassTest.class,
-// 100 classes
-Load100ClassTest.class,
-// 200 classes
-Load200ClassTest.class,
-// 300 classes
-Load300ClassTest.class,
-// 400 classes
-Load400ClassTest.class,
-// 500 classes
-Load500ClassTest.class,
+// top nodes
+TestClassDiagramTopNode.class,
+// child nodes
+TestClassDiagramChildNode.class,
+// multilinks
+TestMutliLink.class,
+// child labels
+/* TestClassDiagramChildLabel.class */
 })
-public class LoadTests {
+public class AllCanonicalTests {
 
 }
