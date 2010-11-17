@@ -155,7 +155,8 @@ public class SequenceUtil {
 		}
 
 		InteractionFragment container = null;
-		HashSet<InteractionFragment> coveredInteractions = new HashSet<InteractionFragment>();
+		Set<InteractionFragment> coveredInteractions = new HashSet<InteractionFragment>();
+		Set<CombinedFragment> coveredCF = new HashSet<CombinedFragment>();
 
 		Set<Entry<Object, EditPart>> allEditPartEntries = hostEditPart.getViewer().getEditPartRegistry().entrySet();
 		for(Entry<Object, EditPart> epEntry : allEditPartEntries) {
@@ -172,7 +173,22 @@ public class SequenceUtil {
 					if(figureBounds.contains(bounds)) {
 						coveredInteractions.add((InteractionFragment)eObject);
 					}
+				} else if(eObject instanceof CombinedFragment) {
+					// handle case when the figure is located in the CF header as if it were in the first Interaction Operand
+					Rectangle figureBounds = getAbsoluteBounds(sep);
+					if(figureBounds.contains(bounds)) {
+						coveredCF.add((CombinedFragment)eObject);
+					}
 				}
+			}
+		}
+
+		// inspect coveredCF to ensure at least on child operand is in coveredInteractions list
+		for(CombinedFragment cf : coveredCF) {
+			List<InteractionOperand> operands = cf.getOperands();
+			if(operands.size() > 0 && Collections.disjoint(operands, coveredInteractions)) {
+				// bounds are in the header, add the first operand
+				coveredInteractions.add(operands.get(0));
 			}
 		}
 
@@ -388,7 +404,7 @@ public class SequenceUtil {
 	 *        true to find the start, false for the end
 	 * @return connection's extremity in absolute coordinates or null
 	 */
-	private static Point getAbsoluteEdgeExtremity(ConnectionNodeEditPart connection, boolean isStart) {
+	public static Point getAbsoluteEdgeExtremity(ConnectionNodeEditPart connection, boolean isStart) {
 		Connection msgFigure = connection.getConnectionFigure();
 		if(connection.getNotationView() instanceof Edge) {
 			// rather take up to date model information
