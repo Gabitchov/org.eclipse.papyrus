@@ -91,6 +91,8 @@ if [ $signalDateN -gt $lastPromoteDateN ]; then
         tmpDrop=$(mktemp -d)
         unzip $zipName -d $tmpDrop
         unzip -o $tmpDrop/?20*/Papyrus-Update-*.zip -d $updates_nightly
+        # add download stats to the update repository
+        $ADD_DOWNLOAD_STATS $updates_nightly/$VERSION
         chmod -R 755 $BUILDS_DIR
         chmod -R 755 $updates_nightly
         echo "$DATE: done" >> $logFile
