@@ -158,7 +158,7 @@ public class OccurrenceSpecificationMoveHelper {
 					EditPart part = DiagramEditPartsUtil.getEditPartFromView(view, lifelinePart);
 					// the general ordering part must start or finish on the lifeline (with the event)
 					if(part instanceof ConnectionEditPart && !notToMoveEditParts.contains(part)) {
-						Request reconnectRequest = makeReconnectRequest((ConnectionEditPart)part, true, referencePoint);
+						Request reconnectRequest = makeReconnectRequest((ConnectionEditPart)part, true, referencePoint, childToReconnectTo);
 						Command reconnect = childToReconnectTo.getCommand(reconnectRequest);
 						command.add(reconnect);
 					}
@@ -174,7 +174,7 @@ public class OccurrenceSpecificationMoveHelper {
 					EditPart part = DiagramEditPartsUtil.getEditPartFromView(view, lifelinePart);
 					// the general ordering part must start or finish on the lifeline (with the event)
 					if(part instanceof ConnectionEditPart && !notToMoveEditParts.contains(part)) {
-						Request reconnectRequest = makeReconnectRequest((ConnectionEditPart)part, false, referencePoint);
+						Request reconnectRequest = makeReconnectRequest((ConnectionEditPart)part, false, referencePoint, childToReconnectTo);
 						Command reconnect = childToReconnectTo.getCommand(reconnectRequest);
 						command.add(reconnect);
 					}
@@ -217,7 +217,7 @@ public class OccurrenceSpecificationMoveHelper {
 						EditPart part = DiagramEditPartsUtil.getEditPartFromView(view, lifelinePart);
 						// the message part must start or finish on the lifeline (with the event)
 						if(part instanceof ConnectionEditPart && !notToMoveEditParts.contains(part)) {
-							Request reconnectRequest = makeReconnectRequest((ConnectionEditPart)part, true, referencePoint);
+							Request reconnectRequest = makeReconnectRequest((ConnectionEditPart)part, true, referencePoint, childToReconnectTo);
 							Command reconnect = childToReconnectTo.getCommand(reconnectRequest);
 							command.add(reconnect);
 							// update enclosing interaction fragment
@@ -238,7 +238,7 @@ public class OccurrenceSpecificationMoveHelper {
 						EditPart part = DiagramEditPartsUtil.getEditPartFromView(view, lifelinePart);
 						// the message part must start or finish on the lifeline (with the event)
 						if(part instanceof ConnectionEditPart && !notToMoveEditParts.contains(part)) {
-							Request reconnectRequest = makeReconnectRequest((ConnectionEditPart)part, false, referencePoint);
+							Request reconnectRequest = makeReconnectRequest((ConnectionEditPart)part, false, referencePoint, childToReconnectTo);
 							Command reconnect = childToReconnectTo.getCommand(reconnectRequest);
 							command.add(reconnect);
 							// update enclosing interaction fragment
@@ -822,19 +822,25 @@ public class OccurrenceSpecificationMoveHelper {
 	 *        true if the source must be reconnect, false for target
 	 * @param location
 	 *        the location where to reconnect
+	 * @param partToReconnectTo
+	 *        the part which the connection must be reconnected to (or null if unknown or of no importance)
 	 * @return the reconnection request
 	 */
 	@SuppressWarnings("unchecked")
-	private static ReconnectRequest makeReconnectRequest(ConnectionEditPart connection, boolean isSource, Point location) {
+	private static ReconnectRequest makeReconnectRequest(ConnectionEditPart connection, boolean isSource, Point location, EditPart partToReconnectTo) {
 		// Obtain the target edit part
-		EditPart targetEP;
+		EditPart targetEP = partToReconnectTo;
 		String type;
 		if(isSource) {
 			type = RequestConstants.REQ_RECONNECT_SOURCE;
-			targetEP = connection.getSource();
+			if(targetEP == null) {
+				targetEP = connection.getSource();
+			}
 		} else {
 			type = RequestConstants.REQ_RECONNECT_TARGET;
-			targetEP = connection.getTarget();
+			if(targetEP == null) {
+				targetEP = connection.getTarget();
+			}
 		}
 
 		// Create and set the properties of the request

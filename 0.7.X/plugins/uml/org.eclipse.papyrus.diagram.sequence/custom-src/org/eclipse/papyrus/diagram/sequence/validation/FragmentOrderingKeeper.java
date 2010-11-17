@@ -639,8 +639,16 @@ public class FragmentOrderingKeeper {
 									int updatedPointer = pointers[j];
 									if(optionallyOrderedFragments.containsKey(j)) {
 										List<InteractionFragment> ignore = optionallyOrderedFragments.get(j);
-										// hack for coregion
-										while(ignore.contains(orderConstraints.get(j).get(updatedPointer)) || (orderConstraints.get(j).get(updatedPointer) instanceof CombinedFragment && InteractionOperatorKind.PAR_LITERAL.equals(((CombinedFragment)orderConstraints.get(j).get(updatedPointer)).getInteractionOperator()))) {
+										/*
+										 * // hack for coregion
+										 * while(ignore.contains(orderConstraints.get(j).get(updatedPointer)) ||
+										 * (orderConstraints.get(j).get(updatedPointer) instanceof CombinedFragment &&
+										 * InteractionOperatorKind.PAR_LITERAL
+										 * .equals(((CombinedFragment)orderConstraints.get(j).get(updatedPointer)).getInteractionOperator()))) {
+										 * updatedPointer++;
+										 * }
+										 */
+										while(ignore.contains(orderConstraints.get(j).get(updatedPointer))) {
 											updatedPointer++;
 										}
 									}

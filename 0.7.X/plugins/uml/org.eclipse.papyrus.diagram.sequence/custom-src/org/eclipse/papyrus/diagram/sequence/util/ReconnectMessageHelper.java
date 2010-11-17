@@ -64,9 +64,9 @@ public class ReconnectMessageHelper {
 	}
 
 	public static void updateMos(MessageOccurrenceSpecification messageEnd, Element oldElement, Element newElement) {
-		if(newElement instanceof Lifeline && oldElement instanceof Lifeline) {
+		if(newElement instanceof Lifeline && !(oldElement instanceof CombinedFragment && InteractionOperatorKind.PAR_LITERAL.equals(((CombinedFragment)oldElement).getInteractionOperator()))) {
 			updateOccurenceSpecification(messageEnd, (Lifeline)newElement);
-		} else if(newElement instanceof ExecutionSpecification && oldElement instanceof ExecutionSpecification) {
+		} else if(newElement instanceof ExecutionSpecification && !(oldElement instanceof CombinedFragment && InteractionOperatorKind.PAR_LITERAL.equals(((CombinedFragment)oldElement).getInteractionOperator()))) {
 			Lifeline lifeline = CommandHelper.getExecutionSpecificationLifeline((ExecutionSpecification)newElement);
 			if(lifeline != null) {
 				updateOccurenceSpecification(messageEnd, lifeline);
@@ -90,11 +90,11 @@ public class ReconnectMessageHelper {
 			CombinedFragment cf = (CombinedFragment)oldElement;
 			Element backInteraction = cf.getOwner();
 
-			SequenceUtil.setEnclosingInteraction(messageEnd, backInteraction);
+			SequenceUtil.setEnclosingInteraction(messageEnd, backInteraction, true);
 
 			MessageEnd messageEnd2 = findSecondMessageEnd(messageEnd);
 			if(messageEnd2 instanceof MessageOccurrenceSpecification) {
-				SequenceUtil.setEnclosingInteraction((MessageOccurrenceSpecification)messageEnd2, backInteraction);
+				SequenceUtil.setEnclosingInteraction((MessageOccurrenceSpecification)messageEnd2, backInteraction, true);
 			}
 			// update interaction operands covered lifelines
 			updateCoveredLifelinesOfCoregionOperand(cf);
