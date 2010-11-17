@@ -283,23 +283,26 @@
 	</target>
 	
 	<target name="test" depends="site.p2">
-			<echo message="Running JUnit tests" />
-				<buckminster command="junit">
-					<cmdargs>
-						<arg value="-l" />
-						<arg value="org.eclipse.papyrus.tests/Papyrus ALL tests.launch" />
-						<arg value="-o" />
-						<arg value="${result}/testresults/xml/testReport.xml" />
-						<arg value="--terseXML" />
-						<arg value="--flatXML" />
-						<arg value="--stderr" />
-						<arg value="${result}/testresults/consoleLog/ErrorLogJunitPapyrus.txt" />
-						<arg value="--stdout" />
-						<arg value="${result}/testresults/consoleLog/OutputLogJunitPapyrus.txt" />
-					</cmdargs>
-				</buckminster>
+		<echo message="Running JUnit tests" />
+		<mkdir dir="${result}/testresults/" />
+		<mkdir dir="${result}/testresults/xml" />
+		<mkdir dir="${result}/testresults/consolelogs" />
+		<buckminster command="junit">
+			<cmdargs>
+				<arg value="-l" />
+				<arg value="org.eclipse.papyrus.tests/Papyrus ALL tests.launch" />
+				<arg value="-o" />
+				<arg value="${result}/testresults/xml/testReport.xml" />
+				<arg value="--terseXML" />
+				<arg value="--flatXML" />
+				<arg value="--stderr" />
+				<arg value="${result}/testresults/consolelogs/ErrorLogJunitPapyrus.txt" />
+				<arg value="--stdout" />
+				<arg value="${result}/testresults/consolelogs/OutputLogJunitPapyrus.txt" />
+			</cmdargs>
+		</buckminster>
 		<echo message="End of JUnit tests" />
-		</target>
+	</target>
 
 	<target name="promote.sites" depends="provision">
 		<echo message="Building all projects in workspace ${workspace}... FIXME" />
@@ -322,6 +325,7 @@
 	<target name="clean.output">
 		<delete dir="${buckminster.output.root}" failonerror="true" quiet="true" />
 		<delete dir="${buckminster.temp.root}" failonerror="true" quiet="true" />
+		<delete dir="${result}/testresults" failonerror="true" quiet="true" />
 	</target>
 
 	<target name="clean.all" depends="clean.tools,clean.workspace,clean.tp,clean.output" />
