@@ -221,7 +221,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private final static String CLAZZ_TOOL_COMMENT = "clazz.tool.comment"; //$NON-NLS-1$
+	private final static String CLAZZ_TOOL_COMMENT = "createComment41CreationTool"; //$NON-NLS-1$
 
 	/**
 	 * @generated

@@ -2778,7 +2778,7 @@ and self.decisionInput.ownedParameter->select(
 	<entry
        defineOnly="true"
        description="Create a Comment"
-       id="clazz.tool.comment"
+       id="createComment41CreationTool"
        kind="tool"
        label="Comment"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
@@ -3022,7 +3022,7 @@ and self.decisionInput.ownedParameter->select(
           path="/createNodes1Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="clazz.tool.comment"
+          id="createComment41CreationTool"
           path="/createNodes1Group">
     </predefinedEntry>
  	<predefinedEntry
