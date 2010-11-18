@@ -13,12 +13,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.helper;
 
-import org.eclipse.draw2d.GridData;
-import org.eclipse.draw2d.GridLayout;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.MarginBorder;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.RectangleFigure;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.GravityConstrainedFlowLayout;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.GravityDirectionType;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
 import org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel;
@@ -67,7 +67,11 @@ public abstract class StereotypeFigureHelper {
 		stereotypeRectangle.setLineWidth(1);
 		stereotypePrinted = false;
 
-		GridLayout layoutStereotypeRect0 = new GridLayout();
+		GravityConstrainedFlowLayout layoutStereotypeRect0 = new GravityConstrainedFlowLayout();
+		layoutStereotypeRect0.setGravity(GravityDirectionType.NORTH);
+		layoutStereotypeRect0.setIgnoreInvisibleChildren(true);
+		layoutStereotypeRect0.setStretchMajorAxis(false);
+		layoutStereotypeRect0.setStretchMinorAxis(false);
 		stereotypeRectangle.setLayoutManager(layoutStereotypeRect0);
 	}
 
@@ -112,17 +116,8 @@ public abstract class StereotypeFigureHelper {
 		ensureStereotypeRectanglePrinted();
 		fActionStereotypeLabel = new CenteredWrappedLabel();
 		fActionStereotypeLabel.setBorder(new MarginBorder(getMapMode().DPtoLP(2), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
-		// layout data
-		GridData constraint = new GridData();
-		constraint.verticalAlignment = GridData.FILL;
-		constraint.horizontalAlignment = GridData.CENTER;
-		constraint.horizontalIndent = 0;
-		constraint.horizontalSpan = 1;
-		constraint.verticalSpan = 1;
-		constraint.grabExcessHorizontalSpace = true;
-		constraint.grabExcessVerticalSpace = false;
 		// Add the stereotype label to the figure
-		stereotypeRectangle.add(fActionStereotypeLabel, constraint, 0);
+		stereotypeRectangle.add(fActionStereotypeLabel, GravityConstrainedFlowLayout.ALIGN_CENTER, 0);
 	}
 
 	/**
@@ -144,17 +139,8 @@ public abstract class StereotypeFigureHelper {
 		ensureStereotypeRectanglePrinted();
 		stereotypePropertiesInBraceContent = new CenteredWrappedLabel();
 		stereotypePropertiesInBraceContent.setBorder(new MarginBorder(getMapMode().DPtoLP(2), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
-		// layout data
-		GridData constraint = new GridData();
-		constraint.verticalAlignment = GridData.FILL;
-		constraint.horizontalAlignment = GridData.CENTER;
-		constraint.horizontalIndent = 0;
-		constraint.horizontalSpan = 1;
-		constraint.verticalSpan = 1;
-		constraint.grabExcessHorizontalSpace = true;
-		constraint.grabExcessVerticalSpace = false;
 		// Add the stereotype label to the figure
-		stereotypeRectangle.add(stereotypePropertiesInBraceContent, constraint);
+		stereotypeRectangle.add(stereotypePropertiesInBraceContent, GravityConstrainedFlowLayout.ALIGN_CENTER);
 	}
 
 	/**
@@ -180,17 +166,8 @@ public abstract class StereotypeFigureHelper {
 		stereotypePropertiesContent.setTextAlignment(PositionConstants.LEFT);
 		stereotypePropertiesContent.setTextWrap(true);
 		stereotypePropertiesContent.setBorder(new MarginBorder(getMapMode().DPtoLP(2), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
-		// layout data
-		GridData constraint = new GridData();
-		constraint.verticalAlignment = GridData.FILL;
-		constraint.horizontalAlignment = GridData.BEGINNING;
-		constraint.horizontalIndent = 0;
-		constraint.horizontalSpan = 1;
-		constraint.verticalSpan = 1;
-		constraint.grabExcessHorizontalSpace = true;
-		constraint.grabExcessVerticalSpace = false;
 		// Add the stereotype label to the figure
-		stereotypeRectangle.add(stereotypePropertiesContent, constraint);
+		stereotypeRectangle.add(stereotypePropertiesContent, GravityConstrainedFlowLayout.ALIGN_TOPLEFT);
 	}
 
 	/**
