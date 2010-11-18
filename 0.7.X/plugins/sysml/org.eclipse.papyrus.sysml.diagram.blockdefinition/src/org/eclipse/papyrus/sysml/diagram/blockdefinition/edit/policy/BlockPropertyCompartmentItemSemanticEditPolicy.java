@@ -28,7 +28,12 @@ public class BlockPropertyCompartmentItemSemanticEditPolicy extends UMLBaseItemS
 	}
 
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if(BlockDefinitionDiagramElementTypes.CLASS_PROPERTY_CLN == req.getElementType()) {
+		if(BlockDefinitionDiagramElementTypes.CLASS_PROPERTY_CLN == req.getElementType()
+			|| BlockDefinitionDiagramElementTypes.BLOCK_CONSTRAINT_CLN == req.getElementType()
+			|| BlockDefinitionDiagramElementTypes.BLOCK_PART_CLN == req.getElementType()
+			|| BlockDefinitionDiagramElementTypes.BLOCK_REFERENCE_CLN == req.getElementType()
+//			|| BlockDefinitionDiagramElementTypes.BLOCK_VALUETYPE_CLN == req.getElementType()
+		) {
 			return getGEFWrapper(new Property4CreateCommand(req));
 		}
 
