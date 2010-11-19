@@ -1,6 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %fragmentName
+Bundle-Localization: fragment
 Bundle-SymbolicName: org.eclipse.papyrus.diagram.common.palette.customization;singleton:=true
 Bundle-Version: 0.7.1.qualifier
 Bundle-Vendor: %providerName
