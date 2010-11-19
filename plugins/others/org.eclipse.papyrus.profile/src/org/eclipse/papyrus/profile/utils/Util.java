@@ -49,6 +49,9 @@ import org.eclipse.uml2.uml.ProfileApplication;
 import org.eclipse.uml2.uml.Slot;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.StructuralFeature;
+import org.eclipse.uml2.uml.TemplateBinding;
+import org.eclipse.uml2.uml.TemplateSignature;
+import org.eclipse.uml2.uml.TemplateableElement;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.ValueSpecification;
 import org.eclipse.uml2.uml.util.UMLUtil;
@@ -103,7 +106,8 @@ public class Util {
 				suffix = " (ProfileApplication)";
 				cNE = cPA.getAppliedProfile();
 
-			} else if(object instanceof Comment) {
+			}
+			else if(object instanceof Comment) {
 				Comment cCom = (Comment)object;
 				suffix = " (Comment)";
 				String cComBody = cCom.getBody();
@@ -112,17 +116,34 @@ public class Util {
 				else
 					cComLabel = cComBody;
 			}
-
+			else if (object instanceof TemplateSignature) {
+				TemplateableElement te = ((TemplateSignature) object).getTemplate();
+				suffix = " (TemplateSignature owner)";
+				if (te instanceof NamedElement) {
+					cNE = (NamedElement) te;
+				}
+			}
+			else if (object instanceof TemplateBinding) {
+				TemplateableElement te = ((TemplateBinding) object).getBoundElement();
+				suffix = " (TemplateBinding bound-element)";
+				if (te instanceof NamedElement) {
+					cNE = (NamedElement) te;
+				}
+			}
 			if(shortLabel) {
-				if(object instanceof Comment)
+				if(object instanceof Comment) {
 					cName = cComLabel;
-				else
+				}
+				else if (cNE != null) {
 					cName = cNE.getName();
+				}
 			} else {
-				if(object instanceof Comment)
+				if(object instanceof Comment) {
 					cName = cComLabel + suffix;
-				else
+				}
+				else if (cNE != null) {
 					cName = cNE.getQualifiedName() + suffix;
+				}
 			}
 
 			if(cName != null) {
