@@ -26,7 +26,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.diagram.composite.custom.messages.Messages;
 import org.eclipse.papyrus.diagram.composite.custom.ui.CollaborationRoleValidator;
 import org.eclipse.papyrus.diagram.composite.edit.commands.CollaborationRoleCreateCommandCN;
-import org.eclipse.papyrus.diagram.composite.providers.ElementInitializers;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
@@ -118,7 +117,6 @@ public class CollaborationRoleCreateCommand extends CollaborationRoleCreateComma
 
 			owner.getCollaborationRoles().add((ConnectableElement)role);
 
-			ElementInitializers.getInstance().init_ConnectableElement_3115((ConnectableElement)role);
 			try {
 				doConfigure((ConnectableElement)role, monitor, info);
 			} catch (ExecutionException e) {
