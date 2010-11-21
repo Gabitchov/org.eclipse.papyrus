@@ -103,13 +103,15 @@ public class GeneralizationUtil {
 				if((generalization != forbiddenPath) && (!ignoredGeneralizationsTmp.contains(generalization))) {
 
 					Classifier general = generalization.getGeneral();
-					ignoredGeneralizationsTmp.add(generalization);
-				
-					if(general.getOwnedMembers().contains(inheritedElement)) {
-						return true;
+					if(general != null) {
+						ignoredGeneralizationsTmp.add(generalization);
 
-					} else if(existsAnotherInheritanceWay(inheritedElement, forbiddenPath, general, ignoredGeneralizationsTmp)) {
-						return true;
+						if(general.getOwnedMembers().contains(inheritedElement)) {
+							return true;
+
+						} else if(existsAnotherInheritanceWay(inheritedElement, forbiddenPath, general, ignoredGeneralizationsTmp)) {
+							return true;
+						}
 					}
 				}
 			}
