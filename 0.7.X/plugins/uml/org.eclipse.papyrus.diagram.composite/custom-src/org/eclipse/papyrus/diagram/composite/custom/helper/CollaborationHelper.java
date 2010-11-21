@@ -18,6 +18,7 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.commands.CompoundCommand;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
@@ -26,7 +27,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
-import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.Node;
@@ -38,6 +38,8 @@ import org.eclipse.papyrus.diagram.composite.custom.edit.command.CreateViewComma
 import org.eclipse.papyrus.diagram.composite.custom.utils.CompositeEditPartUtil;
 import org.eclipse.papyrus.diagram.composite.edit.parts.CollaborationUseEditPartCN;
 import org.eclipse.papyrus.diagram.composite.providers.UMLElementTypes;
+import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.service.edit.service.IElementEditService;
 import org.eclipse.uml2.uml.Collaboration;
 import org.eclipse.uml2.uml.CollaborationUse;
 import org.eclipse.uml2.uml.StructuredClassifier;
@@ -101,8 +103,17 @@ public class CollaborationHelper extends ElementHelper {
 			// never committed) in case of a DND from the diagram to the diagram (is work well from Explorer to Diagram).
 			// The command is temporary replaced by a basic set value command without confirmation dialog.
 			//SetTypeWithDialogCommand setTypeCommand = new SetTypeWithDialogCommand(req);
-			SetValueCommand setTypeCommand = new SetValueCommand(req);
-			cc.add(new ICommandProxy(setTypeCommand));
+			//			SetValueCommand setTypeCommand = new SetValueCommand(req);
+			//			cc.add(new ICommandProxy(setTypeCommand));
+			EObject selectedEObject = req.getElementToEdit();
+			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(selectedEObject);
+			if(provider != null) {
+				ICommand setCommand = provider.getEditCommand(req);
+
+				if(setCommand != null && setCommand.canExecute()) {
+					cc.add(new ICommandProxy(setCommand));
+				}
+			}
 		}
 
 		return cc;

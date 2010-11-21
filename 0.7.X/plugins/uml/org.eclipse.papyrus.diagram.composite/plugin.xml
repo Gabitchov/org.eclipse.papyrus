@@ -179,9 +179,10 @@
       </editpartProvider>
    </extension>
 
+   <!--
    <extension point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders" id="modelassist-provider">
       <?gmfgen generated="true"?>
-      <modelingAssistantProvider class="org.eclipse.papyrus.diagram.composite.providers.UMLModelingAssistantProvider">
+      <modelingAssistantProvider class="org.eclipse.papyrus.diagram.composite.custom.providers.UMLModelingAssistantProvider">
          <Priority name="Lowest"/>
          <object class="org.eclipse.papyrus.diagram.composite.edit.parts.CompositeStructureDiagramEditPart" id="Package_1000"/>
          <object class="org.eclipse.papyrus.diagram.composite.edit.parts.ActivityCompositeEditPart" id="Activity_2060"/>
@@ -241,7 +242,8 @@
          <context elements="Package_1000,Activity_2060,Interaction_2061,ProtocolStateMachine_2062,StateMachine_2063,FunctionBehavior_2064,OpaqueBehavior_2065,Component_2069,Device_2070,ExecutionEnvironment_2071,Node_2072,Class_2073,Collaboration_2075,Interface_2076,PrimitiveType_2066,Enumeration_2067,DataType_2068,Actor_2077,DeploymentSpecification_2078,Artifact_2079,InformationItem_2080,Signal_2081,UseCase_2082,SignalEvent_2083,CallEvent_2084,AnyReceiveEvent_2085,SendSignalEvent_2086,SendOperationEvent_2087,ChangeEvent_2088,TimeEvent_2089,CreationEvent_2090,DestructionEvent_2091,ExecutionEvent_2092,DurationObservation_2093,TimeObservation_2094,LiteralBoolean_2095,LiteralInteger_2096,LiteralNull_2097,LiteralString_2098,LiteralUnlimitedNatural_2099,StringExpression_2100,OpaqueExpression_2101,TimeExpression_2102,Expression_2103,Duration_2104,TimeInterval_2105,DurationInterval_2106,Interval_2107,InstanceValue_2108,Comment_2109,DurationConstraint_2110,TimeConstraint_2111,IntervalConstraint_2112,InteractionConstraint_2113,Constraint_2114"/>
       </modelingAssistantProvider>
    </extension>
-
+	-->
+	
    <extension point="org.eclipse.gmf.runtime.common.ui.services.iconProviders" id="icon-provider">
       <?gmfgen generated="true"?>
       <IconProvider class="org.eclipse.papyrus.diagram.composite.providers.UMLIconProvider">
@@ -2865,7 +2867,13 @@
 		class="org.eclipse.papyrus.diagram.composite.custom.helper.advice.PropertyHelperAdvice"
 		inheritance="all" typeId="org.eclipse.papyrus.uml.Property">
 	</adviceBinding>
-		
+
+	<!-- Collaboration specific advices (remove inconsistent views when a CollaborationRole is removed -->		
+	<adviceBinding id="org.eclipse.papyrus.uml.diagram.composite.CollaborationHelperAdvice"
+		class="org.eclipse.papyrus.diagram.composite.custom.helper.advice.CollaborationHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.uml.Collaboration">
+	</adviceBinding>
+			
 	</metamodel>
 </extension>
 	
@@ -2875,9 +2883,25 @@
 	<!-- Bindings declaration to shared IClientContext -->
 	<binding context="org.eclipse.papyrus.service.edit.TypeContext">	
 		<elementType ref="org.eclipse.papyrus.uml.diagram.composite.GeneralizationHelperAdvice"/>
-		<elementType ref="org.eclipse.papyrus.uml.diagram.composite.PropertyHelperAdvice"/>		
+		<elementType ref="org.eclipse.papyrus.uml.diagram.composite.PropertyHelperAdvice"/>
+		<elementType ref="org.eclipse.papyrus.uml.diagram.composite.CollaborationHelperAdvice"/>			
 	</binding>
 		
 </extension>
-   
+
+<!-- Modeling assistant provider declaration -->
+<extension point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders" id="modelassist-provider">
+<?gmfgen generated="false"?>
+	<modelingAssistantProvider class="org.eclipse.papyrus.diagram.composite.custom.providers.DiagramModelingAssistantProvider">
+		<Priority name="Lowest"/>
+		
+		<object class="org.eclipse.papyrus.diagram.composite.edit.parts.CompositeStructureDiagramEditPart" id="Package_1000"/>
+		<object class="org.eclipse.papyrus.diagram.composite.edit.parts.ClassCompositeEditPart" id="Class_2073"/>
+		<object class="org.eclipse.papyrus.diagram.composite.edit.parts.CommentEditPart" id="Comment_2109"/>
+         
+		<context elements="Package_1000, Class_2073, Comment_2109"/>
+		
+	</modelingAssistantProvider>
+</extension>
+      
 </plugin>
