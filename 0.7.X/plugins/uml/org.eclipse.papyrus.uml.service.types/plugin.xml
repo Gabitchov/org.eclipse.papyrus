@@ -1805,7 +1805,19 @@
 		class="org.eclipse.papyrus.uml.service.types.helper.advice.PartDecompositionHelperAdvice"
 		inheritance="none" typeId="org.eclipse.papyrus.uml.PartDecomposition">
 	</adviceBinding>
-					
+
+	<!-- Helper advice for Collaboration -->
+	<adviceBinding id="org.eclipse.papyrus.uml.advice.Collaboration"
+		class="org.eclipse.papyrus.uml.service.types.helper.advice.CollaborationHelperAdvice"
+		inheritance="none" typeId="org.eclipse.papyrus.uml.Collaboration">
+	</adviceBinding>
+						
+	<!-- Helper advice for CollaborationUse -->
+	<adviceBinding id="org.eclipse.papyrus.uml.advice.CollaborationUse"
+		class="org.eclipse.papyrus.uml.service.types.helper.advice.CollaborationUseHelperAdvice"
+		inheritance="none" typeId="org.eclipse.papyrus.uml.CollaborationUse">
+	</adviceBinding>
+	
 	</metamodel>
 </extension>
 	
@@ -1815,18 +1827,19 @@
 	<!-- Bindings declaration -->
 	<binding context="org.eclipse.papyrus.service.edit.TypeContext">
 		
-		<elementType pattern="org.eclipse.papyrus.uml.*" />
-		<advice ref="org.eclipse.papyrus.uml.advice.NameElementInitializer" />
-		<advice ref="org.eclipse.papyrus.uml.advice.ElementUnapplyStereotype" />
-		<advice ref="org.eclipse.papyrus.uml.advice.OccurrenceSpecification" />
-		<advice ref="org.eclipse.papyrus.uml.advice.ExecutionSpecification" />
-		<advice ref="org.eclipse.papyrus.uml.advice.Message" />
-		<advice ref="org.eclipse.papyrus.uml.advice.Generalization" />
-  		<advice ref="org.eclipse.papyrus.uml.advice.Lifeline" />
+		<elementType pattern="org.eclipse.papyrus.uml.*" />	
 		<advice ref="org.eclipse.papyrus.uml.advice.DestructionEvent" />
+		<advice ref="org.eclipse.papyrus.uml.advice.Collaboration" />
+		<advice ref="org.eclipse.papyrus.uml.advice.CollaborationUse" />
+		<advice ref="org.eclipse.papyrus.uml.advice.ElementUnapplyStereotype" />
+		<advice ref="org.eclipse.papyrus.uml.advice.ExecutionSpecification" />
+		<advice ref="org.eclipse.papyrus.uml.advice.Generalization" />
+		<advice ref="org.eclipse.papyrus.uml.advice.Lifeline" />
+		<advice ref="org.eclipse.papyrus.uml.advice.Message" />
 		<advice ref="org.eclipse.papyrus.uml.advice.MessageEnd" />
-		<advice ref="org.eclipse.papyrus.uml.advice.PartDecomposition" />
-				
+		<advice ref="org.eclipse.papyrus.uml.advice.NameElementInitializer" />
+		<advice ref="org.eclipse.papyrus.uml.advice.OccurrenceSpecification" />
+		<advice ref="org.eclipse.papyrus.uml.advice.PartDecomposition" />	
 	</binding>
 		
 </extension>
