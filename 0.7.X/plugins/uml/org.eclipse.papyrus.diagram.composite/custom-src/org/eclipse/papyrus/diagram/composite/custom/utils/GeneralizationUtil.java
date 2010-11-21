@@ -12,10 +12,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.composite.custom.utils;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.uml2.uml.Classifier;
@@ -41,19 +40,24 @@ public class GeneralizationUtil {
 		boolean isConcerned = false;
 		NamedElement graphicalOwner = getGraphicalOwner(view);
 
-		if(graphicalOwner instanceof Classifier) {
-			if(graphicalOwner != null && generalization != null) {
-				isConcerned = getAllGeneralization((Classifier)graphicalOwner).contains(generalization);
-			}
-		} else if(graphicalOwner instanceof Property) {
-			Type type = ((Property)graphicalOwner).getType();
-			if(type instanceof Classifier) {
-				isConcerned = getAllGeneralization((Classifier)type).contains(generalization);
-			}
-		}
+		// If the View element is owned by its graphical owner bypass the tests
+		if((Element)view.getElement().eContainer() != graphicalOwner) {
 
-		if(isConcerned && existsAnotherInheritanceWay((Element)view.getElement(), generalization, graphicalOwner)) {
-			isConcerned = false;
+			if(graphicalOwner instanceof Classifier) {
+				if(graphicalOwner != null && generalization != null) {
+					isConcerned = getAllGeneralization((Classifier)graphicalOwner, null).contains(generalization);
+				}
+			} else if(graphicalOwner instanceof Property) {
+				Type type = ((Property)graphicalOwner).getType();
+				if(type instanceof Classifier) {
+					isConcerned = getAllGeneralization((Classifier)type, null).contains(generalization);
+				}
+			}
+
+			if(isConcerned && existsAnotherInheritanceWay((Element)view.getElement(), generalization, graphicalOwner, null)) {
+				isConcerned = false;
+			}
+
 		}
 
 		return isConcerned;
@@ -71,7 +75,10 @@ public class GeneralizationUtil {
 	 * @return
 	 *         <code>true</code> if another way exists to inherit of this element <code>false</code> if not
 	 */
-	protected boolean existsAnotherInheritanceWay(Element inheritedElement, Generalization forbiddenPath, NamedElement el) {
+	protected boolean existsAnotherInheritanceWay(Element inheritedElement, Generalization forbiddenPath, NamedElement el, Set<Element> ignoredGeneralizations) {
+
+		Set<Generalization> generalizations = new HashSet<Generalization>();
+
 		Classifier _classifier = null;
 		if(el instanceof Property) {
 			Type type = ((Property)el).getType();
@@ -82,14 +89,26 @@ public class GeneralizationUtil {
 			_classifier = (Classifier)el;
 		}
 
+		// List Generalization that have already been tested to avoid loop issues
+		// in case of Generalization cycles (such cycle creation should be avoided)
+		Set<Element> ignoredGeneralizationsTmp = new HashSet<Element>();
+		if(ignoredGeneralizations != null) {
+			ignoredGeneralizationsTmp.addAll(ignoredGeneralizations);
+		}
+
 		if(el != null) {
-			EList<Generalization> generalizations = _classifier.getGeneralizations();
+			generalizations.addAll(_classifier.getGeneralizations());
+
 			for(Generalization generalization : generalizations) {
-				if(generalization != forbiddenPath) {
+				if((generalization != forbiddenPath) && (!ignoredGeneralizationsTmp.contains(generalization))) {
+
 					Classifier general = generalization.getGeneral();
+					ignoredGeneralizationsTmp.add(generalization);
+				
 					if(general.getOwnedMembers().contains(inheritedElement)) {
 						return true;
-					} else if(existsAnotherInheritanceWay(inheritedElement, forbiddenPath, general)) {
+
+					} else if(existsAnotherInheritanceWay(inheritedElement, forbiddenPath, general, ignoredGeneralizationsTmp)) {
 						return true;
 					}
 				}
@@ -126,16 +145,31 @@ public class GeneralizationUtil {
 	 * @return
 	 *         all the generalization (direct and indirect) owning by the classifier
 	 */
-	protected List<Generalization> getAllGeneralization(Classifier classifier) {
-		List<Generalization> list = new ArrayList<Generalization>();
-		List<Generalization> listTmp = new ArrayList<Generalization>();
-		if(classifier != null) {
-			list.addAll(classifier.getGeneralizations());
-			for(Generalization generalization : list) {
-				listTmp.addAll(getAllGeneralization(generalization.getGeneral()));
-			}
-			list.addAll(listTmp);
+	protected Set<Generalization> getAllGeneralization(Classifier classifier, Set<Classifier> alreadyParsedClassifiers) {
+
+		Set<Generalization> generalizations = new HashSet<Generalization>();
+
+		// Keep track of already parsed Classifiers to avoid loop in case 
+		// of Generalization cycle.
+		Set<Classifier> parsedClassifiers = new HashSet<Classifier>();
+		if(alreadyParsedClassifiers != null) {
+			parsedClassifiers.addAll(alreadyParsedClassifiers);
 		}
-		return list;
+
+		Set<Generalization> generalizationsTmp = new HashSet<Generalization>();
+		if(classifier != null) {
+			generalizations.addAll(classifier.getGeneralizations());
+
+			if(!parsedClassifiers.contains(classifier)) {
+				parsedClassifiers.add(classifier);
+				for(Generalization generalization : generalizations) {
+					generalizationsTmp.addAll(getAllGeneralization(generalization.getGeneral(), parsedClassifiers));
+				}
+			}
+		}
+
+		generalizations.addAll(generalizationsTmp);
+
+		return generalizations;
 	}
 }
