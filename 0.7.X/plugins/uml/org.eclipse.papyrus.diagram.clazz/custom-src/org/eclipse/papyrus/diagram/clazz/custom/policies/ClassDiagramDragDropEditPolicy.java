@@ -49,6 +49,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Dependency2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationLinkEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceRealizationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPartCN;
@@ -169,15 +170,15 @@ public class ClassDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdit
 			}
 			//DROP AS A NODE
 			EObject graphicalParent = ((GraphicalEditPart)getHost()).resolveSemanticElement();
-			Point location = getTranslatedLocation(dropRequest);
 			// Restrict the default node creation to the following cases:
 			// . Take the containment relationship into consideration
 			// . Release the constraint when GraphicalParent is a diagram
+			//drop into diagram
 			if(getHost().getModel() instanceof Diagram) {
-				return new ICommandProxy(getDefaultDropNodeCommand(InstanceSpecificationEditPart.VISUAL_ID, location, semanticLink));
-
+				return new ICommandProxy(getDefaultDropNodeCommand(InstanceSpecificationEditPart.VISUAL_ID, dropRequest.getLocation(), semanticLink));
+				//drop into another editpart
 			} else if((graphicalParent instanceof Element) && ((Element)graphicalParent).getOwnedElements().contains(semanticLink)) {
-				return new ICommandProxy(getDefaultDropNodeCommand(InstanceSpecificationEditPart.VISUAL_ID, location, semanticLink));
+				return new ICommandProxy(getDefaultDropNodeCommand(InstanceSpecificationEditPartCN.VISUAL_ID, dropRequest.getLocation(), semanticLink));
 
 			}
 
