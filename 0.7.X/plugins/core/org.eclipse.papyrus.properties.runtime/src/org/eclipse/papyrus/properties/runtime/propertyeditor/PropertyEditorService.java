@@ -20,6 +20,7 @@ import org.eclipse.gmf.runtime.common.ui.services.util.ActivityFilterProviderDes
 import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.controller.PropertyEditorController;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
+import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 import org.w3c.dom.Node;
 
 
@@ -63,11 +64,14 @@ public class PropertyEditorService extends Service {
 	 *        the controller that manages this editors
 	 * @param id
 	 *        the identifier of the editor to create
+	 * @param widgetFactory
+	 *        widget factory used to create the content of the editor
 	 * @return the created property editor
 	 */
-	public AbstractPropertyEditor createPropertyEditor(PropertyEditorController controller, String id) {
+	public AbstractPropertyEditor createPropertyEditor(PropertyEditorController controller, String id, TabbedPropertySheetWidgetFactory widgetFactory) {
 		Object result = executeUnique(ExecutionStrategy.REVERSE, new CreatePropertyEditorOperation(controller, id));
 		if(result instanceof AbstractPropertyEditor) {
+			((AbstractPropertyEditor)result).setWidgetFactory(widgetFactory);
 			return (AbstractPropertyEditor)result;
 		}
 		Activator.log.error("impossible to create the editor using id " + id, null);

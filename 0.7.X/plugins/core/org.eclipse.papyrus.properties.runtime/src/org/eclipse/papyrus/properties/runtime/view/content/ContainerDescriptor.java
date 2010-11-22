@@ -111,7 +111,7 @@ public class ContainerDescriptor extends AbstractContainerDescriptor {
 			getDescribedComposite().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 		}
 
-		controllers = updateControllers();
+		controllers = updateControllers(widgetFactory);
 		return controllers;
 	}
 
@@ -127,9 +127,12 @@ public class ContainerDescriptor extends AbstractContainerDescriptor {
 	/**
 	 * Update controllers managed by this descriptor
 	 * 
+	 * @param widgetFactory
+	 *        widget factory used to create content of the editors
+	 * 
 	 * @return the list of update controllers
 	 */
-	protected List<PropertyEditorController> updateControllers() {
+	protected List<PropertyEditorController> updateControllers(TabbedPropertySheetWidgetFactory widgetFactory) {
 		// clear and re-create the list of controllers
 		for(PropertyEditorController controller : controllers) {
 			controller.dispose();
@@ -145,7 +148,7 @@ public class ContainerDescriptor extends AbstractContainerDescriptor {
 		if(!parseFailed) {
 			// creates the content for the controllers
 			for(IPropertyEditorControllerDescriptor descriptor : getControllerDescriptors()) {
-				controllers.add(PropertyViewService.getInstance().createPropertyEditorController(objectsToEdit, getPropertyEditorContainer(), descriptor));
+				controllers.add(PropertyViewService.getInstance().createPropertyEditorController(objectsToEdit, getPropertyEditorContainer(), descriptor, widgetFactory));
 			}
 		}
 

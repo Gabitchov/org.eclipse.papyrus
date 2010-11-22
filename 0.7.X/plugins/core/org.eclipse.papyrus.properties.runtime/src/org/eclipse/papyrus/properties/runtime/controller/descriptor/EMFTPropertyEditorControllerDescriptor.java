@@ -26,6 +26,7 @@ import org.eclipse.papyrus.properties.runtime.state.IState;
 import org.eclipse.papyrus.properties.runtime.state.ITraversableModelElement;
 import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescriptor;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -329,7 +330,7 @@ public class EMFTPropertyEditorControllerDescriptor implements IPropertyEditorCo
 
 			if(controller != null) {
 				// use the state to create this
-				controller.createPropertyEditor(this.getDescriptor().getEditorDescriptor());
+				controller.createPropertyEditor(this.getDescriptor().getEditorDescriptor(), new TabbedPropertySheetWidgetFactory());
 			}
 		}
 	}

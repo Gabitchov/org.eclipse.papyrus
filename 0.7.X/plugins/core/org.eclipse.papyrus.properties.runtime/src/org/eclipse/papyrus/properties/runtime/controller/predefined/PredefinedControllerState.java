@@ -19,6 +19,7 @@ import org.eclipse.papyrus.properties.runtime.controller.PropertyEditorControlle
 import org.eclipse.papyrus.properties.runtime.controller.PropertyEditorControllerService;
 import org.eclipse.papyrus.properties.runtime.controller.descriptor.ControllerDescriptorState;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -124,7 +125,7 @@ public class PredefinedControllerState extends ControllerDescriptorState {
 
 		if(controller != null) {
 			// use the state to create this
-			controller.createPropertyEditor(this.getDescriptor().getEditorDescriptor());
+			controller.createPropertyEditor(this.getDescriptor().getEditorDescriptor(), new TabbedPropertySheetWidgetFactory());
 		}
 	}
 

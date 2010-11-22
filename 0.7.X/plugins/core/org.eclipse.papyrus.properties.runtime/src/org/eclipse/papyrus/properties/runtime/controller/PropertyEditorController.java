@@ -21,6 +21,7 @@ import org.eclipse.papyrus.properties.runtime.propertyeditor.PropertyEditorServi
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.services.IDisposable;
+import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 
 
 /**
@@ -116,9 +117,11 @@ public abstract class PropertyEditorController implements IDisposable, IProperty
 
 	/**
 	 * {@inheritDoc}
+	 * 
+	 * @param widgetFactory
 	 */
-	public void createPropertyEditor(IPropertyEditorDescriptor descriptor) {
-		setPropertyEditor(PropertyEditorService.getInstance().createPropertyEditor(this, descriptor.getEditorId()));
+	public void createPropertyEditor(IPropertyEditorDescriptor descriptor, TabbedPropertySheetWidgetFactory widgetFactory) {
+		setPropertyEditor(PropertyEditorService.getInstance().createPropertyEditor(this, descriptor.getEditorId(), widgetFactory));
 		IStatus status = initPropertyEditor(descriptor);
 		if(IStatus.ERROR != status.getSeverity()) {
 			getPropertyEditor().createContent(getComposite());
