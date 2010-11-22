@@ -22,6 +22,8 @@ import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockValueCom
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 
 public class BlockPreferencePage extends BlockDefinitionDiagramNodePreferencePage {
+	
+	private static final String BLOCK_PREFERENCE_KEY = BlockDefinitionDiagramEditPart.DIAGRAM_ID + "_" + SysMLElementTypes.BLOCK.getSemanticHint(); //$NON-NLS-1$
 
 	/**
 	 * the list of the compartments for this node
@@ -46,7 +48,7 @@ public class BlockPreferencePage extends BlockDefinitionDiagramNodePreferencePag
 
 	public BlockPreferencePage() {
 		super();
-		setPreferenceKey(BlockDefinitionDiagramEditPart.DIAGRAM_ID + "_" + SysMLElementTypes.BLOCK.getSemanticHint()); //$NON-NLS-1$
+		setPreferenceKey(BLOCK_PREFERENCE_KEY);
 	}
 
 	/**
@@ -55,14 +57,17 @@ public class BlockPreferencePage extends BlockDefinitionDiagramNodePreferencePag
 	 */
 	public static void initDefaults(IPreferenceStore store) {
 
-		String key = BlockDefinitionDiagramEditPart.DIAGRAM_ID + "_" + SysMLElementTypes.BLOCK.getSemanticHint();
-		for(String name : compartments) {
-			String preferenceName = PreferenceConstantHelper.getCompartmentElementConstant(key, name, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
-			store.setDefault(preferenceName, false);
+		for(String compartmentName : compartments) {
+			String showCompartmentKey = PreferenceConstantHelper.getCompartmentElementConstant(BLOCK_PREFERENCE_KEY, compartmentName, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
+			store.setDefault(showCompartmentKey, false);
+
+			String showCompartmentNameKey = PreferenceConstantHelper.getCompartmentElementConstant(BLOCK_PREFERENCE_KEY, compartmentName, PreferenceConstantHelper.COMPARTMENT_NAME_VISIBILITY);
+			store.setDefault(showCompartmentNameKey, true);
+
 		}
 		// set the true value for the compartment visibility
 		for(String name : default_compartments) {
-			String preferenceName = PreferenceConstantHelper.getCompartmentElementConstant(key, name, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
+			String preferenceName = PreferenceConstantHelper.getCompartmentElementConstant(BLOCK_PREFERENCE_KEY, name, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
 			store.setDefault(preferenceName, true);
 		}
 	}
