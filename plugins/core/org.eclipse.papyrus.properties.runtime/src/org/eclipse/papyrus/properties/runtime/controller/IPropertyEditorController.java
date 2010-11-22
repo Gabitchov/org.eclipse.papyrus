@@ -18,6 +18,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.papyrus.properties.runtime.controller.descriptor.IPropertyEditorControllerDescriptor;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 
 
 /**
@@ -61,8 +62,10 @@ public interface IPropertyEditorController {
 	 * 
 	 * @param descriptor
 	 *        the image descriptor for the property editor
+	 * @param widgetFactory
+	 *        widget factory used to create the content of the editor
 	 */
-	public void createPropertyEditor(IPropertyEditorDescriptor descriptor);
+	public void createPropertyEditor(IPropertyEditorDescriptor descriptor, TabbedPropertySheetWidgetFactory widgetFactory);
 
 	/**
 	 * Initialize the controller.
