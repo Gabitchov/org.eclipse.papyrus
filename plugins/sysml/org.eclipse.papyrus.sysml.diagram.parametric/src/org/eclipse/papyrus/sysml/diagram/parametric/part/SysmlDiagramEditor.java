@@ -24,6 +24,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.KeyHandler;
+import org.eclipse.gef.KeyStroke;
 import org.eclipse.gef.Tool;
 import org.eclipse.gef.commands.CommandStackListener;
 import org.eclipse.gef.palette.PaletteRoot;
@@ -132,6 +133,7 @@ public class SysmlDiagramEditor extends DiagramDocumentEditor implements IProvid
 	/**
 	 * @generated
 	 */
+	@Override
 	protected String getContextID() {
 		return CONTEXT_ID;
 	}
@@ -139,9 +141,10 @@ public class SysmlDiagramEditor extends DiagramDocumentEditor implements IProvid
 	/**
 	 * @generated
 	 */
+	@Override
 	protected PaletteRoot createPaletteRoot(PaletteRoot existingPaletteRoot) {
 		PaletteRoot paletteRoot;
-		if (existingPaletteRoot == null) {
+		if(existingPaletteRoot == null) {
 			paletteRoot = PapyrusPaletteService.getInstance().createPalette(this, getDefaultPaletteContent());
 		} else {
 			PapyrusPaletteService.getInstance().updatePalette(existingPaletteRoot, this, getDefaultPaletteContent());
@@ -154,6 +157,7 @@ public class SysmlDiagramEditor extends DiagramDocumentEditor implements IProvid
 	/**
 	 * @generated
 	 */
+	@Override
 	protected PreferencesHint getPreferencesHint() {
 		return SysmlDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT;
 	}
@@ -161,6 +165,7 @@ public class SysmlDiagramEditor extends DiagramDocumentEditor implements IProvid
 	/**
 	 * @generated
 	 */
+	@Override
 	public String getContributorId() {
 		return SysmlDiagramEditorPlugin.ID;
 	}
@@ -168,12 +173,13 @@ public class SysmlDiagramEditor extends DiagramDocumentEditor implements IProvid
 	/**
 	 * @generated
 	 */
+	@Override
 	public Object getAdapter(Class type) {
-		if (type == IShowInTargetList.class) {
+		if(type == IShowInTargetList.class) {
 			return new IShowInTargetList() {
 
 				public String[] getShowInTargetIds() {
-					return new String[] { ProjectExplorer.VIEW_ID };
+					return new String[]{ ProjectExplorer.VIEW_ID };
 				}
 			};
 		}
@@ -183,13 +189,31 @@ public class SysmlDiagramEditor extends DiagramDocumentEditor implements IProvid
 	/**
 	 * @generated
 	 */
+	@Override
 	protected final IDocumentProvider getDocumentProvider(IEditorInput input) {
 		return documentProvider;
 	}
 
 	/**
+	 * 
+	 * @see org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor#getKeyHandler()
+	 * 
+	 * @return
+	 */
+	@Override
+	protected KeyHandler getKeyHandler() {
+		KeyHandler keyHandler = super.getKeyHandler();
+		//removes binding provided by GMF in order to avoid conflicting keybinding
+		if(keyHandler != null) {
+			keyHandler.remove(KeyStroke.getPressed(SWT.DEL, 127, 0));
+		}
+		return keyHandler;
+	}
+
+	/**
 	 * @generated
 	 */
+	@Override
 	public TransactionalEditingDomain getEditingDomain() {
 		return editingDomain;
 	}
@@ -197,6 +221,7 @@ public class SysmlDiagramEditor extends DiagramDocumentEditor implements IProvid
 	/**
 	 * @generated
 	 */
+	@Override
 	protected final void setDocumentProvider(IEditorInput input) {
 		// Already set in the constructor
 	}
@@ -211,6 +236,7 @@ public class SysmlDiagramEditor extends DiagramDocumentEditor implements IProvid
 	/**
 	 * @generated
 	 */
+	@Override
 	public boolean isSaveAsAllowed() {
 		return true;
 	}
@@ -218,6 +244,7 @@ public class SysmlDiagramEditor extends DiagramDocumentEditor implements IProvid
 	/**
 	 * @generated
 	 */
+	@Override
 	public void doSaveAs() {
 		performSaveAs(new NullProgressMonitor());
 	}
@@ -225,6 +252,7 @@ public class SysmlDiagramEditor extends DiagramDocumentEditor implements IProvid
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void performSaveAs(IProgressMonitor progressMonitor) {
 		// Nothing
 	}
@@ -232,6 +260,7 @@ public class SysmlDiagramEditor extends DiagramDocumentEditor implements IProvid
 	/**
 	 * @generated
 	 */
+	@Override
 	public ShowInContext getShowInContext() {
 		return new ShowInContext(getEditorInput(), getNavigatorSelection());
 	}
@@ -241,12 +270,12 @@ public class SysmlDiagramEditor extends DiagramDocumentEditor implements IProvid
 	 */
 	private ISelection getNavigatorSelection() {
 		IDiagramDocument document = getDiagramDocument();
-		if (document == null) {
+		if(document == null) {
 			return StructuredSelection.EMPTY;
 		}
 		Diagram diagram = document.getDiagram();
 		IFile file = WorkspaceSynchronizer.getFile(diagram.eResource());
-		if (file != null) {
+		if(file != null) {
 			SysmlNavigatorItem item = new SysmlNavigatorItem(diagram, file, false);
 			return new StructuredSelection(item);
 		}
@@ -256,10 +285,10 @@ public class SysmlDiagramEditor extends DiagramDocumentEditor implements IProvid
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void configureGraphicalViewer() {
 		super.configureGraphicalViewer();
-		DiagramEditorContextMenuProvider provider = new DiagramEditorContextMenuProvider(this,
-				getDiagramGraphicalViewer());
+		DiagramEditorContextMenuProvider provider = new DiagramEditorContextMenuProvider(this, getDiagramGraphicalViewer());
 		getDiagramGraphicalViewer().setContextMenu(provider);
 		getSite().registerContextMenu(ActionIds.DIAGRAM_EDITOR_CONTEXT_MENU, provider, getDiagramGraphicalViewer());
 	}
@@ -267,6 +296,7 @@ public class SysmlDiagramEditor extends DiagramDocumentEditor implements IProvid
 	/**
 	 * @generated
 	 */
+	@Override
 	protected TransactionalEditingDomain createEditingDomain() {
 		// Already configured
 		return editingDomain;
@@ -275,6 +305,7 @@ public class SysmlDiagramEditor extends DiagramDocumentEditor implements IProvid
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void configureDiagramEditDomain() {
 		super.configureDiagramEditDomain();
 		getDiagramEditDomain().getDiagramCommandStack().addCommandStackListener(new CommandStackListener() {
@@ -288,6 +319,7 @@ public class SysmlDiagramEditor extends DiagramDocumentEditor implements IProvid
 	/**
 	 * @generated
 	 */
+	@Override
 	public void doSave(IProgressMonitor progressMonitor) {
 		// The saving of the resource is done by the CoreMultiDiagramEditor
 		savedOperation = getOperationHistory().getUndoOperation(getUndoContext());
@@ -296,6 +328,7 @@ public class SysmlDiagramEditor extends DiagramDocumentEditor implements IProvid
 	/**
 	 * @generated
 	 */
+	@Override
 	public boolean isDirty() {
 		IUndoableOperation op = getOperationHistory().getUndoOperation(getUndoContext());
 		return savedOperation != op;
@@ -306,15 +339,15 @@ public class SysmlDiagramEditor extends DiagramDocumentEditor implements IProvid
 	 */
 	public void providerChanged(ProviderChangeEvent event) {
 		// update the palette if the palette service has changed
-		if (PapyrusPaletteService.getInstance().equals(event.getSource())) {
-			PapyrusPaletteService.getInstance().updatePalette(getPaletteViewer().getPaletteRoot(), this,
-					getDefaultPaletteContent());
+		if(PapyrusPaletteService.getInstance().equals(event.getSource())) {
+			PapyrusPaletteService.getInstance().updatePalette(getPaletteViewer().getPaletteRoot(), this, getDefaultPaletteContent());
 		}
 	}
 
 	/**
 	 * @generated
 	 */
+	@Override
 	public void dispose() {
 		// remove palette service listener
 		// remove preference listener
@@ -333,6 +366,7 @@ public class SysmlDiagramEditor extends DiagramDocumentEditor implements IProvid
 	/**
 	 * @generated
 	 */
+	@Override
 	protected PaletteViewer constructPaletteViewer() {
 		return new PapyrusPaletteViewer();
 	}
@@ -340,6 +374,7 @@ public class SysmlDiagramEditor extends DiagramDocumentEditor implements IProvid
 	/**
 	 * @generated
 	 */
+	@Override
 	protected PaletteViewerProvider createPaletteViewerProvider() {
 		getEditDomain().setPaletteRoot(createPaletteRoot(null));
 		return new PaletteViewerProvider(getEditDomain()) {
@@ -351,6 +386,7 @@ public class SysmlDiagramEditor extends DiagramDocumentEditor implements IProvid
 			 * with a defaultTool that is the SelectToolEx that undestands how to handle the enter
 			 * key which will result in the creation of the shape also.
 			 */
+			@Override
 			protected void configurePaletteViewer(PaletteViewer viewer) {
 				super.configurePaletteViewer(viewer);
 
@@ -368,6 +404,7 @@ public class SysmlDiagramEditor extends DiagramDocumentEditor implements IProvid
 				viewer.setCustomizer(createPaletteCustomizer());
 			}
 
+			@Override
 			public PaletteViewer createPaletteViewer(Composite parent) {
 				PaletteViewer pViewer = constructPaletteViewer();
 				pViewer.createControl(parent);
@@ -381,7 +418,7 @@ public class SysmlDiagramEditor extends DiagramDocumentEditor implements IProvid
 			 */
 			private KeyHandler getPaletteKeyHandler() {
 
-				if (paletteKeyHandler == null) {
+				if(paletteKeyHandler == null) {
 
 					paletteKeyHandler = new KeyHandler() {
 
@@ -392,16 +429,17 @@ public class SysmlDiagramEditor extends DiagramDocumentEditor implements IProvid
 						 * (between two selected shapes)
 						 * 
 						 * @param event
-						 *            the KeyEvent
+						 *        the KeyEvent
 						 * @return <code>true</code> if KeyEvent was handled in some way
 						 */
+						@Override
 						public boolean keyReleased(KeyEvent event) {
 
-							if (event.keyCode == SWT.Selection) {
+							if(event.keyCode == SWT.Selection) {
 
 								Tool tool = getPaletteViewer().getActiveTool().createTool();
 
-								if (toolSupportsAccessibility(tool)) {
+								if(toolSupportsAccessibility(tool)) {
 
 									tool.keyUp(event, getDiagramGraphicalViewer());
 
@@ -426,7 +464,7 @@ public class SysmlDiagramEditor extends DiagramDocumentEditor implements IProvid
 			 */
 			private MouseListener getPaletteMouseListener() {
 
-				if (paletteMouseListener == null) {
+				if(paletteMouseListener == null) {
 
 					paletteMouseListener = new MouseListener() {
 
@@ -445,7 +483,7 @@ public class SysmlDiagramEditor extends DiagramDocumentEditor implements IProvid
 						public void mouseDoubleClick(MouseEvent e) {
 							Tool tool = getPaletteViewer().getActiveTool().createTool();
 
-							if (toolSupportsAccessibility(tool)) {
+							if(toolSupportsAccessibility(tool)) {
 
 								tool.setViewer(getDiagramGraphicalViewer());
 								tool.setEditDomain(getDiagramGraphicalViewer().getEditDomain());
@@ -466,7 +504,7 @@ public class SysmlDiagramEditor extends DiagramDocumentEditor implements IProvid
 						public void mouseUp(MouseEvent e) {
 							// Deactivate current active tool here if a
 							// double-click was handled.
-							if (clearActiveTool) {
+							if(clearActiveTool) {
 								getPaletteViewer().setActiveTool(null);
 								clearActiveTool = false;
 							}
@@ -492,6 +530,7 @@ public class SysmlDiagramEditor extends DiagramDocumentEditor implements IProvid
 	/**
 	 * @generated
 	 */
+	@Override
 	public Diagram getDiagram() {
 		return diagram;
 	}
@@ -511,19 +550,18 @@ public class SysmlDiagramEditor extends DiagramDocumentEditor implements IProvid
 		super.initializeGraphicalViewer();
 
 		// Enable Drop
-		getDiagramGraphicalViewer().addDropTargetListener(
-				new DropTargetListener(getDiagramGraphicalViewer(), LocalSelectionTransfer.getTransfer()) {
+		getDiagramGraphicalViewer().addDropTargetListener(new DropTargetListener(getDiagramGraphicalViewer(), LocalSelectionTransfer.getTransfer()) {
 
-					@Override
-					protected Object getJavaObject(TransferData data) {
-						return LocalSelectionTransfer.getTransfer().nativeToJava(data);
-					}
+			@Override
+			protected Object getJavaObject(TransferData data) {
+				return LocalSelectionTransfer.getTransfer().nativeToJava(data);
+			}
 
-					@Override
-					protected TransactionalEditingDomain getTransactionalEditingDomain() {
-						return getEditingDomain();
-					}
-				});
+			@Override
+			protected TransactionalEditingDomain getTransactionalEditingDomain() {
+				return getEditingDomain();
+			}
+		});
 
 	}
 
@@ -532,10 +570,10 @@ public class SysmlDiagramEditor extends DiagramDocumentEditor implements IProvid
 	 */
 	@Override
 	public void selectionChanged(IWorkbenchPart part, ISelection selection) {
-		if (getSite().getPage().getActiveEditor() instanceof IMultiDiagramEditor) {
-			IMultiDiagramEditor editor = (IMultiDiagramEditor) getSite().getPage().getActiveEditor();
+		if(getSite().getPage().getActiveEditor() instanceof IMultiDiagramEditor) {
+			IMultiDiagramEditor editor = (IMultiDiagramEditor)getSite().getPage().getActiveEditor();
 			// If not the active editor, ignore selection changed.
-			if (this.equals(editor.getActiveEditor())) {
+			if(this.equals(editor.getActiveEditor())) {
 				updateActions(getSelectionActions());
 				super.selectionChanged(part, selection);
 			} else {
@@ -547,7 +585,7 @@ public class SysmlDiagramEditor extends DiagramDocumentEditor implements IProvid
 		// from
 		// org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor.selectionChanged(IWorkbenchPart,
 		// ISelection)
-		if (part == this) {
+		if(part == this) {
 			rebuildStatusLine();
 		}
 	}

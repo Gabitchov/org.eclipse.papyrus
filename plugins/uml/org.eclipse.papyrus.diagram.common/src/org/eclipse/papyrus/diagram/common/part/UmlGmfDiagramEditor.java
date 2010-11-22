@@ -6,13 +6,15 @@ package org.eclipse.papyrus.diagram.common.part;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.gef.KeyHandler;
+import org.eclipse.gef.KeyStroke;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.papyrus.core.lifecycleevents.ISaveAndDirtyService;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
-import org.eclipse.papyrus.core.utils.ServiceUtils;
+import org.eclipse.swt.SWT;
 
 
 /**
@@ -104,8 +106,25 @@ public class UmlGmfDiagramEditor extends DiagramDocumentEditor {
 	/**
 	 * Get the associated Diagram
 	 */
+	@Override
 	public Diagram getDiagram() {
 		return diagram;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor#getKeyHandler()
+	 * 
+	 * @return
+	 */
+	@Override
+	protected KeyHandler getKeyHandler() {
+		KeyHandler keyHandler = super.getKeyHandler();
+		//removes binding provided by GMF in order to avoid conflicting keybinding
+		if(keyHandler != null) {
+			keyHandler.remove(KeyStroke.getPressed(SWT.DEL, 127, 0));
+		}
+		return keyHandler;
 	}
 
 	/**
