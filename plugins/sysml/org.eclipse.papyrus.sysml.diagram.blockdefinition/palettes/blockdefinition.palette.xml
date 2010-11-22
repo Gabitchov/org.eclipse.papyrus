@@ -44,7 +44,7 @@
       
       <aspectTool description="Create a new Part Property"
       iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
-      id="clazz.tool.property_1286878079362" name="Part"
+      id="blockdefinition.tool.part" name="Part"
       refToolId="blockdefinition.tool.part">
         <postAction id="org.eclipse.papyrus.postaction.semanticactionprovider">
 
