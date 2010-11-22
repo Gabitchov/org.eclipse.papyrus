@@ -55,16 +55,39 @@ public class NodeCompartmentGroup extends AbstractGroup {
 	 *        : the parent composite
 	 */
 	protected void createContent(Composite parent) {
+		addCompartmentVisibilityGroup(parent);
+		addCompartmentNameVisibilityGroup(parent);
+	}
+
+	private void addCompartmentVisibilityGroup(Composite parent) {
 		if(!compartmentsName.isEmpty()) {
 			Group compartmentGroup = new Group(parent, 2);
 			compartmentGroup.setLayout(new GridLayout());
 			compartmentGroup.setText(Messages.NodeCompartmentGroup_Compartiments);
 			for(String name : compartmentsName) {
-				String preferenceConstant = PreferenceConstantHelper.getCompartmentElementConstant(getKey(), name, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
-				BooleanFieldEditor compartmentPolicyBooleanFieldEditor = new BooleanFieldEditor(preferenceConstant, name, compartmentGroup);
-				compartmentPolicyBooleanFieldEditor.setPage(this.dialogPage);
-				addFieldEditor(compartmentPolicyBooleanFieldEditor);
+				String compartmentVisibilityPreference = PreferenceConstantHelper.getCompartmentElementConstant(getKey(), name, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
+				BooleanFieldEditor compartmentVisibilityBooleanFieldEditor = new BooleanFieldEditor(compartmentVisibilityPreference, name, compartmentGroup);
+				compartmentVisibilityBooleanFieldEditor.setPage(this.dialogPage);
+				addFieldEditor(compartmentVisibilityBooleanFieldEditor);
+
 			}
 		}
+	}
+	
+	private void addCompartmentNameVisibilityGroup(Composite parent) {
+		if(compartmentsName.isEmpty()) {
+			return;
+		}
+		Group compartmentGroup = new Group(parent, 2);
+		compartmentGroup.setLayout(new GridLayout());
+		compartmentGroup.setText("Show names of the compartments");
+		for(String compartmentName : compartmentsName) {
+			String compartmentVisibilityPreference = PreferenceConstantHelper.getCompartmentElementConstant(getKey(), compartmentName, PreferenceConstantHelper.COMPARTMENT_NAME_VISIBILITY);
+			String label = compartmentName;
+			BooleanFieldEditor compartmentVisibilityBooleanFieldEditor = new BooleanFieldEditor(compartmentVisibilityPreference, label, compartmentGroup);
+			compartmentVisibilityBooleanFieldEditor.setPage(this.dialogPage);
+			addFieldEditor(compartmentVisibilityBooleanFieldEditor);
+		}
+
 	}
 }

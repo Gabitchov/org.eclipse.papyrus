@@ -107,6 +107,8 @@ public class PreferenceConstantHelper {
 
 	private final static String COMPARTMENT_VISIBILITY_CONSTANT = "compartment.visibility"; //$NON-NLS-1$
 
+	private final static String COMPARTMENT_NAME_VISIBILITY_CONSTANT = "compartment_name.visibility"; //$NON-NLS-1$
+
 	/**
 	 * A preference of type COLOR FILL
 	 */
@@ -202,7 +204,12 @@ public class PreferenceConstantHelper {
 	 */
 	public static final int COMPARTMENT_VISIBILITY = WIDTH + 1;
 
+	/**
+	 * A preference of type compartment visibility
+	 */
+	public static final int COMPARTMENT_NAME_VISIBILITY = COMPARTMENT_VISIBILITY + 1;
 
+	
 	/**
 	 * Get the preference constant used to store the preference of an element.
 	 * 
@@ -274,6 +281,9 @@ public class PreferenceConstantHelper {
 			break;
 		case COMPARTMENT_VISIBILITY:
 			sb.append(COMPARTMENT_VISIBILITY_CONSTANT);
+			break;
+		case COMPARTMENT_NAME_VISIBILITY:
+			sb.append(COMPARTMENT_NAME_VISIBILITY_CONSTANT);
 			break;
 		default:
 			break;
