@@ -511,8 +511,8 @@
 		point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
 	
 	<specializationType
-		icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif"
 		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.BlockDefinition"
+		icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif"
 		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
 		name="BlockDefinition">
 		<specializes id="org.eclipse.papyrus.diagram.clazz.Package_1000"/>
@@ -520,12 +520,14 @@
 	</specializationType>
 
 	<specializationType
+		edithelperadvice="org.eclipse.papyrus.sysml.diagram.blockdefinition.helper.BlockPartEditHelperAdvice"
 		icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
 		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.Part"
 		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
 		name="Part">
 		<specializes id="org.eclipse.papyrus.diagram.clazz.Property_3005"/>
 		<param name="semanticHint" value="Part"/>
+		<matcher class = "org.eclipse.papyrus.sysml.diagram.blockdefinition.matcher.BlockPartMatcher"/>
 	</specializationType>
 
 	<specializationType
