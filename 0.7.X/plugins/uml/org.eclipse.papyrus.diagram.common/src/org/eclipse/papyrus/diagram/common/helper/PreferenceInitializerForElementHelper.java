@@ -30,9 +30,11 @@ import org.eclipse.gmf.runtime.notation.FillStyle;
 import org.eclipse.gmf.runtime.notation.FontStyle;
 import org.eclipse.gmf.runtime.notation.JumpLinkStatus;
 import org.eclipse.gmf.runtime.notation.JumpLinkType;
+import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.Routing;
 import org.eclipse.gmf.runtime.notation.Smoothness;
+import org.eclipse.gmf.runtime.notation.TitleStyle;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
@@ -213,6 +215,7 @@ public class PreferenceInitializerForElementHelper {
 				EditPart dummyEP = EditPartService.getInstance().createGraphicEditPart((View)object);
 				IGraphicalEditPart epp = (IGraphicalEditPart)dummyEP;
 				IFigure fig1 = epp.getFigure();
+
 				if(fig1 instanceof ResizableCompartmentFigure) {
 					String compartmentName = ((ResizableCompartmentFigure)fig1).getCompartmentTitle();
 					if(compartmentName != null) {
@@ -224,6 +227,19 @@ public class PreferenceInitializerForElementHelper {
 							ENamedElement namedElement = PackageUtil.getElement("notation.View.visible"); //$NON-NLS-1$
 							ViewUtil.setStructuralFeatureValue((View)object, (EStructuralFeature)namedElement, value);
 						}
+
+						String compartmentNameVisibilityPreference = PreferenceConstantHelper.getCompartmentElementConstant(diagramKind + "_" + elementName, compartmentName, PreferenceConstantHelper.COMPARTMENT_NAME_VISIBILITY);
+						boolean showCompartmentName = store.getBoolean(compartmentNameVisibilityPreference);
+						if(showCompartmentName) {
+							View childView = (View)object;
+							TitleStyle style = (TitleStyle)childView.getStyle(NotationPackage.eINSTANCE.getTitleStyle());
+							if(style == null) {
+								style = NotationFactory.eINSTANCE.createTitleStyle();
+								childView.getStyles().add(style);
+							}
+							style.setShowTitle(true);
+						}
+
 					}
 				}
 				dummyEP = null;

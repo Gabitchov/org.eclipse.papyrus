@@ -19,7 +19,6 @@ public class BlockCompartmentViewFactory extends ListCompartmentViewFactory {
 	@Override
 	protected Node createNode(){
 		ListCompartment result =  NotationFactory.eINSTANCE.createListCompartment();
-		result.setShowTitle(true);
 		return result;
 	}
 
