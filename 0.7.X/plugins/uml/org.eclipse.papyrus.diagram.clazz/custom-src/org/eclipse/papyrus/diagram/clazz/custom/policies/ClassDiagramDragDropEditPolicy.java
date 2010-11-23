@@ -48,6 +48,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.Class5EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Dependency2EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationLiteralEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationLinkEditPart;
@@ -65,6 +66,7 @@ import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.AssociationClass;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.EnumerationLiteral;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.TemplateBinding;
@@ -90,7 +92,6 @@ public class ClassDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdit
 	@Override
 	protected Set<Integer> getDroppableElementVisualId() {
 		Set<Integer> droppableElementsVisualID = new HashSet<Integer>();
-
 		droppableElementsVisualID.add(Dependency2EditPart.VISUAL_ID);
 		droppableElementsVisualID.add(AssociationEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(AssociationClassEditPart.VISUAL_ID);
@@ -115,6 +116,12 @@ public class ClassDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdit
 	 * {@inheritedDoc}
 	 */
 	protected Command getSpecificDropCommand(DropObjectsRequest dropRequest, Element semanticLink, int nodeVISUALID, int linkVISUALID) {
+		
+		//respecify for enumeration because this is also an instancespecification
+		if(nodeVISUALID== EnumerationLiteralEditPart.VISUAL_ID){
+			 return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, dropRequest.getLocation(), semanticLink));
+		}
+		
 		if(nodeVISUALID== InstanceSpecificationEditPart.VISUAL_ID||linkVISUALID ==InstanceSpecificationLinkEditPart.VISUAL_ID) {
 			return dropInstanceSpecification(dropRequest, semanticLink, linkVISUALID);
 		}
