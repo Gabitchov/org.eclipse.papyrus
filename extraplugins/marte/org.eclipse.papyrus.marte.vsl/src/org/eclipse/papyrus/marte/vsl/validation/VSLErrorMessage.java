@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.marte.vsl.validation;
 
 import java.util.List;
@@ -69,7 +82,7 @@ public class VSLErrorMessage {
 		String errorMessage = "Arguments are missing for the call to behavior " ;
 		errorMessage += behaviorName +"(" ;
 		for (int i = 0 ; i < expectedTypeNames.size() ; i++) {
-			if (i>1)
+			if (i>=1)
 				errorMessage+= ", " ;
 			errorMessage+=expectedTypeNames.get(i) ;
 		}
@@ -81,7 +94,7 @@ public class VSLErrorMessage {
 		String errorMessage = "Invalid number of arguments for the call to behavior " ;
 		errorMessage += behaviorName +"(" ;
 		for (int i = 0 ; i < expectedTypeNames.size() ; i++) {
-			if (i>1)
+			if (i>=1)
 				errorMessage+= ", " ;
 			errorMessage+=expectedTypeNames.get(i) ;
 		}
@@ -93,7 +106,7 @@ public class VSLErrorMessage {
 		String errorMessage = "Invalid number of arguments for the call to operation " ;
 		errorMessage += operationName +"(" ;
 		for (int i = 0 ; i < expectedTypeNames.size() ; i++) {
-			if (i>1)
+			if (i>=1)
 				errorMessage+= ", " ;
 			errorMessage+=expectedTypeNames.get(i) ;
 		}
@@ -106,13 +119,13 @@ public class VSLErrorMessage {
 		String errorMessage = "The behavior " ;
 		errorMessage += behaviorName +"(" ;
 		for (int i = 0 ; i < expectedTypeNames.size() ; i++) {
-			if (i>1)
+			if (i>=1)
 				errorMessage+= ", " ;
 			errorMessage+=expectedTypeNames.get(i) ;
 		}
 		errorMessage+=") is not applicable for the arguments (" ;
 		for (int i = 0 ; i < foundTypeNames.size() ; i++) {
-			if (i>1)
+			if (i>=1)
 				errorMessage+= ", " ;
 			errorMessage+=foundTypeNames.get(i) ;
 		}
@@ -125,13 +138,13 @@ public class VSLErrorMessage {
 		String errorMessage = "The operation " ;
 		errorMessage += operationName +"(" ;
 		for (int i = 0 ; i < expectedTypeNames.size() ; i++) {
-			if (i>1)
+			if (i>=1)
 				errorMessage+= ", " ;
 			errorMessage+=expectedTypeNames.get(i) ;
 		}
 		errorMessage+=") is not applicable for the arguments (" ;
 		for (int i = 0 ; i < foundTypeNames.size() ; i++) {
-			if (i>1)
+			if (i>=1)
 				errorMessage+= ", " ;
 			errorMessage+=foundTypeNames.get(i) ;
 		}

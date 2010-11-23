@@ -1,9 +1,16 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
  *
-
- */
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.marte.vsl.vSL.util;
 
 import java.util.List;
@@ -96,27 +103,6 @@ public class VSLSwitch<T>
   {
     switch (classifierID)
     {
-      case VSLPackage.MODEL:
-      {
-        Model model = (Model)theEObject;
-        T result = caseModel(model);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case VSLPackage.IMPORT:
-      {
-        Import import_ = (Import)theEObject;
-        T result = caseImport(import_);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case VSLPackage.CONTEXT:
-      {
-        Context context = (Context)theEObject;
-        T result = caseContext(context);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case VSLPackage.EXPRESSION:
       {
         Expression expression = (Expression)theEObject;
@@ -429,54 +415,6 @@ public class VSLSwitch<T>
       }
       default: return defaultCase(theEObject);
     }
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Model</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Model</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseModel(Model object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Import</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Import</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseImport(Import object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Context</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Context</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseContext(Context object)
-  {
-    return null;
   }
 
   /**

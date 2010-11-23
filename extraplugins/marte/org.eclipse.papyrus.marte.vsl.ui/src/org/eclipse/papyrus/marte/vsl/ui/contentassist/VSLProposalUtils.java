@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.marte.vsl.ui.contentassist;
 
 import java.util.ArrayList;
@@ -7,9 +20,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.marte.vsl.extensions.VSLContextUtil;
+import org.eclipse.papyrus.marte.vsl.scoping.VSLScopeProvider;
 import org.eclipse.papyrus.marte.vsl.scoping.visitors.ScopingVisitors;
 import org.eclipse.papyrus.marte.vsl.validation.VSLJavaValidator;
+import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Enumeration;
@@ -17,11 +34,16 @@ import org.eclipse.uml2.uml.EnumerationLiteral;
 import org.eclipse.uml2.uml.MultiplicityElement;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Namespace;
+import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.Parameter;
+import org.eclipse.uml2.uml.ParameterDirectionKind;
 import org.eclipse.uml2.uml.PrimitiveType;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.Type;
+import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.xtext.scoping.IScope;
 
 public class VSLProposalUtils {
 
@@ -31,7 +53,16 @@ public class VSLProposalUtils {
 			return allProposals ;
 		Map<String, Element> allProposalsWithAccountForMultiplicity = new HashMap<String, Element>() ;
 		for (String s : allProposals.keySet()) {
-			String newProposal = "{" + s + "/* , " + s + " */ }" ;
+			String displayString ;
+			if (! s.contains("|")) {
+				displayString = s ;
+			}
+			else {
+				String[] splitted = s.split("|") ;
+				displayString = splitted[0] ;
+			}
+			
+			String newProposal = "{" + displayString + "/* , " + displayString + " */ }" ;
 			allProposalsWithAccountForMultiplicity.put(newProposal, allProposals.get(s)) ;
 		}
 		return allProposalsWithAccountForMultiplicity ;
@@ -62,7 +93,54 @@ public class VSLProposalUtils {
 			allProposals.putAll(buildProposalForMetaclass(classifier)) ;
 		}
 		else {
-			allProposals.put("/* No proposal for this kind of type */", null) ;
+			allProposals.put("/* " + classifier.getName() + "*/", null) ;
+		}
+		
+		Map<String, Element> crossReferences = new HashMap<String, Element>() ;
+		crossReferences.putAll(buildProposalForMetaclass(UMLPackage.eINSTANCE.getBehavior())) ;
+		
+		List<String> proposalsToBeRemoved = new ArrayList<String>() ;
+		for (String key : crossReferences.keySet()) {
+			Type behaviorReturnType = null ;
+			Behavior behavior = (Behavior)crossReferences.get(key); ;
+			for (Parameter p : behavior.getOwnedParameters()) {
+				if (p.getDirection() == ParameterDirectionKind.RETURN_LITERAL)
+					behaviorReturnType = p.getType() ;
+			}
+			if (behaviorReturnType == null)
+				proposalsToBeRemoved.add(key) ;
+			else if ((classifier.getName().equals("Integer") || classifier.getName().equals("Boolean") || classifier.getName().equals("String"))
+				 && !behaviorReturnType.getName().equals(classifier.getName())) {
+					proposalsToBeRemoved.add(key) ;
+			}
+			else if (! behaviorReturnType.conformsTo(classifier))
+				proposalsToBeRemoved.add(key) ;
+		}
+		
+		for (String key : proposalsToBeRemoved)
+			crossReferences.remove(key) ;
+		
+		for (String key : crossReferences.keySet()) {
+			Behavior calledBehavior = (Behavior)crossReferences.get(key) ;
+			allProposals.put(buildCompletionStringForBehaviorCall(calledBehavior) + "|" + buildDisplayStringForBehaviorCall(calledBehavior), calledBehavior) ;
+		}
+		
+		// if the global context element is nested inside a classifier:
+		// - retrieves the classifier, and gets all its owned and inherited attributes
+		Element context = VSLJavaValidator.getContextElement() ;
+		while (context != null && !(context instanceof Classifier)) {
+			context = context.getOwner();
+		}
+		if (context != null && context instanceof Classifier) {
+			List<Property> allProperties = ((Classifier)context).getAllAttributes() ;
+			for (Property p : allProperties) {
+				List<Classifier> classifiers = new ArrayList<Classifier>() ;
+				//classifiers.add((Classifier)p.getType()) ;
+				FeatureTree tree = new FeatureTree(p, classifiers) ;
+				if (tree.canClassifierBeReached(classifier)) {
+					allProposals.put(p.getName(),p ) ;
+				}
+			}
 		}
 		
 		return allProposals ;
@@ -73,6 +151,8 @@ public class VSLProposalUtils {
 		String proposal = "" ;
 		proposal += "{" ;
 		Property p = null ;
+		Property propertyValue = null ;
+		Property propertyUnit = null ;
 		boolean first = true ;
 		for (NamedElement n : VSLContextUtil.getTupleAttribs(classifier)) {
 			p = (Property)n ;
@@ -82,7 +162,16 @@ public class VSLProposalUtils {
 				else 
 					first = false ;
 				proposal += p.getName() + " = /" ;
+				if (p.getName().equals("value"))
+					propertyValue = p ;
+				else if (p.getName().equals("unit")) 
+					propertyUnit = p ;
 			}
+		}
+		if (propertyUnit != null && propertyValue != null) {
+			// This is a nfp type. Builds a short proposal with only value and unit, since these properties are more commonly used
+			String shortProposal = "{unit = /, value = /}" ;
+			allProposals.put(shortProposal, null) ;
 		}
 		proposal += "}" ;
 		allProposals.put(proposal, null) ;
@@ -203,6 +292,9 @@ public class VSLProposalUtils {
 			allProposals.put("true", null) ;
 			allProposals.put("false", null) ;
 		}
+		else if (classifier.getName().contains("String")) {
+			allProposals.put("\"value\"", null) ;
+		}
 		return allProposals ;
 	}
 	
@@ -222,6 +314,18 @@ public class VSLProposalUtils {
 		List<Element> allElements = new ArrayList<Element>() ;
 		Map<String, Element> allProposals = new HashMap<String, Element>() ;
 		allElements.addAll(new ScopingVisitors.Visitor_GetRecursivelyOwnedAndImportedMetaclassInstances().visit(VSLJavaValidator.getModel(), (org.eclipse.uml2.uml.Class)classifier)) ;
+		for (Element c : allElements) {
+			if (c instanceof NamedElement) {
+				allProposals.put(getNameLabel((NamedElement)c), c);
+			}
+		}
+		return allProposals ;
+	}
+	
+	protected static Map<String, Element> buildProposalForMetaclass(EClass metaclass) {
+		List<Element> allElements = new ArrayList<Element>() ;
+		Map<String, Element> allProposals = new HashMap<String, Element>() ;
+		allElements.addAll(new ScopingVisitors.Visitor_GetRecursivelyOwnedAndImportedMetaclassInstances().visit(VSLJavaValidator.getModel(), metaclass)) ;
 		for (Element c : allElements) {
 			if (c instanceof NamedElement) {
 				allProposals.put(getNameLabel((NamedElement)c), c);
@@ -256,5 +360,129 @@ public class VSLProposalUtils {
 		}
 		
 		return label + elem.getName() ;
+	}
+	
+	public static String buildDisplayStringForBehaviorCall(Behavior calledBehavior) {
+		String label = calledBehavior.getName() + "(" ;
+		String returnTypeName = "" ;
+		List<String> parameterLabels = new ArrayList<String>() ;
+		for (Parameter p : calledBehavior.getOwnedParameters()) {
+			if (p.getDirection() == ParameterDirectionKind.RETURN_LITERAL) {
+				returnTypeName = p.getType().getName() ;
+			}
+			else {
+				String parameterLabel = "" ;
+				switch (p.getDirection()) {
+				case IN_LITERAL:
+					parameterLabel += "in " ;
+					break;
+				case OUT_LITERAL:
+					parameterLabel += "out " ;
+					break;
+				case INOUT_LITERAL:
+					parameterLabel += "inout " ;
+					break;
+				default:
+					break;
+				}
+				parameterLabel += p.getName() + " : " + p.getType().getName() ;
+				parameterLabels.add(parameterLabel) ;
+			}
+		}
+		boolean first = true ;
+		for (String parameterLabel : parameterLabels) {
+			if (!first)
+				label += ", " ;
+			else
+				first = false ;
+			label += parameterLabel ;
+		}
+		
+		return label + ") : " + returnTypeName ;
+	}
+	
+	public static String buildCompletionStringForBehaviorCall(Behavior calledBehavior) {
+		String label = calledBehavior.getName() + "(" ;
+		List<String> parameterLabels = new ArrayList<String>() ;
+		for (Parameter p : calledBehavior.getOwnedParameters()) {
+			if (p.getDirection() == ParameterDirectionKind.RETURN_LITERAL) {
+				// ignore
+			}
+			else {
+				parameterLabels.add(p.getName()) ;
+			}
+		}
+		boolean first = true ;
+		for (String parameterLabel : parameterLabels) {
+			if (!first)
+				label += ", " ;
+			else
+				first = false ;
+			label += parameterLabel ;
+		}
+		
+		return label + ")" ;
+	}
+	
+	public static String buildDisplayStringForOperationCall(Operation calledOperation) {
+		String label = calledOperation.getName() + "(" ;
+		String returnTypeName = "" ;
+		List<String> parameterLabels = new ArrayList<String>() ;
+		for (Parameter p : calledOperation.getOwnedParameters()) {
+			if (p.getDirection() == ParameterDirectionKind.RETURN_LITERAL) {
+				returnTypeName = p.getType().getName() ;
+			}
+			else {
+				String parameterLabel = "" ;
+				switch (p.getDirection()) {
+				case IN_LITERAL:
+					parameterLabel += "in " ;
+					break;
+				case OUT_LITERAL:
+					parameterLabel += "out " ;
+					break;
+				case INOUT_LITERAL:
+					parameterLabel += "inout " ;
+					break;
+				default:
+					break;
+				}
+				parameterLabel += p.getName() + " : " + p.getType().getName() ;
+				parameterLabels.add(parameterLabel) ;
+			}
+		}
+		boolean first = true ;
+		for (String parameterLabel : parameterLabels) {
+			if (!first)
+				label += ", " ;
+			else
+				first = false ;
+			label += parameterLabel ;
+		}
+		
+		return label + ") : " + returnTypeName ;
+	}
+	
+	public static String buildCompletionStringForOperationCall(Operation calledOperation) {
+		String label = calledOperation.getName() + "(" ;
+		List<String> parameterLabels = new ArrayList<String>() ;
+		for (Parameter p : calledOperation.getOwnedParameters()) {
+			if (p.getDirection() == ParameterDirectionKind.RETURN_LITERAL) {
+				// ignore
+			}
+			else {
+				parameterLabels.add(p.getName()) ;
+			}
+		}
+		boolean first = true ;
+		for (String parameterLabel : parameterLabels) {
+			if (!first)
+				label += ", " ;
+			else
+				first = false ;
+			label += parameterLabel ;
+		}
+		
+		return label + ")" ;
 	}
 }

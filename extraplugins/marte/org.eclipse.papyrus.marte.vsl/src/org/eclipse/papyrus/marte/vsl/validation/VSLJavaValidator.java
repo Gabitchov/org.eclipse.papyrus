@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.marte.vsl.validation;
 
 import java.util.ArrayList;
@@ -70,8 +83,11 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 	public static Type _datetime ;
 	public static Type _boolean ;
 	public static Type _string ;
+	public static Type _nfp_duration ;
 	
 	public static Map<String, Type> opSignatures ;
+	public static Map<String, Map<Type,List<Type>>> binaryOpTypeBinding ;
+	public static Map<String, Type> unaryOpTypeBinding ;
 	
 	public static void init(Element _contextElement) {
 		contextElement = _contextElement ;
@@ -110,6 +126,8 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 					_real = t ;
 				else if (t.getQualifiedName().equals("MARTE_Library::MARTE_PrimitivesTypes::DateTime"))
 					_datetime = t ;
+				else if (t.getQualifiedName().equals("MARTE_Library::BasicNFP_Types::NFP_Duration")) 
+					_nfp_duration = t;
 			}
 		}
 		return _integer != null &&
@@ -117,7 +135,8 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 				_real != null &&
 				_datetime != null &&
 				_boolean != null &&
-				_string != null;
+				_string != null &&
+				_nfp_duration != null; 
 	}
 	
 	/**
@@ -125,34 +144,93 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 	 */
 	private static void initPredefinedOpSignatures() {
 		opSignatures = new HashMap<String, Type>();
+		unaryOpTypeBinding = new HashMap<String, Type>() ;
+		binaryOpTypeBinding = new HashMap<String, Map<Type, List<Type>>>() ;
 		
-		//unary ops
+		//unary ops: +, -, not
+		unaryOpTypeBinding.put("+", _integer) ;
+		unaryOpTypeBinding.put("+", _real) ;
+		unaryOpTypeBinding.put("-", _integer) ;
+		unaryOpTypeBinding.put("-", _real) ;
+		unaryOpTypeBinding.put("not", _boolean) ;
+		
 		opSignatures.put("+(" + _integer.getName() + ")", _integer) ;		// +(int) : int
 		opSignatures.put("+(" + _real.getName() + ")", _real) ;				// +(real) : real
 		opSignatures.put("-(" + _integer.getName() + ")", _integer) ;		// -(int) : int
 		opSignatures.put("-(" + _real.getName() + ")", _real) ;				// -(real) : real
 		opSignatures.put("not(" + _boolean.getName() + ")", _boolean) ;		// not(boolean) : boolean
 		
-		//binary ops
+		//binary ops:
 
+		binaryOpTypeBinding.put("and", new HashMap<Type, List<Type>>()) ;
+		binaryOpTypeBinding.put("or", new HashMap<Type, List<Type>>()) ;
+		binaryOpTypeBinding.put("xor", new HashMap<Type, List<Type>>()) ;
+		binaryOpTypeBinding.put("==", new HashMap<Type, List<Type>>()) ;
+		binaryOpTypeBinding.put("<>", new HashMap<Type, List<Type>>()) ;
+		binaryOpTypeBinding.put("<", new HashMap<Type, List<Type>>()) ;
+		binaryOpTypeBinding.put(">", new HashMap<Type, List<Type>>()) ;
+		binaryOpTypeBinding.put("<=", new HashMap<Type, List<Type>>()) ;
+		binaryOpTypeBinding.put(">=", new HashMap<Type, List<Type>>()) ;
+		binaryOpTypeBinding.put("*", new HashMap<Type, List<Type>>()) ;
+		binaryOpTypeBinding.put("/", new HashMap<Type, List<Type>>()) ;
+		binaryOpTypeBinding.put("mod", new HashMap<Type, List<Type>>()) ;
+		binaryOpTypeBinding.put("+", new HashMap<Type, List<Type>>()) ;
+		binaryOpTypeBinding.put("-", new HashMap<Type, List<Type>>()) ;
+		
 		// and, or, xor
 		opSignatures.put("and(" + _boolean.getName() + ',' + _boolean.getName() + ")", _boolean) ;// and(boolean, boolean) : boolean
 		opSignatures.put("or(" + _boolean.getName() + ',' + _boolean.getName() + ")", _boolean) ;// or(boolean, boolean) : boolean
 		opSignatures.put("xor(" + _boolean.getName() + ',' + _boolean.getName() + ")", _boolean) ;// xor(boolean, boolean) : boolean
+		binaryOpTypeBinding.get("and").put(_boolean, new ArrayList<Type>()) ; 
+		binaryOpTypeBinding.get("or").put(_boolean, new ArrayList<Type>()) ;
+		binaryOpTypeBinding.get("xor").put(_boolean, new ArrayList<Type>()) ;
+		binaryOpTypeBinding.get("and").get(_boolean).add(_boolean) ;
+		binaryOpTypeBinding.get("or").get(_boolean).add(_boolean) ;
+		binaryOpTypeBinding.get("xor").get(_boolean).add(_boolean) ;
 		
 		// ==, <>
 		opSignatures.put("==(" + _integer.getName() + ',' + _integer.getName() + ")", _boolean) ;// ==(int, int) : boolean
 		opSignatures.put("==(" + _real.getName() + ',' + _real.getName() + ")", _boolean) ;// ==(real, real) : boolean
 		opSignatures.put("==(" + _integer.getName() + ',' + _real.getName() + ")", _boolean) ;// ==(int, real) : boolean
 		opSignatures.put("==(" + _real.getName() + ',' + _integer.getName() + ")", _boolean) ;// ==(real, int) : boolean
+		opSignatures.put("==(" + _real.getName() + ',' + _nfp_duration.getName() + ")", _boolean) ;// ==(real, nfp_duration) : boolean
 		opSignatures.put("==(" + _boolean.getName() + ',' + _boolean.getName() + ")", _boolean) ;// ==(boolean, boolean) : boolean
 		opSignatures.put("==(" + _string.getName() + ',' + _string.getName() + ")", _boolean) ;// ==(string, string) : boolean
+		opSignatures.put("==(" + _datetime.getName() + ',' + _datetime.getName() + ")", _boolean) ;// ==(datetime, datetime) : boolean
 		opSignatures.put("<>(" + _integer.getName() + ',' + _integer.getName() + ")", _boolean) ;// <>(int, int) : boolean
 		opSignatures.put("<>(" + _real.getName() + ',' + _real.getName() + ")", _boolean) ;// <>(real, real) : boolean
 		opSignatures.put("<>(" + _integer.getName() + ',' + _real.getName() + ")", _boolean) ;// <>(int, real) : boolean
 		opSignatures.put("<>(" + _real.getName() + ',' + _integer.getName() + ")", _boolean) ;// <>(real, int) : boolean
+		opSignatures.put("<>(" + _real.getName() + ',' + _nfp_duration.getName() + ")", _boolean) ;// ==(real, nfp_duration) : boolean
 		opSignatures.put("<>(" + _boolean.getName() + ',' + _boolean.getName() + ")", _boolean) ;// <>(boolean, boolean) : boolean
 		opSignatures.put("<>(" + _string.getName() + ',' + _string.getName() + ")", _boolean) ;// <>(string, string) : boolean
+		opSignatures.put("<>(" + _datetime.getName() + ',' + _datetime.getName() + ")", _boolean) ;// <>(datetime, datetime) : boolean
+		binaryOpTypeBinding.get("==").put(_integer, new ArrayList<Type>()) ;
+		binaryOpTypeBinding.get("==").put(_real, new ArrayList<Type>()) ;
+		binaryOpTypeBinding.get("==").put(_boolean, new ArrayList<Type>()) ;
+		binaryOpTypeBinding.get("==").put(_string, new ArrayList<Type>()) ;
+		binaryOpTypeBinding.get("==").put(_datetime, new ArrayList<Type>()) ;
+		binaryOpTypeBinding.get("==").get(_integer).add(_integer) ;
+		binaryOpTypeBinding.get("==").get(_integer).add(_real) ;
+		binaryOpTypeBinding.get("==").get(_real).add(_real) ;
+		binaryOpTypeBinding.get("==").get(_real).add(_integer) ;
+		binaryOpTypeBinding.get("==").get(_real).add(_nfp_duration) ;
+		binaryOpTypeBinding.get("==").get(_datetime).add(_datetime) ;
+		binaryOpTypeBinding.get("==").get(_boolean).add(_boolean) ;
+		binaryOpTypeBinding.get("==").get(_string).add(_string) ;
+		binaryOpTypeBinding.get("<>").put(_integer, new ArrayList<Type>()) ;
+		binaryOpTypeBinding.get("<>").put(_real, new ArrayList<Type>()) ;
+		binaryOpTypeBinding.get("<>").put(_boolean, new ArrayList<Type>()) ;
+		binaryOpTypeBinding.get("<>").put(_string, new ArrayList<Type>()) ;
+		binaryOpTypeBinding.get("<>").put(_datetime, new ArrayList<Type>()) ;
+		binaryOpTypeBinding.get("<>").get(_integer).add(_integer) ;
+		binaryOpTypeBinding.get("<>").get(_integer).add(_real) ;
+		binaryOpTypeBinding.get("<>").get(_real).add(_real) ;
+		binaryOpTypeBinding.get("<>").get(_real).add(_integer) ;
+		binaryOpTypeBinding.get("<>").get(_real).add(_nfp_duration) ;
+		binaryOpTypeBinding.get("<>").get(_datetime).add(_datetime) ;
+		binaryOpTypeBinding.get("<>").get(_boolean).add(_boolean) ;
+		binaryOpTypeBinding.get("<>").get(_string).add(_string) ;
 		
 		//'<' | '>' | '<=' | '>='
 		opSignatures.put("<(" + _integer.getName() + ',' + _integer.getName() + ")", _boolean) ;// <(int, int) : boolean
@@ -160,21 +238,85 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 		opSignatures.put("<(" + _integer.getName() + ',' + _real.getName() + ")", _boolean) ;// <(int, real) : boolean
 		opSignatures.put("<(" + _real.getName() + ',' + _integer.getName() + ")", _boolean) ;// <(real, int) : boolean
 		opSignatures.put("<(" + _string.getName() + ',' + _string.getName() + ")", _boolean) ;// <(string, string) : boolean
+		opSignatures.put("<(" + _nfp_duration.getName() + ',' + _nfp_duration.getName() + ")", _boolean) ;// >(nfp_duration, nfp_duration) : boolean
+		opSignatures.put("<(" + _real.getName() + ',' + _nfp_duration.getName() + ")", _boolean) ;// <(nfp_duration, nfp_duration) : boolean
+		opSignatures.put("<(" + _datetime.getName() + ',' + _datetime.getName() + ")", _boolean) ;// <(date, date) : boolean
 		opSignatures.put(">(" + _integer.getName() + ',' + _integer.getName() + ")", _boolean) ;// >(int, int) : boolean
 		opSignatures.put(">(" + _real.getName() + ',' + _real.getName() + ")", _boolean) ;// >(real, real) : boolean
 		opSignatures.put(">(" + _integer.getName() + ',' + _real.getName() + ")", _boolean) ;// >(int, real) : boolean
 		opSignatures.put(">(" + _real.getName() + ',' + _integer.getName() + ")", _boolean) ;// >(real, int) : boolean
+		opSignatures.put(">(" + _nfp_duration.getName() + ',' + _nfp_duration.getName() + ")", _boolean) ;// >(nfp_duration, nfp_duration) : boolean
+		opSignatures.put(">(" + _real.getName() + ',' + _nfp_duration.getName() + ")", _boolean) ;// >(nfp_duration, nfp_duration) : boolean
 		opSignatures.put(">(" + _string.getName() + ',' + _string.getName() + ")", _boolean) ;// >(string, string) : boolean
+		opSignatures.put(">(" + _datetime.getName() + ',' + _datetime.getName() + ")", _boolean) ;// >(date, date) : boolean
 		opSignatures.put("<=(" + _integer.getName() + ',' + _integer.getName() + ")", _boolean) ;// <=(int, int) : boolean
 		opSignatures.put("<=(" + _real.getName() + ',' + _real.getName() + ")", _boolean) ;// <=(real, real) : boolean
 		opSignatures.put("<=(" + _integer.getName() + ',' + _real.getName() + ")", _boolean) ;// <=(int, real) : boolean
 		opSignatures.put("<=(" + _real.getName() + ',' + _integer.getName() + ")", _boolean) ;// <=(real, int) : boolean
 		opSignatures.put("<=(" + _string.getName() + ',' + _string.getName() + ")", _boolean) ;// <=(string, string) : boolean
+		opSignatures.put("<=(" + _nfp_duration.getName() + ',' + _nfp_duration.getName() + ")", _boolean) ;// >(nfp_duration, nfp_duration) : boolean
+		opSignatures.put("<=(" + _real.getName() + ',' + _nfp_duration.getName() + ")", _boolean) ;// <=(nfp_duration, nfp_duration) : boolean
+		opSignatures.put("<=(" + _datetime.getName() + ',' + _datetime.getName() + ")", _boolean) ;// <=(date, date) : boolean
 		opSignatures.put(">=(" + _integer.getName() + ',' + _integer.getName() + ")", _boolean) ;// >=(int, int) : boolean
 		opSignatures.put(">=(" + _real.getName() + ',' + _real.getName() + ")", _boolean) ;// >=(real, real) : boolean
 		opSignatures.put(">=(" + _integer.getName() + ',' + _real.getName() + ")", _boolean) ;// >=(int, real) : boolean
 		opSignatures.put(">=(" + _real.getName() + ',' + _integer.getName() + ")", _boolean) ;// >=(real, int) : boolean
 		opSignatures.put(">=(" + _string.getName() + ',' + _string.getName() + ")", _boolean) ;// >=(string, string) : boolean
+		opSignatures.put(">=(" + _nfp_duration.getName() + ',' + _nfp_duration.getName() + ")", _boolean) ;// >(nfp_duration, nfp_duration) : boolean
+		opSignatures.put(">=(" + _real.getName() + ',' + _nfp_duration.getName() + ")", _boolean) ;// >=(nfp_duration, nfp_duration) : boolean
+		opSignatures.put(">=(" + _datetime.getName() + ',' + _datetime.getName() + ")", _boolean) ;// >=(date, date) : boolean
+		binaryOpTypeBinding.get("<").put(_integer, new ArrayList<Type>()) ;
+		binaryOpTypeBinding.get("<").put(_real, new ArrayList<Type>()) ;
+		binaryOpTypeBinding.get("<").put(_string, new ArrayList<Type>()) ;
+		binaryOpTypeBinding.get("<").put(_nfp_duration, new ArrayList<Type>()) ;
+		binaryOpTypeBinding.get("<").put(_datetime, new ArrayList<Type>()) ;
+		binaryOpTypeBinding.get("<").get(_integer).add(_integer) ;
+		binaryOpTypeBinding.get("<").get(_integer).add(_real) ;
+		binaryOpTypeBinding.get("<").get(_real).add(_real) ;
+		binaryOpTypeBinding.get("<").get(_real).add(_integer) ;
+		binaryOpTypeBinding.get("<").get(_real).add(_nfp_duration) ;
+		binaryOpTypeBinding.get("<").get(_nfp_duration).add(_nfp_duration) ;
+		binaryOpTypeBinding.get("<").get(_string).add(_string) ;
+		binaryOpTypeBinding.get("<").get(_datetime).add(_datetime) ;
+		binaryOpTypeBinding.get(">").put(_integer, new ArrayList<Type>()) ;
+		binaryOpTypeBinding.get(">").put(_real, new ArrayList<Type>()) ;
+		binaryOpTypeBinding.get(">").put(_string, new ArrayList<Type>()) ;
+		binaryOpTypeBinding.get(">").put(_nfp_duration, new ArrayList<Type>()) ;
+		binaryOpTypeBinding.get(">").put(_datetime, new ArrayList<Type>()) ;
+		binaryOpTypeBinding.get(">").get(_integer).add(_integer) ;
+		binaryOpTypeBinding.get(">").get(_integer).add(_real) ;
+		binaryOpTypeBinding.get(">").get(_real).add(_real) ;
+		binaryOpTypeBinding.get(">").get(_real).add(_integer) ;
+		binaryOpTypeBinding.get(">").get(_real).add(_nfp_duration) ;
+		binaryOpTypeBinding.get(">").get(_nfp_duration).add(_nfp_duration) ;
+		binaryOpTypeBinding.get(">").get(_string).add(_string) ;
+		binaryOpTypeBinding.get(">").get(_datetime).add(_datetime) ;
+		binaryOpTypeBinding.get("<=").put(_integer, new ArrayList<Type>()) ;
+		binaryOpTypeBinding.get("<=").put(_real, new ArrayList<Type>()) ;
+		binaryOpTypeBinding.get("<=").put(_string, new ArrayList<Type>()) ;
+		binaryOpTypeBinding.get("<=").put(_nfp_duration, new ArrayList<Type>()) ;
+		binaryOpTypeBinding.get("<=").put(_datetime, new ArrayList<Type>()) ;
+		binaryOpTypeBinding.get("<=").get(_integer).add(_integer) ;
+		binaryOpTypeBinding.get("<=").get(_integer).add(_real) ;
+		binaryOpTypeBinding.get("<=").get(_real).add(_real) ;
+		binaryOpTypeBinding.get("<=").get(_real).add(_integer) ;
+		binaryOpTypeBinding.get("<=").get(_real).add(_nfp_duration) ;
+		binaryOpTypeBinding.get("<=").get(_nfp_duration).add(_nfp_duration) ;
+		binaryOpTypeBinding.get("<=").get(_string).add(_string) ;
+		binaryOpTypeBinding.get("<=").get(_datetime).add(_datetime) ;
+		binaryOpTypeBinding.get(">=").put(_integer, new ArrayList<Type>()) ;
+		binaryOpTypeBinding.get(">=").put(_real, new ArrayList<Type>()) ;
+		binaryOpTypeBinding.get(">=").put(_string, new ArrayList<Type>()) ;
+		binaryOpTypeBinding.get(">=").put(_nfp_duration, new ArrayList<Type>()) ;
+		binaryOpTypeBinding.get(">=").put(_datetime, new ArrayList<Type>()) ;
+		binaryOpTypeBinding.get(">=").get(_integer).add(_integer) ;
+		binaryOpTypeBinding.get(">=").get(_integer).add(_real) ;
+		binaryOpTypeBinding.get(">=").get(_real).add(_real) ;
+		binaryOpTypeBinding.get(">=").get(_real).add(_integer) ;
+		binaryOpTypeBinding.get(">=").get(_real).add(_nfp_duration) ;
+		binaryOpTypeBinding.get(">=").get(_nfp_duration).add(_nfp_duration) ;
+		binaryOpTypeBinding.get(">=").get(_string).add(_string) ;
+		binaryOpTypeBinding.get(">=").get(_datetime).add(_datetime) ;
 		
 		//'*' | '/' | 'mod'
 		opSignatures.put("*(" + _integer.getName() + ',' + _integer.getName() + ")", _integer) ;// *(int, int) : int
@@ -186,6 +328,20 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 		opSignatures.put("/(" + _real.getName() + ',' + _integer.getName() + ")", _real) ;// /(real, int) : real
 		opSignatures.put("/(" + _integer.getName() + ',' + _real.getName() + ")", _real) ;// /(int, real) : real// /(int, int) : int
 		opSignatures.put("mod(" + _integer.getName() + ',' + _integer.getName() + ")", _integer) ;// mod(int, int) : int
+		binaryOpTypeBinding.get("*").put(_integer, new ArrayList<Type>()) ;
+		binaryOpTypeBinding.get("*").put(_real, new ArrayList<Type>()) ;
+		binaryOpTypeBinding.get("*").get(_integer).add(_integer) ;
+		binaryOpTypeBinding.get("*").get(_integer).add(_real) ;
+		binaryOpTypeBinding.get("*").get(_real).add(_real) ;
+		binaryOpTypeBinding.get("*").get(_real).add(_integer) ;
+		binaryOpTypeBinding.get("/").put(_integer, new ArrayList<Type>()) ;
+		binaryOpTypeBinding.get("/").put(_real, new ArrayList<Type>()) ;
+		binaryOpTypeBinding.get("/").get(_integer).add(_integer) ;
+		binaryOpTypeBinding.get("/").get(_integer).add(_real) ;
+		binaryOpTypeBinding.get("/").get(_real).add(_real) ;
+		binaryOpTypeBinding.get("/").get(_real).add(_integer) ;
+		binaryOpTypeBinding.get("mod").put(_integer, new ArrayList<Type>()) ;
+		binaryOpTypeBinding.get("mod").get(_integer).add(_integer) ;
 		
 		//'+' | '-'
 		opSignatures.put("+(" + _integer.getName() + ',' + _integer.getName() + ")", _integer) ;// +(int, int) : int
@@ -193,13 +349,39 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 		opSignatures.put("+(" + _real.getName() + ',' + _integer.getName() + ")", _real) ;// +(real, int) : real
 		opSignatures.put("+(" + _integer.getName() + ',' + _real.getName() + ")", _real) ;// +(int, real) : real
 		opSignatures.put("+(" + _datetime.getName() + ',' + _real.getName() + ")", _datetime) ;// +(date, real) : date
+		opSignatures.put("+(" + _datetime.getName() + ',' + _nfp_duration.getName() + ")", _datetime) ;// +(date, nfp_duration) : date
+		opSignatures.put("+(" + _nfp_duration.getName() + ',' + _nfp_duration.getName() + ")", _nfp_duration) ;// +(nfp_duration, nfp_duration) : nfp_duration
 		opSignatures.put("+(" + _real.getName() + ',' + _datetime.getName() + ")", _datetime) ;// +(real, date) : date
-		
 		opSignatures.put("-(" + _integer.getName() + ',' + _integer.getName() + ")", _integer) ;// _(int, int) : int
 		opSignatures.put("-(" + _real.getName() + ',' + _real.getName() + ")", _real) ;// -(real, real) : real
 		opSignatures.put("-(" + _real.getName() + ',' + _integer.getName() + ")", _real) ;// -(real, int) : real
 		opSignatures.put("-(" + _integer.getName() + ',' + _real.getName() + ")", _real) ;// -(int, real) : real
 		opSignatures.put("-(" + _datetime.getName() + ',' + _datetime.getName() + ")", _real) ;// -(date, date) : real
+		opSignatures.put("-(" + _datetime.getName() + ',' + _nfp_duration.getName() + ")", _datetime) ;// -(date, nfp_duration) : date
+		opSignatures.put("-(" + _nfp_duration.getName() + ',' + _nfp_duration.getName() + ")", _nfp_duration) ;// -(nfp_duration, nfp_duration) : nfp_duration
+		binaryOpTypeBinding.get("+").put(_integer, new ArrayList<Type>()) ;
+		binaryOpTypeBinding.get("+").put(_real, new ArrayList<Type>()) ;
+		binaryOpTypeBinding.get("+").put(_datetime, new ArrayList<Type>()) ;
+		binaryOpTypeBinding.get("+").put(_nfp_duration, new ArrayList<Type>()) ;
+		binaryOpTypeBinding.get("+").get(_integer).add(_integer) ;
+		binaryOpTypeBinding.get("+").get(_integer).add(_real) ;
+		binaryOpTypeBinding.get("+").get(_real).add(_real) ;
+		binaryOpTypeBinding.get("+").get(_real).add(_integer) ;
+		binaryOpTypeBinding.get("+").get(_real).add(_datetime) ;
+		binaryOpTypeBinding.get("+").get(_datetime).add(_real) ;
+		binaryOpTypeBinding.get("+").get(_datetime).add(_nfp_duration) ;
+		binaryOpTypeBinding.get("+").get(_nfp_duration).add(_nfp_duration) ;
+		binaryOpTypeBinding.get("-").put(_integer, new ArrayList<Type>()) ;
+		binaryOpTypeBinding.get("-").put(_real, new ArrayList<Type>()) ;
+		binaryOpTypeBinding.get("-").put(_datetime, new ArrayList<Type>()) ;
+		binaryOpTypeBinding.get("-").put(_nfp_duration, new ArrayList<Type>()) ;
+		binaryOpTypeBinding.get("-").get(_integer).add(_integer) ;
+		binaryOpTypeBinding.get("-").get(_integer).add(_real) ;
+		binaryOpTypeBinding.get("-").get(_real).add(_real) ;
+		binaryOpTypeBinding.get("-").get(_real).add(_integer) ;
+		binaryOpTypeBinding.get("-").get(_datetime).add(_datetime) ;
+		binaryOpTypeBinding.get("-").get(_datetime).add(_nfp_duration) ;
+		binaryOpTypeBinding.get("-").get(_nfp_duration).add(_nfp_duration) ;
 	}
 	
 	public static void setExpectedType(Type _expectedType) {
@@ -243,7 +425,7 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 		public String errorMessage() {return this.errorMessage;}
 	}
 	
-	private VSLValidationResult checkBinaryExpression(VSLValidationResult[] validationResults, EList<String> operators) {
+	public VSLValidationResult checkBinaryExpression(VSLValidationResult[] validationResults, EList<String> operators) {
 		
 		String operator = operators.get(0) ;
 		Integer potentialErrorFeature = null ;
@@ -312,7 +494,7 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 		return checkAndOrXorExpression(exp.getExp()) ; 
 	}
 	
-	private VSLValidationResult checkAndOrXorExpression(AndOrXorExpression exp) {
+	public VSLValidationResult checkAndOrXorExpression(AndOrXorExpression exp) {
 		if (exp.getExp().size()==1) {
 			return eInstance.checkEqualityExpression(exp.getExp().get(0)) ;
 		}
@@ -331,7 +513,7 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 		}
 	}
 	
-	private VSLValidationResult checkEqualityExpression(EqualityExpression exp) {
+	public VSLValidationResult checkEqualityExpression(EqualityExpression exp) {
 		if (exp.getExp().size()==1) {
 			return eInstance.checkRelationalExpression(exp.getExp().get(0)) ;
 		}
@@ -350,7 +532,7 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 		}
 	}
 	
-	private VSLValidationResult checkRelationalExpression(RelationalExpression exp) {
+	public VSLValidationResult checkRelationalExpression(RelationalExpression exp) {
 		if (exp.getExp().size()==1) {
 			return eInstance.checkConditionalExpression(exp.getExp().get(0)) ;
 		}
@@ -369,7 +551,7 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 		}
 	}
 	
-	private VSLValidationResult checkConditionalExpression(ConditionalExpression exp) {
+	public VSLValidationResult checkConditionalExpression(ConditionalExpression exp) {
 		if (exp.getExp().size()==1) {
 			return eInstance.checkAdditiveExpression(exp.getExp().get(0)) ;
 		}
@@ -411,7 +593,7 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 		}
 	}
 	
-	private VSLValidationResult checkAdditiveExpression(AdditiveExpression exp) {
+	public VSLValidationResult checkAdditiveExpression(AdditiveExpression exp) {
 		if (exp.getExp().size()==1) {
 			return eInstance.checkMultiplicativeExpression(exp.getExp().get(0)) ;
 		}
@@ -430,7 +612,7 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 		}
 	}
 	
-	private VSLValidationResult checkMultiplicativeExpression(MultiplicativeExpression exp) {
+	public VSLValidationResult checkMultiplicativeExpression(MultiplicativeExpression exp) {
 		if (exp.getExp().size()==0) {
 			return new VSLValidationResult(exp, 0, null, false, "") ;
 		}
@@ -452,7 +634,7 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 		}
 	}
 	
-	private VSLValidationResult checkUnaryExpression (UnaryExpression exp) {
+	public VSLValidationResult checkUnaryExpression (UnaryExpression exp) {
 		Type inferedType = null ;
 		if (exp.getUnary() != null) {
 			VSLValidationResult nestedUnaryValidationResult = eInstance.checkUnaryExpression(exp.getUnary()) ;
@@ -474,7 +656,7 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 		return new VSLValidationResult(exp, 0, inferedType, false, "") ;
 	}
 	
-	private VSLValidationResult checkPrimaryExpression (PrimaryExpression exp) {
+	public VSLValidationResult checkPrimaryExpression (PrimaryExpression exp) {
 		Type inferedType = null ;
 		VSLValidationResult prefixValidationResult = eInstance.checkValueSpecification(exp.getPrefix()) ; 
 		if (prefixValidationResult.errorFound())
@@ -491,7 +673,7 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 		return new VSLValidationResult(exp, 0, inferedType, false, "") ;
 	}
 	
-	private VSLValidationResult checkValueSpecification(ValueSpecification valueSpec) {
+	public VSLValidationResult checkValueSpecification(ValueSpecification valueSpec) {
 		Type inferedType = null ;
 		if (valueSpec instanceof IntegerLiteralRule)
 			inferedType = _integer ;
@@ -538,7 +720,7 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 	}
 	
 	
-	private VSLValidationResult checkVariableDeclarion(VariableDeclaration valueSpec) {
+	public VSLValidationResult checkVariableDeclarion(VariableDeclaration valueSpec) {
 		Classifier inferedType = valueSpec.getType() != null ? (Classifier)valueSpec.getType().getType() : VSLScopeProvider.eInstance.new ScopingHelper(valueSpec).getClassifierForScoping() ;
 		VSLValidationResult initValidationResult = null ;
 		if (valueSpec.getInitValue() != null)
@@ -553,7 +735,7 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 		return new VSLValidationResult(valueSpec, 0, inferedType, false, "");
 	}
 
-	private VSLValidationResult checkTimeExpression(TimeExpression valueSpec) {
+	public VSLValidationResult checkTimeExpression(TimeExpression valueSpec) {
 		Expression index = null ;
 		Expression condition = null ;
 		Type inferedType = _real ;
@@ -574,7 +756,7 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 			if (checkIndex.errorFound()) 
 				return checkIndex ;
 			Classifier locallyInferedType = (Classifier)checkIndex.inferedType() ;
-			if (locallyInferedType != _integer && !locallyInferedType.getGenerals().contains(_integer)) {
+			if (locallyInferedType != _integer && !locallyInferedType.getGenerals().contains(_integer) && !locallyInferedType.getName().equals(_integer.getName())) {
 				String errorMessage = VSLErrorMessage.getInvalidExpressionType(_integer.getName(), locallyInferedType.getName()) ;
 				return new VSLValidationResult(index, VSLPackage.EXPRESSION, locallyInferedType, true, errorMessage) ;
 			}
@@ -584,16 +766,16 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 			if (checkCondition.errorFound()) 
 				return checkCondition ;
 			Classifier locallyInferedType = (Classifier) checkCondition.inferedType() ;
-			if (locallyInferedType != _boolean && !locallyInferedType.getGenerals().contains(_boolean)) {
+			if (locallyInferedType != _boolean && !locallyInferedType.getGenerals().contains(_boolean) && !locallyInferedType.getName().equals(_boolean.getName())) {
 				String errorMessage = VSLErrorMessage.getInvalidExpressionType(_boolean.getName(), locallyInferedType.getName()) ;
-				return new VSLValidationResult(index, VSLPackage.EXPRESSION, locallyInferedType, true, errorMessage) ;
+				return new VSLValidationResult(condition, VSLPackage.EXPRESSION, locallyInferedType, true, errorMessage) ;
 			}
 		}
 		
 		return new VSLValidationResult(valueSpec, VSLPackage.TIME_EXPRESSION, inferedType, false, "") ;
 	}
 
-	private VSLValidationResult checkCollectionOrTuple(CollectionOrTuple valueSpec) {
+	public VSLValidationResult checkCollectionOrTuple(CollectionOrTuple valueSpec) {
 		List<VSLValidationResult> listOfValidationResults = new ArrayList<VSLJavaValidator.VSLValidationResult>() ;
 		if (valueSpec.getListOfValues() != null) {
 			for (Expression exp : valueSpec.getListOfValues().getValues()) {
@@ -644,7 +826,7 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 	}
 
 	
-	private VSLValidationResult checkSuffixExpression (SuffixExpression exp) {
+	public VSLValidationResult checkSuffixExpression (SuffixExpression exp) {
 		if (exp instanceof PropertyCallExpression) {
 			return checkPropertyCallExpression((PropertyCallExpression)exp) ;
 		}
@@ -653,7 +835,7 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 		}
 	}
 	
-	private VSLValidationResult checkPropertyCallExpression (PropertyCallExpression exp) {
+	public VSLValidationResult checkPropertyCallExpression (PropertyCallExpression exp) {
 		Property p = exp.getProperty() ;
 		Type inferedType = null ;
 		if (p.getType() == null) {
@@ -672,7 +854,7 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 		return new VSLValidationResult(exp, VSLPackage.PROPERTY_CALL_EXPRESSION, inferedType, false, "") ;
 	}
 	
-	private VSLValidationResult checkOperationCallExpression (OperationCallExpression exp) {
+	public VSLValidationResult checkOperationCallExpression (OperationCallExpression exp) {
 		Operation b = exp.getOperation() ;
 		Type inferedType = null ;
 		Type returnType = null ;
@@ -718,7 +900,21 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 						Type expectedType = inOutParameters.get(i).getType() ;
 						Type foundType = argumentValidationResults.get(i).inferedType() ;
 						foundTypeNames.add(foundType.getName()) ;
-						if (! foundType.conformsTo(expectedType)) errorFound = true ;
+						if (VSLContextUtil.isAChoiceType((Classifier)expectedType)) {
+							boolean choiceAttribFound = false ;
+							List<NamedElement> allChoiceAttribs = VSLContextUtil.getChoiceAttribs((Classifier)expectedType) ;
+							for (NamedElement choiceAttrib : allChoiceAttribs) {
+								Property p = (Property)choiceAttrib ;
+								if (foundType.conformsTo(p.getType()))
+									choiceAttribFound = true ;
+							}
+							if (! choiceAttribFound) {
+								if (! foundType.conformsTo(expectedType))
+									errorFound = true ;
+							}
+						}
+						else 
+							if (! foundType.conformsTo(expectedType)) errorFound = true ;
 					}
 					if (errorFound) {
 						String errorMessage = VSLErrorMessage.getInvalidArgumentsForOperationCall(b.getName(), expectedTypeNames, foundTypeNames) ;
@@ -736,7 +932,7 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 		return new VSLValidationResult(exp, VSLPackage.OPERATION_CALL_EXPRESSION, inferedType, false, "") ;
 	}
 	
-	private VSLValidationResult checkInterval(Interval interval) {
+	public VSLValidationResult checkInterval(Interval interval) {
 		
 		
 		if (interval.getLower() == null) {
@@ -774,7 +970,7 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 	}
 	
 	
-	private VSLValidationResult checkNameOrChoiceOrBehaviorCall(NameOrChoiceOrBehaviorCall exp) {
+	public VSLValidationResult checkNameOrChoiceOrBehaviorCall(NameOrChoiceOrBehaviorCall exp) {
 		Type inferedType = null ;
 		if (exp.getId() != null) {
 			// First handle the case where if a stereotype or metaclass instance is expected
@@ -844,11 +1040,11 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 				}
 				else {
 					inferedType = returnType ;
-					if (exp.getArguments() == null) {
+					if (exp.getArguments() == null && expectedTypeNames.size()>0) {
 						String errorMessage = VSLErrorMessage.getMissingArgumentsForBehaviorCall(b.getName(), expectedTypeNames) ;
 						return new VSLValidationResult(exp, VSLPackage.NAME_OR_CHOICE_OR_BEHAVIOR_CALL__ARGUMENTS, inferedType, true, errorMessage) ;
 					}
-					else if (exp.getArguments().getValues().size() != b.getOwnedParameters().size()-1) { // -1 => retrieves the return parameter
+					else if (exp.getArguments() != null && exp.getArguments().getValues().size() != b.getOwnedParameters().size()-1) { // -1 => retrieves the return parameter
 						String errorMessage = VSLErrorMessage.getInvalidNumberOfArgumentsForBehaviorCall(b.getName(), expectedTypeNames) ;
 						return new VSLValidationResult(exp, VSLPackage.NAME_OR_CHOICE_OR_BEHAVIOR_CALL__ARGUMENTS, inferedType, true, errorMessage) ;
 					}
@@ -858,20 +1054,26 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 							if (p.getDirection() != ParameterDirectionKind.RETURN_LITERAL)
 								inOutParameters.add(p) ;
 						List<VSLValidationResult> argumentValidationResults = new ArrayList<VSLJavaValidator.VSLValidationResult>() ;
-						for (Expression e : exp.getArguments().getValues()) {
-							VSLValidationResult argumentValidationResult = checkExpressionRule(e) ;
-							argumentValidationResults.add(argumentValidationResult) ;
-							if (argumentValidationResult.errorFound())
-								return argumentValidationResult ;
-						}
+						if (exp.getArguments() != null)
+							for (Expression e : exp.getArguments().getValues()) {
+								VSLValidationResult argumentValidationResult = checkExpressionRule(e) ;
+								argumentValidationResults.add(argumentValidationResult) ;
+								if (argumentValidationResult.errorFound())
+									return argumentValidationResult ;
+							}
 						
 						List<String> foundTypeNames = new ArrayList<String>() ;
 						boolean errorFound = false ;
 						for (int i = 0 ; i<argumentValidationResults.size() ; i++) {
 							Type expectedType = inOutParameters.get(i).getType() ;
 							Type foundType = argumentValidationResults.get(i).inferedType() ;
-							foundTypeNames.add(foundType.getName()) ;
-							if (! foundType.conformsTo(expectedType)) errorFound = true ;
+							if (foundType == null) {
+								errorFound = true ;
+							}
+							else {
+								foundTypeNames.add(foundType.getName()) ;
+								if (! foundType.conformsTo(expectedType)) errorFound = true ;
+							}
 						}
 						if (errorFound) {
 							String errorMessage = VSLErrorMessage.getInvalidArgumentsForBehaviorCall(b.getName(), expectedTypeNames, foundTypeNames) ;
@@ -884,17 +1086,25 @@ public class VSLJavaValidator extends AbstractVSLJavaValidator {
 		return new VSLValidationResult(exp, 0, inferedType, false, "") ;
 	}
 
-	private VSLValidationResult checkTuple(Tuple exp) {
+	public VSLValidationResult checkTuple(Tuple exp) {
 		ScopingHelper scopingHelper = VSLScopeProvider.eInstance.new ScopingHelper(exp) ;
 		for (ValueNamePair vnp : exp.getListOfValueNamePairs().getValueNamePairs()) {
 			VSLValidationResult valueNamePairValidationResult = checkValueNamePair(vnp) ;
 			if (valueNamePairValidationResult.errorFound())
 				return valueNamePairValidationResult ;
 		}
-		return new VSLValidationResult(exp, VSLPackage.TUPLE, scopingHelper.getClassifierForScoping(), false, "") ;
+		Classifier classifierForScoping = scopingHelper.getClassifierForScoping() ;
+		if (VSLContextUtil.isATupleType(classifierForScoping))
+			return new VSLValidationResult(exp, VSLPackage.TUPLE, classifierForScoping, false, "") ;
+		else
+			// Temporary solution: We have a tuple expression, and the expected type is not a tuple. The following implementation forces
+			// the type of the expression to be an nfp_duration (which is inline with the temporary implementation of scoping)
+			// TODO : Make it generic, and rely on the stereotype <<Operator>> to infer the type of a tuple expression, 
+			// when it is used as an argument for a binary operator
+			return new VSLValidationResult(exp, VSLPackage.TUPLE, _nfp_duration, false, "") ;
 	}
 	
-	private VSLValidationResult checkValueNamePair(ValueNamePair exp) {
+	public VSLValidationResult checkValueNamePair(ValueNamePair exp) {
 		if (exp.getProperty() == null) {
 			return new VSLValidationResult(exp, VSLPackage.VALUE_NAME_PAIR__PROPERTY, null, true, "") ;
 		}

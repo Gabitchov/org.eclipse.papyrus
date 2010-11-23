@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.marte.vsl.scoping.visitors;
 
 import java.util.ArrayList;
@@ -11,10 +24,12 @@ import org.eclipse.papyrus.marte.vsl.validation.VSLJavaValidator;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ElementImport;
+import org.eclipse.uml2.uml.Generalization;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageImport;
+import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -58,6 +73,10 @@ public class ScopingVisitors {
 			eInstance.new Visitor_GetHierarchichallyAccessibleDurationObservations() ;
 	public static final Visitor<List<Element>, Element> hierarchichallyAccessibleDataTypes =
 			eInstance.new Visitor_GetHierarchichallyAccessibleDataTypes() ;
+	public static final Visitor<Element, Namespace> recursivelyownedAndImportedInstantObservations =
+			eInstance.new Visitor_getRecursivelyOwnedAndImportedInstantObservations() ;
+	public static final Visitor<Element, Namespace> recursivelyownedAndImportedDurationObservations =
+		eInstance.new Visitor_getRecursivelyOwnedAndImportedDurationObservations() ;
 	
 	/////////////////////
 	// Private visitor classes
@@ -152,7 +171,15 @@ public class ScopingVisitors {
 			elements.addAll(getRecursivelyOwnedMetaclassInstances(VSLJavaValidator.getModel(), metaclass)) ;
 			elements.addAll(getRecursivelyImportedMetaclassInstances(VSLJavaValidator.getModel(), metaclass)) ;
 			return elements ;
-		}	
+		}
+		
+		public static List<Element> visit(Namespace visited, EClass metaclass) {
+			// the customization consists in proposing nothing. Proposals are handled by other methods.
+			List<Element> elements = new ArrayList<Element>() ;
+			elements.addAll(getRecursivelyOwnedMetaclassInstances(VSLJavaValidator.getModel(), metaclass)) ;
+			elements.addAll(getRecursivelyImportedMetaclassInstances(VSLJavaValidator.getModel(), metaclass)) ;
+			return elements ;
+		}
 	}
 	
 	private static List<Element> getRecursivelyOwnedMetaclassInstances(Namespace context, org.eclipse.uml2.uml.Class metaclass) {
@@ -179,7 +206,35 @@ public class ScopingVisitors {
 		return recursivelyOwnedMetaclassInstances ;
 	}
 	
+	private static List<Element> getRecursivelyOwnedMetaclassInstances(Namespace context, EClass expectedEClass) {
+		List<Element> recursivelyOwnedMetaclassInstances = new ArrayList<Element>();
+		
+		if (expectedEClass == null)
+			return recursivelyOwnedMetaclassInstances ;
+		
+		for (Element n : context.getOwnedElements()) {
+			if (expectedEClass.isInstance(n))
+				recursivelyOwnedMetaclassInstances.add(n) ;
+			if (n instanceof Namespace) {
+				recursivelyOwnedMetaclassInstances.addAll(getRecursivelyOwnedMetaclassInstances((Namespace)n, expectedEClass)) ;
+			}
+		}
+		
+		return recursivelyOwnedMetaclassInstances ;
+	}
+	
 	private static List<Element> getRecursivelyImportedMetaclassInstances(Namespace context, org.eclipse.uml2.uml.Class metaclass) {
+		List<Element> recursivelyImportedMetaclassInstances = new ArrayList<Element>() ;
+		
+		List<Package> importedPackages = context.getImportedPackages() ;
+		for (Package p : importedPackages) {
+			recursivelyImportedMetaclassInstances.addAll(getRecursivelyOwnedMetaclassInstances(p, metaclass)) ;
+		}
+		
+		return recursivelyImportedMetaclassInstances ;
+	}
+	
+	private static List<Element> getRecursivelyImportedMetaclassInstances(Namespace context, EClass metaclass) {
 		List<Element> recursivelyImportedMetaclassInstances = new ArrayList<Element>() ;
 		
 		List<Package> importedPackages = context.getImportedPackages() ;
@@ -255,11 +310,53 @@ public class ScopingVisitors {
 		
 	}
 	
+	private class Visitor_getRecursivelyOwnedAndImportedInstantObservations extends Visitor_GetOwnedAndImportedInstantObservations {
+
+		@Override
+		public List<Element> visit(Namespace visited) {
+			if (this.filter == null)
+				instantiateFilter() ;
+			List<Element> allInstantObservations = new ArrayList<Element>() ;
+			List<Element> allOwnedElements = visited.allOwnedElements() ;
+			for (Element e : allOwnedElements) {
+				if (this.filter.isInstance(e)) {
+					allInstantObservations.add(e) ;
+				}
+			}
+			for (Package p : visited.getImportedPackages()) {
+				allInstantObservations.addAll(super.visit(p)) ;
+			}
+			return allInstantObservations ;
+		}
+		
+	}
+	
 	private class Visitor_GetOwnedAndImportedDurationObservations extends Visitor_GetOwnedAndImportedElements {
 
 		
 		protected void instantiateFilter() {
 			this.filter = VSLContextUtil.eInstance.new MetaclassFilter(UMLPackage.eINSTANCE.getDurationObservation()) ;	
+		}
+		
+	}
+	
+	private class Visitor_getRecursivelyOwnedAndImportedDurationObservations extends Visitor_GetOwnedAndImportedDurationObservations {
+
+		@Override
+		public List<Element> visit(Namespace visited) {
+			if (this.filter == null)
+				instantiateFilter() ;
+			List<Element> allDurationObservations = new ArrayList<Element>() ;
+			List<Element> allOwnedElements = visited.allOwnedElements() ;
+			for (Element e : allOwnedElements) {
+				if (this.filter.isInstance(e)) {
+					allDurationObservations.add(e) ;
+				}
+			}
+			for (Package p : visited.getImportedPackages()) {
+				allDurationObservations.addAll(super.visit(p)) ;
+			}
+			return allDurationObservations ;
 		}
 		
 	}
@@ -330,8 +427,8 @@ public class ScopingVisitors {
 				inheritanceStructure.add(0, tmpList) ;
 				List<Classifier> localClassifierList = new ArrayList<Classifier>() ;
 				for (Classifier currentClassifier : tmpList) {
-					for (Classifier general : currentClassifier.getGenerals()) {
-						localClassifierList.add(general) ;
+					for (Generalization generalization : currentClassifier.getGeneralizations()) {
+						localClassifierList.add(generalization.getGeneral()) ;
 					}
 				}
 				tmpList = new ArrayList<Classifier>() ;
@@ -429,7 +526,7 @@ public class ScopingVisitors {
 		protected List<Element> nestedVisit(Element context) {
 			List<Element> accessibleProperties = new ArrayList<Element>() ;
 			for (Element e : context.getOwnedElements()) {
-				if (filter.isInstance(context))
+				if (filter.isInstance(e))
 					accessibleProperties.add(e) ;
 			}
 			return accessibleProperties;
@@ -445,7 +542,7 @@ public class ScopingVisitors {
 		protected List<Element> nestedVisit(Element context) {
 			List<Element> accessibleBehaviors = new ArrayList<Element>() ;
 			for (Element e : context.getOwnedElements()) {
-				if (filter.isInstance(context))
+				if (filter.isInstance(e))
 					accessibleBehaviors.add(e) ;
 			}
 			return accessibleBehaviors;
@@ -461,7 +558,7 @@ public class ScopingVisitors {
 		protected List<Element> nestedVisit(Element context) {
 			List<Element> accessibleInstantObservation = new ArrayList<Element>() ;
 			for (Element e : context.getOwnedElements()) {
-				if (filter.isInstance(context))
+				if (filter.isInstance(e))
 					accessibleInstantObservation.add(e) ;
 			}
 			return accessibleInstantObservation;
@@ -477,7 +574,7 @@ public class ScopingVisitors {
 		protected List<Element> nestedVisit(Element context) {
 			List<Element> accessibleDataTypes = new ArrayList<Element>() ;
 			for (Element e : context.getOwnedElements()) {
-				if (filter.isInstance(context))
+				if (filter.isInstance(e))
 					accessibleDataTypes.add(e) ;
 			}
 			return accessibleDataTypes;
@@ -493,7 +590,7 @@ public class ScopingVisitors {
 		protected List<Element> nestedVisit(Element context) {
 			List<Element> accessibleDurationObservations = new ArrayList<Element>() ;
 			for (Element e : context.getOwnedElements()) {
-				if (filter.isInstance(context))
+				if (filter.isInstance(e))
 					accessibleDurationObservations.add(e) ;
 			}
 			return accessibleDurationObservations;
