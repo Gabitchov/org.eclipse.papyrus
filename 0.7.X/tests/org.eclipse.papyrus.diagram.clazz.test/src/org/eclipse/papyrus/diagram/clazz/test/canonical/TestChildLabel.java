@@ -41,7 +41,7 @@ import org.eclipse.uml2.uml.Element;
 /**
  * The Class TestChildLabel.
  */
-public class TestChildLabel extends AbstractPapyrusTestCase {
+public abstract class TestChildLabel extends AbstractPapyrusTestCase {
 	
 	
 	/** The Constant CREATION. */

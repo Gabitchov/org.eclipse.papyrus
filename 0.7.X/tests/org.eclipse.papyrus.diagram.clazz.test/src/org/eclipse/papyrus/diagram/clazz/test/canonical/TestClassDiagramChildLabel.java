@@ -35,36 +35,71 @@ import org.junit.Test;
  */
 public class TestClassDiagramChildLabel extends TestChildLabel {
 
-	
-	/**
-	 * Test to manage component.
-	 */
 	@Test
-	public void testToManageComponent() {
+	public void testToManageinstanceSlot() {
 		//instance specification
 		testToManageTopNode(UMLElementTypes.InstanceSpecification_2001, UMLElementTypes.Slot_3030, InstanceSpecificationSlotCompartmentEditPart.VISUAL_ID);
-		//component
+	}
+	@Test
+	public void testToManageComponentProperty() {
+		//instance specification
 		testToManageTopNode(UMLElementTypes.Component_2002, UMLElementTypes.Property_3002, ComponentAttributeCompartmentEditPart.VISUAL_ID);
-		testToManageTopNode(UMLElementTypes.Component_2002, UMLElementTypes.Operation_3003, ComponentOperationCompartmentEditPart.VISUAL_ID);
+	}
+	
+	@Test
+	public void testToManageComponentNestedClass() {
+		//instance specification
 		testToManageTopNode(UMLElementTypes.Component_2002, UMLElementTypes.Class_3004, ComponentNestedClassifierCompartmentEditPart.VISUAL_ID);
-		//signal
+	}
+	@Test
+	public void testToManageComponentOperation() {
+		//instance specification
+		testToManageTopNode(UMLElementTypes.Component_2002, UMLElementTypes.Operation_3003, ComponentOperationCompartmentEditPart.VISUAL_ID);
+	}
+	
+	@Test
+	public void testToManageSignalProperty() {
+		//instance specification
 		testToManageTopNode(UMLElementTypes.Signal_2003, UMLElementTypes.Property_3005, SignalAttributeCompartmentEditPart.VISUAL_ID);
+	}
+	
+	public void testToManageInterfaceProperty() {
 		//interface
 		testToManageTopNode(UMLElementTypes.Interface_2004, UMLElementTypes.Property_3006, InterfaceAttributeCompartmentEditPart.VISUAL_ID);
+	}	
+	public void testToManageInterfaceOperation() {
+		//interface
 		testToManageTopNode(UMLElementTypes.Interface_2004, UMLElementTypes.Operation_3007, InterfaceOperationCompartmentEditPart.VISUAL_ID);
+	}
+	
+	public void testToManageInterfaceNestedClass() {
+		//interface
 		testToManageTopNode(UMLElementTypes.Interface_2004, UMLElementTypes.Class_3008, InterfaceNestedClassifierCompartmentEditPart.VISUAL_ID);
+	}	
+	
+	public void testToManageEnumerationLiteralEnumeration() {
 		//Enumeration
 		testToManageTopNode(UMLElementTypes.Enumeration_2006, UMLElementTypes.EnumerationLiteral_3017, EnumerationEnumerationLiteralCompartmentEditPart.VISUAL_ID);
-		
-		//class
+		}
+	
+	public void testToManageClassProperty() {
+		//Enumeration
 		testToManageTopNode(UMLElementTypes.Class_2008, UMLElementTypes.Property_3012, ClassAttributeCompartment2EditPart.VISUAL_ID);
+			}
+	
+	public void testToManageClassReception() {
+		//Enumeration
 		testToManageTopNode(UMLElementTypes.Class_2008, UMLElementTypes.Reception_3011, ClassOperationCompartment2EditPart.VISUAL_ID);
+				}
+	
+	public void testToManageClassOperation() {
+		//Enumeration
 		testToManageTopNode(UMLElementTypes.Class_2008, UMLElementTypes.Operation_3013, ClassOperationCompartment2EditPart.VISUAL_ID);
+				}
+	@Test
+	public void testToClassNestedClass() {
+		//class
 		testToManageTopNode(UMLElementTypes.Class_2008, UMLElementTypes.Class_3014, ClassNestedClassifierCompartment2EditPart.VISUAL_ID);
-
-		//DataType
-		//toDo
-		
 	}
 	
 	
