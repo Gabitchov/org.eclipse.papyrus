@@ -3,68 +3,6 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="vSL"
     nsURI="http://www.eclipse.org/papyrus/marte/vsl/VSL" nsPrefix="vSL">
-  <eClassifiers xsi:type="ecore:EClass" name="Model">
-    <eOperations name="getFilteredParentRule" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="body" value="return org.eclipse.papyrus.marte.vsl.extensions.VSLContextUtil.getFilteredParentRule(this, filter) ;"/>
-      </eAnnotations>
-      <eParameters name="filter" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
-    </eOperations>
-    <eOperations name="getExpectedType" eType="ecore:EClass ../../../../../../model/UML.ecore#//Type">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="body" value="return org.eclipse.papyrus.marte.vsl.extensions.VSLContextUtil.getExpectedType(this) ;"/>
-      </eAnnotations>
-    </eOperations>
-    <eOperations name="getContextElement" eType="ecore:EClass ../../../../../../model/UML.ecore#//Element">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="body" value="return org.eclipse.papyrus.marte.vsl.extensions.VSLContextUtil.getContextElement(this) ;"/>
-      </eAnnotations>
-    </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="imports" eType="#//Import"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//Context"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Expression"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Import">
-    <eOperations name="getFilteredParentRule" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="body" value="return org.eclipse.papyrus.marte.vsl.extensions.VSLContextUtil.getFilteredParentRule(this, filter) ;"/>
-      </eAnnotations>
-      <eParameters name="filter" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
-    </eOperations>
-    <eOperations name="getExpectedType" eType="ecore:EClass ../../../../../../model/UML.ecore#//Type">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="body" value="return org.eclipse.papyrus.marte.vsl.extensions.VSLContextUtil.getExpectedType(this) ;"/>
-      </eAnnotations>
-    </eOperations>
-    <eOperations name="getContextElement" eType="ecore:EClass ../../../../../../model/UML.ecore#//Element">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="body" value="return org.eclipse.papyrus.marte.vsl.extensions.VSLContextUtil.getContextElement(this) ;"/>
-      </eAnnotations>
-    </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="importURI" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Context">
-    <eOperations name="getFilteredParentRule" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="body" value="return org.eclipse.papyrus.marte.vsl.extensions.VSLContextUtil.getFilteredParentRule(this, filter) ;"/>
-      </eAnnotations>
-      <eParameters name="filter" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
-    </eOperations>
-    <eOperations name="getExpectedType" eType="ecore:EClass ../../../../../../model/UML.ecore#//Type">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="body" value="return org.eclipse.papyrus.marte.vsl.extensions.VSLContextUtil.getExpectedType(this) ;"/>
-      </eAnnotations>
-    </eOperations>
-    <eOperations name="getContextElement" eType="ecore:EClass ../../../../../../model/UML.ecore#//Element">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="body" value="return org.eclipse.papyrus.marte.vsl.extensions.VSLContextUtil.getContextElement(this) ;"/>
-      </eAnnotations>
-    </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="ecore:EClass ../../../../../../model/UML.ecore#//NamedElement"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Expression" eSuperTypes="#//ValueSpecification">
     <eOperations name="getFilteredParentRule" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

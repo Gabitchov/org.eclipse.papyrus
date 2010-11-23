@@ -1,9 +1,16 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
  *
-
- */
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.marte.vsl.vSL;
 
 import org.eclipse.emf.ecore.EFactory;
@@ -25,33 +32,6 @@ public interface VSLFactory extends EFactory
    * @generated
    */
   VSLFactory eINSTANCE = org.eclipse.papyrus.marte.vsl.vSL.impl.VSLFactoryImpl.init();
-
-  /**
-   * Returns a new object of class '<em>Model</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Model</em>'.
-   * @generated
-   */
-  Model createModel();
-
-  /**
-   * Returns a new object of class '<em>Import</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Import</em>'.
-   * @generated
-   */
-  Import createImport();
-
-  /**
-   * Returns a new object of class '<em>Context</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Context</em>'.
-   * @generated
-   */
-  Context createContext();
 
   /**
    * Returns a new object of class '<em>Expression</em>'.

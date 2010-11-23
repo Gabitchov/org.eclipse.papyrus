@@ -1,9 +1,16 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
  *
-
- */
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.marte.vsl.vSL.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -19,7 +26,6 @@ import org.eclipse.papyrus.marte.vsl.vSL.AndOrXorExpression;
 import org.eclipse.papyrus.marte.vsl.vSL.BooleanLiteralRule;
 import org.eclipse.papyrus.marte.vsl.vSL.CollectionOrTuple;
 import org.eclipse.papyrus.marte.vsl.vSL.ConditionalExpression;
-import org.eclipse.papyrus.marte.vsl.vSL.Context;
 import org.eclipse.papyrus.marte.vsl.vSL.DataTypeName;
 import org.eclipse.papyrus.marte.vsl.vSL.DateTimeLiteralRule;
 import org.eclipse.papyrus.marte.vsl.vSL.DefaultLiteralRule;
@@ -27,7 +33,6 @@ import org.eclipse.papyrus.marte.vsl.vSL.DurationObsExpression;
 import org.eclipse.papyrus.marte.vsl.vSL.DurationObsName;
 import org.eclipse.papyrus.marte.vsl.vSL.EqualityExpression;
 import org.eclipse.papyrus.marte.vsl.vSL.Expression;
-import org.eclipse.papyrus.marte.vsl.vSL.Import;
 import org.eclipse.papyrus.marte.vsl.vSL.InstantObsExpression;
 import org.eclipse.papyrus.marte.vsl.vSL.InstantObsName;
 import org.eclipse.papyrus.marte.vsl.vSL.IntegerLiteralRule;
@@ -36,7 +41,6 @@ import org.eclipse.papyrus.marte.vsl.vSL.JitterExp;
 import org.eclipse.papyrus.marte.vsl.vSL.ListOfValueNamePairs;
 import org.eclipse.papyrus.marte.vsl.vSL.ListOfValues;
 import org.eclipse.papyrus.marte.vsl.vSL.Literal;
-import org.eclipse.papyrus.marte.vsl.vSL.Model;
 import org.eclipse.papyrus.marte.vsl.vSL.MultiplicativeExpression;
 import org.eclipse.papyrus.marte.vsl.vSL.NameOrChoiceOrBehaviorCall;
 import org.eclipse.papyrus.marte.vsl.vSL.NullLiteralRule;
@@ -69,27 +73,6 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class VSLPackageImpl extends EPackageImpl implements VSLPackage
 {
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass modelEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass importEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass contextEClass = null;
-
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -427,86 +410,6 @@ public class VSLPackageImpl extends EPackageImpl implements VSLPackage
     // Update the registry and return the package
     EPackage.Registry.INSTANCE.put(VSLPackage.eNS_URI, theVSLPackage);
     return theVSLPackage;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getModel()
-  {
-    return modelEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getModel_Imports()
-  {
-    return (EReference)modelEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getModel_Context()
-  {
-    return (EReference)modelEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getModel_Value()
-  {
-    return (EReference)modelEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getImport()
-  {
-    return importEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getImport_ImportURI()
-  {
-    return (EAttribute)importEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getContext()
-  {
-    return contextEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getContext_Context()
-  {
-    return (EReference)contextEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1489,17 +1392,6 @@ public class VSLPackageImpl extends EPackageImpl implements VSLPackage
     isCreated = true;
 
     // Create classes and their features
-    modelEClass = createEClass(MODEL);
-    createEReference(modelEClass, MODEL__IMPORTS);
-    createEReference(modelEClass, MODEL__CONTEXT);
-    createEReference(modelEClass, MODEL__VALUE);
-
-    importEClass = createEClass(IMPORT);
-    createEAttribute(importEClass, IMPORT__IMPORT_URI);
-
-    contextEClass = createEClass(CONTEXT);
-    createEReference(contextEClass, CONTEXT__CONTEXT);
-
     expressionEClass = createEClass(EXPRESSION);
     createEReference(expressionEClass, EXPRESSION__EXP);
 
@@ -1691,42 +1583,10 @@ public class VSLPackageImpl extends EPackageImpl implements VSLPackage
     stringLiteralRuleEClass.getESuperTypes().add(this.getLiteral());
 
     // Initialize classes and features; add operations and parameters
-    initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getModel_Imports(), this.getImport(), null, "imports", null, 0, 1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getModel_Context(), this.getContext(), null, "context", null, 0, 1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getModel_Value(), this.getExpression(), null, "value", null, 0, 1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    EOperation op = addEOperation(modelEClass, ecorePackage.getEObject(), "getFilteredParentRule", 0, 1, IS_UNIQUE, IS_ORDERED);
-    addEParameter(op, ecorePackage.getEClass(), "filter", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-    addEOperation(modelEClass, theUMLPackage.getType(), "getExpectedType", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-    addEOperation(modelEClass, theUMLPackage.getElement(), "getContextElement", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-    initEClass(importEClass, Import.class, "Import", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getImport_ImportURI(), ecorePackage.getEString(), "importURI", null, 0, 1, Import.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    op = addEOperation(importEClass, ecorePackage.getEObject(), "getFilteredParentRule", 0, 1, IS_UNIQUE, IS_ORDERED);
-    addEParameter(op, ecorePackage.getEClass(), "filter", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-    addEOperation(importEClass, theUMLPackage.getType(), "getExpectedType", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-    addEOperation(importEClass, theUMLPackage.getElement(), "getContextElement", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-    initEClass(contextEClass, Context.class, "Context", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getContext_Context(), theUMLPackage.getNamedElement(), null, "context", null, 0, 1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    op = addEOperation(contextEClass, ecorePackage.getEObject(), "getFilteredParentRule", 0, 1, IS_UNIQUE, IS_ORDERED);
-    addEParameter(op, ecorePackage.getEClass(), "filter", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-    addEOperation(contextEClass, theUMLPackage.getType(), "getExpectedType", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-    addEOperation(contextEClass, theUMLPackage.getElement(), "getContextElement", 0, 1, IS_UNIQUE, IS_ORDERED);
-
     initEClass(expressionEClass, Expression.class, "Expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getExpression_Exp(), this.getAndOrXorExpression(), null, "exp", null, 0, 1, Expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    op = addEOperation(expressionEClass, ecorePackage.getEObject(), "getFilteredParentRule", 0, 1, IS_UNIQUE, IS_ORDERED);
+    EOperation op = addEOperation(expressionEClass, ecorePackage.getEObject(), "getFilteredParentRule", 0, 1, IS_UNIQUE, IS_ORDERED);
     addEParameter(op, ecorePackage.getEClass(), "filter", 0, 1, IS_UNIQUE, IS_ORDERED);
 
     addEOperation(expressionEClass, theUMLPackage.getType(), "getExpectedType", 0, 1, IS_UNIQUE, IS_ORDERED);

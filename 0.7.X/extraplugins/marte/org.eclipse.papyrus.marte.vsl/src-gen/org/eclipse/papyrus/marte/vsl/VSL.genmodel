@@ -9,32 +9,6 @@
     editorPluginID="org.eclipse.papyrus.marte.vsl.editor" usedGenPackages="../../../../../../model/UML.genmodel#//uml">
   <genPackages prefix="VSL" basePackage="org.eclipse.papyrus.marte.vsl" resource="XML"
       disposableProviderFactory="true" ecorePackage="VSL.ecore#/">
-    <genClasses ecoreClass="VSL.ecore#//Model">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//Model/imports"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//Model/context"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//Model/value"/>
-      <genOperations ecoreOperation="VSL.ecore#//Model/getFilteredParentRule">
-        <genParameters ecoreParameter="VSL.ecore#//Model/getFilteredParentRule/filter"/>
-      </genOperations>
-      <genOperations ecoreOperation="VSL.ecore#//Model/getExpectedType"/>
-      <genOperations ecoreOperation="VSL.ecore#//Model/getContextElement"/>
-    </genClasses>
-    <genClasses ecoreClass="VSL.ecore#//Import">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VSL.ecore#//Import/importURI"/>
-      <genOperations ecoreOperation="VSL.ecore#//Import/getFilteredParentRule">
-        <genParameters ecoreParameter="VSL.ecore#//Import/getFilteredParentRule/filter"/>
-      </genOperations>
-      <genOperations ecoreOperation="VSL.ecore#//Import/getExpectedType"/>
-      <genOperations ecoreOperation="VSL.ecore#//Import/getContextElement"/>
-    </genClasses>
-    <genClasses ecoreClass="VSL.ecore#//Context">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference VSL.ecore#//Context/context"/>
-      <genOperations ecoreOperation="VSL.ecore#//Context/getFilteredParentRule">
-        <genParameters ecoreParameter="VSL.ecore#//Context/getFilteredParentRule/filter"/>
-      </genOperations>
-      <genOperations ecoreOperation="VSL.ecore#//Context/getExpectedType"/>
-      <genOperations ecoreOperation="VSL.ecore#//Context/getContextElement"/>
-    </genClasses>
     <genClasses ecoreClass="VSL.ecore#//Expression">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VSL.ecore#//Expression/exp"/>
       <genOperations ecoreOperation="VSL.ecore#//Expression/getFilteredParentRule">

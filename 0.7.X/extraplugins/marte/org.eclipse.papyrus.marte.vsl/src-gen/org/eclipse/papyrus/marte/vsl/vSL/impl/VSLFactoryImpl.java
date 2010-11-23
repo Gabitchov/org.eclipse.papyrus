@@ -1,9 +1,16 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
  *
-
- */
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.marte.vsl.vSL.impl;
 
 import org.eclipse.emf.ecore.EClass;
@@ -68,9 +75,6 @@ public class VSLFactoryImpl extends EFactoryImpl implements VSLFactory
   {
     switch (eClass.getClassifierID())
     {
-      case VSLPackage.MODEL: return createModel();
-      case VSLPackage.IMPORT: return createImport();
-      case VSLPackage.CONTEXT: return createContext();
       case VSLPackage.EXPRESSION: return createExpression();
       case VSLPackage.AND_OR_XOR_EXPRESSION: return createAndOrXorExpression();
       case VSLPackage.EQUALITY_EXPRESSION: return createEqualityExpression();
@@ -113,39 +117,6 @@ public class VSLFactoryImpl extends EFactoryImpl implements VSLFactory
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Model createModel()
-  {
-    ModelImpl model = new ModelImpl();
-    return model;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Import createImport()
-  {
-    ImportImpl import_ = new ImportImpl();
-    return import_;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Context createContext()
-  {
-    ContextImpl context = new ContextImpl();
-    return context;
   }
 
   /**

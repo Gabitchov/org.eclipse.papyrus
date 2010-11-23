@@ -1,12 +1,22 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.marte.vsl.ui.contentassist;
 
 import org.eclipse.jface.text.ITextViewer;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
-import org.eclipse.xtext.ui.editor.contentassist.IContentProposalProvider;
 import org.eclipse.xtext.ui.editor.contentassist.XtextContentAssistProcessor;
-import org.eclipse.xtext.ui.editor.model.IXtextDocument;
 
-import com.google.inject.Inject;
 
 public class VSLContentAssistProcessor extends XtextContentAssistProcessor {
 
@@ -15,14 +25,7 @@ public class VSLContentAssistProcessor extends XtextContentAssistProcessor {
 	
 	@Override
 	public ICompletionProposal[] computeCompletionProposals(ITextViewer viewer, int offset) {
-		//if (contentProposalProvider == null)
-		//	return null;
-		
-		IXtextDocument document = (IXtextDocument) viewer.getDocument();
-		ICompletionProposal[] result = document.readOnly(createCompletionProposalComputer(viewer, offset));
-		//Arrays.sort(result, completionProposalComparator);
-		//result = completionProposalPostProcessor.postProcess(result);
-		return result;
+		return super.computeCompletionProposals(viewer, offset) ;
 	}
 	
 }

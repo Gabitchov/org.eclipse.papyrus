@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui.contentassist.antlr.internal;
 
 // Hack: Use our own Lexer superclass by means of import. 
@@ -12,10 +25,10 @@ import java.util.ArrayList;
 
 @SuppressWarnings("all")
 public class InternalConstraintWithVSLlLexer extends Lexer {
-    public static final int RULE_DATETIMELITERAL=8;
-    public static final int RULE_ID=5;
+    public static final int RULE_DATETIMELITERAL=7;
+    public static final int RULE_ID=4;
     public static final int RULE_ANY_OTHER=15;
-    public static final int RULE_REALLITERAL=7;
+    public static final int RULE_REALLITERAL=6;
     public static final int T29=29;
     public static final int T28=28;
     public static final int T27=27;
@@ -27,7 +40,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
     public static final int T22=22;
     public static final int T21=21;
     public static final int T20=20;
-    public static final int RULE_BOOLEANLITERAL=9;
+    public static final int RULE_BOOLEANLITERAL=8;
     public static final int RULE_INT=11;
     public static final int T38=38;
     public static final int T37=37;
@@ -39,12 +52,12 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
     public static final int T30=30;
     public static final int T32=32;
     public static final int T31=31;
-    public static final int RULE_NULLLITERAL=10;
-    public static final int RULE_INTEGERLITERAL=6;
+    public static final int RULE_NULLLITERAL=9;
+    public static final int RULE_INTEGERLITERAL=5;
     public static final int T49=49;
     public static final int T48=48;
     public static final int T43=43;
-    public static final int Tokens=54;
+    public static final int Tokens=52;
     public static final int RULE_SL_COMMENT=13;
     public static final int T42=42;
     public static final int T41=41;
@@ -54,14 +67,12 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
     public static final int T45=45;
     public static final int RULE_ML_COMMENT=12;
     public static final int T44=44;
-    public static final int RULE_STRING=4;
+    public static final int RULE_STRING=10;
     public static final int T50=50;
-    public static final int T52=52;
     public static final int RULE_WS=14;
     public static final int T51=51;
     public static final int T16=16;
     public static final int T17=17;
-    public static final int T53=53;
     public static final int T18=18;
     public static final int T19=19;
     public InternalConstraintWithVSLlLexer() {;} 
@@ -446,11 +457,10 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
     public final void mT36() throws RecognitionException {
         try {
             int _type = T36;
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:30:5: ( 'import' )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:30:7: 'import'
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:30:5: ( ':' )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:30:7: ':'
             {
-            match("import"); 
-
+            match(':'); 
 
             }
 
@@ -465,11 +475,10 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
     public final void mT37() throws RecognitionException {
         try {
             int _type = T37;
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:31:5: ( 'context' )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:31:7: 'context'
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:31:5: ( '.' )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:31:7: '.'
             {
-            match("context"); 
-
+            match('.'); 
 
             }
 
@@ -484,10 +493,10 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
     public final void mT38() throws RecognitionException {
         try {
             int _type = T38;
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:32:5: ( ':' )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:32:7: ':'
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:32:5: ( '(' )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:32:7: '('
             {
-            match(':'); 
+            match('('); 
 
             }
 
@@ -502,10 +511,10 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
     public final void mT39() throws RecognitionException {
         try {
             int _type = T39;
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:33:5: ( '.' )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:33:7: '.'
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:33:5: ( ')' )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:33:7: ')'
             {
-            match('.'); 
+            match(')'); 
 
             }
 
@@ -520,10 +529,11 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
     public final void mT40() throws RecognitionException {
         try {
             int _type = T40;
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:34:5: ( '(' )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:34:7: '('
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:34:5: ( '::' )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:34:7: '::'
             {
-            match('('); 
+            match("::"); 
+
 
             }
 
@@ -538,10 +548,11 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
     public final void mT41() throws RecognitionException {
         try {
             int _type = T41;
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:35:5: ( ')' )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:35:7: ')'
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:35:5: ( '..' )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:35:7: '..'
             {
-            match(')'); 
+            match(".."); 
+
 
             }
 
@@ -556,11 +567,10 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
     public final void mT42() throws RecognitionException {
         try {
             int _type = T42;
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:36:5: ( '::' )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:36:7: '::'
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:36:5: ( '{' )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:36:7: '{'
             {
-            match("::"); 
-
+            match('{'); 
 
             }
 
@@ -575,11 +585,10 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
     public final void mT43() throws RecognitionException {
         try {
             int _type = T43;
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:37:5: ( '..' )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:37:7: '..'
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:37:5: ( '}' )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:37:7: '}'
             {
-            match(".."); 
-
+            match('}'); 
 
             }
 
@@ -594,10 +603,10 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
     public final void mT44() throws RecognitionException {
         try {
             int _type = T44;
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:38:5: ( '{' )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:38:7: '{'
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:38:5: ( ',' )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:38:7: ','
             {
-            match('{'); 
+            match(','); 
 
             }
 
@@ -612,10 +621,10 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
     public final void mT45() throws RecognitionException {
         try {
             int _type = T45;
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:39:5: ( '}' )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:39:7: '}'
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:39:5: ( '=' )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:39:7: '='
             {
-            match('}'); 
+            match('='); 
 
             }
 
@@ -630,10 +639,10 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
     public final void mT46() throws RecognitionException {
         try {
             int _type = T46;
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:40:5: ( ',' )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:40:7: ','
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:40:5: ( '@' )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:40:7: '@'
             {
-            match(','); 
+            match('@'); 
 
             }
 
@@ -648,10 +657,11 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
     public final void mT47() throws RecognitionException {
         try {
             int _type = T47;
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:41:5: ( '=' )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:41:7: '='
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:41:5: ( 'when' )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:41:7: 'when'
             {
-            match('='); 
+            match("when"); 
+
 
             }
 
@@ -666,10 +676,10 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
     public final void mT48() throws RecognitionException {
         try {
             int _type = T48;
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:42:5: ( '@' )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:42:7: '@'
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:42:5: ( '&' )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:42:7: '&'
             {
-            match('@'); 
+            match('&'); 
 
             }
 
@@ -684,10 +694,10 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
     public final void mT49() throws RecognitionException {
         try {
             int _type = T49;
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:43:5: ( 'when' )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:43:7: 'when'
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:43:5: ( 'jitter(' )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:43:7: 'jitter('
             {
-            match("when"); 
+            match("jitter("); 
 
 
             }
@@ -703,10 +713,10 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
     public final void mT50() throws RecognitionException {
         try {
             int _type = T50;
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:44:5: ( '&' )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:44:7: '&'
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:44:5: ( '$' )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:44:7: '$'
             {
-            match('&'); 
+            match('$'); 
 
             }
 
@@ -721,45 +731,8 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
     public final void mT51() throws RecognitionException {
         try {
             int _type = T51;
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:45:5: ( 'jitter(' )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:45:7: 'jitter('
-            {
-            match("jitter("); 
-
-
-            }
-
-            this.type = _type;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end T51
-
-    // $ANTLR start T52
-    public final void mT52() throws RecognitionException {
-        try {
-            int _type = T52;
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:46:5: ( '$' )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:46:7: '$'
-            {
-            match('$'); 
-
-            }
-
-            this.type = _type;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end T52
-
-    // $ANTLR start T53
-    public final void mT53() throws RecognitionException {
-        try {
-            int _type = T53;
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:47:5: ( '?' )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:47:7: '?'
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:45:5: ( '?' )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:45:7: '?'
             {
             match('?'); 
 
@@ -770,16 +743,16 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end T53
+    // $ANTLR end T51
 
     // $ANTLR start RULE_INTEGERLITERAL
     public final void mRULE_INTEGERLITERAL() throws RecognitionException {
         try {
             int _type = RULE_INTEGERLITERAL;
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7130:21: ( ( '+' | '-' )? ( ( '0' .. '9' )+ | '0x' ( '0' .. '9' | 'A' .. 'F' | 'a' .. 'f' )+ | '0b' ( '0' .. '1' )+ ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7130:23: ( '+' | '-' )? ( ( '0' .. '9' )+ | '0x' ( '0' .. '9' | 'A' .. 'F' | 'a' .. 'f' )+ | '0b' ( '0' .. '1' )+ )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6907:21: ( ( '+' | '-' )? ( ( '0' .. '9' )+ | '0x' ( '0' .. '9' | 'A' .. 'F' | 'a' .. 'f' )+ | '0b' ( '0' .. '1' )+ ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6907:23: ( '+' | '-' )? ( ( '0' .. '9' )+ | '0x' ( '0' .. '9' | 'A' .. 'F' | 'a' .. 'f' )+ | '0b' ( '0' .. '1' )+ )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7130:23: ( '+' | '-' )?
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6907:23: ( '+' | '-' )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -806,7 +779,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
 
             }
 
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7130:34: ( ( '0' .. '9' )+ | '0x' ( '0' .. '9' | 'A' .. 'F' | 'a' .. 'f' )+ | '0b' ( '0' .. '1' )+ )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6907:34: ( ( '0' .. '9' )+ | '0x' ( '0' .. '9' | 'A' .. 'F' | 'a' .. 'f' )+ | '0b' ( '0' .. '1' )+ )
             int alt5=3;
             int LA5_0 = input.LA(1);
 
@@ -831,15 +804,15 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("7130:34: ( ( '0' .. '9' )+ | '0x' ( '0' .. '9' | 'A' .. 'F' | 'a' .. 'f' )+ | '0b' ( '0' .. '1' )+ )", 5, 0, input);
+                    new NoViableAltException("6907:34: ( ( '0' .. '9' )+ | '0x' ( '0' .. '9' | 'A' .. 'F' | 'a' .. 'f' )+ | '0b' ( '0' .. '1' )+ )", 5, 0, input);
 
                 throw nvae;
             }
             switch (alt5) {
                 case 1 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7130:35: ( '0' .. '9' )+
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6907:35: ( '0' .. '9' )+
                     {
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7130:35: ( '0' .. '9' )+
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6907:35: ( '0' .. '9' )+
                     int cnt2=0;
                     loop2:
                     do {
@@ -853,7 +826,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
 
                         switch (alt2) {
                     	case 1 :
-                    	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7130:36: '0' .. '9'
+                    	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6907:36: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -873,11 +846,11 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7130:47: '0x' ( '0' .. '9' | 'A' .. 'F' | 'a' .. 'f' )+
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6907:47: '0x' ( '0' .. '9' | 'A' .. 'F' | 'a' .. 'f' )+
                     {
                     match("0x"); 
 
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7130:52: ( '0' .. '9' | 'A' .. 'F' | 'a' .. 'f' )+
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6907:52: ( '0' .. '9' | 'A' .. 'F' | 'a' .. 'f' )+
                     int cnt3=0;
                     loop3:
                     do {
@@ -920,11 +893,11 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7130:82: '0b' ( '0' .. '1' )+
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6907:82: '0b' ( '0' .. '1' )+
                     {
                     match("0b"); 
 
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7130:87: ( '0' .. '1' )+
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6907:87: ( '0' .. '1' )+
                     int cnt4=0;
                     loop4:
                     do {
@@ -938,7 +911,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
 
                         switch (alt4) {
                     	case 1 :
-                    	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7130:88: '0' .. '1'
+                    	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6907:88: '0' .. '1'
                     	    {
                     	    matchRange('0','1'); 
 
@@ -974,10 +947,10 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
     public final void mRULE_REALLITERAL() throws RecognitionException {
         try {
             int _type = RULE_REALLITERAL;
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7132:18: ( ( '+' | '-' )? ( '0' .. '9' )+ '.' ( '0' .. '9' )+ ( 'E' ( '+' | '-' )? ( '0' .. '9' )+ )? )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7132:20: ( '+' | '-' )? ( '0' .. '9' )+ '.' ( '0' .. '9' )+ ( 'E' ( '+' | '-' )? ( '0' .. '9' )+ )?
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6909:18: ( ( '+' | '-' )? ( '0' .. '9' )+ '.' ( '0' .. '9' )+ ( 'E' ( '+' | '-' )? ( '0' .. '9' )+ )? )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6909:20: ( '+' | '-' )? ( '0' .. '9' )+ '.' ( '0' .. '9' )+ ( 'E' ( '+' | '-' )? ( '0' .. '9' )+ )?
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7132:20: ( '+' | '-' )?
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6909:20: ( '+' | '-' )?
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -1004,7 +977,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
 
             }
 
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7132:31: ( '0' .. '9' )+
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6909:31: ( '0' .. '9' )+
             int cnt7=0;
             loop7:
             do {
@@ -1018,7 +991,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7132:32: '0' .. '9'
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6909:32: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -1035,7 +1008,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
             } while (true);
 
             match('.'); 
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7132:47: ( '0' .. '9' )+
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6909:47: ( '0' .. '9' )+
             int cnt8=0;
             loop8:
             do {
@@ -1049,7 +1022,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
 
                 switch (alt8) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7132:48: '0' .. '9'
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6909:48: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -1065,7 +1038,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                 cnt8++;
             } while (true);
 
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7132:59: ( 'E' ( '+' | '-' )? ( '0' .. '9' )+ )?
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6909:59: ( 'E' ( '+' | '-' )? ( '0' .. '9' )+ )?
             int alt11=2;
             int LA11_0 = input.LA(1);
 
@@ -1074,10 +1047,10 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
             }
             switch (alt11) {
                 case 1 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7132:60: 'E' ( '+' | '-' )? ( '0' .. '9' )+
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6909:60: 'E' ( '+' | '-' )? ( '0' .. '9' )+
                     {
                     match('E'); 
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7132:64: ( '+' | '-' )?
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6909:64: ( '+' | '-' )?
                     int alt9=2;
                     int LA9_0 = input.LA(1);
 
@@ -1104,7 +1077,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
 
                     }
 
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7132:75: ( '0' .. '9' )+
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6909:75: ( '0' .. '9' )+
                     int cnt10=0;
                     loop10:
                     do {
@@ -1118,7 +1091,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
 
                         switch (alt10) {
                     	case 1 :
-                    	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7132:76: '0' .. '9'
+                    	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6909:76: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -1154,10 +1127,10 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
     public final void mRULE_DATETIMELITERAL() throws RecognitionException {
         try {
             int _type = RULE_DATETIMELITERAL;
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:22: ( ( ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' ) ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )? )? ( ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) )? ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:24: ( ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' ) ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )? )? ( ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) )? ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:22: ( ( ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' ) ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )? )? ( ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) )? ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:24: ( ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' ) ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )? )? ( ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) )? ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:24: ( ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' ) ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )? )? ( ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) )? ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:24: ( ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' ) ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )? )? ( ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) )? ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )
             int alt25=3;
             switch ( input.LA(1) ) {
             case '0':
@@ -1176,14 +1149,14 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                     }
                     else {
                         NoViableAltException nvae =
-                            new NoViableAltException("7134:24: ( ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' ) ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )? )? ( ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) )? ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )", 25, 5, input);
+                            new NoViableAltException("6911:24: ( ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' ) ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )? )? ( ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) )? ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )", 25, 5, input);
 
                         throw nvae;
                     }
                 }
                 else {
                     NoViableAltException nvae =
-                        new NoViableAltException("7134:24: ( ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' ) ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )? )? ( ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) )? ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )", 25, 1, input);
+                        new NoViableAltException("6911:24: ( ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' ) ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )? )? ( ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) )? ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )", 25, 1, input);
 
                     throw nvae;
                 }
@@ -1204,7 +1177,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                     }
                     else {
                         NoViableAltException nvae =
-                            new NoViableAltException("7134:24: ( ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' ) ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )? )? ( ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) )? ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )", 25, 6, input);
+                            new NoViableAltException("6911:24: ( ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' ) ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )? )? ( ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) )? ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )", 25, 6, input);
 
                         throw nvae;
                     }
@@ -1214,7 +1187,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                 }
                 else {
                     NoViableAltException nvae =
-                        new NoViableAltException("7134:24: ( ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' ) ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )? )? ( ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) )? ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )", 25, 2, input);
+                        new NoViableAltException("6911:24: ( ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' ) ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )? )? ( ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) )? ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )", 25, 2, input);
 
                     throw nvae;
                 }
@@ -1242,16 +1215,16 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("7134:24: ( ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' ) ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )? )? ( ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) )? ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )", 25, 0, input);
+                    new NoViableAltException("6911:24: ( ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' ) ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )? )? ( ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) )? ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )", 25, 0, input);
 
                 throw nvae;
             }
 
             switch (alt25) {
                 case 1 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:25: ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' ) ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )? )? ( ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) )? ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )?
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:25: ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' ) ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )? )? ( ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) )? ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )?
                     {
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:25: ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:25: ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' )
                     int alt12=2;
                     int LA12_0 = input.LA(1);
 
@@ -1263,13 +1236,13 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                     }
                     else {
                         NoViableAltException nvae =
-                            new NoViableAltException("7134:25: ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' )", 12, 0, input);
+                            new NoViableAltException("6911:25: ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' )", 12, 0, input);
 
                         throw nvae;
                     }
                     switch (alt12) {
                         case 1 :
-                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:26: '0' .. '1' '0' .. '9'
+                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:26: '0' .. '1' '0' .. '9'
                             {
                             matchRange('0','1'); 
                             matchRange('0','9'); 
@@ -1277,7 +1250,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                             }
                             break;
                         case 2 :
-                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:44: '2' '0' .. '3'
+                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:44: '2' '0' .. '3'
                             {
                             match('2'); 
                             matchRange('0','3'); 
@@ -1290,7 +1263,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                     match(':'); 
                     matchRange('0','5'); 
                     matchRange('0','9'); 
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:80: ( ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )? )?
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:80: ( ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )? )?
                     int alt14=2;
                     int LA14_0 = input.LA(1);
 
@@ -1299,12 +1272,12 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                     }
                     switch (alt14) {
                         case 1 :
-                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:81: ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )?
+                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:81: ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )?
                             {
                             match(':'); 
                             matchRange('0','5'); 
                             matchRange('0','9'); 
-                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:103: ( ':' '0' .. '9' '0' .. '9' )?
+                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:103: ( ':' '0' .. '9' '0' .. '9' )?
                             int alt13=2;
                             int LA13_0 = input.LA(1);
 
@@ -1313,7 +1286,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                             }
                             switch (alt13) {
                                 case 1 :
-                                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:104: ':' '0' .. '9' '0' .. '9'
+                                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:104: ':' '0' .. '9' '0' .. '9'
                                     {
                                     match(':'); 
                                     matchRange('0','9'); 
@@ -1330,7 +1303,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
 
                     }
 
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:130: ( ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) )?
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:130: ( ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) )?
                     int alt17=2;
                     int LA17_0 = input.LA(1);
 
@@ -1343,7 +1316,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                     }
                     switch (alt17) {
                         case 1 :
-                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:131: ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) )
+                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:131: ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) )
                             {
                             match(' '); 
                             matchRange('0','9'); 
@@ -1351,7 +1324,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                             matchRange('0','9'); 
                             matchRange('0','9'); 
                             match('/'); 
-                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:175: ( '0' '0' .. '9' | '1' '0' .. '2' )
+                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:175: ( '0' '0' .. '9' | '1' '0' .. '2' )
                             int alt15=2;
                             int LA15_0 = input.LA(1);
 
@@ -1363,13 +1336,13 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                             }
                             else {
                                 NoViableAltException nvae =
-                                    new NoViableAltException("7134:175: ( '0' '0' .. '9' | '1' '0' .. '2' )", 15, 0, input);
+                                    new NoViableAltException("6911:175: ( '0' '0' .. '9' | '1' '0' .. '2' )", 15, 0, input);
 
                                 throw nvae;
                             }
                             switch (alt15) {
                                 case 1 :
-                                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:176: '0' '0' .. '9'
+                                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:176: '0' '0' .. '9'
                                     {
                                     match('0'); 
                                     matchRange('0','9'); 
@@ -1377,7 +1350,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                                     }
                                     break;
                                 case 2 :
-                                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:189: '1' '0' .. '2'
+                                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:189: '1' '0' .. '2'
                                     {
                                     match('1'); 
                                     matchRange('0','2'); 
@@ -1388,7 +1361,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                             }
 
                             match('/'); 
-                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:207: ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) )
+                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:207: ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) )
                             int alt16=2;
                             int LA16_0 = input.LA(1);
 
@@ -1400,13 +1373,13 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                             }
                             else {
                                 NoViableAltException nvae =
-                                    new NoViableAltException("7134:207: ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) )", 16, 0, input);
+                                    new NoViableAltException("6911:207: ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) )", 16, 0, input);
 
                                 throw nvae;
                             }
                             switch (alt16) {
                                 case 1 :
-                                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:208: '0' .. '2' '0' .. '9'
+                                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:208: '0' .. '2' '0' .. '9'
                                     {
                                     matchRange('0','2'); 
                                     matchRange('0','9'); 
@@ -1414,7 +1387,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                                     }
                                     break;
                                 case 2 :
-                                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:226: '3' ( '0' | '1' )
+                                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:226: '3' ( '0' | '1' )
                                     {
                                     match('3'); 
                                     if ( (input.LA(1)>='0' && input.LA(1)<='1') ) {
@@ -1439,7 +1412,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
 
                     }
 
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:243: ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )?
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:243: ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )?
                     int alt19=2;
                     int LA19_0 = input.LA(1);
 
@@ -1448,10 +1421,10 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                     }
                     switch (alt19) {
                         case 1 :
-                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:244: ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )
+                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:244: ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )
                             {
                             match(' '); 
-                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:248: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )
+                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:248: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )
                             int alt18=7;
                             switch ( input.LA(1) ) {
                             case 'M':
@@ -1471,7 +1444,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                                 }
                                 else {
                                     NoViableAltException nvae =
-                                        new NoViableAltException("7134:248: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )", 18, 2, input);
+                                        new NoViableAltException("6911:248: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )", 18, 2, input);
 
                                     throw nvae;
                                 }
@@ -1491,15 +1464,15 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                                 {
                                 int LA18_5 = input.LA(2);
 
-                                if ( (LA18_5=='a') ) {
-                                    alt18=6;
-                                }
-                                else if ( (LA18_5=='u') ) {
+                                if ( (LA18_5=='u') ) {
                                     alt18=7;
+                                }
+                                else if ( (LA18_5=='a') ) {
+                                    alt18=6;
                                 }
                                 else {
                                     NoViableAltException nvae =
-                                        new NoViableAltException("7134:248: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )", 18, 5, input);
+                                        new NoViableAltException("6911:248: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )", 18, 5, input);
 
                                     throw nvae;
                                 }
@@ -1507,14 +1480,14 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                                 break;
                             default:
                                 NoViableAltException nvae =
-                                    new NoViableAltException("7134:248: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )", 18, 0, input);
+                                    new NoViableAltException("6911:248: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )", 18, 0, input);
 
                                 throw nvae;
                             }
 
                             switch (alt18) {
                                 case 1 :
-                                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:249: 'Mon'
+                                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:249: 'Mon'
                                     {
                                     match("Mon"); 
 
@@ -1522,7 +1495,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                                     }
                                     break;
                                 case 2 :
-                                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:255: 'Tue'
+                                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:255: 'Tue'
                                     {
                                     match("Tue"); 
 
@@ -1530,7 +1503,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                                     }
                                     break;
                                 case 3 :
-                                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:261: 'Wed'
+                                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:261: 'Wed'
                                     {
                                     match("Wed"); 
 
@@ -1538,7 +1511,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                                     }
                                     break;
                                 case 4 :
-                                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:267: 'Thr'
+                                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:267: 'Thr'
                                     {
                                     match("Thr"); 
 
@@ -1546,7 +1519,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                                     }
                                     break;
                                 case 5 :
-                                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:273: 'Fri'
+                                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:273: 'Fri'
                                     {
                                     match("Fri"); 
 
@@ -1554,7 +1527,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                                     }
                                     break;
                                 case 6 :
-                                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:279: 'Sat'
+                                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:279: 'Sat'
                                     {
                                     match("Sat"); 
 
@@ -1562,7 +1535,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                                     }
                                     break;
                                 case 7 :
-                                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:285: 'Sun'
+                                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:285: 'Sun'
                                     {
                                     match("Sun"); 
 
@@ -1582,14 +1555,14 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:294: '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )?
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:294: '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )?
                     {
                     matchRange('0','9'); 
                     matchRange('0','9'); 
                     matchRange('0','9'); 
                     matchRange('0','9'); 
                     match('/'); 
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:334: ( '0' '0' .. '9' | '1' '0' .. '2' )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:334: ( '0' '0' .. '9' | '1' '0' .. '2' )
                     int alt20=2;
                     int LA20_0 = input.LA(1);
 
@@ -1601,13 +1574,13 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                     }
                     else {
                         NoViableAltException nvae =
-                            new NoViableAltException("7134:334: ( '0' '0' .. '9' | '1' '0' .. '2' )", 20, 0, input);
+                            new NoViableAltException("6911:334: ( '0' '0' .. '9' | '1' '0' .. '2' )", 20, 0, input);
 
                         throw nvae;
                     }
                     switch (alt20) {
                         case 1 :
-                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:335: '0' '0' .. '9'
+                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:335: '0' '0' .. '9'
                             {
                             match('0'); 
                             matchRange('0','9'); 
@@ -1615,7 +1588,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                             }
                             break;
                         case 2 :
-                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:348: '1' '0' .. '2'
+                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:348: '1' '0' .. '2'
                             {
                             match('1'); 
                             matchRange('0','2'); 
@@ -1626,7 +1599,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                     }
 
                     match('/'); 
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:366: ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:366: ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) )
                     int alt21=2;
                     int LA21_0 = input.LA(1);
 
@@ -1638,13 +1611,13 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                     }
                     else {
                         NoViableAltException nvae =
-                            new NoViableAltException("7134:366: ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) )", 21, 0, input);
+                            new NoViableAltException("6911:366: ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) )", 21, 0, input);
 
                         throw nvae;
                     }
                     switch (alt21) {
                         case 1 :
-                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:367: '0' .. '2' '0' .. '9'
+                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:367: '0' .. '2' '0' .. '9'
                             {
                             matchRange('0','2'); 
                             matchRange('0','9'); 
@@ -1652,7 +1625,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                             }
                             break;
                         case 2 :
-                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:385: '3' ( '0' | '1' )
+                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:385: '3' ( '0' | '1' )
                             {
                             match('3'); 
                             if ( (input.LA(1)>='0' && input.LA(1)<='1') ) {
@@ -1671,7 +1644,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
 
                     }
 
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:400: ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )?
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:400: ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )?
                     int alt23=2;
                     int LA23_0 = input.LA(1);
 
@@ -1680,10 +1653,10 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                     }
                     switch (alt23) {
                         case 1 :
-                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:401: ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )
+                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:401: ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )
                             {
                             match(' '); 
-                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:405: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )
+                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:405: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )
                             int alt22=7;
                             switch ( input.LA(1) ) {
                             case 'M':
@@ -1703,7 +1676,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                                 }
                                 else {
                                     NoViableAltException nvae =
-                                        new NoViableAltException("7134:405: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )", 22, 2, input);
+                                        new NoViableAltException("6911:405: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )", 22, 2, input);
 
                                     throw nvae;
                                 }
@@ -1723,15 +1696,15 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                                 {
                                 int LA22_5 = input.LA(2);
 
-                                if ( (LA22_5=='u') ) {
-                                    alt22=7;
-                                }
-                                else if ( (LA22_5=='a') ) {
+                                if ( (LA22_5=='a') ) {
                                     alt22=6;
+                                }
+                                else if ( (LA22_5=='u') ) {
+                                    alt22=7;
                                 }
                                 else {
                                     NoViableAltException nvae =
-                                        new NoViableAltException("7134:405: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )", 22, 5, input);
+                                        new NoViableAltException("6911:405: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )", 22, 5, input);
 
                                     throw nvae;
                                 }
@@ -1739,14 +1712,14 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                                 break;
                             default:
                                 NoViableAltException nvae =
-                                    new NoViableAltException("7134:405: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )", 22, 0, input);
+                                    new NoViableAltException("6911:405: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )", 22, 0, input);
 
                                 throw nvae;
                             }
 
                             switch (alt22) {
                                 case 1 :
-                                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:406: 'Mon'
+                                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:406: 'Mon'
                                     {
                                     match("Mon"); 
 
@@ -1754,7 +1727,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                                     }
                                     break;
                                 case 2 :
-                                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:412: 'Tue'
+                                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:412: 'Tue'
                                     {
                                     match("Tue"); 
 
@@ -1762,7 +1735,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                                     }
                                     break;
                                 case 3 :
-                                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:418: 'Wed'
+                                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:418: 'Wed'
                                     {
                                     match("Wed"); 
 
@@ -1770,7 +1743,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                                     }
                                     break;
                                 case 4 :
-                                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:424: 'Thr'
+                                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:424: 'Thr'
                                     {
                                     match("Thr"); 
 
@@ -1778,7 +1751,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                                     }
                                     break;
                                 case 5 :
-                                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:430: 'Fri'
+                                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:430: 'Fri'
                                     {
                                     match("Fri"); 
 
@@ -1786,7 +1759,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                                     }
                                     break;
                                 case 6 :
-                                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:436: 'Sat'
+                                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:436: 'Sat'
                                     {
                                     match("Sat"); 
 
@@ -1794,7 +1767,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                                     }
                                     break;
                                 case 7 :
-                                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:442: 'Sun'
+                                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:442: 'Sun'
                                     {
                                     match("Sun"); 
 
@@ -1814,9 +1787,9 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:451: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:451: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )
                     {
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:451: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:451: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )
                     int alt24=7;
                     switch ( input.LA(1) ) {
                     case 'M':
@@ -1828,15 +1801,15 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                         {
                         int LA24_2 = input.LA(2);
 
-                        if ( (LA24_2=='u') ) {
-                            alt24=2;
-                        }
-                        else if ( (LA24_2=='h') ) {
+                        if ( (LA24_2=='h') ) {
                             alt24=4;
+                        }
+                        else if ( (LA24_2=='u') ) {
+                            alt24=2;
                         }
                         else {
                             NoViableAltException nvae =
-                                new NoViableAltException("7134:451: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )", 24, 2, input);
+                                new NoViableAltException("6911:451: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )", 24, 2, input);
 
                             throw nvae;
                         }
@@ -1856,15 +1829,15 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                         {
                         int LA24_5 = input.LA(2);
 
-                        if ( (LA24_5=='u') ) {
-                            alt24=7;
-                        }
-                        else if ( (LA24_5=='a') ) {
+                        if ( (LA24_5=='a') ) {
                             alt24=6;
+                        }
+                        else if ( (LA24_5=='u') ) {
+                            alt24=7;
                         }
                         else {
                             NoViableAltException nvae =
-                                new NoViableAltException("7134:451: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )", 24, 5, input);
+                                new NoViableAltException("6911:451: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )", 24, 5, input);
 
                             throw nvae;
                         }
@@ -1872,14 +1845,14 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                         break;
                     default:
                         NoViableAltException nvae =
-                            new NoViableAltException("7134:451: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )", 24, 0, input);
+                            new NoViableAltException("6911:451: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )", 24, 0, input);
 
                         throw nvae;
                     }
 
                     switch (alt24) {
                         case 1 :
-                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:452: 'Mon'
+                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:452: 'Mon'
                             {
                             match("Mon"); 
 
@@ -1887,7 +1860,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                             }
                             break;
                         case 2 :
-                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:458: 'Tue'
+                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:458: 'Tue'
                             {
                             match("Tue"); 
 
@@ -1895,7 +1868,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                             }
                             break;
                         case 3 :
-                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:464: 'Wed'
+                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:464: 'Wed'
                             {
                             match("Wed"); 
 
@@ -1903,7 +1876,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                             }
                             break;
                         case 4 :
-                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:470: 'Thr'
+                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:470: 'Thr'
                             {
                             match("Thr"); 
 
@@ -1911,7 +1884,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                             }
                             break;
                         case 5 :
-                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:476: 'Fri'
+                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:476: 'Fri'
                             {
                             match("Fri"); 
 
@@ -1919,7 +1892,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                             }
                             break;
                         case 6 :
-                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:482: 'Sat'
+                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:482: 'Sat'
                             {
                             match("Sat"); 
 
@@ -1927,7 +1900,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                             }
                             break;
                         case 7 :
-                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7134:488: 'Sun'
+                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6911:488: 'Sun'
                             {
                             match("Sun"); 
 
@@ -1957,10 +1930,10 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
     public final void mRULE_BOOLEANLITERAL() throws RecognitionException {
         try {
             int _type = RULE_BOOLEANLITERAL;
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7136:21: ( ( 'true' | 'false' ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7136:23: ( 'true' | 'false' )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6913:21: ( ( 'true' | 'false' ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6913:23: ( 'true' | 'false' )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7136:23: ( 'true' | 'false' )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6913:23: ( 'true' | 'false' )
             int alt26=2;
             int LA26_0 = input.LA(1);
 
@@ -1972,13 +1945,13 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("7136:23: ( 'true' | 'false' )", 26, 0, input);
+                    new NoViableAltException("6913:23: ( 'true' | 'false' )", 26, 0, input);
 
                 throw nvae;
             }
             switch (alt26) {
                 case 1 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7136:24: 'true'
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6913:24: 'true'
                     {
                     match("true"); 
 
@@ -1986,7 +1959,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7136:31: 'false'
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6913:31: 'false'
                     {
                     match("false"); 
 
@@ -2010,8 +1983,8 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
     public final void mRULE_NULLLITERAL() throws RecognitionException {
         try {
             int _type = RULE_NULLLITERAL;
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7138:18: ( 'null' )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7138:20: 'null'
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6915:18: ( 'null' )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6915:20: 'null'
             {
             match("null"); 
 
@@ -2029,10 +2002,10 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
     public final void mRULE_ID() throws RecognitionException {
         try {
             int _type = RULE_ID;
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7140:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7140:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6917:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6917:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7140:11: ( '^' )?
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6917:11: ( '^' )?
             int alt27=2;
             int LA27_0 = input.LA(1);
 
@@ -2041,7 +2014,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
             }
             switch (alt27) {
                 case 1 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7140:11: '^'
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6917:11: '^'
                     {
                     match('^'); 
 
@@ -2060,7 +2033,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                 recover(mse);    throw mse;
             }
 
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7140:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6917:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop28:
             do {
                 int alt28=2;
@@ -2108,10 +2081,10 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
     public final void mRULE_INT() throws RecognitionException {
         try {
             int _type = RULE_INT;
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7142:10: ( ( '0' .. '9' )+ )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7142:12: ( '0' .. '9' )+
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6919:10: ( ( '0' .. '9' )+ )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6919:12: ( '0' .. '9' )+
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7142:12: ( '0' .. '9' )+
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6919:12: ( '0' .. '9' )+
             int cnt29=0;
             loop29:
             do {
@@ -2125,7 +2098,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
 
                 switch (alt29) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7142:13: '0' .. '9'
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6919:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -2155,10 +2128,10 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
     public final void mRULE_STRING() throws RecognitionException {
         try {
             int _type = RULE_STRING;
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7144:13: ( ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7144:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6921:13: ( ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6921:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7144:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6921:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             int alt32=2;
             int LA32_0 = input.LA(1);
 
@@ -2170,16 +2143,16 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("7144:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )", 32, 0, input);
+                    new NoViableAltException("6921:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )", 32, 0, input);
 
                 throw nvae;
             }
             switch (alt32) {
                 case 1 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7144:16: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6921:16: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7144:20: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6921:20: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
                     loop30:
                     do {
                         int alt30=3;
@@ -2195,7 +2168,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
 
                         switch (alt30) {
                     	case 1 :
-                    	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7144:21: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
+                    	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6921:21: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
                     	    {
                     	    match('\\'); 
                     	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -2212,7 +2185,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7144:62: ~ ( ( '\\\\' | '\"' ) )
+                    	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6921:62: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFE') ) {
                     	        input.consume();
@@ -2238,10 +2211,10 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7144:82: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6921:82: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
                     {
                     match('\''); 
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7144:87: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6921:87: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
                     loop31:
                     do {
                         int alt31=3;
@@ -2257,7 +2230,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
 
                         switch (alt31) {
                     	case 1 :
-                    	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7144:88: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
+                    	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6921:88: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
                     	    {
                     	    match('\\'); 
                     	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -2274,7 +2247,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7144:129: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6921:129: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFE') ) {
                     	        input.consume();
@@ -2316,12 +2289,12 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
     public final void mRULE_ML_COMMENT() throws RecognitionException {
         try {
             int _type = RULE_ML_COMMENT;
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7146:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7146:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6923:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6923:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7146:24: ( options {greedy=false; } : . )*
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6923:24: ( options {greedy=false; } : . )*
             loop33:
             do {
                 int alt33=2;
@@ -2346,7 +2319,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
 
                 switch (alt33) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7146:52: .
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6923:52: .
             	    {
             	    matchAny(); 
 
@@ -2374,12 +2347,12 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
     public final void mRULE_SL_COMMENT() throws RecognitionException {
         try {
             int _type = RULE_SL_COMMENT;
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7148:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7148:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6925:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6925:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7148:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6925:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop34:
             do {
                 int alt34=2;
@@ -2392,7 +2365,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
 
                 switch (alt34) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7148:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6925:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFE') ) {
             	        input.consume();
@@ -2413,7 +2386,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                 }
             } while (true);
 
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7148:40: ( ( '\\r' )? '\\n' )?
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6925:40: ( ( '\\r' )? '\\n' )?
             int alt36=2;
             int LA36_0 = input.LA(1);
 
@@ -2422,9 +2395,9 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
             }
             switch (alt36) {
                 case 1 :
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7148:41: ( '\\r' )? '\\n'
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6925:41: ( '\\r' )? '\\n'
                     {
-                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7148:41: ( '\\r' )?
+                    // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6925:41: ( '\\r' )?
                     int alt35=2;
                     int LA35_0 = input.LA(1);
 
@@ -2433,7 +2406,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                     }
                     switch (alt35) {
                         case 1 :
-                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7148:41: '\\r'
+                            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6925:41: '\\r'
                             {
                             match('\r'); 
 
@@ -2463,10 +2436,10 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
     public final void mRULE_WS() throws RecognitionException {
         try {
             int _type = RULE_WS;
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7150:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7150:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6927:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6927:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7150:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6927:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt37=0;
             loop37:
             do {
@@ -2519,8 +2492,8 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
     public final void mRULE_ANY_OTHER() throws RecognitionException {
         try {
             int _type = RULE_ANY_OTHER;
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7152:16: ( . )
-            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:7152:18: .
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6929:16: ( . )
+            // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:6929:18: .
             {
             matchAny(); 
 
@@ -2534,8 +2507,8 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
     // $ANTLR end RULE_ANY_OTHER
 
     public void mTokens() throws RecognitionException {
-        // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1:8: ( T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | T29 | T30 | T31 | T32 | T33 | T34 | T35 | T36 | T37 | T38 | T39 | T40 | T41 | T42 | T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | RULE_INTEGERLITERAL | RULE_REALLITERAL | RULE_DATETIMELITERAL | RULE_BOOLEANLITERAL | RULE_NULLLITERAL | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
-        int alt38=50;
+        // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1:8: ( T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | T29 | T30 | T31 | T32 | T33 | T34 | T35 | T36 | T37 | T38 | T39 | T40 | T41 | T42 | T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | RULE_INTEGERLITERAL | RULE_REALLITERAL | RULE_DATETIMELITERAL | RULE_BOOLEANLITERAL | RULE_NULLLITERAL | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
+        int alt38=48;
         alt38 = dfa38.predict(input);
         switch (alt38) {
             case 1 :
@@ -2791,98 +2764,84 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
                 }
                 break;
             case 37 :
-                // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1:154: T52
-                {
-                mT52(); 
-
-                }
-                break;
-            case 38 :
-                // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1:158: T53
-                {
-                mT53(); 
-
-                }
-                break;
-            case 39 :
-                // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1:162: RULE_INTEGERLITERAL
+                // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1:154: RULE_INTEGERLITERAL
                 {
                 mRULE_INTEGERLITERAL(); 
 
                 }
                 break;
-            case 40 :
-                // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1:182: RULE_REALLITERAL
+            case 38 :
+                // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1:174: RULE_REALLITERAL
                 {
                 mRULE_REALLITERAL(); 
 
                 }
                 break;
-            case 41 :
-                // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1:199: RULE_DATETIMELITERAL
+            case 39 :
+                // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1:191: RULE_DATETIMELITERAL
                 {
                 mRULE_DATETIMELITERAL(); 
 
                 }
                 break;
-            case 42 :
-                // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1:220: RULE_BOOLEANLITERAL
+            case 40 :
+                // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1:212: RULE_BOOLEANLITERAL
                 {
                 mRULE_BOOLEANLITERAL(); 
 
                 }
                 break;
-            case 43 :
-                // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1:240: RULE_NULLLITERAL
+            case 41 :
+                // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1:232: RULE_NULLLITERAL
                 {
                 mRULE_NULLLITERAL(); 
 
                 }
                 break;
-            case 44 :
-                // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1:257: RULE_ID
+            case 42 :
+                // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1:249: RULE_ID
                 {
                 mRULE_ID(); 
 
                 }
                 break;
-            case 45 :
-                // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1:265: RULE_INT
+            case 43 :
+                // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1:257: RULE_INT
                 {
                 mRULE_INT(); 
 
                 }
                 break;
-            case 46 :
-                // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1:274: RULE_STRING
+            case 44 :
+                // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1:266: RULE_STRING
                 {
                 mRULE_STRING(); 
 
                 }
                 break;
-            case 47 :
-                // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1:286: RULE_ML_COMMENT
+            case 45 :
+                // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1:278: RULE_ML_COMMENT
                 {
                 mRULE_ML_COMMENT(); 
 
                 }
                 break;
-            case 48 :
-                // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1:302: RULE_SL_COMMENT
+            case 46 :
+                // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1:294: RULE_SL_COMMENT
                 {
                 mRULE_SL_COMMENT(); 
 
                 }
                 break;
-            case 49 :
-                // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1:318: RULE_WS
+            case 47 :
+                // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1:310: RULE_WS
                 {
                 mRULE_WS(); 
 
                 }
                 break;
-            case 50 :
-                // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1:326: RULE_ANY_OTHER
+            case 48 :
+                // ../org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui/src-gen/org/eclipse/papyrus/constraintwithvsl/editor/xtext/ui/contentassist/antlr/internal/InternalConstraintWithVSLl.g:1:318: RULE_ANY_OTHER
                 {
                 mRULE_ANY_OTHER(); 
 
@@ -2896,219 +2855,201 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
 
     protected DFA38 dfa38 = new DFA38(this);
     static final String DFA38_eotS =
-        "\1\uffff\3\60\1\65\1\70\1\72\1\73\1\76\1\uffff\1\102\2\60\2\uffff"+
-        "\2\60\1\114\1\116\6\uffff\1\60\1\uffff\1\60\2\uffff\4\133\7\60\1"+
-        "\56\1\uffff\2\56\2\uffff\1\60\1\uffff\1\153\2\60\10\uffff\2\133"+
-        "\5\uffff\3\60\2\uffff\1\60\1\163\1\60\12\uffff\1\60\1\uffff\1\60"+
-        "\2\uffff\1\133\2\uffff\2\133\11\60\2\uffff\1\u0082\1\uffff\1\u0083"+
-        "\1\u0084\1\u0085\1\60\1\u0087\2\60\1\uffff\3\60\1\133\1\uffff\7"+
-        "\170\2\60\4\uffff\1\u0090\1\uffff\3\60\1\u0094\1\60\1\133\1\u0097"+
-        "\1\60\1\uffff\1\60\1\u009a\1\60\1\uffff\1\60\1\133\1\uffff\1\u0097"+
-        "\1\u009d\1\uffff\2\60\1\uffff\1\u00a0\2\uffff";
+        "\1\uffff\3\57\1\64\1\67\1\71\1\74\1\75\1\uffff\1\101\2\57\2\uffff"+
+        "\1\57\1\111\1\113\6\uffff\1\57\1\uffff\1\57\2\uffff\4\127\7\57\1"+
+        "\55\1\uffff\2\55\2\uffff\1\57\1\uffff\1\150\2\57\7\uffff\2\127\6"+
+        "\uffff\3\57\2\uffff\1\157\12\uffff\1\57\1\uffff\1\57\3\uffff\1\127"+
+        "\1\uffff\2\127\11\57\2\uffff\1\175\1\uffff\1\176\1\177\1\u0080\1"+
+        "\57\1\u0082\1\57\1\uffff\2\57\1\127\1\uffff\7\163\2\57\4\uffff\1"+
+        "\u0089\1\uffff\1\57\1\u008b\1\57\1\127\1\u008e\1\57\1\uffff\1\u0090"+
+        "\1\uffff\1\57\1\127\1\uffff\1\u008e\1\uffff\1\57\1\uffff";
     static final String DFA38_eofS =
-        "\u00a1\uffff";
+        "\u0093\uffff";
     static final String DFA38_minS =
-        "\1\0\1\156\1\162\1\157\3\75\2\60\1\uffff\1\52\2\157\2\uffff\1\155"+
-        "\1\157\1\72\1\56\6\uffff\1\150\1\uffff\1\151\2\uffff\4\56\1\157"+
-        "\1\150\1\145\1\162\1\141\1\162\1\141\1\101\1\uffff\2\0\2\uffff\1"+
-        "\144\1\uffff\1\60\1\164\1\162\10\uffff\2\56\5\uffff\1\144\1\154"+
-        "\1\164\2\uffff\1\160\1\60\1\156\12\uffff\1\145\1\uffff\1\164\2\uffff"+
-        "\1\56\2\uffff\2\56\1\156\1\162\1\145\1\144\1\151\1\164\1\156\1\165"+
-        "\1\154\2\uffff\1\60\1\uffff\3\60\1\154\1\60\1\157\1\165\1\uffff"+
-        "\1\164\1\156\1\164\1\56\1\uffff\7\60\1\145\1\163\4\uffff\1\60\1"+
-        "\uffff\1\162\1\164\1\145\1\60\1\145\1\56\1\60\1\145\1\uffff\1\164"+
-        "\1\60\1\170\1\uffff\1\162\1\56\1\uffff\2\60\1\uffff\1\164\1\50\1"+
-        "\uffff\1\60\2\uffff";
+        "\1\0\1\156\1\162\1\157\3\75\2\60\1\uffff\1\52\2\157\2\uffff\1\156"+
+        "\1\72\1\56\6\uffff\1\150\1\uffff\1\151\2\uffff\4\56\1\157\1\150"+
+        "\1\145\1\162\1\141\1\162\1\141\1\101\1\uffff\2\0\2\uffff\1\144\1"+
+        "\uffff\1\60\1\164\1\162\7\uffff\2\56\6\uffff\1\144\1\154\1\164\2"+
+        "\uffff\1\60\12\uffff\1\145\1\uffff\1\164\3\uffff\1\56\1\uffff\2"+
+        "\56\1\156\1\145\1\162\1\144\1\151\1\164\1\156\1\165\1\154\2\uffff"+
+        "\1\60\1\uffff\3\60\1\154\1\60\1\165\1\uffff\1\156\1\164\1\56\1\uffff"+
+        "\7\60\1\145\1\163\4\uffff\1\60\1\uffff\1\164\1\60\1\145\1\56\1\60"+
+        "\1\145\1\uffff\1\60\1\uffff\1\162\1\56\1\uffff\1\60\1\uffff\1\50"+
+        "\1\uffff";
     static final String DFA38_maxS =
         "\1\ufffe\1\156\1\165\1\157\1\75\1\76\1\75\2\71\1\uffff\1\57\1\157"+
-        "\1\165\2\uffff\1\156\1\157\1\72\1\56\6\uffff\1\150\1\uffff\1\151"+
-        "\2\uffff\4\71\1\157\1\165\1\145\1\162\1\165\1\162\1\141\1\172\1"+
-        "\uffff\2\ufffe\2\uffff\1\144\1\uffff\1\172\1\164\1\162\10\uffff"+
-        "\2\71\5\uffff\1\144\1\154\1\164\2\uffff\1\160\1\172\1\156\12\uffff"+
-        "\1\145\1\uffff\1\164\2\uffff\1\72\2\uffff\1\72\1\71\1\156\1\162"+
-        "\1\145\1\144\1\151\1\164\1\156\1\165\1\154\2\uffff\1\172\1\uffff"+
-        "\3\172\1\154\1\172\1\157\1\165\1\uffff\1\164\1\156\1\164\1\71\1"+
-        "\uffff\7\172\1\145\1\163\4\uffff\1\172\1\uffff\1\162\1\164\1\145"+
-        "\1\172\1\145\1\71\1\172\1\145\1\uffff\1\164\1\172\1\170\1\uffff"+
-        "\1\162\1\71\1\uffff\2\172\1\uffff\1\164\1\50\1\uffff\1\172\2\uffff";
+        "\1\165\2\uffff\1\156\1\72\1\56\6\uffff\1\150\1\uffff\1\151\2\uffff"+
+        "\4\71\1\157\1\165\1\145\1\162\1\165\1\162\1\141\1\172\1\uffff\2"+
+        "\ufffe\2\uffff\1\144\1\uffff\1\172\1\164\1\162\7\uffff\2\71\6\uffff"+
+        "\1\144\1\154\1\164\2\uffff\1\172\12\uffff\1\145\1\uffff\1\164\3"+
+        "\uffff\1\72\1\uffff\1\72\1\71\1\156\1\145\1\162\1\144\1\151\1\164"+
+        "\1\156\1\165\1\154\2\uffff\1\172\1\uffff\3\172\1\154\1\172\1\165"+
+        "\1\uffff\1\156\1\164\1\71\1\uffff\7\172\1\145\1\163\4\uffff\1\172"+
+        "\1\uffff\1\164\1\172\1\145\1\71\1\172\1\145\1\uffff\1\172\1\uffff"+
+        "\1\162\1\71\1\uffff\1\172\1\uffff\1\50\1\uffff";
     static final String DFA38_acceptS =
-        "\11\uffff\1\14\3\uffff\1\20\1\21\4\uffff\1\31\1\32\1\35\1\36\1\37"+
-        "\1\41\1\uffff\1\43\1\uffff\1\45\1\46\14\uffff\1\54\2\uffff\1\61"+
-        "\1\62\1\uffff\1\54\3\uffff\1\4\1\40\1\5\1\10\1\6\1\11\1\7\1\12\2"+
-        "\uffff\1\13\1\14\1\60\1\57\1\15\3\uffff\1\20\1\21\3\uffff\1\33\1"+
-        "\27\1\34\1\30\1\31\1\32\1\35\1\36\1\37\1\41\1\uffff\1\43\1\uffff"+
-        "\1\45\1\46\1\uffff\1\47\1\50\13\uffff\1\56\1\61\1\uffff\1\2\7\uffff"+
-        "\1\22\4\uffff\1\51\11\uffff\1\1\1\23\1\3\1\16\1\uffff\1\17\10\uffff"+
-        "\1\53\3\uffff\1\42\2\uffff\1\52\2\uffff\1\24\2\uffff\1\25\1\uffff"+
-        "\1\44\1\26";
+        "\11\uffff\1\14\3\uffff\1\20\1\21\3\uffff\1\27\1\30\1\33\1\34\1\35"+
+        "\1\37\1\uffff\1\41\1\uffff\1\43\1\44\14\uffff\1\52\2\uffff\1\57"+
+        "\1\60\1\uffff\1\52\3\uffff\1\4\1\36\1\10\1\5\1\6\1\11\1\7\2\uffff"+
+        "\1\12\1\13\1\14\1\56\1\55\1\15\3\uffff\1\20\1\21\1\uffff\1\31\1"+
+        "\25\1\32\1\26\1\27\1\30\1\33\1\34\1\35\1\37\1\uffff\1\41\1\uffff"+
+        "\1\43\1\44\1\45\1\uffff\1\46\13\uffff\1\54\1\57\1\uffff\1\2\6\uffff"+
+        "\1\22\3\uffff\1\47\11\uffff\1\1\1\23\1\3\1\16\1\uffff\1\17\6\uffff"+
+        "\1\51\1\uffff\1\40\2\uffff\1\50\1\uffff\1\24\1\uffff\1\42";
     static final String DFA38_specialS =
-        "\u00a1\uffff}>";
+        "\u0093\uffff}>";
     static final String[] DFA38_transitionS = {
-            "\11\56\2\55\2\56\1\55\22\56\1\55\1\56\1\53\1\56\1\34\1\56\1"+
-            "\32\1\54\1\23\1\24\1\11\1\7\1\27\1\10\1\22\1\12\1\36\1\37\1"+
-            "\40\7\41\1\21\1\56\1\5\1\4\1\6\1\35\1\30\5\52\1\45\6\52\1\42"+
-            "\5\52\1\46\1\43\2\52\1\44\3\52\1\16\1\56\1\15\1\51\1\52\1\56"+
-            "\1\1\1\52\1\20\2\52\1\50\2\52\1\17\1\33\2\52\1\13\1\14\1\2\4"+
-            "\52\1\47\2\52\1\31\1\3\2\52\1\25\1\56\1\26\uff81\56",
-            "\1\57",
-            "\1\61\2\uffff\1\62",
+            "\11\55\2\54\2\55\1\54\22\55\1\54\1\55\1\52\1\55\1\33\1\55\1"+
+            "\31\1\53\1\22\1\23\1\11\1\7\1\26\1\10\1\21\1\12\1\35\1\36\1"+
+            "\37\7\40\1\20\1\55\1\5\1\4\1\6\1\34\1\27\5\51\1\44\6\51\1\41"+
+            "\5\51\1\45\1\42\2\51\1\43\3\51\1\16\1\55\1\15\1\50\1\51\1\55"+
+            "\1\1\4\51\1\47\2\51\1\17\1\32\2\51\1\13\1\14\1\2\4\51\1\46\2"+
+            "\51\1\30\1\3\2\51\1\24\1\55\1\25\uff81\55",
+            "\1\56",
+            "\1\60\2\uffff\1\61",
+            "\1\62",
             "\1\63",
-            "\1\64",
-            "\1\67\1\66",
-            "\1\71",
-            "\1\74\11\75",
-            "\1\74\11\75",
+            "\1\65\1\66",
+            "\1\70",
+            "\1\72\11\73",
+            "\1\72\11\73",
             "",
-            "\1\101\4\uffff\1\100",
-            "\1\103",
-            "\1\105\5\uffff\1\104",
+            "\1\100\4\uffff\1\77",
+            "\1\102",
+            "\1\104\5\uffff\1\103",
             "",
             "",
-            "\1\110\1\111",
+            "\1\107",
+            "\1\110",
             "\1\112",
-            "\1\113",
-            "\1\115",
             "",
             "",
             "",
             "",
             "",
             "",
-            "\1\125",
+            "\1\122",
             "",
-            "\1\127",
+            "\1\124",
             "",
             "",
-            "\1\134\1\uffff\12\132",
-            "\1\134\1\uffff\12\132",
-            "\1\134\1\uffff\4\135\6\136",
-            "\1\134\1\uffff\12\136",
+            "\1\131\1\uffff\12\130",
+            "\1\131\1\uffff\12\130",
+            "\1\131\1\uffff\4\132\6\133",
+            "\1\131\1\uffff\12\133",
+            "\1\134",
+            "\1\136\14\uffff\1\135",
             "\1\137",
-            "\1\140\14\uffff\1\141",
-            "\1\142",
+            "\1\140",
+            "\1\141\23\uffff\1\142",
             "\1\143",
-            "\1\144\23\uffff\1\145",
-            "\1\146",
+            "\1\144",
+            "\32\57\4\uffff\1\57\1\uffff\32\57",
+            "",
+            "\uffff\145",
+            "\uffff\145",
+            "",
+            "",
             "\1\147",
-            "\32\60\4\uffff\1\60\1\uffff\32\60",
             "",
-            "\uffff\150",
-            "\uffff\150",
-            "",
-            "",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "\1\151",
             "\1\152",
             "",
-            "\12\60\7\uffff\32\60\4\uffff\1\60\1\uffff\32\60",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "\1\131\1\uffff\12\73",
+            "\1\131\1\uffff\12\73",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "\1\153",
             "\1\154",
             "\1\155",
             "",
             "",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\16\57\1\156\13\57",
             "",
             "",
             "",
             "",
             "",
             "",
-            "\1\134\1\uffff\12\75",
-            "\1\134\1\uffff\12\75",
             "",
             "",
             "",
             "",
-            "",
-            "\1\156",
-            "\1\157",
             "\1\160",
             "",
-            "",
             "\1\161",
-            "\12\60\7\uffff\32\60\4\uffff\1\60\1\uffff\16\60\1\162\13\60",
+            "",
+            "",
+            "",
+            "\1\131\1\uffff\12\162\1\163",
+            "",
+            "\1\131\1\uffff\12\162\1\163",
+            "\1\131\1\uffff\12\162",
             "\1\164",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
             "\1\165",
-            "",
             "\1\166",
-            "",
-            "",
-            "\1\134\1\uffff\12\167\1\170",
-            "",
-            "",
-            "\1\134\1\uffff\12\167\1\170",
-            "\1\134\1\uffff\12\167",
+            "\1\167",
+            "\1\170",
             "\1\171",
             "\1\172",
             "\1\173",
             "\1\174",
-            "\1\175",
-            "\1\176",
-            "\1\177",
-            "\1\u0080",
+            "",
+            "",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
             "\1\u0081",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "\1\u0083",
             "",
+            "\1\u0084",
+            "\1\u0085",
+            "\1\131\1\uffff\12\u0086",
             "",
-            "\12\60\7\uffff\32\60\4\uffff\1\60\1\uffff\32\60",
-            "",
-            "\12\60\7\uffff\32\60\4\uffff\1\60\1\uffff\32\60",
-            "\12\60\7\uffff\32\60\4\uffff\1\60\1\uffff\32\60",
-            "\12\60\7\uffff\32\60\4\uffff\1\60\1\uffff\32\60",
-            "\1\u0086",
-            "\12\60\7\uffff\32\60\4\uffff\1\60\1\uffff\32\60",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "\1\u0087",
             "\1\u0088",
-            "\1\u0089",
+            "",
+            "",
+            "",
+            "",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
             "",
             "\1\u008a",
-            "\1\u008b",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
             "\1\u008c",
-            "\1\134\1\uffff\12\u008d",
-            "",
-            "\12\60\7\uffff\32\60\4\uffff\1\60\1\uffff\32\60",
-            "\12\60\7\uffff\32\60\4\uffff\1\60\1\uffff\32\60",
-            "\12\60\7\uffff\32\60\4\uffff\1\60\1\uffff\32\60",
-            "\12\60\7\uffff\32\60\4\uffff\1\60\1\uffff\32\60",
-            "\12\60\7\uffff\32\60\4\uffff\1\60\1\uffff\32\60",
-            "\12\60\7\uffff\32\60\4\uffff\1\60\1\uffff\32\60",
-            "\12\60\7\uffff\32\60\4\uffff\1\60\1\uffff\32\60",
-            "\1\u008e",
+            "\1\131\1\163\12\u008d",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
             "\1\u008f",
             "",
-            "",
-            "",
-            "",
-            "\12\60\7\uffff\32\60\4\uffff\1\60\1\uffff\32\60",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
             "",
             "\1\u0091",
+            "\1\131\1\uffff\12\u008d",
+            "",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "",
             "\1\u0092",
-            "\1\u0093",
-            "\12\60\7\uffff\32\60\4\uffff\1\60\1\uffff\32\60",
-            "\1\u0095",
-            "\1\134\1\170\12\u0096",
-            "\12\60\7\uffff\32\60\4\uffff\1\60\1\uffff\32\60",
-            "\1\u0098",
-            "",
-            "\1\u0099",
-            "\12\60\7\uffff\32\60\4\uffff\1\60\1\uffff\32\60",
-            "\1\u009b",
-            "",
-            "\1\u009c",
-            "\1\134\1\uffff\12\u0096",
-            "",
-            "\12\60\7\uffff\32\60\4\uffff\1\60\1\uffff\32\60",
-            "\12\60\7\uffff\32\60\4\uffff\1\60\1\uffff\32\60",
-            "",
-            "\1\u009e",
-            "\1\u009f",
-            "",
-            "\12\60\7\uffff\32\60\4\uffff\1\60\1\uffff\32\60",
-            "",
             ""
     };
 
@@ -3142,7 +3083,7 @@ public class InternalConstraintWithVSLlLexer extends Lexer {
             this.transition = DFA38_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | T29 | T30 | T31 | T32 | T33 | T34 | T35 | T36 | T37 | T38 | T39 | T40 | T41 | T42 | T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | RULE_INTEGERLITERAL | RULE_REALLITERAL | RULE_DATETIMELITERAL | RULE_BOOLEANLITERAL | RULE_NULLLITERAL | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
+            return "1:1: Tokens : ( T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | T29 | T30 | T31 | T32 | T33 | T34 | T35 | T36 | T37 | T38 | T39 | T40 | T41 | T42 | T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | RULE_INTEGERLITERAL | RULE_REALLITERAL | RULE_DATETIMELITERAL | RULE_BOOLEANLITERAL | RULE_NULLLITERAL | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
         }
     }
  

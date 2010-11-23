@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.marte.vsl.ui.contentassist.antlr.internal;
 
 // Hack: Use our own Lexer superclass by means of import. 
@@ -12,10 +25,10 @@ import java.util.ArrayList;
 
 @SuppressWarnings("all")
 public class InternalVSLLexer extends Lexer {
-    public static final int RULE_DATETIMELITERAL=8;
-    public static final int RULE_ID=5;
+    public static final int RULE_DATETIMELITERAL=7;
+    public static final int RULE_ID=4;
     public static final int RULE_ANY_OTHER=15;
-    public static final int RULE_REALLITERAL=7;
+    public static final int RULE_REALLITERAL=6;
     public static final int T29=29;
     public static final int T28=28;
     public static final int T27=27;
@@ -27,7 +40,7 @@ public class InternalVSLLexer extends Lexer {
     public static final int T22=22;
     public static final int T21=21;
     public static final int T20=20;
-    public static final int RULE_BOOLEANLITERAL=9;
+    public static final int RULE_BOOLEANLITERAL=8;
     public static final int RULE_INT=11;
     public static final int T38=38;
     public static final int T37=37;
@@ -39,12 +52,12 @@ public class InternalVSLLexer extends Lexer {
     public static final int T30=30;
     public static final int T32=32;
     public static final int T31=31;
-    public static final int RULE_NULLLITERAL=10;
-    public static final int RULE_INTEGERLITERAL=6;
+    public static final int RULE_NULLLITERAL=9;
+    public static final int RULE_INTEGERLITERAL=5;
     public static final int T49=49;
     public static final int T48=48;
     public static final int T43=43;
-    public static final int Tokens=55;
+    public static final int Tokens=52;
     public static final int RULE_SL_COMMENT=13;
     public static final int T42=42;
     public static final int T41=41;
@@ -54,15 +67,12 @@ public class InternalVSLLexer extends Lexer {
     public static final int T45=45;
     public static final int RULE_ML_COMMENT=12;
     public static final int T44=44;
-    public static final int RULE_STRING=4;
+    public static final int RULE_STRING=10;
     public static final int T50=50;
-    public static final int T52=52;
     public static final int RULE_WS=14;
     public static final int T51=51;
     public static final int T16=16;
-    public static final int T54=54;
     public static final int T17=17;
-    public static final int T53=53;
     public static final int T18=18;
     public static final int T19=19;
     public InternalVSLLexer() {;} 
@@ -447,11 +457,10 @@ public class InternalVSLLexer extends Lexer {
     public final void mT36() throws RecognitionException {
         try {
             int _type = T36;
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:30:5: ( 'value' )
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:30:7: 'value'
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:30:5: ( ':' )
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:30:7: ':'
             {
-            match("value"); 
-
+            match(':'); 
 
             }
 
@@ -466,11 +475,10 @@ public class InternalVSLLexer extends Lexer {
     public final void mT37() throws RecognitionException {
         try {
             int _type = T37;
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:31:5: ( 'import' )
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:31:7: 'import'
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:31:5: ( '.' )
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:31:7: '.'
             {
-            match("import"); 
-
+            match('.'); 
 
             }
 
@@ -485,11 +493,10 @@ public class InternalVSLLexer extends Lexer {
     public final void mT38() throws RecognitionException {
         try {
             int _type = T38;
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:32:5: ( 'context' )
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:32:7: 'context'
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:32:5: ( '(' )
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:32:7: '('
             {
-            match("context"); 
-
+            match('('); 
 
             }
 
@@ -504,10 +511,10 @@ public class InternalVSLLexer extends Lexer {
     public final void mT39() throws RecognitionException {
         try {
             int _type = T39;
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:33:5: ( ':' )
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:33:7: ':'
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:33:5: ( ')' )
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:33:7: ')'
             {
-            match(':'); 
+            match(')'); 
 
             }
 
@@ -522,10 +529,11 @@ public class InternalVSLLexer extends Lexer {
     public final void mT40() throws RecognitionException {
         try {
             int _type = T40;
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:34:5: ( '.' )
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:34:7: '.'
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:34:5: ( '::' )
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:34:7: '::'
             {
-            match('.'); 
+            match("::"); 
+
 
             }
 
@@ -540,10 +548,11 @@ public class InternalVSLLexer extends Lexer {
     public final void mT41() throws RecognitionException {
         try {
             int _type = T41;
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:35:5: ( '(' )
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:35:7: '('
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:35:5: ( '..' )
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:35:7: '..'
             {
-            match('('); 
+            match(".."); 
+
 
             }
 
@@ -558,10 +567,10 @@ public class InternalVSLLexer extends Lexer {
     public final void mT42() throws RecognitionException {
         try {
             int _type = T42;
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:36:5: ( ')' )
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:36:7: ')'
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:36:5: ( '{' )
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:36:7: '{'
             {
-            match(')'); 
+            match('{'); 
 
             }
 
@@ -576,11 +585,10 @@ public class InternalVSLLexer extends Lexer {
     public final void mT43() throws RecognitionException {
         try {
             int _type = T43;
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:37:5: ( '::' )
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:37:7: '::'
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:37:5: ( '}' )
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:37:7: '}'
             {
-            match("::"); 
-
+            match('}'); 
 
             }
 
@@ -595,11 +603,10 @@ public class InternalVSLLexer extends Lexer {
     public final void mT44() throws RecognitionException {
         try {
             int _type = T44;
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:38:5: ( '..' )
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:38:7: '..'
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:38:5: ( ',' )
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:38:7: ','
             {
-            match(".."); 
-
+            match(','); 
 
             }
 
@@ -614,10 +621,10 @@ public class InternalVSLLexer extends Lexer {
     public final void mT45() throws RecognitionException {
         try {
             int _type = T45;
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:39:5: ( '{' )
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:39:7: '{'
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:39:5: ( '=' )
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:39:7: '='
             {
-            match('{'); 
+            match('='); 
 
             }
 
@@ -632,10 +639,10 @@ public class InternalVSLLexer extends Lexer {
     public final void mT46() throws RecognitionException {
         try {
             int _type = T46;
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:40:5: ( '}' )
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:40:7: '}'
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:40:5: ( '@' )
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:40:7: '@'
             {
-            match('}'); 
+            match('@'); 
 
             }
 
@@ -650,10 +657,11 @@ public class InternalVSLLexer extends Lexer {
     public final void mT47() throws RecognitionException {
         try {
             int _type = T47;
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:41:5: ( ',' )
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:41:7: ','
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:41:5: ( 'when' )
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:41:7: 'when'
             {
-            match(','); 
+            match("when"); 
+
 
             }
 
@@ -668,10 +676,10 @@ public class InternalVSLLexer extends Lexer {
     public final void mT48() throws RecognitionException {
         try {
             int _type = T48;
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:42:5: ( '=' )
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:42:7: '='
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:42:5: ( '&' )
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:42:7: '&'
             {
-            match('='); 
+            match('&'); 
 
             }
 
@@ -686,10 +694,11 @@ public class InternalVSLLexer extends Lexer {
     public final void mT49() throws RecognitionException {
         try {
             int _type = T49;
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:43:5: ( '@' )
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:43:7: '@'
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:43:5: ( 'jitter(' )
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:43:7: 'jitter('
             {
-            match('@'); 
+            match("jitter("); 
+
 
             }
 
@@ -704,11 +713,10 @@ public class InternalVSLLexer extends Lexer {
     public final void mT50() throws RecognitionException {
         try {
             int _type = T50;
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:44:5: ( 'when' )
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:44:7: 'when'
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:44:5: ( '$' )
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:44:7: '$'
             {
-            match("when"); 
-
+            match('$'); 
 
             }
 
@@ -723,63 +731,8 @@ public class InternalVSLLexer extends Lexer {
     public final void mT51() throws RecognitionException {
         try {
             int _type = T51;
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:45:5: ( '&' )
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:45:7: '&'
-            {
-            match('&'); 
-
-            }
-
-            this.type = _type;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end T51
-
-    // $ANTLR start T52
-    public final void mT52() throws RecognitionException {
-        try {
-            int _type = T52;
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:46:5: ( 'jitter(' )
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:46:7: 'jitter('
-            {
-            match("jitter("); 
-
-
-            }
-
-            this.type = _type;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end T52
-
-    // $ANTLR start T53
-    public final void mT53() throws RecognitionException {
-        try {
-            int _type = T53;
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:47:5: ( '$' )
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:47:7: '$'
-            {
-            match('$'); 
-
-            }
-
-            this.type = _type;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end T53
-
-    // $ANTLR start T54
-    public final void mT54() throws RecognitionException {
-        try {
-            int _type = T54;
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:48:5: ( '?' )
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:48:7: '?'
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:45:5: ( '?' )
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:45:7: '?'
             {
             match('?'); 
 
@@ -790,16 +743,16 @@ public class InternalVSLLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end T54
+    // $ANTLR end T51
 
     // $ANTLR start RULE_INTEGERLITERAL
     public final void mRULE_INTEGERLITERAL() throws RecognitionException {
         try {
             int _type = RULE_INTEGERLITERAL;
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7265:21: ( ( '+' | '-' )? ( ( '0' .. '9' )+ | '0x' ( '0' .. '9' | 'A' .. 'F' | 'a' .. 'f' )+ | '0b' ( '0' .. '1' )+ ) )
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7265:23: ( '+' | '-' )? ( ( '0' .. '9' )+ | '0x' ( '0' .. '9' | 'A' .. 'F' | 'a' .. 'f' )+ | '0b' ( '0' .. '1' )+ )
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6821:21: ( ( '+' | '-' )? ( ( '0' .. '9' )+ | '0x' ( '0' .. '9' | 'A' .. 'F' | 'a' .. 'f' )+ | '0b' ( '0' .. '1' )+ ) )
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6821:23: ( '+' | '-' )? ( ( '0' .. '9' )+ | '0x' ( '0' .. '9' | 'A' .. 'F' | 'a' .. 'f' )+ | '0b' ( '0' .. '1' )+ )
             {
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7265:23: ( '+' | '-' )?
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6821:23: ( '+' | '-' )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -826,7 +779,7 @@ public class InternalVSLLexer extends Lexer {
 
             }
 
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7265:34: ( ( '0' .. '9' )+ | '0x' ( '0' .. '9' | 'A' .. 'F' | 'a' .. 'f' )+ | '0b' ( '0' .. '1' )+ )
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6821:34: ( ( '0' .. '9' )+ | '0x' ( '0' .. '9' | 'A' .. 'F' | 'a' .. 'f' )+ | '0b' ( '0' .. '1' )+ )
             int alt5=3;
             int LA5_0 = input.LA(1);
 
@@ -851,15 +804,15 @@ public class InternalVSLLexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("7265:34: ( ( '0' .. '9' )+ | '0x' ( '0' .. '9' | 'A' .. 'F' | 'a' .. 'f' )+ | '0b' ( '0' .. '1' )+ )", 5, 0, input);
+                    new NoViableAltException("6821:34: ( ( '0' .. '9' )+ | '0x' ( '0' .. '9' | 'A' .. 'F' | 'a' .. 'f' )+ | '0b' ( '0' .. '1' )+ )", 5, 0, input);
 
                 throw nvae;
             }
             switch (alt5) {
                 case 1 :
-                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7265:35: ( '0' .. '9' )+
+                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6821:35: ( '0' .. '9' )+
                     {
-                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7265:35: ( '0' .. '9' )+
+                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6821:35: ( '0' .. '9' )+
                     int cnt2=0;
                     loop2:
                     do {
@@ -873,7 +826,7 @@ public class InternalVSLLexer extends Lexer {
 
                         switch (alt2) {
                     	case 1 :
-                    	    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7265:36: '0' .. '9'
+                    	    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6821:36: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -893,11 +846,11 @@ public class InternalVSLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7265:47: '0x' ( '0' .. '9' | 'A' .. 'F' | 'a' .. 'f' )+
+                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6821:47: '0x' ( '0' .. '9' | 'A' .. 'F' | 'a' .. 'f' )+
                     {
                     match("0x"); 
 
-                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7265:52: ( '0' .. '9' | 'A' .. 'F' | 'a' .. 'f' )+
+                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6821:52: ( '0' .. '9' | 'A' .. 'F' | 'a' .. 'f' )+
                     int cnt3=0;
                     loop3:
                     do {
@@ -940,11 +893,11 @@ public class InternalVSLLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7265:82: '0b' ( '0' .. '1' )+
+                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6821:82: '0b' ( '0' .. '1' )+
                     {
                     match("0b"); 
 
-                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7265:87: ( '0' .. '1' )+
+                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6821:87: ( '0' .. '1' )+
                     int cnt4=0;
                     loop4:
                     do {
@@ -958,7 +911,7 @@ public class InternalVSLLexer extends Lexer {
 
                         switch (alt4) {
                     	case 1 :
-                    	    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7265:88: '0' .. '1'
+                    	    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6821:88: '0' .. '1'
                     	    {
                     	    matchRange('0','1'); 
 
@@ -994,10 +947,10 @@ public class InternalVSLLexer extends Lexer {
     public final void mRULE_REALLITERAL() throws RecognitionException {
         try {
             int _type = RULE_REALLITERAL;
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7267:18: ( ( '+' | '-' )? ( '0' .. '9' )+ '.' ( '0' .. '9' )+ ( 'E' ( '+' | '-' )? ( '0' .. '9' )+ )? )
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7267:20: ( '+' | '-' )? ( '0' .. '9' )+ '.' ( '0' .. '9' )+ ( 'E' ( '+' | '-' )? ( '0' .. '9' )+ )?
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6823:18: ( ( '+' | '-' )? ( '0' .. '9' )+ '.' ( '0' .. '9' )+ ( 'E' ( '+' | '-' )? ( '0' .. '9' )+ )? )
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6823:20: ( '+' | '-' )? ( '0' .. '9' )+ '.' ( '0' .. '9' )+ ( 'E' ( '+' | '-' )? ( '0' .. '9' )+ )?
             {
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7267:20: ( '+' | '-' )?
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6823:20: ( '+' | '-' )?
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -1024,7 +977,7 @@ public class InternalVSLLexer extends Lexer {
 
             }
 
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7267:31: ( '0' .. '9' )+
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6823:31: ( '0' .. '9' )+
             int cnt7=0;
             loop7:
             do {
@@ -1038,7 +991,7 @@ public class InternalVSLLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7267:32: '0' .. '9'
+            	    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6823:32: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -1055,7 +1008,7 @@ public class InternalVSLLexer extends Lexer {
             } while (true);
 
             match('.'); 
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7267:47: ( '0' .. '9' )+
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6823:47: ( '0' .. '9' )+
             int cnt8=0;
             loop8:
             do {
@@ -1069,7 +1022,7 @@ public class InternalVSLLexer extends Lexer {
 
                 switch (alt8) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7267:48: '0' .. '9'
+            	    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6823:48: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -1085,7 +1038,7 @@ public class InternalVSLLexer extends Lexer {
                 cnt8++;
             } while (true);
 
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7267:59: ( 'E' ( '+' | '-' )? ( '0' .. '9' )+ )?
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6823:59: ( 'E' ( '+' | '-' )? ( '0' .. '9' )+ )?
             int alt11=2;
             int LA11_0 = input.LA(1);
 
@@ -1094,10 +1047,10 @@ public class InternalVSLLexer extends Lexer {
             }
             switch (alt11) {
                 case 1 :
-                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7267:60: 'E' ( '+' | '-' )? ( '0' .. '9' )+
+                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6823:60: 'E' ( '+' | '-' )? ( '0' .. '9' )+
                     {
                     match('E'); 
-                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7267:64: ( '+' | '-' )?
+                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6823:64: ( '+' | '-' )?
                     int alt9=2;
                     int LA9_0 = input.LA(1);
 
@@ -1124,7 +1077,7 @@ public class InternalVSLLexer extends Lexer {
 
                     }
 
-                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7267:75: ( '0' .. '9' )+
+                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6823:75: ( '0' .. '9' )+
                     int cnt10=0;
                     loop10:
                     do {
@@ -1138,7 +1091,7 @@ public class InternalVSLLexer extends Lexer {
 
                         switch (alt10) {
                     	case 1 :
-                    	    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7267:76: '0' .. '9'
+                    	    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6823:76: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -1174,10 +1127,10 @@ public class InternalVSLLexer extends Lexer {
     public final void mRULE_DATETIMELITERAL() throws RecognitionException {
         try {
             int _type = RULE_DATETIMELITERAL;
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:22: ( ( ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' ) ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )? )? ( ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) )? ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) ) )
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:24: ( ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' ) ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )? )? ( ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) )? ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:22: ( ( ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' ) ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )? )? ( ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) )? ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) ) )
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:24: ( ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' ) ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )? )? ( ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) )? ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )
             {
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:24: ( ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' ) ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )? )? ( ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) )? ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:24: ( ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' ) ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )? )? ( ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) )? ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )
             int alt25=3;
             switch ( input.LA(1) ) {
             case '0':
@@ -1196,14 +1149,14 @@ public class InternalVSLLexer extends Lexer {
                     }
                     else {
                         NoViableAltException nvae =
-                            new NoViableAltException("7269:24: ( ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' ) ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )? )? ( ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) )? ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )", 25, 5, input);
+                            new NoViableAltException("6825:24: ( ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' ) ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )? )? ( ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) )? ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )", 25, 5, input);
 
                         throw nvae;
                     }
                 }
                 else {
                     NoViableAltException nvae =
-                        new NoViableAltException("7269:24: ( ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' ) ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )? )? ( ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) )? ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )", 25, 1, input);
+                        new NoViableAltException("6825:24: ( ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' ) ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )? )? ( ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) )? ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )", 25, 1, input);
 
                     throw nvae;
                 }
@@ -1224,7 +1177,7 @@ public class InternalVSLLexer extends Lexer {
                     }
                     else {
                         NoViableAltException nvae =
-                            new NoViableAltException("7269:24: ( ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' ) ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )? )? ( ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) )? ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )", 25, 6, input);
+                            new NoViableAltException("6825:24: ( ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' ) ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )? )? ( ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) )? ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )", 25, 6, input);
 
                         throw nvae;
                     }
@@ -1234,7 +1187,7 @@ public class InternalVSLLexer extends Lexer {
                 }
                 else {
                     NoViableAltException nvae =
-                        new NoViableAltException("7269:24: ( ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' ) ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )? )? ( ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) )? ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )", 25, 2, input);
+                        new NoViableAltException("6825:24: ( ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' ) ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )? )? ( ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) )? ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )", 25, 2, input);
 
                     throw nvae;
                 }
@@ -1262,16 +1215,16 @@ public class InternalVSLLexer extends Lexer {
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("7269:24: ( ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' ) ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )? )? ( ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) )? ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )", 25, 0, input);
+                    new NoViableAltException("6825:24: ( ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' ) ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )? )? ( ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) )? ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )? | ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )", 25, 0, input);
 
                 throw nvae;
             }
 
             switch (alt25) {
                 case 1 :
-                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:25: ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' ) ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )? )? ( ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) )? ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )?
+                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:25: ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' ) ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )? )? ( ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) )? ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )?
                     {
-                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:25: ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' )
+                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:25: ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' )
                     int alt12=2;
                     int LA12_0 = input.LA(1);
 
@@ -1283,13 +1236,13 @@ public class InternalVSLLexer extends Lexer {
                     }
                     else {
                         NoViableAltException nvae =
-                            new NoViableAltException("7269:25: ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' )", 12, 0, input);
+                            new NoViableAltException("6825:25: ( '0' .. '1' '0' .. '9' | '2' '0' .. '3' )", 12, 0, input);
 
                         throw nvae;
                     }
                     switch (alt12) {
                         case 1 :
-                            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:26: '0' .. '1' '0' .. '9'
+                            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:26: '0' .. '1' '0' .. '9'
                             {
                             matchRange('0','1'); 
                             matchRange('0','9'); 
@@ -1297,7 +1250,7 @@ public class InternalVSLLexer extends Lexer {
                             }
                             break;
                         case 2 :
-                            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:44: '2' '0' .. '3'
+                            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:44: '2' '0' .. '3'
                             {
                             match('2'); 
                             matchRange('0','3'); 
@@ -1310,7 +1263,7 @@ public class InternalVSLLexer extends Lexer {
                     match(':'); 
                     matchRange('0','5'); 
                     matchRange('0','9'); 
-                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:80: ( ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )? )?
+                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:80: ( ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )? )?
                     int alt14=2;
                     int LA14_0 = input.LA(1);
 
@@ -1319,12 +1272,12 @@ public class InternalVSLLexer extends Lexer {
                     }
                     switch (alt14) {
                         case 1 :
-                            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:81: ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )?
+                            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:81: ':' '0' .. '5' '0' .. '9' ( ':' '0' .. '9' '0' .. '9' )?
                             {
                             match(':'); 
                             matchRange('0','5'); 
                             matchRange('0','9'); 
-                            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:103: ( ':' '0' .. '9' '0' .. '9' )?
+                            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:103: ( ':' '0' .. '9' '0' .. '9' )?
                             int alt13=2;
                             int LA13_0 = input.LA(1);
 
@@ -1333,7 +1286,7 @@ public class InternalVSLLexer extends Lexer {
                             }
                             switch (alt13) {
                                 case 1 :
-                                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:104: ':' '0' .. '9' '0' .. '9'
+                                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:104: ':' '0' .. '9' '0' .. '9'
                                     {
                                     match(':'); 
                                     matchRange('0','9'); 
@@ -1350,7 +1303,7 @@ public class InternalVSLLexer extends Lexer {
 
                     }
 
-                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:130: ( ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) )?
+                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:130: ( ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) )?
                     int alt17=2;
                     int LA17_0 = input.LA(1);
 
@@ -1363,7 +1316,7 @@ public class InternalVSLLexer extends Lexer {
                     }
                     switch (alt17) {
                         case 1 :
-                            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:131: ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) )
+                            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:131: ' ' '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) )
                             {
                             match(' '); 
                             matchRange('0','9'); 
@@ -1371,7 +1324,7 @@ public class InternalVSLLexer extends Lexer {
                             matchRange('0','9'); 
                             matchRange('0','9'); 
                             match('/'); 
-                            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:175: ( '0' '0' .. '9' | '1' '0' .. '2' )
+                            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:175: ( '0' '0' .. '9' | '1' '0' .. '2' )
                             int alt15=2;
                             int LA15_0 = input.LA(1);
 
@@ -1383,13 +1336,13 @@ public class InternalVSLLexer extends Lexer {
                             }
                             else {
                                 NoViableAltException nvae =
-                                    new NoViableAltException("7269:175: ( '0' '0' .. '9' | '1' '0' .. '2' )", 15, 0, input);
+                                    new NoViableAltException("6825:175: ( '0' '0' .. '9' | '1' '0' .. '2' )", 15, 0, input);
 
                                 throw nvae;
                             }
                             switch (alt15) {
                                 case 1 :
-                                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:176: '0' '0' .. '9'
+                                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:176: '0' '0' .. '9'
                                     {
                                     match('0'); 
                                     matchRange('0','9'); 
@@ -1397,7 +1350,7 @@ public class InternalVSLLexer extends Lexer {
                                     }
                                     break;
                                 case 2 :
-                                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:189: '1' '0' .. '2'
+                                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:189: '1' '0' .. '2'
                                     {
                                     match('1'); 
                                     matchRange('0','2'); 
@@ -1408,7 +1361,7 @@ public class InternalVSLLexer extends Lexer {
                             }
 
                             match('/'); 
-                            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:207: ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) )
+                            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:207: ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) )
                             int alt16=2;
                             int LA16_0 = input.LA(1);
 
@@ -1420,13 +1373,13 @@ public class InternalVSLLexer extends Lexer {
                             }
                             else {
                                 NoViableAltException nvae =
-                                    new NoViableAltException("7269:207: ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) )", 16, 0, input);
+                                    new NoViableAltException("6825:207: ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) )", 16, 0, input);
 
                                 throw nvae;
                             }
                             switch (alt16) {
                                 case 1 :
-                                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:208: '0' .. '2' '0' .. '9'
+                                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:208: '0' .. '2' '0' .. '9'
                                     {
                                     matchRange('0','2'); 
                                     matchRange('0','9'); 
@@ -1434,7 +1387,7 @@ public class InternalVSLLexer extends Lexer {
                                     }
                                     break;
                                 case 2 :
-                                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:226: '3' ( '0' | '1' )
+                                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:226: '3' ( '0' | '1' )
                                     {
                                     match('3'); 
                                     if ( (input.LA(1)>='0' && input.LA(1)<='1') ) {
@@ -1459,7 +1412,7 @@ public class InternalVSLLexer extends Lexer {
 
                     }
 
-                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:243: ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )?
+                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:243: ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )?
                     int alt19=2;
                     int LA19_0 = input.LA(1);
 
@@ -1468,10 +1421,10 @@ public class InternalVSLLexer extends Lexer {
                     }
                     switch (alt19) {
                         case 1 :
-                            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:244: ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )
+                            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:244: ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )
                             {
                             match(' '); 
-                            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:248: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )
+                            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:248: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )
                             int alt18=7;
                             switch ( input.LA(1) ) {
                             case 'M':
@@ -1483,15 +1436,15 @@ public class InternalVSLLexer extends Lexer {
                                 {
                                 int LA18_2 = input.LA(2);
 
-                                if ( (LA18_2=='u') ) {
-                                    alt18=2;
-                                }
-                                else if ( (LA18_2=='h') ) {
+                                if ( (LA18_2=='h') ) {
                                     alt18=4;
+                                }
+                                else if ( (LA18_2=='u') ) {
+                                    alt18=2;
                                 }
                                 else {
                                     NoViableAltException nvae =
-                                        new NoViableAltException("7269:248: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )", 18, 2, input);
+                                        new NoViableAltException("6825:248: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )", 18, 2, input);
 
                                     throw nvae;
                                 }
@@ -1511,15 +1464,15 @@ public class InternalVSLLexer extends Lexer {
                                 {
                                 int LA18_5 = input.LA(2);
 
-                                if ( (LA18_5=='a') ) {
-                                    alt18=6;
-                                }
-                                else if ( (LA18_5=='u') ) {
+                                if ( (LA18_5=='u') ) {
                                     alt18=7;
+                                }
+                                else if ( (LA18_5=='a') ) {
+                                    alt18=6;
                                 }
                                 else {
                                     NoViableAltException nvae =
-                                        new NoViableAltException("7269:248: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )", 18, 5, input);
+                                        new NoViableAltException("6825:248: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )", 18, 5, input);
 
                                     throw nvae;
                                 }
@@ -1527,14 +1480,14 @@ public class InternalVSLLexer extends Lexer {
                                 break;
                             default:
                                 NoViableAltException nvae =
-                                    new NoViableAltException("7269:248: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )", 18, 0, input);
+                                    new NoViableAltException("6825:248: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )", 18, 0, input);
 
                                 throw nvae;
                             }
 
                             switch (alt18) {
                                 case 1 :
-                                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:249: 'Mon'
+                                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:249: 'Mon'
                                     {
                                     match("Mon"); 
 
@@ -1542,7 +1495,7 @@ public class InternalVSLLexer extends Lexer {
                                     }
                                     break;
                                 case 2 :
-                                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:255: 'Tue'
+                                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:255: 'Tue'
                                     {
                                     match("Tue"); 
 
@@ -1550,7 +1503,7 @@ public class InternalVSLLexer extends Lexer {
                                     }
                                     break;
                                 case 3 :
-                                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:261: 'Wed'
+                                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:261: 'Wed'
                                     {
                                     match("Wed"); 
 
@@ -1558,7 +1511,7 @@ public class InternalVSLLexer extends Lexer {
                                     }
                                     break;
                                 case 4 :
-                                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:267: 'Thr'
+                                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:267: 'Thr'
                                     {
                                     match("Thr"); 
 
@@ -1566,7 +1519,7 @@ public class InternalVSLLexer extends Lexer {
                                     }
                                     break;
                                 case 5 :
-                                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:273: 'Fri'
+                                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:273: 'Fri'
                                     {
                                     match("Fri"); 
 
@@ -1574,7 +1527,7 @@ public class InternalVSLLexer extends Lexer {
                                     }
                                     break;
                                 case 6 :
-                                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:279: 'Sat'
+                                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:279: 'Sat'
                                     {
                                     match("Sat"); 
 
@@ -1582,7 +1535,7 @@ public class InternalVSLLexer extends Lexer {
                                     }
                                     break;
                                 case 7 :
-                                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:285: 'Sun'
+                                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:285: 'Sun'
                                     {
                                     match("Sun"); 
 
@@ -1602,14 +1555,14 @@ public class InternalVSLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:294: '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )?
+                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:294: '0' .. '9' '0' .. '9' '0' .. '9' '0' .. '9' '/' ( '0' '0' .. '9' | '1' '0' .. '2' ) '/' ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) ) ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )?
                     {
                     matchRange('0','9'); 
                     matchRange('0','9'); 
                     matchRange('0','9'); 
                     matchRange('0','9'); 
                     match('/'); 
-                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:334: ( '0' '0' .. '9' | '1' '0' .. '2' )
+                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:334: ( '0' '0' .. '9' | '1' '0' .. '2' )
                     int alt20=2;
                     int LA20_0 = input.LA(1);
 
@@ -1621,13 +1574,13 @@ public class InternalVSLLexer extends Lexer {
                     }
                     else {
                         NoViableAltException nvae =
-                            new NoViableAltException("7269:334: ( '0' '0' .. '9' | '1' '0' .. '2' )", 20, 0, input);
+                            new NoViableAltException("6825:334: ( '0' '0' .. '9' | '1' '0' .. '2' )", 20, 0, input);
 
                         throw nvae;
                     }
                     switch (alt20) {
                         case 1 :
-                            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:335: '0' '0' .. '9'
+                            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:335: '0' '0' .. '9'
                             {
                             match('0'); 
                             matchRange('0','9'); 
@@ -1635,7 +1588,7 @@ public class InternalVSLLexer extends Lexer {
                             }
                             break;
                         case 2 :
-                            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:348: '1' '0' .. '2'
+                            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:348: '1' '0' .. '2'
                             {
                             match('1'); 
                             matchRange('0','2'); 
@@ -1646,7 +1599,7 @@ public class InternalVSLLexer extends Lexer {
                     }
 
                     match('/'); 
-                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:366: ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) )
+                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:366: ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) )
                     int alt21=2;
                     int LA21_0 = input.LA(1);
 
@@ -1658,13 +1611,13 @@ public class InternalVSLLexer extends Lexer {
                     }
                     else {
                         NoViableAltException nvae =
-                            new NoViableAltException("7269:366: ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) )", 21, 0, input);
+                            new NoViableAltException("6825:366: ( '0' .. '2' '0' .. '9' | '3' ( '0' | '1' ) )", 21, 0, input);
 
                         throw nvae;
                     }
                     switch (alt21) {
                         case 1 :
-                            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:367: '0' .. '2' '0' .. '9'
+                            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:367: '0' .. '2' '0' .. '9'
                             {
                             matchRange('0','2'); 
                             matchRange('0','9'); 
@@ -1672,7 +1625,7 @@ public class InternalVSLLexer extends Lexer {
                             }
                             break;
                         case 2 :
-                            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:385: '3' ( '0' | '1' )
+                            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:385: '3' ( '0' | '1' )
                             {
                             match('3'); 
                             if ( (input.LA(1)>='0' && input.LA(1)<='1') ) {
@@ -1691,7 +1644,7 @@ public class InternalVSLLexer extends Lexer {
 
                     }
 
-                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:400: ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )?
+                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:400: ( ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' ) )?
                     int alt23=2;
                     int LA23_0 = input.LA(1);
 
@@ -1700,10 +1653,10 @@ public class InternalVSLLexer extends Lexer {
                     }
                     switch (alt23) {
                         case 1 :
-                            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:401: ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )
+                            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:401: ' ' ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )
                             {
                             match(' '); 
-                            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:405: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )
+                            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:405: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )
                             int alt22=7;
                             switch ( input.LA(1) ) {
                             case 'M':
@@ -1723,7 +1676,7 @@ public class InternalVSLLexer extends Lexer {
                                 }
                                 else {
                                     NoViableAltException nvae =
-                                        new NoViableAltException("7269:405: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )", 22, 2, input);
+                                        new NoViableAltException("6825:405: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )", 22, 2, input);
 
                                     throw nvae;
                                 }
@@ -1751,7 +1704,7 @@ public class InternalVSLLexer extends Lexer {
                                 }
                                 else {
                                     NoViableAltException nvae =
-                                        new NoViableAltException("7269:405: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )", 22, 5, input);
+                                        new NoViableAltException("6825:405: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )", 22, 5, input);
 
                                     throw nvae;
                                 }
@@ -1759,14 +1712,14 @@ public class InternalVSLLexer extends Lexer {
                                 break;
                             default:
                                 NoViableAltException nvae =
-                                    new NoViableAltException("7269:405: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )", 22, 0, input);
+                                    new NoViableAltException("6825:405: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )", 22, 0, input);
 
                                 throw nvae;
                             }
 
                             switch (alt22) {
                                 case 1 :
-                                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:406: 'Mon'
+                                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:406: 'Mon'
                                     {
                                     match("Mon"); 
 
@@ -1774,7 +1727,7 @@ public class InternalVSLLexer extends Lexer {
                                     }
                                     break;
                                 case 2 :
-                                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:412: 'Tue'
+                                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:412: 'Tue'
                                     {
                                     match("Tue"); 
 
@@ -1782,7 +1735,7 @@ public class InternalVSLLexer extends Lexer {
                                     }
                                     break;
                                 case 3 :
-                                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:418: 'Wed'
+                                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:418: 'Wed'
                                     {
                                     match("Wed"); 
 
@@ -1790,7 +1743,7 @@ public class InternalVSLLexer extends Lexer {
                                     }
                                     break;
                                 case 4 :
-                                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:424: 'Thr'
+                                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:424: 'Thr'
                                     {
                                     match("Thr"); 
 
@@ -1798,7 +1751,7 @@ public class InternalVSLLexer extends Lexer {
                                     }
                                     break;
                                 case 5 :
-                                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:430: 'Fri'
+                                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:430: 'Fri'
                                     {
                                     match("Fri"); 
 
@@ -1806,7 +1759,7 @@ public class InternalVSLLexer extends Lexer {
                                     }
                                     break;
                                 case 6 :
-                                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:436: 'Sat'
+                                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:436: 'Sat'
                                     {
                                     match("Sat"); 
 
@@ -1814,7 +1767,7 @@ public class InternalVSLLexer extends Lexer {
                                     }
                                     break;
                                 case 7 :
-                                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:442: 'Sun'
+                                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:442: 'Sun'
                                     {
                                     match("Sun"); 
 
@@ -1834,9 +1787,9 @@ public class InternalVSLLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:451: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )
+                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:451: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )
                     {
-                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:451: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )
+                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:451: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )
                     int alt24=7;
                     switch ( input.LA(1) ) {
                     case 'M':
@@ -1848,15 +1801,15 @@ public class InternalVSLLexer extends Lexer {
                         {
                         int LA24_2 = input.LA(2);
 
-                        if ( (LA24_2=='u') ) {
-                            alt24=2;
-                        }
-                        else if ( (LA24_2=='h') ) {
+                        if ( (LA24_2=='h') ) {
                             alt24=4;
+                        }
+                        else if ( (LA24_2=='u') ) {
+                            alt24=2;
                         }
                         else {
                             NoViableAltException nvae =
-                                new NoViableAltException("7269:451: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )", 24, 2, input);
+                                new NoViableAltException("6825:451: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )", 24, 2, input);
 
                             throw nvae;
                         }
@@ -1884,7 +1837,7 @@ public class InternalVSLLexer extends Lexer {
                         }
                         else {
                             NoViableAltException nvae =
-                                new NoViableAltException("7269:451: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )", 24, 5, input);
+                                new NoViableAltException("6825:451: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )", 24, 5, input);
 
                             throw nvae;
                         }
@@ -1892,14 +1845,14 @@ public class InternalVSLLexer extends Lexer {
                         break;
                     default:
                         NoViableAltException nvae =
-                            new NoViableAltException("7269:451: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )", 24, 0, input);
+                            new NoViableAltException("6825:451: ( 'Mon' | 'Tue' | 'Wed' | 'Thr' | 'Fri' | 'Sat' | 'Sun' )", 24, 0, input);
 
                         throw nvae;
                     }
 
                     switch (alt24) {
                         case 1 :
-                            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:452: 'Mon'
+                            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:452: 'Mon'
                             {
                             match("Mon"); 
 
@@ -1907,7 +1860,7 @@ public class InternalVSLLexer extends Lexer {
                             }
                             break;
                         case 2 :
-                            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:458: 'Tue'
+                            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:458: 'Tue'
                             {
                             match("Tue"); 
 
@@ -1915,7 +1868,7 @@ public class InternalVSLLexer extends Lexer {
                             }
                             break;
                         case 3 :
-                            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:464: 'Wed'
+                            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:464: 'Wed'
                             {
                             match("Wed"); 
 
@@ -1923,7 +1876,7 @@ public class InternalVSLLexer extends Lexer {
                             }
                             break;
                         case 4 :
-                            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:470: 'Thr'
+                            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:470: 'Thr'
                             {
                             match("Thr"); 
 
@@ -1931,7 +1884,7 @@ public class InternalVSLLexer extends Lexer {
                             }
                             break;
                         case 5 :
-                            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:476: 'Fri'
+                            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:476: 'Fri'
                             {
                             match("Fri"); 
 
@@ -1939,7 +1892,7 @@ public class InternalVSLLexer extends Lexer {
                             }
                             break;
                         case 6 :
-                            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:482: 'Sat'
+                            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:482: 'Sat'
                             {
                             match("Sat"); 
 
@@ -1947,7 +1900,7 @@ public class InternalVSLLexer extends Lexer {
                             }
                             break;
                         case 7 :
-                            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7269:488: 'Sun'
+                            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6825:488: 'Sun'
                             {
                             match("Sun"); 
 
@@ -1977,10 +1930,10 @@ public class InternalVSLLexer extends Lexer {
     public final void mRULE_BOOLEANLITERAL() throws RecognitionException {
         try {
             int _type = RULE_BOOLEANLITERAL;
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7271:21: ( ( 'true' | 'false' ) )
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7271:23: ( 'true' | 'false' )
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6827:21: ( ( 'true' | 'false' ) )
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6827:23: ( 'true' | 'false' )
             {
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7271:23: ( 'true' | 'false' )
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6827:23: ( 'true' | 'false' )
             int alt26=2;
             int LA26_0 = input.LA(1);
 
@@ -1992,13 +1945,13 @@ public class InternalVSLLexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("7271:23: ( 'true' | 'false' )", 26, 0, input);
+                    new NoViableAltException("6827:23: ( 'true' | 'false' )", 26, 0, input);
 
                 throw nvae;
             }
             switch (alt26) {
                 case 1 :
-                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7271:24: 'true'
+                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6827:24: 'true'
                     {
                     match("true"); 
 
@@ -2006,7 +1959,7 @@ public class InternalVSLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7271:31: 'false'
+                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6827:31: 'false'
                     {
                     match("false"); 
 
@@ -2030,8 +1983,8 @@ public class InternalVSLLexer extends Lexer {
     public final void mRULE_NULLLITERAL() throws RecognitionException {
         try {
             int _type = RULE_NULLLITERAL;
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7273:18: ( 'null' )
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7273:20: 'null'
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6829:18: ( 'null' )
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6829:20: 'null'
             {
             match("null"); 
 
@@ -2049,10 +2002,10 @@ public class InternalVSLLexer extends Lexer {
     public final void mRULE_ID() throws RecognitionException {
         try {
             int _type = RULE_ID;
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7275:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7275:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6831:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6831:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7275:11: ( '^' )?
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6831:11: ( '^' )?
             int alt27=2;
             int LA27_0 = input.LA(1);
 
@@ -2061,7 +2014,7 @@ public class InternalVSLLexer extends Lexer {
             }
             switch (alt27) {
                 case 1 :
-                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7275:11: '^'
+                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6831:11: '^'
                     {
                     match('^'); 
 
@@ -2080,7 +2033,7 @@ public class InternalVSLLexer extends Lexer {
                 recover(mse);    throw mse;
             }
 
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7275:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6831:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop28:
             do {
                 int alt28=2;
@@ -2128,10 +2081,10 @@ public class InternalVSLLexer extends Lexer {
     public final void mRULE_INT() throws RecognitionException {
         try {
             int _type = RULE_INT;
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7277:10: ( ( '0' .. '9' )+ )
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7277:12: ( '0' .. '9' )+
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6833:10: ( ( '0' .. '9' )+ )
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6833:12: ( '0' .. '9' )+
             {
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7277:12: ( '0' .. '9' )+
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6833:12: ( '0' .. '9' )+
             int cnt29=0;
             loop29:
             do {
@@ -2145,7 +2098,7 @@ public class InternalVSLLexer extends Lexer {
 
                 switch (alt29) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7277:13: '0' .. '9'
+            	    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6833:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -2175,10 +2128,10 @@ public class InternalVSLLexer extends Lexer {
     public final void mRULE_STRING() throws RecognitionException {
         try {
             int _type = RULE_STRING;
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7279:13: ( ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7279:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6835:13: ( ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6835:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7279:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6835:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             int alt32=2;
             int LA32_0 = input.LA(1);
 
@@ -2190,16 +2143,16 @@ public class InternalVSLLexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("7279:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )", 32, 0, input);
+                    new NoViableAltException("6835:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )", 32, 0, input);
 
                 throw nvae;
             }
             switch (alt32) {
                 case 1 :
-                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7279:16: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6835:16: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
-                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7279:20: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
+                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6835:20: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
                     loop30:
                     do {
                         int alt30=3;
@@ -2215,7 +2168,7 @@ public class InternalVSLLexer extends Lexer {
 
                         switch (alt30) {
                     	case 1 :
-                    	    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7279:21: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
+                    	    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6835:21: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
                     	    {
                     	    match('\\'); 
                     	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -2232,7 +2185,7 @@ public class InternalVSLLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7279:62: ~ ( ( '\\\\' | '\"' ) )
+                    	    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6835:62: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFE') ) {
                     	        input.consume();
@@ -2258,10 +2211,10 @@ public class InternalVSLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7279:82: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6835:82: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
                     {
                     match('\''); 
-                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7279:87: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6835:87: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
                     loop31:
                     do {
                         int alt31=3;
@@ -2277,7 +2230,7 @@ public class InternalVSLLexer extends Lexer {
 
                         switch (alt31) {
                     	case 1 :
-                    	    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7279:88: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
+                    	    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6835:88: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
                     	    {
                     	    match('\\'); 
                     	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -2294,7 +2247,7 @@ public class InternalVSLLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7279:129: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6835:129: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFE') ) {
                     	        input.consume();
@@ -2336,12 +2289,12 @@ public class InternalVSLLexer extends Lexer {
     public final void mRULE_ML_COMMENT() throws RecognitionException {
         try {
             int _type = RULE_ML_COMMENT;
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7281:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7281:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6837:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6837:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7281:24: ( options {greedy=false; } : . )*
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6837:24: ( options {greedy=false; } : . )*
             loop33:
             do {
                 int alt33=2;
@@ -2366,7 +2319,7 @@ public class InternalVSLLexer extends Lexer {
 
                 switch (alt33) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7281:52: .
+            	    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6837:52: .
             	    {
             	    matchAny(); 
 
@@ -2394,12 +2347,12 @@ public class InternalVSLLexer extends Lexer {
     public final void mRULE_SL_COMMENT() throws RecognitionException {
         try {
             int _type = RULE_SL_COMMENT;
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7283:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7283:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6839:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6839:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7283:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6839:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop34:
             do {
                 int alt34=2;
@@ -2412,7 +2365,7 @@ public class InternalVSLLexer extends Lexer {
 
                 switch (alt34) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7283:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6839:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFE') ) {
             	        input.consume();
@@ -2433,7 +2386,7 @@ public class InternalVSLLexer extends Lexer {
                 }
             } while (true);
 
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7283:40: ( ( '\\r' )? '\\n' )?
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6839:40: ( ( '\\r' )? '\\n' )?
             int alt36=2;
             int LA36_0 = input.LA(1);
 
@@ -2442,9 +2395,9 @@ public class InternalVSLLexer extends Lexer {
             }
             switch (alt36) {
                 case 1 :
-                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7283:41: ( '\\r' )? '\\n'
+                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6839:41: ( '\\r' )? '\\n'
                     {
-                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7283:41: ( '\\r' )?
+                    // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6839:41: ( '\\r' )?
                     int alt35=2;
                     int LA35_0 = input.LA(1);
 
@@ -2453,7 +2406,7 @@ public class InternalVSLLexer extends Lexer {
                     }
                     switch (alt35) {
                         case 1 :
-                            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7283:41: '\\r'
+                            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6839:41: '\\r'
                             {
                             match('\r'); 
 
@@ -2483,10 +2436,10 @@ public class InternalVSLLexer extends Lexer {
     public final void mRULE_WS() throws RecognitionException {
         try {
             int _type = RULE_WS;
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7285:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7285:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6841:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6841:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7285:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6841:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt37=0;
             loop37:
             do {
@@ -2539,8 +2492,8 @@ public class InternalVSLLexer extends Lexer {
     public final void mRULE_ANY_OTHER() throws RecognitionException {
         try {
             int _type = RULE_ANY_OTHER;
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7287:16: ( . )
-            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:7287:18: .
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6843:16: ( . )
+            // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:6843:18: .
             {
             matchAny(); 
 
@@ -2554,8 +2507,8 @@ public class InternalVSLLexer extends Lexer {
     // $ANTLR end RULE_ANY_OTHER
 
     public void mTokens() throws RecognitionException {
-        // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1:8: ( T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | T29 | T30 | T31 | T32 | T33 | T34 | T35 | T36 | T37 | T38 | T39 | T40 | T41 | T42 | T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | RULE_INTEGERLITERAL | RULE_REALLITERAL | RULE_DATETIMELITERAL | RULE_BOOLEANLITERAL | RULE_NULLLITERAL | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
-        int alt38=51;
+        // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1:8: ( T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | T29 | T30 | T31 | T32 | T33 | T34 | T35 | T36 | T37 | T38 | T39 | T40 | T41 | T42 | T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | RULE_INTEGERLITERAL | RULE_REALLITERAL | RULE_DATETIMELITERAL | RULE_BOOLEANLITERAL | RULE_NULLLITERAL | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
+        int alt38=48;
         alt38 = dfa38.predict(input);
         switch (alt38) {
             case 1 :
@@ -2811,105 +2764,84 @@ public class InternalVSLLexer extends Lexer {
                 }
                 break;
             case 37 :
-                // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1:154: T52
-                {
-                mT52(); 
-
-                }
-                break;
-            case 38 :
-                // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1:158: T53
-                {
-                mT53(); 
-
-                }
-                break;
-            case 39 :
-                // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1:162: T54
-                {
-                mT54(); 
-
-                }
-                break;
-            case 40 :
-                // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1:166: RULE_INTEGERLITERAL
+                // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1:154: RULE_INTEGERLITERAL
                 {
                 mRULE_INTEGERLITERAL(); 
 
                 }
                 break;
-            case 41 :
-                // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1:186: RULE_REALLITERAL
+            case 38 :
+                // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1:174: RULE_REALLITERAL
                 {
                 mRULE_REALLITERAL(); 
 
                 }
                 break;
-            case 42 :
-                // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1:203: RULE_DATETIMELITERAL
+            case 39 :
+                // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1:191: RULE_DATETIMELITERAL
                 {
                 mRULE_DATETIMELITERAL(); 
 
                 }
                 break;
-            case 43 :
-                // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1:224: RULE_BOOLEANLITERAL
+            case 40 :
+                // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1:212: RULE_BOOLEANLITERAL
                 {
                 mRULE_BOOLEANLITERAL(); 
 
                 }
                 break;
-            case 44 :
-                // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1:244: RULE_NULLLITERAL
+            case 41 :
+                // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1:232: RULE_NULLLITERAL
                 {
                 mRULE_NULLLITERAL(); 
 
                 }
                 break;
-            case 45 :
-                // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1:261: RULE_ID
+            case 42 :
+                // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1:249: RULE_ID
                 {
                 mRULE_ID(); 
 
                 }
                 break;
-            case 46 :
-                // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1:269: RULE_INT
+            case 43 :
+                // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1:257: RULE_INT
                 {
                 mRULE_INT(); 
 
                 }
                 break;
-            case 47 :
-                // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1:278: RULE_STRING
+            case 44 :
+                // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1:266: RULE_STRING
                 {
                 mRULE_STRING(); 
 
                 }
                 break;
-            case 48 :
-                // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1:290: RULE_ML_COMMENT
+            case 45 :
+                // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1:278: RULE_ML_COMMENT
                 {
                 mRULE_ML_COMMENT(); 
 
                 }
                 break;
-            case 49 :
-                // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1:306: RULE_SL_COMMENT
+            case 46 :
+                // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1:294: RULE_SL_COMMENT
                 {
                 mRULE_SL_COMMENT(); 
 
                 }
                 break;
-            case 50 :
-                // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1:322: RULE_WS
+            case 47 :
+                // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1:310: RULE_WS
                 {
                 mRULE_WS(); 
 
                 }
                 break;
-            case 51 :
-                // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1:330: RULE_ANY_OTHER
+            case 48 :
+                // ../org.eclipse.papyrus.marte.vsl.ui/src-gen/org/eclipse/papyrus/marte/vsl/ui/contentassist/antlr/internal/InternalVSL.g:1:318: RULE_ANY_OTHER
                 {
                 mRULE_ANY_OTHER(); 
 
@@ -2923,227 +2855,201 @@ public class InternalVSLLexer extends Lexer {
 
     protected DFA38 dfa38 = new DFA38(this);
     static final String DFA38_eotS =
-        "\1\uffff\3\61\1\66\1\71\1\73\1\75\1\77\1\uffff\1\103\2\61\2\uffff"+
-        "\3\61\1\116\1\120\6\uffff\1\61\1\uffff\1\61\2\uffff\4\134\7\61\1"+
-        "\57\1\uffff\2\57\2\uffff\1\61\1\uffff\1\155\2\61\7\uffff\1\134\1"+
-        "\uffff\1\134\5\uffff\3\61\2\uffff\1\61\1\165\2\61\12\uffff\1\61"+
-        "\1\uffff\1\61\3\uffff\1\134\1\uffff\2\134\11\61\2\uffff\1\u0085"+
-        "\1\uffff\1\u0086\1\u0087\1\u0088\1\61\1\u008a\2\61\1\uffff\4\61"+
-        "\1\134\1\uffff\7\173\2\61\4\uffff\1\u0094\1\uffff\4\61\1\u0099\1"+
-        "\61\1\134\1\u009c\1\61\1\uffff\1\61\1\u009f\1\u00a0\1\61\1\uffff"+
-        "\1\61\1\134\1\uffff\1\u009c\1\u00a3\2\uffff\2\61\1\uffff\1\u00a6"+
-        "\2\uffff";
+        "\1\uffff\3\57\1\64\1\67\1\71\1\74\1\75\1\uffff\1\101\2\57\2\uffff"+
+        "\1\57\1\111\1\113\6\uffff\1\57\1\uffff\1\57\2\uffff\4\127\7\57\1"+
+        "\55\1\uffff\2\55\2\uffff\1\57\1\uffff\1\150\2\57\7\uffff\2\127\6"+
+        "\uffff\3\57\2\uffff\1\157\12\uffff\1\57\1\uffff\1\57\3\uffff\1\127"+
+        "\1\uffff\2\127\11\57\2\uffff\1\175\1\uffff\1\176\1\177\1\u0080\1"+
+        "\57\1\u0082\1\57\1\uffff\2\57\1\127\1\uffff\7\163\2\57\4\uffff\1"+
+        "\u0089\1\uffff\1\57\1\u008b\1\57\1\127\1\u008e\1\57\1\uffff\1\u0090"+
+        "\1\uffff\1\57\1\127\1\uffff\1\u008e\1\uffff\1\57\1\uffff";
     static final String DFA38_eofS =
-        "\u00a7\uffff";
+        "\u0093\uffff";
     static final String DFA38_minS =
-        "\1\0\1\156\1\162\1\157\3\75\2\60\1\uffff\1\52\2\157\2\uffff\1\155"+
-        "\1\141\1\157\1\72\1\56\6\uffff\1\150\1\uffff\1\151\2\uffff\4\56"+
-        "\1\157\1\150\1\145\1\162\1\141\1\162\1\141\1\101\1\uffff\2\0\2\uffff"+
-        "\1\144\1\uffff\1\60\1\164\1\162\7\uffff\1\56\1\uffff\1\56\5\uffff"+
-        "\1\144\1\154\1\164\2\uffff\1\160\1\60\1\154\1\156\12\uffff\1\145"+
-        "\1\uffff\1\164\3\uffff\1\56\1\uffff\2\56\1\156\1\162\1\145\1\144"+
-        "\1\151\1\156\1\164\1\165\1\154\2\uffff\1\60\1\uffff\3\60\1\154\1"+
-        "\60\1\157\1\165\1\uffff\1\165\1\164\1\156\1\164\1\56\1\uffff\7\60"+
-        "\1\145\1\163\4\uffff\1\60\1\uffff\1\162\1\164\2\145\1\60\1\145\1"+
-        "\56\1\60\1\145\1\uffff\1\164\2\60\1\170\1\uffff\1\162\1\56\1\uffff"+
-        "\2\60\2\uffff\1\164\1\50\1\uffff\1\60\2\uffff";
+        "\1\0\1\156\1\162\1\157\3\75\2\60\1\uffff\1\52\2\157\2\uffff\1\156"+
+        "\1\72\1\56\6\uffff\1\150\1\uffff\1\151\2\uffff\4\56\1\157\1\150"+
+        "\1\145\1\162\1\141\1\162\1\141\1\101\1\uffff\2\0\2\uffff\1\144\1"+
+        "\uffff\1\60\1\164\1\162\7\uffff\2\56\6\uffff\1\144\1\154\1\164\2"+
+        "\uffff\1\60\12\uffff\1\145\1\uffff\1\164\3\uffff\1\56\1\uffff\2"+
+        "\56\1\156\1\145\1\162\1\144\1\151\1\164\1\156\1\165\1\154\2\uffff"+
+        "\1\60\1\uffff\3\60\1\154\1\60\1\165\1\uffff\1\156\1\164\1\56\1\uffff"+
+        "\7\60\1\145\1\163\4\uffff\1\60\1\uffff\1\164\1\60\1\145\1\56\1\60"+
+        "\1\145\1\uffff\1\60\1\uffff\1\162\1\56\1\uffff\1\60\1\uffff\1\50"+
+        "\1\uffff";
     static final String DFA38_maxS =
         "\1\ufffe\1\156\1\165\1\157\1\75\1\76\1\75\2\71\1\uffff\1\57\1\157"+
-        "\1\165\2\uffff\1\156\1\141\1\157\1\72\1\56\6\uffff\1\150\1\uffff"+
-        "\1\151\2\uffff\4\71\1\157\1\165\1\145\1\162\1\165\1\162\1\141\1"+
-        "\172\1\uffff\2\ufffe\2\uffff\1\144\1\uffff\1\172\1\164\1\162\7\uffff"+
-        "\1\71\1\uffff\1\71\5\uffff\1\144\1\154\1\164\2\uffff\1\160\1\172"+
-        "\1\154\1\156\12\uffff\1\145\1\uffff\1\164\3\uffff\1\72\1\uffff\1"+
-        "\72\1\71\1\156\1\162\1\145\1\144\1\151\1\156\1\164\1\165\1\154\2"+
-        "\uffff\1\172\1\uffff\3\172\1\154\1\172\1\157\1\165\1\uffff\1\165"+
-        "\1\164\1\156\1\164\1\71\1\uffff\7\172\1\145\1\163\4\uffff\1\172"+
-        "\1\uffff\1\162\1\164\2\145\1\172\1\145\1\71\1\172\1\145\1\uffff"+
-        "\1\164\2\172\1\170\1\uffff\1\162\1\71\1\uffff\2\172\2\uffff\1\164"+
-        "\1\50\1\uffff\1\172\2\uffff";
+        "\1\165\2\uffff\1\156\1\72\1\56\6\uffff\1\150\1\uffff\1\151\2\uffff"+
+        "\4\71\1\157\1\165\1\145\1\162\1\165\1\162\1\141\1\172\1\uffff\2"+
+        "\ufffe\2\uffff\1\144\1\uffff\1\172\1\164\1\162\7\uffff\2\71\6\uffff"+
+        "\1\144\1\154\1\164\2\uffff\1\172\12\uffff\1\145\1\uffff\1\164\3"+
+        "\uffff\1\72\1\uffff\1\72\1\71\1\156\1\145\1\162\1\144\1\151\1\164"+
+        "\1\156\1\165\1\154\2\uffff\1\172\1\uffff\3\172\1\154\1\172\1\165"+
+        "\1\uffff\1\156\1\164\1\71\1\uffff\7\172\1\145\1\163\4\uffff\1\172"+
+        "\1\uffff\1\164\1\172\1\145\1\71\1\172\1\145\1\uffff\1\172\1\uffff"+
+        "\1\162\1\71\1\uffff\1\172\1\uffff\1\50\1\uffff";
     static final String DFA38_acceptS =
-        "\11\uffff\1\14\3\uffff\1\20\1\21\5\uffff\1\32\1\33\1\36\1\37\1\40"+
-        "\1\42\1\uffff\1\44\1\uffff\1\46\1\47\14\uffff\1\55\2\uffff\1\62"+
-        "\1\63\1\uffff\1\55\3\uffff\1\4\1\41\1\5\1\10\1\6\1\11\1\7\1\uffff"+
-        "\1\12\1\uffff\1\13\1\14\1\61\1\60\1\15\3\uffff\1\20\1\21\4\uffff"+
-        "\1\34\1\30\1\35\1\31\1\32\1\33\1\36\1\37\1\40\1\42\1\uffff\1\44"+
-        "\1\uffff\1\46\1\47\1\50\1\uffff\1\51\13\uffff\1\57\1\62\1\uffff"+
-        "\1\2\7\uffff\1\22\5\uffff\1\52\11\uffff\1\1\1\23\1\3\1\16\1\uffff"+
-        "\1\17\11\uffff\1\54\4\uffff\1\43\2\uffff\1\53\2\uffff\1\24\1\25"+
-        "\2\uffff\1\26\1\uffff\1\45\1\27";
+        "\11\uffff\1\14\3\uffff\1\20\1\21\3\uffff\1\27\1\30\1\33\1\34\1\35"+
+        "\1\37\1\uffff\1\41\1\uffff\1\43\1\44\14\uffff\1\52\2\uffff\1\57"+
+        "\1\60\1\uffff\1\52\3\uffff\1\4\1\36\1\10\1\5\1\6\1\11\1\7\2\uffff"+
+        "\1\12\1\13\1\14\1\56\1\55\1\15\3\uffff\1\20\1\21\1\uffff\1\31\1"+
+        "\25\1\32\1\26\1\27\1\30\1\33\1\34\1\35\1\37\1\uffff\1\41\1\uffff"+
+        "\1\43\1\44\1\45\1\uffff\1\46\13\uffff\1\54\1\57\1\uffff\1\2\6\uffff"+
+        "\1\22\3\uffff\1\47\11\uffff\1\1\1\23\1\3\1\16\1\uffff\1\17\6\uffff"+
+        "\1\51\1\uffff\1\40\2\uffff\1\50\1\uffff\1\24\1\uffff\1\42";
     static final String DFA38_specialS =
-        "\u00a7\uffff}>";
+        "\u0093\uffff}>";
     static final String[] DFA38_transitionS = {
-            "\11\57\2\56\2\57\1\56\22\57\1\56\1\57\1\54\1\57\1\35\1\57\1"+
-            "\33\1\55\1\24\1\25\1\11\1\7\1\30\1\10\1\23\1\12\1\37\1\40\1"+
-            "\41\7\42\1\22\1\57\1\5\1\4\1\6\1\36\1\31\5\53\1\46\6\53\1\43"+
-            "\5\53\1\47\1\44\2\53\1\45\3\53\1\16\1\57\1\15\1\52\1\53\1\57"+
-            "\1\1\1\53\1\21\2\53\1\51\2\53\1\17\1\34\2\53\1\13\1\14\1\2\4"+
-            "\53\1\50\1\53\1\20\1\32\1\3\2\53\1\26\1\57\1\27\uff81\57",
-            "\1\60",
-            "\1\62\2\uffff\1\63",
-            "\1\64",
-            "\1\65",
-            "\1\70\1\67",
-            "\1\72",
-            "\1\74\11\76",
-            "\1\74\11\76",
+            "\11\55\2\54\2\55\1\54\22\55\1\54\1\55\1\52\1\55\1\33\1\55\1"+
+            "\31\1\53\1\22\1\23\1\11\1\7\1\26\1\10\1\21\1\12\1\35\1\36\1"+
+            "\37\7\40\1\20\1\55\1\5\1\4\1\6\1\34\1\27\5\51\1\44\6\51\1\41"+
+            "\5\51\1\45\1\42\2\51\1\43\3\51\1\16\1\55\1\15\1\50\1\51\1\55"+
+            "\1\1\4\51\1\47\2\51\1\17\1\32\2\51\1\13\1\14\1\2\4\51\1\46\2"+
+            "\51\1\30\1\3\2\51\1\24\1\55\1\25\uff81\55",
+            "\1\56",
+            "\1\60\2\uffff\1\61",
+            "\1\62",
+            "\1\63",
+            "\1\65\1\66",
+            "\1\70",
+            "\1\72\11\73",
+            "\1\72\11\73",
             "",
-            "\1\102\4\uffff\1\101",
-            "\1\104",
-            "\1\106\5\uffff\1\105",
+            "\1\100\4\uffff\1\77",
+            "\1\102",
+            "\1\104\5\uffff\1\103",
             "",
             "",
-            "\1\111\1\112",
-            "\1\113",
-            "\1\114",
-            "\1\115",
-            "\1\117",
+            "\1\107",
+            "\1\110",
+            "\1\112",
             "",
             "",
             "",
             "",
             "",
             "",
-            "\1\127",
+            "\1\122",
             "",
-            "\1\131",
+            "\1\124",
             "",
             "",
-            "\1\136\1\uffff\12\135",
-            "\1\136\1\uffff\12\135",
-            "\1\136\1\uffff\4\137\6\140",
-            "\1\136\1\uffff\12\140",
-            "\1\141",
-            "\1\142\14\uffff\1\143",
+            "\1\131\1\uffff\12\130",
+            "\1\131\1\uffff\12\130",
+            "\1\131\1\uffff\4\132\6\133",
+            "\1\131\1\uffff\12\133",
+            "\1\134",
+            "\1\136\14\uffff\1\135",
+            "\1\137",
+            "\1\140",
+            "\1\141\23\uffff\1\142",
+            "\1\143",
             "\1\144",
-            "\1\145",
-            "\1\147\23\uffff\1\146",
-            "\1\150",
+            "\32\57\4\uffff\1\57\1\uffff\32\57",
+            "",
+            "\uffff\145",
+            "\uffff\145",
+            "",
+            "",
+            "\1\147",
+            "",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
             "\1\151",
-            "\32\61\4\uffff\1\61\1\uffff\32\61",
-            "",
-            "\uffff\152",
-            "\uffff\152",
+            "\1\152",
             "",
             "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "\1\131\1\uffff\12\73",
+            "\1\131\1\uffff\12\73",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "\1\153",
             "\1\154",
-            "",
-            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
-            "\1\156",
-            "\1\157",
+            "\1\155",
             "",
             "",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\16\57\1\156\13\57",
             "",
             "",
             "",
             "",
             "",
-            "\1\136\1\uffff\12\76",
-            "",
-            "\1\136\1\uffff\12\76",
             "",
             "",
             "",
             "",
             "",
             "\1\160",
+            "",
             "\1\161",
-            "\1\162",
             "",
             "",
-            "\1\163",
-            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\16\61\1\164\13\61",
+            "",
+            "\1\131\1\uffff\12\162\1\163",
+            "",
+            "\1\131\1\uffff\12\162\1\163",
+            "\1\131\1\uffff\12\162",
+            "\1\164",
+            "\1\165",
             "\1\166",
             "\1\167",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
             "\1\170",
-            "",
             "\1\171",
-            "",
-            "",
-            "",
-            "\1\136\1\uffff\12\172\1\173",
-            "",
-            "\1\136\1\uffff\12\172\1\173",
-            "\1\136\1\uffff\12\172",
+            "\1\172",
+            "\1\173",
             "\1\174",
-            "\1\175",
-            "\1\176",
-            "\1\177",
-            "\1\u0080",
+            "",
+            "",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
             "\1\u0081",
-            "\1\u0082",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
             "\1\u0083",
+            "",
             "\1\u0084",
+            "\1\u0085",
+            "\1\131\1\uffff\12\u0086",
+            "",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "\1\u0087",
+            "\1\u0088",
             "",
             "",
-            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
             "",
-            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
-            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
-            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
-            "\1\u0089",
-            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
-            "\1\u008b",
+            "",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "",
+            "\1\u008a",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
             "\1\u008c",
-            "",
-            "\1\u008d",
-            "\1\u008e",
+            "\1\131\1\163\12\u008d",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
             "\1\u008f",
-            "\1\u0090",
-            "\1\136\1\uffff\12\u0091",
             "",
-            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
-            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
-            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
-            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
-            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
-            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
-            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "",
+            "\1\u0091",
+            "\1\131\1\uffff\12\u008d",
+            "",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "",
             "\1\u0092",
-            "\1\u0093",
-            "",
-            "",
-            "",
-            "",
-            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
-            "",
-            "\1\u0095",
-            "\1\u0096",
-            "\1\u0097",
-            "\1\u0098",
-            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
-            "\1\u009a",
-            "\1\136\1\173\12\u009b",
-            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
-            "\1\u009d",
-            "",
-            "\1\u009e",
-            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
-            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
-            "\1\u00a1",
-            "",
-            "\1\u00a2",
-            "\1\136\1\uffff\12\u009b",
-            "",
-            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
-            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
-            "",
-            "",
-            "\1\u00a4",
-            "\1\u00a5",
-            "",
-            "\12\61\7\uffff\32\61\4\uffff\1\61\1\uffff\32\61",
-            "",
             ""
     };
 
@@ -3177,7 +3083,7 @@ public class InternalVSLLexer extends Lexer {
             this.transition = DFA38_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | T29 | T30 | T31 | T32 | T33 | T34 | T35 | T36 | T37 | T38 | T39 | T40 | T41 | T42 | T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | RULE_INTEGERLITERAL | RULE_REALLITERAL | RULE_DATETIMELITERAL | RULE_BOOLEANLITERAL | RULE_NULLLITERAL | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
+            return "1:1: Tokens : ( T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | T29 | T30 | T31 | T32 | T33 | T34 | T35 | T36 | T37 | T38 | T39 | T40 | T41 | T42 | T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | RULE_INTEGERLITERAL | RULE_REALLITERAL | RULE_DATETIMELITERAL | RULE_BOOLEANLITERAL | RULE_NULLLITERAL | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
         }
     }
  
