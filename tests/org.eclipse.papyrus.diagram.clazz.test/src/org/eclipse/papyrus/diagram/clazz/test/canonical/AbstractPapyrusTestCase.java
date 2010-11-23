@@ -172,7 +172,6 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 	protected DiagramEditPart getDiagramEditPart(){
 		if(clazzdiagrameditPart== null){
 			diagramEditor= (UmlClassDiagramForMultiEditor)papyrusEditor.getActiveEditor();
-			System.err.println(diagramEditor.getGraphicalViewer().getContents().getRoot());
 			clazzdiagrameditPart = (DiagramEditPart)diagramEditor.getGraphicalViewer().getContents().getRoot().getChildren().get(0);
 		}
 		return clazzdiagrameditPart;
