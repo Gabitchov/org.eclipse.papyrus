@@ -25,6 +25,8 @@ import org.junit.runners.Suite.SuiteClasses;
 TestClassDiagramTopNode.class,
 // child nodes
 TestClassDiagramChildNode.class,
+//labelNodes
+TestClassDiagramChildLabel.class,
 // multilinks
 TestMutliLink.class,
 // child labels
