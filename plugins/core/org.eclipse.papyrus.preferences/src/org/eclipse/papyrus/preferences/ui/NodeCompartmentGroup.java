@@ -18,9 +18,8 @@ import java.util.List;
 
 import org.eclipse.gmf.runtime.common.ui.preferences.CheckBoxFieldEditor;
 import org.eclipse.jface.dialogs.DialogPage;
-import org.eclipse.jface.preference.BooleanFieldEditor;
-import org.eclipse.papyrus.preferences.Messages;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
@@ -69,33 +68,50 @@ public class NodeCompartmentGroup extends AbstractGroup {
 			return;
 		}
 		for(String compartmentName : compartmentsName) {
-			Group compartmentGroup = new Group(parent, 2);
-			compartmentGroup.setLayout(new GridLayout(2, true));
-			compartmentGroup.setText(compartmentName);
+			// show Compartment Visibility and CompartmentName Visibility items in the same row   
+			Group group = new Group(parent, SWT.NONE);
+			group.setLayout(new GridLayout(2, true));
+			group.setText(compartmentName);
 
-			Button showCompartment = addShowCompartmentField(compartmentGroup, compartmentName);
-			Button showName = addShowNameOfCompartmentField(compartmentGroup, compartmentName);
+			GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
+			gridData.grabExcessHorizontalSpace = true;
+			gridData.horizontalSpan = 2;
+			group.setLayoutData(gridData);
+			
+			Button showCompartment = addShowCompartmentField(group, compartmentName);
+			Button showName = addShowNameOfCompartmentField(group, compartmentName);
 			createDependency(showCompartment, new Control[]{showName});
+			
 		}
 	}
 
-	protected Button addShowCompartmentField(Group compartmentGroup, String name) {
+	protected Button addShowCompartmentField(Composite parent, String name) {
+		// show Compartment Visibility and CompartmentName Visibility items in the same row   
+		// as CheckBoxFieldEditor resets layout data to fit the grid we create this stub plate 
+		// @see #doFillIntoGrid 
+		Composite plate = new Composite(parent, SWT.NONE);
+		plate.setLayoutData(new GridData());
+		
 		String compartmentVisibilityPreference = PreferenceConstantHelper.getCompartmentElementConstant(getKey(), name, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
 		String label = "Show compartment";
-		CheckBoxFieldEditor compartmentVisibilityBooleanFieldEditor = new CheckBoxFieldEditor(compartmentVisibilityPreference, label, compartmentGroup);
+		CheckBoxFieldEditor compartmentVisibilityBooleanFieldEditor = new CheckBoxFieldEditor(compartmentVisibilityPreference, label, plate);
 		Button checkbox = compartmentVisibilityBooleanFieldEditor.getCheckbox();
-		indent(checkbox);
 		compartmentVisibilityBooleanFieldEditor.setPage(getDialogPage());
 		addFieldEditor(compartmentVisibilityBooleanFieldEditor);
 		return checkbox;
 	}
 
-	protected Button addShowNameOfCompartmentField(Group compartmentGroup, String compartmentName) {
+	protected Button addShowNameOfCompartmentField(Composite parent, String compartmentName) {
+		// show Compartment Visibility and CompartmentName Visibility items in the same row   
+		// as CheckBoxFieldEditor resets layout data to fit the grid we create this stub plate 
+		// @see #doFillIntoGrid 
+		Composite plate = new Composite(parent, SWT.NONE);
+		plate.setLayoutData(new GridData());
+		
 		String compartmentVisibilityPreference = PreferenceConstantHelper.getCompartmentElementConstant(getKey(), compartmentName, PreferenceConstantHelper.COMPARTMENT_NAME_VISIBILITY);
 		String label = "Show name";
-		CheckBoxFieldEditor compartmentNameVisibilityFieldEditor = new CheckBoxFieldEditor(compartmentVisibilityPreference, label, compartmentGroup);
+		CheckBoxFieldEditor compartmentNameVisibilityFieldEditor = new CheckBoxFieldEditor(compartmentVisibilityPreference, label, plate);
 		Button checkbox = compartmentNameVisibilityFieldEditor.getCheckbox();
-		indent(checkbox);
 		compartmentNameVisibilityFieldEditor.setPage(getDialogPage());
 		addFieldEditor(compartmentNameVisibilityFieldEditor);
 		return checkbox;
@@ -122,9 +138,5 @@ public class NodeCompartmentGroup extends AbstractGroup {
 		master.addSelectionListener(listener);
 	}
 
-	private static void indent(Control control) {
-		GridData gridData = new GridData();
-		control.setLayoutData(gridData);
-	}
 
 }
