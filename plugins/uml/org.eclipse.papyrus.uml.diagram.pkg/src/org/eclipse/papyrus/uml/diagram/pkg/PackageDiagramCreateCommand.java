@@ -9,9 +9,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.pkg;
 
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.core.adaptor.gmf.AbstractPapyrusGmfCreateDiagramCommandHandler;
 import org.eclipse.papyrus.uml.diagram.pkg.edit.part.PackageDiagramEditPart;
+import org.eclipse.uml2.uml.Package;
 
 public class PackageDiagramCreateCommand extends AbstractPapyrusGmfCreateDiagramCommandHandler {
 
@@ -36,4 +40,18 @@ public class PackageDiagramCreateCommand extends AbstractPapyrusGmfCreateDiagram
 		return Activator.DIAGRAM_PREFERENCES_HINT;
 	}
 
+	/**
+	 * 
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected Diagram createDiagram(Resource diagramResource, EObject owner, String name) {
+		Diagram diagram = null;
+
+		if(owner instanceof Package) {
+			diagram = super.createDiagram(diagramResource, owner, name);
+		}
+
+		return diagram;
+	}
 }
