@@ -36,8 +36,8 @@ import org.eclipse.swt.widgets.Group;
 public class NodeCompartmentGroup extends AbstractGroup {
 
 	/** the list owning the compartment names for the UML element */
-	private final List<String> compartmentsName;
-	
+	private final List<String> myCompartments;
+
 	private final IPreferenceStore myPreferenceStore;
 
 
@@ -52,7 +52,7 @@ public class NodeCompartmentGroup extends AbstractGroup {
 	 */
 	public NodeCompartmentGroup(Composite parent, String title, DialogPage dialogPage, List<String> compartmentsName, IPreferenceStore store) {
 		super(parent, title, dialogPage);
-		this.compartmentsName = compartmentsName;
+		this.myCompartments = compartmentsName;
 		myPreferenceStore = store;
 		createContent(parent);
 	}
@@ -64,64 +64,58 @@ public class NodeCompartmentGroup extends AbstractGroup {
 	 *        : the parent composite
 	 */
 	protected void createContent(Composite parent) {
-		addCompartmentVisibilityGroup(parent);
+		for(String compartment : myCompartments) {
+			addCompartmentVisibilityGroup(parent, compartment);
+		}
 	}
 
-	private void addCompartmentVisibilityGroup(Composite parent) {
-		for(String compartmentName : compartmentsName) {
-			// show Compartment Visibility and CompartmentName Visibility items in the same row   
-			Group group = new Group(parent, SWT.NONE);
-			group.setLayout(new GridLayout(2, true));
-			group.setText(compartmentName);
+	private void addCompartmentVisibilityGroup(Composite parent, String compartment) {
+		// show Compartment Visibility and CompartmentName Visibility items in the same row   
+		Group group = new Group(parent, SWT.NONE);
+		group.setLayout(new GridLayout(2, true));
+		group.setText(compartment);
 
-			GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
-			gridData.grabExcessHorizontalSpace = true;
-			gridData.horizontalSpan = 2;
-			group.setLayoutData(gridData);
-			
-			Button showCompartment = addShowCompartmentField(group, compartmentName);
-			Button showName = addShowNameOfCompartmentField(group, compartmentName);
-			createDependency(showCompartment, new Control[]{showName});
-			
-		}
+		GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
+		gridData.grabExcessHorizontalSpace = true;
+		gridData.horizontalSpan = 2;
+		group.setLayoutData(gridData);
+
+		Button showCompartment = addShowCompartmentField(group, compartment);
+		Button showName = addShowNameOfCompartmentField(group, compartment);
+		createDependency(showCompartment, new Control[]{ showName });
 	}
 
 	protected Button addShowCompartmentField(Composite parent, String name) {
-		// show Compartment Visibility and CompartmentName Visibility items in the same row   
-		// as CheckBoxFieldEditor resets layout data to fit the grid we create this stub plate 
-		// @see #doFillIntoGrid 
-		Composite plate = new Composite(parent, SWT.NONE);
-		plate.setLayoutData(new GridData());
-		
 		String compartmentVisibilityPreference = PreferenceConstantHelper.getCompartmentElementConstant(getKey(), name, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
 		String label = "Show compartment";
-		CheckBoxFieldEditor compartmentVisibilityBooleanFieldEditor = new CheckBoxFieldEditor(compartmentVisibilityPreference, label, plate);
-		Button checkbox = compartmentVisibilityBooleanFieldEditor.getCheckbox();
-		compartmentVisibilityBooleanFieldEditor.setPage(getDialogPage());
-		addFieldEditor(compartmentVisibilityBooleanFieldEditor);
-		return checkbox;
+		return addCheckboxField(parent, compartmentVisibilityPreference, label);
 	}
 
 	protected Button addShowNameOfCompartmentField(Composite parent, String compartmentName) {
+		String compartmentNameVisibilityPreference = PreferenceConstantHelper.getCompartmentElementConstant(getKey(), compartmentName, PreferenceConstantHelper.COMPARTMENT_NAME_VISIBILITY);
+		String label = "Show name";
+		Button checkbox = addCheckboxField(parent, compartmentNameVisibilityPreference, label);
+
+		String compartmentVisibilityPreference = PreferenceConstantHelper.getCompartmentElementConstant(getKey(), compartmentName, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
+		boolean showCompartmentIsNotChecked = !myPreferenceStore.getBoolean(compartmentVisibilityPreference);
+		if(showCompartmentIsNotChecked) {
+			checkbox.setEnabled(false);
+		}
+
+		return checkbox;
+	}
+
+	private Button addCheckboxField(Composite parent, String preferenceKey, String label) {
 		// show Compartment Visibility and CompartmentName Visibility items in the same row   
 		// as CheckBoxFieldEditor resets layout data to fit the grid we create this stub plate 
 		// @see #doFillIntoGrid 
 		Composite plate = new Composite(parent, SWT.NONE);
 		plate.setLayoutData(new GridData());
-		
-		String compartmentNameVisibilityPreference = PreferenceConstantHelper.getCompartmentElementConstant(getKey(), compartmentName, PreferenceConstantHelper.COMPARTMENT_NAME_VISIBILITY);
-		String label = "Show name";
-		CheckBoxFieldEditor compartmentNameVisibilityFieldEditor = new CheckBoxFieldEditor(compartmentNameVisibilityPreference, label, plate);
-		Button checkbox = compartmentNameVisibilityFieldEditor.getCheckbox();
-		compartmentNameVisibilityFieldEditor.setPage(getDialogPage());
-		addFieldEditor(compartmentNameVisibilityFieldEditor);
 
-		String compartmentVisibilityPreference = PreferenceConstantHelper.getCompartmentElementConstant(getKey(), compartmentName, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
-		boolean showCompartmentIsNotChecked = !myPreferenceStore.getBoolean(compartmentVisibilityPreference);
-		if (showCompartmentIsNotChecked) {
-			checkbox.setEnabled(false);
-		}
-
+		CheckBoxFieldEditor compartmentVisibilityBooleanFieldEditor = new CheckBoxFieldEditor(preferenceKey, label, plate);
+		Button checkbox = compartmentVisibilityBooleanFieldEditor.getCheckbox();
+		compartmentVisibilityBooleanFieldEditor.setPage(getDialogPage());
+		addFieldEditor(compartmentVisibilityBooleanFieldEditor);
 		return checkbox;
 	}
 
