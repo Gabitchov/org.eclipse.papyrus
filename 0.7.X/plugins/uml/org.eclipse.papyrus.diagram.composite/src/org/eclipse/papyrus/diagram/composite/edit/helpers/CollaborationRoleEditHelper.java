@@ -18,5 +18,5 @@ import org.eclipse.papyrus.diagram.common.helper.UMLBaseEditHelper;
 /**
  * @generated
  */
-public class ConnectableElementEditHelper extends UMLBaseEditHelper {
+public class CollaborationRoleEditHelper extends UMLBaseEditHelper {
 }

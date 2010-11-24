@@ -413,9 +413,9 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
-            uniqueIdentifier="org.eclipse.papyrus.diagram.composite.prototype.ConnectableElement_3115"
-            displayName="ConnectableElement"
-            editHelperClassName="ConnectableElementEditHelper"/>
+            uniqueIdentifier="org.eclipse.papyrus.diagram.composite.prototype.CollaborationRole_3115"
+            displayName="CollaborationRole"
+            editHelperClassName="CollaborationRoleEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.figures.CollaborationRoleFigure"/>
@@ -460,6 +460,7 @@
             visualID="5198"
             editPartClassName="CollaborationRoleNameEditPartCN"
             itemSemanticEditPolicyClassName="CollaborationRoleNameItemSemanticEditPolicyCN"
+            readOnly="true"
             elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -9007,7 +9008,10 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
-            xsi:type="gmfgen:MetamodelType"/>
+            xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.diagram.composite.RoleBinding_4017"
+            displayName="RoleBinding"
+            editHelperClassName="RoleBindingEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.diagram.composite.custom.figures.RoleBindingFigure"/>
@@ -9033,6 +9037,7 @@
             visualID="6027"
             editPartClassName="RoleBindingRoleNameEditPart"
             itemSemanticEditPolicyClassName="RoleBindingRoleNameItemSemanticEditPolicy"
+            readOnly="true"
             alignment="SOURCE">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>

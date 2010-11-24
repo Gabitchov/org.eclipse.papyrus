@@ -98,8 +98,6 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 
 		ActorPreferencePage.initDefaults(store);
 
-		ConnectableElementPreferencePage.initDefaults(store);
-
 		ComponentPreferencePage.initDefaults(store);
 
 		LiteralBooleanPreferencePage.initDefaults(store);
@@ -150,6 +148,8 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 
 		EnumerationPreferencePage.initDefaults(store);
 
+		CollaborationRolePreferencePage.initDefaults(store);
+
 		TimeExpressionPreferencePage.initDefaults(store);
 
 		ConstraintConstrainedElementPreferencePage.initDefaults(store);
@@ -181,6 +181,8 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 		SubstitutionPreferencePage.initDefaults(store);
 
 		CommentAnnotatedElementPreferencePage.initDefaults(store);
+
+		RoleBindingPreferencePage.initDefaults(store);
 
 		DeploymentPreferencePage.initDefaults(store);
 
