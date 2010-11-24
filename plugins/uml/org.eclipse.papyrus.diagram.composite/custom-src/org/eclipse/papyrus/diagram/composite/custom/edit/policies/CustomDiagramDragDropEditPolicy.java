@@ -42,6 +42,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.editpolicies.OldCommonDiagramDragDropEditPolicy;
@@ -795,8 +796,11 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 		location.translate(((GraphicalEditPart)getHost()).getContentPane().getClientArea().getLocation().getNegated());
 
 		EObject graphicalParentObject = ((GraphicalEditPart)getHost()).resolveSemanticElement();
+		View graphicalParentView = (View)((GraphicalEditPart)getHost()).getModel();
 
-		while((graphicalParentObject != null) && (iter.hasNext())) {
+		// Warning : in case the diagram refers to a Class (instead of Package), the canvas is a StructuredClassifier
+		// but should not accept drop.
+		while(!(graphicalParentView instanceof Diagram) && (graphicalParentObject != null) && (iter.hasNext())) {
 
 			EObject droppedObject = (EObject)iter.next();
 			if(graphicalParentObject instanceof Collaboration) {
