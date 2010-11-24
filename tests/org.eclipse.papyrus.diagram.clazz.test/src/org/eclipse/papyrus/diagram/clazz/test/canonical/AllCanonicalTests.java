@@ -29,8 +29,8 @@ TestClassDiagramChildNode.class,
 TestClassDiagramChildLabel.class,
 // multilinks
 TestMutliLink.class,
-// child labels
-/* TestClassDiagramChildLabel.class */
+//test the order for the drop
+TestDropfunction.class,
 })
 public class AllCanonicalTests {
 
