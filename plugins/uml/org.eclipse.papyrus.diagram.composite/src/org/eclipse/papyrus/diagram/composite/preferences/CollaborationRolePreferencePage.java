@@ -22,14 +22,14 @@ import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 /**
  * @generated
  */
-public class ConnectableElementPreferencePage extends AbstractPapyrusNodePreferencePage {
+public class CollaborationRolePreferencePage extends AbstractPapyrusNodePreferencePage {
 
 	/**
 	 * @generated
 	 */
-	public ConnectableElementPreferencePage() {
+	public CollaborationRolePreferencePage() {
 		super();
-		setPreferenceKey(CompositeStructureDiagramEditPart.MODEL_ID + "_ConnectableElement");
+		setPreferenceKey(CompositeStructureDiagramEditPart.MODEL_ID + "_CollaborationRole");
 	}
 
 	/**
@@ -45,7 +45,7 @@ public class ConnectableElementPreferencePage extends AbstractPapyrusNodePrefere
 	 */
 	public static void initDefaults(IPreferenceStore store) {
 
-		String key = CompositeStructureDiagramEditPart.MODEL_ID + "_ConnectableElement";
+		String key = CompositeStructureDiagramEditPart.MODEL_ID + "_CollaborationRole";
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.WIDTH), 40);
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.HEIGHT), 40);
 

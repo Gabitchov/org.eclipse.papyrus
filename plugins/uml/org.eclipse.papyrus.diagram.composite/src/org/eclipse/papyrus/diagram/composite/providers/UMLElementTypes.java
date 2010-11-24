@@ -351,7 +351,7 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType ConnectableElement_3115 = getElementType("org.eclipse.papyrus.diagram.composite.prototype.ConnectableElement_3115"); //$NON-NLS-1$
+	public static final IElementType ConnectableElement_3115 = getElementType("org.eclipse.papyrus.diagram.composite.prototype.CollaborationRole_3115"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -636,7 +636,7 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType Dependency_4017 = getElementType("org.eclipse.papyrus.diagram.composite.Dependency_4017"); //$NON-NLS-1$
+	public static final IElementType Dependency_4017 = getElementType("org.eclipse.papyrus.diagram.composite.RoleBinding_4017"); //$NON-NLS-1$
 
 	/**
 	 * @generated

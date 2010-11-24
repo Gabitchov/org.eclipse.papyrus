@@ -2063,11 +2063,11 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
-		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "ConnectableElement");
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "CollaborationRole");
 
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ConnectableElement");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "CollaborationRole");
 
-		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "ConnectableElement");
+		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "CollaborationRole");
 
 		Node label5198 = createLabel(node, UMLVisualIDRegistry.getType(CollaborationRoleNameEditPartCN.VISUAL_ID));
 
@@ -3550,16 +3550,16 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializePreferences
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
-		PreferenceInitializerForElementHelper.initForegroundFromPrefs(edge, prefStore, "Dependency");
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(edge, prefStore, "RoleBinding");
 
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "Dependency");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "RoleBinding");
 
 		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
 		//if (routing != null) {
 		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
 		//}
 
-		PreferenceInitializerForElementHelper.initRountingFromPrefs(edge, prefStore, "Dependency");
+		PreferenceInitializerForElementHelper.initRountingFromPrefs(edge, prefStore, "RoleBinding");
 
 		Node label6027 = createLabel(edge, UMLVisualIDRegistry.getType(RoleBindingRoleNameEditPart.VISUAL_ID));
 		label6027.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
