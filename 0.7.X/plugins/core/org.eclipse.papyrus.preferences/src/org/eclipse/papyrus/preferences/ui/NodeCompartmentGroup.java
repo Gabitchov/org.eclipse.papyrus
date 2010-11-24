@@ -21,8 +21,11 @@ import org.eclipse.jface.dialogs.DialogPage;
 import org.eclipse.jface.preference.BooleanFieldEditor;
 import org.eclipse.papyrus.preferences.Messages;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
@@ -65,56 +68,62 @@ public class NodeCompartmentGroup extends AbstractGroup {
 		if(compartmentsName.isEmpty()) {
 			return;
 		}
-		Group compartmentGroup = new Group(parent, 2);
-		compartmentGroup.setLayout(new GridLayout());
-		compartmentGroup.setText(Messages.NodeCompartmentGroup_Compartiments);
 		for(String compartmentName : compartmentsName) {
-			addShowCompartmentField(compartmentGroup, compartmentName);
-			addShowNameOfCompartmentField(compartmentGroup, compartmentName);
+			Group compartmentGroup = new Group(parent, 2);
+			compartmentGroup.setLayout(new GridLayout(2, true));
+			compartmentGroup.setText(compartmentName);
+
+			Button showCompartment = addShowCompartmentField(compartmentGroup, compartmentName);
+			Button showName = addShowNameOfCompartmentField(compartmentGroup, compartmentName);
+			createDependency(showCompartment, new Control[]{showName});
 		}
 	}
 
-	protected void addShowCompartmentField(Group compartmentGroup, String name) {
+	protected Button addShowCompartmentField(Group compartmentGroup, String name) {
 		String compartmentVisibilityPreference = PreferenceConstantHelper.getCompartmentElementConstant(getKey(), name, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
-		BooleanFieldEditor compartmentVisibilityBooleanFieldEditor = new BooleanFieldEditor(compartmentVisibilityPreference, name, compartmentGroup);
-		compartmentVisibilityBooleanFieldEditor.setPage(this.dialogPage);
+		String label = "Show compartment";
+		CheckBoxFieldEditor compartmentVisibilityBooleanFieldEditor = new CheckBoxFieldEditor(compartmentVisibilityPreference, label, compartmentGroup);
+		Button checkbox = compartmentVisibilityBooleanFieldEditor.getCheckbox();
+		indent(checkbox);
+		compartmentVisibilityBooleanFieldEditor.setPage(getDialogPage());
 		addFieldEditor(compartmentVisibilityBooleanFieldEditor);
+		return checkbox;
 	}
 
-	protected void addShowNameOfCompartmentField(Group compartmentGroup, String compartmentName) {
+	protected Button addShowNameOfCompartmentField(Group compartmentGroup, String compartmentName) {
 		String compartmentVisibilityPreference = PreferenceConstantHelper.getCompartmentElementConstant(getKey(), compartmentName, PreferenceConstantHelper.COMPARTMENT_NAME_VISIBILITY);
 		String label = "Show name";
-		CheckBoxFieldEditor compartmentVisibilityBooleanFieldEditor = new CheckBoxFieldEditor(compartmentVisibilityPreference, label, compartmentGroup);
-		indent(compartmentVisibilityBooleanFieldEditor.getCheckbox());
-		compartmentVisibilityBooleanFieldEditor.setPage(this.dialogPage);
-		addFieldEditor(compartmentVisibilityBooleanFieldEditor);
+		CheckBoxFieldEditor compartmentNameVisibilityFieldEditor = new CheckBoxFieldEditor(compartmentVisibilityPreference, label, compartmentGroup);
+		Button checkbox = compartmentNameVisibilityFieldEditor.getCheckbox();
+		indent(checkbox);
+		compartmentNameVisibilityFieldEditor.setPage(getDialogPage());
+		addFieldEditor(compartmentNameVisibilityFieldEditor);
+		return checkbox;
 	}
 
-	//	private void createDependency(final Button master, Preference preference, final Control[] slaves) {
-	//		indent(slaves[0]);
-	//
-	//		boolean masterState= fOverlayStore.getBoolean(preference.getKey());
-	//		for (int i= 0; i < slaves.length; i++) {
-	//			slaves[i].setEnabled(masterState);
-	//		}
-	//
-	//		SelectionListener listener= new SelectionListener() {
-	//			public void widgetSelected(SelectionEvent e) {
-	//				boolean state= master.getSelection();
-	//				for (int i= 0; i < slaves.length; i++) {
-	//					slaves[i].setEnabled(state);
-	//				}
-	//			}
-	//
-	//			public void widgetDefaultSelected(SelectionEvent e) {}
-	//		};
-	//		master.addSelectionListener(listener);
-	//		fMasterSlaveListeners.add(listener);
-	//	}
+	private void createDependency(final Button master, final Control[] slaves) {
+
+//		for(int i = 0; i < slaves.length; i++) {
+//			slaves[i].setEnabled(masterState);
+//		}
+
+		SelectionListener listener = new SelectionListener() {
+
+			public void widgetSelected(SelectionEvent e) {
+				boolean state = master.getSelection();
+				for(int i = 0; i < slaves.length; i++) {
+					slaves[i].setEnabled(state);
+				}
+			}
+
+			public void widgetDefaultSelected(SelectionEvent e) {
+			}
+		};
+		master.addSelectionListener(listener);
+	}
 
 	private static void indent(Control control) {
 		GridData gridData = new GridData();
-		gridData.horizontalIndent = 20;
 		control.setLayoutData(gridData);
 	}
 
