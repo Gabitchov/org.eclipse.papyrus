@@ -18,6 +18,7 @@ import java.util.List;
 
 import org.eclipse.gmf.runtime.common.ui.preferences.CheckBoxFieldEditor;
 import org.eclipse.jface.dialogs.DialogPage;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
@@ -35,7 +36,9 @@ import org.eclipse.swt.widgets.Group;
 public class NodeCompartmentGroup extends AbstractGroup {
 
 	/** the list owning the compartment names for the UML element */
-	private List<String> compartmentsName = null;
+	private final List<String> compartmentsName;
+	
+	private final IPreferenceStore myPreferenceStore;
 
 
 	/**
@@ -47,9 +50,10 @@ public class NodeCompartmentGroup extends AbstractGroup {
 	 * @param dialogPage
 	 * @param compartmentsName
 	 */
-	public NodeCompartmentGroup(Composite parent, String title, DialogPage dialogPage, List<String> compartmentsName) {
+	public NodeCompartmentGroup(Composite parent, String title, DialogPage dialogPage, List<String> compartmentsName, IPreferenceStore store) {
 		super(parent, title, dialogPage);
 		this.compartmentsName = compartmentsName;
+		myPreferenceStore = store;
 		createContent(parent);
 	}
 
@@ -64,9 +68,6 @@ public class NodeCompartmentGroup extends AbstractGroup {
 	}
 
 	private void addCompartmentVisibilityGroup(Composite parent) {
-		if(compartmentsName.isEmpty()) {
-			return;
-		}
 		for(String compartmentName : compartmentsName) {
 			// show Compartment Visibility and CompartmentName Visibility items in the same row   
 			Group group = new Group(parent, SWT.NONE);
@@ -108,21 +109,23 @@ public class NodeCompartmentGroup extends AbstractGroup {
 		Composite plate = new Composite(parent, SWT.NONE);
 		plate.setLayoutData(new GridData());
 		
-		String compartmentVisibilityPreference = PreferenceConstantHelper.getCompartmentElementConstant(getKey(), compartmentName, PreferenceConstantHelper.COMPARTMENT_NAME_VISIBILITY);
+		String compartmentNameVisibilityPreference = PreferenceConstantHelper.getCompartmentElementConstant(getKey(), compartmentName, PreferenceConstantHelper.COMPARTMENT_NAME_VISIBILITY);
 		String label = "Show name";
-		CheckBoxFieldEditor compartmentNameVisibilityFieldEditor = new CheckBoxFieldEditor(compartmentVisibilityPreference, label, plate);
+		CheckBoxFieldEditor compartmentNameVisibilityFieldEditor = new CheckBoxFieldEditor(compartmentNameVisibilityPreference, label, plate);
 		Button checkbox = compartmentNameVisibilityFieldEditor.getCheckbox();
 		compartmentNameVisibilityFieldEditor.setPage(getDialogPage());
 		addFieldEditor(compartmentNameVisibilityFieldEditor);
+
+		String compartmentVisibilityPreference = PreferenceConstantHelper.getCompartmentElementConstant(getKey(), compartmentName, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
+		boolean showCompartmentIsNotChecked = !myPreferenceStore.getBoolean(compartmentVisibilityPreference);
+		if (showCompartmentIsNotChecked) {
+			checkbox.setEnabled(false);
+		}
+
 		return checkbox;
 	}
 
 	private void createDependency(final Button master, final Control[] slaves) {
-
-//		for(int i = 0; i < slaves.length; i++) {
-//			slaves[i].setEnabled(masterState);
-//		}
-
 		SelectionListener listener = new SelectionListener() {
 
 			public void widgetSelected(SelectionEvent e) {

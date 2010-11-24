@@ -60,7 +60,7 @@ public abstract class AbstractPapyrusNodePreferencePage extends AbstractPapyrusE
 		DecorationGroup decorationGroup = new DecorationGroup(parent, getPreferenceKey(), this);
 		addAbstractGroup(decorationGroup);
 		if(!compartmentsList.isEmpty()) {
-			NodeCompartmentGroup compartmentGroup = new NodeCompartmentGroup(parent, getPreferenceKey(), this, compartmentsList);
+			NodeCompartmentGroup compartmentGroup = new NodeCompartmentGroup(parent, getPreferenceKey(), this, compartmentsList, getPreferenceStore());
 			addAbstractGroup(compartmentGroup);
 		}
 	}
