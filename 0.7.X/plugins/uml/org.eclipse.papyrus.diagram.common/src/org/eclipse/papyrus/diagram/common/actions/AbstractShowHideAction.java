@@ -133,14 +133,7 @@ public abstract class AbstractShowHideAction implements IActionDelegate, IWorkbe
 		}
 		initAction();
 		buildInitialSelection();
-
-		CheckedTreeSelectionDialog selectionDialog = new CheckedTreeSelectionDialog(DisplayUtils.getDisplay().getActiveShell(), labelProvider, contentProvider);
-		selectionDialog.setTitle(title);
-		selectionDialog.setMessage(message);
-		selectionDialog.setContainerMode(true);
-		selectionDialog.setInput(getInput());
-		selectionDialog.setExpandedElements(getInput().toArray());
-		selectionDialog.setInitialElementSelections(this.initialSelection);
+		CheckedTreeSelectionDialog selectionDialog = getSelectionDialog();
 		selectionDialog.open();
 		if(selectionDialog.getReturnCode() == Dialog.OK) {
 			buildShowHideElementsList(selectionDialog.getResult());
@@ -165,7 +158,17 @@ public abstract class AbstractShowHideAction implements IActionDelegate, IWorkbe
 				}
 			}
 		}
-
+	}
+	
+	protected CheckedTreeSelectionDialog getSelectionDialog() {
+		CheckedTreeSelectionDialog selectionDialog = new CheckedTreeSelectionDialog(DisplayUtils.getDisplay().getActiveShell(), labelProvider, contentProvider);
+		selectionDialog.setTitle(title);
+		selectionDialog.setMessage(message);
+		selectionDialog.setContainerMode(true);
+		selectionDialog.setInput(getInput());
+		selectionDialog.setExpandedElements(getInput().toArray());
+		selectionDialog.setInitialElementSelections(this.initialSelection);
+		return selectionDialog;
 	}
 
 	/**

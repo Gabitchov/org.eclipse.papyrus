@@ -29,6 +29,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ResizableCompartmentEditPart
 import org.eclipse.gmf.runtime.diagram.ui.services.editpart.EditPartService;
 import org.eclipse.gmf.runtime.notation.BasicCompartment;
 import org.eclipse.gmf.runtime.notation.DecorationNode;
+import org.eclipse.gmf.runtime.notation.ListCompartment;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ITreeContentProvider;
@@ -41,6 +42,7 @@ import org.eclipse.papyrus.diagram.common.util.ViewServiceUtil;
 import org.eclipse.papyrus.diagram.menu.messages.Messages;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.dialogs.CheckedTreeSelectionDialog;
 import org.eclipse.uml2.uml.Element;
 
 /**
@@ -54,6 +56,8 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 
 	/** String used when the name of an element was not found */
 	public static final String NO_NAME = Messages.ShowHideCompartmentAction_No_Name;
+	
+	private static final String SHOW_NAME_OF_COMPARTMENT = "Show name of the compartment";
 
 	/** the transactional editing domain */
 	protected TransactionalEditingDomain domain;
@@ -96,6 +100,13 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 	@Override
 	public void dispose() {
 
+	}
+	
+	@Override
+	protected CheckedTreeSelectionDialog getSelectionDialog() {
+		CheckedTreeSelectionDialog selectionDialog = super.getSelectionDialog();
+		selectionDialog.setContainerMode(false);
+		return selectionDialog;
 	}
 
 	/**
@@ -320,6 +331,9 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 					}
 				}
 			}
+			if (element instanceof ShowNameOfCompartmentItem) {
+				return element.toString();
+			}
 			return super.getText(element);
 		}
 	}
@@ -377,6 +391,9 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 			if(parentElement instanceof CustomEditPartRepresentation) {
 				return ((CustomEditPartRepresentation)parentElement).getAllPossibleCompartment().toArray();
 			}
+			if (parentElement instanceof View) {
+				return new Object[]{new ShowNameOfCompartmentItem((View)parentElement)};
+			}
 			return null;
 		}
 
@@ -409,12 +426,8 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 		 * @return
 		 */
 		public boolean hasChildren(Object element) {
-			if(element instanceof CustomEditPartRepresentation) {
-				if(((CustomEditPartRepresentation)element).getAllPossibleCompartment().size() > 0) {
-					return true;
-				}
-			}
-			return false;
+			Object[] children = getChildren(element);
+			return children != null && children.length != 0;
 		}
 
 	}
@@ -468,7 +481,8 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 			}
 
 			//fill this.possibleCompartments
-			List<?> graphicalChildren = ((GraphicalEditPart)representedEditPart).getNotationView().getChildren();
+			View notationView = ((GraphicalEditPart)representedEditPart).getNotationView();
+			List<?> graphicalChildren = notationView.getChildren();
 			for(Object child : graphicalChildren) {
 				// Only add compartment
 				if(child instanceof BasicCompartment) {
@@ -490,6 +504,24 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 					}
 				}
 			}
+			
+			
+			
+		}
+		
+		private List<ShowNameOfCompartmentItem> getCompartmentsWithShownName() {
+			List<ShowNameOfCompartmentItem> result = new ArrayList<ShowNameOfCompartmentItem>();
+			View notationView = ((GraphicalEditPart)representedEditPart).getNotationView();
+			for (Object next: notationView.getChildren()) {
+				if (next instanceof ListCompartment) {
+					ListCompartment compartment = (ListCompartment)next;
+					if (compartment.isShowTitle()) {
+						result.add(new ShowNameOfCompartmentItem(compartment));
+					}
+					
+				}
+			}
+			return result;
 		}
 
 
@@ -556,7 +588,9 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 		 */
 		@Override
 		public List getInitialSelection() {
-			return this.initialSelection;
+			ArrayList result = new ArrayList(initialSelection);
+			result.addAll(getCompartmentsWithShownName());
+			return result;
 		}
 
 		/**
@@ -609,4 +643,31 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 			return false;
 		}
 	}
+	
+	private class ShowNameOfCompartmentItem {
+		
+		protected View compartment;
+		
+		public ShowNameOfCompartmentItem(View compartment) {
+			this.compartment = compartment;
+		}
+		
+		@Override
+		public boolean equals(Object obj) {
+			if (obj == null) {
+				return false;
+			}
+			if (false == obj instanceof ShowNameOfCompartmentItem) {
+				return false;
+			}
+			return this.compartment.equals(((ShowNameOfCompartmentItem)obj).compartment);
+		}
+		
+		@Override
+		public String toString() {
+			return SHOW_NAME_OF_COMPARTMENT;
+		}
+		
+	}
+
 }
