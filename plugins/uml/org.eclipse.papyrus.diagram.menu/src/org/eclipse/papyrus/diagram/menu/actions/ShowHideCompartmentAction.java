@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Tatiana Fesenko (CEA LIST) - Bug 331102 - Allow to configure visibility of name of the compartment in the Filter Compartment dialog
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.menu.actions;
@@ -21,12 +22,16 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
+import org.eclipse.gmf.runtime.diagram.core.commands.SetPropertyCommand;
+import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ResizableCompartmentEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.internal.properties.Properties;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpart.EditPartService;
+import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.BasicCompartment;
 import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.ListCompartment;
@@ -56,8 +61,8 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 
 	/** String used when the name of an element was not found */
 	public static final String NO_NAME = Messages.ShowHideCompartmentAction_No_Name;
-	
-	private static final String SHOW_NAME_OF_COMPARTMENT = "Show name of the compartment";
+
+	private static final String SHOW_NAME_OF_COMPARTMENT = "Show title of the compartment";
 
 	/** the transactional editing domain */
 	protected TransactionalEditingDomain domain;
@@ -101,7 +106,7 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 	public void dispose() {
 
 	}
-	
+
 	@Override
 	protected CheckedTreeSelectionDialog getSelectionDialog() {
 		CheckedTreeSelectionDialog selectionDialog = super.getSelectionDialog();
@@ -242,6 +247,10 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 						completeCmd.add(tmp);
 					}
 				}
+			} else if(current instanceof ShowNameOfCompartmentItem) {
+				ShowNameOfCompartmentItem showName = (ShowNameOfCompartmentItem)current;
+				SetPropertyCommand showCompartmentTitleCommand = new SetPropertyCommand(domain, new EObjectAdapter(showName.compartment), Properties.ID_SHOWCOMPARTMENTTITLE, "Show Compartment Title", Boolean.valueOf(true));
+				completeCmd.add(new ICommandProxy(showCompartmentTitleCommand));
 			}
 		}
 
@@ -331,7 +340,7 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 					}
 				}
 			}
-			if (element instanceof ShowNameOfCompartmentItem) {
+			if(element instanceof ShowNameOfCompartmentItem) {
 				return ((ShowNameOfCompartmentItem)element).getText();
 			}
 			return super.getText(element);
@@ -391,8 +400,8 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 			if(parentElement instanceof CustomEditPartRepresentation) {
 				return ((CustomEditPartRepresentation)parentElement).getAllPossibleCompartment().toArray();
 			}
-			if (parentElement instanceof View) {
-				return new Object[]{new ShowNameOfCompartmentItem((View)parentElement)};
+			if(parentElement instanceof View) {
+				return new Object[]{ new ShowNameOfCompartmentItem((View)parentElement) };
 			}
 			return null;
 		}
@@ -408,16 +417,16 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 			if(element instanceof Element) {
 				return null;
 			}
-			if (element instanceof ShowNameOfCompartmentItem) {
+			if(element instanceof ShowNameOfCompartmentItem) {
 				return ((ShowNameOfCompartmentItem)element).compartment;
 			}
 			//it's a basicCompartment
-				for(EditPartRepresentation rep : representations) {
-					List<?> init = rep.getInitialSelection();
-					if(init.contains(element)) {
-						return rep;
-					}
+			for(EditPartRepresentation rep : representations) {
+				List<?> init = rep.getInitialSelection();
+				if(init.contains(element)) {
+					return rep;
 				}
+			}
 			return null;
 		}
 
@@ -507,21 +516,21 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 					}
 				}
 			}
-			
-			
-			
+
+
+
 		}
-		
+
 		private List<ShowNameOfCompartmentItem> getCompartmentsWithShownName() {
 			List<ShowNameOfCompartmentItem> result = new ArrayList<ShowNameOfCompartmentItem>();
 			View notationView = ((GraphicalEditPart)representedEditPart).getNotationView();
-			for (Object next: notationView.getChildren()) {
-				if (next instanceof ListCompartment) {
+			for(Object next : notationView.getChildren()) {
+				if(next instanceof ListCompartment) {
 					ListCompartment compartment = (ListCompartment)next;
-					if (compartment.isShowTitle()) {
+					if(compartment.isShowTitle()) {
 						result.add(new ShowNameOfCompartmentItem(compartment));
 					}
-					
+
 				}
 			}
 			return result;
@@ -646,41 +655,41 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 			return false;
 		}
 	}
-	
+
 	private class ShowNameOfCompartmentItem {
-		
+
 		protected final View compartment;
-		
+
 		public ShowNameOfCompartmentItem(View compartment) {
-			assert(compartment != null);
+			assert (compartment != null);
 			this.compartment = compartment;
 		}
-		
+
 		@Override
 		public boolean equals(Object obj) {
-			if (obj == null) {
+			if(obj == null) {
 				return false;
 			}
-			if (false == obj instanceof ShowNameOfCompartmentItem) {
+			if(false == obj instanceof ShowNameOfCompartmentItem) {
 				return false;
 			}
 			return this.compartment.equals(((ShowNameOfCompartmentItem)obj).compartment);
 		}
-		
+
 		@Override
 		public int hashCode() {
 			return 3 * SHOW_NAME_OF_COMPARTMENT.hashCode() + 5 * compartment.hashCode();
 		}
-		
+
 		@Override
 		public String toString() {
 			return SHOW_NAME_OF_COMPARTMENT + ": " + compartment.getType();
 		}
-		
+
 		public String getText() {
 			return SHOW_NAME_OF_COMPARTMENT;
 		}
-		
+
 	}
 
 }
