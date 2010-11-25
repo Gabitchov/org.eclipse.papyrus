@@ -1,0 +1,29 @@
+grammar org.eclipse.papyrus.common.editor.xtext.UmlCommon with org.eclipse.xtext.common.Terminals
+
+import "http://www.eclipse.org/uml2/3.0.0/UML" as uml
+
+generate umlCommon "http://www.eclipse.org/papyrus/common/editor/xtext/UmlCommon"
+
+QualifiedName :
+	path=[uml::Namespace]'::' (remaining=QualifiedName)? ;
+	
+enum VisibilityKind:
+	public = "+"
+	| private = "-"
+	| protected = "#"
+	| package = "~" ;
+
+MultiplicityRule:
+	"[" bounds+=BoundSpecification ('..' bounds+=BoundSpecification)? "]" ;
+
+BoundSpecification:
+	value = UnlimitedLiteral ;
+
+terminal UnlimitedLiteral:
+	'0'..'9' ('0'..'9')* | "*" ;
+
+enum Direction:
+	IN= "in"
+	|OUT = "out"
+	|INOUT = "inout"
+	|RETURN = "return";
