@@ -12,7 +12,7 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.core.resourceUpdate;
+package org.eclipse.papyrus.uml.service.types.resourceUpdate;
 
 import static org.eclipse.papyrus.core.Activator.log;
 
@@ -22,21 +22,26 @@ import org.eclipse.core.resources.IResourceChangeEvent;
 import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.resources.IResourceDelta;
 import org.eclipse.core.resources.IResourceDeltaVisitor;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.NotificationImpl;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.papyrus.core.Activator;
-import org.eclipse.papyrus.core.editor.CoreMultiDiagramEditor;
+import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.lifecycleevents.DoSaveEvent;
 import org.eclipse.papyrus.core.lifecycleevents.ILifeCycleEventsProvider;
-import org.eclipse.papyrus.core.lifecycleevents.ISaveAndDirtyService;
 import org.eclipse.papyrus.core.lifecycleevents.ISaveEventListener;
+import org.eclipse.papyrus.core.services.IService;
+import org.eclipse.papyrus.core.services.ServiceException;
+import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.resource.ModelSet;
+import org.eclipse.papyrus.uml.service.types.Activator;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorDescriptor;
@@ -45,6 +50,7 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.uml2.uml.Profile;
 
 /**
  * A listener for resource changes, used to trigger an update of
@@ -52,40 +58,40 @@ import org.eclipse.ui.PlatformUI;
  * 
  * @author Ansgar Radermacher (CEA LIST)
  */
-public class ModelResourceListener implements IResourceChangeListener, IResourceDeltaVisitor {
+public class ResourceUpdateService implements IService, IResourceChangeListener, IResourceDeltaVisitor {
 
 	public static final String RESOURCE_UPDATE_ID = Activator.PLUGIN_ID + ".resourceUpdate";
 
-	public ModelResourceListener(CoreMultiDiagramEditor editor, ISaveAndDirtyService saveAndDirty, ModelSet modelSet) {
+	// public init (CoreMultiDiagramEditor editor, ISaveAndDirtyService saveAndDirty, ModelSet modelSet) {
+	public void init(ServicesRegistry servicesRegistry) throws ServiceException {
 		isActive = true;
-		this.modelSet = modelSet;
-		this.editor = editor;
+
+		modelSet = servicesRegistry.getService(ModelSet.class);
+		editor = servicesRegistry.getService(IMultiDiagramEditor.class);
 		// register lifecycle events related to "save": a reload should not be
 		// proposed if the resource change was caused by a save of *this* editor,
 		// hence the listener is temporary deactivated.
-		if(saveAndDirty instanceof ILifeCycleEventsProvider) {
-			ILifeCycleEventsProvider lifeCycleEvents = (ILifeCycleEventsProvider)saveAndDirty;
-			lifeCycleEvents.addDoSaveListener(new ISaveEventListener() {
+		ILifeCycleEventsProvider lifeCycleEvents = servicesRegistry.getService(ILifeCycleEventsProvider.class);
+		lifeCycleEvents.addDoSaveListener(new ISaveEventListener() {
 
-				public void doSave(DoSaveEvent event) {
-					isActive = false;
-				}
+			public void doSave(DoSaveEvent event) {
+				isActive = false;
+			}
 
-				public void doSaveAs(DoSaveEvent event) {
-					isActive = false;
-				}
-			});
-			lifeCycleEvents.addPostDoSaveListener(new ISaveEventListener() {
+			public void doSaveAs(DoSaveEvent event) {
+				isActive = false;
+			}
+		});
+		lifeCycleEvents.addPostDoSaveListener(new ISaveEventListener() {
 
-				public void doSave(DoSaveEvent event) {
-					isActive = true;
-				}
+			public void doSave(DoSaveEvent event) {
+				isActive = true;
+			}
 
-				public void doSaveAs(DoSaveEvent event) {
-					isActive = true;
-				}
-			});
-		}
+			public void doSaveAs(DoSaveEvent event) {
+				isActive = true;
+			}
+		});
 	}
 
 	/**
@@ -118,14 +124,14 @@ public class ModelResourceListener implements IResourceChangeListener, IResource
 	 */
 	public boolean visit(IResourceDelta delta) {
 		if(!isActive) {
-			// don't follow resource changes, once inactivated (either due to save or due to a pending user dialog) 
+			// don't follow resource changes, once inactive (either due to save or due to a pending user dialog) 
 			return false;
 		}
 		IResource changedResource = delta.getResource();
 		if(delta.getFlags() == IResourceDelta.MARKERS) {
 			// only markers have been changed. Refresh their display only (no need to reload resources)
 			// TODO called once for each new marker => assure asynchronous refresh
-			modelSet.eNotify(new NotificationImpl(Notification.SET, null, delta.getMarkerDeltas()));
+			modelSet.eNotify(new NotificationImpl(Notification.SET, new Object(), delta.getMarkerDeltas()));
 			return false;
 		}
 		boolean resourceOfMainModelChanged = false;
@@ -155,8 +161,14 @@ public class ModelResourceListener implements IResourceChangeListener, IResource
 				// changed resource does not belong to the model, it might however belong to a referenced
 				// model. Since the referenced model is not editable, it can be unloaded without asking
 				// the user (it will be reloaded on demand)
+
 				if(resource.isLoaded()) {
-					resource.unload();
+					EList<EObject> contents = resource.getContents();
+					if((contents.size() > 0) && (contents.get(0) instanceof Profile)) {
+						// don't touch profiles
+					} else {
+						resource.unload();
+					}
 				}
 			}
 		}
@@ -225,7 +237,20 @@ public class ModelResourceListener implements IResourceChangeListener, IResource
 
 	private boolean isActive;
 
-	private CoreMultiDiagramEditor editor;
+	private IMultiDiagramEditor editor;
 
 	private ModelSet modelSet;
+
+
+	public void startService() throws ServiceException {
+		// ... add service to the workspace
+		ResourcesPlugin.getWorkspace().addResourceChangeListener(this, IResourceChangeEvent.POST_CHANGE);
+
+
+	}
+
+	public void disposeService() throws ServiceException {
+		// remove it from workspace
+		ResourcesPlugin.getWorkspace().removeResourceChangeListener(this);
+	}
 }

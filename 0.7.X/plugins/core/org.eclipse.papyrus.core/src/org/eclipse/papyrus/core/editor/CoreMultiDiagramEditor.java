@@ -21,8 +21,7 @@ import java.util.List;
 
 import org.eclipse.core.commands.operations.IUndoContext;
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IResourceChangeEvent;
-import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EObject;
@@ -50,7 +49,6 @@ import org.eclipse.papyrus.core.lifecycleevents.IEditorInputChangedListener;
 import org.eclipse.papyrus.core.lifecycleevents.ISaveAndDirtyService;
 import org.eclipse.papyrus.core.multidiagram.actionbarcontributor.ActionBarContributorRegistry;
 import org.eclipse.papyrus.core.multidiagram.actionbarcontributor.CoreComposedActionBarContributor;
-import org.eclipse.papyrus.core.resourceUpdate.ModelResourceListener;
 import org.eclipse.papyrus.core.services.ExtensionServicesRegistry;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServiceMultiException;
@@ -72,8 +70,14 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IFileEditorInput;
+import org.eclipse.ui.IViewReference;
+import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchActionConstants;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.ide.IGotoMarker;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 import org.eclipse.ui.views.properties.IPropertySheetPage;
@@ -94,7 +98,7 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
  * 
  *         TODO : remove GMF dependency !
  */
-public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implements IMultiDiagramEditor, ITabbedPropertySheetPageContributor, IDiagramWorkbenchPart {
+public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implements IMultiDiagramEditor, ITabbedPropertySheetPageContributor, IDiagramWorkbenchPart, IGotoMarker {
 
 	/** Gef adapter */
 	private MultiDiagramEditorGefDelegate gefAdaptorDelegate;
@@ -529,11 +533,6 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 			throw new PartInitException("could not initialize services", e);
 		}
 
-		// create model resource listener ...
-		modelResourceListener = new ModelResourceListener(this, saveAndDirtyService, resourceSet);
-		// ... and add it to the workspace
-		ResourcesPlugin.getWorkspace().addResourceChangeListener(modelResourceListener, IResourceChangeEvent.POST_CHANGE);
-
 		// Set the content provider providing editors.
 		setContentProvider(contentProvider);
 
@@ -615,10 +614,6 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 			}
 		}
 
-		if(modelResourceListener != null) {
-			// remove model resource listener from workspace
-			ResourcesPlugin.getWorkspace().removeResourceChangeListener(modelResourceListener);
-		}
 		super.dispose();
 	}
 
@@ -776,5 +771,17 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		setPartName(newInput.getName());
 	}
 
-	private ModelResourceListener modelResourceListener;
+	public void gotoMarker(IMarker marker) {
+		IWorkbench wb = PlatformUI.getWorkbench();
+		IWorkbenchPage page = wb.getActiveWorkbenchWindow().getActivePage();
+		for(IViewReference view : page.getViewReferences()) {
+			if(view.getId().equals("org.eclipse.papyrus.modelexplorer.modelexplorer")) {
+				page.activate(view.getPart(false));
+				IWorkbenchPart part = view.getPart(false);
+				if(part instanceof IGotoMarker) {
+					((IGotoMarker)part).gotoMarker(marker);
+				}
+			}
+		}
+	}
 }
