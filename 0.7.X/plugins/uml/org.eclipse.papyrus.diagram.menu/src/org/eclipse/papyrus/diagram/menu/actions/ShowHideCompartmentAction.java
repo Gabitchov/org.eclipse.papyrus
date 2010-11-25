@@ -332,7 +332,7 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 				}
 			}
 			if (element instanceof ShowNameOfCompartmentItem) {
-				return element.toString();
+				return ((ShowNameOfCompartmentItem)element).getText();
 			}
 			return super.getText(element);
 		}
@@ -407,14 +407,17 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 		public Object getParent(Object element) {
 			if(element instanceof Element) {
 				return null;
-			} else { //it's a basicCompartment
+			}
+			if (element instanceof ShowNameOfCompartmentItem) {
+				return ((ShowNameOfCompartmentItem)element).compartment;
+			}
+			//it's a basicCompartment
 				for(EditPartRepresentation rep : representations) {
 					List<?> init = rep.getInitialSelection();
 					if(init.contains(element)) {
 						return rep;
 					}
 				}
-			}
 			return null;
 		}
 
@@ -646,7 +649,7 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 	
 	private class ShowNameOfCompartmentItem {
 		
-		protected View compartment;
+		protected final View compartment;
 		
 		public ShowNameOfCompartmentItem(View compartment) {
 			this.compartment = compartment;
@@ -664,7 +667,16 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 		}
 		
 		@Override
+		public int hashCode() {
+			return 3 * SHOW_NAME_OF_COMPARTMENT.hashCode() + 5 * compartment.hashCode();
+		}
+		
+		@Override
 		public String toString() {
+			return SHOW_NAME_OF_COMPARTMENT + ": " + compartment;
+		}
+		
+		public String getText() {
 			return SHOW_NAME_OF_COMPARTMENT;
 		}
 		
