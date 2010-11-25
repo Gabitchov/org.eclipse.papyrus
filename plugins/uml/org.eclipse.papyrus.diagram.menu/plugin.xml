@@ -1238,7 +1238,6 @@
    </command>
    <command
          categoryId="org.eclipse.papyrus.editor.category"
-         defaultHandler="org.eclipse.papyrus.diagram.menu.actions.handlers.ShowHideCompartmentHandler"
          description="Call the Show/Hide Compartments Action"
          id="org.eclipse.papyrus.diagram.menu.commands.ShowHideCompartmentCommand"
          name="Show/Hide Compartments Command">
@@ -1352,6 +1351,20 @@
          </and>
       </activeWhen>
    </handler>
+   <handler
+         class="org.eclipse.papyrus.diagram.menu.actions.handlers.ShowHideCompartmentHandler"
+         commandId="org.eclipse.papyrus.diagram.menu.commands.ShowHideCompartmentCommand">
+      <activeWhen>
+         <and>
+            <with
+                  variable="showHideCompartments">
+               <equals
+                     value="enabled">
+               </equals>
+            </with>
+         </and>
+      </activeWhen>
+   </handler>
 </extension>
 <extension
       point="org.eclipse.ui.services">
@@ -1359,6 +1372,10 @@
          provider="org.eclipse.papyrus.diagram.menu.providers.ActionStateSourceProvider:2">
       <variable
             name="showHideContents"
+            priorityLevel="workbench">
+      </variable>
+      <variable
+            name="showHideCompartments"
             priorityLevel="workbench">
       </variable>
    </sourceProvider>

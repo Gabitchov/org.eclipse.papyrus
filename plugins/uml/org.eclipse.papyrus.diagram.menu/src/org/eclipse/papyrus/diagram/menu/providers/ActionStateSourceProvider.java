@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.diagram.menu.providers;
 
 import org.eclipse.papyrus.diagram.common.providers.AbstractActionStateSourceProvider;
+import org.eclipse.papyrus.diagram.menu.actions.handlers.ShowHideCompartmentHandler;
 import org.eclipse.papyrus.diagram.menu.actions.handlers.ShowHideContentsHandler;
 import org.eclipse.ui.ISources;
 
@@ -32,6 +33,8 @@ public class ActionStateSourceProvider extends AbstractActionStateSourceProvider
 	 */
 	public static final String SHOW_HIDE_CONTENTS = "showHideContents"; //$NON-NLS-1$
 
+	public static final String SHOW_HIDE_COMPARTMENTS = "showHideCompartments"; //$NON-NLS-1$
+
 	/**
 	 * 
 	 * Constructor.
@@ -40,6 +43,7 @@ public class ActionStateSourceProvider extends AbstractActionStateSourceProvider
 	public ActionStateSourceProvider() {
 		super();
 		currentState.put(SHOW_HIDE_CONTENTS, DISABLED);
+		currentState.put(SHOW_HIDE_COMPARTMENTS, DISABLED);
 	}
 
 
@@ -51,7 +55,19 @@ public class ActionStateSourceProvider extends AbstractActionStateSourceProvider
 	 */
 	@Override
 	public String[] getProvidedSourceNames() {
-		return new String[]{ SHOW_HIDE_CONTENTS };
+		return new String[]{ SHOW_HIDE_CONTENTS, SHOW_HIDE_COMPARTMENTS };
+	}
+
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.diagram.common.providers.AbstractActionStateSourceProvider#refreshActions()
+	 * 
+	 */
+	@Override
+	protected void refreshActions() {
+		refreshShowHideContentsAction();
+		refreshShowHideCompartmentsAction();
 	}
 
 
@@ -64,28 +80,44 @@ public class ActionStateSourceProvider extends AbstractActionStateSourceProvider
 
 		if(oldState != newState) {
 			currentState.put(SHOW_HIDE_CONTENTS, newState);
-			fireSourceChanged(ISources.WORKBENCH, currentState);
+			fireSourceChanged(ISources.WORKBENCH, SHOW_HIDE_CONTENTS, newState);
 		}
 	}
 
 	/**
-	 * Tests if the action DeleteFromDiagram (now called Delete Selected Element can be executed
+	 * Tests if the action ShowHideContentsHandler can be executed
 	 * 
 	 * @return
-	 *         <code>true</code> if the action DeleteFromDiagram (now called Delete Selected Element can be executed <code>false</code> if not
+	 *         <code>true</code> if the action ShowHideContentsHandler can be executed <code>false</code> if not
 	 */
 	protected boolean testShowHideContents() {
 		ShowHideContentsHandler handler = new ShowHideContentsHandler();
 		return isSelectionInDiagram() && handler.isEnabled();
 	}
 
+
 	/**
-	 * 
-	 * @see org.eclipse.papyrus.diagram.common.providers.AbstractActionStateSourceProvider#refreshActions()
-	 * 
+	 * Refresh the state of the Delete Action
 	 */
-	@Override
-	protected void refreshActions() {
-		refreshShowHideContentsAction();
+	protected void refreshShowHideCompartmentsAction() {
+		String oldState = currentState.get(SHOW_HIDE_COMPARTMENTS);
+		String newState = (testShowHideCompartments() ? ENABLED : DISABLED);
+
+		if(oldState != newState) {
+			currentState.put(SHOW_HIDE_COMPARTMENTS, newState);
+			fireSourceChanged(ISources.WORKBENCH, SHOW_HIDE_COMPARTMENTS, newState);
+		}
+	}
+
+
+	/**
+	 * Tests if the action ShowHideCompartmentsHandler can be executed
+	 * 
+	 * @return
+	 *         <code>true</code> if the action ShowHideCompartmentsHandler can be executed <code>false</code> if not
+	 */
+	protected boolean testShowHideCompartments() {
+		ShowHideCompartmentHandler handler = new ShowHideCompartmentHandler();
+		return isSelectionInDiagram() && handler.isEnabled();
 	}
 }
