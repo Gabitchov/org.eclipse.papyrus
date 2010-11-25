@@ -17,6 +17,10 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.papyrus.sysml.tests.SysmlAllTests;
+import org.eclipse.papyrus.tests.launcher.FragmentTestSuiteClass;
+import org.eclipse.papyrus.tests.launcher.ITestSuiteClass;
+import org.eclipse.papyrus.tests.launcher.PluginTestSuiteClass;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.model.InitializationError;
@@ -30,15 +34,27 @@ import org.osgi.framework.Bundle;
 public class AllTests {
 
 	/** list of classes to launch */
-	public static final List<SuiteClasses> suiteClasses = Arrays.asList(
-	// {oep}.core.tests
-	//new SuiteClasses("org.eclipse.papyrus.core", "org.eclipse.papyrus.core.tests.AllTests"),
-	// {oep}.diagram.common.tests
-	new SuiteClasses("org.eclipse.papyrus.diagram.common", "org.eclipse.papyrus.diagram.common.tests.AllTests"),
-	// {oep}.diagram.clazz.test
-	new SuiteClasses("org.eclipse.papyrus.diagram.clazz.test", "org.eclipse.papyrus.diagram.clazz.test.AllTests"));
+	public static final List<ITestSuiteClass> suiteClasses = Arrays.asList(
 
-	
+	/* **************** plugins *********************** */
+	/* core */
+	// {oep}.core
+	new FragmentTestSuiteClass(org.eclipse.papyrus.core.Activator.PLUGIN_ID, "org.eclipse.papyrus.core.tests.AllTests"),
+	// {oep}.sasheditor.tests
+	new FragmentTestSuiteClass(org.eclipse.papyrus.sasheditor.Activator.PLUGIN_ID, "org.eclipse.papyrus.sasheditor.tests.AllTests"),
+	// {oep}.core.resourceloading.tests
+	new FragmentTestSuiteClass(org.eclipse.papyrus.core.resourceloading.Activator.PLUGIN_ID, "org.eclipse.papyrus.core.resourceloading.tests.AllTests"),
+
+	/* uml */
+	// {oep}.diagram.common.tests
+	new FragmentTestSuiteClass(org.eclipse.papyrus.diagram.common.Activator.ID, "org.eclipse.papyrus.diagram.common.tests.AllTests"),
+	// {oep}.diagram.clazz.tests
+	new PluginTestSuiteClass(org.eclipse.papyrus.diagram.clazz.test.AllTests.class),
+	// {oep}.sysml.tests
+	new PluginTestSuiteClass(SysmlAllTests.class));
+
+
+
 
 	/**
 	 * Finds and runs tests.
@@ -65,67 +81,17 @@ public class AllTests {
 	 * @return the list of test classes
 	 */
 	private static Class<?>[] getSuites() {
-		// retrieve all fragments for the test suite.
+		// retrieve all test suites.
 		Collection<Class<?>> suites = new ArrayList<Class<?>>();
-		for(SuiteClasses classes : suiteClasses) {
-			Bundle bundle = Platform.getBundle(classes.getBundleName());
-			if(bundle == null) {
-				System.err.println("Impossible to find bundle: " + classes.getBundleName());
+		for(ITestSuiteClass testSuiteClass : suiteClasses) {
+			Class<?> class_ = testSuiteClass.getMainTestSuiteClass();
+			if(class_ != null) {
+				suites.add(class_);
 			} else {
-				try {
-					Class<?> class_ = bundle.loadClass(classes.getSuiteClassName());
-					suites.add(class_);
-				} catch (ClassNotFoundException e) {
-					e.printStackTrace();
-				}
+				System.err.println(testSuiteClass + " does not give a correct test suite class");
 			}
 		}
 		return suites.toArray(new Class<?>[]{});
 	}
-
-	/**
-	 * Holder for test cases
-	 */
-	public static class SuiteClasses {
-
-		/** identifier of the bundle (or host bundle in case of fragment) for the test class */
-		private final String bundleName;
-
-		/** qualified name of the suite class */
-		private final String suiteClassName;
-
-		/**
-		 * Constructor.
-		 * 
-		 * @param bundleName
-		 *        the identifier of the bundle
-		 * @param suiteClassName
-		 *        qualified name of the suite class
-		 */
-		public SuiteClasses(String bundleName, String suiteClassName) {
-			this.bundleName = bundleName;
-			this.suiteClassName = suiteClassName;
-		}
-
-		/**
-		 * Returns the unique identifier of the bundle
-		 * 
-		 * @return the unique identifier of the bundle
-		 */
-		public String getBundleName() {
-			return bundleName;
-		}
-
-		/**
-		 * Returns the qualified name of the suite class
-		 * 
-		 * @return the qualified name of the suite class
-		 */
-		public String getSuiteClassName() {
-			return suiteClassName;
-		}
-
-	}
-
 
 }
