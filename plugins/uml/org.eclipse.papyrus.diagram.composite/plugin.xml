@@ -2785,53 +2785,6 @@
          name="Show/Hide Related Contents Command">
    </command>
 </extension>
-<extension
-      point="org.eclipse.ui.menus">
-   <menuContribution
-         locationURI="menu:org.eclipse.papyrus.common.showhide.toolbar.command">
-      <command
-            commandId="org.eclipse.papyrus.diagram.composite.commands.ShowHideRelatedContentsCommand"
-            icon="icons/fantomRelated.gif"
-            label="Show/Hide Related Contents"
-            mnemonic="&amp;R"
-            style="push"
-            tooltip="The Show/Hide Related Contents Action">
-         <visibleWhen
-               checkEnabled="true">
-         </visibleWhen>
-      </command>
-   </menuContribution>
-   <menuContribution
-         allPopups="false"
-         locationURI="popup:org.eclipse.papyrus.diagram.ui.popupmenu.filters?after=showhidecompartments.popup">
-      <command
-            commandId="org.eclipse.papyrus.diagram.composite.commands.ShowHideRelatedContentsCommand"
-            icon="icons/fantomRelated.gif"
-            label="Show/Hide Related Contents"
-            mnemonic="&amp;R"
-            style="push"
-            tooltip="The Show/Hide Related Contents Action">
-         <visibleWhen
-               checkEnabled="true">
-         </visibleWhen>
-      </command>
-   </menuContribution>
-   <menuContribution
-         allPopups="false"
-         locationURI="menu:org.eclipse.papyrus.diagram.ui.menu.filtersMenu">
-      <command
-            commandId="org.eclipse.papyrus.diagram.composite.commands.ShowHideRelatedContentsCommand"
-            icon="icons/fantomRelated.gif"
-            label="Show/Hide Related Contents"
-            mnemonic="&amp;R"
-            style="push"
-            tooltip="The Show/Hide Related Contents Action">
-         <visibleWhen
-               checkEnabled="true">
-         </visibleWhen>
-      </command>
-   </menuContribution>
-</extension>
 
 <extension point="org.eclipse.gmf.runtime.common.ui.services.markerNavigationProviders" id="markers-navigation">
       <?gmfgen generated="true"?>
@@ -2893,6 +2846,43 @@
 		<elementType ref="org.eclipse.papyrus.uml.diagram.composite.CollaborationHelperAdvice"/>			
 	</binding>
 		
+</extension>
+<extension
+      point="org.eclipse.ui.services">
+   <sourceProvider
+         provider="org.eclipse.papyrus.diagram.composite.custom.providers.ActionStateSourceProvider">
+      <variable
+            name="showHideRelatedContents"
+            priorityLevel="workbench">
+      </variable>
+   </sourceProvider>
+</extension>
+<extension
+      point="org.eclipse.ui.handlers">
+   <handler
+         class="org.eclipse.papyrus.diagram.composite.custom.actions.ShowHideRelatedContentsHandler"
+         commandId="org.eclipse.papyrus.diagram.menu.commands.ShowHideContentsCommand">
+      <activeWhen>
+         <and>
+            <with
+                  variable="showHideRelatedContents">
+               <equals
+                     value="enabled">
+               </equals>
+            </with>
+            <with
+                  variable="selection">
+               <iterate
+                     ifEmpty="false"
+                     operator="and">
+                  <instanceof
+                        value="org.eclipse.papyrus.diagram.composite.edit.parts.PropertyPartEditPartCN">
+                  </instanceof>
+               </iterate>
+            </with>
+         </and>
+      </activeWhen>
+   </handler>
 </extension>
    
 </plugin>

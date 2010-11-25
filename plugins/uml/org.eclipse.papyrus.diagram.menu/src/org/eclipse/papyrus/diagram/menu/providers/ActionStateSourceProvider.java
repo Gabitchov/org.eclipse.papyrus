@@ -11,9 +11,10 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.diagram.common.providers;
+package org.eclipse.papyrus.diagram.menu.providers;
 
-import org.eclipse.papyrus.diagram.common.handlers.DeleteFromDiagramCommandHandler;
+import org.eclipse.papyrus.diagram.common.providers.AbstractActionStateSourceProvider;
+import org.eclipse.papyrus.diagram.menu.actions.handlers.ShowHideContentsHandler;
 import org.eclipse.ui.ISources;
 
 /**
@@ -29,7 +30,7 @@ public class ActionStateSourceProvider extends AbstractActionStateSourceProvider
 	/**
 	 * The name of the variable to check.
 	 */
-	public static final String DELETE_IN_DIAGRAM = "deleteInDiagram"; //$NON-NLS-1$
+	public static final String SHOW_HIDE_CONTENTS = "showHideContents"; //$NON-NLS-1$
 
 	/**
 	 * 
@@ -38,7 +39,7 @@ public class ActionStateSourceProvider extends AbstractActionStateSourceProvider
 	 */
 	public ActionStateSourceProvider() {
 		super();
-		currentState.put(DELETE_IN_DIAGRAM, DISABLED);
+		currentState.put(SHOW_HIDE_CONTENTS, DISABLED);
 	}
 
 
@@ -50,19 +51,19 @@ public class ActionStateSourceProvider extends AbstractActionStateSourceProvider
 	 */
 	@Override
 	public String[] getProvidedSourceNames() {
-		return new String[]{ DELETE_IN_DIAGRAM };
+		return new String[]{ SHOW_HIDE_CONTENTS };
 	}
 
 
 	/**
 	 * Refresh the state of the Delete Action
 	 */
-	protected void refreshDeleteAction() {
-		String oldState = currentState.get(DELETE_IN_DIAGRAM);
-		String newState = (testDeleteFromDiagram() ? ENABLED : DISABLED);
+	protected void refreshShowHideContentsAction() {
+		String oldState = currentState.get(SHOW_HIDE_CONTENTS);
+		String newState = (testShowHideContents() ? ENABLED : DISABLED);
 
 		if(oldState != newState) {
-			currentState.put(DELETE_IN_DIAGRAM, newState);
+			currentState.put(SHOW_HIDE_CONTENTS, newState);
 			fireSourceChanged(ISources.WORKBENCH, currentState);
 		}
 	}
@@ -73,8 +74,8 @@ public class ActionStateSourceProvider extends AbstractActionStateSourceProvider
 	 * @return
 	 *         <code>true</code> if the action DeleteFromDiagram (now called Delete Selected Element can be executed <code>false</code> if not
 	 */
-	protected boolean testDeleteFromDiagram() {
-		DeleteFromDiagramCommandHandler handler = new DeleteFromDiagramCommandHandler();
+	protected boolean testShowHideContents() {
+		ShowHideContentsHandler handler = new ShowHideContentsHandler();
 		return isSelectionInDiagram() && handler.isEnabled();
 	}
 
@@ -85,6 +86,6 @@ public class ActionStateSourceProvider extends AbstractActionStateSourceProvider
 	 */
 	@Override
 	protected void refreshActions() {
-		refreshDeleteAction();
+		refreshShowHideContentsAction();
 	}
 }

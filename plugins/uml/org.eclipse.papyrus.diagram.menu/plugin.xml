@@ -1245,7 +1245,6 @@
    </command>
    <command
          categoryId="org.eclipse.papyrus.editor.category"
-         defaultHandler="org.eclipse.papyrus.diagram.menu.actions.handlers.ShowHideContentsHandler"
          description="Call the Show/Hide Contents Action"
          id="org.eclipse.papyrus.diagram.menu.commands.ShowHideContentsCommand"
          name="Show/Hide Contents Command">
@@ -1339,5 +1338,29 @@
          </parameter>
       </class>
    </handler>
+   <handler
+         class="org.eclipse.papyrus.diagram.menu.actions.handlers.ShowHideContentsHandler"
+         commandId="org.eclipse.papyrus.diagram.menu.commands.ShowHideContentsCommand">
+      <activeWhen>
+         <and>
+            <with
+                  variable="showHideContents">
+               <equals
+                     value="enabled">
+               </equals>
+            </with>
+         </and>
+      </activeWhen>
+   </handler>
+</extension>
+<extension
+      point="org.eclipse.ui.services">
+   <sourceProvider
+         provider="org.eclipse.papyrus.diagram.menu.providers.ActionStateSourceProvider:2">
+      <variable
+            name="showHideContents"
+            priorityLevel="workbench">
+      </variable>
+   </sourceProvider>
 </extension>
 </plugin>
