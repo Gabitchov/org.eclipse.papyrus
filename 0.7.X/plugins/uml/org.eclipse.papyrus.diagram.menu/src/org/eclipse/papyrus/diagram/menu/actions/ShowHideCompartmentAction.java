@@ -652,6 +652,7 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 		protected final View compartment;
 		
 		public ShowNameOfCompartmentItem(View compartment) {
+			assert(compartment != null);
 			this.compartment = compartment;
 		}
 		
@@ -673,7 +674,7 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 		
 		@Override
 		public String toString() {
-			return SHOW_NAME_OF_COMPARTMENT + ": " + compartment;
+			return SHOW_NAME_OF_COMPARTMENT + ": " + compartment.getType();
 		}
 		
 		public String getText() {
