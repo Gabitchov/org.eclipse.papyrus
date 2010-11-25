@@ -83,11 +83,11 @@ public class NodeCompartmentGroup extends AbstractGroup {
 
 		String compartmentVisibilityPreference = PreferenceConstantHelper.getCompartmentElementConstant(getKey(), compartment, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
 		String compartmentVisibilityLabel = "Show compartment";
-		Button showCompartmentButton = addCheckboxField(parent, compartmentVisibilityPreference, compartmentVisibilityLabel);
+		Button showCompartmentButton = addCheckboxField(group, compartmentVisibilityPreference, compartmentVisibilityLabel);
 
 		String compartmentNameVisibilityPreference = PreferenceConstantHelper.getCompartmentElementConstant(getKey(), compartment, PreferenceConstantHelper.COMPARTMENT_NAME_VISIBILITY);
 		String compartmentNameVisibilityLabel = "Show title";
-		Button showNameButton = addCheckboxField(parent, compartmentNameVisibilityPreference, compartmentNameVisibilityLabel);
+		Button showNameButton = addCheckboxField(group, compartmentNameVisibilityPreference, compartmentNameVisibilityLabel);
 
 		boolean showCompartmentIsNotChecked = !myPreferenceStore.getBoolean(compartmentVisibilityPreference);
 		if(showCompartmentIsNotChecked) {
