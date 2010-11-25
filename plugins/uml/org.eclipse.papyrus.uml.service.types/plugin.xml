@@ -1843,5 +1843,23 @@
 	</binding>
 		
 </extension>
-
+<extension
+         point="org.eclipse.papyrus.core.service">
+ 		<service
+            classname="org.eclipse.papyrus.uml.service.types.resourceUpdate.ResourceUpdateService"
+            description="Service used to update resources that have changed on disk"
+            id="org.eclipse.papyrus.core.resourceUpdate.ModelResourceListener"
+            priority="1"
+            startKind="startup">
+         <dependsOn
+               serviceKeyRef="org.eclipse.papyrus.core.lifecycleevents.ILifeCycleEventsProvider">
+         </dependsOn>
+         <dependsOn
+               serviceKeyRef="org.eclipse.papyrus.core.editor.IMultiDiagramEditor">
+         </dependsOn>
+         <dependsOn
+               serviceKeyRef="org.eclipse.papyrus.resource.ModelSet">
+         </dependsOn>
+ 		</service>
+</extension>	
 </plugin>
