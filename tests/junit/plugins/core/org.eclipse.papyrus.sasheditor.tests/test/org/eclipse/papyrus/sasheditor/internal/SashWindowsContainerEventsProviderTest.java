@@ -40,6 +40,12 @@ public class SashWindowsContainerEventsProviderTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
+		if(display == null || display.isDisposed()) {
+			display = Display.getCurrent();
+		}
+		if(display == null) {
+			display = new Display();
+		}
 	}
 
 	/**
@@ -47,8 +53,10 @@ public class SashWindowsContainerEventsProviderTest {
 	 */
 	@After
 	public void tearDown() throws Exception {
-		if(display != null)
-			display.dispose();
+		//		if(display != null) {
+		//			display.dispose();
+		//			display = null;
+		//		}
 	}
 
 
@@ -56,10 +64,7 @@ public class SashWindowsContainerEventsProviderTest {
 	 * 
 	 * @return
 	 */
-	private Display createDisplay() {
-		if(display == null)
-			display = new Display();
-		
+	private Display getDisplay() {
 		return display;
 			
 	}
@@ -71,7 +76,7 @@ public class SashWindowsContainerEventsProviderTest {
 	 */
 	protected SashWindowsContainer createSashWindowsContainer(ISashWindowsContentProvider contentProvider) {
 		
-		display = createDisplay();
+		display = getDisplay();
 		Shell shell = new Shell(display);
 		shell.setLayout(new FillLayout());
 
