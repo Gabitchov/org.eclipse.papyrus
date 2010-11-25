@@ -72,7 +72,37 @@
 			</rm:uri>
 		</rm:provider>
 		<rm:provider componentTypes="osgi.bundle" readerType="svn">
-			<rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/branches/0.7.X/tests/{1}">
+			<rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/branches/0.7.X/tests/junit/plugins/core/{1}">
+				<bc:propertyRef key="svn.repository"/>
+				<bc:propertyRef key="buckminster.component"/>
+			</rm:uri>
+		</rm:provider>
+		<rm:provider componentTypes="osgi.bundle" readerType="svn">
+			<rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/branches/0.7.X/tests/junit/plugins/developer/{1}">
+				<bc:propertyRef key="svn.repository"/>
+				<bc:propertyRef key="buckminster.component"/>
+			</rm:uri>
+		</rm:provider>
+		<rm:provider componentTypes="osgi.bundle" readerType="svn">
+			<rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/branches/0.7.X/tests/junit/plugins/others/{1}">
+				<bc:propertyRef key="svn.repository"/>
+				<bc:propertyRef key="buckminster.component"/>
+			</rm:uri>
+		</rm:provider>
+		<rm:provider componentTypes="osgi.bundle" readerType="svn">
+			<rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/branches/0.7.X/tests/junit/plugins/profile-tool/{1}">
+				<bc:propertyRef key="svn.repository"/>
+				<bc:propertyRef key="buckminster.component"/>
+			</rm:uri>
+		</rm:provider>
+		<rm:provider componentTypes="osgi.bundle" readerType="svn">
+			<rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/branches/0.7.X/tests/junit/plugins/sysml/{1}">
+				<bc:propertyRef key="svn.repository"/>
+				<bc:propertyRef key="buckminster.component"/>
+			</rm:uri>
+		</rm:provider>
+		<rm:provider componentTypes="osgi.bundle" readerType="svn">
+			<rm:uri format="{0}/modeling/org.eclipse.mdt.papyrus/branches/0.7.X/tests/junit/plugins/uml/{1}">
 				<bc:propertyRef key="svn.repository"/>
 				<bc:propertyRef key="buckminster.component"/>
 			</rm:uri>
