@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<associateSites>
-	<associateSite url="http://download.eclipse.org/modeling/gmt/modisco/updates/nightly/site.xml" label="Modisco (Nightly)"/>
-	<associateSite url="http://download.eclipse.org/tools/gef/updates/milestones/site.xml" label="GEF (Milestones)"/>
-	<associateSite url="http://download.eclipse.org/modeling/gmf/updates/milestones/" label="GMF (Milestones)"/>
-</associateSites>
