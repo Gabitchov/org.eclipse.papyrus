@@ -66,7 +66,7 @@ public class SashWindowsContainerTest extends TestCase {
 	 */
 	protected void tearDown() throws Exception {
 		super.tearDown();
-		display.dispose();
+		//display.dispose();
 	}
 
 	/**

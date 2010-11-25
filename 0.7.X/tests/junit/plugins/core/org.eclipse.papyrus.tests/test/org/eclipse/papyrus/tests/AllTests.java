@@ -51,7 +51,10 @@ public class AllTests {
 	// {oep}.diagram.clazz.tests
 	new PluginTestSuiteClass(org.eclipse.papyrus.diagram.clazz.test.AllTests.class),
 	// {oep}.sysml.tests
-	new PluginTestSuiteClass(SysmlAllTests.class));
+	new PluginTestSuiteClass(SysmlAllTests.class)
+	
+	//end
+	);
 
 
 
