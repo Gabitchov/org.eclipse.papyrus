@@ -53,11 +53,12 @@ public class ImportProfilesAsLibraryFromRepositoryAction extends AbstractPackage
 	 *        EMF editing domain used by the command
 	 * @return the command that is executed by this action
 	 */
-	public ImportProfilesAsLibraryFromRepositoryCommand getCommand(EditingDomain domain) {
+	@Override
+	public ChangeCommand getCommand(EditingDomain domain) {
 		if(command == null) {
 			command = new ImportProfilesAsLibraryFromRepositoryCommand(domain);
 		}
-		return (ImportProfilesAsLibraryFromRepositoryCommand)command;
+		return command;
 	}
 
 	/**
