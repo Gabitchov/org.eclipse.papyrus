@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Tatiana Fesenko (CEA LIST) - Bug 330772 - [Usability] Allow to configure visibility of name of compartments in the preferences pages
  *
  *****************************************************************************/
 
@@ -80,30 +81,22 @@ public class NodeCompartmentGroup extends AbstractGroup {
 		gridData.horizontalSpan = 2;
 		group.setLayoutData(gridData);
 
-		Button showCompartment = addShowCompartmentField(group, compartment);
-		Button showName = addShowNameOfCompartmentField(group, compartment);
-		createDependency(showCompartment, new Control[]{ showName });
-	}
+		String compartmentVisibilityPreference = PreferenceConstantHelper.getCompartmentElementConstant(getKey(), compartment, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
+		String compartmentVisibilityLabel = "Show compartment";
+		Button showCompartmentButton = addCheckboxField(parent, compartmentVisibilityPreference, compartmentVisibilityLabel);
 
-	protected Button addShowCompartmentField(Composite parent, String name) {
-		String compartmentVisibilityPreference = PreferenceConstantHelper.getCompartmentElementConstant(getKey(), name, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
-		String label = "Show compartment";
-		return addCheckboxField(parent, compartmentVisibilityPreference, label);
-	}
+		String compartmentNameVisibilityPreference = PreferenceConstantHelper.getCompartmentElementConstant(getKey(), compartment, PreferenceConstantHelper.COMPARTMENT_NAME_VISIBILITY);
+		String compartmentNameVisibilityLabel = "Show title";
+		Button showNameButton = addCheckboxField(parent, compartmentNameVisibilityPreference, compartmentNameVisibilityLabel);
 
-	protected Button addShowNameOfCompartmentField(Composite parent, String compartmentName) {
-		String compartmentNameVisibilityPreference = PreferenceConstantHelper.getCompartmentElementConstant(getKey(), compartmentName, PreferenceConstantHelper.COMPARTMENT_NAME_VISIBILITY);
-		String label = "Show name";
-		Button checkbox = addCheckboxField(parent, compartmentNameVisibilityPreference, label);
-
-		String compartmentVisibilityPreference = PreferenceConstantHelper.getCompartmentElementConstant(getKey(), compartmentName, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
 		boolean showCompartmentIsNotChecked = !myPreferenceStore.getBoolean(compartmentVisibilityPreference);
 		if(showCompartmentIsNotChecked) {
-			checkbox.setEnabled(false);
+			showNameButton.setEnabled(false);
 		}
 
-		return checkbox;
+		createDependency(showCompartmentButton, new Control[]{ showNameButton });
 	}
+
 
 	private Button addCheckboxField(Composite parent, String preferenceKey, String label) {
 		// show Compartment Visibility and CompartmentName Visibility items in the same row   
@@ -120,7 +113,7 @@ public class NodeCompartmentGroup extends AbstractGroup {
 	}
 
 	private void createDependency(final Button master, final Control[] slaves) {
-		SelectionListener listener = new SelectionListener() {
+		SelectionListener dependencyListener = new SelectionListener() {
 
 			public void widgetSelected(SelectionEvent e) {
 				boolean state = master.getSelection();
@@ -132,7 +125,7 @@ public class NodeCompartmentGroup extends AbstractGroup {
 			public void widgetDefaultSelected(SelectionEvent e) {
 			}
 		};
-		master.addSelectionListener(listener);
+		master.addSelectionListener(dependencyListener);
 	}
 
 
