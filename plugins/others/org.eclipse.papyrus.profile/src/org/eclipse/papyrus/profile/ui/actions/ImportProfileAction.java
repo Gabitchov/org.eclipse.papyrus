@@ -23,12 +23,8 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
-import org.eclipse.papyrus.core.services.ServiceException;
-import org.eclipse.papyrus.core.utils.ServiceUtils;
 import org.eclipse.papyrus.extensionpoints.uml2.profile.FilteredRegisteredProfilesAsLibrarySelectionDialog;
 import org.eclipse.papyrus.extensionpoints.uml2.profile.RegisteredProfile;
 import org.eclipse.papyrus.extensionpoints.uml2.utils.Util;
@@ -58,36 +54,13 @@ public class ImportProfileAction extends AbstractPackageImportAction {
 	 * @return
 	 */
 	@Override
-	public ImportProfileCommand getCommand(EditingDomain domain) {
+	public ChangeCommand getCommand(EditingDomain domain) {
 		if(command == null) {
 			command = new ImportProfileCommand(domain);
 		}
 		getAvailableProfiles();
-		return (ImportProfileCommand)command;
+		return command;
 	}
-
-	/**
-	 * 
-	 * @see org.eclipse.papyrus.profile.ui.actions.AbstractPackageImportAction#getCommand()
-	 * 
-	 * @return
-	 */
-	@Override
-	public ImportProfileCommand getCommand() {
-		TransactionalEditingDomain domain = null;
-		IMultiDiagramEditor editorPart = (IMultiDiagramEditor)PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
-
-		if(editorPart != null) {
-			try {
-				domain = ServiceUtils.getInstance().getTransactionalEditingDomain(editorPart.getServicesRegistry());
-			} catch (ServiceException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		return getCommand(domain);
-	}
-
 
 	/**
 	 * Returns the list of the profiles which are already imported

@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.extensionpoints.uml2.library.FilteredRegisteredLibrariesSelectionDialog;
 import org.eclipse.papyrus.extensionpoints.uml2.library.RegisteredLibrary;
 import org.eclipse.papyrus.extensionpoints.uml2.utils.Util;
@@ -54,21 +53,12 @@ public class ImportLibrariesFromRepositoryAction extends AbstractPackageImportAc
 	 *        EMF editing domain used by the command
 	 * @return the command that is executed by this action
 	 */
-	public ImportLibraryFromRepositoryCommand getCommand(EditingDomain domain) {
+	@Override
+	public ChangeCommand getCommand(EditingDomain domain) {
 		if(command == null) {
 			command = new ImportLibraryFromRepositoryCommand(domain);
 		}
-		return (ImportLibraryFromRepositoryCommand)command;
-	}
-
-	/**
-	 * returns the command that is executed by this action.
-	 * 
-	 * @return the command that is executed by this action
-	 */
-	public ImportLibraryFromRepositoryCommand getCommand() {
-		
-		return getCommand(EditorUtils.getTransactionalEditingDomain ());
+		return command;
 	}
 
 	/**

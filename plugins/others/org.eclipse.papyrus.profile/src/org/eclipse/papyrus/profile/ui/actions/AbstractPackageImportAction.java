@@ -10,14 +10,15 @@
  * Contributors:
  *  Chokri Mraidha (CEA LIST) Chokri.Mraidha@cea.fr - Initial API and implementation
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - modification
+ *  Ansgar Radermacher (CEA LIST) Ansgar.Radermacher@cea.fr - minor modifications
  *
  *****************************************************************************/
 package org.eclipse.papyrus.profile.ui.actions;
 
 import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.jface.action.IAction;
-import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.uml2.common.edit.command.ChangeCommand;
 import org.eclipse.uml2.uml.Package;
@@ -30,17 +31,12 @@ public abstract class AbstractPackageImportAction extends AbstractViewActionDele
 	/** current selection */
 	protected Package selectedElement;
 
-	/** Editing domain of the viewer given to init() method */
-	protected EditingDomain editingDomain;
-
 	/** stored instance of the command */
 	protected ChangeCommand command;
 
 	@Override
 	public void init(IViewPart view) {
 		super.init(view);
-		// try to retrieve editing domain
-		editingDomain = (EditingDomain)view.getAdapter(EditingDomain.class);
 	}
 
 	/**
@@ -71,6 +67,9 @@ public abstract class AbstractPackageImportAction extends AbstractViewActionDele
 		if(selectedElement instanceof Package) {
 			this.selectedElement = (Package)selectedElement;
 		}
+		else {
+			this.selectedElement = null;
+		}
 	}
 
 	/**
@@ -79,7 +78,11 @@ public abstract class AbstractPackageImportAction extends AbstractViewActionDele
 	 * @return <code>true</code> if the action can be executed
 	 */
 	public boolean canExecute() {
-		return getCommand().canExecute();
+		if (selectedElement != null) {
+			EditingDomain editingDomain = TransactionUtil.getEditingDomain(selectedElement);
+			return getCommand(editingDomain).canExecute();
+		}
+		return false;
 	}
 
 	/**
@@ -87,9 +90,11 @@ public abstract class AbstractPackageImportAction extends AbstractViewActionDele
 	 */
 	@Override
 	public void run(IAction action) {
-		
-		CommandStack stack = EditorUtils.getTransactionalEditingDomain().getCommandStack ();
-		stack.execute (getCommand());
+		if (selectedElement != null) {
+			EditingDomain editingDomain = TransactionUtil.getEditingDomain(selectedElement);
+			CommandStack stack = editingDomain.getCommandStack ();
+			stack.execute (getCommand(editingDomain));
+		}
 	}
 
 	/**
@@ -100,13 +105,4 @@ public abstract class AbstractPackageImportAction extends AbstractViewActionDele
 	 * @return the command that is executed by this action
 	 */
 	public abstract ChangeCommand getCommand(EditingDomain domain);
-
-	/**
-	 * returns the command that is executed by this action.
-	 * 
-	 * @return the command that is executed by this action
-	 */
-	public ChangeCommand getCommand() {
-		return getCommand(editingDomain);
-	}
 }
