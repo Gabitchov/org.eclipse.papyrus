@@ -15666,6 +15666,25 @@
             <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_bJ0WgBBOEdyt6tGzWCpUVA" name="extension_ExpressionContext" type="_UXvlwBBOEdyt6tGzWCpUVA" aggregation="composite" association="_bJqlgBBOEdyt6tGzWCpUVA"/>
           </packagedElement>
         </packagedElement>
+        <packagedElement xmi:type="uml:Profile" xmi:id="_jg_Z8PfhEd-f4r3MXmUB9g" name="Operators" metaclassReference="_pYWO4PfhEd-f4r3MXmUB9g">
+          <elementImport xmi:id="_pYWO4PfhEd-f4r3MXmUB9g" alias="Behavior">
+            <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Behavior"/>
+          </elementImport>
+          <packagedElement xmi:type="uml:Stereotype" xmi:id="_qRak4PfhEd-f4r3MXmUB9g" name="Operator">
+            <ownedAttribute xmi:id="_zaH10PfhEd-f4r3MXmUB9g" name="symbol">
+              <type xmi:type="uml:PrimitiveType" href="MARTE_Library.library.uml#_qZ3GUAnxEdy9WM11hWri2g"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_0EvgIPfhEd-f4r3MXmUB9g" name="arity" isDerived="true">
+              <type xmi:type="uml:PrimitiveType" href="MARTE_Library.library.uml#_HJ1zcAnfEdy9WM11hWri2g"/>
+            </ownedAttribute>
+            <ownedAttribute xmi:id="_-UFB8PfhEd-f4r3MXmUB9g" name="base_Behavior" association="_-UFB8ffhEd-f4r3MXmUB9g">
+              <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Behavior"/>
+            </ownedAttribute>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Extension" xmi:id="_-UFB8ffhEd-f4r3MXmUB9g" name="E_Operator_Behavior0" memberEnd="_-UFB8vfhEd-f4r3MXmUB9g _-UFB8PfhEd-f4r3MXmUB9g">
+            <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_-UFB8vfhEd-f4r3MXmUB9g" name="extension_Operator" type="_qRak4PfhEd-f4r3MXmUB9g" aggregation="composite" association="_-UFB8ffhEd-f4r3MXmUB9g"/>
+          </packagedElement>
+        </packagedElement>
       </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Dependency" xmi:id="_y9JiUA9dEdy-lroUn0KWEw" name="FromMARTE design modeltoMARTE foundations" supplier="_jG1CQAPKEdy6wIwMc4WDOQ" client="_tADfQAPMEdyuUt-4qHuVvQ"/>
@@ -15720,4 +15739,5 @@
   <Ecore:EPackage xmi:id="_TnqXgJivEd-m0Oaexd_lJA" base_Package="_9FdqwA-MEdyLh7muGbCqMw" packageName="DataTypes" nsPrefix="DataTypes" nsURI="http://www.eclipse.org/papyrus/DataTypes/1" prefix="DataTypes"/>
   <Ecore:EPackage xmi:id="_aKOsoJivEd-m0Oaexd_lJA" base_Package="_9UgzYA-MEdyLh7muGbCqMw" packageName="Variables" nsPrefix="Variables" nsURI="http://www.eclipse.org/papyrus/Variables/1" prefix="Variables"/>
   <Ecore:EPackage xmi:id="_VRBXoJjTEd-m0Oaexd_lJA" base_Package="_zaC5cAPHEdyeNfbOYuD9pg" packageName="MARTE" nsPrefix="MARTE" nsURI="http://www.eclipse.org/papyrus/MARTE/1" prefix="MARTE"/>
+  <Ecore:EPackage xmi:id="_F-BO0PfiEd-f4r3MXmUB9g" base_Package="_jg_Z8PfhEd-f4r3MXmUB9g" packageName="Operators" nsPrefix="Operators" nsURI="http://www.eclipse.org/papyrus/Operators/1" prefix="Operators"/>
 </xmi:XMI>
