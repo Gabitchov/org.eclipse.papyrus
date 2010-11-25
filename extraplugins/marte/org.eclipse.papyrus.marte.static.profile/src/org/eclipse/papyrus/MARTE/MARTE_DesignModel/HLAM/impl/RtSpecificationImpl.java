@@ -515,8 +515,7 @@ public class RtSpecificationImpl extends EObjectImpl implements RtSpecification 
 		// TODO: implement this method to return the 'Context' reference
 		// -> do not perform proxy resolution
 		// Ensure that you remove @generated or mark it @generated NOT
-		return null;
-		// throw new UnsupportedOperationException();
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -527,7 +526,7 @@ public class RtSpecificationImpl extends EObjectImpl implements RtSpecification 
 	public void setContext(BehavioralFeature newContext) {
 		// TODO: implement this method to set the 'Context' reference
 		// Ensure that you remove @generated or mark it @generated NOT
-		// throw new UnsupportedOperationException();
+		throw new UnsupportedOperationException();
 	}
 
 	/**

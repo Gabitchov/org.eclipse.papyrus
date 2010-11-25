@@ -46,6 +46,8 @@ import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.DataTypes.DataTypesPackage;
 import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.DataTypes.IntervalType;
 import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.DataTypes.TupleType;
 
+import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.Operators.OperatorsPackage;
+import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.Operators.impl.OperatorsPackageImpl;
 import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.Variables.VariablesPackage;
 
 import org.eclipse.papyrus.MARTE.MARTE_Annexes.VSL.Variables.impl.VariablesPackageImpl;
@@ -266,6 +268,7 @@ public class DataTypesPackageImpl extends EPackageImpl implements DataTypesPacka
 		GRMPackageImpl theGRMPackage = (GRMPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(GRMPackage.eNS_URI) instanceof GRMPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(GRMPackage.eNS_URI) : GRMPackage.eINSTANCE);
 		RSMPackageImpl theRSMPackage = (RSMPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RSMPackage.eNS_URI) instanceof RSMPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RSMPackage.eNS_URI) : RSMPackage.eINSTANCE);
 		VariablesPackageImpl theVariablesPackage = (VariablesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(VariablesPackage.eNS_URI) instanceof VariablesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(VariablesPackage.eNS_URI) : VariablesPackage.eINSTANCE);
+		OperatorsPackageImpl theOperatorsPackage = (OperatorsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(OperatorsPackage.eNS_URI) instanceof OperatorsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(OperatorsPackage.eNS_URI) : OperatorsPackage.eINSTANCE);
 		HLAMPackageImpl theHLAMPackage = (HLAMPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(HLAMPackage.eNS_URI) instanceof HLAMPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(HLAMPackage.eNS_URI) : HLAMPackage.eINSTANCE);
 		HwComputingPackageImpl theHwComputingPackage = (HwComputingPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(HwComputingPackage.eNS_URI) instanceof HwComputingPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(HwComputingPackage.eNS_URI) : HwComputingPackage.eINSTANCE);
 		HwCommunicationPackageImpl theHwCommunicationPackage = (HwCommunicationPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(HwCommunicationPackage.eNS_URI) instanceof HwCommunicationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(HwCommunicationPackage.eNS_URI) : HwCommunicationPackage.eINSTANCE);
@@ -303,6 +306,7 @@ public class DataTypesPackageImpl extends EPackageImpl implements DataTypesPacka
 		theGRMPackage.createPackageContents();
 		theRSMPackage.createPackageContents();
 		theVariablesPackage.createPackageContents();
+		theOperatorsPackage.createPackageContents();
 		theHLAMPackage.createPackageContents();
 		theHwComputingPackage.createPackageContents();
 		theHwCommunicationPackage.createPackageContents();
@@ -340,6 +344,7 @@ public class DataTypesPackageImpl extends EPackageImpl implements DataTypesPacka
 		theGRMPackage.initializePackageContents();
 		theRSMPackage.initializePackageContents();
 		theVariablesPackage.initializePackageContents();
+		theOperatorsPackage.initializePackageContents();
 		theHLAMPackage.initializePackageContents();
 		theHwComputingPackage.initializePackageContents();
 		theHwCommunicationPackage.initializePackageContents();

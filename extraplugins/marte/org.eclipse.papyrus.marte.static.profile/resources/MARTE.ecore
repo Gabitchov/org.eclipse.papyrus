@@ -476,6 +476,18 @@
               ordered="false" unique="false" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement"/>
         </eClassifiers>
       </eSubpackages>
+      <eSubpackages name="Operators" nsURI="http://www.eclipse.org/papyrus/Operators/1"
+          nsPrefix="Operators">
+        <eClassifiers xsi:type="ecore:EClass" name="Operator">
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="symbol" ordered="false"
+              lowerBound="1" eType="ecore:EDataType MARTE_Library.ecore#//MARTE_PrimitivesTypes/String"/>
+          <eStructuralFeatures xsi:type="ecore:EAttribute" name="arity" ordered="false"
+              lowerBound="1" eType="ecore:EDataType MARTE_Library.ecore#//MARTE_PrimitivesTypes/Integer"
+              volatile="true" derived="true"/>
+          <eStructuralFeatures xsi:type="ecore:EReference" name="base_Behavior" ordered="false"
+              lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Behavior"/>
+        </eClassifiers>
+      </eSubpackages>
       <eSubpackages name="DataTypes" nsURI="http://www.eclipse.org/papyrus/DataTypes/1"
           nsPrefix="DataTypes">
         <eClassifiers xsi:type="ecore:EClass" name="BoundedSubtype">
