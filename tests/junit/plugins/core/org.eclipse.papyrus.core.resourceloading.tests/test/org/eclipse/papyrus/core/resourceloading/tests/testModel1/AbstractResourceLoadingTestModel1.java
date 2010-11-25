@@ -31,6 +31,8 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.papyrus.core.Activator;
 import org.eclipse.papyrus.core.resourceloading.OnDemandLoadingModelSetServiceFactory;
 import org.eclipse.papyrus.core.resourceloading.preferences.StrategyChooser;
 import org.eclipse.papyrus.core.resourceloading.tests.testModel2.ITestConstants;
@@ -74,6 +76,8 @@ public abstract class AbstractResourceLoadingTestModel1 extends TestCase {
 		if(project != null) {
 			IFile modelFile = project.getFile(INITIAL_PATH + "model1.di");
 			modelSet.loadModels(modelFile);
+		} else {
+			fail("Could not initialize correctly the project");
 		}
 	}
 
@@ -222,6 +226,10 @@ public abstract class AbstractResourceLoadingTestModel1 extends TestCase {
 	 */
 	public void testGetObjectOfProfileResource() {
 		URI uriPlatformProfile = URI.createPlatformResourceURI(RESOURCE_URI + "MyProfile.uml#_XkGiwB07Ed-QQ4mYkrb7Gg", false);
+		System.err.println(uriPlatformProfile);
+		Resource resource = modelSet.getResource(uriPlatformProfile, true);
+		assertNotNull("Resource should not be null", resource);
+
 		EObject platformProfile = modelSet.getEObject(uriPlatformProfile, true);
 		// profile must be loaded with all the strategies
 		assertNotNull("Load a platform profile resource", platformProfile);
