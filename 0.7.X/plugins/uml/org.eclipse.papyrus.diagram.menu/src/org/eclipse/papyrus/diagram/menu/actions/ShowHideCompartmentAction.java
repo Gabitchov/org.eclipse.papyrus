@@ -231,6 +231,9 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 						completeCmd.add(tmp);
 					}
 				}
+			} else if(current instanceof ShowNameOfCompartmentItem) {
+				ShowNameOfCompartmentItem showNameOfCompartmentItem = (ShowNameOfCompartmentItem)current;
+				completeCmd.add(new ICommandProxy(new ShowHideTitleOfCompartmentCommand(showNameOfCompartmentItem, false)));
 			}
 		}
 
@@ -248,15 +251,21 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 					}
 				}
 			} else if(current instanceof ShowNameOfCompartmentItem) {
-				ShowNameOfCompartmentItem showName = (ShowNameOfCompartmentItem)current;
-				SetPropertyCommand showCompartmentTitleCommand = new SetPropertyCommand(domain, new EObjectAdapter(showName.compartment), Properties.ID_SHOWCOMPARTMENTTITLE, "Show Compartment Title", Boolean.valueOf(true));
-				completeCmd.add(new ICommandProxy(showCompartmentTitleCommand));
+				ShowNameOfCompartmentItem showNameOfCompartmentItem = (ShowNameOfCompartmentItem)current;
+				completeCmd.add(new ICommandProxy(new ShowHideTitleOfCompartmentCommand(showNameOfCompartmentItem, true)));
 			}
 		}
 
 		return completeCmd;
 	}
 
+	private class ShowHideTitleOfCompartmentCommand extends SetPropertyCommand {
+
+		public ShowHideTitleOfCompartmentCommand(ShowNameOfCompartmentItem showNameOfCompartmentItem, boolean showNotHide) {
+			super(domain, new EObjectAdapter(showNameOfCompartmentItem.compartment), Properties.ID_SHOWCOMPARTMENTTITLE, "Show/Hide Compartment Title", Boolean.valueOf(showNotHide));
+		}
+
+	}
 
 	/**
 	 * 
