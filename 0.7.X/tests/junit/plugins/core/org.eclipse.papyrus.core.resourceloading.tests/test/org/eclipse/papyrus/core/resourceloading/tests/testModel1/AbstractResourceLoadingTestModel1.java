@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.core.resourceloading.tests.testModel1;
 
+import java.io.File;
 import java.net.URL;
 
 import junit.framework.TestCase;
@@ -91,6 +92,10 @@ public abstract class AbstractResourceLoadingTestModel1 extends TestCase {
 		IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(ITestConstants.FRAGMENT_ID);
 		IProgressMonitor monitor = new NullProgressMonitor();
 
+		if(project != null && project.exists()) {
+			project.delete(true, monitor);
+		}
+
 		if(project != null && !project.exists()) {
 			project.create(monitor);
 		}
@@ -102,9 +107,10 @@ public abstract class AbstractResourceLoadingTestModel1 extends TestCase {
 				if(!file.exists()) {
 					createFolder(project, "resources/");
 					createFolder(project, INITIAL_PATH);
-					URL url = FileLocator.find(Platform.getBundle(ITestConstants.FRAGMENT_ID), new Path(INITIAL_PATH + res + s), null);
-					URL newFile = FileLocator.resolve(url);
-					file.createLink(newFile.toURI(), IResource.REPLACE, monitor);
+					// URL url = FileLocator.find(Platform.getBundle(ITestConstants.FRAGMENT_ID), new Path(INITIAL_PATH + res + s), null);
+					// URL newFileURL = FileLocator.resolve(url);
+					// file.createLink(newFile.toURI(), IResource.REPLACE, monitor);
+					file.create(Platform.getBundle(ITestConstants.FRAGMENT_ID).getEntry(INITIAL_PATH + res + s).openStream(), true, monitor);
 				}
 			}
 		}
@@ -112,9 +118,10 @@ public abstract class AbstractResourceLoadingTestModel1 extends TestCase {
 		String profilePath = INITIAL_PATH + "MyProfile.uml";
 		IFile file = project.getFile(profilePath);
 		if(!file.exists()) {
-			URL url = FileLocator.find(Platform.getBundle(ITestConstants.FRAGMENT_ID), new Path(profilePath), null);
-			URL newFile = FileLocator.resolve(url);
-			file.createLink(newFile.toURI(), IResource.REPLACE, monitor);
+			//URL url = FileLocator.find(Platform.getBundle(ITestConstants.FRAGMENT_ID), new Path(profilePath), null);
+			//URL newFile = FileLocator.resolve(url);
+			//file.createLink(newFile.toURI(), IResource.REPLACE, monitor);
+			file.create(Platform.getBundle(ITestConstants.FRAGMENT_ID).getEntry(profilePath).openStream(), true, monitor);
 		}
 		project.refreshLocal(IResource.DEPTH_INFINITE, monitor);
 		return project;
@@ -307,6 +314,6 @@ public abstract class AbstractResourceLoadingTestModel1 extends TestCase {
 		if(!parent.exists()) {
 			parent.create(true, true, new NullProgressMonitor());
 		}
-		assert (parent.exists());
+		assertTrue(parent.exists());
 	}
 }
