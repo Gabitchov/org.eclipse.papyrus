@@ -12,7 +12,7 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.uml.service.types.resourceUpdate;
+package org.eclipse.papyrus.diagram.common.resourceupdate;
 
 import static org.eclipse.papyrus.core.Activator.log;
 
@@ -40,8 +40,8 @@ import org.eclipse.papyrus.core.lifecycleevents.ISaveEventListener;
 import org.eclipse.papyrus.core.services.IService;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
+import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.resource.ModelSet;
-import org.eclipse.papyrus.uml.service.types.Activator;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorDescriptor;
@@ -60,7 +60,7 @@ import org.eclipse.uml2.uml.Profile;
  */
 public class ResourceUpdateService implements IService, IResourceChangeListener, IResourceDeltaVisitor {
 
-	public static final String RESOURCE_UPDATE_ID = Activator.PLUGIN_ID + ".resourceUpdate";
+	public static final String RESOURCE_UPDATE_ID = Activator.ID + ".resourceUpdate";
 
 	// public init (CoreMultiDiagramEditor editor, ISaveAndDirtyService saveAndDirty, ModelSet modelSet) {
 	public void init(ServicesRegistry servicesRegistry) throws ServiceException {
