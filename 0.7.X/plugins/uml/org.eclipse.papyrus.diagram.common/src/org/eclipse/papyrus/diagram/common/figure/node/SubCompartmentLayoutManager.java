@@ -25,43 +25,62 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 
 public class SubCompartmentLayoutManager extends AbstractLayout {
 
-	protected int MINIMUMCOMPARTMENTSIZE = 15;
+	protected final static int MINIMUMCOMPARTMENTSIZE = 15;
+
+	protected final static int MINIMUM_COMPARTMENT_WIDTH = 20;
 
 	protected int preferedHeight = MINIMUMCOMPARTMENTSIZE;
 
+	
 	@Override
-	protected Dimension calculatePreferredSize(IFigure container, int wHint, int hHint) {
-		return new Dimension(10, preferedHeight);
+	protected Dimension calculatePreferredSize(IFigure figure, int wHint, int hHint) {
+		Dimension dim = new Dimension(10, preferedHeight);
+		if(!figure.getChildren().isEmpty()) {
+			Object compartment = figure.getChildren().get(0);
+			if(compartment instanceof ResizableCompartmentFigure) {
+				Dimension compartmentPreferredSize = ((ResizableCompartmentFigure)compartment).getPreferredSize();
+				dim.height = compartmentPreferredSize.height + 10;
+				if(dim.height == 0) {
+					dim.height = 20;
+				}
+				dim.width = compartmentPreferredSize.width;
+			}
+		}
+		return dim;
+	}
+	
+	@Override
+	public Dimension getMinimumSize(IFigure container, int wHint, int hHint) {
+		return new Dimension(MINIMUM_COMPARTMENT_WIDTH, MINIMUMCOMPARTMENTSIZE);
 	}
 
 	public void layout(IFigure container) {
-		int containersize = container.getChildren().size();
 		for(int i = 0; i < container.getChildren().size(); i++) {
-			Rectangle bound = new Rectangle(((IFigure)container.getChildren().get(i)).getBounds());
-			bound.setSize(getPreferedSize(((IFigure)container.getChildren().get(i))));
+			IFigure child = ((IFigure)container.getChildren().get(i));
+			Rectangle bound = new Rectangle(child.getBounds());
+			bound.setSize(getPreferedSize(child));
+			bound.x = container.getBounds().x;
+			bound.width = container.getBounds().width;
 			if(i > 0) {
 				bound.y = ((IFigure)container.getChildren().get(i - 1)).getBounds().getBottomLeft().y + 1;
-				bound.x = container.getBounds().x;
-				bound.width = container.getBounds().width;
 			} else {
-				bound.x = container.getBounds().x;
 				bound.y = container.getBounds().y;
-				bound.width = container.getBounds().width;
-
 			}
-			((IFigure)container.getChildren().get(i)).setBounds(bound);
+			child.setBounds(bound);
 		}
 		// container
+		int containersize = container.getChildren().size();
 		if(containersize > 0) {
-			Rectangle lastRectangle = ((IFigure)container.getChildren().get(containersize - 1)).getBounds();
+			IFigure lastChild = (IFigure)container.getChildren().get(containersize - 1);
+			Rectangle lastRectangle = lastChild.getBounds();
 			lastRectangle.height = container.getBounds().y + container.getBounds().height - lastRectangle.y;
 			lastRectangle.width = container.getBounds().width;
-			((IFigure)container.getChildren().get(containersize - 1)).setBounds(lastRectangle);
+			lastChild.setBounds(lastRectangle);
 		}
 	}
 
 	public Dimension getPreferedSize(IFigure figure) {
-		Dimension dim = figure.getPreferredSize();
+		Dimension dim = new Dimension(10, preferedHeight);
 		if(figure.getChildren().size() > 0) {
 			if(figure.getChildren().get(0) instanceof ResizableCompartmentFigure) {
 				dim.height = ((ResizableCompartmentFigure)figure.getChildren().get(0)).getPreferredSize().height + 10;
