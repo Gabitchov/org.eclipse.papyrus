@@ -1746,66 +1746,12 @@
 
 	<metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
 
-	<!-- Helper advice for element name initialization -->		
-	<adviceBinding id="org.eclipse.papyrus.uml.advice.NameElementInitializer"
-		class="org.eclipse.papyrus.uml.service.types.helper.advice.NamedElementInitializerHelperAdvice"
-		inheritance="all" typeId="org.eclipse.papyrus.uml.NamedElement">
+	<!-- Helper advice for Classifier -->
+	<adviceBinding id="org.eclipse.papyrus.uml.advice.Classifier"
+		class="org.eclipse.papyrus.uml.service.types.helper.advice.ClassifierHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.uml.Classifier">
 	</adviceBinding>
 	
-	<!-- Helper advice for unapplication of applied stereotype before delete -->			
-	<adviceBinding id="org.eclipse.papyrus.uml.advice.ElementUnapplyStereotype"
-		class="org.eclipse.papyrus.uml.service.types.helper.advice.ElementUnapplyStereotypeHelperAdvice"
-		inheritance="all" typeId="org.eclipse.papyrus.uml.Element">
-	</adviceBinding>
-
-	<!-- Helper advice for OccurrenceSpecification -->
-	<adviceBinding id="org.eclipse.papyrus.uml.advice.OccurrenceSpecification"
-		class="org.eclipse.papyrus.uml.service.types.helper.advice.OccurrenceSpecificationHelperAdvice"
-		inheritance="all" typeId="org.eclipse.papyrus.uml.OccurrenceSpecification">
-	</adviceBinding>
-
-	<!-- Helper advice for ExecutionSpecification -->
-	<adviceBinding id="org.eclipse.papyrus.uml.advice.ExecutionSpecification"
-		class="org.eclipse.papyrus.uml.service.types.helper.advice.ExecutionSpecificationHelperAdvice"
-		inheritance="all" typeId="org.eclipse.papyrus.uml.ExecutionSpecification">
-	</adviceBinding>
-
-	<!-- Helper advice for Message -->
-	<adviceBinding id="org.eclipse.papyrus.uml.advice.Message"
-		class="org.eclipse.papyrus.uml.service.types.helper.advice.MessageHelperAdvice"
-		inheritance="all" typeId="org.eclipse.papyrus.uml.Message">
-	</adviceBinding>
-	
-	<!-- Helper advice for Lifeline -->
-	<adviceBinding id="org.eclipse.papyrus.uml.advice.Lifeline"
-		class="org.eclipse.papyrus.uml.service.types.helper.advice.LifelineHelperAdvice"
-		inheritance="all" typeId="org.eclipse.papyrus.uml.Lifeline">
- 	</adviceBinding>
- 	
- 	<!-- Helper advice for DestructionEvent -->
-	<adviceBinding id="org.eclipse.papyrus.uml.advice.DestructionEvent"
-		class="org.eclipse.papyrus.uml.service.types.helper.advice.DestructionEventHelperAdvice"
-		inheritance="all" typeId="org.eclipse.papyrus.uml.DestructionEvent">
-	</adviceBinding>
-	
-	<!-- Helper advice for MessageEnd -->
-	<adviceBinding id="org.eclipse.papyrus.uml.advice.MessageEnd"
-		class="org.eclipse.papyrus.uml.service.types.helper.advice.MessageEndHelperAdvice"
-		inheritance="all" typeId="org.eclipse.papyrus.uml.MessageEnd">
-	</adviceBinding>
-	
-	<!-- Helper advice for Generalization -->
-	<adviceBinding id="org.eclipse.papyrus.uml.advice.Generalization"
-		class="org.eclipse.papyrus.uml.service.types.helper.advice.GeneralizationHelperAdvice"
-		inheritance="none" typeId="org.eclipse.papyrus.uml.Generalization">
-	</adviceBinding>
-	
-	<!-- Helper advice for PartDecomposition -->
-	<adviceBinding id="org.eclipse.papyrus.uml.advice.PartDecomposition"
-		class="org.eclipse.papyrus.uml.service.types.helper.advice.PartDecompositionHelperAdvice"
-		inheritance="none" typeId="org.eclipse.papyrus.uml.PartDecomposition">
-	</adviceBinding>
-
 	<!-- Helper advice for Collaboration -->
 	<adviceBinding id="org.eclipse.papyrus.uml.advice.Collaboration"
 		class="org.eclipse.papyrus.uml.service.types.helper.advice.CollaborationHelperAdvice"
@@ -1816,6 +1762,66 @@
 	<adviceBinding id="org.eclipse.papyrus.uml.advice.CollaborationUse"
 		class="org.eclipse.papyrus.uml.service.types.helper.advice.CollaborationUseHelperAdvice"
 		inheritance="none" typeId="org.eclipse.papyrus.uml.CollaborationUse">
+	</adviceBinding>
+
+ 	<!-- Helper advice for DestructionEvent -->
+	<adviceBinding id="org.eclipse.papyrus.uml.advice.DestructionEvent"
+		class="org.eclipse.papyrus.uml.service.types.helper.advice.DestructionEventHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.uml.DestructionEvent">
+	</adviceBinding>
+
+	<!-- Helper advice for unapplication of applied stereotype before delete -->			
+	<adviceBinding id="org.eclipse.papyrus.uml.advice.ElementUnapplyStereotype"
+		class="org.eclipse.papyrus.uml.service.types.helper.advice.ElementUnapplyStereotypeHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.uml.Element">
+	</adviceBinding>
+			
+	<!-- Helper advice for ExecutionSpecification -->
+	<adviceBinding id="org.eclipse.papyrus.uml.advice.ExecutionSpecification"
+		class="org.eclipse.papyrus.uml.service.types.helper.advice.ExecutionSpecificationHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.uml.ExecutionSpecification">
+	</adviceBinding>
+	
+	<!-- Helper advice for Generalization -->
+	<adviceBinding id="org.eclipse.papyrus.uml.advice.Generalization"
+		class="org.eclipse.papyrus.uml.service.types.helper.advice.GeneralizationHelperAdvice"
+		inheritance="none" typeId="org.eclipse.papyrus.uml.Generalization">
+	</adviceBinding>	
+	
+	<!-- Helper advice for Lifeline -->
+	<adviceBinding id="org.eclipse.papyrus.uml.advice.Lifeline"
+		class="org.eclipse.papyrus.uml.service.types.helper.advice.LifelineHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.uml.Lifeline">
+ 	</adviceBinding>
+
+	<!-- Helper advice for Message -->
+	<adviceBinding id="org.eclipse.papyrus.uml.advice.Message"
+		class="org.eclipse.papyrus.uml.service.types.helper.advice.MessageHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.uml.Message">
+	</adviceBinding>
+		
+	<!-- Helper advice for MessageEnd -->
+	<adviceBinding id="org.eclipse.papyrus.uml.advice.MessageEnd"
+		class="org.eclipse.papyrus.uml.service.types.helper.advice.MessageEndHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.uml.MessageEnd">
+	</adviceBinding>
+	
+	<!-- Helper advice for element name initialization -->		
+	<adviceBinding id="org.eclipse.papyrus.uml.advice.NameElementInitializer"
+		class="org.eclipse.papyrus.uml.service.types.helper.advice.NamedElementInitializerHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.uml.NamedElement">
+	</adviceBinding>
+	
+	<!-- Helper advice for OccurrenceSpecification -->
+	<adviceBinding id="org.eclipse.papyrus.uml.advice.OccurrenceSpecification"
+		class="org.eclipse.papyrus.uml.service.types.helper.advice.OccurrenceSpecificationHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.uml.OccurrenceSpecification">
+	</adviceBinding>
+
+	<!-- Helper advice for PartDecomposition -->
+	<adviceBinding id="org.eclipse.papyrus.uml.advice.PartDecomposition"
+		class="org.eclipse.papyrus.uml.service.types.helper.advice.PartDecompositionHelperAdvice"
+		inheritance="none" typeId="org.eclipse.papyrus.uml.PartDecomposition">
 	</adviceBinding>
 	
 	</metamodel>
@@ -1828,9 +1834,10 @@
 	<binding context="org.eclipse.papyrus.service.edit.TypeContext">
 		
 		<elementType pattern="org.eclipse.papyrus.uml.*" />	
-		<advice ref="org.eclipse.papyrus.uml.advice.DestructionEvent" />
+		<advice ref="org.eclipse.papyrus.uml.advice.Classifier" />
 		<advice ref="org.eclipse.papyrus.uml.advice.Collaboration" />
 		<advice ref="org.eclipse.papyrus.uml.advice.CollaborationUse" />
+		<advice ref="org.eclipse.papyrus.uml.advice.DestructionEvent" />		
 		<advice ref="org.eclipse.papyrus.uml.advice.ElementUnapplyStereotype" />
 		<advice ref="org.eclipse.papyrus.uml.advice.ExecutionSpecification" />
 		<advice ref="org.eclipse.papyrus.uml.advice.Generalization" />
@@ -1843,4 +1850,5 @@
 	</binding>
 		
 </extension>
+
 </plugin>
