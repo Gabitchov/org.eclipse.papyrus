@@ -1764,6 +1764,12 @@
 		inheritance="none" typeId="org.eclipse.papyrus.uml.CollaborationUse">
 	</adviceBinding>
 
+	<!-- Helper advice for ConnectorEnd -->
+	<adviceBinding id="org.eclipse.papyrus.uml.advice.ConnectorEnd"
+		class="org.eclipse.papyrus.uml.service.types.helper.advice.ConnectorEndHelperAdvice"
+		inheritance="none" typeId="org.eclipse.papyrus.uml.ConnectorEnd">
+	</adviceBinding>
+	
  	<!-- Helper advice for DestructionEvent -->
 	<adviceBinding id="org.eclipse.papyrus.uml.advice.DestructionEvent"
 		class="org.eclipse.papyrus.uml.service.types.helper.advice.DestructionEventHelperAdvice"
@@ -1824,6 +1830,12 @@
 		inheritance="none" typeId="org.eclipse.papyrus.uml.PartDecomposition">
 	</adviceBinding>
 	
+	<!-- Helper advice for Property -->
+	<adviceBinding id="org.eclipse.papyrus.uml.advice.Property"
+		class="org.eclipse.papyrus.uml.service.types.helper.advice.PropertyHelperAdvice"
+		inheritance="all" typeId="org.eclipse.papyrus.uml.Property">
+	</adviceBinding>
+		
 	</metamodel>
 </extension>
 	
@@ -1837,6 +1849,7 @@
 		<advice ref="org.eclipse.papyrus.uml.advice.Classifier" />
 		<advice ref="org.eclipse.papyrus.uml.advice.Collaboration" />
 		<advice ref="org.eclipse.papyrus.uml.advice.CollaborationUse" />
+		<advice ref="org.eclipse.papyrus.uml.advice.ConnectorEnd" />		
 		<advice ref="org.eclipse.papyrus.uml.advice.DestructionEvent" />		
 		<advice ref="org.eclipse.papyrus.uml.advice.ElementUnapplyStereotype" />
 		<advice ref="org.eclipse.papyrus.uml.advice.ExecutionSpecification" />
@@ -1846,7 +1859,8 @@
 		<advice ref="org.eclipse.papyrus.uml.advice.MessageEnd" />
 		<advice ref="org.eclipse.papyrus.uml.advice.NameElementInitializer" />
 		<advice ref="org.eclipse.papyrus.uml.advice.OccurrenceSpecification" />
-		<advice ref="org.eclipse.papyrus.uml.advice.PartDecomposition" />	
+		<advice ref="org.eclipse.papyrus.uml.advice.PartDecomposition" />
+		<advice ref="org.eclipse.papyrus.uml.advice.Property" />	
 	</binding>
 		
 </extension>
