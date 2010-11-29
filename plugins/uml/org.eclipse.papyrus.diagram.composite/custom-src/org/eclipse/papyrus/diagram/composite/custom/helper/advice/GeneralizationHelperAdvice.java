@@ -89,20 +89,22 @@ public class GeneralizationHelperAdvice extends AbstractEditHelperAdvice {
 		Set<View> viewsToDestroy = new HashSet<View>();
 
 		Classifier general = ((Generalization)generalization).getGeneral();
+		if(general != null) {
 
-		// Parse members
-		EList<NamedElement> members = general.getMembers();
-		for(NamedElement member : members) {
+			// Parse members
+			EList<NamedElement> members = general.getMembers();
+			for(NamedElement member : members) {
 
-			// Find Views in Composite Structure Diagram that are referencing current member
-			Iterator<View> viewIt = CrossReferencerUtil.getCrossReferencingViews(member, CompositeStructureDiagramEditPart.MODEL_ID).iterator();
-			while(viewIt.hasNext()) {
-				View view = (View)viewIt.next();
+				// Find Views in Composite Structure Diagram that are referencing current member
+				Iterator<View> viewIt = CrossReferencerUtil.getCrossReferencingViews(member, CompositeStructureDiagramEditPart.MODEL_ID).iterator();
+				while(viewIt.hasNext()) {
+					View view = (View)viewIt.next();
 
-				// Test if current view (member) is concerned by the deletion (re-orientation) of the generalization
-				GeneralizationUtil util = new GeneralizationUtil();
-				if(util.isConcernedByGeneralizationChanges(generalization, view)) {
-					viewsToDestroy.add(view);
+					// Test if current view (member) is concerned by the deletion (re-orientation) of the generalization
+					GeneralizationUtil util = new GeneralizationUtil();
+					if(util.isConcernedByGeneralizationChanges(generalization, view)) {
+						viewsToDestroy.add(view);
+					}
 				}
 			}
 		}
