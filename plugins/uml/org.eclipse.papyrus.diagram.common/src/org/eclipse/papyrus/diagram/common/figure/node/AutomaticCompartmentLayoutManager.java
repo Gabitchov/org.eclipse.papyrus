@@ -63,7 +63,9 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 		}
 		if(compartmentList.size() != 0) {
 			for(int i = 0; i < container.getChildren().size(); i++) {
-				minimumHeight += ((IFigure)container.getChildren().get(i)).getPreferredSize().height;
+				IFigure child = (IFigure)container.getChildren().get(i);
+				minimumHeight += child.getPreferredSize().height;
+				minimumWith = Math.max(minimumWith, child.getPreferredSize().width);
 			}
 		} else {
 			for(int i = 0; i < notCompartmentList.size(); i++) {
@@ -73,6 +75,11 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 		if(addExtraHeight)
 			minimumHeight += 7;
 		return new Dimension(minimumWith, minimumHeight);
+	}
+	
+	@Override
+	public Dimension getMinimumSize(IFigure container, int wHint, int hHint) {
+		return new Dimension(20,20);
 	}
 
 	/**
@@ -243,8 +250,9 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 	public Dimension getPreferedSize(IFigure figure) {
 		Dimension dim = figure.getPreferredSize();
 		if(figure.getChildren().size() > 0) {
-			if(figure.getChildren().get(0) instanceof ResizableCompartmentFigure) {
-				dim.height = ((ResizableCompartmentFigure)figure.getChildren().get(0)).getPreferredSize().height + 10;
+			Object compartment = figure.getChildren().get(0);
+			if(compartment instanceof ResizableCompartmentFigure) {
+				dim.height = ((ResizableCompartmentFigure)compartment).getPreferredSize().height + 10;
 				if(dim.height == 0) {
 					dim.height = MINIMUM_COMPARTMENT_HEIGHT;
 				}
