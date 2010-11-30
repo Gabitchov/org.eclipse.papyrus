@@ -23,6 +23,7 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -63,7 +64,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 
 	@Override
 	public IStatus handleDrop(CommonDropAdapter dropAdapter,
-			DropTargetEvent dropTargetEvent, Object dropTarget) {
+		DropTargetEvent dropTargetEvent, Object dropTarget) {
 		Object targetElement = (Object) dropTarget;
 		execute(getDrop(targetElement));
 		return null;
@@ -81,18 +82,22 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 	@SuppressWarnings("unchecked")
 	protected List<Command> getDropIntoCommand(TransactionalEditingDomain domain,EObject targetOwner, EObject childElement,EReference eref){
 		ArrayList<Command> commandList= new ArrayList<Command>();
+		
+		//try to crete a command on for this reference
 		if(eref!=null){
 			ArrayList<EObject> tmp=new ArrayList<EObject>();
 			tmp.add(childElement);
 			if(targetOwner.eGet(eref) instanceof Collection<?>){
 				tmp.addAll((Collection<EObject>)targetOwner.eGet(eref));}
-
 			commandList.add( SetCommand.create(domain, targetOwner, eref, tmp));
 		}
 
 		else{
+			//ref is null
 			ArrayList<EStructuralFeature> possibleEFeatures= new ArrayList<EStructuralFeature>();
 			EList<EStructuralFeature> featureList=targetOwner.eClass().getEAllStructuralFeatures();
+			
+			//look for all possible feature betwen the owner and the child element
 			Iterator<EStructuralFeature> iterator= featureList.iterator();
 			while (iterator.hasNext()) {
 				EStructuralFeature eStructuralFeature = (EStructuralFeature) iterator.next();
@@ -109,6 +114,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 					}
 				}
 			}
+			//for each feature create a  set command 
 			Iterator<EStructuralFeature> iteratorFeature= possibleEFeatures.iterator();
 			while (iteratorFeature.hasNext()) {
 				EStructuralFeature eStructuralFeature = (EStructuralFeature) iteratorFeature
@@ -124,7 +130,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 		}
 		return commandList;
 	}
-	
+
 	/**
 	 * get a list that contains command to move a diagram into a new element
 	 * @param domain the transactionnal edit domain, cannot be null
@@ -144,7 +150,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 			commandList.add( SetCommand.create(domain, childElement, eref, targetOwner));
 		}
 
-		
+
 		return commandList;
 	}
 	/**
@@ -152,6 +158,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 	 * It will look for the good role of the child eobject
 	 * @param domain the Transactional Domain, cannot be null
 	 * @param targetOwner the eobject that will contain the drop object , cannot be null
+	 * @param objectLocation the object where we want to drop the object
 	 * @param newElement that we want to move, cannot be null
 	 * @return the list of commands to to the drop
 	 */
@@ -159,6 +166,8 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 		ArrayList<Command> commandList= new ArrayList<Command>();
 		ArrayList<EStructuralFeature> possibleEFeatures= new ArrayList<EStructuralFeature>();
 		EList<EStructuralFeature> featureList=targetOwner.eClass().getEAllStructuralFeatures();
+		
+		//find the feature between childreen and owner
 		Iterator<EStructuralFeature> iterator= featureList.iterator();
 		while (iterator.hasNext()) {
 			EStructuralFeature eStructuralFeature = (EStructuralFeature) iterator.next();
@@ -175,22 +184,30 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 				}
 			}
 		}
+		
+		//create the command
 		Iterator<EStructuralFeature> iteratorFeature= possibleEFeatures.iterator();
 		while (iteratorFeature.hasNext()) {
 			EStructuralFeature eStructuralFeature = (EStructuralFeature) iteratorFeature
 			.next();
 			ArrayList<EObject> tmp=new ArrayList<EObject>();
 			if(targetOwner.eGet(eStructuralFeature) instanceof Collection<?>){
+				//get all element of this efeature
 				tmp.addAll((Collection<EObject>)targetOwner.eGet(eStructuralFeature));
-				tmp.remove(newElement);
-				int indexObject=tmp.indexOf(objectLocation);
-				if( before&& indexObject!=-1){
-					tmp.add(tmp.indexOf(objectLocation), newElement);
-				}
-				else if( !before&& indexObject!=-1){
-					tmp.add(tmp.indexOf(objectLocation)+1, newElement);
-				}
 
+				if(!newElement.equals(objectLocation)){
+					tmp.remove(newElement);
+					//normally tmp.indexOf(objectLocation)!= -1 
+					//if this the case objectlocation=new element and
+					//it has been removed
+					int indexObject=tmp.indexOf(objectLocation);
+					if( before&& indexObject!=-1){
+						tmp.add(tmp.indexOf(objectLocation), newElement);
+					}
+					else if( !before&& indexObject!=-1){
+						tmp.add(tmp.indexOf(objectLocation)+1, newElement);
+					}
+				}
 			}
 			else{tmp.add(newElement);
 			}
@@ -286,7 +303,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 
 	@Override
 	public IStatus validateDrop(Object target, int operation,
-			TransferData transferType) {
+		TransferData transferType) {
 		List<Command> commandList=getDrop(target);
 		//List<Command> commandList=getDropCommand(target);
 		if(canDrop(commandList)){
@@ -332,7 +349,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 				else if(object instanceof EObject){
 					eObjectchild=(EObject)object;
 				}
-				
+
 				if(eObjectchild instanceof Diagram){
 					result.addAll(getDropDiagramIntoCommand(getEditingDomain(), targetEObject,(Diagram) eObjectchild));
 				}
@@ -341,7 +358,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 
 					result.addAll(getDropIntoCommand(getEditingDomain(), targetEObject, eObjectchild, eref));
 				}
-				
+
 			}
 		}
 
