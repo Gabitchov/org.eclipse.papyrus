@@ -31,141 +31,136 @@ import org.eclipse.papyrus.common.editor.xtext.umlCommon.UmlCommonPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.common.editor.xtext.umlCommon.impl.MultiplicityRuleImpl#getBounds <em>Bounds</em>}</li>
+ * <li>{@link org.eclipse.papyrus.common.editor.xtext.umlCommon.impl.MultiplicityRuleImpl#getBounds <em>Bounds</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
-public class MultiplicityRuleImpl extends MinimalEObjectImpl.Container implements MultiplicityRule
-{
-  /**
-   * The cached value of the '{@link #getBounds() <em>Bounds</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getBounds()
-   * @generated
-   * @ordered
-   */
-  protected EList<BoundSpecification> bounds;
+public class MultiplicityRuleImpl extends MinimalEObjectImpl.Container implements MultiplicityRule {
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected MultiplicityRuleImpl()
-  {
-    super();
-  }
+	/**
+	 * The cached value of the '{@link #getBounds() <em>Bounds</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @see #getBounds()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<BoundSpecification> bounds;
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected EClass eStaticClass()
-  {
-    return UmlCommonPackage.Literals.MULTIPLICITY_RULE;
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected MultiplicityRuleImpl() {
+		super();
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<BoundSpecification> getBounds()
-  {
-    if (bounds == null)
-    {
-      bounds = new EObjectContainmentEList<BoundSpecification>(BoundSpecification.class, this, UmlCommonPackage.MULTIPLICITY_RULE__BOUNDS);
-    }
-    return bounds;
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return UmlCommonPackage.Literals.MULTIPLICITY_RULE;
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
-    switch (featureID)
-    {
-      case UmlCommonPackage.MULTIPLICITY_RULE__BOUNDS:
-        return ((InternalEList<?>)getBounds()).basicRemove(otherEnd, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EList<BoundSpecification> getBounds() {
+		if(bounds == null) {
+			bounds = new EObjectContainmentEList<BoundSpecification>(BoundSpecification.class, this, UmlCommonPackage.MULTIPLICITY_RULE__BOUNDS);
+		}
+		return bounds;
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
-    switch (featureID)
-    {
-      case UmlCommonPackage.MULTIPLICITY_RULE__BOUNDS:
-        return getBounds();
-    }
-    return super.eGet(featureID, resolve, coreType);
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch(featureID) {
+		case UmlCommonPackage.MULTIPLICITY_RULE__BOUNDS:
+			return ((InternalEList<?>)getBounds()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
-    switch (featureID)
-    {
-      case UmlCommonPackage.MULTIPLICITY_RULE__BOUNDS:
-        getBounds().clear();
-        getBounds().addAll((Collection<? extends BoundSpecification>)newValue);
-        return;
-    }
-    super.eSet(featureID, newValue);
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch(featureID) {
+		case UmlCommonPackage.MULTIPLICITY_RULE__BOUNDS:
+			return getBounds();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void eUnset(int featureID)
-  {
-    switch (featureID)
-    {
-      case UmlCommonPackage.MULTIPLICITY_RULE__BOUNDS:
-        getBounds().clear();
-        return;
-    }
-    super.eUnset(featureID);
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch(featureID) {
+		case UmlCommonPackage.MULTIPLICITY_RULE__BOUNDS:
+			getBounds().clear();
+			getBounds().addAll((Collection<? extends BoundSpecification>)newValue);
+			return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
-    switch (featureID)
-    {
-      case UmlCommonPackage.MULTIPLICITY_RULE__BOUNDS:
-        return bounds != null && !bounds.isEmpty();
-    }
-    return super.eIsSet(featureID);
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch(featureID) {
+		case UmlCommonPackage.MULTIPLICITY_RULE__BOUNDS:
+			getBounds().clear();
+			return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch(featureID) {
+		case UmlCommonPackage.MULTIPLICITY_RULE__BOUNDS:
+			return bounds != null && !bounds.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //MultiplicityRuleImpl

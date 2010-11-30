@@ -87,6 +87,8 @@ finally {
 
 
 
+
+
 // Entry rule entryRuleBoundSpecification
 entryRuleBoundSpecification 
 :
@@ -221,6 +223,7 @@ finally {
 
 
 
+
 rule__QualifiedName__PathAssignment_0
     @init {
 		int stackSize = keepStackSize();
@@ -254,6 +257,8 @@ rule__QualifiedName__RemainingAssignment_2
 finally {
 	restoreStackSize(stackSize);
 }
+
+
 
 
 

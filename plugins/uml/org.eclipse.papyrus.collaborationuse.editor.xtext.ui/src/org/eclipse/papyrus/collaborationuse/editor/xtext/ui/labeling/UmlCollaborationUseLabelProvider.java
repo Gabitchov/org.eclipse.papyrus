@@ -30,15 +30,15 @@ public class UmlCollaborationUseLabelProvider extends DefaultEObjectLabelProvide
 		super(delegate);
 	}
 
-/*
-	//Labels and icons can be computed like this:
-	
-	String text(MyModel ele) {
-	  return "my "+ele.getName();
-	}
-	 
-    String image(MyModel ele) {
-      return "MyModel.gif";
-    }
-*/
+	/*
+	 * //Labels and icons can be computed like this:
+	 * 
+	 * String text(MyModel ele) {
+	 * return "my "+ele.getName();
+	 * }
+	 * 
+	 * String image(MyModel ele) {
+	 * return "MyModel.gif";
+	 * }
+	 */
 }

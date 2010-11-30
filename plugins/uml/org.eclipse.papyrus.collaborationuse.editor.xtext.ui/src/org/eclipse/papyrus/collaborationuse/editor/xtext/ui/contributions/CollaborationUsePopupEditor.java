@@ -112,7 +112,7 @@ public class CollaborationUsePopupEditor extends org.eclipse.xtext.gmf.glue.Popu
 				if(typeRule == null)
 					newType = null;
 				else
-					newType = typeRule.getType();
+					newType = (Collaboration)typeRule.getType();
 
 				newVisibility = org.eclipse.uml2.uml.VisibilityKind.PUBLIC_LITERAL;
 

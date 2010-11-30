@@ -14,7 +14,7 @@ import com.google.inject.name.Names;
 /**
  * Manual modifications go to {org.eclipse.papyrus.common.editor.xtext.UmlCommonRuntimeModule}
  */
- @SuppressWarnings("all")
+@SuppressWarnings("all")
 public abstract class AbstractUmlCommonRuntimeModule extends DefaultRuntimeModule {
 
 	protected Properties properties = null;
@@ -24,16 +24,16 @@ public abstract class AbstractUmlCommonRuntimeModule extends DefaultRuntimeModul
 		properties = tryBindProperties(binder, "org/eclipse/papyrus/common/editor/xtext/UmlCommon.properties");
 		super.configure(binder);
 	}
-	
+
 	public void configureLanguageName(Binder binder) {
 		binder.bind(String.class).annotatedWith(Names.named(Constants.LANGUAGE_NAME)).toInstance("org.eclipse.papyrus.common.editor.xtext.UmlCommon");
 	}
-	
+
 	public void configureFileExtensions(Binder binder) {
-		if (properties == null || properties.getProperty(Constants.FILE_EXTENSIONS) == null)
+		if(properties == null || properties.getProperty(Constants.FILE_EXTENSIONS) == null)
 			binder.bind(String.class).annotatedWith(Names.named(Constants.FILE_EXTENSIONS)).toInstance("umlcommon");
 	}
-	
+
 	// contributed by org.eclipse.xtext.generator.grammarAccess.GrammarAccessFragment
 	public Class<? extends org.eclipse.xtext.IGrammarAccess> bindIGrammarAccess() {
 		return org.eclipse.papyrus.common.editor.xtext.services.UmlCommonGrammarAccess.class;
@@ -80,7 +80,8 @@ public abstract class AbstractUmlCommonRuntimeModule extends DefaultRuntimeModul
 	}
 
 	// contributed by org.eclipse.xtext.generator.validation.JavaValidatorFragment
-	@org.eclipse.xtext.service.SingletonBinding(eager=true)	public Class<? extends org.eclipse.papyrus.common.editor.xtext.validation.UmlCommonJavaValidator> bindUmlCommonJavaValidator() {
+	@org.eclipse.xtext.service.SingletonBinding(eager = true)
+	public Class<? extends org.eclipse.papyrus.common.editor.xtext.validation.UmlCommonJavaValidator> bindUmlCommonJavaValidator() {
 		return org.eclipse.papyrus.common.editor.xtext.validation.UmlCommonJavaValidator.class;
 	}
 

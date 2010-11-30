@@ -12,6 +12,9 @@ import org.eclipse.jface.text.contentassist.CompletionProposal;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.common.editor.xtext.umlCommon.MultiplicityRule;
+import org.eclipse.papyrus.common.editor.xtext.umlCommon.QualifiedName;
+import org.eclipse.papyrus.common.editor.xtext.umlCommon.TypeRule;
+import org.eclipse.papyrus.common.editor.xtext.validation.UmlCommonJavaValidator;
 import org.eclipse.papyrus.core.utils.DisplayUtils;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
@@ -71,35 +74,20 @@ public class UmlCommonProposalProvider extends AbstractUmlCommonProposalProvider
 		acceptor.accept(completionProposal);
 	}
 
+
 	/**
-	 * Private Utility method for creating a completion proposal
 	 * 
-	 * @param completionString
-	 *        The actual completion string
-	 * @param displayString
-	 *        The way the completion is displayed in the completion list
+	 * @see org.eclipse.papyrus.common.editor.xtext.ui.contentassist.AbstractUmlCommonProposalProvider#completeMultiplicityRule_Bounds(org.eclipse.emf.ecore.EObject,
+	 *      org.eclipse.xtext.Assignment, org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext,
+	 *      org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor)
+	 * 
+	 * @param model
+	 * @param assignment
 	 * @param context
-	 *        Some information related to the context of the completion
-	 * @return
+	 * @param acceptor
 	 */
-	protected ICompletionProposal createCompletionProposal(String completionString, String displayString, ContentAssistContext context) {
-
-		ICompletionProposal completionProposal = new CompletionProposal(completionString, // String to be inserted 
-		context.getOffset(), // Offset
-		context.getSelectedText().length(), // Replacement length
-		completionString.length(), // cursorPosition
-		null, // image
-		" " + displayString, // displayString //$NON-NLS-1$
-		null, // contextInformation
-		null // additionalProposalInfo
-		);
-		return completionProposal;
-	}
-
 	@Override
 	public void completeMultiplicityRule_Bounds(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		// TODO Auto-generated method stub
-
 		if(!(model instanceof MultiplicityRule))
 			return;
 
@@ -121,42 +109,148 @@ public class UmlCommonProposalProvider extends AbstractUmlCommonProposalProvider
 	}
 
 	/**
-	 * Utility methods wich returns the list of classifiers that are directly or indirectly owned by a context namespace
 	 * 
+	 * @see org.eclipse.papyrus.collaborationuse.editor.xtext.ui.contentassist.AbstractUmlCollaborationUseProposalProvider#completeQualifiedName_Path(org.eclipse.emf.ecore.EObject,
+	 *      org.eclipse.xtext.Assignment, org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext,
+	 *      org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor)
+	 * 
+	 * @param model
+	 * @param assignment
 	 * @param context
-	 *        The context namespace
-	 * @return the list of classifiers that are directly or indirectly owned by the context namespace
+	 * @param acceptor
 	 */
-	protected List<Type> getRecursivelyOwnedType(Namespace context) {
-		List<Type> recursivelyOwnedTypes = new ArrayList<Type>();
-
-		List<Element> allOwnedElements = context.getOwnedElements();
-		for(Element e : allOwnedElements) {
-			if(e instanceof Type)
-				recursivelyOwnedTypes.add((Type)e);
-			else if(e instanceof Package)
-				recursivelyOwnedTypes.addAll(getRecursivelyOwnedType((Namespace)e));
-		}
-
-		return recursivelyOwnedTypes;
+	@Override
+	public void completeQualifiedName_Path(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		//The customization consists in proposing nothing. Proposals are already handled by other methods
 	}
 
 	/**
-	 * Utility methods which returns the list of classifiers that are directly or indirectly owned by the namespaces imported by a context namespace
+	 * Provides custom completion for a path, taking into account the path which has already been specified
 	 * 
+	 * @see org.eclipse.papyrus.collaborationuse.editor.xtext.ui.contentassist.AbstractUmlCollaborationUseProposalProvider#completeQualifiedName_Remaining(org.eclipse.emf.ecore.EObject,
+	 *      org.eclipse.xtext.Assignment, org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext,
+	 *      org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor)
+	 * 
+	 * @param model
+	 * @param assignment
 	 * @param context
-	 *        The context namespace
-	 * @return the list of classifiers that are directly or indirectly owned by the namespaces imported by the context namespace
+	 * @param acceptor
 	 */
-	protected List<Type> getRecursivelyImportedType(Namespace context) {
-		List<Type> recursivelyImportedTypes = new ArrayList<Type>();
+	@Override
+	public void completeQualifiedName_Remaining(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 
-		EList<org.eclipse.uml2.uml.Package> importedPackages = context.getImportedPackages();
+
+		QualifiedName path = (QualifiedName)model;
+		for(NamedElement n : path.getPath().getOwnedMembers()) {
+			//we add the namespace only if he contains interesting element
+			if(n instanceof Namespace) {
+				if(n.getName().startsWith(context.getPrefix())) {
+					String completionString = n.getName().substring(context.getPrefix().length()) + "::"; //$NON-NLS-1$
+					String displayString = n.getName() + "::"; //$NON-NLS-1$
+					ICompletionProposal completionProposal = createCompletionProposal(n, completionString, displayString, context);
+					List<Type> accessibleType = getRecursivelyOwnedType((Namespace)n);
+					accessibleType.addAll(getRecursivelyImportedType((Namespace)n));
+					if(accessibleType.size() != 0) {
+						acceptor.accept(completionProposal);
+					}
+				}
+			}
+		}
+		for(Package p : path.getPath().getImportedPackages()) {
+			if(p.getName().startsWith(context.getPrefix())) {
+				String completionString = p.getName().substring(context.getPrefix().length()) + "::"; //$NON-NLS-1$
+				String displayString = p.getName() + "::"; //$NON-NLS-1$
+				ICompletionProposal completionProposal = createCompletionProposal(p, completionString, displayString, context);
+				List<Type> accessibleType = getRecursivelyOwnedType(p);
+				accessibleType.addAll(getRecursivelyImportedType(p));
+				if(accessibleType.size() != 0) {
+					acceptor.accept(completionProposal);
+				}
+			}
+		}
+	}
+
+	/**
+	 * 
+	 * Provides custom completion for the root element in a qualified name
+	 * 
+	 * @see org.eclipse.papyrus.common.editor.xtext.ui.contentassist.AbstractUmlCommonProposalProvider#completeTypeRule_Path(org.eclipse.emf.ecore.EObject,
+	 *      org.eclipse.xtext.Assignment, org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext,
+	 *      org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor)
+	 * 
+	 * @param model
+	 * @param assignment
+	 * @param context
+	 * @param acceptor
+	 */
+	@Override
+	public void completeTypeRule_Path(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		Namespace root = UmlCommonJavaValidator.getInstance().getModel();
+		if(root == null)
+			return;
+
+		// first accept the root Model
+		String completionString = root.getName() + "::";
+		String displayString = root.getName() + "::";
+		//String displayString = c.getName() ;
+		ICompletionProposal completionProposal = createCompletionProposalWithReplacementOfPrefix(root, completionString, displayString, context);
+		acceptor.accept(completionProposal);
+		// then accepts all packages imported by Model
+		List<Package> importedPackages = root.getImportedPackages();
 		for(Package p : importedPackages) {
-			recursivelyImportedTypes.addAll(getRecursivelyOwnedType(p));
+			if(p.getName().startsWith(context.getPrefix())) {
+				completionString = p.getName().substring(context.getPrefix().length()) + "::";
+				displayString = p.getName() + "::";
+				completionProposal = createCompletionProposal(root, completionString, displayString, context);
+				List<Type> accessibleType = getRecursivelyOwnedType(p);
+				accessibleType.addAll(getRecursivelyImportedType(p));
+				if(accessibleType.size() != 0) {
+					acceptor.accept(completionProposal);
+				}
+			}
+		}
+	}
+
+	/**
+	 * Provides custom completion for specifying the type of an {@link Element}, taking into account the path if the name is qualified
+	 * 
+	 * @see org.eclipse.papyrus.property.editor.xtext.ui.contentassist.AbstractUmlPropertyProposalProvider#completeTypeRule_Type(org.eclipse.emf.ecore.EObject,
+	 *      org.eclipse.xtext.Assignment, org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext,
+	 *      org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor)
+	 */
+	@Override
+	public void completeTypeRule_Type(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+
+		Namespace namespace = UmlCommonJavaValidator.getInstance().getContextElement().getNearestPackage();
+		if(model instanceof TypeRule) {
+			TypeRule typeRule = (TypeRule)model;
+			QualifiedName path = typeRule.getPath();
+			while(path.getRemaining() != null) {
+				path = path.getRemaining();
+			}
+			namespace = path.getPath();
+		}
+		for(NamedElement n : namespace.getOwnedMembers()) {
+			if(UmlCommonJavaValidator.getInstance().isWantedType(n)) {
+				if(n.getName().startsWith(context.getPrefix())) {
+					String completionString = n.getName().substring(context.getPrefix().length());
+					String displayString = n.getName();
+					ICompletionProposal completionProposal = createCompletionProposal(n, completionString, displayString, context);
+					acceptor.accept(completionProposal);
+				}
+			}
+			if(n instanceof Namespace) {
+				for(Type t : getRecursivelyOwnedType((Namespace)n)) {
+					if(t.getName().startsWith(context.getPrefix())) {
+						String completionString = t.getName().substring(context.getPrefix().length());
+						String displayString = t.getName();;
+						ICompletionProposal completionProposal = createCompletionProposal(t, completionString, displayString, context);
+						acceptor.accept(completionProposal);
+					}
+				}
+			}
 		}
 
-		return recursivelyImportedTypes;
 	}
 
 	/**
@@ -183,6 +277,31 @@ public class UmlCommonProposalProvider extends AbstractUmlCommonProposalProvider
 		" " + displayString, // displayString //$NON-NLS-1$
 		null, // contextInformation
 		additionalProposalInfo // additionalProposalInfo
+		);
+		return completionProposal;
+	}
+
+	/**
+	 * Private Utility method for creating a completion proposal
+	 * 
+	 * @param completionString
+	 *        The actual completion string
+	 * @param displayString
+	 *        The way the completion is displayed in the completion list
+	 * @param context
+	 *        Some information related to the context of the completion
+	 * @return
+	 */
+	protected ICompletionProposal createCompletionProposal(String completionString, String displayString, ContentAssistContext context) {
+
+		ICompletionProposal completionProposal = new CompletionProposal(completionString, // String to be inserted 
+		context.getOffset(), // Offset
+		context.getSelectedText().length(), // Replacement length
+		completionString.length(), // cursorPosition
+		null, // image
+		" " + displayString, // displayString //$NON-NLS-1$
+		null, // contextInformation
+		null // additionalProposalInfo
 		);
 		return completionProposal;
 	}
@@ -216,4 +335,48 @@ public class UmlCommonProposalProvider extends AbstractUmlCommonProposalProvider
 		return completionProposal;
 	}
 
+	/**
+	 * 
+	 * This method shall be overridden in order to look for a more specific {@link Type} Utility methods which returns the list of {@link Type} that
+	 * are directly or indirectly owned by the namespaces imported by a context namespace
+	 * 
+	 * @param context
+	 *        The context namespace
+	 * @return the list of classifiers that are directly or indirectly owned by the namespaces imported by the context namespace
+	 */
+	protected List<Type> getRecursivelyImportedType(Namespace context) {
+		List<Type> recursivelyImportedTypes = new ArrayList<Type>();
+
+		EList<org.eclipse.uml2.uml.Package> importedPackages = context.getImportedPackages();
+		for(Package p : importedPackages) {
+			recursivelyImportedTypes.addAll(getRecursivelyOwnedType(p));
+		}
+
+		return recursivelyImportedTypes;
+	}
+
+	/**
+	 * This method shall be overridden in order to look for a more specific {@link Type}
+	 * 
+	 * Utility methods which returns the list of the type that are directly or indirectly owned by a context namespace
+	 * 
+	 * @param context
+	 *        The context namespace
+	 * @return the list of classifiers that are directly or indirectly owned by the context namespace
+	 */
+	protected List<Type> getRecursivelyOwnedType(Namespace context) {
+		List<Type> recursivelyOwnedTypes = new ArrayList<Type>();
+
+		List<Element> allOwnedElements = context.getOwnedElements();
+		for(Element e : allOwnedElements) {
+			if(UmlCommonJavaValidator.getInstance().isWantedType(e)) {
+				recursivelyOwnedTypes.add((Type)e);
+			}
+			if(e instanceof Namespace) {
+				recursivelyOwnedTypes.addAll(this.getRecursivelyOwnedType((Namespace)e));
+			}
+		}
+
+		return recursivelyOwnedTypes;
+	}
 }

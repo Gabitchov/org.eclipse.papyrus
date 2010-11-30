@@ -9,6 +9,7 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
  * Use this class to register components to be used within the IDE.
  */
 public class UmlCommonUiModule extends org.eclipse.papyrus.common.editor.xtext.ui.AbstractUmlCommonUiModule {
+
 	public UmlCommonUiModule(AbstractUIPlugin plugin) {
 		super(plugin);
 	}

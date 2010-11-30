@@ -16,7 +16,15 @@ package org.eclipse.papyrus.common.editor.xtext.validation;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Namespace;
 
-
+/**
+ * 
+ * This validator provides :
+ * <ul>
+ * <li>a method to validate the fields</li>
+ * <li>others methods to manipulate easily the edited element in the XText Editor</li>
+ * </ul>
+ * 
+ */
 public class UmlCommonJavaValidator extends AbstractUmlCommonJavaValidator {
 
 	/** instance of the validator */
@@ -28,6 +36,9 @@ public class UmlCommonJavaValidator extends AbstractUmlCommonJavaValidator {
 	/** the context element */
 	private Element contextElement;
 
+	/** the possible type for the edited element (used when the element is a TypedElement */
+	private Class<?> wantedType;
+
 	/**
 	 * Constructor
 	 * XText Framework needs to have a validator without parameter?!
@@ -37,7 +48,7 @@ public class UmlCommonJavaValidator extends AbstractUmlCommonJavaValidator {
 	}
 
 	/**
-	 * Inits the fields of this static class
+	 * Inits the fields of this class
 	 * 
 	 * @param _contextElement
 	 *        the context element
@@ -51,6 +62,19 @@ public class UmlCommonJavaValidator extends AbstractUmlCommonJavaValidator {
 			}
 			model = (Namespace)elem;
 		}
+	}
+
+	/**
+	 * Inits the fields of this class
+	 * 
+	 * @param _contextElement
+	 *        the context element
+	 * @param wantedType
+	 *        init the wanted Type (used only when the edited element is a Typed Element
+	 */
+	public void init(Element _contextElement, Class<?> wantedType) {
+		this.init(_contextElement);
+		setWantedType(wantedType);
 	}
 
 	/**
@@ -88,8 +112,35 @@ public class UmlCommonJavaValidator extends AbstractUmlCommonJavaValidator {
 	 *         the instance of the current validator
 	 */
 	public static UmlCommonJavaValidator getInstance() {
-		System.out.println(instance);
 		return instance;
 	}
 
+
+	/**
+	 * This method shall be overridden in inherited classes
+	 * 
+	 * Test if the element has the correct type
+	 * 
+	 * @param obj
+	 *        an object to test
+	 * @return
+	 *         <code>true</code> if the object has the correct type
+	 * 
+	 */
+	public boolean isWantedType(Element el) {
+		if(this.wantedType == null) {
+			return false;
+		}
+		return this.wantedType.isInstance(el);
+	}
+
+	/**
+	 * Setter for the field {@link #wantedType}
+	 * 
+	 * @param wantedType
+	 *        the wantedType
+	 */
+	protected void setWantedType(Class<?> wantedType) {
+		this.wantedType = wantedType;
+	}
 }

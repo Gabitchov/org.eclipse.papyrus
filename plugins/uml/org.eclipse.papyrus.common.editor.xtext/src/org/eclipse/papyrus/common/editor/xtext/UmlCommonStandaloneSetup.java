@@ -15,13 +15,12 @@
 package org.eclipse.papyrus.common.editor.xtext;
 
 /**
- * Initialization support for running Xtext languages 
+ * Initialization support for running Xtext languages
  * without equinox extension registry
  */
-public class UmlCommonStandaloneSetup extends UmlCommonStandaloneSetupGenerated{
+public class UmlCommonStandaloneSetup extends UmlCommonStandaloneSetupGenerated {
 
 	public static void doSetup() {
 		new UmlCommonStandaloneSetup().createInjectorAndDoEMFRegistration();
 	}
 }
-
