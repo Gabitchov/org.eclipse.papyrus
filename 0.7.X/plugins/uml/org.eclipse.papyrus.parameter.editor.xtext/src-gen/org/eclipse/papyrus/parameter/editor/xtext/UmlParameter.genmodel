@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.papyrus.parameter.editor.xtext/src-gen"
+    editDirectory="/org.eclipse.papyrus.parameter.editor.xtext.edit/src" editorDirectory="/org.eclipse.papyrus.parameter.editor.xtext.editor/src"
+    modelPluginID="org.eclipse.papyrus.parameter.editor.xtext" forceOverwrite="true"
+    modelName="UmlParameter" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    complianceLevel="5.0" copyrightFields="false" editPluginID="org.eclipse.papyrus.parameter.editor.xtext.edit"
+    editorPluginID="org.eclipse.papyrus.parameter.editor.xtext.editor" usedGenPackages="../../../../../../../../org.eclipse.papyrus.common.editor.xtext/src-gen/org/eclipse/papyrus/common/editor/xtext/UMLCommon.genmodel#//umlCommon">
+  <genPackages prefix="UmlParameter" basePackage="org.eclipse.papyrus.parameter.editor.xtext"
+      resource="XML" disposableProviderFactory="true" ecorePackage="UmlParameter.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="UmlParameter.ecore#//ModifierKind">
+      <genEnumLiterals ecoreEnumLiteral="UmlParameter.ecore#//ModifierKind/EXCEPTION"/>
+      <genEnumLiterals ecoreEnumLiteral="UmlParameter.ecore#//ModifierKind/STREAM"/>
+      <genEnumLiterals ecoreEnumLiteral="UmlParameter.ecore#//ModifierKind/ORDERED"/>
+      <genEnumLiterals ecoreEnumLiteral="UmlParameter.ecore#//ModifierKind/UNIQUE"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="UmlParameter.ecore#//EffectKind">
+      <genEnumLiterals ecoreEnumLiteral="UmlParameter.ecore#//EffectKind/CREATE"/>
+      <genEnumLiterals ecoreEnumLiteral="UmlParameter.ecore#//EffectKind/READ"/>
+      <genEnumLiterals ecoreEnumLiteral="UmlParameter.ecore#//EffectKind/UPDATE"/>
+      <genEnumLiterals ecoreEnumLiteral="UmlParameter.ecore#//EffectKind/DELETE"/>
+    </genEnums>
+    <genClasses ecoreClass="UmlParameter.ecore#//ParameterRule">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute UmlParameter.ecore#//ParameterRule/visibility"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute UmlParameter.ecore#//ParameterRule/direction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute UmlParameter.ecore#//ParameterRule/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UmlParameter.ecore#//ParameterRule/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UmlParameter.ecore#//ParameterRule/multiplicity"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UmlParameter.ecore#//ParameterRule/modifiers"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UmlParameter.ecore#//ParameterRule/effect"/>
+    </genClasses>
+    <genClasses ecoreClass="UmlParameter.ecore#//ModifiersRule">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UmlParameter.ecore#//ModifiersRule/values"/>
+    </genClasses>
+    <genClasses ecoreClass="UmlParameter.ecore#//ModifierSpecification">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute UmlParameter.ecore#//ModifierSpecification/value"/>
+    </genClasses>
+    <genClasses ecoreClass="UmlParameter.ecore#//EffectRule">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute UmlParameter.ecore#//EffectRule/effectKind"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
