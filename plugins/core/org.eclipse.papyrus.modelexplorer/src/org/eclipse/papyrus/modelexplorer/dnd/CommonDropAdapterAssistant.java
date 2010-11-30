@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -89,7 +90,11 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 			tmp.add(childElement);
 			if(targetOwner.eGet(eref) instanceof Collection<?>){
 				tmp.addAll((Collection<EObject>)targetOwner.eGet(eref));}
-			commandList.add( SetCommand.create(domain, targetOwner, eref, tmp));
+			//to allow the undo, the creation of the remove command has to be explicit
+			Command emfCommand= RemoveCommand.create(domain, childElement);
+			emfCommand=emfCommand.chain(SetCommand.create(domain, targetOwner, eref, tmp));
+			commandList.add(emfCommand);
+
 		}
 
 		else{
@@ -124,7 +129,10 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 				if(targetOwner.eGet(eStructuralFeature) instanceof Collection<?>){
 					tmp.addAll((Collection<EObject>)targetOwner.eGet(eStructuralFeature));
 				}
-				commandList.add( SetCommand.create(domain, targetOwner, eStructuralFeature, tmp));
+				//to allow the undo, the creation of the remove command has to be explicit
+				Command emfCommand= RemoveCommand.create(domain, childElement);
+				emfCommand=emfCommand.chain( SetCommand.create(domain, targetOwner, eStructuralFeature, tmp));
+				commandList.add(emfCommand);
 
 			}
 		}
