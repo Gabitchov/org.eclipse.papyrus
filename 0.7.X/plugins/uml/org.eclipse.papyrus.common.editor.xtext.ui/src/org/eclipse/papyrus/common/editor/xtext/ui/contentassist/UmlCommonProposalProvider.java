@@ -154,6 +154,16 @@ public class UmlCommonProposalProvider extends AbstractUmlCommonProposalProvider
 						acceptor.accept(completionProposal);
 					}
 				}
+
+				//we add the namespace to the possible element, if the namespace has the correct type
+				if(n.getName().startsWith(context.getPrefix())) {
+					String completionString = n.getName().substring(context.getPrefix().length());
+					String displayString = n.getName();
+					ICompletionProposal completionProposal = createCompletionProposal(n, completionString, displayString, context);
+					if(UmlCommonJavaValidator.getInstance().isWantedType(n)) {
+						acceptor.accept(completionProposal);
+					}
+				}
 			}
 		}
 		for(Package p : path.getPath().getImportedPackages()) {
