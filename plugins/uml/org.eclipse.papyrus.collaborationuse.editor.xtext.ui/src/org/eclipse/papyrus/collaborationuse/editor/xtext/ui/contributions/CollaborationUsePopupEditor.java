@@ -76,7 +76,8 @@ public class CollaborationUsePopupEditor extends org.eclipse.xtext.gmf.glue.Popu
 		if(!(graphicalEditPart.resolveSemanticElement() instanceof CollaborationUse))
 			return null;
 		collaborationUse = (CollaborationUse)graphicalEditPart.resolveSemanticElement();
-		UmlCollaborationUseJavaValidator.getInstance().init(collaborationUse);
+		UmlCollaborationUseJavaValidator validator = new UmlCollaborationUseJavaValidator();
+		validator.init(collaborationUse, Collaboration.class);
 
 
 		// retrieves the XText injector
