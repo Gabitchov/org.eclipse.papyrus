@@ -122,6 +122,9 @@ public abstract class AbstractResourceLoadingTestModel1 extends TestCase {
 			//URL newFile = FileLocator.resolve(url);
 			//file.createLink(newFile.toURI(), IResource.REPLACE, monitor);
 			file.create(Platform.getBundle(ITestConstants.FRAGMENT_ID).getEntry(profilePath).openStream(), true, monitor);
+			if(!file.exists()) {
+				fail("Impossible to create the profile file");
+			}
 		}
 		project.refreshLocal(IResource.DEPTH_INFINITE, monitor);
 		return project;
