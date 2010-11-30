@@ -141,6 +141,8 @@ ruleQualifiedName returns [EObject current=null]
 
 
 
+
+
 // Entry rule entryRuleBoundSpecification
 entryRuleBoundSpecification returns [EObject current=null] 
 	:

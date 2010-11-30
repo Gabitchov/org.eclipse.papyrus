@@ -10,9 +10,5 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//TypeRule"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TypeRule">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="path" eType="ecore:EClass ../../../../../../../../org.eclipse.papyrus.common.editor.xtext/src-gen/org/eclipse/papyrus/common/editor/xtext/UmlCommon.ecore#//QualifiedName"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass ../../../../../../../../org.eclipse.papyrus.common.editor.xtext/model/UML.ecore#//Collaboration"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TypeRule" eSuperTypes="../../../../../../../../org.eclipse.papyrus.common.editor.xtext/src-gen/org/eclipse/papyrus/common/editor/xtext/UmlCommon.ecore#//TypeRule"/>
 </ecore:EPackage>

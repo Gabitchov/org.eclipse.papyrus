@@ -14,9 +14,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute UmlCollaborationUse.ecore#//CollaborationUseRule/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UmlCollaborationUse.ecore#//CollaborationUseRule/type"/>
     </genClasses>
-    <genClasses ecoreClass="UmlCollaborationUse.ecore#//TypeRule">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UmlCollaborationUse.ecore#//TypeRule/path"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference UmlCollaborationUse.ecore#//TypeRule/type"/>
-    </genClasses>
+    <genClasses ecoreClass="UmlCollaborationUse.ecore#//TypeRule"/>
   </genPackages>
 </genmodel:GenModel>

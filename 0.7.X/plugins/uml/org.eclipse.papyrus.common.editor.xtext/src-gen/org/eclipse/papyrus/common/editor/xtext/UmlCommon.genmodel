@@ -25,6 +25,10 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference UmlCommon.ecore#//QualifiedName/path"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UmlCommon.ecore#//QualifiedName/remaining"/>
     </genClasses>
+    <genClasses ecoreClass="UmlCommon.ecore#//TypeRule">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UmlCommon.ecore#//TypeRule/path"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference UmlCommon.ecore#//TypeRule/type"/>
+    </genClasses>
     <genClasses ecoreClass="UmlCommon.ecore#//MultiplicityRule">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UmlCommon.ecore#//MultiplicityRule/bounds"/>
     </genClasses>

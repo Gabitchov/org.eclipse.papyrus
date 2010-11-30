@@ -20,5 +20,5 @@ import org.eclipse.xtext.ui.editor.outline.transformer.AbstractDeclarativeSemant
  * 
  */
 public class UmlCollaborationUseTransformer extends AbstractDeclarativeSemanticModelTransformer {
-	
+
 }

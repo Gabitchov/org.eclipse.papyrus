@@ -8,6 +8,11 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="remaining" eType="#//QualifiedName"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TypeRule">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="path" eType="#//QualifiedName"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass ../../../../../../../model/UML.ecore#//Type"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="VisibilityKind">
     <eLiterals name="public" literal="+"/>
     <eLiterals name="private" value="1" literal="-"/>

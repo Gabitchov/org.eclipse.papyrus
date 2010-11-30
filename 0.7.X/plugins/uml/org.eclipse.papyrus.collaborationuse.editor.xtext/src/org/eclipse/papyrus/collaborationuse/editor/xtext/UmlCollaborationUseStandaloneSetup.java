@@ -15,13 +15,12 @@
 package org.eclipse.papyrus.collaborationuse.editor.xtext;
 
 /**
- * Initialization support for running Xtext languages 
+ * Initialization support for running Xtext languages
  * without equinox extension registry
  */
-public class UmlCollaborationUseStandaloneSetup extends UmlCollaborationUseStandaloneSetupGenerated{
+public class UmlCollaborationUseStandaloneSetup extends UmlCollaborationUseStandaloneSetupGenerated {
 
 	public static void doSetup() {
 		new UmlCollaborationUseStandaloneSetup().createInjectorAndDoEMFRegistration();
 	}
 }
-

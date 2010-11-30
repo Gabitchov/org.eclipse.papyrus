@@ -18,17 +18,19 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.emf.common,
  org.antlr.runtime,
  org.eclipse.uml2.codegen.ecore;bundle-version="1.6.0",
- org.eclipse.uml2.uml;bundle-version="3.1.1"
+ org.eclipse.uml2.uml;bundle-version="3.1.1",
+ org.eclipse.xtext.gmf.glue;bundle-version="1.0.0"
 Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.papyrus.common.editor.xtext,
+ org.eclipse.papyrus.common.editor.xtext.parseTreeConstruction,
+ org.eclipse.papyrus.common.editor.xtext.parser.antlr,
+ org.eclipse.papyrus.common.editor.xtext.parser.antlr.internal,
+ org.eclipse.papyrus.common.editor.xtext.scoping,
  org.eclipse.papyrus.common.editor.xtext.services,
  org.eclipse.papyrus.common.editor.xtext.umlCommon,
  org.eclipse.papyrus.common.editor.xtext.umlCommon.impl,
  org.eclipse.papyrus.common.editor.xtext.umlCommon.util,
- org.eclipse.papyrus.common.editor.xtext.parseTreeConstruction,
- org.eclipse.papyrus.common.editor.xtext.parser.antlr,
- org.eclipse.papyrus.common.editor.xtext.parser.antlr.internal,
  org.eclipse.papyrus.common.editor.xtext.validation
 Bundle-Localization: plugin
 

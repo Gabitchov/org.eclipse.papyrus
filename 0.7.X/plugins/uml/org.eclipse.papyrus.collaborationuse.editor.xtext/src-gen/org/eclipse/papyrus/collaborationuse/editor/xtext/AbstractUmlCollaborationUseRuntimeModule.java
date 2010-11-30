@@ -14,7 +14,7 @@ import com.google.inject.name.Names;
 /**
  * Manual modifications go to {org.eclipse.papyrus.collaborationuse.editor.xtext.UmlCollaborationUseRuntimeModule}
  */
- @SuppressWarnings("all")
+@SuppressWarnings("all")
 public abstract class AbstractUmlCollaborationUseRuntimeModule extends DefaultRuntimeModule {
 
 	protected Properties properties = null;
@@ -24,16 +24,16 @@ public abstract class AbstractUmlCollaborationUseRuntimeModule extends DefaultRu
 		properties = tryBindProperties(binder, "org/eclipse/papyrus/collaborationuse/editor/xtext/UmlCollaborationUse.properties");
 		super.configure(binder);
 	}
-	
+
 	public void configureLanguageName(Binder binder) {
 		binder.bind(String.class).annotatedWith(Names.named(Constants.LANGUAGE_NAME)).toInstance("org.eclipse.papyrus.collaborationuse.editor.xtext.UmlCollaborationUse");
 	}
-	
+
 	public void configureFileExtensions(Binder binder) {
-		if (properties == null || properties.getProperty(Constants.FILE_EXTENSIONS) == null)
+		if(properties == null || properties.getProperty(Constants.FILE_EXTENSIONS) == null)
 			binder.bind(String.class).annotatedWith(Names.named(Constants.FILE_EXTENSIONS)).toInstance("umlcollaborationuse");
 	}
-	
+
 	// contributed by org.eclipse.xtext.generator.grammarAccess.GrammarAccessFragment
 	public Class<? extends org.eclipse.xtext.IGrammarAccess> bindIGrammarAccess() {
 		return org.eclipse.papyrus.collaborationuse.editor.xtext.services.UmlCollaborationUseGrammarAccess.class;
@@ -80,7 +80,8 @@ public abstract class AbstractUmlCollaborationUseRuntimeModule extends DefaultRu
 	}
 
 	// contributed by org.eclipse.xtext.generator.validation.JavaValidatorFragment
-	@org.eclipse.xtext.service.SingletonBinding(eager=true)	public Class<? extends org.eclipse.papyrus.collaborationuse.editor.xtext.validation.UmlCollaborationUseJavaValidator> bindUmlCollaborationUseJavaValidator() {
+	@org.eclipse.xtext.service.SingletonBinding(eager = true)
+	public Class<? extends org.eclipse.papyrus.collaborationuse.editor.xtext.validation.UmlCollaborationUseJavaValidator> bindUmlCollaborationUseJavaValidator() {
 		return org.eclipse.papyrus.collaborationuse.editor.xtext.validation.UmlCollaborationUseJavaValidator.class;
 	}
 

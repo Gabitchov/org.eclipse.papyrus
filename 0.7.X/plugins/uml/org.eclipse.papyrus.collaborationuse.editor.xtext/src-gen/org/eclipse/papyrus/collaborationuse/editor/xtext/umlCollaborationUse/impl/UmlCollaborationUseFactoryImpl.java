@@ -20,103 +20,101 @@ import org.eclipse.papyrus.collaborationuse.editor.xtext.umlCollaborationUse.*;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
-public class UmlCollaborationUseFactoryImpl extends EFactoryImpl implements UmlCollaborationUseFactory
-{
-  /**
-   * Creates the default factory implementation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public static UmlCollaborationUseFactory init()
-  {
-    try
-    {
-      UmlCollaborationUseFactory theUmlCollaborationUseFactory = (UmlCollaborationUseFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/collaborationuse/editor/xtext/UmlCollaborationUse"); 
-      if (theUmlCollaborationUseFactory != null)
-      {
-        return theUmlCollaborationUseFactory;
-      }
-    }
-    catch (Exception exception)
-    {
-      EcorePlugin.INSTANCE.log(exception);
-    }
-    return new UmlCollaborationUseFactoryImpl();
-  }
+public class UmlCollaborationUseFactoryImpl extends EFactoryImpl implements UmlCollaborationUseFactory {
 
-  /**
-   * Creates an instance of the factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public UmlCollaborationUseFactoryImpl()
-  {
-    super();
-  }
+	/**
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public static UmlCollaborationUseFactory init() {
+		try {
+			UmlCollaborationUseFactory theUmlCollaborationUseFactory = (UmlCollaborationUseFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/collaborationuse/editor/xtext/UmlCollaborationUse");
+			if(theUmlCollaborationUseFactory != null) {
+				return theUmlCollaborationUseFactory;
+			}
+		} catch (Exception exception) {
+			EcorePlugin.INSTANCE.log(exception);
+		}
+		return new UmlCollaborationUseFactoryImpl();
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EObject create(EClass eClass)
-  {
-    switch (eClass.getClassifierID())
-    {
-      case UmlCollaborationUsePackage.COLLABORATION_USE_RULE: return createCollaborationUseRule();
-      case UmlCollaborationUsePackage.TYPE_RULE: return createTypeRule();
-      default:
-        throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-    }
-  }
+	/**
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public UmlCollaborationUseFactoryImpl() {
+		super();
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public CollaborationUseRule createCollaborationUseRule()
-  {
-    CollaborationUseRuleImpl collaborationUseRule = new CollaborationUseRuleImpl();
-    return collaborationUseRule;
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public EObject create(EClass eClass) {
+		switch(eClass.getClassifierID()) {
+		case UmlCollaborationUsePackage.COLLABORATION_USE_RULE:
+			return createCollaborationUseRule();
+		case UmlCollaborationUsePackage.TYPE_RULE:
+			return createTypeRule();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		}
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public TypeRule createTypeRule()
-  {
-    TypeRuleImpl typeRule = new TypeRuleImpl();
-    return typeRule;
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public CollaborationUseRule createCollaborationUseRule() {
+		CollaborationUseRuleImpl collaborationUseRule = new CollaborationUseRuleImpl();
+		return collaborationUseRule;
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public UmlCollaborationUsePackage getUmlCollaborationUsePackage()
-  {
-    return (UmlCollaborationUsePackage)getEPackage();
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public TypeRule createTypeRule() {
+		TypeRuleImpl typeRule = new TypeRuleImpl();
+		return typeRule;
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @deprecated
-   * @generated
-   */
-  @Deprecated
-  public static UmlCollaborationUsePackage getPackage()
-  {
-    return UmlCollaborationUsePackage.eINSTANCE;
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public UmlCollaborationUsePackage getUmlCollaborationUsePackage() {
+		return (UmlCollaborationUsePackage)getEPackage();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @deprecated
+	 * @generated
+	 */
+	@Deprecated
+	public static UmlCollaborationUsePackage getPackage() {
+		return UmlCollaborationUsePackage.eINSTANCE;
+	}
 
 } //UmlCollaborationUseFactoryImpl

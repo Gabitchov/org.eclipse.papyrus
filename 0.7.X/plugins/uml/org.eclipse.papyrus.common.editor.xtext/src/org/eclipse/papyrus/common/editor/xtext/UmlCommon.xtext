@@ -7,6 +7,9 @@ generate umlCommon "http://www.eclipse.org/papyrus/common/editor/xtext/UmlCommon
 QualifiedName :
 	path=[uml::Namespace]'::' (remaining=QualifiedName)? ;
 	
+TypeRule :
+	(path=QualifiedName)? type=[uml::Type] ;
+	
 enum VisibilityKind:
 	public = "+"
 	| private = "-"
