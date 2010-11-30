@@ -13,8 +13,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.common.editor.xtext.validation;
 
+import org.eclipse.papyrus.common.editor.xtext.umlCommon.UmlCommonPackage;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Namespace;
+import org.eclipse.xtext.validation.Check;
 
 /**
  * 
@@ -38,6 +40,9 @@ public class UmlCommonJavaValidator extends AbstractUmlCommonJavaValidator {
 
 	/** the possible type for the edited element (used when the element is a TypedElement */
 	private Class<?> wantedType;
+
+	/** boolean to know if the multiplicity is correct or not! */
+	protected boolean valid_MultiplicityRule = true;
 
 	/**
 	 * Constructor
@@ -142,5 +147,32 @@ public class UmlCommonJavaValidator extends AbstractUmlCommonJavaValidator {
 	 */
 	protected void setWantedType(Class<?> wantedType) {
 		this.wantedType = wantedType;
+	}
+
+
+	/**
+	 * Custom validation for multiplicities. Raises an error in the case where the lower bound is upper than the upper bound.
+	 * 
+	 */
+	@Check
+	public void checkMultiplicityRule(org.eclipse.papyrus.common.editor.xtext.umlCommon.MultiplicityRule rule) {
+		int lowerValue = 0;
+		int upperValue = 0;
+		String errorMessage = "The upper bound of a multiplicity cannot be lower than the lower bound.";
+		try {
+			if(rule.getBounds().size() == 2) {
+				lowerValue = rule.getBounds().get(0).getValue().equals("*") ? -1 : Integer.valueOf(rule.getBounds().get(0).getValue());
+				upperValue = rule.getBounds().get(1).getValue().equals("*") ? -1 : Integer.valueOf(rule.getBounds().get(1).getValue());
+				if((lowerValue == -1 && upperValue != -1) || (lowerValue > upperValue && upperValue != -1)) {
+					error(errorMessage, rule, UmlCommonPackage.BOUND_SPECIFICATION__VALUE);
+					valid_MultiplicityRule = false;
+				} else {
+					valid_MultiplicityRule = true;
+				}
+			}
+		} catch (Exception e) {
+			// An exception may be raised only in the case where the syntax for multiplicities is not respected.
+			// No error needs to be generated (the syntax error is automatically handled by XText)
+		}
 	}
 }
