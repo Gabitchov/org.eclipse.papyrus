@@ -5,13 +5,12 @@ package org.eclipse.papyrus.collaborationuse.editor.xtext.parser.antlr;
 
 import org.antlr.runtime.CharStream;
 import org.antlr.runtime.TokenSource;
+import org.eclipse.papyrus.collaborationuse.editor.xtext.services.UmlCollaborationUseGrammarAccess;
 import org.eclipse.xtext.parser.IParseResult;
 import org.eclipse.xtext.parser.ParseException;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 
 import com.google.inject.Inject;
-
-import org.eclipse.papyrus.collaborationuse.editor.xtext.services.UmlCollaborationUseGrammarAccess;
 
 public class UmlCollaborationUseParser extends org.eclipse.xtext.parser.antlr.AbstractAntlrParser {
 

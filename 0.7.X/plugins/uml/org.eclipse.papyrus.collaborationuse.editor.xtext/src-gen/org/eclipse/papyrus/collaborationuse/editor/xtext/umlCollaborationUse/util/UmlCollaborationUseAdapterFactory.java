@@ -8,12 +8,11 @@ package org.eclipse.papyrus.collaborationuse.editor.xtext.umlCollaborationUse.ut
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.papyrus.collaborationuse.editor.xtext.umlCollaborationUse.*;
+import org.eclipse.papyrus.collaborationuse.editor.xtext.umlCollaborationUse.CollaborationUseRule;
+import org.eclipse.papyrus.collaborationuse.editor.xtext.umlCollaborationUse.TypeRule;
+import org.eclipse.papyrus.collaborationuse.editor.xtext.umlCollaborationUse.UmlCollaborationUsePackage;
 
 /**
  * <!-- begin-user-doc -->

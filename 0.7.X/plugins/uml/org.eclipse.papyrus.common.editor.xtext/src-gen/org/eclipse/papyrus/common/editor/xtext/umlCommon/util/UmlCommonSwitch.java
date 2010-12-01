@@ -10,8 +10,11 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.papyrus.common.editor.xtext.umlCommon.*;
+import org.eclipse.papyrus.common.editor.xtext.umlCommon.BoundSpecification;
+import org.eclipse.papyrus.common.editor.xtext.umlCommon.MultiplicityRule;
+import org.eclipse.papyrus.common.editor.xtext.umlCommon.QualifiedName;
+import org.eclipse.papyrus.common.editor.xtext.umlCommon.TypeRule;
+import org.eclipse.papyrus.common.editor.xtext.umlCommon.UmlCommonPackage;
 
 /**
  * <!-- begin-user-doc -->

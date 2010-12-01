@@ -31,10 +31,8 @@ public class SemanticValidator implements IXTextSemanticValidator {
 	 * @return
 	 */
 	public boolean validate() {
-		if(UmlCollaborationUseJavaValidator.getInstance() != null) {
-			return UmlCollaborationUseJavaValidator.getInstance().validate();
-		}
-		return false;
+		UmlCollaborationUseJavaValidator validator = new UmlCollaborationUseJavaValidator();
+		return validator.validate();
 	}
 
 }

@@ -10,12 +10,16 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipse.papyrus.common.editor.xtext.umlCommon.*;
+import org.eclipse.papyrus.common.editor.xtext.umlCommon.BoundSpecification;
+import org.eclipse.papyrus.common.editor.xtext.umlCommon.Direction;
+import org.eclipse.papyrus.common.editor.xtext.umlCommon.MultiplicityRule;
+import org.eclipse.papyrus.common.editor.xtext.umlCommon.QualifiedName;
+import org.eclipse.papyrus.common.editor.xtext.umlCommon.TypeRule;
+import org.eclipse.papyrus.common.editor.xtext.umlCommon.UmlCommonFactory;
+import org.eclipse.papyrus.common.editor.xtext.umlCommon.UmlCommonPackage;
+import org.eclipse.papyrus.common.editor.xtext.umlCommon.VisibilityKind;
 
 /**
  * <!-- begin-user-doc -->

@@ -5,13 +5,12 @@ package org.eclipse.papyrus.common.editor.xtext.parser.antlr;
 
 import org.antlr.runtime.CharStream;
 import org.antlr.runtime.TokenSource;
+import org.eclipse.papyrus.common.editor.xtext.services.UmlCommonGrammarAccess;
 import org.eclipse.xtext.parser.IParseResult;
 import org.eclipse.xtext.parser.ParseException;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 
 import com.google.inject.Inject;
-
-import org.eclipse.papyrus.common.editor.xtext.services.UmlCommonGrammarAccess;
 
 public class UmlCommonParser extends org.eclipse.xtext.parser.antlr.AbstractAntlrParser {
 

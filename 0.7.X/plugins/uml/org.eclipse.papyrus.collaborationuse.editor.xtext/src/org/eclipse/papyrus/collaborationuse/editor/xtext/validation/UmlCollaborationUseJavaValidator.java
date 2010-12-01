@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.collaborationuse.editor.xtext.validation;
 
 import org.eclipse.papyrus.common.editor.xtext.validation.UmlCommonJavaValidator;
-import org.eclipse.uml2.uml.Collaboration;
 import org.eclipse.uml2.uml.CollaborationUse;
 
 /**
@@ -24,13 +23,7 @@ import org.eclipse.uml2.uml.CollaborationUse;
  */
 public class UmlCollaborationUseJavaValidator extends UmlCommonJavaValidator {
 
-	/**
-	 * Constructor
-	 * 
-	 */
 	public UmlCollaborationUseJavaValidator() {
 		super();
-		setWantedType(Collaboration.class);
 	}
-
 }

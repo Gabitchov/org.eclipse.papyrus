@@ -11,9 +11,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.eclipse.papyrus.common.editor.xtext.umlCommon.BoundSpecification;
 import org.eclipse.papyrus.common.editor.xtext.umlCommon.Direction;
 import org.eclipse.papyrus.common.editor.xtext.umlCommon.MultiplicityRule;
@@ -22,7 +20,6 @@ import org.eclipse.papyrus.common.editor.xtext.umlCommon.TypeRule;
 import org.eclipse.papyrus.common.editor.xtext.umlCommon.UmlCommonFactory;
 import org.eclipse.papyrus.common.editor.xtext.umlCommon.UmlCommonPackage;
 import org.eclipse.papyrus.common.editor.xtext.umlCommon.VisibilityKind;
-
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**

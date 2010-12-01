@@ -7,7 +7,6 @@
 package org.eclipse.papyrus.collaborationuse.editor.xtext.umlCollaborationUse;
 
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.papyrus.common.editor.xtext.umlCommon.VisibilityKind;
 
 /**

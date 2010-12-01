@@ -29,7 +29,6 @@ import org.eclipse.papyrus.collaborationuse.editor.xtext.ui.internal.UmlCollabor
 import org.eclipse.papyrus.collaborationuse.editor.xtext.umlCollaborationUse.CollaborationUseRule;
 import org.eclipse.papyrus.collaborationuse.editor.xtext.umlCollaborationUse.TypeRule;
 import org.eclipse.papyrus.collaborationuse.editor.xtext.validation.SemanticValidator;
-import org.eclipse.papyrus.collaborationuse.editor.xtext.validation.UmlCollaborationUseJavaValidator;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.uml2.uml.Collaboration;
 import org.eclipse.uml2.uml.CollaborationUse;
@@ -76,9 +75,6 @@ public class CollaborationUsePopupEditor extends org.eclipse.xtext.gmf.glue.Popu
 		if(!(graphicalEditPart.resolveSemanticElement() instanceof CollaborationUse))
 			return null;
 		collaborationUse = (CollaborationUse)graphicalEditPart.resolveSemanticElement();
-		UmlCollaborationUseJavaValidator validator = new UmlCollaborationUseJavaValidator();
-		validator.init(collaborationUse, Collaboration.class);
-
 
 		// retrieves the XText injector
 		Injector injector = UmlCollaborationUseActivator.getInstance().getInjector("org.eclipse.papyrus.collaborationuse.editor.xtext.UmlCollaborationUse"); //$NON-NLS-1$

@@ -6,20 +6,26 @@ package org.eclipse.papyrus.common.editor.xtext.ui.contentassist;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.runtime.Assert;
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.text.contentassist.CompletionProposal;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.common.editor.xtext.umlCommon.MultiplicityRule;
 import org.eclipse.papyrus.common.editor.xtext.umlCommon.QualifiedName;
 import org.eclipse.papyrus.common.editor.xtext.umlCommon.TypeRule;
-import org.eclipse.papyrus.common.editor.xtext.validation.UmlCommonJavaValidator;
 import org.eclipse.papyrus.core.utils.DisplayUtils;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.xtext.Assignment;
 import org.eclipse.xtext.RuleCall;
@@ -34,6 +40,74 @@ public class UmlCommonProposalProvider extends AbstractUmlCommonProposalProvider
 
 	/** the label provider */
 	protected ILabelProvider labelProvider = DisplayUtils.getLabelProvider();
+
+	/** the edited model */
+	private Namespace model = null;
+
+	/** the edited element */
+	private Element contextElement = null;
+
+	/** the wanted type */
+	private Class<?> wantedType = Type.class;
+
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * 
+	 */
+	public UmlCommonProposalProvider() {
+		initModel();
+	}
+
+	/**
+	 * Getter for {@link #model}
+	 * 
+	 * @return
+	 *         {@link #model}
+	 */
+	protected Namespace getModel() {
+		return this.model;
+	}
+
+	/**
+	 * Getter for {@link #contextElement}
+	 * 
+	 * @return
+	 *         {@link #contextElement}
+	 */
+	protected Element getContextElement() {
+		return this.contextElement;
+	}
+
+	/**
+	 * 
+	 * This method initializes the fields {@link #model} {@link #contextElement} thanks to the current selection
+	 * 
+	 */
+	protected void initModel() {
+		IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+		ISelection mySelection = activePage.getSelection();
+		if(mySelection instanceof IStructuredSelection) {
+			Object first = ((IStructuredSelection)mySelection).getFirstElement();
+			if(first != null) {
+				if(first instanceof IAdaptable) {
+					Element el = (Element)((IAdaptable)first).getAdapter(Element.class);
+					this.contextElement = el;
+					if(el != null) {
+						List<Namespace> namespaces = el.getNearestPackage().allNamespaces();
+						if(namespaces.size() == 0) {
+							this.model = el.getNearestPackage();
+						} else {
+							this.model = namespaces.get(namespaces.size() - 1);
+						}
+					}
+				}
+			}
+		}
+		Assert.isNotNull(contextElement, "I can't find the edited element"); //$NON-NLS-1$
+		Assert.isNotNull(this.model, "I can't find the model owning the edited element"); //$NON-NLS-1$
+	}
 
 	/**
 	 * 
@@ -160,7 +234,7 @@ public class UmlCommonProposalProvider extends AbstractUmlCommonProposalProvider
 					String completionString = n.getName().substring(context.getPrefix().length());
 					String displayString = n.getName();
 					ICompletionProposal completionProposal = createCompletionProposal(n, completionString, displayString, context);
-					if(UmlCommonJavaValidator.getInstance().isWantedType(n)) {
+					if(isWantedType(n)) {
 						acceptor.accept(completionProposal);
 					}
 				}
@@ -195,13 +269,13 @@ public class UmlCommonProposalProvider extends AbstractUmlCommonProposalProvider
 	 */
 	@Override
 	public void completeTypeRule_Path(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		Namespace root = UmlCommonJavaValidator.getInstance().getModel();
+		Namespace root = getModel();
 		if(root == null)
 			return;
 
 		// first accept the root Model
-		String completionString = root.getName() + "::";
-		String displayString = root.getName() + "::";
+		String completionString = root.getName() + "::"; //$NON-NLS-1$
+		String displayString = root.getName() + "::"; //$NON-NLS-1$
 		//String displayString = c.getName() ;
 		ICompletionProposal completionProposal = createCompletionProposalWithReplacementOfPrefix(root, completionString, displayString, context);
 		acceptor.accept(completionProposal);
@@ -209,8 +283,8 @@ public class UmlCommonProposalProvider extends AbstractUmlCommonProposalProvider
 		List<Package> importedPackages = root.getImportedPackages();
 		for(Package p : importedPackages) {
 			if(p.getName().startsWith(context.getPrefix())) {
-				completionString = p.getName().substring(context.getPrefix().length()) + "::";
-				displayString = p.getName() + "::";
+				completionString = p.getName().substring(context.getPrefix().length()) + "::"; //$NON-NLS-1$
+				displayString = p.getName() + "::"; //$NON-NLS-1$
 				completionProposal = createCompletionProposal(root, completionString, displayString, context);
 				List<Type> accessibleType = getRecursivelyOwnedType(p);
 				accessibleType.addAll(getRecursivelyImportedType(p));
@@ -231,7 +305,7 @@ public class UmlCommonProposalProvider extends AbstractUmlCommonProposalProvider
 	@Override
 	public void completeTypeRule_Type(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 
-		Namespace namespace = UmlCommonJavaValidator.getInstance().getContextElement().getNearestPackage();
+		Namespace namespace = getContextElement().getNearestPackage();
 		if(model instanceof TypeRule) {
 			TypeRule typeRule = (TypeRule)model;
 			QualifiedName path = typeRule.getPath();
@@ -241,7 +315,7 @@ public class UmlCommonProposalProvider extends AbstractUmlCommonProposalProvider
 			namespace = path.getPath();
 		}
 		for(NamedElement n : namespace.getOwnedMembers()) {
-			if(UmlCommonJavaValidator.getInstance().isWantedType(n)) {
+			if(isWantedType(n)) {
 				if(n.getName().startsWith(context.getPrefix())) {
 					String completionString = n.getName().substring(context.getPrefix().length());
 					String displayString = n.getName();
@@ -379,7 +453,7 @@ public class UmlCommonProposalProvider extends AbstractUmlCommonProposalProvider
 
 		List<Element> allOwnedElements = context.getOwnedElements();
 		for(Element e : allOwnedElements) {
-			if(UmlCommonJavaValidator.getInstance().isWantedType(e)) {
+			if(isWantedType(e)) {
 				recursivelyOwnedTypes.add((Type)e);
 			}
 			if(e instanceof Namespace) {
@@ -389,4 +463,31 @@ public class UmlCommonProposalProvider extends AbstractUmlCommonProposalProvider
 
 		return recursivelyOwnedTypes;
 	}
+
+	/**
+	 * Inherited class should overridden this method in order to have a mode specific type
+	 * 
+	 * Tests if the element is an instance of the wanted type
+	 * 
+	 * @param e
+	 *        the element to test
+	 * @return
+	 *         <code>true</code> is the element is an instance of the wanted type
+	 */
+	protected boolean isWantedType(Element e) {
+		return this.wantedType.isInstance(e);
+	}
+
+	/**
+	 * This method allows to precise the wanted type of the element (to be more restrictive that {@link Port}
+	 * 
+	 * Setter for {@link #wantedType}
+	 * 
+	 * @param type
+	 *        the new type
+	 */
+	public void setWantedType(Class<?> type) {
+		this.wantedType = type;
+	}
+
 }

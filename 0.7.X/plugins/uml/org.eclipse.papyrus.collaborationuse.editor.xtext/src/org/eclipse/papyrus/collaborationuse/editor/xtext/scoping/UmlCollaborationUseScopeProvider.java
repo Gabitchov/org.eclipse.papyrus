@@ -15,6 +15,8 @@ package org.eclipse.papyrus.collaborationuse.editor.xtext.scoping;
 
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.papyrus.common.editor.xtext.scoping.UmlCommonScopeProvider;
+import org.eclipse.uml2.uml.Collaboration;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.xtext.scoping.IScope;
 
 /**
@@ -27,6 +29,15 @@ import org.eclipse.xtext.scoping.IScope;
 public class UmlCollaborationUseScopeProvider extends UmlCommonScopeProvider {
 
 	/**
+	 * 
+	 * Constructor.
+	 * 
+	 */
+	public UmlCollaborationUseScopeProvider() {
+		super();
+	}
+
+	/**
 	 * Rule for computing the scope of PropertyRule
 	 * 
 	 * @param ctx
@@ -36,5 +47,17 @@ public class UmlCollaborationUseScopeProvider extends UmlCommonScopeProvider {
 	 */
 	public IScope scope_TypeRule_type(org.eclipse.papyrus.collaborationuse.editor.xtext.umlCollaborationUse.TypeRule ctx, EReference ref) {
 		return create___TypeRule_type___Scope(ctx);
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.common.editor.xtext.scoping.UmlCommonScopeProvider#isWantedType(org.eclipse.uml2.uml.Element)
+	 * 
+	 * @param e
+	 * @return
+	 */
+	@Override
+	protected boolean isWantedType(Element e) {
+		return e instanceof Collaboration;
 	}
 }

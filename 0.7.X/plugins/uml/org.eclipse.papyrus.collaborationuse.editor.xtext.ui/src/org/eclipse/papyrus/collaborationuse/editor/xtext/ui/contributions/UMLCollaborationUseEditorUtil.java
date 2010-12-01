@@ -16,7 +16,7 @@ package org.eclipse.papyrus.collaborationuse.editor.xtext.ui.contributions;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.papyrus.collaborationuse.editor.xtext.validation.UmlCollaborationUseJavaValidator;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.umlutils.NamedElementUtil;
 import org.eclipse.papyrus.umlutils.TypeUtil;
 import org.eclipse.uml2.uml.CollaborationUse;
@@ -52,7 +52,8 @@ public class UMLCollaborationUseEditorUtil {
 
 		// type
 		if(collaborationUse.getType() != null) {
-			buffer.append(" : " + getTypeLabel(collaborationUse.getType())); //$NON-NLS-1$
+			EList<Namespace> namespaces = collaborationUse.allNamespaces();
+			buffer.append(" : " + getTypeLabel(collaborationUse.getType(), namespaces.get(namespaces.size() - 1))); //$NON-NLS-1$
 		} else {
 			buffer.append(" : " + TypeUtil.UNDEFINED_TYPE_NAME); //$NON-NLS-1$
 		}
@@ -83,10 +84,9 @@ public class UMLCollaborationUseEditorUtil {
 	 * @return
 	 *         A string representing the Type of the {@link CollaborationUse}
 	 */
-	public static String getTypeLabel(Type type) {
+	public static String getTypeLabel(Type type, Namespace model) {
 		String label = ""; //$NON-NLS-1$
 
-		Namespace model = UmlCollaborationUseJavaValidator.getInstance().getModel();
 		List<Package> importedPackages = new ArrayList<Package>(model.getImportedPackages());
 
 		List<Package> visitedPackages = new ArrayList<Package>();
