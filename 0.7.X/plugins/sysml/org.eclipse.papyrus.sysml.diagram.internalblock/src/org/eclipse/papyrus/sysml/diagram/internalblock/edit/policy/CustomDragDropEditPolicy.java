@@ -34,17 +34,13 @@ public class CustomDragDropEditPolicy extends CustomDiagramDragDropEditPolicy {
 		// Fill the semantic hint during the drop
 		if((containerView instanceof Diagram) && (domainElement instanceof org.eclipse.uml2.uml.Class) && (ElementUtil.getStereotypeApplication((org.eclipse.uml2.uml.Class)domainElement, Block.class) != null)) {
 			semanticHint = InternalBlockDiagramElementTypes.CLASS.getSemanticHint();
-		}
-		if(!(containerView instanceof Diagram) && (domainElement instanceof Port)) {
+		} else if(!(containerView instanceof Diagram) && (domainElement instanceof Port)) {
 			semanticHint = InternalBlockDiagramElementTypes.PORT_CN.getSemanticHint();
-		}
-		if(!(containerView instanceof Diagram) && (domainElement instanceof Property)) {
+		} else if(!(containerView instanceof Diagram) && (domainElement instanceof Property)) {
 			semanticHint = InternalBlockDiagramElementTypes.PROPERTY_CN.getSemanticHint();
-		}
-		if((containerView instanceof Diagram) && (domainElement instanceof Comment)) {
+		} else if((containerView instanceof Diagram) && (domainElement instanceof Comment)) {
 			semanticHint = InternalBlockDiagramElementTypes.COMMENT.getSemanticHint();
-		}
-		if((containerView instanceof Diagram) && (domainElement instanceof Constraint)) {
+		} else if((containerView instanceof Diagram) && (domainElement instanceof Constraint)) {
 			semanticHint = InternalBlockDiagramElementTypes.CONSTRAINT.getSemanticHint();
 		}
 
