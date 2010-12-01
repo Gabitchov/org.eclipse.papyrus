@@ -15,13 +15,12 @@
 package org.eclipse.papyrus.parameter.editor.xtext;
 
 /**
- * Initialization support for running Xtext languages 
+ * Initialization support for running Xtext languages
  * without equinox extension registry
  */
-public class UmlParameterStandaloneSetup extends UmlParameterStandaloneSetupGenerated{
+public class UmlParameterStandaloneSetup extends UmlParameterStandaloneSetupGenerated {
 
 	public static void doSetup() {
 		new UmlParameterStandaloneSetup().createInjectorAndDoEMFRegistration();
 	}
 }
-

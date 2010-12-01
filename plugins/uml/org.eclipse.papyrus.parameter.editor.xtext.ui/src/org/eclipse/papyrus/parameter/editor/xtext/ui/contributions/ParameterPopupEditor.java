@@ -30,7 +30,6 @@ import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.parameter.editor.xtext.ui.internal.UmlParameterActivator;
 import org.eclipse.papyrus.parameter.editor.xtext.umlParameter.ParameterRule;
 import org.eclipse.papyrus.parameter.editor.xtext.validation.SemanticValidator;
-import org.eclipse.papyrus.parameter.editor.xtext.validation.UmlParameterJavaValidator;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.ParameterDirectionKind;
 import org.eclipse.uml2.uml.ParameterEffectKind;
@@ -103,15 +102,12 @@ public class ParameterPopupEditor extends org.eclipse.xtext.gmf.glue.PopupEditor
 			return null;
 		parameter = (Parameter)graphicalEditPart.resolveSemanticElement();
 
-		UmlParameterJavaValidator validator = new UmlParameterJavaValidator();
-		validator.init(parameter, Type.class);
-
 		// retrieves the XText injector
-		Injector injector = UmlParameterActivator.getInstance().getInjector("org.eclipse.papyrus.parameter.editor.xtext.UmlParameter");
+		Injector injector = UmlParameterActivator.getInstance().getInjector("org.eclipse.papyrus.parameter.editor.xtext.UmlParameter"); //$NON-NLS-1$
 
 		// builds the text content and extension for a temporary file, to be edited by the xtext editor
-		String textToEdit = "" + this.getTextToEdit(graphicalEditPart.resolveSemanticElement());
-		String fileExtension = "" + ".umlparameter";
+		String textToEdit = "" + this.getTextToEdit(graphicalEditPart.resolveSemanticElement()); //$NON-NLS-1$
+		String fileExtension = "" + ".umlparameter"; //$NON-NLS-1$ //$NON-NLS-2$
 
 		// builds a new IXtextEMFReconciler.
 		// Its purpose is to extract any relevant information from the textual specification,
@@ -155,7 +151,7 @@ public class ParameterPopupEditor extends org.eclipse.xtext.gmf.glue.PopupEditor
 				if(parameterRuleObject.getMultiplicity() != null) {
 					if(parameterRuleObject.getMultiplicity().getBounds().size() == 1) {
 						String tempBound = parameterRuleObject.getMultiplicity().getBounds().get(0).getValue();
-						if(tempBound.equals("*")) {
+						if(tempBound.equals("*")) { //$NON-NLS-1$
 							newLowerBound = 0;
 							newUpperBound = -1;
 						} else {
@@ -166,7 +162,7 @@ public class ParameterPopupEditor extends org.eclipse.xtext.gmf.glue.PopupEditor
 						String tempBound = parameterRuleObject.getMultiplicity().getBounds().get(0).getValue();
 						newLowerBound = new Integer(tempBound).intValue();
 						tempBound = parameterRuleObject.getMultiplicity().getBounds().get(1).getValue();
-						if(tempBound.equals("*")) {
+						if(tempBound.equals("*")) { //$NON-NLS-1$
 							newUpperBound = -1;
 						} else {
 							newUpperBound = new Integer(tempBound).intValue();
@@ -177,7 +173,7 @@ public class ParameterPopupEditor extends org.eclipse.xtext.gmf.glue.PopupEditor
 					newUpperBound = 1;
 				}
 
-				newName = "" + parameterRuleObject.getName();
+				newName = "" + parameterRuleObject.getName(); //$NON-NLS-1$
 
 				TypeRule typeRule = parameterRuleObject.getType();
 				if(typeRule == null) {
@@ -260,7 +256,7 @@ public class ParameterPopupEditor extends org.eclipse.xtext.gmf.glue.PopupEditor
 		if(editedObject instanceof Parameter) {
 			return UMLParameterEditorUtil.getLabel((Parameter)editedObject).trim();
 		}
-		return "not a Parameter";
+		return "not a Parameter"; //$NON-NLS-1$
 	}
 
 	/**
@@ -292,7 +288,7 @@ public class ParameterPopupEditor extends org.eclipse.xtext.gmf.glue.PopupEditor
 	 *         the update command
 	 */
 	protected IUndoableOperation getUpdateCommand() {
-		CompositeCommand cc = new CompositeCommand("Set values for Parameter");
+		CompositeCommand cc = new CompositeCommand("Set values for Parameter"); //$NON-NLS-1$
 		org.eclipse.papyrus.service.edit.service.IElementEditService provider = org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils.getCommandProvider(parameter);
 		if(provider != null) {
 

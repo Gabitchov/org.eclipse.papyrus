@@ -24,159 +24,158 @@ import org.eclipse.papyrus.parameter.editor.xtext.umlParameter.UmlParameterPacka
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.parameter.editor.xtext.umlParameter.impl.EffectRuleImpl#getEffectKind <em>Effect Kind</em>}</li>
+ * <li>{@link org.eclipse.papyrus.parameter.editor.xtext.umlParameter.impl.EffectRuleImpl#getEffectKind <em>Effect Kind</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
-public class EffectRuleImpl extends MinimalEObjectImpl.Container implements EffectRule
-{
-  /**
-   * The default value of the '{@link #getEffectKind() <em>Effect Kind</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getEffectKind()
-   * @generated
-   * @ordered
-   */
-  protected static final EffectKind EFFECT_KIND_EDEFAULT = EffectKind.CREATE;
+public class EffectRuleImpl extends MinimalEObjectImpl.Container implements EffectRule {
 
-  /**
-   * The cached value of the '{@link #getEffectKind() <em>Effect Kind</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getEffectKind()
-   * @generated
-   * @ordered
-   */
-  protected EffectKind effectKind = EFFECT_KIND_EDEFAULT;
+	/**
+	 * The default value of the '{@link #getEffectKind() <em>Effect Kind</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @see #getEffectKind()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EffectKind EFFECT_KIND_EDEFAULT = EffectKind.CREATE;
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected EffectRuleImpl()
-  {
-    super();
-  }
+	/**
+	 * The cached value of the '{@link #getEffectKind() <em>Effect Kind</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @see #getEffectKind()
+	 * @generated
+	 * @ordered
+	 */
+	protected EffectKind effectKind = EFFECT_KIND_EDEFAULT;
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected EClass eStaticClass()
-  {
-    return UmlParameterPackage.Literals.EFFECT_RULE;
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected EffectRuleImpl() {
+		super();
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EffectKind getEffectKind()
-  {
-    return effectKind;
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return UmlParameterPackage.Literals.EFFECT_RULE;
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setEffectKind(EffectKind newEffectKind)
-  {
-    EffectKind oldEffectKind = effectKind;
-    effectKind = newEffectKind == null ? EFFECT_KIND_EDEFAULT : newEffectKind;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, UmlParameterPackage.EFFECT_RULE__EFFECT_KIND, oldEffectKind, effectKind));
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EffectKind getEffectKind() {
+		return effectKind;
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
-    switch (featureID)
-    {
-      case UmlParameterPackage.EFFECT_RULE__EFFECT_KIND:
-        return getEffectKind();
-    }
-    return super.eGet(featureID, resolve, coreType);
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public void setEffectKind(EffectKind newEffectKind) {
+		EffectKind oldEffectKind = effectKind;
+		effectKind = newEffectKind == null ? EFFECT_KIND_EDEFAULT : newEffectKind;
+		if(eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, UmlParameterPackage.EFFECT_RULE__EFFECT_KIND, oldEffectKind, effectKind));
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
-    switch (featureID)
-    {
-      case UmlParameterPackage.EFFECT_RULE__EFFECT_KIND:
-        setEffectKind((EffectKind)newValue);
-        return;
-    }
-    super.eSet(featureID, newValue);
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch(featureID) {
+		case UmlParameterPackage.EFFECT_RULE__EFFECT_KIND:
+			return getEffectKind();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void eUnset(int featureID)
-  {
-    switch (featureID)
-    {
-      case UmlParameterPackage.EFFECT_RULE__EFFECT_KIND:
-        setEffectKind(EFFECT_KIND_EDEFAULT);
-        return;
-    }
-    super.eUnset(featureID);
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch(featureID) {
+		case UmlParameterPackage.EFFECT_RULE__EFFECT_KIND:
+			setEffectKind((EffectKind)newValue);
+			return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
-    switch (featureID)
-    {
-      case UmlParameterPackage.EFFECT_RULE__EFFECT_KIND:
-        return effectKind != EFFECT_KIND_EDEFAULT;
-    }
-    return super.eIsSet(featureID);
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch(featureID) {
+		case UmlParameterPackage.EFFECT_RULE__EFFECT_KIND:
+			setEffectKind(EFFECT_KIND_EDEFAULT);
+			return;
+		}
+		super.eUnset(featureID);
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch(featureID) {
+		case UmlParameterPackage.EFFECT_RULE__EFFECT_KIND:
+			return effectKind != EFFECT_KIND_EDEFAULT;
+		}
+		return super.eIsSet(featureID);
+	}
 
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (effectKind: ");
-    result.append(effectKind);
-    result.append(')');
-    return result.toString();
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if(eIsProxy())
+			return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (effectKind: ");
+		result.append(effectKind);
+		result.append(')');
+		return result.toString();
+	}
 
 } //EffectRuleImpl

@@ -23,7 +23,6 @@ import org.eclipse.papyrus.parameter.editor.xtext.ui.contributions.UMLParameterE
 import org.eclipse.papyrus.parameter.editor.xtext.umlParameter.ModifierSpecification;
 import org.eclipse.papyrus.parameter.editor.xtext.umlParameter.ModifiersRule;
 import org.eclipse.papyrus.parameter.editor.xtext.umlParameter.ParameterRule;
-import org.eclipse.papyrus.parameter.editor.xtext.validation.UmlParameterJavaValidator;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.xtext.Assignment;
@@ -53,12 +52,12 @@ public class UmlParameterProposalProvider extends AbstractUmlParameterProposalPr
 	public void completeParameterRule_Type(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		// the customization consists in proposing nothing. Proposals are handled by other methods.
 		List<Type> allType = new ArrayList<Type>();
-		allType.addAll(getRecursivelyOwnedType(UmlParameterJavaValidator.getInstance().getModel()));
-		allType.addAll(getRecursivelyImportedType(UmlParameterJavaValidator.getInstance().getModel()));
+		allType.addAll(getRecursivelyOwnedType(getModel()));
+		allType.addAll(getRecursivelyImportedType(getModel()));
 		for(Type c : allType) {
 			if(c.getName().contains(context.getPrefix())) {
 				String displayString = c.getQualifiedName();
-				String completionString = UMLParameterEditorUtil.getTypeLabel(c);
+				String completionString = UMLParameterEditorUtil.getTypeLabel(c, getModel());
 				ICompletionProposal completionProposal = createCompletionProposalWithReplacementOfPrefix(c, completionString, displayString, context);
 				acceptor.accept(completionProposal);
 			}
@@ -124,7 +123,7 @@ public class UmlParameterProposalProvider extends AbstractUmlParameterProposalPr
 		EObject model = contentAssistContext.getCurrentModel();
 		if(!(model instanceof ModifiersRule)) {
 			if(model instanceof ParameterRule) {
-				if("::".equals(keyword.getValue())) {// :: is proposed only if the Type is a Namespace and if this namespace contains possible element to type the parameter
+				if("::".equals(keyword.getValue())) {// :: is proposed only if the Type is a Namespace and if this namespace contains possible element to type the parameter //$NON-NLS-1$
 					TypeRule typeRule = ((ParameterRule)model).getType();
 					Type type = null;
 					if(typeRule != null) {
@@ -140,16 +139,16 @@ public class UmlParameterProposalProvider extends AbstractUmlParameterProposalPr
 							}
 						}
 					}
-				} else if("[".equals(keyword.getValue())) {
+				} else if("[".equals(keyword.getValue())) { //$NON-NLS-1$
 					if(!typeExists((ParameterRule)model)) {
 						return;
 					}
 
-				} else if("]".equals(keyword.getValue())) {
+				} else if("]".equals(keyword.getValue())) { //$NON-NLS-1$
 					if(!typeExists((ParameterRule)model)) {
 						return;
 					}
-				} else if("{".equals(keyword.getValue())) {
+				} else if("{".equals(keyword.getValue())) { //$NON-NLS-1$
 					if(!typeExists((ParameterRule)model)) {
 						return;
 					}
@@ -184,16 +183,16 @@ public class UmlParameterProposalProvider extends AbstractUmlParameterProposalPr
 			}
 		}
 		String value = keyword.getValue();
-		if(value.equals("ordered")) {
+		if(value.equals("ordered")) { //$NON-NLS-1$
 			if(!isOrdered)
 				super.completeKeyword(keyword, contentAssistContext, acceptor);
-		} else if(value.equals("exception")) {
+		} else if(value.equals("exception")) { //$NON-NLS-1$
 			if(!isException)
 				super.completeKeyword(keyword, contentAssistContext, acceptor);
-		} else if(value.equals("unique")) {
+		} else if(value.equals("unique")) { //$NON-NLS-1$
 			if(!isUnique)
 				super.completeKeyword(keyword, contentAssistContext, acceptor);
-		} else if(value.equals("stream")) {
+		} else if(value.equals("stream")) { //$NON-NLS-1$
 			if(!isStream)
 				super.completeKeyword(keyword, contentAssistContext, acceptor);
 		} else

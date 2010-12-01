@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.parameter.editor.xtext.validation;
 
 import org.eclipse.papyrus.common.editor.xtext.validation.UmlCommonJavaValidator;
-import org.eclipse.uml2.uml.Type;
 
 /**
  * 
@@ -31,7 +30,6 @@ public class UmlParameterJavaValidator extends UmlCommonJavaValidator {
 	 */
 	public UmlParameterJavaValidator() {
 		super();
-		setWantedType(Type.class);
 	}
 
 	/**
