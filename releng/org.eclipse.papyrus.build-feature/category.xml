@@ -72,6 +72,10 @@
       <category name="papyrus.thirdparty"/>
    </feature>
    
+    <feature id="org.eclipse.papyrus.tests" version="0.0.0">
+      <category name="papyrus.test"/>
+   </feature>
+   
    <category-def name="papyrus.all" label="Papyrus All">
 		<description>
 			Full Papyrus installation, with the backbone, all diagram features and extra plugins.
@@ -95,6 +99,11 @@
 	<category-def name="papyrus.thirdparty" label="Papyrus Third-Party">
 		<description>
 			Papyrus Third party features.
+      </description>
+	</category-def>
+	<category-def name="papyrus.test" label="Papyrus Tests">
+		<description>
+			Papyrus Test features.
       </description>
 	</category-def>
 </site>
