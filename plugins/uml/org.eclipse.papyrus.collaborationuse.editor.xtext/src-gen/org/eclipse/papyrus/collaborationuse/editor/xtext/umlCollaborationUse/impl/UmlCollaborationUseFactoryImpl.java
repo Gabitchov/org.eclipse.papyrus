@@ -9,12 +9,12 @@ package org.eclipse.papyrus.collaborationuse.editor.xtext.umlCollaborationUse.im
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipse.papyrus.collaborationuse.editor.xtext.umlCollaborationUse.*;
+import org.eclipse.papyrus.collaborationuse.editor.xtext.umlCollaborationUse.CollaborationUseRule;
+import org.eclipse.papyrus.collaborationuse.editor.xtext.umlCollaborationUse.TypeRule;
+import org.eclipse.papyrus.collaborationuse.editor.xtext.umlCollaborationUse.UmlCollaborationUseFactory;
+import org.eclipse.papyrus.collaborationuse.editor.xtext.umlCollaborationUse.UmlCollaborationUsePackage;
 
 /**
  * <!-- begin-user-doc -->

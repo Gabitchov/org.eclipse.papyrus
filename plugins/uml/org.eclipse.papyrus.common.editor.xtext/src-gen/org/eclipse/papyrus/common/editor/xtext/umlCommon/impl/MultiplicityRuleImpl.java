@@ -9,17 +9,12 @@ package org.eclipse.papyrus.common.editor.xtext.umlCommon.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.eclipse.papyrus.common.editor.xtext.umlCommon.BoundSpecification;
 import org.eclipse.papyrus.common.editor.xtext.umlCommon.MultiplicityRule;
 import org.eclipse.papyrus.common.editor.xtext.umlCommon.UmlCommonPackage;

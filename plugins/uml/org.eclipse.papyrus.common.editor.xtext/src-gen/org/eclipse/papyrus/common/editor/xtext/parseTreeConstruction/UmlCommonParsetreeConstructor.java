@@ -3,12 +3,13 @@
  */
 package org.eclipse.papyrus.common.editor.xtext.parseTreeConstruction;
 
-import org.eclipse.emf.ecore.*;
-import org.eclipse.xtext.*;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.common.editor.xtext.services.UmlCommonGrammarAccess;
+import org.eclipse.xtext.Assignment;
+import org.eclipse.xtext.Group;
+import org.eclipse.xtext.Keyword;
 import org.eclipse.xtext.parsetree.reconstr.IEObjectConsumer;
 import org.eclipse.xtext.parsetree.reconstr.impl.AbstractParseTreeConstructor;
-
-import org.eclipse.papyrus.common.editor.xtext.services.UmlCommonGrammarAccess;
 
 import com.google.inject.Inject;
 

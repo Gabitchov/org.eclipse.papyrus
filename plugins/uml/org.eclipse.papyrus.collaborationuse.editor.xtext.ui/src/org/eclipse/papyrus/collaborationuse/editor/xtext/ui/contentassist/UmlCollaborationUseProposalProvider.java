@@ -19,9 +19,10 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.papyrus.collaborationuse.editor.xtext.ui.contributions.UMLCollaborationUseEditorUtil;
-import org.eclipse.papyrus.collaborationuse.editor.xtext.validation.UmlCollaborationUseJavaValidator;
 import org.eclipse.papyrus.common.editor.xtext.ui.contentassist.UmlCommonProposalProvider;
+import org.eclipse.uml2.uml.Collaboration;
 import org.eclipse.uml2.uml.CollaborationUse;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.xtext.Assignment;
 import org.eclipse.xtext.Keyword;
@@ -53,12 +54,12 @@ public class UmlCollaborationUseProposalProvider extends AbstractUmlCollaboratio
 	public void completeCollaborationUseRule_Type(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		// the customization consists in proposing nothing. Proposals are handled by other methods.
 		List<Type> allCollaboration = new ArrayList<Type>();
-		allCollaboration.addAll(getRecursivelyOwnedType(UmlCollaborationUseJavaValidator.getInstance().getModel()));
-		allCollaboration.addAll(getRecursivelyImportedType(UmlCollaborationUseJavaValidator.getInstance().getModel()));
+		allCollaboration.addAll(getRecursivelyOwnedType(getModel()));
+		allCollaboration.addAll(getRecursivelyImportedType(getModel()));
 		for(Type c : allCollaboration) {
 			if(c.getName().contains(context.getPrefix())) {
 				String displayString = c.getQualifiedName();
-				String completionString = UMLCollaborationUseEditorUtil.getTypeLabel(c);
+				String completionString = UMLCollaborationUseEditorUtil.getTypeLabel(c, getModel());
 				ICompletionProposal completionProposal = createCompletionProposalWithReplacementOfPrefix(c, completionString, displayString, context);
 				acceptor.accept(completionProposal);
 			}
@@ -66,6 +67,8 @@ public class UmlCollaborationUseProposalProvider extends AbstractUmlCollaboratio
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 
 	}
+
+
 
 	/**
 	 * 
@@ -107,6 +110,7 @@ public class UmlCollaborationUseProposalProvider extends AbstractUmlCollaboratio
 
 		//we can't use super, because we have an abstract class between this class and the class owning the correct method!
 		UmlCommonProposalProvider provider = new UmlCommonProposalProvider();
+		provider.setWantedType(Collaboration.class);
 		provider.completeTypeRule_Path(model, assignment, context, acceptor);
 	}
 
@@ -125,7 +129,21 @@ public class UmlCollaborationUseProposalProvider extends AbstractUmlCollaboratio
 	public void completeTypeRule_Type(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		//we can't use super, because we have an abstract class between this class and the class owning the correct method!
 		UmlCommonProposalProvider provider = new UmlCommonProposalProvider();
+		provider.setWantedType(Collaboration.class);
 		provider.completeTypeRule_Type(model, assignment, context, acceptor);
+	}
+
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.common.editor.xtext.ui.contentassist.UmlCommonProposalProvider#isWantedType(org.eclipse.uml2.uml.Element)
+	 * 
+	 * @param e
+	 * @return
+	 */
+	@Override
+	protected boolean isWantedType(Element e) {
+		return e instanceof Collaboration;
 	}
 
 }

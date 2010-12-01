@@ -8,17 +8,13 @@ package org.eclipse.papyrus.collaborationuse.editor.xtext.umlCollaborationUse.im
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.papyrus.collaborationuse.editor.xtext.umlCollaborationUse.CollaborationUseRule;
 import org.eclipse.papyrus.collaborationuse.editor.xtext.umlCollaborationUse.TypeRule;
 import org.eclipse.papyrus.collaborationuse.editor.xtext.umlCollaborationUse.UmlCollaborationUsePackage;
-
 import org.eclipse.papyrus.common.editor.xtext.umlCommon.VisibilityKind;
 
 /**

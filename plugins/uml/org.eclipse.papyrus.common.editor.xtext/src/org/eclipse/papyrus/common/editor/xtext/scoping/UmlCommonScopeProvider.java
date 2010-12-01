@@ -7,10 +7,15 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.core.runtime.Assert;
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.common.editor.xtext.umlCommon.QualifiedName;
-import org.eclipse.papyrus.common.editor.xtext.validation.UmlCommonJavaValidator;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ElementImport;
 import org.eclipse.uml2.uml.NamedElement;
@@ -31,6 +36,71 @@ import org.eclipse.xtext.scoping.impl.SimpleScope;
  * 
  */
 public class UmlCommonScopeProvider extends AbstractDeclarativeScopeProvider {
+
+	/** the edited model */
+	private Namespace model = null;
+
+	/** the edited element */
+	private Element contextElement = null;
+
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 */
+	public UmlCommonScopeProvider() {
+		initModel();
+	}
+
+	/**
+	 * 
+	 * This method initializes the fields {@link #model} {@link #contextElement} thanks to the current selection
+	 * 
+	 */
+	protected void initModel() {
+		IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+		ISelection mySelection = activePage.getSelection();
+		if(mySelection instanceof IStructuredSelection) {
+			Object first = ((IStructuredSelection)mySelection).getFirstElement();
+			if(first != null) {
+				if(first instanceof IAdaptable) {
+					Element el = (Element)((IAdaptable)first).getAdapter(Element.class);
+					this.contextElement = el;
+					if(el != null) {
+						List<Namespace> namespaces = el.getNearestPackage().allNamespaces();
+						if(namespaces.size() == 0) {
+							this.model = el.getNearestPackage();
+						} else {
+							this.model = namespaces.get(namespaces.size() - 1);
+						}
+					}
+				}
+			}
+		}
+		Assert.isNotNull(contextElement, "I can't find the edited element"); //$NON-NLS-1$
+		Assert.isNotNull(this.model, "I can't find the model owning the edited element"); //$NON-NLS-1$
+	}
+
+	/**
+	 * Getter for {@link #model}
+	 * 
+	 * @return
+	 *         {@link #model}
+	 */
+	protected Namespace getModel() {
+		return this.model;
+	}
+
+	/**
+	 * Getter for {@link #contextElement}
+	 * 
+	 * @return
+	 *         {@link #contextElement}
+	 */
+	protected Element getContextElement() {
+		return this.contextElement;
+	}
+
 
 	/**
 	 * Rule for computing the scope of PropertyRule
@@ -59,7 +129,7 @@ public class UmlCommonScopeProvider extends AbstractDeclarativeScopeProvider {
 			while(i.hasNext()) {
 				EObject object = i.next();
 				if(object instanceof Element) {
-					if(UmlCommonJavaValidator.getInstance().isWantedType((Element)object)) {
+					if(isWantedType((Element)object)) {
 						allContent.add(object);
 					}
 				}
@@ -114,13 +184,13 @@ public class UmlCommonScopeProvider extends AbstractDeclarativeScopeProvider {
 		List<Element> visibleElements = new ArrayList<Element>();
 		// first retrieves imported properties
 		for(ElementImport eImport : visited.getElementImports()) {
-			if(UmlCommonJavaValidator.getInstance().isWantedType(eImport.getImportedElement())) {
+			if(isWantedType(eImport.getImportedElement())) {
 				visibleElements.add(eImport.getImportedElement());
 			}
 		}
 		// then retrieves owned properties
 		for(NamedElement n : visited.getOwnedMembers()) {
-			if(UmlCommonJavaValidator.getInstance().isWantedType(n)) {
+			if(isWantedType(n)) {
 				visibleElements.add(n);
 			}
 			if(n instanceof Namespace) {
@@ -184,10 +254,24 @@ public class UmlCommonScopeProvider extends AbstractDeclarativeScopeProvider {
 			Namespace parentNameSpace = ((QualifiedName)ctx.eContainer()).getPath();
 			visibleNamespaces.addAll(getOwnedAndImportedNamespaces(parentNameSpace));
 		} else {
-			visibleNamespaces.add(UmlCommonJavaValidator.getInstance().getModel());
-			visibleNamespaces.addAll(getImportedNamespaces(UmlCommonJavaValidator.getInstance().getModel()));
+			visibleNamespaces.add(getModel());
+			visibleNamespaces.addAll(getImportedNamespaces(getModel()));
 		}
 		Iterable<IEObjectDescription> iterableIEobjectDescription = Scopes.scopedElementsFor(visibleNamespaces);
 		return new SimpleScope(iterableIEobjectDescription);
+	}
+
+	/**
+	 * Inherited class should overridden this method in order to have a mode specific type
+	 * 
+	 * Tests if the element is an instance of the wanted type
+	 * 
+	 * @param e
+	 *        the element to test
+	 * @return
+	 *         <code>true</code> is the element is an instance of the wanted type
+	 */
+	protected boolean isWantedType(Element e) {
+		return e instanceof Type;
 	}
 }

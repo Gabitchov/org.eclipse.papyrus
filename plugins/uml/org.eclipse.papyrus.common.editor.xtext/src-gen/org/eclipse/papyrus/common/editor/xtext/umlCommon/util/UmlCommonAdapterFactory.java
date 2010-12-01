@@ -8,12 +8,13 @@ package org.eclipse.papyrus.common.editor.xtext.umlCommon.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.papyrus.common.editor.xtext.umlCommon.*;
+import org.eclipse.papyrus.common.editor.xtext.umlCommon.BoundSpecification;
+import org.eclipse.papyrus.common.editor.xtext.umlCommon.MultiplicityRule;
+import org.eclipse.papyrus.common.editor.xtext.umlCommon.QualifiedName;
+import org.eclipse.papyrus.common.editor.xtext.umlCommon.TypeRule;
+import org.eclipse.papyrus.common.editor.xtext.umlCommon.UmlCommonPackage;
 
 /**
  * <!-- begin-user-doc -->

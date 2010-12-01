@@ -10,14 +10,11 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.eclipse.papyrus.collaborationuse.editor.xtext.umlCollaborationUse.CollaborationUseRule;
 import org.eclipse.papyrus.collaborationuse.editor.xtext.umlCollaborationUse.TypeRule;
 import org.eclipse.papyrus.collaborationuse.editor.xtext.umlCollaborationUse.UmlCollaborationUseFactory;
 import org.eclipse.papyrus.collaborationuse.editor.xtext.umlCollaborationUse.UmlCollaborationUsePackage;
-
 import org.eclipse.papyrus.common.editor.xtext.umlCommon.UmlCommonPackage;
 
 /**

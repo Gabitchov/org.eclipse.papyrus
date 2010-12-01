@@ -10,8 +10,9 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.papyrus.collaborationuse.editor.xtext.umlCollaborationUse.*;
+import org.eclipse.papyrus.collaborationuse.editor.xtext.umlCollaborationUse.CollaborationUseRule;
+import org.eclipse.papyrus.collaborationuse.editor.xtext.umlCollaborationUse.TypeRule;
+import org.eclipse.papyrus.collaborationuse.editor.xtext.umlCollaborationUse.UmlCollaborationUsePackage;
 
 /**
  * <!-- begin-user-doc -->
