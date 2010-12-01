@@ -16,7 +16,7 @@ package org.eclipse.papyrus.parameter.editor.xtext.ui.contributions;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.papyrus.parameter.editor.xtext.validation.UmlParameterJavaValidator;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.umlutils.MultiplicityElementUtil;
 import org.eclipse.papyrus.umlutils.NamedElementUtil;
 import org.eclipse.papyrus.umlutils.ParameterUtil;
@@ -47,36 +47,36 @@ public class UMLParameterEditorUtil extends ParameterUtil {
 	public static String getLabel(Parameter parameter) {
 		StringBuffer buffer = new StringBuffer();
 		// visibility
-		buffer.append(" ");
+		buffer.append(" "); //$NON-NLS-1$
 		buffer.append(NamedElementUtil.getVisibilityAsSign(parameter));
 
 		// direction
-		buffer.append(" ");
+		buffer.append(" "); //$NON-NLS-1$
 		buffer.append(parameter.getDirection().getLiteral());
 
 		// name
-		buffer.append(" ");
+		buffer.append(" "); //$NON-NLS-1$
 		if(parameter.getName() != null) {
 			buffer.append(parameter.getName());
 		}
 
 		// type
-		// type
 		if(parameter.getType() != null) {
-			buffer.append(" : " + getTypeLabel(parameter.getType()));
+			EList<Namespace> namespaces = parameter.allNamespaces();
+			buffer.append(" : " + getTypeLabel(parameter.getType(), namespaces.get(namespaces.size() - 1))); //$NON-NLS-1$
 		} else {
-			buffer.append(" : " + TypeUtil.UNDEFINED_TYPE_NAME);
+			buffer.append(" : " + TypeUtil.UNDEFINED_TYPE_NAME); //$NON-NLS-1$
 		}
 
 		// multiplicity -> do not display [1]
 		String multiplicity = MultiplicityElementUtil.getMultiplicityAsString(parameter);
-		if(!multiplicity.trim().equals("[1]")) {
+		if(!multiplicity.trim().equals("[1]")) { //$NON-NLS-1$
 			buffer.append(multiplicity);
 		}
 
 		// default value
 		if(parameter.getDefault() != null) {
-			buffer.append(" = ");
+			buffer.append(" = "); //$NON-NLS-1$
 			buffer.append(parameter.getDefault());
 		}
 
@@ -100,9 +100,9 @@ public class UMLParameterEditorUtil extends ParameterUtil {
 		ParameterEffectKind effect = parameter.getEffect();
 		buffer.append(effect.toString());
 
-		if(!buffer.toString().equals("")) {
-			buffer.insert(0, "{effect: ");
-			buffer.append("}");
+		if(!buffer.toString().equals("")) { //$NON-NLS-1$
+			buffer.insert(0, "{effect: "); //$NON-NLS-1$
+			buffer.append("}"); //$NON-NLS-1$
 		}
 		return buffer.toString();
 	}
@@ -115,10 +115,9 @@ public class UMLParameterEditorUtil extends ParameterUtil {
 	 * @return
 	 *         the name of the type with its qualified name
 	 */
-	public static String getTypeLabel(Type type) {
-		String label = "";
+	public static String getTypeLabel(Type type, Namespace model) {
+		String label = ""; //$NON-NLS-1$
 
-		Namespace model = UmlParameterJavaValidator.getInstance().getModel();
 		List<Package> importedPackages = new ArrayList<Package>(model.getImportedPackages());
 
 		List<Package> visitedPackages = new ArrayList<Package>();
@@ -139,7 +138,7 @@ public class UMLParameterEditorUtil extends ParameterUtil {
 		}
 
 		for(int i = visitedPackages.size() - 1; i >= 0; i--) {
-			label += visitedPackages.get(i).getName() + "::";
+			label += visitedPackages.get(i).getName() + "::"; //$NON-NLS-1$
 		}
 
 		return label + type.getName();

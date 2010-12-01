@@ -31,141 +31,136 @@ import org.eclipse.papyrus.parameter.editor.xtext.umlParameter.UmlParameterPacka
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.parameter.editor.xtext.umlParameter.impl.ModifiersRuleImpl#getValues <em>Values</em>}</li>
+ * <li>{@link org.eclipse.papyrus.parameter.editor.xtext.umlParameter.impl.ModifiersRuleImpl#getValues <em>Values</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
-public class ModifiersRuleImpl extends MinimalEObjectImpl.Container implements ModifiersRule
-{
-  /**
-   * The cached value of the '{@link #getValues() <em>Values</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getValues()
-   * @generated
-   * @ordered
-   */
-  protected EList<ModifierSpecification> values;
+public class ModifiersRuleImpl extends MinimalEObjectImpl.Container implements ModifiersRule {
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected ModifiersRuleImpl()
-  {
-    super();
-  }
+	/**
+	 * The cached value of the '{@link #getValues() <em>Values</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @see #getValues()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ModifierSpecification> values;
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected EClass eStaticClass()
-  {
-    return UmlParameterPackage.Literals.MODIFIERS_RULE;
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected ModifiersRuleImpl() {
+		super();
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<ModifierSpecification> getValues()
-  {
-    if (values == null)
-    {
-      values = new EObjectContainmentEList<ModifierSpecification>(ModifierSpecification.class, this, UmlParameterPackage.MODIFIERS_RULE__VALUES);
-    }
-    return values;
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return UmlParameterPackage.Literals.MODIFIERS_RULE;
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
-    switch (featureID)
-    {
-      case UmlParameterPackage.MODIFIERS_RULE__VALUES:
-        return ((InternalEList<?>)getValues()).basicRemove(otherEnd, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EList<ModifierSpecification> getValues() {
+		if(values == null) {
+			values = new EObjectContainmentEList<ModifierSpecification>(ModifierSpecification.class, this, UmlParameterPackage.MODIFIERS_RULE__VALUES);
+		}
+		return values;
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
-    switch (featureID)
-    {
-      case UmlParameterPackage.MODIFIERS_RULE__VALUES:
-        return getValues();
-    }
-    return super.eGet(featureID, resolve, coreType);
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch(featureID) {
+		case UmlParameterPackage.MODIFIERS_RULE__VALUES:
+			return ((InternalEList<?>)getValues()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
-    switch (featureID)
-    {
-      case UmlParameterPackage.MODIFIERS_RULE__VALUES:
-        getValues().clear();
-        getValues().addAll((Collection<? extends ModifierSpecification>)newValue);
-        return;
-    }
-    super.eSet(featureID, newValue);
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch(featureID) {
+		case UmlParameterPackage.MODIFIERS_RULE__VALUES:
+			return getValues();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void eUnset(int featureID)
-  {
-    switch (featureID)
-    {
-      case UmlParameterPackage.MODIFIERS_RULE__VALUES:
-        getValues().clear();
-        return;
-    }
-    super.eUnset(featureID);
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch(featureID) {
+		case UmlParameterPackage.MODIFIERS_RULE__VALUES:
+			getValues().clear();
+			getValues().addAll((Collection<? extends ModifierSpecification>)newValue);
+			return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
-    switch (featureID)
-    {
-      case UmlParameterPackage.MODIFIERS_RULE__VALUES:
-        return values != null && !values.isEmpty();
-    }
-    return super.eIsSet(featureID);
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch(featureID) {
+		case UmlParameterPackage.MODIFIERS_RULE__VALUES:
+			getValues().clear();
+			return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch(featureID) {
+		case UmlParameterPackage.MODIFIERS_RULE__VALUES:
+			return values != null && !values.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //ModifiersRuleImpl

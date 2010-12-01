@@ -14,7 +14,7 @@ import com.google.inject.name.Names;
 /**
  * Manual modifications go to {org.eclipse.papyrus.parameter.editor.xtext.UmlParameterRuntimeModule}
  */
- @SuppressWarnings("all")
+@SuppressWarnings("all")
 public abstract class AbstractUmlParameterRuntimeModule extends DefaultRuntimeModule {
 
 	protected Properties properties = null;
@@ -24,16 +24,16 @@ public abstract class AbstractUmlParameterRuntimeModule extends DefaultRuntimeMo
 		properties = tryBindProperties(binder, "org/eclipse/papyrus/parameter/editor/xtext/UmlParameter.properties");
 		super.configure(binder);
 	}
-	
+
 	public void configureLanguageName(Binder binder) {
 		binder.bind(String.class).annotatedWith(Names.named(Constants.LANGUAGE_NAME)).toInstance("org.eclipse.papyrus.parameter.editor.xtext.UmlParameter");
 	}
-	
+
 	public void configureFileExtensions(Binder binder) {
-		if (properties == null || properties.getProperty(Constants.FILE_EXTENSIONS) == null)
+		if(properties == null || properties.getProperty(Constants.FILE_EXTENSIONS) == null)
 			binder.bind(String.class).annotatedWith(Names.named(Constants.FILE_EXTENSIONS)).toInstance("umlparameter");
 	}
-	
+
 	// contributed by org.eclipse.xtext.generator.grammarAccess.GrammarAccessFragment
 	public Class<? extends org.eclipse.xtext.IGrammarAccess> bindIGrammarAccess() {
 		return org.eclipse.papyrus.parameter.editor.xtext.services.UmlParameterGrammarAccess.class;
@@ -80,7 +80,8 @@ public abstract class AbstractUmlParameterRuntimeModule extends DefaultRuntimeMo
 	}
 
 	// contributed by org.eclipse.xtext.generator.validation.JavaValidatorFragment
-	@org.eclipse.xtext.service.SingletonBinding(eager=true)	public Class<? extends org.eclipse.papyrus.parameter.editor.xtext.validation.UmlParameterJavaValidator> bindUmlParameterJavaValidator() {
+	@org.eclipse.xtext.service.SingletonBinding(eager = true)
+	public Class<? extends org.eclipse.papyrus.parameter.editor.xtext.validation.UmlParameterJavaValidator> bindUmlParameterJavaValidator() {
 		return org.eclipse.papyrus.parameter.editor.xtext.validation.UmlParameterJavaValidator.class;
 	}
 

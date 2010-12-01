@@ -19,6 +19,7 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
  * Use this class to register components to be used within the IDE.
  */
 public class UmlParameterUiModule extends org.eclipse.papyrus.parameter.editor.xtext.ui.AbstractUmlParameterUiModule {
+
 	public UmlParameterUiModule(AbstractUIPlugin plugin) {
 		super(plugin);
 	}

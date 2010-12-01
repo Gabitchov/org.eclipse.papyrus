@@ -14,21 +14,23 @@ import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
  * <!-- begin-user-doc -->
  * The <b>Resource </b> associated with the package.
  * <!-- end-user-doc -->
+ * 
  * @see org.eclipse.papyrus.parameter.editor.xtext.umlParameter.util.UmlParameterResourceFactoryImpl
  * @generated
  */
-public class UmlParameterResourceImpl extends XMLResourceImpl
-{
-  /**
-   * Creates an instance of the resource.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param uri the URI of the new resource.
-   * @generated
-   */
-  public UmlParameterResourceImpl(URI uri)
-  {
-    super(uri);
-  }
+public class UmlParameterResourceImpl extends XMLResourceImpl {
+
+	/**
+	 * Creates an instance of the resource.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @param uri
+	 *        the URI of the new resource.
+	 * @generated
+	 */
+	public UmlParameterResourceImpl(URI uri) {
+		super(uri);
+	}
 
 } //UmlParameterResourceImpl

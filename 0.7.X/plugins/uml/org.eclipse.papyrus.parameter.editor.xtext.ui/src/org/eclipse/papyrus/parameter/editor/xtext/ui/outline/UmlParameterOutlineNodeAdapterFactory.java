@@ -17,10 +17,10 @@ import org.eclipse.xtext.ui.editor.outline.actions.DefaultContentOutlineNodeAdap
 
 public class UmlParameterOutlineNodeAdapterFactory extends DefaultContentOutlineNodeAdapterFactory {
 
-	private static final Class<?>[] types = { 
-		// provide list of classes to adapt to, e.g.:
-		// Entity.class
-		// Service.class
+	private static final Class<?>[] types = {
+	// provide list of classes to adapt to, e.g.:
+	// Entity.class
+	// Service.class
 	};
 
 	@Override
@@ -29,4 +29,3 @@ public class UmlParameterOutlineNodeAdapterFactory extends DefaultContentOutline
 	}
 
 }
-
