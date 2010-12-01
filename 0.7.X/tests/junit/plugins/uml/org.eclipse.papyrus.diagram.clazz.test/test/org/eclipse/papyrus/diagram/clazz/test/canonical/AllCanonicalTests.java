@@ -27,6 +27,8 @@ TestClassDiagramTopNode.class,
 TestClassDiagramChildNode.class,
 //labelNodes
 TestClassDiagramChildLabel.class,
+//test links
+TestClassDiagramLink.class,
 // multilinks
 TestMutliLink.class,
 //test the order for the drop
