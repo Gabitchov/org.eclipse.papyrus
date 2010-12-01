@@ -113,7 +113,7 @@ public class CompactMultipleValueEditor extends AbstractListEditor implements IC
 
 		setLayout(new GridLayout(3, false));
 
-		valueLabel = new Label(this, style);
+		valueLabel = factory.createLabel(this, null, style);
 		valueLabel.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 
 		edit = new Button(this, SWT.PUSH);
