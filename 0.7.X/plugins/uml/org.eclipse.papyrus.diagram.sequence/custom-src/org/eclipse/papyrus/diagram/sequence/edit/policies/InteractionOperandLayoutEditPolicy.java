@@ -89,10 +89,7 @@ public class InteractionOperandLayoutEditPolicy extends XYLayoutEditPolicy {
 			if(constraintFor != null) {
 				if(child instanceof CombinedFragmentEditPart) {
 					Command resizeChildrenCommand = InteractionCompartmentXYLayoutEditPolicy.getCombinedFragmentResizeChildrenCommand(request, (CombinedFragmentEditPart)child);
-					if(resizeChildrenCommand == null) {
-						return null;
-					}
-					if(resizeChildrenCommand.canExecute()) {
+					if(resizeChildrenCommand != null && resizeChildrenCommand.canExecute()) {
 						compoundCmd.add(resizeChildrenCommand);
 					}
 				}
@@ -100,6 +97,9 @@ public class InteractionOperandLayoutEditPolicy extends XYLayoutEditPolicy {
 				Command changeConstraintCommand = createChangeConstraintCommand(request, child, translateToModelConstraint(constraintFor));
 				compoundCmd.add(changeConstraintCommand);
 			}
+		}
+		if(compoundCmd.isEmpty()) {
+			return null;
 		}
 		return compoundCmd.unwrap();
 	}
