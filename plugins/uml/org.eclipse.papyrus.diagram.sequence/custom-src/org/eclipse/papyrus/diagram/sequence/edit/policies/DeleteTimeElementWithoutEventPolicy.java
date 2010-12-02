@@ -299,7 +299,7 @@ public class DeleteTimeElementWithoutEventPolicy extends AbstractEditPolicy impl
 		} else if(getHost() instanceof TimeConstraintEditPart && hostSemanticElement instanceof TimeConstraint) {
 			LifelineEditPart lifeline = SequenceUtil.getParentLifelinePart(getHost());
 			List<Element> occs = ((TimeConstraint)hostSemanticElement).getConstrainedElements();
-			if(occs.size() > 0 & occs.get(0) instanceof OccurrenceSpecification) {
+			if(occs.size() > 0 && occs.get(0) instanceof OccurrenceSpecification) {
 				return SequenceUtil.getLinkedEditPart(lifeline, (OccurrenceSpecification)occs.get(0)) == null;
 			}
 			return true;
