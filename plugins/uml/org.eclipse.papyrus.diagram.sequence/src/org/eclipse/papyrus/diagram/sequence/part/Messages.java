@@ -36,6 +36,11 @@ public class Messages extends NLS {
 	/**
 	 * @generated NOT
 	 */
+	public static String MoveMessageCommand_Label;
+
+	/**
+	 * @generated NOT
+	 */
 	public static String SelectOrCreateDialog_CreateLabel;
 
 	/**

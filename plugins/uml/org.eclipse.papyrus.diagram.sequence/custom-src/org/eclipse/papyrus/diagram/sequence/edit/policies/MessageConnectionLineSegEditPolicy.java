@@ -18,15 +18,9 @@ import java.util.List;
 
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.FigureCanvas;
-import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.Polyline;
 import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
-import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
@@ -34,20 +28,13 @@ import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.BendpointRequest;
 import org.eclipse.gef.ui.parts.ScrollingGraphicalViewer;
-import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
-import org.eclipse.gmf.runtime.diagram.core.commands.SetConnectionAnchorsCommand;
-import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ConnectionBendpointEditPolicy;
-import org.eclipse.gmf.runtime.diagram.ui.internal.commands.SetConnectionBendpointsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.util.SelectInDiagramHelper;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.BaseSlidableAnchor;
-import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.gef.ui.internal.editpolicies.LineMode;
-import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.papyrus.diagram.sequence.draw2d.routers.MessageRouter.RouterKind;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
+import org.eclipse.papyrus.diagram.sequence.part.Messages;
 import org.eclipse.papyrus.diagram.sequence.util.OccurrenceSpecificationMoveHelper;
 import org.eclipse.papyrus.diagram.sequence.util.SequenceUtil;
 import org.eclipse.uml2.uml.Message;
@@ -99,7 +86,7 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 					List<EditPart> empty = Collections.emptyList();
 					Command srcCmd = OccurrenceSpecificationMoveHelper.getMoveOccurrenceSpecificationsCommand((OccurrenceSpecification)send, null, y, -1, srcLifelinePart, empty);
 					Command tgtCmd = OccurrenceSpecificationMoveHelper.getMoveOccurrenceSpecificationsCommand((OccurrenceSpecification)rcv, null, y, -1, tgtLifelinePart, empty);
-					CompoundCommand compoudCmd = new CompoundCommand();
+					CompoundCommand compoudCmd = new CompoundCommand(Messages.MoveMessageCommand_Label);
 					/*
 					 * Take care of the order of commands, to make sure target is always bellow the source.
 					 * Otherwise, moving the target above the source would cause order conflict with existing CF.
@@ -108,11 +95,9 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 					if(oldLocation != null) {
 						int oldY = oldLocation.y;
 						if(oldY < y) {
-							tgtCmd.setLabel("target from " + oldY + " to " + y);
 							compoudCmd.add(tgtCmd);
 							compoudCmd.add(srcCmd);
 						} else {
-							srcCmd.setLabel("source from " + oldY + " to " + y);
 							compoudCmd.add(srcCmd);
 							compoudCmd.add(tgtCmd);
 						}
