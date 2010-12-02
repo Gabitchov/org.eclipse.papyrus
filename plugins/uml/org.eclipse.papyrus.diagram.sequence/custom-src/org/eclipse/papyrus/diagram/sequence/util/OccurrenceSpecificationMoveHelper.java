@@ -160,7 +160,9 @@ public class OccurrenceSpecificationMoveHelper {
 					if(part instanceof ConnectionEditPart && !notToMoveEditParts.contains(part)) {
 						Request reconnectRequest = makeReconnectRequest((ConnectionEditPart)part, true, referencePoint, childToReconnectTo);
 						Command reconnect = childToReconnectTo.getCommand(reconnectRequest);
-						command.add(reconnect);
+						if(reconnect.canExecute()) {
+							command.add(reconnect);
+						}
 					}
 				}
 			}
@@ -176,7 +178,9 @@ public class OccurrenceSpecificationMoveHelper {
 					if(part instanceof ConnectionEditPart && !notToMoveEditParts.contains(part)) {
 						Request reconnectRequest = makeReconnectRequest((ConnectionEditPart)part, false, referencePoint, childToReconnectTo);
 						Command reconnect = childToReconnectTo.getCommand(reconnectRequest);
-						command.add(reconnect);
+						if(reconnect.canExecute()) {
+							command.add(reconnect);
+						}
 					}
 				}
 			}

@@ -46,6 +46,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
+import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
@@ -412,19 +413,24 @@ public class SequenceUtil {
 			Edge edge = (Edge)connection.getNotationView();
 			Anchor idAnchor = null;
 			ConnectionAnchor conAnchor = null;
-			EditPart part = null;
+			Object part = null;
 			if(isStart && connection.getSource() instanceof IGraphicalEditPart) {
-				part = connection.getSource();
+				View linkedFigure = edge.getSource();
+				// connection.getSource() may be not up to date, get part for linkedFigure
+				part = connection.getSource().getViewer().getEditPartRegistry().get(linkedFigure);
 				idAnchor = edge.getSourceAnchor();
 				conAnchor = msgFigure.getSourceAnchor();
 			} else if(!isStart && connection.getTarget() instanceof IGraphicalEditPart) {
-				part = connection.getTarget();
+				View linkedFigure = edge.getTarget();
+				// connection.getTarget() may be not up to date, get part for linkedFigure
+				part = connection.getTarget().getViewer().getEditPartRegistry().get(linkedFigure);
 				idAnchor = edge.getTargetAnchor();
 				conAnchor = msgFigure.getTargetAnchor();
 			}
 			if(part instanceof IGraphicalEditPart && idAnchor instanceof IdentityAnchor && conAnchor != null) {
 				// take up to date bounds of the linked part in case it is moved
 				Rectangle linkedPartBounds = getAbsoluteBounds((IGraphicalEditPart)part);
+
 				IFigure anchorOwningFigure = conAnchor.getOwner();
 				IFigure partFigure = ((IGraphicalEditPart)part).getFigure();
 				Dimension delta = anchorOwningFigure.getBounds().getLocation().getDifference(partFigure.getBounds().getLocation());
