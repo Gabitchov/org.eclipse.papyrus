@@ -55,6 +55,7 @@ import org.eclipse.papyrus.controlmode.mm.history.historyFactory;
 import org.eclipse.papyrus.controlmode.mm.history.historyPackage;
 import org.eclipse.papyrus.core.modelsetquery.ModelSetQuery;
 import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.core.utils.ServiceUtils;
 import org.eclipse.papyrus.resource.ModelIdentifiers;
 import org.eclipse.papyrus.resource.ModelSet;
 import org.eclipse.papyrus.resource.notation.NotationModel;
@@ -231,7 +232,7 @@ public class ControlCommand extends AbstractTransactionalCommand {
 		ControledResource resource = model.getModelRoot();
 		Resource parentResource = null;
 
-		// create the controled resource according to the control action
+		// create the controlled resource according to the control action
 		ControledResource parent = null;
 		if(resource == null) {
 			parent = historyFactory.eINSTANCE.createControledResource();
@@ -267,7 +268,7 @@ public class ControlCommand extends AbstractTransactionalCommand {
 		}
 		List<ControledResource> controledFromParent = new LinkedList<ControledResource>();
 		if(parentResource == null) {
-			parentResource = parent.eResource();
+			parentResource = model.getResource();
 		}
 		if(parentResource != null) {
 			for(EObject e : parentResource.getContents()) {
@@ -283,7 +284,7 @@ public class ControlCommand extends AbstractTransactionalCommand {
 				}
 			}
 		}
-		// manage move of existing controled resource
+		// manage move of existing controlled resource
 		if(!newURL.endsWith(NotationModel.NOTATION_FILE_EXTENSION)) {
 			assignToChildExistingControledResources(domain, compoundCommand, child, newURL, controledFromParent, currentURL, URI.createURI(newURL), uriPath);
 		}
