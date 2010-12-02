@@ -34,6 +34,7 @@ import org.eclipse.papyrus.diagram.sequence.edit.commands.DestructionEventCreate
 import org.eclipse.papyrus.diagram.sequence.edit.commands.DurationConstraintCreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.DurationObservationCreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.GeneralOrderingCreateCommand;
+import org.eclipse.papyrus.diagram.sequence.edit.commands.GeneralOrderingReorientCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.LifelineCreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.Message2CreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.Message2ReorientCommand;
@@ -54,6 +55,7 @@ import org.eclipse.papyrus.diagram.sequence.edit.commands.TimeConstraintCreateCo
 import org.eclipse.papyrus.diagram.sequence.edit.commands.TimeObservationCreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintConstrainedElementEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.GeneralOrderingEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.Message2EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.Message3EditPart;
@@ -65,6 +67,7 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.service.edit.service.IElementEditService;
+import org.eclipse.uml2.uml.OccurrenceSpecification;
 
 /**
  * @generated
@@ -235,7 +238,8 @@ public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 	 * Returns command to reorient EClass based link. New link target or source should be the domain
 	 * model element associated with this node.
 	 * 
-	 * @generated
+	 * @generated NOT
+	 *            (update at each lifeline modification) add general ordering
 	 */
 	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 		switch(getVisualID(req)) {
@@ -253,6 +257,13 @@ public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 			return getGEFWrapper(new Message6ReorientCommand(req));
 		case Message7EditPart.VISUAL_ID:
 			return getGEFWrapper(new Message7ReorientCommand(req));
+			//add general ordering
+		case GeneralOrderingEditPart.VISUAL_ID:
+			if(req.getNewRelationshipEnd() instanceof OccurrenceSpecification) {
+				return getGEFWrapper(new GeneralOrderingReorientCommand(req));
+			} else {
+				return null;
+			}
 		}
 		return super.getReorientRelationshipCommand(req);
 	}

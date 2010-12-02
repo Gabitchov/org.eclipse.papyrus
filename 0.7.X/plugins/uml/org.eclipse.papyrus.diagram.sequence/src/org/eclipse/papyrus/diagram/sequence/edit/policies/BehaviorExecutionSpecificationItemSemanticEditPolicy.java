@@ -30,6 +30,8 @@ import org.eclipse.papyrus.diagram.sequence.edit.commands.CommentAnnotatedElemen
 import org.eclipse.papyrus.diagram.sequence.edit.commands.CommentAnnotatedElementReorientCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.ConstraintConstrainedElementCreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.ConstraintConstrainedElementReorientCommand;
+import org.eclipse.papyrus.diagram.sequence.edit.commands.GeneralOrderingCreateCommand;
+import org.eclipse.papyrus.diagram.sequence.edit.commands.GeneralOrderingReorientCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.Message2CreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.Message2ReorientCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.Message3CreateCommand;
@@ -46,6 +48,7 @@ import org.eclipse.papyrus.diagram.sequence.edit.commands.MessageCreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.MessageReorientCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintConstrainedElementEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.GeneralOrderingEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.Message2EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.Message3EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.Message4EditPart;
@@ -57,6 +60,7 @@ import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.sequence.util.SequenceDeleteHelper;
 import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.service.edit.service.IElementEditService;
+import org.eclipse.uml2.uml.OccurrenceSpecification;
 
 /**
  * @generated
@@ -113,7 +117,8 @@ public class BehaviorExecutionSpecificationItemSemanticEditPolicy extends UMLBas
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
+	 *            (update at each lifeline modification) add general ordering
 	 */
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
 		if(UMLElementTypes.Message_4003 == req.getElementType()) {
@@ -143,11 +148,16 @@ public class BehaviorExecutionSpecificationItemSemanticEditPolicy extends UMLBas
 		if(UMLElementTypes.ConstraintConstrainedElement_4011 == req.getElementType()) {
 			return null;
 		}
+		//add general ordering
+		if(UMLElementTypes.GeneralOrdering_4012 == req.getElementType()) {
+			return getGEFWrapper(new GeneralOrderingCreateCommand(req, req.getSource(), req.getTarget()));
+		}
 		return null;
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
+	 *            (update at each lifeline modification) add general ordering
 	 */
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
 		if(UMLElementTypes.Message_4003 == req.getElementType()) {
@@ -177,6 +187,10 @@ public class BehaviorExecutionSpecificationItemSemanticEditPolicy extends UMLBas
 		if(UMLElementTypes.ConstraintConstrainedElement_4011 == req.getElementType()) {
 			return getGEFWrapper(new ConstraintConstrainedElementCreateCommand(req, req.getSource(), req.getTarget()));
 		}
+		//add general ordering
+		if(UMLElementTypes.GeneralOrdering_4012 == req.getElementType()) {
+			return getGEFWrapper(new GeneralOrderingCreateCommand(req, req.getSource(), req.getTarget()));
+		}
 		return null;
 	}
 
@@ -184,7 +198,8 @@ public class BehaviorExecutionSpecificationItemSemanticEditPolicy extends UMLBas
 	 * Returns command to reorient EClass based link. New link target or source should be the domain
 	 * model element associated with this node.
 	 * 
-	 * @generated
+	 * @generated NOT
+	 *            (update at each lifeline modification) add general ordering
 	 */
 	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 		switch(getVisualID(req)) {
@@ -202,6 +217,13 @@ public class BehaviorExecutionSpecificationItemSemanticEditPolicy extends UMLBas
 			return getGEFWrapper(new Message6ReorientCommand(req));
 		case Message7EditPart.VISUAL_ID:
 			return getGEFWrapper(new Message7ReorientCommand(req));
+			//add general ordering
+		case GeneralOrderingEditPart.VISUAL_ID:
+			if(req.getNewRelationshipEnd() instanceof OccurrenceSpecification) {
+				return getGEFWrapper(new GeneralOrderingReorientCommand(req));
+			} else {
+				return null;
+			}
 		}
 		return super.getReorientRelationshipCommand(req);
 	}
