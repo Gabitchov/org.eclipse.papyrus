@@ -533,6 +533,7 @@ public class OccurrenceSpecificationMoveHelper {
 			}
 			// move necessary bounds
 			Rectangle newBounds = null;
+			int heighDelta = 0;
 			if(position1 != PositionConstants.NONE && position2 != PositionConstants.NONE) {
 				// both bounds have changed
 				Point referencePoint1 = getReferencePoint(lifelinePart, movedOccurrenceSpecification1, yLocation1);
@@ -540,10 +541,14 @@ public class OccurrenceSpecificationMoveHelper {
 				makeRelativeToLifeline(referencePoint1, lifelinePart, true);
 				makeRelativeToLifeline(referencePoint2, lifelinePart, true);
 				// Get old bounds information by consulting old figure
-				int oldX = executionSpecificationPart.getFigure().getBounds().getLocation().x - lifelineFigure.getBounds().getLocation().x;
-				int oldY = executionSpecificationPart.getFigure().getBounds().getLocation().y - lifelineFigure.getBounds().getLocation().y;
-				int oldWidth = executionSpecificationPart.getFigure().getSize().width;
-				int oldHeight = executionSpecificationPart.getFigure().getSize().height;
+				Rectangle esBounds = SequenceUtil.getAbsoluteBounds(executionSpecificationPart);
+				Point esLoc = esBounds.getLocation();
+				makeRelativeToLifeline(esLoc, lifelinePart, true);
+				esBounds.setLocation(esLoc);
+				int oldX = esBounds.x;
+				int oldY = esBounds.y;
+				int oldWidth = esBounds.width;
+				int oldHeight = esBounds.height;
 				// Compute new bounds of the time element
 				int top = oldY;
 				int bottom = oldY + oldHeight;
@@ -564,10 +569,14 @@ public class OccurrenceSpecificationMoveHelper {
 				Point referencePoint1 = getReferencePoint(lifelinePart, movedOccurrenceSpecification1, yLocation1);
 				makeRelativeToLifeline(referencePoint1, lifelinePart, true);
 				// Get old bounds information by consulting old figure
-				int oldX = executionSpecificationPart.getFigure().getBounds().getLocation().x - lifelineFigure.getBounds().getLocation().x;
-				int oldY = executionSpecificationPart.getFigure().getBounds().getLocation().y - lifelineFigure.getBounds().getLocation().y;
-				int oldWidth = executionSpecificationPart.getFigure().getSize().width;
-				int oldHeight = executionSpecificationPart.getFigure().getSize().height;
+				Rectangle esBounds = SequenceUtil.getAbsoluteBounds(executionSpecificationPart);
+				Point esLoc = esBounds.getLocation();
+				makeRelativeToLifeline(esLoc, lifelinePart, true);
+				esBounds.setLocation(esLoc);
+				int oldX = esBounds.x;
+				int oldY = esBounds.y;
+				int oldWidth = esBounds.width;
+				int oldHeight = esBounds.height;
 				// Compute new bounds of the time element
 				int top = oldY;
 				int bottom = oldY + oldHeight;
@@ -583,10 +592,14 @@ public class OccurrenceSpecificationMoveHelper {
 				Point referencePoint2 = getReferencePoint(lifelinePart, movedOccurrenceSpecification2, yLocation2);
 				makeRelativeToLifeline(referencePoint2, lifelinePart, true);
 				// Get old bounds information by consulting old figure
-				int oldX = executionSpecificationPart.getFigure().getBounds().getLocation().x - lifelineFigure.getBounds().getLocation().x;
-				int oldY = executionSpecificationPart.getFigure().getBounds().getLocation().y - lifelineFigure.getBounds().getLocation().y;
-				int oldWidth = executionSpecificationPart.getFigure().getSize().width;
-				int oldHeight = executionSpecificationPart.getFigure().getSize().height;
+				Rectangle esBounds = SequenceUtil.getAbsoluteBounds(executionSpecificationPart);
+				Point esLoc = esBounds.getLocation();
+				makeRelativeToLifeline(esLoc, lifelinePart, true);
+				esBounds.setLocation(esLoc);
+				int oldX = esBounds.x;
+				int oldY = esBounds.y;
+				int oldWidth = esBounds.width;
+				int oldHeight = esBounds.height;
 				// Compute new bounds of the time element
 				int top = oldY;
 				int bottom = oldY + oldHeight;
@@ -601,6 +614,7 @@ public class OccurrenceSpecificationMoveHelper {
 			}
 			if(newBounds != null) {
 				// adjust bounds for execution specification
+				newBounds.height -= heighDelta;
 				TransactionalEditingDomain editingDomain = executionSpecificationPart.getEditingDomain();
 				// return the resize command
 				ICommandProxy resize = new ICommandProxy(new SetBoundsCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter((View)executionSpecificationPart.getModel()), newBounds));
