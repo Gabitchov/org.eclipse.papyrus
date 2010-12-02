@@ -79,7 +79,7 @@ public class ExecutionSpecificationHelperAdvice extends AbstractEditHelperAdvice
 			if(coveredLifelines.equals(new HashSet<Lifeline>(previousIft.getCovereds()))) {
 				if(previousIft instanceof MessageOccurrenceSpecification) {
 					Message msg = ((MessageOccurrenceSpecification)previousIft).getMessage();
-					if(msg != null && MessageSort.ASYNCH_CALL_LITERAL.equals(msg.getMessageSort())) {
+					if(msg != null && MessageSort.SYNCH_CALL_LITERAL.equals(msg.getMessageSort())) {
 						dependentsToDestroy.add(previousIft);
 					}
 				}
