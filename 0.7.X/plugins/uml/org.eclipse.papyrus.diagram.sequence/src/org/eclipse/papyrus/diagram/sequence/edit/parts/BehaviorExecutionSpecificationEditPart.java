@@ -1047,7 +1047,10 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 			for(Object obj : relationshipTypes) {
 				if(UMLElementTypes.Message_4003.equals(obj)) {
 					// Sync Message
-					return new FixedAnchor(getFigure(), FixedAnchor.TOP);
+					if(!createRequest.getTargetEditPart().equals(createRequest.getSourceEditPart())) {
+						return new FixedAnchor(getFigure(), FixedAnchor.TOP);
+					}
+					// otherwise, this is a recursive call, let destination free
 				}
 			}
 		} else if(request instanceof ReconnectRequest) {

@@ -22,6 +22,7 @@ import java.util.Map.Entry;
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.Polyline;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
@@ -30,8 +31,10 @@ import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest.ConnectionViewAndElementDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.Edge;
@@ -209,9 +212,27 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 		Point sourcePoint = (Point)request.getExtendedData().get(SequenceRequestConstant.SOURCE_LOCATION_DATA);
 		Point targetPoint = request.getLocation();
 
+		// prevent uphill message (leave margin for horizontal messages)
 		if(sourcePoint.y >= targetPoint.y + MARGIN) {
 			return UnexecutableCommand.INSTANCE;
 		}
+		// prevent uphill message (for self recursive message)
+		if(request.getSourceEditPart().equals(request.getTargetEditPart()) && sourcePoint.y >= targetPoint.y) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		// prevent uphill message (for reply message)
+		if(request instanceof CreateConnectionViewAndElementRequest) {
+			ConnectionViewAndElementDescriptor desc = ((CreateConnectionViewAndElementRequest)request).getConnectionViewAndElementDescriptor();
+			String replyHint = ((IHintedType)UMLElementTypes.Message_4005).getSemanticHint();
+			if(replyHint.equals(desc.getSemanticHint()) && request.getSourceEditPart() instanceof IGraphicalEditPart) {
+				Rectangle srcBounds = SequenceUtil.getAbsoluteBounds((IGraphicalEditPart)request.getSourceEditPart());
+				int bottom = srcBounds.getBottom().y;
+				if(bottom >= targetPoint.y) {
+					return UnexecutableCommand.INSTANCE;
+				}
+			}
+		}
+
 		request.getExtendedData().put(SequenceRequestConstant.SOURCE_MODEL_CONTAINER, SequenceUtil.findInteractionFragmentContainerAt(sourcePoint, getHost()));
 		request.getExtendedData().put(SequenceRequestConstant.TARGET_MODEL_CONTAINER, SequenceUtil.findInteractionFragmentContainerAt(targetPoint, getHost()));
 		// In case we are creating a connection to/from a CoRegion, we will need the lifeline element where is drawn the CoRegion later in the process.
