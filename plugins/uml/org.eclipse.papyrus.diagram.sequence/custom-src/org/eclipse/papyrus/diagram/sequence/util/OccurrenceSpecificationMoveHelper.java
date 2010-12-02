@@ -149,6 +149,12 @@ public class OccurrenceSpecificationMoveHelper {
 		CompoundCommand command = new CompoundCommand();
 		Point referencePoint = getReferencePoint(lifelinePart, movedOccurrenceSpecification, yLocation);
 		EditPart childToReconnectTo = SequenceUtil.findPartToReconnectTo(lifelinePart, referencePoint);
+		// if referencePoint is on a moved part, it must be translated with the location delta of this part
+		if(!notToMoveEditParts.isEmpty() && childToReconnectTo != lifelinePart) {
+			Point oldLoc = SequenceUtil.findLocationOfEvent(lifelinePart, movedOccurrenceSpecification);
+			Point newLoc = referencePoint;
+			referencePoint.translate(oldLoc.getDifference(newLoc));
+		}
 		// reconnect general ordering from the event
 		for(GeneralOrdering go : movedOccurrenceSpecification.getToAfters()) {
 			Collection<Setting> settings = CacheAdapter.INSTANCE.getNonNavigableInverseReferences(go);
@@ -211,6 +217,12 @@ public class OccurrenceSpecificationMoveHelper {
 		if(movedOccurrenceSpecification instanceof MessageOccurrenceSpecification) {
 			Point referencePoint = getReferencePoint(lifelinePart, movedOccurrenceSpecification, yLocation);
 			EditPart childToReconnectTo = SequenceUtil.findPartToReconnectTo(lifelinePart, referencePoint);
+			// if referencePoint is on a moved part, it must be translated with the location delta of this part
+			if(!notToMoveEditParts.isEmpty()) {
+				Point oldLoc = SequenceUtil.findLocationOfEvent(lifelinePart, movedOccurrenceSpecification);
+				Point newLoc = referencePoint;
+				referencePoint.translate(oldLoc.getDifference(newLoc));
+			}
 			// reconnect message from the event
 			Message message = ((MessageOccurrenceSpecification)movedOccurrenceSpecification).getMessage();
 			if(message != null && movedOccurrenceSpecification.equals(message.getSendEvent())) {
@@ -511,7 +523,6 @@ public class OccurrenceSpecificationMoveHelper {
 	 * @return command to move the execution specification edit part or null
 	 */
 	private static Command getMoveSingleExecutionSpecificationCommand(GraphicalEditPart executionSpecificationPart, OccurrenceSpecification movedOccurrenceSpecification1, OccurrenceSpecification movedOccurrenceSpecification2, int yLocation1, int yLocation2, LifelineEditPart lifelinePart) {
-		IFigure lifelineFigure = lifelinePart.getFigure();
 		// execution linked to the event must be resized
 		EObject execution = executionSpecificationPart.resolveSemanticElement();
 		if(execution instanceof ExecutionSpecification) {
