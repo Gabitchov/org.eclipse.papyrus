@@ -1298,7 +1298,7 @@ public class SequenceUtil {
 	 *        the reference point
 	 * @return lifeline or execution specification edit part to reconnect to (the most external in the lifeline)
 	 */
-	public static EditPart findPartToReconnectTo(LifelineEditPart lifelinePart, Point referencePoint) {
+	public static GraphicalEditPart findPartToReconnectTo(LifelineEditPart lifelinePart, Point referencePoint) {
 		Rectangle absoluteLifelineBounds = getAbsoluteBounds(lifelinePart);
 		// inspect children nodes of lifeline
 		List<?> children = lifelinePart.getChildren();
