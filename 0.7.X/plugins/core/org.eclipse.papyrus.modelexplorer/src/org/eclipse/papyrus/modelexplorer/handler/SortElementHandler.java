@@ -17,8 +17,6 @@ package org.eclipse.papyrus.modelexplorer.handler;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.commands.IHandler;
-import org.eclipse.core.commands.IHandlerListener;
 import org.eclipse.core.expressions.EvaluationContext;
 import org.eclipse.gmt.modisco.infra.browser.uicore.CustomizationManager;
 import org.eclipse.jface.viewers.TreeViewer;
@@ -31,9 +29,7 @@ import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.navigator.CommonViewer;
 import org.eclipse.ui.navigator.CommonViewerSorter;
-import org.eclipse.ui.navigator.INavigatorContentService;
 /**
  * this handler is used to set a sorter on the model explorer
  *
