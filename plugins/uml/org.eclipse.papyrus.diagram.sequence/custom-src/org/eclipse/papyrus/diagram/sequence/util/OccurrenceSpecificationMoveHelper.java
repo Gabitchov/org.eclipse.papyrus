@@ -45,6 +45,7 @@ import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.common.helper.InteractionFragmentHelper;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.uml2.common.util.CacheAdapter;
@@ -54,6 +55,7 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Event;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.GeneralOrdering;
+import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.IntervalConstraint;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageEnd;
@@ -152,8 +154,7 @@ public class OccurrenceSpecificationMoveHelper {
 		// if referencePoint is on a moved part, it must be translated with the location delta of this part
 		if(!notToMoveEditParts.isEmpty() && childToReconnectTo != lifelinePart) {
 			Point oldLoc = SequenceUtil.findLocationOfEvent(lifelinePart, movedOccurrenceSpecification);
-			Point newLoc = referencePoint;
-			referencePoint.translate(oldLoc.getDifference(newLoc));
+			referencePoint.y = oldLoc.y;
 		}
 		// reconnect general ordering from the event
 		for(GeneralOrdering go : movedOccurrenceSpecification.getToAfters()) {
@@ -217,12 +218,6 @@ public class OccurrenceSpecificationMoveHelper {
 		if(movedOccurrenceSpecification instanceof MessageOccurrenceSpecification) {
 			Point referencePoint = getReferencePoint(lifelinePart, movedOccurrenceSpecification, yLocation);
 			EditPart childToReconnectTo = SequenceUtil.findPartToReconnectTo(lifelinePart, referencePoint);
-			// if referencePoint is on a moved part, it must be translated with the location delta of this part
-			if(!notToMoveEditParts.isEmpty()) {
-				Point oldLoc = SequenceUtil.findLocationOfEvent(lifelinePart, movedOccurrenceSpecification);
-				Point newLoc = referencePoint;
-				referencePoint.translate(oldLoc.getDifference(newLoc));
-			}
 			// reconnect message from the event
 			Message message = ((MessageOccurrenceSpecification)movedOccurrenceSpecification).getMessage();
 			if(message != null && movedOccurrenceSpecification.equals(message.getSendEvent())) {
@@ -742,6 +737,22 @@ public class OccurrenceSpecificationMoveHelper {
 			Command cmd = getMoveOccurrenceSpecificationsCommand(start, finish, startY, finishY, lifelinePart, notToMoveEditParts);
 			if(cmd != null) {
 				compoundCmd.add(cmd);
+			}
+
+			if(request.getSizeDelta().height == 0) {
+				// move time elements for events between start and finish
+				InteractionFragment nextOccSpec = InteractionFragmentHelper.findNextFragment(start, start.eContainer());
+				while(nextOccSpec != null && nextOccSpec != finish) {
+					Point occSpecLocation = SequenceUtil.findLocationOfEvent(lifelinePart, nextOccSpec);
+					if(nextOccSpec instanceof OccurrenceSpecification && occSpecLocation != null) {
+						int occSpecY = occSpecLocation.y + request.getMoveDelta().y;
+						cmd = getMoveTimeElementsCommand((OccurrenceSpecification)nextOccSpec, null, occSpecY, -1, lifelinePart, notToMoveEditParts);
+						if(cmd != null) {
+							compoundCmd.add(cmd);
+						}
+					}
+					nextOccSpec = InteractionFragmentHelper.findNextFragment(nextOccSpec, start.eContainer());
+				}
 			}
 		}
 		return compoundCmd;
