@@ -214,7 +214,7 @@
                 x="10"
                 y="10"/>
             <size
-                dx="100"
+                dx="200"
                 dy="20"/>
           </layoutData>
         </children>
