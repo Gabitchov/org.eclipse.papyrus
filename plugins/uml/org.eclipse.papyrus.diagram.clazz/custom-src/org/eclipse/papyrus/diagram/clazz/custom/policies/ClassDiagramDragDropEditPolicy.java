@@ -58,6 +58,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPartTN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.RedefinableTemplateSignatureEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.SubstitutionEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.TemplateBindingEditPart;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
@@ -126,8 +127,11 @@ public class ClassDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdit
 			return dropInstanceSpecification(dropRequest, semanticLink, linkVISUALID);
 		}
 
+		if(linkVISUALID == SubstitutionEditPart.VISUAL_ID) {
+			return dropAsNormalBinaryLink(dropRequest, semanticLink, linkVISUALID);
+		}
 		if(linkVISUALID == InterfaceRealizationEditPart.VISUAL_ID) {
-			return dropInterfaceRealization(dropRequest, semanticLink, linkVISUALID);
+			return dropAsNormalBinaryLink(dropRequest, semanticLink, linkVISUALID);
 		}
 		if(linkVISUALID == AssociationEditPart.VISUAL_ID) {
 			return dropAssociation(dropRequest, semanticLink, linkVISUALID);
@@ -344,7 +348,7 @@ public class ClassDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdit
 
 
 	/**
-	 * this method is used to drop an interface realization into the class diagraù
+	 * call the mechanism to drop a binary link without specific type
 	 * 
 	 * @param dropRequest
 	 *        the drop request
@@ -352,9 +356,9 @@ public class ClassDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdit
 	 *        the element that is the interfaceRealization
 	 * @param linkVISUALID
 	 *        the visualID of the interfaceRealization
-	 * @return the command containing the creation of the view for interface realization
+	 * @return the command containing the creation of the view ffor a link
 	 */
-	protected Command dropInterfaceRealization(DropObjectsRequest dropRequest, Element semanticLink, int linkVISUALID) {
+	protected Command dropAsNormalBinaryLink(DropObjectsRequest dropRequest, Element semanticLink, int linkVISUALID) {
 		Collection<?> sources = linkmappingHelper.getSource(semanticLink);
 		Collection<?> targets = linkmappingHelper.getTarget(semanticLink);
 		if(sources.size() == 0 || targets.size() == 0) {
@@ -368,6 +372,9 @@ public class ClassDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdit
 		return new ICommandProxy(cc);
 	}
 
+	
+	
+	
 	/**
 	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.DiagramDragDropEditPolicy#getDropCommand(org.eclipse.gef.requests.ChangeBoundsRequest)
