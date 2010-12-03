@@ -76,7 +76,6 @@ import org.eclipse.uml2.uml.InteractionOperand;
 import org.eclipse.uml2.uml.InteractionOperatorKind;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.LiteralInteger;
-import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.ValueSpecification;
 
@@ -86,11 +85,6 @@ import org.eclipse.uml2.uml.ValueSpecification;
 public class InteractionOperandEditPart extends
 
 AbstractBorderedShapeEditPart {
-
-	/**
-	 * Default value for integer.
-	 */
-	private static final int DEFAULT_INT_VALUE = -1;
 
 	/**
 	 * @generated
@@ -115,28 +109,13 @@ AbstractBorderedShapeEditPart {
 	/**
 	 * Notfier for listen and unlistend model element.
 	 */
-	private NotificationHelper notifier = new NotificationHelper(new UIAdapterImpl() {
+	private NotificationHelper notifierHelper = new NotificationHelper(new UIAdapterImpl() {
 
 		@Override
 		protected void safeNotifyChanged(Notification msg) {
 			handleNotificationEvent(msg);
 		}
 	});
-
-	/**
-	 * Specification value
-	 */
-	private String specValue = null;
-
-	/**
-	 * Maximun value
-	 */
-	private int maxValue = DEFAULT_INT_VALUE;
-
-	/**
-	 * Minimun value
-	 */
-	private int minValue = DEFAULT_INT_VALUE;
 
 	/**
 	 * @generated
@@ -415,7 +394,7 @@ AbstractBorderedShapeEditPart {
 			fInteractionConstraintLabel.setText("");
 			updateConstraintLabel();
 
-			this.add(fInteractionConstraintLabel, new Rectangle(getMapMode().DPtoLP(10), getMapMode().DPtoLP(10), getMapMode().DPtoLP(100), getMapMode().DPtoLP(20)));
+			this.add(fInteractionConstraintLabel, new Rectangle(getMapMode().DPtoLP(10), getMapMode().DPtoLP(10), getMapMode().DPtoLP(200), getMapMode().DPtoLP(20)));
 
 		}
 
@@ -427,43 +406,86 @@ AbstractBorderedShapeEditPart {
 		 */
 		protected void updateConstraintLabel() {
 			fInteractionConstraintLabel.setText("");
-			Object obj = getModel();
-			if(obj instanceof org.eclipse.gmf.runtime.notation.Shape) {
-				EObject element = ((org.eclipse.gmf.runtime.notation.Shape)obj).getElement();
-				if(element instanceof InteractionOperand) {
-					InteractionOperand interactionOperand = (InteractionOperand)element;
-					InteractionConstraint guard = interactionOperand.getGuard();
-					if(guard != null) {
-						ValueSpecification maxint = guard.getMaxint();
-						if(maxint instanceof LiteralInteger) {
-							maxValue = maxint.integerValue();
-						}
-						ValueSpecification minint = guard.getMinint();
-						if(minint instanceof LiteralInteger) {
-							minValue = minint.integerValue();
-						}
-						ValueSpecification specification = guard.getSpecification();
-						if(specification != null) {
+			EObject element = resolveSemanticElement();
+			if(element instanceof InteractionOperand) {
+				InteractionOperand interactionOperand = (InteractionOperand)element;
+
+				CombinedFragment enclosingCF = (CombinedFragment)interactionOperand.getOwner();
+				InteractionOperatorKind cfOperator = enclosingCF.getInteractionOperator();
+
+				InteractionConstraint guard = interactionOperand.getGuard();
+
+				String specValue = null;
+
+				if(guard != null) {
+					ValueSpecification specification = guard.getSpecification();
+
+					if(specification != null) {
+						try {
 							specValue = specification.stringValue();
+						} catch (Exception e) {
 						}
-
-						StringBuilder sb = new StringBuilder("");
-
-						String minimun = minValue != DEFAULT_INT_VALUE ? String.valueOf(minValue) : null;
-						if(minimun != null) {
-							sb.append("[").append(minimun);
-							String maximun = maxValue != DEFAULT_INT_VALUE ? String.valueOf(maxValue) : null;
-							if(maximun != null) {
-								sb.append(",").append(maxValue);
-							}
-							sb.append("]");
-						} else if(specValue != null && specValue.length() > 0) {
-							sb.append("[").append(specValue).append("]");
-						}
-
-						fInteractionConstraintLabel.setText(sb.toString());
 					}
 				}
+
+				StringBuilder sb = new StringBuilder("");
+
+				if(InteractionOperatorKind.LOOP_LITERAL.equals(cfOperator)) {
+					Integer minValue = null;
+					Integer maxValue = null;
+					if(guard != null) {
+						ValueSpecification maxint = guard.getMaxint();
+						try {
+							maxValue = maxint.integerValue();
+						} catch (Exception e) {
+						}
+						ValueSpecification minint = guard.getMinint();
+						try {
+							minValue = minint.integerValue();
+						} catch (Exception e) {
+						}
+					}
+
+					if(minValue == null && maxValue == null) {
+						minValue = 0;
+						maxValue = -1;
+					} else if(minValue == null) {
+						minValue = 0;
+					} else if(maxValue == null) {
+						maxValue = minValue;
+					}
+
+					sb.append('[');
+					sb.append(minValue);
+					if(minValue != maxValue) {
+						sb.append(',');
+						if(maxValue == -1) {
+							sb.append('*');
+						} else {
+							sb.append(maxValue);
+						}
+					}
+					sb.append(']');
+
+					if(specValue != null && !"".equals(specValue)) {
+						sb.append(' ');
+					}
+				}
+
+				if(specValue == null) {
+					EList<InteractionOperand> operands = enclosingCF.getOperands();
+					if(InteractionOperatorKind.ALT_LITERAL.equals(cfOperator) && interactionOperand.equals(operands.get(operands.size() - 1))) {
+						specValue = "else";
+					} else {
+						specValue = "true";
+					}
+				}
+
+				sb.append('[');
+				sb.append(specValue);
+				sb.append(']');
+
+				fInteractionConstraintLabel.setText(sb.toString());
 			}
 		}
 
@@ -1265,90 +1287,73 @@ AbstractBorderedShapeEditPart {
 		if(UMLPackage.eINSTANCE.getInteractionOperand_Guard().equals(feature)) {
 			// Case of add, change or delete guard
 			if(notification.getOldValue() instanceof InteractionConstraint) {
-				notifier.unlistenObject((InteractionConstraint)notification.getOldValue());
+				notifierHelper.unlistenObject((InteractionConstraint)notification.getOldValue());
 			}
 			if(newValue instanceof InteractionConstraint) {
-				notifier.listenObject((InteractionConstraint)newValue);
+				notifierHelper.listenObject((InteractionConstraint)newValue);
 			}
 		} else if(UMLPackage.eINSTANCE.getConstraint_Specification().equals(feature)) {
 			// Case of add, change or delete Specification
-			specValue = null;
 			if(notification.getOldValue() instanceof ValueSpecification) {
-				notifier.unlistenObject((ValueSpecification)notification.getOldValue());
+				notifierHelper.unlistenObject((ValueSpecification)notification.getOldValue());
 			}
 			if(newValue instanceof ValueSpecification) {
 				ValueSpecification newStringValue = (ValueSpecification)newValue;
-				notifier.listenObject(newStringValue);
-				specValue = newStringValue.stringValue();
+				notifierHelper.listenObject(newStringValue);
 			}
-			getPrimaryShape().updateConstraintLabel();
 		} else if(UMLPackage.eINSTANCE.getInteractionConstraint_Minint().equals(feature)) {
 			// Case of add, change or delete Minint
-			minValue = DEFAULT_INT_VALUE;
 			if(notification.getOldValue() instanceof LiteralInteger) {
-				notifier.unlistenObject((LiteralInteger)notification.getOldValue());
+				notifierHelper.unlistenObject((LiteralInteger)notification.getOldValue());
 			}
-			if(newValue instanceof LiteralInteger && InteractionOperatorKind.LOOP_LITERAL.equals(getInteractionOperator())) {
+			if(newValue instanceof LiteralInteger) {
 				LiteralInteger newIntegerValue = (LiteralInteger)newValue;
-				notifier.listenObject(newIntegerValue);
-				if(newIntegerValue.getValue() < 0) {
-					newIntegerValue.setValue(0);
-				}
-				// If Maxint exist, min can't be greater than max
-				else if(maxValue != DEFAULT_INT_VALUE && maxValue < newIntegerValue.getValue()) {
-					newIntegerValue.setValue(maxValue);
-				}
-				newIntegerValue.setName("min");
-				minValue = newIntegerValue.getValue();
-			} else if(newValue != null) {
-				InteractionOperand interactionOperand = (InteractionOperand)resolveSemanticElement();
-				interactionOperand.getGuard().setMinint(null);
+				notifierHelper.listenObject(newIntegerValue);
 			}
-			getPrimaryShape().updateConstraintLabel();
 		} else if(UMLPackage.eINSTANCE.getInteractionConstraint_Maxint().equals(feature)) {
 			// Case of add, change or delete Maxint
-			maxValue = DEFAULT_INT_VALUE;
 			if(notification.getOldValue() instanceof LiteralInteger) {
-				notifier.unlistenObject((LiteralInteger)notification.getOldValue());
+				notifierHelper.unlistenObject((LiteralInteger)notification.getOldValue());
 			}
-			if(newValue instanceof LiteralInteger && InteractionOperatorKind.LOOP_LITERAL.equals(getInteractionOperator())) {
+			if(newValue instanceof LiteralInteger) {
 				LiteralInteger newIntegerValue = (LiteralInteger)newValue;
-				notifier.listenObject(newIntegerValue);
-
-				maxValue = newIntegerValue.getValue();
-				maxValue = maxValue > minValue ? maxValue : minValue;
-				newIntegerValue.setValue(maxValue);
-
-				newIntegerValue.setName("max");
-
-				// If Minint doesn't exist, creates it
-				InteractionOperand interactionOperand = (InteractionOperand)resolveSemanticElement();
-				if(interactionOperand.getGuard().getMinint() == null) {
-					LiteralInteger minint = UMLFactory.eINSTANCE.createLiteralInteger();
-					minint.setValue(0);
-					interactionOperand.getGuard().setMinint(minint);
-				}
-			} else if(newValue != null) {
-				InteractionOperand interactionOperand = (InteractionOperand)resolveSemanticElement();
-				interactionOperand.getGuard().setMaxint(null);
+				notifierHelper.listenObject(newIntegerValue);
 			}
-			getPrimaryShape().updateConstraintLabel();
-		} else if(UMLPackage.eINSTANCE.getLiteralInteger_Value().equals(feature)) {
-			InteractionOperand interactionOperand = (InteractionOperand)resolveSemanticElement();
-			if(interactionOperand.getGuard() != null) {
-				// Case of add, change or delete Maxint
-				if(notification.getNotifier().equals(interactionOperand.getGuard().getMinint()) && newValue instanceof Integer && notification.getNewIntValue() > maxValue && maxValue != DEFAULT_INT_VALUE) {
-					minValue = maxValue;
-					((LiteralInteger)interactionOperand.getGuard().getMinint()).setValue(minValue);
-				} else if(notification.getNotifier().equals(interactionOperand.getGuard().getMaxint()) && newValue instanceof Integer && notification.getNewIntValue() < minValue) {
-					maxValue = minValue;
-					((LiteralInteger)interactionOperand.getGuard().getMaxint()).setValue(maxValue);
-				}
-				getPrimaryShape().updateConstraintLabel();
-			}
-		} else {
-			getPrimaryShape().updateConstraintLabel();
 		}
+
+		// handle modification of minint et maxint to match constraints min <= max and min >= 0
+		if(notification.getNotifier() instanceof LiteralInteger && InteractionOperatorKind.LOOP_LITERAL.equals(getInteractionOperator())) {
+			LiteralInteger literalIntNotifier = (LiteralInteger)notification.getNotifier();
+			EStructuralFeature containingFeature = literalIntNotifier.eContainingFeature();
+			if(UMLPackage.eINSTANCE.getInteractionConstraint_Minint().equals(containingFeature)) {
+				InteractionConstraint constraint = (InteractionConstraint)literalIntNotifier.getOwner();
+				if(newValue instanceof Integer) {
+					Integer newMin = (Integer)newValue;
+					if(newMin < 0) {
+						literalIntNotifier.setValue(0);
+					}
+					if(constraint.getMaxint() instanceof LiteralInteger) {
+						int max = ((LiteralInteger)constraint.getMaxint()).getValue();
+						if(newMin > max) {
+							literalIntNotifier.setValue(max);
+						}
+					}
+				}
+			} else if(UMLPackage.eINSTANCE.getInteractionConstraint_Maxint().equals(containingFeature)) {
+				InteractionConstraint constraint = (InteractionConstraint)literalIntNotifier.getOwner();
+				if(newValue instanceof Integer) {
+					Integer newMax = (Integer)newValue;
+					int min = 0;
+					if(constraint.getMinint() instanceof LiteralInteger) {
+						min = ((LiteralInteger)constraint.getMinint()).getValue();
+						if(newMax < min) {
+							literalIntNotifier.setValue(min);
+						}
+					}
+				}
+			}
+		}
+		getPrimaryShape().updateConstraintLabel();
 
 		// Manage Continuation constraint on covered lifeline :
 		// Continuations are always global in the enclosing InteractionFragment 
@@ -1429,7 +1434,7 @@ AbstractBorderedShapeEditPart {
 	 */
 	@Override
 	public void deactivate() {
-		notifier.unlistenAll();
+		notifierHelper.unlistenAll();
 		super.deactivate();
 	}
 
@@ -1438,7 +1443,7 @@ AbstractBorderedShapeEditPart {
 	 */
 	@Override
 	public void removeNotify() {
-		notifier.unlistenAll();
+		notifierHelper.unlistenAll();
 		super.removeNotify();
 	}
 
@@ -1451,10 +1456,10 @@ AbstractBorderedShapeEditPart {
 			InteractionOperand interactionOperand = (InteractionOperand)eObject;
 			InteractionConstraint guard = interactionOperand.getGuard();
 			if(guard != null) {
-				notifier.listenObject(guard);
-				notifier.listenObject(guard.getSpecification());
-				notifier.listenObject(guard.getMaxint());
-				notifier.listenObject(guard.getMinint());
+				notifierHelper.listenObject(guard);
+				notifierHelper.listenObject(guard.getSpecification());
+				notifierHelper.listenObject(guard.getMaxint());
+				notifierHelper.listenObject(guard.getMinint());
 			}
 		}
 	}

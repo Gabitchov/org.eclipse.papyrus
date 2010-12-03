@@ -1109,6 +1109,21 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 		return super.getTargetEditPart(request);
 	}
 
+	public List<InteractionOperandEditPart> getOperandChildrenEditParts() {
+		List<InteractionOperandEditPart> children = new LinkedList<InteractionOperandEditPart>();
+
+		IGraphicalEditPart compartment = getChildBySemanticHint(String.valueOf(CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID));
+		if (compartment instanceof CombinedFragmentCombinedFragmentCompartmentEditPart) {
+
+			for (Object ep : compartment.getChildren()) {
+				if (ep instanceof InteractionOperandEditPart) {
+					children.add((InteractionOperandEditPart)ep);
+				}
+			}
+		}
+		return children;
+	}
+
 	/**
 	 * Handle for interaction operator, operator kind and covered lifelines
 	 */
@@ -1131,6 +1146,10 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 				MessageDialog.openError(Display.getCurrent().getActiveShell(), FORBIDDEN_ACTION, BLOCK_OPERATOR_MODIFICATION_MSG);
 				CommandHelper.executeCommandWithoutHistory(getEditingDomain(), SetCommand.create(getEditingDomain(), combinedFragment, feature, notification.getOldValue()));
 				return;
+			}
+			// update guards on enclosed operands
+			for (InteractionOperandEditPart ioep : getOperandChildrenEditParts()) {
+				ioep.getPrimaryShape().updateConstraintLabel();
 			}
 		} else if(UMLPackage.eINSTANCE.getCombinedFragment_Operand().equals(feature)) {
 			// Case only call by the model explorer
