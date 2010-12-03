@@ -98,7 +98,8 @@ public class CollaborativeActionsFactory implements IActionHandlerFactory {
 	 * {@inheritDoc}
 	 */
 	public void update(IStructuredSelection structuredSelection) {
-		// do nothing
+		controlAction.setEnabled(controlAction.isEnabled());
+		uncontrolAction.setEnabled(uncontrolAction.isEnabled());
 	}
 
 }
