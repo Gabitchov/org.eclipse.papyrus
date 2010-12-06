@@ -20,8 +20,8 @@ import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.core.utils.CrossReferencerUtil;
 import org.eclipse.papyrus.diagram.common.editpolicies.UMLBaseItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.common.util.CrossReferencerUtil;
 import org.eclipse.uml2.uml.Generalization;
 
 /**

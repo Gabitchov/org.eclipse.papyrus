@@ -10,7 +10,7 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.core.utils;
+package org.eclipse.papyrus.diagram.common.util;
 
 import java.util.HashSet;
 import java.util.Iterator;

@@ -39,7 +39,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.mapmode.MapModeUtil;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.core.utils.CrossReferencerUtil;
+import org.eclipse.papyrus.diagram.common.util.CrossReferencerUtil;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseDiagramEditPart;
 import org.eclipse.papyrus.diagram.usecase.part.UMLDiagramEditor;
 import org.eclipse.papyrus.diagram.usecase.part.UMLDiagramEditorPlugin;
