@@ -129,12 +129,13 @@ public class CommandHelper {
 		// Set MessageSort
 		message.setMessageSort(messageSort);
 
-		// Init Name
-		if(signature == null) {
-			ElementInitializers.init_NamedElement(message);
-		} else {
-			message.setName(signature.getName());
+		String prefix = "";
+
+		if(signature != null) {
+			prefix = signature.getName() + "_";
 		}
+
+		ElementInitializers.init_NamedElement(message, prefix);
 
 		return message;
 	}
