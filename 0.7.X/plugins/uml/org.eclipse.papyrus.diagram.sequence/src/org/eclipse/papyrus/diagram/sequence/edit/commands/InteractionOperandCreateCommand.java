@@ -34,8 +34,8 @@ import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.InteractionConstraint;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.InteractionOperand;
-import org.eclipse.uml2.uml.LiteralBoolean;
 import org.eclipse.uml2.uml.LiteralInteger;
+import org.eclipse.uml2.uml.LiteralString;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
@@ -157,8 +157,9 @@ public class InteractionOperandCreateCommand extends EditElementCommand {
 		InteractionConstraint guard = UMLFactory.eINSTANCE.createInteractionConstraint();
 		newIO.setGuard(guard);
 
-		LiteralBoolean literalBoolean = UMLFactory.eINSTANCE.createLiteralBoolean();
-		guard.setSpecification(literalBoolean);
+		LiteralString literalString = UMLFactory.eINSTANCE.createLiteralString();
+		literalString.setValue("undefined");
+		guard.setSpecification(literalString);
 
 		LiteralInteger min = UMLFactory.eINSTANCE.createLiteralInteger();
 		min.setValue(0);
