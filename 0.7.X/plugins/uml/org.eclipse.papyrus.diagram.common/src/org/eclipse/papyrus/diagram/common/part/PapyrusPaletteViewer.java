@@ -40,7 +40,7 @@ public class PapyrusPaletteViewer extends PaletteViewerEx {
 		if(customizerDialog == null) {
 			try {
 				@SuppressWarnings("unchecked")
-				Class<PaletteCustomizerDialog> advancedCustomizerDialogClass = Activator.getDefault().getBundle().loadClass("org.eclipse.papyrus.diagram.common.palette.customization.dialog.PapyrusPaletteCustomizerDialog");
+				Class<PaletteCustomizerDialog> advancedCustomizerDialogClass = (Class<PaletteCustomizerDialog>)Activator.getDefault().getBundle().loadClass("org.eclipse.papyrus.diagram.common.palette.customization.dialog.PapyrusPaletteCustomizerDialog");
 				Constructor<PaletteCustomizerDialog> constructor = advancedCustomizerDialogClass.getConstructor(Shell.class, PaletteCustomizer.class, PaletteRoot.class);
 				if(constructor != null) {
 					customizerDialog = constructor.newInstance(getControl().getShell(), getCustomizer(), getPaletteRoot());
