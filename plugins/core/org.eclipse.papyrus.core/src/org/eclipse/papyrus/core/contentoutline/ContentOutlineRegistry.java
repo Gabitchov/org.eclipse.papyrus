@@ -212,7 +212,7 @@ public class ContentOutlineRegistry {
 				try {
 					String declaringID = element.getContributor().getName();
 					Bundle bundle = Platform.getBundle(declaringID);
-					factoryClass = bundle.loadClass(className);
+					factoryClass = (Class<IPapyrusContentOutlinePage>)bundle.loadClass(className);
 				} catch (ClassNotFoundException e1) {
 					throw new BadClassNameException("", "contentoutline", classAttributeName, e1);
 				}
