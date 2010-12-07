@@ -11,6 +11,7 @@ import org.eclipse.gef.KeyStroke;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.eclipse.papyrus.core.adaptor.gmf.SynchronizableGmfDiagramEditor;
 import org.eclipse.papyrus.core.lifecycleevents.ISaveAndDirtyService;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
@@ -24,7 +25,7 @@ import org.eclipse.swt.SWT;
  * @author cedric dumoulin
  * 
  */
-public class UmlGmfDiagramEditor extends DiagramDocumentEditor {
+public class UmlGmfDiagramEditor extends SynchronizableGmfDiagramEditor {
 
 
 	/**
