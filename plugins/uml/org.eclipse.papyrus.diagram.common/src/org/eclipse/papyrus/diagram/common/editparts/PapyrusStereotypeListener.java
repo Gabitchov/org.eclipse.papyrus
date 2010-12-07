@@ -14,12 +14,14 @@
 package org.eclipse.papyrus.diagram.common.editparts;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.papyrus.core.listenerservice.IPapyrusListener;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Extension;
 import org.eclipse.uml2.uml.internal.impl.ElementImpl;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Listener for stereotypes application/deapplication
@@ -45,6 +47,14 @@ public class PapyrusStereotypeListener implements IPapyrusListener {
 	public static final int UNAPPLIED_STEREOTYPE = 21;
 
 	/**
+	 * An {@link Notification#getEventType event type} indicating that a stereotype has been
+	 * unapplied to the notifier
+	 * 
+	 * @see Notification#getEventType
+	 */
+	public static final int MODIFIED_STEREOTYPE = 22;
+
+	/**
 	 * Creates a new PapyrusStereotypeListener.
 	 */
 	public PapyrusStereotypeListener() {
@@ -58,9 +68,6 @@ public class PapyrusStereotypeListener implements IPapyrusListener {
 		// check this is a EStructuralFeature that is changed. Could be something else ?!
 		final EStructuralFeature feature;
 
-		if(notification.getFeature() == null) {
-			return;
-		}
 		if(!(notification.getFeature() instanceof EStructuralFeature)) {
 			return;
 		}
@@ -68,12 +75,20 @@ public class PapyrusStereotypeListener implements IPapyrusListener {
 		feature = (EStructuralFeature)notification.getFeature();
 
 		if(!isBaseElementChanged(feature)) {
+			// stereotype itself has changed.
+			Object notifier = notification.getNotifier();
+			// notifier may be the stereotype application
+			if (notifier instanceof EObject) {
+				EObject baseElement = UMLUtil.getBaseElement((EObject) notifier);
+				if (baseElement instanceof Element) {
+					// notifier listeners for the base element
+					StereotypeCustomNotification newNotification = new StereotypeCustomNotification((ElementImpl)baseElement, MODIFIED_STEREOTYPE, feature.getFeatureID(), null, notification.getNotifier());
+					baseElement.eNotify(newNotification);
+				}
+			}
 			return;
 		}
 
-		// if (!notification.getFeature().getName().startsWith(Extension.METACLASS_ROLE_PREFIX)) {
-		//
-		// }
 		// check the SET base Element for stereotype elements.... if this is this kind of element
 		if(Notification.SET != notification.getEventType()) {
 			return;
@@ -81,22 +96,36 @@ public class PapyrusStereotypeListener implements IPapyrusListener {
 
 		// should retrieve the element on which modification is done. This should be the new value
 		// of the notification
-		Object newValue = notification.getNewValue(); // this should be the stereotyped element
-		if(!(newValue instanceof Element)) {
-			return;
+		int notificationValue;
+		Object value = notification.getNewValue(); // this should be the stereotyped element
+		if(value instanceof Element) {
+			// check the notifier (stereotype application) is in the list of stereotypes for the
+			// element
+			boolean isStereoApplication = ((Element)value).getStereotypeApplications().contains(notification.getNotifier());
+			if(!isStereoApplication) {
+				return;
+			}
+			// we are sure this is a new stereotype application
+			notificationValue = APPLIED_STEREOTYPE;
 		}
-
-		// check the notifier (stereotype application) is in the list of the stereotype for the
-		// element
-		boolean isAStereotype = ((Element)newValue).getStereotypeApplications().contains(notification.getNotifier());
-		if(!isAStereotype) {
-			return;
+		else {
+			value = notification.getOldValue();
+			if (!(value instanceof Element)) {
+				return;
+			}
+			// check that the notifier (stereotype application) is NOT in the list of stereotypes for the
+			// element
+			boolean isStereoApplication = ((Element)value).getStereotypeApplications().contains(notification.getNotifier());
+			if(isStereoApplication) {
+				return;
+			}
+			// element is no longer applied.
+			notificationValue = UNAPPLIED_STEREOTYPE;
 		}
-
-		// we are sure this is a new stereotype application => the element should yield it has been
-		// changed, so its edit parts can react
-		StereotypeCustomNotification newNotification = new StereotypeCustomNotification((ElementImpl)newValue, APPLIED_STEREOTYPE, feature.getFeatureID(), null, notification.getNotifier());
-		((Element)newValue).eNotify(newNotification);
+	
+		// emit notification, so its edit parts can react
+		StereotypeCustomNotification newNotification = new StereotypeCustomNotification((ElementImpl)value, notificationValue, feature.getFeatureID(), null, notification.getNotifier());
+		((Element)value).eNotify(newNotification);
 	}
 
 	/**
