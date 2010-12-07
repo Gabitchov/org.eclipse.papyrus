@@ -351,6 +351,23 @@
 <extension point="org.eclipse.ui.startup">
 	<startup class="org.eclipse.papyrus.modelexplorer.Activator"/>
 </extension>
+<extension
+      point="org.eclipse.ui.navigator.linkHelper">
+   <linkHelper
+         class="org.eclipse.papyrus.modelexplorer.LinkHelper"
+         id="org.eclipse.papyrus.modelexplorer.linkHelper">
+       <selectionEnablement>
+         <instanceof
+               value="java.lang.Object">
+         </instanceof>
+      </selectionEnablement>
+      <editorInputEnablement>
+         <instanceof
+               value="org.eclipse.ui.part.IFileEditorInput">
+         </instanceof>
+      </editorInputEnablement>
+   </linkHelper>
+</extension>
 
 <!-- This service listen the selection, ensures that the modelExplorer is active, and update the  
 	 deleteInModelExplorer variable according to the selection.

@@ -19,6 +19,7 @@ import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.modelexplorer.Activator;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 
 /**
@@ -35,6 +36,7 @@ public class RenameDiagramAction extends Action {
 		setImageDescriptor(Activator
 				.getImageDescriptor("icons/etool16/rename.gif"));
 		setText("Rename...");
+		setAccelerator(SWT.F2);
 	}
 
 	/**
