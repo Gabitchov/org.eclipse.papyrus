@@ -32,7 +32,6 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.common.CommonPlugin;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -55,7 +54,6 @@ import org.eclipse.papyrus.controlmode.mm.history.historyFactory;
 import org.eclipse.papyrus.controlmode.mm.history.historyPackage;
 import org.eclipse.papyrus.core.modelsetquery.ModelSetQuery;
 import org.eclipse.papyrus.core.utils.EditorUtils;
-import org.eclipse.papyrus.core.utils.ServiceUtils;
 import org.eclipse.papyrus.resource.ModelIdentifiers;
 import org.eclipse.papyrus.resource.ModelSet;
 import org.eclipse.papyrus.resource.notation.NotationModel;
@@ -173,7 +171,7 @@ public class ControlCommand extends AbstractTransactionalCommand {
 			saveResources();
 			return Status.OK_STATUS;
 		} else {
-			NotificationBuilder.createErrorPopup(CommonPlugin.INSTANCE.getString("_UI_UnexecutableCommand_description")).setTitle(CommonPlugin.INSTANCE.getString("_UI_UnexecutableCommand_label")).run();
+			NotificationBuilder.createErrorPopup("Unable to execute control command").setTitle("Unable to control").run();
 			return Status.CANCEL_STATUS;
 		}
 	}
@@ -208,7 +206,7 @@ public class ControlCommand extends AbstractTransactionalCommand {
 	}
 
 	/**
-	 * Analyse the history model to update the controlled children
+	 * Analyze the history model to update the controlled children
 	 * 
 	 * @param domain
 	 * @param compoundCommand
@@ -221,7 +219,6 @@ public class ControlCommand extends AbstractTransactionalCommand {
 			return;
 		}
 		// create relative path
-
 		URI uriPath = HistoryUtils.getURIFullPath(currentURL);
 		String currentURLResolved = HistoryUtils.resolve(uriPath, currentURL);
 		String newURLResolved = HistoryUtils.resolve(uriPath, newURL);
