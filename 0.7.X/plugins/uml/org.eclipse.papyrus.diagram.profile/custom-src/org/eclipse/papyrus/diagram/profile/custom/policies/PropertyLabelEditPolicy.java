@@ -145,7 +145,7 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		Object object = notification.getNotifier();
 		Property property = getUMLElement();
 
-		if(object == null) {
+		if(object == null||property==null) {
 			return;
 		}
 
@@ -183,10 +183,6 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		case UMLPackage.PROPERTY__NAME:
 		case UMLPackage.PROPERTY__VISIBILITY:
 		case UMLPackage.PROPERTY__IS_DERIVED:
-		case UMLPackage.PROPERTY__LOWER:
-		case UMLPackage.PROPERTY__LOWER_VALUE:
-		case UMLPackage.PROPERTY__UPPER:
-		case UMLPackage.PROPERTY__UPPER_VALUE:
 		case UMLPackage.PROPERTY__DEFAULT_VALUE:
 		case UMLPackage.PROPERTY__SUBSETTED_PROPERTY:
 		case UMLPackage.PROPERTY__REDEFINED_PROPERTY:
@@ -196,6 +192,10 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			refreshDisplay();
 			break;
 		case UMLPackage.PROPERTY__TYPE:
+		case UMLPackage.PROPERTY__LOWER:
+		case UMLPackage.PROPERTY__LOWER_VALUE:
+		case UMLPackage.PROPERTY__UPPER:
+		case UMLPackage.PROPERTY__UPPER_VALUE:
 
 			switch(notification.getEventType()) {
 			// if it is added => adds listener to the type element
@@ -233,11 +233,11 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			// if it is set, remove the old one and adds the new one. this is the method use when
 			// the type is set or removed...
 			case Notification.SET:
-				if(notification.getNewValue() != null) {
-					getDiagramEventBroker().addNotificationListener((EObject)notification.getNewValue(), this);
-				}
 				if(notification.getOldValue() != null) {
 					getDiagramEventBroker().removeNotificationListener((EObject)notification.getOldValue(), this);
+				}
+				if(notification.getNewValue() != null) {
+					getDiagramEventBroker().addNotificationListener((EObject)notification.getNewValue(), this);
 				}
 				refreshDisplay();
 
