@@ -35,7 +35,6 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.common.CommonPlugin;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -169,7 +168,7 @@ public class UncontrolCommand extends AbstractTransactionalCommand {
 			deleteControlledResources();
 			return Status.OK_STATUS;
 		} else {
-			MessageDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), CommonPlugin.INSTANCE.getString("_UI_UnexecutableCommand_label"), CommonPlugin.INSTANCE.getString("_UI_UnexecutableCommand_description"));
+			MessageDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), "Unable to uncontrol", "Unable to execute uncontrol command");
 			return Status.CANCEL_STATUS;
 		}
 	}
@@ -239,6 +238,7 @@ public class UncontrolCommand extends AbstractTransactionalCommand {
 		if(model == null) {
 			return;
 		}
+		// TODO move the history model from the controlled resource to the parent DI resource
 		URI uriPath = HistoryUtils.getURIFullPath(newURL);
 		newURL = HistoryUtils.resolve(uriPath, newURL);
 		oldURL = HistoryUtils.resolve(uriPath, oldURL);
