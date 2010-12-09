@@ -21,6 +21,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.GraphicalEditPart;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.diagram.clazz.custom.preferences.IPapyrusPropertyPreferencesConstant;
@@ -50,13 +51,14 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 	}
 
 	protected Element initSemanticElement() {
-	return (Property)propertyLabelHelper.getUMLElement(((GraphicalEditPart)getHost()));
+		return (Property)propertyLabelHelper.getUMLElement(((GraphicalEditPart)getHost()));
 	}
+
 	/**
 	 * {@inheritDoc}
 	 */
 	public void addAdditionalListeners() {
-		
+
 		// adds a listener to the element itself, and to linked elements, like Type
 		if(getUMLElement().getType() != null) {
 			getDiagramEventBroker().addNotificationListener(getUMLElement().getType(), this);
@@ -129,7 +131,7 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 	 */
 	@Override
 	public Property getUMLElement() {
-		return (Property) super.getUMLElement();
+		return (Property)super.getUMLElement();
 	}
 
 	/**
@@ -147,6 +149,11 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 		Property property = getUMLElement();
 		if(property == null) {
 			return;
+		}
+
+		//in order to find the role to display we need to now target of the edge, so it is important to have a notification about the change of the target
+		if((notification.getFeature().equals(NotationPackage.eINSTANCE.getEdge_Target())) || (notification.getFeature().equals(NotationPackage.eINSTANCE.getEdge_Source()))) {
+			refreshDisplay();
 		}
 
 		if(object == null) {

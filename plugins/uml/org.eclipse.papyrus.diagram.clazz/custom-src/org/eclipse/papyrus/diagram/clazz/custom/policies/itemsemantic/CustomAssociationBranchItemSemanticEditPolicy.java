@@ -13,16 +13,26 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.custom.policies.itemsemantic;
 
+import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
+import org.eclipse.papyrus.diagram.clazz.custom.command.BranchDependenctReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.command.CAssociationClassCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.command.CAssociationReorientCommand;
+import org.eclipse.papyrus.diagram.clazz.custom.command.CustomAssociationBranchReorientCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.TemplateBindingCreateCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.TemplateBindingReorientCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationBranchEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClass2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyBranchEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.TemplateBindingEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.AssociationBranchItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.common.helper.AssociationHelper;
 
 /**
  * Custom item semantic editpolicy to call custom commands
@@ -40,6 +50,9 @@ public class CustomAssociationBranchItemSemanticEditPolicy extends AssociationBr
 		if(UMLElementTypes.AssociationClass_4017 == req.getElementType()) {
 			return getGEFWrapper(new CAssociationClassCreateCommand(req, req.getSource(), req.getTarget()));
 		}
+		if(UMLElementTypes.TemplateBinding_4015 == req.getElementType()) {
+			return UnexecutableCommand.INSTANCE;
+		}
 		return super.getCompleteCreateRelationshipCommand(req);
 	}
 
@@ -49,6 +62,10 @@ public class CustomAssociationBranchItemSemanticEditPolicy extends AssociationBr
 			return getGEFWrapper(new CAssociationReorientCommand(req));
 		case AssociationEditPart.VISUAL_ID:
 			return getGEFWrapper(new CAssociationReorientCommand(req));
+		case DependencyBranchEditPart.VISUAL_ID:
+			return getGEFWrapper(new BranchDependenctReorientCommand(req));
+		case AssociationBranchEditPart.VISUAL_ID:
+			return UnexecutableCommand.INSTANCE;
 		}
 		return super.getReorientRelationshipCommand(req);
 	}
@@ -65,6 +82,11 @@ public class CustomAssociationBranchItemSemanticEditPolicy extends AssociationBr
 			return UnexecutableCommand.INSTANCE;
 		}
 
+		if(UMLElementTypes.TemplateBinding_4015 == req.getElementType()) {
+			return UnexecutableCommand.INSTANCE;
+		}
 		return super.getStartCreateRelationshipCommand(req);
 	}
+
+
 }

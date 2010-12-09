@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2010 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,8 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ */
 package org.eclipse.papyrus.diagram.clazz.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
@@ -38,7 +37,11 @@ import org.eclipse.papyrus.diagram.common.editpolicies.DuplicatePasteEditPolicy;
 /**
  * @generated
  */
-public class InstanceSpecificationSlotCompartmentEditPartCN extends ListCompartmentEditPart {
+public class InstanceSpecificationSlotCompartmentEditPartCN
+
+extends ListCompartmentEditPart
+
+{
 
 	/**
 	 * @generated
@@ -55,20 +58,15 @@ public class InstanceSpecificationSlotCompartmentEditPartCN extends ListCompartm
 	/**
 	 * @generated
 	 */
-	protected void createDefaultEditPolicies() {
-		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new ResizableCompartmentEditPolicy());
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new InstanceSpecificationSlotCompartmentItemSemanticEditPolicyCN());
-		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy());
-		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
-		installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new DuplicatePasteEditPolicy());
+	protected boolean hasModelChildrenChanged(Notification evt) {
+		return false;
+	}
 
-
-		//in Papyrus diagrams are not strongly synchronised
-		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.clazz.edit.policies.InstanceSpecificationSlotCompartmentCanonicalEditPolicyCN());
-
-		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
-		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new ClassDiagramDragDropEditPolicy());
+	/**
+	 * @generated
+	 */
+	public String getCompartmentName() {
+		return Messages.InstanceSpecificationSlotCompartmentEditPartCN_title;
 	}
 
 	/**
@@ -83,15 +81,19 @@ public class InstanceSpecificationSlotCompartmentEditPartCN extends ListCompartm
 	/**
 	 * @generated
 	 */
-	public String getCompartmentName() {
-		return Messages.InstanceSpecificationSlotCompartmentEditPartCN_title;
-	}
+	protected void createDefaultEditPolicies() {
+		super.createDefaultEditPolicies();
+		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new ResizableCompartmentEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new InstanceSpecificationSlotCompartmentItemSemanticEditPolicyCN());
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy());
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
+		installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new DuplicatePasteEditPolicy());
 
-	/**
-	 * @generated
-	 */
-	protected boolean hasModelChildrenChanged(Notification evt) {
-		return false;
+		//in Papyrus diagrams are not strongly synchronised
+		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.clazz.edit.policies.InstanceSpecificationSlotCompartmentCanonicalEditPolicyCN());
+
+		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new ClassDiagramDragDropEditPolicy());
 	}
 
 	/**
@@ -134,5 +136,4 @@ public class InstanceSpecificationSlotCompartmentEditPartCN extends ListCompartm
 		super.refreshVisuals();
 		refreshBounds();
 	}
-
 }

@@ -28,5 +28,6 @@ public class BlockDefinitionDiagramEditPart extends DiagramEditPart {
 		// This edit policy is reuses the edit policy from Class Diagram, but in not perfectly
 		// consistent with GMF Runtime as it tends to break the extensible type framework.
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new BlockDefinitionDiagramItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy.CustomDragDropEditPolicy());
 	}
 }

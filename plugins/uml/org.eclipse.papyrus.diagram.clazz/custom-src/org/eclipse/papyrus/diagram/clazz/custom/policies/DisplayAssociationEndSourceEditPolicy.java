@@ -20,6 +20,15 @@ import org.eclipse.papyrus.diagram.clazz.custom.helper.AssociationEndSourceLabel
  */
 public class DisplayAssociationEndSourceEditPolicy extends DisplayAssociationEndEditPolicy {
 
+	public void addAdditionalListeners() {
+		super.addAdditionalListeners();
+		// adds a listener to the element itself, and to linked elements, like Type
+		if(getView().eContainer() != null) {
+			getDiagramEventBroker().addNotificationListener(getView().eContainer(), this);
+
+		}
+	}
+
 	/**
 	 * Instantiates a new display association end source edit policy.
 	 */

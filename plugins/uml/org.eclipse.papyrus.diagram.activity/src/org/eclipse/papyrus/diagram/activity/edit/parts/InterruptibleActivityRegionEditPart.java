@@ -13,6 +13,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.activity.edit.parts;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
@@ -29,6 +33,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
@@ -39,7 +44,9 @@ import org.eclipse.papyrus.diagram.activity.edit.policies.InterruptibleActivityR
 import org.eclipse.papyrus.diagram.activity.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.diagram.activity.figures.InterruptibleActivityRegionFigure;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.common.editparts.NodeEditPart;
+import org.eclipse.papyrus.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
 import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
@@ -82,13 +89,10 @@ NodeEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new InterruptibleActivityRegionItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
+		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
-
-
-
-
 
 	/**
 	 * Papyrus codeGen
@@ -151,7 +155,6 @@ NodeEditPart {
 
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -231,9 +234,25 @@ NodeEditPart {
 		}
 	}
 
+	/**
+	 * @generated
+	 */
+	public List<IElementType> getMARelTypesOnTarget() {
+		ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		return types;
+	}
 
-
-
+	/**
+	 * @generated
+	 */
+	public List<IElementType> getMATypesForSource(IElementType relationshipType) {
+		LinkedList<IElementType> types = new LinkedList<IElementType>();
+		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4006) {
+			types.add(UMLElementTypes.Comment_3080);
+		}
+		return types;
+	}
 
 	/**
 	 * @generated

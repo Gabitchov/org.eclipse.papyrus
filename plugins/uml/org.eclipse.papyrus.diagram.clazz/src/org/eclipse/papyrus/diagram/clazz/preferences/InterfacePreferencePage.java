@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2010 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,8 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ */
 package org.eclipse.papyrus.diagram.clazz.preferences;
 
 import org.eclipse.jface.preference.IPreferenceStore;
@@ -27,9 +26,22 @@ public class InterfacePreferencePage extends AbstractPapyrusNodePreferencePage {
 	/**
 	 * @generated
 	 */
+	public static final String compartments[] = { "AttributeCompartment", "OperationCompartment", "NestedClassifierCompartment" };
+
+	/**
+	 * @generated
+	 */
 	public InterfacePreferencePage() {
 		super();
 		setPreferenceKey(ModelEditPart.MODEL_ID + "_Interface");
+	}
+
+	/**
+	 * @generated
+	 */
+	@Override
+	protected String getBundleId() {
+		return UMLDiagramEditorPlugin.ID;
 	}
 
 	/**
@@ -40,6 +52,11 @@ public class InterfacePreferencePage extends AbstractPapyrusNodePreferencePage {
 		String key = ModelEditPart.MODEL_ID + "_Interface";
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.WIDTH), 100);
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.HEIGHT), 100);
+
+		for(String name : compartments) {
+			String preferenceName = PreferenceConstantHelper.getCompartmentElementConstant(key, name, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
+			store.setDefault(preferenceName, true);
+		}
 
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_FILL), new org.eclipse.swt.graphics.RGB(255, 255, 255));
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_LINE), new org.eclipse.swt.graphics.RGB(0, 0, 0));
@@ -57,8 +74,10 @@ public class InterfacePreferencePage extends AbstractPapyrusNodePreferencePage {
 	 * @generated
 	 */
 	@Override
-	protected String getBundleId() {
-		return UMLDiagramEditorPlugin.getInstance().ID;
+	protected void initializeCompartmentsList() {
+		for(String name : compartments) {
+			this.compartmentsList.add(name);
+		}
 	}
 
 }

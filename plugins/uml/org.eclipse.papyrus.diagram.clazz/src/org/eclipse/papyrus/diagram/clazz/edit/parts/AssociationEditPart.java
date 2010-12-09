@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2010 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,8 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ */
 package org.eclipse.papyrus.diagram.clazz.edit.parts;
 
 import org.eclipse.draw2d.Connection;
@@ -30,7 +29,9 @@ import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabe
 /**
  * @generated
  */
-public class AssociationEditPart extends AbstractAssociationEditPart implements ITreeBranchEditPart {
+public class AssociationEditPart extends
+
+AbstractAssociationEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -47,11 +48,12 @@ public class AssociationEditPart extends AbstractAssociationEditPart implements 
 	/**
 	 * @generated
 	 */
-	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
-			return;
-		}
-		super.addChildVisual(childEditPart, -1);
+	protected void createDefaultEditPolicies() {
+		super.createDefaultEditPolicies();
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new AssociationItemSemanticEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomAssociationItemSemanticEditPolicy());
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 	}
 
 	/**
@@ -86,44 +88,13 @@ public class AssociationEditPart extends AbstractAssociationEditPart implements 
 	}
 
 	/**
-	 * Creates figure for this edit part.
-	 * 
-	 * Body of this method does not depend on settings in generation model so
-	 * you may safely remove <i>generated</i> tag and modify it.
-	 * 
 	 * @generated
 	 */
-
-	protected Connection createConnectionFigure() {
-		return new AssociationFigure();
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void createDefaultEditPolicies() {
-		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new AssociationItemSemanticEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomAssociationItemSemanticEditPolicy());
-		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
-	}
-
-	/**
-	 * @generated
-	 */
-	public AssociationFigure getPrimaryShape() {
-		return (AssociationFigure)getFigure();
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
+	protected void addChildVisual(EditPart childEditPart, int index) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
-		super.removeChildVisual(childEditPart);
+		super.addChildVisual(childEditPart, -1);
 	}
 
 	/**
@@ -149,6 +120,35 @@ public class AssociationEditPart extends AbstractAssociationEditPart implements 
 			return true;
 		}
 		return false;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void removeChildVisual(EditPart childEditPart) {
+		if(removeFixedChild(childEditPart)) {
+			return;
+		}
+		super.removeChildVisual(childEditPart);
+	}
+
+	/**
+	 * Creates figure for this edit part.
+	 * 
+	 * Body of this method does not depend on settings in generation model
+	 * so you may safely remove <i>generated</i> tag and modify it.
+	 * 
+	 * @generated
+	 */
+	protected Connection createConnectionFigure() {
+		return new AssociationFigure();
+	}
+
+	/**
+	 * @generated
+	 */
+	public AssociationFigure getPrimaryShape() {
+		return (AssociationFigure)getFigure();
 	}
 
 }

@@ -33,6 +33,7 @@ import org.eclipse.papyrus.properties.runtime.controller.descriptor.IPropertyEdi
 import org.eclipse.papyrus.properties.runtime.dialogs.GetDialogDescriptorOperation;
 import org.eclipse.papyrus.properties.runtime.dialogs.GetDialogDescriptorOperationById;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 
 /**
  * Service to provide property views providers.
@@ -88,13 +89,14 @@ public class PropertyViewService extends Service implements IPreferenceChangeLis
 	 *        the composite parent for the property view
 	 * @param controllerDescriptor
 	 *        the descriptor of the property editor controller
+	 * @param widgetFactory
 	 * @return the created controller for the property editor
 	 */
-	public PropertyEditorController createPropertyEditorController(List<Object> objectsToEdit, Composite parent, IPropertyEditorControllerDescriptor controllerDescriptor) {
+	public PropertyEditorController createPropertyEditorController(List<Object> objectsToEdit, Composite parent, IPropertyEditorControllerDescriptor controllerDescriptor, TabbedPropertySheetWidgetFactory widgetFactory) {
 		PropertyEditorController controller = PropertyEditorControllerService.getInstance().createPropertyEditorController(objectsToEdit, parent, controllerDescriptor);
 
 		if(controller != null) {
-			controller.createPropertyEditor(controllerDescriptor.getEditorDescriptor());
+			controller.createPropertyEditor(controllerDescriptor.getEditorDescriptor(), widgetFactory);
 		}
 		return controller;
 	}

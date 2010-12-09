@@ -55,6 +55,8 @@ import org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.diagram.profile.edit.policies.UMLTextSelectionEditPolicy;
+import org.eclipse.papyrus.diagram.profile.part.UMLVisualIDRegistry;
+import org.eclipse.papyrus.diagram.profile.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.profile.providers.UMLParserProvider;
 import org.eclipse.papyrus.extensionpoints.editors.Activator;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IAdvancedEditorConfiguration;
@@ -326,7 +328,7 @@ public class ModelNameEditPart extends CompartmentEditPart implements ITextAware
 	 */
 	public IParser getParser() {
 		if(parser == null) {
-			parser = UMLParserProvider.get().getModelName_5020Parser();
+			parser = UMLParserProvider.getParser(UMLElementTypes.Model_2005, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.profile.edit.parts.ModelNameEditPart.VISUAL_ID));
 		}
 		return parser;
 	}

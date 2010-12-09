@@ -34,20 +34,18 @@ import org.osgi.framework.BundleContext;
  * The activator class controls the plug-in life cycle
  */
 @SuppressWarnings("restriction")
-public class Activator extends AbstractUIPlugin {
+public class Activator extends AbstractUIPlugin implements org.eclipse.ui.IStartup {
 
-	// The plug-in ID
+	/** The plug-in ID */
 	public static final String PLUGIN_ID = "org.eclipse.papyrus.modelexplorer"; //$NON-NLS-1$
 
-	// The shared instance
+	/** The plug-in shared instance */
 	private static Activator plugin;
 
-	/** The shared log helper. */
+	/** The log service */
 	public static LogHelper log;
 
-	/**
-	 * The constructor
-	 */
+	/** Default constructor */
 	public Activator() {
 	}
 
@@ -146,6 +144,15 @@ public class Activator extends AbstractUIPlugin {
 		} catch (Throwable e) {
 			Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Error initializing customizations", e)); //$NON-NLS-1$
 		}
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.ui.IStartup#earlyStartup()
+	 * 
+	 */
+	public void earlyStartup() {
+
 	}
 
 }

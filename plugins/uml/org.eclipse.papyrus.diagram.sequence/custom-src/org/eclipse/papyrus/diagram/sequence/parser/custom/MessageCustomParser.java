@@ -21,12 +21,17 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.papyrus.diagram.sequence.parsers.MessageFormatParser;
+import org.eclipse.papyrus.umlutils.ICustomAppearence;
+import org.eclipse.papyrus.umlutils.OperationUtil;
+import org.eclipse.papyrus.umlutils.SignalUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageSort;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Parameter;
+import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Signal;
 import org.eclipse.uml2.uml.UMLPackage;
 
 public class MessageCustomParser extends MessageFormatParser implements ISemanticParser {
@@ -46,44 +51,38 @@ public class MessageCustomParser extends MessageFormatParser implements ISemanti
 	@Override
 	public String getPrintString(IAdaptable adapter, int flags) {
 		Object obj = adapter.getAdapter(EObject.class);
-		StringBuffer sb = new StringBuffer();
+		String result = null;
 
 		if(obj instanceof Message) {
 			Message message = (Message)obj;
-			if(message.getSignature() != null) {
-				NamedElement signature = message.getSignature();
-				if(signature.getName().length() > 0) {
-					sb.append(signature.getName());
-					sb.append("(");
-					sb.append(")");
+			NamedElement signature = message.getSignature();
 
-					// Return-value and attribute assignment are used only for reply messages
-					if(MessageSort.REPLY_LITERAL.equals(message.getMessageSort())) {
-						if(signature instanceof Operation) {
-							Operation operation = (Operation)signature;
-
-							Parameter returnResult = operation.getReturnResult();
-							if(returnResult != null) {
-								sb.append(":");
-								sb.append(returnResult.getName());
-							}
-						}
-
-					}
+			if(signature instanceof Operation) {
+				Operation operation = (Operation)signature;
+				if(MessageSort.REPLY_LITERAL.equals(message.getMessageSort())) {
+					result = OperationUtil.getCustomLabel(operation, ICustomAppearence.DISP_NAME | ICustomAppearence.DISP_RT_TYPE);
+				} else if(MessageSort.SYNCH_CALL_LITERAL.equals(message.getMessageSort())) {
+					result = OperationUtil.getCustomLabel(operation, ICustomAppearence.DISP_NAME | ICustomAppearence.DISP_PARAMETER_NAME | ICustomAppearence.DISP_PARAMETER_TYPE);
+				} else {
+					result = OperationUtil.getCustomLabel(operation, ICustomAppearence.DISP_NAME | ICustomAppearence.DISP_PARAMETER_NAME | ICustomAppearence.DISP_PARAMETER_TYPE | ICustomAppearence.DISP_RT_TYPE);
 				}
+			} else if(signature instanceof Signal) {
+				result = SignalUtil.getCustomLabel((Signal)signature, ICustomAppearence.DISP_NAME | ICustomAppearence.DISP_TYPE);
+			} else if(signature != null) {
+				result = signature.getName();
 			}
 
 			// If the String is empty, we add the name of the message
-			if(sb.length() == 0) {
-				sb.append(message.getName());
+			if(result == null || result.equals("")) {
+				result = message.getName();
 			}
 		}
 
-		return sb.toString();
+		return result;
 	}
 
 	public boolean areSemanticElementsAffected(EObject listener, Object notification) {
-		return false;
+		return true;
 	}
 
 	public List getSemanticElementsBeingParsed(EObject element) {
@@ -91,6 +90,19 @@ public class MessageCustomParser extends MessageFormatParser implements ISemanti
 		if(element instanceof Message) {
 			Message message = (Message)element;
 			semanticElementsBeingParsed.add(message);
+			NamedElement signature = message.getSignature();
+			semanticElementsBeingParsed.add(signature);
+
+			if(signature instanceof Operation) {
+				for(Parameter parameter : ((Operation)signature).getOwnedParameters()) {
+					semanticElementsBeingParsed.add(parameter);
+				}
+			}
+			if(signature instanceof Signal) {
+				for(Property property : ((Signal)signature).getOwnedAttributes()) {
+					semanticElementsBeingParsed.add(property);
+				}
+			}
 
 		}
 		return semanticElementsBeingParsed;

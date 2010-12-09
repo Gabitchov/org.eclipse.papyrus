@@ -13,9 +13,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.composite.custom.edit.policies;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.UnexecutableCommand;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.papyrus.diagram.composite.custom.edit.command.ConnectorCreateCommand;
 import org.eclipse.papyrus.diagram.composite.custom.edit.command.PortCreateCommand;
 import org.eclipse.papyrus.diagram.composite.custom.edit.command.RoleBindingCreateCommand;
@@ -45,6 +49,27 @@ public class PropertyPartItemSemanticEditPolicyCN extends org.eclipse.papyrus.di
 			return getGEFWrapper(new PortCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
+	}
+
+	/**
+	 * <pre>
+	 * Forbid direct destruction of Property in case the graphical parent is not
+	 * the semantic parent.  
+	 * 
+	 * {@inheritDoc}
+	 * </pre>
+	 */
+	@Override
+	protected Command getDestroyElementCommand(DestroyElementRequest req) {
+
+		EObject graphicalParent = ((GraphicalEditPart)getHost().getParent()).resolveSemanticElement();
+		EObject semanticParent = req.getElementToDestroy().eContainer();
+
+		if(graphicalParent != semanticParent) {
+			return UnexecutableCommand.INSTANCE;
+		}
+
+		return super.getDestroyElementCommand(req);
 	}
 
 	/**

@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
+ *  Saadia Dhouib saadia.dhouib@cea.fr  
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.preferences;
@@ -36,7 +36,7 @@ public class MessagePreferencePage extends AbstractPapyrusLinkPreferencePage {
 	 */
 	@Override
 	protected String getBundleId() {
-		return UMLDiagramEditorPlugin.getInstance().ID;
+		return UMLDiagramEditorPlugin.ID;
 	}
 
 	/**

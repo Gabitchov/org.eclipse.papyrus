@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.papyrus.developer.feature"
-      label="MDT Papyrus Developer Feature"
-      version="0.7.0.qualifier">
+      label="%featureName"
+      version="0.7.1.qualifier"
+      provider-name="%providerName">
 
    <description url="http://www.example.com/description">
       The MDT Papyrus Developer feature. 
@@ -43,28 +44,28 @@ This feature contains the specialized generator used by Papyrus
          id="org.eclipse.papyrus.def"
          download-size="0"
          install-size="0"
-         version="0.7.0.qualifier"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="org.eclipse.papyrus.codegen"
          download-size="0"
          install-size="0"
-         version="0.7.0.qualifier"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="org.eclipse.papyrus.gmfgenextension"
          download-size="0"
          install-size="0"
-         version="0.7.0.qualifier"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="org.eclipse.papyrus.java.template"
          download-size="0"
          install-size="0"
-         version="0.7.0.qualifier"
+         version="0.0.0"
          unpack="false"/>
 
 </feature>

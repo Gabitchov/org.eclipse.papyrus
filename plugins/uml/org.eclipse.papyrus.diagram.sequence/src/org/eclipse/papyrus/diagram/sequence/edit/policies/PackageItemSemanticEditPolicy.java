@@ -62,6 +62,9 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 	 */
 	private static class DuplicateAnythingCommand extends DuplicateNamedElementCommand {
 
+		/**
+		 * @generated
+		 */
 		private Diagram diagram;
 
 		/**

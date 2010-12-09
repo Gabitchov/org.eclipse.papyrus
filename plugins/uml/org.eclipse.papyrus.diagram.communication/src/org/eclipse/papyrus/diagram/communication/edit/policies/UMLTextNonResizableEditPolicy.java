@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
+ *  Saadia Dhouib saadia.dhouib@cea.fr  
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.edit.policies;
@@ -34,6 +34,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
  * @generated
  */
 public class UMLTextNonResizableEditPolicy extends NonResizableEditPolicyEx {
+
 
 	/**
 	 * @generated

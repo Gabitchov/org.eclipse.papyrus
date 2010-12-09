@@ -15,14 +15,11 @@
 package org.eclipse.papyrus.profile.ui.section;
 
 import org.eclipse.emf.ecore.EModelElement;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
-import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.profile.tree.objects.StereotypedElementTreeObject;
 import org.eclipse.papyrus.profile.ui.compositeforview.AppearanceForAppliedStereotypeComposite;
 import org.eclipse.swt.widgets.Composite;
@@ -40,8 +37,6 @@ public class AppliedStereotypeDisplaySection extends AbstractPropertySection {
 
 	private AppearanceForAppliedStereotypeComposite appearanceForAppliedStereotype;
 
-	private TransactionalEditingDomain domain;
-
 	private EModelElement diagramElement;
 
 	/**
@@ -50,7 +45,7 @@ public class AppliedStereotypeDisplaySection extends AbstractPropertySection {
 	 */
 	public void createControls(Composite parent, TabbedPropertySheetPage tabbedPropertySheetPage) {
 		super.createControls(parent, tabbedPropertySheetPage);
-		appearanceForAppliedStereotype = new AppearanceForAppliedStereotypeComposite(parent, domain);
+		appearanceForAppliedStereotype = new AppearanceForAppliedStereotypeComposite(parent);
 		appearanceForAppliedStereotype.createContent(parent, getWidgetFactory());
 
 	}
@@ -72,21 +67,13 @@ public class AppliedStereotypeDisplaySection extends AbstractPropertySection {
 		if(selection instanceof IStructuredSelection) {
 			Object input = ((IStructuredSelection)selection).getFirstElement();
 
-			if(part instanceof IMultiDiagramEditor) {
-				IMultiDiagramEditor editor = (IMultiDiagramEditor)part;
-				domain = EditorUtils.getTransactionalEditingDomain();
-				appearanceForAppliedStereotype.setDomain(domain);
-			} else {
-				domain = null;
-			}
-
 			if(input instanceof GraphicalEditPart && ((GraphicalEditPart)input).getModel() instanceof View) {
 				appearanceForAppliedStereotype.setSelection(selection);
 				diagramElement = (EModelElement)((AbstractGraphicalEditPart)input).getModel();
 
 				if((diagramElement instanceof View) && ((View)diagramElement).getElement() != null) {
 					appearanceForAppliedStereotype.setElement((Element)((View)diagramElement).getElement());
-					appearanceForAppliedStereotype.setInput(new StereotypedElementTreeObject((Element)((View)diagramElement).getElement(), domain));
+					appearanceForAppliedStereotype.setInput(new StereotypedElementTreeObject((Element)((View)diagramElement).getElement()));
 
 					diagramElement = (EModelElement)((AbstractGraphicalEditPart)input).getModel();
 					appearanceForAppliedStereotype.setDiagramElement(diagramElement);

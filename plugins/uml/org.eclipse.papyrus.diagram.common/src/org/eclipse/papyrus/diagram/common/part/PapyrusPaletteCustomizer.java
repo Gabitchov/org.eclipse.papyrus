@@ -58,6 +58,16 @@ public class PapyrusPaletteCustomizer extends PaletteCustomizerEx {
 		this.preferences = preferenceStore;
 	}
 
+
+	/**
+	 * Returns the change parents
+	 * 
+	 * @return the change parents
+	 */
+	public Map<PaletteEntry, PaletteContainer> getChangedParents() {
+		return changedParents;
+	}
+
 	/**
 	 * {@inheritDoc}
 	 */

@@ -1,0 +1,748 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<domaincontextcodegen:DomainContext xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:domaincontextcodegen="http://www.eclipse.org/papyrus/2010/domaincontextcodegen" typeProjectName="org.eclipse.papyrus.uml.service.types" handlerProjectName="org.eclipse.papyrus.uml.modelexplorer" IClientContextID="org.eclipse.papyrus.service.creation.TypeContext" elementTypeIDPrefix="org.eclipse.papyrus.uml" elementTypeNamePrefix="UML" matcherPatch="org.eclipse.papyrus.service.edit.matcher.NoContextEnablementMatcher" defaultHelperPath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" generatedSourceFolder="src-gen">
+  <metamodel href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#/"/>
+  <elementTypes>
+    <types specificName="ABSTRACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Abstraction"/>
+    </types>
+    <types specificName="ACCEPT_CALL_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//AcceptCallAction"/>
+    </types>
+    <types specificName="ACCEPT_EVENT_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//AcceptEventAction"/>
+    </types>
+    <types specificName="ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Action"/>
+    </types>
+    <types specificName="ACTION_EXECUTION_SPECIFICATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ActionExecutionSpecification"/>
+    </types>
+    <types specificName="ACTION_INPUT_PIN" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ActionInputPin"/>
+    </types>
+    <types specificName="ACTIVITY" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity"/>
+    </types>
+    <types specificName="ACTIVITY_EDGE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ActivityEdge"/>
+    </types>
+    <types specificName="ACTIVITY_FINAL_NODE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ActivityFinalNode"/>
+    </types>
+    <types specificName="ACTIVITY_GROUP" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ActivityGroup"/>
+    </types>
+    <types specificName="ACTIVITY_NODE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ActivityNode"/>
+    </types>
+    <types specificName="ACTIVITY_PARAMETER_NODE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ActivityParameterNode"/>
+    </types>
+    <types specificName="ACTIVITY_PARTITION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ActivityPartition"/>
+    </types>
+    <types specificName="ACTOR" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Actor"/>
+    </types>
+    <types specificName="ADD_STRUCTURAL_FEATURE_VALUE_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//AddStructuralFeatureValueAction"/>
+    </types>
+    <types specificName="ADD_VARIABLE_VALUE_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//AddVariableValueAction"/>
+    </types>
+    <types specificName="ANY_RECEIVE_EVENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//AnyReceiveEvent"/>
+    </types>
+    <types specificName="ARTIFACT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Artifact"/>
+    </types>
+    <types specificName="ASSOCIATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Association"/>
+    </types>
+    <types specificName="ASSOCIATION_CLASS" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//AssociationClass"/>
+    </types>
+    <types specificName="BEHAVIOR" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Behavior"/>
+    </types>
+    <types specificName="BEHAVIORAL_FEATURE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//BehavioralFeature"/>
+    </types>
+    <types specificName="BEHAVIORED_CLASSIFIER" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//BehavioredClassifier"/>
+    </types>
+    <types specificName="BEHAVIOR_EXECUTION_SPECIFICATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//BehaviorExecutionSpecification"/>
+    </types>
+    <types specificName="BROADCAST_SIGNAL_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//BroadcastSignalAction"/>
+    </types>
+    <types specificName="CALL_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CallAction"/>
+    </types>
+    <types specificName="CALL_BEHAVIOR_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CallBehaviorAction"/>
+    </types>
+    <types specificName="CALL_EVENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CallEvent"/>
+    </types>
+    <types specificName="CALL_OPERATION_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CallOperationAction"/>
+    </types>
+    <types specificName="CENTRAL_BUFFER_NODE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CentralBufferNode"/>
+    </types>
+    <types specificName="CHANGE_EVENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ChangeEvent"/>
+    </types>
+    <types specificName="CLASS" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Class"/>
+    </types>
+    <types specificName="CLASSIFIER" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
+    </types>
+    <types specificName="CLASSIFIER_TEMPLATE_PARAMETER" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ClassifierTemplateParameter"/>
+    </types>
+    <types specificName="CLAUSE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Clause"/>
+    </types>
+    <types specificName="CLEAR_ASSOCIATION_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ClearAssociationAction"/>
+    </types>
+    <types specificName="CLEAR_STRUCTURAL_FEATURE_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ClearStructuralFeatureAction"/>
+    </types>
+    <types specificName="CLEAR_VARIABLE_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ClearVariableAction"/>
+    </types>
+    <types specificName="COLLABORATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Collaboration"/>
+    </types>
+    <types specificName="COLLABORATION_USE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CollaborationUse"/>
+    </types>
+    <types specificName="COMBINED_FRAGMENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CombinedFragment"/>
+    </types>
+    <types specificName="COMMENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Comment"/>
+    </types>
+    <types specificName="COMMUNICATION_PATH" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CommunicationPath"/>
+    </types>
+    <types specificName="COMPONENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Component"/>
+    </types>
+    <types specificName="COMPONENT_REALIZATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ComponentRealization"/>
+    </types>
+    <types specificName="CONDITIONAL_NODE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ConditionalNode"/>
+    </types>
+    <types specificName="CONNECTABLE_ELEMENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ConnectableElement"/>
+    </types>
+    <types specificName="CONNECTABLE_ELEMENT_TEMPLATE_PARAMETER" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ConnectableElementTemplateParameter"/>
+    </types>
+    <types specificName="CONNECTION_POINT_REFERENCE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ConnectionPointReference"/>
+    </types>
+    <types specificName="CONNECTOR" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Connector"/>
+    </types>
+    <types specificName="CONNECTOR_END" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ConnectorEnd"/>
+    </types>
+    <types specificName="CONSIDER_IGNORE_FRAGMENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ConsiderIgnoreFragment"/>
+    </types>
+    <types specificName="CONSTRAINT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Constraint"/>
+    </types>
+    <types specificName="CONTINUATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Continuation"/>
+    </types>
+    <types specificName="CONTROL_FLOW" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ControlFlow"/>
+    </types>
+    <types specificName="CONTROL_NODE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ControlNode"/>
+    </types>
+    <types specificName="CREATE_LINK_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CreateLinkAction"/>
+    </types>
+    <types specificName="CREATE_LINK_OBJECT_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CreateLinkObjectAction"/>
+    </types>
+    <types specificName="CREATE_OBJECT_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CreateObjectAction"/>
+    </types>
+    <types specificName="CREATION_EVENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CreationEvent"/>
+    </types>
+    <types specificName="DATA_STORE_NODE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DataStoreNode"/>
+    </types>
+    <types specificName="DATA_TYPE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DataType"/>
+    </types>
+    <types specificName="DECISION_NODE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DecisionNode"/>
+    </types>
+    <types specificName="DEPENDENCY" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Dependency"/>
+    </types>
+    <types specificName="DEPLOYED_ARTIFACT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DeployedArtifact"/>
+    </types>
+    <types specificName="DEPLOYMENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Deployment"/>
+    </types>
+    <types specificName="DEPLOYMENT_SPECIFICATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DeploymentSpecification"/>
+    </types>
+    <types specificName="DEPLOYMENT_TARGET" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DeploymentTarget"/>
+    </types>
+    <types specificName="DESTROY_LINK_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DestroyLinkAction"/>
+    </types>
+    <types specificName="DESTROY_OBJECT_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DestroyObjectAction"/>
+    </types>
+    <types specificName="DESTRUCTION_EVENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DestructionEvent"/>
+    </types>
+    <types specificName="DEVICE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Device"/>
+    </types>
+    <types specificName="DIRECTED_RELATIONSHIP" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DirectedRelationship"/>
+    </types>
+    <types specificName="DURATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Duration"/>
+    </types>
+    <types specificName="DURATION_CONSTRAINT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DurationConstraint"/>
+    </types>
+    <types specificName="DURATION_INTERVAL" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DurationInterval"/>
+    </types>
+    <types specificName="DURATION_OBSERVATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DurationObservation"/>
+    </types>
+    <types specificName="ELEMENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Element"/>
+    </types>
+    <types specificName="ELEMENT_IMPORT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ElementImport"/>
+    </types>
+    <types specificName="ENCAPSULATED_CLASSIFIER" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//EncapsulatedClassifier"/>
+    </types>
+    <types specificName="ENUMERATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Enumeration"/>
+    </types>
+    <types specificName="ENUMERATION_LITERAL" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//EnumerationLiteral"/>
+    </types>
+    <types specificName="EVENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Event"/>
+    </types>
+    <types specificName="EXCEPTION_HANDLER" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ExceptionHandler"/>
+    </types>
+    <types specificName="EXECUTABLE_NODE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ExecutableNode"/>
+    </types>
+    <types specificName="EXECUTION_ENVIRONMENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ExecutionEnvironment"/>
+    </types>
+    <types specificName="EXECUTION_EVENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ExecutionEvent"/>
+    </types>
+    <types specificName="EXECUTION_OCCURRENCE_SPECIFICATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ExecutionOccurrenceSpecification"/>
+    </types>
+    <types specificName="EXECUTION_SPECIFICATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ExecutionSpecification"/>
+    </types>
+    <types specificName="EXPANSION_NODE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ExpansionNode"/>
+    </types>
+    <types specificName="EXPANSION_REGION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ExpansionRegion"/>
+    </types>
+    <types specificName="EXPRESSION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Expression"/>
+    </types>
+    <types specificName="EXTEND" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Extend"/>
+    </types>
+    <types specificName="EXTENSION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Extension"/>
+    </types>
+    <types specificName="EXTENSION_END" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ExtensionEnd"/>
+    </types>
+    <types specificName="EXTENSION_POINT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ExtensionPoint"/>
+    </types>
+    <types specificName="FEATURE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Feature"/>
+    </types>
+    <types specificName="FINAL_NODE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//FinalNode"/>
+    </types>
+    <types specificName="FINAL_STATE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//FinalState"/>
+    </types>
+    <types specificName="FLOW_FINAL_NODE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//FlowFinalNode"/>
+    </types>
+    <types specificName="FORK_NODE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ForkNode"/>
+    </types>
+    <types specificName="FUNCTION_BEHAVIOR" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//FunctionBehavior"/>
+    </types>
+    <types specificName="GATE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Gate"/>
+    </types>
+    <types specificName="GENERALIZATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.GeneralizationEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Generalization"/>
+    </types>
+    <types specificName="GENERALIZATION_SET" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//GeneralizationSet"/>
+    </types>
+    <types specificName="GENERAL_ORDERING" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//GeneralOrdering"/>
+    </types>
+    <types specificName="IMAGE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Image"/>
+    </types>
+    <types specificName="INCLUDE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Include"/>
+    </types>
+    <types specificName="INFORMATION_FLOW" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InformationFlow"/>
+    </types>
+    <types specificName="INFORMATION_ITEM" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InformationItem"/>
+    </types>
+    <types specificName="INITIAL_NODE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InitialNode"/>
+    </types>
+    <types specificName="INPUT_PIN" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InputPin"/>
+    </types>
+    <types specificName="INSTANCE_SPECIFICATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InstanceSpecification"/>
+    </types>
+    <types specificName="INSTANCE_VALUE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InstanceValue"/>
+    </types>
+    <types specificName="INTERACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction"/>
+    </types>
+    <types specificName="INTERACTION_CONSTRAINT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InteractionConstraint"/>
+    </types>
+    <types specificName="INTERACTION_FRAGMENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InteractionFragment"/>
+    </types>
+    <types specificName="INTERACTION_OPERAND" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InteractionOperand"/>
+    </types>
+    <types specificName="INTERACTION_USE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InteractionUse"/>
+    </types>
+    <types specificName="INTERFACE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interface"/>
+    </types>
+    <types specificName="INTERFACE_REALIZATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InterfaceRealization"/>
+    </types>
+    <types specificName="INTERRUPTIBLE_ACTIVITY_REGION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InterruptibleActivityRegion"/>
+    </types>
+    <types specificName="INTERVAL" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interval"/>
+    </types>
+    <types specificName="INTERVAL_CONSTRAINT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//IntervalConstraint"/>
+    </types>
+    <types specificName="INVOCATION_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InvocationAction"/>
+    </types>
+    <types specificName="JOIN_NODE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//JoinNode"/>
+    </types>
+    <types specificName="LIFELINE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Lifeline"/>
+    </types>
+    <types specificName="LINK_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LinkAction"/>
+    </types>
+    <types specificName="LINK_END_CREATION_DATA" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LinkEndCreationData"/>
+    </types>
+    <types specificName="LINK_END_DATA" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LinkEndData"/>
+    </types>
+    <types specificName="LINK_END_DESTRUCTION_DATA" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LinkEndDestructionData"/>
+    </types>
+    <types specificName="LITERAL_BOOLEAN" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LiteralBoolean"/>
+    </types>
+    <types specificName="LITERAL_INTEGER" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LiteralInteger"/>
+    </types>
+    <types specificName="LITERAL_NULL" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LiteralNull"/>
+    </types>
+    <types specificName="LITERAL_SPECIFICATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LiteralSpecification"/>
+    </types>
+    <types specificName="LITERAL_STRING" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LiteralString"/>
+    </types>
+    <types specificName="LITERAL_UNLIMITED_NATURAL" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LiteralUnlimitedNatural"/>
+    </types>
+    <types specificName="LOOP_NODE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LoopNode"/>
+    </types>
+    <types specificName="MANIFESTATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Manifestation"/>
+    </types>
+    <types specificName="MERGE_NODE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//MergeNode"/>
+    </types>
+    <types specificName="MESSAGE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.MessageEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Message"/>
+    </types>
+    <types specificName="MESSAGE_END" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//MessageEnd"/>
+    </types>
+    <types specificName="MESSAGE_EVENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//MessageEvent"/>
+    </types>
+    <types specificName="MESSAGE_OCCURRENCE_SPECIFICATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//MessageOccurrenceSpecification"/>
+    </types>
+    <types specificName="MODEL" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Model"/>
+    </types>
+    <types specificName="MULTIPLICITY_ELEMENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//MultiplicityElement"/>
+    </types>
+    <types specificName="NAMED_ELEMENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement"/>
+    </types>
+    <types specificName="NAMESPACE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Namespace"/>
+    </types>
+    <types specificName="NODE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Node"/>
+    </types>
+    <types specificName="OBJECT_FLOW" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ObjectFlow"/>
+    </types>
+    <types specificName="OBJECT_NODE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ObjectNode"/>
+    </types>
+    <types specificName="OBSERVATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Observation"/>
+    </types>
+    <types specificName="OCCURRENCE_SPECIFICATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//OccurrenceSpecification"/>
+    </types>
+    <types specificName="OPAQUE_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//OpaqueAction"/>
+    </types>
+    <types specificName="OPAQUE_BEHAVIOR" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//OpaqueBehavior"/>
+    </types>
+    <types specificName="OPAQUE_EXPRESSION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//OpaqueExpression"/>
+    </types>
+    <types specificName="OPERATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Operation"/>
+    </types>
+    <types specificName="OPERATION_TEMPLATE_PARAMETER" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//OperationTemplateParameter"/>
+    </types>
+    <types specificName="OUTPUT_PIN" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//OutputPin"/>
+    </types>
+    <types specificName="PACKAGE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Package"/>
+    </types>
+    <types specificName="PACKAGEABLE_ELEMENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//PackageableElement"/>
+    </types>
+    <types specificName="PACKAGE_IMPORT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//PackageImport"/>
+    </types>
+    <types specificName="PACKAGE_MERGE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//PackageMerge"/>
+    </types>
+    <types specificName="PARAMETER" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Parameter"/>
+    </types>
+    <types specificName="PARAMETERABLE_ELEMENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ParameterableElement"/>
+    </types>
+    <types specificName="PARAMETER_SET" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ParameterSet"/>
+    </types>
+    <types specificName="PART_DECOMPOSITION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//PartDecomposition"/>
+    </types>
+    <types specificName="PIN" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Pin"/>
+    </types>
+    <types specificName="PORT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.PortEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Port"/>
+    </types>
+    <types specificName="PRIMITIVE_TYPE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//PrimitiveType"/>
+    </types>
+    <types specificName="PROFILE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Profile"/>
+    </types>
+    <types specificName="PROFILE_APPLICATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ProfileApplication"/>
+    </types>
+    <types specificName="PROPERTY" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Property"/>
+    </types>
+    <types specificName="PROTOCOL_CONFORMANCE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ProtocolConformance"/>
+    </types>
+    <types specificName="PROTOCOL_STATE_MACHINE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ProtocolStateMachine"/>
+    </types>
+    <types specificName="PROTOCOL_TRANSITION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ProtocolTransition"/>
+    </types>
+    <types specificName="PSEUDOSTATE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Pseudostate"/>
+    </types>
+    <types specificName="QUALIFIER_VALUE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//QualifierValue"/>
+    </types>
+    <types specificName="RAISE_EXCEPTION_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//RaiseExceptionAction"/>
+    </types>
+    <types specificName="READ_EXTENT_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReadExtentAction"/>
+    </types>
+    <types specificName="READ_IS_CLASSIFIED_OBJECT_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReadIsClassifiedObjectAction"/>
+    </types>
+    <types specificName="READ_LINK_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReadLinkAction"/>
+    </types>
+    <types specificName="READ_LINK_OBJECT_END_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReadLinkObjectEndAction"/>
+    </types>
+    <types specificName="READ_LINK_OBJECT_END_QUALIFIER_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReadLinkObjectEndQualifierAction"/>
+    </types>
+    <types specificName="READ_SELF_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReadSelfAction"/>
+    </types>
+    <types specificName="READ_STRUCTURAL_FEATURE_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReadStructuralFeatureAction"/>
+    </types>
+    <types specificName="READ_VARIABLE_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReadVariableAction"/>
+    </types>
+    <types specificName="REALIZATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Realization"/>
+    </types>
+    <types specificName="RECEIVE_OPERATION_EVENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReceiveOperationEvent"/>
+    </types>
+    <types specificName="RECEIVE_SIGNAL_EVENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReceiveSignalEvent"/>
+    </types>
+    <types specificName="RECEPTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Reception"/>
+    </types>
+    <types specificName="RECLASSIFY_OBJECT_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReclassifyObjectAction"/>
+    </types>
+    <types specificName="REDEFINABLE_ELEMENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//RedefinableElement"/>
+    </types>
+    <types specificName="REDEFINABLE_TEMPLATE_SIGNATURE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//RedefinableTemplateSignature"/>
+    </types>
+    <types specificName="REDUCE_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReduceAction"/>
+    </types>
+    <types specificName="REGION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Region"/>
+    </types>
+    <types specificName="RELATIONSHIP" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Relationship"/>
+    </types>
+    <types specificName="REMOVE_STRUCTURAL_FEATURE_VALUE_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//RemoveStructuralFeatureValueAction"/>
+    </types>
+    <types specificName="REMOVE_VARIABLE_VALUE_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//RemoveVariableValueAction"/>
+    </types>
+    <types specificName="REPLY_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReplyAction"/>
+    </types>
+    <types specificName="SEND_OBJECT_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//SendObjectAction"/>
+    </types>
+    <types specificName="SEND_OPERATION_EVENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//SendOperationEvent"/>
+    </types>
+    <types specificName="SEND_SIGNAL_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//SendSignalAction"/>
+    </types>
+    <types specificName="SEND_SIGNAL_EVENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//SendSignalEvent"/>
+    </types>
+    <types specificName="SEQUENCE_NODE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//SequenceNode"/>
+    </types>
+    <types specificName="SIGNAL" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Signal"/>
+    </types>
+    <types specificName="SIGNAL_EVENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//SignalEvent"/>
+    </types>
+    <types specificName="SLOT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Slot"/>
+    </types>
+    <types specificName="START_CLASSIFIER_BEHAVIOR_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//StartClassifierBehaviorAction"/>
+    </types>
+    <types specificName="START_OBJECT_BEHAVIOR_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//StartObjectBehaviorAction"/>
+    </types>
+    <types specificName="STATE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//State"/>
+    </types>
+    <types specificName="STATE_INVARIANT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//StateInvariant"/>
+    </types>
+    <types specificName="STATE_MACHINE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//StateMachine"/>
+    </types>
+    <types specificName="STEREOTYPE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Stereotype"/>
+    </types>
+    <types specificName="STRING_EXPRESSION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//StringExpression"/>
+    </types>
+    <types specificName="STRUCTURAL_FEATURE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//StructuralFeature"/>
+    </types>
+    <types specificName="STRUCTURAL_FEATURE_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//StructuralFeatureAction"/>
+    </types>
+    <types specificName="STRUCTURED_ACTIVITY_NODE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//StructuredActivityNode"/>
+    </types>
+    <types specificName="STRUCTURED_CLASSIFIER" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//StructuredClassifier"/>
+    </types>
+    <types specificName="SUBSTITUTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Substitution"/>
+    </types>
+    <types specificName="TEMPLATEABLE_ELEMENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//TemplateableElement"/>
+    </types>
+    <types specificName="TEMPLATE_BINDING" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//TemplateBinding"/>
+    </types>
+    <types specificName="TEMPLATE_PARAMETER" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//TemplateParameter"/>
+    </types>
+    <types specificName="TEMPLATE_PARAMETER_SUBSTITUTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//TemplateParameterSubstitution"/>
+    </types>
+    <types specificName="TEMPLATE_SIGNATURE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//TemplateSignature"/>
+    </types>
+    <types specificName="TEST_IDENTITY_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//TestIdentityAction"/>
+    </types>
+    <types specificName="TIME_CONSTRAINT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//TimeConstraint"/>
+    </types>
+    <types specificName="TIME_EVENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//TimeEvent"/>
+    </types>
+    <types specificName="TIME_EXPRESSION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//TimeExpression"/>
+    </types>
+    <types specificName="TIME_INTERVAL" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//TimeInterval"/>
+    </types>
+    <types specificName="TIME_OBSERVATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//TimeObservation"/>
+    </types>
+    <types specificName="TRANSITION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Transition"/>
+    </types>
+    <types specificName="TRIGGER" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Trigger"/>
+    </types>
+    <types specificName="TYPE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Type"/>
+    </types>
+    <types specificName="TYPED_ELEMENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//TypedElement"/>
+    </types>
+    <types specificName="UNMARSHALL_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//UnmarshallAction"/>
+    </types>
+    <types specificName="USAGE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Usage"/>
+    </types>
+    <types specificName="USE_CASE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//UseCase"/>
+    </types>
+    <types specificName="VALUE_PIN" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ValuePin"/>
+    </types>
+    <types specificName="VALUE_SPECIFICATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ValueSpecification"/>
+    </types>
+    <types specificName="VALUE_SPECIFICATION_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ValueSpecificationAction"/>
+    </types>
+    <types specificName="VARIABLE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Variable"/>
+    </types>
+    <types specificName="VARIABLE_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//VariableAction"/>
+    </types>
+    <types specificName="VERTEX" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Vertex"/>
+    </types>
+    <types specificName="WRITE_LINK_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//WriteLinkAction"/>
+    </types>
+    <types specificName="WRITE_STRUCTURAL_FEATURE_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//WriteStructuralFeatureAction"/>
+    </types>
+    <types specificName="WRITE_VARIABLE_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//WriteVariableAction"/>
+    </types>
+  </elementTypes>
+  <genHandlers handlerPackage="org.eclipse.papyrus.uml.modelexplorer.handler" superClass="CreateCommandHandler" superClassPackage="org.eclipse.papyrus.uml.modelexplorer.handler" elementTypeEnumerator="UMLElementTypes" elementTypeEnumeratorPackage="org.eclipse.papyrus.uml.service.types.element"/>
+</domaincontextcodegen:DomainContext>

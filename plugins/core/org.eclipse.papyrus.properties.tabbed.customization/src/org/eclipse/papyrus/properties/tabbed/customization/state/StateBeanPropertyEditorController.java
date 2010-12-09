@@ -16,9 +16,11 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;
 
+import org.eclipse.core.commands.operations.IUndoableOperation;
 import org.eclipse.papyrus.properties.runtime.controller.BeanPropertyEditorController;
 import org.eclipse.papyrus.properties.runtime.state.IState;
 import org.eclipse.papyrus.properties.tabbed.customization.Activator;
+import org.eclipse.swt.widgets.Composite;
 
 
 /**
@@ -162,4 +164,45 @@ public class StateBeanPropertyEditorController extends BeanPropertyEditorControl
 			refreshDisplay();
 		}
 	}
+
+	public IUndoableOperation getMoveCurrentValuesOperation(List<Integer> indexes, int move) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public boolean canMoveValues(List<Integer> indexes, int move) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public List<IUndoableOperation> getCreateValueOperations() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public boolean canCreateValueOperations() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public IUndoableOperation getDeleteValueOperation(List<Integer> indexes) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public boolean canDeleteValueOperation() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public IUndoableOperation getEditValueOperation(int index, Composite parent, Object value) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public boolean canCreateEditOperation(int index, Composite parent, Object value) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

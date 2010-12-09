@@ -37,7 +37,7 @@ public class EnumerationLiteralPreferencePage extends AbstractPapyrusNodePrefere
 	 */
 	@Override
 	protected String getBundleId() {
-		return UMLDiagramEditorPlugin.getInstance().ID;
+		return UMLDiagramEditorPlugin.ID;
 	}
 
 	/**

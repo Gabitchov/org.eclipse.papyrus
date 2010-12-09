@@ -49,9 +49,11 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
+import org.eclipse.papyrus.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
 import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.CombinedFragmentItemComponentEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.CombinedFragmentItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.sequence.edit.policies.SequenceGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.figures.CombinedFragmentFigure;
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
@@ -123,6 +125,8 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CombinedFragmentItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new CombinedFragmentItemComponentEditPolicy());
+		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new SequenceGraphicalNodeEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -418,6 +422,12 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 		if(targetEditPart instanceof CommentEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
+		if(targetEditPart instanceof DurationConstraintInMessageEditPart) {
+			types.add(UMLElementTypes.Message_4003);
+		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			types.add(UMLElementTypes.Message_4003);
+		}
 		if(targetEditPart instanceof InteractionEditPart) {
 			types.add(UMLElementTypes.Message_4004);
 		}
@@ -469,6 +479,12 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 		if(targetEditPart instanceof CommentEditPart) {
 			types.add(UMLElementTypes.Message_4004);
 		}
+		if(targetEditPart instanceof DurationConstraintInMessageEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
 		if(targetEditPart instanceof InteractionEditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
@@ -520,6 +536,12 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 		if(targetEditPart instanceof CommentEditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
+		if(targetEditPart instanceof DurationConstraintInMessageEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
 		if(targetEditPart instanceof InteractionEditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
@@ -571,6 +593,12 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 		if(targetEditPart instanceof CommentEditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
+		if(targetEditPart instanceof DurationConstraintInMessageEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
 		if(targetEditPart instanceof InteractionEditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
@@ -622,6 +650,12 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 		if(targetEditPart instanceof CommentEditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
+		if(targetEditPart instanceof DurationConstraintInMessageEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
 		if(targetEditPart instanceof InteractionEditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
@@ -673,6 +707,12 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 		if(targetEditPart instanceof CommentEditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
+		if(targetEditPart instanceof DurationConstraintInMessageEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
 		if(targetEditPart instanceof InteractionEditPart) {
 			types.add(UMLElementTypes.Message_4009);
 		}
@@ -722,6 +762,12 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.Message_4009);
 		}
 		if(targetEditPart instanceof CommentEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if(targetEditPart instanceof DurationConstraintInMessageEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
 			types.add(UMLElementTypes.Message_4009);
 		}
 		return types;
@@ -750,6 +796,8 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.Message_4004) {
 			types.add(UMLElementTypes.Interaction_2001);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
@@ -768,6 +816,8 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.Message_4005) {
 			types.add(UMLElementTypes.Interaction_2001);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
@@ -786,6 +836,8 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.Message_4006) {
 			types.add(UMLElementTypes.Interaction_2001);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
@@ -804,6 +856,8 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.Message_4007) {
 			types.add(UMLElementTypes.Interaction_2001);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
@@ -822,6 +876,8 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.Message_4008) {
 			types.add(UMLElementTypes.Interaction_2001);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
@@ -840,6 +896,8 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.Message_4009) {
 			types.add(UMLElementTypes.Interaction_2001);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
@@ -858,6 +916,8 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		}
 		return types;
 	}
@@ -902,6 +962,8 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.Message_4004) {
 			types.add(UMLElementTypes.Interaction_2001);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
@@ -920,6 +982,8 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.Message_4005) {
 			types.add(UMLElementTypes.Interaction_2001);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
@@ -938,6 +1002,8 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.Message_4006) {
 			types.add(UMLElementTypes.Interaction_2001);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
@@ -956,6 +1022,8 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.Message_4007) {
 			types.add(UMLElementTypes.Interaction_2001);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
@@ -974,6 +1042,8 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.Message_4008) {
 			types.add(UMLElementTypes.Interaction_2001);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
@@ -992,6 +1062,8 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.Message_4009) {
 			types.add(UMLElementTypes.Interaction_2001);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
@@ -1010,12 +1082,15 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4010) {
 			types.add(UMLElementTypes.Comment_3009);
 		} else if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.DurationConstraint_3021);
 			types.add(UMLElementTypes.Constraint_3008);
+			types.add(UMLElementTypes.DurationConstraint_3023);
 		}
 		return types;
 	}
@@ -1032,6 +1107,21 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 			}
 		}
 		return super.getTargetEditPart(request);
+	}
+
+	public List<InteractionOperandEditPart> getOperandChildrenEditParts() {
+		List<InteractionOperandEditPart> children = new LinkedList<InteractionOperandEditPart>();
+
+		IGraphicalEditPart compartment = getChildBySemanticHint(String.valueOf(CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID));
+		if (compartment instanceof CombinedFragmentCombinedFragmentCompartmentEditPart) {
+
+			for (Object ep : compartment.getChildren()) {
+				if (ep instanceof InteractionOperandEditPart) {
+					children.add((InteractionOperandEditPart)ep);
+				}
+			}
+		}
+		return children;
 	}
 
 	/**
@@ -1056,6 +1146,10 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 				MessageDialog.openError(Display.getCurrent().getActiveShell(), FORBIDDEN_ACTION, BLOCK_OPERATOR_MODIFICATION_MSG);
 				CommandHelper.executeCommandWithoutHistory(getEditingDomain(), SetCommand.create(getEditingDomain(), combinedFragment, feature, notification.getOldValue()));
 				return;
+			}
+			// update guards on enclosed operands
+			for (InteractionOperandEditPart ioep : getOperandChildrenEditParts()) {
+				ioep.getPrimaryShape().updateConstraintLabel();
 			}
 		} else if(UMLPackage.eINSTANCE.getCombinedFragment_Operand().equals(feature)) {
 			// Case only call by the model explorer

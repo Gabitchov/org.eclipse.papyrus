@@ -106,4 +106,20 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="baseEditHelperPackage"
         eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EditPartUsingDeleteService" eSuperTypes="#//CommentedElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="This element is always linked to a genView (topLevel, or child)&#xD;&#xA;Used set if an editPart is abstract.&#xD;&#xA;SuperGenViews is a list of all superEditPart.&#xD;&#xA;&#xD;&#xA;Thanks to this, it is possible to factorize code and to decrease the number of generated classes."/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="genView" ordered="false"
+        unique="false" upperBound="-1" eType="ecore:EClass platform:/plugin/org.eclipse.gmf.codegen/models/gmfgen.ecore#//GenCommonBase"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EditPartUsingReorientService" eSuperTypes="#//CommentedElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="This element is always linked to a genView (topLevel, or child)&#xD;&#xA;Used set if an editPart is abstract.&#xD;&#xA;SuperGenViews is a list of all superEditPart.&#xD;&#xA;&#xD;&#xA;Thanks to this, it is possible to factorize code and to decrease the number of generated classes."/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="genView" ordered="false"
+        unique="false" upperBound="-1" eType="ecore:EClass platform:/plugin/org.eclipse.gmf.codegen/models/gmfgen.ecore#//GenLink"/>
+  </eClassifiers>
 </ecore:EPackage>

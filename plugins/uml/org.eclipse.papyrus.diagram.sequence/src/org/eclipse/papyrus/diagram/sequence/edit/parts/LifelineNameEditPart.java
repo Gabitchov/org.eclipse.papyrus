@@ -43,6 +43,7 @@ import org.eclipse.gmf.runtime.diagram.ui.tools.TextDirectEditManager;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
+import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.FontStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
@@ -69,6 +70,7 @@ import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Lifeline;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
@@ -672,7 +674,7 @@ public class LifelineNameEditPart extends CompartmentEditPart implements ITextAw
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT (update at each lifeline name modification) handle possible change in the name container size
 	 */
 	protected void handleNotificationEvent(Notification event) {
 		refreshLabel();
@@ -702,6 +704,10 @@ public class LifelineNameEditPart extends CompartmentEditPart implements ITextAw
 			}
 		}
 
+		// handle possible change in the name container size
+		if(UMLPackage.Literals.LIFELINE__REPRESENTS.equals(feature) || UMLPackage.Literals.LIFELINE__DECOMPOSED_AS.equals(feature) || UMLPackage.Literals.LIFELINE__SELECTOR.equals(feature) || event.getNotifier() instanceof Bounds) {
+			((LifelineEditPart)getParent()).updateLifelinePosition();
+		}
 
 		super.handleNotificationEvent(event);
 	}

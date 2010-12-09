@@ -32,7 +32,7 @@ import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 
 /**
  * this the layout used to replace layout in the generated code
- *
+ * 
  */
 
 public class ShapeNamedElementLayoutEditPolicy extends LayoutEditPolicy {
@@ -40,7 +40,7 @@ public class ShapeNamedElementLayoutEditPolicy extends LayoutEditPolicy {
 	/**
 	 * 
 	 * @see org.eclipse.gef.editpolicies.LayoutEditPolicy#createChildEditPolicy(org.eclipse.gef.EditPart)
-	 *
+	 * 
 	 */
 	protected EditPolicy createChildEditPolicy(EditPart child) {
 		View childView = (View)child.getModel();
@@ -61,18 +61,20 @@ public class ShapeNamedElementLayoutEditPolicy extends LayoutEditPolicy {
 		}
 		return result;
 	}
+
 	/**
 	 * 
 	 * @see org.eclipse.gef.editpolicies.LayoutEditPolicy#getMoveChildrenCommand(org.eclipse.gef.Request)
-	 *
+	 * 
 	 */
 	protected Command getMoveChildrenCommand(Request request) {
 		return null;
 	}
+
 	/**
 	 * 
 	 * @see org.eclipse.gef.editpolicies.LayoutEditPolicy#getCreateCommand(org.eclipse.gef.requests.CreateRequest)
-	 *
+	 * 
 	 */
 	protected Command getCreateCommand(CreateRequest request) {
 		return null;

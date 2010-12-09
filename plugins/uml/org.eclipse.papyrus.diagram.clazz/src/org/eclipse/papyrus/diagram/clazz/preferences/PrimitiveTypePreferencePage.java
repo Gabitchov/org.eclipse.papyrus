@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2010 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,8 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ */
 package org.eclipse.papyrus.diagram.clazz.preferences;
 
 import org.eclipse.jface.preference.IPreferenceStore;
@@ -35,6 +34,14 @@ public class PrimitiveTypePreferencePage extends AbstractPapyrusNodePreferencePa
 	/**
 	 * @generated
 	 */
+	@Override
+	protected String getBundleId() {
+		return UMLDiagramEditorPlugin.ID;
+	}
+
+	/**
+	 * @generated
+	 */
 	public static void initDefaults(IPreferenceStore store) {
 
 		String key = ModelEditPart.MODEL_ID + "_PrimitiveType";
@@ -51,14 +58,6 @@ public class PrimitiveTypePreferencePage extends AbstractPapyrusNodePreferencePa
 		//		new org.eclipse.swt.graphics.RGB(0, 0, 0), 0, 0);
 		//store.setDefault(org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_GRADIENT), gradientPreferenceConverter.getPreferenceValue());
 
-	}
-
-	/**
-	 * @generated
-	 */
-	@Override
-	protected String getBundleId() {
-		return UMLDiagramEditorPlugin.getInstance().ID;
 	}
 
 }

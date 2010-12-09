@@ -20,7 +20,6 @@ import org.eclipse.papyrus.diagram.clazz.custom.parsers.OperationParser;
 import org.eclipse.papyrus.diagram.clazz.custom.parsers.PropertyParser;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeAbstractionEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeAssociationEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeDependency3EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeDependencyEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeElementImportEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeInterfaceRealizationEditPart;
@@ -29,13 +28,11 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeRealization
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeSubstitutionEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotypeUsageEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotyperGeneralizationEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationBranchMultEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationBranchMutliplicityEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationBranchRoleEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName3EditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName4EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName5EditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName6EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Operation2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Operation3EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Operation4EditPart;
@@ -156,15 +153,13 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 			return getAssociationName_6002Parser();
 		case AssociationName3EditPart.VISUAL_ID:
 			return getAssociationTargetRole();
-		case AssociationName4EditPart.VISUAL_ID:
-			return getAssociationTargetMultiplicity();
+		
 		case AssociationName5EditPart.VISUAL_ID:
 			return getAssociationSourceMultiplicity();
-		case AssociationName6EditPart.VISUAL_ID:
-			return getAssociationSourceRole();
+		
 		case AssociationBranchRoleEditPart.VISUAL_ID:
 			return getAssociationSourceRole();
-		case AssociationBranchMultEditPart.VISUAL_ID:
+		case AssociationBranchMutliplicityEditPart.VISUAL_ID:
 			return getAssociationSourceMultiplicity();
 		case AppliedStereotypeAssociationEditPart.VISUAL_ID:
 			return getAppliedStereotypeParser();
@@ -182,8 +177,7 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 			return getAppliedStereotypeParser();
 		case AppliedStereotypeDependencyEditPart.VISUAL_ID:
 			return getAppliedStereotypeParser();
-		case AppliedStereotypeDependency3EditPart.VISUAL_ID:
-			return getAppliedStereotypeParser();
+		
 		case AppliedStereotypeElementImportEditPart.VISUAL_ID:
 			return getAppliedStereotypeParser();
 		case AppliedStereotypePackageImportEditPart.VISUAL_ID:

@@ -21,14 +21,19 @@ import org.eclipse.draw2d.Polyline;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.XYLayout;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.editpolicies.AbstractEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
-import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.papyrus.diagram.communication.custom.figures.CustomWrappingLabel;
-import org.eclipse.papyrus.diagram.communication.custom.util.RotationHelper;
+import org.eclipse.papyrus.diagram.communication.custom.helper.RotationHelper;
+import org.eclipse.papyrus.diagram.communication.edit.parts.LifelineEditPartCN;
+import org.eclipse.papyrus.diagram.communication.edit.parts.MessageNameEditPart;
+import org.eclipse.uml2.uml.InteractionFragment;
+import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
+import org.eclipse.uml2.uml.MessageEnd;
 
 /**
  * This EditPartPolicy is used to refresh the position of the label's icon of a
@@ -139,6 +144,7 @@ public class MessageNameEditPolicy extends AbstractEditPolicy implements AnchorL
 
 
 
+
 		Point sLoc = new Point();
 		Point tLoc = new Point();
 
@@ -154,19 +160,65 @@ public class MessageNameEditPolicy extends AbstractEditPolicy implements AnchorL
 				if(connectionEditPart.getFigure() instanceof Polyline) {
 					Polyline polyline = (Polyline)connectionEditPart.getFigure();
 
-					sLoc = polyline.getPoints().getFirstPoint().getCopy();
-					tLoc = polyline.getPoints().getLastPoint().getCopy();
+		MessageNameEditPart messageNameEditPart = (MessageNameEditPart)getHost();
+		Message message = (Message)messageNameEditPart.resolveSemanticElement();
+		if(message != null) {
+			MessageEnd receiveEvent = message.getReceiveEvent();
+			MessageEnd sendEvent = message.getSendEvent();
+			LifelineEditPartCN lifeLineSrc = (LifelineEditPartCN)connectionEditPart.getSource();
+
+
+			Lifeline lifelineSrcOfConnection = (Lifeline)lifeLineSrc.resolveSemanticElement();
+			EList<InteractionFragment> listSrc = lifelineSrcOfConnection.getCoveredBys();
+
+			if(connectionEditPart.getFigure() instanceof Polyline) {
+				//verify which is the source of the message represented by the label
+				if(!listSrc.isEmpty()) {
+					done: for(int i = 0; i < listSrc.size(); i++) {
+						if(listSrc.get(i).equals(receiveEvent)) {
+
+							Polyline polyline = (Polyline)connectionEditPart.getFigure();
+
+							sLoc = polyline.getPoints().getLastPoint().getCopy();
+							tLoc = polyline.getPoints().getFirstPoint().getCopy();
+							break done;
+
+						} else if(listSrc.get(i).equals(sendEvent)) {
+
+							Polyline polyline = (Polyline)connectionEditPart.getFigure();
+
+							sLoc = polyline.getPoints().getFirstPoint().getCopy();
+							tLoc = polyline.getPoints().getLastPoint().getCopy();
+							break done;
+
+						}
+					}
+
+
 				}
 			}
+
+			//Code before adding messages (as labels) on the same connection
+			//		if(connectionEditPart.getModel() instanceof Edge) {
+			//			Edge edge = (Edge)connectionEditPart.getModel();
+			//			if(edge.getElement() instanceof Message) {
+			//				if(connectionEditPart.getFigure() instanceof Polyline) {
+			//					Polyline polyline = (Polyline)connectionEditPart.getFigure();
+			//
+			//					sLoc = polyline.getPoints().getFirstPoint().getCopy();
+			//					tLoc = polyline.getPoints().getLastPoint().getCopy();
+			//				}
+			//			}
+			//		}
+
+
+			/*
+			 * refreshEditPartDisplay calculates the rotation angle and does the
+			 * icon rotation
+			 */
+			refreshEditPartDisplay((GraphicalEditPart)getHost(), sLoc, tLoc);
+
 		}
-
-
-		/*
-		 * refreshEditPartDisplay calculates the rotation angle and does the
-		 * icon rotation
-		 */
-		refreshEditPartDisplay((GraphicalEditPart)getHost(), sLoc, tLoc);
-
 	}
 
 	/**

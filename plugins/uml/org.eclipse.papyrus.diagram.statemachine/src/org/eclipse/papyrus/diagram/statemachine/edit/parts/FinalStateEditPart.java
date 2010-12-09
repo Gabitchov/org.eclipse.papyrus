@@ -6,10 +6,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
-import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -20,12 +19,11 @@ import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.handles.MoveHandle;
 import org.eclipse.gef.requests.CreateRequest;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
+import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
@@ -34,8 +32,10 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
+import org.eclipse.papyrus.diagram.common.editparts.UMLNodeEditPart;
 import org.eclipse.papyrus.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
+import org.eclipse.papyrus.diagram.common.locator.ExternalLabelPositionLocator;
 import org.eclipse.papyrus.diagram.statemachine.custom.figures.FinalStateFigure;
 import org.eclipse.papyrus.diagram.statemachine.edit.policies.FinalStateItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.statemachine.part.UMLDiagramEditorPlugin;
@@ -50,7 +50,7 @@ import org.eclipse.swt.graphics.Color;
  */
 public class FinalStateEditPart extends
 
-AbstractBorderedShapeEditPart {
+UMLNodeEditPart {
 
 	/**
 	 * @generated
@@ -79,11 +79,13 @@ AbstractBorderedShapeEditPart {
 	 */
 	protected void addBorderItem(IFigure borderItemContainer,
 			IBorderItemEditPart borderItemEditPart) {
-		if (borderItemEditPart instanceof FinalStateNameEditPart
-				|| borderItemEditPart instanceof FinalStateStereotypeEditPart) {
-			BorderItemLocator locator = new BorderItemLocator(getMainFigure(),
-					PositionConstants.SOUTH);
-			locator.setBorderItemOffset(new Dimension(-20, -20));
+		if (borderItemEditPart instanceof FinalStateNameEditPart) {
+			IBorderItemLocator locator = new ExternalLabelPositionLocator(
+					getMainFigure());
+			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
+		} else if (borderItemEditPart instanceof FinalStateStereotypeEditPart) {
+			IBorderItemLocator locator = new ExternalLabelPositionLocator(
+					getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
 		} else {
 			super.addBorderItem(borderItemContainer, borderItemEditPart);
@@ -133,11 +135,11 @@ AbstractBorderedShapeEditPart {
 				return result;
 			}
 
-			protected Command getMoveChildrenCommand(Request request) {
+			protected Command getCreateCommand(CreateRequest request) {
 				return null;
 			}
 
-			protected Command getCreateCommand(CreateRequest request) {
+			protected Command getMoveChildrenCommand(Request request) {
 				return null;
 			}
 		};
@@ -213,13 +215,43 @@ AbstractBorderedShapeEditPart {
 	public List<IElementType> getMARelTypesOnSourceAndTarget(
 			IGraphicalEditPart targetEditPart) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (targetEditPart instanceof PseudostateEditPart) {
-			types.add(UMLElementTypes.Transition_7000);
-		}
 		if (targetEditPart instanceof org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateEditPart) {
 			types.add(UMLElementTypes.Transition_7000);
 		}
 		if (targetEditPart instanceof StateEditPart) {
+			types.add(UMLElementTypes.Transition_7000);
+		}
+		if (targetEditPart instanceof PseudostateInitialEditPart) {
+			types.add(UMLElementTypes.Transition_7000);
+		}
+		if (targetEditPart instanceof PseudostateJoinEditPart) {
+			types.add(UMLElementTypes.Transition_7000);
+		}
+		if (targetEditPart instanceof PseudostateForkEditPart) {
+			types.add(UMLElementTypes.Transition_7000);
+		}
+		if (targetEditPart instanceof PseudostateChoiceEditPart) {
+			types.add(UMLElementTypes.Transition_7000);
+		}
+		if (targetEditPart instanceof PseudostateJunctionEditPart) {
+			types.add(UMLElementTypes.Transition_7000);
+		}
+		if (targetEditPart instanceof PseudostateShallowHistoryEditPart) {
+			types.add(UMLElementTypes.Transition_7000);
+		}
+		if (targetEditPart instanceof PseudostateDeepHistoryEditPart) {
+			types.add(UMLElementTypes.Transition_7000);
+		}
+		if (targetEditPart instanceof PseudostateTerminateEditPart) {
+			types.add(UMLElementTypes.Transition_7000);
+		}
+		if (targetEditPart instanceof PseudostateEntryPointEditPart) {
+			types.add(UMLElementTypes.Transition_7000);
+		}
+		if (targetEditPart instanceof PseudostateExitPointEditPart) {
+			types.add(UMLElementTypes.Transition_7000);
+		}
+		if (targetEditPart instanceof ConnectionPointReferenceEditPart) {
 			types.add(UMLElementTypes.Transition_7000);
 		}
 		return types;
@@ -240,9 +272,19 @@ AbstractBorderedShapeEditPart {
 	public List<IElementType> getMATypesForSource(IElementType relationshipType) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if (relationshipType == UMLElementTypes.Transition_7000) {
-			types.add(UMLElementTypes.Pseudostate_4000);
 			types.add(UMLElementTypes.FinalState_5000);
 			types.add(UMLElementTypes.State_6000);
+			types.add(UMLElementTypes.Pseudostate_8000);
+			types.add(UMLElementTypes.Pseudostate_9000);
+			types.add(UMLElementTypes.Pseudostate_10000);
+			types.add(UMLElementTypes.Pseudostate_11000);
+			types.add(UMLElementTypes.Pseudostate_12000);
+			types.add(UMLElementTypes.Pseudostate_13000);
+			types.add(UMLElementTypes.Pseudostate_14000);
+			types.add(UMLElementTypes.Pseudostate_15000);
+			types.add(UMLElementTypes.Pseudostate_16000);
+			types.add(UMLElementTypes.Pseudostate_17000);
+			types.add(UMLElementTypes.ConnectionPointReference_18000);
 		}
 		return types;
 	}
@@ -253,9 +295,19 @@ AbstractBorderedShapeEditPart {
 	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if (relationshipType == UMLElementTypes.Transition_7000) {
-			types.add(UMLElementTypes.Pseudostate_4000);
 			types.add(UMLElementTypes.FinalState_5000);
 			types.add(UMLElementTypes.State_6000);
+			types.add(UMLElementTypes.Pseudostate_8000);
+			types.add(UMLElementTypes.Pseudostate_9000);
+			types.add(UMLElementTypes.Pseudostate_10000);
+			types.add(UMLElementTypes.Pseudostate_11000);
+			types.add(UMLElementTypes.Pseudostate_12000);
+			types.add(UMLElementTypes.Pseudostate_13000);
+			types.add(UMLElementTypes.Pseudostate_14000);
+			types.add(UMLElementTypes.Pseudostate_15000);
+			types.add(UMLElementTypes.Pseudostate_16000);
+			types.add(UMLElementTypes.Pseudostate_17000);
+			types.add(UMLElementTypes.ConnectionPointReference_18000);
 		}
 		return types;
 	}
@@ -325,6 +377,15 @@ AbstractBorderedShapeEditPart {
 	 */
 	public FinalStateFigure getPrimaryShape() {
 		return (FinalStateFigure) primaryShape;
+	}
+
+	/**
+	 *Papyrus codeGen
+	 *@generated
+	 **/
+	protected void handleNotificationEvent(Notification event) {
+		super.handleNotificationEvent(event);
+
 	}
 
 	/**

@@ -15,7 +15,6 @@
       <genEnumLiterals ecoreEnumLiteral="UmlTransition.ecore#//BehaviorKind/OPAQUE_BEHAVIOR"/>
     </genEnums>
     <genClasses ecoreClass="UmlTransition.ecore#//TransitionRule">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute UmlTransition.ecore#//TransitionRule/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UmlTransition.ecore#//TransitionRule/triggers"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UmlTransition.ecore#//TransitionRule/guard"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UmlTransition.ecore#//TransitionRule/effect"/>

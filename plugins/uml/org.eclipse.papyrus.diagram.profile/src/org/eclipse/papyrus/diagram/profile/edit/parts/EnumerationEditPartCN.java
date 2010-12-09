@@ -20,6 +20,7 @@ import java.util.List;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -30,7 +31,6 @@ import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
@@ -43,6 +43,7 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
+import org.eclipse.papyrus.diagram.common.editparts.ClassifierEditPart;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy;
@@ -65,7 +66,8 @@ import org.eclipse.swt.graphics.Color;
  */
 public class EnumerationEditPartCN extends
 
-ShapeNodeEditPart {
+
+ClassifierEditPart {
 
 	/**
 	 * @generated
@@ -105,6 +107,19 @@ ShapeNodeEditPart {
 		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
+	}
+
+
+
+
+	/**
+	 * Papyrus codeGen
+	 * 
+	 * @generated
+	 **/
+	protected void handleNotificationEvent(Notification event) {
+		super.handleNotificationEvent(event);
+
 	}
 
 
@@ -222,7 +237,7 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		String prefElementId = "EnumerationCN";
+		String prefElementId = "Enumeration";
 		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
@@ -902,15 +917,15 @@ ShapeNodeEditPart {
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant("EnumerationCN", PreferenceConstantHelper.COLOR_LINE);
+				prefColor = PreferenceConstantHelper.getElementConstant("Enumeration", PreferenceConstantHelper.COLOR_LINE);
 			} else if(feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant("EnumerationCN", PreferenceConstantHelper.COLOR_FONT);
+				prefColor = PreferenceConstantHelper.getElementConstant("Enumeration", PreferenceConstantHelper.COLOR_FONT);
 			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant("EnumerationCN", PreferenceConstantHelper.COLOR_FILL);
+				prefColor = PreferenceConstantHelper.getElementConstant("Enumeration", PreferenceConstantHelper.COLOR_FILL);
 			}
 			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore)preferenceStore, prefColor));
 		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency() || feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
-			String prefGradient = PreferenceConstantHelper.getElementConstant("EnumerationCN", PreferenceConstantHelper.COLOR_GRADIENT);
+			String prefGradient = PreferenceConstantHelper.getElementConstant("Enumeration", PreferenceConstantHelper.COLOR_GRADIENT);
 			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore.getString(prefGradient));
 			if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()) {
 				result = new Integer(gradientPreferenceConverter.getTransparency());

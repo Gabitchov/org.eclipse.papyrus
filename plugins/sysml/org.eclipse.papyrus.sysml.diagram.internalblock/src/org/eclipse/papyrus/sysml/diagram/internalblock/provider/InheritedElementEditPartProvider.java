@@ -16,7 +16,10 @@ import org.eclipse.gmf.runtime.diagram.ui.services.editpart.IEditPartOperation;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.composite.providers.UMLEditPartProvider;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.part.InternalBlockDiagramEditPart;
+import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Connector;
+import org.eclipse.uml2.uml.Constraint;
+import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
 
 public class InheritedElementEditPartProvider extends UMLEditPartProvider {
@@ -35,7 +38,19 @@ public class InheritedElementEditPartProvider extends UMLEditPartProvider {
 			EObject eobject = view.getElement();
 
 			/** Nodes *********** */
-			if((eobject instanceof org.eclipse.uml2.uml.Class) || (eobject instanceof Property)) {
+			if(eobject instanceof org.eclipse.uml2.uml.Class) {
+				return true;
+			}
+			if(eobject instanceof Port) {
+				return true;
+			}
+			if(eobject instanceof Property) {
+				return true;
+			}
+			if(eobject instanceof Comment) {
+				return true;
+			}
+			if(eobject instanceof Constraint) {
 				return true;
 			}
 
@@ -44,62 +59,21 @@ public class InheritedElementEditPartProvider extends UMLEditPartProvider {
 				return true;
 			}
 
-			// String hint = view.getType();
-			// /** Nodes *********** */
-			//
-			// /** Class */
-			// if
-			// (InternalBlockDiagramElementTypes.CLASS.getSemanticHint().equals(hint)
-			// ||
-			// InternalBlockDiagramElementTypes.CLASS_NAME_LABEL_HINT.equals(hint)
-			// ||
-			// InternalBlockDiagramElementTypes.CLASS_COMPARTMENT_HINT.equals(hint))
-			// {
-			// return true;
-			// }
-			//
-			// if
-			// (InternalBlockDiagramElementTypes.CLASS_CN.getSemanticHint().equals(hint)
-			// ||
-			// InternalBlockDiagramElementTypes.CLASS_CN_NAME_LABEL_HINT.equals(hint)
-			// ||
-			// InternalBlockDiagramElementTypes.CLASS_CN_COMPARTMENT_HINT.equals(hint))
-			// {
-			// return true;
-			// }
-			//
-			// /** Property */
-			// if
-			// (InternalBlockDiagramElementTypes.PROPERTY_CN.getSemanticHint().equals(hint)
-			// ||
-			// InternalBlockDiagramElementTypes.PROPERTY_CN_NAME_LABEL_HINT.equals(hint)
-			// ||
-			// InternalBlockDiagramElementTypes.PROPERTY_CN_COMPARTMENT_HINT.equals(hint))
-			// {
-			// return true;
-			// }
-			//
-			// /** Port */
-			// if
-			// (InternalBlockDiagramElementTypes.PORT_CN.getSemanticHint().equals(hint)
-			// ||
-			// InternalBlockDiagramElementTypes.PORT_CN_NAME_LABEL_HINT.equals(hint)
-			// ||
-			// InternalBlockDiagramElementTypes.PORT_CN_STEREOTYPE_LABEL_HINT.equals(hint))
-			// {
-			// return true;
-			// }
-			//
-			// /** Edges *********** */
-			//
-			// /** Connector */
-			// if
-			// (InternalBlockDiagramElementTypes.CONNECTOR.getSemanticHint().equals(hint)
-			// ||
-			// InternalBlockDiagramElementTypes.CONNECTOR_STEREOTYPE_LABEL_HINT.equals(hint))
-			// {
-			// return true;
-			// }
+			// Additional test needed here to decide whether to support Feature
+			// type links.
+			// As feature type link are not related to a MetaClass from the
+			// domain model
+			// they are not already handled by previous tests.
+			String hint = view.getType();
+
+			/** Edges (Feature) : COMMENT_ANNOTATED_ELEMENT *********** */
+			if(InternalBlockDiagramElementTypes.COMMENT_ANNOTATED_ELEMENT.getSemanticHint().equals(hint)) {
+				return true;
+			}
+			/** Edges (Feature) : CONSTRAINT_CONSTRAINED_ELEMENT *********** */
+			if(InternalBlockDiagramElementTypes.CONSTRAINT_CONSTRAINED_ELEMENT.getSemanticHint().equals(hint)) {
+				return true;
+			}
 		}
 		return false;
 	}

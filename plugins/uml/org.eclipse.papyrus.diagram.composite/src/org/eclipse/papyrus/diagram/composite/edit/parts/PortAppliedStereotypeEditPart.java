@@ -85,7 +85,6 @@ import org.eclipse.ui.PlatformUI;
  */
 public class PortAppliedStereotypeEditPart
 
-
 extends AbstractLabelEditPart
 
 implements ITextAwareEditPart, IBorderItemEditPart {
@@ -115,8 +114,6 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -130,8 +127,6 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -614,8 +609,6 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 		return getPrimaryView();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -623,15 +616,7 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 	 * @generated
 	 */
 	public int getDirectEditionType() {
-		if(checkExtendedEditor()) {
-			initExtendedEditorConfiguration();
-			return IDirectEdition.EXTENDED_DIRECT_EDITOR;
-		}
-		if(checkDefaultEdition()) {
-			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
-		}
-
-		// not a named element. no specific editor => do nothing
+		// The label is read-only (defined in GMFGen model)
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
 
@@ -718,8 +703,6 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 			e.printStackTrace();
 		}
 	}
-
-
 
 	/**
 	 * @generated

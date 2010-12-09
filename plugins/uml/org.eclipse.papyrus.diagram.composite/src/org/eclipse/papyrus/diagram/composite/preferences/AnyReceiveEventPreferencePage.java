@@ -37,7 +37,7 @@ public class AnyReceiveEventPreferencePage extends AbstractPapyrusNodePreference
 	 */
 	@Override
 	protected String getBundleId() {
-		return UMLDiagramEditorPlugin.getInstance().ID;
+		return UMLDiagramEditorPlugin.ID;
 	}
 
 	/**

@@ -6,7 +6,6 @@ import "http://www.eclipse.org/uml2/3.0.0/UML" as uml
 generate umlTransition "http://www.eclipse.org/papyrus/transition/editor/xtext/UmlTransition"
 
 TransitionRule:
-	name = ID 
 	(triggers+=EventRule (',' triggers+=EventRule)*)?
 	(guard=GuardRule)? 
 	(effect=EffectRule)? ;

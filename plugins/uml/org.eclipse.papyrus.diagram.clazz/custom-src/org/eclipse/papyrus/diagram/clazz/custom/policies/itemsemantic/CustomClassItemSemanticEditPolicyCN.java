@@ -32,12 +32,16 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.clazz.custom.command.BranchDependenctReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.command.CAssociationClassCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.command.CAssociationReorientCommand;
+import org.eclipse.papyrus.diagram.clazz.custom.command.CTemplateBindingCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.command.ContainmentLinkReorientCommand;
+import org.eclipse.papyrus.diagram.clazz.custom.command.CustomAssociationBranchReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.helper.ContainmentHelper;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.CommentAnnotatedElementReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.ConstraintConstrainedElementReorientCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.TemplateBindingCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AbstractionEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AddedLinkEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationBranchEditPart;
@@ -77,6 +81,9 @@ public class CustomClassItemSemanticEditPolicyCN extends ClassItemSemanticEditPo
 		if(UMLElementTypes.AssociationClass_4017 == req.getElementType()) {
 			return getGEFWrapper(new CAssociationClassCreateCommand(req, req.getSource(), req.getTarget()));
 		}
+		if(UMLElementTypes.TemplateBinding_4015 == req.getElementType()) {
+			return getGEFWrapper(new CTemplateBindingCreateCommand(req, req.getSource(), req.getTarget()));
+		}
 		return super.getCompleteCreateRelationshipCommand(req);
 	}
 
@@ -86,6 +93,12 @@ public class CustomClassItemSemanticEditPolicyCN extends ClassItemSemanticEditPo
 			return getGEFWrapper(new CAssociationReorientCommand(req));
 		case AssociationEditPart.VISUAL_ID:
 			return getGEFWrapper(new CAssociationReorientCommand(req));
+		case DependencyBranchEditPart.VISUAL_ID:
+			return getGEFWrapper(new BranchDependenctReorientCommand(req));
+		case AssociationBranchEditPart.VISUAL_ID:
+			return getGEFWrapper(new CustomAssociationBranchReorientCommand(req));
+		case TemplateBindingEditPart.VISUAL_ID:
+			return UnexecutableCommand.INSTANCE;
 		}
 
 		return super.getReorientRelationshipCommand(req);
@@ -105,6 +118,9 @@ public class CustomClassItemSemanticEditPolicyCN extends ClassItemSemanticEditPo
 		//forbid creation of association branch from it.
 		if(UMLElementTypes.Association_4019 == req.getElementType()) {
 			return UnexecutableCommand.INSTANCE;
+		}
+		if(UMLElementTypes.TemplateBinding_4015 == req.getElementType()) {
+			return getGEFWrapper(new CTemplateBindingCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 
 		return super.getStartCreateRelationshipCommand(req);
@@ -156,7 +172,7 @@ public class CustomClassItemSemanticEditPolicyCN extends ClassItemSemanticEditPo
 	 * {@inheritDoc}
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
-		ICommandProxy command = (ICommandProxy)getDestroyElementCommandGen(req);
+		ICommandProxy command = (ICommandProxy)super.getDestroyElementCommand(req);
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.add(command.getICommand());
 
@@ -181,77 +197,5 @@ public class CustomClassItemSemanticEditPolicyCN extends ClassItemSemanticEditPo
 		}
 	}
 
-	protected Command getDestroyElementCommandGen(DestroyElementRequest req) {
-		View view = (View)getHost().getModel();
-		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
-		cmd.setTransactionNestingEnabled(false);
-
-		for(Iterator<?> it = view.getTargetEdges().iterator(); it.hasNext();) {
-			Edge incomingLink = (Edge)it.next();
-			switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
-			case CommentAnnotatedElementEditPart.VISUAL_ID:
-			case ConstraintConstrainedElementEditPart.VISUAL_ID:
-			case ConnectorTimeObservationEditPart.VISUAL_ID:
-			case ConnectorDurationObservationEditPart.VISUAL_ID:
-				DestroyReferenceRequest destroyRefReq = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
-				cmd.add(new DestroyReferenceCommand(destroyRefReq));
-				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
-				break;
-			case AssociationClass2EditPart.VISUAL_ID:
-			case AssociationEditPart.VISUAL_ID:
-			case AssociationBranchEditPart.VISUAL_ID:
-			case GeneralizationEditPart.VISUAL_ID:
-			case SubstitutionEditPart.VISUAL_ID:
-			case RealizationEditPart.VISUAL_ID:
-			case AbstractionEditPart.VISUAL_ID:
-			case UsageEditPart.VISUAL_ID:
-			case DependencyEditPart.VISUAL_ID:
-			case DependencyBranchEditPart.VISUAL_ID:
-			case ElementImportEditPart.VISUAL_ID:
-			case TemplateBindingEditPart.VISUAL_ID:
-				//			case AddedLinkEditPart.VISUAL_ID:
-				DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
-				cmd.add(new DestroyElementCommand(destroyEltReq));
-				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
-				break;
-			}
-		}
-
-		for(Iterator<?> it = view.getSourceEdges().iterator(); it.hasNext();) {
-			Edge outgoingLink = (Edge)it.next();
-			switch(UMLVisualIDRegistry.getVisualID(outgoingLink)) {
-			case AssociationClass2EditPart.VISUAL_ID:
-			case AssociationEditPart.VISUAL_ID:
-			case AssociationBranchEditPart.VISUAL_ID:
-			case GeneralizationEditPart.VISUAL_ID:
-			case InterfaceRealizationEditPart.VISUAL_ID:
-			case SubstitutionEditPart.VISUAL_ID:
-			case RealizationEditPart.VISUAL_ID:
-			case AbstractionEditPart.VISUAL_ID:
-			case UsageEditPart.VISUAL_ID:
-			case DependencyEditPart.VISUAL_ID:
-			case DependencyBranchEditPart.VISUAL_ID:
-			case ElementImportEditPart.VISUAL_ID:
-			case PackageImportEditPart.VISUAL_ID:
-			case TemplateBindingEditPart.VISUAL_ID:
-				//			case AddedLinkEditPart.VISUAL_ID:
-				DestroyElementRequest destroyEltReq = new DestroyElementRequest(outgoingLink.getElement(), false);
-				cmd.add(new DestroyElementCommand(destroyEltReq));
-				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
-				break;
-			}
-		}
-		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
-		if(annotation == null) {
-			// there are indirectly referenced children, need extra commands: false
-			addDestroyChildNodesCommand(cmd);
-			addDestroyShortcutsCommand(cmd, view);
-			// delete host element
-			cmd.add(new DestroyElementCommand(req));
-		} else {
-			cmd.add(new DeleteCommand(getEditingDomain(), view));
-		}
-		return getGEFWrapper(cmd.reduce());
-	}
 
 }

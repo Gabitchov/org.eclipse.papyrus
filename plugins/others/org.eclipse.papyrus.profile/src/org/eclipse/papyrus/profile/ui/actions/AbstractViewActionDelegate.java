@@ -16,6 +16,8 @@ package org.eclipse.papyrus.profile.ui.actions;
 
 import java.util.Iterator;
 
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -45,7 +47,7 @@ public abstract class AbstractViewActionDelegate implements IViewActionDelegate 
 
 	/**
 	 * Returns <code>true</code> if the element is a selectableElement, i.e. if the action
-	 * should be enable
+	 * should be enabled
 	 * 
 	 * @param element
 	 *        the element to test
@@ -60,13 +62,20 @@ public abstract class AbstractViewActionDelegate implements IViewActionDelegate 
 	 */
 	public void selectionChanged(IAction action, ISelection selection) {
 		IStructuredSelection structSelection = null;
-		if(structSelection instanceof IStructuredSelection) {
+		if(selection instanceof IStructuredSelection) {
 			structSelection = (IStructuredSelection)selection;
 			// iterate the selection to update the selected element
 			@SuppressWarnings("unchecked")
 			Iterator<Object> it = structSelection.iterator();
 			while(it.hasNext()) {
 				Object o = (Object)it.next();
+				if (o instanceof IAdaptable) {
+					EObject eObject = (EObject) ((IAdaptable) o)
+							.getAdapter(EObject.class);
+					if (eObject != null) {
+						setSelectedElement(eObject);
+					}
+				}
 				if(isSelectableElement(o)) {
 					setSelectedElement(o);
 					return;

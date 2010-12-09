@@ -13,6 +13,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.activity.edit.parts;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.GridData;
 import org.eclipse.draw2d.GridLayout;
@@ -36,6 +40,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
@@ -46,6 +51,8 @@ import org.eclipse.papyrus.diagram.activity.edit.policies.ActivityPartitionItemS
 import org.eclipse.papyrus.diagram.activity.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
+import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel;
 import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
@@ -89,13 +96,10 @@ ShapeNodeEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ActivityPartitionItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
+		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
-
-
-
-
 
 	/**
 	 * @generated
@@ -145,7 +149,6 @@ ShapeNodeEditPart {
 			return true;
 		}
 
-
 		if(childEditPart instanceof ActivityPartitionActivityPartitionContentCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getActivityPartitionCompartment();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
@@ -155,7 +158,6 @@ ShapeNodeEditPart {
 
 		return false;
 	}
-
 
 	/**
 	 * @generated
@@ -203,7 +205,6 @@ ShapeNodeEditPart {
 		return getContentPane();
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -216,7 +217,6 @@ ShapeNodeEditPart {
 
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -296,15 +296,30 @@ ShapeNodeEditPart {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(ActivityPartitionNameEditPart.VISUAL_ID));
 	}
 
+	/**
+	 * @generated
+	 */
+	public List<IElementType> getMARelTypesOnTarget() {
+		ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		return types;
+	}
 
-
-
+	/**
+	 * @generated
+	 */
+	public List<IElementType> getMATypesForSource(IElementType relationshipType) {
+		LinkedList<IElementType> types = new LinkedList<IElementType>();
+		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4006) {
+			types.add(UMLElementTypes.Comment_3080);
+		}
+		return types;
+	}
 
 	/**
 	 * @generated
 	 */
 	public class ActivityPartitionDescriptor extends RectangleFigure {
-
 
 		/**
 		 * @generated
@@ -315,7 +330,6 @@ ShapeNodeEditPart {
 		 * @generated
 		 */
 		private CenteredWrappedLabel fPartitionLabel;
-
 
 		/**
 		 * @generated
@@ -367,13 +381,9 @@ ShapeNodeEditPart {
 		 */
 		private void createContents() {
 
-
 			fPartitionLabel = new CenteredWrappedLabel();
 
-
-
 			fPartitionLabel.setBorder(new MarginBorder(getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
-
 
 			GridData constraintFPartitionLabel = new GridData();
 			constraintFPartitionLabel.verticalAlignment = GridData.CENTER;
@@ -385,13 +395,9 @@ ShapeNodeEditPart {
 			constraintFPartitionLabel.grabExcessVerticalSpace = false;
 			this.add(fPartitionLabel, constraintFPartitionLabel);
 
-
-
-
 			fActivityPartitionCompartment = new RectangleFigure();
 			fActivityPartitionCompartment.setFill(false);
 			fActivityPartitionCompartment.setOutline(false);
-
 
 			GridData constraintFActivityPartitionCompartment = new GridData();
 			constraintFActivityPartitionCompartment.verticalAlignment = GridData.FILL;
@@ -403,12 +409,7 @@ ShapeNodeEditPart {
 			constraintFActivityPartitionCompartment.grabExcessVerticalSpace = true;
 			this.add(fActivityPartitionCompartment, constraintFActivityPartitionCompartment);
 
-
-
 		}
-
-
-
 
 		/**
 		 * @generated
@@ -424,11 +425,7 @@ ShapeNodeEditPart {
 			return fPartitionLabel;
 		}
 
-
 	}
-
-
-
 
 	/**
 	 * @generated

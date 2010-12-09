@@ -18,30 +18,25 @@ import java.util.Iterator;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
-import org.eclipse.papyrus.core.utils.EditorUtils;
-import org.eclipse.papyrus.modelexplorer.Activator;
 import org.eclipse.papyrus.modelexplorer.MoDiscoContentProvider;
 import org.eclipse.papyrus.resource.ModelSet;
 import org.eclipse.papyrus.resource.uml.UmlModel;
 import org.eclipse.papyrus.resource.uml.UmlUtils;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
- * this is a specific content provider used to nnot display UML stereotype applications
- *
+ * this is a specific content provider used to not display UML stereotype applications
+ * 
  */
 public class UMLContentProvider extends MoDiscoContentProvider {
 
-	
+
 	/**
 	 * Return the initial values from the input.
 	 * Input should be of type {@link UmlModel}.
+	 * 
 	 * @see org.eclipse.gmt.modisco.infra.browser.uicore.CustomizableModelContentProvider#getRootElements(java.lang.Object)
-	 *
+	 * 
 	 * @param inputElement
 	 * @return
 	 */
@@ -49,16 +44,16 @@ public class UMLContentProvider extends MoDiscoContentProvider {
 	protected EObject[] getRootElements(ModelSet modelSet) {
 		UmlModel umlModel = (UmlUtils.getUmlModel(modelSet));
 
-		if( umlModel == null)
+		if(umlModel == null)
 			return null;
 
 		EList<EObject> contents = umlModel.getResource().getContents();
 		ArrayList<EObject> result = new ArrayList<EObject>();
 		Iterator<EObject> iterator = contents.iterator();
-		while (iterator.hasNext()) {
-			EObject eObject = (EObject) iterator.next();
+		while(iterator.hasNext()) {
+			EObject eObject = (EObject)iterator.next();
 			//functionality that comes from UML2 plugins
-			if(UMLUtil.getStereotype(eObject) == null){
+			if(UMLUtil.getStereotype(eObject) == null) {
 				result.add(eObject);
 			}
 		}

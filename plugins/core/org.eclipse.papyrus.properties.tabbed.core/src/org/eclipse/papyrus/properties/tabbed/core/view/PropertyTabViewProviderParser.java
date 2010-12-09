@@ -310,7 +310,9 @@ public class PropertyTabViewProviderParser extends PropertyViewProviderParser {
 					replacedSectionsId = parseReplacedSectionIds(childNode);
 				} else if(NODE_NAME_FRAGMENT.equals(childNode.getNodeName())) {
 					IFragmentDescriptor fragmentDescriptor = parseFragmentOrPredefinedFragment(childNode);
-					fragmentDescriptors.add(fragmentDescriptor);
+					if(fragmentDescriptor != null) {
+						fragmentDescriptors.add(fragmentDescriptor);
+					}
 				}
 			}
 		} catch (XMLParseException e) {
@@ -438,7 +440,9 @@ public class PropertyTabViewProviderParser extends PropertyViewProviderParser {
 		FragmentDescriptor fragmentDescriptor;
 		try {
 			fragmentDescriptor = parseFragment(fragmentNode);
-			predefinedFragments.put(fragmentDescriptor.getId(), fragmentDescriptor);
+			if(fragmentDescriptor != null) {
+				predefinedFragments.put(fragmentDescriptor.getId(), fragmentDescriptor);
+			}
 			return fragmentDescriptor;
 		} catch (XMLParseException e) {
 			Activator.log.error(e);

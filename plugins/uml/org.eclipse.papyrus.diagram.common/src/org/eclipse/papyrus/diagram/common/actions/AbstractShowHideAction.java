@@ -1,3 +1,5 @@
+package org.eclipse.papyrus.diagram.common.actions;
+
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
  *
@@ -11,7 +13,7 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.diagram.common.actions;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -131,6 +133,7 @@ public abstract class AbstractShowHideAction implements IActionDelegate, IWorkbe
 		}
 		initAction();
 		buildInitialSelection();
+		CheckedTreeSelectionDialog selectionDialog = getSelectionDialog();
 
 		CheckedTreeSelectionDialog selectionDialog = new CheckedTreeSelectionDialog(DisplayUtils.getDisplay().getActiveShell(), labelProvider, contentProvider);
 		selectionDialog.setTitle(title);
@@ -163,7 +166,17 @@ public abstract class AbstractShowHideAction implements IActionDelegate, IWorkbe
 				}
 			}
 		}
-
+	}
+	
+	protected CheckedTreeSelectionDialog getSelectionDialog() {
+		CheckedTreeSelectionDialog selectionDialog = new CheckedTreeSelectionDialog(DisplayUtils.getDisplay().getActiveShell(), labelProvider, contentProvider);
+		selectionDialog.setTitle(title);
+		selectionDialog.setMessage(message);
+		selectionDialog.setContainerMode(true);
+		selectionDialog.setInput(getInput());
+		selectionDialog.setExpandedElements(getInput().toArray());
+		selectionDialog.setInitialElementSelections(this.initialSelection);
+		return selectionDialog;
 	}
 
 	/**

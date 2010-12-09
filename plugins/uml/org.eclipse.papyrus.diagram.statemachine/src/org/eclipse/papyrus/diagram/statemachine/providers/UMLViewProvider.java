@@ -40,15 +40,48 @@ import org.eclipse.gmf.runtime.notation.datatype.RelativeBendpoint;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConnectionPointReferenceEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConnectionPointReferenceNameEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConnectionPointReferenceStereotypeEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateNameEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateStereotypeEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.GeneralizationEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.GeneralizationStereotypeEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PackageEditPart;
-import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateEditPart;
-import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateNameEditPart;
-import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateStereotypeEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateChoiceEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateChoiceNameEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateChoiceStereotypeEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateDeepHistoryEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateDeepHistoryNameEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateDeepHistoryStereotypeEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateEntryPointEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateEntryPointNameEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateEntryPointStereotypeEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateExitPointEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateExitPointNameEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateExitPointStereotypeEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateForkEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateForkNameEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateForkStereotypeEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateInitialEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateInitialNameEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateInitialStereotypeEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateJoinEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateJoinNameEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateJoinStereotypeEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateJunctionEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateJunctionNameEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateJunctionStereotypeEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateShallowHistoryEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateShallowHistoryNameEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateShallowHistoryStereotypeEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateTerminateEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateTerminateNameEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateTerminateStereotypeEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionCompartmentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateCompartmentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineCompartmentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineEditPart;
@@ -106,6 +139,55 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
+	public Node createConnectionPointReference_18000(EObject domainElement,
+			View containerView, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry
+				.getType(ConnectionPointReferenceEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
+				.getPreferenceStore();
+
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node,
+				prefStore, "ConnectionPointReference");
+
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node,
+				prefStore, "ConnectionPointReference");
+
+		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node,
+				prefStore, "ConnectionPointReference");
+
+		Node label18001 = createLabel(
+				node,
+				UMLVisualIDRegistry
+						.getType(ConnectionPointReferenceNameEditPart.VISUAL_ID));
+		label18001.setLayoutConstraint(NotationFactory.eINSTANCE
+				.createLocation());
+
+		Location location18001 = (Location) label18001.getLayoutConstraint();
+		location18001.setX(25);
+		location18001.setY(3);
+		Node label18002 = createLabel(
+				node,
+				UMLVisualIDRegistry
+						.getType(ConnectionPointReferenceStereotypeEditPart.VISUAL_ID));
+		label18002.setLayoutConstraint(NotationFactory.eINSTANCE
+				.createLocation());
+
+		Location location18002 = (Location) label18002.getLayoutConstraint();
+		location18002.setX(25);
+		location18002.setY(-10);
+
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
 	public Diagram createDiagram(IAdaptable semanticAdapter,
 			String diagramKind, PreferencesHint preferencesHint) {
 		Diagram diagram = NotationFactory.eINSTANCE.createDiagram();
@@ -128,6 +210,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		case TransitionEditPart.VISUAL_ID:
 			return createTransition_7000(getSemanticElement(semanticAdapter),
 					containerView, index, persisted, preferencesHint);
+		case GeneralizationEditPart.VISUAL_ID:
+			return createGeneralization_19000(
+					getSemanticElement(semanticAdapter), containerView, index,
+					persisted, preferencesHint);
 		}
 		// can never happen, provided #provides(CreateEdgeViewOperation) is correct
 		return null;
@@ -163,8 +249,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				.createLocation());
 
 		Location location5001 = (Location) label5001.getLayoutConstraint();
-		location5001.setX(0);
-		location5001.setY(5);
+		location5001.setX(25);
+		location5001.setY(3);
 		Node label5002 = createLabel(node,
 				UMLVisualIDRegistry
 						.getType(FinalStateStereotypeEditPart.VISUAL_ID));
@@ -172,9 +258,59 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				.createLocation());
 
 		Location location5002 = (Location) label5002.getLayoutConstraint();
-		location5002.setX(0);
-		location5002.setY(5);
+		location5002.setX(25);
+		location5002.setY(-10);
+
 		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Edge createGeneralization_19000(EObject domainElement,
+			View containerView, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+		Connector edge = NotationFactory.eINSTANCE.createConnector();
+		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
+				.createRelativeBendpoints();
+		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(
+				2);
+		points.add(new RelativeBendpoint());
+		points.add(new RelativeBendpoint());
+		bendpoints.setPoints(points);
+		edge.setBendpoints(bendpoints);
+		ViewUtil.insertChildView(containerView, edge, index, persisted);
+		edge.setType(UMLVisualIDRegistry
+				.getType(GeneralizationEditPart.VISUAL_ID));
+		edge.setElement(domainElement);
+		// initializePreferences
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
+				.getPreferenceStore();
+
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(edge,
+				prefStore, "Generalization");
+
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge,
+				prefStore, "Generalization");
+
+		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
+		//if (routing != null) {
+		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		//}
+
+		PreferenceInitializerForElementHelper.initRountingFromPrefs(edge,
+				prefStore, "Generalization");
+
+		Node label19002 = createLabel(edge,
+				UMLVisualIDRegistry
+						.getType(GeneralizationStereotypeEditPart.VISUAL_ID));
+		label19002.setLayoutConstraint(NotationFactory.eINSTANCE
+				.createLocation());
+		Location location19002 = (Location) label19002.getLayoutConstraint();
+		location19002.setX(0);
+		location19002.setY(40);
+		return edge;
 	}
 
 	/**
@@ -208,15 +344,45 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		case RegionEditPart.VISUAL_ID:
 			return createRegion_3000(domainElement, containerView, index,
 					persisted, preferencesHint);
-		case PseudostateEditPart.VISUAL_ID:
-			return createPseudostate_4000(domainElement, containerView, index,
-					persisted, preferencesHint);
 		case FinalStateEditPart.VISUAL_ID:
 			return createFinalState_5000(domainElement, containerView, index,
 					persisted, preferencesHint);
 		case StateEditPart.VISUAL_ID:
 			return createState_6000(domainElement, containerView, index,
 					persisted, preferencesHint);
+		case PseudostateInitialEditPart.VISUAL_ID:
+			return createPseudostate_8000(domainElement, containerView, index,
+					persisted, preferencesHint);
+		case PseudostateJoinEditPart.VISUAL_ID:
+			return createPseudostate_9000(domainElement, containerView, index,
+					persisted, preferencesHint);
+		case PseudostateForkEditPart.VISUAL_ID:
+			return createPseudostate_10000(domainElement, containerView, index,
+					persisted, preferencesHint);
+		case PseudostateChoiceEditPart.VISUAL_ID:
+			return createPseudostate_11000(domainElement, containerView, index,
+					persisted, preferencesHint);
+		case PseudostateJunctionEditPart.VISUAL_ID:
+			return createPseudostate_12000(domainElement, containerView, index,
+					persisted, preferencesHint);
+		case PseudostateShallowHistoryEditPart.VISUAL_ID:
+			return createPseudostate_13000(domainElement, containerView, index,
+					persisted, preferencesHint);
+		case PseudostateDeepHistoryEditPart.VISUAL_ID:
+			return createPseudostate_14000(domainElement, containerView, index,
+					persisted, preferencesHint);
+		case PseudostateTerminateEditPart.VISUAL_ID:
+			return createPseudostate_15000(domainElement, containerView, index,
+					persisted, preferencesHint);
+		case PseudostateEntryPointEditPart.VISUAL_ID:
+			return createPseudostate_16000(domainElement, containerView, index,
+					persisted, preferencesHint);
+		case PseudostateExitPointEditPart.VISUAL_ID:
+			return createPseudostate_17000(domainElement, containerView, index,
+					persisted, preferencesHint);
+		case ConnectionPointReferenceEditPart.VISUAL_ID:
+			return createConnectionPointReference_18000(domainElement,
+					containerView, index, persisted, preferencesHint);
 		}
 		// can't happen, provided #provides(CreateNodeViewOperation) is correct
 		return null;
@@ -225,12 +391,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createPseudostate_4000(EObject domainElement,
+	public Node createPseudostate_10000(EObject domainElement,
 			View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(UMLVisualIDRegistry.getType(PseudostateEditPart.VISUAL_ID));
+		node.setType(UMLVisualIDRegistry
+				.getType(PseudostateForkEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		// initializeFromPreferences 
@@ -246,23 +413,456 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node,
 				prefStore, "Pseudostate");
 
-		Node label4001 = createLabel(node,
-				UMLVisualIDRegistry.getType(PseudostateNameEditPart.VISUAL_ID));
-		label4001.setLayoutConstraint(NotationFactory.eINSTANCE
-				.createLocation());
-
-		Location location4001 = (Location) label4001.getLayoutConstraint();
-		location4001.setX(0);
-		location4001.setY(5);
-		Node label4002 = createLabel(node,
+		Node label10001 = createLabel(node,
 				UMLVisualIDRegistry
-						.getType(PseudostateStereotypeEditPart.VISUAL_ID));
-		label4002.setLayoutConstraint(NotationFactory.eINSTANCE
+						.getType(PseudostateForkNameEditPart.VISUAL_ID));
+		label10001.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
 
-		Location location4002 = (Location) label4002.getLayoutConstraint();
-		location4002.setX(0);
-		location4002.setY(5);
+		Location location10001 = (Location) label10001.getLayoutConstraint();
+		location10001.setX(25);
+		location10001.setY(3);
+		Node label10002 = createLabel(node,
+				UMLVisualIDRegistry
+						.getType(PseudostateForkStereotypeEditPart.VISUAL_ID));
+		label10002.setLayoutConstraint(NotationFactory.eINSTANCE
+				.createLocation());
+
+		Location location10002 = (Location) label10002.getLayoutConstraint();
+		location10002.setX(25);
+		location10002.setY(-10);
+
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createPseudostate_11000(EObject domainElement,
+			View containerView, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry
+				.getType(PseudostateChoiceEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
+				.getPreferenceStore();
+
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node,
+				prefStore, "Pseudostate");
+
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node,
+				prefStore, "Pseudostate");
+
+		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node,
+				prefStore, "Pseudostate");
+
+		Node label11001 = createLabel(node,
+				UMLVisualIDRegistry
+						.getType(PseudostateChoiceNameEditPart.VISUAL_ID));
+		label11001.setLayoutConstraint(NotationFactory.eINSTANCE
+				.createLocation());
+
+		Location location11001 = (Location) label11001.getLayoutConstraint();
+		location11001.setX(25);
+		location11001.setY(3);
+		Node label11002 = createLabel(node,
+				UMLVisualIDRegistry
+						.getType(PseudostateChoiceStereotypeEditPart.VISUAL_ID));
+		label11002.setLayoutConstraint(NotationFactory.eINSTANCE
+				.createLocation());
+
+		Location location11002 = (Location) label11002.getLayoutConstraint();
+		location11002.setX(25);
+		location11002.setY(-10);
+
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createPseudostate_12000(EObject domainElement,
+			View containerView, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry
+				.getType(PseudostateJunctionEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
+				.getPreferenceStore();
+
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node,
+				prefStore, "Pseudostate");
+
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node,
+				prefStore, "Pseudostate");
+
+		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node,
+				prefStore, "Pseudostate");
+
+		Node label12001 = createLabel(node,
+				UMLVisualIDRegistry
+						.getType(PseudostateJunctionNameEditPart.VISUAL_ID));
+		label12001.setLayoutConstraint(NotationFactory.eINSTANCE
+				.createLocation());
+
+		Location location12001 = (Location) label12001.getLayoutConstraint();
+		location12001.setX(25);
+		location12001.setY(3);
+		Node label12002 = createLabel(
+				node,
+				UMLVisualIDRegistry
+						.getType(PseudostateJunctionStereotypeEditPart.VISUAL_ID));
+		label12002.setLayoutConstraint(NotationFactory.eINSTANCE
+				.createLocation());
+
+		Location location12002 = (Location) label12002.getLayoutConstraint();
+		location12002.setX(25);
+		location12002.setY(-10);
+
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createPseudostate_13000(EObject domainElement,
+			View containerView, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry
+				.getType(PseudostateShallowHistoryEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
+				.getPreferenceStore();
+
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node,
+				prefStore, "Pseudostate");
+
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node,
+				prefStore, "Pseudostate");
+
+		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node,
+				prefStore, "Pseudostate");
+
+		Node label13001 = createLabel(
+				node,
+				UMLVisualIDRegistry
+						.getType(PseudostateShallowHistoryNameEditPart.VISUAL_ID));
+		label13001.setLayoutConstraint(NotationFactory.eINSTANCE
+				.createLocation());
+
+		Location location13001 = (Location) label13001.getLayoutConstraint();
+		location13001.setX(25);
+		location13001.setY(3);
+		Node label13002 = createLabel(
+				node,
+				UMLVisualIDRegistry
+						.getType(PseudostateShallowHistoryStereotypeEditPart.VISUAL_ID));
+		label13002.setLayoutConstraint(NotationFactory.eINSTANCE
+				.createLocation());
+
+		Location location13002 = (Location) label13002.getLayoutConstraint();
+		location13002.setX(25);
+		location13002.setY(-10);
+
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createPseudostate_14000(EObject domainElement,
+			View containerView, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry
+				.getType(PseudostateDeepHistoryEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
+				.getPreferenceStore();
+
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node,
+				prefStore, "Pseudostate");
+
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node,
+				prefStore, "Pseudostate");
+
+		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node,
+				prefStore, "Pseudostate");
+
+		Node label14001 = createLabel(node,
+				UMLVisualIDRegistry
+						.getType(PseudostateDeepHistoryNameEditPart.VISUAL_ID));
+		label14001.setLayoutConstraint(NotationFactory.eINSTANCE
+				.createLocation());
+
+		Location location14001 = (Location) label14001.getLayoutConstraint();
+		location14001.setX(25);
+		location14001.setY(3);
+		Node label14002 = createLabel(
+				node,
+				UMLVisualIDRegistry
+						.getType(PseudostateDeepHistoryStereotypeEditPart.VISUAL_ID));
+		label14002.setLayoutConstraint(NotationFactory.eINSTANCE
+				.createLocation());
+
+		Location location14002 = (Location) label14002.getLayoutConstraint();
+		location14002.setX(25);
+		location14002.setY(-10);
+
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createPseudostate_15000(EObject domainElement,
+			View containerView, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry
+				.getType(PseudostateTerminateEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
+				.getPreferenceStore();
+
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node,
+				prefStore, "Pseudostate");
+
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node,
+				prefStore, "Pseudostate");
+
+		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node,
+				prefStore, "Pseudostate");
+
+		Node label15001 = createLabel(node,
+				UMLVisualIDRegistry
+						.getType(PseudostateTerminateNameEditPart.VISUAL_ID));
+		label15001.setLayoutConstraint(NotationFactory.eINSTANCE
+				.createLocation());
+
+		Location location15001 = (Location) label15001.getLayoutConstraint();
+		location15001.setX(25);
+		location15001.setY(3);
+		Node label15002 = createLabel(
+				node,
+				UMLVisualIDRegistry
+						.getType(PseudostateTerminateStereotypeEditPart.VISUAL_ID));
+		label15002.setLayoutConstraint(NotationFactory.eINSTANCE
+				.createLocation());
+
+		Location location15002 = (Location) label15002.getLayoutConstraint();
+		location15002.setX(25);
+		location15002.setY(-10);
+
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createPseudostate_16000(EObject domainElement,
+			View containerView, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry
+				.getType(PseudostateEntryPointEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
+				.getPreferenceStore();
+
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node,
+				prefStore, "Pseudostate");
+
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node,
+				prefStore, "Pseudostate");
+
+		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node,
+				prefStore, "Pseudostate");
+
+		Node label16001 = createLabel(node,
+				UMLVisualIDRegistry
+						.getType(PseudostateEntryPointNameEditPart.VISUAL_ID));
+		label16001.setLayoutConstraint(NotationFactory.eINSTANCE
+				.createLocation());
+
+		Location location16001 = (Location) label16001.getLayoutConstraint();
+		location16001.setX(25);
+		location16001.setY(3);
+		Node label16002 = createLabel(
+				node,
+				UMLVisualIDRegistry
+						.getType(PseudostateEntryPointStereotypeEditPart.VISUAL_ID));
+		label16002.setLayoutConstraint(NotationFactory.eINSTANCE
+				.createLocation());
+
+		Location location16002 = (Location) label16002.getLayoutConstraint();
+		location16002.setX(25);
+		location16002.setY(-10);
+
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createPseudostate_17000(EObject domainElement,
+			View containerView, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry
+				.getType(PseudostateExitPointEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
+				.getPreferenceStore();
+
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node,
+				prefStore, "Pseudostate");
+
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node,
+				prefStore, "Pseudostate");
+
+		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node,
+				prefStore, "Pseudostate");
+
+		Node label17001 = createLabel(node,
+				UMLVisualIDRegistry
+						.getType(PseudostateExitPointNameEditPart.VISUAL_ID));
+		label17001.setLayoutConstraint(NotationFactory.eINSTANCE
+				.createLocation());
+
+		Location location17001 = (Location) label17001.getLayoutConstraint();
+		location17001.setX(25);
+		location17001.setY(3);
+		Node label17002 = createLabel(
+				node,
+				UMLVisualIDRegistry
+						.getType(PseudostateExitPointStereotypeEditPart.VISUAL_ID));
+		label17002.setLayoutConstraint(NotationFactory.eINSTANCE
+				.createLocation());
+
+		Location location17002 = (Location) label17002.getLayoutConstraint();
+		location17002.setX(25);
+		location17002.setY(-10);
+
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createPseudostate_8000(EObject domainElement,
+			View containerView, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry
+				.getType(PseudostateInitialEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
+				.getPreferenceStore();
+
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node,
+				prefStore, "Pseudostate");
+
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node,
+				prefStore, "Pseudostate");
+
+		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node,
+				prefStore, "Pseudostate");
+
+		Node label8001 = createLabel(node,
+				UMLVisualIDRegistry
+						.getType(PseudostateInitialNameEditPart.VISUAL_ID));
+		label8001.setLayoutConstraint(NotationFactory.eINSTANCE
+				.createLocation());
+
+		Location location8001 = (Location) label8001.getLayoutConstraint();
+		location8001.setX(25);
+		location8001.setY(3);
+		Node label8002 = createLabel(
+				node,
+				UMLVisualIDRegistry
+						.getType(PseudostateInitialStereotypeEditPart.VISUAL_ID));
+		label8002.setLayoutConstraint(NotationFactory.eINSTANCE
+				.createLocation());
+
+		Location location8002 = (Location) label8002.getLayoutConstraint();
+		location8002.setX(25);
+		location8002.setY(-10);
+
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createPseudostate_9000(EObject domainElement,
+			View containerView, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry
+				.getType(PseudostateJoinEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
+				.getPreferenceStore();
+
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node,
+				prefStore, "Pseudostate");
+
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node,
+				prefStore, "Pseudostate");
+
+		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node,
+				prefStore, "Pseudostate");
+
+		Node label9001 = createLabel(node,
+				UMLVisualIDRegistry
+						.getType(PseudostateJoinNameEditPart.VISUAL_ID));
+		label9001.setLayoutConstraint(NotationFactory.eINSTANCE
+				.createLocation());
+
+		Location location9001 = (Location) label9001.getLayoutConstraint();
+		location9001.setX(25);
+		location9001.setY(3);
+		Node label9002 = createLabel(node,
+				UMLVisualIDRegistry
+						.getType(PseudostateJoinStereotypeEditPart.VISUAL_ID));
+		label9002.setLayoutConstraint(NotationFactory.eINSTANCE
+				.createLocation());
+
+		Location location9002 = (Location) label9002.getLayoutConstraint();
+		location9002.setX(25);
+		location9002.setY(-10);
+
 		return node;
 	}
 
@@ -293,6 +893,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				UMLVisualIDRegistry
 						.getType(RegionCompartmentEditPart.VISUAL_ID), false,
 				false, false, false);
+
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(
+				node, prefStore, "Region");
+
 		return node;
 	}
 
@@ -321,6 +925,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label6001 = createLabel(node,
 				UMLVisualIDRegistry.getType(StateNameEditPart.VISUAL_ID));
+		createCompartment(
+				node,
+				UMLVisualIDRegistry.getType(StateCompartmentEditPart.VISUAL_ID),
+				false, false, false, false);
+
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(
+				node, prefStore, "State");
+
 		return node;
 	}
 
@@ -356,6 +968,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				UMLVisualIDRegistry
 						.getType(StateMachineCompartmentEditPart.VISUAL_ID),
 				false, false, false, false);
+
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(
+				node, prefStore, "StateMachine");
+
 		return node;
 	}
 
@@ -597,9 +1213,19 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				switch (visualID) {
 				case StateMachineEditPart.VISUAL_ID:
 				case RegionEditPart.VISUAL_ID:
-				case PseudostateEditPart.VISUAL_ID:
 				case FinalStateEditPart.VISUAL_ID:
 				case StateEditPart.VISUAL_ID:
+				case PseudostateInitialEditPart.VISUAL_ID:
+				case PseudostateJoinEditPart.VISUAL_ID:
+				case PseudostateForkEditPart.VISUAL_ID:
+				case PseudostateChoiceEditPart.VISUAL_ID:
+				case PseudostateJunctionEditPart.VISUAL_ID:
+				case PseudostateShallowHistoryEditPart.VISUAL_ID:
+				case PseudostateDeepHistoryEditPart.VISUAL_ID:
+				case PseudostateTerminateEditPart.VISUAL_ID:
+				case PseudostateEntryPointEditPart.VISUAL_ID:
+				case PseudostateExitPointEditPart.VISUAL_ID:
+				case ConnectionPointReferenceEditPart.VISUAL_ID:
 					if (domainElement == null
 							|| visualID != UMLVisualIDRegistry.getNodeVisualID(
 									op.getContainerView(), domainElement)) {
@@ -613,9 +1239,19 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		}
 		return StateMachineEditPart.VISUAL_ID == visualID
 				|| RegionEditPart.VISUAL_ID == visualID
-				|| PseudostateEditPart.VISUAL_ID == visualID
 				|| FinalStateEditPart.VISUAL_ID == visualID
-				|| StateEditPart.VISUAL_ID == visualID;
+				|| StateEditPart.VISUAL_ID == visualID
+				|| PseudostateInitialEditPart.VISUAL_ID == visualID
+				|| PseudostateJoinEditPart.VISUAL_ID == visualID
+				|| PseudostateForkEditPart.VISUAL_ID == visualID
+				|| PseudostateChoiceEditPart.VISUAL_ID == visualID
+				|| PseudostateJunctionEditPart.VISUAL_ID == visualID
+				|| PseudostateShallowHistoryEditPart.VISUAL_ID == visualID
+				|| PseudostateDeepHistoryEditPart.VISUAL_ID == visualID
+				|| PseudostateTerminateEditPart.VISUAL_ID == visualID
+				|| PseudostateEntryPointEditPart.VISUAL_ID == visualID
+				|| PseudostateExitPointEditPart.VISUAL_ID == visualID
+				|| ConnectionPointReferenceEditPart.VISUAL_ID == visualID;
 	}
 
 	/**

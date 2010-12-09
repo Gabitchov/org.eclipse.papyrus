@@ -24,9 +24,12 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
+import org.eclipse.papyrus.state.editor.xtext.ui.contentassist.UmlStateProposalProvider;
 import org.eclipse.papyrus.state.editor.xtext.ui.internal.UmlStateActivator;
 import org.eclipse.papyrus.state.editor.xtext.umlState.BehaviorKind;
 import org.eclipse.papyrus.state.editor.xtext.umlState.StateRule;
+import org.eclipse.papyrus.state.editor.xtext.validation.SemanticValidator;
+import org.eclipse.papyrus.state.editor.xtext.validation.UmlStateJavaValidator;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.OpaqueBehavior;
@@ -49,6 +52,8 @@ public class StatePopupEditorConfigurationContribution extends PopupEditorConfig
 
 	private State state = null;
 
+	private StateMachine newSubmachine = null ;
+	
 	private String newStateName;
 
 	private String newEntryName = null;
@@ -86,6 +91,8 @@ public class StatePopupEditorConfigurationContribution extends PopupEditorConfig
 			return null;
 		state = (State)graphicalEditPart.resolveSemanticElement();
 
+		UmlStateJavaValidator.init(state) ;
+		
 		// retrieves the XText injector
 		Injector injector = UmlStateActivator.getInstance().getInjector("org.eclipse.papyrus.state.editor.xtext.UmlState");
 
@@ -113,10 +120,16 @@ public class StatePopupEditorConfigurationContribution extends PopupEditorConfig
 				// Retrieves the information to be populated in modelObject
 				newStateName = "" + stateRuleObject.getName();
 
+				newSubmachine = null ;
+				
 				newEntryName = "";
 				newDoName = "";
 				newExitName = "";
 
+				if (stateRuleObject.getSubmachine() != null) {
+					newSubmachine = stateRuleObject.getSubmachine().getSubmachine() ;
+				}
+				
 				if(stateRuleObject.getEntry() != null) {
 					newEntryKind = stateRuleObject.getEntry().getKind();
 					if(stateRuleObject.getEntry().getBehaviorName() != null) {
@@ -148,7 +161,12 @@ public class StatePopupEditorConfigurationContribution extends PopupEditorConfig
 				}
 			}
 		};
-		return super.createPopupEditorHelper(graphicalEditPart, injector, reconciler, textToEdit, fileExtension);
+		return super.createPopupEditorHelper(graphicalEditPart, 
+											injector, 
+											reconciler, 
+											textToEdit, 
+											fileExtension,
+											new SemanticValidator());
 	}
 
 	/*
@@ -165,6 +183,10 @@ public class StatePopupEditorConfigurationContribution extends PopupEditorConfig
 			// name
 			textToEdit = textToEdit + state.getName();
 
+			if (state.isSubmachineState()) {
+				textToEdit += " : " + UmlStateProposalProvider.getSubmachineLabel(state.getSubmachine()) ;
+			}
+			
 			// entryActivity
 			if(state.getEntry() != null) {
 				String kind = behaviorKindAsString(state.getEntry());
@@ -209,6 +231,7 @@ public class StatePopupEditorConfigurationContribution extends PopupEditorConfig
 		protected CommandResult doExecuteWithResult(IProgressMonitor arg0, IAdaptable arg1) throws ExecutionException {
 
 			state.setName(newStateName);
+			state.setSubmachine(newSubmachine) ;
 			state.setEntry(updateOrCreateBehavior(BehaviorRole_Local.ENTRY, newEntryKind, newEntryName));
 			state.setDoActivity(updateOrCreateBehavior(BehaviorRole_Local.DO, newDoKind, newDoName));
 			state.setExit(updateOrCreateBehavior(BehaviorRole_Local.EXIT, newExitKind, newExitName));

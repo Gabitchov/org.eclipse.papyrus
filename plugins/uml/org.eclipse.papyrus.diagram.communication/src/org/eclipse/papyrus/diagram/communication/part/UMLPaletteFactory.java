@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
+ *  Saadia Dhouib saadia.dhouib@cea.fr  
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.part;
@@ -35,12 +35,12 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private final static String CREATELIFELINECOMCREATIONTOOL = "createLifelineComCreationTool"; //$NON-NLS-1$
+	private final static String COMMUNICATION_TOOL_LIFELINE = "communication.tool.lifeline"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATECOMMENT7CREATIONTOOL = "createComment7CreationTool"; //$NON-NLS-1$
+	private final static String COMMUNICATION_TOOL_COMMENT = "communication.tool.comment"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -50,12 +50,12 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private final static String CREATEDURATIONOBSERVATION4CREATIONTOOL = "createDurationObservation4CreationTool"; //$NON-NLS-1$
+	private final static String COMMUNICATION_TOOL_DURATIONOBSERVATION = "communication.tool.durationobservation"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATETIMEOBSERVATION6CREATIONTOOL = "createTimeObservation6CreationTool"; //$NON-NLS-1$
+	private final static String COMMUNICATION_TOOL_TIMEOBSERVATION = "communication.tool.timeobservation"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -82,19 +82,19 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	public Tool createTool(String toolId) {
-		if(toolId.equals(CREATELIFELINECOMCREATIONTOOL)) {
+		if(toolId.equals(COMMUNICATION_TOOL_LIFELINE)) {
 			return createLifelineComCreationTool();
 		}
-		if(toolId.equals(CREATECOMMENT7CREATIONTOOL)) {
+		if(toolId.equals(COMMUNICATION_TOOL_COMMENT)) {
 			return createComment7CreationTool();
 		}
 		if(toolId.equals(COMMUNICATION_TOOL_CONSTRAINT)) {
 			return createConstraint5CreationTool();
 		}
-		if(toolId.equals(CREATEDURATIONOBSERVATION4CREATIONTOOL)) {
+		if(toolId.equals(COMMUNICATION_TOOL_DURATIONOBSERVATION)) {
 			return createDurationObservation4CreationTool();
 		}
-		if(toolId.equals(CREATETIMEOBSERVATION6CREATIONTOOL)) {
+		if(toolId.equals(COMMUNICATION_TOOL_TIMEOBSERVATION)) {
 			return createTimeObservation6CreationTool();
 		}
 		if(toolId.equals(CREATEMESSAGECREATECREATIONTOOL)) {

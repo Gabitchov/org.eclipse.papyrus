@@ -19,15 +19,17 @@ import org.eclipse.ui.handlers.HandlerUtil;
 
 /**
  * Our sample handler extends AbstractHandler, an IHandler base class.
+ * 
  * @see org.eclipse.core.commands.IHandler
  * @see org.eclipse.core.commands.AbstractHandler
  */
 public class PasteWithModelHandler extends AbstractHandler {
+
 	/**
 	 * The constructor.
 	 */
 	public PasteWithModelHandler() {
-		
+
 	}
 
 	/**
@@ -36,18 +38,18 @@ public class PasteWithModelHandler extends AbstractHandler {
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		IEditorPart diagramEditor = HandlerUtil.getActiveEditorChecked(event);
-		ISelection  selection=HandlerUtil.getCurrentSelection(event);
-		if (selection instanceof IStructuredSelection){
-			if (((IStructuredSelection)selection).getFirstElement() instanceof GraphicalEditPart){
-				GraphicalEditPart targetEditPart= (GraphicalEditPart) ((IStructuredSelection)selection).getFirstElement();
-				if(targetEditPart != null){
+		ISelection selection = HandlerUtil.getCurrentSelection(event);
+		if(selection instanceof IStructuredSelection) {
+			if(((IStructuredSelection)selection).getFirstElement() instanceof GraphicalEditPart) {
+				GraphicalEditPart targetEditPart = (GraphicalEditPart)((IStructuredSelection)selection).getFirstElement();
+				if(targetEditPart != null) {
 					//get the paste command with model form the service
-					ICommand pastecommand=PasteCommandService.getInstance().getPasteWithModelCommand(targetEditPart, Toolkit.getDefaultToolkit().getSystemClipboard(), targetEditPart.getEditingDomain().getClipboard());
+					ICommand pastecommand = PasteCommandService.getInstance().getPasteWithModelCommand(targetEditPart, Toolkit.getDefaultToolkit().getSystemClipboard(), targetEditPart.getEditingDomain().getClipboard());
 
-					if(pastecommand.canExecute() ){
+					if(pastecommand.canExecute()) {
 						targetEditPart.getEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(pastecommand));
-						RootEditPart topEditPart=targetEditPart.getRoot();
-						if(topEditPart.getChildren().get(0) instanceof DiagramEditPart){
+						RootEditPart topEditPart = targetEditPart.getRoot();
+						if(topEditPart.getChildren().get(0) instanceof DiagramEditPart) {
 							CleanDiagramHelper.getInstance().run((DiagramEditPart)topEditPart.getChildren().get(0));
 						}
 					}

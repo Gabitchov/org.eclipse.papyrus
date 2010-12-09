@@ -22,6 +22,7 @@ import org.eclipse.papyrus.modelexplorer.actions.CreateDiagramAction;
 /**
  * Provider used to create a new diagram actions
  * 
+ * @deprecated
  */
 public class CreateDiagramActionProvider extends AbstractSubmenuActionProvider {
 
@@ -34,16 +35,13 @@ public class CreateDiagramActionProvider extends AbstractSubmenuActionProvider {
 	public void fillContextMenu(IMenuManager menu) {
 		Object selectedElement = resolveSemanticObject(getFirstSelectedElement());
 
-		if (selectedElement != null && selectedElement instanceof EObject) {
-			EObject eobject = (EObject) selectedElement;
+		if(selectedElement != null && selectedElement instanceof EObject) {
+			EObject eobject = (EObject)selectedElement;
 			MenuManager newDiagramMenu = new MenuManager("New Diagram");
 			menu.add(newDiagramMenu);
-			for (CreationCommandDescriptor desc : getCreationCommandRegistry()
-					.getCommandDescriptors()) {
-				if (desc.getCondition() == null
-						|| desc.getCondition().create(eobject)) {
-					CreateDiagramAction createDiagramAction = new CreateDiagramAction(
-							eobject, desc);
+			for(CreationCommandDescriptor desc : getCreationCommandRegistry().getCommandDescriptors()) {
+				if(desc.getCondition() == null || desc.getCondition().create(eobject)) {
+					CreateDiagramAction createDiagramAction = new CreateDiagramAction(eobject, desc);
 					newDiagramMenu.add(createDiagramAction);
 				}
 			}
@@ -51,9 +49,8 @@ public class CreateDiagramActionProvider extends AbstractSubmenuActionProvider {
 	}
 
 	private ICreationCommandRegistry getCreationCommandRegistry() {
-		if (creationCommandRegistry == null) {
-			this.creationCommandRegistry = new CreationCommandRegistry(
-					org.eclipse.papyrus.core.Activator.PLUGIN_ID);
+		if(creationCommandRegistry == null) {
+			this.creationCommandRegistry = new CreationCommandRegistry(org.eclipse.papyrus.core.Activator.PLUGIN_ID);
 		}
 		return creationCommandRegistry;
 	}

@@ -1,16 +1,9 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+/**
+ * <copyright>
+ * </copyright>
  *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
+
+ */
 package org.eclipse.papyrus.state.editor.xtext.umlState.util;
 
 import org.eclipse.emf.common.notify.Adapter;
@@ -91,6 +84,16 @@ public class UmlStateAdapterFactory extends AdapterFactoryImpl
         return createStateRuleAdapter();
       }
       @Override
+      public Adapter caseSubmachineRule(SubmachineRule object)
+      {
+        return createSubmachineRuleAdapter();
+      }
+      @Override
+      public Adapter caseQualifiedName(QualifiedName object)
+      {
+        return createQualifiedNameAdapter();
+      }
+      @Override
       public Adapter caseEntryRule(EntryRule object)
       {
         return createEntryRuleAdapter();
@@ -138,6 +141,36 @@ public class UmlStateAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createStateRuleAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.state.editor.xtext.umlState.SubmachineRule <em>Submachine Rule</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.papyrus.state.editor.xtext.umlState.SubmachineRule
+   * @generated
+   */
+  public Adapter createSubmachineRuleAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.state.editor.xtext.umlState.QualifiedName <em>Qualified Name</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.papyrus.state.editor.xtext.umlState.QualifiedName
+   * @generated
+   */
+  public Adapter createQualifiedNameAdapter()
   {
     return null;
   }

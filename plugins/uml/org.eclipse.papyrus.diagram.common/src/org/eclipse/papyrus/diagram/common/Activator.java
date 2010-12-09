@@ -51,7 +51,7 @@ public class Activator extends AbstractUIPlugin {
 	/** The Constant ID. */
 	public static final String ID = "org.eclipse.papyrus.diagram.common";
 
-	/** share instance of the plugin (singleton pattern) */
+	/** Shared instance of the plug-in (singleton pattern) */
 	private static Activator plugin;
 
 	/** Logging helper */
@@ -155,13 +155,13 @@ public class Activator extends AbstractUIPlugin {
 		if(image == null) { // Image not yet in registry
 
 			// Get the descriptor of the image without visibility
-			ImageDescriptor desc = AbstractUIPlugin.imageDescriptorFromPlugin(getDefault().ID, key);
+			ImageDescriptor desc = AbstractUIPlugin.imageDescriptorFromPlugin(ID, key);
 
 			if(!"".equals(visKey)) { // Add visibility overlay
 
 				Image initialImage = desc.createImage();
 				getDefault();
-				ImageDescriptor visDesc = Activator.getImageDescriptor(getDefault().UML_VIS_ICONS_16x16 + "VisibilityKind_" + visKey + ".gif");
+				ImageDescriptor visDesc = Activator.getImageDescriptor(UML_VIS_ICONS_16x16 + "VisibilityKind_" + visKey + ".gif");
 
 				// Overlay custom image over base image
 				OverlayVisibilityIcon overlayIcon = new OverlayVisibilityIcon(initialImage, visDesc);
@@ -341,7 +341,7 @@ public class Activator extends AbstractUIPlugin {
 		}
 	}
 
-	
+/** get the imageassociated to a image uml element**/
 	public static Image getShape(Element elt, Stereotype stereotype, boolean withVisibilityDecorator) {
 
 		VisibilityKind vis = null;
@@ -358,6 +358,7 @@ public class Activator extends AbstractUIPlugin {
 			return null;
 		}
 	}
+
 	/**
 	 * Find the image (SWT) in registry Store image in registry if it is not
 	 * found
@@ -383,8 +384,12 @@ public class Activator extends AbstractUIPlugin {
 		// try to find an image and to update registry
 		if(image == null) {
 
-			// Try to retrieve image from UML Image content property
-			image = ImageUtil.getContent(umlImage);
+			try {
+				// Try to retrieve image from UML Image content property
+				image = ImageUtil.getContent(umlImage);
+			} catch (Exception e) {
+				// Activator.log.error(e);
+			}
 
 			// If no image was found in Content
 			// Try to retrieve image from UML Image location property
@@ -396,7 +401,7 @@ public class Activator extends AbstractUIPlugin {
 			if(visibility != null) {
 
 				getDefault();
-				ImageDescriptor visDesc = Activator.getImageDescriptor(getDefault().UML_VIS_ICONS_16x16 + "VisibilityKind_" + visibility.getLiteral() + ".gif");
+				ImageDescriptor visDesc = Activator.getImageDescriptor(UML_VIS_ICONS_16x16 + "VisibilityKind_" + visibility.getLiteral() + ".gif");
 
 				// Overlay custom image over base image
 				OverlayVisibilityIcon overlayIcon = new OverlayVisibilityIcon(image, visDesc);

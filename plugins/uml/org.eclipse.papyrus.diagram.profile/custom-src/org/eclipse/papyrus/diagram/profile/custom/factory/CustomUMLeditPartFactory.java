@@ -26,9 +26,9 @@ import org.eclipse.papyrus.diagram.profile.custom.edit.parts.CustomPackageEditPa
 import org.eclipse.papyrus.diagram.profile.custom.edit.parts.CustomPackageEditPartCN;
 import org.eclipse.papyrus.diagram.profile.custom.edit.parts.CustomProfileEditPartCN;
 import org.eclipse.papyrus.diagram.profile.custom.edit.parts.CustomProfileEditPartTN;
-import org.eclipse.papyrus.diagram.profile.edit.parts.AssociationMultiplicityTargetLabelEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.AssociationNodeEditPart;
-import org.eclipse.papyrus.diagram.profile.edit.parts.AssociationRoleSourceLabelEditPart;
+import org.eclipse.papyrus.diagram.profile.edit.parts.AssociationRoleSourceEditPart;
+import org.eclipse.papyrus.diagram.profile.edit.parts.AssociationRoleTargetEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.DependencyBranchEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.DependencyNodeEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.ModelEditPartCN;
@@ -45,6 +45,14 @@ import org.eclipse.papyrus.diagram.profile.part.UMLVisualIDRegistry;
  */
 public class CustomUMLeditPartFactory extends UMLEditPartFactory {
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.diagram.profile.edit.parts.UMLEditPartFactory#createEditPart(org.eclipse.gef.EditPart, java.lang.Object)
+	 * 
+	 * @param context
+	 * @param model
+	 * @return
+	 */
 	@Override
 	public EditPart createEditPart(EditPart context, Object model) {
 		if(model instanceof View) {
@@ -65,14 +73,11 @@ public class CustomUMLeditPartFactory extends UMLEditPartFactory {
 				return new CustomAssociationNodeEditPart(view);
 			case DependencyNodeEditPart.VISUAL_ID:
 				return new CustomDependencyNodeEditPart(view);
-			case AssociationMultiplicityTargetLabelEditPart.VISUAL_ID: //5 in class diagram
+			case AssociationRoleSourceEditPart.VISUAL_ID: //5 in class diagram
 				return new AssociationEndSourceEditPart(view);
-			case AssociationRoleSourceLabelEditPart.VISUAL_ID: //3 in class diagramm
+			case AssociationRoleTargetEditPart.VISUAL_ID: //3 in class diagramm
 				return new AssociationEndTargetEditPart(view);
-				//			case AssociationClassRoleSourceEditPart.VISUAL_ID:
-				//				return new CAssociationClassEndSourceEditPart(view);
-				//			case AssociationClassRoleTargetEditPart.VISUAL_ID:
-				//				return new CAssociationClassEndTargetEditPart(view);
+
 			case DependencyBranchEditPart.VISUAL_ID:
 				return new CustomDependencyBranchEditPart(view);
 			case ProfileEditPartTN.VISUAL_ID:

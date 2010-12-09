@@ -9,12 +9,79 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences;
 
+
+import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
+import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockConstraintCompartmentEditPart;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockDefinitionDiagramEditPart;
+import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockOperationCompartmentEditPart;
+import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockPartCompartmentEditPart;
+import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockPropertyCompartmentEditPart;
+import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockReferenceCompartmentEditPart;
+import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockValueCompartmentEditPart;
+import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 
 public class BlockPreferencePage extends BlockDefinitionDiagramNodePreferencePage {
+	
+	private static final String BLOCK_PREFERENCE_KEY = BlockDefinitionDiagramEditPart.DIAGRAM_ID + "_" + SysMLElementTypes.BLOCK.getSemanticHint(); //$NON-NLS-1$
+
+	/**
+	 * the list of the compartments for this node
+	 */
+	public static final String compartments[] = { 
+		BlockPropertyCompartmentEditPart.COMPARTMENT_NAME, 
+		BlockOperationCompartmentEditPart.COMPARTMENT_NAME, 
+		BlockConstraintCompartmentEditPart.COMPARTMENT_NAME, 
+		BlockPartCompartmentEditPart.COMPARTMENT_NAME, 
+		BlockReferenceCompartmentEditPart.COMPARTMENT_NAME, 
+		BlockValueCompartmentEditPart.COMPARTMENT_NAME 
+		};
+
+	public static final String default_compartments[] = { 
+		//BlockPropertyCompartmentEditPart.COMPARTMENT_NAME, 
+		//Messages.ClassOperationCompartment2EditPart_title, 
+		//BlockConstraintCompartmentEditPart.COMPARTMENT_NAME, 
+		BlockPartCompartmentEditPart.COMPARTMENT_NAME, 
+		BlockReferenceCompartmentEditPart.COMPARTMENT_NAME, 
+		//BlockValueCompartmentEditPart.COMPARTMENT_NAME 
+		};
 
 	public BlockPreferencePage() {
 		super();
-		setPreferenceKey(BlockDefinitionDiagramEditPart.DIAGRAM_ID + "_Block"); //$NON-NLS-1$
+		setPreferenceKey(BLOCK_PREFERENCE_KEY);
+	}
+
+	/**
+	 * 
+	 * @param store
+	 */
+	public static void initDefaults(IPreferenceStore store) {
+
+		for(String compartmentName : compartments) {
+			String showCompartmentKey = PreferenceConstantHelper.getCompartmentElementConstant(BLOCK_PREFERENCE_KEY, compartmentName, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
+			store.setDefault(showCompartmentKey, false);
+
+			String showCompartmentNameKey = PreferenceConstantHelper.getCompartmentElementConstant(BLOCK_PREFERENCE_KEY, compartmentName, PreferenceConstantHelper.COMPARTMENT_NAME_VISIBILITY);
+			store.setDefault(showCompartmentNameKey, true);
+
+		}
+		// set the true value for the compartment visibility
+		for(String name : default_compartments) {
+			String preferenceName = PreferenceConstantHelper.getCompartmentElementConstant(BLOCK_PREFERENCE_KEY, name, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
+			store.setDefault(preferenceName, true);
+		}
+	}
+
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.preferences.pages.AbstractPapyrusNodePreferencePage#initializeCompartmentsList()
+	 * 
+	 */
+	@Override
+	protected void initializeCompartmentsList() {
+		for(String name : compartments) {
+			this.compartmentsList.add(name);
+		}
 	}
 }

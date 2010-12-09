@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
+ *  Saadia Dhouib saadia.dhouib@cea.fr  
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.edit.parts;
@@ -32,10 +32,10 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.NonResizableLabelEditPoli
 import org.eclipse.gmf.runtime.diagram.ui.figures.BorderedNodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.editpolicies.DuplicatePasteEditPolicy;
-import org.eclipse.papyrus.diagram.common.editpolicies.OrphanViewPolicy;
 import org.eclipse.papyrus.diagram.common.providers.ViewInfo;
 import org.eclipse.papyrus.diagram.common.util.MDTUtil;
 import org.eclipse.papyrus.diagram.communication.custom.edit.policies.CustomDiagramDragDropEditPolicy;
+import org.eclipse.papyrus.diagram.communication.custom.edit.policies.CustomOrphanViewPolicy;
 import org.eclipse.papyrus.diagram.communication.edit.policies.PackageItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.communication.part.UMLVisualIDRegistry;
 
@@ -53,6 +53,8 @@ public class ModelEditPart extends DiagramEditPart {
 	 * @generated
 	 */
 	public static final int VISUAL_ID = 1000;
+
+
 
 	/**
 	 * @generated
@@ -121,15 +123,16 @@ public class ModelEditPart extends DiagramEditPart {
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.communication.edit.policies.ModelCanonicalEditPolicy());
 
 
-		installEditPolicy("RemoveOrphanView", new OrphanViewPolicy()); //$NON-NLS-1$
+		installEditPolicy("RemoveOrphanView", new CustomOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
 	}
 
+
 	/**
 	 * @generated
 	 */
-	/* package-local */static class NodeLabelDragPolicy extends NonResizableEditPolicy {
+	/*package-local*/static class NodeLabelDragPolicy extends NonResizableEditPolicy {
 
 		/**
 		 * @generated
@@ -156,10 +159,11 @@ public class ModelEditPart extends DiagramEditPart {
 		}
 	}
 
+
 	/**
 	 * @generated
 	 */
-	/* package-local */static class LinkLabelDragPolicy extends NonResizableLabelEditPolicy {
+	/*package-local*/static class LinkLabelDragPolicy extends NonResizableLabelEditPolicy {
 
 		/**
 		 * @generated
@@ -171,6 +175,10 @@ public class ModelEditPart extends DiagramEditPart {
 			return Collections.singletonList(mh);
 		}
 	}
+
+
+
+
 
 	/**
 	 * @generated
@@ -187,6 +195,7 @@ public class ModelEditPart extends DiagramEditPart {
 		}
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -197,5 +206,7 @@ public class ModelEditPart extends DiagramEditPart {
 		}
 		return super.getAdapter(adapter);
 	}
+
+
 
 }

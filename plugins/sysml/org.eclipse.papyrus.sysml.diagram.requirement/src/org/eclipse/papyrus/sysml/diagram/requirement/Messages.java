@@ -43,16 +43,6 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String Short_Cut;
-
-	/**
-	 * @generated
-	 */
-	public static String Model_ID;
-
-	/**
-	 * @generated
-	 */
 	public static String No_View_Can_Be_Created;
 
 	/**

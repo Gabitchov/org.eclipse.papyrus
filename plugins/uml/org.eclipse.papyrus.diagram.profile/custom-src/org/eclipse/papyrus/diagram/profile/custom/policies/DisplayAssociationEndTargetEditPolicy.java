@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Adapted code from the class diagram 
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Adapted code from Class Diagram
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.profile.custom.policies;
 
@@ -19,6 +19,21 @@ import org.eclipse.papyrus.diagram.profile.custom.helper.AssociationEndTargetLab
  * Mask Managed label edit policy for association ends (target role)
  */
 public class DisplayAssociationEndTargetEditPolicy extends DisplayAssociationEndEditPolicy {
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.diagram.profile.custom.policies.DisplayAssociationEndEditPolicy#addAdditionalListeners()
+	 * 
+	 */
+	@Override
+	public void addAdditionalListeners() {
+		super.addAdditionalListeners();
+		// adds a listener to the element itself, and to linked elements, like Type
+		if(getView().eContainer() != null) {
+			getDiagramEventBroker().addNotificationListener(getView().eContainer(), this);
+
+		}
+	}
 
 	/**
 	 * Instantiates a new display association end target edit policy.

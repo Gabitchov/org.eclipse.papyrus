@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2010 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,23 +9,18 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ */
 package org.eclipse.papyrus.diagram.clazz.edit.policies;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.commands.Command;
-import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
-import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
+import org.eclipse.gef.commands.UnexecutableCommand;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
-import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.AbstractionCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.AbstractionReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.AddedLinkCreateCommand;
@@ -46,8 +41,6 @@ import org.eclipse.papyrus.diagram.clazz.edit.commands.ElementImportCreateComman
 import org.eclipse.papyrus.diagram.clazz.edit.commands.ElementImportReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.RealizationCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.RealizationReorientCommand;
-import org.eclipse.papyrus.diagram.clazz.edit.commands.TemplateBindingCreateCommand;
-import org.eclipse.papyrus.diagram.clazz.edit.commands.TemplateBindingReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.UsageCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.UsageReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AbstractionEditPart;
@@ -60,10 +53,10 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyBranchEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ElementImportEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.RealizationEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.TemplateBindingEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.UsageEditPart;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
-import org.eclipse.papyrus.diagram.common.command.wrappers.EMFtoGMFCommandWrapper;
+import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.service.edit.service.IElementEditService;
 
 /**
  * @generated
@@ -81,23 +74,17 @@ public class Constraint2ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPo
 	 * @generated
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
-		View view = (View)getHost().getModel();
-		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
-		cmd.setTransactionNestingEnabled(true);
+		EObject selectedEObject = req.getElementToDestroy();
+		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(selectedEObject);
+		if(provider != null) {
+			// Retrieve delete command from the Element Edit service
+			ICommand deleteCommand = provider.getEditCommand(req);
 
-		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
-		if(annotation == null) {
-			// there are indirectly referenced children, need extra commands: false
-			addDestroyShortcutsCommand(cmd, view);
-			// delete host element
-			List<EObject> todestroy = new ArrayList<EObject>();
-			todestroy.add(req.getElementToDestroy());
-			//cmd.add(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(req));
-			cmd.add(new EMFtoGMFCommandWrapper(new org.eclipse.emf.edit.command.DeleteCommand(getEditingDomain(), todestroy)));
-		} else {
-			cmd.add(new DeleteCommand(getEditingDomain(), view));
+			if(deleteCommand != null) {
+				return new ICommandProxy(deleteCommand);
+			}
 		}
-		return getGEFWrapper(cmd.reduce());
+		return UnexecutableCommand.INSTANCE;
 	}
 
 	/**
@@ -135,9 +122,6 @@ public class Constraint2ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPo
 		}
 		if(UMLElementTypes.ConstraintConstrainedElement_4014 == req.getElementType()) {
 			return getGEFWrapper(new ConstraintConstrainedElementCreateCommand(req, req.getSource(), req.getTarget()));
-		}
-		if(UMLElementTypes.TemplateBinding_4015 == req.getElementType()) {
-			return null;
 		}
 		if(UMLElementTypes.Dependency_4022 == req.getElementType()) {
 			return getGEFWrapper(new AddedLinkCreateCommand(req, req.getSource(), req.getTarget()));
@@ -179,9 +163,6 @@ public class Constraint2ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPo
 		if(UMLElementTypes.ConstraintConstrainedElement_4014 == req.getElementType()) {
 			return getGEFWrapper(new ConstraintConstrainedElementCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.TemplateBinding_4015 == req.getElementType()) {
-			return getGEFWrapper(new TemplateBindingCreateCommand(req, req.getSource(), req.getTarget()));
-		}
 		if(UMLElementTypes.Dependency_4022 == req.getElementType()) {
 			return getGEFWrapper(new AddedLinkCreateCommand(req, req.getSource(), req.getTarget()));
 		}
@@ -214,8 +195,6 @@ public class Constraint2ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPo
 			return getGEFWrapper(new Dependency2ReorientCommand(req));
 		case ElementImportEditPart.VISUAL_ID:
 			return getGEFWrapper(new ElementImportReorientCommand(req));
-		case TemplateBindingEditPart.VISUAL_ID:
-			return getGEFWrapper(new TemplateBindingReorientCommand(req));
 		case AddedLinkEditPart.VISUAL_ID:
 			return getGEFWrapper(new AddedLinkReorientCommand(req));
 		}
@@ -223,8 +202,8 @@ public class Constraint2ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPo
 	}
 
 	/**
-	 * Returns command to reorient EReference based link. New link target or
-	 * source should be the domain model element associated with this node.
+	 * Returns command to reorient EReference based link. New link target or source
+	 * should be the domain model element associated with this node.
 	 * 
 	 * @generated
 	 */

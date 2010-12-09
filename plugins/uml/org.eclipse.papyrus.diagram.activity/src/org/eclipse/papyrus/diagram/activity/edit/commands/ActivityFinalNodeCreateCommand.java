@@ -75,7 +75,6 @@ public class ActivityFinalNodeCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -99,8 +98,6 @@ public class ActivityFinalNodeCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
-
 		ActivityFinalNode newElement = UMLFactory.eINSTANCE.createActivityFinalNode();
 
 		// set appropriate parents
@@ -109,7 +106,6 @@ public class ActivityFinalNodeCreateCommand extends EditElementCommand {
 		}
 		//		Activity owner = (Activity)getElementToEdit();
 		//		owner.getNodes().add(newElement);
-
 
 		ElementInitializers.getInstance().init_ActivityFinalNode_3005(newElement);
 

@@ -9,17 +9,19 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Adapted code from the class diagram 
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Adapted code from Class Diagram
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.profile.custom.policies;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.GraphicalEditPart;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.diagram.common.editpolicies.AbstractMaskManagedEditPolicy;
@@ -28,16 +30,17 @@ import org.eclipse.papyrus.diagram.profile.custom.preferences.IPapyrusPropertyPr
 import org.eclipse.papyrus.diagram.profile.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.umlutils.ICustomAppearence;
 import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * I is used to display the label of an association branch
+ * It is used to display the label of an association branch
  */
 public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPolicy {
 
-	/** label helper for property */
+	/** label helper for the property */
 	protected PropertyLabelHelper propertyLabelHelper;
 
 	/**
@@ -47,12 +50,17 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 		super();
 	}
 
+	@Override
+	protected Element initSemanticElement() {
+		return propertyLabelHelper.getUMLElement(((GraphicalEditPart)getHost()));
+	}
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public void addAdditionalListeners() {
-		super.addAdditionalListeners();
+
 		// adds a listener to the element itself, and to linked elements, like Type
 		if(getUMLElement().getType() != null) {
 			getDiagramEventBroker().addNotificationListener(getUMLElement().getType(), this);
@@ -85,7 +93,7 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 	 * {@inheritDoc}
 	 */
 	public int getDefaultDisplayValue() {
-		return ICustomAppearence.DEFAULT_UML_PROPERTY;
+		return ICustomAppearence.DEFAULT_UML_ROLE;
 	}
 
 	/**
@@ -117,7 +125,7 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 	}
 
 	public String getPreferencePageID() {
-		return "org.eclipse.papyrus.diagram.profile.custom.preferences.PropertyPreferencePage"; //$NON-NLS-1$
+		return "org.eclipse.papyrus.diagram.clazz.custom.preferences.PropertyPreferencePage"; //$NON-NLS-1$
 	}
 
 	/**
@@ -125,7 +133,7 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 	 */
 	@Override
 	public Property getUMLElement() {
-		return propertyLabelHelper.getUMLElement(((GraphicalEditPart)getHost()));
+		return (Property)super.getUMLElement();
 	}
 
 	/**
@@ -143,6 +151,11 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 		Property property = getUMLElement();
 		if(property == null) {
 			return;
+		}
+
+		//in order to find the role to display we need to now target of the edge, so it is important to have a notification about the change of the target
+		if((notification.getFeature().equals(NotationPackage.eINSTANCE.getEdge_Target())) || (notification.getFeature().equals(NotationPackage.eINSTANCE.getEdge_Source()))) {
+			refreshDisplay();
 		}
 
 		if(object == null) {
@@ -200,15 +213,34 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 			switch(notification.getEventType()) {
 			// if it is added => adds listener to the type element
 			case Notification.ADD:
-			case Notification.ADD_MANY: // should never happen
 				getDiagramEventBroker().addNotificationListener((EObject)notification.getNewValue(), this);
 				refreshDisplay();
 				// if it is removed => removes listener from the type element
 				break;
-
+			case Notification.ADD_MANY: // should never happen
+				if(notification.getNewValue() instanceof List<?>) {
+					List<?> addedElements = (List<?>)notification.getNewValue();
+					for(Object addedElement : addedElements) {
+						if(addedElement instanceof EObject) {
+							getDiagramEventBroker().addNotificationListener((EObject)addedElement, this);
+						}
+					}
+				}
+				refreshDisplay();
+				break;
 			case Notification.REMOVE:
-			case Notification.REMOVE_MANY: // should never happen
 				getDiagramEventBroker().removeNotificationListener((EObject)notification.getOldValue(), this);
+				refreshDisplay();
+				break;
+			case Notification.REMOVE_MANY: // should never happen
+				if(notification.getOldValue() instanceof List<?>) {
+					List<?> removedElements = (List<?>)notification.getOldValue();
+					for(Object removedElement : removedElements) {
+						if(removedElement instanceof EObject) {
+							getDiagramEventBroker().removeNotificationListener((EObject)removedElement, this);
+						}
+					}
+				}
 				refreshDisplay();
 				break;
 			// if it is set, remove the old one and adds the new one. this is the method use when
@@ -273,4 +305,24 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 		}
 	}
 
+	//	/**
+	//	 * {@inheritDoc}
+	//	 */
+	//	public void setDefaultDisplayValue() {
+	//		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
+	//		if(editingDomain != null) {
+	//			editingDomain.getCommandStack().execute(new RemoveEAnnotationCommand(editingDomain, (EModelElement)getHost().getModel(), VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION));
+	//		}
+	//
+	//	}
+	//
+	//	/**
+	//	 * {@inheritDoc}
+	//	 */
+	//	public void updateDisplayValue(int newValue) {
+	//		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
+	//		if(editingDomain != null) {
+	//			editingDomain.getCommandStack().execute(new AddMaskManagedLabelDisplayCommand(editingDomain, (EModelElement)getHost().getModel(), newValue));
+	//		}
+	//	}
 }

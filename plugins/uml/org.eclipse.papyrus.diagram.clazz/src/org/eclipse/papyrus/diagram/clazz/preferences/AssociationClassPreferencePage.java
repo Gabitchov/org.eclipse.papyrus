@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2010 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,8 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ */
 package org.eclipse.papyrus.diagram.clazz.preferences;
 
 import org.eclipse.jface.preference.IPreferenceStore;
@@ -27,6 +26,11 @@ public class AssociationClassPreferencePage extends AbstractPapyrusNodePreferenc
 	/**
 	 * @generated
 	 */
+	public static final String compartments[] = { "AttributeCompartment", "OperationCompartment", "NestedClassifierCompartment" };
+
+	/**
+	 * @generated
+	 */
 	public AssociationClassPreferencePage() {
 		super();
 		setPreferenceKey(ModelEditPart.MODEL_ID + "_AssociationClass");
@@ -37,7 +41,7 @@ public class AssociationClassPreferencePage extends AbstractPapyrusNodePreferenc
 	 */
 	@Override
 	protected String getBundleId() {
-		return UMLDiagramEditorPlugin.getInstance().ID;
+		return UMLDiagramEditorPlugin.ID;
 	}
 
 	/**
@@ -49,6 +53,11 @@ public class AssociationClassPreferencePage extends AbstractPapyrusNodePreferenc
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.WIDTH), 100);
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.HEIGHT), 100);
 
+		for(String name : compartments) {
+			String preferenceName = PreferenceConstantHelper.getCompartmentElementConstant(key, name, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
+			store.setDefault(preferenceName, true);
+		}
+
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_FILL), new org.eclipse.swt.graphics.RGB(255, 255, 255));
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_LINE), new org.eclipse.swt.graphics.RGB(0, 0, 0));
 
@@ -59,6 +68,16 @@ public class AssociationClassPreferencePage extends AbstractPapyrusNodePreferenc
 		//		new org.eclipse.swt.graphics.RGB(0, 0, 0), 0, 0);
 		//store.setDefault(org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_GRADIENT), gradientPreferenceConverter.getPreferenceValue());
 
+	}
+
+	/**
+	 * @generated
+	 */
+	@Override
+	protected void initializeCompartmentsList() {
+		for(String name : compartments) {
+			this.compartmentsList.add(name);
+		}
 	}
 
 }

@@ -45,10 +45,8 @@
 			icon="icons/obj16/Diagram_Package.gif" label="Create a new Package Diagram"
 			style="push" tooltip="Create a new Package Diagram">
 			<visibleWhen>
-				<with variable="activeEditorId">
-					<equals value="org.eclipse.papyrus.core.papyrusEditor" />
-				</with>
-			</visibleWhen>
+				<reference definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLModel"/>
+			</visibleWhen> 		
 		</command>
 	</menu>
 	</menuContribution>
@@ -59,13 +57,24 @@
 			icon="icons/obj16/Diagram_Package.gif" label="Create a new Package Diagram"
 			style="push" tooltip="Create a new Package Diagram">
 			<visibleWhen>
-				<with variable="activeEditorId">
-					<equals value="org.eclipse.papyrus.core.papyrusEditor" />
-				</with>
-			</visibleWhen>
+				<reference definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLModel"/>
+			</visibleWhen> 		
 		</command>
 	</toolbar>
 	</menuContribution>
+	
+	<menuContribution locationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.creatediagram">
+		<command commandId="org.eclipse.papyrus.uml.diagram.pkg.CreateCommand"
+			icon="icons/obj16/Diagram_Package.gif"
+			label="Create a new Package Diagram"
+			style="push"
+			tooltip="Create a new Package Diagram">
+			<visibleWhen>
+				<reference definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLModel"/>
+			</visibleWhen>
+		</command>
+	</menuContribution>
+		
 </extension>
 
 <!-- Palette tool declaration (declares the real palette containment) -->

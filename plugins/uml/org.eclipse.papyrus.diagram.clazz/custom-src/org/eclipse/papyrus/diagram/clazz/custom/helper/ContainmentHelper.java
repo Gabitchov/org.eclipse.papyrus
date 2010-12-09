@@ -48,7 +48,7 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.command.ContainmentCircleViewCreateCommand;
-import org.eclipse.papyrus.diagram.clazz.custom.command.CustomCreateContainmentLinkViewCommand;
+import org.eclipse.papyrus.diagram.clazz.custom.command.CustomCreateContainmentLinkCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.command.CustomDropAppliedStereotypeCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.edit.part.CContainmentCircleEditPart;
 import org.eclipse.papyrus.diagram.clazz.custom.providers.CustomDeferredCreateConnectionViewCommand;
@@ -73,6 +73,9 @@ import org.eclipse.uml2.uml.Stereotype;
 
 public class ContainmentHelper extends ElementHelper {
 
+	protected static final String CREATE_CONTAINMENT = "Create Containment";
+
+
 	public static final String CONTAINMENT_CIRCLE_POSITION = "ContainmentCirclePosition";
 
 
@@ -90,7 +93,8 @@ public class ContainmentHelper extends ElementHelper {
 	}
 
 	/**
-	 * Create a containment link view without semantic.
+	 * Create a containment link view with the semantic transformation.
+	 * This link can be created between two classes or between the node of the containment link with the targeted class or package
 	 * 
 	 * @param createConnectionViewRequest
 	 *        the create connection view request
@@ -100,9 +104,10 @@ public class ContainmentHelper extends ElementHelper {
 	 * @return the containment element command
 	 */
 	public Command getCreateContainmentCommand(CreateConnectionViewRequest createConnectionViewRequest, Command command) {
-		CompositeCommand compoundCommand = new CompositeCommand("Create Containment");
+		CompositeCommand compoundCommand = new CompositeCommand(CREATE_CONTAINMENT);
+		
+		
 		IGraphicalEditPart sourceEditPart = (GraphicalEditPart)createConnectionViewRequest.getSourceEditPart();
-
 		View sourceView = (View)sourceEditPart.getModel();
 		EditPartViewer editPartViewer = (EditPartViewer)sourceEditPart.getViewer();
 		PreferencesHint preferencesHint = sourceEditPart.getDiagramPreferencesHint();
@@ -116,10 +121,13 @@ public class ContainmentHelper extends ElementHelper {
 
 		deleteIncomingContainmentLinksFor(compoundCommand, targetView);
 
+		//detect if we draw a containment link between the node of containment and the target class or package
 		if(ContainmentCircleEditPart.VISUAL_ID == UMLVisualIDRegistry.getVisualID(sourceEditPart.getNotationView())) {
 			circleAdapter = new SemanticAdapter(null, sourceEditPart.getNotationView());
 			sourceView = (View)sourceEditPart.getParent().getModel();
 		} else {
+			
+			//detect if we draw a containment link between two class or packages
 			circleCommand = new ContainmentCircleViewCreateCommand(createConnectionViewRequest, getEditingDomain(), sourceView, editPartViewer, preferencesHint);
 			compoundCommand.add(circleCommand);
 			SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), CONTAINMENT_CIRCLE_POSITION, (IAdaptable)circleCommand.getCommandResult().getReturnValue(), createConnectionViewRequest.getLocation());
@@ -128,13 +136,19 @@ public class ContainmentHelper extends ElementHelper {
 		}
 
 
-		ICommand dashedLineCmd = new CustomCreateContainmentLinkViewCommand(getEditingDomain(), linkHint, sourceView, circleAdapter, targetViewAdapter, editPartViewer, preferencesHint, viewDescriptor, circleCommand);
+		ICommand dashedLineCmd = new CustomCreateContainmentLinkCommand(getEditingDomain(), linkHint, sourceView, circleAdapter, targetViewAdapter, editPartViewer, preferencesHint, viewDescriptor, circleCommand);
 		compoundCommand.add(dashedLineCmd);
 
 
 		return new ICommandProxy(compoundCommand);
 	}
 
+	
+	/**
+	 * Delete all incoming link that go this node
+	 * @param cc a  composite command in which the behavior of deletion
+	 * @param node where would like to remove all incoming containment link  can not be null
+	 */
 	public void deleteIncomingContainmentLinksFor(CompositeCommand cc, View node) {
 		for(Object incomingLink : node.getTargetEdges()) {
 			Edge nextConnector = (Edge)incomingLink;
@@ -150,6 +164,11 @@ public class ContainmentHelper extends ElementHelper {
 		}
 	}
 
+	/**
+	 * Delete all outgoing link that come from this node
+	 * @param cc a  composite command in which the behavior of deletion
+	 * @param node where would like to remove all outgoing containment link  can not be null
+	 */
 	public void deleteOutgoingContainmentLinksFor(CompositeCommand cc, View node) {
 		for(Object nextChild : node.getVisibleChildren()) {
 			View circle = (View)nextChild;
@@ -165,18 +184,10 @@ public class ContainmentHelper extends ElementHelper {
 
 	}
 
-	private CContainmentCircleEditPart findContainmentCircle(IGraphicalEditPart parent) {
-		for(Object next : parent.getChildren()) {
-			EditPart editPart = (EditPart)next;
-			if(editPart instanceof CContainmentCircleEditPart) {
-				return (CContainmentCircleEditPart)editPart;
-			}
-		}
-		return null;
-	}
+	
 
 	/**
-	 * DragDrop the contained class from the outline to the diagram and from the compartment to the diagram.
+	 * DragDrop the contained class from the modelexplorer to the diagram and from the compartment to the diagram.
 	 * 
 	 * @param droppedElement
 	 *        the semantic class
@@ -196,48 +207,67 @@ public class ContainmentHelper extends ElementHelper {
 	}
 
 	/**
-	 * Drop element to diagram.
+	 * This method can be called in two cases:
+	 * 	- a drop from the model explorer
+	 * 	- a drop from the owner class to outside of this class
+	 * when the contained link is not created in this case.
+	 * 
 	 * 
 	 * @param droppedElement
-	 *        the dropped element
+	 *        the dropped element <B> cannot be null</B>
 	 * @param viewer
-	 *        the viewer
+	 *        the viewer <B> cannot be null</B>
 	 * @param diagramPreferencesHint
-	 *        the diagram preferences hint
+	 *        the diagram preferences hint <B> cannot be null</B>
 	 * @param location
-	 *        the location
+	 *        the location <B> cannot be null</B>
 	 * @param containerView
-	 *        the container view
+	 *        the container view <B> cannot be null</B>
 	 * @return the command
 	 */
 	public Command dropElementToDiagram(PackageableElement droppedElement, EditPartViewer viewer, PreferencesHint diagramPreferencesHint, Point location, View containerView) {
+		
+		//0 what is the context of this call
+		//- drop from the model explorer
+		//- drop intra diagram form its container to outside of this class
+		// - the edit part of a the dropped element already exist?
 		EditPart droppedElementEditPart = findEditPartFor(viewer.getEditPartRegistry(), droppedElement);
+		
+		//Is is contained into a class ?
 		Element owner = (Element)droppedElement.getOwner();
-		GraphicalEditPart droppedParentEditPart = null;
+		//the container editpart is the the class that can contained the dropped element.
+		//if it is not null we are in the context of drop intra diagram
+		GraphicalEditPart containerEditpart = null;
 		if(droppedElementEditPart != null) {
 			GraphicalEditPart parentEP = (GraphicalEditPart)droppedElementEditPart.getParent();
 			if(parentEP.resolveSemanticElement().equals(owner)) {
-				droppedParentEditPart = parentEP;
+				containerEditpart = parentEP;
 			}
 		}
 
-		// if the owner does not exist the link have not to be created or different of the diagram.
-		if(droppedParentEditPart == null || droppedParentEditPart instanceof ModelEditPart) {
-			return UnexecutableCommand.INSTANCE;
-		}
 		CompositeCommand cc = new CompositeCommand("drop");
-		if(droppedElementEditPart == null) {
-			dropElementToDiagram(cc, droppedElement, viewer, diagramPreferencesHint, location, containerView, droppedParentEditPart);
+		// in the context of a drop from the model explorer -> create only a view for this element
+		if(containerEditpart == null) {
+			dropElementToDiagram(cc, droppedElement, diagramPreferencesHint, location, containerView);
 		} else {
+			//in the case of a drop intra diagram, remove view from the container and it into the diagram
 			if(canHaveContainmentLink(droppedElementEditPart)) {
 				cc.add(new DeleteCommand(getEditingDomain(), (View)droppedElementEditPart.getModel()));
-				dropElementToDiagram(cc, droppedElement, viewer, diagramPreferencesHint, location, containerView, droppedParentEditPart);
+				dropElementToDiagram(cc, droppedElement, diagramPreferencesHint, location, containerView);
 			}
 		}
 		return new ICommandProxy(cc);
 	}
 
-	private void dropElementToDiagram(CompositeCommand cc, PackageableElement droppedElement, EditPartViewer viewer, PreferencesHint diagramPreferencesHint, Point location, View containerView, GraphicalEditPart droppedOwnerEditPart) {
+	/**
+	 * dropped the dropped element into container view at a good location,
+	 * @param cc the composite command, where the behavior will be add <B> cannot be null</B>
+	 * @param droppedElement the semantic element to drop <B> cannot be null</B>
+	 * @param diagramPreferencesHint <B> cannot be null</B>
+	 * @param location location of the dropped element <B> cannot be null</B>
+	 * @param containerView the container that will contain the view of the dropped element <B> cannot be null</B>
+	 */
+	protected void dropElementToDiagram(CompositeCommand cc, PackageableElement droppedElement, PreferencesHint diagramPreferencesHint, Point location, View containerView) {
 		ViewDescriptor droppedElementDescriptor = new ViewDescriptor(new EObjectAdapter(droppedElement), Node.class, null, ViewUtil.APPEND, false, diagramPreferencesHint);
 
 		CreateCommand containedNodeCreationCommand = new CreateCommand(this.editDomain, droppedElementDescriptor, containerView);
@@ -246,26 +276,17 @@ public class ContainmentHelper extends ElementHelper {
 
 		addStereotypeLabelToDroppedElement(cc, droppedElement, (IAdaptable)containedNodeCreationCommand.getCommandResult().getReturnValue());
 
-		//		createContainmentLink(cc, viewer, diagramPreferencesHint, location, droppedOwnerEditPart, droppedElementDescriptor, containedNodeCreationCommand);
 	}
 
-	private void createContainmentLink(CompositeCommand cc, EditPartViewer viewer, PreferencesHint diagramPreferencesHint, Point location, GraphicalEditPart droppedOwnerEditPart, ViewDescriptor droppedElementDescriptor, CreateCommand containedNodeCreationCommand) {
-		CContainmentCircleEditPart containmentCircleEditPart = findContainmentCircle(droppedOwnerEditPart);
-		IAdaptable circleAdapter = null;
-		if(containmentCircleEditPart != null) {
-			circleAdapter = new SemanticAdapter(null, (View)containmentCircleEditPart.getModel());
-		} else {
-			/* Creation of the containment circle node without semantic element */
-			ContainmentCircleViewCreateCommand circleCommand = new ContainmentCircleViewCreateCommand(null, getEditingDomain(), (View)droppedOwnerEditPart.getModel(), (EditPartViewer)droppedOwnerEditPart.getViewer(), droppedElementDescriptor.getPreferencesHint());
-			cc.add(circleCommand);
-			cc.add(new SetBoundsCommand(getEditingDomain(), CONTAINMENT_CIRCLE_POSITION, (IAdaptable)circleCommand.getCommandResult().getReturnValue(), new Point(location.x, location.y - 100)));
-			circleAdapter = (IAdaptable)circleCommand.getCommandResult().getReturnValue();
-		}
-		ConnectionViewDescriptor linkViewDescriptor = new ConnectionViewDescriptor(org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes.Dependency_4022, ((IHintedType)org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes.Dependency_4022).getSemanticHint(), droppedOwnerEditPart.getDiagramPreferencesHint());
-		cc.add(new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType)UMLElementTypes.Dependency_4022).getSemanticHint(), circleAdapter, (IAdaptable)containedNodeCreationCommand.getCommandResult().getReturnValue(), viewer, diagramPreferencesHint, linkViewDescriptor, null));
-	}
-
-	private void addStereotypeLabelToDroppedElement(CompositeCommand cc, PackageableElement droppedElement, IAdaptable createdEditPartAdapter) {
+	
+/**
+ * TO DO: to investigate about the use of this code
+ * this method is used to display applied stereotype of the dropped element
+ * @param cc the command where the behavior will be add
+ * @param droppedElement the dropped element <B> cannot be null</B>
+ * @param createdEditPartAdapter a wrapper that contained the created view of the dropped element
+ */
+	protected void addStereotypeLabelToDroppedElement(CompositeCommand cc, PackageableElement droppedElement, IAdaptable createdEditPartAdapter) {
 		if(droppedElement.getAppliedStereotypes().isEmpty()) {
 			return;
 		}
@@ -273,17 +294,20 @@ public class ContainmentHelper extends ElementHelper {
 		Iterator<Stereotype> stereotypeAppliedIterator = stereotypeAppliedList.iterator();
 		while(stereotypeAppliedIterator.hasNext()) {
 			Stereotype stereotype = (Stereotype)stereotypeAppliedIterator.next();
+			
+			
 			String profileApplied = "\"" + stereotype.getProfile() + "\"::";
 			cc.add(new CustomDropAppliedStereotypeCommand(this.editDomain, createdEditPartAdapter, profileApplied, VisualInformationPapyrusConstant.STEREOTYPE_COMPARTMENT_LOCATION));
 		}
 	}
 
 	/**
-	 * Checks if is reorient containment link.
+	 *
+	 * Checks if is reorient about the containment link.
 	 * 
 	 * @param request
-	 *        the request
-	 * @return true, if is reorient containment link
+	 *         a connection request
+	 * @return true, if is reorient  about the containment link
 	 */
 	public static boolean isReorientContainmentLink(ReconnectRequest request) {
 		int visualId = getVisualID(request);
@@ -291,7 +315,8 @@ public class ContainmentHelper extends ElementHelper {
 	}
 
 	/**
-	 * Extend reorient target request.
+	 *  TO DO: to investigate about the use of this code
+	 * During the reconnection we need to add information about the view that is reconnected.
 	 * 
 	 * @param request
 	 *        the request
@@ -306,7 +331,8 @@ public class ContainmentHelper extends ElementHelper {
 	}
 
 	/**
-	 * Extend reorient source request.
+	 *  TO DO: to investigate about the use of this code
+	 * During the reconnection we need to add information about the view that is reconnected.
 	 * 
 	 * @param request
 	 *        the request
@@ -343,10 +369,22 @@ public class ContainmentHelper extends ElementHelper {
 		return UMLVisualIDRegistry.getVisualID(edge) == AddedLinkEditPart.VISUAL_ID;
 	}
 
+	/**
+	 * Checks if is containment node.
+	 * 
+	 * @param view
+	 *        the notation view
+	 * @return true, if is containment link
+	 */
 	public static boolean isContainmentCircle(View view) {
 		return UMLVisualIDRegistry.getVisualID(view) == ContainmentCircleEditPart.VISUAL_ID;
 	}
 
+	/**
+	 * checks if the node contains several outgoing link.
+	 * @param containmentCircle the node that show a contaiment link
+	 * @return true if the coantaiment node is connected several link
+	 */
 	private static boolean circleHasOtherLinks(View containmentCircle) {
 		return containmentCircle.getSourceEdges().size() > 1;
 	}
@@ -461,6 +499,15 @@ public class ContainmentHelper extends ElementHelper {
 		}
 	}
 
+	/**
+	 * look for a editpart from the semantic element
+	 * 
+	 * @param editPartRegistry
+	 *        the map of editpart
+	 * @param droppedElement
+	 *        the semantic element
+	 * @return can return null if nothing is found
+	 */
 	public EditPart findEditPartFor(Map editPartRegistry, Element droppedElement) {
 		for(Object next : editPartRegistry.values()) {
 			EditPart currentEditPart = (EditPart)next;

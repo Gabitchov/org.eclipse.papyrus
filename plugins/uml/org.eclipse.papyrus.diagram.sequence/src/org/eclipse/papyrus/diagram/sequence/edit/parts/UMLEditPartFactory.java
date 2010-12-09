@@ -102,17 +102,26 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case TimeConstraintLabelEditPart.VISUAL_ID:
 				return new TimeConstraintLabelEditPart(view);
 
+			case TimeConstraintAppliedStereotypeEditPart.VISUAL_ID:
+				return new TimeConstraintAppliedStereotypeEditPart(view);
+
 			case TimeObservationEditPart.VISUAL_ID:
 				return new TimeObservationEditPart(view);
 
 			case TimeObservationLabelEditPart.VISUAL_ID:
 				return new TimeObservationLabelEditPart(view);
 
+			case TimeObservationAppliedStereotypeEditPart.VISUAL_ID:
+				return new TimeObservationAppliedStereotypeEditPart(view);
+
 			case DurationConstraintEditPart.VISUAL_ID:
 				return new DurationConstraintEditPart(view);
 
 			case DurationConstraintLabelEditPart.VISUAL_ID:
 				return new DurationConstraintLabelEditPart(view);
+
+			case DurationConstraintAppliedStereotypeEditPart.VISUAL_ID:
+				return new DurationConstraintAppliedStereotypeEditPart(view);
 
 			case DestructionEventEditPart.VISUAL_ID:
 				return new DestructionEventEditPart(view);
@@ -135,8 +144,20 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case DurationConstraintInMessageEditPart.VISUAL_ID:
 				return new DurationConstraintInMessageEditPart(view);
 
+			case DurationConstraintInMessageLabelEditPart.VISUAL_ID:
+				return new DurationConstraintInMessageLabelEditPart(view);
+
+			case DurationConstraintInMessageAppliedStereotypeEditPart.VISUAL_ID:
+				return new DurationConstraintInMessageAppliedStereotypeEditPart(view);
+
 			case DurationObservationEditPart.VISUAL_ID:
 				return new DurationObservationEditPart(view);
+
+			case DurationObservationLabelEditPart.VISUAL_ID:
+				return new DurationObservationLabelEditPart(view);
+
+			case DurationObservationAppliedStereotypeEditPart.VISUAL_ID:
+				return new DurationObservationAppliedStereotypeEditPart(view);
 
 			case InteractionInteractionCompartmentEditPart.VISUAL_ID:
 				return new InteractionInteractionCompartmentEditPart(view);
@@ -220,6 +241,13 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case ConstraintConstrainedElementEditPart.VISUAL_ID:
 				return new ConstraintConstrainedElementEditPart(view);
+
+
+			case GeneralOrderingEditPart.VISUAL_ID:
+				return new GeneralOrderingEditPart(view);
+
+			case GeneralOrderingAppliedStereotypeEditPart.VISUAL_ID:
+				return new GeneralOrderingAppliedStereotypeEditPart(view);
 
 			}
 		}

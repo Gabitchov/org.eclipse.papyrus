@@ -121,11 +121,6 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType Class_2074 = getElementType("org.eclipse.papyrus.diagram.composite.Class_2074"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
 	public static final IElementType Collaboration_2075 = getElementType("org.eclipse.papyrus.diagram.composite.Collaboration_2075"); //$NON-NLS-1$
 
 	/**
@@ -356,7 +351,7 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType ConnectableElement_3115 = getElementType("org.eclipse.papyrus.diagram.composite.prototype.ConnectableElement_3115"); //$NON-NLS-1$
+	public static final IElementType ConnectableElement_3115 = getElementType("org.eclipse.papyrus.diagram.composite.prototype.CollaborationRole_3115"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -641,7 +636,7 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType Dependency_4017 = getElementType("org.eclipse.papyrus.diagram.composite.Dependency_4017"); //$NON-NLS-1$
+	public static final IElementType Dependency_4017 = getElementType("org.eclipse.papyrus.diagram.composite.RoleBinding_4017"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -786,315 +781,209 @@ public class UMLElementTypes {
 
 			elements.put(Package_1000, UMLPackage.eINSTANCE.getPackage());
 
-
 			elements.put(Activity_2060, UMLPackage.eINSTANCE.getActivity());
-
 
 			elements.put(Interaction_2061, UMLPackage.eINSTANCE.getInteraction());
 
-
 			elements.put(ProtocolStateMachine_2062, UMLPackage.eINSTANCE.getProtocolStateMachine());
-
 
 			elements.put(StateMachine_2063, UMLPackage.eINSTANCE.getStateMachine());
 
-
 			elements.put(FunctionBehavior_2064, UMLPackage.eINSTANCE.getFunctionBehavior());
-
 
 			elements.put(OpaqueBehavior_2065, UMLPackage.eINSTANCE.getOpaqueBehavior());
 
-
 			elements.put(Component_2069, UMLPackage.eINSTANCE.getComponent());
-
 
 			elements.put(Device_2070, UMLPackage.eINSTANCE.getDevice());
 
-
 			elements.put(ExecutionEnvironment_2071, UMLPackage.eINSTANCE.getExecutionEnvironment());
-
 
 			elements.put(Node_2072, UMLPackage.eINSTANCE.getNode());
 
-
 			elements.put(Class_2073, UMLPackage.eINSTANCE.getClass_());
-
-
-			elements.put(Class_2074, UMLPackage.eINSTANCE.getClass_());
-
 
 			elements.put(Collaboration_2075, UMLPackage.eINSTANCE.getCollaboration());
 
-
 			elements.put(Interface_2076, UMLPackage.eINSTANCE.getInterface());
-
 
 			elements.put(PrimitiveType_2066, UMLPackage.eINSTANCE.getPrimitiveType());
 
-
 			elements.put(Enumeration_2067, UMLPackage.eINSTANCE.getEnumeration());
-
 
 			elements.put(DataType_2068, UMLPackage.eINSTANCE.getDataType());
 
-
 			elements.put(Actor_2077, UMLPackage.eINSTANCE.getActor());
-
 
 			elements.put(DeploymentSpecification_2078, UMLPackage.eINSTANCE.getDeploymentSpecification());
 
-
 			elements.put(Artifact_2079, UMLPackage.eINSTANCE.getArtifact());
-
 
 			elements.put(InformationItem_2080, UMLPackage.eINSTANCE.getInformationItem());
 
-
 			elements.put(Signal_2081, UMLPackage.eINSTANCE.getSignal());
-
 
 			elements.put(UseCase_2082, UMLPackage.eINSTANCE.getUseCase());
 
-
 			elements.put(SignalEvent_2083, UMLPackage.eINSTANCE.getSignalEvent());
-
 
 			elements.put(CallEvent_2084, UMLPackage.eINSTANCE.getCallEvent());
 
-
 			elements.put(AnyReceiveEvent_2085, UMLPackage.eINSTANCE.getAnyReceiveEvent());
-
 
 			elements.put(SendSignalEvent_2086, UMLPackage.eINSTANCE.getSendSignalEvent());
 
-
 			elements.put(SendOperationEvent_2087, UMLPackage.eINSTANCE.getSendOperationEvent());
-
 
 			elements.put(ChangeEvent_2088, UMLPackage.eINSTANCE.getChangeEvent());
 
-
 			elements.put(TimeEvent_2089, UMLPackage.eINSTANCE.getTimeEvent());
-
 
 			elements.put(CreationEvent_2090, UMLPackage.eINSTANCE.getCreationEvent());
 
-
 			elements.put(DestructionEvent_2091, UMLPackage.eINSTANCE.getDestructionEvent());
-
 
 			elements.put(ExecutionEvent_2092, UMLPackage.eINSTANCE.getExecutionEvent());
 
-
 			elements.put(DurationObservation_2093, UMLPackage.eINSTANCE.getDurationObservation());
-
 
 			elements.put(TimeObservation_2094, UMLPackage.eINSTANCE.getTimeObservation());
 
-
 			elements.put(LiteralBoolean_2095, UMLPackage.eINSTANCE.getLiteralBoolean());
-
 
 			elements.put(LiteralInteger_2096, UMLPackage.eINSTANCE.getLiteralInteger());
 
-
 			elements.put(LiteralNull_2097, UMLPackage.eINSTANCE.getLiteralNull());
-
 
 			elements.put(LiteralString_2098, UMLPackage.eINSTANCE.getLiteralString());
 
-
 			elements.put(LiteralUnlimitedNatural_2099, UMLPackage.eINSTANCE.getLiteralUnlimitedNatural());
-
 
 			elements.put(StringExpression_2100, UMLPackage.eINSTANCE.getStringExpression());
 
-
 			elements.put(OpaqueExpression_2101, UMLPackage.eINSTANCE.getOpaqueExpression());
-
 
 			elements.put(TimeExpression_2102, UMLPackage.eINSTANCE.getTimeExpression());
 
-
 			elements.put(Expression_2103, UMLPackage.eINSTANCE.getExpression());
-
 
 			elements.put(Duration_2104, UMLPackage.eINSTANCE.getDuration());
 
-
 			elements.put(TimeInterval_2105, UMLPackage.eINSTANCE.getTimeInterval());
-
 
 			elements.put(DurationInterval_2106, UMLPackage.eINSTANCE.getDurationInterval());
 
-
 			elements.put(Interval_2107, UMLPackage.eINSTANCE.getInterval());
-
 
 			elements.put(InstanceValue_2108, UMLPackage.eINSTANCE.getInstanceValue());
 
-
 			elements.put(Comment_2109, UMLPackage.eINSTANCE.getComment());
-
 
 			elements.put(DurationConstraint_2110, UMLPackage.eINSTANCE.getDurationConstraint());
 
-
 			elements.put(TimeConstraint_2111, UMLPackage.eINSTANCE.getTimeConstraint());
-
 
 			elements.put(IntervalConstraint_2112, UMLPackage.eINSTANCE.getIntervalConstraint());
 
-
 			elements.put(InteractionConstraint_2113, UMLPackage.eINSTANCE.getInteractionConstraint());
-
 
 			elements.put(Constraint_2114, UMLPackage.eINSTANCE.getConstraint());
 
-
 			elements.put(Port_3069, UMLPackage.eINSTANCE.getPort());
-
 
 			elements.put(Parameter_3088, UMLPackage.eINSTANCE.getParameter());
 
-
 			elements.put(Property_3070, UMLPackage.eINSTANCE.getProperty());
-
 
 			elements.put(ConnectableElement_3115, UMLPackage.eINSTANCE.getConnectableElement());
 
-
 			elements.put(CollaborationUse_3071, UMLPackage.eINSTANCE.getCollaborationUse());
-
 
 			elements.put(Activity_3072, UMLPackage.eINSTANCE.getActivity());
 
-
 			elements.put(Interaction_3073, UMLPackage.eINSTANCE.getInteraction());
-
 
 			elements.put(ProtocolStateMachine_3074, UMLPackage.eINSTANCE.getProtocolStateMachine());
 
-
 			elements.put(StateMachine_3075, UMLPackage.eINSTANCE.getStateMachine());
-
 
 			elements.put(FunctionBehavior_3076, UMLPackage.eINSTANCE.getFunctionBehavior());
 
-
 			elements.put(OpaqueBehavior_3077, UMLPackage.eINSTANCE.getOpaqueBehavior());
-
 
 			elements.put(Component_3081, UMLPackage.eINSTANCE.getComponent());
 
-
 			elements.put(Device_3082, UMLPackage.eINSTANCE.getDevice());
-
 
 			elements.put(ExecutionEnvironment_3083, UMLPackage.eINSTANCE.getExecutionEnvironment());
 
-
 			elements.put(Node_3084, UMLPackage.eINSTANCE.getNode());
-
 
 			elements.put(Class_3085, UMLPackage.eINSTANCE.getClass_());
 
-
 			elements.put(Collaboration_3086, UMLPackage.eINSTANCE.getCollaboration());
-
 
 			elements.put(Interface_3087, UMLPackage.eINSTANCE.getInterface());
 
-
 			elements.put(PrimitiveType_3078, UMLPackage.eINSTANCE.getPrimitiveType());
-
 
 			elements.put(Enumeration_3079, UMLPackage.eINSTANCE.getEnumeration());
 
-
 			elements.put(DataType_3080, UMLPackage.eINSTANCE.getDataType());
-
 
 			elements.put(Actor_3091, UMLPackage.eINSTANCE.getActor());
 
-
 			elements.put(DeploymentSpecification_3092, UMLPackage.eINSTANCE.getDeploymentSpecification());
-
 
 			elements.put(Artifact_3093, UMLPackage.eINSTANCE.getArtifact());
 
-
 			elements.put(InformationItem_3094, UMLPackage.eINSTANCE.getInformationItem());
-
 
 			elements.put(Signal_3095, UMLPackage.eINSTANCE.getSignal());
 
-
 			elements.put(UseCase_3096, UMLPackage.eINSTANCE.getUseCase());
-
 
 			elements.put(Comment_3097, UMLPackage.eINSTANCE.getComment());
 
-
 			elements.put(DurationConstraint_3116, UMLPackage.eINSTANCE.getDurationConstraint());
-
 
 			elements.put(TimeConstraint_3117, UMLPackage.eINSTANCE.getTimeConstraint());
 
-
 			elements.put(IntervalConstraint_3118, UMLPackage.eINSTANCE.getIntervalConstraint());
-
 
 			elements.put(InteractionConstraint_3119, UMLPackage.eINSTANCE.getInteractionConstraint());
 
-
 			elements.put(Constraint_3120, UMLPackage.eINSTANCE.getConstraint());
-
 
 			elements.put(Property_3101, UMLPackage.eINSTANCE.getProperty());
 
-
 			elements.put(Operation_3102, UMLPackage.eINSTANCE.getOperation());
-
 
 			elements.put(Reception_3100, UMLPackage.eINSTANCE.getReception());
 
-
 			elements.put(EnumerationLiteral_3066, UMLPackage.eINSTANCE.getEnumerationLiteral());
-
 
 			elements.put(Activity_3103, UMLPackage.eINSTANCE.getActivity());
 
-
 			elements.put(Interaction_3104, UMLPackage.eINSTANCE.getInteraction());
-
 
 			elements.put(ProtocolStateMachine_3105, UMLPackage.eINSTANCE.getProtocolStateMachine());
 
-
 			elements.put(StateMachine_3106, UMLPackage.eINSTANCE.getStateMachine());
-
 
 			elements.put(FunctionBehavior_3107, UMLPackage.eINSTANCE.getFunctionBehavior());
 
-
 			elements.put(OpaqueBehavior_3108, UMLPackage.eINSTANCE.getOpaqueBehavior());
-
 
 			elements.put(Collaboration_3109, UMLPackage.eINSTANCE.getCollaboration());
 
-
 			elements.put(Interface_3110, UMLPackage.eINSTANCE.getInterface());
-
 
 			elements.put(Enumeration_3111, UMLPackage.eINSTANCE.getEnumeration());
 
-
 			elements.put(PrimitiveType_3112, UMLPackage.eINSTANCE.getPrimitiveType());
 
-
 			elements.put(DataType_3113, UMLPackage.eINSTANCE.getDataType());
-
 
 			elements.put(Class_3114, UMLPackage.eINSTANCE.getClass_());
 
@@ -1102,39 +991,27 @@ public class UMLElementTypes {
 
 			elements.put(ConstraintConstrainedElement_4003, UMLPackage.eINSTANCE.getConstraint_ConstrainedElement());
 
-
 			elements.put(ComponentRealization_4004, UMLPackage.eINSTANCE.getComponentRealization());
-
 
 			elements.put(InterfaceRealization_4005, UMLPackage.eINSTANCE.getInterfaceRealization());
 
-
 			elements.put(Substitution_4011, UMLPackage.eINSTANCE.getSubstitution());
-
 
 			elements.put(Realization_4006, UMLPackage.eINSTANCE.getRealization());
 
-
 			elements.put(Manifestation_4012, UMLPackage.eINSTANCE.getManifestation());
-
 
 			elements.put(Abstraction_4007, UMLPackage.eINSTANCE.getAbstraction());
 
-
 			elements.put(Usage_4008, UMLPackage.eINSTANCE.getUsage());
-
 
 			elements.put(Deployment_4009, UMLPackage.eINSTANCE.getDeployment());
 
-
 			elements.put(Dependency_4017, UMLPackage.eINSTANCE.getDependency());
-
 
 			elements.put(Dependency_4010, UMLPackage.eINSTANCE.getDependency());
 
-
 			elements.put(Connector_4013, UMLPackage.eINSTANCE.getConnector());
-
 
 			elements.put(Generalization_4015, UMLPackage.eINSTANCE.getGeneralization());
 
@@ -1143,7 +1020,6 @@ public class UMLElementTypes {
 			elements.put(DurationObservationEvent_4019, UMLPackage.eINSTANCE.getDurationObservation_Event());
 
 			elements.put(InformationItemRepresented_4020, UMLPackage.eINSTANCE.getInformationItem_Represented());
-
 
 			elements.put(InformationFlow_4021, UMLPackage.eINSTANCE.getInformationFlow());
 		}
@@ -1175,7 +1051,6 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(ExecutionEnvironment_2071);
 			KNOWN_ELEMENT_TYPES.add(Node_2072);
 			KNOWN_ELEMENT_TYPES.add(Class_2073);
-			KNOWN_ELEMENT_TYPES.add(Class_2074);
 			KNOWN_ELEMENT_TYPES.add(Collaboration_2075);
 			KNOWN_ELEMENT_TYPES.add(Interface_2076);
 			KNOWN_ELEMENT_TYPES.add(PrimitiveType_2066);
@@ -1320,8 +1195,6 @@ public class UMLElementTypes {
 			return Node_2072;
 		case ClassCompositeEditPart.VISUAL_ID:
 			return Class_2073;
-		case ClassClassifierEditPart.VISUAL_ID:
-			return Class_2074;
 		case CollaborationCompositeEditPart.VISUAL_ID:
 			return Collaboration_2075;
 		case InterfaceEditPart.VISUAL_ID:
@@ -1536,9 +1409,9 @@ public class UMLElementTypes {
 			return Connector_4013;
 		case GeneralizationEditPart.VISUAL_ID:
 			return Generalization_4015;
-		case ConnectorTimeObservationEditPart.VISUAL_ID:
+		case TimeObservationEventEditPart.VISUAL_ID:
 			return TimeObservationEvent_4018;
-		case ConnectorDurationObservationEditPart.VISUAL_ID:
+		case DurationObservationEventEditPart.VISUAL_ID:
 			return DurationObservationEvent_4019;
 		case RepresentationEditPart.VISUAL_ID:
 			return InformationItemRepresented_4020;

@@ -14,17 +14,17 @@ import org.eclipse.gmf.codegen.gmfgen.GenDiagram;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Alternate Canvas</b></em>'.
  * <!-- end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.AlternateCanvas#getDomainDiagramElement <em>Domain Diagram Element</em>}</li>
- * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.AlternateCanvas#getAlternateTopLevelNodes <em>Alternate Top Level Nodes</em>}</li>
- * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.AlternateCanvas#getAlternateLinkNodes <em>Alternate Link Nodes</em>}</li>
- * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.AlternateCanvas#getDiagram <em>Diagram</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.AlternateCanvas#getDomainDiagramElement <em>Domain Diagram Element</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.AlternateCanvas#getAlternateTopLevelNodes <em>Alternate Top Level Nodes</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.AlternateCanvas#getAlternateLinkNodes <em>Alternate Link Nodes</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.AlternateCanvas#getDiagram <em>Diagram</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getAlternateCanvas()
  * @model
  * @generated
@@ -38,7 +38,6 @@ public interface AlternateCanvas extends CommentedElement {
 	 * If the meaning of the '<em>Domain Diagram Element</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Domain Diagram Element</em>' reference.
 	 * @see #setDomainDiagramElement(GenClass)
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getAlternateCanvas_DomainDiagramElement()
@@ -48,13 +47,10 @@ public interface AlternateCanvas extends CommentedElement {
 	GenClass getDomainDiagramElement();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.papyrusgmfgenextension.AlternateCanvas#getDomainDiagramElement
-	 * <em>Domain Diagram Element</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.papyrusgmfgenextension.AlternateCanvas#getDomainDiagramElement <em>Domain Diagram Element</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *        the new value of the '<em>Domain Diagram Element</em>' reference.
+	 * @param value the new value of the '<em>Domain Diagram Element</em>' reference.
 	 * @see #getDomainDiagramElement()
 	 * @generated
 	 */
@@ -69,7 +65,6 @@ public interface AlternateCanvas extends CommentedElement {
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Alternate Top Level Nodes</em>' containment reference list.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getAlternateCanvas_AlternateTopLevelNodes()
 	 * @model containment="true"
@@ -86,7 +81,6 @@ public interface AlternateCanvas extends CommentedElement {
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Alternate Link Nodes</em>' containment reference list.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getAlternateCanvas_AlternateLinkNodes()
 	 * @model containment="true"
@@ -101,7 +95,6 @@ public interface AlternateCanvas extends CommentedElement {
 	 * If the meaning of the '<em>Diagram</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Diagram</em>' reference.
 	 * @see #setDiagram(GenDiagram)
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getAlternateCanvas_Diagram()
@@ -114,9 +107,7 @@ public interface AlternateCanvas extends CommentedElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.papyrusgmfgenextension.AlternateCanvas#getDiagram <em>Diagram</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *        the new value of the '<em>Diagram</em>' reference.
+	 * @param value the new value of the '<em>Diagram</em>' reference.
 	 * @see #getDiagram()
 	 * @generated
 	 */

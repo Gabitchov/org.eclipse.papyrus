@@ -80,10 +80,10 @@ public class CustomContainmentCreationEditPolicy extends CreationEditPolicy {
 				View hostView = (View)getHost().getModel();
 				View movedView = (View)ep.getModel();
 				Command customCommand = new ContainmentDragDropHelper(((IGraphicalEditPart)ep).getEditingDomain()).getDropWithContainmentCommand(hostView, movedView);
-				if (customCommand != null) {
+				if(customCommand != null) {
 					return customCommand;
 				}
-			} 
+			}
 			if(semantic != null && context != null && shouldReparent(semantic, context)) {
 				cc.compose(getReparentCommand((IGraphicalEditPart)ep));
 			}

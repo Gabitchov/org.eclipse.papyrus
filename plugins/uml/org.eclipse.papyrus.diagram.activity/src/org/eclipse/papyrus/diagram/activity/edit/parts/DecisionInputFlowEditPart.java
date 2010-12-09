@@ -707,9 +707,6 @@ public class DecisionInputFlowEditPart extends LabelEditPart implements ITextAwa
 			}
 		}
 
-
-
-
 		super.handleNotificationEvent(event);
 	}
 

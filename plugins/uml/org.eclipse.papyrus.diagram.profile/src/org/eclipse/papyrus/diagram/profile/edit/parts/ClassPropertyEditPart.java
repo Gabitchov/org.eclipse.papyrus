@@ -66,6 +66,8 @@ import org.eclipse.papyrus.diagram.profile.custom.policies.PropertyLabelEditPoli
 import org.eclipse.papyrus.diagram.profile.edit.policies.ClassPropertyItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.profile.edit.policies.UMLTextNonResizableEditPolicy;
 import org.eclipse.papyrus.diagram.profile.edit.policies.UMLTextSelectionEditPolicy;
+import org.eclipse.papyrus.diagram.profile.part.UMLVisualIDRegistry;
+import org.eclipse.papyrus.diagram.profile.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.profile.providers.UMLParserProvider;
 import org.eclipse.papyrus.extensionpoints.editors.Activator;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IAdvancedEditorConfiguration;
@@ -88,7 +90,13 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class ClassPropertyEditPart extends CompartmentEditPart implements ITextAwareEditPart, IPrimaryEditPart {
+public class ClassPropertyEditPart
+
+
+
+extends CompartmentEditPart
+
+implements ITextAwareEditPart, IPrimaryEditPart {
 
 	/**
 	 * @generated
@@ -352,7 +360,7 @@ public class ClassPropertyEditPart extends CompartmentEditPart implements ITextA
 	 */
 	public IParser getParser() {
 		if(parser == null) {
-			parser = UMLParserProvider.get().getProperty_3002Parser();
+			parser = UMLParserProvider.getParser(UMLElementTypes.Property_3002, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.profile.edit.parts.ClassPropertyEditPart.VISUAL_ID));
 		}
 		return parser;
 	}

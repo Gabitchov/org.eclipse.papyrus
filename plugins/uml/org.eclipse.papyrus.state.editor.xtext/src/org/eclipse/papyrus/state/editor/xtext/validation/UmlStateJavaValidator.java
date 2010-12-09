@@ -21,9 +21,12 @@ import org.eclipse.papyrus.state.editor.xtext.umlState.DoRule;
 import org.eclipse.papyrus.state.editor.xtext.umlState.EntryRule;
 import org.eclipse.papyrus.state.editor.xtext.umlState.ExitRule;
 import org.eclipse.papyrus.state.editor.xtext.umlState.StateRule;
+import org.eclipse.papyrus.state.editor.xtext.umlState.SubmachineRule;
 import org.eclipse.papyrus.state.editor.xtext.umlState.UmlStatePackage;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.Behavior;
+import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.OpaqueBehavior;
 import org.eclipse.uml2.uml.StateMachine;
 import org.eclipse.uml2.uml.Vertex;
@@ -33,13 +36,33 @@ import org.eclipse.xtext.validation.Check;
 
 public class UmlStateJavaValidator extends AbstractUmlStateJavaValidator {
 
-//	@Check
-//	public void checkGreetingStartsWithCapital(Greeting greeting) {
-//		if (!Character.isUpperCase(greeting.getName().charAt(0))) {
-//			warning("Name should start with a capital", MyDslPackage.GREETING__NAME);
-//		}
-//	}
+	private static Namespace model ;
+	private static Element contextElement ;
+	private static boolean valid_StateName = true ;
+	private static boolean valid_SubMachineRule = true ;
+	
+	public static void init(Element _contextElement) {
+		contextElement = _contextElement ;
+		if (contextElement != null) {
+			Element elem = contextElement.getOwner() ;
+			while (elem.getOwner() != null) {
+				elem = elem.getOwner() ;
+			}
+			model = (Namespace)elem ;
+		}
+	}
 
+	public static Namespace getModel() {
+		return model ;
+	}
+	
+	public static Element getContextElement() {
+		return contextElement ;
+	}
+	
+	public static boolean validate() {
+		return valid_StateName && valid_SubMachineRule ;
+	}
 	
 	/**
 	 * First checks if the new name being attributed to the edited state is already used by another state in the region.
@@ -76,6 +99,15 @@ public class UmlStateJavaValidator extends AbstractUmlStateJavaValidator {
 		if (alreadyUsedNames.contains("" + newName))
 			warning("Name " + newName + " is already used by another State in this Region", UmlStatePackage.STATE_RULE__NAME) ;
 		
+		
+		// Check if ConnectionPointReference exist when one delete the submachine reference: not allowed!
+		if((stateRule.getSubmachine() == null) && !editedState.getConnections().isEmpty()){
+			error(getErrorMessageForSubmachineState(), stateRule, UmlStatePackage.STATE_RULE) ;
+			valid_StateName = false ;
+		}
+		else {
+			valid_StateName = true ;
+		}
 		//
 		// Then, checks if the textual specification implies deletion of the DoActivity, Entry or Exit behavior
 		// and raises warnings accordingly
@@ -230,6 +262,43 @@ public class UmlStateJavaValidator extends AbstractUmlStateJavaValidator {
 		}
 	}
 	
+	@Check
+	public void checkSubmachineRule(SubmachineRule rule) {
+		if (contextElement == null || ! (contextElement instanceof org.eclipse.uml2.uml.State))
+			return ;
+		org.eclipse.uml2.uml.State contextState = (org.eclipse.uml2.uml.State)contextElement ;
+		if (contextState.isOrthogonal()) {
+			error(getErrorMessageForOrthogonalState(), rule, UmlStatePackage.SUBMACHINE_RULE__SUBMACHINE) ;
+			valid_SubMachineRule = false ;
+		}
+		else {
+			valid_SubMachineRule = true ;
+		}
+		if (contextState.isComposite()) {
+			error(getErrorMessageForCompositeState(), rule, UmlStatePackage.SUBMACHINE_RULE__SUBMACHINE) ;
+			valid_SubMachineRule = false ;
+		}
+		else {
+			valid_SubMachineRule = true ;
+		}
+	}
+	
+	//*****************//
+	// Utility methods //
+	//*****************//
+	
+	private String getErrorMessageForOrthogonalState() {
+		return "An orthogonal state cannot reference a submachine." ;
+	}
+	
+	private String getErrorMessageForCompositeState() {
+		return "A composite state cannot reference a submachine." ;
+	}
+
+	private String getErrorMessageForSubmachineState() {
+		return "A simple state cannot have ConnectionPointReferences. You should delete them before removing the reference to the submachine." ;
+	}
+
 	private static BehaviorKind getBehaviorKind(Behavior behavior) {
 		if (behavior == null)
 			return null ;

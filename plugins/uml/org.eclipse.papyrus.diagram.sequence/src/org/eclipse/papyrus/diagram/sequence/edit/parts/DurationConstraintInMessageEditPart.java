@@ -13,82 +13,62 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.edit.parts;
 
-import java.util.Collections;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.ConnectionLocator;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.PositionConstants;
+import org.eclipse.draw2d.Shape;
+import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.RunnableWithResult;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gef.AccessibleEditPart;
-import org.eclipse.gef.DragTracker;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
-import org.eclipse.gef.requests.DirectEditRequest;
-import org.eclipse.gef.tools.DirectEditManager;
-import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
-import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
-import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
-import org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions;
+import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.editparts.AbstractConnectionEditPart;
+import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
+import org.eclipse.gef.editpolicies.LayoutEditPolicy;
+import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
+import org.eclipse.gef.requests.CreateRequest;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.LabelDirectEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ListItemComponentEditPolicy;
-import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramColorRegistry;
-import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
-import org.eclipse.gmf.runtime.diagram.ui.tools.TextDirectEditManager;
+import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
+import org.eclipse.gmf.runtime.diagram.ui.figures.LabelLocator;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
-import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
-import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
-import org.eclipse.gmf.runtime.notation.FontStyle;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
+import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.jface.dialogs.Dialog;
-import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
-import org.eclipse.jface.viewers.ICellEditorValidator;
-import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.diagram.common.directedit.MultilineLabelDirectEditManager;
-import org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition;
-import org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
-import org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure;
+import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.jface.preference.PreferenceConverter;
+import org.eclipse.papyrus.diagram.common.locator.ExternalLabelPositionLocator;
+import org.eclipse.papyrus.diagram.sequence.edit.policies.DeleteTimeElementWithoutEventPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.DurationConstraintInMessageItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.sequence.edit.policies.ExternalLabelPrimaryDragRoleEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.MoveableNonResizableLabelEditPolicy;
-import org.eclipse.papyrus.diagram.sequence.edit.policies.UMLTextNonResizableEditPolicy;
-import org.eclipse.papyrus.diagram.sequence.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
-import org.eclipse.papyrus.diagram.sequence.providers.UMLParserProvider;
-import org.eclipse.papyrus.extensionpoints.editors.Activator;
-import org.eclipse.papyrus.extensionpoints.editors.configuration.IAdvancedEditorConfiguration;
-import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration;
-import org.eclipse.papyrus.extensionpoints.editors.configuration.IPopupEditorConfiguration;
-import org.eclipse.papyrus.extensionpoints.editors.ui.ExtendedDirectEditionDialog;
-import org.eclipse.papyrus.extensionpoints.editors.ui.ILabelEditorDialog;
-import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
-import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
-import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
+import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
+import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.accessibility.AccessibleEvent;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
-import org.eclipse.swt.graphics.FontData;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.ui.PlatformUI;
 
 /**
- * @generated NOT extend LabelEditPart to make DurationConstraint as message label
+ * @generated
  */
-public class DurationConstraintInMessageEditPart extends LabelEditPart implements ITextAwareEditPart {
+public class DurationConstraintInMessageEditPart extends AbstractBorderedShapeEditPart {
 
 	/**
 	 * @generated
@@ -98,43 +78,12 @@ public class DurationConstraintInMessageEditPart extends LabelEditPart implement
 	/**
 	 * @generated
 	 */
-	private DirectEditManager manager;
+	protected IFigure contentPane;
 
 	/**
 	 * @generated
 	 */
-	private IParser parser;
-
-	/**
-	 * @generated
-	 */
-	private List<?> parserElements;
-
-	/**
-	 * @generated
-	 */
-	private String defaultText;
-
-	/**
-	 * direct edition mode (default, undefined, registered editor, etc.)
-	 * 
-	 * @generated
-	 */
-	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
-
-	/**
-	 * configuration from a registered edit dialog
-	 * 
-	 * @generated
-	 */
-	protected IDirectEditorConfiguration configuration;
-
-	/**
-	 * @generated NOT make duration constraint label under the name
-	 */
-	static {
-		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInMessageEditPart.VISUAL_ID), new Point(1, 13));
-	}
+	protected IFigure primaryShape;
 
 	/**
 	 * @generated
@@ -144,641 +93,1083 @@ public class DurationConstraintInMessageEditPart extends LabelEditPart implement
 	}
 
 	/**
-	 * @generated NOT
-	 */
-	public DragTracker getDragTracker(Request request) {
-		return super.getDragTracker(request);
-		//		if(request instanceof SelectionRequest && ((SelectionRequest)request).getLastButtonPressed() == 3) {
-		//			return null;
-		//		}
-		//		return new DragEditPartsTrackerEx(this);
-	}
-
-	/**
 	 * @generated
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DurationConstraintInMessageItemSemanticEditPolicy());
-		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new UMLTextNonResizableEditPolicy());
+		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new ListItemComponentEditPolicy());
-		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
-		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new UMLTextSelectionEditPolicy());
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new MoveableNonResizableLabelEditPolicy());
+		installEditPolicy(DeleteTimeElementWithoutEventPolicy.KEY, new DeleteTimeElementWithoutEventPolicy());
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
+		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
 	/**
-	 * @generated NOT link to the middle of the message
+	 * Make sure bounds are also refreshed.
+	 * 
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#refresh()
+	 * @generated NOT
 	 */
-	public int getKeyPoint() {
-		return ConnectionLocator.MIDDLE;
+	@Override
+	public void refresh() {
+		super.refresh();
+		refreshBounds();
 	}
 
 	/**
-	 * @generated
+	 * Handles refresh bounds the same way as for a non resizable label
+	 * 
+	 * @generated NOT
 	 */
-	protected String getLabelTextHelper(IFigure figure) {
-		if(figure instanceof WrappingLabel) {
-			return ((WrappingLabel)figure).getText();
-		} else if(figure instanceof ILabelFigure) {
-			return ((ILabelFigure)figure).getText();
+	protected void refreshBounds() {
+		int dx = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
+		int dy = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
+		Point offset = new Point(dx, dy);
+		if(getParent() instanceof AbstractConnectionEditPart) {
+			((AbstractGraphicalEditPart)getParent()).setLayoutConstraint(this, getFigure(), new LabelLocator(((AbstractConnectionEditPart)getParent()).getConnectionFigure(), offset, ConnectionLocator.MIDDLE));
 		} else {
-			return ((Label)figure).getText();
+			getFigure().getParent().setConstraint(getFigure(), new LabelLocator(getFigure().getParent(), offset, ConnectionLocator.MIDDLE));
 		}
+
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT use ExternalLabelPrimaryDragRoleEditPolicy
 	 */
-	protected void setLabelTextHelper(IFigure figure, String text) {
-		if(figure instanceof WrappingLabel) {
-			((WrappingLabel)figure).setText(text);
-		} else if(figure instanceof ILabelFigure) {
-			((ILabelFigure)figure).setText(text);
-		} else {
-			((Label)figure).setText(text);
-		}
-	}
+	protected LayoutEditPolicy createLayoutEditPolicy() {
+		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 
-	/**
-	 * @generated
-	 */
-	protected Image getLabelIconHelper(IFigure figure) {
-		if(figure instanceof WrappingLabel) {
-			return ((WrappingLabel)figure).getIcon();
-		} else if(figure instanceof ILabelFigure) {
-			return ((ILabelFigure)figure).getIcon();
-		} else {
-			return ((Label)figure).getIcon();
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void setLabelIconHelper(IFigure figure, Image icon) {
-		if(figure instanceof WrappingLabel) {
-			((WrappingLabel)figure).setIcon(icon);
-		} else if(figure instanceof ILabelFigure) {
-			((ILabelFigure)figure).setIcon(icon);
-		} else {
-			((Label)figure).setIcon(icon);
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	public void setLabel(IFigure figure) {
-		unregisterVisuals();
-		setFigure(figure);
-		defaultText = getLabelTextHelper(figure);
-		registerVisuals();
-		refreshVisuals();
-	}
-
-	/**
-	 * @generated
-	 */
-	protected List getModelChildren() {
-		return Collections.EMPTY_LIST;
-	}
-
-	/**
-	 * @generated
-	 */
-	public IGraphicalEditPart getChildBySemanticHint(String semanticHint) {
-		return null;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected EObject getParserElement() {
-		return resolveSemanticElement();
-	}
-
-	/**
-	 * @generated
-	 */
-	protected Image getLabelIcon() {
-		return null;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected String getLabelText() {
-		String text = null;
-		EObject parserElement = getParserElement();
-		if(parserElement != null && getParser() != null) {
-			text = getParser().getPrintString(new EObjectAdapter(parserElement), getParserOptions().intValue());
-		}
-		if(text == null || text.length() == 0) {
-			text = defaultText;
-		}
-		return text;
-	}
-
-	/**
-	 * @generated
-	 */
-	public void setLabelText(String text) {
-		setLabelTextHelper(getFigure(), text);
-		Object pdEditPolicy = getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-		if(pdEditPolicy instanceof UMLTextSelectionEditPolicy) {
-			((UMLTextSelectionEditPolicy)pdEditPolicy).refreshFeedback();
-		}
-		Object sfEditPolicy = getEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE);
-		if(sfEditPolicy instanceof UMLTextSelectionEditPolicy) {
-			((UMLTextSelectionEditPolicy)sfEditPolicy).refreshFeedback();
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	public String getEditText() {
-		if(getParserElement() == null || getParser() == null) {
-			return ""; //$NON-NLS-1$
-		}
-		return getParser().getEditString(new EObjectAdapter(getParserElement()), getParserOptions().intValue());
-	}
-
-	/**
-	 * @generated
-	 */
-	protected boolean isEditable() {
-		return getParser() != null;
-	}
-
-	/**
-	 * @generated
-	 */
-	public ICellEditorValidator getEditTextValidator() {
-		return new ICellEditorValidator() {
-
-			public String isValid(final Object value) {
-				if(value instanceof String) {
-					final EObject element = getParserElement();
-					final IParser parser = getParser();
-					try {
-						IParserEditStatus valid = (IParserEditStatus)getEditingDomain().runExclusive(new RunnableWithResult.Impl() {
-
-							public void run() {
-								setResult(parser.isValidEditString(new EObjectAdapter(element), (String)value));
-							}
-						});
-						return valid.getCode() == ParserEditStatus.EDITABLE ? null : valid.getMessage();
-					} catch (InterruptedException ie) {
-						ie.printStackTrace();
-					}
+			protected EditPolicy createChildEditPolicy(EditPart child) {
+				View childView = (View)child.getModel();
+				switch(UMLVisualIDRegistry.getVisualID(childView)) {
+				case DurationConstraintInMessageAppliedStereotypeEditPart.VISUAL_ID:
+					// use ExternalLabelPrimaryDragRoleEditPolicy
+					return new ExternalLabelPrimaryDragRoleEditPolicy();
 				}
+				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
+				if(result == null) {
+					result = new NonResizableEditPolicy();
+				}
+				return result;
+			}
 
-				// shouldn't get here
+			protected Command getMoveChildrenCommand(Request request) {
+				return null;
+			}
+
+			protected Command getCreateCommand(CreateRequest request) {
 				return null;
 			}
 		};
+		return lep;
 	}
 
 	/**
 	 * @generated
 	 */
-	public IContentAssistProcessor getCompletionProcessor() {
-		if(getParserElement() == null || getParser() == null) {
-			return null;
-		}
-		return getParser().getCompletionProcessor(new EObjectAdapter(getParserElement()));
+	protected IFigure createNodeShape() {
+		return primaryShape = new DurationObservationConstraint();
 	}
 
 	/**
 	 * @generated
 	 */
-	public ParserOptions getParserOptions() {
-		return ParserOptions.NONE;
+	public DurationObservationConstraint getPrimaryShape() {
+		return (DurationObservationConstraint)primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
-	public IParser getParser() {
-		if(parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.DurationConstraint_3023, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInMessageEditPart.VISUAL_ID));
-		}
-		return parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected DirectEditManager getManager() {
-		if(manager == null) {
-			setManager(new MultilineLabelDirectEditManager(this, MultilineLabelDirectEditManager.getTextCellEditorClass(this), UMLEditPartFactory.getTextCellEditorLocator(this)));
-		}
-		return manager;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void setManager(DirectEditManager manager) {
-		this.manager = manager;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void performDirectEdit() {
-		getManager().show();
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void performDirectEdit(Point eventLocation) {
-		if(getManager() instanceof TextDirectEditManager) {
-			((TextDirectEditManager)getManager()).show(eventLocation.getSWTPoint());
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	private void performDirectEdit(char initialCharacter) {
-		if(getManager() instanceof TextDirectEditManager) {
-			((TextDirectEditManager)getManager()).show(initialCharacter);
-		} else {
-			performDirectEdit();
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void performDirectEditRequest(Request request) {
-
-		final Request theRequest = request;
-
-		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
-			directEditionMode = getDirectEditionType();
-		}
-		switch(directEditionMode) {
-		case IDirectEdition.NO_DIRECT_EDITION:
-			// no direct edition mode => does nothing
-			return;
-		case IDirectEdition.EXTENDED_DIRECT_EDITOR:
-			updateExtendedEditorConfiguration();
-			if(configuration == null || configuration.getLanguage() == null) {
-				performDefaultDirectEditorEdit(theRequest);
-			} else {
-				configuration.preEditAction(resolveSemanticElement());
-				Dialog dialog = null;
-				if(configuration instanceof IPopupEditorConfiguration) {
-					IPopupEditorHelper helper = ((IPopupEditorConfiguration)configuration).createPopupEditorHelper(this);
-					helper.showEditor();
-					return;
-				} else if(configuration instanceof IAdvancedEditorConfiguration) {
-					dialog = ((IAdvancedEditorConfiguration)configuration).createDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration.getTextToEdit(resolveSemanticElement()));
-				} else if(configuration instanceof IDirectEditorConfiguration) {
-					dialog = new ExtendedDirectEditionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), ((IDirectEditorConfiguration)configuration).getTextToEdit(resolveSemanticElement()), (IDirectEditorConfiguration)configuration);
-				} else {
-					return;
-				}
-				final Dialog finalDialog = dialog;
-
-				if(Window.OK == dialog.open()) {
-					TransactionalEditingDomain domain = getEditingDomain();
-					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
-
-						@Override
-						protected void doExecute() {
-							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
-
-						}
-					};
-					domain.getCommandStack().execute(command);
-				}
-			}
-			break;
-		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
-			// initialize the direct edit manager
-			try {
-				getEditingDomain().runExclusive(new Runnable() {
-
-					public void run() {
-						if(isActive() && isEditable()) {
-							if(theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
-								Character initialChar = (Character)theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
-								performDirectEdit(initialChar.charValue());
-							} else if((theRequest instanceof DirectEditRequest) && (getEditText().equals(getLabelText()))) {
-								DirectEditRequest editRequest = (DirectEditRequest)theRequest;
-								performDirectEdit(editRequest.getLocation());
-							} else {
-								performDirectEdit();
-							}
-						}
-					}
-				});
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			break;
-		default:
-			break;
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void refreshVisuals() {
-		super.refreshVisuals();
-		refreshLabel();
-		refreshFont();
-		refreshFontColor();
-		refreshUnderline();
-		refreshStrikeThrough();
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void refreshLabel() {
-		EditPolicy maskLabelPolicy = getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
-		if(maskLabelPolicy == null) {
-			setLabelTextHelper(getFigure(), getLabelText());
-			setLabelIconHelper(getFigure(), getLabelIcon());
-		}
-		Object pdEditPolicy = getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-		if(pdEditPolicy instanceof UMLTextSelectionEditPolicy) {
-			((UMLTextSelectionEditPolicy)pdEditPolicy).refreshFeedback();
-		}
-		Object sfEditPolicy = getEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE);
-		if(sfEditPolicy instanceof UMLTextSelectionEditPolicy) {
-			((UMLTextSelectionEditPolicy)sfEditPolicy).refreshFeedback();
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void refreshUnderline() {
-		FontStyle style = (FontStyle)getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
-		if(style != null && getFigure() instanceof WrappingLabel) {
-			((WrappingLabel)getFigure()).setTextUnderline(style.isUnderline());
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void refreshStrikeThrough() {
-		FontStyle style = (FontStyle)getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
-		if(style != null && getFigure() instanceof WrappingLabel) {
-			((WrappingLabel)getFigure()).setTextStrikeThrough(style.isStrikeThrough());
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void refreshFont() {
-		FontStyle style = (FontStyle)getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
-		if(style != null) {
-			FontData fontData = new FontData(style.getFontName(), style.getFontHeight(), (style.isBold() ? SWT.BOLD : SWT.NORMAL) | (style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
-			setFont(fontData);
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void setFontColor(Color color) {
-		getFigure().setForegroundColor(color);
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void addSemanticListeners() {
-		if(getParser() instanceof ISemanticParser) {
-			EObject element = resolveSemanticElement();
-			parserElements = ((ISemanticParser)getParser()).getSemanticElementsBeingParsed(element);
-			for(int i = 0; i < parserElements.size(); i++) {
-				addListenerFilter("SemanticModel" + i, this, (EObject)parserElements.get(i)); //$NON-NLS-1$
-			}
-		} else {
-			super.addSemanticListeners();
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void removeSemanticListeners() {
-		if(parserElements != null) {
-			for(int i = 0; i < parserElements.size(); i++) {
-				removeListenerFilter("SemanticModel" + i); //$NON-NLS-1$
-			}
-		} else {
-			super.removeSemanticListeners();
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	protected AccessibleEditPart getAccessibleEditPart() {
-		if(accessibleEP == null) {
-			accessibleEP = new AccessibleGraphicalEditPart() {
-
-				public void getName(AccessibleEvent e) {
-					e.result = getLabelTextHelper(getFigure());
-				}
-			};
-		}
-		return accessibleEP;
-	}
-
-	/**
-	 * @generated
-	 */
-	private View getFontStyleOwnerView() {
-		return (View)getModel();
-	}
-
-	/**
-	 * Returns the kind of associated editor for direct edition.
-	 * 
-	 * @return an <code>int</code> corresponding to the kind of direct editor, @see org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
-	 * @generated
-	 */
-	public int getDirectEditionType() {
-		if(checkExtendedEditor()) {
-			initExtendedEditorConfiguration();
-			return IDirectEdition.EXTENDED_DIRECT_EDITOR;
-		}
-		if(checkDefaultEdition()) {
-			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
+	protected boolean addFixedChild(EditPart childEditPart) {
+		if(childEditPart instanceof DurationConstraintInMessageLabelEditPart) {
+			((DurationConstraintInMessageLabelEditPart)childEditPart).setLabel(getPrimaryShape().getDurationLabel());
+			return true;
 		}
 
-		// not a named element. no specific editor => do nothing
-		return IDirectEdition.NO_DIRECT_EDITION;
+
+		return false;
 	}
 
 	/**
-	 * Checks if an extended editor is present.
-	 * 
-	 * @return <code>true</code> if an extended editor is present.
 	 * @generated
 	 */
-	protected boolean checkExtendedEditor() {
-		if(resolveSemanticElement() != null) {
-			return DirectEditorsUtil.hasSpecificEditorConfiguration(resolveSemanticElement().eClass().getInstanceClassName());
+	protected boolean removeFixedChild(EditPart childEditPart) {
+		if(childEditPart instanceof DurationConstraintInMessageLabelEditPart) {
+			return true;
 		}
 		return false;
 	}
 
 	/**
-	 * Checks if a default direct edition is available
-	 * 
-	 * @return <code>true</code> if a default direct edition is available
 	 * @generated
 	 */
-	protected boolean checkDefaultEdition() {
-		return (getParser() != null);
-	}
-
-	/**
-	 * Initializes the extended editor configuration
-	 * 
-	 * @generated
-	 */
-	protected void initExtendedEditorConfiguration() {
-		if(configuration == null) {
-			final String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
-			if(languagePreferred != null && !languagePreferred.equals("")) {
-				configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement().eClass().getInstanceClassName());
-			} else {
-				configuration = DirectEditorsUtil.findEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE, resolveSemanticElement().eClass().getInstanceClassName());
-			}
+	protected void addChildVisual(EditPart childEditPart, int index) {
+		if(addFixedChild(childEditPart)) {
+			return;
 		}
+		super.addChildVisual(childEditPart, -1);
 	}
 
 	/**
-	 * Updates the preference configuration
-	 * 
 	 * @generated
 	 */
-	protected void updateExtendedEditorConfiguration() {
-		String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
-		if(languagePreferred != null && !languagePreferred.equals("") && languagePreferred != configuration.getLanguage()) {
-			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement().eClass().getInstanceClassName());
-		} else if(IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(languagePreferred)) {
-			configuration = null;
+	protected void removeChildVisual(EditPart childEditPart) {
+		if(removeFixedChild(childEditPart)) {
+			return;
 		}
+		super.removeChildVisual(childEditPart);
 	}
 
 	/**
-	 * Performs the direct edit usually used by GMF editors.
-	 * 
-	 * @param theRequest
-	 *        the direct edit request that starts the direct edit system
 	 * @generated
 	 */
-	protected void performDefaultDirectEditorEdit(final Request theRequest) {
-		// initialize the direct edit manager
-		try {
-			getEditingDomain().runExclusive(new Runnable() {
-
-				public void run() {
-					if(isActive() && isEditable()) {
-						if(theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
-							Character initialChar = (Character)theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
-							performDirectEdit(initialChar.charValue());
-						} else if((theRequest instanceof DirectEditRequest) && (getEditText().equals(getLabelText()))) {
-							DirectEditRequest editRequest = (DirectEditRequest)theRequest;
-							performDirectEdit(editRequest.getLocation());
-						} else {
-							performDirectEdit();
-						}
-					}
-				}
-			});
-		} catch (InterruptedException e) {
-			e.printStackTrace();
+	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
+		if(editPart instanceof IBorderItemEditPart) {
+			return getBorderedFigure().getBorderItemContainer();
 		}
+		return getContentPane();
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT use ExternalLabelPositionLocator
 	 */
-	protected void addNotationalListeners() {
-		super.addNotationalListeners();
-		addListenerFilter("PrimaryView", this, getPrimaryView()); //$NON-NLS-1$
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void removeNotationalListeners() {
-		super.removeNotationalListeners();
-		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void handleNotificationEvent(Notification event) {
-		Object feature = event.getFeature();
-		if(NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(feature)) {
-			Integer c = (Integer)event.getNewValue();
-			setFontColor(DiagramColorRegistry.getInstance().getColor(c));
-		} else if(NotationPackage.eINSTANCE.getFontStyle_Underline().equals(feature)) {
-			refreshUnderline();
-		} else if(NotationPackage.eINSTANCE.getFontStyle_StrikeThrough().equals(feature)) {
-			refreshStrikeThrough();
-		} else if(NotationPackage.eINSTANCE.getFontStyle_FontHeight().equals(feature) || NotationPackage.eINSTANCE.getFontStyle_FontName().equals(feature) || NotationPackage.eINSTANCE.getFontStyle_Bold().equals(feature) || NotationPackage.eINSTANCE.getFontStyle_Italic().equals(feature)) {
-			refreshFont();
+	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
+		if(borderItemEditPart instanceof DurationConstraintInMessageAppliedStereotypeEditPart) {
+			//use ExternalLabelPositionLocator
+			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
+			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
 		} else {
-			if(getParser() != null && getParser().isAffectingEvent(event, getParserOptions().intValue())) {
-				refreshLabel();
-			}
-			if(getParser() instanceof ISemanticParser) {
-				ISemanticParser modelParser = (ISemanticParser)getParser();
-				if(modelParser.areSemanticElementsAffected(null, event)) {
-					removeSemanticListeners();
-					if(resolveSemanticElement() != null) {
-						addSemanticListeners();
-					}
-					refreshLabel();
-				}
-			}
+			super.addBorderItem(borderItemContainer, borderItemEditPart);
 		}
-		super.handleNotificationEvent(event);
+	}
+
+	/**
+	 * @generated NOT use correct minimum size
+	 */
+	protected NodeFigure createNodePlate() {
+		// use correct minimum size
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(-1, -1);
+		//String prefElementId = "DurationConstraint";
+		//IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
+		//String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
+		//String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
+		//DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
+
+		return result;
+	}
+
+	/**
+	 * Creates figure for this edit part.
+	 * 
+	 * Body of this method does not depend on settings in generation model
+	 * so you may safely remove <i>generated</i> tag and modify it.
+	 * 
+	 * @generated
+	 */
+	protected NodeFigure createMainFigure() {
+		NodeFigure figure = createNodePlate();
+		figure.setLayoutManager(new StackLayout());
+		IFigure shape = createNodeShape();
+		figure.add(shape);
+		contentPane = setupContentPane(shape);
+		return figure;
+	}
+
+	/**
+	 * Default implementation treats passed figure as content pane.
+	 * Respects layout one may have set for generated figure.
+	 * 
+	 * @param nodeShape
+	 *        instance of generated figure class
+	 * @generated
+	 */
+	protected IFigure setupContentPane(IFigure nodeShape) {
+		if(nodeShape.getLayoutManager() == null) {
+			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
+			layout.setSpacing(5);
+			nodeShape.setLayoutManager(layout);
+		}
+		return nodeShape; // use nodeShape itself as contentPane
 	}
 
 	/**
 	 * @generated
 	 */
-	protected IFigure createFigure() {
-		IFigure label = createFigurePrim();
-		defaultText = getLabelTextHelper(label);
-		return label;
+	public IFigure getContentPane() {
+		if(contentPane != null) {
+			return contentPane;
+		}
+		return super.getContentPane();
 	}
 
 	/**
 	 * @generated
 	 */
-	protected IFigure createFigurePrim() {
-		return new DurationObservationConstraint();
+	protected void setForegroundColor(Color color) {
+		if(primaryShape != null) {
+			primaryShape.setForegroundColor(color);
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void setLineWidth(int width) {
+		if(primaryShape instanceof Shape) {
+			((Shape)primaryShape).setLineWidth(width);
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void setLineType(int style) {
+		if(primaryShape instanceof Shape) {
+			((Shape)primaryShape).setLineStyle(style);
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public EditPart getPrimaryChildEditPart() {
+		return getChildBySemanticHint(UMLVisualIDRegistry.getType(DurationConstraintInMessageLabelEditPart.VISUAL_ID));
+	}
+
+	/**
+	 * @generated
+	 */
+	public List<IElementType> getMARelTypesOnSource() {
+		ArrayList<IElementType> types = new ArrayList<IElementType>(8);
+		types.add(UMLElementTypes.Message_4003);
+		types.add(UMLElementTypes.Message_4004);
+		types.add(UMLElementTypes.Message_4005);
+		types.add(UMLElementTypes.Message_4006);
+		types.add(UMLElementTypes.Message_4007);
+		types.add(UMLElementTypes.Message_4008);
+		types.add(UMLElementTypes.Message_4009);
+		types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
+		return types;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List<IElementType> getMARelTypesOnSourceAndTarget(IGraphicalEditPart targetEditPart) {
+		LinkedList<IElementType> types = new LinkedList<IElementType>();
+		if(targetEditPart instanceof InteractionEditPart) {
+			types.add(UMLElementTypes.Message_4003);
+		}
+		if(targetEditPart instanceof ConsiderIgnoreFragmentEditPart) {
+			types.add(UMLElementTypes.Message_4003);
+		}
+		if(targetEditPart instanceof CombinedFragmentEditPart) {
+			types.add(UMLElementTypes.Message_4003);
+		}
+		if(targetEditPart instanceof InteractionOperandEditPart) {
+			types.add(UMLElementTypes.Message_4003);
+		}
+		if(targetEditPart instanceof InteractionUseEditPart) {
+			types.add(UMLElementTypes.Message_4003);
+		}
+		if(targetEditPart instanceof ContinuationEditPart) {
+			types.add(UMLElementTypes.Message_4003);
+		}
+		if(targetEditPart instanceof LifelineEditPart) {
+			types.add(UMLElementTypes.Message_4003);
+		}
+		if(targetEditPart instanceof ActionExecutionSpecificationEditPart) {
+			types.add(UMLElementTypes.Message_4003);
+		}
+		if(targetEditPart instanceof BehaviorExecutionSpecificationEditPart) {
+			types.add(UMLElementTypes.Message_4003);
+		}
+		if(targetEditPart instanceof StateInvariantEditPart) {
+			types.add(UMLElementTypes.Message_4003);
+		}
+		if(targetEditPart instanceof CombinedFragment2EditPart) {
+			types.add(UMLElementTypes.Message_4003);
+		}
+		if(targetEditPart instanceof TimeConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4003);
+		}
+		if(targetEditPart instanceof TimeObservationEditPart) {
+			types.add(UMLElementTypes.Message_4003);
+		}
+		if(targetEditPart instanceof DurationConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4003);
+		}
+		if(targetEditPart instanceof DestructionEventEditPart) {
+			types.add(UMLElementTypes.Message_4003);
+		}
+		if(targetEditPart instanceof ConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4003);
+		}
+		if(targetEditPart instanceof CommentEditPart) {
+			types.add(UMLElementTypes.Message_4003);
+		}
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInMessageEditPart) {
+			types.add(UMLElementTypes.Message_4003);
+		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			types.add(UMLElementTypes.Message_4003);
+		}
+		if(targetEditPart instanceof InteractionEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
+		if(targetEditPart instanceof ConsiderIgnoreFragmentEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
+		if(targetEditPart instanceof CombinedFragmentEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
+		if(targetEditPart instanceof InteractionOperandEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
+		if(targetEditPart instanceof InteractionUseEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
+		if(targetEditPart instanceof ContinuationEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
+		if(targetEditPart instanceof LifelineEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
+		if(targetEditPart instanceof ActionExecutionSpecificationEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
+		if(targetEditPart instanceof BehaviorExecutionSpecificationEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
+		if(targetEditPart instanceof StateInvariantEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
+		if(targetEditPart instanceof CombinedFragment2EditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
+		if(targetEditPart instanceof TimeConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
+		if(targetEditPart instanceof TimeObservationEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
+		if(targetEditPart instanceof DurationConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
+		if(targetEditPart instanceof DestructionEventEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
+		if(targetEditPart instanceof ConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
+		if(targetEditPart instanceof CommentEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInMessageEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
+		if(targetEditPart instanceof InteractionEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
+		if(targetEditPart instanceof ConsiderIgnoreFragmentEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
+		if(targetEditPart instanceof CombinedFragmentEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
+		if(targetEditPart instanceof InteractionOperandEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
+		if(targetEditPart instanceof InteractionUseEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
+		if(targetEditPart instanceof ContinuationEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
+		if(targetEditPart instanceof LifelineEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
+		if(targetEditPart instanceof ActionExecutionSpecificationEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
+		if(targetEditPart instanceof BehaviorExecutionSpecificationEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
+		if(targetEditPart instanceof StateInvariantEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
+		if(targetEditPart instanceof CombinedFragment2EditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
+		if(targetEditPart instanceof TimeConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
+		if(targetEditPart instanceof TimeObservationEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
+		if(targetEditPart instanceof DurationConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
+		if(targetEditPart instanceof DestructionEventEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
+		if(targetEditPart instanceof ConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
+		if(targetEditPart instanceof CommentEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInMessageEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
+		if(targetEditPart instanceof InteractionEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
+		if(targetEditPart instanceof ConsiderIgnoreFragmentEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
+		if(targetEditPart instanceof CombinedFragmentEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
+		if(targetEditPart instanceof InteractionOperandEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
+		if(targetEditPart instanceof InteractionUseEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
+		if(targetEditPart instanceof ContinuationEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
+		if(targetEditPart instanceof LifelineEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
+		if(targetEditPart instanceof ActionExecutionSpecificationEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
+		if(targetEditPart instanceof BehaviorExecutionSpecificationEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
+		if(targetEditPart instanceof StateInvariantEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
+		if(targetEditPart instanceof CombinedFragment2EditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
+		if(targetEditPart instanceof TimeConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
+		if(targetEditPart instanceof TimeObservationEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
+		if(targetEditPart instanceof DurationConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
+		if(targetEditPart instanceof DestructionEventEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
+		if(targetEditPart instanceof ConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
+		if(targetEditPart instanceof CommentEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInMessageEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
+		if(targetEditPart instanceof InteractionEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
+		if(targetEditPart instanceof ConsiderIgnoreFragmentEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
+		if(targetEditPart instanceof CombinedFragmentEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
+		if(targetEditPart instanceof InteractionOperandEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
+		if(targetEditPart instanceof InteractionUseEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
+		if(targetEditPart instanceof ContinuationEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
+		if(targetEditPart instanceof LifelineEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
+		if(targetEditPart instanceof ActionExecutionSpecificationEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
+		if(targetEditPart instanceof BehaviorExecutionSpecificationEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
+		if(targetEditPart instanceof StateInvariantEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
+		if(targetEditPart instanceof CombinedFragment2EditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
+		if(targetEditPart instanceof TimeConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
+		if(targetEditPart instanceof TimeObservationEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
+		if(targetEditPart instanceof DurationConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
+		if(targetEditPart instanceof DestructionEventEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
+		if(targetEditPart instanceof ConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
+		if(targetEditPart instanceof CommentEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInMessageEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
+		if(targetEditPart instanceof InteractionEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
+		if(targetEditPart instanceof ConsiderIgnoreFragmentEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
+		if(targetEditPart instanceof CombinedFragmentEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
+		if(targetEditPart instanceof InteractionOperandEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
+		if(targetEditPart instanceof InteractionUseEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
+		if(targetEditPart instanceof ContinuationEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
+		if(targetEditPart instanceof LifelineEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
+		if(targetEditPart instanceof ActionExecutionSpecificationEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
+		if(targetEditPart instanceof BehaviorExecutionSpecificationEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
+		if(targetEditPart instanceof StateInvariantEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
+		if(targetEditPart instanceof CombinedFragment2EditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
+		if(targetEditPart instanceof TimeConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
+		if(targetEditPart instanceof TimeObservationEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
+		if(targetEditPart instanceof DurationConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
+		if(targetEditPart instanceof DestructionEventEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
+		if(targetEditPart instanceof ConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
+		if(targetEditPart instanceof CommentEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInMessageEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
+		if(targetEditPart instanceof InteractionEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if(targetEditPart instanceof ConsiderIgnoreFragmentEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if(targetEditPart instanceof CombinedFragmentEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if(targetEditPart instanceof InteractionOperandEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if(targetEditPart instanceof InteractionUseEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if(targetEditPart instanceof ContinuationEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if(targetEditPart instanceof LifelineEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if(targetEditPart instanceof ActionExecutionSpecificationEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if(targetEditPart instanceof BehaviorExecutionSpecificationEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if(targetEditPart instanceof StateInvariantEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if(targetEditPart instanceof CombinedFragment2EditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if(targetEditPart instanceof TimeConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if(targetEditPart instanceof TimeObservationEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if(targetEditPart instanceof DurationConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if(targetEditPart instanceof DestructionEventEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if(targetEditPart instanceof ConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if(targetEditPart instanceof CommentEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInMessageEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if(targetEditPart instanceof InteractionEditPart) {
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
+		}
+		if(targetEditPart instanceof ConsiderIgnoreFragmentEditPart) {
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
+		}
+		if(targetEditPart instanceof CombinedFragmentEditPart) {
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
+		}
+		if(targetEditPart instanceof InteractionOperandEditPart) {
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
+		}
+		if(targetEditPart instanceof InteractionUseEditPart) {
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
+		}
+		if(targetEditPart instanceof ContinuationEditPart) {
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
+		}
+		if(targetEditPart instanceof LifelineEditPart) {
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
+		}
+		if(targetEditPart instanceof ActionExecutionSpecificationEditPart) {
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
+		}
+		if(targetEditPart instanceof BehaviorExecutionSpecificationEditPart) {
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
+		}
+		if(targetEditPart instanceof StateInvariantEditPart) {
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
+		}
+		if(targetEditPart instanceof CombinedFragment2EditPart) {
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
+		}
+		if(targetEditPart instanceof TimeConstraintEditPart) {
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
+		}
+		if(targetEditPart instanceof TimeObservationEditPart) {
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
+		}
+		if(targetEditPart instanceof DurationConstraintEditPart) {
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
+		}
+		if(targetEditPart instanceof DestructionEventEditPart) {
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
+		}
+		if(targetEditPart instanceof ConstraintEditPart) {
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
+		}
+		if(targetEditPart instanceof CommentEditPart) {
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
+		}
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInMessageEditPart) {
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
+		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
+		}
+		return types;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
+		LinkedList<IElementType> types = new LinkedList<IElementType>();
+		if(relationshipType == UMLElementTypes.Message_4003) {
+			types.add(UMLElementTypes.Interaction_2001);
+			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
+			types.add(UMLElementTypes.CombinedFragment_3004);
+			types.add(UMLElementTypes.InteractionOperand_3005);
+			types.add(UMLElementTypes.InteractionUse_3002);
+			types.add(UMLElementTypes.Continuation_3016);
+			types.add(UMLElementTypes.Lifeline_3001);
+			types.add(UMLElementTypes.ActionExecutionSpecification_3006);
+			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
+			types.add(UMLElementTypes.StateInvariant_3017);
+			types.add(UMLElementTypes.CombinedFragment_3018);
+			types.add(UMLElementTypes.TimeConstraint_3019);
+			types.add(UMLElementTypes.TimeObservation_3020);
+			types.add(UMLElementTypes.DurationConstraint_3021);
+			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.Constraint_3008);
+			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
+		} else if(relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.Interaction_2001);
+			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
+			types.add(UMLElementTypes.CombinedFragment_3004);
+			types.add(UMLElementTypes.InteractionOperand_3005);
+			types.add(UMLElementTypes.InteractionUse_3002);
+			types.add(UMLElementTypes.Continuation_3016);
+			types.add(UMLElementTypes.Lifeline_3001);
+			types.add(UMLElementTypes.ActionExecutionSpecification_3006);
+			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
+			types.add(UMLElementTypes.StateInvariant_3017);
+			types.add(UMLElementTypes.CombinedFragment_3018);
+			types.add(UMLElementTypes.TimeConstraint_3019);
+			types.add(UMLElementTypes.TimeObservation_3020);
+			types.add(UMLElementTypes.DurationConstraint_3021);
+			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.Constraint_3008);
+			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
+		} else if(relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.Interaction_2001);
+			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
+			types.add(UMLElementTypes.CombinedFragment_3004);
+			types.add(UMLElementTypes.InteractionOperand_3005);
+			types.add(UMLElementTypes.InteractionUse_3002);
+			types.add(UMLElementTypes.Continuation_3016);
+			types.add(UMLElementTypes.Lifeline_3001);
+			types.add(UMLElementTypes.ActionExecutionSpecification_3006);
+			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
+			types.add(UMLElementTypes.StateInvariant_3017);
+			types.add(UMLElementTypes.CombinedFragment_3018);
+			types.add(UMLElementTypes.TimeConstraint_3019);
+			types.add(UMLElementTypes.TimeObservation_3020);
+			types.add(UMLElementTypes.DurationConstraint_3021);
+			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.Constraint_3008);
+			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
+		} else if(relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.Interaction_2001);
+			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
+			types.add(UMLElementTypes.CombinedFragment_3004);
+			types.add(UMLElementTypes.InteractionOperand_3005);
+			types.add(UMLElementTypes.InteractionUse_3002);
+			types.add(UMLElementTypes.Continuation_3016);
+			types.add(UMLElementTypes.Lifeline_3001);
+			types.add(UMLElementTypes.ActionExecutionSpecification_3006);
+			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
+			types.add(UMLElementTypes.StateInvariant_3017);
+			types.add(UMLElementTypes.CombinedFragment_3018);
+			types.add(UMLElementTypes.TimeConstraint_3019);
+			types.add(UMLElementTypes.TimeObservation_3020);
+			types.add(UMLElementTypes.DurationConstraint_3021);
+			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.Constraint_3008);
+			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
+		} else if(relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.Interaction_2001);
+			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
+			types.add(UMLElementTypes.CombinedFragment_3004);
+			types.add(UMLElementTypes.InteractionOperand_3005);
+			types.add(UMLElementTypes.InteractionUse_3002);
+			types.add(UMLElementTypes.Continuation_3016);
+			types.add(UMLElementTypes.Lifeline_3001);
+			types.add(UMLElementTypes.ActionExecutionSpecification_3006);
+			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
+			types.add(UMLElementTypes.StateInvariant_3017);
+			types.add(UMLElementTypes.CombinedFragment_3018);
+			types.add(UMLElementTypes.TimeConstraint_3019);
+			types.add(UMLElementTypes.TimeObservation_3020);
+			types.add(UMLElementTypes.DurationConstraint_3021);
+			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.Constraint_3008);
+			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
+		} else if(relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.Interaction_2001);
+			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
+			types.add(UMLElementTypes.CombinedFragment_3004);
+			types.add(UMLElementTypes.InteractionOperand_3005);
+			types.add(UMLElementTypes.InteractionUse_3002);
+			types.add(UMLElementTypes.Continuation_3016);
+			types.add(UMLElementTypes.Lifeline_3001);
+			types.add(UMLElementTypes.ActionExecutionSpecification_3006);
+			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
+			types.add(UMLElementTypes.StateInvariant_3017);
+			types.add(UMLElementTypes.CombinedFragment_3018);
+			types.add(UMLElementTypes.TimeConstraint_3019);
+			types.add(UMLElementTypes.TimeObservation_3020);
+			types.add(UMLElementTypes.DurationConstraint_3021);
+			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.Constraint_3008);
+			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
+		} else if(relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.Interaction_2001);
+			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
+			types.add(UMLElementTypes.CombinedFragment_3004);
+			types.add(UMLElementTypes.InteractionOperand_3005);
+			types.add(UMLElementTypes.InteractionUse_3002);
+			types.add(UMLElementTypes.Continuation_3016);
+			types.add(UMLElementTypes.Lifeline_3001);
+			types.add(UMLElementTypes.ActionExecutionSpecification_3006);
+			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
+			types.add(UMLElementTypes.StateInvariant_3017);
+			types.add(UMLElementTypes.CombinedFragment_3018);
+			types.add(UMLElementTypes.TimeConstraint_3019);
+			types.add(UMLElementTypes.TimeObservation_3020);
+			types.add(UMLElementTypes.DurationConstraint_3021);
+			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.Constraint_3008);
+			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
+		} else if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
+			types.add(UMLElementTypes.Interaction_2001);
+			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
+			types.add(UMLElementTypes.CombinedFragment_3004);
+			types.add(UMLElementTypes.InteractionOperand_3005);
+			types.add(UMLElementTypes.InteractionUse_3002);
+			types.add(UMLElementTypes.Continuation_3016);
+			types.add(UMLElementTypes.Lifeline_3001);
+			types.add(UMLElementTypes.ActionExecutionSpecification_3006);
+			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
+			types.add(UMLElementTypes.StateInvariant_3017);
+			types.add(UMLElementTypes.CombinedFragment_3018);
+			types.add(UMLElementTypes.TimeConstraint_3019);
+			types.add(UMLElementTypes.TimeObservation_3020);
+			types.add(UMLElementTypes.DurationConstraint_3021);
+			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.Constraint_3008);
+			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
+		}
+		return types;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List<IElementType> getMARelTypesOnTarget() {
+		ArrayList<IElementType> types = new ArrayList<IElementType>(9);
+		types.add(UMLElementTypes.Message_4003);
+		types.add(UMLElementTypes.Message_4004);
+		types.add(UMLElementTypes.Message_4005);
+		types.add(UMLElementTypes.Message_4006);
+		types.add(UMLElementTypes.Message_4007);
+		types.add(UMLElementTypes.Message_4008);
+		types.add(UMLElementTypes.Message_4009);
+		types.add(UMLElementTypes.CommentAnnotatedElement_4010);
+		types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
+		return types;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List<IElementType> getMATypesForSource(IElementType relationshipType) {
+		LinkedList<IElementType> types = new LinkedList<IElementType>();
+		if(relationshipType == UMLElementTypes.Message_4003) {
+			types.add(UMLElementTypes.Interaction_2001);
+			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
+			types.add(UMLElementTypes.CombinedFragment_3004);
+			types.add(UMLElementTypes.InteractionOperand_3005);
+			types.add(UMLElementTypes.InteractionUse_3002);
+			types.add(UMLElementTypes.Continuation_3016);
+			types.add(UMLElementTypes.Lifeline_3001);
+			types.add(UMLElementTypes.ActionExecutionSpecification_3006);
+			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
+			types.add(UMLElementTypes.StateInvariant_3017);
+			types.add(UMLElementTypes.CombinedFragment_3018);
+			types.add(UMLElementTypes.TimeConstraint_3019);
+			types.add(UMLElementTypes.TimeObservation_3020);
+			types.add(UMLElementTypes.DurationConstraint_3021);
+			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.Constraint_3008);
+			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
+		} else if(relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.Interaction_2001);
+			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
+			types.add(UMLElementTypes.CombinedFragment_3004);
+			types.add(UMLElementTypes.InteractionOperand_3005);
+			types.add(UMLElementTypes.InteractionUse_3002);
+			types.add(UMLElementTypes.Continuation_3016);
+			types.add(UMLElementTypes.Lifeline_3001);
+			types.add(UMLElementTypes.ActionExecutionSpecification_3006);
+			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
+			types.add(UMLElementTypes.StateInvariant_3017);
+			types.add(UMLElementTypes.CombinedFragment_3018);
+			types.add(UMLElementTypes.TimeConstraint_3019);
+			types.add(UMLElementTypes.TimeObservation_3020);
+			types.add(UMLElementTypes.DurationConstraint_3021);
+			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.Constraint_3008);
+			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
+		} else if(relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.Interaction_2001);
+			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
+			types.add(UMLElementTypes.CombinedFragment_3004);
+			types.add(UMLElementTypes.InteractionOperand_3005);
+			types.add(UMLElementTypes.InteractionUse_3002);
+			types.add(UMLElementTypes.Continuation_3016);
+			types.add(UMLElementTypes.Lifeline_3001);
+			types.add(UMLElementTypes.ActionExecutionSpecification_3006);
+			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
+			types.add(UMLElementTypes.StateInvariant_3017);
+			types.add(UMLElementTypes.CombinedFragment_3018);
+			types.add(UMLElementTypes.TimeConstraint_3019);
+			types.add(UMLElementTypes.TimeObservation_3020);
+			types.add(UMLElementTypes.DurationConstraint_3021);
+			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.Constraint_3008);
+			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
+		} else if(relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.Interaction_2001);
+			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
+			types.add(UMLElementTypes.CombinedFragment_3004);
+			types.add(UMLElementTypes.InteractionOperand_3005);
+			types.add(UMLElementTypes.InteractionUse_3002);
+			types.add(UMLElementTypes.Continuation_3016);
+			types.add(UMLElementTypes.Lifeline_3001);
+			types.add(UMLElementTypes.ActionExecutionSpecification_3006);
+			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
+			types.add(UMLElementTypes.StateInvariant_3017);
+			types.add(UMLElementTypes.CombinedFragment_3018);
+			types.add(UMLElementTypes.TimeConstraint_3019);
+			types.add(UMLElementTypes.TimeObservation_3020);
+			types.add(UMLElementTypes.DurationConstraint_3021);
+			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.Constraint_3008);
+			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
+		} else if(relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.Interaction_2001);
+			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
+			types.add(UMLElementTypes.CombinedFragment_3004);
+			types.add(UMLElementTypes.InteractionOperand_3005);
+			types.add(UMLElementTypes.InteractionUse_3002);
+			types.add(UMLElementTypes.Continuation_3016);
+			types.add(UMLElementTypes.Lifeline_3001);
+			types.add(UMLElementTypes.ActionExecutionSpecification_3006);
+			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
+			types.add(UMLElementTypes.StateInvariant_3017);
+			types.add(UMLElementTypes.CombinedFragment_3018);
+			types.add(UMLElementTypes.TimeConstraint_3019);
+			types.add(UMLElementTypes.TimeObservation_3020);
+			types.add(UMLElementTypes.DurationConstraint_3021);
+			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.Constraint_3008);
+			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
+		} else if(relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.Interaction_2001);
+			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
+			types.add(UMLElementTypes.CombinedFragment_3004);
+			types.add(UMLElementTypes.InteractionOperand_3005);
+			types.add(UMLElementTypes.InteractionUse_3002);
+			types.add(UMLElementTypes.Continuation_3016);
+			types.add(UMLElementTypes.Lifeline_3001);
+			types.add(UMLElementTypes.ActionExecutionSpecification_3006);
+			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
+			types.add(UMLElementTypes.StateInvariant_3017);
+			types.add(UMLElementTypes.CombinedFragment_3018);
+			types.add(UMLElementTypes.TimeConstraint_3019);
+			types.add(UMLElementTypes.TimeObservation_3020);
+			types.add(UMLElementTypes.DurationConstraint_3021);
+			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.Constraint_3008);
+			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
+		} else if(relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.Interaction_2001);
+			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
+			types.add(UMLElementTypes.CombinedFragment_3004);
+			types.add(UMLElementTypes.InteractionOperand_3005);
+			types.add(UMLElementTypes.InteractionUse_3002);
+			types.add(UMLElementTypes.Continuation_3016);
+			types.add(UMLElementTypes.Lifeline_3001);
+			types.add(UMLElementTypes.ActionExecutionSpecification_3006);
+			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
+			types.add(UMLElementTypes.StateInvariant_3017);
+			types.add(UMLElementTypes.CombinedFragment_3018);
+			types.add(UMLElementTypes.TimeConstraint_3019);
+			types.add(UMLElementTypes.TimeObservation_3020);
+			types.add(UMLElementTypes.DurationConstraint_3021);
+			types.add(UMLElementTypes.DestructionEvent_3022);
+			types.add(UMLElementTypes.Constraint_3008);
+			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
+		} else if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4010) {
+			types.add(UMLElementTypes.Comment_3009);
+		} else if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
+			types.add(UMLElementTypes.TimeConstraint_3019);
+			types.add(UMLElementTypes.DurationConstraint_3021);
+			types.add(UMLElementTypes.Constraint_3008);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+		}
+		return types;
 	}
 
 	/**
 	 * @generated
 	 */
 	public class DurationObservationConstraint extends WrappingLabel {
+
+		/**
+		 * @generated
+		 */
+		private WrappingLabel fDurationLabel;
 
 		/**
 		 * @generated
@@ -803,11 +1194,53 @@ public class DurationConstraintInMessageEditPart extends LabelEditPart implement
 
 		}
 
+		/**
+		 * @generated NOT use this for label
+		 */
+		public WrappingLabel getDurationLabel() {
+			// use this for label
+			return this;
+		}
+
 	}
 
 	/**
 	 * @generated
 	 */
 	static final Font THIS_FONT = new Font(Display.getCurrent(), "SANS", 9, SWT.NORMAL);
+
+	/**
+	 * @generated
+	 */
+	@Override
+	public Object getPreferredValue(EStructuralFeature feature) {
+		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
+		Object result = null;
+
+		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
+			String prefColor = null;
+			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
+				prefColor = PreferenceConstantHelper.getElementConstant("DurationConstraint", PreferenceConstantHelper.COLOR_LINE);
+			} else if(feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()) {
+				prefColor = PreferenceConstantHelper.getElementConstant("DurationConstraint", PreferenceConstantHelper.COLOR_FONT);
+			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
+				prefColor = PreferenceConstantHelper.getElementConstant("DurationConstraint", PreferenceConstantHelper.COLOR_FILL);
+			}
+			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore)preferenceStore, prefColor));
+		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency() || feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
+			String prefGradient = PreferenceConstantHelper.getElementConstant("DurationConstraint", PreferenceConstantHelper.COLOR_GRADIENT);
+			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore.getString(prefGradient));
+			if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()) {
+				result = new Integer(gradientPreferenceConverter.getTransparency());
+			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
+				result = gradientPreferenceConverter.getGradientData();
+			}
+		}
+
+		if(result == null) {
+			result = getStructuralFeatureValue(feature);
+		}
+		return result;
+	}
 
 }

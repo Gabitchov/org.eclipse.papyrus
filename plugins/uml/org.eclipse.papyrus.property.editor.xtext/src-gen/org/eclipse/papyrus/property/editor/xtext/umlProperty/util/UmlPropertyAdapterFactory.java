@@ -84,6 +84,16 @@ public class UmlPropertyAdapterFactory extends AdapterFactoryImpl
         return createPropertyRuleAdapter();
       }
       @Override
+      public Adapter caseTypeRule(TypeRule object)
+      {
+        return createTypeRuleAdapter();
+      }
+      @Override
+      public Adapter caseQualifiedName(QualifiedName object)
+      {
+        return createQualifiedNameAdapter();
+      }
+      @Override
       public Adapter caseMultiplicityRule(MultiplicityRule object)
       {
         return createMultiplicityRuleAdapter();
@@ -136,6 +146,36 @@ public class UmlPropertyAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createPropertyRuleAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.property.editor.xtext.umlProperty.TypeRule <em>Type Rule</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.papyrus.property.editor.xtext.umlProperty.TypeRule
+   * @generated
+   */
+  public Adapter createTypeRuleAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.property.editor.xtext.umlProperty.QualifiedName <em>Qualified Name</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.papyrus.property.editor.xtext.umlProperty.QualifiedName
+   * @generated
+   */
+  public Adapter createQualifiedNameAdapter()
   {
     return null;
   }

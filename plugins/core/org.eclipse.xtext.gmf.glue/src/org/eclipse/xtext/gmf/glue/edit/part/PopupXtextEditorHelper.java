@@ -118,13 +118,28 @@ public class PopupXtextEditorHelper implements IPopupEditorHelper {
 	private IXtextEMFReconciler modelReconciler;
 	private ISyntheticResourceProvider resourceProvider ;
 	private SourceViewerHandle sourceViewerHandle ;
+	
+	/**
+	 * @return The source viewer handle for this PopupXtextEditorHelper
+	 *
+	 */
+	public SourceViewerHandle getSourceViewerHandle() {
+		return sourceViewerHandle;
+	}
+
 	private PartialModelEditor partialEditor ;
 	private Shell diagramShell ;
 	private OperationHistoryListener operationHistoryListener;
+	private IXTextSemanticValidator semanticValidator ;
 	/**
 	 * The context EObject for this editor. It can be used for content assist, verification, etc.
 	 */
 	public static EObject context ;
+	
+	/**
+	 *
+	 */
+	public static boolean ignoreFocusLost = false ;
 	
 	/**
 	 * This element was originally undocumented in the XText/GMF integration example
@@ -133,30 +148,29 @@ public class PopupXtextEditorHelper implements IPopupEditorHelper {
 	 * 		- Signature changed: was public PopupXtextEditorHelper(IGraphicalEditPart editPart, Injector xtextInjector)
 	 * @param editPart The editPart on which a direct edit has been performed.
 	 * @param xtextInjector The xtextInjector.
-	 * @param eobjectContextUpdater The IEObjectContextUpdater, to update the currently edited UML model element
-	 * @param xtextEditorContextUpdater The IXtextEditorContextUpdater, to update the currently select xtext editor
 	 * @param modelReconciler The IXtextEMFReconciler, to update the context UML model with changes textually specified in the popup xtext editor
 	 * @param textToEdit the initialization text, used as the initial textual content for the popup xtext editor 
 	 * @param fileExtension the extension for the temporary textual file (underlying the editor)
-	 * 
+	 * @param semanticValidator the semantic validator used to semantically validate the xtext model before saving
 	 */
 	public PopupXtextEditorHelper(IGraphicalEditPart editPart, 
 							Injector xtextInjector,
 							IXtextEMFReconciler modelReconciler,
 							String textToEdit, 
-							String fileExtension) {
+							String fileExtension,
+							IXTextSemanticValidator semanticValidator) {
 		this.hostEditPart = editPart;
 		this.xtextInjector = xtextInjector ;
 		this.textToEdit = "" + textToEdit ;
 		this.modelReconciler = modelReconciler ;
 		this.fileExtension = "" + fileExtension ;
+		this.semanticValidator = semanticValidator ;
+		this.ignoreFocusLost = false ;
 	}
 
 	/**
 	 * This element was originally not documented in the XText / GMF integration example.
 	 * 
-	 * Changes from CEA LIST:
-	 * 		- Statements added for the creation of a temporary text file, used as an input for the popup xtext editor
 	 */
 	public void showEditor() {
 		try {
@@ -187,13 +201,12 @@ public class PopupXtextEditorHelper implements IPopupEditorHelper {
 	 * 
 	 * Changes performed by CEA LIST:
 	 * 	- new statements for managing the reconciliation between the original UML model and 
-	 * 		the textual specification resulting from the edition in the popup xtext editor. The 
-	 * 		temporary text file created by showEditor is also deleted.
+	 * 		the textual specification resulting from the edition in the popup xtext editor. 
 	 * @param isReconcile Determines whether a reconciliation must be performed or not
 	 */
 	public void closeEditor(boolean isReconcile) {
 		if (sourceViewerHandle != null) {
-			if (isReconcile) {
+			if (isReconcile && this.semanticValidator.validate()) {
 				try {
 					final IXtextDocument xtextDocument = sourceViewerHandle.getDocument();
 					if (!isDocumentHasErrors(xtextDocument)) {
@@ -255,7 +268,12 @@ public class PopupXtextEditorHelper implements IPopupEditorHelper {
 			public void focusLost(FocusEvent e) {
 				// TODO Auto-generated method stub
 				context = semanticElement ;
-				closeEditor(true) ;
+				if (! keyListener.isContentAssistActive()) {
+					if (!ignoreFocusLost)
+						closeEditor(true) ;
+					else
+						closeEditor(false) ;
+				}
 			}
 			
 			public void focusGained(FocusEvent e) {
@@ -283,44 +301,6 @@ public class PopupXtextEditorHelper implements IPopupEditorHelper {
 		xtextTextWidget.addVerifyKeyListener(keyListener);
 		xtextTextWidget.addKeyListener(keyListener);
 	}
-
-//	/**
-//	 * This element was originally not documented in the XText/GMF integration example
-//	 */
-//	private void setEditorRegion() throws BadLocationException {
-//		final IXtextDocument xtextDocument = sourceViewer.getDocument();
-//		boolean success = sourceViewer.getDocument().modify(new IUnitOfWork<Boolean, XtextResource>() {
-//
-//			public Boolean exec(XtextResource state) throws Exception {
-//				EObject semanticElementInDocument = state.getEObject(semanticElementFragment);
-//				
-//				if (semanticElementInDocument == null) {
-//					return false;
-//				}
-//				
-//				CompositeNode xtextNode = getCompositeNode(semanticElementInDocument);
-//				if (xtextNode == null) {
-//					return false;
-//				}
-//				
-//				editorOffset = xtextNode.getOffset();
-//				initialEditorSize = xtextNode.getLength() ;
-//				initialDocumentSize = xtextDocument.getLength();
-//				
-//				//xtextDocument.replace(editorOffset + 1 + initialEditorSize, 0, "\n");
-//				xtextDocument.replace(editorOffset + initialEditorSize, 0, "\n");
-//				
-//				return true;
-//			}
-//
-//		});
-//
-////		if (success) {
-////			xtextEditor.showHighlightRangeOnly(true);
-////			xtextEditor.setHighlightRange(editorOffset + 1, initialEditorSize, true);
-////			xtextEditor.setFocus();
-////		}
-//	}
 
 	/**
 	 * This element was originally not documented in the XText/GMF integration example

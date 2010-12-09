@@ -20,6 +20,8 @@ import org.eclipse.papyrus.property.editor.xtext.umlProperty.ModifierSpecificati
 import org.eclipse.papyrus.property.editor.xtext.umlProperty.ModifiersRule;
 import org.eclipse.papyrus.property.editor.xtext.umlProperty.MultiplicityRule;
 import org.eclipse.papyrus.property.editor.xtext.umlProperty.PropertyRule;
+import org.eclipse.papyrus.property.editor.xtext.umlProperty.QualifiedName;
+import org.eclipse.papyrus.property.editor.xtext.umlProperty.TypeRule;
 import org.eclipse.papyrus.property.editor.xtext.umlProperty.UmlPropertyFactory;
 import org.eclipse.papyrus.property.editor.xtext.umlProperty.UmlPropertyPackage;
 import org.eclipse.papyrus.property.editor.xtext.umlProperty.VisibilityKind;
@@ -40,6 +42,20 @@ public class UmlPropertyPackageImpl extends EPackageImpl implements UmlPropertyP
    * @generated
    */
   private EClass propertyRuleEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass typeRuleEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass qualifiedNameEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -224,6 +240,66 @@ public class UmlPropertyPackageImpl extends EPackageImpl implements UmlPropertyP
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getTypeRule()
+  {
+    return typeRuleEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getTypeRule_Path()
+  {
+    return (EReference)typeRuleEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getTypeRule_Type()
+  {
+    return (EReference)typeRuleEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getQualifiedName()
+  {
+    return qualifiedNameEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getQualifiedName_Path()
+  {
+    return (EReference)qualifiedNameEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getQualifiedName_Remaining()
+  {
+    return (EReference)qualifiedNameEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getMultiplicityRule()
   {
     return multiplicityRuleEClass;
@@ -357,6 +433,14 @@ public class UmlPropertyPackageImpl extends EPackageImpl implements UmlPropertyP
     createEReference(propertyRuleEClass, PROPERTY_RULE__MULTIPLICITY);
     createEReference(propertyRuleEClass, PROPERTY_RULE__MODIFIERS);
 
+    typeRuleEClass = createEClass(TYPE_RULE);
+    createEReference(typeRuleEClass, TYPE_RULE__PATH);
+    createEReference(typeRuleEClass, TYPE_RULE__TYPE);
+
+    qualifiedNameEClass = createEClass(QUALIFIED_NAME);
+    createEReference(qualifiedNameEClass, QUALIFIED_NAME__PATH);
+    createEReference(qualifiedNameEClass, QUALIFIED_NAME__REMAINING);
+
     multiplicityRuleEClass = createEClass(MULTIPLICITY_RULE);
     createEReference(multiplicityRuleEClass, MULTIPLICITY_RULE__BOUNDS);
 
@@ -412,9 +496,17 @@ public class UmlPropertyPackageImpl extends EPackageImpl implements UmlPropertyP
     initEAttribute(getPropertyRule_Visibility(), this.getVisibilityKind(), "visibility", null, 0, 1, PropertyRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPropertyRule_IsDerived(), ecorePackage.getEString(), "isDerived", null, 0, 1, PropertyRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPropertyRule_Name(), ecorePackage.getEString(), "name", null, 0, 1, PropertyRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getPropertyRule_Type(), theUMLPackage.getClassifier(), null, "type", null, 0, 1, PropertyRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPropertyRule_Type(), this.getTypeRule(), null, "type", null, 0, 1, PropertyRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPropertyRule_Multiplicity(), this.getMultiplicityRule(), null, "multiplicity", null, 0, 1, PropertyRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPropertyRule_Modifiers(), this.getModifiersRule(), null, "modifiers", null, 0, 1, PropertyRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(typeRuleEClass, TypeRule.class, "TypeRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getTypeRule_Path(), this.getQualifiedName(), null, "path", null, 0, 1, TypeRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getTypeRule_Type(), theUMLPackage.getClassifier(), null, "type", null, 0, 1, TypeRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(qualifiedNameEClass, QualifiedName.class, "QualifiedName", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getQualifiedName_Path(), theUMLPackage.getNamespace(), null, "path", null, 0, 1, QualifiedName.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getQualifiedName_Remaining(), this.getQualifiedName(), null, "remaining", null, 0, 1, QualifiedName.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(multiplicityRuleEClass, MultiplicityRule.class, "MultiplicityRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getMultiplicityRule_Bounds(), this.getBoundSpecification(), null, "bounds", null, 0, -1, MultiplicityRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

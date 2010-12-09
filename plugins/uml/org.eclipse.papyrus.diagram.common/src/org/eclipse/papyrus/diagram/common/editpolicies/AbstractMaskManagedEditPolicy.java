@@ -103,11 +103,10 @@ public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyE
 		// remove notification on element and view
 		getDiagramEventBroker().removeNotificationListener(view, this);
 
-		if(getUMLElement() != null) {
-			getDiagramEventBroker().removeNotificationListener(getUMLElement(), this);
+		if(hostSemanticElement != null) {
+			getDiagramEventBroker().removeNotificationListener(hostSemanticElement, this);
+			removeAdditionalListeners();
 		}
-
-		removeAdditionalListeners();
 
 		// removes the reference to the semantic element
 		hostSemanticElement = null;

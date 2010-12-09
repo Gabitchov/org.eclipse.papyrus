@@ -68,7 +68,6 @@ import org.eclipse.swt.graphics.Color;
  */
 public class ParameterEditPart extends
 
-
 AbstractBorderEditPart {
 
 	/**
@@ -111,9 +110,6 @@ AbstractBorderEditPart {
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
-
-
-
 	/**
 	 * Papyrus codeGen
 	 * 
@@ -123,10 +119,6 @@ AbstractBorderEditPart {
 		super.handleNotificationEvent(event);
 
 	}
-
-
-
-
 
 	/**
 	 * @generated
@@ -180,7 +172,6 @@ AbstractBorderEditPart {
 		return (ParameterFigure)primaryShape;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -206,12 +197,10 @@ AbstractBorderEditPart {
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
 
-
 		//FIXME: workaround for #154536
 		result.getBounds().setSize(result.getPreferredSize());
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -343,9 +332,6 @@ AbstractBorderEditPart {
 		if(targetEditPart instanceof ClassCompositeEditPart) {
 			types.add(UMLElementTypes.ComponentRealization_4004);
 		}
-		if(targetEditPart instanceof ClassClassifierEditPart) {
-			types.add(UMLElementTypes.ComponentRealization_4004);
-		}
 		if(targetEditPart instanceof CollaborationCompositeEditPart) {
 			types.add(UMLElementTypes.ComponentRealization_4004);
 		}
@@ -599,9 +585,6 @@ AbstractBorderEditPart {
 			types.add(UMLElementTypes.InterfaceRealization_4005);
 		}
 		if(targetEditPart instanceof ClassCompositeEditPart) {
-			types.add(UMLElementTypes.InterfaceRealization_4005);
-		}
-		if(targetEditPart instanceof ClassClassifierEditPart) {
 			types.add(UMLElementTypes.InterfaceRealization_4005);
 		}
 		if(targetEditPart instanceof CollaborationCompositeEditPart) {
@@ -859,9 +842,6 @@ AbstractBorderEditPart {
 		if(targetEditPart instanceof ClassCompositeEditPart) {
 			types.add(UMLElementTypes.Substitution_4011);
 		}
-		if(targetEditPart instanceof ClassClassifierEditPart) {
-			types.add(UMLElementTypes.Substitution_4011);
-		}
 		if(targetEditPart instanceof CollaborationCompositeEditPart) {
 			types.add(UMLElementTypes.Substitution_4011);
 		}
@@ -1115,9 +1095,6 @@ AbstractBorderEditPart {
 			types.add(UMLElementTypes.Realization_4006);
 		}
 		if(targetEditPart instanceof ClassCompositeEditPart) {
-			types.add(UMLElementTypes.Realization_4006);
-		}
-		if(targetEditPart instanceof ClassClassifierEditPart) {
 			types.add(UMLElementTypes.Realization_4006);
 		}
 		if(targetEditPart instanceof CollaborationCompositeEditPart) {
@@ -1375,9 +1352,6 @@ AbstractBorderEditPart {
 		if(targetEditPart instanceof ClassCompositeEditPart) {
 			types.add(UMLElementTypes.Manifestation_4012);
 		}
-		if(targetEditPart instanceof ClassClassifierEditPart) {
-			types.add(UMLElementTypes.Manifestation_4012);
-		}
 		if(targetEditPart instanceof CollaborationCompositeEditPart) {
 			types.add(UMLElementTypes.Manifestation_4012);
 		}
@@ -1631,9 +1605,6 @@ AbstractBorderEditPart {
 			types.add(UMLElementTypes.Abstraction_4007);
 		}
 		if(targetEditPart instanceof ClassCompositeEditPart) {
-			types.add(UMLElementTypes.Abstraction_4007);
-		}
-		if(targetEditPart instanceof ClassClassifierEditPart) {
 			types.add(UMLElementTypes.Abstraction_4007);
 		}
 		if(targetEditPart instanceof CollaborationCompositeEditPart) {
@@ -1891,9 +1862,6 @@ AbstractBorderEditPart {
 		if(targetEditPart instanceof ClassCompositeEditPart) {
 			types.add(UMLElementTypes.Usage_4008);
 		}
-		if(targetEditPart instanceof ClassClassifierEditPart) {
-			types.add(UMLElementTypes.Usage_4008);
-		}
 		if(targetEditPart instanceof CollaborationCompositeEditPart) {
 			types.add(UMLElementTypes.Usage_4008);
 		}
@@ -2147,9 +2115,6 @@ AbstractBorderEditPart {
 			types.add(UMLElementTypes.Deployment_4009);
 		}
 		if(targetEditPart instanceof ClassCompositeEditPart) {
-			types.add(UMLElementTypes.Deployment_4009);
-		}
-		if(targetEditPart instanceof ClassClassifierEditPart) {
 			types.add(UMLElementTypes.Deployment_4009);
 		}
 		if(targetEditPart instanceof CollaborationCompositeEditPart) {
@@ -2407,9 +2372,6 @@ AbstractBorderEditPart {
 		if(targetEditPart instanceof ClassCompositeEditPart) {
 			types.add(UMLElementTypes.Dependency_4017);
 		}
-		if(targetEditPart instanceof ClassClassifierEditPart) {
-			types.add(UMLElementTypes.Dependency_4017);
-		}
 		if(targetEditPart instanceof CollaborationCompositeEditPart) {
 			types.add(UMLElementTypes.Dependency_4017);
 		}
@@ -2665,9 +2627,6 @@ AbstractBorderEditPart {
 		if(targetEditPart instanceof ClassCompositeEditPart) {
 			types.add(UMLElementTypes.Dependency_4010);
 		}
-		if(targetEditPart instanceof ClassClassifierEditPart) {
-			types.add(UMLElementTypes.Dependency_4010);
-		}
 		if(targetEditPart instanceof CollaborationCompositeEditPart) {
 			types.add(UMLElementTypes.Dependency_4010);
 		}
@@ -2921,9 +2880,6 @@ AbstractBorderEditPart {
 			types.add(UMLElementTypes.InformationFlow_4021);
 		}
 		if(targetEditPart instanceof ClassCompositeEditPart) {
-			types.add(UMLElementTypes.InformationFlow_4021);
-		}
-		if(targetEditPart instanceof ClassClassifierEditPart) {
 			types.add(UMLElementTypes.InformationFlow_4021);
 		}
 		if(targetEditPart instanceof CollaborationCompositeEditPart) {
@@ -3168,7 +3124,6 @@ AbstractBorderEditPart {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -3255,7 +3210,6 @@ AbstractBorderEditPart {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -3342,7 +3296,6 @@ AbstractBorderEditPart {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -3429,7 +3382,6 @@ AbstractBorderEditPart {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -3516,7 +3468,6 @@ AbstractBorderEditPart {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -3603,7 +3554,6 @@ AbstractBorderEditPart {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -3690,7 +3640,6 @@ AbstractBorderEditPart {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -3777,7 +3726,6 @@ AbstractBorderEditPart {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -3864,7 +3812,6 @@ AbstractBorderEditPart {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -3951,7 +3898,6 @@ AbstractBorderEditPart {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -4038,7 +3984,6 @@ AbstractBorderEditPart {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -4171,7 +4116,6 @@ AbstractBorderEditPart {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -4258,7 +4202,6 @@ AbstractBorderEditPart {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -4345,7 +4288,6 @@ AbstractBorderEditPart {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -4432,7 +4374,6 @@ AbstractBorderEditPart {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -4519,7 +4460,6 @@ AbstractBorderEditPart {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -4606,7 +4546,6 @@ AbstractBorderEditPart {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -4693,7 +4632,6 @@ AbstractBorderEditPart {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -4780,7 +4718,6 @@ AbstractBorderEditPart {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -4867,7 +4804,6 @@ AbstractBorderEditPart {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -4954,7 +4890,6 @@ AbstractBorderEditPart {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -5045,7 +4980,6 @@ AbstractBorderEditPart {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -5123,10 +5057,6 @@ AbstractBorderEditPart {
 		}
 		return types;
 	}
-
-
-
-
 
 	/**
 	 * @generated

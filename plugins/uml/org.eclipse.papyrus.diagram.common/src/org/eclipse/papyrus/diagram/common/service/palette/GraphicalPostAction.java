@@ -38,7 +38,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.service.IPapyrusPaletteConstant;
-import org.eclipse.papyrus.diagram.common.wizards.PaletteEntryProxy;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -59,7 +58,7 @@ public class GraphicalPostAction extends ModelPostAction {
 	protected Map<String, Object> propertiesToUpdate;
 
 	/** entry proxy "parent" of this action when configuring the action */
-	protected PaletteEntryProxy entryProxy;
+	protected IPaletteEntryProxy entryProxy;
 
 	/** list of applied profiles */
 	protected List<Profile> appliedProfiles;
@@ -156,7 +155,7 @@ public class GraphicalPostAction extends ModelPostAction {
 	/**
 	 * @{inheritDoc
 	 */
-	public Control createConfigurationComposite(Composite parent, PaletteEntryProxy entryProxy, List<Profile> appliedProfiles) {
+	public Control createConfigurationComposite(Composite parent, IPaletteEntryProxy entryProxy, List<Profile> appliedProfiles) {
 		this.appliedProfiles = appliedProfiles;
 		this.entryProxy = entryProxy;
 

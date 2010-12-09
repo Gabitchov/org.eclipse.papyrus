@@ -21,7 +21,7 @@ generate umlProperty "http://www.eclipse.org/papyrus/property/editor/xtext/UmlPr
 PropertyRule:
 	visibility = VisibilityKind
 	(isDerived = "/")? 
-	name=ID ':' ((type=[uml::Classifier]) | "<Undefined>")
+	name=ID ':' ((type=TypeRule) | "<Undefined>")
 	(multiplicity = MultiplicityRule) ? 
 	(modifiers = ModifiersRule) ? ;
 
@@ -30,6 +30,12 @@ enum VisibilityKind:
 	| private = "-"
 	| protected = "#"
 	| package = "~" ;
+
+TypeRule :
+	(path=QualifiedName)? type=[uml::Classifier] ;
+
+QualifiedName :
+	path=[uml::Namespace]'::' (remaining=QualifiedName)? ; 
 	
 MultiplicityRule:
 	"[" bounds+=BoundSpecification ('..' bounds+=BoundSpecification)? "]" ;

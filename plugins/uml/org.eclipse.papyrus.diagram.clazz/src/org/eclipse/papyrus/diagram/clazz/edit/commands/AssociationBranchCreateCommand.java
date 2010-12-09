@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2010 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,8 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ */
 package org.eclipse.papyrus.diagram.clazz.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -37,17 +36,17 @@ public class AssociationBranchCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	private final EObject source;
+	protected final EObject source;
 
 	/**
 	 * @generated
 	 */
-	private final EObject target;
+	protected final EObject target;
 
 	/**
 	 * @generated
 	 */
-	private final Package container;
+	protected Package container;
 
 	/**
 	 * @generated
@@ -62,7 +61,6 @@ public class AssociationBranchCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	@Override
 	public boolean canExecute() {
 		if(source == null && target == null) {
 			return false;
@@ -86,7 +84,6 @@ public class AssociationBranchCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
@@ -99,7 +96,6 @@ public class AssociationBranchCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	// @unused
 	protected void doConfigure(Association newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
@@ -116,7 +112,6 @@ public class AssociationBranchCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setElementToEdit(EObject element) {
 		throw new UnsupportedOperationException();
 	}
@@ -143,12 +138,12 @@ public class AssociationBranchCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Default approach is to traverse ancestors of the source to find instance
-	 * of container. Modify with appropriate logic.
+	 * Default approach is to traverse ancestors of the source to find instance of container.
+	 * Modify with appropriate logic.
 	 * 
 	 * @generated
 	 */
-	private static Package deduceContainer(EObject source, EObject target) {
+	protected Package deduceContainer(EObject source, EObject target) {
 		// Find container element for the new link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.

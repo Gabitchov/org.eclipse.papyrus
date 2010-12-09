@@ -341,8 +341,8 @@ private static boolean «EXPAND xpt::editor::VisualIDRegistry::isDiagramMethodNa
 
 «DEFINE _constraintMethods FOR gmfgen::GenDiagram-»
 «IF null <> editorGen.expressionProviders-»
-	«EXPAND _constraintMethod FOREACH topLevelNodes->select(n | n.modelFacet.modelElementSelector <> null)-»
-	«EXPAND _constraintMethod FOREACH childNodes->select(n | n.modelFacet.modelElementSelector <> null)-»
+	«EXPAND _constraintMethod FOREACH topLevelNodes->select(n | n.modelFacet.modelElementSelector <> null and n.sansDomain = false)-»
+	«EXPAND _constraintMethod FOREACH childNodes->select(n | n.modelFacet.modelElementSelector <> null and n.sansDomain = false)-»
 	«FOREACH links AS l»«EXPAND _constraintMethod(l) FOR l.modelFacet»«ENDFOREACH»
 «ENDIF-»
 «ENDDEFINE»

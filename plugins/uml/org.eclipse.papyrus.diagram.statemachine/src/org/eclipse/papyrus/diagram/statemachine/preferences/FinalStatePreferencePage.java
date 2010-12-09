@@ -47,7 +47,7 @@ public class FinalStatePreferencePage extends AbstractPapyrusNodePreferencePage 
 	 */
 	@Override
 	protected String getBundleId() {
-		return UMLDiagramEditorPlugin.getInstance().ID;
+		return UMLDiagramEditorPlugin.ID;
 	}
 
 }

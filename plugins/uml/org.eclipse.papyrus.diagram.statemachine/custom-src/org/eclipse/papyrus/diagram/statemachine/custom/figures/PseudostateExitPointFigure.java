@@ -12,17 +12,17 @@ package org.eclipse.papyrus.diagram.statemachine.custom.figures;
 
 import java.util.Iterator;
 
-import org.eclipse.draw2d.Ellipse;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.papyrus.diagram.common.figure.node.AffixedNamedElementFigure;
 
 /**
  * PseudostateExitPointFigure.
  * 
  */
-public class PseudostateExitPointFigure extends Ellipse {
+public class PseudostateExitPointFigure extends AffixedNamedElementFigure {
 
 	/**
 	 * Default Constructor.
@@ -37,20 +37,9 @@ public class PseudostateExitPointFigure extends Ellipse {
 
 	}
 
-	/**
-	 * Does nothing.
-	 * 
-	 * @see org.eclipse.draw2d.Shape#fillShape(org.eclipse.draw2d.Graphics)
-	 */
-	@Override
-	protected void fillShape(Graphics graphics) {
-	}
 
-	/**
-	 * @see org.eclipse.draw2d.Shape#outlineShape(org.eclipse.draw2d.Graphics)
-	 */
 	@Override
-	protected void outlineShape(Graphics graphics) {
+	public void paint(Graphics graphics) {
 		graphics.pushState();
 		IFigure ancestor = getParent();
 		while((ancestor != null) && !(ancestor instanceof RegionFigure))
@@ -76,11 +65,11 @@ public class PseudostateExitPointFigure extends Ellipse {
 					graphics.setBackgroundColor(((StateMachineFigure)ancestor).getBackgroundColor());
 			}
 		}
+		graphics.setLineWidth(1);
 		Rectangle r = Rectangle.SINGLETON;
 		r.setBounds(getBounds());
-		r.width--;
-		r.height--;
-		r.shrink((lineWidth - 1) / 2, (lineWidth - 1) / 2);
+		r.width -= 2;
+		r.height -= 2;
 		graphics.drawOval(r);
 		r.shrink(1, 1);
 		graphics.fillOval(r);
@@ -90,8 +79,8 @@ public class PseudostateExitPointFigure extends Ellipse {
 		int y = (int)(bounds.height / (2 * Math.sqrt(2)));
 
 		// cross.
-		graphics.drawLine(bounds.getCenter().translate(x, -y), bounds.getCenter().translate(-x, y));
-		graphics.drawLine(bounds.getCenter().translate(-x, -y), bounds.getCenter().translate(x, y));
+		graphics.drawLine(bounds.getCenter().translate(x-1, -y), bounds.getCenter().translate(-x, y-2));
+		graphics.drawLine(bounds.getCenter().translate(-x, -y), bounds.getCenter().translate(x-1, y-2));
 
 		graphics.popState();
 	}

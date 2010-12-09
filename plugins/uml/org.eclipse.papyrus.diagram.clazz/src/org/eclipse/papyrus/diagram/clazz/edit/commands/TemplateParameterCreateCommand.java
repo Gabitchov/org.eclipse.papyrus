@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2010 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,8 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ */
 package org.eclipse.papyrus.diagram.clazz.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -74,7 +73,6 @@ public class TemplateParameterCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -90,10 +88,7 @@ public class TemplateParameterCreateCommand extends EditElementCommand {
 	 */
 	public boolean canExecute() {
 
-
 		return true;
-
-
 
 	}
 
@@ -102,16 +97,12 @@ public class TemplateParameterCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
-
 		TemplateParameter newElement = UMLFactory.eINSTANCE.createTemplateParameter();
 
 		TemplateSignature owner = (TemplateSignature)getElementToEdit();
 		owner.getOwnedParameters().add(newElement);
 		TemplateSignature childHolder = (TemplateSignature)getElementToEdit();
 		childHolder.getParameters().add(newElement);
-
-
 
 		doConfigure(newElement, monitor, info);
 

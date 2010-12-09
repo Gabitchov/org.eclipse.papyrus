@@ -20,65 +20,57 @@ public class UmlTransitionGrammarAccess extends AbstractGrammarElementFinder {
 	public class TransitionRuleElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TransitionRule");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNameIDTerminalRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Assignment cTriggersAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
-		private final RuleCall cTriggersEventRuleParserRuleCall_1_0_0 = (RuleCall)cTriggersAssignment_1_0.eContents().get(0);
-		private final Group cGroup_1_1 = (Group)cGroup_1.eContents().get(1);
-		private final Keyword cCommaKeyword_1_1_0 = (Keyword)cGroup_1_1.eContents().get(0);
-		private final Assignment cTriggersAssignment_1_1_1 = (Assignment)cGroup_1_1.eContents().get(1);
-		private final RuleCall cTriggersEventRuleParserRuleCall_1_1_1_0 = (RuleCall)cTriggersAssignment_1_1_1.eContents().get(0);
-		private final Assignment cGuardAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cGuardGuardRuleParserRuleCall_2_0 = (RuleCall)cGuardAssignment_2.eContents().get(0);
-		private final Assignment cEffectAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cEffectEffectRuleParserRuleCall_3_0 = (RuleCall)cEffectAssignment_3.eContents().get(0);
+		private final Group cGroup_0 = (Group)cGroup.eContents().get(0);
+		private final Assignment cTriggersAssignment_0_0 = (Assignment)cGroup_0.eContents().get(0);
+		private final RuleCall cTriggersEventRuleParserRuleCall_0_0_0 = (RuleCall)cTriggersAssignment_0_0.eContents().get(0);
+		private final Group cGroup_0_1 = (Group)cGroup_0.eContents().get(1);
+		private final Keyword cCommaKeyword_0_1_0 = (Keyword)cGroup_0_1.eContents().get(0);
+		private final Assignment cTriggersAssignment_0_1_1 = (Assignment)cGroup_0_1.eContents().get(1);
+		private final RuleCall cTriggersEventRuleParserRuleCall_0_1_1_0 = (RuleCall)cTriggersAssignment_0_1_1.eContents().get(0);
+		private final Assignment cGuardAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cGuardGuardRuleParserRuleCall_1_0 = (RuleCall)cGuardAssignment_1.eContents().get(0);
+		private final Assignment cEffectAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cEffectEffectRuleParserRuleCall_2_0 = (RuleCall)cEffectAssignment_2.eContents().get(0);
 		
 		//TransitionRule:
-		//	name=ID (triggers+=EventRule ("," triggers+=EventRule)*)? guard=GuardRule? effect=EffectRule?;
+		//	(triggers+=EventRule ("," triggers+=EventRule)*)? guard=GuardRule? effect=EffectRule?;
 		public ParserRule getRule() { return rule; }
 
-		//name=ID (triggers+=EventRule ("," triggers+=EventRule)*)? guard=GuardRule? effect=EffectRule?
+		//(triggers+=EventRule ("," triggers+=EventRule)*)? guard=GuardRule? effect=EffectRule?
 		public Group getGroup() { return cGroup; }
 
-		//name=ID
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
-
-		//ID
-		public RuleCall getNameIDTerminalRuleCall_0_0() { return cNameIDTerminalRuleCall_0_0; }
-
 		//(triggers+=EventRule ("," triggers+=EventRule)*)?
-		public Group getGroup_1() { return cGroup_1; }
+		public Group getGroup_0() { return cGroup_0; }
 
 		//triggers+=EventRule
-		public Assignment getTriggersAssignment_1_0() { return cTriggersAssignment_1_0; }
+		public Assignment getTriggersAssignment_0_0() { return cTriggersAssignment_0_0; }
 
 		//EventRule
-		public RuleCall getTriggersEventRuleParserRuleCall_1_0_0() { return cTriggersEventRuleParserRuleCall_1_0_0; }
+		public RuleCall getTriggersEventRuleParserRuleCall_0_0_0() { return cTriggersEventRuleParserRuleCall_0_0_0; }
 
 		//("," triggers+=EventRule)*
-		public Group getGroup_1_1() { return cGroup_1_1; }
+		public Group getGroup_0_1() { return cGroup_0_1; }
 
 		//","
-		public Keyword getCommaKeyword_1_1_0() { return cCommaKeyword_1_1_0; }
+		public Keyword getCommaKeyword_0_1_0() { return cCommaKeyword_0_1_0; }
 
 		//triggers+=EventRule
-		public Assignment getTriggersAssignment_1_1_1() { return cTriggersAssignment_1_1_1; }
+		public Assignment getTriggersAssignment_0_1_1() { return cTriggersAssignment_0_1_1; }
 
 		//EventRule
-		public RuleCall getTriggersEventRuleParserRuleCall_1_1_1_0() { return cTriggersEventRuleParserRuleCall_1_1_1_0; }
+		public RuleCall getTriggersEventRuleParserRuleCall_0_1_1_0() { return cTriggersEventRuleParserRuleCall_0_1_1_0; }
 
 		//guard=GuardRule?
-		public Assignment getGuardAssignment_2() { return cGuardAssignment_2; }
+		public Assignment getGuardAssignment_1() { return cGuardAssignment_1; }
 
 		//GuardRule
-		public RuleCall getGuardGuardRuleParserRuleCall_2_0() { return cGuardGuardRuleParserRuleCall_2_0; }
+		public RuleCall getGuardGuardRuleParserRuleCall_1_0() { return cGuardGuardRuleParserRuleCall_1_0; }
 
 		//effect=EffectRule?
-		public Assignment getEffectAssignment_3() { return cEffectAssignment_3; }
+		public Assignment getEffectAssignment_2() { return cEffectAssignment_2; }
 
 		//EffectRule
-		public RuleCall getEffectEffectRuleParserRuleCall_3_0() { return cEffectEffectRuleParserRuleCall_3_0; }
+		public RuleCall getEffectEffectRuleParserRuleCall_2_0() { return cEffectEffectRuleParserRuleCall_2_0; }
 	}
 
 	public class EventRuleElements extends AbstractParserRuleElementFinder {
@@ -377,7 +369,7 @@ public class UmlTransitionGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//TransitionRule:
-	//	name=ID (triggers+=EventRule ("," triggers+=EventRule)*)? guard=GuardRule? effect=EffectRule?;
+	//	(triggers+=EventRule ("," triggers+=EventRule)*)? guard=GuardRule? effect=EffectRule?;
 	public TransitionRuleElements getTransitionRuleAccess() {
 		return (pTransitionRule != null) ? pTransitionRule : (pTransitionRule = new TransitionRuleElements());
 	}

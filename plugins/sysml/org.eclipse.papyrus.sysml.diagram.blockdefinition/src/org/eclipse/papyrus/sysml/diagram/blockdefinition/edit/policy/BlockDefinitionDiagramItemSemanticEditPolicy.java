@@ -10,10 +10,12 @@
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy;
 
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.ModelItemSemanticEditPolicy;
-import org.eclipse.papyrus.sysml.diagram.blockdefinition.command.BlockCreateCommand;
-import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.BlockDefinitionDiagramElementTypes;
+import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.service.edit.service.IElementEditService;
+import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 
 /**
  * This semantic edit policy allows the creation of Block inside Package compartment.
@@ -29,8 +31,18 @@ import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.BlockDefinitio
 public class BlockDefinitionDiagramItemSemanticEditPolicy extends ModelItemSemanticEditPolicy {
 
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if(BlockDefinitionDiagramElementTypes.BLOCK == req.getElementType()) {
-			return getGEFWrapper(new BlockCreateCommand(req));
+
+		if (req.getElementType() == SysMLElementTypes.BLOCK) {
+			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(req.getContainer());
+			if(provider == null) {
+				return org.eclipse.gef.commands.UnexecutableCommand.INSTANCE;
+			}
+
+			// Retrieve create command from the Element Edit service
+			CreateElementRequest createRequest = new CreateElementRequest(req.getContainer(), SysMLElementTypes.BLOCK);
+			ICommand createGMFCommand = provider.getEditCommand(createRequest);
+
+			return getGEFWrapper(createGMFCommand);
 		}
 
 		return super.getCreateCommand(req);

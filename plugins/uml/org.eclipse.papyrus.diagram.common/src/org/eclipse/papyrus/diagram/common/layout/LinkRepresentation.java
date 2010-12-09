@@ -26,6 +26,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
  * 
  * This alignment align the two anchors of a link. To do this, only one {@link EditPart} can moves.
  * 
+ * TODO should be merge with LinkRepresentationForLayoutAction
  */
 public class LinkRepresentation {
 

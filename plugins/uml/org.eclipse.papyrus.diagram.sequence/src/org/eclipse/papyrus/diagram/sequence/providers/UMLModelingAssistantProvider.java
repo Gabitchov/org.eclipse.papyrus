@@ -40,6 +40,8 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DestructionEventEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInMessageEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationObservationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionOperandEditPart;
@@ -84,8 +86,8 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(editPart instanceof InteractionOperandEditPart) {
 			ArrayList<IElementType> types = new ArrayList<IElementType>(4);
 			types.add(UMLElementTypes.InteractionUse_3002);
-			types.add(UMLElementTypes.CombinedFragment_3004);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
+			types.add(UMLElementTypes.CombinedFragment_3004);
 			types.add(UMLElementTypes.Continuation_3016);
 			return types;
 		}
@@ -170,6 +172,12 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof CommentEditPart) {
 			return ((CommentEditPart)sourceEditPart).getMARelTypesOnSource();
 		}
+		if(sourceEditPart instanceof DurationConstraintInMessageEditPart) {
+			return ((DurationConstraintInMessageEditPart)sourceEditPart).getMARelTypesOnSource();
+		}
+		if(sourceEditPart instanceof DurationObservationEditPart) {
+			return ((DurationObservationEditPart)sourceEditPart).getMARelTypesOnSource();
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -228,6 +236,12 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if(targetEditPart instanceof CommentEditPart) {
 			return ((CommentEditPart)targetEditPart).getMARelTypesOnTarget();
+		}
+		if(targetEditPart instanceof DurationConstraintInMessageEditPart) {
+			return ((DurationConstraintInMessageEditPart)targetEditPart).getMARelTypesOnTarget();
+		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			return ((DurationObservationEditPart)targetEditPart).getMARelTypesOnTarget();
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -289,6 +303,12 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof CommentEditPart) {
 			return ((CommentEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
+		if(sourceEditPart instanceof DurationConstraintInMessageEditPart) {
+			return ((DurationConstraintInMessageEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
+		if(sourceEditPart instanceof DurationObservationEditPart) {
+			return ((DurationObservationEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -348,6 +368,12 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof CommentEditPart) {
 			return ((CommentEditPart)targetEditPart).getMATypesForSource(relationshipType);
 		}
+		if(targetEditPart instanceof DurationConstraintInMessageEditPart) {
+			return ((DurationConstraintInMessageEditPart)targetEditPart).getMATypesForSource(relationshipType);
+		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			return ((DurationObservationEditPart)targetEditPart).getMATypesForSource(relationshipType);
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -406,6 +432,12 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if(sourceEditPart instanceof CommentEditPart) {
 			return ((CommentEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if(sourceEditPart instanceof DurationConstraintInMessageEditPart) {
+			return ((DurationConstraintInMessageEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if(sourceEditPart instanceof DurationObservationEditPart) {
+			return ((DurationObservationEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
 		return Collections.EMPTY_LIST;
 	}

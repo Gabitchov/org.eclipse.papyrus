@@ -332,7 +332,7 @@
       figure="UseCaseFigure"
       accessor="//@figures.0/@descriptors.4/@accessors.1"/>
   <compartments
-      name="extension points"
+      name="points"
       figure="UseCaseAsClassFigure"
       collapsible="true"
       needsTitle="true"

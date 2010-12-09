@@ -75,7 +75,6 @@ public class SendObjectActionCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -99,8 +98,6 @@ public class SendObjectActionCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
-
 		SendObjectAction newElement = UMLFactory.eINSTANCE.createSendObjectAction();
 
 		// set appropriate parents
@@ -109,7 +106,6 @@ public class SendObjectActionCreateCommand extends EditElementCommand {
 		}
 		//		Activity owner = (Activity)getElementToEdit();
 		//		owner.getNodes().add(newElement);
-
 
 		ElementInitializers.getInstance().init_SendObjectAction_3042(newElement);
 

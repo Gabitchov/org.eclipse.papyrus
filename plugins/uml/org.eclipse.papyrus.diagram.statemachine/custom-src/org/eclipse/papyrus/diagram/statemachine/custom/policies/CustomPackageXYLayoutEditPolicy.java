@@ -29,8 +29,8 @@ public class CustomPackageXYLayoutEditPolicy extends XYLayoutEditPolicy {
 
 	/**
 	 * This method analyzes a resize and/or move request and routes the call to
-	 * the appropriate specific ResizeCommand either for a StateMachine, a
-	 * State, in other cases passes on the call to the super class method.
+	 * the appropriate specific ResizeCommand either for a StateMachine
+	 * in other cases passes on the call to the super class method.
 	 * 
 	 * @param child
 	 *        the concerned EditPart

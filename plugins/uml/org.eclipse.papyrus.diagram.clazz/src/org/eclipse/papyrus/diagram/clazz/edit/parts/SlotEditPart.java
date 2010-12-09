@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2010 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,8 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ */
 package org.eclipse.papyrus.diagram.clazz.edit.parts;
 
 import java.util.Collections;
@@ -35,7 +34,6 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
@@ -56,6 +54,7 @@ import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.diagram.clazz.custom.policies.SlotDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.SlotItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.UMLTextNonResizableEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.UMLTextSelectionEditPolicy;
@@ -63,6 +62,7 @@ import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLParserProvider;
 import org.eclipse.papyrus.diagram.common.directedit.MultilineLabelDirectEditManager;
+import org.eclipse.papyrus.diagram.common.editparts.UMLCompartmentEditPart;
 import org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure;
@@ -85,9 +85,11 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class SlotEditPart extends
+public class SlotEditPart
 
-CompartmentEditPart implements ITextAwareEditPart, IPrimaryEditPart {
+extends UMLCompartmentEditPart
+
+implements ITextAwareEditPart, IPrimaryEditPart {
 
 	/**
 	 * @generated
@@ -114,10 +116,18 @@ CompartmentEditPart implements ITextAwareEditPart, IPrimaryEditPart {
 	 */
 	private String defaultText;
 
-	/** direct edition mode (default, undefined, registered editor, etc.) */
+	/**
+	 * direct edition mode (default, undefined, registered editor, etc.)
+	 * 
+	 * @generated
+	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
-	/** configuration from a registered edit dialog */
+	/**
+	 * configuration from a registered edit dialog
+	 * 
+	 * @generated
+	 */
 	protected IDirectEditorConfiguration configuration;
 
 	/**
@@ -146,6 +156,7 @@ CompartmentEditPart implements ITextAwareEditPart, IPrimaryEditPart {
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new UMLTextNonResizableEditPolicy());
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new ListItemComponentEditPolicy());
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
+		installEditPolicy(SlotDisplayEditPolicy.SLOT_DISPLAY, new SlotDisplayEditPolicy());
 	}
 
 	/**
@@ -585,8 +596,7 @@ CompartmentEditPart implements ITextAwareEditPart, IPrimaryEditPart {
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
-	 * @return an <code>int</code> corresponding to the kind of direct editor, @see
-	 *         org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
+	 * @return an <code>int</code> corresponding to the kind of direct editor, @see org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
 	 * @generated
 	 */
 	public int getDirectEditionType() {
@@ -643,11 +653,15 @@ CompartmentEditPart implements ITextAwareEditPart, IPrimaryEditPart {
 
 	/**
 	 * Updates the preference configuration
+	 * 
+	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
 		String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
-		if(languagePreferred != configuration.getLanguage()) {
+		if(languagePreferred != null && !languagePreferred.equals("") && languagePreferred != configuration.getLanguage()) {
 			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement().eClass().getInstanceClassName());
+		} else if(IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(languagePreferred)) {
+			configuration = null;
 		}
 	}
 
@@ -656,6 +670,7 @@ CompartmentEditPart implements ITextAwareEditPart, IPrimaryEditPart {
 	 * 
 	 * @param theRequest
 	 *        the direct edit request that starts the direct edit system
+	 * @generated
 	 */
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {
 		// initialize the direct edit manager

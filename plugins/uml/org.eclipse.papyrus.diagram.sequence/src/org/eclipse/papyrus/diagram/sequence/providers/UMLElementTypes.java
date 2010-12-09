@@ -41,6 +41,7 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.DestructionEventEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInMessageEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationObservationEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.GeneralOrderingEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionUseEditPart;
@@ -234,6 +235,11 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
+	public static final IElementType GeneralOrdering_4012 = getElementType("org.eclipse.papyrus.diagram.sequence.GeneralOrdering_4012"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	private static ImageRegistry getImageRegistry() {
 		if(imageRegistry == null) {
 			imageRegistry = new ImageRegistry();
@@ -420,6 +426,9 @@ public class UMLElementTypes {
 			elements.put(CommentAnnotatedElement_4010, UMLPackage.eINSTANCE.getComment_AnnotatedElement());
 
 			elements.put(ConstraintConstrainedElement_4011, UMLPackage.eINSTANCE.getConstraint_ConstrainedElement());
+
+
+			elements.put(GeneralOrdering_4012, UMLPackage.eINSTANCE.getGeneralOrdering());
 		}
 		return (ENamedElement)elements.get(type);
 	}
@@ -466,6 +475,7 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(Message_4009);
 			KNOWN_ELEMENT_TYPES.add(CommentAnnotatedElement_4010);
 			KNOWN_ELEMENT_TYPES.add(ConstraintConstrainedElement_4011);
+			KNOWN_ELEMENT_TYPES.add(GeneralOrdering_4012);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}
@@ -533,6 +543,8 @@ public class UMLElementTypes {
 			return CommentAnnotatedElement_4010;
 		case ConstraintConstrainedElementEditPart.VISUAL_ID:
 			return ConstraintConstrainedElement_4011;
+		case GeneralOrderingEditPart.VISUAL_ID:
+			return GeneralOrdering_4012;
 		}
 		return null;
 	}

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2010 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,8 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ */
 package org.eclipse.papyrus.diagram.clazz.edit.policies;
 
 import java.util.ArrayList;
@@ -33,6 +32,8 @@ import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassifierTemplateParameterEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ConnectableElementTemplateParameterEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationTemplateParameterEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.TemplateParameterEditPart;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.diagram.clazz.part.UMLNodeDescriptor;
@@ -43,6 +44,13 @@ import org.eclipse.uml2.uml.UMLPackage;
  * @generated
  */
 public class RedefinableTemplateSignatureTemplateParameterCompartmentCanonicalEditPolicy extends CanonicalEditPolicy {
+
+	/**
+	 * @generated
+	 */
+	protected EStructuralFeature getFeatureToSynchronize() {
+		return UMLPackage.eINSTANCE.getTemplateSignature_OwnedParameter();
+	}
 
 	/**
 	 * @generated
@@ -70,7 +78,14 @@ public class RedefinableTemplateSignatureTemplateParameterCompartmentCanonicalEd
 	 */
 	private boolean isMyDiagramElement(View view) {
 		int visualID = UMLVisualIDRegistry.getVisualID(view);
-		return visualID == ClassifierTemplateParameterEditPart.VISUAL_ID || visualID == TemplateParameterEditPart.VISUAL_ID;
+		switch(visualID) {
+		case ClassifierTemplateParameterEditPart.VISUAL_ID:
+		case ConnectableElementTemplateParameterEditPart.VISUAL_ID:
+		case OperationTemplateParameterEditPart.VISUAL_ID:
+		case TemplateParameterEditPart.VISUAL_ID:
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -150,12 +165,4 @@ public class RedefinableTemplateSignatureTemplateParameterCompartmentCanonicalEd
 
 		makeViewsImmutable(createdViews);
 	}
-
-	/**
-	 * @generated
-	 */
-	protected EStructuralFeature getFeatureToSynchronize() {
-		return UMLPackage.eINSTANCE.getTemplateSignature_OwnedParameter();
-	}
-
 }

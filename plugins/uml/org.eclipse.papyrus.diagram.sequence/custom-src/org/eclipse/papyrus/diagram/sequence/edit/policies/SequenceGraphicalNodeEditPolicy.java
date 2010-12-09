@@ -13,13 +13,16 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.edit.policies;
 
-import java.util.Iterator;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.Polyline;
 import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.draw2d.geometry.PointList;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
@@ -27,15 +30,17 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
-import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy;
-import org.eclipse.gmf.runtime.diagram.ui.internal.commands.SetConnectionBendpointsCommand;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest.ConnectionViewAndElementDescriptor;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragment2EditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.Message2EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.Message3EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.Message4EditPart;
@@ -45,9 +50,11 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.Message7EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.diagram.sequence.part.Messages;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
+import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.papyrus.diagram.sequence.util.SequenceUtil;
 import org.eclipse.uml2.uml.Message;
+import org.eclipse.uml2.uml.OccurrenceSpecification;
 
 
 /**
@@ -57,41 +64,184 @@ import org.eclipse.uml2.uml.Message;
  * - Message feedback on creation is always drawn in black (to avoid invisible feedback)
  * 
  */
+@SuppressWarnings({ "restriction", "unchecked", "rawtypes" })
 public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 
 	/** A static margin to allow drawing of straight message */
 	private static final int MARGIN = 2;
 
 	/**
+	 * Gets the command to start the creation of a new connection and relationship. This will update the request appropriately. Also completes the
+	 * request with nearby occurrence specification information.
+	 * 
+	 * @param request
+	 *        creation request
+	 * @return Command
+	 */
+	@Override
+	protected Command getConnectionAndRelationshipCreateCommand(CreateConnectionViewAndElementRequest request) {
+		Map<String, Object> extendedData = request.getExtendedData();
+
+		// record the nearest event if necessary
+		String requestHint = request.getConnectionViewAndElementDescriptor().getSemanticHint();
+		if(isCreatedNearOccurrenceSpecification(requestHint)) {
+			LifelineEditPart lifelinePart = SequenceUtil.getParentLifelinePart(getHost());
+			if(lifelinePart != null) {
+				Entry<Point, List<OccurrenceSpecification>> eventAndLocation = SequenceUtil.findNearestEvent(request.getLocation(), lifelinePart);
+				// find an event near enough to create the constraint or observation
+				List<OccurrenceSpecification> events = Collections.emptyList();
+				Point location = null;
+				if(eventAndLocation != null) {
+					location = eventAndLocation.getKey();
+					events = eventAndLocation.getValue();
+				}
+				extendedData.put(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION, events);
+				extendedData.put(SequenceRequestConstant.OCCURRENCE_SPECIFICATION_LOCATION, location);
+				if(location != null) {
+					request.setLocation(location);
+				}
+			}
+		}
+		return super.getConnectionAndRelationshipCreateCommand(request);
+	}
+
+	/**
+	 * Gets the command to complete the creation of a new connection and relationship. Also completes the request with nearby occurrence specification
+	 * information.
+	 * 
+	 * @param request
+	 *        the creation request
+	 * @return Command
+	 */
+	@Override
+	protected Command getConnectionAndRelationshipCompleteCommand(CreateConnectionViewAndElementRequest request) {
+		Map<String, Object> extendedData = request.getExtendedData();
+
+		// record the nearest event if necessary
+		String requestHint = request.getConnectionViewAndElementDescriptor().getSemanticHint();
+		if(isCreatedNearOccurrenceSpecification(requestHint)) {
+			LifelineEditPart lifelinePart = SequenceUtil.getParentLifelinePart(getHost());
+			if(lifelinePart != null) {
+				Entry<Point, List<OccurrenceSpecification>> eventAndLocation = SequenceUtil.findNearestEvent(request.getLocation(), lifelinePart);
+				// find an event near enough to create the constraint or observation
+				List<OccurrenceSpecification> events = Collections.emptyList();
+				Point location = null;
+				if(eventAndLocation != null) {
+					location = eventAndLocation.getKey();
+					events = eventAndLocation.getValue();
+				}
+				extendedData.put(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION_2, events);
+				extendedData.put(SequenceRequestConstant.OCCURRENCE_SPECIFICATION_LOCATION_2, location);
+				if(location != null) {
+					request.setLocation(location);
+				}
+			}
+		}
+		return super.getConnectionAndRelationshipCompleteCommand(request);
+	}
+
+	/**
+	 * Return true if creation must be performed to or from an occurrence specification
+	 * 
+	 * @param requestHint
+	 *        the hint of object to create
+	 * @return true if creation to or from an occurrence specification
+	 */
+	private boolean isCreatedNearOccurrenceSpecification(String requestHint) {
+		String generalOrderingHint = ((IHintedType)UMLElementTypes.GeneralOrdering_4012).getSemanticHint();
+		return generalOrderingHint.equals(requestHint);
+	}
+
+	/**
+	 * Return true if a message is being created
+	 * 
+	 * @param requestHint
+	 *        the hint of object to create
+	 * @return true if creation of a message
+	 */
+	private boolean isMessageHint(String requestHint) {
+		List<String> messageHints = new ArrayList<String>(7);
+		String messageHint = ((IHintedType)UMLElementTypes.Message_4003).getSemanticHint();
+		messageHints.add(messageHint);
+		messageHint = ((IHintedType)UMLElementTypes.Message_4004).getSemanticHint();
+		messageHints.add(messageHint);
+		messageHint = ((IHintedType)UMLElementTypes.Message_4005).getSemanticHint();
+		messageHints.add(messageHint);
+		messageHint = ((IHintedType)UMLElementTypes.Message_4006).getSemanticHint();
+		messageHints.add(messageHint);
+		messageHint = ((IHintedType)UMLElementTypes.Message_4007).getSemanticHint();
+		messageHints.add(messageHint);
+		messageHint = ((IHintedType)UMLElementTypes.Message_4008).getSemanticHint();
+		messageHints.add(messageHint);
+		messageHint = ((IHintedType)UMLElementTypes.Message_4009).getSemanticHint();
+		messageHints.add(messageHint);
+		return messageHints.contains(requestHint);
+	}
+
+	@Override
+	protected Command getConnectionCreateCommand(CreateConnectionRequest request) {
+		request.getExtendedData().put(SequenceRequestConstant.SOURCE_LOCATION_DATA, request.getLocation());
+		return super.getConnectionCreateCommand(request);
+	}
+
+	/**
 	 * Overrides to disable uphill message
 	 */
-	@SuppressWarnings({ "unchecked", "restriction" })
 	@Override
 	protected Command getConnectionCompleteCommand(CreateConnectionRequest request) {
 		Command command = super.getConnectionCompleteCommand(request);
 		if(command == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
-		ICommandProxy proxy = (ICommandProxy)request.getStartCommand();
-		CompositeCommand cc = (CompositeCommand)proxy.getICommand();
-		Iterator<?> commandItr = cc.iterator();
-		while(commandItr.hasNext()) {
-			Object obj = commandItr.next();
-			if(obj instanceof SetConnectionBendpointsCommand) {
-				SetConnectionBendpointsCommand sbbCommand = (SetConnectionBendpointsCommand)obj;
-				final PointList pointList = sbbCommand.getNewPointList();
-				if(pointList.getFirstPoint().y >= pointList.getLastPoint().y + MARGIN) {
+		// disable the following code if we are not creating a message.
+		if(request instanceof CreateConnectionViewRequest) {
+			String requestHint = ((CreateConnectionViewRequest)request).getConnectionViewDescriptor().getSemanticHint();
+			if(!isMessageHint(requestHint)) {
+				return command;
+			}
+		}
+		//		ICommandProxy proxy = (ICommandProxy)request.getStartCommand();
+		//		CompositeCommand cc = (CompositeCommand)proxy.getICommand();
+		//		Iterator<?> commandItr = cc.iterator();
+		//		while(commandItr.hasNext()) {
+		//			Object obj = commandItr.next();
+		//			if(obj instanceof SetConnectionBendpointsCommand) {
+		//				SetConnectionBendpointsCommand sbbCommand = (SetConnectionBendpointsCommand)obj;
+		//final PointList pointList = sbbCommand.getNewPointList();
+
+		Point sourcePoint = (Point)request.getExtendedData().get(SequenceRequestConstant.SOURCE_LOCATION_DATA);
+		Point targetPoint = request.getLocation();
+
+		// prevent uphill message (leave margin for horizontal messages)
+		if(sourcePoint.y >= targetPoint.y + MARGIN) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		// prevent uphill message (for self recursive message)
+		if(request.getSourceEditPart().equals(request.getTargetEditPart()) && sourcePoint.y >= targetPoint.y) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		// prevent uphill message (for reply message)
+		if(request instanceof CreateConnectionViewAndElementRequest) {
+			ConnectionViewAndElementDescriptor desc = ((CreateConnectionViewAndElementRequest)request).getConnectionViewAndElementDescriptor();
+			String replyHint = ((IHintedType)UMLElementTypes.Message_4005).getSemanticHint();
+			if(replyHint.equals(desc.getSemanticHint()) && request.getSourceEditPart() instanceof IGraphicalEditPart) {
+				Rectangle srcBounds = SequenceUtil.getAbsoluteBounds((IGraphicalEditPart)request.getSourceEditPart());
+				int bottom = srcBounds.getBottom().y;
+				if(bottom >= targetPoint.y) {
 					return UnexecutableCommand.INSTANCE;
-				}
-				request.getExtendedData().put(SequenceRequestConstant.SOURCE_MODEL_CONTAINER, SequenceUtil.findInteractionFragmentAt(pointList.getFirstPoint(), getHost()));
-				request.getExtendedData().put(SequenceRequestConstant.TARGET_MODEL_CONTAINER, SequenceUtil.findInteractionFragmentAt(pointList.getLastPoint(), getHost()));
-				// In case we are creating a connection to/from a CoRegion, we will need the lifeline element where is drawn the CoRegion later in the process.
-				EditPart targetEditPart = getTargetEditPart(request);
-				if(getTargetEditPart(request) instanceof CombinedFragment2EditPart) {
-					request.getExtendedData().put(SequenceRequestConstant.LIFELINE_GRAPHICAL_CONTAINER, ((CombinedFragment2EditPart)targetEditPart).getAttachedLifeline());
 				}
 			}
 		}
+
+		request.getExtendedData().put(SequenceRequestConstant.SOURCE_MODEL_CONTAINER, SequenceUtil.findInteractionFragmentContainerAt(sourcePoint, getHost()));
+		request.getExtendedData().put(SequenceRequestConstant.TARGET_MODEL_CONTAINER, SequenceUtil.findInteractionFragmentContainerAt(targetPoint, getHost()));
+		// In case we are creating a connection to/from a CoRegion, we will need the lifeline element where is drawn the CoRegion later in the process.
+		EditPart targetEditPart = getTargetEditPart(request);
+		if(targetEditPart instanceof CombinedFragment2EditPart) {
+			request.getExtendedData().put(SequenceRequestConstant.LIFELINE_GRAPHICAL_CONTAINER, ((CombinedFragment2EditPart)targetEditPart).getAttachedLifeline());
+		}
+		//			}
+		//		}
 
 		return command;
 	}
@@ -176,7 +326,6 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 	 *        The relevant create connection request.
 	 * @return the command to popup up the menu and create the connection
 	 */
-	@SuppressWarnings("rawtypes")
 	protected ICommand getPromptAndCreateConnectionCommand(List content, CreateConnectionRequest request) {
 		return new SequencePromptAndCreateConnectionCommand(content, request);
 	}

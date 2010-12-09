@@ -37,7 +37,7 @@ public class DestructionEventPreferencePage extends AbstractPapyrusNodePreferenc
 	 */
 	@Override
 	protected String getBundleId() {
-		return UMLDiagramEditorPlugin.getInstance().ID;
+		return UMLDiagramEditorPlugin.ID;
 	}
 
 	/**

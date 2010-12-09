@@ -10,10 +10,12 @@
  * Contributors:
  *    Dmitry Stadnik (Borland) - initial API and implementation
  * Thibault Landre (Atos Origin) - add Papyrus dependencies to Papyrus GMF diagram*
+ * Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr : add the dependency org.eclipse.papyrus.service.edit
  */
 
 «IMPORT 'http://www.eclipse.org/gmf/2009/GenModel'»
 «IMPORT 'http://www.eclipse.org/emf/2002/Ecore'»
+«IMPORT 'http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension'»
 «EXTENSION xpt::diagram::Utils»
 
 «DEFINE manifest FOR gmfgen::GenPlugin-»
@@ -74,5 +76,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.gef,
  org.eclipse.papyrus.preferences,
  org.eclipse.papyrus.extensionpoints.editors
+«IF papyrusgmfgenextension::EditPartUsingDeleteService.allInstances()->size()<>0 or papyrusgmfgenextension::EditPartUsingReorientService.allInstances()->size()<>0-»
+ ,org.eclipse.papyrus.service.edit
+«ENDIF-»
 Eclipse-LazyStart: true
 «ENDDEFINE»

@@ -2,6 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.diagram.communication; singleton:=true
+Bundle-Version: 0.7.0.vqualifier
 Bundle-Version: 0.7.1.vqualifier
 Bundle-Activator: org.eclipse.papyrus.diagram.communication.part.UMLDiagramEditorPlugin
 Require-Bundle: org.eclipse.ui,
@@ -53,10 +54,10 @@ Export-Package: org.eclipse.papyrus.diagram.communication,
  org.eclipse.papyrus.diagram.communication.custom.edit.policies,
  org.eclipse.papyrus.diagram.communication.custom.factory,
  org.eclipse.papyrus.diagram.communication.custom.figures,
+ org.eclipse.papyrus.diagram.communication.custom.helper,
  org.eclipse.papyrus.diagram.communication.custom.parser,
  org.eclipse.papyrus.diagram.communication.custom.policies.itemsemantic,
  org.eclipse.papyrus.diagram.communication.custom.providers,
- org.eclipse.papyrus.diagram.communication.custom.util,
  org.eclipse.papyrus.diagram.communication.edit.commands,
  org.eclipse.papyrus.diagram.communication.edit.helpers,
  org.eclipse.papyrus.diagram.communication.edit.parts,
@@ -68,3 +69,6 @@ Export-Package: org.eclipse.papyrus.diagram.communication,
  org.eclipse.papyrus.diagram.communication.preferences,
  org.eclipse.papyrus.diagram.communication.providers
 Eclipse-LazyStart: true
+Import-Package: org.eclipse.papyrus.diagram.communication.custom.edit.policies,
+ org.eclipse.papyrus.diagram.communication.custom.helper,
+ org.eclipse.papyrus.service.edit.service

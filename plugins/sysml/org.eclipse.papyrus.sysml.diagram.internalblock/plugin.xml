@@ -45,9 +45,7 @@
 			icon="icons/obj16/Diagram_InternalBlock.gif" label="Create a new Internal Block Diagram"
 			style="push" tooltip="Create a new Internal Block Diagram">
 			<visibleWhen>
-				<with variable="activeEditorId">
-					<equals value="org.eclipse.papyrus.core.papyrusEditor" />
-				</with>
+				<reference definitionId="org.eclipse.papyrus.sysml.diagram.common.IsPapyrusActiveWithSysML"/>
 			</visibleWhen>
 		</command>
 	</menu>
@@ -59,13 +57,25 @@
 			icon="icons/obj16/Diagram_InternalBlock.gif" label="Create a new Internal Block Diagram"
 			style="push" tooltip="Create a new Internal Block Diagram">
 			<visibleWhen>
-				<with variable="activeEditorId">
-					<equals value="org.eclipse.papyrus.core.papyrusEditor" />
-				</with>
+				<reference definitionId="org.eclipse.papyrus.sysml.diagram.common.IsPapyrusActiveWithSysML"/>
 			</visibleWhen>
 		</command>
 	</toolbar>
 	</menuContribution>
+	
+	<menuContribution
+		locationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.creatediagram">
+	    <command commandId="org.eclipse.papyrus.sysml.diagram.internalblock.CreateCommand"
+			icon="icons/obj16/Diagram_InternalBlock.gif"
+			label="Create a new Internal Block Diagram"
+			style="push"
+			tooltip="Create a new Internal Block Diagram">
+	       <visibleWhen>
+				<reference definitionId="org.eclipse.papyrus.sysml.diagram.common.IsPapyrusActiveWithSysML"/>
+	       </visibleWhen>
+	    </command>
+	</menuContribution>
+	
 </extension>
 
 <!-- Palette tool declaration (declares the real palette containment) -->
@@ -97,15 +107,19 @@
 	<viewProvider class="org.eclipse.papyrus.sysml.diagram.internalblock.provider.InheritedElementViewProvider">
 		<Priority name="Low"/>
 		<!-- 
-			"2073, 3085" = Class
-			"3070"       = Property
-			"3069"       = Port										
+			"2073" = CLASS
+			"3069" = PORT_CN
+			"3070" = PROPERTY_CN
+			"2109" = COMMENT
+			"2114" = CONSTRAINT								
 		  -->			
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2073, 3085, 3070, 3069"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2073, 3069, 3070, 2109, 2114"/>
 		<!-- 
-			"4013" = Connector											
-		  -->		
-		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4013"/>
+			"4013" = CONNECTOR	
+			"4002" = COMMENT_ANNOTATED_ELEMENT
+			"4003" = CONSTRAINT_CONSTRAINED_ELEMENT
+		  -->
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4013, 4002, 4003"/>
 	</viewProvider>
 	
 </extension>
@@ -130,44 +144,72 @@
 		<!-- 
 			The semantic hints given here are used in case the provider is not already loaded.
 			As soon as the provider is loaded its provides method is used.
-			"2073" = Class
-			"5156" = Class composite name label
-			"7073" = Class composite compartment
-			"3085" = Class (Child Node)
-			"5155" = Class (Child Node) composite name label
-			"7060" = Class (Child Node) composite compartment
-			"3070" = Property (part)
-			"5126" = Property (part) name label
-			"7077" = Property (part) compartment
-			"3069" = Port 
-			"5125" = Port name label 
-			"6029" = Port applied stereotype label -->			
+			"2073" = CLASS
+			"5156" = CLASS_LABEL_COMPOSITE_NAME_HINT
+			"7073" = CLASS_COMPARTMENT_CLASS_COMPOSITE_HINT
+			"3069" = PORT_CN
+			"5125" = PORT_CN_LABEL_NAME_HINT
+			"6029" = PORT_CN_LABEL_APPLIED_STEREOTYPE_HINT
+			"3070" = PROPERTY_CN
+			"5126" = PROPERTY_CN_LABEL_PART_NAME_HINT
+			"7077" = PROPERTY_CN_COMPARTMENT_PROPERTY_PART_HINT
+			"2109" = COMMENT
+			"5192" = COMMENT_LABEL_BODY_HINT
+			"2114" = CONSTRAINT
+			"5197" = CONSTRAINT_LABEL_NAME_HINT
+			"6039" = CONSTRAINT_LABEL_SPECIFICATION_HINT
+		 -->			
 		<object
-			id="ClassComposite"
+			id="CLASS"
 			class="org.eclipse.gmf.runtime.notation.Node">
-			<method name="getType()" value="2073, 5156, 7073, 3085, 5155, 7060"/>
+			<method name="getType()" value="2073, 5156, 7073"/>
 		</object>
 		<object
-			id="PropertyPart"
+			id="PORT_CN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3069, 5125, 6029"/>
+		</object>
+		<object
+			id="PROPERTY_CN"
 			class="org.eclipse.gmf.runtime.notation.Node">
 			<method name="getType()" value="3070, 5126, 7077"/>
 		</object>
 		<object
-			id="Port"
+			id="COMMENT"
 			class="org.eclipse.gmf.runtime.notation.Node">
-			<method name="getType()" value="3069, 5125, 6029"/>
+			<method name="getType()" value="2109, 5192"/>
+		</object>
+		<object
+			id="CONSTRAINT"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="2114, 5197, 6039"/>
 		</object>
 
-		<!-- 
-			"4013" = Connector
-			"6029" = Connector applied stereotype label -->					
+		<!-- 	
+			"4013" = CONNECTOR
+			"6025" = CONNECTOR_LABEL_APPLIED_STEREOTYPE_HINT
+			"4002" = COMMENT_ANNOTATED_ELEMENT
+			"4003" = CONSTRAINT_CONSTRAINED_ELEMENT
+		  -->
 		<object
-			id="Connector"
+			id="CONNECTOR"
 			class="org.eclipse.gmf.runtime.notation.Edge">
 			<method name="getType()" value="4013, 6025"/>
+		</object>	
+		<object
+			id="COMMENT_ANNOTATED_ELEMENT"
+			class="org.eclipse.gmf.runtime.notation.Edge">
+			<method name="getType()" value="4002"/>
 		</object>
-		<context views="ClassComposite, PropertyPart, Port"/>
-		<context views="Connector"/>
+		<object
+			id="CONSTRAINT_CONSTRAINED_ELEMENT"
+			class="org.eclipse.gmf.runtime.notation.Edge">
+			<method name="getType()" value="4003"/>
+		</object>
+
+		<context views="CLASS, PORT_CN, PROPERTY_CN, COMMENT, CONSTRAINT"/>
+		<context views="CONNECTOR, COMMENT_ANNOTATED_ELEMENT, CONSTRAINT_CONSTRAINED_ELEMENT"/>
+		
 	</editpartProvider>
 	
 </extension>
@@ -212,7 +254,7 @@
 	<page  	category="org.eclipse.papyrus.sysml.diagram.internalblock.preferences"
 		class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.BlockPreferencePage"
 		id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.BlockPreferencePage"
-		name="Class">
+		name="Block">
 	</page>
 
 	<page  	category="org.eclipse.papyrus.sysml.diagram.internalblock.preferences"
@@ -228,11 +270,35 @@
 	</page>	
 
 	<page  	category="org.eclipse.papyrus.sysml.diagram.internalblock.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.CommentPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.CommentPreferencePage"
+		name="Comment">
+	</page>
+			
+	<page  	category="org.eclipse.papyrus.sysml.diagram.internalblock.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.ConstraintPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.ConstraintPreferencePage"
+		name="Constraint">
+	</page>
+	
+	<page  	category="org.eclipse.papyrus.sysml.diagram.internalblock.preferences"
 		class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.ConnectorPreferencePage"
 		id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.ConnectorPreferencePage"
 		name="Connector">
 	</page>	
 	
+	<page  	category="org.eclipse.papyrus.sysml.diagram.internalblock.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.CommentAnnotatedElementPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.CommentAnnotatedElementPreferencePage"
+		name="CommentAnnotatedElement">
+	</page>
+	
+	<page  	category="org.eclipse.papyrus.sysml.diagram.internalblock.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.ConstraintConstrainedElementPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.ConstraintConstrainedElementPreferencePage"
+		name="ConstraintConstrainedElement">
+	</page>
+		
 </extension>
    
 </plugin>

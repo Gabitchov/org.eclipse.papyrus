@@ -162,5 +162,4 @@ public class InterruptibleActivityRegionInterruptibleActivityRegionContentCompar
 		return getGEFWrapper(new MoveElementInGroupCommand(req, getHost()));
 	}
 
-
 }

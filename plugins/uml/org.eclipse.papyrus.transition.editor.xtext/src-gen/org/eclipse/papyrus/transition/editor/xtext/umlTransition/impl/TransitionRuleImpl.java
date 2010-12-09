@@ -35,7 +35,6 @@ import org.eclipse.papyrus.transition.editor.xtext.umlTransition.UmlTransitionPa
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.transition.editor.xtext.umlTransition.impl.TransitionRuleImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.transition.editor.xtext.umlTransition.impl.TransitionRuleImpl#getTriggers <em>Triggers</em>}</li>
  *   <li>{@link org.eclipse.papyrus.transition.editor.xtext.umlTransition.impl.TransitionRuleImpl#getGuard <em>Guard</em>}</li>
  *   <li>{@link org.eclipse.papyrus.transition.editor.xtext.umlTransition.impl.TransitionRuleImpl#getEffect <em>Effect</em>}</li>
@@ -46,26 +45,6 @@ import org.eclipse.papyrus.transition.editor.xtext.umlTransition.UmlTransitionPa
  */
 public class TransitionRuleImpl extends MinimalEObjectImpl.Container implements TransitionRule
 {
-  /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getName()
-   * @generated
-   * @ordered
-   */
-  protected static final String NAME_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getName()
-   * @generated
-   * @ordered
-   */
-  protected String name = NAME_EDEFAULT;
-
   /**
    * The cached value of the '{@link #getTriggers() <em>Triggers</em>}' containment reference list.
    * <!-- begin-user-doc -->
@@ -115,29 +94,6 @@ public class TransitionRuleImpl extends MinimalEObjectImpl.Container implements 
   protected EClass eStaticClass()
   {
     return UmlTransitionPackage.Literals.TRANSITION_RULE;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String getName()
-  {
-    return name;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setName(String newName)
-  {
-    String oldName = name;
-    name = newName;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, UmlTransitionPackage.TRANSITION_RULE__NAME, oldName, name));
   }
 
   /**
@@ -280,8 +236,6 @@ public class TransitionRuleImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
-      case UmlTransitionPackage.TRANSITION_RULE__NAME:
-        return getName();
       case UmlTransitionPackage.TRANSITION_RULE__TRIGGERS:
         return getTriggers();
       case UmlTransitionPackage.TRANSITION_RULE__GUARD:
@@ -303,9 +257,6 @@ public class TransitionRuleImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
-      case UmlTransitionPackage.TRANSITION_RULE__NAME:
-        setName((String)newValue);
-        return;
       case UmlTransitionPackage.TRANSITION_RULE__TRIGGERS:
         getTriggers().clear();
         getTriggers().addAll((Collection<? extends EventRule>)newValue);
@@ -330,9 +281,6 @@ public class TransitionRuleImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
-      case UmlTransitionPackage.TRANSITION_RULE__NAME:
-        setName(NAME_EDEFAULT);
-        return;
       case UmlTransitionPackage.TRANSITION_RULE__TRIGGERS:
         getTriggers().clear();
         return;
@@ -356,8 +304,6 @@ public class TransitionRuleImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
-      case UmlTransitionPackage.TRANSITION_RULE__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case UmlTransitionPackage.TRANSITION_RULE__TRIGGERS:
         return triggers != null && !triggers.isEmpty();
       case UmlTransitionPackage.TRANSITION_RULE__GUARD:
@@ -366,23 +312,6 @@ public class TransitionRuleImpl extends MinimalEObjectImpl.Container implements 
         return effect != null;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (name: ");
-    result.append(name);
-    result.append(')');
-    return result.toString();
   }
 
 } //TransitionRuleImpl

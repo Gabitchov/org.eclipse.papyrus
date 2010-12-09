@@ -18,7 +18,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
-import org.eclipse.uml2.common.util.CacheAdapter;
+import org.eclipse.papyrus.core.utils.PapyrusEcoreUtils;
 import org.eclipse.uml2.uml.DurationObservation;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
@@ -30,7 +30,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class DurationObservationHelper {
 
 	/** The label to display for the duration observation */
-	private static final String DURATION_OBSERVATION_LABEL_FORMAT = "%s=duration";
+	private static final String DURATION_OBSERVATION_LABEL_FORMAT = "&%s";
 
 	/**
 	 * Get the list of all DurationObservation observing duration between the two elements (order of parameters does not matter)
@@ -58,7 +58,7 @@ public class DurationObservationHelper {
 	 * @return list of DurationObservation
 	 */
 	public static List<DurationObservation> getDurationObservationsOn(NamedElement element) {
-		Collection<Setting> inverseReferences = CacheAdapter.INSTANCE.getNonNavigableInverseReferences(element);
+		Collection<Setting> inverseReferences = PapyrusEcoreUtils.getUsages(element);
 		// DurationObservation referencing element
 		List<DurationObservation> referencing1 = new LinkedList<DurationObservation>();
 		for(Setting ref : inverseReferences) {

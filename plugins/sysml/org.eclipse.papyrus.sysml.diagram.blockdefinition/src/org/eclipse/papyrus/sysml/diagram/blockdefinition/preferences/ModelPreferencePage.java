@@ -9,12 +9,52 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences;
 
+import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.diagram.clazz.part.Messages;
+import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockDefinitionDiagramEditPart;
 
 public class ModelPreferencePage extends BlockDefinitionDiagramNodePreferencePage {
 
+	/**
+	 * the list of the compartments for this node
+	 */
+	public static final String compartments[] = { Messages.ModelPackageableElementCompartmentEditPart_title };
+
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 */
 	public ModelPreferencePage() {
 		super();
 		setPreferenceKey(BlockDefinitionDiagramEditPart.DIAGRAM_ID + "_Model"); //$NON-NLS-1$
+	}
+
+	/**
+	 * 
+	 * @param store
+	 */
+	public static void initDefaults(IPreferenceStore store) {
+
+		String key = BlockDefinitionDiagramEditPart.DIAGRAM_ID + "_Model";
+		// set the true value for the compartment visibility
+		for(String name : compartments) {
+			String preferenceName = PreferenceConstantHelper.getCompartmentElementConstant(key, name, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
+			store.setDefault(preferenceName, true);
+		}
+	}
+
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.preferences.pages.AbstractPapyrusNodePreferencePage#initializeCompartmentsList()
+	 * 
+	 */
+	@Override
+	protected void initializeCompartmentsList() {
+		for(String name : compartments) {
+			this.compartmentsList.add(name);
+		}
 	}
 }

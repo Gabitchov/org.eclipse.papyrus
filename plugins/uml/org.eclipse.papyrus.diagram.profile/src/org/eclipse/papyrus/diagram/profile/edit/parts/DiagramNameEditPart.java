@@ -59,6 +59,7 @@ import org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPoli
 import org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.diagram.profile.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.diagram.profile.part.UMLVisualIDRegistry;
+import org.eclipse.papyrus.diagram.profile.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.profile.providers.UMLParserProvider;
 import org.eclipse.papyrus.extensionpoints.editors.Activator;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IAdvancedEditorConfiguration;
@@ -365,7 +366,7 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 	 */
 	public IParser getParser() {
 		if(parser == null) {
-			parser = UMLParserProvider.get().getDiagramName_2Parser();
+			parser = UMLParserProvider.getParser(UMLElementTypes.Diagram_2016, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.profile.edit.parts.DiagramNameEditPart.VISUAL_ID));
 		}
 		return parser;
 	}

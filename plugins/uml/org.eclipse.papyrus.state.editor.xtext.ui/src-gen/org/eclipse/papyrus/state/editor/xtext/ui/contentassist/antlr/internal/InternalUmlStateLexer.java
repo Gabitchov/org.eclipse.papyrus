@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.state.editor.xtext.ui.contentassist.antlr.internal;
 
 // Hack: Use our own Lexer superclass by means of import. 
@@ -26,20 +13,22 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalUmlStateLexer extends Lexer {
     public static final int RULE_ID=4;
-    public static final int RULE_STRING=6;
     public static final int RULE_ANY_OTHER=10;
+    public static final int EOF=-1;
+    public static final int RULE_SL_COMMENT=8;
+    public static final int Tokens=19;
+    public static final int RULE_ML_COMMENT=7;
+    public static final int RULE_STRING=6;
     public static final int RULE_INT=5;
     public static final int T11=11;
     public static final int T12=12;
     public static final int T13=13;
     public static final int T14=14;
-    public static final int T15=15;
     public static final int RULE_WS=9;
-    public static final int Tokens=17;
+    public static final int T15=15;
     public static final int T16=16;
-    public static final int RULE_SL_COMMENT=8;
-    public static final int EOF=-1;
-    public static final int RULE_ML_COMMENT=7;
+    public static final int T17=17;
+    public static final int T18=18;
     public InternalUmlStateLexer() {;} 
     public InternalUmlStateLexer(CharStream input) {
         super(input);
@@ -107,11 +96,10 @@ public class InternalUmlStateLexer extends Lexer {
     public final void mT14() throws RecognitionException {
         try {
             int _type = T14;
-            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:13:5: ( 'entry' )
-            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:13:7: 'entry'
+            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:13:5: ( ':' )
+            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:13:7: ':'
             {
-            match("entry"); 
-
+            match(':'); 
 
             }
 
@@ -126,10 +114,10 @@ public class InternalUmlStateLexer extends Lexer {
     public final void mT15() throws RecognitionException {
         try {
             int _type = T15;
-            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:14:5: ( 'do' )
-            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:14:7: 'do'
+            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:14:5: ( '::' )
+            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:14:7: '::'
             {
-            match("do"); 
+            match("::"); 
 
 
             }
@@ -145,10 +133,10 @@ public class InternalUmlStateLexer extends Lexer {
     public final void mT16() throws RecognitionException {
         try {
             int _type = T16;
-            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:15:5: ( 'exit' )
-            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:15:7: 'exit'
+            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:15:5: ( 'entry' )
+            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:15:7: 'entry'
             {
-            match("exit"); 
+            match("entry"); 
 
 
             }
@@ -160,14 +148,52 @@ public class InternalUmlStateLexer extends Lexer {
     }
     // $ANTLR end T16
 
+    // $ANTLR start T17
+    public final void mT17() throws RecognitionException {
+        try {
+            int _type = T17;
+            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:16:5: ( 'do' )
+            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:16:7: 'do'
+            {
+            match("do"); 
+
+
+            }
+
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end T17
+
+    // $ANTLR start T18
+    public final void mT18() throws RecognitionException {
+        try {
+            int _type = T18;
+            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:17:5: ( 'exit' )
+            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:17:7: 'exit'
+            {
+            match("exit"); 
+
+
+            }
+
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end T18
+
     // $ANTLR start RULE_ID
     public final void mRULE_ID() throws RecognitionException {
         try {
             int _type = RULE_ID;
-            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:848:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:848:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1236:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1236:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
-            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:848:11: ( '^' )?
+            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1236:11: ( '^' )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -176,7 +202,7 @@ public class InternalUmlStateLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:848:11: '^'
+                    // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1236:11: '^'
                     {
                     match('^'); 
 
@@ -195,7 +221,7 @@ public class InternalUmlStateLexer extends Lexer {
                 recover(mse);    throw mse;
             }
 
-            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:848:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1236:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop2:
             do {
                 int alt2=2;
@@ -243,10 +269,10 @@ public class InternalUmlStateLexer extends Lexer {
     public final void mRULE_INT() throws RecognitionException {
         try {
             int _type = RULE_INT;
-            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:850:10: ( ( '0' .. '9' )+ )
-            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:850:12: ( '0' .. '9' )+
+            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1238:10: ( ( '0' .. '9' )+ )
+            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1238:12: ( '0' .. '9' )+
             {
-            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:850:12: ( '0' .. '9' )+
+            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1238:12: ( '0' .. '9' )+
             int cnt3=0;
             loop3:
             do {
@@ -260,7 +286,7 @@ public class InternalUmlStateLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:850:13: '0' .. '9'
+            	    // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1238:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -290,10 +316,10 @@ public class InternalUmlStateLexer extends Lexer {
     public final void mRULE_STRING() throws RecognitionException {
         try {
             int _type = RULE_STRING;
-            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:852:13: ( ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
-            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:852:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1240:13: ( ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
+            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1240:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
-            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:852:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1240:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -305,16 +331,16 @@ public class InternalUmlStateLexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("852:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )", 6, 0, input);
+                    new NoViableAltException("1240:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )", 6, 0, input);
 
                 throw nvae;
             }
             switch (alt6) {
                 case 1 :
-                    // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:852:16: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1240:16: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
-                    // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:852:20: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
+                    // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1240:20: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
                     loop4:
                     do {
                         int alt4=3;
@@ -330,7 +356,7 @@ public class InternalUmlStateLexer extends Lexer {
 
                         switch (alt4) {
                     	case 1 :
-                    	    // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:852:21: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
+                    	    // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1240:21: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
                     	    {
                     	    match('\\'); 
                     	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -347,7 +373,7 @@ public class InternalUmlStateLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:852:62: ~ ( ( '\\\\' | '\"' ) )
+                    	    // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1240:62: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFE') ) {
                     	        input.consume();
@@ -373,10 +399,10 @@ public class InternalUmlStateLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:852:82: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+                    // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1240:82: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
                     {
                     match('\''); 
-                    // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:852:87: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1240:87: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
                     loop5:
                     do {
                         int alt5=3;
@@ -392,7 +418,7 @@ public class InternalUmlStateLexer extends Lexer {
 
                         switch (alt5) {
                     	case 1 :
-                    	    // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:852:88: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
+                    	    // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1240:88: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
                     	    {
                     	    match('\\'); 
                     	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -409,7 +435,7 @@ public class InternalUmlStateLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:852:129: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1240:129: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFE') ) {
                     	        input.consume();
@@ -451,12 +477,12 @@ public class InternalUmlStateLexer extends Lexer {
     public final void mRULE_ML_COMMENT() throws RecognitionException {
         try {
             int _type = RULE_ML_COMMENT;
-            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:854:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:854:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1242:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1242:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:854:24: ( options {greedy=false; } : . )*
+            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1242:24: ( options {greedy=false; } : . )*
             loop7:
             do {
                 int alt7=2;
@@ -481,7 +507,7 @@ public class InternalUmlStateLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:854:52: .
+            	    // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1242:52: .
             	    {
             	    matchAny(); 
 
@@ -509,12 +535,12 @@ public class InternalUmlStateLexer extends Lexer {
     public final void mRULE_SL_COMMENT() throws RecognitionException {
         try {
             int _type = RULE_SL_COMMENT;
-            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:856:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:856:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1244:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1244:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:856:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1244:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop8:
             do {
                 int alt8=2;
@@ -527,7 +553,7 @@ public class InternalUmlStateLexer extends Lexer {
 
                 switch (alt8) {
             	case 1 :
-            	    // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:856:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1244:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFE') ) {
             	        input.consume();
@@ -548,7 +574,7 @@ public class InternalUmlStateLexer extends Lexer {
                 }
             } while (true);
 
-            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:856:40: ( ( '\\r' )? '\\n' )?
+            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1244:40: ( ( '\\r' )? '\\n' )?
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -557,9 +583,9 @@ public class InternalUmlStateLexer extends Lexer {
             }
             switch (alt10) {
                 case 1 :
-                    // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:856:41: ( '\\r' )? '\\n'
+                    // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1244:41: ( '\\r' )? '\\n'
                     {
-                    // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:856:41: ( '\\r' )?
+                    // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1244:41: ( '\\r' )?
                     int alt9=2;
                     int LA9_0 = input.LA(1);
 
@@ -568,7 +594,7 @@ public class InternalUmlStateLexer extends Lexer {
                     }
                     switch (alt9) {
                         case 1 :
-                            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:856:41: '\\r'
+                            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1244:41: '\\r'
                             {
                             match('\r'); 
 
@@ -598,10 +624,10 @@ public class InternalUmlStateLexer extends Lexer {
     public final void mRULE_WS() throws RecognitionException {
         try {
             int _type = RULE_WS;
-            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:858:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:858:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1246:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1246:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:858:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1246:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt11=0;
             loop11:
             do {
@@ -654,8 +680,8 @@ public class InternalUmlStateLexer extends Lexer {
     public final void mRULE_ANY_OTHER() throws RecognitionException {
         try {
             int _type = RULE_ANY_OTHER;
-            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:860:16: ( . )
-            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:860:18: .
+            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1248:16: ( . )
+            // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1248:18: .
             {
             matchAny(); 
 
@@ -669,354 +695,363 @@ public class InternalUmlStateLexer extends Lexer {
     // $ANTLR end RULE_ANY_OTHER
 
     public void mTokens() throws RecognitionException {
-        // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1:8: ( T11 | T12 | T13 | T14 | T15 | T16 | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
-        int alt12=13;
+        // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1:8: ( T11 | T12 | T13 | T14 | T15 | T16 | T17 | T18 | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
+        int alt12=15;
         int LA12_0 = input.LA(1);
 
         if ( (LA12_0=='A') ) {
             int LA12_1 = input.LA(2);
 
             if ( (LA12_1=='c') ) {
-                int LA12_14 = input.LA(3);
+                int LA12_15 = input.LA(3);
 
-                if ( (LA12_14=='t') ) {
-                    int LA12_26 = input.LA(4);
+                if ( (LA12_15=='t') ) {
+                    int LA12_29 = input.LA(4);
 
-                    if ( (LA12_26=='i') ) {
-                        int LA12_32 = input.LA(5);
+                    if ( (LA12_29=='i') ) {
+                        int LA12_35 = input.LA(5);
 
-                        if ( (LA12_32=='v') ) {
-                            int LA12_37 = input.LA(6);
+                        if ( (LA12_35=='v') ) {
+                            int LA12_40 = input.LA(6);
 
-                            if ( (LA12_37=='i') ) {
-                                int LA12_42 = input.LA(7);
+                            if ( (LA12_40=='i') ) {
+                                int LA12_45 = input.LA(7);
 
-                                if ( (LA12_42=='t') ) {
-                                    int LA12_46 = input.LA(8);
+                                if ( (LA12_45=='t') ) {
+                                    int LA12_49 = input.LA(8);
 
-                                    if ( (LA12_46=='y') ) {
-                                        int LA12_49 = input.LA(9);
+                                    if ( (LA12_49=='y') ) {
+                                        int LA12_52 = input.LA(9);
 
-                                        if ( ((LA12_49>='0' && LA12_49<='9')||(LA12_49>='A' && LA12_49<='Z')||LA12_49=='_'||(LA12_49>='a' && LA12_49<='z')) ) {
-                                            alt12=7;
+                                        if ( ((LA12_52>='0' && LA12_52<='9')||(LA12_52>='A' && LA12_52<='Z')||LA12_52=='_'||(LA12_52>='a' && LA12_52<='z')) ) {
+                                            alt12=9;
                                         }
                                         else {
                                             alt12=1;}
                                     }
                                     else {
-                                        alt12=7;}
+                                        alt12=9;}
                                 }
                                 else {
-                                    alt12=7;}
+                                    alt12=9;}
                             }
                             else {
-                                alt12=7;}
+                                alt12=9;}
                         }
                         else {
-                            alt12=7;}
+                            alt12=9;}
                     }
                     else {
-                        alt12=7;}
+                        alt12=9;}
                 }
                 else {
-                    alt12=7;}
+                    alt12=9;}
             }
             else {
-                alt12=7;}
+                alt12=9;}
         }
         else if ( (LA12_0=='S') ) {
             int LA12_2 = input.LA(2);
 
             if ( (LA12_2=='t') ) {
-                int LA12_16 = input.LA(3);
-
-                if ( (LA12_16=='a') ) {
-                    int LA12_27 = input.LA(4);
-
-                    if ( (LA12_27=='t') ) {
-                        int LA12_33 = input.LA(5);
-
-                        if ( (LA12_33=='e') ) {
-                            int LA12_38 = input.LA(6);
-
-                            if ( (LA12_38=='M') ) {
-                                int LA12_43 = input.LA(7);
-
-                                if ( (LA12_43=='a') ) {
-                                    int LA12_47 = input.LA(8);
-
-                                    if ( (LA12_47=='c') ) {
-                                        int LA12_50 = input.LA(9);
-
-                                        if ( (LA12_50=='h') ) {
-                                            int LA12_53 = input.LA(10);
-
-                                            if ( (LA12_53=='i') ) {
-                                                int LA12_55 = input.LA(11);
-
-                                                if ( (LA12_55=='n') ) {
-                                                    int LA12_57 = input.LA(12);
-
-                                                    if ( (LA12_57=='e') ) {
-                                                        int LA12_59 = input.LA(13);
-
-                                                        if ( ((LA12_59>='0' && LA12_59<='9')||(LA12_59>='A' && LA12_59<='Z')||LA12_59=='_'||(LA12_59>='a' && LA12_59<='z')) ) {
-                                                            alt12=7;
-                                                        }
-                                                        else {
-                                                            alt12=2;}
-                                                    }
-                                                    else {
-                                                        alt12=7;}
-                                                }
-                                                else {
-                                                    alt12=7;}
-                                            }
-                                            else {
-                                                alt12=7;}
-                                        }
-                                        else {
-                                            alt12=7;}
-                                    }
-                                    else {
-                                        alt12=7;}
-                                }
-                                else {
-                                    alt12=7;}
-                            }
-                            else {
-                                alt12=7;}
-                        }
-                        else {
-                            alt12=7;}
-                    }
-                    else {
-                        alt12=7;}
-                }
-                else {
-                    alt12=7;}
-            }
-            else {
-                alt12=7;}
-        }
-        else if ( (LA12_0=='O') ) {
-            int LA12_3 = input.LA(2);
-
-            if ( (LA12_3=='p') ) {
                 int LA12_17 = input.LA(3);
 
                 if ( (LA12_17=='a') ) {
-                    int LA12_28 = input.LA(4);
-
-                    if ( (LA12_28=='q') ) {
-                        int LA12_34 = input.LA(5);
-
-                        if ( (LA12_34=='u') ) {
-                            int LA12_39 = input.LA(6);
-
-                            if ( (LA12_39=='e') ) {
-                                int LA12_44 = input.LA(7);
-
-                                if ( (LA12_44=='B') ) {
-                                    int LA12_48 = input.LA(8);
-
-                                    if ( (LA12_48=='e') ) {
-                                        int LA12_51 = input.LA(9);
-
-                                        if ( (LA12_51=='h') ) {
-                                            int LA12_54 = input.LA(10);
-
-                                            if ( (LA12_54=='a') ) {
-                                                int LA12_56 = input.LA(11);
-
-                                                if ( (LA12_56=='v') ) {
-                                                    int LA12_58 = input.LA(12);
-
-                                                    if ( (LA12_58=='i') ) {
-                                                        int LA12_60 = input.LA(13);
-
-                                                        if ( (LA12_60=='o') ) {
-                                                            int LA12_62 = input.LA(14);
-
-                                                            if ( (LA12_62=='r') ) {
-                                                                int LA12_63 = input.LA(15);
-
-                                                                if ( ((LA12_63>='0' && LA12_63<='9')||(LA12_63>='A' && LA12_63<='Z')||LA12_63=='_'||(LA12_63>='a' && LA12_63<='z')) ) {
-                                                                    alt12=7;
-                                                                }
-                                                                else {
-                                                                    alt12=3;}
-                                                            }
-                                                            else {
-                                                                alt12=7;}
-                                                        }
-                                                        else {
-                                                            alt12=7;}
-                                                    }
-                                                    else {
-                                                        alt12=7;}
-                                                }
-                                                else {
-                                                    alt12=7;}
-                                            }
-                                            else {
-                                                alt12=7;}
-                                        }
-                                        else {
-                                            alt12=7;}
-                                    }
-                                    else {
-                                        alt12=7;}
-                                }
-                                else {
-                                    alt12=7;}
-                            }
-                            else {
-                                alt12=7;}
-                        }
-                        else {
-                            alt12=7;}
-                    }
-                    else {
-                        alt12=7;}
-                }
-                else {
-                    alt12=7;}
-            }
-            else {
-                alt12=7;}
-        }
-        else if ( (LA12_0=='e') ) {
-            switch ( input.LA(2) ) {
-            case 'n':
-                {
-                int LA12_18 = input.LA(3);
-
-                if ( (LA12_18=='t') ) {
-                    int LA12_29 = input.LA(4);
-
-                    if ( (LA12_29=='r') ) {
-                        int LA12_35 = input.LA(5);
-
-                        if ( (LA12_35=='y') ) {
-                            int LA12_40 = input.LA(6);
-
-                            if ( ((LA12_40>='0' && LA12_40<='9')||(LA12_40>='A' && LA12_40<='Z')||LA12_40=='_'||(LA12_40>='a' && LA12_40<='z')) ) {
-                                alt12=7;
-                            }
-                            else {
-                                alt12=4;}
-                        }
-                        else {
-                            alt12=7;}
-                    }
-                    else {
-                        alt12=7;}
-                }
-                else {
-                    alt12=7;}
-                }
-                break;
-            case 'x':
-                {
-                int LA12_19 = input.LA(3);
-
-                if ( (LA12_19=='i') ) {
                     int LA12_30 = input.LA(4);
 
                     if ( (LA12_30=='t') ) {
                         int LA12_36 = input.LA(5);
 
-                        if ( ((LA12_36>='0' && LA12_36<='9')||(LA12_36>='A' && LA12_36<='Z')||LA12_36=='_'||(LA12_36>='a' && LA12_36<='z')) ) {
-                            alt12=7;
+                        if ( (LA12_36=='e') ) {
+                            int LA12_41 = input.LA(6);
+
+                            if ( (LA12_41=='M') ) {
+                                int LA12_46 = input.LA(7);
+
+                                if ( (LA12_46=='a') ) {
+                                    int LA12_50 = input.LA(8);
+
+                                    if ( (LA12_50=='c') ) {
+                                        int LA12_53 = input.LA(9);
+
+                                        if ( (LA12_53=='h') ) {
+                                            int LA12_56 = input.LA(10);
+
+                                            if ( (LA12_56=='i') ) {
+                                                int LA12_58 = input.LA(11);
+
+                                                if ( (LA12_58=='n') ) {
+                                                    int LA12_60 = input.LA(12);
+
+                                                    if ( (LA12_60=='e') ) {
+                                                        int LA12_62 = input.LA(13);
+
+                                                        if ( ((LA12_62>='0' && LA12_62<='9')||(LA12_62>='A' && LA12_62<='Z')||LA12_62=='_'||(LA12_62>='a' && LA12_62<='z')) ) {
+                                                            alt12=9;
+                                                        }
+                                                        else {
+                                                            alt12=2;}
+                                                    }
+                                                    else {
+                                                        alt12=9;}
+                                                }
+                                                else {
+                                                    alt12=9;}
+                                            }
+                                            else {
+                                                alt12=9;}
+                                        }
+                                        else {
+                                            alt12=9;}
+                                    }
+                                    else {
+                                        alt12=9;}
+                                }
+                                else {
+                                    alt12=9;}
+                            }
+                            else {
+                                alt12=9;}
                         }
                         else {
-                            alt12=6;}
+                            alt12=9;}
                     }
                     else {
-                        alt12=7;}
+                        alt12=9;}
                 }
                 else {
-                    alt12=7;}
+                    alt12=9;}
+            }
+            else {
+                alt12=9;}
+        }
+        else if ( (LA12_0=='O') ) {
+            int LA12_3 = input.LA(2);
+
+            if ( (LA12_3=='p') ) {
+                int LA12_18 = input.LA(3);
+
+                if ( (LA12_18=='a') ) {
+                    int LA12_31 = input.LA(4);
+
+                    if ( (LA12_31=='q') ) {
+                        int LA12_37 = input.LA(5);
+
+                        if ( (LA12_37=='u') ) {
+                            int LA12_42 = input.LA(6);
+
+                            if ( (LA12_42=='e') ) {
+                                int LA12_47 = input.LA(7);
+
+                                if ( (LA12_47=='B') ) {
+                                    int LA12_51 = input.LA(8);
+
+                                    if ( (LA12_51=='e') ) {
+                                        int LA12_54 = input.LA(9);
+
+                                        if ( (LA12_54=='h') ) {
+                                            int LA12_57 = input.LA(10);
+
+                                            if ( (LA12_57=='a') ) {
+                                                int LA12_59 = input.LA(11);
+
+                                                if ( (LA12_59=='v') ) {
+                                                    int LA12_61 = input.LA(12);
+
+                                                    if ( (LA12_61=='i') ) {
+                                                        int LA12_63 = input.LA(13);
+
+                                                        if ( (LA12_63=='o') ) {
+                                                            int LA12_65 = input.LA(14);
+
+                                                            if ( (LA12_65=='r') ) {
+                                                                int LA12_66 = input.LA(15);
+
+                                                                if ( ((LA12_66>='0' && LA12_66<='9')||(LA12_66>='A' && LA12_66<='Z')||LA12_66=='_'||(LA12_66>='a' && LA12_66<='z')) ) {
+                                                                    alt12=9;
+                                                                }
+                                                                else {
+                                                                    alt12=3;}
+                                                            }
+                                                            else {
+                                                                alt12=9;}
+                                                        }
+                                                        else {
+                                                            alt12=9;}
+                                                    }
+                                                    else {
+                                                        alt12=9;}
+                                                }
+                                                else {
+                                                    alt12=9;}
+                                            }
+                                            else {
+                                                alt12=9;}
+                                        }
+                                        else {
+                                            alt12=9;}
+                                    }
+                                    else {
+                                        alt12=9;}
+                                }
+                                else {
+                                    alt12=9;}
+                            }
+                            else {
+                                alt12=9;}
+                        }
+                        else {
+                            alt12=9;}
+                    }
+                    else {
+                        alt12=9;}
+                }
+                else {
+                    alt12=9;}
+            }
+            else {
+                alt12=9;}
+        }
+        else if ( (LA12_0==':') ) {
+            int LA12_4 = input.LA(2);
+
+            if ( (LA12_4==':') ) {
+                alt12=5;
+            }
+            else {
+                alt12=4;}
+        }
+        else if ( (LA12_0=='e') ) {
+            switch ( input.LA(2) ) {
+            case 'x':
+                {
+                int LA12_21 = input.LA(3);
+
+                if ( (LA12_21=='i') ) {
+                    int LA12_32 = input.LA(4);
+
+                    if ( (LA12_32=='t') ) {
+                        int LA12_38 = input.LA(5);
+
+                        if ( ((LA12_38>='0' && LA12_38<='9')||(LA12_38>='A' && LA12_38<='Z')||LA12_38=='_'||(LA12_38>='a' && LA12_38<='z')) ) {
+                            alt12=9;
+                        }
+                        else {
+                            alt12=8;}
+                    }
+                    else {
+                        alt12=9;}
+                }
+                else {
+                    alt12=9;}
+                }
+                break;
+            case 'n':
+                {
+                int LA12_22 = input.LA(3);
+
+                if ( (LA12_22=='t') ) {
+                    int LA12_33 = input.LA(4);
+
+                    if ( (LA12_33=='r') ) {
+                        int LA12_39 = input.LA(5);
+
+                        if ( (LA12_39=='y') ) {
+                            int LA12_44 = input.LA(6);
+
+                            if ( ((LA12_44>='0' && LA12_44<='9')||(LA12_44>='A' && LA12_44<='Z')||LA12_44=='_'||(LA12_44>='a' && LA12_44<='z')) ) {
+                                alt12=9;
+                            }
+                            else {
+                                alt12=6;}
+                        }
+                        else {
+                            alt12=9;}
+                    }
+                    else {
+                        alt12=9;}
+                }
+                else {
+                    alt12=9;}
                 }
                 break;
             default:
-                alt12=7;}
+                alt12=9;}
 
         }
         else if ( (LA12_0=='d') ) {
-            int LA12_5 = input.LA(2);
-
-            if ( (LA12_5=='o') ) {
-                int LA12_20 = input.LA(3);
-
-                if ( ((LA12_20>='0' && LA12_20<='9')||(LA12_20>='A' && LA12_20<='Z')||LA12_20=='_'||(LA12_20>='a' && LA12_20<='z')) ) {
-                    alt12=7;
-                }
-                else {
-                    alt12=5;}
-            }
-            else {
-                alt12=7;}
-        }
-        else if ( (LA12_0=='^') ) {
             int LA12_6 = input.LA(2);
 
-            if ( ((LA12_6>='A' && LA12_6<='Z')||LA12_6=='_'||(LA12_6>='a' && LA12_6<='z')) ) {
-                alt12=7;
+            if ( (LA12_6=='o') ) {
+                int LA12_23 = input.LA(3);
+
+                if ( ((LA12_23>='0' && LA12_23<='9')||(LA12_23>='A' && LA12_23<='Z')||LA12_23=='_'||(LA12_23>='a' && LA12_23<='z')) ) {
+                    alt12=9;
+                }
+                else {
+                    alt12=7;}
             }
             else {
-                alt12=13;}
+                alt12=9;}
         }
-        else if ( ((LA12_0>='B' && LA12_0<='N')||(LA12_0>='P' && LA12_0<='R')||(LA12_0>='T' && LA12_0<='Z')||LA12_0=='_'||(LA12_0>='a' && LA12_0<='c')||(LA12_0>='f' && LA12_0<='z')) ) {
-            alt12=7;
-        }
-        else if ( ((LA12_0>='0' && LA12_0<='9')) ) {
-            alt12=8;
-        }
-        else if ( (LA12_0=='\"') ) {
-            int LA12_9 = input.LA(2);
+        else if ( (LA12_0=='^') ) {
+            int LA12_7 = input.LA(2);
 
-            if ( ((LA12_9>='\u0000' && LA12_9<='\uFFFE')) ) {
+            if ( ((LA12_7>='A' && LA12_7<='Z')||LA12_7=='_'||(LA12_7>='a' && LA12_7<='z')) ) {
                 alt12=9;
             }
             else {
-                alt12=13;}
+                alt12=15;}
         }
-        else if ( (LA12_0=='\'') ) {
+        else if ( ((LA12_0>='B' && LA12_0<='N')||(LA12_0>='P' && LA12_0<='R')||(LA12_0>='T' && LA12_0<='Z')||LA12_0=='_'||(LA12_0>='a' && LA12_0<='c')||(LA12_0>='f' && LA12_0<='z')) ) {
+            alt12=9;
+        }
+        else if ( ((LA12_0>='0' && LA12_0<='9')) ) {
+            alt12=10;
+        }
+        else if ( (LA12_0=='\"') ) {
             int LA12_10 = input.LA(2);
 
             if ( ((LA12_10>='\u0000' && LA12_10<='\uFFFE')) ) {
-                alt12=9;
+                alt12=11;
             }
             else {
-                alt12=13;}
+                alt12=15;}
+        }
+        else if ( (LA12_0=='\'') ) {
+            int LA12_11 = input.LA(2);
+
+            if ( ((LA12_11>='\u0000' && LA12_11<='\uFFFE')) ) {
+                alt12=11;
+            }
+            else {
+                alt12=15;}
         }
         else if ( (LA12_0=='/') ) {
             switch ( input.LA(2) ) {
-            case '/':
-                {
-                alt12=11;
-                }
-                break;
             case '*':
                 {
-                alt12=10;
+                alt12=12;
+                }
+                break;
+            case '/':
+                {
+                alt12=13;
                 }
                 break;
             default:
-                alt12=13;}
+                alt12=15;}
 
         }
         else if ( ((LA12_0>='\t' && LA12_0<='\n')||LA12_0=='\r'||LA12_0==' ') ) {
-            alt12=12;
+            alt12=14;
         }
-        else if ( ((LA12_0>='\u0000' && LA12_0<='\b')||(LA12_0>='\u000B' && LA12_0<='\f')||(LA12_0>='\u000E' && LA12_0<='\u001F')||LA12_0=='!'||(LA12_0>='#' && LA12_0<='&')||(LA12_0>='(' && LA12_0<='.')||(LA12_0>=':' && LA12_0<='@')||(LA12_0>='[' && LA12_0<=']')||LA12_0=='`'||(LA12_0>='{' && LA12_0<='\uFFFE')) ) {
-            alt12=13;
+        else if ( ((LA12_0>='\u0000' && LA12_0<='\b')||(LA12_0>='\u000B' && LA12_0<='\f')||(LA12_0>='\u000E' && LA12_0<='\u001F')||LA12_0=='!'||(LA12_0>='#' && LA12_0<='&')||(LA12_0>='(' && LA12_0<='.')||(LA12_0>=';' && LA12_0<='@')||(LA12_0>='[' && LA12_0<=']')||LA12_0=='`'||(LA12_0>='{' && LA12_0<='\uFFFE')) ) {
+            alt12=15;
         }
         else {
             NoViableAltException nvae =
-                new NoViableAltException("1:1: Tokens : ( T11 | T12 | T13 | T14 | T15 | T16 | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );", 12, 0, input);
+                new NoViableAltException("1:1: Tokens : ( T11 | T12 | T13 | T14 | T15 | T16 | T17 | T18 | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );", 12, 0, input);
 
             throw nvae;
         }
@@ -1064,49 +1099,63 @@ public class InternalUmlStateLexer extends Lexer {
                 }
                 break;
             case 7 :
-                // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1:34: RULE_ID
+                // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1:34: T17
+                {
+                mT17(); 
+
+                }
+                break;
+            case 8 :
+                // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1:38: T18
+                {
+                mT18(); 
+
+                }
+                break;
+            case 9 :
+                // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1:42: RULE_ID
                 {
                 mRULE_ID(); 
 
                 }
                 break;
-            case 8 :
-                // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1:42: RULE_INT
+            case 10 :
+                // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1:50: RULE_INT
                 {
                 mRULE_INT(); 
 
                 }
                 break;
-            case 9 :
-                // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1:51: RULE_STRING
+            case 11 :
+                // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1:59: RULE_STRING
                 {
                 mRULE_STRING(); 
 
                 }
                 break;
-            case 10 :
-                // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1:63: RULE_ML_COMMENT
+            case 12 :
+                // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1:71: RULE_ML_COMMENT
                 {
                 mRULE_ML_COMMENT(); 
 
                 }
                 break;
-            case 11 :
-                // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1:79: RULE_SL_COMMENT
+            case 13 :
+                // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1:87: RULE_SL_COMMENT
                 {
                 mRULE_SL_COMMENT(); 
 
                 }
                 break;
-            case 12 :
-                // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1:95: RULE_WS
+            case 14 :
+                // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1:103: RULE_WS
                 {
                 mRULE_WS(); 
 
                 }
                 break;
-            case 13 :
-                // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1:103: RULE_ANY_OTHER
+            case 15 :
+                // ../org.eclipse.papyrus.state.editor.xtext.ui/src-gen/org/eclipse/papyrus/state/editor/xtext/ui/contentassist/antlr/internal/InternalUmlState.g:1:111: RULE_ANY_OTHER
                 {
                 mRULE_ANY_OTHER(); 
 

@@ -8,28 +8,24 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
+ *  Saadia Dhouib saadia.dhouib@cea.fr  
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.edit.policies;
 
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.List;
 
 import java.util.List;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.command.DeleteCommand;
 import org.eclipse.gef.commands.Command;
-import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
-import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
-import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyReferenceCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
-import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.command.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.diagram.communication.edit.commands.CommentAnnotatedElementCreateCommand;
@@ -47,7 +43,6 @@ import org.eclipse.papyrus.diagram.communication.edit.parts.ConnectorDurationObs
 import org.eclipse.papyrus.diagram.communication.edit.parts.ConnectorTimeObservationEditPart;
 import org.eclipse.papyrus.diagram.communication.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.diagram.communication.edit.parts.MessageEditPart;
-import org.eclipse.papyrus.diagram.communication.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.communication.providers.UMLElementTypes;
 
 /**
@@ -61,6 +56,9 @@ public class LifelineItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPol
 	public LifelineItemSemanticEditPolicyCN() {
 		super(UMLElementTypes.Lifeline_8001);
 	}
+
+
+
 
 	/**
 	 * @generated
@@ -78,12 +76,13 @@ public class LifelineItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPol
 			List<EObject> todestroy = new ArrayList<EObject>();
 			todestroy.add(req.getElementToDestroy());
 			//cmd.add(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(req));
-			cmd.add(new EMFtoGMFCommandWrapper(new org.eclipse.emf.edit.command.DeleteCommand(getEditingDomain(), todestroy)));
+			cmd.add(new EMFtoGMFCommandWrapper(new DeleteCommand(getEditingDomain(), todestroy)));
 		} else {
-			cmd.add(new DeleteCommand(getEditingDomain(), view));
+			cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), view));
 		}
 		return getGEFWrapper(cmd.reduce());
 	}
+
 
 	/**
 	 * @generated
@@ -152,8 +151,8 @@ public class LifelineItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPol
 	}
 
 	/**
-	 * Returns command to reorient EReference based link. New link target or
-	 * source should be the domain model element associated with this node.
+	 * Returns command to reorient EReference based link. New link target or source
+	 * should be the domain model element associated with this node.
 	 * 
 	 * @generated
 	 */

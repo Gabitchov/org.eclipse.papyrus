@@ -53,6 +53,7 @@ import org.eclipse.uml2.uml.Transition;
 import org.eclipse.uml2.uml.Trigger;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.xtext.gmf.glue.PopupEditorConfiguration;
+import org.eclipse.xtext.gmf.glue.edit.part.DefaultXtextSemanticValidator;
 import org.eclipse.xtext.gmf.glue.edit.part.IXtextEMFReconciler;
 
 import com.google.inject.Injector;
@@ -126,7 +127,12 @@ public class TransitionPopupEditorConfigurationContribution extends PopupEditorC
 				}
 			}
 		};
-		return super.createPopupEditorHelper(graphicalEditPart, injector, reconciler, textToEdit, fileExtension);
+		return super.createPopupEditorHelper(graphicalEditPart, 
+											injector, 
+											reconciler, 
+											textToEdit, 
+											fileExtension,
+											new DefaultXtextSemanticValidator());
 	}
 
 	/*
@@ -139,9 +145,6 @@ public class TransitionPopupEditorConfigurationContribution extends PopupEditorC
 		if(editedObject instanceof Transition) {
 			Transition transition = (Transition)editedObject;
 			String textToEdit = "";
-
-			// Name
-			textToEdit = textToEdit + transition.getName() + "\n";
 
 			// Triggers
 			if(!transition.getTriggers().isEmpty()) {
@@ -257,9 +260,7 @@ public class TransitionPopupEditorConfigurationContribution extends PopupEditorC
 			//////////////////////////////////////////////////////////////////////////////////////////////////
 			// Then extract any relevant information from the TransitionRuleObject, and update the Transition
 			//////////////////////////////////////////////////////////////////////////////////////////////////
-			// Extract the new name for the transition
-			this.newName = "" + transitionRuleObject.getName();
-			transition.setName(this.newName);
+
 			// Create the new triggers
 			if(transitionRuleObject.getTriggers() != null) {
 				for(EventRule eventRule : transitionRuleObject.getTriggers()) {

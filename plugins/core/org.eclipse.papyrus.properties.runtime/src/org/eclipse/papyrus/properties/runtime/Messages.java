@@ -27,6 +27,8 @@ public class Messages extends NLS {
 	/** Label for the Operation: Destroy operation */
 	public static String EMFTEReferenceController_DeleteElement_OperationLabel;
 
+	public static String ReferenceEMFModelHandler_Select_Values;
+
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

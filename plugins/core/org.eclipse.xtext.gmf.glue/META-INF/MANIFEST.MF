@@ -14,7 +14,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.xtext.ui;bundle-version="0.8.0",
  org.eclipse.core.expressions;bundle-version="3.4.100",
  org.eclipse.xtext.ui.shared;bundle-version="0.8.0",
- org.eclipse.papyrus.extensionpoints.editors;bundle-version="0.7.0",
+ org.eclipse.papyrus.extensionpoints.editors;bundle-version="0.7.1",
  org.eclipse.uml2.uml;bundle-version="3.1.0",
  org.eclipse.papyrus.sasheditor;bundle-version="0.7.0",
  org.eclipse.papyrus.editor;bundle-version="0.7.0",
@@ -22,6 +22,8 @@ Require-Bundle: org.eclipse.ui,
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.xtext.gmf.glue,
+ org.eclipse.xtext.gmf.glue.contentassist,
  org.eclipse.xtext.gmf.glue.edit.part,
- org.eclipse.xtext.gmf.glue.editingdomain
+ org.eclipse.xtext.gmf.glue.editingdomain,
+ org.eclipse.xtext.gmf.glue.partialEditing
 Import-Package: org.apache.log4j;version="1.2.15"

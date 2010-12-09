@@ -49,11 +49,13 @@ public class DiagramPreferencePage extends DiagramsPreferencePage {
 
 	private Set<AbstractGroup> groupSet;
 
-	public void createControl(Composite parent){
+	public void createControl(Composite parent) {
 		super.createControl(parent);
 		initGroup();
 	}
-	private String key=null;
+
+	private String key = null;
+
 	@Override
 	protected Control createContents(Composite parent) {
 		Group contentGroup = new Group(parent, 2);
@@ -72,16 +74,18 @@ public class DiagramPreferencePage extends DiagramsPreferencePage {
 		addAbstractGroup(connectionGroupComposite);
 
 		//background
-		BackgroundColor backgroundColorGroup = new DiagramBackgroundColor(contentGroup,getPreferenceKey(), this);
+		BackgroundColor backgroundColorGroup = new DiagramBackgroundColor(contentGroup, getPreferenceKey(), this);
 		addAbstractGroup(backgroundColorGroup);
 
 		DecorationGroup decorationGroupComposite = new DiagramDecorationGroup(contentGroup, getPreferenceKey(), this);
 		addAbstractGroup(decorationGroupComposite);
 		return super.createContents(parent);
 	}
-	protected String getPreferenceKey(){
+
+	protected String getPreferenceKey() {
 		return this.key;
 	}
+
 	/**
 	 * Init groups contained in this page.
 	 */
@@ -93,10 +97,12 @@ public class DiagramPreferencePage extends DiagramsPreferencePage {
 			}
 		}
 	}
+
 	public boolean performOk() {
 		VisiblePageSingleton.getInstance().store();
 		return super.performOk();
 	}
+
 	/**
 	 * Stores the values of the fields contained in this page into the preference store.
 	 */
@@ -106,8 +112,9 @@ public class DiagramPreferencePage extends DiagramsPreferencePage {
 				gs.storePreferences();
 			}
 		}
-		
+
 	}
+
 	/**
 	 * store all preferences
 	 */
@@ -117,9 +124,10 @@ public class DiagramPreferencePage extends DiagramsPreferencePage {
 
 	}
 
-	protected void setPreferenceKey(String aKey){
-		this.key=aKey;
+	protected void setPreferenceKey(String aKey) {
+		this.key = aKey;
 	}
+
 	@Override
 	public void dispose() {
 		super.dispose();
@@ -131,6 +139,7 @@ public class DiagramPreferencePage extends DiagramsPreferencePage {
 
 
 	}
+
 	/**
 	 * Add the given field editor to the page.
 	 */
@@ -140,6 +149,7 @@ public class DiagramPreferencePage extends DiagramsPreferencePage {
 		}
 		groupSet.add(fe);
 	}
+
 	/**
 	 * Load the default preferences of the fields contained in this page
 	 */
@@ -151,6 +161,7 @@ public class DiagramPreferencePage extends DiagramsPreferencePage {
 		}
 
 	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -160,12 +171,14 @@ public class DiagramPreferencePage extends DiagramsPreferencePage {
 		loadDefaultPreferences();
 		super.performDefaults();
 	}
+
 	@Override
 	public void setVisible(boolean visible) {
 		// TODO Auto-generated method stub
-		if(visible==true){
+		if(visible == true) {
 			VisiblePageSingleton.getInstance().setVisiblePage(this);
-			initGroup();}
+			initGroup();
+		}
 		super.setVisible(visible);
 
 	}

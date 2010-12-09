@@ -17,45 +17,75 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.draw2d.AbstractPointListShape;
+import org.eclipse.draw2d.Connection;
+import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
+import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.command.SetCommand;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
-import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
+import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
-import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.figures.BorderedNodeFigure;
-import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
-import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.BaseSlidableAnchor;
+import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.gmf.runtime.notation.Anchor;
+import org.eclipse.gmf.runtime.notation.Bounds;
+import org.eclipse.gmf.runtime.notation.Edge;
+import org.eclipse.gmf.runtime.notation.IdentityAnchor;
+import org.eclipse.gmf.runtime.notation.LayoutConstraint;
+import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.diagram.common.helper.DurationConstraintHelper;
+import org.eclipse.papyrus.diagram.common.helper.InteractionFragmentHelper;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragment2EditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DestructionEventEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionOperandEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionUseEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantEditPart;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.common.util.CacheAdapter;
 import org.eclipse.uml2.uml.CombinedFragment;
+import org.eclipse.uml2.uml.Continuation;
 import org.eclipse.uml2.uml.DestructionEvent;
 import org.eclipse.uml2.uml.DurationConstraint;
 import org.eclipse.uml2.uml.Element;
@@ -65,15 +95,18 @@ import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.InteractionOperand;
-import org.eclipse.uml2.uml.IntervalConstraint;
+import org.eclipse.uml2.uml.InteractionOperatorKind;
+import org.eclipse.uml2.uml.InteractionUse;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
+import org.eclipse.uml2.uml.MessageEnd;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 import org.eclipse.uml2.uml.MessageSort;
-import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
+import org.eclipse.uml2.uml.StateInvariant;
 import org.eclipse.uml2.uml.TimeConstraint;
 import org.eclipse.uml2.uml.TimeObservation;
+import org.eclipse.uml2.uml.UMLPackage;
 
 
 public class SequenceUtil {
@@ -81,99 +114,346 @@ public class SequenceUtil {
 	private static final double MAXIMAL_DISTANCE_FROM_EVENT = 10;
 
 	/**
+	 * Title for dialog of block message sort modification error
+	 */
+	private static final String BLOCK_SORT_MODIFICATION_TITLE = "Forbidden action"; //$NON-NLS-1$
+
+	/**
+	 * Message for dialog of block message sort modification error
+	 */
+	private static final String BLOCK_SORT_MODIFICATION_MSG = "It's impossible to change the message sort."; //$NON-NLS-1$
+
+	/**
 	 * Find the container interaction fragment at the given location.
-	 * The elements are drawn under the lifeline, but their model container is an interaction fragment.
-	 * It can be of type Interaction or InteractionOperand
+	 * The elements are drawn under the lifeline, but their model container is an interaction.
+	 * It can be of type Interaction or InteractionOperand.
 	 * 
 	 * @param location
 	 *        the location
-	 * @return the interaction fragment or null
+	 * @return the interaction or null
 	 */
-	public static InteractionFragment findInteractionFragmentAt(Point location, EditPart host) {
-
-		if(host == null) {
-			return null;
-		}
-
-		List<IFigure> exclusionSet = new ArrayList<IFigure>();
-
-		InteractionFragment interactionFragment = null;
-		EditPart ep = host.getRoot().getViewer().findObjectAtExcluding(location, exclusionSet);
-		while(ep instanceof LifelineEditPart || ep instanceof BehaviorExecutionSpecificationEditPart || ep instanceof ActionExecutionSpecificationEditPart || ep instanceof StateInvariantEditPart || ep instanceof DestructionEventEditPart || ep instanceof CombinedFragment2EditPart) {
-			exclusionSet.add(((GraphicalEditPart)ep).getFigure());
-			ep = host.getRoot().getViewer().findObjectAtExcluding(location, exclusionSet);
-		}
-		// Get the rootEditpart Content
-		if(ep != null && ep.getModel() instanceof View) {
-			EObject eObject = ViewUtil.resolveSemanticElement((View)ep.getModel());
-			if(eObject instanceof InteractionOperand || eObject instanceof Interaction) {
-				interactionFragment = (InteractionFragment)eObject;
-			}
-		}
-
-		return interactionFragment;
+	public static InteractionFragment findInteractionFragmentContainerAt(Point location, EditPart hostEditPart) {
+		Rectangle bounds = new Rectangle();
+		bounds.setLocation(location);
+		return findInteractionFragmentContainerAt(bounds, hostEditPart);
 	}
 
 	/**
-	 * Find the location on the lifeline of an occurrence specification
+	 * Find the container interaction fragment for the given bounds.
+	 * The elements are drawn under the lifeline, but their model container is an interaction.
+	 * It can be of type Interaction or InteractionOperand.
+	 * 
+	 * @param bounds
+	 *        the bounds
+	 * @param hostEditPart
+	 *        any adit part in the corresponding diagram
+	 * @return the interaction or null
+	 */
+	@SuppressWarnings("unchecked")
+	public static InteractionFragment findInteractionFragmentContainerAt(Rectangle bounds, EditPart hostEditPart) {
+
+		if(hostEditPart == null) {
+			return null;
+		}
+
+		InteractionFragment container = null;
+		Set<InteractionFragment> coveredInteractions = new HashSet<InteractionFragment>();
+		Set<CombinedFragment> coveredCF = new HashSet<CombinedFragment>();
+
+		Set<Entry<Object, EditPart>> allEditPartEntries = hostEditPart.getViewer().getEditPartRegistry().entrySet();
+		for(Entry<Object, EditPart> epEntry : allEditPartEntries) {
+			EditPart ep = epEntry.getValue();
+
+			if(ep instanceof ShapeEditPart) {
+				ShapeEditPart sep = (ShapeEditPart)ep;
+				EObject eObject = sep.resolveSemanticElement();
+
+				if(eObject instanceof Interaction || eObject instanceof InteractionOperand) {
+
+					Rectangle figureBounds = getAbsoluteBounds(sep);
+
+					if(figureBounds.contains(bounds)) {
+						coveredInteractions.add((InteractionFragment)eObject);
+					}
+				} else if(eObject instanceof CombinedFragment) {
+					// handle case when the figure is located in the CF header as if it were in the first Interaction Operand
+					Rectangle figureBounds = getAbsoluteBounds(sep);
+					if(figureBounds.contains(bounds)) {
+						coveredCF.add((CombinedFragment)eObject);
+					}
+				}
+			}
+		}
+
+		// inspect coveredCF to ensure at least on child operand is in coveredInteractions list
+		for(CombinedFragment cf : coveredCF) {
+			List<InteractionOperand> operands = cf.getOperands();
+			if(operands.size() > 0 && Collections.disjoint(operands, coveredInteractions)) {
+				// bounds are in the header, add the first operand
+				coveredInteractions.add(operands.get(0));
+			}
+		}
+
+		// for each interaction verify if its children list does not contain an other covered interaction
+		// if it doesn't we have found the top-level interaction
+		for(InteractionFragment ift : coveredInteractions) {
+			boolean subiftFounded = false;
+			if(ift instanceof Interaction) {
+				for(InteractionFragment subift : ((Interaction)ift).getFragments()) {
+					if(subift instanceof CombinedFragment) {
+						for(InteractionOperand io : ((CombinedFragment)subift).getOperands()) {
+							if(coveredInteractions.contains(io)) {
+								subiftFounded = true;
+							}
+						}
+					}
+				}
+			}
+			if(!subiftFounded && ift instanceof InteractionOperand) {
+				for(InteractionFragment subift : ((InteractionOperand)ift).getFragments()) {
+					if(subift instanceof CombinedFragment) {
+						for(InteractionOperand io : ((CombinedFragment)subift).getOperands()) {
+							if(coveredInteractions.contains(io)) {
+								subiftFounded = true;
+							}
+						}
+					}
+				}
+			}
+			if(!subiftFounded) {
+				container = ift;
+				break;
+			}
+		}
+
+		return container;
+	}
+
+	/**
+	 * Find the location on the lifeline of an interaction fragment
 	 * 
 	 * @param lifelineEditPart
 	 *        the lifeline edit part
-	 * @param event
-	 *        the occurrence specification
-	 * @return the absolute location or null
+	 * @param fragment
+	 *        the searched interaction fragment
+	 * @return the absolute location or null if not found
 	 */
-	public static Point findLocationOfEvent(LifelineEditPart lifelineEditPart, OccurrenceSpecification event) {
+	public static Point findLocationOfEvent(LifelineEditPart lifelineEditPart, InteractionFragment fragment) {
 		if(lifelineEditPart == null) {
 			return null;
 		}
-		// search on graphical children of the lifeline
-		List<?> children = lifelineEditPart.getChildren();
-		for(Object child : children) {
-			// check destruction event
-			if(child instanceof DestructionEventEditPart) {
-				EObject destructionEvent = ((GraphicalEditPart)child).resolveSemanticElement();
-				EObject lifeline = lifelineEditPart.resolveSemanticElement();
-				if(destructionEvent instanceof DestructionEvent && lifeline instanceof Lifeline) {
-					Event destEvent = ((OccurrenceSpecification)event).getEvent();
-					if(destEvent != null && destEvent.equals(destructionEvent)) {
-						Rectangle bounds = ((GraphicalEditPart)child).getFigure().getBounds().getCopy();
-						lifelineEditPart.getFigure().translateToAbsolute(bounds);
-						return bounds.getCenter();
+		// Search for corresponding node edit part out of the lifeline.
+		if(fragment instanceof CombinedFragment || fragment instanceof Continuation || fragment instanceof InteractionOperand || fragment instanceof InteractionUse || fragment instanceof Interaction) {
+			List<View> views = DiagramEditPartsUtil.findViews(fragment, lifelineEditPart.getViewer());
+			for(View view : views) {
+				EditPart part = DiagramEditPartsUtil.getEditPartFromView(view, lifelineEditPart);
+				boolean isCombinedFragment = part instanceof CombinedFragmentEditPart || part instanceof CombinedFragment2EditPart;
+				boolean isContinuation = part instanceof ContinuationEditPart;
+				boolean isInteractionOperand = part instanceof InteractionOperandEditPart;
+				boolean isInteractionUse = part instanceof InteractionUseEditPart;
+				boolean isInteraction = part instanceof InteractionEditPart;
+				if(isCombinedFragment || isContinuation || isInteractionOperand || isInteractionUse || isInteraction) {
+					Rectangle bounds = getAbsoluteBounds((GraphicalEditPart)part);
+					return bounds.getTop();
+				}
+			}
+		} else {
+			// search on graphical children of the lifeline
+			List<?> children = lifelineEditPart.getChildren();
+			for(Object child : children) {
+				// check destruction event
+				if(child instanceof DestructionEventEditPart) {
+					EObject destructionEvent = ((GraphicalEditPart)child).resolveSemanticElement();
+					EObject lifeline = lifelineEditPart.resolveSemanticElement();
+					if(destructionEvent instanceof DestructionEvent && lifeline instanceof Lifeline && fragment instanceof OccurrenceSpecification) {
+						Event destEvent = ((OccurrenceSpecification)fragment).getEvent();
+						if(destEvent != null && destEvent.equals(destructionEvent)) {
+							Rectangle bounds = getAbsoluteBounds((GraphicalEditPart)child);
+							return bounds.getCenter();
+						}
+					}
+				}
+				// check in children executions
+				if(child instanceof ActionExecutionSpecificationEditPart || child instanceof BehaviorExecutionSpecificationEditPart) {
+					if(fragment instanceof ExecutionSpecification) {
+						// check the execution
+						EObject element = ((GraphicalEditPart)child).resolveSemanticElement();
+						if(element instanceof ExecutionSpecification) {
+							if(fragment.equals(element)) {
+								Rectangle bounds = getAbsoluteBounds((GraphicalEditPart)child);
+								return bounds.getTop();
+							}
+						}
+					} else if(fragment instanceof ExecutionOccurrenceSpecification) {
+						// check start and finish events of the execution
+						EObject element = ((GraphicalEditPart)child).resolveSemanticElement();
+						if(element instanceof ExecutionSpecification) {
+							if(fragment.equals(((ExecutionSpecification)element).getStart())) {
+								Rectangle bounds = getAbsoluteBounds((GraphicalEditPart)child);
+								return bounds.getTop();
+							} else if(fragment.equals(((ExecutionSpecification)element).getFinish())) {
+								Rectangle bounds = getAbsoluteBounds((GraphicalEditPart)child);
+								return bounds.getBottom();
+							}
+						}
+					} else if(fragment instanceof MessageOccurrenceSpecification) {
+						// check messages to and from the execution
+						Point loc = findLocationOfMessageOccurrence((GraphicalEditPart)child, (MessageOccurrenceSpecification)fragment);
+						if(loc != null) {
+							return loc;
+						}
+					}
+				}
+				// check in children StateInvariant
+				if(child instanceof StateInvariantEditPart) {
+					if(fragment instanceof StateInvariant) {
+						// check the StateInvariant
+						EObject element = ((GraphicalEditPart)child).resolveSemanticElement();
+						if(element instanceof StateInvariant) {
+							if(fragment.equals(element)) {
+								Rectangle bounds = getAbsoluteBounds((GraphicalEditPart)child);
+								return bounds.getTop();
+							}
+						}
+					} else if(fragment instanceof MessageOccurrenceSpecification) {
+						// check messages to and from the execution
+						Point loc = findLocationOfMessageOccurrence((GraphicalEditPart)child, (MessageOccurrenceSpecification)fragment);
+						if(loc != null) {
+							return loc;
+						}
 					}
 				}
 			}
-			// check in children executions
-			if(child instanceof ActionExecutionSpecificationEditPart || child instanceof BehaviorExecutionSpecificationEditPart) {
-				if(event instanceof ExecutionOccurrenceSpecification) {
-					// check start and finish events of the execution
-					EObject element = ((GraphicalEditPart)child).resolveSemanticElement();
-					if(element instanceof ExecutionSpecification) {
-						if(event.equals(((ExecutionSpecification)element).getStart())) {
-							Rectangle bounds = ((GraphicalEditPart)child).getFigure().getBounds().getCopy();
-							lifelineEditPart.getFigure().translateToAbsolute(bounds);
-							return bounds.getTop();
-						} else if(event.equals(((ExecutionSpecification)element).getFinish())) {
-							Rectangle bounds = ((GraphicalEditPart)child).getFigure().getBounds().getCopy();
-							lifelineEditPart.getFigure().translateToAbsolute(bounds);
-							return bounds.getBottom();
+			if(fragment instanceof MessageOccurrenceSpecification) {
+				// check messages to and from the lifeline
+				Point loc = findLocationOfMessageOccurrence(lifelineEditPart, (MessageOccurrenceSpecification)fragment);
+				if(loc != null) {
+					return loc;
+				}
+			}
+		}
+		// If we found nothing, this may be a sync message receive
+		if(fragment instanceof MessageOccurrenceSpecification) {
+			boolean isSync = MessageSort.SYNCH_CALL_LITERAL.equals(((MessageOccurrenceSpecification)fragment).getMessage().getMessageSort());
+			if(isSync) {
+				// sync message should trigger an execution specification start. Find and return the corresponding start.
+				EObject container = fragment.eContainer();
+				EObject lifeline = lifelineEditPart.resolveSemanticElement();
+				InteractionFragment nextFragment = InteractionFragmentHelper.findNextFragment(fragment, container);
+				while(nextFragment != null && nextFragment.getCovereds().contains(lifeline)) {
+					if(nextFragment.getCovereds().contains(lifeline)) {
+						// Found next event of lifeline. Check if it really is a start.
+						if(nextFragment instanceof ExecutionOccurrenceSpecification) {
+							ExecutionSpecification exe = ((ExecutionOccurrenceSpecification)nextFragment).getExecution();
+							if(exe != null && EcoreUtil.equals(exe.getStart(), nextFragment)) {
+								// return location of the start.
+								return findLocationOfEvent(lifelineEditPart, nextFragment);
+							}
 						}
-					}
-				} else if(event instanceof MessageOccurrenceSpecification) {
-					// check messages to and from the execution
-					Point loc = findLocationOfMessageOccurrence((GraphicalEditPart)child, (MessageOccurrenceSpecification)event);
-					if(loc != null) {
-						return loc;
+						break;
+					} else {
+						nextFragment = InteractionFragmentHelper.findNextFragment(nextFragment, container);
 					}
 				}
 			}
 		}
-		if(event instanceof MessageOccurrenceSpecification) {
-			// check messages to and from the lifeline
-			Point loc = findLocationOfMessageOccurrence(lifelineEditPart, (MessageOccurrenceSpecification)event);
-			if(loc != null) {
-				return loc;
+		return null;
+	}
+
+	/**
+	 * Get the bounds of an edit part
+	 * 
+	 * @param part
+	 *        edit part to find bounds
+	 * @return part's bounds in absolute coordinates
+	 */
+	public static Rectangle getAbsoluteBounds(IGraphicalEditPart part) {
+		// take bounds from figure
+		Rectangle bounds = part.getFigure().getBounds().getCopy();
+
+		if(part.getNotationView() instanceof Node) {
+			// rather update with up to date model bounds
+			Node node = (Node)part.getNotationView();
+			LayoutConstraint cst = node.getLayoutConstraint();
+			if(cst instanceof Bounds) {
+				Bounds b = (Bounds)cst;
+				Point parentLoc = part.getFigure().getParent().getBounds().getLocation();
+				if(b.getX() > 0) {
+					bounds.x = b.getX() + parentLoc.x;
+				}
+				if(b.getY() > 0) {
+					bounds.y = b.getY() + parentLoc.y;
+				}
+				if(b.getHeight() != -1) {
+					bounds.height = b.getHeight();
+				}
+				if(b.getWidth() != -1) {
+					bounds.width = b.getWidth();
+				}
 			}
+		}
+
+		part.getFigure().getParent().translateToAbsolute(bounds);
+		return bounds;
+	}
+
+	/**
+	 * Get the extremity of a connection edit part
+	 * 
+	 * @param connection
+	 *        the connection edit part to find extremity
+	 * @param isStart
+	 *        true to find the start, false for the end
+	 * @return connection's extremity in absolute coordinates or null
+	 */
+	public static Point getAbsoluteEdgeExtremity(ConnectionNodeEditPart connection, boolean isStart) {
+		Connection msgFigure = connection.getConnectionFigure();
+		if(connection.getNotationView() instanceof Edge) {
+			// rather take up to date model information
+			Edge edge = (Edge)connection.getNotationView();
+			Anchor idAnchor = null;
+			ConnectionAnchor conAnchor = null;
+			Object part = null;
+			if(isStart && connection.getSource() instanceof IGraphicalEditPart) {
+				View linkedFigure = edge.getSource();
+				// connection.getSource() may be not up to date, get part for linkedFigure
+				part = connection.getSource().getViewer().getEditPartRegistry().get(linkedFigure);
+				idAnchor = edge.getSourceAnchor();
+				conAnchor = msgFigure.getSourceAnchor();
+			} else if(!isStart && connection.getTarget() instanceof IGraphicalEditPart) {
+				View linkedFigure = edge.getTarget();
+				// connection.getTarget() may be not up to date, get part for linkedFigure
+				part = connection.getTarget().getViewer().getEditPartRegistry().get(linkedFigure);
+				idAnchor = edge.getTargetAnchor();
+				conAnchor = msgFigure.getTargetAnchor();
+			}
+			if(part instanceof IGraphicalEditPart && idAnchor instanceof IdentityAnchor && conAnchor != null) {
+				// take up to date bounds of the linked part in case it is moved
+				Rectangle linkedPartBounds = getAbsoluteBounds((IGraphicalEditPart)part);
+
+				IFigure anchorOwningFigure = conAnchor.getOwner();
+				IFigure partFigure = ((IGraphicalEditPart)part).getFigure();
+				Dimension delta = anchorOwningFigure.getBounds().getLocation().getDifference(partFigure.getBounds().getLocation());
+				// get position from anchor id
+				String oldTerminal = ((IdentityAnchor)idAnchor).getId();
+				PrecisionPoint pp = BaseSlidableAnchor.parseTerminalString(oldTerminal);
+				int xPos = linkedPartBounds.x + delta.width + (int)Math.round(anchorOwningFigure.getBounds().width * pp.preciseX);
+				int yPos = linkedPartBounds.y + delta.height + (int)Math.round(anchorOwningFigure.getBounds().height * pp.preciseY);
+				return new Point(xPos, yPos);
+			}
+		}
+		// can not get from model, rely on figure
+		if(msgFigure instanceof AbstractPointListShape) {
+			Point extremity;
+			if(isStart) {
+				// start event of the message
+				extremity = ((AbstractPointListShape)msgFigure).getStart().getCopy();
+			} else {
+				// finish event of the message
+				extremity = ((AbstractPointListShape)msgFigure).getEnd().getCopy();
+			}
+			msgFigure.getParent().translateToAbsolute(extremity);
+			return extremity;
 		}
 		return null;
 	}
@@ -197,9 +477,7 @@ public class SequenceUtil {
 					// finish event of the message
 					IFigure figure = ((ConnectionNodeEditPart)conn).getFigure();
 					if(figure instanceof AbstractPointListShape) {
-						Point end = ((AbstractPointListShape)figure).getEnd().getCopy();
-						((AbstractPointListShape)figure).getParent().translateToAbsolute(end);
-						return end;
+						return getAbsoluteEdgeExtremity((ConnectionNodeEditPart)conn, false);
 					}
 				}
 			}
@@ -213,9 +491,7 @@ public class SequenceUtil {
 					// start event of the message
 					IFigure figure = ((ConnectionNodeEditPart)conn).getFigure();
 					if(figure instanceof AbstractPointListShape) {
-						Point start = ((AbstractPointListShape)figure).getStart().getCopy();
-						((AbstractPointListShape)figure).getParent().translateToAbsolute(start);
-						return start;
+						return getAbsoluteEdgeExtremity((ConnectionNodeEditPart)conn, true);
 					}
 				}
 			}
@@ -247,8 +523,7 @@ public class SequenceUtil {
 				EObject element = ((GraphicalEditPart)child).resolveSemanticElement();
 				if(element instanceof ExecutionSpecification) {
 					// find start and finish events of the execution
-					Rectangle bounds = ((GraphicalEditPart)child).getFigure().getBounds().getCopy();
-					lifelineEditPart.getFigure().translateToAbsolute(bounds);
+					Rectangle bounds = getAbsoluteBounds((GraphicalEditPart)child);
 					if(!occurrences.containsKey(bounds.getTop())) {
 						// there should be at most 2 occurrences (with starting message)
 						occurrences.put(bounds.getTop(), new ArrayList<OccurrenceSpecification>(2));
@@ -271,8 +546,7 @@ public class SequenceUtil {
 						if(occurence instanceof OccurrenceSpecification) {
 							Event event = ((OccurrenceSpecification)occurence).getEvent();
 							if(destructionEvent.equals(event)) {
-								Rectangle bounds = ((GraphicalEditPart)child).getFigure().getBounds().getCopy();
-								lifelineEditPart.getFigure().translateToAbsolute(bounds);
+								Rectangle bounds = getAbsoluteBounds((GraphicalEditPart)child);
 								if(!occurrences.containsKey(bounds.getCenter())) {
 									occurrences.put(bounds.getCenter(), new ArrayList<OccurrenceSpecification>(2));
 								}
@@ -325,8 +599,7 @@ public class SequenceUtil {
 					// finish events of the message
 					IFigure figure = ((ConnectionNodeEditPart)conn).getFigure();
 					if(figure instanceof AbstractPointListShape) {
-						Point end = ((AbstractPointListShape)figure).getEnd().getCopy();
-						((AbstractPointListShape)figure).getParent().translateToAbsolute(end);
+						Point end = getAbsoluteEdgeExtremity((ConnectionNodeEditPart)conn, false);
 						if(!occurrencesMap.containsKey(end)) {
 							occurrencesMap.put(end, new ArrayList<OccurrenceSpecification>(1));
 						}
@@ -344,8 +617,7 @@ public class SequenceUtil {
 					// start events of the message
 					IFigure figure = ((ConnectionNodeEditPart)conn).getFigure();
 					if(figure instanceof AbstractPointListShape) {
-						Point start = ((AbstractPointListShape)figure).getStart().getCopy();
-						((AbstractPointListShape)figure).getParent().translateToAbsolute(start);
+						Point start = getAbsoluteEdgeExtremity((ConnectionNodeEditPart)conn, true);
 						if(!occurrencesMap.containsKey(start)) {
 							occurrencesMap.put(start, new ArrayList<OccurrenceSpecification>(1));
 						}
@@ -359,41 +631,41 @@ public class SequenceUtil {
 	/**
 	 * The position of the part where the event is linked
 	 * 
-	 * @param event
+	 * @param occSpec
 	 *        the occurrence specification
 	 * @param timeElementPart
 	 *        the part representing time element (duration/time constraint/observation)
 	 * @return one of {@link PositionConstants#TOP}, {@link PositionConstants#CENTER}, {@link PositionConstants#BOTTOM},
 	 *         {@link PositionConstants#NONE}
 	 */
-	public static int positionWhereEventIsLinkedToPart(OccurrenceSpecification event, IBorderItemEditPart timeElementPart) {
+	public static int positionWhereEventIsLinkedToPart(OccurrenceSpecification occSpec, IBorderItemEditPart timeElementPart) {
 		EObject timeElement = timeElementPart.resolveSemanticElement();
 		if(timeElement instanceof TimeObservation) {
-			if(event.equals(((TimeObservation)timeElement).getEvent())) {
+			if(occSpec.equals(((TimeObservation)timeElement).getEvent())) {
 				return PositionConstants.CENTER;
 			} else {
 				return PositionConstants.NONE;
 			}
 		} else if(timeElement instanceof TimeConstraint) {
-			if(((TimeConstraint)timeElement).getConstrainedElements().contains(event)) {
+			if(((TimeConstraint)timeElement).getConstrainedElements().contains(occSpec)) {
 				return PositionConstants.CENTER;
 			} else {
 				return PositionConstants.NONE;
 			}
 		} else if(timeElement instanceof DurationConstraint) {
-			if(((DurationConstraint)timeElement).getConstrainedElements().contains(event)) {
+			if(((DurationConstraint)timeElement).getConstrainedElements().contains(occSpec)) {
 				List<Element> events = ((DurationConstraint)timeElement).getConstrainedElements();
 				LifelineEditPart lifelinePart = getParentLifelinePart(timeElementPart);
 				if(lifelinePart != null && events.size() >= 2) {
 					OccurrenceSpecification otherEvent = null;
-					if(!event.equals(events.get(0)) && events.get(0) instanceof OccurrenceSpecification) {
+					if(!occSpec.equals(events.get(0)) && events.get(0) instanceof OccurrenceSpecification) {
 						otherEvent = (OccurrenceSpecification)events.get(0);
-					} else if(!event.equals(events.get(1)) && events.get(1) instanceof OccurrenceSpecification) {
+					} else if(!occSpec.equals(events.get(1)) && events.get(1) instanceof OccurrenceSpecification) {
 						otherEvent = (OccurrenceSpecification)events.get(1);
 					}
 					if(otherEvent != null) {
 						Point otherLoc = findLocationOfEvent(lifelinePart, otherEvent);
-						Point thisLoc = findLocationOfEvent(lifelinePart, event);
+						Point thisLoc = findLocationOfEvent(lifelinePart, occSpec);
 						if(otherLoc != null && thisLoc != null) {
 							if(otherLoc.y > thisLoc.y) {
 								return PositionConstants.TOP;
@@ -430,127 +702,7 @@ public class SequenceUtil {
 	}
 
 	/**
-	 * Get commands to move time/duration constraints/observation associated to a given element.
-	 * The updatedBounds attribute enable to avoid erasing a previous set bounds command. Resizes on a same node are combined.
-	 * 
-	 * @param lifelinePart
-	 *        the edit part of the covered lifeline graphically containing time elements
-	 * @param event
-	 *        the occurrence specification which has moved
-	 * @param referencePoint
-	 *        the point where the event is moved (in absolute)
-	 * @param editPartsNotToMove
-	 *        the list of time elements edit parts which must not be moved
-	 * @param updatedBounds
-	 *        the map containing the new bounds for the nodes which bounds are to be changed
-	 * @return the command or null
-	 */
-	public static Command getTimeRelatedElementsMoveCommands(LifelineEditPart lifelinePart, OccurrenceSpecification event, Point referencePoint, List<IBorderItemEditPart> editPartsNotToMove, Map<IBorderItemEditPart, Rectangle> updatedBounds) {
-		CompoundCommand command = new CompoundCommand();
-		referencePoint = referencePoint.getCopy();
-		IFigure parentFigure = lifelinePart.getFigure();
-		parentFigure.translateToRelative(referencePoint);
-		referencePoint.translate(parentFigure.getBounds().getLocation().getCopy().negate());
-		// relocate each linked time element contained within the lifeline part
-		for(Object lifelineChild : lifelinePart.getChildren()) {
-			if(lifelineChild instanceof IBorderItemEditPart && !editPartsNotToMove.contains(lifelineChild)) {
-				final IBorderItemEditPart timePart = (IBorderItemEditPart)lifelineChild;
-				int position = positionWhereEventIsLinkedToPart(event, timePart);
-				if(position != PositionConstants.NONE) {
-					referencePoint.x = timePart.getFigure().getBounds().getLocation().x;
-					// Get old bounds information
-					int oldY = 0;
-					int oldHeight = 0;
-					if(!updatedBounds.containsKey(timePart) || updatedBounds.get(timePart) == null) {
-						// consult old figure
-						oldY = timePart.getFigure().getBounds().getLocation().y - parentFigure.getBounds().getLocation().y;
-						oldHeight = timePart.getFigure().getSize().height;
-					} else {
-						// take updated bounds rather than obsolete information
-						oldY = updatedBounds.get(timePart).y;
-						oldHeight = updatedBounds.get(timePart).height;
-					}
-					// Compute new bounds of the time element
-					Rectangle newBounds = null;
-					if(position == PositionConstants.CENTER) {
-						newBounds = new Rectangle(referencePoint.x, referencePoint.y - oldHeight / 2, -1, oldHeight);
-					} else if(position == PositionConstants.TOP || position == PositionConstants.BOTTOM) {
-						int top = oldY;
-						int bottom = oldY + oldHeight;
-						EObject timeElement = timePart.resolveSemanticElement();
-						if(!updatedBounds.containsKey(timePart) || updatedBounds.get(timePart) == null) {
-							// bound is complex as it is based on two events. Recompute it in a better way
-							if(timeElement instanceof DurationConstraint) {
-								List<Element> contraineds = ((DurationConstraint)timeElement).getConstrainedElements();
-								IFigure parentFig = lifelinePart.getFigure();
-								if(contraineds.size() >= 2 && contraineds.get(0) instanceof OccurrenceSpecification && contraineds.get(1) instanceof OccurrenceSpecification) {
-									OccurrenceSpecification event1 = (OccurrenceSpecification)contraineds.get(0);
-									OccurrenceSpecification event2 = (OccurrenceSpecification)contraineds.get(1);
-									Point loc1 = findLocationOfEvent(lifelinePart, event1);
-									parentFig.translateToRelative(loc1);
-									loc1.translate(parentFig.getBounds().getLocation().getNegated());
-									Point loc2 = findLocationOfEvent(lifelinePart, event2);
-									parentFig.translateToRelative(loc2);
-									loc2.translate(parentFig.getBounds().getLocation().getNegated());
-									top = Math.min(loc1.y, loc2.y);
-									bottom = Math.max(loc1.y, loc2.y);
-								}
-							}
-						}
-						if(position == PositionConstants.TOP) {
-							top = referencePoint.y;
-						} else {
-							bottom = referencePoint.y;
-						}
-						newBounds = new Rectangle(referencePoint.x, Math.min(top, bottom), -1, Math.abs(bottom - top));
-					}
-					if(newBounds != null) {
-						updatedBounds.put(timePart, newBounds);
-						TransactionalEditingDomain editingDomain = timePart.getEditingDomain();
-						// chain the resize command
-						ICommandProxy resize = new ICommandProxy(new SetBoundsCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter((View)timePart.getModel()), newBounds));
-						command.add(resize);
-					}
-				}
-			}
-		}
-		// refresh layout
-		if(!command.isEmpty()) {
-			Command relayout = getReLayoutCmd(lifelinePart);
-			if(relayout != null) {
-				command.add(relayout);
-				return command;
-			}
-		}
-		return null;
-	}
-
-	/**
-	 * Get a command which refreshes the bordered layout of the node.
-	 * 
-	 * @param node
-	 *        the node with bordered items
-	 * @return the refresh command or null
-	 */
-	public static Command getReLayoutCmd(INodeEditPart node) {
-		// relayout the border container figure so that time elements are refreshed
-		IFigure fig = node.getFigure();
-		if(fig instanceof BorderedNodeFigure) {
-			final IFigure container = ((BorderedNodeFigure)fig).getBorderItemContainer();
-			Command cmd = new Command() {
-
-				@Override
-				public void execute() {
-					container.getLayoutManager().layout(container);
-				}
-			};
-			return cmd;
-		}
-		return null;
-	}
-
-	/**
-	 * Get the edit part which starts or finishes with the event on the given lifeline part
+	 * Get the edit part (message, execution, or destruction event) which starts or finishes with the event on the given lifeline part
 	 * 
 	 * @param lifelinePart
 	 *        the lifeline edit part on which the event is located
@@ -578,7 +730,7 @@ public class SequenceUtil {
 						} else if(event.equals(message.getReceiveEvent())) {
 							lifelineChild = ((ConnectionEditPart)part).getTarget();
 						}
-						LifelineEditPart parentLifeline = SequenceUtil.getParentLifelinePart(lifelineChild);
+						LifelineEditPart parentLifeline = getParentLifelinePart(lifelineChild);
 						if(lifelinePart.equals(parentLifeline)) {
 							return part;
 						}
@@ -598,7 +750,7 @@ public class SequenceUtil {
 					EditPart part = DiagramEditPartsUtil.getEditPartFromView(view, lifelinePart);
 					// the execution part must be on the lifeline
 					EditPart lifelineChild = part;
-					LifelineEditPart parentLifeline = SequenceUtil.getParentLifelinePart(lifelineChild);
+					LifelineEditPart parentLifeline = getParentLifelinePart(lifelineChild);
 					if(lifelinePart.equals(parentLifeline)) {
 						return part;
 					}
@@ -616,35 +768,6 @@ public class SequenceUtil {
 			}
 		}
 		return null;
-	}
-
-	/**
-	 * Know whether this time element part can be moved within the lifeline or not.
-	 * Parts linked with a destruction event can not be moved since the destruction event is always at the end.
-	 * 
-	 * @param timeElementPart
-	 *        the part representing a time/duration constraint/observation
-	 * @return true if the part can be moved
-	 */
-	public static boolean canTimeElementPartBeYMoved(IBorderItemEditPart timeElementPart) {
-		EObject timeElement = timeElementPart.resolveSemanticElement();
-		List<? extends Element> occurrences = Collections.emptyList();
-		if(timeElement instanceof TimeObservation) {
-			NamedElement occurence = ((TimeObservation)timeElement).getEvent();
-			occurrences = Collections.singletonList(occurence);
-		} else if(timeElement instanceof TimeConstraint || timeElement instanceof DurationConstraint) {
-			occurrences = ((IntervalConstraint)timeElement).getConstrainedElements();
-		}
-		// check whether one of the time occurrences correspond to a DestructionEvent
-		for(Element occurrence : occurrences) {
-			if(occurrence instanceof OccurrenceSpecification) {
-				Event event = ((OccurrenceSpecification)occurrence).getEvent();
-				if(event instanceof DestructionEvent) {
-					return false;
-				}
-			}
-		}
-		return true;
 	}
 
 	/**
@@ -745,4 +868,617 @@ public class SequenceUtil {
 		return elements;
 	}
 
+	public static void handleMessageSortChange(EditingDomain editingDomain, Notification notification, Message message, MessageSort expectedMessageSort) {
+		Object feature = notification.getFeature();
+
+		if(UMLPackage.eINSTANCE.getMessage_MessageSort().equals(feature) && !expectedMessageSort.equals(notification.getNewValue())) {
+			Object oldValue = notification.getOldValue();
+			if(oldValue instanceof MessageSort) {
+				MessageDialog.openWarning(Display.getCurrent().getActiveShell(), BLOCK_SORT_MODIFICATION_TITLE, BLOCK_SORT_MODIFICATION_MSG);
+				CommandHelper.executeCommandWithoutHistory(editingDomain, SetCommand.create(editingDomain, message, feature, notification.getOldValue()));
+				return;
+			}
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	public static Set<Lifeline> getCoveredLifelines(Rectangle selectionRect, EditPart hostEditPart) {
+		Set<Lifeline> coveredLifelines = new HashSet<Lifeline>();
+
+		// retrieve all the edit parts in the registry
+		Set<Entry<Object, EditPart>> allEditPartEntries = hostEditPart.getViewer().getEditPartRegistry().entrySet();
+		for(Entry<Object, EditPart> epEntry : allEditPartEntries) {
+			EditPart ep = epEntry.getValue();
+
+			if(ep instanceof ShapeEditPart) {
+				ShapeEditPart sep = (ShapeEditPart)ep;
+				EObject elem = sep.getNotationView().getElement();
+
+				if(elem instanceof Lifeline) {
+					Rectangle figureBounds = getAbsoluteBounds(sep);
+
+					if(selectionRect.intersects(figureBounds)) {
+						coveredLifelines.add((Lifeline)elem);
+					}
+				}
+			}
+		}
+		return coveredLifelines;
+	}
+
+	/**
+	 * retrieve all the interaction fragments and their related ift at least partially covered by the rectangle, including sub ift like
+	 * interaction operands in combined fragment.
+	 * 
+	 * @param selectionRect
+	 *        the rectangle where to look for ift.
+	 * @param hostEditPart
+	 *        the host edit part used to retrieve all the edit parts in the registry.
+	 * @param ignoreSet
+	 *        a set of ift to ignore.
+	 * @return
+	 *         a set containing the covered ift or null if an ift not ignored is not fully covered.
+	 */
+	@SuppressWarnings("unchecked")
+	public static Set<InteractionFragment> getCoveredInteractionFragments(Rectangle selectionRect, EditPart hostEditPart, Set<InteractionFragment> ignoreSet) {
+		Set<InteractionFragment> coveredInteractionFragments = new HashSet<InteractionFragment>();
+
+		if(ignoreSet == null) {
+			ignoreSet = new HashSet<InteractionFragment>();
+		}
+
+		// retrieve all the edit parts in the registry
+		Set<Entry<Object, EditPart>> allEditPartEntries = hostEditPart.getViewer().getEditPartRegistry().entrySet();
+		for(Entry<Object, EditPart> epEntry : allEditPartEntries) {
+			EditPart ep = epEntry.getValue();
+
+			if(ep instanceof ShapeEditPart) {
+				ShapeEditPart sep = (ShapeEditPart)ep;
+				EObject elem = sep.getNotationView().getElement();
+
+				if(elem instanceof InteractionFragment && !ignoreSet.contains(elem)) {
+					Rectangle figureBounds = getAbsoluteBounds(sep);
+
+					// keep the fragment if its figure is completely in the selection
+					// if it is inside but not completely this method return null
+					if(selectionRect.contains(figureBounds)) {
+						coveredInteractionFragments.add((InteractionFragment)elem);
+						if(elem instanceof ExecutionSpecification) {
+							ExecutionSpecification es = (ExecutionSpecification)elem;
+							coveredInteractionFragments.add(es.getStart());
+							coveredInteractionFragments.add(es.getFinish());
+						}
+					} else {
+						Rectangle intersection = selectionRect.getIntersection(figureBounds);
+						if(!intersection.equals(new Rectangle()) && !intersection.equals(selectionRect)) {
+							return null;
+						}
+					}
+				}
+
+			} else if(ep instanceof ConnectionEditPart) {
+				ConnectionEditPart cep = (ConnectionEditPart)ep;
+				EObject elem = cep.getNotationView().getElement();
+
+				// for connections, messages have ends that are ift but don't have theirs own edit parts
+				// => use anchors to determine if they should be included in the set
+				if(elem instanceof Message) {
+					Message msg = (Message)elem;
+					Connection msgFigure = cep.getConnectionFigure();
+
+					Point sourcePoint = msgFigure.getSourceAnchor().getReferencePoint();
+					Point targetPoint = msgFigure.getTargetAnchor().getReferencePoint();
+
+					if(selectionRect.contains(sourcePoint)) {
+						MessageEnd msgSendEnd = msg.getSendEvent();
+						if(msgSendEnd instanceof InteractionFragment) {
+							coveredInteractionFragments.add((InteractionFragment)msgSendEnd);
+						}
+					}
+					if(selectionRect.contains(targetPoint)) {
+						MessageEnd msgReceiveEnd = msg.getReceiveEvent();
+						if(msgReceiveEnd instanceof InteractionFragment) {
+							coveredInteractionFragments.add((InteractionFragment)msgReceiveEnd);
+						}
+					}
+				}
+			}
+		}
+		return coveredInteractionFragments;
+	}
+
+	/**
+	 * return a command to set the enclosing interaction or interaction operand of an interaction fragment.
+	 * 
+	 * @param ed
+	 *        The transactional editing domain.
+	 * @param ift
+	 *        The interaction fragment.
+	 * @param io
+	 *        the new enclosing interaction.
+	 * @return The command.
+	 */
+	public static ICommand getSetEnclosingInteractionCommand(final TransactionalEditingDomain ed, final InteractionFragment ift, final EObject interaction) {
+		return new AbstractTransactionalCommand(ed, "Set enclosing interaction command", null) {
+
+			@Override
+			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+				setEnclosingInteraction(ift, interaction, false);
+
+				return CommandResult.newOKCommandResult();
+			}
+		};
+	}
+
+	/**
+	 * Set the interaction or interaction operand which contains a fragment
+	 * 
+	 * @param ift
+	 *        fragment to update container
+	 * @param interaction
+	 *        new containing interaction or interaction operand
+	 * @param forceIfCoregion
+	 *        force the set even if fragment belong to a coregion. Use true only when you are sure the fragment no longer belongs to a coregion's
+	 *        operand.
+	 */
+	public static void setEnclosingInteraction(InteractionFragment ift, EObject interaction, boolean forceIfCoregion) {
+		if(ift != null) {
+			if(interaction instanceof Interaction) {
+				if(!interaction.equals(ift.getEnclosingInteraction())) {
+					// check case when mos looks outside but is in a coregion.
+					if(!forceIfCoregion && ift instanceof MessageOccurrenceSpecification) {
+						InteractionOperand operand = ift.getEnclosingOperand();
+						if(operand != null) {
+							Element cf = operand.getOwner();
+							if(cf instanceof CombinedFragment && InteractionOperatorKind.PAR_LITERAL.equals(((CombinedFragment)cf).getInteractionOperator())) {
+								// was in a coregion. Check whether other mos is still in the coregion
+								Message mess = ((MessageOccurrenceSpecification)ift).getMessage();
+								// find other mos
+								MessageOccurrenceSpecification otherMos = null;
+								if(ift.equals(mess.getSendEvent()) && mess.getReceiveEvent() instanceof MessageOccurrenceSpecification) {
+									otherMos = (MessageOccurrenceSpecification)mess.getReceiveEvent();
+								} else if(ift.equals(mess.getReceiveEvent()) && mess.getSendEvent() instanceof MessageOccurrenceSpecification) {
+									otherMos = (MessageOccurrenceSpecification)mess.getSendEvent();
+								}
+								if(otherMos != null) {
+									// check that it is in a coregion (specific code is in charge of taking it out in ReconnectMessageHelper)
+									if(operand.equals(otherMos.getEnclosingOperand())) {
+										return;
+									}
+								}
+							}
+						}
+					}
+					ift.setEnclosingOperand(null);
+					ift.setEnclosingInteraction((Interaction)interaction);
+				}
+			} else if(interaction instanceof InteractionOperand) {
+				if(!interaction.equals(ift.getEnclosingOperand())) {
+					ift.setEnclosingInteraction(null);
+					ift.setEnclosingOperand((InteractionOperand)interaction);
+				}
+			}
+		}
+	}
+
+	/**
+	 * return a command to add a covered lifeline to an interaction fragment.
+	 * 
+	 * @param ed
+	 *        The transactional editing domain.
+	 * @param ift
+	 *        The interaction fragment.
+	 * @param lifeline
+	 *        the lifeline.
+	 * @return The command.
+	 */
+	public static ICommand getAddCoveredLifelineCommand(final TransactionalEditingDomain ed, final InteractionFragment ift, final Lifeline lifeline) {
+		return new AbstractTransactionalCommand(ed, "Add covered lifeline command", null) {
+
+			@Override
+			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+				ift.getCovereds().add(lifeline);
+				return CommandResult.newOKCommandResult();
+			}
+		};
+	}
+
+	/**
+	 * return a command to remove a previously covered lifeline of an interaction fragment.
+	 * 
+	 * @param ed
+	 *        The transactional editing domain.
+	 * @param ift
+	 *        The interaction fragment.
+	 * @param lifeline
+	 *        the lifeline.
+	 * @return The command.
+	 */
+	public static ICommand getRemoveCoveredLifelineCommand(final TransactionalEditingDomain ed, final InteractionFragment ift, final Lifeline lifeline) {
+		return new AbstractTransactionalCommand(ed, "Add covered lifeline command", null) {
+
+			@Override
+			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+				ift.getCovereds().remove(lifeline);
+				return CommandResult.newOKCommandResult();
+			}
+		};
+	}
+
+	/**
+	 * Create a command to update the enclosing interaction of a message end according to its new location.
+	 * 
+	 * @param movedMos
+	 *        the moved Message Occurrence Specification
+	 * @param newLocation
+	 *        the new absolute location
+	 * @param editPart
+	 *        any adit part of the corresponding diagram
+	 * @return the command or null if nothing changes
+	 */
+	//@SuppressWarnings("unchecked")
+	public static Command createUpdateEnclosingInteractionCommand(MessageOccurrenceSpecification movedMos, Point newLocation, GraphicalEditPart editPart) {
+
+		//		// calculate new bounds for the execution specification
+		//		Rectangle absoluteNewBounds = executionSpecificationEP.getFigure().getBounds().getCopy();
+		//
+		//		executionSpecificationEP.getFigure().getParent().translateToAbsolute(absoluteNewBounds);
+		//
+		//		absoluteNewBounds.translate(moveDelta);
+		//		absoluteNewBounds.resize(sizeDelta);
+		//
+		//		int xCenter = absoluteNewBounds.getCenter().x;
+		//
+		//		Rectangle top = new Rectangle(xCenter, absoluteNewBounds.y, 0, 0);
+		//		Rectangle bottom = new Rectangle(xCenter, absoluteNewBounds.bottom(), 0, 0);
+		//
+		//		// associate es with its bounds, and start and finish event with the top and bottom of the bounds
+		HashMap<InteractionFragment, Rectangle> iftToCheckForUpdate = new HashMap<InteractionFragment, Rectangle>();
+		//
+		//		ExecutionSpecification es = (ExecutionSpecification)executionSpecificationEP.resolveSemanticElement();
+
+		iftToCheckForUpdate.put(movedMos, new Rectangle(newLocation, new Dimension()));
+
+		//		iftToCheckForUpdate.put(es.getStart(), top);
+		//
+		//		iftToCheckForUpdate.put(es.getFinish(), bottom);
+		//
+		//		List<ConnectionEditPart> sourceConnectionEPs = executionSpecificationEP.getSourceConnections();
+		//
+		//		// find possible ifts associated with messages connected to the moved es
+		//		for(ConnectionEditPart sourceConnectionEP : sourceConnectionEPs) {
+		//			EObject elem = sourceConnectionEP.getNotationView().getElement();
+		//
+		//			// for connections, messages have ends that can be ift but don't have theirs own edit parts
+		//			// => use anchors to determine position
+		//			if(elem instanceof Message) {
+		//				Message msg = (Message)elem;
+		//				MessageEnd sendEvent = msg.getSendEvent();
+		//				if(sendEvent instanceof InteractionFragment) {
+		//					Connection msgFigure = sourceConnectionEP.getConnectionFigure();
+		//
+		//					Point sourcePoint = msgFigure.getSourceAnchor().getLocation(msgFigure.getTargetAnchor().getReferencePoint());
+		//
+		//					iftToCheckForUpdate.put((InteractionFragment)sendEvent, new Rectangle(sourcePoint.x + moveDelta.x, sourcePoint.y + moveDelta.y, 0, 0));
+		//				}
+		//			}
+		//		}
+		//
+		//		List<ConnectionEditPart> targetConnectionEPs = executionSpecificationEP.getTargetConnections();
+		//
+		//		for(ConnectionEditPart targetConnectionEP : targetConnectionEPs) {
+		//			EObject elem = targetConnectionEP.getNotationView().getElement();
+		//
+		//			if(elem instanceof Message) {
+		//				Message msg = (Message)elem;
+		//				MessageEnd receiveEvent = msg.getReceiveEvent();
+		//				if(receiveEvent instanceof InteractionFragment) {
+		//					Connection msgFigure = targetConnectionEP.getConnectionFigure();
+		//
+		//					Point targetPoint = msgFigure.getTargetAnchor().getLocation(msgFigure.getSourceAnchor().getReferencePoint());
+		//
+		//					iftToCheckForUpdate.put((InteractionFragment)receiveEvent, new Rectangle(targetPoint.x + moveDelta.x, targetPoint.y + moveDelta.y, 0, 0));
+		//				}
+		//			}
+		//		}
+
+		CompoundCommand cmd = new CompoundCommand();
+
+		for(Map.Entry<InteractionFragment, Rectangle> entry : iftToCheckForUpdate.entrySet()) {
+			InteractionFragment newEnclosingInteraction = findInteractionFragmentContainerAt(entry.getValue(), editPart);
+			if(newEnclosingInteraction != null) {
+				cmd.add(new ICommandProxy(getSetEnclosingInteractionCommand(editPart.getEditingDomain(), entry.getKey(), newEnclosingInteraction)));
+			}
+		}
+
+		if(!cmd.isEmpty()) {
+			return cmd;
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * Create a command to update the enclosing interaction of an execution specification according to its new bounds.
+	 * 
+	 * @param executionSpecificationEP
+	 *        the edit part of the execution specification
+	 * @param absoluteNewBounds
+	 *        the new absolute bounds
+	 * @return the command or null if nothing changes
+	 */
+	@SuppressWarnings("unchecked")
+	public static Command createUpdateEnclosingInteractionCommand(ShapeNodeEditPart executionSpecificationEP, Point moveDelta, Dimension sizeDelta) {
+
+		// calculate new bounds for the execution specification
+		Rectangle absoluteNewBounds = executionSpecificationEP.getFigure().getBounds().getCopy();
+
+		executionSpecificationEP.getFigure().getParent().translateToAbsolute(absoluteNewBounds);
+
+		absoluteNewBounds.translate(moveDelta);
+		absoluteNewBounds.resize(sizeDelta);
+
+		int xCenter = absoluteNewBounds.getCenter().x;
+
+		Rectangle top = new Rectangle(xCenter, absoluteNewBounds.y, 0, 0);
+		Rectangle bottom = new Rectangle(xCenter, absoluteNewBounds.bottom(), 0, 0);
+
+		// associate es with its bounds, and start and finish event with the top and bottom of the bounds
+		HashMap<InteractionFragment, Rectangle> iftToCheckForUpdate = new HashMap<InteractionFragment, Rectangle>();
+
+		ExecutionSpecification es = (ExecutionSpecification)executionSpecificationEP.resolveSemanticElement();
+
+		iftToCheckForUpdate.put(es, absoluteNewBounds);
+
+		iftToCheckForUpdate.put(es.getStart(), top);
+
+		iftToCheckForUpdate.put(es.getFinish(), bottom);
+
+		List<ConnectionEditPart> sourceConnectionEPs = executionSpecificationEP.getSourceConnections();
+
+		// find possible ifts associated with messages connected to the moved es
+		for(ConnectionEditPart sourceConnectionEP : sourceConnectionEPs) {
+			EObject elem = sourceConnectionEP.getNotationView().getElement();
+
+			// for connections, messages have ends that can be ift but don't have theirs own edit parts
+			// => use anchors to determine position
+			if(elem instanceof Message) {
+				Message msg = (Message)elem;
+				MessageEnd sendEvent = msg.getSendEvent();
+				if(sendEvent instanceof InteractionFragment) {
+					Connection msgFigure = sourceConnectionEP.getConnectionFigure();
+
+					Point sourcePoint = msgFigure.getSourceAnchor().getLocation(msgFigure.getTargetAnchor().getReferencePoint());
+
+					iftToCheckForUpdate.put((InteractionFragment)sendEvent, new Rectangle(sourcePoint.x + moveDelta.x, sourcePoint.y + moveDelta.y, 0, 0));
+				}
+			}
+		}
+
+		List<ConnectionEditPart> targetConnectionEPs = executionSpecificationEP.getTargetConnections();
+
+		for(ConnectionEditPart targetConnectionEP : targetConnectionEPs) {
+			EObject elem = targetConnectionEP.getNotationView().getElement();
+
+			if(elem instanceof Message) {
+				Message msg = (Message)elem;
+				MessageEnd receiveEvent = msg.getReceiveEvent();
+				if(receiveEvent instanceof InteractionFragment) {
+					Connection msgFigure = targetConnectionEP.getConnectionFigure();
+
+					Point targetPoint = msgFigure.getTargetAnchor().getLocation(msgFigure.getSourceAnchor().getReferencePoint());
+
+					iftToCheckForUpdate.put((InteractionFragment)receiveEvent, new Rectangle(targetPoint.x + moveDelta.x, targetPoint.y + moveDelta.y, 0, 0));
+				}
+			}
+		}
+
+		CompoundCommand cmd = new CompoundCommand();
+
+		for(Map.Entry<InteractionFragment, Rectangle> entry : iftToCheckForUpdate.entrySet()) {
+			InteractionFragment newEnclosingInteraction = findInteractionFragmentContainerAt(entry.getValue(), executionSpecificationEP);
+			if(newEnclosingInteraction != null) {
+				cmd.add(new ICommandProxy(getSetEnclosingInteractionCommand(executionSpecificationEP.getEditingDomain(), entry.getKey(), newEnclosingInteraction)));
+			}
+		}
+
+		if(!cmd.isEmpty()) {
+			return cmd;
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * Find the edit part a connection should be reconnected to at a given reference point on a lifeline
+	 * 
+	 * @param lifelinePart
+	 *        lifeline part on which the reconnection must be performed
+	 * @param referencePoint
+	 *        the reference point
+	 * @return lifeline or execution specification edit part to reconnect to (the most external in the lifeline)
+	 */
+	public static GraphicalEditPart findPartToReconnectTo(LifelineEditPart lifelinePart, Point referencePoint) {
+		Rectangle absoluteLifelineBounds = getAbsoluteBounds(lifelinePart);
+		// inspect children nodes of lifeline
+		List<?> children = lifelinePart.getChildren();
+		GraphicalEditPart adequateExecutionPart = null;
+		int maxDeltaWithMiddle = 0;
+		for(Object child : children) {
+			// children executions
+			if(child instanceof ActionExecutionSpecificationEditPart || child instanceof BehaviorExecutionSpecificationEditPart || child instanceof CombinedFragment2EditPart) {
+				GraphicalEditPart childPart = (GraphicalEditPart)child;
+				Rectangle absoluteBounds = getAbsoluteBounds(childPart);
+				// enlarge absolute bounds to contain also the right and bottom edges.
+				absoluteBounds.expand(1, 1);
+				if(absoluteBounds.contains(referencePoint)) {
+					// this is an adequate execution part, take the most external one
+					int deltaWithMiddle = Math.abs(absoluteBounds.getTop().x - absoluteLifelineBounds.getTop().x);
+					if(deltaWithMiddle >= maxDeltaWithMiddle) {
+						maxDeltaWithMiddle = deltaWithMiddle;
+						adequateExecutionPart = childPart;
+					}
+				}
+			}
+		}
+		if(adequateExecutionPart != null) {
+			return adequateExecutionPart;
+		}
+		return lifelinePart;
+	}
+
+	/**
+	 * Find the range of possible locations an occurrence specification should be drawn in.
+	 * 
+	 * @param lifelineEditPart
+	 *        the lifeline on which the occurrence specification appears.
+	 * @param occSpec
+	 *        the occurrence specification to find locations for.
+	 * @return rectangle within which the occurrence specification must be drawn (width is not significative)
+	 */
+	public static Rectangle findPossibleLocationsForEvent(LifelineEditPart lifelineEditPart, OccurrenceSpecification occSpec) {
+		// at least, we know the event is in the drawn lifeline
+		Rectangle result = lifelineEditPart.getContentPane().getBounds().getCopy();
+		lifelineEditPart.getFigure().translateToAbsolute(result);
+
+
+		// find the containing pane
+		IGraphicalEditPart containerPart = findDrawnContainerEditPart(lifelineEditPart, occSpec);
+		IFigure drawnContentPane = getContentPaneThatCanContainFragments(containerPart);
+		if(drawnContentPane != null) {
+			// content pane is the smallest drawn owning rectangle
+			Rectangle bounds = drawnContentPane.getBounds().getCopy();
+			drawnContentPane.getParent().translateToAbsolute(bounds);
+			// intersect with the lifeline's content
+			result.intersect(bounds);
+		}
+
+		// we must search surrounding interaction fragments within uppestContainerToSearchInto
+		EObject uppestContainerToSearchInto = containerPart.resolveSemanticElement();
+
+		InteractionFragment after = InteractionFragmentHelper.findNextFragment(occSpec, uppestContainerToSearchInto);
+		boolean foundNextFragment = false;
+		while(!foundNextFragment && after != null) {
+			Point bottom = findLocationOfEvent(lifelineEditPart, after);
+			if(bottom != null && result.contains(bottom)) {
+				int diff = bottom.y - result.bottom();
+				result.resize(0, diff);
+				foundNextFragment = true;
+			} else {
+				// fragment not represented on lifeline, search next fragment
+				after = InteractionFragmentHelper.findNextFragment(after, uppestContainerToSearchInto);
+			}
+		}
+		InteractionFragment before = InteractionFragmentHelper.findPreviousFragment(occSpec, uppestContainerToSearchInto);
+		boolean foundPreviousFragment = false;
+		while(!foundPreviousFragment && before != null) {
+			Point top = findLocationOfEvent(lifelineEditPart, before);
+			if(top != null && result.contains(top)) {
+				int diff = top.y - result.y;
+				result.translate(0, diff);
+				result.resize(0, -diff);
+				foundPreviousFragment = true;
+				/*
+				 * In case before is contained in an interaction operand or
+				 * combined fragment which does not contain the searched event,
+				 * we must also take in account the bottom border of this node.
+				 */
+				reduceByNodeContainingBefore(result, before, occSpec, lifelineEditPart);
+			} else {
+				// fragment not represented on lifeline, search next fragment
+				before = InteractionFragmentHelper.findPreviousFragment(before, uppestContainerToSearchInto);
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * Reduce the possible bounds by removing the area of an eventual interaction operand or combined fragment which contains the fragment "before"
+	 * and not the occurrence specification for which we search a location.
+	 * 
+	 * @param possibleBounds
+	 *        bounds to reduce, in which the location will be possible
+	 * @param before
+	 *        the fragment which happens before
+	 * @param occSpec
+	 *        the occurrence specification for which we search a location
+	 * @param lifelineEditPart
+	 *        the lifeline on which the occurrence specification appears.
+	 */
+	private static void reduceByNodeContainingBefore(Rectangle possibleBounds, InteractionFragment before, OccurrenceSpecification occSpec, LifelineEditPart lifelineEditPart) {
+		Element eventualNodeElement = before;
+		// inspect each container of before, until it is common with occSpec
+		while(!EcoreUtil.isAncestor(eventualNodeElement, occSpec)) {
+			// test if eventualNodeElement has bounds excluding occSpec
+			// search for the eventualNodeElement's edit part
+			List<View> views = DiagramEditPartsUtil.findViews(eventualNodeElement, lifelineEditPart.getViewer());
+			for(View view : views) {
+				EditPart part = DiagramEditPartsUtil.getEditPartFromView(view, lifelineEditPart);
+				// test if edit part is an adequate node
+				if(part instanceof IGraphicalEditPart && getContentPaneThatCanContainFragments(part) != null) {
+					Rectangle bounds = getAbsoluteBounds((IGraphicalEditPart)part);
+					// reduce so that the bounds are excluded
+					int newPossibleTop = bounds.bottom();
+					if(possibleBounds.y < newPossibleTop) {
+						int diff = newPossibleTop - possibleBounds.y;
+						possibleBounds.translate(0, diff);
+						possibleBounds.resize(0, -diff);
+					}
+				}
+			}
+			eventualNodeElement = eventualNodeElement.getOwner();
+		}
+	}
+
+	/**
+	 * Get the content pane of an edit part that can directly or indirectly contain interaction fragments (this excludes lifeline, which references)
+	 * 
+	 * @param containerPart
+	 *        container edit part
+	 * @return its content pane if the container can contain fragments, null otherwise.
+	 */
+	private static IFigure getContentPaneThatCanContainFragments(EditPart containerPart) {
+		// test all owner edit parts which can contain an interaction fragment
+		if(containerPart instanceof InteractionOperandEditPart) {
+			return ((InteractionOperandEditPart)containerPart).getContentPane();
+		} else if(containerPart instanceof CombinedFragmentEditPart) {
+			return ((CombinedFragmentEditPart)containerPart).getContentPane();
+		} else if(containerPart instanceof CombinedFragment2EditPart) {
+			return ((CombinedFragment2EditPart)containerPart).getContentPane();
+		} else if(containerPart instanceof ContinuationEditPart) {
+			return ((ContinuationEditPart)containerPart).getContentPane();
+		} else if(containerPart instanceof InteractionUseEditPart) {
+			return ((InteractionUseEditPart)containerPart).getContentPane();
+		} else if(containerPart instanceof InteractionEditPart) {
+			return ((InteractionEditPart)containerPart).getContentPane();
+		}
+		return null;
+	}
+
+	/**
+	 * Find the smallest drawn edit part containing the occurrence specification.
+	 * 
+	 * @param lifelineEditPart
+	 *        support lifeline edit part
+	 * @param occSpec
+	 *        occurrence specification to localize
+	 * @return a drawn edit part which element contains the occurrence specification or null
+	 */
+	private static IGraphicalEditPart findDrawnContainerEditPart(LifelineEditPart lifelineEditPart, OccurrenceSpecification occSpec) {
+		// find containing drawn edit parts
+		Element owner = occSpec.getOwner();
+		while(owner != null) {
+			// search for the owner's edit part
+			List<View> views = DiagramEditPartsUtil.findViews(owner, lifelineEditPart.getViewer());
+			for(View view : views) {
+				EditPart part = DiagramEditPartsUtil.getEditPartFromView(view, lifelineEditPart);
+				// test if edit part can contain the occurrence specification
+				if(part instanceof IGraphicalEditPart && getContentPaneThatCanContainFragments(part) != null) {
+					return (IGraphicalEditPart)part;
+				}
+			}
+			owner = owner.getOwner();
+		}
+		return null;
+	}
 }

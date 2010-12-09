@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
+ *  Saadia Dhouib saadia.dhouib@cea.fr  
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.edit.parts;
@@ -43,6 +43,7 @@ import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.common.editparts.NamedElementEditPart;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
+import org.eclipse.papyrus.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
 import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.diagram.communication.custom.edit.policies.CommunicationGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.diagram.communication.custom.edit.policies.CustomDiagramDragDropEditPolicy;
@@ -59,6 +60,7 @@ import org.eclipse.swt.graphics.Color;
  * @generated
  */
 public class InteractionEditPart extends
+
 
 NamedElementEditPart {
 
@@ -94,19 +96,26 @@ NamedElementEditPart {
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CommunicationGraphicalNodeEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
+		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
+
+
+
 	/**
-	 * Papyrus codeGen
-	 * 
-	 * @generated
+	 *Papyrus codeGen
+	 *@generated
 	 **/
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
 
 	}
+
+
+
+
 
 	/**
 	 * @generated
@@ -167,6 +176,7 @@ NamedElementEditPart {
 		return false;
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -213,6 +223,7 @@ NamedElementEditPart {
 		return getContentPane();
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -226,11 +237,12 @@ NamedElementEditPart {
 		return result;
 	}
 
+
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model so
-	 * you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model
+	 * so you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -244,11 +256,9 @@ NamedElementEditPart {
 	}
 
 	/**
-	 * Default implementation treats passed figure as content pane. Respects
-	 * layout one may have set for generated figure.
-	 * 
-	 * @param nodeShape
-	 *        instance of generated figure class
+	 * Default implementation treats passed figure as content pane.
+	 * Respects layout one may have set for generated figure.
+	 * @param nodeShape instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
@@ -391,6 +401,10 @@ NamedElementEditPart {
 		}
 		return types;
 	}
+
+
+
+
 
 	/**
 	 * @generated

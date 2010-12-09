@@ -14,19 +14,15 @@
 package org.eclipse.papyrus.diagram.sequence.edit.policies;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
@@ -36,39 +32,43 @@ import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.XYLayoutEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.common.commands.PreserveAnchorsPositionCommand;
 import org.eclipse.papyrus.diagram.common.draw2d.LifelineDotLineFigure;
 import org.eclipse.papyrus.diagram.sequence.command.CustomZOrderCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragment2EditPart;
-import org.eclipse.papyrus.diagram.sequence.edit.parts.DestructionEventEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
-import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.sequence.util.OccurrenceSpecificationMoveHelper;
 import org.eclipse.papyrus.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.papyrus.diagram.sequence.util.SequenceUtil;
-import org.eclipse.uml2.uml.ExecutionSpecification;
-import org.eclipse.uml2.uml.OccurrenceSpecification;
 
 /**
  * The custom LayoutEditPolicy for LifelineEditPart.
  */
 public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 
-	/** Initialisation width of Execution Specification. */
-	private final static int EXECUTION_INIT_WIDTH = 16;
+	/** Initialization width of Execution Specification. */
+	public final static int EXECUTION_INIT_WIDTH = 16;
 
-	/** Initialisation height of Execution Specification. */
+	/** Initialization width of CoRegion. */
+	public final static int COREGION_INIT_WIDTH = 30;
+
+	/** Initialization height of Execution Specification. */
 	private final static int EXECUTION_INIT_HEIGHT = 50;
+
+	/** Initialization height of a time bar figure. */
+	private static final int TIME_BAR_HEIGHT = 1;
 
 	/** The default spacing used between Execution Specification */
 	private final static int SPACING_HEIGHT = 5;
@@ -83,63 +83,15 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 			if(cvr.getViewDescriptors().size() > 0) {
 				ViewDescriptor viewDescriptor = cvr.getViewDescriptors().iterator().next();
 				String semanticHint = viewDescriptor.getSemanticHint();
-				if(String.valueOf(ActionExecutionSpecificationEditPart.VISUAL_ID).equals(semanticHint) || String.valueOf(BehaviorExecutionSpecificationEditPart.VISUAL_ID).equals(semanticHint) || String.valueOf(StateInvariantEditPart.VISUAL_ID).equals(semanticHint) || String.valueOf(CombinedFragment2EditPart.VISUAL_ID).equals(semanticHint) || String.valueOf(DestructionEventEditPart.VISUAL_ID).equals(semanticHint)) {
 
-					Point newLocation = cvr.getLocation().getCopy();
-
-					if(newLocation.x < 0 || newLocation.y < 0) {
-						newLocation.x = newLocation.y = 0;
-					}
-
-					if(getHost() instanceof LifelineEditPart) {
-
-						LifelineEditPart editPart = (LifelineEditPart)getHost();
-
-						// Get the dotline figure
-						LifelineDotLineFigure figureLifelineDotLineFigure = editPart.getPrimaryShape().getFigureLifelineDotLineFigure();
-						List<ShapeNodeEditPart> executionSpecificationList = editPart.getChildShapeNodeEditPart();
-
-						// Translate the absolute location to relative
-						figureLifelineDotLineFigure.translateToRelative(newLocation);
-
-						Rectangle dotLineFigureBounds = figureLifelineDotLineFigure.getBounds();
-						// If we are creating an ES from the popup menu bar
-						// We need to get a valid location to be able to create the ES figure
-						if(newLocation.y < dotLineFigureBounds.y) {
-							int max = dotLineFigureBounds.y;
-							for(ShapeNodeEditPart sp : executionSpecificationList) {
-								int figureBottom = sp.getFigure().getBounds().y + sp.getFigure().getBounds().height;
-								if(figureBottom > max) {
-									max = figureBottom;
-								}
-							}
-							// Vertically, the new ES is located after all existing ES on the lifeline
-							newLocation.y = max + SPACING_HEIGHT;
-							// Horizontally, the figure is placed at the center of the lifeline
-							newLocation.x = dotLineFigureBounds.x + dotLineFigureBounds.width / 2 - EXECUTION_INIT_WIDTH / 2;
-						}
-
-
-						// Get the height of the Execution specification
-						int newHeight = getFigureHeight(cvr);
-
-						// Define the bounds of the new Execution specification
-						Rectangle newBounds = new Rectangle(newLocation.x, newLocation.y, -1, newHeight);
-
-						newBounds = getExecutionSpecificationNewBoundsForMove(figureLifelineDotLineFigure, newBounds, executionSpecificationList, new ArrayList<ShapeNodeEditPart>(0));
-
-						if(newBounds == null) {
-							return UnexecutableCommand.INSTANCE;
-						}
-
-						return new ICommandProxy(new SetBoundsCommand(editPart.getEditingDomain(), "Creation of an ExecutionSpecification", viewDescriptor, newBounds));
-					}
-
-				}
-				// force location of time/duration elements
+				// force location of time/duration elements and ES
 				String timeConstraintHint = ((IHintedType)UMLElementTypes.TimeConstraint_3019).getSemanticHint();
 				String timeObservationHint = ((IHintedType)UMLElementTypes.TimeObservation_3020).getSemanticHint();
 				String durationConstraintOnLifelineHint = ((IHintedType)UMLElementTypes.DurationConstraint_3021).getSemanticHint();
+				String actionExecutionSpecificationHint = ((IHintedType)UMLElementTypes.ActionExecutionSpecification_3006).getSemanticHint();
+				String behaviorExecutionSpecificationHint = ((IHintedType)UMLElementTypes.BehaviorExecutionSpecification_3003).getSemanticHint();
+				String coRegionHint = ((IHintedType)UMLElementTypes.CombinedFragment_3018).getSemanticHint();
+
 				if(timeConstraintHint.equals(semanticHint) || timeObservationHint.equals(semanticHint)) {
 					Command cmd = getCommandForTimeObservationOrConstraint(cvr, viewDescriptor);
 					if(cmd != null) {
@@ -152,10 +104,110 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 						return cmd;
 					}
 				}
+				if(actionExecutionSpecificationHint.equals(semanticHint) || behaviorExecutionSpecificationHint.equals(semanticHint)) {
+					Command cmd = getCommandForExecutionSpecificationCreation(cvr, viewDescriptor);
+					if(cmd != null) {
+						return cmd;
+					}
+				}
+				if(coRegionHint.equals(semanticHint)) {
+					Command cmd = getCommandForCoRegionCreation(cvr, viewDescriptor);
+					if(cmd != null) {
+						return cmd;
+					}
+				}
 			}
 		}
 
 		return super.getCreateCommand(request);
+	}
+
+	private static Rectangle getNewBoundsForCoRegion(LifelineEditPart lifelineEP, Rectangle bounds) {
+		Rectangle newBounds = bounds.getCopy();
+
+		// Get the dotline figure
+		LifelineDotLineFigure figureLifelineDotLineFigure = lifelineEP.getPrimaryShape().getFigureLifelineDotLineFigure();
+
+		// Translate the absolute location to relative
+		figureLifelineDotLineFigure.translateToRelative(newBounds);
+		newBounds.translate(figureLifelineDotLineFigure.getBounds().getLocation().getCopy().negate());
+
+		Rectangle dotLineFigureBounds = figureLifelineDotLineFigure.getBounds();
+
+		newBounds.x = dotLineFigureBounds.width / 2 - COREGION_INIT_WIDTH / 2;
+		newBounds.width = COREGION_INIT_WIDTH;
+
+		return newBounds;
+	}
+
+	private Command getCommandForCoRegionCreation(CreateViewRequest cvr, ViewDescriptor viewDescriptor) {
+		Rectangle newBounds = new Rectangle();
+		if(cvr.getLocation() != null) {
+			newBounds.setLocation(cvr.getLocation());
+		}
+		if(cvr.getSize() != null) {
+			newBounds.setSize(cvr.getSize());
+		} else {
+			newBounds.width = -1;
+			newBounds.height = -1;
+		}
+
+		if(newBounds.x < 0 || newBounds.y < 0) {
+			newBounds.x = newBounds.y = 0;
+		}
+
+		newBounds = getNewBoundsForCoRegion((LifelineEditPart)getHost(), newBounds);
+
+		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
+		return new ICommandProxy(new SetBoundsCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, viewDescriptor, newBounds));
+	}
+
+	private Command getCommandForExecutionSpecificationCreation(CreateViewRequest cvr, ViewDescriptor viewDescriptor) {
+		Point newLocation = cvr.getLocation().getCopy();
+
+		if(newLocation.x < 0 || newLocation.y < 0) {
+			newLocation.x = newLocation.y = 0;
+		}
+
+		LifelineEditPart editPart = (LifelineEditPart)getHost();
+
+		// Get the dotline figure
+		LifelineDotLineFigure figureLifelineDotLineFigure = editPart.getPrimaryShape().getFigureLifelineDotLineFigure();
+		List<ShapeNodeEditPart> executionSpecificationList = editPart.getChildShapeNodeEditPart();
+
+		// Translate the absolute location to relative
+		figureLifelineDotLineFigure.translateToRelative(newLocation);
+
+		Rectangle dotLineFigureBounds = figureLifelineDotLineFigure.getBounds();
+		// If we are creating an ES from the popup menu bar
+		// We need to get a valid location to be able to create the ES figure
+		if(newLocation.y < dotLineFigureBounds.y) {
+			int max = dotLineFigureBounds.y;
+			for(ShapeNodeEditPart sp : executionSpecificationList) {
+				int figureBottom = sp.getFigure().getBounds().y + sp.getFigure().getBounds().height;
+				if(figureBottom > max) {
+					max = figureBottom;
+				}
+			}
+			// Vertically, the new ES is located after all existing ES on the lifeline
+			newLocation.y = max + SPACING_HEIGHT;
+			// Horizontally, the figure is placed at the center of the lifeline
+			newLocation.x = dotLineFigureBounds.x + dotLineFigureBounds.width / 2 - EXECUTION_INIT_WIDTH / 2;
+		}
+
+		// Get the height of the Execution specification
+		int newHeight = getFigureHeight(cvr);
+
+		// Define the bounds of the new Execution specification
+		Rectangle newBounds = new Rectangle(newLocation.x, newLocation.y, -1, newHeight);
+
+		newBounds = getExecutionSpecificationNewBounds(true, editPart, new Rectangle(), newBounds, new ArrayList<ShapeNodeEditPart>(0), false);
+
+		if(newBounds == null) {
+			return UnexecutableCommand.INSTANCE;
+		}
+
+		return new ICommandProxy(new SetBoundsCommand(editPart.getEditingDomain(), "Creation of an ExecutionSpecification", viewDescriptor, newBounds));
 	}
 
 	/**
@@ -175,7 +227,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 			// Get the height of the element
 			int newHeight = getFigureHeight(cvr);
 			// Define the bounds of the new time element
-			Rectangle newBounds = new Rectangle(referencePoint.x, referencePoint.y + SPACING_HEIGHT - newHeight / 2, -1, newHeight);
+			Rectangle newBounds = new Rectangle(referencePoint.x, referencePoint.y - newHeight / 2, -1, newHeight);
 			TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
 			return new ICommandProxy(new SetBoundsCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, viewDescriptor, newBounds));
 		}
@@ -220,82 +272,30 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 	}
 
 	/**
-	 * Get the execution specification height
+	 * Get the adapted height, taking in account the represented figure
 	 * 
 	 * @param cr
 	 *        the create request
-	 * @return the height defined in the create request or a default value
+	 * @return the height defined in the create request or a default value depending on the created figure
 	 */
 	private int getFigureHeight(CreateRequest cr) {
+		final String timeObsHint = ((IHintedType)UMLElementTypes.TimeObservation_3020).getSemanticHint();
+		final String timeCstHint = ((IHintedType)UMLElementTypes.TimeConstraint_3019).getSemanticHint();
+		String semHint = null;
+		if(cr instanceof CreateViewAndElementRequest) {
+			semHint = ((CreateViewAndElementRequest)cr).getViewAndElementDescriptor().getSemanticHint();
+		}
 		int newHeight;
-		if(cr.getSize() != null) {
+		if(timeObsHint.equals(semHint) || timeCstHint.equals(semHint)) {
+			// height for a time bar (takes precedence on request's size)
+			newHeight = TIME_BAR_HEIGHT;
+		} else if(cr.getSize() != null) {
+			// heigh from request
 			newHeight = cr.getSize().height;
 		} else {
 			newHeight = EXECUTION_INIT_HEIGHT;
 		}
 		return newHeight;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected Command getResizeChildrenCommand(ChangeBoundsRequest request) {
-		List<?> editParts = request.getEditParts();
-
-		// This policy is hosted in a LifelineEditPart
-		LifelineEditPart lifelineEP = (LifelineEditPart)getHost();
-
-		// We are supposed to work with only one children at a time
-		if(editParts != null && editParts.size() == 1 && lifelineEP.getChildShapeNodeEditPart().contains(editParts.get(0))) {
-			// The child's EditPart
-			ShapeNodeEditPart executionSpecificationEP = (ShapeNodeEditPart)editParts.get(0);
-
-			// Check if height is within the limits of the figure
-			Dimension newSizeDelta = adaptSizeDeltaToMaxHeight(executionSpecificationEP.getFigure(), request.getSizeDelta());
-
-			// Current bounds of the ExecutionSpecification
-			Rectangle newBounds = executionSpecificationEP.getFigure().getBounds().getCopy();
-
-			// According to the parameters, the new bounds would be the following
-			newBounds.x += request.getMoveDelta().x;
-			newBounds.y += request.getMoveDelta().y;
-			newBounds.height += newSizeDelta.height;
-
-			// Not to check list
-			List<ShapeNodeEditPart> notToCheckExecutionSpecificationList = new BasicEList<ShapeNodeEditPart>();
-			// Affixed ExecutionSpecification List
-			List<ShapeNodeEditPart> affixedExecutionSpecificationEditParts = getAffixedExecutionSpecificationEditParts(executionSpecificationEP);
-			notToCheckExecutionSpecificationList.addAll(affixedExecutionSpecificationEditParts);
-			// Add also current ExecutionSpecification EditPart
-			notToCheckExecutionSpecificationList.add(executionSpecificationEP);
-
-			newBounds = getExecutionSpecificationNewBoundsForResize(lifelineEP, newBounds, notToCheckExecutionSpecificationList);
-			if(newBounds == null) {
-				return null; // UnexecutableCommand.INSTANCE
-			}
-
-			CompoundCommand compoundCmd = new CompoundCommand();
-			compoundCmd.setLabel("Resize of a ExecutionSpecification EditPart");
-			compoundCmd.setDebugLabel("Debug: Resize of a ExecutionSpecification EditPart");
-
-			// Create and add the command to the compound command
-			SetBoundsCommand setBoundsCmd = new SetBoundsCommand(executionSpecificationEP.getEditingDomain(), "Resize of a ExecutionSpecification", executionSpecificationEP, newBounds);
-			compoundCmd.add(new ICommandProxy(setBoundsCmd));
-
-			Rectangle realMoveDelta = getRealMoveDelta(getRelativeBounds(executionSpecificationEP.getFigure()), newBounds);
-			// Move also children
-			compoundCmd.add(createMovingAffixedExecutionSpecificationCommand(executionSpecificationEP, realMoveDelta, newBounds));
-
-			// Move also linked Time elements
-			compoundCmd.add(createMoveTimeElementsCommands(executionSpecificationEP, newBounds, request));
-
-			if(!compoundCmd.isEmpty()) {
-				return compoundCmd;
-			}
-		}
-
-		return super.getResizeChildrenCommand(request);
 	}
 
 	/**
@@ -306,6 +306,8 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 	 * 
 	 * @param lifelineEP
 	 *        the lifeline ep
+	 * @param oldBounds
+	 *        The old bounds of the ES
 	 * @param newBounds
 	 *        The new initial bounds
 	 * @param notToCheckExecutionSpecificationList
@@ -313,17 +315,45 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 	 * 
 	 * @return The new bounds of the executionSpecificationEP figure
 	 */
-	protected final static Rectangle getExecutionSpecificationNewBoundsForResize(LifelineEditPart lifelineEP, Rectangle newBounds, List<ShapeNodeEditPart> notToCheckExecutionSpecificationList) {
+	protected final static Rectangle getExecutionSpecificationNewBounds(boolean isMove, LifelineEditPart lifelineEP, Rectangle oldBounds, Rectangle newBounds, List<ShapeNodeEditPart> notToCheckExecutionSpecificationList, boolean useFixedXPos) {
 		// Lifeline's figure where the child is drawn
 		Rectangle dotLineBounds = lifelineEP.getPrimaryShape().getFigureLifelineDotLineFigure().getBounds();
 
-		// if ExecutionSpecification is move before the lifeline
-		if(newBounds.y < dotLineBounds.y || newBounds.x < dotLineBounds.x || newBounds.x > dotLineBounds.right()) {
+		// if ExecutionSpecification is resize outside of the lifeline bounds
+		if(newBounds.y <= dotLineBounds.y || newBounds.x < dotLineBounds.x || newBounds.x > dotLineBounds.right()) {
 			return null;
 		}
 
 		List<ShapeNodeEditPart> toCheckExecutionSpecificationList = lifelineEP.getChildShapeNodeEditPart();
 		toCheckExecutionSpecificationList.removeAll(notToCheckExecutionSpecificationList);
+
+		if(isMove) {
+			ShapeNodeEditPart parent = getParent(newBounds, toCheckExecutionSpecificationList);
+
+			if(useFixedXPos) {
+				newBounds.x = oldBounds.x;
+			} else if(parent == null) {
+				// No mother, center position
+				int width = newBounds.width > 0 ? newBounds.width : EXECUTION_INIT_WIDTH;
+				newBounds.x = dotLineBounds.x + dotLineBounds.width / 2 - width / 2;
+			} else {
+				Rectangle parentBounds = parent.getFigure().getBounds();
+				int width = parentBounds.width > 0 ? parentBounds.width : EXECUTION_INIT_WIDTH;
+				newBounds.x = parentBounds.x + width / 2 + 1;
+			}
+		} else {
+			ShapeNodeEditPart oldParent = getParent(oldBounds, toCheckExecutionSpecificationList);
+			// forbid resize if the new bounds exceed Y-wise the bounds of a non-parent ES
+			for(ShapeNodeEditPart esPart : toCheckExecutionSpecificationList) {
+				Rectangle esBounds = esPart.getFigure().getBounds();
+				int esYBottom = esBounds.y + esBounds.height;
+				if(esPart != oldParent) {
+					if(((oldBounds.y + oldBounds.height) <= esBounds.y && (newBounds.y + newBounds.height) >= esBounds.y) || (oldBounds.y >= esYBottom && newBounds.y <= esYBottom)) {
+						return null;
+					}
+				}
+			}
+		}
 
 		// Change to relative bounds of the LifelineEP
 		newBounds.x -= dotLineBounds.x;
@@ -336,64 +366,132 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected Command getMoveChildrenCommand(Request request) {
-		ChangeBoundsRequest cbr = (ChangeBoundsRequest)request;
-		List<?> editParts = cbr.getEditParts();
-
+	protected Command getResizeChildrenCommand(ChangeBoundsRequest request) {
 		// This policy is hosted in a LifelineEditPart
 		LifelineEditPart lifelineEP = (LifelineEditPart)getHost();
+		Command command = getResizeOrMoveChildrenCommand(lifelineEP, request, false, true, false);
 
-		// We are supposed to work with only one children at a time
-		if(editParts != null && editParts.size() == 1 && lifelineEP.getChildShapeNodeEditPart().contains(editParts.get(0))) {
-			// The child's EditPart
-			ShapeNodeEditPart executionSpecificationEP = (ShapeNodeEditPart)editParts.get(0);
+		if(command == null) {
+			command = super.getResizeChildrenCommand(request);
+		}
+		return command;
+	}
 
-			// Check if height is within the limits of the figure
-			Dimension newSizeDelta = adaptSizeDeltaToMaxHeight(executionSpecificationEP.getFigure(), cbr.getSizeDelta());
+	/**
+	 * {@inheritDoc}
+	 */
+	protected Command getMoveChildrenCommand(Request request) {
+		// This policy is hosted in a LifelineEditPart
+		LifelineEditPart lifelineEP = (LifelineEditPart)getHost();
+		Command command = getResizeOrMoveChildrenCommand(lifelineEP, (ChangeBoundsRequest)request, true, true, false);
 
-			// Current bounds of the ExecutionSpecification
-			Rectangle newBounds = executionSpecificationEP.getFigure().getBounds().getCopy();
+		if(command == null) {
+			command = super.getMoveChildrenCommand(request);
+		}
+		return command;
+	}
 
-			// According to the parameters, the new bounds would be the following
-			newBounds.x += cbr.getMoveDelta().x;
-			newBounds.y += cbr.getMoveDelta().y;
-			newBounds.height += newSizeDelta.height;
+	@SuppressWarnings("unchecked")
+	public static Command getResizeOrMoveChildrenCommand(LifelineEditPart lifelineEP, ChangeBoundsRequest request, boolean isMove, boolean updateEnclosingInteraction, boolean useFixedXPos) {
+		List<EditPart> editParts = request.getEditParts();
 
-			// Not to check list
-			List<ShapeNodeEditPart> notToCheckExecutionSpecificationList = new BasicEList<ShapeNodeEditPart>();
-			// Affixed ExecutionSpecification List
-			notToCheckExecutionSpecificationList.addAll(getAffixedExecutionSpecificationEditParts(executionSpecificationEP));
-			// Add also current ExecutionSpecification EditPart
-			notToCheckExecutionSpecificationList.add(executionSpecificationEP);
-
-			newBounds = getExecutionSpecificationNewBoundsForMove(lifelineEP.getPrimaryShape().getFigureLifelineDotLineFigure(), newBounds, lifelineEP.getChildShapeNodeEditPart(), notToCheckExecutionSpecificationList);
-			if(newBounds == null) {
-				return null; // UnexecutableCommand.INSTANCE
-			}
-
+		if(editParts != null) {
 			CompoundCommand compoundCmd = new CompoundCommand();
-			compoundCmd.setLabel("Movement of a ExecutionSpecification EditPart");
-			compoundCmd.setDebugLabel("Debug: Movement of a ExecutionSpecification EditPart");
+			compoundCmd.setLabel("Move or resize");
+			compoundCmd.setDebugLabel("Debug: Move or resize of an ExecutionSpecification");
 
-			// Create and add the command to the compound command
-			SetBoundsCommand setBoundsCmd = new SetBoundsCommand(executionSpecificationEP.getEditingDomain(), "Resize of a ExecutionSpecification", executionSpecificationEP, newBounds);
-			compoundCmd.add(new ICommandProxy(setBoundsCmd));
+			for(EditPart ep : editParts) {
 
-			Rectangle realMoveDelta = getRealMoveDelta(getRelativeBounds(executionSpecificationEP.getFigure()), newBounds);
-			// Move also children
-			compoundCmd.add(createMovingAffixedExecutionSpecificationCommand(executionSpecificationEP, realMoveDelta, newBounds));
+				if(ep instanceof ActionExecutionSpecificationEditPart || ep instanceof BehaviorExecutionSpecificationEditPart) {
 
-			compoundCmd.add(createZOrderCommand(lifelineEP, executionSpecificationEP, newBounds, notToCheckExecutionSpecificationList));
+					// an execution specification have been moved or resized
+					ShapeNodeEditPart executionSpecificationEP = (ShapeNodeEditPart)ep;
 
-			// Move also linked Time elements
-			compoundCmd.add(createMoveTimeElementsCommands(executionSpecificationEP, newBounds, cbr));
+					// Check if height is within the limits of the figure
+					Dimension newSizeDelta = adaptSizeDeltaToMaxHeight(executionSpecificationEP.getFigure(), request.getSizeDelta());
+
+					// Current bounds of the ExecutionSpecification
+					Rectangle oldBounds = executionSpecificationEP.getFigure().getBounds().getCopy();
+
+					Rectangle newBounds = oldBounds.getCopy();
+
+					// According to the parameters, the new bounds would be the following
+					newBounds.x += request.getMoveDelta().x;
+					newBounds.y += request.getMoveDelta().y;
+					newBounds.height += newSizeDelta.height;
+
+					// Not to check list
+					List<ShapeNodeEditPart> notToCheckExecutionSpecificationList = new BasicEList<ShapeNodeEditPart>();
+					// Affixed ExecutionSpecification List
+					notToCheckExecutionSpecificationList.addAll(getAffixedExecutionSpecificationEditParts(executionSpecificationEP));
+					// Add also current ExecutionSpecification EditPart
+					notToCheckExecutionSpecificationList.add(executionSpecificationEP);
+
+					newBounds = getExecutionSpecificationNewBounds(isMove, lifelineEP, oldBounds, newBounds, notToCheckExecutionSpecificationList, useFixedXPos);
+					if(newBounds == null) {
+						return UnexecutableCommand.INSTANCE;
+					}
+
+					// Create and add the command to the compound command
+					SetBoundsCommand setBoundsCmd = new SetBoundsCommand(executionSpecificationEP.getEditingDomain(), "Resize of a ExecutionSpecification", executionSpecificationEP, newBounds);
+					compoundCmd.add(new ICommandProxy(setBoundsCmd));
+
+					Rectangle realMoveDelta = getRealMoveDelta(getRelativeBounds(executionSpecificationEP.getFigure()), newBounds);
+
+					if(isMove) {
+						// Move also children
+						compoundCmd.add(createMovingAffixedExecutionSpecificationCommand(executionSpecificationEP, realMoveDelta, newBounds));
+
+						compoundCmd.add(createZOrderCommand(lifelineEP, executionSpecificationEP, newBounds, notToCheckExecutionSpecificationList));
+					}
+
+					// Move also linked Time elements
+					compoundCmd = OccurrenceSpecificationMoveHelper.completeMoveExecutionSpecificationCommand(compoundCmd, executionSpecificationEP, newBounds, request);
+
+					IFigure parentFigure = executionSpecificationEP.getFigure().getParent();
+					parentFigure.translateToAbsolute(newBounds);
+					// translateToAbsolute only does half of the work, I don't know why
+					newBounds.translate(parentFigure.getBounds().getLocation());
+
+					if(updateEnclosingInteraction) {
+						// update the enclosing interaction of a moved execution specification
+						compoundCmd.add(SequenceUtil.createUpdateEnclosingInteractionCommand(executionSpecificationEP, request.getMoveDelta(), newSizeDelta));
+					}
+
+					// keep absolute position of anchors
+					compoundCmd.add(new ICommandProxy(new PreserveAnchorsPositionCommand(executionSpecificationEP, new Dimension(realMoveDelta.width, realMoveDelta.height), PreserveAnchorsPositionCommand.PRESERVE_Y, executionSpecificationEP.getFigure(), request.getResizeDirection())));
+				}
+
+				if(ep instanceof CombinedFragment2EditPart) {
+					CombinedFragment2EditPart cf2EP = (CombinedFragment2EditPart)ep;
+					IFigure cf2Figure = cf2EP.getFigure();
+					Rectangle bounds = cf2Figure.getBounds().getCopy();
+					cf2Figure.getParent().translateToAbsolute(bounds);
+
+					Dimension sizeDelta = request.getSizeDelta();
+					if(sizeDelta != null) {
+						if(sizeDelta.width != 0) {
+							return UnexecutableCommand.INSTANCE;
+						}
+						bounds.resize(sizeDelta);
+					}
+					Point moveDelta = request.getMoveDelta();
+					if(moveDelta != null) {
+						bounds.translate(moveDelta);
+					}
+
+					// Create and add the set bounds command to the compound command
+					SetBoundsCommand setBoundsCmd = new SetBoundsCommand(cf2EP.getEditingDomain(), "Resize of a CoRegion", cf2EP, getNewBoundsForCoRegion(lifelineEP, bounds));
+					compoundCmd.add(new ICommandProxy(setBoundsCmd));
+				}
+			}
 
 			if(!compoundCmd.isEmpty()) {
 				return compoundCmd;
 			}
 		}
 
-		return super.getMoveChildrenCommand(request);
+		return null;
 	}
 
 	/**
@@ -466,36 +564,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 	 * 
 	 * @return The new bounds of the executionSpecificationEP figure
 	 */
-	protected final static Rectangle getExecutionSpecificationNewBoundsForMove(Figure lifelineDotLineFigure, Rectangle newBounds, List<ShapeNodeEditPart> toCheckExecutionSpecificationList, List<ShapeNodeEditPart> notToCheckExecutionSpecificationList) {
-		// Lifeline's figure where the child is drawn
-		Rectangle dotLineBounds = lifelineDotLineFigure.getBounds();
 
-		// if ExecutionSpecification is move before the lifeline
-		if(newBounds.y < dotLineBounds.y || newBounds.x < dotLineBounds.x || newBounds.x > dotLineBounds.right()) {
-			return null;
-		}
-
-		toCheckExecutionSpecificationList.removeAll(notToCheckExecutionSpecificationList);
-
-		// Check first if there is contact with any of the existing ExecutionSpecification
-		Rectangle parentBounds = getParent(newBounds, toCheckExecutionSpecificationList);
-
-		if(parentBounds == null) {
-			// No mother, center position
-			int width = newBounds.width > 0 ? newBounds.width : EXECUTION_INIT_WIDTH;
-			newBounds.x = dotLineBounds.x + dotLineBounds.width / 2 - width / 2;
-		} else {
-
-			int width = parentBounds.width > 0 ? parentBounds.width : EXECUTION_INIT_WIDTH;
-			newBounds.x = parentBounds.x + width / 2 + 1;
-		}
-
-		// Change to relative bounds of the LifelineEP
-		newBounds.x -= dotLineBounds.x;
-		newBounds.y -= dotLineBounds.y;
-
-		return newBounds;
-	}
 
 	/**
 	 * Get the (futur) parent of a ExecutionSpecification
@@ -504,10 +573,10 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 	 *        the child bounds
 	 * @param toCheckExecutionSpecificationList
 	 *        List of EditPart to check
-	 * @return The parent bounds
+	 * @return The parent
 	 */
-	protected final static Rectangle getParent(Rectangle childBounds, List<ShapeNodeEditPart> toCheckExecutionSpecificationList) {
-		Rectangle parentBounds = null;
+	protected final static ShapeNodeEditPart getParent(Rectangle childBounds, List<ShapeNodeEditPart> toCheckExecutionSpecificationList) {
+		ShapeNodeEditPart parent = null;
 		// Loop through the ExecutionSpecification list and try to find the most to the right
 		// ExecutionSpecification within the executionSpecificationEP Y-axis bounds
 		Rectangle externalBounds = childBounds.getCopy();
@@ -516,12 +585,12 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 			externalBounds.x = externalExecutionSpecificationBounds.x;
 			externalBounds.width = externalExecutionSpecificationBounds.width;
 			if(externalExecutionSpecificationBounds.touches(externalBounds)) {
-				if(parentBounds == null || externalExecutionSpecificationBounds.x > parentBounds.x) {
-					parentBounds = externalExecutionSpecificationBounds;
+				if(parent == null || externalExecutionSpecificationBounds.x > parent.getFigure().getBounds().x) {
+					parent = externalExecutionSpecificationEP;
 				}
 			}
 		}
-		return parentBounds;
+		return parent;
 	}
 
 	/**
@@ -655,6 +724,16 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 				// Create the child's SetBoundsCommand
 				SetBoundsCommand childSetBoundsCmd = new SetBoundsCommand(executionSpecificationEP.getEditingDomain(), "Movement of affixed ExecutionSpecification", childExecutionSpecificationEP, childBounds);
 				compoundCmd.add(new ICommandProxy(childSetBoundsCmd));
+
+
+				IFigure parentFigure = childExecutionSpecificationEP.getFigure().getParent();
+				parentFigure.translateToAbsolute(newBounds);
+				// translateToAbsolute only does half of the work, I don't know why
+				newBounds.translate(parentFigure.getBounds().getLocation());
+
+				// change the enclosing interaction of the moved affixed child if necessary
+				compoundCmd.add(SequenceUtil.createUpdateEnclosingInteractionCommand(childExecutionSpecificationEP, moveDelta.getLocation(), moveDelta.getSize()));
+
 				// Move it's children as well
 				if(!getAffixedExecutionSpecificationEditParts(childExecutionSpecificationEP).isEmpty()) {
 					compoundCmd.add(createMovingAffixedExecutionSpecificationCommand(childExecutionSpecificationEP, moveDelta, childBounds));
@@ -666,6 +745,8 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 		}
 		return null;
 	}
+
+
 
 	/**
 	 * Given an AbstractGraphialEditPart and the new relative bounds that the EditPart will have, it
@@ -701,54 +782,5 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 		relBounds.x -= parentRectangle.x;
 		relBounds.y -= parentRectangle.y;
 		return relBounds;
-	}
-
-	/**
-	 * Create a command which moves time/duration constraints/observation which are linked to the moved edit part
-	 * 
-	 * @param executionSpecificationEP
-	 *        the moved edit part representing an execution specification
-	 * @param newBounds
-	 *        the new part's bounds (relative to the figure's parent)
-	 * @param request
-	 *        the change bounds request which originated this move
-	 * @return the command to move linked time elements or null
-	 */
-	protected Command createMoveTimeElementsCommands(ShapeNodeEditPart executionSpecificationEP, Rectangle newBounds, ChangeBoundsRequest request) {
-		List<IBorderItemEditPart> notToMoveEditPartList = Collections.emptyList();
-		Object editPartNotToMove = request.getExtendedData().get(SequenceRequestConstant.DO_NOT_MOVE_TIME_ELEMENT);
-		if(editPartNotToMove instanceof IBorderItemEditPart) {
-			notToMoveEditPartList = Collections.singletonList((IBorderItemEditPart)editPartNotToMove);
-		}
-		// Move events delimiting the ExecutionSpecification
-		EObject execSpec = executionSpecificationEP.resolveSemanticElement();
-		if(execSpec instanceof ExecutionSpecification) {
-			LifelineEditPart parent = SequenceUtil.getParentLifelinePart(executionSpecificationEP);
-			CompoundCommand cmd = new CompoundCommand();
-			// first, get absolute bounds
-			newBounds = newBounds.getCopy();
-			IFigure parentFig = executionSpecificationEP.getFigure().getParent();
-			parentFig.translateToAbsolute(newBounds);
-			newBounds.translate(parentFig.getBounds().getLocation());
-			// move start event
-			OccurrenceSpecification start = ((ExecutionSpecification)execSpec).getStart();
-			Point startPoint = newBounds.getTop();
-			Map<IBorderItemEditPart, Rectangle> updatedBounds = new HashMap<IBorderItemEditPart, Rectangle>();
-			Command cmdStart = SequenceUtil.getTimeRelatedElementsMoveCommands(parent, start, startPoint, notToMoveEditPartList, updatedBounds);
-			if(cmdStart != null) {
-				cmd.add(cmdStart);
-			}
-			// move finish event
-			OccurrenceSpecification finish = ((ExecutionSpecification)execSpec).getFinish();
-			Point finishPoint = newBounds.getBottom();
-			Command cmdFinish = SequenceUtil.getTimeRelatedElementsMoveCommands(parent, finish, finishPoint, notToMoveEditPartList, updatedBounds);
-			if(cmdFinish != null) {
-				cmd.add(cmdFinish);
-			}
-			if(!cmd.isEmpty()) {
-				return cmd;
-			}
-		}
-		return null;
 	}
 }

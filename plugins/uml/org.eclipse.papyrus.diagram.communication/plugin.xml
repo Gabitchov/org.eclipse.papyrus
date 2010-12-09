@@ -30,52 +30,52 @@
          </activeWhen>
       </handler>
    </extension>
-   <extension
-         point="org.eclipse.ui.menus">
-      <menuContribution
-            locationURI="toolbar:org.eclipse.ui.main.toolbar">
-         <toolbar
-               id="org.eclipse.papyrus.diagram.ui.toolbar">
-            <command
-                  commandId="org.eclipse.papyrus.diagram.communication.CreateCommunicationDiagramCommand"
-                  icon="icons/obj16/Diagram_Communication.gif"
-                  label="Create a new Communication Diagram"
-                  style="push"
-                  tooltip="Create a new Communication Diagram">
-               <visibleWhen>
-                  <with
-                        variable="activeEditorId">
-                     <equals
-                           value="org.eclipse.papyrus.core.papyrusEditor">
-                     </equals>
-                  </with>
-               </visibleWhen>
-            </command>
-         </toolbar>
-      </menuContribution>
-      <menuContribution
-            locationURI="menu:org.eclipse.papyrus.ui.menu">
-         <menu
-               id="org.eclipse.papyrus.diagram.ui.menu.diagrams"
-               label="Diagrams">
-            <command
-                  commandId="org.eclipse.papyrus.diagram.communication.CreateCommunicationDiagramCommand"
-                  icon="icons/obj16/Diagram_Communication.gif"
-                  label="Create a new Communication Diagram"
-                  style="push"
-                  tooltip="Create a new Communication Diagram">
-                  <visibleWhen>
-                  <with
-                        variable="activeEditorId">
-                     <equals
-                           value="org.eclipse.papyrus.core.papyrusEditor">
-                     </equals>
-                  </with>
-               </visibleWhen>
-            </command>
-         </menu>
-      </menuContribution>
-   </extension>
+   
+<extension
+		point="org.eclipse.ui.menus">
+		
+	<menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar">
+	<toolbar id="org.eclipse.papyrus.diagram.ui.toolbar">
+		<command commandId="org.eclipse.papyrus.diagram.communication.CreateCommunicationDiagramCommand"
+			icon="icons/obj16/Diagram_Communication.gif"
+			label="Create a new Communication Diagram"
+			style="push"
+			tooltip="Create a new Communication Diagram">
+			<visibleWhen>
+				<reference definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLModel"/>
+			</visibleWhen>
+		</command>
+	</toolbar>
+	</menuContribution>
+	
+	<menuContribution locationURI="menu:org.eclipse.papyrus.ui.menu">
+	<menu id="org.eclipse.papyrus.diagram.ui.menu.diagrams"
+		label="Diagrams">
+		<command commandId="org.eclipse.papyrus.diagram.communication.CreateCommunicationDiagramCommand"
+			icon="icons/obj16/Diagram_Communication.gif"
+			label="Create a new Communication Diagram"
+			style="push"
+			tooltip="Create a new Communication Diagram">
+			<visibleWhen>
+				<reference definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLModel"/>
+			</visibleWhen>
+		</command>
+	</menu>
+	</menuContribution>
+
+	<menuContribution locationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.creatediagram">
+		<command commandId="org.eclipse.papyrus.diagram.communication.CreateCommunicationDiagramCommand"
+			icon="icons/obj16/Diagram_Communication.gif"
+			label="Create a new Communication Diagram"
+			style="push"
+			tooltip="Create a new Communication Diagram">
+			<visibleWhen>
+				<reference definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLModel"/>
+			</visibleWhen>
+		</command>
+	</menuContribution>
+
+</extension>
    
    <extension
          point="org.eclipse.papyrus.core.papyrusDiagram">
@@ -160,7 +160,7 @@
 					<entry
        defineOnly="true"
        description="Create a Lifeline"
-       id="createLifelineComCreationTool"
+       id="communication.tool.lifeline"
        kind="tool"
        label="Lifeline"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Lifeline.gif"
@@ -170,7 +170,7 @@
 	<entry
        defineOnly="true"
        description="Create new Comment"
-       id="createComment7CreationTool"
+       id="communication.tool.comment"
        kind="tool"
        label="Comment"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
@@ -190,7 +190,7 @@
 	<entry
        defineOnly="true"
        description="Create a Duration Observation on a Message"
-       id="createDurationObservation4CreationTool"
+       id="communication.tool.durationobservation"
        kind="tool"
        label="Duration Observation"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationObservation.gif"
@@ -200,7 +200,7 @@
 	<entry
        defineOnly="true"
        description="Create a Time Observation"
-       id="createTimeObservation6CreationTool"
+       id="communication.tool.timeobservation"
        kind="tool"
        label="Time Observation"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeObservation.gif"
@@ -212,7 +212,7 @@
        description="MessageCreate"
        id="createMessageCreateCreationTool"
        kind="tool"
-       label="Create a Message"
+       label="Message"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message_createMessage.gif"
        path=""
        small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message_createMessage.gif">
@@ -254,14 +254,17 @@
        large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
        path="/"
        small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
+       <expand
+              force="true">
+       </expand>
  	</entry>
  	 
  	 	<predefinedEntry
-          id="createLifelineComCreationTool"
+          id="communication.tool.lifeline"
           path="/communication.group.nodes">
     </predefinedEntry>
  	<predefinedEntry
-          id="createComment7CreationTool"
+          id="communication.tool.comment"
           path="/communication.group.nodes">
     </predefinedEntry>
  	<predefinedEntry
@@ -269,11 +272,11 @@
           path="/communication.group.nodes">
     </predefinedEntry>
  	<predefinedEntry
-          id="createDurationObservation4CreationTool"
+          id="communication.tool.durationobservation"
           path="/communication.group.nodes">
     </predefinedEntry>
  	<predefinedEntry
-          id="createTimeObservation6CreationTool"
+          id="communication.tool.timeobservation"
           path="/communication.group.nodes">
     </predefinedEntry>
 
@@ -285,6 +288,9 @@
        large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
        path="/"
        small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
+       <expand
+              force="true">
+       </expand>
  	</entry>
  	 
  	 	<predefinedEntry
@@ -723,13 +729,6 @@
          sequence="F5"/>
    </extension>
 
-<extension point="org.eclipse.ui.menus" id="context-menus">
-      <?gmfgen generated="true"?>
-      <!-- menuContribution locationURI="menu:org.eclipse.ui.main.menu?after=">
-      </menuContribution>
-      <menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar?after=">
-      </menuContribution -->
-   </extension>
 <extension point="org.eclipse.ui.preferencePages" id="prefpages">
       <?gmfgen generated="true"?>
       <page
@@ -796,20 +795,6 @@
       point="org.eclipse.ui.popupMenus">
    <objectContribution
          adaptable="false"
-         id="org.eclipse.papyrus.diagram.communication.objectContribution.messageReorient"
-         objectClass="org.eclipse.papyrus.diagram.communication.edit.parts.MessageEditPart">
-      <action
-            class="org.eclipse.papyrus.diagram.communication.custom.commands.MessageInverseOrientation"
-            definitionId="org.eclipse.papyrus.diagram.communication.messagereorientID"
-            enablesFor="1"
-            icon="icons/arrow-rotate.gif"
-            id="org.eclipse.papyrus.diagram.communication.MessagereorientID"
-            label="Inverse message orientation"
-            menubarPath="editGroup">
-      </action>
-   </objectContribution>
-   <objectContribution
-         adaptable="false"
          id="org.eclipse.papyrus.diagram.communication.objectContribution.messageLabelReorient"
          objectClass="org.eclipse.papyrus.diagram.communication.edit.parts.MessageNameEditPart">
       <action
@@ -818,12 +803,69 @@
             enablesFor="1"
             icon="icons/arrow-rotate.gif"
             id="org.eclipse.papyrus.diagram.communication.MessagelabelreorientID"
-            label="Inverse message orientation"
+            label="Reverse message orientation"
             menubarPath="editGroup">
       </action>
    </objectContribution>
 </extension>
+<extension point="org.eclipse.ui.menus" id="context-menus">
+      <?gmfgen generated="true"?>
+      <!-- menuContribution locationURI="menu:org.eclipse.ui.main.menu?after=">
+      </menuContribution>
+      <menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar?after=">
+      </menuContribution -->
+   </extension>
 
+<extension
+      point="org.eclipse.gmf.runtime.diagram.core.viewProviders">
+   <viewProvider
+         class="org.eclipse.papyrus.diagram.communication.custom.providers.CustomUMLViewProvider">
+      <Priority
+            name="High">
+      </Priority>
+      <context
+            semanticHints="PapyrusUMLCommunicationDiagram"
+            viewClass="org.eclipse.gmf.runtime.notation.Diagram">
+      </context>
+      <context
+            semanticHints="8002,8016,8001,8004,8005,8006,8007"
+            viewClass="org.eclipse.gmf.runtime.notation.Node">
+      </context>
+      <context
+            semanticHints="8009,8010,8011,8012,8013"
+            viewClass="org.eclipse.gmf.runtime.notation.Edge">
+      </context>
+   </viewProvider>
+</extension>
+<extension
+      point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
+   <binding
+         context="org.eclipse.papyrus.service.edit.TypeContext">
+      <elementType
+            ref="org.eclipse.papyrus.uml.diagram.communication.MessageHelperAdvice">
+      </elementType>
+   </binding>
+</extension>
+<extension
+      point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
+   <metamodel
+         nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+      <adviceBinding
+            class="org.eclipse.papyrus.diagram.communication.custom.helper.advice.MessageHelperAdvice"
+            id="org.eclipse.papyrus.uml.diagram.communication.MessageHelperAdvice"
+            inheritance="all"
+            typeId="org.eclipse.papyrus.uml.Message">
+      </adviceBinding>
+   </metamodel>
+</extension>
+<extension id="validationDecoratorProvider" name="ValidationDecorations" point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
+      <?gmfgen generated="true"?>
+      <decoratorProvider class="org.eclipse.papyrus.diagram.communication.providers.UMLValidationDecoratorProvider">
+         <Priority name="Lowest"/>
+         <object class="org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart(org.eclipse.gmf.runtime.diagram.ui)" id="PRIMARY_VIEW"/>
+         <context decoratorTargets="PRIMARY_VIEW"/>
+      </decoratorProvider>
+   </extension>
 
 
 

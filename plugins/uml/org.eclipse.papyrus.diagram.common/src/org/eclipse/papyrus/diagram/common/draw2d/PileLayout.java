@@ -27,7 +27,7 @@ public class PileLayout extends AbstractHintLayout {
 	public void setGap(int gap) {
 		myGap = gap > 0 ? gap : 0;
 	}
-	
+
 	public void setNegativeGap(int gap) {
 		myGap = gap;
 	}

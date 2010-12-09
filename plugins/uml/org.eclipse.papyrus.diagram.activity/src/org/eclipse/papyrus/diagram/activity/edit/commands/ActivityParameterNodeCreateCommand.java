@@ -79,7 +79,6 @@ public class ActivityParameterNodeCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -95,10 +94,7 @@ public class ActivityParameterNodeCreateCommand extends EditElementCommand {
 	 */
 	public boolean canExecute() {
 
-
 		return true;
-
-
 
 	}
 
@@ -122,7 +118,7 @@ public class ActivityParameterNodeCreateCommand extends EditElementCommand {
 		} else {
 			return CommandResult.newCancelledCommandResult();
 		}
-
+		newElement.setIsControlType(true);
 		owner.getNodes().add(newElement);
 
 		if(newElement.getName() == null || newElement.getName().length() == 0) {

@@ -81,6 +81,8 @@ public class StereotypeItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditP
 	}
 
 
+
+
 	/**
 	 * @generated
 	 */
@@ -146,6 +148,7 @@ public class StereotypeItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditP
 			}
 		}
 	}
+
 
 	/**
 	 * @generated

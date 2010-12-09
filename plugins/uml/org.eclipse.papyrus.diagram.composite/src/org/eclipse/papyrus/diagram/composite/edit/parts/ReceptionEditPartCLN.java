@@ -89,7 +89,11 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class ReceptionEditPartCLN extends CompartmentEditPart implements ITextAwareEditPart, IPrimaryEditPart {
+public class ReceptionEditPartCLN
+
+extends CompartmentEditPart
+
+implements ITextAwareEditPart, IPrimaryEditPart {
 
 	/**
 	 * @generated
@@ -116,8 +120,6 @@ public class ReceptionEditPartCLN extends CompartmentEditPart implements ITextAw
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -131,8 +133,6 @@ public class ReceptionEditPartCLN extends CompartmentEditPart implements ITextAw
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -608,8 +608,6 @@ public class ReceptionEditPartCLN extends CompartmentEditPart implements ITextAw
 		return getPrimaryView();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -713,8 +711,6 @@ public class ReceptionEditPartCLN extends CompartmentEditPart implements ITextAw
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -730,8 +726,6 @@ public class ReceptionEditPartCLN extends CompartmentEditPart implements ITextAw
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
-
-
 
 	/**
 	 * @generated
@@ -784,14 +778,10 @@ public class ReceptionEditPartCLN extends CompartmentEditPart implements ITextAw
 		return new ReceptionDescriptor();
 	}
 
-
 	/**
 	 * @generated
 	 */
 	public class ReceptionDescriptor extends WrappingLabel {
-
-
-
 
 		/**
 		 * @generated
@@ -800,12 +790,6 @@ public class ReceptionEditPartCLN extends CompartmentEditPart implements ITextAw
 			this.setText("");
 		}
 
-
-
-
-
 	}
-
-
 
 }

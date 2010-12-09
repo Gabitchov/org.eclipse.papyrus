@@ -17,20 +17,23 @@ import org.eclipse.jface.dialogs.DialogPage;
 import org.eclipse.papyrus.preferences.ui.BackgroundColor;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.widgets.Composite;
+
 /**
- * this class is a background group specialized for the level diagram 
- *
+ * this class is a background group specialized for the level diagram
+ * 
  */
 public class DiagramBackgroundColor extends BackgroundColor {
 
 	/**
 	 * constructor
-	 * @param parent the composite patent
-	 * @param key the preference key the kind of diagram
+	 * 
+	 * @param parent
+	 *        the composite patent
+	 * @param key
+	 *        the preference key the kind of diagram
 	 * @param dialogPage
 	 */
-	public DiagramBackgroundColor(Composite parent, String key,
-			DialogPage dialogPage) {
+	public DiagramBackgroundColor(Composite parent, String key, DialogPage dialogPage) {
 		super(parent, key, dialogPage);
 	}
 

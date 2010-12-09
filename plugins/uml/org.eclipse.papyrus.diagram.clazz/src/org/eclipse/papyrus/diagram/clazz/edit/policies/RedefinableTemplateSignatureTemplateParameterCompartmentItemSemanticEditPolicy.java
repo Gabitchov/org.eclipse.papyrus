@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2010 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,13 +9,14 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ */
 package org.eclipse.papyrus.diagram.clazz.edit.policies;
 
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.ClassifierTemplateParameterCreateCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.ConnectableElementTemplateParameterCreateCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.OperationTemplateParameterCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.TemplateParameterCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 
@@ -37,6 +38,12 @@ public class RedefinableTemplateSignatureTemplateParameterCompartmentItemSemanti
 	protected Command getCreateCommand(CreateElementRequest req) {
 		if(UMLElementTypes.ClassifierTemplateParameter_3031 == req.getElementType()) {
 			return getGEFWrapper(new ClassifierTemplateParameterCreateCommand(req));
+		}
+		if(UMLElementTypes.ConnectableElementTemplateParameter_3034 == req.getElementType()) {
+			return getGEFWrapper(new ConnectableElementTemplateParameterCreateCommand(req));
+		}
+		if(UMLElementTypes.OperationTemplateParameter_3035 == req.getElementType()) {
+			return getGEFWrapper(new OperationTemplateParameterCreateCommand(req));
 		}
 		if(UMLElementTypes.TemplateParameter_3016 == req.getElementType()) {
 			return getGEFWrapper(new TemplateParameterCreateCommand(req));

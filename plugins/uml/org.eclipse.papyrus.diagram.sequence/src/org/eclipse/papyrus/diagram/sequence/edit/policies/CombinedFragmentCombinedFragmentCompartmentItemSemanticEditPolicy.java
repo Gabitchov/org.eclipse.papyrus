@@ -16,10 +16,14 @@ package org.eclipse.papyrus.diagram.sequence.edit.policies;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.InteractionOperandCreateCommand;
+import org.eclipse.papyrus.diagram.sequence.part.Messages;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.ui.toolbox.notification.builders.NotificationBuilder;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.InteractionOperand;
 import org.eclipse.uml2.uml.InteractionOperatorKind;
@@ -55,7 +59,28 @@ public class CombinedFragmentCombinedFragmentCompartmentItemSemanticEditPolicy e
 			if(interactionOperator != null && !operands.isEmpty() && (InteractionOperatorKind.OPT_LITERAL.equals(interactionOperator) || InteractionOperatorKind.LOOP_LITERAL.equals(interactionOperator) || InteractionOperatorKind.BREAK_LITERAL.equals(interactionOperator) || InteractionOperatorKind.NEG_LITERAL.equals(interactionOperator))) {
 				return UnexecutableCommand.INSTANCE;
 			}
-			return getGEFWrapper(new InteractionOperandCreateCommand(req));
+			// make compound command
+			CompoundCommand result = new CompoundCommand();
+			Command cmd = getGEFWrapper(new InteractionOperandCreateCommand(req));
+			result.add(cmd);
+			// append a command which notifies
+			Command notifyCmd = new Command() {
+
+				@Override
+				public void execute() {
+					NotificationBuilder warning = NotificationBuilder.createAsyncPopup(Messages.Warning_ResizeInteractionOperandTitle, NLS.bind(Messages.Warning_ResizeInteractionOperandTxt, System.getProperty("line.separator")));
+					warning.run();
+				}
+
+				@Override
+				public void undo() {
+					execute();
+				}
+			};
+			if(notifyCmd.canExecute()) {
+				result.add(notifyCmd);
+			}
+			return result;
 		}
 		return super.getCreateCommand(req);
 	}

@@ -10,22 +10,16 @@
  * Contributors:
  *  Chokri Mraidha (CEA LIST) Chokri.Mraidha@cea.fr - Initial API and implementation
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - modification
+ *  Ansgar Radermacher (CEA LIST) Ansgar.Radermacher@cea.fr - modification, clean-up
  *
  *****************************************************************************/
 package org.eclipse.papyrus.profile.ui.compositesformodel;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
-import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.commands.operations.IOperationHistory;
-import org.eclipse.core.commands.operations.OperationHistoryFactory;
-import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gmf.runtime.common.core.command.CommandResult;
-import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.profile.Message;
 import org.eclipse.papyrus.profile.tree.ProfileElementContentProvider;
 import org.eclipse.papyrus.profile.tree.ProfileElementLabelProvider;
@@ -33,7 +27,6 @@ import org.eclipse.papyrus.profile.tree.objects.AppliedStereotypePropertyTreeObj
 import org.eclipse.papyrus.profile.tree.objects.AppliedStereotypeTreeObject;
 import org.eclipse.papyrus.profile.tree.objects.StereotypedElementTreeObject;
 import org.eclipse.papyrus.profile.tree.objects.ValueTreeObject;
-import org.eclipse.papyrus.profile.ui.section.AppliedStereotypePropertyEditor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Tree;
@@ -42,7 +35,6 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
-import org.eclipse.uml2.uml.Type;
 
 /**
  * The goal of this composite is make properties of applied stereotype editable see class AppliedStereotypeEditor
@@ -50,14 +42,9 @@ import org.eclipse.uml2.uml.Type;
 public class PropertyComposite extends DecoratedTreeComposite {
 
 	public TransactionalEditingDomain getDomain() {
-		return domain;
+		// used by heir AppliedStereotypePropertyCompositeWithView
+		return EditorUtils.getTransactionalEditingDomain();
 	}
-
-	public void setDomain(TransactionalEditingDomain domain) {
-		this.domain = domain;
-	}
-
-	protected TransactionalEditingDomain domain;
 
 	/**
 	 * Creates a new PropertyComposite.
@@ -144,6 +131,12 @@ public class PropertyComposite extends DecoratedTreeComposite {
 
 	}
 
+	public void itemDClicked () {
+		AppliedStereotypePropertyTreeObject pTO = (AppliedStereotypePropertyTreeObject)treeViewer.getInput();
+		// re-initialize value tree objects (model is already updated, value in tree object is not)
+		pTO.reInitChilds();
+	}
+	
 	/**
 	 * Action triggered when the add button is pressed.
 	 */
@@ -164,13 +157,13 @@ public class PropertyComposite extends DecoratedTreeComposite {
 		// Retrieve property related info
 		int lower = property.getLower();
 		int upper = property.getUpper();
-		Type type = property.getType();
-		String typeName = type.getName();
 
 		// if lower multiplicity is equal to upper multiplicity : cannot add
-		if(lower == upper && selectedElt.getValue(selectedSt, property.getName()) != null) {
-			if(selectedElt.getValue(selectedSt, property.getName()) instanceof EList) {
-				if(((EList)selectedElt.getValue(selectedSt, property.getName())).size() >= upper) {
+		if(lower == upper && pTO.getValue() != null) {
+			if (pTO.getValue() instanceof EList) {
+				@SuppressWarnings("unchecked")
+				EList<Object> currentValues = (EList<Object>) pTO.getValue ();
+				if (currentValues.size() >= upper) {
 					Message.warning("Multiplicity of this property is " + property.getLower() + ".." + property.getUpper() + "\n" + "Impossible to add a new value.");
 					return;
 				}
@@ -181,52 +174,31 @@ public class PropertyComposite extends DecoratedTreeComposite {
 		}
 
 		// Retrieve current value
-		ArrayList currentPropertyValues = new ArrayList();
-		Object currentValue = null;
-		if(selectedElt.hasValue(selectedSt, property.getName())) {
-			currentValue = selectedElt.getValue(selectedSt, property.getName());
-
+		ArrayList<Object> currentPropertyValues = new ArrayList<Object>();
+		Object currentValue = pTO.getValue();
+		if (currentValue != null) {
+			
 			if(upper == 1) {
 				currentPropertyValues.add(currentValue);
 
 			} else { // if (upper != 1) {
-				EList currentValues = (EList)currentValue;
+				
+				@SuppressWarnings("unchecked")
+				EList<Object> currentValues = (EList<Object>) currentValue;
 				for(int i = 0; i < currentValues.size(); i++) {
 					currentPropertyValues.add(currentValues.get(i));
 				}
 			}
 		}
 
-		if(property.isMultivalued() || (currentPropertyValues.size() < upper)) {
-			Object newValue = null;
-
-			// get a new value for the property
-			newValue = AppliedStereotypePropertyEditor.getNewValueForProperty(this.getShell(), property, selectedElt, type, currentPropertyValues);
-			// new value entered ?
-			if(newValue == null) {
-				// quit
-				return;
-			}
-
-			// Update property value(s)
-			if(property.isMultivalued()) {
-				// If newValue was entered, add to tempValues (future values list)
-				if (!currentPropertyValues.contains(newValue)) {
-					currentPropertyValues.add(newValue);
-					// Update tree && Refresh
-					pTO.addChild(ValueTreeObject.createInstance(pTO, newValue, getDomain()));
-				}
-				setPropertiesValue(selectedElt, selectedSt, property, currentPropertyValues);
-			}
-			else {
-				// otherwise ([0..1] case)
-				setPropertiesValue(selectedElt, selectedSt, property, newValue);
-				pTO.addChild(ValueTreeObject.createInstance(pTO, newValue, getDomain()));
-			}
+		if (property.isMultivalued() || (currentPropertyValues.size() < upper)) {
+			ValueTreeObject.createInstance(pTO, null).editMe ();
 		}
 		else {
 			Message.warning("Upper multiplicity of " + property.getName() + " is " + property.getUpper());
 		}
+		// Update value tree objects
+		pTO.reInitChilds ();
 	}
 
 	/**
@@ -241,12 +213,10 @@ public class PropertyComposite extends DecoratedTreeComposite {
 
 		TreeItem[] items = getTree().getSelection();
 		for(int i = 0; i < nbrOfSelection; i++) {
-			ValueTreeObject vTO = (ValueTreeObject)items[i].getData();
-			// vTO.removeMe();
-			AppliedStereotypePropertyTreeObject pTO = (AppliedStereotypePropertyTreeObject)treeViewer.getInput();
+			ValueTreeObject vTO = (ValueTreeObject) items[i].getData();
+			AppliedStereotypePropertyTreeObject pTO = 
+				(AppliedStereotypePropertyTreeObject) treeViewer.getInput();
 			Property property = pTO.getProperty();
-			Stereotype stereotype = ((AppliedStereotypeTreeObject)pTO.getParent()).getStereotype();
-			Element selectedElt = ((StereotypedElementTreeObject)pTO.getParent().getParent()).getElement();
 
 			int lower = property.getLower();
 			int upper = property.getUpper();
@@ -258,37 +228,27 @@ public class PropertyComposite extends DecoratedTreeComposite {
 			}
 
 			Object currentVal = pTO.getValue();
-			ArrayList tempValues = new ArrayList();
+			ArrayList<Object> tempValues = new ArrayList<Object>();
 
-			if(((lower == 0) && (upper == 1))) {
-				if(currentVal != null) {
-					tempValues.add(currentVal);
-				}
-
-			} else if(upper != 1) {
-				EList currentValues = (EList)currentVal;
-
-				for(int j = 0; j < currentValues.size(); j++) {
-					tempValues.add(currentValues.get(j));
+			if (upper != 1) {
+				@SuppressWarnings("unchecked")
+				EList<Object> currentValues = (EList<Object>) currentVal;
+				tempValues.addAll (currentValues);
+			
+				if (tempValues.size() > lower) {
+					tempValues.remove(vTO.getValue());
 				}
 			}
-
-			if((lower == 0) || (tempValues.size() > lower)) {
-				tempValues.remove(vTO.getValue());
-
-				if(property.isMultivalued()) {
-					setPropertiesValue(selectedElt, stereotype, property, tempValues);
-				} else {
-					setPropertiesValue(selectedElt, stereotype, property, null);
-				}
-
-				// Force model change
-				// Util.touchModel(element);
-
+				
+			if(property.isMultivalued()) {
+				// setPropertiesValue(selectedElt, stereotype, property, tempValues);
+				pTO.updateValue (tempValues);
 			} else {
-				Message.warning("Lower multiplicity of " + property.getName() + " is " + lower);
+				pTO.updateValue (null);
 			}
-			pTO.removeChild(vTO);
+
+			// Update value tree objects
+			pTO.reInitChilds ();
 		}
 	}
 
@@ -355,6 +315,9 @@ public class PropertyComposite extends DecoratedTreeComposite {
 	 */
 	public void setInput(AppliedStereotypePropertyTreeObject element) {
 		treeViewer.setInput(element);
+		if (element != null) {
+			element.reInitChilds ();
+		}
 		refresh();
 	}
 
@@ -376,21 +339,4 @@ public class PropertyComposite extends DecoratedTreeComposite {
 	public void editItem(TreeItem item) {
 		// do nothing
 	}
-
-	protected void setPropertiesValue(final Element element, final Stereotype stereotype, final Property property, final Object newValue) {
-		// bugfix: a selected element is not necessary a diagram element (ex: selection in the outline)
-		IOperationHistory history = OperationHistoryFactory.getOperationHistory();
-		try {
-			history.execute ( new AbstractTransactionalCommand (getDomain (), "Apply stereotype property", Collections.EMPTY_LIST) {
-				public CommandResult doExecuteWithResult (IProgressMonitor dummy, IAdaptable info) {
-					element.setValue(stereotype, property.getName(), newValue);
-	                return CommandResult.newOKCommandResult();
-				}
-			}, null, null);
-		}
-		catch (ExecutionException e) {
-			e.printStackTrace ();
-		}
-	}
-
 }

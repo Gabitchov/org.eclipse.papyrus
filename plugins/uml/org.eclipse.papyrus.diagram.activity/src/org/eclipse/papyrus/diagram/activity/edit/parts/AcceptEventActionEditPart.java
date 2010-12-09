@@ -137,7 +137,6 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new AcceptEventActionItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 
-
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.activity.edit.policies.AcceptEventActionCanonicalEditPolicy());
 
@@ -151,10 +150,6 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
-
-
-
-
 
 	/**
 	 * @generated
@@ -221,10 +216,6 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 			return true;
 		}
 
-
-
-
-
 		//Papyrus Gencode :Affixed Pin locator for Actions
 		if(childEditPart instanceof OutputPinInAcceptEventActionEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.EAST);
@@ -232,12 +223,8 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 			return true;
 		}
 
-
-
-
 		return false;
 	}
-
 
 	/**
 	 * @generated
@@ -320,7 +307,6 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -430,12 +416,6 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 		if(targetEditPart instanceof TimeConstraintAsLocalPostcondEditPart) {
 			types.add(UMLElementTypes.ActionLocalPrecondition_4001);
 		}
-		if(targetEditPart instanceof InteractionConstraintAsLocalPrecondEditPart) {
-			types.add(UMLElementTypes.ActionLocalPrecondition_4001);
-		}
-		if(targetEditPart instanceof InteractionConstraintAsLocalPostcondEditPart) {
-			types.add(UMLElementTypes.ActionLocalPrecondition_4001);
-		}
 		if(targetEditPart instanceof IntervalConstraintAsLocalPrecondEditPart) {
 			types.add(UMLElementTypes.ActionLocalPrecondition_4001);
 		}
@@ -460,12 +440,6 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 		if(targetEditPart instanceof TimeConstraintAsLocalPostcondEditPart) {
 			types.add(UMLElementTypes.ActionLocalPostcondition_4002);
 		}
-		if(targetEditPart instanceof InteractionConstraintAsLocalPrecondEditPart) {
-			types.add(UMLElementTypes.ActionLocalPostcondition_4002);
-		}
-		if(targetEditPart instanceof InteractionConstraintAsLocalPostcondEditPart) {
-			types.add(UMLElementTypes.ActionLocalPostcondition_4002);
-		}
 		if(targetEditPart instanceof IntervalConstraintAsLocalPrecondEditPart) {
 			types.add(UMLElementTypes.ActionLocalPostcondition_4002);
 		}
@@ -634,6 +608,12 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 		if(targetEditPart instanceof StructuredActivityNodeEditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
+		if(targetEditPart instanceof ReadSelfActionEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof ReadSelfActionOutputPinEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
 		if(targetEditPart instanceof InitialNodeEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
@@ -790,6 +770,12 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 		if(targetEditPart instanceof StructuredActivityNodeEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
+		if(targetEditPart instanceof ReadSelfActionEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof ReadSelfActionOutputPinEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
 		if(targetEditPart instanceof ValuePinInOpaqueActEditPart) {
 			types.add(UMLElementTypes.ExceptionHandler_4005);
 		}
@@ -889,6 +875,9 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 		if(targetEditPart instanceof ExpansionNodeAsOutEditPart) {
 			types.add(UMLElementTypes.ExceptionHandler_4005);
 		}
+		if(targetEditPart instanceof ReadSelfActionOutputPinEditPart) {
+			types.add(UMLElementTypes.ExceptionHandler_4005);
+		}
 		return types;
 	}
 
@@ -902,8 +891,6 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 			types.add(UMLElementTypes.DurationConstraint_3035);
 			types.add(UMLElementTypes.TimeConstraint_3036);
 			types.add(UMLElementTypes.TimeConstraint_3037);
-			types.add(UMLElementTypes.InteractionConstraint_3030);
-			types.add(UMLElementTypes.InteractionConstraint_3031);
 			types.add(UMLElementTypes.IntervalConstraint_3032);
 			types.add(UMLElementTypes.IntervalConstraint_3033);
 			types.add(UMLElementTypes.Constraint_3011);
@@ -913,8 +900,6 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 			types.add(UMLElementTypes.DurationConstraint_3035);
 			types.add(UMLElementTypes.TimeConstraint_3036);
 			types.add(UMLElementTypes.TimeConstraint_3037);
-			types.add(UMLElementTypes.InteractionConstraint_3030);
-			types.add(UMLElementTypes.InteractionConstraint_3031);
 			types.add(UMLElementTypes.IntervalConstraint_3032);
 			types.add(UMLElementTypes.IntervalConstraint_3033);
 			types.add(UMLElementTypes.Constraint_3011);
@@ -972,6 +957,8 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 			types.add(UMLElementTypes.LoopNode_3071);
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
+			types.add(UMLElementTypes.ReadSelfAction_3081);
+			types.add(UMLElementTypes.OutputPin_3082);
 		} else if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 			types.add(UMLElementTypes.ActivityFinalNode_3005);
@@ -1025,6 +1012,8 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 			types.add(UMLElementTypes.LoopNode_3071);
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
+			types.add(UMLElementTypes.ReadSelfAction_3081);
+			types.add(UMLElementTypes.OutputPin_3082);
 		} else if(relationshipType == UMLElementTypes.ExceptionHandler_4005) {
 			types.add(UMLElementTypes.ValuePin_3015);
 			types.add(UMLElementTypes.ActionInputPin_3016);
@@ -1059,6 +1048,7 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 			types.add(UMLElementTypes.OutputPin_3077);
 			types.add(UMLElementTypes.ExpansionNode_3074);
 			types.add(UMLElementTypes.ExpansionNode_3075);
+			types.add(UMLElementTypes.OutputPin_3082);
 		}
 		return types;
 	}
@@ -1067,9 +1057,10 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnTarget() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(3);
 		types.add(UMLElementTypes.ObjectFlow_4003);
 		types.add(UMLElementTypes.ControlFlow_4004);
+		types.add(UMLElementTypes.CommentAnnotatedElement_4006);
 		return types;
 	}
 
@@ -1131,6 +1122,8 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 			types.add(UMLElementTypes.LoopNode_3071);
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
+			types.add(UMLElementTypes.ReadSelfAction_3081);
+			types.add(UMLElementTypes.OutputPin_3082);
 		} else if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 			types.add(UMLElementTypes.ActivityFinalNode_3005);
@@ -1184,19 +1177,18 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 			types.add(UMLElementTypes.LoopNode_3071);
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
+			types.add(UMLElementTypes.ReadSelfAction_3081);
+			types.add(UMLElementTypes.OutputPin_3082);
+		} else if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4006) {
+			types.add(UMLElementTypes.Comment_3080);
 		}
 		return types;
 	}
-
-
-
-
 
 	/**
 	 * @generated NOT implements IPapyrusNodeUMLElementFigure
 	 */
 	public class AcceptEventActionFigure extends ScalablePolygonShape implements IPapyrusNodeUMLElementFigure {
-
 
 		/**
 		 * @generated
@@ -1258,7 +1250,6 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 		 */
 		private void createContents() {
 
-
 			RectangleFigure labelRect0 = new RectangleFigure();
 			labelRect0.setFill(false);
 			labelRect0.setOutline(false);
@@ -1268,23 +1259,15 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 			CenteredColumnConstraint constraintLabelRect0 = new CenteredColumnConstraint(true);
 			this.add(labelRect0, constraintLabelRect0);
 
-
 			CenterLayout layoutLabelRect0 = new CenterLayout();
-
 
 			labelRect0.setLayoutManager(layoutLabelRect0);
 
-
-
 			fAcceptEventActionLabel = new CenteredWrappedLabel();
-
-
 
 			fAcceptEventActionLabel.setBorder(new MarginBorder(getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
 
 			labelRect0.add(fAcceptEventActionLabel);
-
-
 
 		}
 
@@ -1384,7 +1367,6 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 		public Label getStereotypesLabel() {
 			return null;//fActionStereotypeLabel;
 		}
-
 
 		/**
 		 * @generated NOT
@@ -1557,9 +1539,6 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 			return scaled;
 		}
 
-
-
-
 		/**
 		 * @generated
 		 */
@@ -1567,11 +1546,7 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 			return fAcceptEventActionLabel;
 		}
 
-
 	}
-
-
-
 
 	/**
 	 * @generated

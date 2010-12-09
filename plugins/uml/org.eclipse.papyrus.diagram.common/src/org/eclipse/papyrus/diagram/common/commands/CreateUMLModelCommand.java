@@ -25,30 +25,30 @@ public class CreateUMLModelCommand extends ModelCreationCommandBase {
 
 	/**
 	 * @see org.eclipse.papyrus.core.extension.commands.ModelCreationCommandBase#createRootElement()
-	 *
+	 * 
 	 * @return
 	 */
-	
+
 	@Override
 	protected EObject createRootElement() {
 		return UMLFactory.eINSTANCE.createModel();
 	}
-	
+
 	/**
 	 * @see org.eclipse.papyrus.core.extension.commands.ModelCreationCommandBase#initializeModel(org.eclipse.emf.ecore.EObject)
-	 *
+	 * 
 	 * @param owner
 	 */
-	
+
 	@Override
 	protected void initializeModel(EObject owner) {
 		super.initializeModel(owner);
 		((org.eclipse.uml2.uml.Package)owner).setName(getModelName());
 	}
-	
+
 	/**
 	 * Gets the model name.
-	 *
+	 * 
 	 * @return the model name
 	 */
 	protected String getModelName() {

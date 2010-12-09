@@ -89,7 +89,7 @@ public class GroupContainerDescriptor extends ContainerDescriptor {
 			getDescribedComposite().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 		}
 
-		controllers = updateControllers();
+		controllers = updateControllers(widgetFactory);
 
 		return controllers;
 	}

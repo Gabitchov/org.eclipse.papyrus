@@ -75,7 +75,6 @@ public class ForkNodeCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -99,8 +98,6 @@ public class ForkNodeCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
-
 		ForkNode newElement = UMLFactory.eINSTANCE.createForkNode();
 
 		// set appropriate parents
@@ -109,7 +106,6 @@ public class ForkNodeCreateCommand extends EditElementCommand {
 		}
 		//		Activity owner = (Activity)getElementToEdit();
 		//		owner.getNodes().add(newElement);
-
 
 		ElementInitializers.getInstance().init_ForkNode_3040(newElement);
 

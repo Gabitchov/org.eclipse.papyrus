@@ -75,7 +75,6 @@ public class StateMachineCompositeCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -105,13 +104,10 @@ public class StateMachineCompositeCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
-
 		StateMachine newElement = UMLFactory.eINSTANCE.createStateMachine();
 
 		Package owner = (Package)getElementToEdit();
 		owner.getPackagedElements().add(newElement);
-
 
 		ElementInitializers.getInstance().init_StateMachine_2063(newElement);
 
@@ -120,9 +116,6 @@ public class StateMachineCompositeCreateCommand extends EditElementCommand {
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
-
-
-
 
 	/**
 	 * @generated

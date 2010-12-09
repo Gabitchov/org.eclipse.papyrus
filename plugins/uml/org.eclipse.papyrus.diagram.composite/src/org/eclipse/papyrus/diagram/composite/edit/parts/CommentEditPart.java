@@ -58,7 +58,6 @@ import org.eclipse.swt.graphics.Color;
  */
 public class CommentEditPart extends
 
-
 AbstractCommentEditPart {
 
 	/**
@@ -95,9 +94,6 @@ AbstractCommentEditPart {
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
-
-
-
 	/**
 	 * Papyrus codeGen
 	 * 
@@ -107,10 +103,6 @@ AbstractCommentEditPart {
 		super.handleNotificationEvent(event);
 
 	}
-
-
-
-
 
 	/**
 	 * @generated
@@ -160,10 +152,8 @@ AbstractCommentEditPart {
 			return true;
 		}
 
-
 		return false;
 	}
-
 
 	/**
 	 * @generated
@@ -202,7 +192,6 @@ AbstractCommentEditPart {
 		return getContentPane();
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -215,7 +204,6 @@ AbstractCommentEditPart {
 
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -340,9 +328,6 @@ AbstractCommentEditPart {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4002);
 		}
 		if(targetEditPart instanceof ClassCompositeEditPart) {
-			types.add(UMLElementTypes.CommentAnnotatedElement_4002);
-		}
-		if(targetEditPart instanceof ClassClassifierEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4002);
 		}
 		if(targetEditPart instanceof CollaborationCompositeEditPart) {
@@ -593,7 +578,6 @@ AbstractCommentEditPart {
 			types.add(UMLElementTypes.ExecutionEnvironment_2071);
 			types.add(UMLElementTypes.Node_2072);
 			types.add(UMLElementTypes.Class_2073);
-			types.add(UMLElementTypes.Class_2074);
 			types.add(UMLElementTypes.Collaboration_2075);
 			types.add(UMLElementTypes.Interface_2076);
 			types.add(UMLElementTypes.PrimitiveType_2066);
@@ -706,10 +690,6 @@ AbstractCommentEditPart {
 		}
 		return types;
 	}
-
-
-
-
 
 	/**
 	 * @generated

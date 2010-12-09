@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2010 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,8 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ */
 package org.eclipse.papyrus.diagram.clazz.edit.parts;
 
 import org.eclipse.draw2d.Connection;
@@ -20,6 +19,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.CustomGraphicalNodeEditPolicy;
+import org.eclipse.papyrus.diagram.clazz.custom.policies.itemsemantic.CustomSubstitutionItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.SubstitutionItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.common.editparts.UMLConnectionNodeEditPart;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
@@ -29,7 +29,9 @@ import org.eclipse.papyrus.diagram.common.figure.edge.DashedEdgeFigure;
 /**
  * @generated
  */
-public class SubstitutionEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
+public class SubstitutionEditPart extends
+
+UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -51,6 +53,7 @@ public class SubstitutionEditPart extends UMLConnectionNodeEditPart implements I
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new SubstitutionItemSemanticEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomSubstitutionItemSemanticEditPolicy());
 	}
 
 	/**
@@ -104,12 +107,11 @@ public class SubstitutionEditPart extends UMLConnectionNodeEditPart implements I
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model so
-	 * you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model
+	 * so you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
-
 	protected Connection createConnectionFigure() {
 		return new DashedEdgeFigure();
 	}

@@ -17,15 +17,17 @@ import org.eclipse.gmf.runtime.diagram.ui.services.editpart.AbstractEditPartProv
 import org.eclipse.gmf.runtime.diagram.ui.services.editpart.CreateGraphicEditPartOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpart.IEditPartOperation;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassOperationCompartment2EditPart;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockConstraintCompartmentEditPart;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockConstraintEditPart;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockDefinitionDiagramEditPart;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockEditPart;
+import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockOperationCompartmentEditPart;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockPartCompartmentEditPart;
+import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockPartEditPart;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockPropertyCompartmentEditPart;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockPropertyEditPart;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockReferenceCompartmentEditPart;
+import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockReferenceEditPart;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockValueCompartmentEditPart;
 
 public class BlockEditPartProvider extends AbstractEditPartProvider {
@@ -34,14 +36,16 @@ public class BlockEditPartProvider extends AbstractEditPartProvider {
 	{
 		nodeMap.put(BlockDefinitionDiagramElementTypes.BLOCK.getSemanticHint(), BlockEditPart.class);
 		nodeMap.put(BlockDefinitionDiagramElementTypes.BLOCK_PROPERTY_COMPARTMENT_HINT, BlockPropertyCompartmentEditPart.class);
-		nodeMap.put(BlockDefinitionDiagramElementTypes.BLOCK_OPERATION_COMPARTMENT_HINT, ClassOperationCompartment2EditPart.class);
+		nodeMap.put(BlockDefinitionDiagramElementTypes.BLOCK_OPERATION_COMPARTMENT_HINT, BlockOperationCompartmentEditPart.class);
 		nodeMap.put(BlockDefinitionDiagramElementTypes.BLOCK_CONSTRAINT_COMPARTMENT_HINT, BlockConstraintCompartmentEditPart.class);
 		nodeMap.put(BlockDefinitionDiagramElementTypes.BLOCK_PART_COMPARTMENT_HINT, BlockPartCompartmentEditPart.class);
 		nodeMap.put(BlockDefinitionDiagramElementTypes.BLOCK_REFERENCE_COMPARTMENT_HINT, BlockReferenceCompartmentEditPart.class);
 		nodeMap.put(BlockDefinitionDiagramElementTypes.BLOCK_VALUE_COMPARTMENT_HINT, BlockValueCompartmentEditPart.class);
 
-		nodeMap.put(BlockDefinitionDiagramElementTypes.CLASS_PROP_CLN.getSemanticHint(), BlockPropertyEditPart.class);
+		nodeMap.put(BlockDefinitionDiagramElementTypes.CLASS_PROPERTY_CLN.getSemanticHint(), BlockPropertyEditPart.class);
 		nodeMap.put(BlockDefinitionDiagramElementTypes.BLOCK_CONSTRAINT_CLN.getSemanticHint(), BlockConstraintEditPart.class);
+		nodeMap.put(BlockDefinitionDiagramElementTypes.BLOCK_PART_CLN.getSemanticHint(), BlockPartEditPart.class);
+		nodeMap.put(BlockDefinitionDiagramElementTypes.BLOCK_REFERENCE_CLN.getSemanticHint(), BlockReferenceEditPart.class);
 	}
 
 	@Override

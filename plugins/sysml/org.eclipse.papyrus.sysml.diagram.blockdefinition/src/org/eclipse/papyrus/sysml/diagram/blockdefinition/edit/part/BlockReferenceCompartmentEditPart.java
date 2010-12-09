@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 Atos Origin.
+ * Copyright (c) 2010 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Mathieu Velten (Atos Origin) mathieu.velten@atosorigin.com - Initial API and implementation
+ *  Tatiana Fesenko (CEA LIST) - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part;
@@ -16,6 +16,8 @@ package org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassAttributeCompartment2EditPart;
+import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy.BlockPartCompartmentItemSemanticEditPolicy;
+import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy.BlockReferenceCompartmentItemSemanticEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy.DefaultItemSemanticEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.BlockDefinitionDiagramElementTypes;
 
@@ -30,7 +32,8 @@ public class BlockReferenceCompartmentEditPart extends ClassAttributeCompartment
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultItemSemanticEditPolicy(BlockDefinitionDiagramElementTypes.BLOCK));
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new BlockReferenceCompartmentItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy.CustomDragDropEditPolicy());
 	}
 
 	@Override

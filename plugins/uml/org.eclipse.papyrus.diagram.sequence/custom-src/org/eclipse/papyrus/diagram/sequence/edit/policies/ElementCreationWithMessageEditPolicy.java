@@ -22,17 +22,18 @@ import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.sequence.command.ChangeEdgeTargetCommand;
 import org.eclipse.papyrus.diagram.sequence.command.CreateElementAndNodeCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
-import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.papyrus.diagram.sequence.util.SequenceUtil;
+import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.Lifeline;
 
@@ -55,14 +56,18 @@ public class ElementCreationWithMessageEditPolicy extends LifelineChildGraphical
 		if(command != null && command.canExecute()) {
 			compound.add(command);
 
-			if(request instanceof CreateConnectionViewRequest) {
-				CreateConnectionViewRequest viewRequest = (CreateConnectionViewRequest)request;
+			if(request instanceof CreateConnectionViewAndElementRequest) {
+				CreateConnectionViewAndElementRequest viewRequest = (CreateConnectionViewAndElementRequest)request;
 				EditPart targetEP = getTargetEditPart(viewRequest);
-				EObject target = ViewUtil.resolveSemanticElement((View)getHost().getModel());
+				EObject target = ViewUtil.resolveSemanticElement((View)targetEP.getModel());
+				EditPart sourceEP = viewRequest.getSourceEditPart();
+				EObject source = ViewUtil.resolveSemanticElement((View)sourceEP.getModel());
 
-				if(getSyncMessageHint().equals(viewRequest.getConnectionViewDescriptor().getSemanticHint())) {
-					if(target instanceof Lifeline) {
-						InteractionFragment ift = SequenceUtil.findInteractionFragmentAt(viewRequest.getLocation(), getHost());
+				if(getSyncMessageHint().equals(viewRequest.getConnectionViewDescriptor().getSemanticHint()) || getReplyMessageHint().equals(viewRequest.getConnectionViewDescriptor().getSemanticHint())) {
+					if(target instanceof Lifeline ||
+					// handle reflexive synch message by creating a new ES
+					(target instanceof ExecutionSpecification && target.equals(source))) {
+						InteractionFragment ift = SequenceUtil.findInteractionFragmentContainerAt(viewRequest.getLocation(), getHost());
 
 						// retrieve the good execution specification type using the source of the message
 						IHintedType elementType = null;
@@ -72,8 +77,14 @@ public class ElementCreationWithMessageEditPolicy extends LifelineChildGraphical
 							elementType = (IHintedType)UMLElementTypes.BehaviorExecutionSpecification_3003;
 						}
 
+						if(target instanceof ExecutionSpecification) {
+							// retrieve its associated lifeline
+							targetEP = targetEP.getParent();
+							target = ViewUtil.resolveSemanticElement((View)targetEP.getModel());
+						}
+
 						if(elementType != null) {
-							CreateElementAndNodeCommand createExecutionSpecificationCommand = new CreateElementAndNodeCommand(getEditingDomain(), (LifelineEditPart)targetEP, (Lifeline)target, elementType, request.getLocation());
+							CreateElementAndNodeCommand createExecutionSpecificationCommand = new CreateElementAndNodeCommand(getEditingDomain(), (ShapeNodeEditPart)targetEP, target, elementType, request.getLocation());
 							createExecutionSpecificationCommand.putCreateElementRequestParameter(SequenceRequestConstant.INTERACTIONFRAGMENT_CONTAINER, ift);
 							compound.add(createExecutionSpecificationCommand);
 
@@ -91,6 +102,11 @@ public class ElementCreationWithMessageEditPolicy extends LifelineChildGraphical
 
 	private static String getSyncMessageHint() {
 		IHintedType message = (IHintedType)UMLElementTypes.Message_4003;
+		return message.getSemanticHint();
+	}
+
+	private static String getReplyMessageHint() {
+		IHintedType message = (IHintedType)UMLElementTypes.Message_4005;
 		return message.getSemanticHint();
 	}
 

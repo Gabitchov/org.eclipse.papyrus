@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2010 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,8 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ */
 package org.eclipse.papyrus.diagram.clazz.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
@@ -38,7 +37,11 @@ import org.eclipse.papyrus.diagram.common.editpolicies.DuplicatePasteEditPolicy;
 /**
  * @generated
  */
-public class DataTypeOperationCompartmentEditPart extends ResizeableListCompartmentEditPart {
+public class DataTypeOperationCompartmentEditPart
+
+extends ResizeableListCompartmentEditPart
+
+{
 
 	/**
 	 * @generated
@@ -85,7 +88,6 @@ public class DataTypeOperationCompartmentEditPart extends ResizeableListCompartm
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new DuplicatePasteEditPolicy());
-
 
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.clazz.edit.policies.DataTypeOperationCompartmentCanonicalEditPolicy());
@@ -134,5 +136,4 @@ public class DataTypeOperationCompartmentEditPart extends ResizeableListCompartm
 		super.refreshVisuals();
 		refreshBounds();
 	}
-
 }

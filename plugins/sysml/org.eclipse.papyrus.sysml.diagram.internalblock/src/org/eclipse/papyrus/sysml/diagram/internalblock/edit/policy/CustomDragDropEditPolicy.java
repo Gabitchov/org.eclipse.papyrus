@@ -13,8 +13,12 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.composite.custom.edit.policies.CustomDiagramDragDropEditPolicy;
+import org.eclipse.papyrus.sysml.blocks.Block;
 import org.eclipse.papyrus.sysml.diagram.internalblock.provider.InternalBlockDiagramElementTypes;
+import org.eclipse.papyrus.umlutils.ElementUtil;
+import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Connector;
+import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
 
@@ -28,19 +32,16 @@ public class CustomDragDropEditPolicy extends CustomDiagramDragDropEditPolicy {
 		containerView.eClass();
 
 		// Fill the semantic hint during the drop
-		if(containerView instanceof Diagram) { // Top Nodes
-			if(domainElement instanceof org.eclipse.uml2.uml.Class) {
-				semanticHint = InternalBlockDiagramElementTypes.CLASS.getSemanticHint();
-			}
-
-		} else { // Child Nodes
-			if(domainElement instanceof Port) {
-				semanticHint = InternalBlockDiagramElementTypes.PORT_CN.getSemanticHint();
-			} else if(domainElement instanceof Property) {
-				semanticHint = InternalBlockDiagramElementTypes.PROPERTY_CN.getSemanticHint();
-			} else if(domainElement instanceof org.eclipse.uml2.uml.Class) {
-				semanticHint = InternalBlockDiagramElementTypes.CLASS_CN.getSemanticHint();
-			}
+		if((containerView instanceof Diagram) && (domainElement instanceof org.eclipse.uml2.uml.Class) && (ElementUtil.getStereotypeApplication((org.eclipse.uml2.uml.Class)domainElement, Block.class) != null)) {
+			semanticHint = InternalBlockDiagramElementTypes.CLASS.getSemanticHint();
+		} else if(!(containerView instanceof Diagram) && (domainElement instanceof Port)) {
+			semanticHint = InternalBlockDiagramElementTypes.PORT_CN.getSemanticHint();
+		} else if(!(containerView instanceof Diagram) && (domainElement instanceof Property)) {
+			semanticHint = InternalBlockDiagramElementTypes.PROPERTY_CN.getSemanticHint();
+		} else if((containerView instanceof Diagram) && (domainElement instanceof Comment)) {
+			semanticHint = InternalBlockDiagramElementTypes.COMMENT.getSemanticHint();
+		} else if((containerView instanceof Diagram) && (domainElement instanceof Constraint)) {
+			semanticHint = InternalBlockDiagramElementTypes.CONSTRAINT.getSemanticHint();
 		}
 
 		return new Integer(semanticHint);
@@ -49,6 +50,7 @@ public class CustomDragDropEditPolicy extends CustomDiagramDragDropEditPolicy {
 	@Override
 	public int getLinkWithClassVisualID(EObject domainElement) {
 		String semanticHint = "-1";
+
 		if(domainElement instanceof Connector) {
 			semanticHint = InternalBlockDiagramElementTypes.CONNECTOR.getSemanticHint();
 		}

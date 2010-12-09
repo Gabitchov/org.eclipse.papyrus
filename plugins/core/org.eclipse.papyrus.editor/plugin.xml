@@ -9,6 +9,7 @@
             extensions="di"
             icon="icons/papyrus/Papyrus_16x16.gif"
             id="org.eclipse.papyrus.core.papyrusEditor"
+            matchingStrategy="org.eclipse.papyrus.editor.PapyrusMatchingStrategy"
             name="Papyrus Editor Core">
       </editor>
    </extension>

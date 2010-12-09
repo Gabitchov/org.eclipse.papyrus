@@ -142,8 +142,12 @@ public class AlignmentLinkHelper {
 			EditPartRepresentation targetRep = null;
 			//we look for a representation of these source and target
 			for(SameAlignment family : families) {
-				sourceRep = family.getEditPartRepresentationFor(source);
-				targetRep = family.getEditPartRepresentationFor(target);
+				if(family.getEditPartRepresentationFor(source) != null) {
+					sourceRep = family.getEditPartRepresentationFor(source);
+				}
+				if(family.getEditPartRepresentationFor(target) != null) {
+					targetRep = family.getEditPartRepresentationFor(target);
+				}
 				if(sourceRep != null) {
 					familySource = family;
 				}

@@ -86,6 +86,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	public static final String VISUAL_ID_KEY = "visual_id"; //$NON-NLS-1$
 
 	/**
+	 * Extended request data key to hold the edge view during a reconnect request.
+	 * 
+	 * @generated
+	 */
+	public static final String GRAPHICAL_RECONNECTED_EDGE = "graphical_edge"; //$NON-NLS-1$
+
+	/**
 	 * @generated
 	 */
 	private final IElementType myElementType;
@@ -105,12 +112,14 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * 
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public Command getCommand(Request request) {
 		if(request instanceof ReconnectRequest) {
 			Object view = ((ReconnectRequest)request).getConnectionEditPart().getModel();
 			if(view instanceof View) {
 				Integer id = new Integer(UMLVisualIDRegistry.getVisualID((View)view));
 				request.getExtendedData().put(VISUAL_ID_KEY, id);
+				request.getExtendedData().put(GRAPHICAL_RECONNECTED_EDGE, (View)view);
 			}
 		}
 		return super.getCommand(request);
@@ -173,7 +182,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	/**
 	 * @generated
 	 */
-	private IElementType getContextElementType(IEditCommandRequest request) {
+	protected IElementType getContextElementType(IEditCommandRequest request) {
 		IElementType requestContextElementType = UMLElementTypes.getElementType(getVisualID(request));
 		return requestContextElementType != null ? requestContextElementType : myElementType;
 	}
@@ -340,7 +349,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		LinkConstraints() {
+		public LinkConstraints() {
 			// use static method #getLinkConstraints() to access instance
 		}
 

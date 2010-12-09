@@ -189,20 +189,10 @@
  	</entry>
 	<entry
        defineOnly="true"
-       description="Create a comment link"
-       id="createCommentlink3CreationTool"
+       description="Create a link for Comment, Constraint"
+       id="createLink3CreationTool"
        kind="tool"
-       label="Comment link"
-       large_icon="icons/obj16/Link.gif"
-       path=""
-       small_icon="icons/obj16/Link.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create a constaint link"
-       id="createConstraintLink4CreationTool"
-       kind="tool"
-       label="Constraint Link"
+       label="Link"
        large_icon="icons/obj16/Link.gif"
        path=""
        small_icon="icons/obj16/Link.gif">
@@ -210,7 +200,7 @@
 	<entry
        defineOnly="true"
        description="Create a ProfileApplication"
-       id="createProfileApplication5CreationTool"
+       id="createProfileApplication4CreationTool"
        kind="tool"
        label="ProfileApplication"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ProfileApplication.gif"
@@ -220,7 +210,7 @@
 	<entry
        defineOnly="true"
        description="Create an ElementImport"
-       id="createElementImport6CreationTool"
+       id="createElementImport5CreationTool"
        kind="tool"
        label="ElementImport"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ElementImport.gif"
@@ -230,7 +220,7 @@
 	<entry
        defineOnly="true"
        description="Create a PackageImport"
-       id="createPackageImport7CreationTool"
+       id="createPackageImport6CreationTool"
        kind="tool"
        label="PackageImport"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PackageImport.gif"
@@ -240,7 +230,7 @@
 	<entry
        defineOnly="true"
        description="Create a Dependency"
-       id="createDependency8CreationTool"
+       id="createDependency7CreationTool"
        kind="tool"
        label="Dependency"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
@@ -249,30 +239,10 @@
  	</entry>
 	<entry
        defineOnly="true"
-       description="Create a DependencyBranch"
-       id="createDependencyBranch9CreationTool"
-       kind="tool"
-       label="DependencyBranch"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
        description="Create an Association"
-       id="createAssociation10CreationTool"
+       id="createAssociation8CreationTool"
        kind="tool"
        label="Association"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description="Create an AssociationBranch"
-       id="createAssociationBranch11CreationTool"
-       kind="tool"
-       label="AssociationBranch"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif"
        path=""
        small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif">
@@ -335,6 +305,9 @@
        large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
        path="/"
        small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
+       <expand
+              force="true">
+       </expand>
  	</entry>
  	 
  	 	<predefinedEntry
@@ -366,6 +339,9 @@
        large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
        path="/"
        small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
+       <expand
+              force="true">
+       </expand>
  	</entry>
  	 
  	 	<predefinedEntry
@@ -401,6 +377,9 @@
        large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
        path="/"
        small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
+       <expand
+              force="true">
+       </expand>
  	</entry>
  	 
  	 	<predefinedEntry
@@ -412,39 +391,27 @@
           path="/createRelationShips3Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createCommentlink3CreationTool"
+          id="createLink3CreationTool"
           path="/createRelationShips3Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createConstraintLink4CreationTool"
+          id="createProfileApplication4CreationTool"
           path="/createRelationShips3Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createProfileApplication5CreationTool"
+          id="createElementImport5CreationTool"
           path="/createRelationShips3Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createElementImport6CreationTool"
+          id="createPackageImport6CreationTool"
           path="/createRelationShips3Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createPackageImport7CreationTool"
+          id="createDependency7CreationTool"
           path="/createRelationShips3Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createDependency8CreationTool"
-          path="/createRelationShips3Group">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="createDependencyBranch9CreationTool"
-          path="/createRelationShips3Group">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="createAssociation10CreationTool"
-          path="/createRelationShips3Group">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="createAssociationBranch11CreationTool"
+          id="createAssociation8CreationTool"
           path="/createRelationShips3Group">
     </predefinedEntry>
 
@@ -456,6 +423,9 @@
        large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
        path="/"
        small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
+       <expand
+              force="true">
+       </expand>
  	</entry>
  	 
  	 	<predefinedEntry
@@ -481,13 +451,6 @@
 
 
 <?gmfgen generated="true"?>
-<extension point="org.eclipse.ui.preferencePages">
-
-
-
-
-
-</extension>
 
 	<extension point="org.eclipse.core.runtime.preferences">
 		<?gmfgen generated="true"?>
@@ -1072,49 +1035,53 @@
          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
          sequence="F5"/>
    </extension>
+
 <extension
-         point="org.eclipse.ui.menus">
-      <menuContribution
-            locationURI="toolbar:org.eclipse.ui.main.toolbar">
-         <toolbar
-               id="org.eclipse.papyrus.diagram.ui.toolbar">
-            <command
-                  commandId="org.eclipse.papyrus.diagram.profile.CreateProfileDiagramCommand"
-                  icon="icons/obj16/Diagram_Profile.gif"
-                  label="Create a new Profile Diagram"
-                  style="push"
-                  tooltip="Create a new Profile Diagram">
-               <visibleWhen>
-                  <with
-                        variable="activeEditorId">
-                     <equals
-                           value="org.eclipse.papyrus.core.papyrusEditor">
-                     </equals>
-                  </with>
-               </visibleWhen>
-            </command>
-         </toolbar>
-      </menuContribution>
-      <menuContribution
-            locationURI="menu:org.eclipse.papyrus.ui.menu">
-         <menu
-               id="org.eclipse.papyrus.diagram.ui.menu.diagrams"
-               label="Diagrams">
-            <command
-                  commandId="org.eclipse.papyrus.diagram.profile.CreateProfileDiagramCommand"
-                  icon="icons/obj16/Diagram_Profile.gif"
-                  label="Create a new Profile Diagram"
-                  style="push"
-                  tooltip="Create a new Profile Diagram">
-					<visibleWhen>
-						<with variable="activeEditorId">
-							<equals value="org.eclipse.papyrus.core.papyrusEditor" />
-						</with>
-					</visibleWhen>                  
-            </command>
-         </menu>
-      </menuContribution>
-   </extension>
+		point="org.eclipse.ui.menus">
+	
+	<menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar">
+	<toolbar id="org.eclipse.papyrus.diagram.ui.toolbar">
+		<command commandId="org.eclipse.papyrus.diagram.profile.CreateProfileDiagramCommand"
+			icon="icons/obj16/Diagram_Profile.gif"
+			label="Create a new Profile Diagram"
+			style="push"
+			tooltip="Create a new Profile Diagram">
+			<visibleWhen>
+				<reference definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLProfile"/>
+			</visibleWhen> 
+		</command>
+	</toolbar>
+	</menuContribution>
+      
+	<menuContribution locationURI="menu:org.eclipse.papyrus.ui.menu">
+	<menu id="org.eclipse.papyrus.diagram.ui.menu.diagrams"
+		label="Diagrams">
+		<command commandId="org.eclipse.papyrus.diagram.profile.CreateProfileDiagramCommand"
+			icon="icons/obj16/Diagram_Profile.gif"
+			label="Create a new Profile Diagram"
+			style="push"
+			tooltip="Create a new Profile Diagram">
+			<visibleWhen>
+				<reference definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLProfile"/>
+			</visibleWhen>                 
+		</command>
+	</menu>
+	</menuContribution>
+
+	<menuContribution locationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.creatediagram">
+		<command commandId="org.eclipse.papyrus.diagram.profile.CreateProfileDiagramCommand"
+			icon="icons/obj16/Diagram_Profile.gif"
+			label="Create a new Profile Diagram"
+			style="push"
+			tooltip="Create a new Profile Diagram">
+			<visibleWhen>
+				<reference definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLProfile"/>
+			</visibleWhen>
+		</command>
+	</menuContribution>
+	
+</extension>
+
    <extension point="org.eclipse.ui.menus" id="context-menus">
       <?gmfgen generated="true"?>
       <!-- menuContribution locationURI="menu:org.eclipse.ui.main.menu?after=">
@@ -1392,6 +1359,213 @@
        label="Profile">
 	</diagramCategory>      
 </extension>
+<extension point="org.eclipse.ui.preferencePages">
+
+
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
+			class="org.eclipse.papyrus.diagram.profile.preferences.OperationPreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.OperationPreferencePage"
+            name="Operation Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
+			class="org.eclipse.papyrus.diagram.profile.preferences.DataTypePreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.DataTypePreferencePage"
+            name="DataType Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
+			class="org.eclipse.papyrus.diagram.profile.preferences.ModelPreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.ModelPreferencePage"
+            name="Model Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
+			class="org.eclipse.papyrus.diagram.profile.preferences.AssociationPreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.AssociationPreferencePage"
+            name="Association Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
+			class="org.eclipse.papyrus.diagram.profile.preferences.ShortCutDiagramPreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.ShortCutDiagramPreferencePage"
+            name="ShortCutDiagram Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
+			class="org.eclipse.papyrus.diagram.profile.preferences.ConstraintPreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.ConstraintPreferencePage"
+            name="Constraint Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
+			class="org.eclipse.papyrus.diagram.profile.preferences.EnumerationLiteralPreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.EnumerationLiteralPreferencePage"
+            name="EnumerationLiteral Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
+			class="org.eclipse.papyrus.diagram.profile.preferences.PropertyPreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.PropertyPreferencePage"
+            name="Property Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
+			class="org.eclipse.papyrus.diagram.profile.preferences.StereotypePreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.StereotypePreferencePage"
+            name="Stereotype Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
+			class="org.eclipse.papyrus.diagram.profile.preferences.DependencyPreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.DependencyPreferencePage"
+            name="Dependency Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
+			class="org.eclipse.papyrus.diagram.profile.preferences.PrimitiveTypePreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.PrimitiveTypePreferencePage"
+            name="PrimitiveType Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
+			class="org.eclipse.papyrus.diagram.profile.preferences.PackagePreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.PackagePreferencePage"
+            name="Package Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
+			class="org.eclipse.papyrus.diagram.profile.preferences.CommentPreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.CommentPreferencePage"
+            name="Comment Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
+			class="org.eclipse.papyrus.diagram.profile.preferences.ProfilePreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.ProfilePreferencePage"
+            name="Profile Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
+			class="org.eclipse.papyrus.diagram.profile.preferences.EnumerationPreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.EnumerationPreferencePage"
+            name="Enumeration Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
+			class="org.eclipse.papyrus.diagram.profile.preferences.MetaclassPreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.MetaclassPreferencePage"
+            name="Metaclass Node" />
+	
+
+
+		
+
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
+			class="org.eclipse.papyrus.diagram.profile.preferences.PackageImportPreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.PackageImportPreferencePage"
+            name="PackageImport Link" />
+		
+		
+
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
+			class="org.eclipse.papyrus.diagram.profile.preferences.ExtensionPreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.ExtensionPreferencePage"
+            name="Extension Link" />
+		
+		
+
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
+			class="org.eclipse.papyrus.diagram.profile.preferences.AssociationPreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.AssociationPreferencePage"
+            name="Association Link" />
+		
+		
+
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
+			class="org.eclipse.papyrus.diagram.profile.preferences.GeneralizationPreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.GeneralizationPreferencePage"
+            name="Generalization Link" />
+		
+		
+
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
+			class="org.eclipse.papyrus.diagram.profile.preferences.ElementImportPreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.ElementImportPreferencePage"
+            name="ElementImport Link" />
+		
+		
+
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
+			class="org.eclipse.papyrus.diagram.profile.preferences.ProfileApplicationPreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.ProfileApplicationPreferencePage"
+            name="ProfileApplication Link" />
+		
+		
+		
+		
+
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLProfileDiagram"
+			class="org.eclipse.papyrus.diagram.profile.preferences.DependencyPreferencePage"
+            id="org.eclipse.papyrus.diagram.profile.preferences.DependencyPreferencePage"
+            name="Dependency Link" />
+		
+
+</extension>
+<extension point="org.eclipse.gmf.runtime.common.ui.services.parserProviders" id="parser-provider">
+      <?gmfgen generated="true"?>
+      <ParserProvider class="org.eclipse.papyrus.diagram.profile.providers.UMLParserProvider">
+         <Priority name="Lowest"/>
+      </ParserProvider>
+   </extension>
+<extension point="org.eclipse.gmf.runtime.common.ui.services.markerNavigationProviders" id="markers-navigation">
+      <?gmfgen generated="true"?>
+      <MarkerNavigationProvider class="org.eclipse.papyrus.diagram.profile.providers.UMLMarkerNavigationProvider">
+         <MarkerType name="org.eclipse.papyrus.diagram.profile.diagnostic"/>
+         <Priority name="Lowest"/>
+      </MarkerNavigationProvider>
+   </extension>
+
+<extension id="diagnostic" name="PapyrusUMLProfileDiagram problems" point="org.eclipse.core.resources.markers">
+      <?gmfgen generated="true"?>
+      <super type="org.eclipse.core.resources.problemmarker"/>
+      <super type="org.eclipse.gmf.runtime.common.ui.services.marker"/>
+      <persistent value="true"/>
+   </extension><extension id="validationDecoratorProvider" name="ValidationDecorations" point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
+      <?gmfgen generated="true"?>
+      <decoratorProvider class="org.eclipse.papyrus.diagram.profile.providers.UMLValidationDecoratorProvider">
+         <Priority name="Lowest"/>
+         <object class="org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart(org.eclipse.gmf.runtime.diagram.ui)" id="PRIMARY_VIEW"/>
+         <context decoratorTargets="PRIMARY_VIEW"/>
+      </decoratorProvider>
+   </extension>
+
+
+
 
 
 

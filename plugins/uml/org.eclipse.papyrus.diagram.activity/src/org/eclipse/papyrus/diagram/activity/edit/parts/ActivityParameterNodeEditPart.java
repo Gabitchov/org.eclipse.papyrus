@@ -21,11 +21,11 @@ import org.eclipse.draw2d.GridData;
 import org.eclipse.draw2d.GridLayout;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
-import org.eclipse.draw2d.MarginBorder;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -34,7 +34,6 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
@@ -52,12 +51,12 @@ import org.eclipse.papyrus.diagram.activity.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
-import org.eclipse.papyrus.diagram.common.draw2d.CenterLayout;
+import org.eclipse.papyrus.diagram.common.editparts.BorderNamedElementEditPart;
 import org.eclipse.papyrus.diagram.common.editparts.IPapyrusEditPart;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
-import org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel;
 import org.eclipse.papyrus.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
+import org.eclipse.papyrus.diagram.common.figure.node.NodeNamedElementFigure;
 import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.diagram.common.helper.StereotypeFigureHelper;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
@@ -70,7 +69,7 @@ import org.eclipse.swt.graphics.Image;
  */
 public class ActivityParameterNodeEditPart extends
 
-AbstractBorderItemEditPart implements IPapyrusEditPart {
+BorderNamedElementEditPart implements IPapyrusEditPart {
 
 	/**
 	 * @generated
@@ -109,6 +108,16 @@ AbstractBorderItemEditPart implements IPapyrusEditPart {
 	}
 
 	/**
+	 * Papyrus codeGen
+	 * 
+	 * @generated
+	 **/
+	protected void handleNotificationEvent(Notification event) {
+		super.handleNotificationEvent(event);
+
+	}
+
+	/**
 	 * @generated
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
@@ -137,25 +146,24 @@ AbstractBorderItemEditPart implements IPapyrusEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		return primaryShape = new ActivityParameterNodeDescriptor();
+		return primaryShape = new NodeNamedElementFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public ActivityParameterNodeDescriptor getPrimaryShape() {
-		return (ActivityParameterNodeDescriptor)primaryShape;
+	public NodeNamedElementFigure getPrimaryShape() {
+		return (NodeNamedElementFigure)primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof CenteredWrappedLabelEditPart) {
-			((CenteredWrappedLabelEditPart)childEditPart).setLabel(getPrimaryShape().getActivityParameterNodeLabel());
+		if(childEditPart instanceof ParameterNodeNameEditPart) {
+			((ParameterNodeNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-
 
 		return false;
 	}
@@ -164,7 +172,7 @@ AbstractBorderItemEditPart implements IPapyrusEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof CenteredWrappedLabelEditPart) {
+		if(childEditPart instanceof ParameterNodeNameEditPart) {
 			return true;
 		}
 		return false;
@@ -206,7 +214,6 @@ AbstractBorderItemEditPart implements IPapyrusEditPart {
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
 
 		//FIXME: workaround for #154536
 		result.getBounds().setSize(result.getPreferredSize());
@@ -288,7 +295,7 @@ AbstractBorderItemEditPart implements IPapyrusEditPart {
 	 * @generated
 	 */
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(UMLVisualIDRegistry.getType(CenteredWrappedLabelEditPart.VISUAL_ID));
+		return getChildBySemanticHint(UMLVisualIDRegistry.getType(ParameterNodeNameEditPart.VISUAL_ID));
 	}
 
 	/**
@@ -462,6 +469,12 @@ AbstractBorderItemEditPart implements IPapyrusEditPart {
 		if(targetEditPart instanceof StructuredActivityNodeEditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
+		if(targetEditPart instanceof ReadSelfActionEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof ReadSelfActionOutputPinEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
 		if(targetEditPart instanceof InitialNodeEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
@@ -618,6 +631,12 @@ AbstractBorderItemEditPart implements IPapyrusEditPart {
 		if(targetEditPart instanceof StructuredActivityNodeEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
+		if(targetEditPart instanceof ReadSelfActionEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof ReadSelfActionOutputPinEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
 		return types;
 	}
 
@@ -679,6 +698,8 @@ AbstractBorderItemEditPart implements IPapyrusEditPart {
 			types.add(UMLElementTypes.LoopNode_3071);
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
+			types.add(UMLElementTypes.ReadSelfAction_3081);
+			types.add(UMLElementTypes.OutputPin_3082);
 		} else if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 			types.add(UMLElementTypes.ActivityFinalNode_3005);
@@ -732,6 +753,8 @@ AbstractBorderItemEditPart implements IPapyrusEditPart {
 			types.add(UMLElementTypes.LoopNode_3071);
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
+			types.add(UMLElementTypes.ReadSelfAction_3081);
+			types.add(UMLElementTypes.OutputPin_3082);
 		}
 		return types;
 	}
@@ -740,10 +763,11 @@ AbstractBorderItemEditPart implements IPapyrusEditPart {
 	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnTarget() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(3);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(4);
 		types.add(UMLElementTypes.ObjectFlow_4003);
 		types.add(UMLElementTypes.ControlFlow_4004);
 		types.add(UMLElementTypes.ExceptionHandler_4005);
+		types.add(UMLElementTypes.CommentAnnotatedElement_4006);
 		return types;
 	}
 
@@ -805,6 +829,8 @@ AbstractBorderItemEditPart implements IPapyrusEditPart {
 			types.add(UMLElementTypes.LoopNode_3071);
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
+			types.add(UMLElementTypes.ReadSelfAction_3081);
+			types.add(UMLElementTypes.OutputPin_3082);
 		} else if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 			types.add(UMLElementTypes.ActivityFinalNode_3005);
@@ -858,6 +884,8 @@ AbstractBorderItemEditPart implements IPapyrusEditPart {
 			types.add(UMLElementTypes.LoopNode_3071);
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
+			types.add(UMLElementTypes.ReadSelfAction_3081);
+			types.add(UMLElementTypes.OutputPin_3082);
 		} else if(relationshipType == UMLElementTypes.ExceptionHandler_4005) {
 			types.add(UMLElementTypes.OpaqueAction_3007);
 			types.add(UMLElementTypes.CallBehaviorAction_3008);
@@ -871,6 +899,9 @@ AbstractBorderItemEditPart implements IPapyrusEditPart {
 			types.add(UMLElementTypes.LoopNode_3071);
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
+			types.add(UMLElementTypes.ReadSelfAction_3081);
+		} else if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4006) {
+			types.add(UMLElementTypes.Comment_3080);
 		}
 		return types;
 	}
@@ -879,11 +910,6 @@ AbstractBorderItemEditPart implements IPapyrusEditPart {
 	 * @generated NOT implements IPapyrusNodeUMLElementFigure
 	 */
 	public class ActivityParameterNodeDescriptor extends RectangleFigure implements IPapyrusNodeUMLElementFigure {
-
-		/**
-		 * @generated
-		 */
-		private CenteredWrappedLabel fActivityParameterNodeLabel;
 
 		/** The helper which handles stereotype aspects */
 		private StereotypeFigureHelper stereotypeHelper;
@@ -900,7 +926,6 @@ AbstractBorderItemEditPart implements IPapyrusEditPart {
 
 			this.setLineWidth(1);
 			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(100), getMapMode().DPtoLP(50)));
-			createContents();
 			// use StereotypeFigureHelper
 			stereotypeHelper = new StereotypeFigureHelper(this) {
 
@@ -922,47 +947,6 @@ AbstractBorderItemEditPart implements IPapyrusEditPart {
 					return constraintStereotypeRect0;
 				}
 			};
-		}
-
-		/**
-		 * @generated
-		 */
-		private void createContents() {
-
-
-			RectangleFigure labelRect0 = new RectangleFigure();
-			labelRect0.setFill(false);
-			labelRect0.setOutline(false);
-
-
-			GridData constraintLabelRect0 = new GridData();
-			constraintLabelRect0.verticalAlignment = GridData.FILL;
-			constraintLabelRect0.horizontalAlignment = GridData.FILL;
-			constraintLabelRect0.horizontalIndent = 0;
-			constraintLabelRect0.horizontalSpan = 1;
-			constraintLabelRect0.verticalSpan = 1;
-			constraintLabelRect0.grabExcessHorizontalSpace = true;
-			constraintLabelRect0.grabExcessVerticalSpace = true;
-			this.add(labelRect0, constraintLabelRect0);
-
-
-			CenterLayout layoutLabelRect0 = new CenterLayout();
-
-
-			labelRect0.setLayoutManager(layoutLabelRect0);
-
-
-
-			fActivityParameterNodeLabel = new CenteredWrappedLabel();
-
-
-
-			fActivityParameterNodeLabel.setBorder(new MarginBorder(getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
-
-			labelRect0.add(fActivityParameterNodeLabel);
-
-
-
 		}
 
 		/**
@@ -1017,13 +1001,6 @@ AbstractBorderItemEditPart implements IPapyrusEditPart {
 		 */
 		public Label getStereotypesLabel() {
 			return null;//fActionStereotypeLabel;
-		}
-
-		/**
-		 * @generated
-		 */
-		public CenteredWrappedLabel getActivityParameterNodeLabel() {
-			return fActivityParameterNodeLabel;
 		}
 
 	}

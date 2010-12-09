@@ -75,7 +75,6 @@ public class CreationEventCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -105,13 +104,10 @@ public class CreationEventCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
-
 		CreationEvent newElement = UMLFactory.eINSTANCE.createCreationEvent();
 
 		Package owner = (Package)getElementToEdit();
 		owner.getPackagedElements().add(newElement);
-
 
 		ElementInitializers.getInstance().init_CreationEvent_2090(newElement);
 
@@ -120,9 +116,6 @@ public class CreationEventCreateCommand extends EditElementCommand {
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
-
-
-
 
 	/**
 	 * @generated

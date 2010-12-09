@@ -16,25 +16,24 @@ package org.eclipse.papyrus.profile.tree.objects;
 
 import java.util.Iterator;
 
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class RootElementTreeObject.
+ * The root (no parent) of the tree: a stereotyped element, i.e. a tree
+ * object referencing the UML model element that has a stereotype. 
+ * Its children are appliedStereotypeTreeObjects.
  */
 public class StereotypedElementTreeObject extends ParentTreeObject {
 
 	/**
 	 * The Constructor.
 	 * 
-	 * @param parent
-	 *        the parent
+	 * @param element the UML element that should be stereotyped
 	 */
-	public StereotypedElementTreeObject(Element parent, TransactionalEditingDomain domain) {
-		super(null, parent, domain);
+	public StereotypedElementTreeObject(Element element) {
+		super(null);
+		this.element = element;
 	}
 
 	/**
@@ -43,12 +42,21 @@ public class StereotypedElementTreeObject extends ParentTreeObject {
 	@Override
 	protected void createChildren() {
 		Iterator<Stereotype> stIt = element.getAppliedStereotypes().iterator();
-		EList stereolist = element.getAppliedStereotypes();
 
-		while(stIt.hasNext()) {
+		while (stIt.hasNext()) {
 			final Stereotype currentSt = stIt.next();
-			addChild(new AppliedStereotypeTreeObject(this, currentSt, domain));
+			addChild(new AppliedStereotypeTreeObject(this, currentSt));
 		}
 	}
 
+	protected Element element;
+	
+   /**
+     * Gets the element.
+     * 
+     * @return the element
+     */
+    public Element getElement() {
+        return element;
+    }
 }

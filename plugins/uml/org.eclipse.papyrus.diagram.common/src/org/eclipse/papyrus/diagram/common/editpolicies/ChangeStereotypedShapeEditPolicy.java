@@ -13,17 +13,24 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.editpolicies;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Map;
 
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.GraphicalEditPolicy;
 import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
 import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
+import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.core.listenerservice.IPapyrusListener;
 import org.eclipse.papyrus.diagram.common.editparts.AbstractShapeEditPart;
@@ -65,10 +72,10 @@ public abstract class ChangeStereotypedShapeEditPolicy extends GraphicalEditPoli
 	 * Returns the uml element controlled by the host edit part
 	 * 
 	 * @return the uml element controlled by the host edit part
-	 * can return null if this semantic element is not an uml element
+	 *         can return null if this semantic element is not an uml element
 	 */
 	protected Element getUMLElement() {
-		if(getView().getElement() instanceof Element){
+		if(getView().getElement() instanceof Element) {
 			return (Element)getView().getElement();
 		}
 		return null;
@@ -81,6 +88,54 @@ public abstract class ChangeStereotypedShapeEditPolicy extends GraphicalEditPoli
 	 */
 	protected View getView() {
 		return (View)getHost().getModel();
+	}
+	
+	/**
+	 * get all semantic link that are source or target of the graphical edit part
+	 * @param gmfpart the graphical editpart for each we look for source and target link 
+	 * @return a list of eobject
+	 */
+	public ArrayList<EObject> getAllSemanticLink(GraphicalEditPart gmfpart){
+		ArrayList<EObject> elementToDrop= new ArrayList<EObject>();
+		Iterator linkIter= gmfpart.getNotationView().getSourceEdges().iterator();
+		while(linkIter.hasNext()) {
+			Edge edge = (Edge)linkIter.next();
+			if(edge.getElement()!=null){
+				elementToDrop.add(edge.getElement());
+
+			}
+
+		}
+		linkIter= gmfpart.getNotationView().getTargetEdges().iterator();
+		while(linkIter.hasNext()) {
+			Edge edge = (Edge)linkIter.next();
+			if(edge.getElement()!=null){
+				elementToDrop.add(edge.getElement());
+			}
+
+		}
+		return elementToDrop;
+	}
+
+	/**
+	 * drop a set of link into the container
+	 * @param gmfparent the parent which contain the links
+	 * @param elementToDrop contains the list of semantic link to drop
+	 * 
+	 */
+	public void dropLink(GraphicalEditPart gmfparent, ArrayList<EObject> elementToDrop){
+
+		Iterator<EObject> iterDrop= elementToDrop.iterator();
+		while(iterDrop.hasNext()) {
+			EObject currentObject = (EObject)iterDrop.next();
+			DropObjectsRequest dropObjectsRequest= new DropObjectsRequest();
+			ArrayList<EObject> list = new ArrayList<EObject>();
+			list.add((Element)currentObject);
+			dropObjectsRequest.setObjects(list);
+			dropObjectsRequest.setLocation(new Point(0,0));
+			Command cmd= gmfparent.getCommand(dropObjectsRequest);
+			gmfparent.getDiagramEditDomain().getDiagramCommandStack().execute(cmd);
+		} 
 	}
 
 	/**
@@ -100,16 +155,16 @@ public abstract class ChangeStereotypedShapeEditPolicy extends GraphicalEditPoli
 			if(VisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION == ((EAnnotation)notification.getNotifier()).getSource()) {
 				// stereotype annotation has changed => refresh label display
 				//add a test about kind old value 
-				if (!(getHost() instanceof AbstractShapeEditPart) &&AppliedStereotypeHelper.getAppliedStereotypePresentationKind(getView())== VisualInformationPapyrusConstant.IMAGE_STEREOTYPE_PRESENTATION){
-					if(notification.getNewValue() instanceof Map.Entry<?, ?>){
-						if(((Map.Entry<?, ?>)notification.getNewValue()).getKey().equals(VisualInformationPapyrusConstant.STEREOTYPE_PRESENTATION_KIND)){
+				if(!(getHost() instanceof AbstractShapeEditPart) && AppliedStereotypeHelper.getAppliedStereotypePresentationKind(getView()) == VisualInformationPapyrusConstant.IMAGE_STEREOTYPE_PRESENTATION) {
+					if(notification.getNewValue() instanceof Map.Entry<?, ?>) {
+						if(((Map.Entry<?, ?>)notification.getNewValue()).getKey().equals(VisualInformationPapyrusConstant.STEREOTYPE_PRESENTATION_KIND)) {
 							transformIntoShape(getHost());
 						}
 					}
 				}
-				if ((getHost() instanceof AbstractShapeEditPart) && AppliedStereotypeHelper.getAppliedStereotypePresentationKind(getView())!= VisualInformationPapyrusConstant.IMAGE_STEREOTYPE_PRESENTATION){
-					if(notification.getNewValue() instanceof Map.Entry<?, ?>){
-						if(((Map.Entry<?, ?>)notification.getNewValue()).getKey().equals(VisualInformationPapyrusConstant.STEREOTYPE_PRESENTATION_KIND)){
+				if((getHost() instanceof AbstractShapeEditPart) && AppliedStereotypeHelper.getAppliedStereotypePresentationKind(getView()) != VisualInformationPapyrusConstant.IMAGE_STEREOTYPE_PRESENTATION) {
+					if(notification.getNewValue() instanceof Map.Entry<?, ?>) {
+						if(((Map.Entry<?, ?>)notification.getNewValue()).getKey().equals(VisualInformationPapyrusConstant.STEREOTYPE_PRESENTATION_KIND)) {
 							transformIntoNormalShape(getHost());
 						}
 					}
@@ -117,6 +172,7 @@ public abstract class ChangeStereotypedShapeEditPolicy extends GraphicalEditPoli
 			}
 		}
 	}
+
 	/**
 	 * 
 	 * {@inheritDoc}
@@ -174,16 +230,21 @@ public abstract class ChangeStereotypedShapeEditPolicy extends GraphicalEditPoli
 		// removes the reference to the semantic element
 		hostSemanticElement = null;
 	}
+
 	/**
 	 * implementation to transform this editpart into shape from the stereotype
-	 * @param part the graphical editpart to change
+	 * 
+	 * @param part
+	 *        the graphical editpart to change
 	 */
-	public  abstract void transformIntoShape(EditPart part);
+	public abstract void transformIntoShape(EditPart part);
 
 
 	/**
 	 * implementation to transform a shape editpart into normal editpart
-	 * @param part the graphical editpart to change
+	 * 
+	 * @param part
+	 *        the graphical editpart to change
 	 */
 	public abstract void transformIntoNormalShape(EditPart part);
 }

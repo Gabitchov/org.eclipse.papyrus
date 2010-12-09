@@ -135,9 +135,9 @@ public class ParameterLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		// - the annotation corresponding to the display of the stereotype changes
 		// - the stereotype application list has changed
 		Object object = notification.getNotifier();
-		Parameter parameter = getUMLElement();
+		Parameter parameter = (Parameter)hostSemanticElement;
 
-		if(object == null) {
+		if((object == null) || (hostSemanticElement == null)) {
 			return;
 		}
 

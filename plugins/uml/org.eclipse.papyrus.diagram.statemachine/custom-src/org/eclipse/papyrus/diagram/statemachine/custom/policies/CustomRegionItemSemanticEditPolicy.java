@@ -2,14 +2,17 @@ package org.eclipse.papyrus.diagram.statemachine.custom.policies;
 
 import java.util.Iterator;
 
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.common.core.command.ICompositeCommand;
+import org.eclipse.gmf.runtime.diagram.core.commands.SetPropertyCommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyRequest;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.diagram.statemachine.custom.commands.CustomRegionDeleteCommand;
 import org.eclipse.papyrus.diagram.statemachine.custom.commands.CustomRegionDestroyElementCommand;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionCompartmentEditPart;
@@ -56,6 +59,14 @@ public class CustomRegionItemSemanticEditPolicy extends RegionItemSemanticEditPo
 		} else {
 			cmd.add(new CustomRegionDeleteCommand(getEditingDomain(), view));
 		}
+		View compartmentView = (View)view.eContainer();
+		// get and adaptable for it, to pass on to commands
+		IAdaptable adaptableForCompartmentView = (IAdaptable)new SemanticAdapter(null, compartmentView);
+		if(compartmentView.getChildren().size() == 1){
+			SetPropertyCommand showCompartment = new SetPropertyCommand(getEditingDomain(), adaptableForCompartmentView, "notation.View.visible", "Visibility", false);
+			cmd.compose(showCompartment);
+		}
+
 		return getGEFWrapper(cmd.reduce());
 	}
 

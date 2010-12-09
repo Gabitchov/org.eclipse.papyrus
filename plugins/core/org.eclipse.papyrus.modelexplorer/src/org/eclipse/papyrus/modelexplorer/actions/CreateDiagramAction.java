@@ -25,6 +25,7 @@ import org.eclipse.papyrus.core.utils.EditorUtils;
  * Action used to create a new diagram for given type modified to remove link
  * toUML
  * 
+ * @deprecated
  */
 public class CreateDiagramAction extends Action {
 
@@ -38,10 +39,9 @@ public class CreateDiagramAction extends Action {
 	 * Constructor
 	 * 
 	 * @param selectedObject
-	 *            the selected Element on which the diagram is to be associated
+	 *        the selected Element on which the diagram is to be associated
 	 */
-	public CreateDiagramAction(EObject eObject,
-			CreationCommandDescriptor commandDescriptor) {
+	public CreateDiagramAction(EObject eObject, CreationCommandDescriptor commandDescriptor) {
 		this.container = eObject;
 		this.commandDescriptor = commandDescriptor;
 		setText(commandDescriptor.getLabel());
@@ -66,29 +66,26 @@ public class CreateDiagramAction extends Action {
 	public void run() {
 
 		// Start LOG
-		if (log.isDebugEnabled()) {
+		if(log.isDebugEnabled()) {
 			log.debug("Start - CreateDiagramAction#run"); //$NON-NLS-1$
 		}
 
 		try {
-			ICreationCommand creationCommand = getCreationCommandRegistry()
-					.getCommand(commandDescriptor.getCommandId());
-			creationCommand.createDiagram(EditorUtils.getDiResourceSet(),
-					container, null);
+			ICreationCommand creationCommand = getCreationCommandRegistry().getCommand(commandDescriptor.getCommandId());
+			creationCommand.createDiagram(EditorUtils.getDiResourceSet(), container, null);
 		} catch (NotFoundException e) {
 			log.error(e);
 		}
 
 		// END LOG
-		if (log.isDebugEnabled()) {
+		if(log.isDebugEnabled()) {
 			log.debug("End - CreateDiagramAction#run"); //$NON-NLS-1$
 		}
 	}
 
 	private ICreationCommandRegistry getCreationCommandRegistry() {
-		if (creationCommandRegistry == null) {
-			this.creationCommandRegistry = new CreationCommandRegistry(
-					org.eclipse.papyrus.core.Activator.PLUGIN_ID);
+		if(creationCommandRegistry == null) {
+			this.creationCommandRegistry = new CreationCommandRegistry(org.eclipse.papyrus.core.Activator.PLUGIN_ID);
 		}
 		return creationCommandRegistry;
 	}

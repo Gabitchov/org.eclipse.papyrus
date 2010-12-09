@@ -37,7 +37,7 @@ public class SignalPreferencePage extends AbstractPapyrusNodePreferencePage {
 	 */
 	@Override
 	protected String getBundleId() {
-		return UMLDiagramEditorPlugin.getInstance().ID;
+		return UMLDiagramEditorPlugin.ID;
 	}
 
 	/**

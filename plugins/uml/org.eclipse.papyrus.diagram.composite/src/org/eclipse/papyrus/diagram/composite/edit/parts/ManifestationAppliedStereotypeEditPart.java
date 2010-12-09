@@ -105,8 +105,6 @@ public class ManifestationAppliedStereotypeEditPart extends LabelEditPart implem
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -120,8 +118,6 @@ public class ManifestationAppliedStereotypeEditPart extends LabelEditPart implem
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -588,8 +584,6 @@ public class ManifestationAppliedStereotypeEditPart extends LabelEditPart implem
 		return getPrimaryView();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -597,15 +591,7 @@ public class ManifestationAppliedStereotypeEditPart extends LabelEditPart implem
 	 * @generated
 	 */
 	public int getDirectEditionType() {
-		if(checkExtendedEditor()) {
-			initExtendedEditorConfiguration();
-			return IDirectEdition.EXTENDED_DIRECT_EDITOR;
-		}
-		if(checkDefaultEdition()) {
-			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
-		}
-
-		// not a named element. no specific editor => do nothing
+		// The label is read-only (defined in GMFGen model)
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
 
@@ -693,8 +679,6 @@ public class ManifestationAppliedStereotypeEditPart extends LabelEditPart implem
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -724,9 +708,6 @@ public class ManifestationAppliedStereotypeEditPart extends LabelEditPart implem
 				}
 			}
 		}
-
-
-
 
 		super.handleNotificationEvent(event);
 	}

@@ -19,7 +19,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockDefinitionDiagramEditPart;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.factory.BlockCompartmentViewFactory;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.factory.BlockViewFactory;
-import org.eclipse.papyrus.sysml.diagram.blockdefinition.factory.ConstraintViewFactory;
+import org.eclipse.papyrus.sysml.diagram.blockdefinition.factory.BDDShapeViewFactory;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.factory.NameLabelViewFactory;
 
 public class BlockViewProvider extends AbstractViewProvider {
@@ -36,7 +36,9 @@ public class BlockViewProvider extends AbstractViewProvider {
 		nodeMap.put(BlockDefinitionDiagramElementTypes.BLOCK_REFERENCE_COMPARTMENT_HINT, BlockCompartmentViewFactory.class);
 		nodeMap.put(BlockDefinitionDiagramElementTypes.BLOCK_VALUE_COMPARTMENT_HINT, BlockCompartmentViewFactory.class);
 
-		nodeMap.put(BlockDefinitionDiagramElementTypes.BLOCK_CONSTRAINT_CLN.getSemanticHint(), ConstraintViewFactory.class);
+		nodeMap.put(BlockDefinitionDiagramElementTypes.BLOCK_CONSTRAINT_CLN.getSemanticHint(), BDDShapeViewFactory.class);
+		nodeMap.put(BlockDefinitionDiagramElementTypes.BLOCK_PART_CLN.getSemanticHint(), BDDShapeViewFactory.class);
+		nodeMap.put(BlockDefinitionDiagramElementTypes.BLOCK_REFERENCE_CLN.getSemanticHint(), BDDShapeViewFactory.class);
 	}
 
 	@Override

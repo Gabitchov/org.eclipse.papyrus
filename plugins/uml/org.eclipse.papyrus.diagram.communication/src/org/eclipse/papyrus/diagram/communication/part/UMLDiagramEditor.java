@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
+ *  Saadia Dhouib saadia.dhouib@cea.fr  
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.part;
@@ -390,7 +390,7 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 						 * (between two selected shapes)
 						 * 
 						 * @param event
-						 *        the KeyEvent
+						 *            the KeyEvent
 						 * @return <code>true</code> if KeyEvent was handled in some way
 						 */
 						public boolean keyReleased(KeyEvent event) {

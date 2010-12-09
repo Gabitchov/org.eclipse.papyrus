@@ -13,8 +13,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.providers;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.notation.BasicCompartment;
+import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
@@ -23,6 +27,7 @@ import org.eclipse.papyrus.diagram.common.Messages;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Collaboration;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.DataType;
@@ -50,16 +55,20 @@ import org.eclipse.uml2.uml.UseCase;
 
 /**
  * The Class EditorLabelProvider.
- * This class provides Label and Image for some UML Element
+ * This class provides Label and Image for UML Element
+ * 
  */
 public class EditorLabelProvider implements ILabelProvider {
 
-	/** icon for metaclass */
-	public static final String ICON_METACLASS = "/icons/Metaclass.gif";//$NON-NLS-1$
+	/**
+	 * We store the next index for the UML Element, which are not NamedElement
+	 * Key is a String representing the type of Element
+	 */
+	private Map<String, Integer> index = new HashMap<String, Integer>();
 
-	/** icon for a class */
-	public static final String ICON_CLASS = "/icons/Class.gif"; //$NON-NLS-1$
 
+	/** the plugin where owning the icons for the UML Element */
+	public static final String pluginID = "org.eclipse.uml2.uml.edit"; //$NON-NLS-1$
 	/** icon for an Enumeration */
 	public static final String ICON_ENUMERATION = "/icons/Enumeration.gif"; //$NON-NLS-1$
 
@@ -69,38 +78,18 @@ public class EditorLabelProvider implements ILabelProvider {
 	/** icon for a DataType */
 	public static final String ICON_DATATYPE = "/icons/DataType.gif"; //$NON-NLS-1$
 
-	/** icon for a stereotype */
-	public static final String ICON_STEREOTYPE = "/icons/Stereotype.gif"; //$NON-NLS-1$
+	/** folder where are the UML Icon */
+	public static final String imageFolder = "/icons/full/obj16/"; //$NON-NLS-1$
 
-	/** icon for a profile */
-	public static final String ICON_PROFILE = "/icons/Profile.gif"; //$NON-NLS-1$
+	/** Image returned when the image was not found */
+	public static final Image imageNotFound = Activator.getPluginIconImage(pluginID, "notFound.gif");
 
-	/** icon for a model */
-	public static final String ICON_MODEL = "/icons/obj16/Model.gif"; //$NON-NLS-1$
-
-	/** icon for a package */
-	public static final String ICON_PACKAGE = "/icons/Package.gif"; //$NON-NLS-1$
-
-	/** icon for a string */
-	public static final String ICON_STRING = "icons/obj16/LiteralString.gif"; //$NON-NLS-1$
+	/** icon for metaclass */
+	public static final String ICON_METACLASS = "/icons/Metaclass.gif";//$NON-NLS-1$ 
 
 	/** icon for a compartment */
 	public static final String ICON_COMPARTMENT = "/icons/none_comp_vis.gif"; //$NON-NLS-1$
 
-	/** icon for an operation */
-	public static final String ICON_OPERATION = "/icons/Operation.gif"; //$NON-NLS-1$
-
-	/** icon for a property */
-	public static final String ICON_PROPERTY = "/icons/Property.gif"; //$NON-NLS-1$
-
-	/** icon for an interface */
-	public static final String ICON_INTERFACE = "/icons/Interface.gif"; //$NON-NLS-1$
-
-	/** icon for an interface */
-	public static final String ICON_RECEPTION = "/icons/obj16/Reception.gif"; //$NON-NLS-1$
-
-	/** icon for a port */
-	public static final String ICON_PORT = "/icons/Port.gif"; //$NON-NLS-1$
 
 	/** icon for an activity */
 	public static final String ICON_ACTIVITY = "/icons/Activity.gif"; //$NON-NLS-1$
@@ -184,12 +173,20 @@ public class EditorLabelProvider implements ILabelProvider {
 	 * 
 	 * @param element
 	 * @return
+	 *         <ul>
+	 *         <li>if stereotypes are applied on the elements : return the image corresponding to the first applied stereotype</li>
+	 *         <li>if the element is a MetaClass return the image representing a metaclass</li>
+	 *         <li>if the element is a {@link DecorationNode}, returns the image corresponding to a compartment</li>
+	 *         <li> <code>null</code> if no image was found</li>
+	 *         </ul>
 	 */
 	public Image getImage(Object element) {
 		if(element instanceof EditPart) {
 			element = ((View)((EditPart)element).getModel()).getElement();
 		}
 
+		//test for Metaclass
+		if(element instanceof Class) {
 
 		if(element instanceof UseCase) {
 			return Activator.getPluginIconImage(Activator.ID, ICON_USECASE);
@@ -224,18 +221,27 @@ public class EditorLabelProvider implements ILabelProvider {
 		} else if(element instanceof Class) {
 			if(org.eclipse.papyrus.diagram.common.util.Util.isMetaclass((Type)element)) {
 				return Activator.getPluginIconImage(Activator.ID, ICON_METACLASS);
-			} else {
-				return Activator.getPluginIconImage(Activator.ID, ICON_CLASS);
 			}
-		} else if(element instanceof DataType) {
-			return Activator.getPluginIconImage(Activator.ID, ICON_DATATYPE);
-		} else if(element instanceof Profile) {
-			return Activator.getPluginIconImage(Activator.ID, ICON_PROFILE);
-		} else if(element instanceof Model) {
-			return Activator.getPluginIconImage(Activator.ID, ICON_MODEL);
-		} else if(element instanceof Package) {
-			return Activator.getPluginIconImage(Activator.ID, ICON_PACKAGE);
-		} else if(element instanceof BasicCompartment) {
+		}
+
+		//test for other UML Elements
+		if(element instanceof Element) {
+			//return the stereotype image if a stereotype is applied on the element
+			Image im = Activator.getIconElement((Element)element);
+			String imagePath = new String(imageFolder);
+			if(im == null) {
+				imagePath += element.getClass().getSimpleName() + ".gif"; //$NON-NLS-1$
+				imagePath = imagePath.replace("Impl", ""); //$NON-NLS-1$ //$NON-NLS-2$
+				im = Activator.getPluginIconImage(pluginID, imagePath);
+			}
+			if(im.equals(imageNotFound)) {
+				return null;
+			}
+			return im;
+		}
+
+		//if the element is a compartment
+		if(element instanceof BasicCompartment || element instanceof DecorationNode) {
 			return Activator.getPluginIconImage(Activator.ID, ICON_COMPARTMENT);
 		} else if(element instanceof Reception) {
 			return Activator.getPluginIconImage(Activator.ID, ICON_RECEPTION);
@@ -248,6 +254,7 @@ public class EditorLabelProvider implements ILabelProvider {
 		} else if(element instanceof BasicCompartment) {
 			Activator.getPluginIconImage(Activator.ID, ICON_COMPARTMENT);
 		}
+
 		return null;
 	}
 
@@ -257,6 +264,11 @@ public class EditorLabelProvider implements ILabelProvider {
 	 * 
 	 * @param element
 	 * @return
+	 *         <ul>
+	 *         <li>if element is a {@link NamedElement}, we return its name</li>
+	 *         <li>else if element is a {@link Element}, we return its type + a index</li>
+	 *         <li>else return {@link Messages#EditorLabelProvider_No_name}</li>
+	 *         </ul>
 	 */
 	public String getText(Object element) {
 		if(element instanceof EditPart) {
@@ -264,7 +276,20 @@ public class EditorLabelProvider implements ILabelProvider {
 		}
 		if(element instanceof NamedElement) {
 			return ((NamedElement)element).getName();
+		} else if(element instanceof Element) {
+			//when the element is not a NamedElement, we return its Type + a index
+			String className = element.getClass().getName();
+			int i = className.lastIndexOf(".");
+			className = className.substring(i + 1);
+			className = className.replace("Impl", "");
+			Integer number = index.get(className);
+			if(number == null) {
+				number = 0;
+			}
+
+			index.put(className, number + 1);
+			return className + " " + number;
 		}
-		return Messages.ShowHideAction_No_Name;
+		return Messages.EditorLabelProvider_No_name;
 	}
 }

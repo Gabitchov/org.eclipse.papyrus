@@ -32,12 +32,12 @@ public class CommentAnnotatedElementCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	private final EObject source;
+	protected final EObject source;
 
 	/**
 	 * @generated
 	 */
-	private final EObject target;
+	protected final EObject target;
 
 	/**
 	 * @generated
@@ -68,7 +68,6 @@ public class CommentAnnotatedElementCreateCommand extends EditElementCommand {
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateCommentAnnotatedElement_4002(getSource(), getTarget());
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -83,8 +82,6 @@ public class CommentAnnotatedElementCreateCommand extends EditElementCommand {
 		return CommandResult.newOKCommandResult();
 
 	}
-
-
 
 	/**
 	 * @generated

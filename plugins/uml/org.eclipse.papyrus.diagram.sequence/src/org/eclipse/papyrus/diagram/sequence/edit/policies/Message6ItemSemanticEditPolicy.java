@@ -13,11 +13,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.edit.policies;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
+import org.eclipse.gef.commands.UnexecutableCommand;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
-import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
-import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
+import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
@@ -56,6 +58,8 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.Message7EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.sequence.util.SequenceDeleteHelper;
+import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.service.edit.service.IElementEditService;
 
 /**
  * @generated
@@ -72,7 +76,8 @@ public class Message6ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 	/**
 	 * Added to add duration constraint
 	 * 
-	 * @generated NOT add Duration Constraint
+	 * @generated NOT
+	 *            add Duration Constraint
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
 		if(UMLElementTypes.DurationConstraint_3023 == req.getElementType()) {
@@ -85,16 +90,20 @@ public class Message6ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 	}
 
 	/**
-	 * the added code to delete the messageoccurencespecification when the message is deleted
-	 * 
-	 * @generated NOT
+	 * @generated
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
-		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
-		cmd.setTransactionNestingEnabled(false);
-		cmd.add(new DestroyElementCommand(req));
-		SequenceDeleteHelper.completeDestroyMessageCommand(cmd, getHost());
-		return getGEFWrapper(cmd.reduce());
+		EObject selectedEObject = req.getElementToDestroy();
+		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(selectedEObject);
+		if(provider != null) {
+			// Retrieve delete command from the Element Edit service
+			ICommand deleteCommand = provider.getEditCommand(req);
+
+			if(deleteCommand != null) {
+				return new ICommandProxy(deleteCommand);
+			}
+		}
+		return UnexecutableCommand.INSTANCE;
 	}
 
 	/**

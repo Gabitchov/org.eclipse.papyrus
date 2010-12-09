@@ -75,7 +75,6 @@ public class ActivityPartitionCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -99,8 +98,6 @@ public class ActivityPartitionCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
-
 		ActivityPartition newElement = UMLFactory.eINSTANCE.createActivityPartition();
 
 		// set appropriate parents
@@ -110,7 +107,6 @@ public class ActivityPartitionCreateCommand extends EditElementCommand {
 		//		Activity owner = (Activity)getElementToEdit();
 		//		owner.getGroups().add(newElement);
 
-
 		ElementInitializers.getInstance().init_ActivityPartition_3067(newElement);
 
 		doConfigure(newElement, monitor, info);
@@ -118,9 +114,6 @@ public class ActivityPartitionCreateCommand extends EditElementCommand {
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
-
-
-
 
 	/**
 	 * @generated

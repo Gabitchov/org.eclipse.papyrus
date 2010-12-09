@@ -8,6 +8,7 @@
  *
  * Contributors:
  *    Thibault Landre (Atos Origin) - initial API and implementation
+ *	  Vincent Lorenzo (CEA-LIST) - Add templates to manage the display of the compartments in the preferences pages
  */
 
 «IMPORT 'http://www.eclipse.org/gmf/2009/GenModel'»
@@ -18,11 +19,22 @@
 «DEFINE className FOR gmfgen::GenNode-»«IF "UNDEFINED" <> elementType.displayName.toUpper()-»«elementType.displayName-»«getPreferencePageSuffix()-»«ENDIF»
 «ENDDEFINE»
 
+«DEFINE compartmentsList FOR gmfgen::GenNode-»
+			«FOREACH compartments AS cpt SEPARATOR ','-»
+			"«cpt.title»"
+			«ENDFOREACH-»
+«ENDDEFINE»
+
 «DEFINE NodePreferencePage FOR gmfgen::GenNode-»
 package «getDiagram().preferencesPackageName»;
 
 «EXPAND xpt::Common::generatedClassComment»
 public class «EXPAND className» extends org.eclipse.papyrus.preferences.pages.AbstractPapyrusNodePreferencePage {
+
+	«IF compartments->size() <> 0-»
+		«EXPAND xpt::Common::generatedClassComment»
+		public static final String compartments[] ={«EXPAND compartmentsList»};
+	«ENDIF»
 
 	«EXPAND xpt::Common::generatedClassComment»
 	public «EXPAND className»() {
@@ -32,7 +44,7 @@ public class «EXPAND className» extends org.eclipse.papyrus.preferences.pages.
 	«EXPAND xpt::Common::generatedClassComment»
 	@Override
 	protected String getBundleId() {
-		return «getDiagram().editorGen.plugin.getActivatorQualifiedClassName()».getInstance().ID;
+		return «getDiagram().editorGen.plugin.getActivatorQualifiedClassName()».ID;
 	}
 	
 	«EXPAND xpt::Common::generatedClassComment»
@@ -41,6 +53,13 @@ public class «EXPAND className» extends org.eclipse.papyrus.preferences.pages.
 		String key = «getDiagram().editPartsPackageName».«getDiagram().editPartClassName».MODEL_ID+"_«elementType.displayName»";
 		store.setDefault(org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(key, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.WIDTH),«defaultSizeWidth(self.viewmap, 40)»);
 	    store.setDefault(org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(key, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.HEIGHT),«defaultSizeHeight(self.viewmap, 40)»);
+	 
+	 	«IF compartments->size() <> 0-»
+			for(String name : compartments) {
+				String preferenceName = org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getCompartmentElementConstant(key, name, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
+				store.setDefault(preferenceName, true);
+			}
+	 	«ENDIF-»
 	 
 	    //org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_FILL), new org.eclipse.swt.graphics.RGB(255, 255, 255));
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_LINE), new org.eclipse.swt.graphics.RGB(0, 0, 0));
@@ -53,6 +72,16 @@ public class «EXPAND className» extends org.eclipse.papyrus.preferences.pages.
 		//store.setDefault(org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_GRADIENT), gradientPreferenceConverter.getPreferenceValue());
 		
 	}
+	
+	«IF compartments->size() <> 0-»
+		«EXPAND xpt::Common::generatedClassComment»
+		@Override
+		protected void initializeCompartmentsList() {
+			for(String name : compartments) {
+				this.compartmentsList.add(name);
+			}
+		}
+	«ENDIF-»
 
 }
 «ENDDEFINE»

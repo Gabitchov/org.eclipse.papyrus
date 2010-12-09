@@ -25,6 +25,10 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 
 	@Override
 	public void initializeDefaultPreferences() {
+		IPreferenceStore store = getPreferenceStore();
+		ClassPreferencePage.initDefaults(store);
+
+		PackagePreferencePage.initDefaults(store);
 
 	}
 }

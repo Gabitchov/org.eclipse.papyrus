@@ -19,10 +19,15 @@ import java.util.Iterator;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gef.EditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.BorderedBorderItemEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ElementImport;
 import org.eclipse.uml2.uml.Enumeration;
+import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageImport;
@@ -32,13 +37,10 @@ import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.Type;
 
-
 /**
  * Some utils extracted from org.eclipse.papyrus.profile.utils
  */
 public class Util {
-
-
 
 	/**
 	 * Check if a type is a metaclass.
@@ -61,7 +63,6 @@ public class Util {
 		}
 		return isMetaclass;
 	}
-
 
 	/**
 	 * Retrieve an arraylist of all instances in the model that
@@ -101,7 +102,6 @@ public class Util {
 					if(piCurrentElt instanceof Element) {
 						if(appliedStereotype != null) {
 
-
 							Iterator appStIter = ((Element)piCurrentElt).getAppliedStereotypes().iterator();
 							while(appStIter.hasNext()) {
 								Stereotype currentSt = (Stereotype)appStIter.next();
@@ -130,7 +130,6 @@ public class Util {
 
 				}
 			}
-
 
 			// Filtering elements
 			if(currentElt instanceof Element) {
@@ -164,10 +163,8 @@ public class Util {
 			}
 		}
 
-
 		return filteredElements;
 	}
-
 
 	/**
 	 * This method is used to look for the top package that contains this element.
@@ -182,6 +179,63 @@ public class Util {
 		} else {
 			return topPackage(element.getOwner());
 		}
+	}
+
+	/**
+	 * This method is used to look for the nearest common parent of two elements.
+	 * 
+	 * @param element1
+	 *        the first element to find a parent
+	 * @param element2
+	 *        the other element to find a parent
+	 * @param parentClass
+	 *        the class the common parent must be (otherwise, search in its parents)
+	 * @return the common parent (not element1 or element2 themselves) or null
+	 */
+	@SuppressWarnings("unchecked")
+	public static <T extends Element> T getCommonParent(Element element1, Element element2, Class<T> parentClass) {
+		// compute depth of each element
+		int depth1 = 0;
+		Element ancestor1 = element1.getOwner();
+		while(ancestor1 != null) {
+			depth1++;
+			ancestor1 = ancestor1.getOwner();
+		}
+		int depth2 = 0;
+		Element ancestor2 = element2.getOwner();
+		while(ancestor2 != null) {
+			depth2++;
+			ancestor2 = ancestor2.getOwner();
+		}
+		// reset to direct parents
+		ancestor1 = element1.getOwner();
+		ancestor2 = element2.getOwner();
+		// explore owners from bottom to top to find common parent
+		Element commonParent = null;
+		while(depth1 > 0 && depth2 > 0 && commonParent == null) {
+			if(depth1 > depth2) {
+				ancestor1 = ancestor1.getOwner();
+				depth1--;
+			} else if(depth2 > depth1) {
+				ancestor2 = ancestor2.getOwner();
+				depth2--;
+			} else {
+				// depth1 == depth2
+				if(ancestor1 == ancestor2) {
+					commonParent = ancestor1;
+				} else {
+					ancestor1 = ancestor1.getOwner();
+					depth1--;
+					ancestor2 = ancestor2.getOwner();
+					depth2--;
+				}
+			}
+		}
+		// find common parent with correct class
+		while(commonParent != null && !parentClass.isInstance(commonParent)) {
+			commonParent = commonParent.getOwner();
+		}
+		return (T)commonParent;
 	}
 
 	/**
@@ -257,8 +311,6 @@ public class Util {
 		ArrayList<Object> metaclassElement = new ArrayList<Object>();
 		String metaclassName = ((org.eclipse.uml2.uml.Class)property.getType()).getName();
 
-
-
 		/*
 		 * we research all the representation of the metaclass in the Profiles
 		 */
@@ -285,7 +337,6 @@ public class Util {
 					}
 				}
 			}
-
 
 		}
 
@@ -345,11 +396,10 @@ public class Util {
 						break;
 					}
 				} else {
-					//TODO for the element which don't are NamedElement
+					//TODO for the element which aren't NamedElement
 				}
 			}
 		}
-
 
 		if(property.getUpper() != 1) {
 			return returnedValues;
@@ -389,7 +439,6 @@ public class Util {
 		}
 		enume = (Enumeration)profile.getPackagedElement(typeName);
 
-
 		//we research the enumerationLiteral
 		for(int i = 0; i < stringValues.size(); i++) {
 			Object obj = enume.getOwnedLiteral(stringValues.get(i));
@@ -402,5 +451,28 @@ public class Util {
 			return returnedValues.get(0);
 		}
 		return null;
+	}
+
+	/**
+	 * Test if an EditPart is an Affixed Child Node or not
+	 * 
+	 * @param ep
+	 *        an editpart
+	 * @return
+	 *         <ul>
+	 *         <li> <code>true</code> if the editpart is an Affixed Child Node</li>
+	 *         <li> <code>false</code>if not</li>
+	 *         </ul>
+	 */
+	public static boolean isAffixedChildNode(EditPart ep) {
+		if(ep instanceof BorderedBorderItemEditPart) {
+			if(ep.getParent() instanceof CompartmentEditPart) {
+				return false;
+			} else if(ep.getParent() instanceof DiagramEditPart) {
+				return false;
+			}
+			return true;
+		}
+		return false;
 	}
 }

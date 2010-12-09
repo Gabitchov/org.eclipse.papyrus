@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Adapted code from the class diagram
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Adapted code from Class Diagram
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.profile.custom.helper;
 
@@ -49,6 +49,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.common.commands.DeleteLinkDuringCreationCommand;
 import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.diagram.common.helper.ElementHelper;
 import org.eclipse.papyrus.diagram.profile.custom.commands.AssociationDiamondViewCreateCommand;
@@ -184,7 +185,23 @@ public class MultiAssociationHelper extends ElementHelper {
 		return command;
 	}
 
-	public Command dropMutliAssociation(Association association, EditPartViewer viewer, PreferencesHint diagramPreferencesHint, Point location, View containerView) {
+	/**
+	 * Returns the drop Command for a MultiAssociation
+	 * 
+	 * @param association
+	 *        the association to drop
+	 * @param viewer
+	 *        the viewer
+	 * @param diagramPreferencesHint
+	 *        the Diagram Preference Hint
+	 * @param location
+	 *        the location for the drop
+	 * @param containerView
+	 *        the container view
+	 * @return
+	 *         The drop Command for a MultiAssociation
+	 */
+	public Command dropMultiAssociation(Association association, EditPartViewer viewer, PreferencesHint diagramPreferencesHint, Point location, View containerView) {
 		Command command = new CompoundCommand();
 		// 0. Obtain list of property to display
 		ArrayList<Property> endToDisplay = new ArrayList(association.getMemberEnds());
@@ -275,6 +292,15 @@ public class MultiAssociationHelper extends ElementHelper {
 		Association association = null;
 		View parentView = null;
 
+
+		// ---------------------------------------------------------
+		// help to debug
+		//		System.err.println("\n+ 0. creation of variables");
+		//		System.err.println("+-> editting domain"+ getEditingDomain());
+		//		System.err.println("+-> sourceEditpart:" + sourceEditPart);
+		//		System.err.println("+-> targetEditPart:" + targetEditPart);
+		// ---------------------------------------------------------
+
 		// 1. initialization
 		ICommandProxy startcommand = ((ICommandProxy)createConnectionViewAndElementRequest.getStartCommand());
 		Iterator<?> ite = ((CompositeCommand)startcommand.getICommand()).iterator();
@@ -310,22 +336,49 @@ public class MultiAssociationHelper extends ElementHelper {
 				return null;
 			}
 			parentView = (View)associationView.eContainer();
+			// ---------------------------------------------------------
+			// help to debug
+			//			System.err.println("+ 1. initialization");
+			//			System.err.println("+-> sourceLocation:" + sourceLocation);
+			//			System.err.println("+-> targetLocation:" + targetLocation);
+			//			System.err.println("+-> AssociationView:" + associationView);
+			//			System.err.println("+-> association:" + association);
+			//			System.err.println("+-> nodeLocation:" + nodeLocation);
+			//			System.err.println("+-> newSemanticElement:" + newSemanticElement);
+			//			System.err.println("+-> feature:" + feature);
+			//			System.err.println("+-> parentView:" + parentView);
+			// ---------------------------------------------------------
+			// 2. Remove the view of the association
+			DeleteCommand deleteCommand = new DeleteLinkDuringCreationCommand(getEditingDomain(), (Edge)associationView, sourceEditPart.getViewer());
+			deleteCommand.setReuseParentTransaction(true);
+			Command removecommand = new ICommandProxy(deleteCommand);
+			//to execute
+			((CompoundCommand)command).add(removecommand);
 
-			// 8. set a new end association in the UML model
-			// 8.1 creation of the property
+			//((CompoundCommand)command).add(removecommand);
+
+			// ---------------------------------------------------------
+			// help to debug
+			//			System.err.println("+ 2. Remove the view of the association");
+			//			System.err.println("+-> command:" + command.canExecute());
+			// ---------------------------------------------------------
+
+
+
+			// 3. set a new end association in the UML model
+			// 3.1 creation of the property
 			CreateElementRequest request = new CreateElementRequest(getEditingDomain(), association, UMLElementTypes.Property_3002, UMLPackage.eINSTANCE.getAssociation_OwnedEnd());
 			request.setParameter("type", newSemanticElement); //$NON-NLS-1$
 			EditElementCommand propertyCreateCommand = new PropertyCommandForAssociation(request);
+			propertyCreateCommand.setReuseParentTransaction(true);
 			((CompoundCommand)command).add(new ICommandProxy(propertyCreateCommand));
 
-			// 2. Remove the view of the association
-			View associationViewSource = ((Edge)associationView).getSource();
-			View associationViewTarget = ((Edge)associationView).getTarget();
-
-			((CompoundCommand)command).add(new ICommandProxy(new DeleteCommand(getEditingDomain(), associationView)));
 
 			// 3. Node creation at this position
+			View associationViewSource = ((Edge)associationView).getSource();
+			View associationViewTarget = ((Edge)associationView).getTarget();
 			AssociationDiamondViewCreateCommand nodeCreation = new AssociationDiamondViewCreateCommand(getEditingDomain(), parentView, sourceEditPart.getViewer(), ((IGraphicalEditPart)sourceEditPart).getDiagramPreferencesHint(), nodeLocation, new SemanticAdapter(association, null));
+			nodeCreation.setReuseParentTransaction(true);
 			((CompoundCommand)command).add(new ICommandProxy(nodeCreation));
 
 			// 4. reconstruction of the old link by taking in account the old
@@ -354,8 +407,11 @@ public class MultiAssociationHelper extends ElementHelper {
 			((CustomDeferredCreateConnectionViewCommand)thirdBranchCommand).setElement(association);
 			((CompoundCommand)command).add(new ICommandProxy(thirdBranchCommand));
 
+
+
 		}
 		return command;
+
 	}
 
 	/**
@@ -408,6 +464,7 @@ public class MultiAssociationHelper extends ElementHelper {
 			((CompoundCommand)command).add(new ICommandProxy(aBranchCommand));
 			//System.err.println("1. add the branch graphically, can execute?" + command.canExecute());
 			return command;
+
 		}
 		return UnexecutableCommand.INSTANCE;
 	}

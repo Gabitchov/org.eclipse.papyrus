@@ -79,13 +79,11 @@ public class ShortCutDiagramEditPolicy extends OpenEditPolicy {
 	 */
 	@Override
 	protected Command getOpenCommand(Request request) {
-		if(((GraphicalEditPart)getHost()).getNotationView().getElement() instanceof Diagram &&
-			((GraphicalEditPart)getHost()).getNotationView().getElement().eResource()!=null){
+		if(((GraphicalEditPart)getHost()).getNotationView().getElement() instanceof Diagram && ((GraphicalEditPart)getHost()).getNotationView().getElement().eResource() != null) {
 			Diagram diagram = (Diagram)((GraphicalEditPart)getHost()).getNotationView().getElement();
 			OpenDiagramCommand openDiagramCommand = new OpenDiagramCommand(((GraphicalEditPart)getHost()).getEditingDomain(), diagram);
 			return new ICommandProxy(openDiagramCommand);
-		}
-		else{
+		} else {
 			return UnexecutableCommand.INSTANCE;
 		}
 	}

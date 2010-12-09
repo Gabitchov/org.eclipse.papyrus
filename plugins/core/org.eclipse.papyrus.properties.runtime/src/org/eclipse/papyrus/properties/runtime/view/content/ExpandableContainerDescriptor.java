@@ -98,7 +98,7 @@ public class ExpandableContainerDescriptor extends ContainerDescriptor {
 			getDescribedComposite().setClient(expandableContainer);
 		}
 
-		controllers = updateControllers();
+		controllers = updateControllers(widgetFactory);
 
 		return controllers;
 	}

@@ -124,6 +124,7 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new InteractionUseItemSemanticEditPolicy());
@@ -205,6 +206,7 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
 		if(addFixedChild(childEditPart)) {
 			return;
@@ -215,6 +217,7 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
 		if(removeFixedChild(childEditPart)) {
 			return;
@@ -225,6 +228,7 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 		return getContentPane();
 	}
@@ -250,6 +254,7 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	 * 
 	 * @generated
 	 */
+	@Override
 	protected NodeFigure createNodeFigure() {
 		NodeFigure figure = createNodePlate();
 		figure.setLayoutManager(new StackLayout());
@@ -280,6 +285,7 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public IFigure getContentPane() {
 		if(contentPane != null) {
 			return contentPane;
@@ -290,6 +296,7 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setForegroundColor(Color color) {
 		if(primaryShape != null) {
 			primaryShape.setForegroundColor(color);
@@ -299,6 +306,7 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setLineWidth(int width) {
 		if(primaryShape instanceof Shape) {
 			((Shape)primaryShape).setLineWidth(width);
@@ -308,6 +316,7 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setLineType(int style) {
 		if(primaryShape instanceof Shape) {
 			((Shape)primaryShape).setLineStyle(style);
@@ -317,6 +326,7 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(InteractionUseNameEditPart.VISUAL_ID));
 	}
@@ -426,6 +436,12 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 		if(targetEditPart instanceof CommentEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
+		if(targetEditPart instanceof DurationConstraintInMessageEditPart) {
+			types.add(UMLElementTypes.Message_4003);
+		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			types.add(UMLElementTypes.Message_4003);
+		}
 		if(targetEditPart instanceof InteractionEditPart) {
 			types.add(UMLElementTypes.Message_4004);
 		}
@@ -477,6 +493,12 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 		if(targetEditPart instanceof CommentEditPart) {
 			types.add(UMLElementTypes.Message_4004);
 		}
+		if(targetEditPart instanceof DurationConstraintInMessageEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
 		if(targetEditPart instanceof InteractionEditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
@@ -528,6 +550,12 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 		if(targetEditPart instanceof CommentEditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
+		if(targetEditPart instanceof DurationConstraintInMessageEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
 		if(targetEditPart instanceof InteractionEditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
@@ -579,6 +607,12 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 		if(targetEditPart instanceof CommentEditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
+		if(targetEditPart instanceof DurationConstraintInMessageEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
 		if(targetEditPart instanceof InteractionEditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
@@ -630,6 +664,12 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 		if(targetEditPart instanceof CommentEditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
+		if(targetEditPart instanceof DurationConstraintInMessageEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
 		if(targetEditPart instanceof InteractionEditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
@@ -681,6 +721,12 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 		if(targetEditPart instanceof CommentEditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
+		if(targetEditPart instanceof DurationConstraintInMessageEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
 		if(targetEditPart instanceof InteractionEditPart) {
 			types.add(UMLElementTypes.Message_4009);
 		}
@@ -730,6 +776,12 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.Message_4009);
 		}
 		if(targetEditPart instanceof CommentEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if(targetEditPart instanceof DurationConstraintInMessageEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
 			types.add(UMLElementTypes.Message_4009);
 		}
 		return types;
@@ -758,6 +810,8 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.Message_4004) {
 			types.add(UMLElementTypes.Interaction_2001);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
@@ -776,6 +830,8 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.Message_4005) {
 			types.add(UMLElementTypes.Interaction_2001);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
@@ -794,6 +850,8 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.Message_4006) {
 			types.add(UMLElementTypes.Interaction_2001);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
@@ -812,6 +870,8 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.Message_4007) {
 			types.add(UMLElementTypes.Interaction_2001);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
@@ -830,6 +890,8 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.Message_4008) {
 			types.add(UMLElementTypes.Interaction_2001);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
@@ -848,6 +910,8 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.Message_4009) {
 			types.add(UMLElementTypes.Interaction_2001);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
@@ -866,6 +930,8 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		}
 		return types;
 	}
@@ -910,6 +976,8 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.Message_4004) {
 			types.add(UMLElementTypes.Interaction_2001);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
@@ -928,6 +996,8 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.Message_4005) {
 			types.add(UMLElementTypes.Interaction_2001);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
@@ -946,6 +1016,8 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.Message_4006) {
 			types.add(UMLElementTypes.Interaction_2001);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
@@ -964,6 +1036,8 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.Message_4007) {
 			types.add(UMLElementTypes.Interaction_2001);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
@@ -982,6 +1056,8 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.Message_4008) {
 			types.add(UMLElementTypes.Interaction_2001);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
@@ -1000,6 +1076,8 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.Message_4009) {
 			types.add(UMLElementTypes.Interaction_2001);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
@@ -1018,12 +1096,15 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4010) {
 			types.add(UMLElementTypes.Comment_3009);
 		} else if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.DurationConstraint_3021);
 			types.add(UMLElementTypes.Constraint_3008);
+			types.add(UMLElementTypes.DurationConstraint_3023);
 		}
 		return types;
 	}
@@ -1148,6 +1229,7 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	/**
 	 * Activate a listener for the interactionUse to Handle notification in the refered Interaction
 	 */
+	@Override
 	public void activate() {
 		super.activate();
 		if(resolveSemanticElement() instanceof InteractionUse) {
@@ -1172,6 +1254,7 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	 * Deactivate a listener for the interactionUse to handle notification in the refered
 	 * Interaction
 	 */
+	@Override
 	public void deactivate() {
 		super.deactivate();
 		notifier.unlistenAll();

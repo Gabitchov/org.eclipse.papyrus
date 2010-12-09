@@ -36,7 +36,7 @@ public class ExtensionPreferencePage extends AbstractPapyrusLinkPreferencePage {
 	 */
 	@Override
 	protected String getBundleId() {
-		return UMLDiagramEditorPlugin.getInstance().ID;
+		return UMLDiagramEditorPlugin.ID;
 	}
 
 	/**

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2010 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,8 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ */
 package org.eclipse.papyrus.diagram.clazz.edit.parts;
 
 import java.util.Collections;
@@ -59,7 +58,6 @@ public class ModelEditPart extends DiagramEditPart {
 	 */
 	public ModelEditPart(View view) {
 		super(view);
-
 
 		getFigure().setClippingStrategy(new IClippingStrategy() {
 
@@ -116,10 +114,8 @@ public class ModelEditPart extends DiagramEditPart {
 
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ModelItemSemanticEditPolicy());
 
-
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.clazz.edit.policies.ModelCanonicalEditPolicy());
-
 
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new ClassDiagramDragDropEditPolicy());
@@ -175,17 +171,6 @@ public class ModelEditPart extends DiagramEditPart {
 	/**
 	 * @generated
 	 */
-	public Object getAdapter(Class adapter) {
-
-		if(adapter != null && adapter.equals(ViewInfo.class)) {
-			return UMLVisualIDRegistry.getDiagramViewInfo();
-		}
-		return super.getAdapter(adapter);
-	}
-
-	/**
-	 * @generated
-	 */
 	protected void handleNotificationEvent(Notification event) {
 
 		super.handleNotificationEvent(event);
@@ -196,6 +181,17 @@ public class ModelEditPart extends DiagramEditPart {
 				MDTUtil.filterDiagramViews(this.getDiagramView());
 			}
 		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public Object getAdapter(Class adapter) {
+
+		if(adapter != null && adapter.equals(ViewInfo.class)) {
+			return UMLVisualIDRegistry.getDiagramViewInfo();
+		}
+		return super.getAdapter(adapter);
 	}
 
 }

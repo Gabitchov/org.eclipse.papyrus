@@ -20,21 +20,24 @@ import org.eclipse.swt.widgets.Composite;
 
 /**
  * this clas is a specialiezation of the connection for the diagram level
- *
+ * 
  */
 public class DiagramConnectionGroup extends ConnectionGroup {
 
 	/**
 	 * constructor
-	 * @param parent the composite parent
-	 * @param key the preference key the kind of diagram
+	 * 
+	 * @param parent
+	 *        the composite parent
+	 * @param key
+	 *        the preference key the kind of diagram
 	 * @param dialogPage
 	 */
-	public DiagramConnectionGroup(Composite parent, String key,
-			DialogPage dialogPage) {
+	public DiagramConnectionGroup(Composite parent, String key, DialogPage dialogPage) {
 		super(parent, key, dialogPage);
 		// TODO Auto-generated constructor stub
 	}
+
 	protected String getPreferenceConstant(int preferenceType) {
 		return PreferenceConstantHelper.getDiagramConstant(getKey(), preferenceType);
 	}

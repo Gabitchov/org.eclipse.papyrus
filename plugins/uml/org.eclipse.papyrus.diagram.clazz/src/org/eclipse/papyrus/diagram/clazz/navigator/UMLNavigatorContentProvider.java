@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2010 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,8 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ */
 package org.eclipse.papyrus.diagram.clazz.navigator;
 
 import java.util.ArrayList;
@@ -48,22 +47,22 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	/**
 	 * @generated
 	 */
-	private AdapterFactoryEditingDomain myEditingDomain;
-
-	/**
-	 * @generated
-	 */
 	private Viewer myViewer;
 
 	/**
 	 * @generated
 	 */
-	private Runnable myViewerRefreshRunnable;
+	private AdapterFactoryEditingDomain myEditingDomain;
 
 	/**
 	 * @generated
 	 */
 	private WorkspaceSynchronizer myWorkspaceSynchronizer;
+
+	/**
+	 * @generated
+	 */
+	private Runnable myViewerRefreshRunnable;
 
 	/**
 	 * @generated
@@ -132,17 +131,6 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	/**
 	 * @generated
 	 */
-	private Collection createNavigatorItems(Collection views, Object parent, boolean isLeafs) {
-		Collection result = new ArrayList();
-		for(Iterator it = views.iterator(); it.hasNext();) {
-			result.add(new UMLNavigatorItem((View)it.next(), parent, isLeafs));
-		}
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
 	public void dispose() {
 		myWorkspaceSynchronizer.dispose();
 		myWorkspaceSynchronizer = null;
@@ -153,6 +141,38 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		}
 		((TransactionalEditingDomain)myEditingDomain).dispose();
 		myEditingDomain = null;
+	}
+
+	/**
+	 * @generated
+	 */
+	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+		myViewer = viewer;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Object[] getElements(Object inputElement) {
+		return getChildren(inputElement);
+	}
+
+	/**
+	 * @generated
+	 */
+	public void restoreState(IMemento aMemento) {
+	}
+
+	/**
+	 * @generated
+	 */
+	public void saveState(IMemento aMemento) {
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init(ICommonContentExtensionSite aConfig) {
 	}
 
 	/**
@@ -186,44 +206,11 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	/**
 	 * @generated
 	 */
-	private Collection getChildrenByType(Collection nodes, String type) {
-		Collection result = new ArrayList();
-		for(Iterator it = nodes.iterator(); it.hasNext();) {
-			View nextNode = (View)it.next();
-			result.addAll(selectViewsByType(nextNode.getChildren(), type));
-		}
-		return result;
-	}
+	private Object[] getViewChildren(View view, Object parentElement) {
+		switch(UMLVisualIDRegistry.getVisualID(view)) {
 
-	/**
-	 * @generated
-	 */
-	private Collection getDiagramLinksByType(Collection diagrams, String type) {
-		Collection result = new ArrayList();
-		for(Iterator it = diagrams.iterator(); it.hasNext();) {
-			Diagram nextDiagram = (Diagram)it.next();
-			result.addAll(selectViewsByType(nextDiagram.getEdges(), type));
 		}
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public Object[] getElements(Object inputElement) {
-		return getChildren(inputElement);
-	}
-
-	/**
-	 * @generated
-	 */
-	private Collection getIncomingLinksByType(Collection nodes, String type) {
-		Collection result = new ArrayList();
-		for(Iterator it = nodes.iterator(); it.hasNext();) {
-			View nextNode = (View)it.next();
-			result.addAll(selectViewsByType(nextNode.getTargetEdges(), type));
-		}
-		return result;
+		return EMPTY_ARRAY;
 	}
 
 	/**
@@ -271,63 +258,37 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	/**
 	 * @generated
 	 */
-	public Object getParent(Object element) {
-		if(element instanceof UMLAbstractNavigatorItem) {
-			UMLAbstractNavigatorItem abstractNavigatorItem = (UMLAbstractNavigatorItem)element;
-			return abstractNavigatorItem.getParent();
+	private Collection getIncomingLinksByType(Collection nodes, String type) {
+		Collection result = new ArrayList();
+		for(Iterator it = nodes.iterator(); it.hasNext();) {
+			View nextNode = (View)it.next();
+			result.addAll(selectViewsByType(nextNode.getTargetEdges(), type));
 		}
-		return null;
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	private Object[] getViewChildren(View view, Object parentElement) {
-		switch(UMLVisualIDRegistry.getVisualID(view)) {
-
-
-
+	private Collection getChildrenByType(Collection nodes, String type) {
+		Collection result = new ArrayList();
+		for(Iterator it = nodes.iterator(); it.hasNext();) {
+			View nextNode = (View)it.next();
+			result.addAll(selectViewsByType(nextNode.getChildren(), type));
 		}
-		return EMPTY_ARRAY;
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public boolean hasChildren(Object element) {
-		return element instanceof IFile || getChildren(element).length > 0;
-	}
-
-	/**
-	 * @generated
-	 */
-	public void init(ICommonContentExtensionSite aConfig) {
-	}
-
-	/**
-	 * @generated
-	 */
-	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-		myViewer = viewer;
-	}
-
-	/**
-	 * @generated
-	 */
-	private boolean isOwnView(View view) {
-		return ModelEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(view));
-	}
-
-	/**
-	 * @generated
-	 */
-	public void restoreState(IMemento aMemento) {
-	}
-
-	/**
-	 * @generated
-	 */
-	public void saveState(IMemento aMemento) {
+	private Collection getDiagramLinksByType(Collection diagrams, String type) {
+		Collection result = new ArrayList();
+		for(Iterator it = diagrams.iterator(); it.hasNext();) {
+			Diagram nextDiagram = (Diagram)it.next();
+			result.addAll(selectViewsByType(nextDiagram.getEdges(), type));
+		}
+		return result;
 	}
 
 	/**
@@ -342,6 +303,42 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 			}
 		}
 		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	private boolean isOwnView(View view) {
+		return ModelEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(view));
+	}
+
+	/**
+	 * @generated
+	 */
+	private Collection createNavigatorItems(Collection views, Object parent, boolean isLeafs) {
+		Collection result = new ArrayList();
+		for(Iterator it = views.iterator(); it.hasNext();) {
+			result.add(new UMLNavigatorItem((View)it.next(), parent, isLeafs));
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Object getParent(Object element) {
+		if(element instanceof UMLAbstractNavigatorItem) {
+			UMLAbstractNavigatorItem abstractNavigatorItem = (UMLAbstractNavigatorItem)element;
+			return abstractNavigatorItem.getParent();
+		}
+		return null;
+	}
+
+	/**
+	 * @generated
+	 */
+	public boolean hasChildren(Object element) {
+		return element instanceof IFile || getChildren(element).length > 0;
 	}
 
 }

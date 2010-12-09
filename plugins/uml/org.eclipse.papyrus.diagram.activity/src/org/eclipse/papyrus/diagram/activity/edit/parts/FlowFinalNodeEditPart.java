@@ -18,16 +18,12 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.draw2d.Ellipse;
-import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.PolylineShape;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -38,7 +34,6 @@ import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.handles.MoveHandle;
 import org.eclipse.gef.requests.CreateRequest;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolicy;
@@ -49,15 +44,21 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.internal.figures.CircleFigure;
+import org.eclipse.gmf.runtime.notation.Bounds;
+import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
+import org.eclipse.papyrus.diagram.activity.edit.policies.ActivityDiagramChangeStereotypedShapeEditpolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.FlowFinalNodeItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.ResizableSquareEditPolicy;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.common.editparts.UMLNodeEditPart;
+import org.eclipse.papyrus.diagram.common.editpolicies.ChangeStereotypedShapeEditPolicy;
+import org.eclipse.papyrus.diagram.common.figure.node.FlowFinalNode;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.graphics.Color;
@@ -67,7 +68,7 @@ import org.eclipse.swt.graphics.Color;
  */
 public class FlowFinalNodeEditPart extends
 
-AbstractBorderedShapeEditPart {
+UMLNodeEditPart {
 
 	/**
 	 * @generated
@@ -111,8 +112,19 @@ AbstractBorderedShapeEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new FlowFinalNodeItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
+		installEditPolicy(ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY, new ActivityDiagramChangeStereotypedShapeEditpolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
+	}
+
+	/**
+	 * Papyrus codeGen
+	 * 
+	 * @generated
+	 **/
+	protected void handleNotificationEvent(Notification event) {
+		super.handleNotificationEvent(event);
+
 	}
 
 	/**
@@ -156,14 +168,14 @@ AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		return primaryShape = new FlowFinalNodeFigure();
+		return primaryShape = new FlowFinalNode();
 	}
 
 	/**
 	 * @generated
 	 */
-	public FlowFinalNodeFigure getPrimaryShape() {
-		return (FlowFinalNodeFigure)primaryShape;
+	public FlowFinalNode getPrimaryShape() {
+		return (FlowFinalNode)primaryShape;
 	}
 
 	/**
@@ -183,7 +195,7 @@ AbstractBorderedShapeEditPart {
 	 * @generated NOT use a circle figure instead
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new CircleFigure(22, 22);
+		DefaultSizeNodeFigure result = new CircleFigure(((Bounds)((Node)getNotationView()).getLayoutConstraint()).getWidth(), ((Bounds)((Node)getNotationView()).getLayoutConstraint()).getHeight());
 		return result;
 	}
 
@@ -431,6 +443,12 @@ AbstractBorderedShapeEditPart {
 		if(targetEditPart instanceof StructuredActivityNodeEditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
+		if(targetEditPart instanceof ReadSelfActionEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof ReadSelfActionOutputPinEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
 		if(targetEditPart instanceof InitialNodeEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
@@ -587,6 +605,12 @@ AbstractBorderedShapeEditPart {
 		if(targetEditPart instanceof StructuredActivityNodeEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
+		if(targetEditPart instanceof ReadSelfActionEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof ReadSelfActionOutputPinEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
 		return types;
 	}
 
@@ -648,6 +672,8 @@ AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.LoopNode_3071);
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
+			types.add(UMLElementTypes.ReadSelfAction_3081);
+			types.add(UMLElementTypes.OutputPin_3082);
 		} else if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 			types.add(UMLElementTypes.ActivityFinalNode_3005);
@@ -701,6 +727,8 @@ AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.LoopNode_3071);
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
+			types.add(UMLElementTypes.ReadSelfAction_3081);
+			types.add(UMLElementTypes.OutputPin_3082);
 		}
 		return types;
 	}
@@ -709,9 +737,10 @@ AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnTarget() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(3);
 		types.add(UMLElementTypes.ObjectFlow_4003);
 		types.add(UMLElementTypes.ControlFlow_4004);
+		types.add(UMLElementTypes.CommentAnnotatedElement_4006);
 		return types;
 	}
 
@@ -773,6 +802,8 @@ AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.LoopNode_3071);
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
+			types.add(UMLElementTypes.ReadSelfAction_3081);
+			types.add(UMLElementTypes.OutputPin_3082);
 		} else if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 			types.add(UMLElementTypes.ActivityFinalNode_3005);
@@ -826,93 +857,12 @@ AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.LoopNode_3071);
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
+			types.add(UMLElementTypes.ReadSelfAction_3081);
+			types.add(UMLElementTypes.OutputPin_3082);
+		} else if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4006) {
+			types.add(UMLElementTypes.Comment_3080);
 		}
 		return types;
-	}
-
-	/**
-	 * @generated
-	 */
-	public class FlowFinalNodeFigure extends Ellipse {
-
-		/**
-		 * @generated
-		 */
-		private PolylineShape fFigureSlash;
-
-		/**
-		 * @generated
-		 */
-		private PolylineShape fFigureAntislash;
-
-		/**
-		 * @generated
-		 */
-		public FlowFinalNodeFigure() {
-			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(22), getMapMode().DPtoLP(22)));
-			this.setSize(getMapMode().DPtoLP(22), getMapMode().DPtoLP(22));
-			createContents();
-		}
-
-		/**
-		 * Sets the bounds of this Figure to the Rectangle <i>rect</i>.
-		 * This also updates sub-figures.
-		 * 
-		 * @see Figure#setBounds(Rectangle)
-		 * @param rect
-		 *        The new bounds
-		 * @generated NOT
-		 */
-		public void setBounds(Rectangle rect) {
-			if(getFigureAntislash() != null && getFigureSlash() != null) {
-				Rectangle discBounds = rect.getCopy();
-				// compute the new location and size of the cross
-				int discLocationDiff = 1 + new Double(discBounds.height / 2. - Math.sqrt(2) * discBounds.height / 4.).intValue();
-				int a = discLocationDiff;
-				int b = discBounds.height - discLocationDiff;
-				getFigureAntislash().setEndpoints(new Point(getMapMode().DPtoLP(a), getMapMode().DPtoLP(a)), new Point(getMapMode().DPtoLP(b), getMapMode().DPtoLP(b)));
-				getFigureSlash().setEndpoints(new Point(getMapMode().DPtoLP(a), getMapMode().DPtoLP(b)), new Point(getMapMode().DPtoLP(b), getMapMode().DPtoLP(a)));
-			}
-			super.setBounds(rect);
-		}
-
-		/**
-		 * @generated
-		 */
-		private void createContents() {
-
-
-			fFigureAntislash = new PolylineShape();
-			fFigureAntislash.addPoint(new Point(getMapMode().DPtoLP(4), getMapMode().DPtoLP(4)));
-			fFigureAntislash.addPoint(new Point(getMapMode().DPtoLP(18), getMapMode().DPtoLP(18)));
-
-			this.add(fFigureAntislash);
-
-
-
-			fFigureSlash = new PolylineShape();
-			fFigureSlash.addPoint(new Point(getMapMode().DPtoLP(4), getMapMode().DPtoLP(18)));
-			fFigureSlash.addPoint(new Point(getMapMode().DPtoLP(18), getMapMode().DPtoLP(4)));
-
-			this.add(fFigureSlash);
-
-
-		}
-
-		/**
-		 * @generated
-		 */
-		public PolylineShape getFigureSlash() {
-			return fFigureSlash;
-		}
-
-		/**
-		 * @generated
-		 */
-		public PolylineShape getFigureAntislash() {
-			return fFigureAntislash;
-		}
-
 	}
 
 	/**

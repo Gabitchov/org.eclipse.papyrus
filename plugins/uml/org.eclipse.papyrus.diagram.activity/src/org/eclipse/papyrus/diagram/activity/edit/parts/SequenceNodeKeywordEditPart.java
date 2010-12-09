@@ -105,15 +105,11 @@ public class SequenceNodeKeywordEditPart extends CompartmentEditPart implements 
 	 */
 	private String defaultText;
 
-
-
 	/** direct edition mode (default, undefined, registered editor, etc.) */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
 	/** configuration from a registered edit dialog */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -566,8 +562,6 @@ public class SequenceNodeKeywordEditPart extends CompartmentEditPart implements 
 		return getPrimaryView();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -668,8 +662,6 @@ public class SequenceNodeKeywordEditPart extends CompartmentEditPart implements 
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -685,7 +677,6 @@ public class SequenceNodeKeywordEditPart extends CompartmentEditPart implements 
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
-
 
 	/**
 	 * @generated
@@ -718,7 +709,6 @@ public class SequenceNodeKeywordEditPart extends CompartmentEditPart implements 
 			}
 		}
 
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -730,10 +720,7 @@ public class SequenceNodeKeywordEditPart extends CompartmentEditPart implements 
 		return null;
 	}
 
-
-
 	private static final String ADD_PARENT_MODEL = "AddParentModel";
-
 
 	/**
 	 * @generated
@@ -760,7 +747,6 @@ public class SequenceNodeKeywordEditPart extends CompartmentEditPart implements 
 
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -768,6 +754,5 @@ public class SequenceNodeKeywordEditPart extends CompartmentEditPart implements 
 		removeListenerFilter(ADD_PARENT_MODEL);
 
 	}
-
 
 }

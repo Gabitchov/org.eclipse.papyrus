@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2010 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,8 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ */
 package org.eclipse.papyrus.diagram.clazz.edit.parts;
 
 import java.util.Collections;
@@ -51,6 +50,7 @@ import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.diagram.clazz.custom.policies.InstanceSpecificationNameLabelEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
@@ -108,10 +108,18 @@ public class InstanceSpecificationNameEditPart extends CompartmentEditPart imple
 	 */
 	private String defaultText;
 
-	/** direct edition mode (default, undefined, registered editor, etc.) */
+	/**
+	 * direct edition mode (default, undefined, registered editor, etc.)
+	 * 
+	 * @generated
+	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
-	/** configuration from a registered edit dialog */
+	/**
+	 * configuration from a registered edit dialog
+	 * 
+	 * @generated
+	 */
 	protected IDirectEditorConfiguration configuration;
 
 	/**
@@ -129,6 +137,7 @@ public class InstanceSpecificationNameEditPart extends CompartmentEditPart imple
 		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new UMLTextSelectionEditPolicy());
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new ModelEditPart.NodeLabelDragPolicy());
+		installEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY, new InstanceSpecificationNameLabelEditPolicy());
 	}
 
 	/**
@@ -580,8 +589,7 @@ public class InstanceSpecificationNameEditPart extends CompartmentEditPart imple
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
-	 * @return an <code>int</code> corresponding to the kind of direct editor, @see
-	 *         org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
+	 * @return an <code>int</code> corresponding to the kind of direct editor, @see org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
 	 * @generated
 	 */
 	public int getDirectEditionType() {
@@ -638,11 +646,15 @@ public class InstanceSpecificationNameEditPart extends CompartmentEditPart imple
 
 	/**
 	 * Updates the preference configuration
+	 * 
+	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
 		String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
 		if(languagePreferred != null && !languagePreferred.equals("") && languagePreferred != configuration.getLanguage()) {
 			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement().eClass().getInstanceClassName());
+		} else if(IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(languagePreferred)) {
+			configuration = null;
 		}
 	}
 
@@ -651,6 +663,7 @@ public class InstanceSpecificationNameEditPart extends CompartmentEditPart imple
 	 * 
 	 * @param theRequest
 	 *        the direct edit request that starts the direct edit system
+	 * @generated
 	 */
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {
 		// initialize the direct edit manager
@@ -738,6 +751,9 @@ public class InstanceSpecificationNameEditPart extends CompartmentEditPart imple
 		return null;
 	}
 
+	/**
+	 * @generated
+	 */
 	private static final String ADD_PARENT_MODEL = "AddParentModel";
 
 	/**

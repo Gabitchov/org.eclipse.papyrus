@@ -57,6 +57,8 @@ public class DependencyNodeItemSemanticEditPolicy extends UMLBaseItemSemanticEdi
 	}
 
 
+
+
 	/**
 	 * @generated
 	 */
@@ -79,6 +81,7 @@ public class DependencyNodeItemSemanticEditPolicy extends UMLBaseItemSemanticEdi
 		}
 		return getGEFWrapper(cmd.reduce());
 	}
+
 
 	/**
 	 * @generated

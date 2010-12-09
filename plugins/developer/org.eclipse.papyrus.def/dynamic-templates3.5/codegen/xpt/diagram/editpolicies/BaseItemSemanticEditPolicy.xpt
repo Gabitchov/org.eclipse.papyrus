@@ -34,14 +34,19 @@ public class «baseItemSemanticEditPolicyClassName» extends org.eclipse.gmf.run
 		'Add visual id of edited editpart to extended data of the request\n' + 
 		'so command switch can decide what kind of diagram element is being edited.\n' + 
 		'It is done in those cases when it\'s not possible to deduce diagram\n' + 
-		'element kind from domain element.\n'
+		'element kind from domain element.\n' +
+		'Add the reoriented view to the request extended data so that the view\n ' +
+		'currently edited can be distinguished from other views of the same element\n ' +
+		'and these latter possibly removed if they become inconsistent after reconnect\n'
 	)»
+	@SuppressWarnings("unchecked")
 	public org.eclipse.gef.commands.Command getCommand(org.eclipse.gef.Request request) {
 		if (request instanceof org.eclipse.gef.requests.ReconnectRequest) {
 			Object view = ((org.eclipse.gef.requests.ReconnectRequest) request).getConnectionEditPart().getModel();
 			if (view instanceof org.eclipse.gmf.runtime.notation.View) {
 				Integer id = new Integer(«EXPAND xpt::editor::VisualIDRegistry::getVisualIDMethodCall»((org.eclipse.gmf.runtime.notation.View) view));
 				request.getExtendedData().put(VISUAL_ID_KEY, id);
+				request.getExtendedData().put(GRAPHICAL_RECONNECTED_EDGE, (org.eclipse.gmf.runtime.notation.View)view);
 			}
 		}
 		return super.getCommand(request);
@@ -69,6 +74,8 @@ public class «baseItemSemanticEditPolicyClassName» extends org.eclipse.gmf.run
 «DEFINE attributes FOR gmfgen::GenDiagram-»
 	«EXPAND xpt::Common::generatedMemberComment('Extended request data key to hold editpart visual id.')»
 	public static final String VISUAL_ID_KEY = "visual_id"; «EXPAND xpt::Common::nonNLS»
+	«EXPAND xpt::Common::generatedMemberComment('Extended request data key to hold the edge view during a reconnect request.')»
+	public static final String GRAPHICAL_RECONNECTED_EDGE = "graphical_edge"; «EXPAND xpt::Common::nonNLS»
 	«EXPAND xpt::Common::generatedMemberComment»
 	private final org.eclipse.gmf.runtime.emf.type.core.IElementType myElementType;
 «ENDDEFINE»
@@ -139,7 +146,7 @@ public class «baseItemSemanticEditPolicyClassName» extends org.eclipse.gmf.run
 «ENDDEFINE»
 «DEFINE getContextElementType FOR gmfgen::GenDiagram-»
 	«EXPAND xpt::Common::generatedMemberComment»
-	private org.eclipse.gmf.runtime.emf.type.core.IElementType getContextElementType(org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest request) {
+	protected org.eclipse.gmf.runtime.emf.type.core.IElementType getContextElementType(org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest request) {
 		org.eclipse.gmf.runtime.emf.type.core.IElementType requestContextElementType = «getElementTypesQualifiedClassName()».getElementType(getVisualID(request));
 		return requestContextElementType != null ? requestContextElementType : myElementType;
 	}

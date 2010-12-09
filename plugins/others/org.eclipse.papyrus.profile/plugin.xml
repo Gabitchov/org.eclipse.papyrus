@@ -103,8 +103,40 @@
          </constraints>
       </constraintProvider>
    </extension>
-
-
+  <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="false"
+            id="org.eclipse.gmt.modisco.infra.importPackage"
+            objectClass="org.eclipse.gmt.modisco.infra.browser.uicore.internal.model.ModelElementItem">
+         <action
+               class="org.eclipse.papyrus.profile.ui.actions.ImportLibrariesFromRepositoryAction"
+               id="org.eclipse.papyrus.profile.importPackage"
+               label="Import package from registered library">
+         </action>
+      </objectContribution>
+      <objectContribution
+            adaptable="false"
+            id="org.eclipse.gmt.modisco.infra.importPackageFile"
+            objectClass="org.eclipse.gmt.modisco.infra.browser.uicore.internal.model.ModelElementItem">
+         <action
+               class="org.eclipse.papyrus.profile.ui.actions.ImportFromFile"
+               id="org.eclipse.papyrus.profile.importFile"
+               label="Import package from file">
+         </action>
+      </objectContribution>
+      <objectContribution
+            adaptable="false"
+            id="org.eclipse.gmt.modisco.infra.importProfile"
+            objectClass="org.eclipse.gmt.modisco.infra.browser.uicore.internal.model.ModelElementItem">
+         <action
+               class="org.eclipse.papyrus.profile.ui.actions.ImportProfileAction"
+               icon="resources/icons/Profile.gif"
+               id="org.eclipse.papyrus.profile.importProfile"
+               label="Import profile from registered profile">
+         </action>
+      </objectContribution>
+   </extension>
    <extension
          point="org.eclipse.ui.views.properties.tabbed.propertySections">
       <propertySections

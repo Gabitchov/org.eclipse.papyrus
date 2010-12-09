@@ -75,7 +75,6 @@ public class DataStoreNodeCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -99,8 +98,6 @@ public class DataStoreNodeCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
-
 		DataStoreNode newElement = UMLFactory.eINSTANCE.createDataStoreNode();
 
 		// set appropriate parents
@@ -110,7 +107,6 @@ public class DataStoreNodeCreateCommand extends EditElementCommand {
 		//		Activity owner = (Activity)getElementToEdit();
 		//		owner.getNodes().add(newElement);
 
-
 		ElementInitializers.getInstance().init_DataStoreNode_3078(newElement);
 
 		doConfigure(newElement, monitor, info);
@@ -118,9 +114,6 @@ public class DataStoreNodeCreateCommand extends EditElementCommand {
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
-
-
-
 
 	/**
 	 * @generated

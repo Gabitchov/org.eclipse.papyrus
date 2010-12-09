@@ -13,16 +13,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.activity.edit.policies;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
-import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gef.commands.Command;
-import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICompositeCommand;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
@@ -41,6 +38,8 @@ import org.eclipse.papyrus.diagram.activity.edit.commands.ActionLocalPostconditi
 import org.eclipse.papyrus.diagram.activity.edit.commands.ActionLocalPostconditionReorientCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ActionLocalPreconditionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ActionLocalPreconditionReorientCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.CommentLinkCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.CommentLinkReorientCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ControlFlowCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ControlFlowReorientCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ExceptionHandlerCreateCommand;
@@ -50,12 +49,14 @@ import org.eclipse.papyrus.diagram.activity.edit.commands.ObjectFlowReorientComm
 import org.eclipse.papyrus.diagram.activity.edit.commands.OutputPinInValSpecActCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionLocalPostconditionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionLocalPreconditionEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.CommentLinkEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ControlFlowEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ExceptionHandlerEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInValSpecActEditPart;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.common.command.wrappers.EMFtoGMFCommandWrapper;
 
 /**
  * @generated
@@ -68,7 +69,6 @@ public class ValueSpecificationActionItemSemanticEditPolicy extends UMLBaseItemS
 	public ValueSpecificationActionItemSemanticEditPolicy() {
 		super(UMLElementTypes.ValueSpecificationAction_3076);
 	}
-
 
 	/**
 	 * @generated
@@ -86,84 +86,18 @@ public class ValueSpecificationActionItemSemanticEditPolicy extends UMLBaseItemS
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		View view = (View)getHost().getModel();
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
-		cmd.setTransactionNestingEnabled(false);
-		for(Iterator<?> it = view.getTargetEdges().iterator(); it.hasNext();) {
-			Edge incomingLink = (Edge)it.next();
-			if(UMLVisualIDRegistry.getVisualID(incomingLink) == ObjectFlowEditPart.VISUAL_ID) {
-				DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
-				cmd.add(new DestroyElementCommand(r));
-				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
-				continue;
-			}
-			if(UMLVisualIDRegistry.getVisualID(incomingLink) == ControlFlowEditPart.VISUAL_ID) {
-				DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
-				cmd.add(new DestroyElementCommand(r));
-				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
-				continue;
-			}
-		}
-		for(Iterator<?> it = view.getSourceEdges().iterator(); it.hasNext();) {
-			Edge outgoingLink = (Edge)it.next();
-			if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ActionLocalPreconditionEditPart.VISUAL_ID) {
-				DestroyReferenceRequest r = new DestroyReferenceRequest(outgoingLink.getSource().getElement(), null, outgoingLink.getTarget().getElement(), false);
-				cmd.add(new DestroyReferenceCommand(r) {
+		cmd.setTransactionNestingEnabled(true);
 
-					protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
-						EObject referencedObject = getReferencedObject();
-						Resource resource = referencedObject.eResource();
-						CommandResult result = super.doExecuteWithResult(progressMonitor, info);
-						if(resource != null) {
-							resource.getContents().add(referencedObject);
-						}
-						return result;
-					}
-				});
-				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
-				continue;
-			}
-			if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ActionLocalPostconditionEditPart.VISUAL_ID) {
-				DestroyReferenceRequest r = new DestroyReferenceRequest(outgoingLink.getSource().getElement(), null, outgoingLink.getTarget().getElement(), false);
-				cmd.add(new DestroyReferenceCommand(r) {
-
-					protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
-						EObject referencedObject = getReferencedObject();
-						Resource resource = referencedObject.eResource();
-						CommandResult result = super.doExecuteWithResult(progressMonitor, info);
-						if(resource != null) {
-							resource.getContents().add(referencedObject);
-						}
-						return result;
-					}
-				});
-				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
-				continue;
-			}
-			if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ObjectFlowEditPart.VISUAL_ID) {
-				DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
-				cmd.add(new DestroyElementCommand(r));
-				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
-				continue;
-			}
-			if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ControlFlowEditPart.VISUAL_ID) {
-				DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
-				cmd.add(new DestroyElementCommand(r));
-				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
-				continue;
-			}
-			if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ExceptionHandlerEditPart.VISUAL_ID) {
-				DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
-				cmd.add(new DestroyElementCommand(r));
-				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
-				continue;
-			}
-		}
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 		if(annotation == null) {
 			// there are indirectly referenced children, need extra commands: false
 			addDestroyChildNodesCommand(cmd);
 			addDestroyShortcutsCommand(cmd, view);
 			// delete host element
-			cmd.add(new DestroyElementCommand(req));
+			List<EObject> todestroy = new ArrayList<EObject>();
+			todestroy.add(req.getElementToDestroy());
+			//cmd.add(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(req));
+			cmd.add(new EMFtoGMFCommandWrapper(new org.eclipse.emf.edit.command.DeleteCommand(getEditingDomain(), todestroy)));
 		} else {
 			cmd.add(new DeleteCommand(getEditingDomain(), view));
 		}
@@ -173,46 +107,40 @@ public class ValueSpecificationActionItemSemanticEditPolicy extends UMLBaseItemS
 	/**
 	 * @generated
 	 */
-	private void addDestroyChildNodesCommand(ICompositeCommand cmd) {
+	protected void addDestroyChildNodesCommand(ICompositeCommand cmd) {
 		View view = (View)getHost().getModel();
 		for(Iterator<?> nit = view.getChildren().iterator(); nit.hasNext();) {
 			Node node = (Node)nit.next();
 			switch(UMLVisualIDRegistry.getVisualID(node)) {
 			case OutputPinInValSpecActEditPart.VISUAL_ID:
+
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
-					if(UMLVisualIDRegistry.getVisualID(incomingLink) == ObjectFlowEditPart.VISUAL_ID) {
-						DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
-						cmd.add(new DestroyElementCommand(r));
+					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
+					case CommentLinkEditPart.VISUAL_ID:
+						DestroyReferenceRequest destroyRefReq = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+						cmd.add(new DestroyReferenceCommand(destroyRefReq));
 						cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
-						continue;
-					}
-					if(UMLVisualIDRegistry.getVisualID(incomingLink) == ControlFlowEditPart.VISUAL_ID) {
-						DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
-						cmd.add(new DestroyElementCommand(r));
+						break;
+					case ObjectFlowEditPart.VISUAL_ID:
+					case ControlFlowEditPart.VISUAL_ID:
+					case ExceptionHandlerEditPart.VISUAL_ID:
+						DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
+						cmd.add(new DestroyElementCommand(destroyEltReq));
 						cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
-						continue;
-					}
-					if(UMLVisualIDRegistry.getVisualID(incomingLink) == ExceptionHandlerEditPart.VISUAL_ID) {
-						DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
-						cmd.add(new DestroyElementCommand(r));
-						cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
-						continue;
+						break;
 					}
 				}
+
 				for(Iterator<?> it = node.getSourceEdges().iterator(); it.hasNext();) {
 					Edge outgoingLink = (Edge)it.next();
-					if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ObjectFlowEditPart.VISUAL_ID) {
-						DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
-						cmd.add(new DestroyElementCommand(r));
+					switch(UMLVisualIDRegistry.getVisualID(outgoingLink)) {
+					case ObjectFlowEditPart.VISUAL_ID:
+					case ControlFlowEditPart.VISUAL_ID:
+						DestroyElementRequest destroyEltReq = new DestroyElementRequest(outgoingLink.getElement(), false);
+						cmd.add(new DestroyElementCommand(destroyEltReq));
 						cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
-						continue;
-					}
-					if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ControlFlowEditPart.VISUAL_ID) {
-						DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
-						cmd.add(new DestroyElementCommand(r));
-						cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
-						continue;
+						break;
 					}
 				}
 				cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), node.getElement(), false))); // directlyOwned: true
@@ -250,6 +178,9 @@ public class ValueSpecificationActionItemSemanticEditPolicy extends UMLBaseItemS
 		if(UMLElementTypes.ExceptionHandler_4005 == req.getElementType()) {
 			return getGEFWrapper(new ExceptionHandlerCreateCommand(req, req.getSource(), req.getTarget()));
 		}
+		if(UMLElementTypes.CommentAnnotatedElement_4006 == req.getElementType()) {
+			return null;
+		}
 		return null;
 	}
 
@@ -271,6 +202,9 @@ public class ValueSpecificationActionItemSemanticEditPolicy extends UMLBaseItemS
 		}
 		if(UMLElementTypes.ExceptionHandler_4005 == req.getElementType()) {
 			return null;
+		}
+		if(UMLElementTypes.CommentAnnotatedElement_4006 == req.getElementType()) {
+			return getGEFWrapper(new CommentLinkCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -305,6 +239,8 @@ public class ValueSpecificationActionItemSemanticEditPolicy extends UMLBaseItemS
 			return getGEFWrapper(new ActionLocalPreconditionReorientCommand(req));
 		case ActionLocalPostconditionEditPart.VISUAL_ID:
 			return getGEFWrapper(new ActionLocalPostconditionReorientCommand(req));
+		case CommentLinkEditPart.VISUAL_ID:
+			return getGEFWrapper(new CommentLinkReorientCommand(req));
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}

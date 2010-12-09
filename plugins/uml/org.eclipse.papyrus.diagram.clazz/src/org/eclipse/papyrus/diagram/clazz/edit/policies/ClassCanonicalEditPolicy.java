@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2010 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,17 +9,14 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ */
 package org.eclipse.papyrus.diagram.clazz.edit.policies;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
@@ -34,7 +31,6 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.ContainmentCircleEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.RedefinableTemplateSignatureEditPart;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.diagram.clazz.part.UMLNodeDescriptor;
@@ -49,7 +45,9 @@ public class ClassCanonicalEditPolicy extends CanonicalEditPolicy {
 	/**
 	 * @generated
 	 */
-	private Set<EStructuralFeature> myFeaturesToSynchronize;
+	protected EStructuralFeature getFeatureToSynchronize() {
+		return UMLPackage.eINSTANCE.getTemplateableElement_OwnedTemplateSignature();
+	}
 
 	/**
 	 * @generated
@@ -76,8 +74,7 @@ public class ClassCanonicalEditPolicy extends CanonicalEditPolicy {
 	 * @generated
 	 */
 	private boolean isMyDiagramElement(View view) {
-		int visualID = UMLVisualIDRegistry.getVisualID(view);
-		return visualID == RedefinableTemplateSignatureEditPart.VISUAL_ID || visualID == ContainmentCircleEditPart.VISUAL_ID;
+		return RedefinableTemplateSignatureEditPart.VISUAL_ID == UMLVisualIDRegistry.getVisualID(view);
 	}
 
 	/**
@@ -157,17 +154,4 @@ public class ClassCanonicalEditPolicy extends CanonicalEditPolicy {
 
 		makeViewsImmutable(createdViews);
 	}
-
-	/**
-	 * @generated
-	 */
-	protected Set getFeaturesToSynchronize() {
-		if(myFeaturesToSynchronize == null) {
-			myFeaturesToSynchronize = new HashSet<EStructuralFeature>();
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getTemplateableElement_OwnedTemplateSignature());
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getEncapsulatedClassifier_OwnedPort());
-		}
-		return myFeaturesToSynchronize;
-	}
-
 }

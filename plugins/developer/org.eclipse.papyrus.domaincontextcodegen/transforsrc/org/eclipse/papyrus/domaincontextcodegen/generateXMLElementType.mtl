@@ -1,0 +1,50 @@
+[comment encoding = UTF-8 /]
+[module generateXMLElementType('http://www.eclipse.org/papyrus/2010/domaincontextcodegen','http://www.eclipse.org/emf/2002/Ecore')/]
+
+[template public generateXMLElementType(domain : DomainContext)]
+	[comment @main /]
+	[comment this template is used to generate the plugin.xml /]
+	
+[file (domain.typeProjectName+'/'+'xmlElementTypes.xml', false, 'UTF-8')]
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+	
+[comment generation of all elementType/]
+<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
+
+	<metamodel nsURI="[domain.metamodel.nsURI/]">
+	
+	<!-- Declaration of IElementTypes -->
+	
+[for (type:ElementType|domain.elementTypes.types)]
+	<!-- IElementTypes for [type.metaClass.name/] -->
+	<metamodelType eclass="[type.metaClass.name/]" id="[domain.elementTypeIDPrefix+'.'+type.metaClass.name/]"
+		edithelper="[type.edithelper_EditHelperAdvicePath/]"
+		kind="[type.kind/]" name="[domain.elementTypeNamePrefix+'::'+type.metaClass.name/]">
+		<param name="semanticHint" value="[domain.elementTypeNamePrefix+'::'+type.metaClass.name/]"/>
+	</metamodelType>
+	
+[/for]
+
+[comment generation of all advicebindings/]
+	<!-- Declaration of AdviceBindings -->
+	
+[for (advice: AdviceBinding|domain.advicebindings)]
+	<!-- AdviceBinding for [advice.adviceID/] -->		
+	<adviceBinding id="[advice.adviceID/]"
+		class="[advice.advicePath/]" inheritance="[advice.inheritance/]"
+		typeId="[domain.elementTypeIDPrefix+'.'+advice.elementTypeRef.metaClass.name/]">
+	</adviceBinding>
+		
+[/for]
+   
+	</metamodel>
+
+</extension>
+
+</plugin>
+
+[/file]
+	
+[/template]

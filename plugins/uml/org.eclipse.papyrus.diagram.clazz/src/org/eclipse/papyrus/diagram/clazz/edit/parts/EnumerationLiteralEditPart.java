@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2010 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,8 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ */
 package org.eclipse.papyrus.diagram.clazz.edit.parts;
 
 import java.util.Collections;
@@ -36,7 +35,6 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
@@ -64,6 +62,7 @@ import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLParserProvider;
 import org.eclipse.papyrus.diagram.common.directedit.MultilineLabelDirectEditManager;
+import org.eclipse.papyrus.diagram.common.editparts.UMLCompartmentEditPart;
 import org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure;
@@ -91,7 +90,11 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class EnumerationLiteralEditPart extends CompartmentEditPart implements ITextAwareEditPart, IPrimaryEditPart {
+public class EnumerationLiteralEditPart
+
+extends UMLCompartmentEditPart
+
+implements ITextAwareEditPart, IPrimaryEditPart {
 
 	/**
 	 * @generated
@@ -118,10 +121,18 @@ public class EnumerationLiteralEditPart extends CompartmentEditPart implements I
 	 */
 	private String defaultText;
 
-	/** direct edition mode (default, undefined, registered editor, etc.) */
+	/**
+	 * direct edition mode (default, undefined, registered editor, etc.)
+	 * 
+	 * @generated
+	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
-	/** configuration from a registered edit dialog */
+	/**
+	 * configuration from a registered edit dialog
+	 * 
+	 * @generated
+	 */
 	protected IDirectEditorConfiguration configuration;
 
 	/**
@@ -601,8 +612,7 @@ public class EnumerationLiteralEditPart extends CompartmentEditPart implements I
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
-	 * @return an <code>int</code> corresponding to the kind of direct editor, @see
-	 *         org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
+	 * @return an <code>int</code> corresponding to the kind of direct editor, @see org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
 	 * @generated
 	 */
 	public int getDirectEditionType() {
@@ -659,11 +669,15 @@ public class EnumerationLiteralEditPart extends CompartmentEditPart implements I
 
 	/**
 	 * Updates the preference configuration
+	 * 
+	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
 		String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
 		if(languagePreferred != null && !languagePreferred.equals("") && languagePreferred != configuration.getLanguage()) {
 			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement().eClass().getInstanceClassName());
+		} else if(IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(languagePreferred)) {
+			configuration = null;
 		}
 	}
 
@@ -672,6 +686,7 @@ public class EnumerationLiteralEditPart extends CompartmentEditPart implements I
 	 * 
 	 * @param theRequest
 	 *        the direct edit request that starts the direct edit system
+	 * @generated
 	 */
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {
 		// initialize the direct edit manager
@@ -776,7 +791,6 @@ public class EnumerationLiteralEditPart extends CompartmentEditPart implements I
 			this.setText("");
 
 			this.setFont(THIS_FONT);
-
 
 		}
 

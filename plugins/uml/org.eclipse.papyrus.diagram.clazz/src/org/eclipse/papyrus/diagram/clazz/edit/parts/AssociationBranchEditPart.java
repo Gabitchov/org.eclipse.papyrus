@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2010 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,8 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ */
 package org.eclipse.papyrus.diagram.clazz.edit.parts;
 
 import org.eclipse.draw2d.Connection;
@@ -28,7 +27,9 @@ import org.eclipse.papyrus.diagram.clazz.edit.policies.AssociationBranchItemSema
 /**
  * @generated
  */
-public class AssociationBranchEditPart extends AbstractAssociationBranchEditPart implements ITreeBranchEditPart {
+public class AssociationBranchEditPart extends
+
+AbstractAssociationBranchEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -45,40 +46,6 @@ public class AssociationBranchEditPart extends AbstractAssociationBranchEditPart
 	/**
 	 * @generated
 	 */
-	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
-			return;
-		}
-		super.addChildVisual(childEditPart, -1);
-	}
-
-	/**
-	 * @generated
-	 */
-	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof AssociationBranchRoleEditPart) {
-			((AssociationBranchRoleEditPart)childEditPart).setLabel(getPrimaryShape().getRoleSourceLabel());
-			return true;
-		}
-		return false;
-	}
-
-	/**
-	 * Creates figure for this edit part.
-	 * 
-	 * Body of this method does not depend on settings in generation model so
-	 * you may safely remove <i>generated</i> tag and modify it.
-	 * 
-	 * @generated
-	 */
-
-	protected Connection createConnectionFigure() {
-		return new AssociationFigure();
-	}
-
-	/**
-	 * @generated
-	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new AssociationBranchItemSemanticEditPolicy());
@@ -89,8 +56,39 @@ public class AssociationBranchEditPart extends AbstractAssociationBranchEditPart
 	/**
 	 * @generated
 	 */
-	public AssociationFigure getPrimaryShape() {
-		return (AssociationFigure)getFigure();
+	protected boolean addFixedChild(EditPart childEditPart) {
+		if(childEditPart instanceof AssociationBranchRoleEditPart) {
+			((AssociationBranchRoleEditPart)childEditPart).setLabel(getPrimaryShape().getRoleSourceLabel());
+			return true;
+		}
+		if(childEditPart instanceof AssociationBranchMutliplicityEditPart) {
+			((AssociationBranchMutliplicityEditPart)childEditPart).setLabel(getPrimaryShape().getMultiplicitySourceLabel());
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void addChildVisual(EditPart childEditPart, int index) {
+		if(addFixedChild(childEditPart)) {
+			return;
+		}
+		super.addChildVisual(childEditPart, -1);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected boolean removeFixedChild(EditPart childEditPart) {
+		if(childEditPart instanceof AssociationBranchRoleEditPart) {
+			return true;
+		}
+		if(childEditPart instanceof AssociationBranchMutliplicityEditPart) {
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -104,13 +102,22 @@ public class AssociationBranchEditPart extends AbstractAssociationBranchEditPart
 	}
 
 	/**
+	 * Creates figure for this edit part.
+	 * 
+	 * Body of this method does not depend on settings in generation model
+	 * so you may safely remove <i>generated</i> tag and modify it.
+	 * 
 	 * @generated
 	 */
-	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof AssociationBranchRoleEditPart) {
-			return true;
-		}
-		return false;
+	protected Connection createConnectionFigure() {
+		return new AssociationFigure();
+	}
+
+	/**
+	 * @generated
+	 */
+	public AssociationFigure getPrimaryShape() {
+		return (AssociationFigure)getFigure();
 	}
 
 }

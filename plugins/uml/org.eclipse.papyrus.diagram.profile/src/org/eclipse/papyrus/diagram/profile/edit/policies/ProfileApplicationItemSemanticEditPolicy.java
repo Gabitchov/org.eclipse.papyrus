@@ -44,6 +44,10 @@ public class ProfileApplicationItemSemanticEditPolicy extends UMLBaseItemSemanti
 		super(UMLElementTypes.ProfileApplication_1045);
 	}
 
+
+
+
+
 	/**
 	 * @generated
 	 */

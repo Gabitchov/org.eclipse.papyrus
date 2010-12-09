@@ -28,7 +28,7 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = getPreferenceStore();
 
-		PackageCNPreferencePage.initDefaults(store);
+		OperationPreferencePage.initDefaults(store);
 
 
 		DataTypePreferencePage.initDefaults(store);
@@ -46,13 +46,10 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 		ConstraintPreferencePage.initDefaults(store);
 
 
-		ConstraintCNPreferencePage.initDefaults(store);
-
-
-		CommentCNPreferencePage.initDefaults(store);
-
-
 		EnumerationLiteralPreferencePage.initDefaults(store);
+
+
+		PropertyPreferencePage.initDefaults(store);
 
 
 		StereotypePreferencePage.initDefaults(store);
@@ -61,22 +58,13 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 		DependencyPreferencePage.initDefaults(store);
 
 
-		EnumerationCNPreferencePage.initDefaults(store);
+		PrimitiveTypePreferencePage.initDefaults(store);
 
 
 		PrimitiveTypePreferencePage.initDefaults(store);
 
 
 		PackagePreferencePage.initDefaults(store);
-
-
-		DataTypePropertyPreferencePage.initDefaults(store);
-
-
-		ProfileCNPreferencePage.initDefaults(store);
-
-
-		ClassPropertyPreferencePage.initDefaults(store);
 
 
 		CommentPreferencePage.initDefaults(store);
@@ -86,12 +74,6 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 
 
 		EnumerationPreferencePage.initDefaults(store);
-
-
-		ClassOperationPreferencePage.initDefaults(store);
-
-
-		DataTypeOperationPreferencePage.initDefaults(store);
 
 
 		MetaclassPreferencePage.initDefaults(store);

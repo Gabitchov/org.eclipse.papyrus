@@ -27,6 +27,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPart;
 import org.eclipse.papyrus.diagram.common.editpolicies.BorderItemResizableEditPolicy;
+import org.eclipse.papyrus.diagram.composite.custom.edit.policies.StructuredClassifierLayoutEditPolicy;
 import org.eclipse.papyrus.diagram.composite.custom.locators.PortPositionLocator;
 import org.eclipse.papyrus.diagram.composite.edit.parts.PortEditPart;
 import org.eclipse.papyrus.diagram.composite.part.UMLVisualIDRegistry;
@@ -43,6 +44,7 @@ public class BlockEditPart extends ClassEditPart {
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
+		installEditPolicy(EditPolicy.LAYOUT_ROLE, new StructuredClassifierLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new BlockItemSemanticEditPolicy());
 	}
 
@@ -51,6 +53,7 @@ public class BlockEditPart extends ClassEditPart {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				View childView = (View)child.getModel();
+				
 				switch(UMLVisualIDRegistry.getVisualID(childView)) {
 				case PortEditPart.VISUAL_ID:
 
@@ -108,6 +111,11 @@ public class BlockEditPart extends ClassEditPart {
 			setupContentPane(pane);
 			pane.add(((BlockPropertyCompartmentEditPart)childEditPart).getFigure());
 			return true;
+		} else if(childEditPart instanceof BlockOperationCompartmentEditPart) {
+			IFigure pane = getPrimaryShape().getOperationCompartmentFigure();
+			setupContentPane(pane);
+			pane.add(((BlockOperationCompartmentEditPart)childEditPart).getFigure());
+			return true;
 		}
 
 		return super.addFixedChild(childEditPart);
@@ -145,8 +153,12 @@ public class BlockEditPart extends ClassEditPart {
 			setupContentPane(pane);
 			pane.remove(((BlockPropertyCompartmentEditPart)childEditPart).getFigure());
 			return true;
+		} else if(childEditPart instanceof BlockOperationCompartmentEditPart) {
+			IFigure pane = getPrimaryShape().getOperationCompartmentFigure();
+			setupContentPane(pane);
+			pane.remove(((BlockOperationCompartmentEditPart)childEditPart).getFigure());
+			return true;
 		}
-
 		return super.removeFixedChild(childEditPart);
 	}
 
@@ -161,8 +173,9 @@ public class BlockEditPart extends ClassEditPart {
 			return getPrimaryShape().getBlockPartCompartmentFigure();
 		} else if(editPart instanceof BlockPropertyCompartmentEditPart) {
 			return getPrimaryShape().getAttributeCompartmentFigure();
+		} else if(editPart instanceof BlockOperationCompartmentEditPart) {
+			return getPrimaryShape().getOperationCompartmentFigure();
 		}
-
 		return super.getContentPaneFor(editPart);
 	}
 
@@ -172,6 +185,12 @@ public class BlockEditPart extends ClassEditPart {
 			IElementType type = (IElementType)adapter.getAdapter(IElementType.class);
 			if(type == BlockDefinitionDiagramElementTypes.BLOCK_CONSTRAINT_CLN) {
 				return getChildBySemanticHint(BlockDefinitionDiagramElementTypes.BLOCK_CONSTRAINT_COMPARTMENT_HINT);
+			}
+			if(type == BlockDefinitionDiagramElementTypes.BLOCK_PART_CLN) {
+				return getChildBySemanticHint(BlockDefinitionDiagramElementTypes.BLOCK_PART_COMPARTMENT_HINT);
+			}
+			if(type == BlockDefinitionDiagramElementTypes.BLOCK_REFERENCE_CLN) {
+				return getChildBySemanticHint(BlockDefinitionDiagramElementTypes.BLOCK_REFERENCE_COMPARTMENT_HINT);
 			}
 		}
 		return super.getTargetEditPart(request);

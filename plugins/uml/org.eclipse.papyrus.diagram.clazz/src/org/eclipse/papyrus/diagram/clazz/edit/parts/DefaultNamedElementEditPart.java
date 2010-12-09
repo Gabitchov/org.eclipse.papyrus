@@ -9,8 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ */
 package org.eclipse.papyrus.diagram.clazz.edit.parts;
 
 import java.util.ArrayList;
@@ -42,6 +41,7 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.ClazzDiagramChangeStereotypedShapeEditpolicy;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.CustomGraphicalNodeEditPolicy;
+import org.eclipse.papyrus.diagram.clazz.custom.policies.itemsemantic.CustomDefaultNamedElementItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.DefaultNamedElementItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
@@ -61,7 +61,9 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated
  */
-public class DefaultNamedElementEditPart extends NamedElementEditPart {
+public class DefaultNamedElementEditPart extends
+
+NamedElementEditPart {
 
 	/**
 	 * @generated
@@ -97,6 +99,7 @@ public class DefaultNamedElementEditPart extends NamedElementEditPart {
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
 		installEditPolicy(ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY, new ClazzDiagramChangeStereotypedShapeEditpolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultNamedElementItemSemanticEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -159,7 +162,6 @@ public class DefaultNamedElementEditPart extends NamedElementEditPart {
 			return true;
 		}
 
-
 		return false;
 	}
 
@@ -216,8 +218,8 @@ public class DefaultNamedElementEditPart extends NamedElementEditPart {
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model so
-	 * you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model
+	 * so you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -231,8 +233,8 @@ public class DefaultNamedElementEditPart extends NamedElementEditPart {
 	}
 
 	/**
-	 * Default implementation treats passed figure as content pane. Respects
-	 * layout one may have set for generated figure.
+	 * Default implementation treats passed figure as content pane.
+	 * Respects layout one may have set for generated figure.
 	 * 
 	 * @param nodeShape
 	 *        instance of generated figure class
@@ -400,9 +402,6 @@ public class DefaultNamedElementEditPart extends NamedElementEditPart {
 		if(targetEditPart instanceof Constraint2EditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if(targetEditPart instanceof ContainmentCircleEditPart) {
-			types.add(UMLElementTypes.Realization_4005);
-		}
 		if(targetEditPart instanceof Dependency2EditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
@@ -491,9 +490,6 @@ public class DefaultNamedElementEditPart extends NamedElementEditPart {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
 		if(targetEditPart instanceof Constraint2EditPart) {
-			types.add(UMLElementTypes.Abstraction_4006);
-		}
-		if(targetEditPart instanceof ContainmentCircleEditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
 		if(targetEditPart instanceof Dependency2EditPart) {
@@ -586,9 +582,6 @@ public class DefaultNamedElementEditPart extends NamedElementEditPart {
 		if(targetEditPart instanceof Constraint2EditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if(targetEditPart instanceof ContainmentCircleEditPart) {
-			types.add(UMLElementTypes.Usage_4007);
-		}
 		if(targetEditPart instanceof Dependency2EditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
@@ -677,9 +670,6 @@ public class DefaultNamedElementEditPart extends NamedElementEditPart {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
 		if(targetEditPart instanceof Constraint2EditPart) {
-			types.add(UMLElementTypes.Dependency_4008);
-		}
-		if(targetEditPart instanceof ContainmentCircleEditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
 		if(targetEditPart instanceof Dependency2EditPart) {
@@ -772,9 +762,6 @@ public class DefaultNamedElementEditPart extends NamedElementEditPart {
 		if(targetEditPart instanceof Constraint2EditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
-		if(targetEditPart instanceof ContainmentCircleEditPart) {
-			types.add(UMLElementTypes.Dependency_4018);
-		}
 		if(targetEditPart instanceof Dependency2EditPart) {
 			types.add(UMLElementTypes.Dependency_4022);
 		}
@@ -863,9 +850,6 @@ public class DefaultNamedElementEditPart extends NamedElementEditPart {
 			types.add(UMLElementTypes.Dependency_4022);
 		}
 		if(targetEditPart instanceof Constraint2EditPart) {
-			types.add(UMLElementTypes.Dependency_4022);
-		}
-		if(targetEditPart instanceof ContainmentCircleEditPart) {
 			types.add(UMLElementTypes.Dependency_4022);
 		}
 		return types;
@@ -907,7 +891,6 @@ public class DefaultNamedElementEditPart extends NamedElementEditPart {
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Constraint_3029);
-			types.add(UMLElementTypes.Port_3032);
 		} else if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);
@@ -939,7 +922,6 @@ public class DefaultNamedElementEditPart extends NamedElementEditPart {
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Constraint_3029);
-			types.add(UMLElementTypes.Port_3032);
 		} else if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);
@@ -971,7 +953,6 @@ public class DefaultNamedElementEditPart extends NamedElementEditPart {
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Constraint_3029);
-			types.add(UMLElementTypes.Port_3032);
 		} else if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);
@@ -1003,7 +984,6 @@ public class DefaultNamedElementEditPart extends NamedElementEditPart {
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Constraint_3029);
-			types.add(UMLElementTypes.Port_3032);
 		} else if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);
@@ -1035,7 +1015,6 @@ public class DefaultNamedElementEditPart extends NamedElementEditPart {
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Constraint_3029);
-			types.add(UMLElementTypes.Port_3032);
 		} else if(relationshipType == UMLElementTypes.Dependency_4022) {
 			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);
@@ -1067,7 +1046,6 @@ public class DefaultNamedElementEditPart extends NamedElementEditPart {
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Constraint_3029);
-			types.add(UMLElementTypes.Port_3032);
 		}
 		return types;
 	}
@@ -1076,7 +1054,7 @@ public class DefaultNamedElementEditPart extends NamedElementEditPart {
 	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnTarget() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(11);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(10);
 		types.add(UMLElementTypes.Realization_4005);
 		types.add(UMLElementTypes.Abstraction_4006);
 		types.add(UMLElementTypes.Usage_4007);
@@ -1084,7 +1062,6 @@ public class DefaultNamedElementEditPart extends NamedElementEditPart {
 		types.add(UMLElementTypes.Dependency_4018);
 		types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
-		types.add(UMLElementTypes.TemplateBinding_4015);
 		types.add(UMLElementTypes.Dependency_4022);
 		types.add(UMLElementTypes.TimeObservationEvent_4024);
 		types.add(UMLElementTypes.DurationObservationEvent_4025);
@@ -1127,7 +1104,6 @@ public class DefaultNamedElementEditPart extends NamedElementEditPart {
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Constraint_3029);
-			types.add(UMLElementTypes.Port_3032);
 		} else if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);
@@ -1159,7 +1135,6 @@ public class DefaultNamedElementEditPart extends NamedElementEditPart {
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Constraint_3029);
-			types.add(UMLElementTypes.Port_3032);
 		} else if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);
@@ -1191,7 +1166,6 @@ public class DefaultNamedElementEditPart extends NamedElementEditPart {
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Constraint_3029);
-			types.add(UMLElementTypes.Port_3032);
 		} else if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);
@@ -1223,7 +1197,6 @@ public class DefaultNamedElementEditPart extends NamedElementEditPart {
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Constraint_3029);
-			types.add(UMLElementTypes.Port_3032);
 		} else if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);
@@ -1255,34 +1228,12 @@ public class DefaultNamedElementEditPart extends NamedElementEditPart {
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Constraint_3029);
-			types.add(UMLElementTypes.Port_3032);
 		} else if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
 			types.add(UMLElementTypes.Comment_2012);
 			types.add(UMLElementTypes.Comment_3028);
 		} else if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
 			types.add(UMLElementTypes.Constraint_2011);
 			types.add(UMLElementTypes.Constraint_3029);
-		} else if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
-			types.add(UMLElementTypes.AssociationClass_2013);
-			types.add(UMLElementTypes.Association_2015);
-			types.add(UMLElementTypes.Component_2002);
-			types.add(UMLElementTypes.Signal_2003);
-			types.add(UMLElementTypes.Interface_2004);
-			types.add(UMLElementTypes.Model_2005);
-			types.add(UMLElementTypes.Enumeration_2006);
-			types.add(UMLElementTypes.Package_2007);
-			types.add(UMLElementTypes.Class_2008);
-			types.add(UMLElementTypes.PrimitiveType_2009);
-			types.add(UMLElementTypes.DataType_2010);
-			types.add(UMLElementTypes.Component_3021);
-			types.add(UMLElementTypes.Signal_3022);
-			types.add(UMLElementTypes.Interface_3023);
-			types.add(UMLElementTypes.Model_3024);
-			types.add(UMLElementTypes.Enumeration_3025);
-			types.add(UMLElementTypes.Package_3009);
-			types.add(UMLElementTypes.Class_3010);
-			types.add(UMLElementTypes.PrimitiveType_3026);
-			types.add(UMLElementTypes.DataType_3027);
 		} else if(relationshipType == UMLElementTypes.Dependency_4022) {
 			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);
@@ -1314,7 +1265,6 @@ public class DefaultNamedElementEditPart extends NamedElementEditPart {
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Constraint_3029);
-			types.add(UMLElementTypes.Port_3032);
 		} else if(relationshipType == UMLElementTypes.TimeObservationEvent_4024) {
 			types.add(UMLElementTypes.TimeObservation_2096);
 		} else if(relationshipType == UMLElementTypes.DurationObservationEvent_4025) {
@@ -1356,5 +1306,4 @@ public class DefaultNamedElementEditPart extends NamedElementEditPart {
 		}
 		return result;
 	}
-
 }

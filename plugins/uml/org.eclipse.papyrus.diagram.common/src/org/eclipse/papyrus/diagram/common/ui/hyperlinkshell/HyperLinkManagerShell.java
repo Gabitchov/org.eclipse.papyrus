@@ -208,8 +208,9 @@ public class HyperLinkManagerShell extends AbstractHyperLinkManagerShell {
 		public String getText(Object element) {
 			String out = "";
 			if(element instanceof HyperLinkDiagram) {
-				if(((HyperLinkDiagram)element).getDiagram()!=null){
-				out = ((HyperLinkDiagram)element).getDiagram().getName();}
+				if(((HyperLinkDiagram)element).getDiagram() != null) {
+					out = ((HyperLinkDiagram)element).getDiagram().getName();
+				}
 			} else if(element instanceof HyperlinkDocument) {
 				out = ((HyperlinkDocument)element).getHyperlinkDocument();
 			} else if(element instanceof HyperLinkWeb) {

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2010 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,8 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ */
 package org.eclipse.papyrus.diagram.clazz.providers;
 
 import java.util.ArrayList;
@@ -40,7 +39,6 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Constraint2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.ContainmentCircleEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DefaultNamedElementEditPart;
@@ -67,6 +65,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.RedefinableTemplateSignature
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ShapeNamedElementEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SignalEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SignalEditPartCN;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.TemplateSignatureEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.TimeObservationEditPart;
 import org.eclipse.papyrus.diagram.clazz.part.Messages;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin;
@@ -143,8 +142,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if(editPart instanceof ModelEditPartTN) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(2);
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
+			types.add(UMLElementTypes.TemplateSignature_3033);
 			return types;
 		}
 		if(editPart instanceof EnumerationEditPart) {
@@ -153,14 +153,15 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if(editPart instanceof PackageEditPart) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(2);
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
+			types.add(UMLElementTypes.TemplateSignature_3033);
 			return types;
 		}
 		if(editPart instanceof ClassEditPart) {
 			ArrayList<IElementType> types = new ArrayList<IElementType>(6);
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
-			types.add(UMLElementTypes.Port_3032);
+			types.add(UMLElementTypes.Node_3032);
 			types.add(UMLElementTypes.Property_3012);
 			types.add(UMLElementTypes.Reception_3011);
 			types.add(UMLElementTypes.Operation_3013);
@@ -175,8 +176,10 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if(editPart instanceof RedefinableTemplateSignatureEditPart) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(2);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(4);
 			types.add(UMLElementTypes.ClassifierTemplateParameter_3031);
+			types.add(UMLElementTypes.ConnectableElementTemplateParameter_3034);
+			types.add(UMLElementTypes.OperationTemplateParameter_3035);
 			types.add(UMLElementTypes.TemplateParameter_3016);
 			return types;
 		}
@@ -208,8 +211,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if(editPart instanceof ModelEditPartCN) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(2);
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
+			types.add(UMLElementTypes.TemplateSignature_3033);
 			return types;
 		}
 		if(editPart instanceof EnumerationEditPartCN) {
@@ -218,8 +222,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if(editPart instanceof PackageEditPartCN) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(2);
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
+			types.add(UMLElementTypes.TemplateSignature_3033);
 			return types;
 		}
 		if(editPart instanceof ClassEditPartCN) {
@@ -236,6 +241,13 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			types.add(UMLElementTypes.Property_3018);
 			types.add(UMLElementTypes.Operation_3019);
+			return types;
+		}
+		if(editPart instanceof TemplateSignatureEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(3);
+			types.add(UMLElementTypes.ClassifierTemplateParameter_3031);
+			types.add(UMLElementTypes.OperationTemplateParameter_3035);
+			types.add(UMLElementTypes.TemplateParameter_3016);
 			return types;
 		}
 		if(editPart instanceof ModelPackageableElementCompartmentEditPart) {
@@ -406,9 +418,6 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof Constraint2EditPart) {
 			return ((Constraint2EditPart)sourceEditPart).getMARelTypesOnSource();
 		}
-		if(sourceEditPart instanceof ContainmentCircleEditPart) {
-			return ((ContainmentCircleEditPart)sourceEditPart).getMARelTypesOnSource();
-		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -513,8 +522,8 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof Constraint2EditPart) {
 			return ((Constraint2EditPart)targetEditPart).getMARelTypesOnTarget();
 		}
-		if(targetEditPart instanceof ContainmentCircleEditPart) {
-			return ((ContainmentCircleEditPart)targetEditPart).getMARelTypesOnTarget();
+		if(targetEditPart instanceof TemplateSignatureEditPart) {
+			return ((TemplateSignatureEditPart)targetEditPart).getMARelTypesOnTarget();
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -621,9 +630,6 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof Constraint2EditPart) {
 			return ((Constraint2EditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
-		if(sourceEditPart instanceof ContainmentCircleEditPart) {
-			return ((ContainmentCircleEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -728,8 +734,8 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof Constraint2EditPart) {
 			return ((Constraint2EditPart)targetEditPart).getMATypesForSource(relationshipType);
 		}
-		if(targetEditPart instanceof ContainmentCircleEditPart) {
-			return ((ContainmentCircleEditPart)targetEditPart).getMATypesForSource(relationshipType);
+		if(targetEditPart instanceof TemplateSignatureEditPart) {
+			return ((TemplateSignatureEditPart)targetEditPart).getMATypesForSource(relationshipType);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -834,9 +840,6 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if(sourceEditPart instanceof Constraint2EditPart) {
 			return ((Constraint2EditPart)sourceEditPart).getMATypesForTarget(relationshipType);
-		}
-		if(sourceEditPart instanceof ContainmentCircleEditPart) {
-			return ((ContainmentCircleEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
 		return Collections.EMPTY_LIST;
 	}

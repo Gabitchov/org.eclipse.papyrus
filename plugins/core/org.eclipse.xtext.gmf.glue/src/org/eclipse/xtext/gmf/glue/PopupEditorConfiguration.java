@@ -21,6 +21,7 @@ import org.eclipse.papyrus.extensionpoints.editors.configuration.IPopupEditorCon
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.xtext.gmf.glue.edit.part.IXTextSemanticValidator;
 import org.eclipse.xtext.gmf.glue.edit.part.IXtextEMFReconciler;
 import org.eclipse.xtext.gmf.glue.edit.part.PopupXtextEditorHelper;
 
@@ -59,24 +60,26 @@ public abstract class PopupEditorConfiguration implements IPopupEditorConfigurat
 	 * Basic implementation which simply consists in returning a new PopupXtextEditorHelper
 	 * @param editPart The editPart on which a direct edit has been performed.
 	 * @param xtextInjector The xtextInjector.
-	 * @param eobjectContextUpdater The IEObjectContextUpdater, to update the currently edited UML model element
 	 * @param xtextEditorContextUpdater The IXtextEditorContextUpdater, to update the currently select xtext editor
 	 * @param modelReconciler The IXtextEMFReconciler, to update the context UML model with changes textually specified in the popup xtext editor
 	 * @param textToEdit the initialization text, used as the initial textual content for the popup xtext editor 
-	 * @param fileExtension the extension for the temporary textual file (underlying the editor) 
+	 * @param fileExtension the extension for the temporary textual file (underlying the editor)
+	 * @param semanticValidator the semantic validator used to semantically validate the model before saving 
 	 * @return IPopupEditorHelper
 	 */
 	public IPopupEditorHelper createPopupEditorHelper(IGraphicalEditPart editPart, 
 					Injector xtextInjector,
 					IXtextEMFReconciler modelReconciler,
 					String textToEdit, 
-					String fileExtension) {
+					String fileExtension,
+					IXTextSemanticValidator semanticValidator) {
 
 		return new PopupXtextEditorHelper(editPart, 
 						xtextInjector, 
 						modelReconciler,
 						textToEdit, 
-						fileExtension);
+						fileExtension,
+						semanticValidator);
 	}
 
 	////

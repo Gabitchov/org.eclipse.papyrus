@@ -13,20 +13,18 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.edit.policies;
 
-import java.util.Iterator;
-
-import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.CompoundCommand;
+import org.eclipse.gef.commands.UnexecutableCommand;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
-import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
-import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
-import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyReferenceCommand;
+import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
-import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.CommentAnnotatedElementCreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.CommentAnnotatedElementReorientCommand;
@@ -55,8 +53,10 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.Message5EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.Message6EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.Message7EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageEditPart;
-import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.sequence.util.SequenceDeleteHelper;
+import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.service.edit.service.IElementEditService;
 
 /**
  * @generated
@@ -74,60 +74,17 @@ public class DestructionEventItemSemanticEditPolicy extends UMLBaseItemSemanticE
 	 * @generated
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
-		View view = (View)getHost().getModel();
-		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
-		cmd.setTransactionNestingEnabled(false);
+		EObject selectedEObject = req.getElementToDestroy();
+		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(selectedEObject);
+		if(provider != null) {
+			// Retrieve delete command from the Element Edit service
+			ICommand deleteCommand = provider.getEditCommand(req);
 
-
-		for(Iterator<?> it = view.getTargetEdges().iterator(); it.hasNext();) {
-			Edge incomingLink = (Edge)it.next();
-			switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
-			case CommentAnnotatedElementEditPart.VISUAL_ID:
-			case ConstraintConstrainedElementEditPart.VISUAL_ID:
-				DestroyReferenceRequest destroyRefReq = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
-				cmd.add(new DestroyReferenceCommand(destroyRefReq));
-				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
-				break;
-			case MessageEditPart.VISUAL_ID:
-			case Message2EditPart.VISUAL_ID:
-			case Message3EditPart.VISUAL_ID:
-			case Message4EditPart.VISUAL_ID:
-			case Message5EditPart.VISUAL_ID:
-			case Message6EditPart.VISUAL_ID:
-			case Message7EditPart.VISUAL_ID:
-				DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
-				cmd.add(new DestroyElementCommand(destroyEltReq));
-				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
-				break;
+			if(deleteCommand != null) {
+				return new ICommandProxy(deleteCommand);
 			}
 		}
-
-		for(Iterator<?> it = view.getSourceEdges().iterator(); it.hasNext();) {
-			Edge outgoingLink = (Edge)it.next();
-			switch(UMLVisualIDRegistry.getVisualID(outgoingLink)) {
-			case MessageEditPart.VISUAL_ID:
-			case Message2EditPart.VISUAL_ID:
-			case Message3EditPart.VISUAL_ID:
-			case Message4EditPart.VISUAL_ID:
-			case Message5EditPart.VISUAL_ID:
-			case Message6EditPart.VISUAL_ID:
-			case Message7EditPart.VISUAL_ID:
-				DestroyElementRequest destroyEltReq = new DestroyElementRequest(outgoingLink.getElement(), false);
-				cmd.add(new DestroyElementCommand(destroyEltReq));
-				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
-				break;
-			}
-		}
-		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
-		if(annotation == null) {
-			// there are indirectly referenced children, need extra commands: false
-			addDestroyShortcutsCommand(cmd, view);
-			// delete host element
-			cmd.add(new DestroyElementCommand(req));
-		} else {
-			cmd.add(new DeleteCommand(getEditingDomain(), view));
-		}
-		return getGEFWrapper(cmd.reduce());
+		return UnexecutableCommand.INSTANCE;
 	}
 
 	/**
@@ -246,6 +203,23 @@ public class DestructionEventItemSemanticEditPolicy extends UMLBaseItemSemanticE
 			return getGEFWrapper(new ConstraintConstrainedElementReorientCommand(req));
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
+	}
+
+	/**
+	 * This method has been overridden to also delete linked time/duration views
+	 * 
+	 * @generated NOT
+	 */
+	protected Command addDeleteViewCommand(Command mainCommand, DestroyRequest completedRequest) {
+		CompoundCommand deleteViewsCommand = new CompoundCommand();
+		Command deleteViewCommand = getGEFWrapper(new DeleteCommand(getEditingDomain(), (View)getHost().getModel()));
+		deleteViewsCommand.add(deleteViewCommand);
+		SequenceDeleteHelper.completeDeleteDestructionEventViewCommand(deleteViewsCommand, getEditingDomain(), getHost());
+		if(mainCommand == null) {
+			return deleteViewsCommand;
+		} else {
+			return mainCommand.chain(deleteViewsCommand);
+		}
 	}
 
 }

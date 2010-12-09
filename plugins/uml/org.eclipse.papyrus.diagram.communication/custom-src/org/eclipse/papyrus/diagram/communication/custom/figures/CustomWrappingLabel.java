@@ -17,7 +17,7 @@ import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
-import org.eclipse.papyrus.diagram.communication.custom.util.RotationHelper;
+import org.eclipse.papyrus.diagram.communication.custom.helper.RotationHelper;
 import org.eclipse.papyrus.diagram.communication.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
@@ -132,6 +132,8 @@ public class CustomWrappingLabel extends WrappingLabel
 			graphics.translate(-figBounds.x, -figBounds.y);
 		}
 		graphics.popState();
+
+
 	}
 
 
@@ -141,8 +143,9 @@ public class CustomWrappingLabel extends WrappingLabel
 		// super.paintFigure(graphics);
 
 		if(hasIcons()) {
-			// System.out.println("This Connection hasIcon \n");
 			CustomPaintIcons(graphics);
+			//call repaint to refresh
+			repaint();
 
 		}
 	}

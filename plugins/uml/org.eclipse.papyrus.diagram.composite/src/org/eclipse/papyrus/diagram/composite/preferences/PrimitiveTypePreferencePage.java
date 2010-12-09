@@ -37,7 +37,7 @@ public class PrimitiveTypePreferencePage extends AbstractPapyrusNodePreferencePa
 	 */
 	@Override
 	protected String getBundleId() {
-		return UMLDiagramEditorPlugin.getInstance().ID;
+		return UMLDiagramEditorPlugin.ID;
 	}
 
 	/**

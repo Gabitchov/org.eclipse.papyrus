@@ -15,6 +15,7 @@ package org.eclipse.papyrus.diagram.communication.custom.policies.itemsemantic;
 
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.papyrus.diagram.communication.custom.commands.CustomDurationObservationCreateCommandCN;
 import org.eclipse.papyrus.diagram.communication.custom.commands.CustomTimeObservationCreateCommandCN;
 import org.eclipse.papyrus.diagram.communication.edit.policies.InteractionCompartmentItemSemanticEditPolicy;
@@ -41,6 +42,13 @@ public class CustomInteractionCompartmentSemanticEditPolicy extends InteractionC
 		}
 
 		return super.getCreateCommand(req);
+	}
+
+	@Override
+	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
+		// TODO Auto-generated method stub
+		//System.err.println("getReorientRelationshipCommand VisualID of element to reorient" + getVisualID(req));
+		return super.getReorientRelationshipCommand(req);
 	}
 
 }

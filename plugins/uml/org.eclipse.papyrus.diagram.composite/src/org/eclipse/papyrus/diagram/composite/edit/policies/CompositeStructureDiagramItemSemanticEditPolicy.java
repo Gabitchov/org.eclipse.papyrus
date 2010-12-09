@@ -26,7 +26,6 @@ import org.eclipse.papyrus.diagram.composite.edit.commands.AnyReceiveEventCreate
 import org.eclipse.papyrus.diagram.composite.edit.commands.ArtifactCreateCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.CallEventCreateCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.ChangeEventCreateCommand;
-import org.eclipse.papyrus.diagram.composite.edit.commands.ClassClassifierCreateCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.ClassCompositeCreateCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.CollaborationCompositeCreateCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.CommentCreateCommand;
@@ -89,7 +88,6 @@ public class CompositeStructureDiagramItemSemanticEditPolicy extends UMLBaseItem
 		super(UMLElementTypes.Package_1000);
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -126,9 +124,6 @@ public class CompositeStructureDiagramItemSemanticEditPolicy extends UMLBaseItem
 		}
 		if(UMLElementTypes.Class_2073 == req.getElementType()) {
 			return getGEFWrapper(new ClassCompositeCreateCommand(req));
-		}
-		if(UMLElementTypes.Class_2074 == req.getElementType()) {
-			return getGEFWrapper(new ClassClassifierCreateCommand(req));
 		}
 		if(UMLElementTypes.Collaboration_2075 == req.getElementType()) {
 			return getGEFWrapper(new CollaborationCompositeCreateCommand(req));

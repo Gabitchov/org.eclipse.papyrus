@@ -13,33 +13,58 @@
  *****************************************************************************/
 package org.eclipse.papyrus.modelexplorer;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.eclipse.core.commands.operations.IUndoContext;
-import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.ResourceSetChangeEvent;
 import org.eclipse.emf.transaction.ResourceSetListener;
 import org.eclipse.emf.transaction.ResourceSetListenerImpl;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.jface.viewers.ColumnViewerToolTipSupport;
+import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.ITreeContentProvider;
+import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.jface.window.ToolTip;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.lifecycleevents.IEditorInputChangedListener;
 import org.eclipse.papyrus.core.lifecycleevents.ISaveAndDirtyService;
-import org.eclipse.papyrus.core.lifecycleevents.SaveAndDirtyService;
 import org.eclipse.papyrus.core.services.ServiceException;
+import org.eclipse.papyrus.core.ui.IRevealSemanticElement;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.core.utils.ServiceUtils;
+import org.eclipse.papyrus.modelexplorer.listener.DoubleClickListener;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IMemento;
 import org.eclipse.ui.ISaveablePart;
+import org.eclipse.ui.ISelectionListener;
 import org.eclipse.ui.IViewSite;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.ActionFactory;
+import org.eclipse.ui.internal.navigator.NavigatorContentService;
+import org.eclipse.ui.internal.navigator.extensions.NavigatorContentDescriptor;
 import org.eclipse.ui.navigator.CommonNavigator;
+import org.eclipse.ui.navigator.CommonViewer;
 import org.eclipse.ui.operations.RedoActionHandler;
 import org.eclipse.ui.operations.UndoActionHandler;
 import org.eclipse.ui.part.FileEditorInput;
@@ -53,7 +78,7 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
  * source when the current Editor change. To allow to explore different Model, use a {@link ModelExplorerPageBookView}.
  * 
  */
-public class ModelExplorerView extends CommonNavigator {
+public class ModelExplorerView extends CommonNavigator implements IRevealSemanticElement{
 
 	/**
 	 * The associated EditorPart
@@ -64,7 +89,7 @@ public class ModelExplorerView extends CommonNavigator {
 	 * The save aservice associated to the editor.
 	 */
 	private ISaveAndDirtyService saveAndDirtyService;
-	
+
 	private TransactionalEditingDomain editingDomain;
 
 	/**
@@ -96,7 +121,7 @@ public class ModelExplorerView extends CommonNavigator {
 			firePropertyChange(IEditorPart.PROP_DIRTY);
 		}
 	};
-	
+
 
 	/**
 	 * Undo action handler
@@ -123,13 +148,145 @@ public class ModelExplorerView extends CommonNavigator {
 	 */
 	public ModelExplorerView(IMultiDiagramEditor part) {
 		this.editorPart = part;
+		setLinkingEnabled(true);
 		try {
 			this.saveAndDirtyService =editorPart.getServicesRegistry().getService(ISaveAndDirtyService.class);
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * Handle a selection change in the editor.
+	 * 
+	 * @param part
+	 * @param selection
+	 */
+	private void handleSelectionChangedFromDiagramEditor(IWorkbenchPart part, ISelection selection) {
+		// Handle selection from diagram editor
+		if(isLinkingEnabled() ) {
+			if(part instanceof IEditorPart) {
+				if( selection instanceof IStructuredSelection){
+					Iterator<?> selectionIterator=((IStructuredSelection)selection).iterator();
+					ArrayList semanticElementList= new ArrayList();
+					while(selectionIterator.hasNext()) {
+						Object currentSelection = (Object)selectionIterator.next();
+						if( currentSelection instanceof IAdaptable){
+							Object semanticElement=((IAdaptable)currentSelection).getAdapter(EObject.class);
+							if( semanticElement!=null){
+								semanticElementList.add(semanticElement);
+							}
+						}
 
+					}
+					revealSemanticElement(semanticElementList);
+
+				}
+
+			}
+		}
+	}
+
+	/**
+	 * look for the path the list of element (comes from the content provider) to go the eObject
+	 * @param eobject that we look for.
+	 * @param objects a list of elements where eobject can be wrapped.
+	 * @return the list of modelElementItem ( from the root to the element that wrap the eobject)
+	 */
+	protected List<Object> searchPath(EObject eobject, List<Object> objects) {
+		SemanticFromModelExplorer semanticGetter= new SemanticFromModelExplorer();
+		List<Object> path = new ArrayList<Object>();
+		ITreeContentProvider contentProvider=(ITreeContentProvider)getCommonViewer().getContentProvider();
+
+		for(Object o : objects) {
+			// Search matches in this level
+			if(!(o instanceof Diagram) && o instanceof IAdaptable) {
+				if(eobject.equals((EObject)((IAdaptable)o).getAdapter(EObject.class))){
+					path.add(o);
+					return path;
+				}
+			}
+
+			// Find childs only for feature container
+			for(int i = 0; i < contentProvider.getChildren(o).length; i++) {
+				Object treeItem=contentProvider.getChildren(o)[i];
+
+				List<Object> tmppath=new ArrayList<Object>();
+				//can  be change into IADAPTER by using new API of modisco 
+				Object element=semanticGetter.getSemanticElement(treeItem);
+				if(element !=null){
+					if(element instanceof EReference){
+						if (((EReference)element).isContainment()&& (!((EReference)element).isDerived())){
+							List<Object> childs = new ArrayList<Object>();
+							childs.add(treeItem);
+							tmppath=searchPath(eobject, childs);
+						}
+					}
+
+					else{
+						if(element instanceof EObject) {
+							List<Object> childs = new ArrayList<Object>();
+							childs.add(treeItem);
+							tmppath=searchPath(eobject, childs);
+						}
+					}
+				}
+
+				// if tmppath contains the wrapped eobject we have find the good path 
+				if(tmppath.size()>0){
+					if( tmppath.get(tmppath.size()-1) instanceof IAdaptable){
+						if(eobject.equals((EObject)((IAdaptable)(tmppath.get(tmppath.size()-1))).getAdapter(EObject.class))){
+							path.add(o);
+							path.addAll(tmppath);
+							return path;
+						}
+					}
+				}
+			}
+		}
+
+		return new ArrayList<Object>();
+	}
+
+	// Use of internal class (NavigatorContentService) - in the hope that the bug gets fixed soon.
+	@SuppressWarnings("restriction")
+	protected CommonViewer createCommonViewerObject(Composite aParent) {
+		CommonViewer viewer = new CustomCommonViewer(getViewSite().getId(), aParent,
+			SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
+		// enable tool-tips
+		// workaround for bug 311827: the Common Viewer always uses NavigatorDecoratingLabelProvider
+		// as a wrapper for the LabelProvider provided by the application. The NavigatorDecoratingLabelProvider
+		// does not delegate tooltip related functions but defines them as empty.
+		NavigatorContentService contentService = new NavigatorContentService(getViewSite().getId());
+		@SuppressWarnings("unchecked")
+		// get label provider from content service (which in turn evaluates extension points in
+		// function of the input)
+		Set<Object> descriptors =  contentService.findDescriptorsByTriggerPoint(getInitialInput(), false);
+		for (Object descriptor : descriptors) {
+			if (descriptor instanceof NavigatorContentDescriptor) {
+				try {
+					ILabelProvider labelProvider = ((NavigatorContentDescriptor) descriptor).createLabelProvider();
+					viewer.setLabelProvider(labelProvider);
+				}
+				catch (CoreException e) {
+					System.err.println(e);
+				}
+				break;
+			}
+		}
+		ColumnViewerToolTipSupport.enableFor(viewer,ToolTip.NO_RECREATE);
+		return viewer;
+	}
+
+	@Override
+	public void createPartControl(Composite aParent) {
+		// TODO Auto-generated method stub
+		super.createPartControl(aParent);
+		getCommonViewer().setSorter(null);
+		((CustomCommonViewer)getCommonViewer()).getDropAdapter().setFeedbackEnabled(true);
+
+		getCommonViewer().addDoubleClickListener(new DoubleClickListener());
+
+	}
 	/**
 	 * Return the control used to render this View
 	 * 
@@ -154,6 +311,16 @@ public class ModelExplorerView extends CommonNavigator {
 
 	}
 
+	public void init(IViewSite site) throws PartInitException {
+		super.init(site);
+		IWorkbenchPage page = site.getPage();
+		// an ISelectionListener to react to workbench selection changes.
+
+		page.addSelectionListener(new ISelectionListener() {
+			public void selectionChanged(IWorkbenchPart part, ISelection selection) {
+				handleSelectionChangedFromDiagramEditor(part, selection);
+			}});
+	}
 	/**
 	 * Hook the global undo/redi actions.
 	 */
@@ -200,8 +367,9 @@ public class ModelExplorerView extends CommonNavigator {
 	 * refresh the view.
 	 */
 	public void refresh() {
-		// Skip if control is disposed or not visible
-		if(getControl().isDisposed() || !getControl().isVisible())
+		// Need to refresh, even if (temporarily) invisible
+		// (Better alternative?: store refresh event and execute once visible again)
+		if (getControl().isDisposed())
 			return;
 
 		// avoid reentrant call
@@ -239,10 +407,10 @@ public class ModelExplorerView extends CommonNavigator {
 	private void activate() {
 
 		if(editorPart != null) {
-			
+
 			try {
 				this.editingDomain = ServiceUtils.getInstance().getTransactionalEditingDomain(editorPart.getServicesRegistry());
-//			this.editingDomain = EditorUtils.getTransactionalEditingDomain(editorPart.getServicesRegistry());
+				//			this.editingDomain = EditorUtils.getTransactionalEditingDomain(editorPart.getServicesRegistry());
 				// Set Viewer input if it already exist
 				if(getCommonViewer() != null) {
 					getCommonViewer().setInput(editorPart.getServicesRegistry());
@@ -254,7 +422,7 @@ public class ModelExplorerView extends CommonNavigator {
 
 			// Listen to isDirty flag
 			saveAndDirtyService.addInputChangedListener(editorInputChangedListener);
-			
+
 			// Hook 
 			//			if(undoHandler != null){
 			//				IUndoContext undoContext = getUndoContext(part);
@@ -288,8 +456,8 @@ public class ModelExplorerView extends CommonNavigator {
 
 		// deactivate global handler
 		if(editorPart != null) {
-            Activator.log.debug("deactivate " + editorPart.getTitle());
-			
+			Activator.log.debug("deactivate " + editorPart.getTitle());
+
 			// Stop Listenning to isDirty flag
 			saveAndDirtyService.removeInputChangedListener(editorInputChangedListener);
 
@@ -352,12 +520,12 @@ public class ModelExplorerView extends CommonNavigator {
 
 			// Let the parent return the adapter.
 		}
-		
+
 		if( ISaveablePart.class.equals(adapter)) {
-			
+
 			return saveAndDirtyService;
 		}
-		
+
 		return super.getAdapter(adapter);
 	}
 
@@ -378,9 +546,64 @@ public class ModelExplorerView extends CommonNavigator {
 	 */
 	public void selectReveal(ISelection selection) {
 		if(getCommonViewer() != null) {
+
 			getCommonViewer().setSelection(selection, true);
 		}
 	}
 
+
+	public void expandItems(List<Object> treeElementList, TreeItem[] list){
+		//the treeElement has more tan one element
+		if(treeElementList.size()>0){
+			for(int i=0;i<list.length;i++) {
+				if(list[i].getData()!=null && list[i].getData().equals(treeElementList.get(0))){
+					if(treeElementList.size()>1){//Do no expand the last
+						Object[] toexpand={treeElementList.get(0)};
+						getCommonViewer().setExpandedElements(toexpand);
+					}
+					ArrayList<Object> tmpList= new ArrayList<Object>();
+					tmpList.addAll(treeElementList);
+					tmpList.remove(tmpList.get(0));
+					expandItems(tmpList, list[i].getItems());
+				}
+
+			}
+
+		}
+
+	}
+	/**
+	 * reveal all tree element that represent a semantic element in the given list.
+
+
+	 * @see org.eclipse.papyrus.core.ui.IRevealSemanticElement#revealSemanticElement(java.util.List)
+	 *
+	 */
+	public void revealSemanticElement(List<?> elementList) {
+		//for each element we reveal it
+		Iterator<?> elementListIterator= elementList.iterator();
+		while(elementListIterator.hasNext()) {
+			Object currentElement = (Object)elementListIterator.next();
+			//test if the type is an EObject
+			if(currentElement instanceof EObject){
+				EObject currentEObject=(EObject)currentElement;
+				//the content provider exist?
+				if(getCommonViewer().getContentProvider()!=null){
+					//need the root in order to find all element in the tree
+					Object root=getCommonViewer().getInput();
+					//look for the path in order to access to this element
+					List<Object> path =searchPath(currentEObject, Arrays.asList(((ITreeContentProvider)getCommonViewer().getContentProvider()).getElements(root)));
+					if(path.size()>0){
+						//expand in the common viewer the path
+						expandItems(path, getCommonViewer().getTree().getItems());
+						selectReveal(new StructuredSelection(path.get(path.size()-1)));
+
+					}
+
+				}
+			}
+		}
+
+	}
 
 }

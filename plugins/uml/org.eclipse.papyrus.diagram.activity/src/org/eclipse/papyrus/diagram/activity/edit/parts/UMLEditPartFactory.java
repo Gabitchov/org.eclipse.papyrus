@@ -264,11 +264,17 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case DurationConstraintAsLocalPrecondNameEditPart.VISUAL_ID:
 				return new DurationConstraintAsLocalPrecondNameEditPart(view);
 
+			case DurationConstraintAsLocalPrecondBodyEditPart.VISUAL_ID:
+				return new DurationConstraintAsLocalPrecondBodyEditPart(view);
+
 			case DurationConstraintAsLocalPostcondEditPart.VISUAL_ID:
 				return new DurationConstraintAsLocalPostcondEditPart(view);
 
 			case DurationConstraintAsLocalPostcondNameEditPart.VISUAL_ID:
 				return new DurationConstraintAsLocalPostcondNameEditPart(view);
+
+			case DurationConstraintAsLocalPostcondBodyEditPart.VISUAL_ID:
+				return new DurationConstraintAsLocalPostcondBodyEditPart(view);
 
 			case TimeConstraintAsLocalPrecondEditPart.VISUAL_ID:
 				return new TimeConstraintAsLocalPrecondEditPart(view);
@@ -276,23 +282,17 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case TimeConstraintAsLocalPrecondNameEditPart.VISUAL_ID:
 				return new TimeConstraintAsLocalPrecondNameEditPart(view);
 
+			case TimeConstraintAsLocalPrecondBodyEditPart.VISUAL_ID:
+				return new TimeConstraintAsLocalPrecondBodyEditPart(view);
+
 			case TimeConstraintAsLocalPostcondEditPart.VISUAL_ID:
 				return new TimeConstraintAsLocalPostcondEditPart(view);
 
 			case TimeConstraintAsLocalPostcondNameEditPart.VISUAL_ID:
 				return new TimeConstraintAsLocalPostcondNameEditPart(view);
 
-			case InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID:
-				return new InteractionConstraintAsLocalPrecondEditPart(view);
-
-			case InteractionConstraintAsLocalPrecondNameEditPart.VISUAL_ID:
-				return new InteractionConstraintAsLocalPrecondNameEditPart(view);
-
-			case InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID:
-				return new InteractionConstraintAsLocalPostcondEditPart(view);
-
-			case InteractionConstraintAsLocalPostcondNameEditPart.VISUAL_ID:
-				return new InteractionConstraintAsLocalPostcondNameEditPart(view);
+			case TimeConstraintAsLocalPostcondBodyEditPart.VISUAL_ID:
+				return new TimeConstraintAsLocalPostcondBodyEditPart(view);
 
 			case IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID:
 				return new IntervalConstraintAsLocalPrecondEditPart(view);
@@ -300,11 +300,17 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case IntervalConstraintAsLocalPrecondNameEditPart.VISUAL_ID:
 				return new IntervalConstraintAsLocalPrecondNameEditPart(view);
 
+			case IntervalConstraintAsLocalPrecondBodyEditPart.VISUAL_ID:
+				return new IntervalConstraintAsLocalPrecondBodyEditPart(view);
+
 			case IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID:
 				return new IntervalConstraintAsLocalPostcondEditPart(view);
 
 			case IntervalConstraintAsLocalPostcondNameEditPart.VISUAL_ID:
 				return new IntervalConstraintAsLocalPostcondNameEditPart(view);
+
+			case IntervalConstraintAsLocalPostcondBodyEditPart.VISUAL_ID:
+				return new IntervalConstraintAsLocalPostcondBodyEditPart(view);
 
 			case ConstraintAsLocalPrecondEditPart.VISUAL_ID:
 				return new ConstraintAsLocalPrecondEditPart(view);
@@ -312,11 +318,17 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ConstraintAsLocalPrecondNameEditPart.VISUAL_ID:
 				return new ConstraintAsLocalPrecondNameEditPart(view);
 
+			case ConstraintAsLocalPrecondBodyEditPart.VISUAL_ID:
+				return new ConstraintAsLocalPrecondBodyEditPart(view);
+
 			case ConstraintAsLocalPostcondEditPart.VISUAL_ID:
 				return new ConstraintAsLocalPostcondEditPart(view);
 
 			case ConstraintAsLocalPostcondNameEditPart.VISUAL_ID:
 				return new ConstraintAsLocalPostcondNameEditPart(view);
+
+			case ConstraintAsLocalPostcondBodyEditPart.VISUAL_ID:
+				return new ConstraintAsLocalPostcondBodyEditPart(view);
 
 			case DecisionNodeEditPart.VISUAL_ID:
 				return new DecisionNodeEditPart(view);
@@ -504,8 +516,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ActivityParameterNodeEditPart.VISUAL_ID:
 				return new ActivityParameterNodeEditPart(view);
 
-			case CenteredWrappedLabelEditPart.VISUAL_ID:
-				return new CenteredWrappedLabelEditPart(view);
+			case ParameterNodeNameEditPart.VISUAL_ID:
+				return new ParameterNodeNameEditPart(view);
 
 			case AcceptEventActionEditPart.VISUAL_ID:
 				return new AcceptEventActionEditPart(view);
@@ -588,6 +600,42 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case InterruptibleActivityRegionEditPart.VISUAL_ID:
 				return new InterruptibleActivityRegionEditPart(view);
 
+			case CommentEditPartCN.VISUAL_ID:
+				return new CommentEditPartCN(view);
+
+			case CommentBodyLabelEditPart.VISUAL_ID:
+				return new CommentBodyLabelEditPart(view);
+
+			case ReadSelfActionEditPart.VISUAL_ID:
+				return new ReadSelfActionEditPart(view);
+
+			case ReadSelfActionNameEditPart.VISUAL_ID:
+				return new ReadSelfActionNameEditPart(view);
+
+			case ReadSelfActionOutputPinEditPart.VISUAL_ID:
+				return new ReadSelfActionOutputPinEditPart(view);
+
+			case OutputPinInReadSelfActionLabelEditPart.VISUAL_ID:
+				return new OutputPinInReadSelfActionLabelEditPart(view);
+
+			case OutputPinInReadSelfActionAppliedStereotypeEditPart.VISUAL_ID:
+				return new OutputPinInReadSelfActionAppliedStereotypeEditPart(view);
+
+			case ActivityEditPartCN.VISUAL_ID:
+				return new ActivityEditPartCN(view);
+
+			case ActivityNameEditPartCN.VISUAL_ID:
+				return new ActivityNameEditPartCN(view);
+
+			case ActivityIsSingleExecutionCNEditPart.VISUAL_ID:
+				return new ActivityIsSingleExecutionCNEditPart(view);
+
+			case ShapeNamedElementEditPart.VISUAL_ID:
+				return new ShapeNamedElementEditPart(view);
+
+			case ShapeNamedElementNameEditPart.VISUAL_ID:
+				return new ShapeNamedElementNameEditPart(view);
+
 			case ActivityActivityParametersCompartmentEditPart.VISUAL_ID:
 				return new ActivityActivityParametersCompartmentEditPart(view);
 
@@ -621,13 +669,23 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart.VISUAL_ID:
 				return new InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart(view);
 
+			case ActivityCNParametersCompartmentEditPart.VISUAL_ID:
+				return new ActivityCNParametersCompartmentEditPart(view);
+
+			case ActivityCNPreConditionsCompartmentEditPart.VISUAL_ID:
+				return new ActivityCNPreConditionsCompartmentEditPart(view);
+
+			case ActivityCNPostConditionsCompartmentEditPart.VISUAL_ID:
+				return new ActivityCNPostConditionsCompartmentEditPart(view);
+
+			case ActivityCNContentCompartmentEditPart.VISUAL_ID:
+				return new ActivityCNContentCompartmentEditPart(view);
+
 			case ActionLocalPreconditionEditPart.VISUAL_ID:
 				return new ActionLocalPreconditionEditPart(view);
 
-
 			case ActionLocalPostconditionEditPart.VISUAL_ID:
 				return new ActionLocalPostconditionEditPart(view);
-
 
 			case ObjectFlowEditPart.VISUAL_ID:
 				return new ObjectFlowEditPart(view);
@@ -653,7 +711,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ObjectFlowAppliedStereotypeEditPart.VISUAL_ID:
 				return new ObjectFlowAppliedStereotypeEditPart(view);
 
-
 			case ControlFlowEditPart.VISUAL_ID:
 				return new ControlFlowEditPart(view);
 
@@ -669,12 +726,14 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ControlFlowAppliedStereotypeEditPart.VISUAL_ID:
 				return new ControlFlowAppliedStereotypeEditPart(view);
 
-
 			case ExceptionHandlerEditPart.VISUAL_ID:
 				return new ExceptionHandlerEditPart(view);
 
 			case ExceptionHandlerTypeEditPart.VISUAL_ID:
 				return new ExceptionHandlerTypeEditPart(view);
+
+			case CommentLinkEditPart.VISUAL_ID:
+				return new CommentLinkEditPart(view);
 
 			}
 		}

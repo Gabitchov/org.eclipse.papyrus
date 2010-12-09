@@ -182,7 +182,7 @@ public class ApplyStereotypeEditPolicy extends AbstractEditPolicy {
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 				// retrieves the edit part on which stereotype request is made
-				if(getHost() instanceof IUMLEditPart||((getHost().getModel() instanceof View)&& (((View)getHost().getModel()).getElement()) instanceof Element)) {
+				if(getHost() instanceof IUMLEditPart || ((getHost().getModel() instanceof View) && (((View)getHost().getModel()).getElement()) instanceof Element)) {
 					if(element == null) {
 						return null;
 					}
@@ -214,7 +214,7 @@ public class ApplyStereotypeEditPolicy extends AbstractEditPolicy {
 				protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 					// retrieves the edit part on which stereotype request is made
-					if(getHost() instanceof IUMLEditPart||((getHost().getModel() instanceof View)&& (((View)getHost().getModel()).getElement()) instanceof Element)) {
+					if(getHost() instanceof IUMLEditPart || ((getHost().getModel() instanceof View) && (((View)getHost().getModel()).getElement()) instanceof Element)) {
 						if(!(element instanceof NamedElement)) {
 							return null;
 						}

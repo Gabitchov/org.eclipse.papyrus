@@ -48,13 +48,15 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DuplicateElementsRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.commands.PapyrusDuplicateViewsCommand;
 import org.eclipse.papyrus.pastemanager.request.PasteRequest;
+
 /**
  * this class has in charge to give a paste command, ie to copy graphically element
  */
 
-@SuppressWarnings({"rawtypes","restriction"})
+@SuppressWarnings({ "rawtypes", "restriction" })
 public class DuplicatePasteEditPolicy extends ContainerEditPolicy {
-	public final static String PASTE_ROLE= "PASTE_ROLE";
+
+	public final static String PASTE_ROLE = "PASTE_ROLE";
 
 
 	/**
@@ -63,18 +65,17 @@ public class DuplicatePasteEditPolicy extends ContainerEditPolicy {
 	public Command getCommand(Request request) {
 
 
-		if (PasteRequest.REQ_PAPYRUS_PASTE.equals(request.getType())) {
+		if(PasteRequest.REQ_PAPYRUS_PASTE.equals(request.getType())) {
 
-			if(request instanceof PasteRequest){
-				return getPasteCommand((PasteRequest) request);
-			}
-			else{
-				return getPasteCommand((PasteViewRequest) request);
+			if(request instanceof PasteRequest) {
+				return getPasteCommand((PasteRequest)request);
+			} else {
+				return getPasteCommand((PasteViewRequest)request);
 			}
 		}
 
-		if (RequestConstants.REQ_DUPLICATE.equals(request.getType())) {
-			return getDuplicateCommand(((DuplicateRequest) request));
+		if(RequestConstants.REQ_DUPLICATE.equals(request.getType())) {
+			return getDuplicateCommand(((DuplicateRequest)request));
 		}
 
 		return super.getCommand(request);
@@ -82,10 +83,10 @@ public class DuplicatePasteEditPolicy extends ContainerEditPolicy {
 
 	@SuppressWarnings("unchecked")
 	protected Command getPasteCommand(PasteRequest request) {
-		List notationView=  new ArrayList();
-		if(request.getElementToPaste()!=null&&request.getElementToPaste().size()>0){
+		List notationView = new ArrayList();
+		if(request.getElementToPaste() != null && request.getElementToPaste().size() > 0) {
 			notationView.addAll(request.getElementToPaste());
-			HashSet semanticElement= new HashSet();
+			HashSet semanticElement = new HashSet();
 			return constructDuplicationCommand(notationView, semanticElement, request.getDuplicate(), ((IGraphicalEditPart)getHost()).getEditingDomain());
 		}
 		return null;
@@ -96,8 +97,8 @@ public class DuplicatePasteEditPolicy extends ContainerEditPolicy {
 	 * elements (if applicable) of the given editparts.
 	 * 
 	 * @param request
-	 *            the <code>DuplicateElementsRequest</code> whose list of duplicated
-	 *            views will be populated when the command is executed
+	 *        the <code>DuplicateElementsRequest</code> whose list of duplicated
+	 *        views will be populated when the command is executed
 	 * @return the command to perform the duplication
 	 */
 	@SuppressWarnings("unchecked")
@@ -105,19 +106,18 @@ public class DuplicatePasteEditPolicy extends ContainerEditPolicy {
 		List notationViewsToDuplicate = new ArrayList();
 		Set elementsToDuplicate = new HashSet();
 
-		for (Iterator iter = request.getEditParts().iterator(); iter.hasNext();) {
+		for(Iterator iter = request.getEditParts().iterator(); iter.hasNext();) {
 			Object ep = iter.next();
 
 			// Disable duplicate on groups for now.  See bugzilla 182972.
-			if (ep instanceof GroupEditPart) {
+			if(ep instanceof GroupEditPart) {
 				return UnexecutableCommand.INSTANCE;
 			}
 
-			if (ep instanceof ConnectionEditPart || ep instanceof ShapeEditPart
-				|| ep instanceof ListItemEditPart) {
+			if(ep instanceof ConnectionEditPart || ep instanceof ShapeEditPart || ep instanceof ListItemEditPart) {
 
-				View notationView = (View)((IGraphicalEditPart) ep).getModel();
-				if (notationView != null) {
+				View notationView = (View)((IGraphicalEditPart)ep).getModel();
+				if(notationView != null) {
 					notationViewsToDuplicate.add(notationView);
 				}
 			}
@@ -129,34 +129,32 @@ public class DuplicatePasteEditPolicy extends ContainerEditPolicy {
 
 		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
 
-		for (Iterator iter = notationViewsToDuplicate.iterator(); iter
-		.hasNext();) {
-			View view = (View) iter.next();
+		for(Iterator iter = notationViewsToDuplicate.iterator(); iter.hasNext();) {
+			View view = (View)iter.next();
 			EObject element = view.getElement();
 
-			if (element != null) {
-				EObject resolvedElement = EMFCoreUtil.resolve(editingDomain,
-					element);
-				if (resolvedElement != null) {
+			if(element != null) {
+				EObject resolvedElement = EMFCoreUtil.resolve(editingDomain, element);
+				if(resolvedElement != null) {
 					elementsToDuplicate.add(resolvedElement);
 				}
 			}
 		}
 		return constructDuplicationCommand(notationViewsToDuplicate, elementsToDuplicate, request, editingDomain);
 	}
+
 	/**
-	 * code comes from superclass
-	 *{@inheritDoc}
+	 * code comes from superclass {@inheritDoc}
 	 */
 	@SuppressWarnings("unchecked")
-	protected  Command constructDuplicationCommand(List notationViewsToDuplicate, Set elementsToDuplicate, DuplicateRequest request, TransactionalEditingDomain editingDomain){
+	protected Command constructDuplicationCommand(List notationViewsToDuplicate, Set elementsToDuplicate, DuplicateRequest request, TransactionalEditingDomain editingDomain) {
 		/*
 		 * We must append all inner edges of a node being duplicated. Edges are non-containment
 		 * references, hence they won't be duplicated for free. Therefore, we add them here to
 		 * the list views to duplicate.
 		 * We don't add semantic elements of the edges to the list of semantic elements to duplicate
 		 * since we assume that their semantic elements are owned by source or target or their semantic
-		 * containers. 
+		 * containers.
 		 */
 		/**
 		 * Until duplicate views action enablement is driven by the created duplicate views command,
@@ -168,45 +166,33 @@ public class DuplicatePasteEditPolicy extends ContainerEditPolicy {
 		//    }
 		//    notationViewsToDuplicate.addAll(allInnerEdges);
 
-		if (!notationViewsToDuplicate.isEmpty()) {
-			if (!elementsToDuplicate.isEmpty()) {
-				org.eclipse.gmf.runtime.emf.type.core.requests.DuplicateElementsRequest duplicateElementsRequest = new DuplicateElementsRequest(
-					editingDomain, new ArrayList(elementsToDuplicate));
+		if(!notationViewsToDuplicate.isEmpty()) {
+			if(!elementsToDuplicate.isEmpty()) {
+				org.eclipse.gmf.runtime.emf.type.core.requests.DuplicateElementsRequest duplicateElementsRequest = new DuplicateElementsRequest(editingDomain, new ArrayList(elementsToDuplicate));
 
-				Command duplicateElementsCommand = getHost().getCommand(
-					new EditCommandRequestWrapper(duplicateElementsRequest, request.getExtendedData()));
-				if (duplicateElementsCommand != null
-					&& duplicateElementsCommand.canExecute()) {
-					CompositeCommand cc = new CompositeCommand(
-						DiagramUIMessages.Commands_Duplicate_Label);
-					cc
-					.compose(new CommandProxy(
-						duplicateElementsCommand));
+				Command duplicateElementsCommand = getHost().getCommand(new EditCommandRequestWrapper(duplicateElementsRequest, request.getExtendedData()));
+				if(duplicateElementsCommand != null && duplicateElementsCommand.canExecute()) {
+					CompositeCommand cc = new CompositeCommand(DiagramUIMessages.Commands_Duplicate_Label);
+					cc.compose(new CommandProxy(duplicateElementsCommand));
 
-					cc.compose(new DuplicateViewsCommand(editingDomain,
-						DiagramUIMessages.Commands_Duplicate_Label,
-						request, notationViewsToDuplicate,
-						duplicateElementsRequest.getAllDuplicatedElementsMap(), getDuplicateViewsOffset(request)));
+					cc.compose(new DuplicateViewsCommand(editingDomain, DiagramUIMessages.Commands_Duplicate_Label, request, notationViewsToDuplicate, duplicateElementsRequest.getAllDuplicatedElementsMap(), getDuplicateViewsOffset(request)));
 					return new ICommandProxy(cc);
 				}
 			} else {
-				return new ICommandProxy(new PapyrusDuplicateViewsCommand(editingDomain,
-					DiagramUIMessages.Commands_Duplicate_Label,
-					request, notationViewsToDuplicate,new HashMap(), getDuplicateViewsOffset(request),(View)getHost().getModel()));
+				return new ICommandProxy(new PapyrusDuplicateViewsCommand(editingDomain, DiagramUIMessages.Commands_Duplicate_Label, request, notationViewsToDuplicate, new HashMap(), getDuplicateViewsOffset(request), (View)getHost().getModel()));
 			}
 		}
 		return null;
 	}
+
 	/**
 	 * code comes from super class
 	 */
 	protected Point getDuplicateViewsOffset(DuplicateRequest request) {
-		if (request.getOffset() != null) {
+		if(request.getOffset() != null) {
 			return request.getOffset();
 		}
-		int offset = MapModeUtil.getMapMode(
-			((org.eclipse.gef.GraphicalEditPart) getHost()).getFigure())
-			.DPtoLP(10);
+		int offset = MapModeUtil.getMapMode(((org.eclipse.gef.GraphicalEditPart)getHost()).getFigure()).DPtoLP(10);
 		return new Point(offset, offset);
 	}
 }

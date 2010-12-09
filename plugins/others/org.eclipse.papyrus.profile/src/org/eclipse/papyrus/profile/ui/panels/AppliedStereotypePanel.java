@@ -168,7 +168,7 @@ public class AppliedStereotypePanel extends AbstractPanel {
 
 		if(stereotypeComposite != null) {
 			selected = elt;
-			stereotypeComposite.setInput(new StereotypedElementTreeObject(elt, null));
+			stereotypeComposite.setInput(new StereotypedElementTreeObject(elt));
 			refresh();
 		}
 	}

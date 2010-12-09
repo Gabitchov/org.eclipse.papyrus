@@ -30,7 +30,7 @@ import org.eclipse.papyrus.diagram.statemachine.custom.helpers.Zone;
  */
 public class RemoveOrphanViewPolicy extends OrphanViewPolicy {
 
-	public int[] notOrphanNode = { 3002, 2002 };
+	public int[] notOrphanNode = { 3002, 2002, 6002 };
 
 	public RemoveOrphanViewPolicy() {
 		super();

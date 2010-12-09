@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2010 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,8 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ */
 package org.eclipse.papyrus.diagram.clazz.edit.parts;
 
 import org.eclipse.draw2d.FigureUtilities;
@@ -183,6 +182,12 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case RedefinableTemplateSignatureEditPart.VISUAL_ID:
 				return new RedefinableTemplateSignatureEditPart(view);
 
+			case ConnectableElementTemplateParameterEditPart.VISUAL_ID:
+				return new ConnectableElementTemplateParameterEditPart(view);
+
+			case OperationTemplateParameterEditPart.VISUAL_ID:
+				return new OperationTemplateParameterEditPart(view);
+
 			case ClassifierTemplateParameterEditPart.VISUAL_ID:
 				return new ClassifierTemplateParameterEditPart(view);
 
@@ -303,6 +308,9 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ContainmentCircleEditPart.VISUAL_ID:
 				return new ContainmentCircleEditPart(view);
 
+			case TemplateSignatureEditPart.VISUAL_ID:
+				return new TemplateSignatureEditPart(view);
+
 			case AssociationClassAttributeCompartmentEditPart.VISUAL_ID:
 				return new AssociationClassAttributeCompartmentEditPart(view);
 
@@ -411,9 +419,11 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case AssociationClassNestedClassifierCompartmentEditPart.VISUAL_ID:
 				return new AssociationClassNestedClassifierCompartmentEditPart(view);
 
+			case TemplateSignatureTemplateParameterCompartmentEditPart.VISUAL_ID:
+				return new TemplateSignatureTemplateParameterCompartmentEditPart(view);
+
 			case CommentLinkDescriptorEditPart.VISUAL_ID:
 				return new CommentLinkDescriptorEditPart(view);
-
 
 			case AssociationClass2EditPart.VISUAL_ID:
 				return new AssociationClass2EditPart(view);
@@ -423,7 +433,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case AssociationClassRoleTargetEditPart.VISUAL_ID:
 				return new AssociationClassRoleTargetEditPart(view);
-
 
 			case AssociationEditPart.VISUAL_ID:
 				return new AssociationEditPart(view);
@@ -446,20 +455,20 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case AssociationMultiplictyTargetEditPart.VISUAL_ID:
 				return new AssociationMultiplictyTargetEditPart(view);
 
-
 			case AssociationBranchEditPart.VISUAL_ID:
 				return new AssociationBranchEditPart(view);
 
 			case AssociationBranchRoleEditPart.VISUAL_ID:
 				return new AssociationBranchRoleEditPart(view);
 
+			case AssociationBranchMutliplicityEditPart.VISUAL_ID:
+				return new AssociationBranchMutliplicityEditPart(view);
 
 			case GeneralizationEditPart.VISUAL_ID:
 				return new GeneralizationEditPart(view);
 
 			case AppliedStereotyperGeneralizationEditPart.VISUAL_ID:
 				return new AppliedStereotyperGeneralizationEditPart(view);
-
 
 			case InterfaceRealizationEditPart.VISUAL_ID:
 				return new InterfaceRealizationEditPart(view);
@@ -470,7 +479,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case InterfaceRealizationName2EditPart.VISUAL_ID:
 				return new InterfaceRealizationName2EditPart(view);
 
-
 			case SubstitutionEditPart.VISUAL_ID:
 				return new SubstitutionEditPart(view);
 
@@ -479,7 +487,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case SubstitutionName2EditPart.VISUAL_ID:
 				return new SubstitutionName2EditPart(view);
-
 
 			case RealizationEditPart.VISUAL_ID:
 				return new RealizationEditPart(view);
@@ -490,7 +497,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case RealizationName2EditPart.VISUAL_ID:
 				return new RealizationName2EditPart(view);
 
-
 			case AbstractionEditPart.VISUAL_ID:
 				return new AbstractionEditPart(view);
 
@@ -499,7 +505,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case AppliedStereotypeAbstractionEditPart.VISUAL_ID:
 				return new AppliedStereotypeAbstractionEditPart(view);
-
 
 			case UsageEditPart.VISUAL_ID:
 				return new UsageEditPart(view);
@@ -510,7 +515,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case AppliedStereotypeUsageEditPart.VISUAL_ID:
 				return new AppliedStereotypeUsageEditPart(view);
 
-
 			case DependencyEditPart.VISUAL_ID:
 				return new DependencyEditPart(view);
 
@@ -520,10 +524,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case AppliedStereotypeDependencyEditPart.VISUAL_ID:
 				return new AppliedStereotypeDependencyEditPart(view);
 
-
 			case DependencyBranchEditPart.VISUAL_ID:
 				return new DependencyBranchEditPart(view);
-
 
 			case ElementImportEditPart.VISUAL_ID:
 				return new ElementImportEditPart(view);
@@ -534,13 +536,11 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case AppliedStereotypeElementImportEditPart.VISUAL_ID:
 				return new AppliedStereotypeElementImportEditPart(view);
 
-
 			case PackageImportEditPart.VISUAL_ID:
 				return new PackageImportEditPart(view);
 
 			case AppliedStereotypePackageImportEditPart.VISUAL_ID:
 				return new AppliedStereotypePackageImportEditPart(view);
-
 
 			case PackageMergeEditPart.VISUAL_ID:
 				return new PackageMergeEditPart(view);
@@ -548,25 +548,23 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case AppliedStereotypePackageMergeEditPart.VISUAL_ID:
 				return new AppliedStereotypePackageMergeEditPart(view);
 
-
 			case ProfileApplicationEditPart.VISUAL_ID:
 				return new ProfileApplicationEditPart(view);
-
 
 			case CommentAnnotatedElementEditPart.VISUAL_ID:
 				return new CommentAnnotatedElementEditPart(view);
 
-
 			case ConstraintConstrainedElementEditPart.VISUAL_ID:
 				return new ConstraintConstrainedElementEditPart(view);
-
 
 			case TemplateBindingEditPart.VISUAL_ID:
 				return new TemplateBindingEditPart(view);
 
-			case WrappingLabelEditPart.VISUAL_ID:
-				return new WrappingLabelEditPart(view);
+			case BindingSubstitutionEditPart.VISUAL_ID:
+				return new BindingSubstitutionEditPart(view);
 
+			case AppliedStereotypeTemplateBindingEditPart.VISUAL_ID:
+				return new AppliedStereotypeTemplateBindingEditPart(view);
 
 			case GeneralizationSetEditPart.VISUAL_ID:
 				return new GeneralizationSetEditPart(view);
@@ -574,22 +572,26 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ConstraintLabelEditPart.VISUAL_ID:
 				return new ConstraintLabelEditPart(view);
 
+			case AppliedStereotypeGeneralizationSetLabelEditPart.VISUAL_ID:
+				return new AppliedStereotypeGeneralizationSetLabelEditPart(view);
 
 			case InstanceSpecificationLinkEditPart.VISUAL_ID:
 				return new InstanceSpecificationLinkEditPart(view);
 
+			case SourceISLinkLabelEditPart.VISUAL_ID:
+				return new SourceISLinkLabelEditPart(view);
+
+			case TargetISLinkLabelEditPart.VISUAL_ID:
+				return new TargetISLinkLabelEditPart(view);
 
 			case AddedLinkEditPart.VISUAL_ID:
 				return new AddedLinkEditPart(view);
 
-
 			case ContainmentLinkEditPart.VISUAL_ID:
 				return new ContainmentLinkEditPart(view);
 
-
 			case ConnectorTimeObservationEditPart.VISUAL_ID:
 				return new ConnectorTimeObservationEditPart(view);
-
 
 			case ConnectorDurationObservationEditPart.VISUAL_ID:
 				return new ConnectorDurationObservationEditPart(view);

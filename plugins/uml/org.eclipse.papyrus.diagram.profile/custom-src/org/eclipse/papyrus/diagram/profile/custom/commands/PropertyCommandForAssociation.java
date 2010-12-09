@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Adapted code from the class diagram 
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.profile.custom.commands;
 
@@ -51,7 +51,7 @@ public class PropertyCommandForAssociation extends ClassPropertyCreateCommand {
 
 		Association owner = (Association)getElementToEdit();
 
-		Object type = getRequest().getParameter("type"); //$NON-NLS-1$
+		Object type = getRequest().getParameter("type");
 		if(type != null && type instanceof Type) {
 			newElement.setType((Type)type);
 			newElement.setName(((Type)type).getName());

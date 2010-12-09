@@ -820,7 +820,6 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 		 */
 		public LinkAndCornerBentWithTextFigure() {
 
-
 			this.setBackgroundColor(THIS_BACK);
 			createContents();
 		}

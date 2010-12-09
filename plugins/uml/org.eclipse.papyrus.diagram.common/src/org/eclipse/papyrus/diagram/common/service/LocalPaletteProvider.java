@@ -44,7 +44,7 @@ public class LocalPaletteProvider extends AbstractProvider implements IPalettePr
 	/**
 	 * The list of palette provider XML contributions
 	 */
-	private NodeList contributions = null;
+	protected NodeList contributions = null;
 
 	/** parser used for the xml file */
 	protected XMLDefinitionPaletteParser parser;

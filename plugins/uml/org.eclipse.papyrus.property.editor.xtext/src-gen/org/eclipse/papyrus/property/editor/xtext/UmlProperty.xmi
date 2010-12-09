@@ -24,20 +24,15 @@
         <elements xsi:type="xtext:Keyword" value=":"/>
         <elements xsi:type="xtext:Alternatives">
           <elements xsi:type="xtext:Assignment" feature="type" operator="=">
-            <terminal xsi:type="xtext:CrossReference">
-              <type metamodel="/0/@metamodelDeclarations.0">
-                <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Classifier"/>
-              </type>
-              <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
-            </terminal>
+            <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.2"/>
           </elements>
           <elements xsi:type="xtext:Keyword" value="&lt;Undefined>"/>
         </elements>
         <elements xsi:type="xtext:Assignment" cardinality="?" feature="multiplicity" operator="=">
-          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.2"/>
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.4"/>
         </elements>
         <elements xsi:type="xtext:Assignment" cardinality="?" feature="modifiers" operator="=">
-          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.5"/>
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.7"/>
         </elements>
       </alternatives>
     </rules>
@@ -64,6 +59,43 @@
         </elements>
       </alternatives>
     </rules>
+    <rules xsi:type="xtext:ParserRule" name="TypeRule">
+      <type metamodel="/0/@metamodelDeclarations.1">
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/property/editor/xtext/UmlProperty#//TypeRule"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Assignment" cardinality="?" feature="path" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.3"/>
+        </elements>
+        <elements xsi:type="xtext:Assignment" feature="type" operator="=">
+          <terminal xsi:type="xtext:CrossReference">
+            <type metamodel="/0/@metamodelDeclarations.0">
+              <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Classifier"/>
+            </type>
+            <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
+          </terminal>
+        </elements>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="QualifiedName">
+      <type metamodel="/0/@metamodelDeclarations.1">
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/property/editor/xtext/UmlProperty#//QualifiedName"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Assignment" feature="path" operator="=">
+          <terminal xsi:type="xtext:CrossReference">
+            <type metamodel="/0/@metamodelDeclarations.0">
+              <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Namespace"/>
+            </type>
+            <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
+          </terminal>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="::"/>
+        <elements xsi:type="xtext:Assignment" cardinality="?" feature="remaining" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.3"/>
+        </elements>
+      </alternatives>
+    </rules>
     <rules xsi:type="xtext:ParserRule" name="MultiplicityRule">
       <type metamodel="/0/@metamodelDeclarations.1">
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/property/editor/xtext/UmlProperty#//MultiplicityRule"/>
@@ -71,12 +103,12 @@
       <alternatives xsi:type="xtext:Group">
         <elements xsi:type="xtext:Keyword" value="["/>
         <elements xsi:type="xtext:Assignment" feature="bounds" operator="+=">
-          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.3"/>
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.5"/>
         </elements>
         <elements xsi:type="xtext:Group" cardinality="?">
           <elements xsi:type="xtext:Keyword" value=".."/>
           <elements xsi:type="xtext:Assignment" feature="bounds" operator="+=">
-            <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.3"/>
+            <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.5"/>
           </elements>
         </elements>
         <elements xsi:type="xtext:Keyword" value="]"/>
@@ -87,7 +119,7 @@
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/property/editor/xtext/UmlProperty#//BoundSpecification"/>
       </type>
       <alternatives xsi:type="xtext:Assignment" feature="value" operator="=">
-        <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.4"/>
+        <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.6"/>
       </alternatives>
     </rules>
     <rules xsi:type="xtext:TerminalRule" name="UnlimitedLiteral">
@@ -115,12 +147,12 @@
       <alternatives xsi:type="xtext:Group">
         <elements xsi:type="xtext:Keyword" value="{"/>
         <elements xsi:type="xtext:Assignment" feature="values" operator="+=">
-          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.6"/>
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.8"/>
         </elements>
         <elements xsi:type="xtext:Group" cardinality="*">
           <elements xsi:type="xtext:Keyword" value=","/>
           <elements xsi:type="xtext:Assignment" feature="values" operator="+=">
-            <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.6"/>
+            <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.8"/>
           </elements>
         </elements>
         <elements xsi:type="xtext:Keyword" value="}"/>
@@ -131,7 +163,7 @@
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/papyrus/property/editor/xtext/UmlProperty#//ModifierSpecification"/>
       </type>
       <alternatives xsi:type="xtext:Assignment" feature="value" operator="=">
-        <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.7"/>
+        <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.9"/>
       </alternatives>
     </rules>
     <rules xsi:type="xtext:EnumRule" name="ModifierKind">

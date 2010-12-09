@@ -105,8 +105,6 @@ public class RoleBindingRoleNameEditPart extends LabelEditPart implements ITextA
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -120,8 +118,6 @@ public class RoleBindingRoleNameEditPart extends LabelEditPart implements ITextA
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -289,7 +285,7 @@ public class RoleBindingRoleNameEditPart extends LabelEditPart implements ITextA
 	 * @generated
 	 */
 	protected boolean isEditable() {
-		return getParser() != null;
+		return false;
 	}
 
 	/**
@@ -588,8 +584,6 @@ public class RoleBindingRoleNameEditPart extends LabelEditPart implements ITextA
 		return getPrimaryView();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -597,15 +591,7 @@ public class RoleBindingRoleNameEditPart extends LabelEditPart implements ITextA
 	 * @generated
 	 */
 	public int getDirectEditionType() {
-		if(checkExtendedEditor()) {
-			initExtendedEditorConfiguration();
-			return IDirectEdition.EXTENDED_DIRECT_EDITOR;
-		}
-		if(checkDefaultEdition()) {
-			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
-		}
-
-		// not a named element. no specific editor => do nothing
+		// The label is read-only (defined in GMFGen model)
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
 
@@ -693,8 +679,6 @@ public class RoleBindingRoleNameEditPart extends LabelEditPart implements ITextA
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -724,9 +708,6 @@ public class RoleBindingRoleNameEditPart extends LabelEditPart implements ITextA
 				}
 			}
 		}
-
-
-
 
 		super.handleNotificationEvent(event);
 	}

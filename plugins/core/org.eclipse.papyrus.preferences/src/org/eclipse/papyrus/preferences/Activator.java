@@ -31,19 +31,21 @@ public class Activator extends AbstractUIPlugin {
 
 	// The shared instance
 	private static Activator plugin;
-	
+
 	/** Logging helper */
-    public static LogHelper log;
+	public static LogHelper log;
+
 	/**
 	 * The constructor
 	 */
 	public Activator() {
 	}
 
-	 /**
-     * Storage for preferences.
-     */
-    protected IPreferenceStore papyrusPreferenceStore;
+	/**
+	 * Storage for preferences.
+	 */
+	protected IPreferenceStore papyrusPreferenceStore;
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -53,17 +55,18 @@ public class Activator extends AbstractUIPlugin {
 		super.start(context);
 		plugin = this;
 		// register the login helper
-        log = new LogHelper(plugin);
+		log = new LogHelper(plugin);
 	}
 
-	 public IPreferenceStore getPreferenceStore() {
-	        // Create the preference store lazily.
-	        if (papyrusPreferenceStore == null) {
-	        	papyrusPreferenceStore = new PapyrusPreferenceStore(new InstanceScope(),getBundle().getSymbolicName());
+	public IPreferenceStore getPreferenceStore() {
+		// Create the preference store lazily.
+		if(papyrusPreferenceStore == null) {
+			papyrusPreferenceStore = new PapyrusPreferenceStore(new InstanceScope(), getBundle().getSymbolicName());
 
-	        }
-	        return papyrusPreferenceStore;
-	    }
+		}
+		return papyrusPreferenceStore;
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -97,7 +100,7 @@ public class Activator extends AbstractUIPlugin {
 			image = registry.get(key);
 
 		}
-		
+
 
 		return image;
 	}

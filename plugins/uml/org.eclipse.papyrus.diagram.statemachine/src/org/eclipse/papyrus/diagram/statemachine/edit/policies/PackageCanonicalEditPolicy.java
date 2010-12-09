@@ -28,9 +28,20 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.ConnectionPointReferenceEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.GeneralizationEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PackageEditPart;
-import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateChoiceEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateDeepHistoryEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateEntryPointEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateExitPointEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateForkEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateInitialEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateJoinEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateJunctionEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateShallowHistoryEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateTerminateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineEditPart;
@@ -90,17 +101,6 @@ public class PackageCanonicalEditPolicy extends CanonicalEditPolicy {
 			}
 			break;
 		}
-		case PseudostateEditPart.VISUAL_ID: {
-			if (!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(UMLDiagramUpdater
-						.getPseudostate_4000ContainedLinks(view));
-			}
-			if (!domain2NotationMap.containsKey(view.getElement())
-					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
-			break;
-		}
 		case FinalStateEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(UMLDiagramUpdater
@@ -123,10 +123,142 @@ public class PackageCanonicalEditPolicy extends CanonicalEditPolicy {
 			}
 			break;
 		}
+		case PseudostateInitialEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater
+						.getPseudostate_8000ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement())
+					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case PseudostateJoinEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater
+						.getPseudostate_9000ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement())
+					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case PseudostateForkEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater
+						.getPseudostate_10000ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement())
+					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case PseudostateChoiceEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater
+						.getPseudostate_11000ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement())
+					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case PseudostateJunctionEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater
+						.getPseudostate_12000ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement())
+					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case PseudostateShallowHistoryEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater
+						.getPseudostate_13000ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement())
+					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case PseudostateDeepHistoryEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater
+						.getPseudostate_14000ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement())
+					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case PseudostateTerminateEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater
+						.getPseudostate_15000ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement())
+					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case PseudostateEntryPointEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater
+						.getPseudostate_16000ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement())
+					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case PseudostateExitPointEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater
+						.getPseudostate_17000ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement())
+					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case ConnectionPointReferenceEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater
+						.getConnectionPointReference_18000ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement())
+					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
 		case TransitionEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(UMLDiagramUpdater
 						.getTransition_7000ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement())
+					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case GeneralizationEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater
+						.getGeneralization_19000ContainedLinks(view));
 			}
 			if (!domain2NotationMap.containsKey(view.getElement())
 					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$

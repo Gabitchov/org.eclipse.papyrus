@@ -58,6 +58,7 @@ public class ActivityDiagramEditPart extends DiagramEditPart {
 	 */
 	public ActivityDiagramEditPart(View view) {
 		super(view);
+
 		getFigure().setClippingStrategy(new IClippingStrategy() {
 
 			public Rectangle[] getClip(IFigure childFigure) {
@@ -113,10 +114,8 @@ public class ActivityDiagramEditPart extends DiagramEditPart {
 
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ActivityDiagramItemSemanticEditPolicy());
 
-
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.activity.edit.policies.ActivityDiagramCanonicalEditPolicy());
-
 
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);

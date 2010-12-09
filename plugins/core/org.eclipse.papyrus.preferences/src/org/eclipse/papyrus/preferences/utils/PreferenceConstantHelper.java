@@ -8,7 +8,7 @@
  *
  * Contributors:
  *		Thibault Landre (Atos Origin) - Initial API and implementation
- *
+ *      Lorenzo Vincent (CEA LIST) - Add Compartment Visibility
  *****************************************************************************/
 package org.eclipse.papyrus.preferences.utils;
 
@@ -44,18 +44,18 @@ public class PreferenceConstantHelper {
 	/**
 	 * Prefix for preference for Papyrus Level editor
 	 */
-	public static String PAPYRUS_EDITOR_PREFERENCE_PREFIX="PAPYRUS_EDITOR";
+	public static String PAPYRUS_EDITOR_PREFERENCE_PREFIX = "PAPYRUS_EDITOR"; //$NON-NLS-1$
 
 	/**
-	 * Prefix for preference for Diagram Level 
+	 * Prefix for preference for Diagram Level
 	 */
-	public static String DIAGRAM_PREFERENCE_PREFIX="DIAGRAM_";
+	public static String DIAGRAM_PREFERENCE_PREFIX = "DIAGRAM_"; //$NON-NLS-1$
 
 	/**
-	 * Prefix for preference for element Level 
+	 * Prefix for preference for element Level
 	 */
-	public static String DIAGRAM_ELEMENT="ELEMENT_";
-	
+	public static String DIAGRAM_ELEMENT = "ELEMENT_"; //$NON-NLS-1$
+
 	private final static String COLOR = "color."; //$NON-NLS-1$
 
 	private final static String GRADIENT = "gradient"; //$NON-NLS-1$
@@ -93,17 +93,21 @@ public class PreferenceConstantHelper {
 	private final static String ROUTING_STYLE_CONSTANT = ROUTING + ".style"; //$NON-NLS-1$
 
 	private final static String SMOOTHNESS_CONSTANT = "smoothness"; //$NON-NLS-1$
-	
+
 	private final static String SHADOW_CONSTANT = "shadow"; //$NON-NLS-1$
-	
+
 	private final static String ELEMENTICON_CONSTANT = "elementicon"; //$NON-NLS-1$
-	
+
 	private final static String QUALIFIEDNAME_CONSTANT = "qualifiedname"; //$NON-NLS-1$
 
-	
+
 	private final static String HEIGHT_CONSTANT = "height";//$NON-NLS-1$
 
 	private final static String WIDTH_CONSTANT = "width"; //$NON-NLS-1$
+
+	private final static String COMPARTMENT_VISIBILITY_CONSTANT = "compartment.visibility"; //$NON-NLS-1$
+
+	private final static String COMPARTMENT_NAME_VISIBILITY_CONSTANT = "compartment_name.visibility"; //$NON-NLS-1$
 
 	/**
 	 * A preference of type COLOR FILL
@@ -169,7 +173,7 @@ public class PreferenceConstantHelper {
 	 * A preference of type SMOOTHNESS
 	 */
 	public final static int SMOOTHNESS = ROUTING_STYLE + 1;
-	
+
 	/**
 	 * A preference of type Shadow
 	 */
@@ -179,7 +183,7 @@ public class PreferenceConstantHelper {
 	 * A preference of type elementIcon
 	 */
 	public final static int ELEMENTICON = SHADOW + 1;
-	
+
 	/**
 	 * A preference of type QualifiedName
 	 */
@@ -188,15 +192,24 @@ public class PreferenceConstantHelper {
 	/**
 	 * A preference of type height
 	 */
-	public static final int HEIGHT = QUALIFIEDNAME+1;
+	public static final int HEIGHT = QUALIFIEDNAME + 1;
 
 	/**
 	 * A preference of type width
 	 */
-	public static final int WIDTH = HEIGHT+1;
+	public static final int WIDTH = HEIGHT + 1;
 
+	/**
+	 * A preference of type compartment visibility
+	 */
+	public static final int COMPARTMENT_VISIBILITY = WIDTH + 1;
 
+	/**
+	 * A preference of type compartment visibility
+	 */
+	public static final int COMPARTMENT_NAME_VISIBILITY = COMPARTMENT_VISIBILITY + 1;
 
+	
 	/**
 	 * Get the preference constant used to store the preference of an element.
 	 * 
@@ -266,38 +279,66 @@ public class PreferenceConstantHelper {
 		case WIDTH:
 			sb.append(WIDTH_CONSTANT);
 			break;
+		case COMPARTMENT_VISIBILITY:
+			sb.append(COMPARTMENT_VISIBILITY_CONSTANT);
+			break;
+		case COMPARTMENT_NAME_VISIBILITY:
+			sb.append(COMPARTMENT_NAME_VISIBILITY_CONSTANT);
+			break;
 		default:
 			break;
 		}
 
 		return sb.toString();
 	}
-	
+
 	/**
-	 *  
-	 * @param elementName diagramKind+'_'+element
-	 * @param preferenceType  the type of preference to store. It must be a value defined in {@link PreferenceConstantHelper}
+	 * 
+	 * @param elementName
+	 *        diagramKind+'_'+element
+	 * @param preferenceType
+	 *        the type of preference to store. It must be a value defined in {@link PreferenceConstantHelper}
 	 * @return the key for the element of a diagram
 	 */
 	public static String getElementConstant(String elementName, int preferenceType) {
-		return DIAGRAM_ELEMENT+getConstant(elementName, preferenceType);
+		return DIAGRAM_ELEMENT + getConstant(elementName, preferenceType);
 	}
+
 	/**
 	 * 
-	 * @param preferenceType  the type of preference to store. It must be a value defined in {@link PreferenceConstantHelper}
+	 * @param elementName
+	 *        diagramKind+'_'+element
+	 * @param compartmentName
+	 *        the compartment name
+	 * @param preferenceType
+	 *        the type of preference to store. It must be a value defined in {@link PreferenceConstantHelper}
+	 * @return the key for the element of a diagram
+	 */
+	public static String getCompartmentElementConstant(String elementName, String compartmentName, int preferenceType) {
+		String tmp = getElementConstant(elementName, preferenceType);
+		return tmp.replaceFirst("\\.", "_" + compartmentName + "."); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+	}
+
+	/**
+	 * 
+	 * @param preferenceType
+	 *        the type of preference to store. It must be a value defined in {@link PreferenceConstantHelper}
 	 * @return get the preference key at the papyrus editor level
 	 */
-	public static String getPapyrusEditorConstant( int preferenceType) {
+	public static String getPapyrusEditorConstant(int preferenceType) {
 		return getConstant(PAPYRUS_EDITOR_PREFERENCE_PREFIX, preferenceType);
 	}
+
 	/**
 	 * 
-	 * @param diagramKind the kind of diagram.
-	 * @param preferenceType  the type of preference to store. It must be a value defined in {@link PreferenceConstantHelper}
+	 * @param diagramKind
+	 *        the kind of diagram.
+	 * @param preferenceType
+	 *        the type of preference to store. It must be a value defined in {@link PreferenceConstantHelper}
 	 * @return the preference key at the diagram level
 	 */
 	public static String getDiagramConstant(String diagramKind, int preferenceType) {
-		return DIAGRAM_PREFERENCE_PREFIX+getConstant(diagramKind, preferenceType);
+		return DIAGRAM_PREFERENCE_PREFIX + getConstant(diagramKind, preferenceType);
 	}
 
 }

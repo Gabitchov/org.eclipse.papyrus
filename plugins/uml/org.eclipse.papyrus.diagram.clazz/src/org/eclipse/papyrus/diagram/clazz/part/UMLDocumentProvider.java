@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2010 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,8 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ */
 package org.eclipse.papyrus.diagram.clazz.part;
 
 import java.io.IOException;
@@ -104,9 +103,9 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	}
 
 	/**
-	 * Sets up the given document as it would be provided for the given element.
-	 * The content of the document is not changed. This default implementation
-	 * is empty. Subclasses may reimplement.
+	 * Sets up the given document as it would be provided for the given element. The
+	 * content of the document is not changed. This default implementation is empty.
+	 * Subclasses may reimplement.
 	 * 
 	 * @param element
 	 *        the blue-print element
@@ -956,7 +955,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 					Resource resource = (Resource)notification.getNotifier();
 					if(resource.isLoaded()) {
 						boolean modified = false;
-						for(Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = myInfo.getLoadedResourcesIterator(); it.hasNext() && !modified;) {
+						for(Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = myInfo.getLoadedResourcesIterator(); it.hasNext() && !modified;) {
 							Resource nextResource = (Resource)it.next();
 							if(nextResource.isLoaded()) {
 								modified = nextResource.isModified();

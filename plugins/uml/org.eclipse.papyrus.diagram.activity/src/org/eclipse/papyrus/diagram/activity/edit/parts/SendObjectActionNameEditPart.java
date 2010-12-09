@@ -57,7 +57,6 @@ import org.eclipse.papyrus.diagram.activity.providers.UMLParserProvider;
 import org.eclipse.papyrus.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
-import org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel;
 import org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.extensionpoints.editors.Activator;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IAdvancedEditorConfiguration;
@@ -183,7 +182,7 @@ public class SendObjectActionNameEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
-	public void setLabel(CenteredWrappedLabel figure) {
+	public void setLabel(WrappingLabel figure) {
 		unregisterVisuals();
 		setFigure(figure);
 		defaultText = getLabelTextHelper(figure);
@@ -708,7 +707,6 @@ public class SendObjectActionNameEditPart extends CompartmentEditPart implements
 				}
 			}
 		}
-
 
 		super.handleNotificationEvent(event);
 	}

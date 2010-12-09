@@ -33,7 +33,7 @@ public class UmlTransitionProposalProvider extends AbstractUmlTransitionProposal
 		TransitionRule rule = (TransitionRule) model ;
 		List<EObject> operationAndSignals = UmlTransitionScopeProvider.getVisibleOperationAndSignals(PopupXtextEditorHelper.context) ;
 		List<EObject> alreadyUsedOperationAndSignals = new ArrayList<EObject>();
-		if (rule.getTriggers() != null && ! rule.getTriggers().isEmpty()) {
+		if (rule != null && rule.getTriggers() != null && ! rule.getTriggers().isEmpty()) {
 			List<EventRule> eventRules = rule.getTriggers() ;
 			for (EventRule eventRule : eventRules) {
 				if (eventRule instanceof CallOrSignalEventRule) {

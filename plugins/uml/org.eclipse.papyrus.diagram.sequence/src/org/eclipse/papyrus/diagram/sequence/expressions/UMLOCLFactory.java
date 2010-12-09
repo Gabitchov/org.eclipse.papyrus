@@ -65,10 +65,10 @@ public class UMLOCLFactory {
 			"self.oclIsKindOf(uml::InteractionFragment) or self.oclIsKindOf(uml::Lifeline)", //$NON-NLS-1$
 			"(self.messageSort=MessageSort::asynchCall or self.messageSort=MessageSort::asynchSignal) and self.sendEvent<>null and self.receiveEvent<>null", //$NON-NLS-1$
 			"self.oclIsKindOf(uml::InteractionFragment) or self.oclIsKindOf(uml::Lifeline)", //$NON-NLS-1$
-			"(self.oclIsKindOf(uml::InteractionFragment) or self.oclIsKindOf(uml::Lifeline)) and (self.owner = oppositeEnd.owner or self.owner = oppositeEnd or self = oppositeEnd.owner)", //$NON-NLS-1$
+			"true\r\n-- The following rule is completely false : check can not be performed with only source and target (depends on the the location on the lifeline). Anyway, job is previously done by method CommandHelper.hasValidContainer(IEditCommandRequest)\r\n--(self.oclIsKindOf(uml::InteractionFragment) or self.oclIsKindOf(uml::Lifeline)) and (self.owner = oppositeEnd.owner or self.owner = oppositeEnd or self = oppositeEnd.owner)", //$NON-NLS-1$
 			"self.messageSort=MessageSort::reply and self.sendEvent<>null and self.receiveEvent<>null", //$NON-NLS-1$
 			"self.oclIsKindOf(uml::InteractionFragment)", //$NON-NLS-1$
-			"self.oclIsKindOf(uml::InteractionFragment)", //$NON-NLS-1$
+			"self.oclIsKindOf(uml::InteractionFragment) or self.oclIsKindOf(uml::Lifeline)", //$NON-NLS-1$
 			"self.messageSort=MessageSort::createMessage and self.sendEvent<>null and self.receiveEvent<>null", //$NON-NLS-1$
 			"self.oclIsKindOf(uml::InteractionFragment) or self.oclIsKindOf(uml::Lifeline)", //$NON-NLS-1$
 			"self.oclIsKindOf(uml::Lifeline)", //$NON-NLS-1$

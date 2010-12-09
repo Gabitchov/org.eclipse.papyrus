@@ -13,6 +13,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.providers;
 
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.eclipse.papyrus.diagram.sequence.expressions.UMLOCLFactory;
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.uml2.uml.CombinedFragment;
@@ -21,16 +25,20 @@ import org.eclipse.uml2.uml.ConsiderIgnoreFragment;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Continuation;
 import org.eclipse.uml2.uml.DestructionEvent;
+import org.eclipse.uml2.uml.Duration;
 import org.eclipse.uml2.uml.DurationConstraint;
 import org.eclipse.uml2.uml.DurationInterval;
 import org.eclipse.uml2.uml.DurationObservation;
+import org.eclipse.uml2.uml.GeneralOrdering;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.InteractionUse;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.LiteralString;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.StateInvariant;
 import org.eclipse.uml2.uml.TimeConstraint;
+import org.eclipse.uml2.uml.TimeExpression;
 import org.eclipse.uml2.uml.TimeInterval;
 import org.eclipse.uml2.uml.TimeObservation;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -142,7 +150,7 @@ public class ElementInitializers {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT init Time Interval
 	 */
 	public void init_TimeConstraint_3019(TimeConstraint instance) {
 		try {
@@ -150,6 +158,9 @@ public class ElementInitializers {
 			instance.setSpecification(newInstance_0_0);
 			Object value_0_0_0 = name_specification_TimeConstraint_3019(newInstance_0_0);
 			newInstance_0_0.setName((String)value_0_0_0);
+
+			// init Time Interval
+			init_TimeInterval(newInstance_0_0);
 
 			Object value_1 = name_TimeConstraint_3019(instance);
 			instance.setName((String)value_1);
@@ -171,7 +182,7 @@ public class ElementInitializers {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT init Duration Interval
 	 */
 	public void init_DurationConstraint_3021(DurationConstraint instance) {
 		try {
@@ -180,11 +191,72 @@ public class ElementInitializers {
 			Object value_0_0_0 = name_specification_DurationConstraint_3021(newInstance_0_0);
 			newInstance_0_0.setName((String)value_0_0_0);
 
+			// init Duration Interval
+			init_DurationInterval(newInstance_0_0);
+
 			Object value_1 = name_DurationConstraint_3021(instance);
 			instance.setName((String)value_1);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
+	}
+
+	/**
+	 * Initialize a time interval
+	 * 
+	 * @param instance
+	 *        instance to initialize
+	 */
+	private void init_TimeInterval(TimeInterval instance) {
+		// time interval
+		TimeInterval timeInterval = instance;
+
+		// create, add and set the min and max duration of the duration interval
+		org.eclipse.uml2.uml.Package package_ = timeInterval.getNearestPackage();
+
+		TimeExpression minTimeExpression = UMLFactory.eINSTANCE.createTimeExpression();
+		TimeExpression maxTimeExpression = UMLFactory.eINSTANCE.createTimeExpression();
+
+		package_.getPackagedElements().add(minTimeExpression);
+		package_.getPackagedElements().add(maxTimeExpression);
+
+		ElementInitializers.init_NamedElement(minTimeExpression, "", timeInterval.eClass().getName(), "Min");
+		ElementInitializers.init_NamedElement(maxTimeExpression, "", timeInterval.eClass().getName(), "Max");
+
+		timeInterval.setMin(minTimeExpression);
+		timeInterval.setMax(maxTimeExpression);
+
+		minTimeExpression.setExpr(UMLFactory.eINSTANCE.createLiteralInteger());
+		maxTimeExpression.setExpr(UMLFactory.eINSTANCE.createLiteralInteger());
+	}
+
+	/**
+	 * Initialize a duration interval
+	 * 
+	 * @param instance
+	 *        instance to initialize
+	 */
+	private void init_DurationInterval(DurationInterval instance) {
+		// duration interval
+		DurationInterval durationInterval = instance;
+
+		// create, add and set the min and max duration of the duration interval
+		org.eclipse.uml2.uml.Package package_ = durationInterval.getNearestPackage();
+
+		Duration minDuration = UMLFactory.eINSTANCE.createDuration();
+		Duration maxDuration = UMLFactory.eINSTANCE.createDuration();
+
+		package_.getPackagedElements().add(minDuration);
+		package_.getPackagedElements().add(maxDuration);
+
+		ElementInitializers.init_NamedElement(minDuration, "", durationInterval.eClass().getName(), "Min");
+		ElementInitializers.init_NamedElement(maxDuration, "", durationInterval.eClass().getName(), "Max");
+
+		durationInterval.setMin(minDuration);
+		durationInterval.setMax(maxDuration);
+
+		minDuration.setExpr(UMLFactory.eINSTANCE.createLiteralInteger());
+		maxDuration.setExpr(UMLFactory.eINSTANCE.createLiteralInteger());
 	}
 
 	/**
@@ -227,7 +299,7 @@ public class ElementInitializers {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT init Duration Interval
 	 */
 	public void init_DurationConstraint_3023(DurationConstraint instance) {
 		try {
@@ -235,6 +307,9 @@ public class ElementInitializers {
 			instance.setSpecification(newInstance_0_0);
 			Object value_0_0_0 = name_specification_DurationConstraint_3023(newInstance_0_0);
 			newInstance_0_0.setName((String)value_0_0_0);
+
+			// init Duration Interval
+			init_DurationInterval(newInstance_0_0);
 
 			Object value_1 = name_DurationConstraint_3023(instance);
 			instance.setName((String)value_1);
@@ -249,6 +324,18 @@ public class ElementInitializers {
 	public void init_DurationObservation_3024(DurationObservation instance) {
 		try {
 			Object value_0 = name_DurationObservation_3024(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_GeneralOrdering_4012(GeneralOrdering instance) {
+		try {
+			Object value_0 = name_GeneralOrdering_4012(instance);
 			instance.setName((String)value_0);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
@@ -314,14 +401,14 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	private String name_specification_TimeConstraint_3019(TimeInterval self) {
+	private String name_TimeConstraint_3019(TimeConstraint self) {
 		return getNamedElement(self, "", self.eClass().getName(), "");
 	}
 
 	/**
 	 * @generated
 	 */
-	private String name_TimeConstraint_3019(TimeConstraint self) {
+	private String name_specification_TimeConstraint_3019(TimeInterval self) {
 		return getNamedElement(self, "", self.eClass().getName(), "");
 	}
 
@@ -335,14 +422,14 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	private String name_specification_DurationConstraint_3021(DurationInterval self) {
+	private String name_DurationConstraint_3021(DurationConstraint self) {
 		return getNamedElement(self, "", self.eClass().getName(), "");
 	}
 
 	/**
 	 * @generated
 	 */
-	private String name_DurationConstraint_3021(DurationConstraint self) {
+	private String name_specification_DurationConstraint_3021(DurationInterval self) {
 		return getNamedElement(self, "", self.eClass().getName(), "");
 	}
 
@@ -384,6 +471,13 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
+	private String name_GeneralOrdering_4012(GeneralOrdering self) {
+		return getNamedElement(self, "", self.eClass().getName(), "");
+	}
+
+	/**
+	 * @generated
+	 */
 	public static ElementInitializers getInstance() {
 		ElementInitializers cached = UMLDiagramEditorPlugin.getInstance().getElementInitializers();
 		if(cached == null) {
@@ -391,7 +485,6 @@ public class ElementInitializers {
 		}
 		return cached;
 	}
-
 
 	/**
 	 * @generated NOT
@@ -458,14 +551,54 @@ public class ElementInitializers {
 	 * 
 	 */
 	private static String getNamedElement(NamedElement namedElement, String prefix, String body, String suffix) {
-		StringBuffer sb = new StringBuffer();
-		sb.append("let base : String = \'"); //$NON-NLS-1$
-		sb.append(prefix);
-		sb.append(body);
-		sb.append(suffix);
-		sb.append("\' in\r\nlet suffixes : Sequence(String) = Sequence {\'\', \'1\', \'2\', \'3\', \'4\', \'5\', \'6\', \'7\', \'8\', \'9\', \'10\'} in \r\nlet space : Namespace = self.namespace in\r\nlet allMissed : Sequence(String) = suffixes->\r\n    select(s : String | not space.member->exists(e : NamedElement | e.name = base.concat(s))\r\n    ) in\r\nlet firstMissed : String = allMissed->first() in \r\nlet noMisses : Boolean = firstMissed.oclIsUndefined() in\r\nlet allNames : Set(String) = \r\n    if noMisses \r\n    then \r\n    space.member->collect(e : NamedElement | \r\n         if e = self or e.name.oclIsUndefined() or e.name.substring(1, e.name.size().min(base.size())) <> base\r\n         then \'\' \r\n         else e.name \r\n         endif)->asSet()->excluding(\'\') else Set{\'not in use\'} \r\n    endif in \r\nlet longestName : String = \r\n    if noMisses\r\n    then allNames->select(n : String | not allNames->exists(nn : String | nn.size() > n.size()))->asSequence()->first() \r\n    else \'not in use\' \r\n    endif in \r\nif noMisses then \r\n    if longestName.oclIsUndefined() \r\n    then base \r\n    else longestName.concat(\'1\') \r\n    endif \r\nelse \r\n    base.concat(firstMissed) \r\nendif "); //$NON-NLS-1$
+		String base = prefix + body + suffix;
 
-		Object name = UMLOCLFactory.getExpression(sb.toString(), namedElement.eClass()).evaluate(namedElement);
-		return (String)name;
+		Namespace namespace = namedElement.getNamespace();
+		if(namespace != null) {
+			Set<NamedElement> members = new HashSet<NamedElement>();
+			members.addAll(namespace.getMembers());
+			// add general orderings which are not in initial selection
+			if(namespace instanceof Interaction) {
+				members.addAll(((Interaction)namespace).getGeneralOrderings());
+			}
+			return getNextNumberedName(members, base);
+		}
+
+		return base;
+	}
+
+	@SuppressWarnings("rawtypes")
+	public static String getNextNumberedName(Collection currentElements, String base) {
+		int nextNumber = -1;
+
+		for(Object o : currentElements) {
+			if(o instanceof NamedElement) {
+				String name = ((NamedElement)o).getName();
+				if(name != null && name.startsWith(base)) {
+					String end = name.substring(base.length());
+					int nextNumberTmp = -1;
+
+					if(end.trim().equals("")) {
+						nextNumberTmp = 0;
+					} else {
+						try {
+							nextNumberTmp = Integer.parseInt(end) + 1;
+						} catch (NumberFormatException ex) {
+							nextNumberTmp = -1;
+						}
+					}
+
+					if(nextNumberTmp > nextNumber) {
+						nextNumber = nextNumberTmp;
+					}
+				}
+			}
+		}
+
+		if(nextNumber == -1) {
+			return base;
+		} else {
+			return base + nextNumber;
+		}
 	}
 }

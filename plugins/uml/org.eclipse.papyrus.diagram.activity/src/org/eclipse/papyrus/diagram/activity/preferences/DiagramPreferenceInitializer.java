@@ -28,122 +28,87 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = getPreferenceStore();
 
-		InteractionConstraintPreferencePage.initDefaults(store);
-
-
 		ValueSpecificationActionPreferencePage.initDefaults(store);
 
+		CommentPreferencePage.initDefaults(store);
 
 		SendObjectActionPreferencePage.initDefaults(store);
 
-
 		SequenceNodePreferencePage.initDefaults(store);
-
 
 		SendSignalActionPreferencePage.initDefaults(store);
 
-
 		DataStoreNodePreferencePage.initDefaults(store);
-
 
 		LoopNodePreferencePage.initDefaults(store);
 
-
 		CallBehaviorActionPreferencePage.initDefaults(store);
-
 
 		FlowFinalNodePreferencePage.initDefaults(store);
 
-
 		AcceptEventActionPreferencePage.initDefaults(store);
-
 
 		ConditionalNodePreferencePage.initDefaults(store);
 
-
 		DecisionNodePreferencePage.initDefaults(store);
-
 
 		ActivityFinalNodePreferencePage.initDefaults(store);
 
-
 		ActivityPreferencePage.initDefaults(store);
 
+		ShapeNamedElementPreferencePage.initDefaults(store);
 
 		ActivityPartitionPreferencePage.initDefaults(store);
 
-
 		ForkNodePreferencePage.initDefaults(store);
-
 
 		ValuePinPreferencePage.initDefaults(store);
 
-
 		CallOperationActionPreferencePage.initDefaults(store);
-
 
 		ActionInputPinPreferencePage.initDefaults(store);
 
-
 		StructuredActivityNodePreferencePage.initDefaults(store);
-
 
 		IntervalConstraintPreferencePage.initDefaults(store);
 
+		ReadSelfActionPreferencePage.initDefaults(store);
 
 		OpaqueActionPreferencePage.initDefaults(store);
 
-
 		InitialNodePreferencePage.initDefaults(store);
-
 
 		DurationConstraintPreferencePage.initDefaults(store);
 
-
 		ExpansionRegionPreferencePage.initDefaults(store);
-
 
 		OutputPinPreferencePage.initDefaults(store);
 
+		ActivityCNPreferencePage.initDefaults(store);
 
 		MergeNodePreferencePage.initDefaults(store);
 
-
 		ConstraintPreferencePage.initDefaults(store);
-
 
 		InputPinPreferencePage.initDefaults(store);
 
-
 		ExpansionNodePreferencePage.initDefaults(store);
-
 
 		ActivityParameterNodePreferencePage.initDefaults(store);
 
-
 		TimeConstraintPreferencePage.initDefaults(store);
-
 
 		InterruptibleActivityRegionPreferencePage.initDefaults(store);
 
-
 		JoinNodePreferencePage.initDefaults(store);
-
 
 		ParameterPreferencePage.initDefaults(store);
 
-
-
-
 		ObjectFlowPreferencePage.initDefaults(store);
-
-
 
 		ControlFlowPreferencePage.initDefaults(store);
 
-
 		ExceptionHandlerPreferencePage.initDefaults(store);
-
 
 	}
 

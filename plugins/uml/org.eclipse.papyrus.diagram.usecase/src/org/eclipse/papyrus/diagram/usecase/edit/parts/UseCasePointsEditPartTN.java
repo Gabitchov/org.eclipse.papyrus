@@ -70,10 +70,12 @@ extends ListCompartmentEditPart
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT remove border
 	 */
 	public IFigure createFigure() {
 		ResizableCompartmentFigure result = (ResizableCompartmentFigure)super.createFigure();
+		//remove border
+		result.setBorder(null);
 		result.setTitleVisibility(false);
 		return result;
 	}

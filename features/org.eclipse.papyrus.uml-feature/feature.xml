@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.papyrus.uml"
       label="%featureName"
-      version="0.7.0.qualifier"
+      version="0.7.1.qualifier"
       provider-name="%providerName">
 
    <description>
@@ -263,7 +263,14 @@ http://www.eclipse.org/legal/epl-v10.html
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.papyrus.uml.service.creation"
+         id="org.eclipse.papyrus.uml.service.types"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.resourceloading.umlprofile"
          download-size="0"
          install-size="0"
          version="0.0.0"

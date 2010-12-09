@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
+ *  Saadia Dhouib saadia.dhouib@cea.fr  
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.edit.commands;
@@ -37,18 +37,18 @@ public class MessageCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	private final EObject source;
+	protected final EObject source;
 
 	/**
 	 * @generated
 	 */
-	private final EObject target;
+	protected final EObject target;
 
 
 	/**
 	 * @generated
 	 */
-	private final Interaction container;
+	protected Interaction container;
 
 	/**
 	 * @generated
@@ -144,10 +144,9 @@ public class MessageCreateCommand extends EditElementCommand {
 	/**
 	 * Default approach is to traverse ancestors of the source to find instance of container.
 	 * Modify with appropriate logic.
-	 * 
 	 * @generated
 	 */
-	private static Interaction deduceContainer(EObject source, EObject target) {
+	protected Interaction deduceContainer(EObject source, EObject target) {
 		// Find container element for the new link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.

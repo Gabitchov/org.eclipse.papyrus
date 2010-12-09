@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Manage UML profile with resource loading
+Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.resourceloading.umlprofile;singleton:=true
-Bundle-Version: 0.7.0.qualifier
-Bundle-Vendor: Eclipse.org
+Bundle-Version: 0.7.1.qualifier
+Bundle-Vendor: %providerName
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.papyrus.core,
  org.eclipse.uml2.uml,

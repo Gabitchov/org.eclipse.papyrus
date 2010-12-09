@@ -1,0 +1,43 @@
+[comment encoding = UTF-8 /]
+[module generateElementHandler('http://www.eclipse.org/papyrus/2010/domaincontextcodegen','http://www.eclipse.org/emf/2002/Ecore')/]
+
+[template public generateElementHandler(domain : DomainContext)]
+	
+[comment this template is used to generate an enumeration of all handlers + an abstract handler/]
+
+[for (type:ElementType |domain.elementTypes.types)]
+[file (domain.handlerProjectName+'/'+domain.generatedSourceFolder+'/'+domain.handlerProjectName.substituteAll('.', '/').concat('/handler/'+type.metaClass.name.concat('Handler.java')), false, 'UTF-8')]
+package [domain.genHandlers.handlerPackage/];
+
+import org.eclipse.core.commands.IHandler;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import [domain.genHandlers.elementTypeEnumeratorPackage/].[domain.genHandlers.elementTypeEnumerator/];
+import [domain.genHandlers.superClassPackage/].[domain.genHandlers.superClass/];
+
+/**
+ * <pre>
+ * Command handler for [type.metaClass.name/] creation
+ *
+ * </pre>
+ * @generated
+ */
+public class [type.metaClass.name/]Handler extends [domain.genHandlers.superClass/] implements IHandler {
+
+	/**
+	 * <pre>
+	 * @see org.eclipse.papyrus.uml.service.creation.handler.CreateHandler#getElementTypeToCreate()
+	 *
+	 * @return the IElementType this handler is supposed to create
+	 *
+	 * </pre>
+	 * @generated
+	 */
+	protected IElementType getElementTypeToCreate() {
+		return [domain.genHandlers.elementTypeEnumerator/].[type.specificName/];
+	}
+}
+
+[/file]
+[/for]
+	
+[/template]

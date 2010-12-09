@@ -48,6 +48,7 @@ import org.eclipse.papyrus.diagram.common.helper.UMLBaseEditHelper;
 import org.eclipse.papyrus.diagram.profile.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.profile.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.profile.providers.UMLElementTypes;
+import org.eclipse.papyrus.profile.utils.Util;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
@@ -81,6 +82,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	public static final String VISUAL_ID_KEY = "visual_id"; //$NON-NLS-1$
 
 	/**
+	 * Extended request data key to hold the edge view during a reconnect request.
+	 * 
+	 * @generated
+	 */
+	public static final String GRAPHICAL_RECONNECTED_EDGE = "graphical_edge"; //$NON-NLS-1$
+
+	/**
 	 * @generated
 	 */
 	private final IElementType myElementType;
@@ -98,15 +106,20 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * so command switch can decide what kind of diagram element is being edited.
 	 * It is done in those cases when it's not possible to deduce diagram
 	 * element kind from domain element.
+	 * Add the reoriented view to the request extended data so that the view
+	 * currently edited can be distinguished from other views of the same element
+	 * and these latter possibly removed if they become inconsistent after reconnect
 	 * 
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public Command getCommand(Request request) {
 		if(request instanceof ReconnectRequest) {
 			Object view = ((ReconnectRequest)request).getConnectionEditPart().getModel();
 			if(view instanceof View) {
 				Integer id = new Integer(UMLVisualIDRegistry.getVisualID((View)view));
 				request.getExtendedData().put(VISUAL_ID_KEY, id);
+				request.getExtendedData().put(GRAPHICAL_RECONNECTED_EDGE, (View)view);
 			}
 		}
 		return super.getCommand(request);
@@ -169,7 +182,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	/**
 	 * @generated
 	 */
-	private IElementType getContextElementType(IEditCommandRequest request) {
+	protected IElementType getContextElementType(IEditCommandRequest request) {
 		IElementType requestContextElementType = UMLElementTypes.getElementType(getVisualID(request));
 		return requestContextElementType != null ? requestContextElementType : myElementType;
 	}
@@ -472,7 +485,16 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 * @generated
 		 */
 		public boolean canExistAssociation_4001(Package container, Association linkInstance, Type source, Type target) {
-			return true;
+			try {
+				//AssociationSource
+				if((source instanceof Type) && Util.isMetaclass((Type)source)) {
+					return false;
+				}
+				return true;
+			} catch (Exception e) {
+				UMLDiagramEditorPlugin.getInstance().logError("Link constraint evaluation error", e); //$NON-NLS-1$
+				return false;
+			}
 		}
 
 		/**
@@ -486,56 +508,128 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 * @generated
 		 */
 		public boolean canExistAssociation_4019(Package container, Association linkInstance, Type source, Type target) {
-			return true;
+			try {
+				//AssociationSource
+				if((source instanceof Type) && Util.isMetaclass((Type)source)) {
+					return false;
+				}
+				return true;
+			} catch (Exception e) {
+				UMLDiagramEditorPlugin.getInstance().logError("Link constraint evaluation error", e); //$NON-NLS-1$
+				return false;
+			}
 		}
 
 		/**
 		 * @generated
 		 */
 		public boolean canExistGeneralization_4002(Generalization linkInstance, Classifier source, Classifier target) {
-			return true;
+			try {
+				//GeneralizationSource
+				if((source instanceof Type) && Util.isMetaclass((Type)source)) {
+					return false;
+				}
+				return true;
+			} catch (Exception e) {
+				UMLDiagramEditorPlugin.getInstance().logError("Link constraint evaluation error", e); //$NON-NLS-1$
+				return false;
+			}
 		}
 
 		/**
 		 * @generated
 		 */
 		public boolean canExistDependency_4008(Package container, Dependency linkInstance, NamedElement source, NamedElement target) {
-			return true;
+			try {
+				//DependencySource
+				if((source instanceof Type) && Util.isMetaclass((Type)source)) {
+					return false;
+				}
+				return true;
+			} catch (Exception e) {
+				UMLDiagramEditorPlugin.getInstance().logError("Link constraint evaluation error", e); //$NON-NLS-1$
+				return false;
+			}
 		}
 
 		/**
 		 * @generated
 		 */
 		public boolean canExistDependency_4018(Package container, Dependency linkInstance, NamedElement source, NamedElement target) {
-			return true;
+			try {
+				//DependencySource
+				if((source instanceof Type) && Util.isMetaclass((Type)source)) {
+					return false;
+				}
+				return true;
+			} catch (Exception e) {
+				UMLDiagramEditorPlugin.getInstance().logError("Link constraint evaluation error", e); //$NON-NLS-1$
+				return false;
+			}
 		}
 
 		/**
 		 * @generated
 		 */
 		public boolean canExistElementImport_1064(Namespace container, ElementImport linkInstance, Namespace source, PackageableElement target) {
-			return true;
+			try {
+				//ElementImportSource
+				if((source instanceof Type) && Util.isMetaclass((Type)source)) {
+					return false;
+				}
+				return true;
+			} catch (Exception e) {
+				UMLDiagramEditorPlugin.getInstance().logError("Link constraint evaluation error", e); //$NON-NLS-1$
+				return false;
+			}
 		}
 
 		/**
 		 * @generated
 		 */
 		public boolean canExistPackageImport_1065(Namespace container, PackageImport linkInstance, Namespace source, Package target) {
-			return true;
+			try {
+				//PackageImportSource
+				if((source instanceof Type) && Util.isMetaclass((Type)source)) {
+					return false;
+				}
+				return true;
+			} catch (Exception e) {
+				UMLDiagramEditorPlugin.getInstance().logError("Link constraint evaluation error", e); //$NON-NLS-1$
+				return false;
+			}
 		}
 
 		/**
 		 * @generated
 		 */
 		public boolean canExistCommentAnnotatedElement_1022(Comment source, Element target) {
-			return true;
+			try {
+				//AnnotatedElementLink target
+				if((target instanceof Type) && Util.isMetaclass((Type)target)) {
+					return false;
+				}
+				return true;
+			} catch (Exception e) {
+				UMLDiagramEditorPlugin.getInstance().logError("Link constraint evaluation error", e); //$NON-NLS-1$
+				return false;
+			}
 		}
 
 		/**
 		 * @generated
 		 */
 		public boolean canExistConstraintConstrainedElement_4014(Constraint source, Element target) {
-			return true;
+			try {
+				//ConstraintedElementLink
+				if((target instanceof Type) && Util.isMetaclass((Type)target)) {
+					return false;
+				}
+				return true;
+			} catch (Exception e) {
+				UMLDiagramEditorPlugin.getInstance().logError("Link constraint evaluation error", e); //$NON-NLS-1$
+				return false;
+			}
 		}
 	}
 

@@ -14,21 +14,24 @@
 package org.eclipse.papyrus.diagram.sequence.edit.parts;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
-import org.eclipse.draw2d.GridData;
-import org.eclipse.draw2d.GridLayout;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.MarginBorder;
 import org.eclipse.draw2d.PolylineShape;
 import org.eclipse.draw2d.PositionConstants;
-import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.command.SetCommand;
+import org.eclipse.emf.transaction.RollbackException;
+import org.eclipse.emf.transaction.Transaction;
+import org.eclipse.emf.transaction.TransactionalCommandStack;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
@@ -36,22 +39,26 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderItemEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.BorderedBorderItemEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
+import org.eclipse.gmf.runtime.notation.LayoutConstraint;
+import org.eclipse.gmf.runtime.notation.Location;
+import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
-import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
+import org.eclipse.papyrus.diagram.common.locator.ExternalLabelPositionLocator;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.DeleteTimeElementWithoutEventPolicy;
+import org.eclipse.papyrus.diagram.sequence.edit.policies.ExternalLabelPrimaryDragRoleEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.TimeObservationItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.TimeRelatedSelectionEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
@@ -66,7 +73,7 @@ import org.eclipse.swt.graphics.Color;
  */
 public class TimeObservationEditPart extends
 
-AbstractBorderItemEditPart {
+BorderedBorderItemEditPart {
 
 	/**
 	 * @generated
@@ -117,12 +124,19 @@ AbstractBorderItemEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT use ExternalLabelPrimaryDragRoleEditPolicy
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
+				View childView = (View)child.getModel();
+				switch(UMLVisualIDRegistry.getVisualID(childView)) {
+				case TimeObservationLabelEditPart.VISUAL_ID:
+				case TimeObservationAppliedStereotypeEditPart.VISUAL_ID:
+					// use ExternalLabelPrimaryDragRoleEditPolicy
+					return new ExternalLabelPrimaryDragRoleEditPolicy();
+				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if(result == null) {
 					result = new NonResizableEditPolicy();
@@ -156,65 +170,33 @@ AbstractBorderItemEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT use ExternalLabelPositionLocator
 	 */
-	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof TimeObservationLabelEditPart) {
-			((TimeObservationLabelEditPart)childEditPart).setLabel(getPrimaryShape().getTimeMarkElementLabel());
-			return true;
+	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
+		if(borderItemEditPart instanceof TimeObservationLabelEditPart || borderItemEditPart instanceof TimeObservationAppliedStereotypeEditPart) {
+			//use ExternalLabelPositionLocator
+			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
+			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
+		} else {
+			super.addBorderItem(borderItemContainer, borderItemEditPart);
 		}
-
-
-		return false;
 	}
 
 	/**
-	 * @generated
-	 */
-	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof TimeObservationLabelEditPart) {
-			return true;
-		}
-		return false;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
-			return;
-		}
-		super.addChildVisual(childEditPart, -1);
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
-			return;
-		}
-		super.removeChildVisual(childEditPart);
-	}
-
-	/**
-	 * @generated
-	 */
-	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		return getContentPane();
-	}
-
-	/**
-	 * @generated
+	 * @generated NOT use correct dimensions
 	 */
 	protected NodeFigure createNodePlate() {
-		String prefElementId = "TimeObservation";
-		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
-		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
+		// use correct dimensions
+		/*
+		 * Bypass the preference mechanism which finally returns an incoherent constant hard written in NodePreferencePage.xpt templates.
+		 * Instead, we shall use the correct default size.
+		 */
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(TimeMarkElementFigure.TIME_MARK_LENGTH, 1);
+		//String prefElementId = "TimeObservation";
+		//IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
+		//String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
+		//String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
+		//DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
 
 		//FIXME: workaround for #154536
 		result.getBounds().setSize(result.getPreferredSize());
@@ -229,7 +211,7 @@ AbstractBorderItemEditPart {
 	 * 
 	 * @generated
 	 */
-	protected NodeFigure createNodeFigure() {
+	protected NodeFigure createMainFigure() {
 		NodeFigure figure = createNodePlate();
 		figure.setLayoutManager(new StackLayout());
 		IFigure shape = createNodeShape();
@@ -247,11 +229,6 @@ AbstractBorderItemEditPart {
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
-		if(nodeShape.getLayoutManager() == null) {
-			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
-			layout.setSpacing(5);
-			nodeShape.setLayoutManager(layout);
-		}
 		return nodeShape; // use nodeShape itself as contentPane
 	}
 
@@ -370,6 +347,12 @@ AbstractBorderItemEditPart {
 		if(targetEditPart instanceof CommentEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
+		if(targetEditPart instanceof DurationConstraintInMessageEditPart) {
+			types.add(UMLElementTypes.Message_4003);
+		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			types.add(UMLElementTypes.Message_4003);
+		}
 		if(targetEditPart instanceof InteractionEditPart) {
 			types.add(UMLElementTypes.Message_4004);
 		}
@@ -421,6 +404,12 @@ AbstractBorderItemEditPart {
 		if(targetEditPart instanceof CommentEditPart) {
 			types.add(UMLElementTypes.Message_4004);
 		}
+		if(targetEditPart instanceof DurationConstraintInMessageEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
 		if(targetEditPart instanceof InteractionEditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
@@ -472,6 +461,12 @@ AbstractBorderItemEditPart {
 		if(targetEditPart instanceof CommentEditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
+		if(targetEditPart instanceof DurationConstraintInMessageEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
 		if(targetEditPart instanceof InteractionEditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
@@ -523,6 +518,12 @@ AbstractBorderItemEditPart {
 		if(targetEditPart instanceof CommentEditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
+		if(targetEditPart instanceof DurationConstraintInMessageEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
 		if(targetEditPart instanceof InteractionEditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
@@ -574,6 +575,12 @@ AbstractBorderItemEditPart {
 		if(targetEditPart instanceof CommentEditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
+		if(targetEditPart instanceof DurationConstraintInMessageEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
 		if(targetEditPart instanceof InteractionEditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
@@ -625,6 +632,12 @@ AbstractBorderItemEditPart {
 		if(targetEditPart instanceof CommentEditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
+		if(targetEditPart instanceof DurationConstraintInMessageEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
 		if(targetEditPart instanceof InteractionEditPart) {
 			types.add(UMLElementTypes.Message_4009);
 		}
@@ -674,6 +687,12 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.Message_4009);
 		}
 		if(targetEditPart instanceof CommentEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if(targetEditPart instanceof DurationConstraintInMessageEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
 			types.add(UMLElementTypes.Message_4009);
 		}
 		return types;
@@ -702,6 +721,8 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.Message_4004) {
 			types.add(UMLElementTypes.Interaction_2001);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
@@ -720,6 +741,8 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.Message_4005) {
 			types.add(UMLElementTypes.Interaction_2001);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
@@ -738,6 +761,8 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.Message_4006) {
 			types.add(UMLElementTypes.Interaction_2001);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
@@ -756,6 +781,8 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.Message_4007) {
 			types.add(UMLElementTypes.Interaction_2001);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
@@ -774,6 +801,8 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.Message_4008) {
 			types.add(UMLElementTypes.Interaction_2001);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
@@ -792,6 +821,8 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.Message_4009) {
 			types.add(UMLElementTypes.Interaction_2001);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
@@ -810,6 +841,8 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		}
 		return types;
 	}
@@ -854,6 +887,8 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.Message_4004) {
 			types.add(UMLElementTypes.Interaction_2001);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
@@ -872,6 +907,8 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.Message_4005) {
 			types.add(UMLElementTypes.Interaction_2001);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
@@ -890,6 +927,8 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.Message_4006) {
 			types.add(UMLElementTypes.Interaction_2001);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
@@ -908,6 +947,8 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.Message_4007) {
 			types.add(UMLElementTypes.Interaction_2001);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
@@ -926,6 +967,8 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.Message_4008) {
 			types.add(UMLElementTypes.Interaction_2001);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
@@ -944,6 +987,8 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.Message_4009) {
 			types.add(UMLElementTypes.Interaction_2001);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
@@ -962,12 +1007,15 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4010) {
 			types.add(UMLElementTypes.Comment_3009);
 		} else if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.DurationConstraint_3021);
 			types.add(UMLElementTypes.Constraint_3008);
+			types.add(UMLElementTypes.DurationConstraint_3023);
 		}
 		return types;
 	}
@@ -975,7 +1023,7 @@ AbstractBorderItemEditPart {
 	/**
 	 * @generated
 	 */
-	public class TimeMarkElementFigure extends RectangleFigure {
+	public class TimeMarkElementFigure extends PolylineShape {
 
 		/**
 		 * the length of the time mark
@@ -983,16 +1031,6 @@ AbstractBorderItemEditPart {
 		 * @generated NOT
 		 */
 		private static final int TIME_MARK_LENGTH = 20;
-
-		/**
-		 * @generated
-		 */
-		private PolylineShape fTimeMark;
-
-		/**
-		 * @generated
-		 */
-		private WrappingLabel fTimeMarkElementLabel;
 
 		/**
 		 * The side where the figure currently is
@@ -1005,15 +1043,9 @@ AbstractBorderItemEditPart {
 		 * @generated
 		 */
 		public TimeMarkElementFigure() {
-
-			GridLayout layoutThis = new GridLayout();
-			layoutThis.numColumns = 1;
-			layoutThis.makeColumnsEqualWidth = true;
-			this.setLayoutManager(layoutThis);
-
-			this.setFill(false);
-			this.setOutline(false);
-			createContents();
+			this.addPoint(new Point(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0)));
+			this.addPoint(new Point(getMapMode().DPtoLP(20), getMapMode().DPtoLP(0)));
+			this.setLocation(new Point(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0)));
 		}
 
 		/**
@@ -1026,67 +1058,45 @@ AbstractBorderItemEditPart {
 		 * @generated NOT
 		 */
 		public void setCurrentSideOfFigure(int side, Rectangle newLocation) {
-			// no effect if side has not changed and no size modification
-			if(sideOfFigure != side || !newLocation.getSize().equals(getSize())) {
-				sideOfFigure = side;
-				if(side == PositionConstants.EAST) {
-					Point startPoint = newLocation.getLeft().translate(newLocation.getLocation().getNegated());
-					getTimeMark().setStart(startPoint);
-					getTimeMark().setEnd(startPoint.getCopy().translate(TIME_MARK_LENGTH, 0));
-					getTimeMarkElementLabel().setBorder(new MarginBorder(0, TIME_MARK_LENGTH, 0, 0));
-				} else {
-					Point startPoint = newLocation.getRight().translate(newLocation.getLocation().getNegated());
-					getTimeMark().setStart(startPoint);
-					getTimeMark().setEnd(startPoint.getCopy().translate(-TIME_MARK_LENGTH, 0));
-					getTimeMarkElementLabel().setBorder(new MarginBorder(0, 0, 0, TIME_MARK_LENGTH));
+			// no effect if side has not changed or side is set to default one
+			if(sideOfFigure != side && !(PositionConstants.NONE == sideOfFigure && side == PositionConstants.EAST)) {
+				// mirror the label too
+				IGraphicalEditPart labelChild = getChildBySemanticHint(UMLVisualIDRegistry.getType(TimeObservationLabelEditPart.VISUAL_ID));
+				if(labelChild instanceof TimeObservationLabelEditPart) {
+					TimeObservationLabelEditPart label = (TimeObservationLabelEditPart)labelChild;
+					int labelWidth = label.getFigure().getMinimumSize().width;
+					if(label.getNotationView() instanceof Node) {
+						LayoutConstraint constraint = ((Node)label.getNotationView()).getLayoutConstraint();
+						// update model location constraint for persisting the mirror effect
+						if(constraint instanceof Location) {
+							int xLocation = ((Location)constraint).getX();
+							int mirroredLocation = -xLocation - labelWidth;
+							TransactionalEditingDomain dom = getEditingDomain();
+							org.eclipse.emf.common.command.Command setCmd = SetCommand.create(dom, constraint, NotationPackage.eINSTANCE.getLocation_X(), mirroredLocation);
+							TransactionalCommandStack stack = (TransactionalCommandStack)dom.getCommandStack();
+							Map<String, Boolean> options = new HashMap<String, Boolean>();
+							options.put(Transaction.OPTION_NO_NOTIFICATIONS, true);
+							options.put(Transaction.OPTION_NO_UNDO, true);
+							options.put(Transaction.OPTION_UNPROTECTED, true);
+							try {
+								stack.execute(setCmd, options);
+								// then, update graphically for short time effect
+								IBorderItemLocator locator = label.getBorderItemLocator();
+								Rectangle constrRect = ((ExternalLabelPositionLocator)locator).getConstraint();
+								constrRect.x = mirroredLocation;
+								locator.relocate(label.getFigure());
+							} catch (InterruptedException e) {
+								// log and skip update
+								UMLDiagramEditorPlugin.log.error(e);
+							} catch (RollbackException e) {
+								// log and skip update
+								UMLDiagramEditorPlugin.log.error(e);
+							}
+						}
+					}
 				}
 			}
-		}
-
-		/**
-		 * @generated
-		 */
-		private void createContents() {
-
-
-			fTimeMark = new PolylineShape();
-			fTimeMark.addPoint(new Point(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0)));
-			fTimeMark.addPoint(new Point(getMapMode().DPtoLP(10), getMapMode().DPtoLP(0)));
-
-			this.add(fTimeMark);
-
-
-
-			fTimeMarkElementLabel = new WrappingLabel();
-			fTimeMarkElementLabel.setText("");
-
-
-			GridData constraintFTimeMarkElementLabel = new GridData();
-			constraintFTimeMarkElementLabel.verticalAlignment = GridData.CENTER;
-			constraintFTimeMarkElementLabel.horizontalAlignment = GridData.CENTER;
-			constraintFTimeMarkElementLabel.horizontalIndent = 0;
-			constraintFTimeMarkElementLabel.horizontalSpan = 1;
-			constraintFTimeMarkElementLabel.verticalSpan = 1;
-			constraintFTimeMarkElementLabel.grabExcessHorizontalSpace = false;
-			constraintFTimeMarkElementLabel.grabExcessVerticalSpace = false;
-			this.add(fTimeMarkElementLabel, constraintFTimeMarkElementLabel);
-
-
-
-		}
-
-		/**
-		 * @generated
-		 */
-		public PolylineShape getTimeMark() {
-			return fTimeMark;
-		}
-
-		/**
-		 * @generated
-		 */
-		public WrappingLabel getTimeMarkElementLabel() {
-			return fTimeMarkElementLabel;
+			sideOfFigure = side;
 		}
 
 	}

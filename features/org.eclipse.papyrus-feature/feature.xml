@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.papyrus"
       label="%featureName"
-      version="0.7.0.qualifier"
+      version="0.7.1.qualifier"
       provider-name="%providerName"
       plugin="org.eclipse.papyrus.core">
 
@@ -60,10 +60,6 @@ http://www.eclipse.org/legal/epl-v10.html
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.papyrus.profiletool"
-         version="0.0.0"/>
-
-   <includes
          id="org.eclipse.papyrus.sysml"
          version="0.0.0"/>
 
@@ -109,6 +105,18 @@ http://www.eclipse.org/legal/epl-v10.html
 
    <includes
          id="org.eclipse.papyrus.diagram.requirement"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.customization"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.diagram.menu"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.profiletool"
          version="0.0.0"/>
 
 </feature>

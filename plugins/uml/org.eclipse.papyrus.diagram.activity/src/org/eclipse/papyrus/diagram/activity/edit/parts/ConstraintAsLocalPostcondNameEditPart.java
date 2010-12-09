@@ -51,7 +51,6 @@ import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.diagram.activity.edit.policies.UMLTextSelectionEditPolicy;
-import org.eclipse.papyrus.diagram.activity.figures.WrappedLabel;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.activity.providers.UMLParserProvider;
@@ -183,7 +182,7 @@ public class ConstraintAsLocalPostcondNameEditPart extends CompartmentEditPart i
 	/**
 	 * @generated
 	 */
-	public void setLabel(WrappedLabel figure) {
+	public void setLabel(WrappingLabel figure) {
 		unregisterVisuals();
 		setFigure(figure);
 		defaultText = getLabelTextHelper(figure);
@@ -708,7 +707,6 @@ public class ConstraintAsLocalPostcondNameEditPart extends CompartmentEditPart i
 				}
 			}
 		}
-
 
 		super.handleNotificationEvent(event);
 	}

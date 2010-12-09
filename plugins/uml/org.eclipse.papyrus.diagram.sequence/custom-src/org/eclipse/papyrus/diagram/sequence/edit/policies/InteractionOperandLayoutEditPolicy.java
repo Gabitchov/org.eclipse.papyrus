@@ -15,13 +15,17 @@ package org.eclipse.papyrus.diagram.sequence.edit.policies;
 
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.CompoundCommand;
+import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableShapeEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.XYLayoutEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 
 /**
@@ -69,6 +73,35 @@ public class InteractionOperandLayoutEditPolicy extends XYLayoutEditPolicy {
 		}
 
 		return super.getCommand(request);
+	}
+
+	/**
+	 * Handle combined fragment resize
+	 */
+	@Override
+	protected Command getResizeChildrenCommand(ChangeBoundsRequest request) {
+		CompoundCommand compoundCmd = new CompoundCommand();
+		compoundCmd.setLabel("Move or Resize");
+
+		for(Object o : request.getEditParts()) {
+			GraphicalEditPart child = (GraphicalEditPart)o;
+			Object constraintFor = getConstraintFor(request, child);
+			if(constraintFor != null) {
+				if(child instanceof CombinedFragmentEditPart) {
+					Command resizeChildrenCommand = InteractionCompartmentXYLayoutEditPolicy.getCombinedFragmentResizeChildrenCommand(request, (CombinedFragmentEditPart)child);
+					if(resizeChildrenCommand != null && resizeChildrenCommand.canExecute()) {
+						compoundCmd.add(resizeChildrenCommand);
+					}
+				}
+
+				Command changeConstraintCommand = createChangeConstraintCommand(request, child, translateToModelConstraint(constraintFor));
+				compoundCmd.add(changeConstraintCommand);
+			}
+		}
+		if(compoundCmd.isEmpty()) {
+			return null;
+		}
+		return compoundCmd.unwrap();
 	}
 
 }

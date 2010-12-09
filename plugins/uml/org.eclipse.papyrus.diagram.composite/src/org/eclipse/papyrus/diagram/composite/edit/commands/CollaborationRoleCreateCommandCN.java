@@ -72,7 +72,6 @@ public class CollaborationRoleCreateCommandCN extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -88,10 +87,7 @@ public class CollaborationRoleCreateCommandCN extends EditElementCommand {
 	 */
 	public boolean canExecute() {
 
-
 		return true;
-
-
 
 	}
 
@@ -100,11 +96,8 @@ public class CollaborationRoleCreateCommandCN extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
 		throw new UnsupportedOperationException("Unimplemented operation (abstract domain element).");
 	}
-
-
 
 	/**
 	 * @generated

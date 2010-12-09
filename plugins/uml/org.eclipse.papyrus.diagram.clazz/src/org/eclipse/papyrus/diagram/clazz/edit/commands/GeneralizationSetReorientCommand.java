@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2010 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,8 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ */
 package org.eclipse.papyrus.diagram.clazz.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -33,7 +32,7 @@ public class GeneralizationSetReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	private final EObject newEnd;
+	private final int reorientDirection;
 
 	/**
 	 * @generated
@@ -43,7 +42,7 @@ public class GeneralizationSetReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	private final int reorientDirection;
+	private final EObject newEnd;
 
 	/**
 	 * @generated
@@ -126,41 +125,6 @@ public class GeneralizationSetReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected GeneralizationSet getLink() {
-		return (GeneralizationSet)getElementToEdit();
-	}
-
-	/**
-	 * @generated
-	 */
-	protected Generalization getNewSource() {
-		return (Generalization)newEnd;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected Generalization getNewTarget() {
-		return (Generalization)newEnd;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected Generalization getOldSource() {
-		return (Generalization)oldEnd;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected Generalization getOldTarget() {
-		return (Generalization)oldEnd;
-	}
-
-	/**
-	 * @generated
-	 */
 	protected CommandResult reorientSource() throws ExecutionException {
 		getLink().getGeneralizations().remove(getOldSource());
 		getLink().getGeneralizations().add(getNewSource());
@@ -174,5 +138,40 @@ public class GeneralizationSetReorientCommand extends EditElementCommand {
 		getLink().getGeneralizations().remove(getOldTarget());
 		getLink().getGeneralizations().add(getNewTarget());
 		return CommandResult.newOKCommandResult(getLink());
+	}
+
+	/**
+	 * @generated
+	 */
+	protected GeneralizationSet getLink() {
+		return (GeneralizationSet)getElementToEdit();
+	}
+
+	/**
+	 * @generated
+	 */
+	protected Generalization getOldSource() {
+		return (Generalization)oldEnd;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected Generalization getNewSource() {
+		return (Generalization)newEnd;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected Generalization getOldTarget() {
+		return (Generalization)oldEnd;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected Generalization getNewTarget() {
+		return (Generalization)newEnd;
 	}
 }

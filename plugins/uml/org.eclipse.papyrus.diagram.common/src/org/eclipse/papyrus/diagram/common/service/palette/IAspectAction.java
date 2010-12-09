@@ -15,7 +15,6 @@ import java.util.List;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.gef.EditPart;
-import org.eclipse.papyrus.diagram.common.wizards.PaletteEntryProxy;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -79,7 +78,7 @@ public interface IAspectAction {
 	 *        the composite parent of the created element(s)
 	 * @return the control where the action can be configured
 	 */
-	public Control createConfigurationComposite(Composite parent, PaletteEntryProxy entryProxy, List<Profile> appliedProfiles);
+	public Control createConfigurationComposite(Composite parent, IPaletteEntryProxy entryProxy, List<Profile> appliedProfiles);
 
 	/**
 	 * Serializes the current action configuration

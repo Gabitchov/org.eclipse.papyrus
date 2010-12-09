@@ -20,9 +20,16 @@ generate umlState "http://www.eclipse.org/papyrus/state/editor/xtext/UmlState"
 
 StateRule :
 	name = ID 
+	(':' submachine = SubmachineRule)?
 	((entry = EntryRule)? &
 	(do = DoRule)?  &
 	(exit = ExitRule)? );
+
+SubmachineRule :
+	(path=QualifiedName)? submachine=[uml::StateMachine] ;
+
+QualifiedName :
+	path=[uml::Namespace]'::' (remaining=QualifiedName)? ; 
 	
 EntryRule :
 	"entry"

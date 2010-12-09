@@ -9,7 +9,7 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
- *
+ *   Vincent Lorenzo - vincent.lorenzo@cea.fr - CEA - LIST
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.providers;
 
@@ -69,10 +69,17 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DestructionEventEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintAppliedStereotypeEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInMessageAppliedStereotypeEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInMessageEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInMessageLabelEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintLabelEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationObservationAppliedStereotypeEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationObservationEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationObservationLabelEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.GeneralOrderingAppliedStereotypeEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.GeneralOrderingEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionNameEditPart;
@@ -106,8 +113,10 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageSyncAppliedStereot
 import org.eclipse.papyrus.diagram.sequence.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantNameEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeConstraintAppliedStereotypeEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeConstraintEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeConstraintLabelEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeObservationAppliedStereotypeEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeObservationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeObservationLabelEditPart;
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
@@ -341,6 +350,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			return createCommentAnnotatedElement_4010(containerView, index, persisted, preferencesHint);
 		case ConstraintConstrainedElementEditPart.VISUAL_ID:
 			return createConstraintConstrainedElement_4011(containerView, index, persisted, preferencesHint);
+		case GeneralOrderingEditPart.VISUAL_ID:
+			return createGeneralOrdering_4012(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
 		}
 		// can never happen, provided #provides(CreateEdgeViewOperation) is correct
 		return null;
@@ -371,6 +382,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label5001 = createLabel(node, UMLVisualIDRegistry.getType(InteractionNameEditPart.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(InteractionInteractionCompartmentEditPart.VISUAL_ID), false, false, false, false);
+
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Interaction");
+
 		return node;
 	}
 
@@ -397,6 +411,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Lifeline");
 
 		Node label5002 = createLabel(node, UMLVisualIDRegistry.getType(LifelineNameEditPart.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -421,6 +437,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "BehaviorExecutionSpecification");
+
+
 
 		return node;
 	}
@@ -448,6 +466,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "StateInvariant");
 
 		Node label5008 = createLabel(node, UMLVisualIDRegistry.getType(StateInvariantNameEditPart.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -472,6 +492,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "CombinedFragment");
+
+
 
 		return node;
 	}
@@ -499,6 +521,19 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "TimeConstraint");
 
 		Node label5009 = createLabel(node, UMLVisualIDRegistry.getType(TimeConstraintLabelEditPart.VISUAL_ID));
+		label5009.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+
+		Location location5009 = (Location)label5009.getLayoutConstraint();
+		location5009.setX(22);
+		location5009.setY(-7);
+		Node label5013 = createLabel(node, UMLVisualIDRegistry.getType(TimeConstraintAppliedStereotypeEditPart.VISUAL_ID));
+		label5013.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+
+		Location location5013 = (Location)label5013.getLayoutConstraint();
+		location5013.setX(0);
+		location5013.setY(-22);
+
+
 		return node;
 	}
 
@@ -525,6 +560,19 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "TimeObservation");
 
 		Node label5010 = createLabel(node, UMLVisualIDRegistry.getType(TimeObservationLabelEditPart.VISUAL_ID));
+		label5010.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+
+		Location location5010 = (Location)label5010.getLayoutConstraint();
+		location5010.setX(22);
+		location5010.setY(-7);
+		Node label5014 = createLabel(node, UMLVisualIDRegistry.getType(TimeObservationAppliedStereotypeEditPart.VISUAL_ID));
+		label5014.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+
+		Location location5014 = (Location)label5014.getLayoutConstraint();
+		location5014.setX(0);
+		location5014.setY(-22);
+
+
 		return node;
 	}
 
@@ -551,6 +599,19 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "DurationConstraint");
 
 		Node label5011 = createLabel(node, UMLVisualIDRegistry.getType(DurationConstraintLabelEditPart.VISUAL_ID));
+		label5011.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+
+		Location location5011 = (Location)label5011.getLayoutConstraint();
+		location5011.setX(25);
+		location5011.setY(45);
+		Node label5015 = createLabel(node, UMLVisualIDRegistry.getType(DurationConstraintAppliedStereotypeEditPart.VISUAL_ID));
+		label5015.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+
+		Location location5015 = (Location)label5015.getLayoutConstraint();
+		location5015.setX(0);
+		location5015.setY(-22);
+
+
 		return node;
 	}
 
@@ -576,6 +637,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "DestructionEvent");
 
+
+
 		return node;
 	}
 
@@ -600,6 +663,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "ActionExecutionSpecification");
+
+
 
 		return node;
 	}
@@ -629,6 +694,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label5003 = createLabel(node, UMLVisualIDRegistry.getType(InteractionUseNameEditPart.VISUAL_ID));
 		Node label5004 = createLabel(node, UMLVisualIDRegistry.getType(InteractionUseName2EditPart.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -656,7 +723,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		for(InteractionOperand interactionOperand : ((CombinedFragment)domainElement).getOperands()) {
 			createInteractionOperand_3005(interactionOperand, compartment, -1, true, UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 		}
-
+		//initialization for the compartment visibility
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "CombinedFragment");
 		return node;
 	}
 
@@ -681,6 +749,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "InteractionOperand");
+
+
 
 		return node;
 	}
@@ -708,6 +778,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Continuation");
 
 		Node label5007 = createLabel(node, UMLVisualIDRegistry.getType(ContinuationNameEditPart.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -735,6 +807,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label5005 = createLabel(node, UMLVisualIDRegistry.getType(ConstraintNameEditPart.VISUAL_ID));
 		Node label5012 = createLabel(node, UMLVisualIDRegistry.getType(Constraint2EditPart.VISUAL_ID));
+
+
 		return node;
 	}
 
@@ -761,40 +835,68 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Comment");
 
 		Node label5006 = createLabel(node, UMLVisualIDRegistry.getType(CommentBodyEditPart.VISUAL_ID));
+
+
 		return node;
 	}
 
 	/**
-	 * @generated NOT custom layout for duration constraint as label of message
+	 * @generated NOT custom layout for location
 	 */
 	public Node createDurationConstraint_3023(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
-		Node node = NotationFactory.eINSTANCE.createNode();
-		node.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Node node = NotationFactory.eINSTANCE.createShape();
+		node.getStyles().add(NotationFactory.eINSTANCE.createDescriptionStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createFillStyle());
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(DurationConstraintInMessageEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// custom layout for duration constraint as label of message
-		Location location = (Location)node.getLayoutConstraint();
-		location.setX(1);
-		location.setY(13);
+		// custom layout for location
+		Location location3023 = (Location)node.getLayoutConstraint();
+		location3023.setX(0);
+		location3023.setY(20);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
+		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "DurationConstraint");
+
+		Node label5018 = createLabel(node, UMLVisualIDRegistry.getType(DurationConstraintInMessageLabelEditPart.VISUAL_ID));
+		Node label5019 = createLabel(node, UMLVisualIDRegistry.getType(DurationConstraintInMessageAppliedStereotypeEditPart.VISUAL_ID));
+		label5019.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+
+		Location location5019 = (Location)label5019.getLayoutConstraint();
+		location5019.setX(0);
+		location5019.setY(-22);
 		return node;
 	}
 
 	/**
-	 * @generated NOT custom layout for duration observation as label of message
+	 * @generated NOT custom layout for location
 	 */
 	public Node createDurationObservation_3024(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
-		Node node = NotationFactory.eINSTANCE.createNode();
-		node.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Node node = NotationFactory.eINSTANCE.createShape();
+		node.getStyles().add(NotationFactory.eINSTANCE.createDescriptionStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createFillStyle());
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(DurationObservationEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// custom layout for duration observation as label of message
-		Location location = (Location)node.getLayoutConstraint();
-		location.setX(1);
-		location.setY(13);
+		// custom layout for location
+		Location location3024 = (Location)node.getLayoutConstraint();
+		location3024.setX(0);
+		location3024.setY(20);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
+		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "DurationObservation");
+
+		Node label5016 = createLabel(node, UMLVisualIDRegistry.getType(DurationObservationLabelEditPart.VISUAL_ID));
+		Node label5017 = createLabel(node, UMLVisualIDRegistry.getType(DurationObservationAppliedStereotypeEditPart.VISUAL_ID));
+		label5017.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+
+		Location location5017 = (Location)label5017.getLayoutConstraint();
+		location5017.setX(0);
+		location5017.setY(-22);
 		return node;
 	}
 
@@ -821,6 +923,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			createInteractionOperand_3005(interactionOperand, compartment, -1, true, UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 		}
 
+		//initialization for the compartment visibility
+		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "ConsiderIgnoreFragment");
 		return node;
 	}
 
@@ -1185,6 +1289,43 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		PreferenceInitializerForElementHelper.initRountingFromPrefs(edge, prefStore, "Undefined");
 
+		return edge;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Edge createGeneralOrdering_4012(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Edge edge = NotationFactory.eINSTANCE.createEdge();
+		edge.getStyles().add(NotationFactory.eINSTANCE.createRoutingStyle());
+		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE.createRelativeBendpoints();
+		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(2);
+		points.add(new RelativeBendpoint());
+		points.add(new RelativeBendpoint());
+		bendpoints.setPoints(points);
+		edge.setBendpoints(bendpoints);
+		ViewUtil.insertChildView(containerView, edge, index, persisted);
+		edge.setType(UMLVisualIDRegistry.getType(GeneralOrderingEditPart.VISUAL_ID));
+		edge.setElement(domainElement);
+		// initializePreferences
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "GeneralOrdering");
+
+		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
+		//if (routing != null) {
+		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		//}
+
+
+		PreferenceInitializerForElementHelper.initRountingFromPrefs(edge, prefStore, "GeneralOrdering");
+
+		Node label6015 = createLabel(edge, UMLVisualIDRegistry.getType(GeneralOrderingAppliedStereotypeEditPart.VISUAL_ID));
+		label6015.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6015 = (Location)label6015.getLayoutConstraint();
+		location6015.setX(1);
+		location6015.setY(-33);
 		return edge;
 	}
 

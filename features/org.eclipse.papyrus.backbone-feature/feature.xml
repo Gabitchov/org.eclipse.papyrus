@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.papyrus.backbone"
       label="%featureName"
-      version="0.7.0.qualifier"
+      version="0.7.1.qualifier"
       provider-name="%providerName">
 
    <description>
@@ -182,14 +182,21 @@ http://www.eclipse.org/legal/epl-v10.html
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.papyrus.doc"
+         id="org.eclipse.papyrus.core.resourceloading.preferences"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.papyrus.core.resourceloading.preferences"
+         id="org.eclipse.papyrus.service.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.editors"
          download-size="0"
          install-size="0"
          version="0.0.0"

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2010 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,8 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ */
 package org.eclipse.papyrus.diagram.clazz.edit.parts;
 
 import org.eclipse.draw2d.Connection;
@@ -30,7 +29,9 @@ import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabe
 /**
  * @generated
  */
-public class GeneralizationSetEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
+public class GeneralizationSetEditPart extends
+
+UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -47,39 +48,6 @@ public class GeneralizationSetEditPart extends UMLConnectionNodeEditPart impleme
 	/**
 	 * @generated
 	 */
-	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
-			return;
-		}
-		super.addChildVisual(childEditPart, -1);
-	}
-
-	/**
-	 * @generated
-	 */
-	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof ConstraintLabelEditPart) {
-			((ConstraintLabelEditPart)childEditPart).setLabel(getPrimaryShape().getConstraintLabel());
-			return true;
-		}
-		return false;
-	}
-
-	/**
-	 * Creates figure for this edit part.
-	 * 
-	 * Body of this method does not depend on settings in generation model so
-	 * you may safely remove <i>generated</i> tag and modify it.
-	 * 
-	 * @generated
-	 */
-	protected Connection createConnectionFigure() {
-		return new GeneralizationSet();
-	}
-
-	/**
-	 * @generated
-	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new GeneralizationSetItemSemanticEditPolicy());
@@ -91,8 +59,39 @@ public class GeneralizationSetEditPart extends UMLConnectionNodeEditPart impleme
 	/**
 	 * @generated
 	 */
-	public GeneralizationSet getPrimaryShape() {
-		return (GeneralizationSet)getFigure();
+	protected boolean addFixedChild(EditPart childEditPart) {
+		if(childEditPart instanceof ConstraintLabelEditPart) {
+			((ConstraintLabelEditPart)childEditPart).setLabel(getPrimaryShape().getConstraintLabel());
+			return true;
+		}
+		if(childEditPart instanceof AppliedStereotypeGeneralizationSetLabelEditPart) {
+			((AppliedStereotypeGeneralizationSetLabelEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void addChildVisual(EditPart childEditPart, int index) {
+		if(addFixedChild(childEditPart)) {
+			return;
+		}
+		super.addChildVisual(childEditPart, -1);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected boolean removeFixedChild(EditPart childEditPart) {
+		if(childEditPart instanceof ConstraintLabelEditPart) {
+			return true;
+		}
+		if(childEditPart instanceof AppliedStereotypeGeneralizationSetLabelEditPart) {
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -106,13 +105,22 @@ public class GeneralizationSetEditPart extends UMLConnectionNodeEditPart impleme
 	}
 
 	/**
+	 * Creates figure for this edit part.
+	 * 
+	 * Body of this method does not depend on settings in generation model
+	 * so you may safely remove <i>generated</i> tag and modify it.
+	 * 
 	 * @generated
 	 */
-	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof ConstraintLabelEditPart) {
-			return true;
-		}
-		return false;
+	protected Connection createConnectionFigure() {
+		return new GeneralizationSet();
+	}
+
+	/**
+	 * @generated
+	 */
+	public GeneralizationSet getPrimaryShape() {
+		return (GeneralizationSet)getFigure();
 	}
 
 }

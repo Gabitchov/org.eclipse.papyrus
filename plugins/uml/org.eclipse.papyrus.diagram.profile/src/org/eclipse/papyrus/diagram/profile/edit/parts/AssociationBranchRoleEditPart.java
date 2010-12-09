@@ -34,7 +34,6 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions;
-import org.eclipse.gmf.runtime.common.ui.services.parser.ParserService;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
@@ -45,7 +44,6 @@ import org.eclipse.gmf.runtime.diagram.ui.tools.TextDirectEditManager;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
-import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.FontStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
@@ -60,6 +58,8 @@ import org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.diagram.profile.custom.policies.DisplayAssociationEndTargetEditPolicy;
 import org.eclipse.papyrus.diagram.profile.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.diagram.profile.part.UMLVisualIDRegistry;
+import org.eclipse.papyrus.diagram.profile.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.profile.providers.UMLParserProvider;
 import org.eclipse.papyrus.extensionpoints.editors.Activator;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IAdvancedEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration;
@@ -291,7 +291,7 @@ public class AssociationBranchRoleEditPart extends LabelEditPart implements ITex
 	 * @generated
 	 */
 	protected boolean isEditable() {
-		return getParser() != null;
+		return false;
 	}
 
 	/**
@@ -345,10 +345,7 @@ public class AssociationBranchRoleEditPart extends LabelEditPart implements ITex
 	 */
 	public IParser getParser() {
 		if(parser == null) {
-			parser = ParserService.getInstance().getParser(new ParserHintAdapter(/*
-																				 * org.eclipse.papyrus.diagram.profile.providers.UMLElementTypes.
-																				 * Association_4019,
-																				 */getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.profile.edit.parts.AssociationBranchRoleEditPart.VISUAL_ID)));
+			parser = UMLParserProvider.getParser(UMLElementTypes.Association_4019, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.profile.edit.parts.AssociationBranchRoleEditPart.VISUAL_ID));
 		}
 		return parser;
 	}

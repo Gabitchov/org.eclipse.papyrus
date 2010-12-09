@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
+ *  Saadia Dhouib saadia.dhouib@cea.fr  
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.providers;
@@ -70,6 +70,22 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		}
 		return interactionName_5001Parser;
 	}
+
+	/**
+	 * @generated
+	 */
+	private ShortcutDiagramParser diagramName_0Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDiagramName_0Parser() {
+		if(diagramName_0Parser == null) {
+			diagramName_0Parser = new ShortcutDiagramParser();
+		}
+		return diagramName_0Parser;
+	}
+
 
 	/**
 	 * @generated
@@ -197,20 +213,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		return durationObservationName_5156Parser;
 	}
 
-	/**
-	 * @generated
-	 */
-	private ShortcutDiagramParser diagramName_0Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getDiagramName_0Parser() {
-		if(diagramName_0Parser == null) {
-			diagramName_0Parser = new ShortcutDiagramParser();
-		}
-		return diagramName_0Parser;
-	}
 
 	/**
 	 * @generated
@@ -224,6 +226,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		if(messageName_6001Parser == null) {
 			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
 			messageName_6001Parser = parser;
 		}
 		return messageName_6001Parser;
@@ -243,6 +247,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		}
 		return messageName_6012Parser;
 	}
+
 
 	/**
 	 * @generated

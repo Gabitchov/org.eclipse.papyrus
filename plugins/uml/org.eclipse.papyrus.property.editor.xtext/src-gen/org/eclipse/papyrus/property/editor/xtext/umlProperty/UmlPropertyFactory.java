@@ -36,6 +36,24 @@ public interface UmlPropertyFactory extends EFactory
   PropertyRule createPropertyRule();
 
   /**
+   * Returns a new object of class '<em>Type Rule</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Type Rule</em>'.
+   * @generated
+   */
+  TypeRule createTypeRule();
+
+  /**
+   * Returns a new object of class '<em>Qualified Name</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Qualified Name</em>'.
+   * @generated
+   */
+  QualifiedName createQualifiedName();
+
+  /**
    * Returns a new object of class '<em>Multiplicity Rule</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

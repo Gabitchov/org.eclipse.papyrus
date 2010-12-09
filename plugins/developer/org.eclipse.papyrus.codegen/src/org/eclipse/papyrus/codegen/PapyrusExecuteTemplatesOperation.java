@@ -30,8 +30,7 @@ public class PapyrusExecuteTemplatesOperation extends ExecuteTemplatesOperation 
 	@Override
 	protected Generator createGenerator() {
 		GenEditorGenerator genModel = getGenModel();
-		return new PapyrusGenerator(genModel, new PapyrusCodegenEmitters(!genModel.isDynamicTemplates(), genModel
-				.getTemplateDirectory(), genModel.getModelAccess() != null));
+		return new PapyrusGenerator(genModel, new PapyrusCodegenEmitters(!genModel.isDynamicTemplates(), genModel.getTemplateDirectory(), genModel.getModelAccess() != null));
 	}
 
 }

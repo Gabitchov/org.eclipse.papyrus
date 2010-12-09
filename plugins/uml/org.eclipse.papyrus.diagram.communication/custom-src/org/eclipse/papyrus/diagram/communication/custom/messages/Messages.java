@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Saadia Dhouib saadia.dhouib@cea.fr  - Adapted from Composite Structure Diagram
+ *  Saadia Dhouib saadia.dhouib@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.custom.messages;
@@ -29,6 +29,24 @@ public class Messages extends NLS {
 	 */
 	public static String CommandHelper_PropertySelection;
 
+	/**
+	 * 
+	 */
+	public static String CommandHelper_SelectProperty;
+
+	/**
+	 * 
+	 */
+	public static String CommandHelper_SelectSignature;
+
+	/**
+	 * 
+	 */
+	public static String CommandHelper_signatureslection;
+
+
+
+	/** The Message parser. */
 	/**
 	 * 
 	 */

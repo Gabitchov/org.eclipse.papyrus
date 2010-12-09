@@ -17,6 +17,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
@@ -27,6 +28,7 @@ import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * <pre>
@@ -48,6 +50,12 @@ public class RoleBindingRoleNameParser implements ISemanticParser {
 	 */
 	public boolean areSemanticElementsAffected(EObject listener, Object notification) {
 		// no implementation needed.
+		if(notification instanceof Notification) {
+			Notification event = (Notification)notification;
+			if((event.getEventType() == Notification.SET) && (UMLPackage.eINSTANCE.getNamedElement_Name().equals(event.getFeature()))) {
+				return true;
+			}
+		}
 		return false;
 	}
 

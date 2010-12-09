@@ -8,6 +8,7 @@
  *
  * Contributors:
  * 	Thibault Landre (Atos Origin) - initial API and implementation
+ *	Vincent Lorenzo (CEA-LIST) Add a line to initialize the display of the compartments to true
  */
   
 «IMPORT 'http://www.eclipse.org/gmf/2009/GenModel'»
@@ -273,6 +274,11 @@ public class «notationViewProviderClassName»«EXPAND xpt::providers::ViewProvi
 		«EXPAND initializeStyles('node', 'prefStore', not viewmap.isFixedForeground(), not viewmap.isFixedBackground(), not viewmap.isFixedFont())-»
 		«EXPAND initLabel('node', 'prefStore') FOREACH labels-»
 		«EXPAND initCompartment('node', 'prefStore') FOREACH compartments-»
+		«REM» BEGIN Papyrus Modification «ENDREM»
+«IF compartments->size() <> 0-»
+	org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(«'node'», «'prefStore'», "«elementType.displayName»");
+«ENDIF-»
+		«REM» END Papyrus Modification «ENDREM»
 		return node;
 	}
 «ENDDEFINE»

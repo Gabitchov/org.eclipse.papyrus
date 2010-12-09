@@ -7,13 +7,19 @@
  *******************************************************************************/
 package org.eclipse.xtext.gmf.glue.edit.part;
 
+import java.lang.reflect.Field;
+
+import org.eclipse.jface.text.contentassist.ContentAssistEvent;
 import org.eclipse.jface.text.contentassist.ContentAssistant;
+import org.eclipse.jface.text.contentassist.ICompletionListener;
+import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.jface.text.contentassist.IContentAssistant;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.VerifyKeyListener;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.VerifyEvent;
+import org.eclipse.xtext.gmf.glue.partialEditing.SourceViewerHandle;
 
 /**
  * @author koehnlein
@@ -33,9 +39,9 @@ public class PopupXtextEditorKeyListener extends KeyAdapter implements VerifyKey
 	 */
 	public PopupXtextEditorKeyListener(PopupXtextEditorHelper popupXtextEditorHelper, IContentAssistant contentAssistant) {
 		this.popupXtextEditorHelper = popupXtextEditorHelper;
-		this.contentAssistant = contentAssistant instanceof ContentAssistant ? (ContentAssistant) contentAssistant
-				: null;
+		this.contentAssistant = contentAssistant instanceof ContentAssistant ? (ContentAssistant) contentAssistant : null;
 		isIgnoreNextESC = false;
+		
 	}
 
 	@Override
@@ -48,12 +54,31 @@ public class PopupXtextEditorKeyListener extends KeyAdapter implements VerifyKey
 			if (isIgnoreNextESC) {
 				isIgnoreNextESC = false;
 			} else {
+				PopupXtextEditorHelper.ignoreFocusLost = true ;
 				this.popupXtextEditorHelper.closeEditor(false);
 			}
 		}
 		if ((e.stateMask & SWT.CTRL) != 0 && (keyCode == ' ')) {
+			this.contentAssistant.setRepeatedInvocationMode(true) ;
 			this.contentAssistant.showPossibleCompletions() ;
 			this.isIgnoreNextESC = true ;
+			contentAssistant.addCompletionListener(new ICompletionListener() {
+				
+				public void selectionChanged(ICompletionProposal proposal, boolean smartToggle) {		
+				}
+				
+				public void assistSessionStarted(ContentAssistEvent event) {
+				}
+				
+				public void assistSessionEnded(ContentAssistEvent event) {
+					try {
+						popupXtextEditorHelper.getSourceViewerHandle().getViewer().getTextWidget().setFocus() ;
+					}
+					catch (Exception e) {
+						//ignore
+					}
+				}
+			}) ;
 		}
 	}
 
@@ -66,7 +91,11 @@ public class PopupXtextEditorKeyListener extends KeyAdapter implements VerifyKey
 		}
 	}
 
-	private boolean isContentAssistActive() {
+	/**
+	 * @return true if the proposal popup has focus
+	 *
+	 */
+	public boolean isContentAssistActive() {
 		return contentAssistant != null && contentAssistant.hasProposalPopupFocus();
 	}
 	

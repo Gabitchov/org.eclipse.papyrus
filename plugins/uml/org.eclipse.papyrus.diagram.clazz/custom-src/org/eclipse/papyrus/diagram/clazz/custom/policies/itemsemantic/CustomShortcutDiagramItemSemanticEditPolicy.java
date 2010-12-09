@@ -17,9 +17,10 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.ShortCutDiagramItemSemanticEditPolicy;
+
 /**
  * this is a specific item edit policy to deactivate the action remove from model
- *
+ * 
  */
 
 public class CustomShortcutDiagramItemSemanticEditPolicy extends ShortCutDiagramItemSemanticEditPolicy {

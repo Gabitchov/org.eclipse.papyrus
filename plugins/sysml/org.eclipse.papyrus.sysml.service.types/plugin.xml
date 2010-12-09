@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+<!-- SysML ElementType declarations -->
+<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
+
+	<!-- Declaration of IElementTypes -->
+	
+	<!-- IElementTypes for Abstraction -->			
+	<specializationType id="org.eclipse.papyrus.sysml.Block"
+		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.BlockEditHelperAdvice"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="SysML::Block">
+		<param name="semanticHint" value="SysML::Block" />
+		<specializes id="org.eclipse.papyrus.uml.Class" />
+		<matcher class = "org.eclipse.papyrus.sysml.service.types.matcher.BlockMatcher" />
+	</specializationType>
+
+	<specializationType id="org.eclipse.papyrus.sysml.FlowPort"
+		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.FlowPortEditHelperAdvice"    
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="SysML::FLowPort">
+		<param name="semanticHint" value="SysML::FLowPort" />
+		<specializes id="org.eclipse.papyrus.uml.Port" />
+		<matcher class = "org.eclipse.papyrus.sysml.service.types.matcher.FlowPortMatcher" />		
+	</specializationType>
+	
+	<specializationType id="org.eclipse.papyrus.sysml.InOutFlowPort"
+		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.InOutFlowPortEditHelperAdvice"    
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="SysML::FLowPort">
+		<param name="semanticHint" value="SysML::FLowPort_INOUT" />
+		<specializes id="org.eclipse.papyrus.sysml.FlowPort" />
+		<matcher class = "org.eclipse.papyrus.sysml.service.types.matcher.FlowPortInOutMatcher" />		
+	</specializationType>
+		
+	<specializationType id="org.eclipse.papyrus.sysml.InFlowPort"
+		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.InFlowPortEditHelperAdvice"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="SysML::InFLowPort">
+		<param name="semanticHint" value="SysML::FLowPort_IN" />
+		<specializes id="org.eclipse.papyrus.sysml.FlowPort" />
+		<matcher class = "org.eclipse.papyrus.sysml.service.types.matcher.FlowPortInMatcher" />		
+	</specializationType>
+	
+	<specializationType id="org.eclipse.papyrus.sysml.OutFlowPort"
+		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.OutFlowPortEditHelperAdvice"  
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="SysML::OutFLowPort">
+		<param name="semanticHint" value="SysML::FLowPort_OUT" />
+		<specializes id="org.eclipse.papyrus.sysml.FlowPort" />
+		<matcher class = "org.eclipse.papyrus.sysml.service.types.matcher.FlowPortOutMatcher" />		
+	</specializationType>
+
+	<specializationType id="org.eclipse.papyrus.sysml.FlowProperty"
+		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.FlowPropertyEditHelperAdvice"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="SysML::FlowProperty">
+		<param name="semanticHint" value="SysML::FlowProperty" />
+		<specializes id="org.eclipse.papyrus.uml.Property" />
+		<matcher class = "org.eclipse.papyrus.sysml.service.types.matcher.FlowPropertyMatcher" />
+	</specializationType>
+	
+	<specializationType id="org.eclipse.papyrus.sysml.FlowSpecification"
+		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.FlowSpecificationEditHelperAdvice"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="SysML::FlowSpecification">
+		<param name="semanticHint" value="SysML::FlowSpecification" />
+		<specializes id="org.eclipse.papyrus.uml.Interface" />
+		<matcher class = "org.eclipse.papyrus.sysml.service.types.matcher.FlowSpecificationMatcher" />
+	</specializationType>
+		
+	<specializationType id="org.eclipse.papyrus.sysml.Requirement"
+		edithelperadvice="org.eclipse.papyrus.sysml.service.types.helper.RequirementEditHelperAdvice"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="SysML::Requirement">
+		<param name="semanticHint" value="SysML::Requirement" />
+		<specializes id="org.eclipse.papyrus.uml.Class" />
+		<matcher class = "org.eclipse.papyrus.sysml.service.types.matcher.RequirementMatcher" />
+	</specializationType>
+	
+</extension>
+
+<!-- SysML ElementType bindings to Papyrus shared IClientContext -->
+<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
+
+	<!-- Binding declarations -->
+	<!-- 
+		Warning the Parametric diagram declares types with following (generated) ids 
+		org.eclipse.papyrus.sysml.diagram.* that should not be bound to shared context
+		The following regex "org.eclipse.papyrus.sysml.(?!diagram).*" is
+		expected to bind any ElementType with id starting with "org.eclipse.papyrus.sysml"
+		except those starting with "org.eclipse.papyrus.sysml.diagram".  
+	  -->
+	<binding context="org.eclipse.papyrus.service.edit.TypeContext">
+		<elementType pattern="org.eclipse.papyrus.sysml.(?!diagram).*" />
+	</binding>
+	
+</extension>
+
+
+			
+</plugin>

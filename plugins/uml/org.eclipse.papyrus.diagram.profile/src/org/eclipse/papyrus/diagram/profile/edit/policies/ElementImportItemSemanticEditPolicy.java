@@ -44,6 +44,10 @@ public class ElementImportItemSemanticEditPolicy extends UMLBaseItemSemanticEdit
 		super(UMLElementTypes.ElementImport_1064);
 	}
 
+
+
+
+
 	/**
 	 * @generated
 	 */

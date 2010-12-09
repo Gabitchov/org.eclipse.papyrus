@@ -16,7 +16,6 @@ package org.eclipse.papyrus.resource;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -44,9 +43,12 @@ import org.eclipse.emf.workspace.WorkspaceEditingDomainFactory;
  * <li>Finally, call save()</li>
  * </ul>
  * 
+ * Please note that indirectly referenced models are loaded on demand. If a
+ * model contains a cross reference towards another model (e.g. an import in
+ * case of UML) the referenced resource does not appear initially in the set.
+ * However, it is added once the referenced model is resolved.
  * 
- * 
- * TODO Modifiy ModelSetSnippet in order to inform them of model addition.
+ * TODO Modify ModelSetSnippet in order to inform them of model addition.
  * 
  * @author cedric dumoulin
  * 
@@ -79,7 +81,7 @@ public class ModelSet extends ResourceSetImpl {
 
 	/**
 	 * Register the specified model under its associated key.
-	 * The key is defined in the model itself. It is ussually the model type from
+	 * The key is defined in the model itself. It is usually the model type from
 	 * (ModelPackage.eCONTENT_TYPE).
 	 * 
 	 * @param model
@@ -109,13 +111,14 @@ public class ModelSet extends ResourceSetImpl {
 	 * @param key
 	 *        the key
 	 * @return the model
-	 * @throws NotFoundException  If no model is registered under the key.
+	 * @throws NotFoundException
+	 *         If no model is registered under the key.
 	 */
 	public IModel getModelChecked(String key) throws NotFoundException {
 		IModel model = models.get(key);
-		if( model == null )
+		if(model == null)
 			throw new NotFoundException("Can't find model for identifier '" + key + "'.");
-		
+
 		return model;
 	}
 
@@ -125,11 +128,11 @@ public class ModelSet extends ResourceSetImpl {
 	 * @return the transactional editing domain
 	 */
 	public TransactionalEditingDomain getTransactionalEditingDomain() {
-//		transactionalEditingDomain = TransactionalEditingDomain.Factory.INSTANCE.getEditingDomain(this);
+		//		transactionalEditingDomain = TransactionalEditingDomain.Factory.INSTANCE.getEditingDomain(this);
 		transactionalEditingDomain = WorkspaceEditingDomainFactory.INSTANCE.getEditingDomain(this);
 
 		if(transactionalEditingDomain == null) {
-//			transactionalEditingDomain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(this);
+			//			transactionalEditingDomain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(this);
 			transactionalEditingDomain = WorkspaceEditingDomainFactory.INSTANCE.createEditingDomain(this);
 			// What for?
 			transactionalEditingDomain.setID("SharedEditingDomain"); //$NON-NLS-1$
@@ -141,7 +144,7 @@ public class ModelSet extends ResourceSetImpl {
 	/**
 	 * @return the filenameWithoutExtension
 	 */
-	protected IPath getFilenameWithoutExtension() {
+	public IPath getFilenameWithoutExtension() {
 		return filenameWithoutExtension;
 	}
 
@@ -200,13 +203,13 @@ public class ModelSet extends ResourceSetImpl {
 		// Walk all registered models
 		for(String modelId : modelIdentifiers) {
 			IModel model = getModel(modelId);
-			
+
 			// Load models using the default path
 			model.createModel(filenameWithoutExtension);
 		}
 
 		// call snippets to allow them to do their stuff
-//		snippets.modelsAdded(modelIdentifiers);
+		//		snippets.modelsAdded(modelIdentifiers);
 	}
 
 	/**
@@ -218,7 +221,8 @@ public class ModelSet extends ResourceSetImpl {
 	 * @param file
 	 *        the file
 	 * @return the i model
-	 * @throws BadStateException If the global path is not specified.
+	 * @throws BadStateException
+	 *         If the global path is not specified.
 	 * @returns The loaded model.
 	 */
 	public IModel loadModel(String modelIdentifier) throws BadStateException {
@@ -237,19 +241,19 @@ public class ModelSet extends ResourceSetImpl {
 	 * @param file
 	 *        the file
 	 * @return the i model
-	 * @throws ModelException 
+	 * @throws ModelException
 	 * @returns The loaded model.
 	 * @deprecated Use {@link #importModel(ModelIdentifier, IFile)}
 	 */
 	public IModel loadModel(String modelIdentifier, IFile file) throws ModelException {
 
 		importModels(new ModelIdentifiers(modelIdentifier), file);
-		
+
 		return getModel(modelIdentifier);
 	}
 
 	/**
-	 * Load all the associated models from an handle on one of the associated file.
+	 * Load all the associated models from a handle on one of the associated file.
 	 * 
 	 * @param file
 	 *        The file to load (no matter the extension)
@@ -288,9 +292,12 @@ public class ModelSet extends ResourceSetImpl {
 	 * Import specified models into the ModelSet. The models are imported using the specified IFile.
 	 * After import, the models are associated with the ModelSet Path.
 	 * 
-	 * @param modelIdentifiers The model to import from the specified IFile.
-	 * @param file The IFile used to import the model.
-	 * @throws ModelException If an error occur during import.
+	 * @param modelIdentifiers
+	 *        The model to import from the specified IFile.
+	 * @param file
+	 *        The IFile used to import the model.
+	 * @throws ModelException
+	 *         If an error occur during import.
 	 */
 	public void importModels(ModelIdentifiers modelIdentifiers, IFile file) throws ModelException {
 
@@ -301,7 +308,7 @@ public class ModelSet extends ResourceSetImpl {
 
 			// Load models using the default path
 			model.importModel(path);
-			if( filenameWithoutExtension != null)
+			if(filenameWithoutExtension != null)
 				model.changeModelPath(filenameWithoutExtension);
 		}
 	}
@@ -315,13 +322,13 @@ public class ModelSet extends ResourceSetImpl {
 	 *        the model identifier
 	 * @param file
 	 *        the file
-	 * @throws ModelException 
+	 * @throws ModelException
 	 * @returns The loaded model.
 	 */
 	public IModel importModel(String modelIdentifier, IFile file) throws ModelException {
 
 		importModels(new ModelIdentifiers(modelIdentifier), file);
-		
+
 		return getModel(modelIdentifier);
 	}
 
@@ -330,18 +337,18 @@ public class ModelSet extends ResourceSetImpl {
 	 */
 	public void createMissingModels() throws ModelException {
 		throw new UnsupportedOperationException("Not yet implemented");
-		
+
 	}
-	
+
 	/**
 	 * Load models that are not already created or loaded.
 	 */
 	public void loadMissingModels() throws ModelException {
 		throw new UnsupportedOperationException("Not yet implemented");
-		
+
 	}
-	
-	
+
+
 	/**
 	 * Save the resources.
 	 * 

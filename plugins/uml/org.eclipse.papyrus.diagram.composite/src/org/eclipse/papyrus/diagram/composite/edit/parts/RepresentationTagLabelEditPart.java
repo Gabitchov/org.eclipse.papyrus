@@ -105,8 +105,6 @@ public class RepresentationTagLabelEditPart extends LabelEditPart implements ITe
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -120,8 +118,6 @@ public class RepresentationTagLabelEditPart extends LabelEditPart implements ITe
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -590,8 +586,6 @@ public class RepresentationTagLabelEditPart extends LabelEditPart implements ITe
 		return getPrimaryView();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -695,8 +689,6 @@ public class RepresentationTagLabelEditPart extends LabelEditPart implements ITe
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -726,9 +718,6 @@ public class RepresentationTagLabelEditPart extends LabelEditPart implements ITe
 				}
 			}
 		}
-
-
-
 
 		super.handleNotificationEvent(event);
 	}

@@ -39,18 +39,17 @@ public class ConnectorCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	private final EObject source;
+	protected final EObject source;
 
 	/**
 	 * @generated
 	 */
-	private final EObject target;
-
+	protected final EObject target;
 
 	/**
 	 * @generated
 	 */
-	private final StructuredClassifier container;
+	protected StructuredClassifier container;
 
 	/**
 	 * @generated
@@ -85,7 +84,6 @@ public class ConnectorCreateCommand extends EditElementCommand {
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateConnector_4013(getContainer(), getSource(), getTarget());
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -104,7 +102,6 @@ public class ConnectorCreateCommand extends EditElementCommand {
 		return CommandResult.newOKCommandResult(newElement);
 
 	}
-
 
 	/**
 	 * @generated
@@ -156,7 +153,7 @@ public class ConnectorCreateCommand extends EditElementCommand {
 	 * 
 	 * @generated
 	 */
-	private static StructuredClassifier deduceContainer(EObject source, EObject target) {
+	protected StructuredClassifier deduceContainer(EObject source, EObject target) {
 		// Find container element for the new link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.

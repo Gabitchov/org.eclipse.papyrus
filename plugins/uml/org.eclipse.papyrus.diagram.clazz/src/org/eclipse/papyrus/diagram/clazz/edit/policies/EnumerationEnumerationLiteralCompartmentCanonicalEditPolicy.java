@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2010 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,8 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ */
 package org.eclipse.papyrus.diagram.clazz.edit.policies;
 
 import java.util.ArrayList;
@@ -42,6 +41,13 @@ import org.eclipse.uml2.uml.UMLPackage;
  * @generated
  */
 public class EnumerationEnumerationLiteralCompartmentCanonicalEditPolicy extends CanonicalEditPolicy {
+
+	/**
+	 * @generated
+	 */
+	protected EStructuralFeature getFeatureToSynchronize() {
+		return UMLPackage.eINSTANCE.getEnumeration_OwnedLiteral();
+	}
 
 	/**
 	 * @generated
@@ -148,12 +154,4 @@ public class EnumerationEnumerationLiteralCompartmentCanonicalEditPolicy extends
 
 		makeViewsImmutable(createdViews);
 	}
-
-	/**
-	 * @generated
-	 */
-	protected EStructuralFeature getFeatureToSynchronize() {
-		return UMLPackage.eINSTANCE.getEnumeration_OwnedLiteral();
-	}
-
 }

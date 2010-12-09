@@ -133,10 +133,9 @@ public abstract class CreateBehavioredClassifierDiagramCommand extends AbstractP
 		name = newName;
 	}
 
-	private String getName() {
+	protected String getName() {
 		return name;
 	}
-
 
 	//	@Override
 	//	protected void runAsTransaction(DiResourceSet diResourceSet, EObject container, String name) {

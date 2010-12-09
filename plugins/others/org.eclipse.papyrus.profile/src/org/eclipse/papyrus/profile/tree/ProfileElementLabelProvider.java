@@ -234,7 +234,8 @@ public class ProfileElementLabelProvider extends LabelProvider {
 		} else { // Multiplicity > 1
 
 			// retrieve the base element from the stereotype application
-			List values = (List)currentPropValue;
+			@SuppressWarnings("unchecked")
+			List<Object> values = (List<Object>) currentPropValue;
 			ArrayList<String> baseElements = new ArrayList<String>();
 
 			for(int i = 0; i < values.size(); i++) {
@@ -273,7 +274,8 @@ public class ProfileElementLabelProvider extends LabelProvider {
 
 			} else { // Multiplicity > 1
 
-				List values = (List)currentPropValue;
+				@SuppressWarnings("unchecked")
+				List<Object> values = (List<Object>) currentPropValue;
 				ArrayList<String> elementNames = new ArrayList<String>();
 				if(values != null) {
 					for(int i = 0; i < values.size(); i++) {
@@ -466,7 +468,7 @@ public class ProfileElementLabelProvider extends LabelProvider {
 			baseElement = (Element)UMLUtil.getBaseElement((EObject)value);
 
 		} else { // Error
-			String err = "Type " + value.toString() + " of Property " + property.getName() + " is not an EObject.";
+			String err = "Type " + (value != null ? value.toString() : "null") + " of Property " + property.getName() + " is not an EObject.";
 			Message.error(err);
 		}
 

@@ -30,7 +30,7 @@ public class «EXPAND className» extends org.eclipse.papyrus.preferences.pages.
 	«EXPAND xpt::Common::generatedClassComment»
 	@Override
 	protected String getBundleId() {
-		return «getDiagram().editorGen.plugin.getActivatorQualifiedClassName()».getInstance().ID;
+		return «getDiagram().editorGen.plugin.getActivatorQualifiedClassName()».ID;
 	}
 
 	«EXPAND xpt::Common::generatedClassComment»

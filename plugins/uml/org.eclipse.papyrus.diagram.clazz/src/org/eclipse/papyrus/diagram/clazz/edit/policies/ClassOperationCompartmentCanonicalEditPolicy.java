@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2010 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,8 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ */
 package org.eclipse.papyrus.diagram.clazz.edit.policies;
 
 import java.util.ArrayList;
@@ -50,6 +49,18 @@ public class ClassOperationCompartmentCanonicalEditPolicy extends CanonicalEditP
 	 * @generated
 	 */
 	private Set<EStructuralFeature> myFeaturesToSynchronize;
+
+	/**
+	 * @generated
+	 */
+	protected Set getFeaturesToSynchronize() {
+		if(myFeaturesToSynchronize == null) {
+			myFeaturesToSynchronize = new HashSet<EStructuralFeature>();
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getClass_OwnedReception());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getClass_OwnedOperation());
+		}
+		return myFeaturesToSynchronize;
+	}
 
 	/**
 	 * @generated
@@ -157,17 +168,4 @@ public class ClassOperationCompartmentCanonicalEditPolicy extends CanonicalEditP
 
 		makeViewsImmutable(createdViews);
 	}
-
-	/**
-	 * @generated
-	 */
-	protected Set getFeaturesToSynchronize() {
-		if(myFeaturesToSynchronize == null) {
-			myFeaturesToSynchronize = new HashSet<EStructuralFeature>();
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getClass_OwnedReception());
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getClass_OwnedOperation());
-		}
-		return myFeaturesToSynchronize;
-	}
-
 }

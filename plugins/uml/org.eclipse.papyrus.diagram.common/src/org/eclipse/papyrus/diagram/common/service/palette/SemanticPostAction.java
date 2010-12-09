@@ -61,7 +61,6 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.part.PaletteUtil;
 import org.eclipse.papyrus.diagram.common.service.IPapyrusPaletteConstant;
-import org.eclipse.papyrus.diagram.common.wizards.PaletteEntryProxy;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
@@ -88,7 +87,7 @@ public class SemanticPostAction extends ModelPostAction {
 	protected List<String> runtimeDefinedProperties;
 
 	/** entry proxy "parent" of this action when configuring the action */
-	protected PaletteEntryProxy entryProxy;
+	protected IPaletteEntryProxy entryProxy;
 
 	/** list of applied profiles */
 	protected List<Profile> appliedProfiles;
@@ -251,7 +250,7 @@ public class SemanticPostAction extends ModelPostAction {
 	/**
 	 * @{inheritDoc
 	 */
-	public Control createConfigurationComposite(Composite parent, PaletteEntryProxy entryProxy, List<Profile> appliedProfiles) {
+	public Control createConfigurationComposite(Composite parent, IPaletteEntryProxy entryProxy, List<Profile> appliedProfiles) {
 		this.appliedProfiles = appliedProfiles;
 		this.entryProxy = entryProxy;
 

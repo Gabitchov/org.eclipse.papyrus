@@ -14,7 +14,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.profile.tree.objects;
 
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
+
 
 // TODO: Auto-generated Javadoc
 /**
@@ -30,8 +30,8 @@ public class CompositeValueTreeObject extends ValueTreeObject {
 	 * @param parent
 	 *        the parent
 	 */
-	public CompositeValueTreeObject(AppliedStereotypePropertyTreeObject parent, Object value, TransactionalEditingDomain domain) {
-		super(parent, value, domain);
+	public CompositeValueTreeObject(AppliedStereotypePropertyTreeObject parent, Object value) {
+		super(parent, value);
 		this.value = value;
 	}
 

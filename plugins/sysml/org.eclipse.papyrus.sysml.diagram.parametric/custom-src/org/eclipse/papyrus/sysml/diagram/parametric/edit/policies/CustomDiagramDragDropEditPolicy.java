@@ -29,7 +29,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.common.editpolicies.CommonDiagramDragDropEditPolicy;
+import org.eclipse.papyrus.diagram.common.editpolicies.OldCommonDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.sysml.constraints.ConstraintProperty;
 import org.eclipse.papyrus.sysml.constraints.ConstraintsPackage;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConnectorEditPart;
@@ -50,7 +50,7 @@ import org.eclipse.uml2.uml.Property;
  * and binary links. To manage specific drop the method
  * CommonDiagramDragDropEditPolicy.getSpecificDropCommand has to be implemented
  */
-public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPolicy {
+public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEditPolicy {
 
 	/** The container view where the drop is done */
 	private View containerView;

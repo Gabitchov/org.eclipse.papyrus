@@ -36,7 +36,7 @@ public class ElementImportPreferencePage extends AbstractPapyrusLinkPreferencePa
 	 */
 	@Override
 	protected String getBundleId() {
-		return UMLDiagramEditorPlugin.getInstance().ID;
+		return UMLDiagramEditorPlugin.ID;
 	}
 
 	/**

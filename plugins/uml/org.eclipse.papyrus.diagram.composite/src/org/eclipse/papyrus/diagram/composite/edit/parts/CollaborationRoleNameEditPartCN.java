@@ -108,8 +108,6 @@ public class CollaborationRoleNameEditPartCN extends CompartmentEditPart impleme
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -123,8 +121,6 @@ public class CollaborationRoleNameEditPartCN extends CompartmentEditPart impleme
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -290,7 +286,7 @@ public class CollaborationRoleNameEditPartCN extends CompartmentEditPart impleme
 	 * @generated
 	 */
 	protected boolean isEditable() {
-		return getParser() != null;
+		return false;
 	}
 
 	/**
@@ -589,8 +585,6 @@ public class CollaborationRoleNameEditPartCN extends CompartmentEditPart impleme
 		return (View)getModel();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -598,15 +592,7 @@ public class CollaborationRoleNameEditPartCN extends CompartmentEditPart impleme
 	 * @generated
 	 */
 	public int getDirectEditionType() {
-		if(checkExtendedEditor()) {
-			initExtendedEditorConfiguration();
-			return IDirectEdition.EXTENDED_DIRECT_EDITOR;
-		}
-		if(checkDefaultEdition()) {
-			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
-		}
-
-		// not a named element. no specific editor => do nothing
+		// The label is read-only (defined in GMFGen model)
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
 
@@ -694,8 +680,6 @@ public class CollaborationRoleNameEditPartCN extends CompartmentEditPart impleme
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -711,7 +695,6 @@ public class CollaborationRoleNameEditPartCN extends CompartmentEditPart impleme
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
-
 
 	/**
 	 * @generated
@@ -759,13 +742,10 @@ public class CollaborationRoleNameEditPartCN extends CompartmentEditPart impleme
 		return null;
 	}
 
-
-
 	/**
 	 * @generated
 	 */
 	private static final String ADD_PARENT_MODEL = "AddParentModel";
-
 
 	/**
 	 * @generated
@@ -792,7 +772,6 @@ public class CollaborationRoleNameEditPartCN extends CompartmentEditPart impleme
 
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -800,6 +779,5 @@ public class CollaborationRoleNameEditPartCN extends CompartmentEditPart impleme
 		removeListenerFilter(ADD_PARENT_MODEL);
 
 	}
-
 
 }

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2010 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,8 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ */
 package org.eclipse.papyrus.diagram.clazz.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -25,6 +24,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.clazz.providers.ElementInitializers;
 import org.eclipse.uml2.uml.RedefinableTemplateSignature;
 import org.eclipse.uml2.uml.TemplateableElement;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -74,7 +74,6 @@ public class RedefinableTemplateSignatureCreateCommand extends EditElementComman
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -94,10 +93,7 @@ public class RedefinableTemplateSignatureCreateCommand extends EditElementComman
 			return false;
 		}
 
-
 		return true;
-
-
 
 	}
 
@@ -106,14 +102,12 @@ public class RedefinableTemplateSignatureCreateCommand extends EditElementComman
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
-
 		RedefinableTemplateSignature newElement = UMLFactory.eINSTANCE.createRedefinableTemplateSignature();
 
 		TemplateableElement owner = (TemplateableElement)getElementToEdit();
 		owner.setOwnedTemplateSignature(newElement);
 
-
+		ElementInitializers.getInstance().init_RedefinableTemplateSignature_3015(newElement);
 
 		doConfigure(newElement, monitor, info);
 

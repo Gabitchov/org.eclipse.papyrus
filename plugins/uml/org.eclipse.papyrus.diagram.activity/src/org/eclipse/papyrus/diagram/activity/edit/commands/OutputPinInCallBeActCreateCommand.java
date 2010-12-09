@@ -75,7 +75,6 @@ public class OutputPinInCallBeActCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -91,10 +90,7 @@ public class OutputPinInCallBeActCreateCommand extends EditElementCommand {
 	 */
 	public boolean canExecute() {
 
-
 		return true;
-
-
 
 	}
 
@@ -103,13 +99,10 @@ public class OutputPinInCallBeActCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
-
 		OutputPin newElement = UMLFactory.eINSTANCE.createOutputPin();
 
 		CallAction owner = (CallAction)getElementToEdit();
 		owner.getResults().add(newElement);
-
 
 		ElementInitializers.getInstance().init_OutputPin_3020(newElement);
 

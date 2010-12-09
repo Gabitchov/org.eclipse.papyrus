@@ -19,10 +19,10 @@ import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.OwnedEditpartImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.OwnedEditpartImpl#getName <em>Name</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class OwnedEditpartImpl extends ExternalHookImpl implements OwnedEditpart {
@@ -31,7 +31,6 @@ public class OwnedEditpartImpl extends ExternalHookImpl implements OwnedEditpart
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -42,7 +41,6 @@ public class OwnedEditpartImpl extends ExternalHookImpl implements OwnedEditpart
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -52,7 +50,6 @@ public class OwnedEditpartImpl extends ExternalHookImpl implements OwnedEditpart
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected OwnedEditpartImpl() {
@@ -62,7 +59,6 @@ public class OwnedEditpartImpl extends ExternalHookImpl implements OwnedEditpart
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -73,7 +69,6 @@ public class OwnedEditpartImpl extends ExternalHookImpl implements OwnedEditpart
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getName() {
@@ -83,27 +78,25 @@ public class OwnedEditpartImpl extends ExternalHookImpl implements OwnedEditpart
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
-		if(eNotificationRequired())
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PapyrusgmfgenextensionPackage.OWNED_EDITPART__NAME, oldName, name));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch(featureID) {
-		case PapyrusgmfgenextensionPackage.OWNED_EDITPART__NAME:
-			return getName();
+		switch (featureID) {
+			case PapyrusgmfgenextensionPackage.OWNED_EDITPART__NAME:
+				return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -111,15 +104,14 @@ public class OwnedEditpartImpl extends ExternalHookImpl implements OwnedEditpart
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch(featureID) {
-		case PapyrusgmfgenextensionPackage.OWNED_EDITPART__NAME:
-			setName((String)newValue);
-			return;
+		switch (featureID) {
+			case PapyrusgmfgenextensionPackage.OWNED_EDITPART__NAME:
+				setName((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -127,15 +119,14 @@ public class OwnedEditpartImpl extends ExternalHookImpl implements OwnedEditpart
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch(featureID) {
-		case PapyrusgmfgenextensionPackage.OWNED_EDITPART__NAME:
-			setName(NAME_EDEFAULT);
-			return;
+		switch (featureID) {
+			case PapyrusgmfgenextensionPackage.OWNED_EDITPART__NAME:
+				setName(NAME_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -143,14 +134,13 @@ public class OwnedEditpartImpl extends ExternalHookImpl implements OwnedEditpart
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch(featureID) {
-		case PapyrusgmfgenextensionPackage.OWNED_EDITPART__NAME:
-			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+		switch (featureID) {
+			case PapyrusgmfgenextensionPackage.OWNED_EDITPART__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -158,13 +148,11 @@ public class OwnedEditpartImpl extends ExternalHookImpl implements OwnedEditpart
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if(eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (name: ");

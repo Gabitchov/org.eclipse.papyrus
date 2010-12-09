@@ -2,13 +2,11 @@ package org.eclipse.papyrus.diagram.statemachine.edit.parts;
 
 import org.eclipse.draw2d.Connection;
 import org.eclipse.gef.EditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
+import org.eclipse.papyrus.diagram.common.editparts.UMLConnectionNodeEditPart;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
-import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.statemachine.custom.figures.TransitionFigure;
 import org.eclipse.papyrus.diagram.statemachine.edit.policies.TransitionItemSemanticEditPolicy;
@@ -16,7 +14,7 @@ import org.eclipse.papyrus.diagram.statemachine.edit.policies.TransitionItemSema
 /**
  * @generated
  */
-public class TransitionEditPart extends ConnectionNodeEditPart
+public class TransitionEditPart extends UMLConnectionNodeEditPart
 
 implements ITreeBranchEditPart {
 

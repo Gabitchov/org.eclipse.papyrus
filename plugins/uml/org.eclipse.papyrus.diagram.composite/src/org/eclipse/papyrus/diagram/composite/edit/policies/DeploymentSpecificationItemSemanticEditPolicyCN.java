@@ -13,38 +13,30 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.composite.edit.policies;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.command.DeleteCommand;
 import org.eclipse.gef.commands.Command;
-import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
+import org.eclipse.gef.commands.UnexecutableCommand;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
-import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.common.command.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.diagram.composite.edit.commands.AbstractionCreateCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.AbstractionReorientCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.CommentAnnotatedElementCreateCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.CommentAnnotatedElementReorientCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.ComponentRealizationCreateCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.ComponentRealizationReorientCommand;
-import org.eclipse.papyrus.diagram.composite.edit.commands.ConnectorDurationObservationCreateCommand;
-import org.eclipse.papyrus.diagram.composite.edit.commands.ConnectorDurationObservationReorientCommand;
-import org.eclipse.papyrus.diagram.composite.edit.commands.ConnectorTimeObservationCreateCommand;
-import org.eclipse.papyrus.diagram.composite.edit.commands.ConnectorTimeObservationReorientCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.ConstraintConstrainedElementCreateCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.ConstraintConstrainedElementReorientCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.DependencyCreateCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.DependencyReorientCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.DeploymentCreateCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.DeploymentReorientCommand;
+import org.eclipse.papyrus.diagram.composite.edit.commands.DurationObservationEventCreateCommand;
+import org.eclipse.papyrus.diagram.composite.edit.commands.DurationObservationEventReorientCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.GeneralizationCreateCommand;
-import org.eclipse.papyrus.diagram.composite.edit.commands.GeneralizationReorientCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.InformationFlowCreateCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.InformationFlowReorientCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.InterfaceRealizationCreateCommand;
@@ -59,16 +51,17 @@ import org.eclipse.papyrus.diagram.composite.edit.commands.RoleBindingCreateComm
 import org.eclipse.papyrus.diagram.composite.edit.commands.RoleBindingReorientCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.SubstitutionCreateCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.SubstitutionReorientCommand;
+import org.eclipse.papyrus.diagram.composite.edit.commands.TimeObservationEventCreateCommand;
+import org.eclipse.papyrus.diagram.composite.edit.commands.TimeObservationEventReorientCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.UsageCreateCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.UsageReorientCommand;
 import org.eclipse.papyrus.diagram.composite.edit.parts.AbstractionEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.ComponentRealizationEditPart;
-import org.eclipse.papyrus.diagram.composite.edit.parts.ConnectorDurationObservationEditPart;
-import org.eclipse.papyrus.diagram.composite.edit.parts.ConnectorTimeObservationEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.DependencyEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.DeploymentEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.DurationObservationEventEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.GeneralizationEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.InformationFlowEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.InterfaceRealizationEditPart;
@@ -77,8 +70,11 @@ import org.eclipse.papyrus.diagram.composite.edit.parts.RealizationEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.RepresentationEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.RoleBindingEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.SubstitutionEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.TimeObservationEventEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.UsageEditPart;
 import org.eclipse.papyrus.diagram.composite.providers.UMLElementTypes;
+import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.service.edit.service.IElementEditService;
 
 /**
  * @generated
@@ -92,28 +88,21 @@ public class DeploymentSpecificationItemSemanticEditPolicyCN extends UMLBaseItem
 		super(UMLElementTypes.DeploymentSpecification_3092);
 	}
 
-
 	/**
 	 * @generated
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
-		View view = (View)getHost().getModel();
-		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
-		cmd.setTransactionNestingEnabled(true);
+		EObject selectedEObject = req.getElementToDestroy();
+		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(selectedEObject);
+		if(provider != null) {
+			// Retrieve delete command from the Element Edit service
+			ICommand deleteCommand = provider.getEditCommand(req);
 
-		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
-		if(annotation == null) {
-			// there are indirectly referenced children, need extra commands: false
-			addDestroyShortcutsCommand(cmd, view);
-			// delete host element
-			List<EObject> todestroy = new ArrayList<EObject>();
-			todestroy.add(req.getElementToDestroy());
-			//cmd.add(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(req));
-			cmd.add(new EMFtoGMFCommandWrapper(new DeleteCommand(getEditingDomain(), todestroy)));
-		} else {
-			cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), view));
+			if(deleteCommand != null) {
+				return new ICommandProxy(deleteCommand);
+			}
 		}
-		return getGEFWrapper(cmd.reduce());
+		return UnexecutableCommand.INSTANCE;
 	}
 
 	/**
@@ -226,10 +215,10 @@ public class DeploymentSpecificationItemSemanticEditPolicyCN extends UMLBaseItem
 			return getGEFWrapper(new GeneralizationCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if(UMLElementTypes.TimeObservationEvent_4018 == req.getElementType()) {
-			return getGEFWrapper(new ConnectorTimeObservationCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new TimeObservationEventCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if(UMLElementTypes.DurationObservationEvent_4019 == req.getElementType()) {
-			return getGEFWrapper(new ConnectorDurationObservationCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new DurationObservationEventCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if(UMLElementTypes.InformationItemRepresented_4020 == req.getElementType()) {
 			return getGEFWrapper(new RepresentationCreateCommand(req, req.getSource(), req.getTarget()));
@@ -248,6 +237,17 @@ public class DeploymentSpecificationItemSemanticEditPolicyCN extends UMLBaseItem
 	 */
 	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 		switch(getVisualID(req)) {
+		case GeneralizationEditPart.VISUAL_ID:
+			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(req.getRelationship());
+			if(provider == null) {
+				return UnexecutableCommand.INSTANCE;
+			}
+			// Retrieve re-orient command from the Element Edit service
+			ICommand reorientCommand = provider.getEditCommand(req);
+			if(reorientCommand == null) {
+				return UnexecutableCommand.INSTANCE;
+			}
+			return getGEFWrapper(reorientCommand.reduce());
 		case ComponentRealizationEditPart.VISUAL_ID:
 			return getGEFWrapper(new ComponentRealizationReorientCommand(req));
 		case InterfaceRealizationEditPart.VISUAL_ID:
@@ -268,8 +268,6 @@ public class DeploymentSpecificationItemSemanticEditPolicyCN extends UMLBaseItem
 			return getGEFWrapper(new RoleBindingReorientCommand(req));
 		case DependencyEditPart.VISUAL_ID:
 			return getGEFWrapper(new DependencyReorientCommand(req));
-		case GeneralizationEditPart.VISUAL_ID:
-			return getGEFWrapper(new GeneralizationReorientCommand(req));
 		case InformationFlowEditPart.VISUAL_ID:
 			return getGEFWrapper(new InformationFlowReorientCommand(req));
 		}
@@ -288,10 +286,10 @@ public class DeploymentSpecificationItemSemanticEditPolicyCN extends UMLBaseItem
 			return getGEFWrapper(new CommentAnnotatedElementReorientCommand(req));
 		case ConstraintConstrainedElementEditPart.VISUAL_ID:
 			return getGEFWrapper(new ConstraintConstrainedElementReorientCommand(req));
-		case ConnectorTimeObservationEditPart.VISUAL_ID:
-			return getGEFWrapper(new ConnectorTimeObservationReorientCommand(req));
-		case ConnectorDurationObservationEditPart.VISUAL_ID:
-			return getGEFWrapper(new ConnectorDurationObservationReorientCommand(req));
+		case TimeObservationEventEditPart.VISUAL_ID:
+			return getGEFWrapper(new TimeObservationEventReorientCommand(req));
+		case DurationObservationEventEditPart.VISUAL_ID:
+			return getGEFWrapper(new DurationObservationEventReorientCommand(req));
 		case RepresentationEditPart.VISUAL_ID:
 			return getGEFWrapper(new RepresentationReorientCommand(req));
 		}

@@ -75,6 +75,7 @@ public abstract class UMLConnectionNodeEditPart extends ConnectionNodeEditPart i
 	public final Iterator getEventListenerIterator(Class clazz) {
 		return getEventListeners(clazz);
 	}
+
 	/**
 	 * {@inheritDoc}
 	 */

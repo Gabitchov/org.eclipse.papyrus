@@ -32,7 +32,6 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.common.CommonPlugin;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -172,7 +171,7 @@ public class ControlCommand extends AbstractTransactionalCommand {
 			saveResources();
 			return Status.OK_STATUS;
 		} else {
-			NotificationBuilder.createErrorPopup(CommonPlugin.INSTANCE.getString("_UI_UnexecutableCommand_description")).setTitle(CommonPlugin.INSTANCE.getString("_UI_UnexecutableCommand_label")).run();
+			NotificationBuilder.createErrorPopup("Unable to execute control command").setTitle("Unable to control").run();
 			return Status.CANCEL_STATUS;
 		}
 	}
@@ -207,7 +206,7 @@ public class ControlCommand extends AbstractTransactionalCommand {
 	}
 
 	/**
-	 * Analyse the history model to update the controlled children
+	 * Analyze the history model to update the controlled children
 	 * 
 	 * @param domain
 	 * @param compoundCommand
@@ -220,7 +219,6 @@ public class ControlCommand extends AbstractTransactionalCommand {
 			return;
 		}
 		// create relative path
-
 		URI uriPath = HistoryUtils.getURIFullPath(currentURL);
 		String currentURLResolved = HistoryUtils.resolve(uriPath, currentURL);
 		String newURLResolved = HistoryUtils.resolve(uriPath, newURL);
@@ -229,14 +227,16 @@ public class ControlCommand extends AbstractTransactionalCommand {
 		child.setResourceURL(newURLResolved);
 
 		ControledResource resource = model.getModelRoot();
+		Resource parentResource = null;
 
-		// create the controled resource according to the control action
+		// create the controlled resource according to the control action
 		ControledResource parent = null;
 		if(resource == null) {
 			parent = historyFactory.eINSTANCE.createControledResource();
 			parent.setResourceURL(currentURLResolved);
 			parent.getChildren().add(child);
-			compoundCommand.append(new AddCommand(domain, model.getResource().getContents(), Collections.singleton(parent)));
+			parentResource = model.getResource();
+			compoundCommand.append(new AddCommand(domain, parentResource.getContents(), Collections.singleton(parent)));
 		} else {
 			if(isCurrentURL(currentURLResolved, resource)) {
 				parent = resource;
@@ -256,27 +256,32 @@ public class ControlCommand extends AbstractTransactionalCommand {
 			if(parent == null) {
 				parent = historyFactory.eINSTANCE.createControledResource();
 				parent.setResourceURL(currentURLResolved);
-				resource.eResource().getContents().add(parent);
+				parentResource = resource.eResource();
+				compoundCommand.append(new AddCommand(domain, parentResource.getContents(), Collections.singleton(parent)));
 			}
 			if(parent != null) {
 				compoundCommand.append(AddCommand.create(domain, parent, historyPackage.Literals.CONTROLED_RESOURCE__CHILDREN, Collections.singleton(child)));
 			}
 		}
 		List<ControledResource> controledFromParent = new LinkedList<ControledResource>();
-		Resource parentResource = parent.eResource();
-		for(EObject e : parentResource.getContents()) {
-			if(e instanceof ControledResource) {
-				ControledResource aControled = (ControledResource)e;
-				controledFromParent.add(aControled);
-				for(Iterator<EObject> i = aControled.eAllContents(); i.hasNext();) {
-					EObject tmp = i.next();
-					if(tmp instanceof ControledResource) {
-						controledFromParent.add((ControledResource)tmp);
+		if(parentResource == null) {
+			parentResource = model.getResource();
+		}
+		if(parentResource != null) {
+			for(EObject e : parentResource.getContents()) {
+				if(e instanceof ControledResource) {
+					ControledResource aControled = (ControledResource)e;
+					controledFromParent.add(aControled);
+					for(Iterator<EObject> i = aControled.eAllContents(); i.hasNext();) {
+						EObject tmp = i.next();
+						if(tmp instanceof ControledResource) {
+							controledFromParent.add((ControledResource)tmp);
+						}
 					}
 				}
 			}
 		}
-		// manage move of existing controled resource
+		// manage move of existing controlled resource
 		if(!newURL.endsWith(NotationModel.NOTATION_FILE_EXTENSION)) {
 			assignToChildExistingControledResources(domain, compoundCommand, child, newURL, controledFromParent, currentURL, URI.createURI(newURL), uriPath);
 		}

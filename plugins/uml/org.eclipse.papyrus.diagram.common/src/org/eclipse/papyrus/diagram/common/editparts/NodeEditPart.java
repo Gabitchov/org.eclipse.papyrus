@@ -68,14 +68,16 @@ public abstract class NodeEditPart extends AbstractBorderedShapeEditPart impleme
 		// set the figure active when the feature of the of a class is true
 		if(resolveSemanticElement() != null) {
 			refreshShadow();
-			
+
 		}
 	}
+
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshShadow();
-		
+
 	}
+
 	/**
 	 * Override to set the transparency to the correct figure
 	 */

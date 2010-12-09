@@ -7,6 +7,7 @@
  * 
  * Contributors:
  *     Obeo - initial API and implementation
+ *     modified by CEA-LIST
  *******************************************************************************/
 package org.eclipse.papyrus.diagram.common.listeners;
 
@@ -29,7 +30,6 @@ import org.eclipse.swt.dnd.TransferData;
 /**
  * This class is used to handle drop event on diagram
  * 
- * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
 public abstract class DropTargetListener extends DiagramDropTargetListener {
 
@@ -43,7 +43,7 @@ public abstract class DropTargetListener extends DiagramDropTargetListener {
 	protected List<EObject> getObjectsBeingDropped() {
 		// get objects from transfer
 		TransferData data = getCurrentEvent().currentDataType;
-		HashSet<URI> uris = new HashSet<URI>();
+		ArrayList<URI> uris = new ArrayList<URI>(); //Array list to keep the order of the selection
 
 		Object transferedObject = getJavaObject(data);
 		if(transferedObject instanceof IStructuredSelection) {
@@ -62,7 +62,6 @@ public abstract class DropTargetListener extends DiagramDropTargetListener {
 					EObject modelElement = (EObject)nextSelectedObject;
 					Resource modelElementResource = modelElement.eResource();
 					uris.add(modelElementResource.getURI().appendFragment(modelElementResource.getURIFragment(modelElement)));
-					// TODO check visualID supported by class diagram
 				}
 			}
 		}

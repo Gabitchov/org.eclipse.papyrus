@@ -14,14 +14,18 @@
 
 package org.eclipse.papyrus.diagram.communication.custom.policies.itemsemantic;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
-import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
-import org.eclipse.gmf.runtime.notation.Edge;
+import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.papyrus.diagram.communication.custom.commands.CustomMessageCreateCommand;
 import org.eclipse.papyrus.diagram.communication.edit.commands.CommentAnnotatedElementCreateCommand;
 import org.eclipse.papyrus.diagram.communication.edit.commands.ConnectorDurationObservationCreateCommand;
@@ -30,13 +34,16 @@ import org.eclipse.papyrus.diagram.communication.edit.commands.ConstraintConstra
 import org.eclipse.papyrus.diagram.communication.edit.commands.MessageReorientCommand;
 import org.eclipse.papyrus.diagram.communication.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.diagram.communication.providers.UMLElementTypes;
+import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.service.edit.service.IElementEditService;
 import org.eclipse.uml2.uml.Message;
-import org.eclipse.uml2.uml.MessageEnd;
 
 /**
  * this is a specialization to manage creation of Message,
  * CommentAnnotatedElement, ConstraintConstrainedElement,
  * DurationObservationEvent and TimeObservationEvent
+ * 
+ * This class also manages the deletion a message connector
  */
 public class CustomMessageItemSemanticEditPolicy extends org.eclipse.papyrus.diagram.communication.edit.policies.MessageItemSemanticEditPolicy {
 
@@ -65,6 +72,7 @@ public class CustomMessageItemSemanticEditPolicy extends org.eclipse.papyrus.dia
 
 	@Override
 	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
+		//System.err.println("getReorientRelationshipCommand VisualID of element to reorient" + getVisualID(req));
 		switch(getVisualID(req)) {
 		case MessageEditPart.VISUAL_ID:
 			return getGEFWrapper(new MessageReorientCommand(req));
@@ -92,28 +100,46 @@ public class CustomMessageItemSemanticEditPolicy extends org.eclipse.papyrus.dia
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(false);
 
-		Object model = getHost().getModel();
-		if(model instanceof Edge) {
-			EObject obj = ((Edge)model).getElement();
 
-			if(obj instanceof Message) {
-				Message message = (Message)obj;
+		@SuppressWarnings("unchecked")
+		List<EditPart> children = getHost().getChildren();
+		List<EObject> elementsToDestroy = new ArrayList<EObject>();
 
-				MessageEnd messageStart = message.getSendEvent();
-				cmd.add(new DestroyElementCommand(new DestroyElementRequest(messageStart, false)));
+		//A. Find the elements to destroy
+		for(EditPart current : children) {
+			Object model = current.getModel();
 
-				MessageEnd messageEnd = message.getReceiveEvent();
-				cmd.add(new DestroyElementCommand(new DestroyElementRequest(messageEnd, false)));
+			if(model instanceof DecorationNode) {//if the current object is a label 
+				EObject obj = ((DecorationNode)model).getElement();
+				if(obj instanceof Message) {
+					Message message = (Message)obj;
 
-				cmd.add(new DestroyElementCommand(req));
+					//1. Add the message to the list of elements to destroy
+					elementsToDestroy.add(message);
+
+				}
 			}
-		}
-		return getGEFWrapper(cmd);
 
-		//		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
-		//		cmd.setTransactionNestingEnabled(false);
-		//		cmd.add(new DestroyElementCommand(req));
-		//		CommunicationDeleteHelper.completeDestroyMessageCommand(cmd, getHost());
-		//		return getGEFWrapper(cmd.reduce());
+		}
+
+		//B. Build the destroy command
+		for(EObject selectedEObject : elementsToDestroy) {
+
+			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(selectedEObject);
+			if(provider == null) {
+				continue;
+			}
+
+			// Retrieve delete command from the Element Edit service
+			DestroyElementRequest request = new DestroyElementRequest(selectedEObject, false);
+			ICommand deleteCommand = provider.getEditCommand(request);
+
+			// Add current EObject destroy command to the global command
+			cmd.add(deleteCommand);
+		}
+
+
+		return getGEFWrapper(cmd.reduce());
+
 	}
 }

@@ -36,6 +36,11 @@ public class Messages extends NLS {
 	/**
 	 * @generated NOT
 	 */
+	public static String MoveMessageCommand_Label;
+
+	/**
+	 * @generated NOT
+	 */
 	public static String SelectOrCreateDialog_CreateLabel;
 
 	/**
@@ -67,6 +72,55 @@ public class Messages extends NLS {
 	 * @generated NOT
 	 */
 	public static String CommandHelper_CreateMessage;
+
+	/**
+	 * Error message for when an error occurs in FragmentOrderingKeeper evaluation.
+	 * 
+	 * @generated NOT
+	 */
+	public static String FragmentOrderingKeeper_error;
+
+	/**
+	 * Error notification title when a link can not be dropped
+	 * 
+	 * @generated NOT
+	 */
+	public static String DropError_DefaultTitle;
+
+	/**
+	 * Error notification message when a link can not be dropped
+	 * 
+	 * @generated NOT
+	 */
+	public static String DropError_DefaultTxt;
+
+	/**
+	 * Error notification title when a message can not be dropped because it goes uphill
+	 * 
+	 * @generated NOT
+	 */
+	public static String DropError_UphillMessageTitle;
+
+	/**
+	 * Error notification message when a message can not be dropped because it goes uphill
+	 * 
+	 * @generated NOT
+	 */
+	public static String DropError_UphillMessageTxt;
+
+	/**
+	 * Warning notification title when the resize of an interaction operand may have an erratic behavior
+	 * 
+	 * @generated NOT
+	 */
+	public static String Warning_ResizeInteractionOperandTitle;
+
+	/**
+	 * Warning notification message when the resize of an interaction operand may have an erratic behavior
+	 * 
+	 * @generated NOT
+	 */
+	public static String Warning_ResizeInteractionOperandTxt;
 
 	/**
 	 * @generated
@@ -541,22 +595,32 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String createCommentlink8CreationTool_title;
+	public static String createGeneralOrdering8CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createCommentlink8CreationTool_desc;
+	public static String createGeneralOrdering8CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createConstraintlink9CreationTool_title;
+	public static String createCommentlink9CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createConstraintlink9CreationTool_desc;
+	public static String createCommentlink9CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createConstraintlink10CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createConstraintlink10CreationTool_desc;
 
 	/**
 	 * @generated
@@ -651,6 +715,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String NavigatorGroupName_DurationObservation_3024_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_DurationObservation_3024_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
 	public static String NavigatorGroupName_TimeObservation_3020_incominglinks;
 
 	/**
@@ -727,6 +801,16 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_Constraint_3008_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_DurationConstraint_3023_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_DurationConstraint_3023_outgoinglinks;
 
 	/**
 	 * @generated

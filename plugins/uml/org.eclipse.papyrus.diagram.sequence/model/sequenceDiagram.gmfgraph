@@ -214,7 +214,7 @@
                 x="10"
                 y="10"/>
             <size
-                dx="100"
+                dx="200"
                 dy="20"/>
           </layoutData>
         </children>
@@ -444,36 +444,20 @@
             name="TextJustification"
             value="PositionConstants.CENTER"/>
       </actualFigure>
+      <accessors
+          accessor="getDurationLabel"
+          figure="//@figures.0/@descriptors.15/@actualFigure"/>
     </descriptors>
     <descriptors
         name="TimeMarkElementFigure">
       <actualFigure
-          xsi:type="gmfgraph:Rectangle"
-          name="TimeMarkElementRect"
-          outline="false"
-          fill="false">
-        <layout
-            xsi:type="gmfgraph:GridLayout"/>
-        <children
-            xsi:type="gmfgraph:Polyline"
-            name="TimeMark">
-          <template/>
-          <template
-              x="10"/>
-        </children>
-        <children
-            xsi:type="gmfgraph:Label"
-            name="TimeMarkElementLabel">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"/>
-        </children>
+          xsi:type="gmfgraph:Polyline"
+          name="TimeMark">
+        <location/>
+        <template/>
+        <template
+            x="20"/>
       </actualFigure>
-      <accessors
-          accessor="getTimeMark"
-          figure="//@figures.0/@descriptors.16/@actualFigure/@children.0"/>
-      <accessors
-          accessor="getTimeMarkElementLabel"
-          figure="//@figures.0/@descriptors.16/@actualFigure/@children.1"/>
     </descriptors>
     <descriptors
         name="DurationConstraintFigure">
@@ -502,33 +486,10 @@
           <template
               x="10"/>
         </children>
-        <children
-            xsi:type="gmfgraph:CustomFigure"
-            name="DurationConstraintLabel"
-            qualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
-          <attributes
-              name="TextAlignment"
-              value="PositionConstants.CENTER"/>
-          <attributes
-              name="Alignment"
-              value="PositionConstants.CENTER"/>
-          <attributes
-              name="BackgroundColor"
-              value="getBackgroundColor()"/>
-          <attributes
-              name="TextWrap"
-              value="true"/>
-          <attributes
-              name="TextJustification"
-              value="PositionConstants.CENTER"/>
-        </children>
       </actualFigure>
       <accessors
           accessor="getDurationArrow"
           figure="//@figures.0/@descriptors.17/@actualFigure/@children.0"/>
-      <accessors
-          accessor="getDurationConstraintLabel"
-          figure="//@figures.0/@descriptors.17/@actualFigure/@children.1"/>
     </descriptors>
     <descriptors
         name="DestructionEventFigureDesc">
@@ -536,6 +497,51 @@
           xsi:type="gmfgraph:CustomFigure"
           name="DestructionEventFigure"
           qualifiedClassName="org.eclipse.papyrus.diagram.sequence.figures.DestructionEventFigure"/>
+    </descriptors>
+    <descriptors
+        name="MultilineLabelFigure">
+      <actualFigure
+          xsi:type="gmfgraph:CustomFigure"
+          name="MultilineLabel"
+          qualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+        <attributes
+            name="TextAlignment"
+            value="PositionConstants.CENTER"/>
+        <attributes
+            name="Alignment"
+            value="PositionConstants.CENTER"/>
+        <attributes
+            name="BackgroundColor"
+            value="getBackgroundColor()"/>
+        <attributes
+            name="TextWrap"
+            value="true"/>
+        <attributes
+            name="TextJustification"
+            value="PositionConstants.CENTER"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors
+        name="AppliedStereotypeWrappingLabelFigure">
+      <actualFigure
+          xsi:type="gmfgraph:CustomFigure"
+          name="AppliedStereotypeWrappingLabel"
+          qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.AppliedStereotypeWrappingLabelFigure"/>
+    </descriptors>
+    <descriptors
+        name="GeneralOrderingDescriptor">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="GeneralOrderingConnection"
+          lineKind="LINE_DASH"
+          targetDecoration="//@figures.0/@figures.2">
+        <foregroundColor
+            xsi:type="gmfgraph:ConstantColor"
+            value="black"/>
+      </actualFigure>
+      <accessors
+          accessor="getAppliedStereotypeLabel"
+          figure="//@figures.0/@descriptors.7/@actualFigure/@children.0"/>
     </descriptors>
   </figures>
   <nodes
@@ -593,6 +599,9 @@
       figure="DestructionEventFigureDesc"
       resizeConstraint="NONE"
       affixedParentSide="SOUTH"/>
+  <nodes
+      name="DurationObservationConstraintNode"
+      figure="DurationObservationConstraint"/>
   <connections
       name="CallSynLink"
       figure="MessageSync"/>
@@ -614,6 +623,9 @@
   <connections
       name="FoundLink"
       figure="MessageFound"/>
+  <connections
+      name="GeneralOrderingLink"
+      figure="GeneralOrderingDescriptor"/>
   <compartments
       name="InteractionCompartment"
       figure="CustomInteractionRectangleFigure"
@@ -833,7 +845,8 @@
   <labels
       name="DurationObservationLabel"
       figure="DurationObservationConstraint"
-      elementIcon="false">
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.15/@accessors.0">
     <facets
         xsi:type="gmfgraph:AlignmentFacet"
         alignment="CENTER"/>
@@ -844,17 +857,7 @@
   </labels>
   <labels
       name="TimeMarkElementLabel"
-      figure="TimeMarkElementFigure"
-      elementIcon="false"
-      accessor="//@figures.0/@descriptors.16/@accessors.1"/>
-  <labels
-      name="DurationConstraintLabel"
-      figure="DurationConstraintFigure"
-      elementIcon="false"
-      accessor="//@figures.0/@descriptors.17/@accessors.1"/>
-  <labels
-      name="DurationConstraintOnMessage"
-      figure="DurationObservationConstraint"
+      figure="MultilineLabelFigure"
       elementIcon="false">
     <facets
         xsi:type="gmfgraph:AlignmentFacet"
@@ -863,5 +866,45 @@
         xsi:type="gmfgraph:LabelOffsetFacet"
         x="1"
         y="13"/>
+  </labels>
+  <labels
+      name="DurationConstraintLabel"
+      figure="MultilineLabelFigure"
+      elementIcon="false">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        x="1"
+        y="13"/>
+  </labels>
+  <labels
+      name="DurationConstraintOnMessage"
+      figure="DurationObservationConstraint"
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.15/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        x="1"
+        y="13"/>
+  </labels>
+  <labels
+      name="AppliedStereotypeExternalLabel"
+      figure="AppliedStereotypeWrappingLabelFigure"/>
+  <labels
+      name="GeneralOrderingStereotypeLabel"
+      figure="GeneralOrderingDescriptor"
+      accessor="//@figures.0/@descriptors.21/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        x="1"
+        y="-33"/>
   </labels>
 </gmfgraph:Canvas>

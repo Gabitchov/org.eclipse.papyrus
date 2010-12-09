@@ -72,7 +72,7 @@ public class MessageFigure extends PolylineConnectionEx implements IPapyrusUMLEl
 		appliedStereotypeLabelFigure.setTextWrap(true);
 		appliedStereotypeLabelFigure.setTextJustification(PositionConstants.CENTER);
 
-		appliedStereotypeLabelFigure.setText(""); //$NON-NLS-1$
+
 
 		this.add(appliedStereotypeLabelFigure);
 	}
@@ -81,6 +81,7 @@ public class MessageFigure extends PolylineConnectionEx implements IPapyrusUMLEl
 	 * 
 	 * @return fFigureMessageCreateLabelFigure
 	 */
+
 	public CustomWrappingLabel getFigureMessageCreateLabelFigure() {
 		return fFigureMessageCreateLabelFigure;
 	}

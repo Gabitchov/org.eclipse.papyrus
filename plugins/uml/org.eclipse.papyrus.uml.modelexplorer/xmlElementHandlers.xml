@@ -1,0 +1,2805 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+<!-- Creation command declarations -->
+<extension point="org.eclipse.ui.commands">
+	<!-- Creation command for Abstraction -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.AbstractionCreateCommand"
+		name="Create a new Abstraction" description="Create a new Abstraction"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.AbstractionHandler">
+	</command>
+	
+	<!-- Creation command for AcceptCallAction -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.AcceptCallActionCreateCommand"
+		name="Create a new AcceptCallAction" description="Create a new AcceptCallAction"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.AcceptCallActionHandler">
+	</command>
+	
+	<!-- Creation command for AcceptEventAction -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.AcceptEventActionCreateCommand"
+		name="Create a new AcceptEventAction" description="Create a new AcceptEventAction"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.AcceptEventActionHandler">
+	</command>
+	
+	<!-- Creation command for ActionExecutionSpecification -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ActionExecutionSpecificationCreateCommand"
+		name="Create a new ActionExecutionSpecification" description="Create a new ActionExecutionSpecification"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ActionExecutionSpecificationHandler">
+	</command>
+	
+	<!-- Creation command for ActionInputPin -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ActionInputPinCreateCommand"
+		name="Create a new ActionInputPin" description="Create a new ActionInputPin"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ActionInputPinHandler">
+	</command>
+	
+	<!-- Creation command for Activity -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ActivityCreateCommand"
+		name="Create a new Activity" description="Create a new Activity"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ActivityHandler">
+	</command>
+	
+	<!-- Creation command for ActivityFinalNode -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ActivityFinalNodeCreateCommand"
+		name="Create a new ActivityFinalNode" description="Create a new ActivityFinalNode"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ActivityFinalNodeHandler">
+	</command>
+	
+	<!-- Creation command for ActivityParameterNode -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ActivityParameterNodeCreateCommand"
+		name="Create a new ActivityParameterNode" description="Create a new ActivityParameterNode"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ActivityParameterNodeHandler">
+	</command>
+	
+	<!-- Creation command for ActivityPartition -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ActivityPartitionCreateCommand"
+		name="Create a new ActivityPartition" description="Create a new ActivityPartition"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ActivityPartitionHandler">
+	</command>
+	
+	<!-- Creation command for Actor -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ActorCreateCommand"
+		name="Create a new Actor" description="Create a new Actor"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ActorHandler">
+	</command>
+	
+	<!-- Creation command for AddStructuralFeatureValueAction -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.AddStructuralFeatureValueActionCreateCommand"
+		name="Create a new AddStructuralFeatureValueAction" description="Create a new AddStructuralFeatureValueAction"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.AddStructuralFeatureValueActionHandler">
+	</command>
+	
+	<!-- Creation command for AddVariableValueAction -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.AddVariableValueActionCreateCommand"
+		name="Create a new AddVariableValueAction" description="Create a new AddVariableValueAction"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.AddVariableValueActionHandler">
+	</command>
+	
+	<!-- Creation command for AnyReceiveEvent -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.AnyReceiveEventCreateCommand"
+		name="Create a new AnyReceiveEvent" description="Create a new AnyReceiveEvent"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.AnyReceiveEventHandler">
+	</command>
+	
+	<!-- Creation command for Artifact -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ArtifactCreateCommand"
+		name="Create a new Artifact" description="Create a new Artifact"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ArtifactHandler">
+	</command>
+	
+	<!-- Creation command for Association -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.AssociationCreateCommand"
+		name="Create a new Association" description="Create a new Association"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.AssociationHandler">
+	</command>
+	
+	<!-- Creation command for AssociationClass -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.AssociationClassCreateCommand"
+		name="Create a new AssociationClass" description="Create a new AssociationClass"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.AssociationClassHandler">
+	</command>
+	
+	<!-- Creation command for BehaviorExecutionSpecification -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.BehaviorExecutionSpecificationCreateCommand"
+		name="Create a new BehaviorExecutionSpecification" description="Create a new BehaviorExecutionSpecification"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.BehaviorExecutionSpecificationHandler">
+	</command>
+	
+	<!-- Creation command for BroadcastSignalAction -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.BroadcastSignalActionCreateCommand"
+		name="Create a new BroadcastSignalAction" description="Create a new BroadcastSignalAction"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.BroadcastSignalActionHandler">
+	</command>
+	
+	<!-- Creation command for CallBehaviorAction -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.CallBehaviorActionCreateCommand"
+		name="Create a new CallBehaviorAction" description="Create a new CallBehaviorAction"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.CallBehaviorActionHandler">
+	</command>
+	
+	<!-- Creation command for CallEvent -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.CallEventCreateCommand"
+		name="Create a new CallEvent" description="Create a new CallEvent"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.CallEventHandler">
+	</command>
+	
+	<!-- Creation command for CallOperationAction -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.CallOperationActionCreateCommand"
+		name="Create a new CallOperationAction" description="Create a new CallOperationAction"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.CallOperationActionHandler">
+	</command>
+	
+	<!-- Creation command for CentralBufferNode -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.CentralBufferNodeCreateCommand"
+		name="Create a new CentralBufferNode" description="Create a new CentralBufferNode"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.CentralBufferNodeHandler">
+	</command>
+	
+	<!-- Creation command for ChangeEvent -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ChangeEventCreateCommand"
+		name="Create a new ChangeEvent" description="Create a new ChangeEvent"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ChangeEventHandler">
+	</command>
+	
+	<!-- Creation command for Class -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ClassCreateCommand"
+		name="Create a new Class" description="Create a new Class"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ClassHandler">
+	</command>
+	
+	<!-- Creation command for ClassifierTemplateParameter -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ClassifierTemplateParameterCreateCommand"
+		name="Create a new ClassifierTemplateParameter" description="Create a new ClassifierTemplateParameter"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ClassifierTemplateParameterHandler">
+	</command>
+	
+	<!-- Creation command for Clause -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ClauseCreateCommand"
+		name="Create a new Clause" description="Create a new Clause"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ClauseHandler">
+	</command>
+	
+	<!-- Creation command for ClearAssociationAction -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ClearAssociationActionCreateCommand"
+		name="Create a new ClearAssociationAction" description="Create a new ClearAssociationAction"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ClearAssociationActionHandler">
+	</command>
+	
+	<!-- Creation command for ClearStructuralFeatureAction -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ClearStructuralFeatureActionCreateCommand"
+		name="Create a new ClearStructuralFeatureAction" description="Create a new ClearStructuralFeatureAction"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ClearStructuralFeatureActionHandler">
+	</command>
+	
+	<!-- Creation command for ClearVariableAction -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ClearVariableActionCreateCommand"
+		name="Create a new ClearVariableAction" description="Create a new ClearVariableAction"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ClearVariableActionHandler">
+	</command>
+	
+	<!-- Creation command for Collaboration -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.CollaborationCreateCommand"
+		name="Create a new Collaboration" description="Create a new Collaboration"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.CollaborationHandler">
+	</command>
+	
+	<!-- Creation command for CollaborationUse -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.CollaborationUseCreateCommand"
+		name="Create a new CollaborationUse" description="Create a new CollaborationUse"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.CollaborationUseHandler">
+	</command>
+	
+	<!-- Creation command for CombinedFragment -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.CombinedFragmentCreateCommand"
+		name="Create a new CombinedFragment" description="Create a new CombinedFragment"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.CombinedFragmentHandler">
+	</command>
+	
+	<!-- Creation command for Comment -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.CommentCreateCommand"
+		name="Create a new Comment" description="Create a new Comment"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.CommentHandler">
+	</command>
+	
+	<!-- Creation command for CommunicationPath -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.CommunicationPathCreateCommand"
+		name="Create a new CommunicationPath" description="Create a new CommunicationPath"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.CommunicationPathHandler">
+	</command>
+	
+	<!-- Creation command for Component -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ComponentCreateCommand"
+		name="Create a new Component" description="Create a new Component"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ComponentHandler">
+	</command>
+	
+	<!-- Creation command for ComponentRealization -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ComponentRealizationCreateCommand"
+		name="Create a new ComponentRealization" description="Create a new ComponentRealization"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ComponentRealizationHandler">
+	</command>
+	
+	<!-- Creation command for ConditionalNode -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ConditionalNodeCreateCommand"
+		name="Create a new ConditionalNode" description="Create a new ConditionalNode"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ConditionalNodeHandler">
+	</command>
+	
+	<!-- Creation command for ConnectableElementTemplateParameter -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ConnectableElementTemplateParameterCreateCommand"
+		name="Create a new ConnectableElementTemplateParameter" description="Create a new ConnectableElementTemplateParameter"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ConnectableElementTemplateParameterHandler">
+	</command>
+	
+	<!-- Creation command for ConnectionPointReference -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ConnectionPointReferenceCreateCommand"
+		name="Create a new ConnectionPointReference" description="Create a new ConnectionPointReference"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ConnectionPointReferenceHandler">
+	</command>
+	
+	<!-- Creation command for Connector -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ConnectorCreateCommand"
+		name="Create a new Connector" description="Create a new Connector"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ConnectorHandler">
+	</command>
+	
+	<!-- Creation command for ConnectorEnd -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ConnectorEndCreateCommand"
+		name="Create a new ConnectorEnd" description="Create a new ConnectorEnd"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ConnectorEndHandler">
+	</command>
+	
+	<!-- Creation command for ConsiderIgnoreFragment -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ConsiderIgnoreFragmentCreateCommand"
+		name="Create a new ConsiderIgnoreFragment" description="Create a new ConsiderIgnoreFragment"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ConsiderIgnoreFragmentHandler">
+	</command>
+	
+	<!-- Creation command for Constraint -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ConstraintCreateCommand"
+		name="Create a new Constraint" description="Create a new Constraint"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ConstraintHandler">
+	</command>
+	
+	<!-- Creation command for Continuation -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ContinuationCreateCommand"
+		name="Create a new Continuation" description="Create a new Continuation"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ContinuationHandler">
+	</command>
+	
+	<!-- Creation command for ControlFlow -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ControlFlowCreateCommand"
+		name="Create a new ControlFlow" description="Create a new ControlFlow"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ControlFlowHandler">
+	</command>
+	
+	<!-- Creation command for CreateLinkAction -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.CreateLinkActionCreateCommand"
+		name="Create a new CreateLinkAction" description="Create a new CreateLinkAction"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.CreateLinkActionHandler">
+	</command>
+	
+	<!-- Creation command for CreateLinkObjectAction -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.CreateLinkObjectActionCreateCommand"
+		name="Create a new CreateLinkObjectAction" description="Create a new CreateLinkObjectAction"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.CreateLinkObjectActionHandler">
+	</command>
+	
+	<!-- Creation command for CreateObjectAction -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.CreateObjectActionCreateCommand"
+		name="Create a new CreateObjectAction" description="Create a new CreateObjectAction"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.CreateObjectActionHandler">
+	</command>
+	
+	<!-- Creation command for CreationEvent -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.CreationEventCreateCommand"
+		name="Create a new CreationEvent" description="Create a new CreationEvent"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.CreationEventHandler">
+	</command>
+	
+	<!-- Creation command for DataStoreNode -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.DataStoreNodeCreateCommand"
+		name="Create a new DataStoreNode" description="Create a new DataStoreNode"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.DataStoreNodeHandler">
+	</command>
+	
+	<!-- Creation command for DataType -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.DataTypeCreateCommand"
+		name="Create a new DataType" description="Create a new DataType"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.DataTypeHandler">
+	</command>
+	
+	<!-- Creation command for DecisionNode -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.DecisionNodeCreateCommand"
+		name="Create a new DecisionNode" description="Create a new DecisionNode"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.DecisionNodeHandler">
+	</command>
+	
+	<!-- Creation command for Dependency -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.DependencyCreateCommand"
+		name="Create a new Dependency" description="Create a new Dependency"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.DependencyHandler">
+	</command>
+	
+	<!-- Creation command for Deployment -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.DeploymentCreateCommand"
+		name="Create a new Deployment" description="Create a new Deployment"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.DeploymentHandler">
+	</command>
+	
+	<!-- Creation command for DeploymentSpecification -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.DeploymentSpecificationCreateCommand"
+		name="Create a new DeploymentSpecification" description="Create a new DeploymentSpecification"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.DeploymentSpecificationHandler">
+	</command>
+	
+	<!-- Creation command for DestroyLinkAction -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.DestroyLinkActionCreateCommand"
+		name="Create a new DestroyLinkAction" description="Create a new DestroyLinkAction"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.DestroyLinkActionHandler">
+	</command>
+	
+	<!-- Creation command for DestroyObjectAction -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.DestroyObjectActionCreateCommand"
+		name="Create a new DestroyObjectAction" description="Create a new DestroyObjectAction"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.DestroyObjectActionHandler">
+	</command>
+	
+	<!-- Creation command for DestructionEvent -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.DestructionEventCreateCommand"
+		name="Create a new DestructionEvent" description="Create a new DestructionEvent"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.DestructionEventHandler">
+	</command>
+	
+	<!-- Creation command for Device -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.DeviceCreateCommand"
+		name="Create a new Device" description="Create a new Device"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.DeviceHandler">
+	</command>
+	
+	<!-- Creation command for Duration -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.DurationCreateCommand"
+		name="Create a new Duration" description="Create a new Duration"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.DurationHandler">
+	</command>
+	
+	<!-- Creation command for DurationConstraint -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.DurationConstraintCreateCommand"
+		name="Create a new DurationConstraint" description="Create a new DurationConstraint"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.DurationConstraintHandler">
+	</command>
+	
+	<!-- Creation command for DurationInterval -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.DurationIntervalCreateCommand"
+		name="Create a new DurationInterval" description="Create a new DurationInterval"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.DurationIntervalHandler">
+	</command>
+	
+	<!-- Creation command for DurationObservation -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.DurationObservationCreateCommand"
+		name="Create a new DurationObservation" description="Create a new DurationObservation"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.DurationObservationHandler">
+	</command>
+	
+	<!-- Creation command for ElementImport -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ElementImportCreateCommand"
+		name="Create a new ElementImport" description="Create a new ElementImport"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ElementImportHandler">
+	</command>
+	
+	<!-- Creation command for Enumeration -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.EnumerationCreateCommand"
+		name="Create a new Enumeration" description="Create a new Enumeration"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.EnumerationHandler">
+	</command>
+	
+	<!-- Creation command for EnumerationLiteral -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.EnumerationLiteralCreateCommand"
+		name="Create a new EnumerationLiteral" description="Create a new EnumerationLiteral"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.EnumerationLiteralHandler">
+	</command>
+	
+	<!-- Creation command for ExceptionHandler -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ExceptionHandlerCreateCommand"
+		name="Create a new ExceptionHandler" description="Create a new ExceptionHandler"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ExceptionHandlerHandler">
+	</command>
+	
+	<!-- Creation command for ExecutionEnvironment -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ExecutionEnvironmentCreateCommand"
+		name="Create a new ExecutionEnvironment" description="Create a new ExecutionEnvironment"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ExecutionEnvironmentHandler">
+	</command>
+	
+	<!-- Creation command for ExecutionEvent -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ExecutionEventCreateCommand"
+		name="Create a new ExecutionEvent" description="Create a new ExecutionEvent"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ExecutionEventHandler">
+	</command>
+	
+	<!-- Creation command for ExecutionOccurrenceSpecification -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ExecutionOccurrenceSpecificationCreateCommand"
+		name="Create a new ExecutionOccurrenceSpecification" description="Create a new ExecutionOccurrenceSpecification"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ExecutionOccurrenceSpecificationHandler">
+	</command>
+	
+	<!-- Creation command for ExpansionNode -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ExpansionNodeCreateCommand"
+		name="Create a new ExpansionNode" description="Create a new ExpansionNode"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ExpansionNodeHandler">
+	</command>
+	
+	<!-- Creation command for ExpansionRegion -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ExpansionRegionCreateCommand"
+		name="Create a new ExpansionRegion" description="Create a new ExpansionRegion"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ExpansionRegionHandler">
+	</command>
+	
+	<!-- Creation command for Expression -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ExpressionCreateCommand"
+		name="Create a new Expression" description="Create a new Expression"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ExpressionHandler">
+	</command>
+	
+	<!-- Creation command for Extend -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ExtendCreateCommand"
+		name="Create a new Extend" description="Create a new Extend"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ExtendHandler">
+	</command>
+	
+	<!-- Creation command for Extension -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ExtensionCreateCommand"
+		name="Create a new Extension" description="Create a new Extension"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ExtensionHandler">
+	</command>
+	
+	<!-- Creation command for ExtensionEnd -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ExtensionEndCreateCommand"
+		name="Create a new ExtensionEnd" description="Create a new ExtensionEnd"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ExtensionEndHandler">
+	</command>
+	
+	<!-- Creation command for ExtensionPoint -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ExtensionPointCreateCommand"
+		name="Create a new ExtensionPoint" description="Create a new ExtensionPoint"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ExtensionPointHandler">
+	</command>
+	
+	<!-- Creation command for FinalState -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.FinalStateCreateCommand"
+		name="Create a new FinalState" description="Create a new FinalState"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.FinalStateHandler">
+	</command>
+	
+	<!-- Creation command for FlowFinalNode -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.FlowFinalNodeCreateCommand"
+		name="Create a new FlowFinalNode" description="Create a new FlowFinalNode"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.FlowFinalNodeHandler">
+	</command>
+	
+	<!-- Creation command for ForkNode -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ForkNodeCreateCommand"
+		name="Create a new ForkNode" description="Create a new ForkNode"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ForkNodeHandler">
+	</command>
+	
+	<!-- Creation command for FunctionBehavior -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.FunctionBehaviorCreateCommand"
+		name="Create a new FunctionBehavior" description="Create a new FunctionBehavior"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.FunctionBehaviorHandler">
+	</command>
+	
+	<!-- Creation command for Gate -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.GateCreateCommand"
+		name="Create a new Gate" description="Create a new Gate"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.GateHandler">
+	</command>
+	
+	<!-- Creation command for Generalization -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.GeneralizationCreateCommand"
+		name="Create a new Generalization" description="Create a new Generalization"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.GeneralizationHandler">
+	</command>
+	
+	<!-- Creation command for GeneralizationSet -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.GeneralizationSetCreateCommand"
+		name="Create a new GeneralizationSet" description="Create a new GeneralizationSet"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.GeneralizationSetHandler">
+	</command>
+	
+	<!-- Creation command for GeneralOrdering -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.GeneralOrderingCreateCommand"
+		name="Create a new GeneralOrdering" description="Create a new GeneralOrdering"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.GeneralOrderingHandler">
+	</command>
+	
+	<!-- Creation command for Image -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ImageCreateCommand"
+		name="Create a new Image" description="Create a new Image"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ImageHandler">
+	</command>
+	
+	<!-- Creation command for Include -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.IncludeCreateCommand"
+		name="Create a new Include" description="Create a new Include"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.IncludeHandler">
+	</command>
+	
+	<!-- Creation command for InformationFlow -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.InformationFlowCreateCommand"
+		name="Create a new InformationFlow" description="Create a new InformationFlow"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.InformationFlowHandler">
+	</command>
+	
+	<!-- Creation command for InformationItem -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.InformationItemCreateCommand"
+		name="Create a new InformationItem" description="Create a new InformationItem"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.InformationItemHandler">
+	</command>
+	
+	<!-- Creation command for InitialNode -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.InitialNodeCreateCommand"
+		name="Create a new InitialNode" description="Create a new InitialNode"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.InitialNodeHandler">
+	</command>
+	
+	<!-- Creation command for InputPin -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.InputPinCreateCommand"
+		name="Create a new InputPin" description="Create a new InputPin"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.InputPinHandler">
+	</command>
+	
+	<!-- Creation command for InstanceSpecification -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.InstanceSpecificationCreateCommand"
+		name="Create a new InstanceSpecification" description="Create a new InstanceSpecification"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.InstanceSpecificationHandler">
+	</command>
+	
+	<!-- Creation command for InstanceValue -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.InstanceValueCreateCommand"
+		name="Create a new InstanceValue" description="Create a new InstanceValue"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.InstanceValueHandler">
+	</command>
+	
+	<!-- Creation command for Interaction -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.InteractionCreateCommand"
+		name="Create a new Interaction" description="Create a new Interaction"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.InteractionHandler">
+	</command>
+	
+	<!-- Creation command for InteractionConstraint -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.InteractionConstraintCreateCommand"
+		name="Create a new InteractionConstraint" description="Create a new InteractionConstraint"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.InteractionConstraintHandler">
+	</command>
+	
+	<!-- Creation command for InteractionOperand -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.InteractionOperandCreateCommand"
+		name="Create a new InteractionOperand" description="Create a new InteractionOperand"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.InteractionOperandHandler">
+	</command>
+	
+	<!-- Creation command for InteractionUse -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.InteractionUseCreateCommand"
+		name="Create a new InteractionUse" description="Create a new InteractionUse"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.InteractionUseHandler">
+	</command>
+	
+	<!-- Creation command for Interface -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.InterfaceCreateCommand"
+		name="Create a new Interface" description="Create a new Interface"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.InterfaceHandler">
+	</command>
+	
+	<!-- Creation command for InterfaceRealization -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.InterfaceRealizationCreateCommand"
+		name="Create a new InterfaceRealization" description="Create a new InterfaceRealization"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.InterfaceRealizationHandler">
+	</command>
+	
+	<!-- Creation command for InterruptibleActivityRegion -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.InterruptibleActivityRegionCreateCommand"
+		name="Create a new InterruptibleActivityRegion" description="Create a new InterruptibleActivityRegion"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.InterruptibleActivityRegionHandler">
+	</command>
+	
+	<!-- Creation command for Interval -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.IntervalCreateCommand"
+		name="Create a new Interval" description="Create a new Interval"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.IntervalHandler">
+	</command>
+	
+	<!-- Creation command for IntervalConstraint -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.IntervalConstraintCreateCommand"
+		name="Create a new IntervalConstraint" description="Create a new IntervalConstraint"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.IntervalConstraintHandler">
+	</command>
+	
+	<!-- Creation command for JoinNode -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.JoinNodeCreateCommand"
+		name="Create a new JoinNode" description="Create a new JoinNode"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.JoinNodeHandler">
+	</command>
+	
+	<!-- Creation command for Lifeline -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.LifelineCreateCommand"
+		name="Create a new Lifeline" description="Create a new Lifeline"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.LifelineHandler">
+	</command>
+	
+	<!-- Creation command for LinkEndCreationData -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.LinkEndCreationDataCreateCommand"
+		name="Create a new LinkEndCreationData" description="Create a new LinkEndCreationData"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.LinkEndCreationDataHandler">
+	</command>
+	
+	<!-- Creation command for LinkEndData -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.LinkEndDataCreateCommand"
+		name="Create a new LinkEndData" description="Create a new LinkEndData"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.LinkEndDataHandler">
+	</command>
+	
+	<!-- Creation command for LinkEndDestructionData -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.LinkEndDestructionDataCreateCommand"
+		name="Create a new LinkEndDestructionData" description="Create a new LinkEndDestructionData"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.LinkEndDestructionDataHandler">
+	</command>
+	
+	<!-- Creation command for LiteralBoolean -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.LiteralBooleanCreateCommand"
+		name="Create a new LiteralBoolean" description="Create a new LiteralBoolean"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.LiteralBooleanHandler">
+	</command>
+	
+	<!-- Creation command for LiteralInteger -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.LiteralIntegerCreateCommand"
+		name="Create a new LiteralInteger" description="Create a new LiteralInteger"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.LiteralIntegerHandler">
+	</command>
+	
+	<!-- Creation command for LiteralNull -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.LiteralNullCreateCommand"
+		name="Create a new LiteralNull" description="Create a new LiteralNull"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.LiteralNullHandler">
+	</command>
+	
+	<!-- Creation command for LiteralString -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.LiteralStringCreateCommand"
+		name="Create a new LiteralString" description="Create a new LiteralString"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.LiteralStringHandler">
+	</command>
+	
+	<!-- Creation command for LiteralUnlimitedNatural -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.LiteralUnlimitedNaturalCreateCommand"
+		name="Create a new LiteralUnlimitedNatural" description="Create a new LiteralUnlimitedNatural"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.LiteralUnlimitedNaturalHandler">
+	</command>
+	
+	<!-- Creation command for LoopNode -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.LoopNodeCreateCommand"
+		name="Create a new LoopNode" description="Create a new LoopNode"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.LoopNodeHandler">
+	</command>
+	
+	<!-- Creation command for Manifestation -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ManifestationCreateCommand"
+		name="Create a new Manifestation" description="Create a new Manifestation"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ManifestationHandler">
+	</command>
+	
+	<!-- Creation command for MergeNode -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.MergeNodeCreateCommand"
+		name="Create a new MergeNode" description="Create a new MergeNode"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.MergeNodeHandler">
+	</command>
+	
+	<!-- Creation command for Message -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.MessageCreateCommand"
+		name="Create a new Message" description="Create a new Message"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.MessageHandler">
+	</command>
+	
+	<!-- Creation command for MessageOccurrenceSpecification -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.MessageOccurrenceSpecificationCreateCommand"
+		name="Create a new MessageOccurrenceSpecification" description="Create a new MessageOccurrenceSpecification"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.MessageOccurrenceSpecificationHandler">
+	</command>
+	
+	<!-- Creation command for Model -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ModelCreateCommand"
+		name="Create a new Model" description="Create a new Model"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ModelHandler">
+	</command>
+	
+	<!-- Creation command for Node -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.NodeCreateCommand"
+		name="Create a new Node" description="Create a new Node"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.NodeHandler">
+	</command>
+	
+	<!-- Creation command for ObjectFlow -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ObjectFlowCreateCommand"
+		name="Create a new ObjectFlow" description="Create a new ObjectFlow"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ObjectFlowHandler">
+	</command>
+	
+	<!-- Creation command for OccurrenceSpecification -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.OccurrenceSpecificationCreateCommand"
+		name="Create a new OccurrenceSpecification" description="Create a new OccurrenceSpecification"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.OccurrenceSpecificationHandler">
+	</command>
+	
+	<!-- Creation command for OpaqueAction -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.OpaqueActionCreateCommand"
+		name="Create a new OpaqueAction" description="Create a new OpaqueAction"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.OpaqueActionHandler">
+	</command>
+	
+	<!-- Creation command for OpaqueBehavior -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.OpaqueBehaviorCreateCommand"
+		name="Create a new OpaqueBehavior" description="Create a new OpaqueBehavior"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.OpaqueBehaviorHandler">
+	</command>
+	
+	<!-- Creation command for OpaqueExpression -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.OpaqueExpressionCreateCommand"
+		name="Create a new OpaqueExpression" description="Create a new OpaqueExpression"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.OpaqueExpressionHandler">
+	</command>
+	
+	<!-- Creation command for Operation -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.OperationCreateCommand"
+		name="Create a new Operation" description="Create a new Operation"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.OperationHandler">
+	</command>
+	
+	<!-- Creation command for OperationTemplateParameter -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.OperationTemplateParameterCreateCommand"
+		name="Create a new OperationTemplateParameter" description="Create a new OperationTemplateParameter"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.OperationTemplateParameterHandler">
+	</command>
+	
+	<!-- Creation command for OutputPin -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.OutputPinCreateCommand"
+		name="Create a new OutputPin" description="Create a new OutputPin"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.OutputPinHandler">
+	</command>
+	
+	<!-- Creation command for Package -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.PackageCreateCommand"
+		name="Create a new Package" description="Create a new Package"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.PackageHandler">
+	</command>
+	
+	<!-- Creation command for PackageImport -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.PackageImportCreateCommand"
+		name="Create a new PackageImport" description="Create a new PackageImport"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.PackageImportHandler">
+	</command>
+	
+	<!-- Creation command for PackageMerge -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.PackageMergeCreateCommand"
+		name="Create a new PackageMerge" description="Create a new PackageMerge"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.PackageMergeHandler">
+	</command>
+	
+	<!-- Creation command for Parameter -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ParameterCreateCommand"
+		name="Create a new Parameter" description="Create a new Parameter"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ParameterHandler">
+	</command>
+	
+	<!-- Creation command for ParameterSet -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ParameterSetCreateCommand"
+		name="Create a new ParameterSet" description="Create a new ParameterSet"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ParameterSetHandler">
+	</command>
+	
+	<!-- Creation command for PartDecomposition -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.PartDecompositionCreateCommand"
+		name="Create a new PartDecomposition" description="Create a new PartDecomposition"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.PartDecompositionHandler">
+	</command>
+	
+	<!-- Creation command for Pin -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.PinCreateCommand"
+		name="Create a new Pin" description="Create a new Pin"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.PinHandler">
+	</command>
+	
+	<!-- Creation command for Port -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.PortCreateCommand"
+		name="Create a new Port" description="Create a new Port"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.PortHandler">
+	</command>
+	
+	<!-- Creation command for PrimitiveType -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.PrimitiveTypeCreateCommand"
+		name="Create a new PrimitiveType" description="Create a new PrimitiveType"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.PrimitiveTypeHandler">
+	</command>
+	
+	<!-- Creation command for Profile -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ProfileCreateCommand"
+		name="Create a new Profile" description="Create a new Profile"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ProfileHandler">
+	</command>
+	
+	<!-- Creation command for ProfileApplication -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ProfileApplicationCreateCommand"
+		name="Create a new ProfileApplication" description="Create a new ProfileApplication"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ProfileApplicationHandler">
+	</command>
+	
+	<!-- Creation command for Property -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.PropertyCreateCommand"
+		name="Create a new Property" description="Create a new Property"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.PropertyHandler">
+	</command>
+	
+	<!-- Creation command for ProtocolConformance -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ProtocolConformanceCreateCommand"
+		name="Create a new ProtocolConformance" description="Create a new ProtocolConformance"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ProtocolConformanceHandler">
+	</command>
+	
+	<!-- Creation command for ProtocolStateMachine -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ProtocolStateMachineCreateCommand"
+		name="Create a new ProtocolStateMachine" description="Create a new ProtocolStateMachine"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ProtocolStateMachineHandler">
+	</command>
+	
+	<!-- Creation command for ProtocolTransition -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ProtocolTransitionCreateCommand"
+		name="Create a new ProtocolTransition" description="Create a new ProtocolTransition"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ProtocolTransitionHandler">
+	</command>
+	
+	<!-- Creation command for Pseudostate -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.PseudostateCreateCommand"
+		name="Create a new Pseudostate" description="Create a new Pseudostate"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.PseudostateHandler">
+	</command>
+	
+	<!-- Creation command for QualifierValue -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.QualifierValueCreateCommand"
+		name="Create a new QualifierValue" description="Create a new QualifierValue"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.QualifierValueHandler">
+	</command>
+	
+	<!-- Creation command for RaiseExceptionAction -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.RaiseExceptionActionCreateCommand"
+		name="Create a new RaiseExceptionAction" description="Create a new RaiseExceptionAction"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.RaiseExceptionActionHandler">
+	</command>
+	
+	<!-- Creation command for ReadExtentAction -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ReadExtentActionCreateCommand"
+		name="Create a new ReadExtentAction" description="Create a new ReadExtentAction"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ReadExtentActionHandler">
+	</command>
+	
+	<!-- Creation command for ReadIsClassifiedObjectAction -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ReadIsClassifiedObjectActionCreateCommand"
+		name="Create a new ReadIsClassifiedObjectAction" description="Create a new ReadIsClassifiedObjectAction"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ReadIsClassifiedObjectActionHandler">
+	</command>
+	
+	<!-- Creation command for ReadLinkAction -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ReadLinkActionCreateCommand"
+		name="Create a new ReadLinkAction" description="Create a new ReadLinkAction"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ReadLinkActionHandler">
+	</command>
+	
+	<!-- Creation command for ReadLinkObjectEndAction -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ReadLinkObjectEndActionCreateCommand"
+		name="Create a new ReadLinkObjectEndAction" description="Create a new ReadLinkObjectEndAction"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ReadLinkObjectEndActionHandler">
+	</command>
+	
+	<!-- Creation command for ReadLinkObjectEndQualifierAction -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ReadLinkObjectEndQualifierActionCreateCommand"
+		name="Create a new ReadLinkObjectEndQualifierAction" description="Create a new ReadLinkObjectEndQualifierAction"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ReadLinkObjectEndQualifierActionHandler">
+	</command>
+	
+	<!-- Creation command for ReadSelfAction -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ReadSelfActionCreateCommand"
+		name="Create a new ReadSelfAction" description="Create a new ReadSelfAction"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ReadSelfActionHandler">
+	</command>
+	
+	<!-- Creation command for ReadStructuralFeatureAction -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ReadStructuralFeatureActionCreateCommand"
+		name="Create a new ReadStructuralFeatureAction" description="Create a new ReadStructuralFeatureAction"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ReadStructuralFeatureActionHandler">
+	</command>
+	
+	<!-- Creation command for ReadVariableAction -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ReadVariableActionCreateCommand"
+		name="Create a new ReadVariableAction" description="Create a new ReadVariableAction"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ReadVariableActionHandler">
+	</command>
+	
+	<!-- Creation command for Realization -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.RealizationCreateCommand"
+		name="Create a new Realization" description="Create a new Realization"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.RealizationHandler">
+	</command>
+	
+	<!-- Creation command for ReceiveOperationEvent -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ReceiveOperationEventCreateCommand"
+		name="Create a new ReceiveOperationEvent" description="Create a new ReceiveOperationEvent"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ReceiveOperationEventHandler">
+	</command>
+	
+	<!-- Creation command for ReceiveSignalEvent -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ReceiveSignalEventCreateCommand"
+		name="Create a new ReceiveSignalEvent" description="Create a new ReceiveSignalEvent"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ReceiveSignalEventHandler">
+	</command>
+	
+	<!-- Creation command for Reception -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ReceptionCreateCommand"
+		name="Create a new Reception" description="Create a new Reception"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ReceptionHandler">
+	</command>
+	
+	<!-- Creation command for ReclassifyObjectAction -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ReclassifyObjectActionCreateCommand"
+		name="Create a new ReclassifyObjectAction" description="Create a new ReclassifyObjectAction"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ReclassifyObjectActionHandler">
+	</command>
+	
+	<!-- Creation command for RedefinableTemplateSignature -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.RedefinableTemplateSignatureCreateCommand"
+		name="Create a new RedefinableTemplateSignature" description="Create a new RedefinableTemplateSignature"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.RedefinableTemplateSignatureHandler">
+	</command>
+	
+	<!-- Creation command for ReduceAction -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ReduceActionCreateCommand"
+		name="Create a new ReduceAction" description="Create a new ReduceAction"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ReduceActionHandler">
+	</command>
+	
+	<!-- Creation command for Region -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.RegionCreateCommand"
+		name="Create a new Region" description="Create a new Region"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.RegionHandler">
+	</command>
+	
+	<!-- Creation command for RemoveStructuralFeatureValueAction -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.RemoveStructuralFeatureValueActionCreateCommand"
+		name="Create a new RemoveStructuralFeatureValueAction" description="Create a new RemoveStructuralFeatureValueAction"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.RemoveStructuralFeatureValueActionHandler">
+	</command>
+	
+	<!-- Creation command for RemoveVariableValueAction -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.RemoveVariableValueActionCreateCommand"
+		name="Create a new RemoveVariableValueAction" description="Create a new RemoveVariableValueAction"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.RemoveVariableValueActionHandler">
+	</command>
+	
+	<!-- Creation command for ReplyAction -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ReplyActionCreateCommand"
+		name="Create a new ReplyAction" description="Create a new ReplyAction"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ReplyActionHandler">
+	</command>
+	
+	<!-- Creation command for SendObjectAction -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.SendObjectActionCreateCommand"
+		name="Create a new SendObjectAction" description="Create a new SendObjectAction"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.SendObjectActionHandler">
+	</command>
+	
+	<!-- Creation command for SendOperationEvent -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.SendOperationEventCreateCommand"
+		name="Create a new SendOperationEvent" description="Create a new SendOperationEvent"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.SendOperationEventHandler">
+	</command>
+	
+	<!-- Creation command for SendSignalAction -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.SendSignalActionCreateCommand"
+		name="Create a new SendSignalAction" description="Create a new SendSignalAction"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.SendSignalActionHandler">
+	</command>
+	
+	<!-- Creation command for SendSignalEvent -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.SendSignalEventCreateCommand"
+		name="Create a new SendSignalEvent" description="Create a new SendSignalEvent"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.SendSignalEventHandler">
+	</command>
+	
+	<!-- Creation command for SequenceNode -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.SequenceNodeCreateCommand"
+		name="Create a new SequenceNode" description="Create a new SequenceNode"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.SequenceNodeHandler">
+	</command>
+	
+	<!-- Creation command for Signal -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.SignalCreateCommand"
+		name="Create a new Signal" description="Create a new Signal"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.SignalHandler">
+	</command>
+	
+	<!-- Creation command for SignalEvent -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.SignalEventCreateCommand"
+		name="Create a new SignalEvent" description="Create a new SignalEvent"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.SignalEventHandler">
+	</command>
+	
+	<!-- Creation command for Slot -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.SlotCreateCommand"
+		name="Create a new Slot" description="Create a new Slot"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.SlotHandler">
+	</command>
+	
+	<!-- Creation command for StartClassifierBehaviorAction -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.StartClassifierBehaviorActionCreateCommand"
+		name="Create a new StartClassifierBehaviorAction" description="Create a new StartClassifierBehaviorAction"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.StartClassifierBehaviorActionHandler">
+	</command>
+	
+	<!-- Creation command for StartObjectBehaviorAction -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.StartObjectBehaviorActionCreateCommand"
+		name="Create a new StartObjectBehaviorAction" description="Create a new StartObjectBehaviorAction"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.StartObjectBehaviorActionHandler">
+	</command>
+	
+	<!-- Creation command for State -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.StateCreateCommand"
+		name="Create a new State" description="Create a new State"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.StateHandler">
+	</command>
+	
+	<!-- Creation command for StateInvariant -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.StateInvariantCreateCommand"
+		name="Create a new StateInvariant" description="Create a new StateInvariant"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.StateInvariantHandler">
+	</command>
+	
+	<!-- Creation command for StateMachine -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.StateMachineCreateCommand"
+		name="Create a new StateMachine" description="Create a new StateMachine"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.StateMachineHandler">
+	</command>
+	
+	<!-- Creation command for Stereotype -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.StereotypeCreateCommand"
+		name="Create a new Stereotype" description="Create a new Stereotype"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.StereotypeHandler">
+	</command>
+	
+	<!-- Creation command for StringExpression -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.StringExpressionCreateCommand"
+		name="Create a new StringExpression" description="Create a new StringExpression"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.StringExpressionHandler">
+	</command>
+	
+	<!-- Creation command for StructuredActivityNode -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.StructuredActivityNodeCreateCommand"
+		name="Create a new StructuredActivityNode" description="Create a new StructuredActivityNode"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.StructuredActivityNodeHandler">
+	</command>
+	
+	<!-- Creation command for Substitution -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.SubstitutionCreateCommand"
+		name="Create a new Substitution" description="Create a new Substitution"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.SubstitutionHandler">
+	</command>
+	
+	<!-- Creation command for TemplateBinding -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.TemplateBindingCreateCommand"
+		name="Create a new TemplateBinding" description="Create a new TemplateBinding"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.TemplateBindingHandler">
+	</command>
+	
+	<!-- Creation command for TemplateParameter -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.TemplateParameterCreateCommand"
+		name="Create a new TemplateParameter" description="Create a new TemplateParameter"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.TemplateParameterHandler">
+	</command>
+	
+	<!-- Creation command for TemplateParameterSubstitution -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.TemplateParameterSubstitutionCreateCommand"
+		name="Create a new TemplateParameterSubstitution" description="Create a new TemplateParameterSubstitution"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.TemplateParameterSubstitutionHandler">
+	</command>
+	
+	<!-- Creation command for TemplateSignature -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.TemplateSignatureCreateCommand"
+		name="Create a new TemplateSignature" description="Create a new TemplateSignature"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.TemplateSignatureHandler">
+	</command>
+	
+	<!-- Creation command for TestIdentityAction -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.TestIdentityActionCreateCommand"
+		name="Create a new TestIdentityAction" description="Create a new TestIdentityAction"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.TestIdentityActionHandler">
+	</command>
+	
+	<!-- Creation command for TimeConstraint -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.TimeConstraintCreateCommand"
+		name="Create a new TimeConstraint" description="Create a new TimeConstraint"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.TimeConstraintHandler">
+	</command>
+	
+	<!-- Creation command for TimeEvent -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.TimeEventCreateCommand"
+		name="Create a new TimeEvent" description="Create a new TimeEvent"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.TimeEventHandler">
+	</command>
+	
+	<!-- Creation command for TimeExpression -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.TimeExpressionCreateCommand"
+		name="Create a new TimeExpression" description="Create a new TimeExpression"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.TimeExpressionHandler">
+	</command>
+	
+	<!-- Creation command for TimeInterval -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.TimeIntervalCreateCommand"
+		name="Create a new TimeInterval" description="Create a new TimeInterval"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.TimeIntervalHandler">
+	</command>
+	
+	<!-- Creation command for TimeObservation -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.TimeObservationCreateCommand"
+		name="Create a new TimeObservation" description="Create a new TimeObservation"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.TimeObservationHandler">
+	</command>
+	
+	<!-- Creation command for Transition -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.TransitionCreateCommand"
+		name="Create a new Transition" description="Create a new Transition"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.TransitionHandler">
+	</command>
+	
+	<!-- Creation command for Trigger -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.TriggerCreateCommand"
+		name="Create a new Trigger" description="Create a new Trigger"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.TriggerHandler">
+	</command>
+	
+	<!-- Creation command for UnmarshallAction -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.UnmarshallActionCreateCommand"
+		name="Create a new UnmarshallAction" description="Create a new UnmarshallAction"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.UnmarshallActionHandler">
+	</command>
+	
+	<!-- Creation command for Usage -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.UsageCreateCommand"
+		name="Create a new Usage" description="Create a new Usage"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.UsageHandler">
+	</command>
+	
+	<!-- Creation command for UseCase -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.UseCaseCreateCommand"
+		name="Create a new UseCase" description="Create a new UseCase"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.UseCaseHandler">
+	</command>
+	
+	<!-- Creation command for ValuePin -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ValuePinCreateCommand"
+		name="Create a new ValuePin" description="Create a new ValuePin"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ValuePinHandler">
+	</command>
+	
+	<!-- Creation command for ValueSpecificationAction -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.ValueSpecificationActionCreateCommand"
+		name="Create a new ValueSpecificationAction" description="Create a new ValueSpecificationAction"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.ValueSpecificationActionHandler">
+	</command>
+	
+	<!-- Creation command for Variable -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.VariableCreateCommand"
+		name="Create a new Variable" description="Create a new Variable"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.VariableHandler">
+	</command>
+	
+</extension>
+
+	
+<!-- UI Menu declaration for creation commands -->
+<extension point="org.eclipse.ui.menus">
+
+	<menuContribution locationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.createchild"
+		allPopups="false">
+	
+		<!-- Creation menu action for Abstraction -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.AbstractionCreateCommand"
+			label="Create a new Abstraction" tooltip="Create a new Abstraction" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Abstraction.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for AcceptCallAction -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.AcceptCallActionCreateCommand"
+			label="Create a new AcceptCallAction" tooltip="Create a new AcceptCallAction" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AcceptCallAction.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for AcceptEventAction -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.AcceptEventActionCreateCommand"
+			label="Create a new AcceptEventAction" tooltip="Create a new AcceptEventAction" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AcceptEventAction.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for ActionExecutionSpecification -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ActionExecutionSpecificationCreateCommand"
+			label="Create a new ActionExecutionSpecification" tooltip="Create a new ActionExecutionSpecification" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActionExecutionSpecification.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for ActionInputPin -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ActionInputPinCreateCommand"
+			label="Create a new ActionInputPin" tooltip="Create a new ActionInputPin" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActionInputPin.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Activity -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ActivityCreateCommand"
+			label="Create a new Activity" tooltip="Create a new Activity" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Activity.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for ActivityFinalNode -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ActivityFinalNodeCreateCommand"
+			label="Create a new ActivityFinalNode" tooltip="Create a new ActivityFinalNode" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActivityFinalNode.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for ActivityParameterNode -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ActivityParameterNodeCreateCommand"
+			label="Create a new ActivityParameterNode" tooltip="Create a new ActivityParameterNode" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActivityParameterNode.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for ActivityPartition -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ActivityPartitionCreateCommand"
+			label="Create a new ActivityPartition" tooltip="Create a new ActivityPartition" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActivityPartition.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Actor -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ActorCreateCommand"
+			label="Create a new Actor" tooltip="Create a new Actor" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Actor.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for AddStructuralFeatureValueAction -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.AddStructuralFeatureValueActionCreateCommand"
+			label="Create a new AddStructuralFeatureValueAction" tooltip="Create a new AddStructuralFeatureValueAction" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AddStructuralFeatureValueAction.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for AddVariableValueAction -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.AddVariableValueActionCreateCommand"
+			label="Create a new AddVariableValueAction" tooltip="Create a new AddVariableValueAction" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AddVariableValueAction.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for AnyReceiveEvent -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.AnyReceiveEventCreateCommand"
+			label="Create a new AnyReceiveEvent" tooltip="Create a new AnyReceiveEvent" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AnyReceiveEvent.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Artifact -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ArtifactCreateCommand"
+			label="Create a new Artifact" tooltip="Create a new Artifact" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Artifact.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Association -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.AssociationCreateCommand"
+			label="Create a new Association" tooltip="Create a new Association" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for AssociationClass -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.AssociationClassCreateCommand"
+			label="Create a new AssociationClass" tooltip="Create a new AssociationClass" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AssociationClass.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for BehaviorExecutionSpecification -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.BehaviorExecutionSpecificationCreateCommand"
+			label="Create a new BehaviorExecutionSpecification" tooltip="Create a new BehaviorExecutionSpecification" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/BehaviorExecutionSpecification.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for BroadcastSignalAction -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.BroadcastSignalActionCreateCommand"
+			label="Create a new BroadcastSignalAction" tooltip="Create a new BroadcastSignalAction" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/BroadcastSignalAction.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for CallBehaviorAction -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.CallBehaviorActionCreateCommand"
+			label="Create a new CallBehaviorAction" tooltip="Create a new CallBehaviorAction" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CallBehaviorAction.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for CallEvent -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.CallEventCreateCommand"
+			label="Create a new CallEvent" tooltip="Create a new CallEvent" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CallEvent.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for CallOperationAction -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.CallOperationActionCreateCommand"
+			label="Create a new CallOperationAction" tooltip="Create a new CallOperationAction" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CallOperationAction.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for CentralBufferNode -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.CentralBufferNodeCreateCommand"
+			label="Create a new CentralBufferNode" tooltip="Create a new CentralBufferNode" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CentralBufferNode.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for ChangeEvent -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ChangeEventCreateCommand"
+			label="Create a new ChangeEvent" tooltip="Create a new ChangeEvent" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ChangeEvent.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Class -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ClassCreateCommand"
+			label="Create a new Class" tooltip="Create a new Class" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for ClassifierTemplateParameter -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ClassifierTemplateParameterCreateCommand"
+			label="Create a new ClassifierTemplateParameter" tooltip="Create a new ClassifierTemplateParameter" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ClassifierTemplateParameter.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Clause -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ClauseCreateCommand"
+			label="Create a new Clause" tooltip="Create a new Clause" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Clause.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for ClearAssociationAction -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ClearAssociationActionCreateCommand"
+			label="Create a new ClearAssociationAction" tooltip="Create a new ClearAssociationAction" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ClearAssociationAction.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for ClearStructuralFeatureAction -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ClearStructuralFeatureActionCreateCommand"
+			label="Create a new ClearStructuralFeatureAction" tooltip="Create a new ClearStructuralFeatureAction" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ClearStructuralFeatureAction.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for ClearVariableAction -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ClearVariableActionCreateCommand"
+			label="Create a new ClearVariableAction" tooltip="Create a new ClearVariableAction" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ClearVariableAction.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Collaboration -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.CollaborationCreateCommand"
+			label="Create a new Collaboration" tooltip="Create a new Collaboration" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Collaboration.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for CollaborationUse -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.CollaborationUseCreateCommand"
+			label="Create a new CollaborationUse" tooltip="Create a new CollaborationUse" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CollaborationUse.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for CombinedFragment -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.CombinedFragmentCreateCommand"
+			label="Create a new CombinedFragment" tooltip="Create a new CombinedFragment" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CombinedFragment.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Comment -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.CommentCreateCommand"
+			label="Create a new Comment" tooltip="Create a new Comment" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for CommunicationPath -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.CommunicationPathCreateCommand"
+			label="Create a new CommunicationPath" tooltip="Create a new CommunicationPath" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CommunicationPath.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Component -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ComponentCreateCommand"
+			label="Create a new Component" tooltip="Create a new Component" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Component.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for ComponentRealization -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ComponentRealizationCreateCommand"
+			label="Create a new ComponentRealization" tooltip="Create a new ComponentRealization" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ComponentRealization.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for ConditionalNode -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ConditionalNodeCreateCommand"
+			label="Create a new ConditionalNode" tooltip="Create a new ConditionalNode" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConditionalNode.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for ConnectableElementTemplateParameter -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ConnectableElementTemplateParameterCreateCommand"
+			label="Create a new ConnectableElementTemplateParameter" tooltip="Create a new ConnectableElementTemplateParameter" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConnectableElementTemplateParameter.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for ConnectionPointReference -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ConnectionPointReferenceCreateCommand"
+			label="Create a new ConnectionPointReference" tooltip="Create a new ConnectionPointReference" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConnectionPointReference.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Connector -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ConnectorCreateCommand"
+			label="Create a new Connector" tooltip="Create a new Connector" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Connector.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for ConnectorEnd -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ConnectorEndCreateCommand"
+			label="Create a new ConnectorEnd" tooltip="Create a new ConnectorEnd" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConnectorEnd.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for ConsiderIgnoreFragment -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ConsiderIgnoreFragmentCreateCommand"
+			label="Create a new ConsiderIgnoreFragment" tooltip="Create a new ConsiderIgnoreFragment" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConsiderIgnoreFragment.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Constraint -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ConstraintCreateCommand"
+			label="Create a new Constraint" tooltip="Create a new Constraint" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Continuation -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ContinuationCreateCommand"
+			label="Create a new Continuation" tooltip="Create a new Continuation" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Continuation.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for ControlFlow -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ControlFlowCreateCommand"
+			label="Create a new ControlFlow" tooltip="Create a new ControlFlow" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ControlFlow.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for CreateLinkAction -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.CreateLinkActionCreateCommand"
+			label="Create a new CreateLinkAction" tooltip="Create a new CreateLinkAction" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CreateLinkAction.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for CreateLinkObjectAction -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.CreateLinkObjectActionCreateCommand"
+			label="Create a new CreateLinkObjectAction" tooltip="Create a new CreateLinkObjectAction" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CreateLinkObjectAction.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for CreateObjectAction -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.CreateObjectActionCreateCommand"
+			label="Create a new CreateObjectAction" tooltip="Create a new CreateObjectAction" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CreateObjectAction.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for CreationEvent -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.CreationEventCreateCommand"
+			label="Create a new CreationEvent" tooltip="Create a new CreationEvent" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CreationEvent.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for DataStoreNode -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.DataStoreNodeCreateCommand"
+			label="Create a new DataStoreNode" tooltip="Create a new DataStoreNode" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DataStoreNode.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for DataType -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.DataTypeCreateCommand"
+			label="Create a new DataType" tooltip="Create a new DataType" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DataType.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for DecisionNode -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.DecisionNodeCreateCommand"
+			label="Create a new DecisionNode" tooltip="Create a new DecisionNode" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DecisionNode.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Dependency -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.DependencyCreateCommand"
+			label="Create a new Dependency" tooltip="Create a new Dependency" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Deployment -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.DeploymentCreateCommand"
+			label="Create a new Deployment" tooltip="Create a new Deployment" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Deployment.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for DeploymentSpecification -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.DeploymentSpecificationCreateCommand"
+			label="Create a new DeploymentSpecification" tooltip="Create a new DeploymentSpecification" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DeploymentSpecification.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for DestroyLinkAction -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.DestroyLinkActionCreateCommand"
+			label="Create a new DestroyLinkAction" tooltip="Create a new DestroyLinkAction" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DestroyLinkAction.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for DestroyObjectAction -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.DestroyObjectActionCreateCommand"
+			label="Create a new DestroyObjectAction" tooltip="Create a new DestroyObjectAction" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DestroyObjectAction.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for DestructionEvent -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.DestructionEventCreateCommand"
+			label="Create a new DestructionEvent" tooltip="Create a new DestructionEvent" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DestructionEvent.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Device -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.DeviceCreateCommand"
+			label="Create a new Device" tooltip="Create a new Device" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Device.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Duration -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.DurationCreateCommand"
+			label="Create a new Duration" tooltip="Create a new Duration" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Duration.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for DurationConstraint -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.DurationConstraintCreateCommand"
+			label="Create a new DurationConstraint" tooltip="Create a new DurationConstraint" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationConstraint.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for DurationInterval -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.DurationIntervalCreateCommand"
+			label="Create a new DurationInterval" tooltip="Create a new DurationInterval" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationInterval.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for DurationObservation -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.DurationObservationCreateCommand"
+			label="Create a new DurationObservation" tooltip="Create a new DurationObservation" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationObservation.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for ElementImport -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ElementImportCreateCommand"
+			label="Create a new ElementImport" tooltip="Create a new ElementImport" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ElementImport.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Enumeration -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.EnumerationCreateCommand"
+			label="Create a new Enumeration" tooltip="Create a new Enumeration" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Enumeration.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for EnumerationLiteral -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.EnumerationLiteralCreateCommand"
+			label="Create a new EnumerationLiteral" tooltip="Create a new EnumerationLiteral" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/EnumerationLiteral.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for ExceptionHandler -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ExceptionHandlerCreateCommand"
+			label="Create a new ExceptionHandler" tooltip="Create a new ExceptionHandler" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExceptionHandler.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for ExecutionEnvironment -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ExecutionEnvironmentCreateCommand"
+			label="Create a new ExecutionEnvironment" tooltip="Create a new ExecutionEnvironment" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExecutionEnvironment.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for ExecutionEvent -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ExecutionEventCreateCommand"
+			label="Create a new ExecutionEvent" tooltip="Create a new ExecutionEvent" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExecutionEvent.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for ExecutionOccurrenceSpecification -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ExecutionOccurrenceSpecificationCreateCommand"
+			label="Create a new ExecutionOccurrenceSpecification" tooltip="Create a new ExecutionOccurrenceSpecification" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExecutionOccurrenceSpecification.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for ExpansionNode -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ExpansionNodeCreateCommand"
+			label="Create a new ExpansionNode" tooltip="Create a new ExpansionNode" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExpansionNode.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for ExpansionRegion -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ExpansionRegionCreateCommand"
+			label="Create a new ExpansionRegion" tooltip="Create a new ExpansionRegion" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExpansionRegion.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Expression -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ExpressionCreateCommand"
+			label="Create a new Expression" tooltip="Create a new Expression" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Expression.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Extend -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ExtendCreateCommand"
+			label="Create a new Extend" tooltip="Create a new Extend" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Extend.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Extension -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ExtensionCreateCommand"
+			label="Create a new Extension" tooltip="Create a new Extension" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Extension.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for ExtensionEnd -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ExtensionEndCreateCommand"
+			label="Create a new ExtensionEnd" tooltip="Create a new ExtensionEnd" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExtensionEnd.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for ExtensionPoint -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ExtensionPointCreateCommand"
+			label="Create a new ExtensionPoint" tooltip="Create a new ExtensionPoint" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExtensionPoint.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for FinalState -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.FinalStateCreateCommand"
+			label="Create a new FinalState" tooltip="Create a new FinalState" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/FinalState.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for FlowFinalNode -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.FlowFinalNodeCreateCommand"
+			label="Create a new FlowFinalNode" tooltip="Create a new FlowFinalNode" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/FlowFinalNode.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for ForkNode -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ForkNodeCreateCommand"
+			label="Create a new ForkNode" tooltip="Create a new ForkNode" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ForkNode.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for FunctionBehavior -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.FunctionBehaviorCreateCommand"
+			label="Create a new FunctionBehavior" tooltip="Create a new FunctionBehavior" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/FunctionBehavior.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Gate -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.GateCreateCommand"
+			label="Create a new Gate" tooltip="Create a new Gate" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Gate.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Generalization -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.GeneralizationCreateCommand"
+			label="Create a new Generalization" tooltip="Create a new Generalization" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for GeneralizationSet -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.GeneralizationSetCreateCommand"
+			label="Create a new GeneralizationSet" tooltip="Create a new GeneralizationSet" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/GeneralizationSet.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for GeneralOrdering -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.GeneralOrderingCreateCommand"
+			label="Create a new GeneralOrdering" tooltip="Create a new GeneralOrdering" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/GeneralOrdering.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Image -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ImageCreateCommand"
+			label="Create a new Image" tooltip="Create a new Image" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Image.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Include -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.IncludeCreateCommand"
+			label="Create a new Include" tooltip="Create a new Include" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Include.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for InformationFlow -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.InformationFlowCreateCommand"
+			label="Create a new InformationFlow" tooltip="Create a new InformationFlow" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InformationFlow.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for InformationItem -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.InformationItemCreateCommand"
+			label="Create a new InformationItem" tooltip="Create a new InformationItem" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InformationItem.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for InitialNode -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.InitialNodeCreateCommand"
+			label="Create a new InitialNode" tooltip="Create a new InitialNode" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InitialNode.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for InputPin -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.InputPinCreateCommand"
+			label="Create a new InputPin" tooltip="Create a new InputPin" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InputPin.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for InstanceSpecification -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.InstanceSpecificationCreateCommand"
+			label="Create a new InstanceSpecification" tooltip="Create a new InstanceSpecification" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InstanceSpecification.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for InstanceValue -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.InstanceValueCreateCommand"
+			label="Create a new InstanceValue" tooltip="Create a new InstanceValue" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InstanceValue.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Interaction -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.InteractionCreateCommand"
+			label="Create a new Interaction" tooltip="Create a new Interaction" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interaction.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for InteractionConstraint -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.InteractionConstraintCreateCommand"
+			label="Create a new InteractionConstraint" tooltip="Create a new InteractionConstraint" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionConstraint.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for InteractionOperand -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.InteractionOperandCreateCommand"
+			label="Create a new InteractionOperand" tooltip="Create a new InteractionOperand" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionOperand.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for InteractionUse -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.InteractionUseCreateCommand"
+			label="Create a new InteractionUse" tooltip="Create a new InteractionUse" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionUse.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Interface -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.InterfaceCreateCommand"
+			label="Create a new Interface" tooltip="Create a new Interface" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interface.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for InterfaceRealization -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.InterfaceRealizationCreateCommand"
+			label="Create a new InterfaceRealization" tooltip="Create a new InterfaceRealization" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InterfaceRealization.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for InterruptibleActivityRegion -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.InterruptibleActivityRegionCreateCommand"
+			label="Create a new InterruptibleActivityRegion" tooltip="Create a new InterruptibleActivityRegion" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InterruptibleActivityRegion.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Interval -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.IntervalCreateCommand"
+			label="Create a new Interval" tooltip="Create a new Interval" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interval.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for IntervalConstraint -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.IntervalConstraintCreateCommand"
+			label="Create a new IntervalConstraint" tooltip="Create a new IntervalConstraint" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/IntervalConstraint.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for JoinNode -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.JoinNodeCreateCommand"
+			label="Create a new JoinNode" tooltip="Create a new JoinNode" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/JoinNode.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Lifeline -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.LifelineCreateCommand"
+			label="Create a new Lifeline" tooltip="Create a new Lifeline" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Lifeline.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for LinkEndCreationData -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.LinkEndCreationDataCreateCommand"
+			label="Create a new LinkEndCreationData" tooltip="Create a new LinkEndCreationData" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LinkEndCreationData.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for LinkEndData -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.LinkEndDataCreateCommand"
+			label="Create a new LinkEndData" tooltip="Create a new LinkEndData" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LinkEndData.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for LinkEndDestructionData -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.LinkEndDestructionDataCreateCommand"
+			label="Create a new LinkEndDestructionData" tooltip="Create a new LinkEndDestructionData" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LinkEndDestructionData.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for LiteralBoolean -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.LiteralBooleanCreateCommand"
+			label="Create a new LiteralBoolean" tooltip="Create a new LiteralBoolean" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LiteralBoolean.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for LiteralInteger -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.LiteralIntegerCreateCommand"
+			label="Create a new LiteralInteger" tooltip="Create a new LiteralInteger" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LiteralInteger.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for LiteralNull -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.LiteralNullCreateCommand"
+			label="Create a new LiteralNull" tooltip="Create a new LiteralNull" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LiteralNull.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for LiteralString -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.LiteralStringCreateCommand"
+			label="Create a new LiteralString" tooltip="Create a new LiteralString" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LiteralString.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for LiteralUnlimitedNatural -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.LiteralUnlimitedNaturalCreateCommand"
+			label="Create a new LiteralUnlimitedNatural" tooltip="Create a new LiteralUnlimitedNatural" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LiteralUnlimitedNatural.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for LoopNode -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.LoopNodeCreateCommand"
+			label="Create a new LoopNode" tooltip="Create a new LoopNode" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LoopNode.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Manifestation -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ManifestationCreateCommand"
+			label="Create a new Manifestation" tooltip="Create a new Manifestation" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Manifestation.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for MergeNode -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.MergeNodeCreateCommand"
+			label="Create a new MergeNode" tooltip="Create a new MergeNode" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/MergeNode.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Message -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.MessageCreateCommand"
+			label="Create a new Message" tooltip="Create a new Message" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for MessageOccurrenceSpecification -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.MessageOccurrenceSpecificationCreateCommand"
+			label="Create a new MessageOccurrenceSpecification" tooltip="Create a new MessageOccurrenceSpecification" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/MessageOccurrenceSpecification.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Model -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ModelCreateCommand"
+			label="Create a new Model" tooltip="Create a new Model" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Model.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Node -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.NodeCreateCommand"
+			label="Create a new Node" tooltip="Create a new Node" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Node.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for ObjectFlow -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ObjectFlowCreateCommand"
+			label="Create a new ObjectFlow" tooltip="Create a new ObjectFlow" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ObjectFlow.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for OccurrenceSpecification -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.OccurrenceSpecificationCreateCommand"
+			label="Create a new OccurrenceSpecification" tooltip="Create a new OccurrenceSpecification" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OccurrenceSpecification.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for OpaqueAction -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.OpaqueActionCreateCommand"
+			label="Create a new OpaqueAction" tooltip="Create a new OpaqueAction" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OpaqueAction.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for OpaqueBehavior -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.OpaqueBehaviorCreateCommand"
+			label="Create a new OpaqueBehavior" tooltip="Create a new OpaqueBehavior" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OpaqueBehavior.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for OpaqueExpression -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.OpaqueExpressionCreateCommand"
+			label="Create a new OpaqueExpression" tooltip="Create a new OpaqueExpression" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OpaqueExpression.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Operation -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.OperationCreateCommand"
+			label="Create a new Operation" tooltip="Create a new Operation" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Operation.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for OperationTemplateParameter -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.OperationTemplateParameterCreateCommand"
+			label="Create a new OperationTemplateParameter" tooltip="Create a new OperationTemplateParameter" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OperationTemplateParameter.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for OutputPin -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.OutputPinCreateCommand"
+			label="Create a new OutputPin" tooltip="Create a new OutputPin" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OutputPin.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Package -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.PackageCreateCommand"
+			label="Create a new Package" tooltip="Create a new Package" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for PackageImport -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.PackageImportCreateCommand"
+			label="Create a new PackageImport" tooltip="Create a new PackageImport" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PackageImport.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for PackageMerge -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.PackageMergeCreateCommand"
+			label="Create a new PackageMerge" tooltip="Create a new PackageMerge" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PackageMerge.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Parameter -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ParameterCreateCommand"
+			label="Create a new Parameter" tooltip="Create a new Parameter" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Parameter.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for ParameterSet -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ParameterSetCreateCommand"
+			label="Create a new ParameterSet" tooltip="Create a new ParameterSet" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ParameterSet.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for PartDecomposition -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.PartDecompositionCreateCommand"
+			label="Create a new PartDecomposition" tooltip="Create a new PartDecomposition" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PartDecomposition.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Pin -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.PinCreateCommand"
+			label="Create a new Pin" tooltip="Create a new Pin" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pin.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Port -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.PortCreateCommand"
+			label="Create a new Port" tooltip="Create a new Port" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Port.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for PrimitiveType -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.PrimitiveTypeCreateCommand"
+			label="Create a new PrimitiveType" tooltip="Create a new PrimitiveType" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PrimitiveType.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Profile -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ProfileCreateCommand"
+			label="Create a new Profile" tooltip="Create a new Profile" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Profile.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for ProfileApplication -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ProfileApplicationCreateCommand"
+			label="Create a new ProfileApplication" tooltip="Create a new ProfileApplication" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ProfileApplication.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Property -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.PropertyCreateCommand"
+			label="Create a new Property" tooltip="Create a new Property" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for ProtocolConformance -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ProtocolConformanceCreateCommand"
+			label="Create a new ProtocolConformance" tooltip="Create a new ProtocolConformance" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ProtocolConformance.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for ProtocolStateMachine -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ProtocolStateMachineCreateCommand"
+			label="Create a new ProtocolStateMachine" tooltip="Create a new ProtocolStateMachine" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ProtocolStateMachine.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for ProtocolTransition -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ProtocolTransitionCreateCommand"
+			label="Create a new ProtocolTransition" tooltip="Create a new ProtocolTransition" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ProtocolTransition.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Pseudostate -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.PseudostateCreateCommand"
+			label="Create a new Pseudostate" tooltip="Create a new Pseudostate" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for QualifierValue -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.QualifierValueCreateCommand"
+			label="Create a new QualifierValue" tooltip="Create a new QualifierValue" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/QualifierValue.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for RaiseExceptionAction -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.RaiseExceptionActionCreateCommand"
+			label="Create a new RaiseExceptionAction" tooltip="Create a new RaiseExceptionAction" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/RaiseExceptionAction.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for ReadExtentAction -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ReadExtentActionCreateCommand"
+			label="Create a new ReadExtentAction" tooltip="Create a new ReadExtentAction" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadExtentAction.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for ReadIsClassifiedObjectAction -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ReadIsClassifiedObjectActionCreateCommand"
+			label="Create a new ReadIsClassifiedObjectAction" tooltip="Create a new ReadIsClassifiedObjectAction" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadIsClassifiedObjectAction.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for ReadLinkAction -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ReadLinkActionCreateCommand"
+			label="Create a new ReadLinkAction" tooltip="Create a new ReadLinkAction" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadLinkAction.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for ReadLinkObjectEndAction -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ReadLinkObjectEndActionCreateCommand"
+			label="Create a new ReadLinkObjectEndAction" tooltip="Create a new ReadLinkObjectEndAction" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadLinkObjectEndAction.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for ReadLinkObjectEndQualifierAction -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ReadLinkObjectEndQualifierActionCreateCommand"
+			label="Create a new ReadLinkObjectEndQualifierAction" tooltip="Create a new ReadLinkObjectEndQualifierAction" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadLinkObjectEndQualifierAction.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for ReadSelfAction -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ReadSelfActionCreateCommand"
+			label="Create a new ReadSelfAction" tooltip="Create a new ReadSelfAction" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadSelfAction.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for ReadStructuralFeatureAction -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ReadStructuralFeatureActionCreateCommand"
+			label="Create a new ReadStructuralFeatureAction" tooltip="Create a new ReadStructuralFeatureAction" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadStructuralFeatureAction.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for ReadVariableAction -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ReadVariableActionCreateCommand"
+			label="Create a new ReadVariableAction" tooltip="Create a new ReadVariableAction" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadVariableAction.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Realization -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.RealizationCreateCommand"
+			label="Create a new Realization" tooltip="Create a new Realization" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Realization.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for ReceiveOperationEvent -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ReceiveOperationEventCreateCommand"
+			label="Create a new ReceiveOperationEvent" tooltip="Create a new ReceiveOperationEvent" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReceiveOperationEvent.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for ReceiveSignalEvent -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ReceiveSignalEventCreateCommand"
+			label="Create a new ReceiveSignalEvent" tooltip="Create a new ReceiveSignalEvent" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReceiveSignalEvent.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Reception -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ReceptionCreateCommand"
+			label="Create a new Reception" tooltip="Create a new Reception" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Reception.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for ReclassifyObjectAction -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ReclassifyObjectActionCreateCommand"
+			label="Create a new ReclassifyObjectAction" tooltip="Create a new ReclassifyObjectAction" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReclassifyObjectAction.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for RedefinableTemplateSignature -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.RedefinableTemplateSignatureCreateCommand"
+			label="Create a new RedefinableTemplateSignature" tooltip="Create a new RedefinableTemplateSignature" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/RedefinableTemplateSignature.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for ReduceAction -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ReduceActionCreateCommand"
+			label="Create a new ReduceAction" tooltip="Create a new ReduceAction" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReduceAction.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Region -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.RegionCreateCommand"
+			label="Create a new Region" tooltip="Create a new Region" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Region.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for RemoveStructuralFeatureValueAction -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.RemoveStructuralFeatureValueActionCreateCommand"
+			label="Create a new RemoveStructuralFeatureValueAction" tooltip="Create a new RemoveStructuralFeatureValueAction" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/RemoveStructuralFeatureValueAction.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for RemoveVariableValueAction -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.RemoveVariableValueActionCreateCommand"
+			label="Create a new RemoveVariableValueAction" tooltip="Create a new RemoveVariableValueAction" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/RemoveVariableValueAction.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for ReplyAction -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ReplyActionCreateCommand"
+			label="Create a new ReplyAction" tooltip="Create a new ReplyAction" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReplyAction.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for SendObjectAction -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.SendObjectActionCreateCommand"
+			label="Create a new SendObjectAction" tooltip="Create a new SendObjectAction" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/SendObjectAction.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for SendOperationEvent -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.SendOperationEventCreateCommand"
+			label="Create a new SendOperationEvent" tooltip="Create a new SendOperationEvent" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/SendOperationEvent.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for SendSignalAction -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.SendSignalActionCreateCommand"
+			label="Create a new SendSignalAction" tooltip="Create a new SendSignalAction" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/SendSignalAction.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for SendSignalEvent -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.SendSignalEventCreateCommand"
+			label="Create a new SendSignalEvent" tooltip="Create a new SendSignalEvent" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/SendSignalEvent.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for SequenceNode -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.SequenceNodeCreateCommand"
+			label="Create a new SequenceNode" tooltip="Create a new SequenceNode" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/SequenceNode.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Signal -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.SignalCreateCommand"
+			label="Create a new Signal" tooltip="Create a new Signal" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Signal.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for SignalEvent -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.SignalEventCreateCommand"
+			label="Create a new SignalEvent" tooltip="Create a new SignalEvent" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/SignalEvent.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Slot -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.SlotCreateCommand"
+			label="Create a new Slot" tooltip="Create a new Slot" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Slot.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for StartClassifierBehaviorAction -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.StartClassifierBehaviorActionCreateCommand"
+			label="Create a new StartClassifierBehaviorAction" tooltip="Create a new StartClassifierBehaviorAction" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StartClassifierBehaviorAction.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for StartObjectBehaviorAction -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.StartObjectBehaviorActionCreateCommand"
+			label="Create a new StartObjectBehaviorAction" tooltip="Create a new StartObjectBehaviorAction" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StartObjectBehaviorAction.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for State -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.StateCreateCommand"
+			label="Create a new State" tooltip="Create a new State" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/State.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for StateInvariant -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.StateInvariantCreateCommand"
+			label="Create a new StateInvariant" tooltip="Create a new StateInvariant" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StateInvariant.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for StateMachine -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.StateMachineCreateCommand"
+			label="Create a new StateMachine" tooltip="Create a new StateMachine" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StateMachine.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Stereotype -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.StereotypeCreateCommand"
+			label="Create a new Stereotype" tooltip="Create a new Stereotype" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Stereotype.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for StringExpression -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.StringExpressionCreateCommand"
+			label="Create a new StringExpression" tooltip="Create a new StringExpression" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StringExpression.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for StructuredActivityNode -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.StructuredActivityNodeCreateCommand"
+			label="Create a new StructuredActivityNode" tooltip="Create a new StructuredActivityNode" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StructuredActivityNode.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Substitution -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.SubstitutionCreateCommand"
+			label="Create a new Substitution" tooltip="Create a new Substitution" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Substitution.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for TemplateBinding -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.TemplateBindingCreateCommand"
+			label="Create a new TemplateBinding" tooltip="Create a new TemplateBinding" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateBinding.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for TemplateParameter -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.TemplateParameterCreateCommand"
+			label="Create a new TemplateParameter" tooltip="Create a new TemplateParameter" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateParameter.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for TemplateParameterSubstitution -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.TemplateParameterSubstitutionCreateCommand"
+			label="Create a new TemplateParameterSubstitution" tooltip="Create a new TemplateParameterSubstitution" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateParameterSubstitution.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for TemplateSignature -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.TemplateSignatureCreateCommand"
+			label="Create a new TemplateSignature" tooltip="Create a new TemplateSignature" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateSignature.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for TestIdentityAction -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.TestIdentityActionCreateCommand"
+			label="Create a new TestIdentityAction" tooltip="Create a new TestIdentityAction" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TestIdentityAction.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for TimeConstraint -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.TimeConstraintCreateCommand"
+			label="Create a new TimeConstraint" tooltip="Create a new TimeConstraint" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeConstraint.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for TimeEvent -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.TimeEventCreateCommand"
+			label="Create a new TimeEvent" tooltip="Create a new TimeEvent" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeEvent.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for TimeExpression -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.TimeExpressionCreateCommand"
+			label="Create a new TimeExpression" tooltip="Create a new TimeExpression" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeExpression.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for TimeInterval -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.TimeIntervalCreateCommand"
+			label="Create a new TimeInterval" tooltip="Create a new TimeInterval" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeInterval.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for TimeObservation -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.TimeObservationCreateCommand"
+			label="Create a new TimeObservation" tooltip="Create a new TimeObservation" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeObservation.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Transition -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.TransitionCreateCommand"
+			label="Create a new Transition" tooltip="Create a new Transition" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Transition.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Trigger -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.TriggerCreateCommand"
+			label="Create a new Trigger" tooltip="Create a new Trigger" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Trigger.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for UnmarshallAction -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.UnmarshallActionCreateCommand"
+			label="Create a new UnmarshallAction" tooltip="Create a new UnmarshallAction" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/UnmarshallAction.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Usage -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.UsageCreateCommand"
+			label="Create a new Usage" tooltip="Create a new Usage" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Usage.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for UseCase -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.UseCaseCreateCommand"
+			label="Create a new UseCase" tooltip="Create a new UseCase" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/UseCase.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for ValuePin -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ValuePinCreateCommand"
+			label="Create a new ValuePin" tooltip="Create a new ValuePin" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ValuePin.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for ValueSpecificationAction -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.ValueSpecificationActionCreateCommand"
+			label="Create a new ValueSpecificationAction" tooltip="Create a new ValueSpecificationAction" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ValueSpecificationAction.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+		<!-- Creation menu action for Variable -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.VariableCreateCommand"
+			label="Create a new Variable" tooltip="Create a new Variable" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Variable.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+	</menuContribution>
+	
+</extension>
+</plugin>

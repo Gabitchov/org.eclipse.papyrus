@@ -9,12 +9,13 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
- *
+ *   Vincent Lorenzo - vincent.lorenzo@cea.fr - CEA - LIST
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.preferences;
 
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.diagram.sequence.part.Messages;
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.preferences.pages.AbstractPapyrusNodePreferencePage;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
@@ -23,6 +24,11 @@ import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
  * @generated
  */
 public class ConsiderIgnoreFragmentPreferencePage extends AbstractPapyrusNodePreferencePage {
+
+	/**
+	 * @generated NOT
+	 */
+	public static final String compartments[] = { Messages.CombinedFragmentCombinedFragmentCompartmentEditPart_title };
 
 	/**
 	 * @generated
@@ -37,17 +43,22 @@ public class ConsiderIgnoreFragmentPreferencePage extends AbstractPapyrusNodePre
 	 */
 	@Override
 	protected String getBundleId() {
-		return UMLDiagramEditorPlugin.getInstance().ID;
+		return UMLDiagramEditorPlugin.ID;
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public static void initDefaults(IPreferenceStore store) {
 
 		String key = PackageEditPart.MODEL_ID + "_ConsiderIgnoreFragment";
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.WIDTH), 40);
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.HEIGHT), 40);
+
+		for(String name : compartments) {
+			String preferenceName = PreferenceConstantHelper.getCompartmentElementConstant(key, name, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
+			store.setDefault(preferenceName, true);
+		}
 
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_FILL), new org.eclipse.swt.graphics.RGB(255, 255, 255));
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_LINE), new org.eclipse.swt.graphics.RGB(0, 0, 0));
@@ -59,6 +70,16 @@ public class ConsiderIgnoreFragmentPreferencePage extends AbstractPapyrusNodePre
 		//		new org.eclipse.swt.graphics.RGB(0, 0, 0), 0, 0);
 		//store.setDefault(org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_GRADIENT), gradientPreferenceConverter.getPreferenceValue());
 
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	@Override
+	protected void initializeCompartmentsList() {
+		for(String name : compartments) {
+			this.compartmentsList.add(name);
+		}
 	}
 
 }

@@ -8,10 +8,11 @@
  *
  * Contributors:
  *		Thibault Landre (Atos Origin) - Initial API and implementation
- *
+ *		Vincent Lorenzo (CEA - LIST) - minor change
  *****************************************************************************/
 package org.eclipse.papyrus.codegen;
 
+import org.eclipse.gmf.codegen.gmfgen.GenChildLabelNode;
 import org.eclipse.gmf.codegen.gmfgen.GenDiagram;
 import org.eclipse.gmf.codegen.gmfgen.GenEditorGenerator;
 import org.eclipse.gmf.codegen.gmfgen.GenLink;
@@ -19,7 +20,6 @@ import org.eclipse.gmf.codegen.gmfgen.GenNode;
 import org.eclipse.gmf.codegen.gmfgen.MetamodelType;
 import org.eclipse.gmf.codegen.util.Generator;
 import org.eclipse.gmf.common.UnexpectedBehaviourException;
-import org.eclipse.papyrus.codegen.utils.PapyrusGenConstants;
 
 /**
  * The papyrus GMF generator.
@@ -38,9 +38,9 @@ public class PapyrusGenerator extends Generator {
 	 * Default constructor
 	 * 
 	 * @param genModel
-	 *            the genmodel to use
+	 *        the genmodel to use
 	 * @param emitters
-	 *            the Papyrus codegen emitters
+	 *        the Papyrus codegen emitters
 	 */
 	public PapyrusGenerator(GenEditorGenerator genModel, PapyrusCodegenEmitters emitters) {
 		super(genModel, emitters);
@@ -55,30 +55,45 @@ public class PapyrusGenerator extends Generator {
 	protected void customRun() throws InterruptedException, UnexpectedBehaviourException {
 		super.customRun();
 
-		// Generate NodePreferencePage
-		for (GenNode node : diagram.getAllNodes()) {
+		/*
+		 * We distinguish ChildNode and TopLevel Node for
+		 * the generation of the preferences (top level nodes preferences were erased by child label nodes preferences)
+		 */
+
+		// Generate LabelChildNodePreferencePage
+		for(GenNode node : diagram.getChildNodes()) {
+			if(node instanceof GenChildLabelNode) {
+				generateNodePreferencePage(node, node.getElementType().getDisplayName());
+			}
+		}
+
+		// Generate ChildNodePreferencePage
+		for(GenNode node : diagram.getChildNodes()) {
+			if(!(node instanceof GenChildLabelNode)) {
+				generateNodePreferencePage(node, node.getElementType().getDisplayName());
+			}
+		}
+
+		// Generate TopLevelNodePreferencePage
+		for(GenNode node : diagram.getTopLevelNodes()) {
 			generateNodePreferencePage(node, node.getElementType().getDisplayName());
 		}
 
 		// Generate LinkPreferencePage
-		for (GenLink link : diagram.getLinks()) {
-			if (link.getElementType() instanceof MetamodelType) {
-				MetamodelType metamodelType = (MetamodelType) link.getElementType();
+		for(GenLink link : diagram.getLinks()) {
+			if(link.getElementType() instanceof MetamodelType) {
+				MetamodelType metamodelType = (MetamodelType)link.getElementType();
 				generateLinkPreferencePage(link, metamodelType.getDisplayName());
 			}
 		}
 
 	}
 
-	private void generateNodePreferencePage(GenNode node, String elementName) throws InterruptedException,
-			UnexpectedBehaviourException {
-		doGenerateJavaClass(emitters.getNodePreferencePageEmitter(), diagram.getPreferencesPackageName(), elementName
-				+ PREFERENCE_PAGE, node);
+	private void generateNodePreferencePage(GenNode node, String elementName) throws InterruptedException, UnexpectedBehaviourException {
+		doGenerateJavaClass(emitters.getNodePreferencePageEmitter(), diagram.getPreferencesPackageName(), elementName + PREFERENCE_PAGE, node);
 	}
 
-	private void generateLinkPreferencePage(GenLink link, String elementName) throws InterruptedException,
-			UnexpectedBehaviourException {
-		doGenerateJavaClass(emitters.getLinkPreferencePageEmitter(), diagram.getPreferencesPackageName(), elementName
-				+ PREFERENCE_PAGE, link);
+	private void generateLinkPreferencePage(GenLink link, String elementName) throws InterruptedException, UnexpectedBehaviourException {
+		doGenerateJavaClass(emitters.getLinkPreferencePageEmitter(), diagram.getPreferencesPackageName(), elementName + PREFERENCE_PAGE, link);
 	}
 }

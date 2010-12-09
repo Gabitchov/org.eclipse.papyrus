@@ -138,9 +138,9 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		// - the annotation corresponding to the display of the stereotype changes
 		// - the stereotype application list has changed
 		Object object = notification.getNotifier();
-		Property property = getUMLElement();
+		Property property = (Property)hostSemanticElement;
 
-		if(object == null) {
+		if((object == null) || (hostSemanticElement == null)) {
 			return;
 		}
 
@@ -149,6 +149,7 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		} else if(notification.getFeature().equals(UMLPackage.eINSTANCE.getLiteralUnlimitedNatural_Value())) {
 			refreshDisplay();
 		}
+
 		if(object.equals(property)) {
 			notifyPropertyChanged(property, notification);
 		} else if(object.equals(property.getType())) {

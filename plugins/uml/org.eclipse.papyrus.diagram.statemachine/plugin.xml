@@ -187,8 +187,8 @@
       <viewProvider class="org.eclipse.papyrus.diagram.statemachine.providers.UMLViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="PapyrusUMLStateMachineDiagram"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2000,3000,4000,5000,6000"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="7000"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2000,3000,5000,6000,8000,9000,10000,11000,12000,13000,14000,15000,16000,17000,18000"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="7000,19000"/>
       </viewProvider>
    </extension>
 
@@ -200,16 +200,16 @@
             <method name="getType()" value="PapyrusUMLStateMachineDiagram"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2000,3000,4000,5000,6000"/>
+            <method name="getType()" value="2000,3000,5000,6000,8000,9000,10000,11000,12000,13000,14000,15000,16000,17000,18000"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
-            <method name="getType()" value="7000"/>
+            <method name="getType()" value="7000,19000"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="2001,4001,4002,5001,5002,6001"/>
+            <method name="getType()" value="2001,5001,5002,6001,8001,8002,9001,9002,10001,10002,11001,11002,12001,12002,13001,13002,14001,14002,15001,15002,16001,16002,17001,17002,18001,18002"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
-            <method name="getType()" value="3002,2002"/>
+            <method name="getType()" value="3002,2002,6002"/>
          </object>
          <context views="generated-diagram,generated-nodes,generated-links,generated-labels,generated-compartments"/>
       </editpartProvider>
@@ -273,16 +273,6 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.statemachine.Pseudostate_4000"
-               name="%metatype.name.Pseudostate_4000"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Pseudostate"
-               edithelper="org.eclipse.papyrus.diagram.statemachine.edit.helpers.PseudostateEditHelper">
-            <param name="semanticHint" value="4000"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
-         <metamodelType
                id="org.eclipse.papyrus.diagram.statemachine.FinalState_5000"
                name="%metatype.name.FinalState_5000"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
@@ -303,12 +293,132 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
+               id="org.eclipse.papyrus.diagram.statemachine.Pseudostate_8000"
+               name="%metatype.name.Pseudostate_8000"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Pseudostate"
+               edithelper="org.eclipse.papyrus.diagram.statemachine.edit.helpers.PseudostateEditHelper">
+            <param name="semanticHint" value="8000"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.statemachine.Pseudostate_9000"
+               name="%metatype.name.Pseudostate_9000"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Pseudostate"
+               edithelper="org.eclipse.papyrus.diagram.statemachine.edit.helpers.PseudostateEditHelper">
+            <param name="semanticHint" value="9000"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.statemachine.Pseudostate_10000"
+               name="%metatype.name.Pseudostate_10000"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Pseudostate"
+               edithelper="org.eclipse.papyrus.diagram.statemachine.edit.helpers.PseudostateEditHelper">
+            <param name="semanticHint" value="10000"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.statemachine.Pseudostate_11000"
+               name="%metatype.name.Pseudostate_11000"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Pseudostate"
+               edithelper="org.eclipse.papyrus.diagram.statemachine.edit.helpers.PseudostateEditHelper">
+            <param name="semanticHint" value="11000"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.statemachine.Pseudostate_12000"
+               name="%metatype.name.Pseudostate_12000"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Pseudostate"
+               edithelper="org.eclipse.papyrus.diagram.statemachine.edit.helpers.PseudostateEditHelper">
+            <param name="semanticHint" value="12000"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.statemachine.Pseudostate_13000"
+               name="%metatype.name.Pseudostate_13000"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Pseudostate"
+               edithelper="org.eclipse.papyrus.diagram.statemachine.edit.helpers.PseudostateEditHelper">
+            <param name="semanticHint" value="13000"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.statemachine.Pseudostate_14000"
+               name="%metatype.name.Pseudostate_14000"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Pseudostate"
+               edithelper="org.eclipse.papyrus.diagram.statemachine.edit.helpers.PseudostateEditHelper">
+            <param name="semanticHint" value="14000"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.statemachine.Pseudostate_15000"
+               name="%metatype.name.Pseudostate_15000"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Pseudostate"
+               edithelper="org.eclipse.papyrus.diagram.statemachine.edit.helpers.PseudostateEditHelper">
+            <param name="semanticHint" value="15000"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.statemachine.Pseudostate_16000"
+               name="%metatype.name.Pseudostate_16000"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Pseudostate"
+               edithelper="org.eclipse.papyrus.diagram.statemachine.edit.helpers.PseudostateEditHelper">
+            <param name="semanticHint" value="16000"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.statemachine.Pseudostate_17000"
+               name="%metatype.name.Pseudostate_17000"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Pseudostate"
+               edithelper="org.eclipse.papyrus.diagram.statemachine.edit.helpers.PseudostateEditHelper">
+            <param name="semanticHint" value="17000"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.statemachine.ConnectionPointReference_18000"
+               name="%metatype.name.ConnectionPointReference_18000"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="ConnectionPointReference"
+               edithelper="org.eclipse.papyrus.diagram.statemachine.edit.helpers.ConnectionPointReferenceEditHelper">
+            <param name="semanticHint" value="18000"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
                id="org.eclipse.papyrus.diagram.statemachine.Transition_7000"
                name="%metatype.name.Transition_7000"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Transition"
                edithelper="org.eclipse.papyrus.diagram.statemachine.edit.helpers.TransitionEditHelper">
             <param name="semanticHint" value="7000"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.statemachine.Generalization_19000"
+               name="%metatype.name.Generalization_19000"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Generalization"
+               edithelper="org.eclipse.papyrus.diagram.statemachine.edit.helpers.GeneralizationEditHelper">
+            <param name="semanticHint" value="19000"/>
          </metamodelType>
       </metamodel>
    </extension>
@@ -326,10 +436,21 @@
          <elementType ref="org.eclipse.papyrus.diagram.statemachine.Package_1000"/>
          <elementType ref="org.eclipse.papyrus.diagram.statemachine.StateMachine_2000"/>
          <elementType ref="org.eclipse.papyrus.diagram.statemachine.Region_3000"/>
-         <elementType ref="org.eclipse.papyrus.diagram.statemachine.Pseudostate_4000"/>
          <elementType ref="org.eclipse.papyrus.diagram.statemachine.FinalState_5000"/>
          <elementType ref="org.eclipse.papyrus.diagram.statemachine.State_6000"/>
+         <elementType ref="org.eclipse.papyrus.diagram.statemachine.Pseudostate_8000"/>
+         <elementType ref="org.eclipse.papyrus.diagram.statemachine.Pseudostate_9000"/>
+         <elementType ref="org.eclipse.papyrus.diagram.statemachine.Pseudostate_10000"/>
+         <elementType ref="org.eclipse.papyrus.diagram.statemachine.Pseudostate_11000"/>
+         <elementType ref="org.eclipse.papyrus.diagram.statemachine.Pseudostate_12000"/>
+         <elementType ref="org.eclipse.papyrus.diagram.statemachine.Pseudostate_13000"/>
+         <elementType ref="org.eclipse.papyrus.diagram.statemachine.Pseudostate_14000"/>
+         <elementType ref="org.eclipse.papyrus.diagram.statemachine.Pseudostate_15000"/>
+         <elementType ref="org.eclipse.papyrus.diagram.statemachine.Pseudostate_16000"/>
+         <elementType ref="org.eclipse.papyrus.diagram.statemachine.Pseudostate_17000"/>
+         <elementType ref="org.eclipse.papyrus.diagram.statemachine.ConnectionPointReference_18000"/>
          <elementType ref="org.eclipse.papyrus.diagram.statemachine.Transition_7000"/>
+         <elementType ref="org.eclipse.papyrus.diagram.statemachine.Generalization_19000"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>
@@ -523,10 +644,8 @@
 			icon="icons/obj16/Diagram_StateMachine.gif" label="Create a new StateMachine Diagram"
 			style="push" tooltip="Create a new StateMachine Diagram">
 			<visibleWhen>
-				<with variable="activeEditorId">
-					<equals value="org.eclipse.papyrus.core.papyrusEditor" />
-				</with>
-			</visibleWhen>
+				<reference definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLModel"/>
+			</visibleWhen> 
 		</command>
 	</menu>
 	</menuContribution>
@@ -537,13 +656,24 @@
 			icon="icons/obj16/Diagram_StateMachine.gif" label="Create a new StateMachine Diagram"
 			style="push" tooltip="Create a new StateMachine Diagram">
 			<visibleWhen>
-				<with variable="activeEditorId">
-					<equals value="org.eclipse.papyrus.core.papyrusEditor" />
-				</with>
-			</visibleWhen>
+				<reference definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLModel"/>
+			</visibleWhen> 
 		</command>
 	</toolbar>
 	</menuContribution>
+
+	<menuContribution locationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.creatediagram">
+		<command commandId="org.eclipse.papyrus.diagram.statemachine.CreationCommand"
+			icon="icons/obj16/Diagram_StateMachine.gif"
+			label="Create a new StateMachine Diagram"
+			style="push"
+			tooltip="Create a new StateMachine Diagram">
+			<visibleWhen>
+				<reference definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLModel"/>
+			</visibleWhen>
+		</command>
+	</menuContribution>	
+	
 </extension>
    
    <extension
@@ -622,6 +752,20 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLStateMachineDiagram"
+			class="org.eclipse.papyrus.diagram.statemachine.preferences.PseudostatePreferencePage"
+            id="org.eclipse.papyrus.diagram.statemachine.preferences.PseudostatePreferencePage"
+            name="Pseudostate Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLStateMachineDiagram"
+			class="org.eclipse.papyrus.diagram.statemachine.preferences.ConnectionPointReferencePreferencePage"
+            id="org.eclipse.papyrus.diagram.statemachine.preferences.ConnectionPointReferencePreferencePage"
+            name="ConnectionPointReference Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLStateMachineDiagram"
 			class="org.eclipse.papyrus.diagram.statemachine.preferences.RegionPreferencePage"
             id="org.eclipse.papyrus.diagram.statemachine.preferences.RegionPreferencePage"
             name="Region Node" />
@@ -647,15 +791,16 @@
             id="org.eclipse.papyrus.diagram.statemachine.preferences.StateMachinePreferencePage"
             name="StateMachine Node" />
 	
+
+
 		
+
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLStateMachineDiagram"
-			class="org.eclipse.papyrus.diagram.statemachine.preferences.PseudostatePreferencePage"
-            id="org.eclipse.papyrus.diagram.statemachine.preferences.PseudostatePreferencePage"
-            name="Pseudostate Node" />
-	
-
-
+			class="org.eclipse.papyrus.diagram.statemachine.preferences.GeneralizationPreferencePage"
+            id="org.eclipse.papyrus.diagram.statemachine.preferences.GeneralizationPreferencePage"
+            name="Generalization Link" />
+		
 		
 
 	<?gmfgen generated="true"?>
@@ -665,23 +810,6 @@
             name="Transition Link" />
 		
 
-</extension>
-<extension
-      point="org.eclipse.papyrus.diagram.common.paletteDefinition">
-   <paletteDefinition
-         ID="org.eclipse.papyrus.diagram.statemachine.palette"
-         class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
-         icon="icons/obj16/Diagram_StateMachine.gif"
-         name="State Machine Palette"
-         path="/resource/Palette.xml"
-         provider="CEA LIST">
-      <Priority
-            name="Medium">
-      </Priority>
-      <editor
-            id="org.eclipse.papyrus.diagram.statemachine">
-      </editor>
-   </paletteDefinition>
 </extension>
 <extension
 		id="PapyrusUMLStateMachineDiagram.palettedefinition"
@@ -698,16 +826,6 @@
 				<predefinedEntry id="standardGroup/noteStack/noteattachmentTool" remove="true"/>
 					<entry
        defineOnly="true"
-       description="StateMachine"
-       id="createStateMachineCreationTool"
-       kind="tool"
-       label="StateMachine"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StateMachine.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StateMachine.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
        description="Region"
        id="createRegionCreationTool"
        kind="tool"
@@ -721,7 +839,7 @@
        description="State"
        id="createStateCreationTool"
        kind="tool"
-       label="StateMachine"
+       label="State"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/State.gif"
        path=""
        small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/State.gif">
@@ -838,6 +956,16 @@
  	</entry>
 	<entry
        defineOnly="true"
+       description="ConnectionPointReference"
+       id="createConnectionPointReferenceCreationTool"
+       kind="tool"
+       label="ConnectionPointReference"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConnectionPointReference.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConnectionPointReference.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
        description="Transition"
        id="createTransitionCreationTool"
        kind="tool"
@@ -851,7 +979,20 @@
 		</paletteProvider>	
 			
 	</extension>
-<!-- PALETTE REMOVED BECAUSED IT IS NOW DEFINED USING A SPECIFIC XML FILE 
+
+<extension point="org.eclipse.ui.handlers" id="menu-handlers">
+      <?gmfgen generated="true"?>
+   </extension>
+<extension
+      id="ui-context"
+      point="org.eclipse.ui.contexts">
+   <context
+         description="%context.description"
+         id="org.eclipse.papyrus.diagram.statemachine.ui.diagramContext"
+         name="%context.name"
+         parentId="org.eclipse.gmf.runtime.diagram.ui.diagramContext">
+   </context>
+</extension>
 <extension
 		id="PapyrusUMLStateMachineDiagram.standard"
 		name="PapyrusUMLStateMachineDiagram Standard Palette"
@@ -873,13 +1014,12 @@
        large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
        path="/"
        small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
+       <expand
+              force="true">
+       </expand>
  	</entry>
  	 
  	 	<predefinedEntry
-          id="createStateMachineCreationTool"
-          path="/createNodesGroup">
-    </predefinedEntry>
- 	<predefinedEntry
           id="createRegionCreationTool"
           path="/createNodesGroup">
     </predefinedEntry>
@@ -931,6 +1071,10 @@
           id="createTerminateCreationTool"
           path="/createNodesGroup">
     </predefinedEntry>
+ 	<predefinedEntry
+          id="createConnectionPointReferenceCreationTool"
+          path="/createNodesGroup">
+    </predefinedEntry>
 
 	<entry
        description=""
@@ -940,6 +1084,9 @@
        large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
        path="/"
        small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
+       <expand
+              force="true">
+       </expand>
  	</entry>
  	 
  	 	<predefinedEntry
@@ -953,20 +1100,7 @@
 		</paletteProvider>	
 			
 	</extension>
--->
-<extension point="org.eclipse.ui.handlers" id="menu-handlers">
-      <?gmfgen generated="true"?>
-   </extension>
-<extension
-      id="ui-context"
-      point="org.eclipse.ui.contexts">
-   <context
-         description="%context.description"
-         id="org.eclipse.papyrus.diagram.statemachine.ui.diagramContext"
-         name="%context.name"
-         parentId="org.eclipse.gmf.runtime.diagram.ui.diagramContext">
-   </context>
-</extension>
+
 
 
 

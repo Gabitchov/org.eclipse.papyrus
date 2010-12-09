@@ -11,11 +11,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.papyrusgmfgenextension.*;
 import org.eclipse.papyrus.papyrusgmfgenextension.AdditionalEditPartCandies;
 import org.eclipse.papyrus.papyrusgmfgenextension.AlternateCanvas;
 import org.eclipse.papyrus.papyrusgmfgenextension.AlternateGenLink;
 import org.eclipse.papyrus.papyrusgmfgenextension.AlternateGenTopLevelNode;
 import org.eclipse.papyrus.papyrusgmfgenextension.CommentedElement;
+import org.eclipse.papyrus.papyrusgmfgenextension.EditPartUsingDeleteService;
 import org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView;
 import org.eclipse.papyrus.papyrusgmfgenextension.ExternalHook;
 import org.eclipse.papyrus.papyrusgmfgenextension.GenNodeConstraint;
@@ -33,7 +35,6 @@ import org.eclipse.papyrus.papyrusgmfgenextension.SpecificLocatorExternalLabel;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class PapyrusgmfgenextensionFactoryImpl extends EFactoryImpl implements PapyrusgmfgenextensionFactory {
@@ -42,16 +43,16 @@ public class PapyrusgmfgenextensionFactoryImpl extends EFactoryImpl implements P
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static PapyrusgmfgenextensionFactory init() {
 		try {
-			PapyrusgmfgenextensionFactory thePapyrusgmfgenextensionFactory = (PapyrusgmfgenextensionFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension");
-			if(thePapyrusgmfgenextensionFactory != null) {
+			PapyrusgmfgenextensionFactory thePapyrusgmfgenextensionFactory = (PapyrusgmfgenextensionFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension"); 
+			if (thePapyrusgmfgenextensionFactory != null) {
 				return thePapyrusgmfgenextensionFactory;
 			}
-		} catch (Exception exception) {
+		}
+		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new PapyrusgmfgenextensionFactoryImpl();
@@ -61,7 +62,6 @@ public class PapyrusgmfgenextensionFactoryImpl extends EFactoryImpl implements P
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PapyrusgmfgenextensionFactoryImpl() {
@@ -71,51 +71,36 @@ public class PapyrusgmfgenextensionFactoryImpl extends EFactoryImpl implements P
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch(eClass.getClassifierID()) {
-		case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW:
-			return createExtendedGenView();
-		case PapyrusgmfgenextensionPackage.COMMENTED_ELEMENT:
-			return createCommentedElement();
-		case PapyrusgmfgenextensionPackage.PROPERTY_REFRESH_HOOK:
-			return createPropertyRefreshHook();
-		case PapyrusgmfgenextensionPackage.EXTERNAL_HOOK:
-			return createExternalHook();
-		case PapyrusgmfgenextensionPackage.SPECIFIC_LOCATOR:
-			return createSpecificLocator();
-		case PapyrusgmfgenextensionPackage.PAPYRUS_EXTENSION_ROOT_NODE:
-			return createPapyrusExtensionRootNode();
-		case PapyrusgmfgenextensionPackage.ALTERNATE_CANVAS:
-			return createAlternateCanvas();
-		case PapyrusgmfgenextensionPackage.ALTERNATE_GEN_TOP_LEVEL_NODE:
-			return createAlternateGenTopLevelNode();
-		case PapyrusgmfgenextensionPackage.ALTERNATE_GEN_LINK:
-			return createAlternateGenLink();
-		case PapyrusgmfgenextensionPackage.MUTATING_CANVAS:
-			return createMutatingCanvas();
-		case PapyrusgmfgenextensionPackage.OWNED_EDITPART:
-			return createOwnedEditpart();
-		case PapyrusgmfgenextensionPackage.SPECIFIC_DIAGRAM_UPDATER:
-			return createSpecificDiagramUpdater();
-		case PapyrusgmfgenextensionPackage.GEN_NODE_CONSTRAINT:
-			return createGenNodeConstraint();
-		case PapyrusgmfgenextensionPackage.SPECIFIC_LOCATOR_EXTERNAL_LABEL:
-			return createSpecificLocatorExternalLabel();
-		case PapyrusgmfgenextensionPackage.ADDITIONAL_EDIT_PART_CANDIES:
-			return createAdditionalEditPartCandies();
-		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		switch (eClass.getClassifierID()) {
+			case PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW: return createExtendedGenView();
+			case PapyrusgmfgenextensionPackage.COMMENTED_ELEMENT: return createCommentedElement();
+			case PapyrusgmfgenextensionPackage.PROPERTY_REFRESH_HOOK: return createPropertyRefreshHook();
+			case PapyrusgmfgenextensionPackage.EXTERNAL_HOOK: return createExternalHook();
+			case PapyrusgmfgenextensionPackage.SPECIFIC_LOCATOR: return createSpecificLocator();
+			case PapyrusgmfgenextensionPackage.PAPYRUS_EXTENSION_ROOT_NODE: return createPapyrusExtensionRootNode();
+			case PapyrusgmfgenextensionPackage.ALTERNATE_CANVAS: return createAlternateCanvas();
+			case PapyrusgmfgenextensionPackage.ALTERNATE_GEN_TOP_LEVEL_NODE: return createAlternateGenTopLevelNode();
+			case PapyrusgmfgenextensionPackage.ALTERNATE_GEN_LINK: return createAlternateGenLink();
+			case PapyrusgmfgenextensionPackage.MUTATING_CANVAS: return createMutatingCanvas();
+			case PapyrusgmfgenextensionPackage.OWNED_EDITPART: return createOwnedEditpart();
+			case PapyrusgmfgenextensionPackage.SPECIFIC_DIAGRAM_UPDATER: return createSpecificDiagramUpdater();
+			case PapyrusgmfgenextensionPackage.GEN_NODE_CONSTRAINT: return createGenNodeConstraint();
+			case PapyrusgmfgenextensionPackage.SPECIFIC_LOCATOR_EXTERNAL_LABEL: return createSpecificLocatorExternalLabel();
+			case PapyrusgmfgenextensionPackage.ADDITIONAL_EDIT_PART_CANDIES: return createAdditionalEditPartCandies();
+			case PapyrusgmfgenextensionPackage.EDIT_PART_USING_DELETE_SERVICE: return createEditPartUsingDeleteService();
+			case PapyrusgmfgenextensionPackage.EDIT_PART_USING_REORIENT_SERVICE: return createEditPartUsingReorientService();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ExtendedGenView createExtendedGenView() {
@@ -126,7 +111,6 @@ public class PapyrusgmfgenextensionFactoryImpl extends EFactoryImpl implements P
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public CommentedElement createCommentedElement() {
@@ -137,7 +121,6 @@ public class PapyrusgmfgenextensionFactoryImpl extends EFactoryImpl implements P
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PropertyRefreshHook createPropertyRefreshHook() {
@@ -148,7 +131,6 @@ public class PapyrusgmfgenextensionFactoryImpl extends EFactoryImpl implements P
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ExternalHook createExternalHook() {
@@ -159,7 +141,6 @@ public class PapyrusgmfgenextensionFactoryImpl extends EFactoryImpl implements P
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public SpecificLocator createSpecificLocator() {
@@ -170,7 +151,6 @@ public class PapyrusgmfgenextensionFactoryImpl extends EFactoryImpl implements P
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PapyrusExtensionRootNode createPapyrusExtensionRootNode() {
@@ -181,7 +161,6 @@ public class PapyrusgmfgenextensionFactoryImpl extends EFactoryImpl implements P
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public AlternateCanvas createAlternateCanvas() {
@@ -192,7 +171,6 @@ public class PapyrusgmfgenextensionFactoryImpl extends EFactoryImpl implements P
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public AlternateGenTopLevelNode createAlternateGenTopLevelNode() {
@@ -203,7 +181,6 @@ public class PapyrusgmfgenextensionFactoryImpl extends EFactoryImpl implements P
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public AlternateGenLink createAlternateGenLink() {
@@ -214,7 +191,6 @@ public class PapyrusgmfgenextensionFactoryImpl extends EFactoryImpl implements P
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public MutatingCanvas createMutatingCanvas() {
@@ -225,7 +201,6 @@ public class PapyrusgmfgenextensionFactoryImpl extends EFactoryImpl implements P
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public OwnedEditpart createOwnedEditpart() {
@@ -236,7 +211,6 @@ public class PapyrusgmfgenextensionFactoryImpl extends EFactoryImpl implements P
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public SpecificDiagramUpdater createSpecificDiagramUpdater() {
@@ -247,7 +221,6 @@ public class PapyrusgmfgenextensionFactoryImpl extends EFactoryImpl implements P
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public GenNodeConstraint createGenNodeConstraint() {
@@ -258,7 +231,6 @@ public class PapyrusgmfgenextensionFactoryImpl extends EFactoryImpl implements P
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public SpecificLocatorExternalLabel createSpecificLocatorExternalLabel() {
@@ -269,7 +241,6 @@ public class PapyrusgmfgenextensionFactoryImpl extends EFactoryImpl implements P
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public AdditionalEditPartCandies createAdditionalEditPartCandies() {
@@ -280,7 +251,26 @@ public class PapyrusgmfgenextensionFactoryImpl extends EFactoryImpl implements P
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
+	 * @generated
+	 */
+	public EditPartUsingDeleteService createEditPartUsingDeleteService() {
+		EditPartUsingDeleteServiceImpl editPartUsingDeleteService = new EditPartUsingDeleteServiceImpl();
+		return editPartUsingDeleteService;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EditPartUsingReorientService createEditPartUsingReorientService() {
+		EditPartUsingReorientServiceImpl editPartUsingReorientService = new EditPartUsingReorientServiceImpl();
+		return editPartUsingReorientService;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public PapyrusgmfgenextensionPackage getPapyrusgmfgenextensionPackage() {
@@ -290,7 +280,6 @@ public class PapyrusgmfgenextensionFactoryImpl extends EFactoryImpl implements P
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @deprecated
 	 * @generated
 	 */

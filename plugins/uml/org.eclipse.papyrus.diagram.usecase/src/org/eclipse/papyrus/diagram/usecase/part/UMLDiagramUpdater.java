@@ -109,7 +109,7 @@ public class UMLDiagramUpdater {
 		case UseCasePointsEditPartTN.VISUAL_ID:
 			return getUseCasePoints_7009SemanticChildren(view);
 		case UseCasePointsInRectangleEditPart.VISUAL_ID:
-			return getUseCaseExtensionpoints_7010SemanticChildren(view);
+			return getUseCasePoints_7010SemanticChildren(view);
 		case ComponentUsecasesEditPart.VISUAL_ID:
 			return getComponentUsecases_7011SemanticChildren(view);
 		case UseCasePointsInComponentEditPart.VISUAL_ID:
@@ -155,7 +155,7 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<UMLNodeDescriptor> getUseCaseExtensionpoints_7010SemanticChildren(View view) {
+	public static List<UMLNodeDescriptor> getUseCasePoints_7010SemanticChildren(View view) {
 		if(false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}

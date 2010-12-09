@@ -87,9 +87,7 @@ import org.eclipse.ui.PlatformUI;
  */
 public class OutputPinInValSpecActAppliedStereotypeEditPart
 
-
 extends LabelEditPart
-
 
 implements ITextAwareEditPart, IBorderItemEditPart {
 
@@ -118,15 +116,11 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 	 */
 	private String defaultText;
 
-
-
 	/** direct edition mode (default, undefined, registered editor, etc.) */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
 	/** configuration from a registered edit dialog */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -621,8 +615,6 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 		return getPrimaryView();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -722,8 +714,6 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 			e.printStackTrace();
 		}
 	}
-
-
 
 	/**
 	 * @generated

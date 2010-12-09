@@ -75,7 +75,6 @@ public class ActivityCompositeCreateCommandCN extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -91,10 +90,7 @@ public class ActivityCompositeCreateCommandCN extends EditElementCommand {
 	 */
 	public boolean canExecute() {
 
-
 		return true;
-
-
 
 	}
 
@@ -103,13 +99,10 @@ public class ActivityCompositeCreateCommandCN extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
-
 		Activity newElement = UMLFactory.eINSTANCE.createActivity();
 
 		Class owner = (Class)getElementToEdit();
 		owner.getNestedClassifiers().add(newElement);
-
 
 		ElementInitializers.getInstance().init_Activity_3072(newElement);
 
@@ -118,9 +111,6 @@ public class ActivityCompositeCreateCommandCN extends EditElementCommand {
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
-
-
-
 
 	/**
 	 * @generated

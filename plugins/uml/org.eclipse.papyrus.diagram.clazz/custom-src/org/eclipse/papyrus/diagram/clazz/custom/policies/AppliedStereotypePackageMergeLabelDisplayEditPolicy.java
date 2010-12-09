@@ -30,7 +30,7 @@ public class AppliedStereotypePackageMergeLabelDisplayEditPolicy extends Applied
 	 * Creates a new AppliedStereotypePackageMergeLabelDisplayEditPolicy, with the correct tag.
 	 */
 	public AppliedStereotypePackageMergeLabelDisplayEditPolicy() {
-		super(Messages.AppliedStereotypeLabel_PackageMergeTag);
+		super("Merge");//$NON-NLS-N$
 	}
 
 }

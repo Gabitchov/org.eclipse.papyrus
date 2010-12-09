@@ -79,9 +79,7 @@ public class Message2ReorientCommand extends EditElementCommand {
 		if(!(oldEnd instanceof Element && newEnd instanceof Element)) {
 			return false;
 		}
-
-		// For the moment, we limit the reorient of a message to same type of element. 
-		if(!oldEnd.getClass().equals(newEnd.getClass())) {
+		if(!(getLink().eContainer() instanceof Interaction)) {
 			return false;
 		}
 		Interaction container = (Interaction)getLink().eContainer();

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2010 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,8 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ */
 package org.eclipse.papyrus.diagram.clazz.edit.policies;
 
 import java.util.ArrayList;
@@ -68,7 +67,6 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Constraint2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.ContainmentCircleEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ContainmentLinkEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeEditPartCN;
@@ -106,6 +104,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.SignalEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SignalEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SubstitutionEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.TemplateBindingEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.TemplateSignatureEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.TimeObservationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.UsageEditPart;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramUpdater;
@@ -123,6 +122,18 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 	 * @generated
 	 */
 	private Set<EStructuralFeature> myFeaturesToSynchronize;
+
+	/**
+	 * @generated
+	 */
+	protected Set getFeaturesToSynchronize() {
+		if(myFeaturesToSynchronize == null) {
+			myFeaturesToSynchronize = new HashSet<EStructuralFeature>();
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getPackage_PackagedElement());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getElement_OwnedComment());
+		}
+		return myFeaturesToSynchronize;
+	}
 
 	/**
 	 * @generated
@@ -174,18 +185,6 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 			return true;
 		}
 		return false;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected Set getFeaturesToSynchronize() {
-		if(myFeaturesToSynchronize == null) {
-			myFeaturesToSynchronize = new HashSet<EStructuralFeature>();
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getPackage_PackagedElement());
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getElement_OwnedComment());
-		}
-		return myFeaturesToSynchronize;
 	}
 
 	/**
@@ -307,13 +306,6 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 	/**
 	 * @generated
 	 */
-	private Diagram getDiagram() {
-		return ((View)getHost().getModel()).getDiagram();
-	}
-
-	/**
-	 * @generated
-	 */
 	private Collection<IAdaptable> refreshConnections() {
 		Map<EObject, View> domain2NotationMap = new HashMap<EObject, View>();
 		Collection<UMLLinkDescriptor> linkDescriptors = collectAllLinks(getDiagram(), domain2NotationMap);
@@ -321,7 +313,7 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 		for(Iterator linksIterator = existingLinks.iterator(); linksIterator.hasNext();) {
 			Edge nextDiagramLink = (Edge)linksIterator.next();
 			int diagramLinkVisualID = UMLVisualIDRegistry.getVisualID(nextDiagramLink);
-			if(diagramLinkVisualID == -1 || diagramLinkVisualID == CommentLinkDescriptorEditPart.VISUAL_ID || diagramLinkVisualID == InstanceSpecificationLinkEditPart.VISUAL_ID || diagramLinkVisualID == ContainmentLinkEditPart.VISUAL_ID) {
+			if(diagramLinkVisualID == -1 || diagramLinkVisualID == CommentLinkDescriptorEditPart.VISUAL_ID || diagramLinkVisualID == ContainmentLinkEditPart.VISUAL_ID) {
 				if(nextDiagramLink.getSource() != null && nextDiagramLink.getTarget() != null) {
 					linksIterator.remove();
 				}
@@ -692,10 +684,10 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 			}
 			break;
 		}
-		case ContainmentCircleEditPart.VISUAL_ID:
+		case TemplateSignatureEditPart.VISUAL_ID:
 		{
 			if(!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(UMLDiagramUpdater.getPort_3032ContainedLinks(view));
+				result.addAll(UMLDiagramUpdater.getTemplateSignature_3033ContainedLinks(view));
 			}
 			if(!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
 				domain2NotationMap.put(view.getElement(), view);
@@ -872,6 +864,16 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 			}
 			break;
 		}
+		case InstanceSpecificationLinkEditPart.VISUAL_ID:
+		{
+			if(!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.getInstanceSpecification_4021ContainedLinks(view));
+			}
+			if(!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
 		case AddedLinkEditPart.VISUAL_ID:
 		{
 			if(!domain2NotationMap.containsKey(view.getElement())) {
@@ -931,5 +933,12 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 			return (EditPart)getHost().getViewer().getEditPartRegistry().get(view);
 		}
 		return null;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Diagram getDiagram() {
+		return ((View)getHost().getModel()).getDiagram();
 	}
 }

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2010 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,8 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ */
 package org.eclipse.papyrus.diagram.clazz.edit.parts;
 
 import java.util.ArrayList;
@@ -64,9 +63,7 @@ import org.eclipse.swt.graphics.Color;
  */
 public class PrimitiveTypeEditPart extends
 
-ClassifierEditPart
-
-{
+ClassifierEditPart {
 
 	/**
 	 * @generated
@@ -165,7 +162,6 @@ ClassifierEditPart
 			return true;
 		}
 
-
 		return false;
 	}
 
@@ -222,8 +218,8 @@ ClassifierEditPart
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model so
-	 * you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model
+	 * so you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -237,8 +233,8 @@ ClassifierEditPart
 	}
 
 	/**
-	 * Default implementation treats passed figure as content pane. Respects
-	 * layout one may have set for generated figure.
+	 * Default implementation treats passed figure as content pane.
+	 * Respects layout one may have set for generated figure.
 	 * 
 	 * @param nodeShape
 	 *        instance of generated figure class
@@ -654,9 +650,6 @@ ClassifierEditPart
 		if(targetEditPart instanceof Constraint2EditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
-		if(targetEditPart instanceof ContainmentCircleEditPart) {
-			types.add(UMLElementTypes.Realization_4005);
-		}
 		if(targetEditPart instanceof Dependency2EditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
@@ -745,9 +738,6 @@ ClassifierEditPart
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
 		if(targetEditPart instanceof Constraint2EditPart) {
-			types.add(UMLElementTypes.Abstraction_4006);
-		}
-		if(targetEditPart instanceof ContainmentCircleEditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
 		if(targetEditPart instanceof Dependency2EditPart) {
@@ -840,9 +830,6 @@ ClassifierEditPart
 		if(targetEditPart instanceof Constraint2EditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
-		if(targetEditPart instanceof ContainmentCircleEditPart) {
-			types.add(UMLElementTypes.Usage_4007);
-		}
 		if(targetEditPart instanceof Dependency2EditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
@@ -933,9 +920,6 @@ ClassifierEditPart
 		if(targetEditPart instanceof Constraint2EditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
-		if(targetEditPart instanceof ContainmentCircleEditPart) {
-			types.add(UMLElementTypes.Dependency_4008);
-		}
 		if(targetEditPart instanceof Dependency2EditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
@@ -1024,9 +1008,6 @@ ClassifierEditPart
 			types.add(UMLElementTypes.Dependency_4018);
 		}
 		if(targetEditPart instanceof Constraint2EditPart) {
-			types.add(UMLElementTypes.Dependency_4018);
-		}
-		if(targetEditPart instanceof ContainmentCircleEditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
 		if(targetEditPart instanceof Dependency2EditPart) {
@@ -1122,16 +1103,10 @@ ClassifierEditPart
 		if(targetEditPart instanceof PackageEditPartCN) {
 			types.add(UMLElementTypes.PackageImport_4010);
 		}
-		if(targetEditPart instanceof Dependency2EditPart) {
-			types.add(UMLElementTypes.TemplateBinding_4015);
-		}
 		if(targetEditPart instanceof AssociationClassEditPart) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
 		if(targetEditPart instanceof AssociationNodeEditPart) {
-			types.add(UMLElementTypes.TemplateBinding_4015);
-		}
-		if(targetEditPart instanceof InstanceSpecificationEditPart) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
 		if(targetEditPart instanceof ComponentEditPart) {
@@ -1161,30 +1136,6 @@ ClassifierEditPart
 		if(targetEditPart instanceof DataTypeEditPart) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
-		if(targetEditPart instanceof ConstraintEditPart) {
-			types.add(UMLElementTypes.TemplateBinding_4015);
-		}
-		if(targetEditPart instanceof CommentEditPart) {
-			types.add(UMLElementTypes.TemplateBinding_4015);
-		}
-		if(targetEditPart instanceof DurationObservationEditPart) {
-			types.add(UMLElementTypes.TemplateBinding_4015);
-		}
-		if(targetEditPart instanceof TimeObservationEditPart) {
-			types.add(UMLElementTypes.TemplateBinding_4015);
-		}
-		if(targetEditPart instanceof DefaultNamedElementEditPart) {
-			types.add(UMLElementTypes.TemplateBinding_4015);
-		}
-		if(targetEditPart instanceof ShapeNamedElementEditPart) {
-			types.add(UMLElementTypes.TemplateBinding_4015);
-		}
-		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
-			types.add(UMLElementTypes.TemplateBinding_4015);
-		}
-		if(targetEditPart instanceof InstanceSpecificationEditPartCN) {
-			types.add(UMLElementTypes.TemplateBinding_4015);
-		}
 		if(targetEditPart instanceof ComponentEditPartCN) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
@@ -1210,15 +1161,6 @@ ClassifierEditPart
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
 		if(targetEditPart instanceof DataTypeEditPartCN) {
-			types.add(UMLElementTypes.TemplateBinding_4015);
-		}
-		if(targetEditPart instanceof Comment2EditPart) {
-			types.add(UMLElementTypes.TemplateBinding_4015);
-		}
-		if(targetEditPart instanceof Constraint2EditPart) {
-			types.add(UMLElementTypes.TemplateBinding_4015);
-		}
-		if(targetEditPart instanceof ContainmentCircleEditPart) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
 		if(targetEditPart instanceof Dependency2EditPart) {
@@ -1309,9 +1251,6 @@ ClassifierEditPart
 			types.add(UMLElementTypes.Dependency_4022);
 		}
 		if(targetEditPart instanceof Constraint2EditPart) {
-			types.add(UMLElementTypes.Dependency_4022);
-		}
-		if(targetEditPart instanceof ContainmentCircleEditPart) {
 			types.add(UMLElementTypes.Dependency_4022);
 		}
 		return types;
@@ -1438,7 +1377,6 @@ ClassifierEditPart
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Constraint_3029);
-			types.add(UMLElementTypes.Port_3032);
 		} else if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);
@@ -1470,7 +1408,6 @@ ClassifierEditPart
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Constraint_3029);
-			types.add(UMLElementTypes.Port_3032);
 		} else if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);
@@ -1502,7 +1439,6 @@ ClassifierEditPart
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Constraint_3029);
-			types.add(UMLElementTypes.Port_3032);
 		} else if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);
@@ -1534,7 +1470,6 @@ ClassifierEditPart
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Constraint_3029);
-			types.add(UMLElementTypes.Port_3032);
 		} else if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);
@@ -1566,7 +1501,6 @@ ClassifierEditPart
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Constraint_3029);
-			types.add(UMLElementTypes.Port_3032);
 		} else if(relationshipType == UMLElementTypes.ElementImport_4009) {
 			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);
@@ -1601,10 +1535,8 @@ ClassifierEditPart
 			types.add(UMLElementTypes.Model_3024);
 			types.add(UMLElementTypes.Package_3009);
 		} else if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
-			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);
 			types.add(UMLElementTypes.Association_2015);
-			types.add(UMLElementTypes.InstanceSpecification_2001);
 			types.add(UMLElementTypes.Component_2002);
 			types.add(UMLElementTypes.Signal_2003);
 			types.add(UMLElementTypes.Interface_2004);
@@ -1614,14 +1546,6 @@ ClassifierEditPart
 			types.add(UMLElementTypes.Class_2008);
 			types.add(UMLElementTypes.PrimitiveType_2009);
 			types.add(UMLElementTypes.DataType_2010);
-			types.add(UMLElementTypes.Constraint_2011);
-			types.add(UMLElementTypes.Comment_2012);
-			types.add(UMLElementTypes.DurationObservation_2095);
-			types.add(UMLElementTypes.TimeObservation_2096);
-			types.add(UMLElementTypes.NamedElement_2097);
-			types.add(UMLElementTypes.NamedElement_2098);
-			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
-			types.add(UMLElementTypes.InstanceSpecification_3020);
 			types.add(UMLElementTypes.Component_3021);
 			types.add(UMLElementTypes.Signal_3022);
 			types.add(UMLElementTypes.Interface_3023);
@@ -1631,9 +1555,6 @@ ClassifierEditPart
 			types.add(UMLElementTypes.Class_3010);
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
-			types.add(UMLElementTypes.Comment_3028);
-			types.add(UMLElementTypes.Constraint_3029);
-			types.add(UMLElementTypes.Port_3032);
 		} else if(relationshipType == UMLElementTypes.Dependency_4022) {
 			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);
@@ -1665,7 +1586,6 @@ ClassifierEditPart
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Constraint_3029);
-			types.add(UMLElementTypes.Port_3032);
 		}
 		return types;
 	}
@@ -1816,7 +1736,6 @@ ClassifierEditPart
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Constraint_3029);
-			types.add(UMLElementTypes.Port_3032);
 		} else if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);
@@ -1848,7 +1767,6 @@ ClassifierEditPart
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Constraint_3029);
-			types.add(UMLElementTypes.Port_3032);
 		} else if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);
@@ -1880,7 +1798,6 @@ ClassifierEditPart
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Constraint_3029);
-			types.add(UMLElementTypes.Port_3032);
 		} else if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);
@@ -1912,7 +1829,6 @@ ClassifierEditPart
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Constraint_3029);
-			types.add(UMLElementTypes.Port_3032);
 		} else if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);
@@ -1944,7 +1860,6 @@ ClassifierEditPart
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Constraint_3029);
-			types.add(UMLElementTypes.Port_3032);
 		} else if(relationshipType == UMLElementTypes.ElementImport_4009) {
 			types.add(UMLElementTypes.AssociationClass_2013);
 			types.add(UMLElementTypes.Association_2015);
@@ -2024,7 +1939,6 @@ ClassifierEditPart
 			types.add(UMLElementTypes.PrimitiveType_3026);
 			types.add(UMLElementTypes.DataType_3027);
 			types.add(UMLElementTypes.Constraint_3029);
-			types.add(UMLElementTypes.Port_3032);
 		} else if(relationshipType == UMLElementTypes.TimeObservationEvent_4024) {
 			types.add(UMLElementTypes.TimeObservation_2096);
 		} else if(relationshipType == UMLElementTypes.DurationObservationEvent_4025) {
@@ -2066,5 +1980,4 @@ ClassifierEditPart
 		}
 		return result;
 	}
-
 }

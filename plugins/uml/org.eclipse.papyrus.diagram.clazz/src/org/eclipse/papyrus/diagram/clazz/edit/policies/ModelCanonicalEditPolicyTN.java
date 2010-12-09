@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2010 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,8 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ */
 package org.eclipse.papyrus.diagram.clazz.edit.policies;
 
 import java.util.ArrayList;
@@ -33,6 +32,7 @@ import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.RedefinableTemplateSignatureEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.TemplateSignatureEditPart;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.diagram.clazz.part.UMLNodeDescriptor;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
@@ -42,6 +42,13 @@ import org.eclipse.uml2.uml.UMLPackage;
  * @generated
  */
 public class ModelCanonicalEditPolicyTN extends CanonicalEditPolicy {
+
+	/**
+	 * @generated
+	 */
+	protected EStructuralFeature getFeatureToSynchronize() {
+		return UMLPackage.eINSTANCE.getTemplateableElement_OwnedTemplateSignature();
+	}
 
 	/**
 	 * @generated
@@ -68,7 +75,8 @@ public class ModelCanonicalEditPolicyTN extends CanonicalEditPolicy {
 	 * @generated
 	 */
 	private boolean isMyDiagramElement(View view) {
-		return RedefinableTemplateSignatureEditPart.VISUAL_ID == UMLVisualIDRegistry.getVisualID(view);
+		int visualID = UMLVisualIDRegistry.getVisualID(view);
+		return visualID == RedefinableTemplateSignatureEditPart.VISUAL_ID || visualID == TemplateSignatureEditPart.VISUAL_ID;
 	}
 
 	/**
@@ -148,12 +156,4 @@ public class ModelCanonicalEditPolicyTN extends CanonicalEditPolicy {
 
 		makeViewsImmutable(createdViews);
 	}
-
-	/**
-	 * @generated
-	 */
-	protected EStructuralFeature getFeatureToSynchronize() {
-		return UMLPackage.eINSTANCE.getTemplateableElement_OwnedTemplateSignature();
-	}
-
 }

@@ -45,10 +45,12 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.Size;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.activity.edit.parts.AcceptEventActionEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityEditPartCN;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityFinalNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityPartitionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallBehaviorActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallOperationActionEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.CommentEditPartCN;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConditionalNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPrecondEditPart;
@@ -60,8 +62,6 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ExpansionRegionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.FlowFinalNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ForkNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InitialNodeEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.InteractionConstraintAsLocalPostcondEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.InteractionConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InterruptibleActivityRegionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPrecondEditPart;
@@ -69,6 +69,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.JoinNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.LoopNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.MergeNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OpaqueActionEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ReadSelfActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SendObjectActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SendSignalActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SequenceNodeEditPart;
@@ -98,7 +99,7 @@ public class ActivityActivityContentCompartmentCanonicalEditPolicy extends Canon
 	protected List getSemanticChildrenList() {
 		View viewObject = (View)getHost().getModel();
 		LinkedList<EObject> result = new LinkedList<EObject>();
-		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.getActivityActivityContentCompartment_7004SemanticChildren(viewObject);
+		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.getActivityActivityFigureContentCompartment_7004SemanticChildren(viewObject);
 		for(UMLNodeDescriptor d : childDescriptors) {
 			result.add(d.getModelElement());
 		}
@@ -128,8 +129,6 @@ public class ActivityActivityContentCompartmentCanonicalEditPolicy extends Canon
 		case DurationConstraintAsLocalPostcondEditPart.VISUAL_ID:
 		case TimeConstraintAsLocalPrecondEditPart.VISUAL_ID:
 		case TimeConstraintAsLocalPostcondEditPart.VISUAL_ID:
-		case InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID:
-		case InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID:
 		case IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID:
 		case IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID:
 		case ConstraintAsLocalPrecondEditPart.VISUAL_ID:
@@ -150,6 +149,9 @@ public class ActivityActivityContentCompartmentCanonicalEditPolicy extends Canon
 		case StructuredActivityNodeEditPart.VISUAL_ID:
 		case ActivityPartitionEditPart.VISUAL_ID:
 		case InterruptibleActivityRegionEditPart.VISUAL_ID:
+		case CommentEditPartCN.VISUAL_ID:
+		case ReadSelfActionEditPart.VISUAL_ID:
+		case ActivityEditPartCN.VISUAL_ID:
 			return true;
 		}
 		return false;
@@ -163,7 +165,7 @@ public class ActivityActivityContentCompartmentCanonicalEditPolicy extends Canon
 			return;
 		}
 		LinkedList<IAdaptable> createdViews = new LinkedList<IAdaptable>();
-		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.getActivityActivityContentCompartment_7004SemanticChildren((View)getHost().getModel());
+		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.getActivityActivityFigureContentCompartment_7004SemanticChildren((View)getHost().getModel());
 		LinkedList<View> orphaned = new LinkedList<View>();
 		// we care to check only views we recognize as ours
 		LinkedList<View> knownViewChildren = new LinkedList<View>();
@@ -276,6 +278,8 @@ public class ActivityActivityContentCompartmentCanonicalEditPolicy extends Canon
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getAction_LocalPrecondition());
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getAction_LocalPostcondition());
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getActivity_Group());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getElement_OwnedComment());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getBehavioredClassifier_OwnedBehavior());
 		}
 		return myFeaturesToSynchronize;
 	}

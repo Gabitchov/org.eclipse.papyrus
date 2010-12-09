@@ -18,7 +18,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
-import org.eclipse.uml2.common.util.CacheAdapter;
+import org.eclipse.papyrus.core.utils.PapyrusEcoreUtils;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.TimeConstraint;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -36,7 +36,7 @@ public class TimeConstraintHelper {
 	 * @return list of TimeConstraint
 	 */
 	public static List<TimeConstraint> getTimeConstraintsOn(NamedElement element) {
-		Collection<Setting> inverseReferences = CacheAdapter.INSTANCE.getNonNavigableInverseReferences(element);
+		Collection<Setting> inverseReferences = PapyrusEcoreUtils.getUsages(element);
 		// TimeConstraint referencing element
 		List<TimeConstraint> referencing = new LinkedList<TimeConstraint>();
 		for(Setting ref : inverseReferences) {

@@ -23,6 +23,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.palette.PaletteEntry;
+import org.eclipse.gef.palette.ToolEntry;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.ui.util.DisplayUtils;
@@ -58,8 +60,6 @@ import org.eclipse.papyrus.diagram.common.part.PaletteUtil;
 import org.eclipse.papyrus.diagram.common.service.ApplyStereotypeRequest;
 import org.eclipse.papyrus.diagram.common.ui.dialogs.PropertyEditors;
 import org.eclipse.papyrus.diagram.common.util.Util;
-import org.eclipse.papyrus.diagram.common.wizards.PaletteAspectToolEntryProxy;
-import org.eclipse.papyrus.diagram.common.wizards.PaletteEntryProxy;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
@@ -156,7 +156,7 @@ public class StereotypePostAction extends ModelPostAction {
 	protected TreeViewer stereotypesViewer;
 
 	/** entry proxy "parent" of this action when configuring the action */
-	protected PaletteEntryProxy entryProxy;
+	protected IPaletteEntryProxy entryProxy;
 
 	/** editor label provider */
 	protected EditorLabelProvider editorLabelProvider = new EditorLabelProvider();
@@ -412,7 +412,7 @@ public class StereotypePostAction extends ModelPostAction {
 	/**
 	 * @{inheritDoc
 	 */
-	public Control createConfigurationComposite(Composite parent, PaletteEntryProxy entryProxy, List<Profile> appliedProfiles) {
+	public Control createConfigurationComposite(Composite parent, IPaletteEntryProxy entryProxy, List<Profile> appliedProfiles) {
 		config.setAppliedProfiles(appliedProfiles);
 		this.entryProxy = entryProxy;
 
@@ -680,13 +680,18 @@ public class StereotypePostAction extends ModelPostAction {
 		// pops-up a dialog window where users can select the additionnal stereotypes to apply
 		// it needs the metaclass information...
 		// for this, entry Proxy should be a Palette entry proxy
-		if(!(entryProxy instanceof PaletteAspectToolEntryProxy)) {
+		if(!(entryProxy instanceof IPaletteAspectToolEntryProxy)) {
+			return;
+		}
+
+		PaletteEntry entry = ((IPaletteAspectToolEntryProxy)entryProxy).getEntry();
+		if(!(entry instanceof ToolEntry)) {
 			return;
 		}
 
 		// this is a PaletteAspectToolEntryProxy
 		// try to find the metaclass on which the element is working
-		EClass metaClass = PaletteUtil.getToolMetaclass(((PaletteAspectToolEntryProxy)entryProxy).getEntry());
+		EClass metaClass = PaletteUtil.getToolMetaclass((ToolEntry)entry);
 
 		if(metaClass == null) {
 			Activator.log.error("Impossible to find metaclass", null); //$NON-NLS-1$

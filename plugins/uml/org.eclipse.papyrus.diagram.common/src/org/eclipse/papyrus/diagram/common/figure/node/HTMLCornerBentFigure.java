@@ -41,8 +41,8 @@ import org.w3c.dom.NodeList;
 /**
  * Corner bend figure able to display styled text formatted in html
  */
-public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigure, IMultilineEditableFigure{
-	
+public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigure, IMultilineEditableFigure {
+
 	/** indicates if the figure should use local coordinates or not */
 	protected boolean useLocalCoordinates = false;
 
@@ -77,7 +77,7 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 		super();
 		this.setBackgroundColor(THIS_BACK);
 		createContents();
-		
+
 	}
 
 	/**
@@ -88,7 +88,7 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 	public Label getIconLabel() {
 		return this.iconLabel;
 	}
-	
+
 	/**
 	 * Generates the basic contents for this figure
 	 */
@@ -251,7 +251,7 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 		}
 
 	}
-	
+
 	/**
 	 * Generates code from a node representing an underlined text.
 	 * 
@@ -654,11 +654,12 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 			return data;
 		}
 	}
-/**
- * 
- * @see org.eclipse.papyrus.diagram.common.figure.node.IMultilineEditableFigure#getEditionLocation()
- *
- */
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.diagram.common.figure.node.IMultilineEditableFigure#getEditionLocation()
+	 * 
+	 */
 	public Point getEditionLocation() {
 		return getBounds().getTopLeft();
 	}

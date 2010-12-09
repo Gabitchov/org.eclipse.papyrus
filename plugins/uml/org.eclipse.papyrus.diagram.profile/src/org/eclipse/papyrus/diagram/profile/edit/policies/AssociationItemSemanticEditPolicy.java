@@ -66,6 +66,10 @@ public class AssociationItemSemanticEditPolicy extends UMLBaseItemSemanticEditPo
 		super(UMLElementTypes.Association_4001);
 	}
 
+
+
+
+
 	/**
 	 * @generated
 	 */

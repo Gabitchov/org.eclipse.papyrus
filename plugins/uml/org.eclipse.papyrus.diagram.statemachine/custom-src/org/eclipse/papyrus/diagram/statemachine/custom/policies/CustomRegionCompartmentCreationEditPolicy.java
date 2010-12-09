@@ -24,6 +24,7 @@ import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
@@ -118,6 +119,28 @@ public class CustomRegionCompartmentCreationEditPolicy extends CreationEditPolic
 			LayerManager.Helper.find(getHost()).getLayer(LayerConstants.FEEDBACK_LAYER).add(sizeOnDropFeedback);
 		}
 		return sizeOnDropFeedback;
+	}
+
+	@Override
+	public EditPart getTargetEditPart(Request request) {
+
+		if(request instanceof CreateUnspecifiedTypeRequest) {
+			CreateUnspecifiedTypeRequest createUnspecifiedTypeRequest = (CreateUnspecifiedTypeRequest)request;
+
+			if(understandsRequest(request)) {
+				List<?> elementTypes = createUnspecifiedTypeRequest.getElementTypes();
+				// Treat the case where only one element type is listed
+				// Only take EntryPoint or ExitPoint element type into account
+				if((elementTypes.size() == 1) && (((IElementType)(elementTypes.get(0)) == UMLElementTypes.Pseudostate_16000) || ((IElementType)(elementTypes.get(0)) == UMLElementTypes.Pseudostate_17000))) {
+					// If the target is a compartment replace by its grand parent edit part
+					if((getHost() instanceof ShapeCompartmentEditPart)) {
+						return getHost().getParent().getParent().getParent();
+					}
+				}
+			}
+		}
+
+		return super.getTargetEditPart(request);
 	}
 
 	@Override

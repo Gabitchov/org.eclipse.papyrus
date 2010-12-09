@@ -75,7 +75,6 @@ public class ValueSpecificationActionCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -99,8 +98,6 @@ public class ValueSpecificationActionCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
-
 		ValueSpecificationAction newElement = UMLFactory.eINSTANCE.createValueSpecificationAction();
 
 		// set appropriate parents
@@ -110,7 +107,6 @@ public class ValueSpecificationActionCreateCommand extends EditElementCommand {
 		//		Activity owner = (Activity)getElementToEdit();
 		//		owner.getNodes().add(newElement);
 
-
 		ElementInitializers.getInstance().init_ValueSpecificationAction_3076(newElement);
 
 		doConfigure(newElement, monitor, info);
@@ -118,9 +114,6 @@ public class ValueSpecificationActionCreateCommand extends EditElementCommand {
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
-
-
-
 
 	/**
 	 * @generated

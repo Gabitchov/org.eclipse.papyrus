@@ -2,11 +2,12 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.sasheditor;singleton:=true
-Bundle-Version: 0.7.0.qualifier
+Bundle-Version: 0.7.1.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: org.eclipse.papyrus.sasheditor.contentprovider,
+Export-Package: org.eclipse.papyrus.sasheditor,
+ org.eclipse.papyrus.sasheditor.contentprovider,
  org.eclipse.papyrus.sasheditor.contentprovider.simple,
  org.eclipse.papyrus.sasheditor.editor,
  org.eclipse.papyrus.sasheditor.editor.actionbarcontributor,
@@ -16,7 +17,7 @@ Bundle-ActivationPolicy: lazy
 Bundle-Activator: org.eclipse.papyrus.sasheditor.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.gef,
- org.junit,
+ org.junit;bundle-version="4.8.1";resolution:=optional,
  org.eclipse.papyrus.log;visibility:=reexport,
  org.eclipse.emf.transaction;bundle-version="1.4.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

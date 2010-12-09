@@ -3260,6 +3260,11 @@
 						<controller predefinedId="UML_Property_subsettedProperty"/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
+					<container>
+						<controller predefinedId="UML_Port_provided"/>
+						<controller predefinedId="UML_Port_required"/>
+						<layout kind="Grid" numColumns="2" sameWidth="true"/>
+					</container>
 				</content>
 			</fragment>
 		</section>
@@ -3992,7 +3997,7 @@
 			</fragment>
 		</section>
 	</sectionSet>
-	<sectionSet name="sectionSet_Single_Image">
+	<!-- <sectionSet name="sectionSet_Single_Image">
 		<context enablesFor="1">
 			<elementClass name="org.eclipse.uml2.uml.Image"/>
 		</context>
@@ -4015,7 +4020,7 @@
 				</content>
 			</fragment>
 		</section>
-	</sectionSet>
+	</sectionSet>-->
 	<sectionSet name="sectionSet_Single_Profile">
 		<context enablesFor="1">
 			<elementClass name="org.eclipse.uml2.uml.Profile"/>

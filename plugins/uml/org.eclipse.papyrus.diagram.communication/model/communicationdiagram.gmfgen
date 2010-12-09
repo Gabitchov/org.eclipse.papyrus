@@ -16,6 +16,8 @@
         editPartClassName="ModelEditPart"
         canonicalEditPolicyClassName="ModelCanonicalEditPolicy"
         editingDomainID="org.eclipse.papyrus.diagram.communication.EditingDomain"
+        liveValidationUIFeedback="true"
+        validationDecorators="true"
         validationEnabled="true">
       <diagramRunTimeClass
           href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
@@ -28,7 +30,7 @@
       <behaviour
           xsi:type="gmfgen:CustomBehaviour"
           key="&quot;RemoveOrphanView&quot;"
-          editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.OrphanViewPolicy"/>
+          editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.communication.custom.edit.policies.CustomOrphanViewPolicy"/>
       <behaviour
           xsi:type="gmfgen:CustomBehaviour"
           key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
@@ -504,6 +506,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ShowHideCompartmentEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction"/>
@@ -612,6 +618,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.communication.custom.policies.itemsemantic.CustomMessageItemSemanticEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet"
             modelElementSelector="/0/@expressionProviders/@providers.0/@expressions.5">
@@ -656,12 +666,17 @@
           </viewmap>
           <behaviour
               xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.communication.custom.policies.itemsemantic.CustomMessageNameItemSemanticEditPolicy"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
               key="&quot;CustomDisplay&quot;"
               editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.communication.custom.edit.policies.MessageNameEditPolicy"/>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
               parser="/0/@labelParsers/@implementations.0"
-              editPattern="">
+              editorPattern="{0}"
+              editPattern="{0}">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
@@ -826,6 +841,7 @@
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Lifeline.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Lifeline.gif"
               createMethodName="createLifelineComCreationTool"
+              id="&quot;communication.tool.lifeline&quot;"
               genNodes="/0/@diagram/@childNodes.0"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -834,6 +850,7 @@
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
               createMethodName="createComment7CreationTool"
+              id="&quot;communication.tool.comment&quot;"
               genNodes="/0/@diagram/@childNodes.2"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -851,6 +868,7 @@
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationObservation.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationObservation.gif"
               createMethodName="createDurationObservation4CreationTool"
+              id="&quot;communication.tool.durationobservation&quot;"
               genNodes="/0/@diagram/@childNodes.4"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -859,6 +877,7 @@
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeObservation.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeObservation.gif"
               createMethodName="createTimeObservation6CreationTool"
+              id="&quot;communication.tool.timeobservation&quot;"
               qualifiedToolName=""
               genNodes="/0/@diagram/@childNodes.3"/>
         </groups>
@@ -871,7 +890,7 @@
             collapse="true">
           <entries
               xsi:type="gmfgen:ToolEntry"
-              title="Create a Message"
+              title="Message"
               description="MessageCreate"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message_createMessage.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message_createMessage.gif"
@@ -948,7 +967,7 @@
             body="self.oclIsKindOf(uml::InteractionFragment) or self.oclIsKindOf(uml::Lifeline)"/>
         <expressions
             xsi:type="gmfgen:GenConstraint"
-            body="self.messageSort=MessageSort::createMessage and self.sendEvent&lt;>null and self.receiveEvent&lt;>null"/>
+            body="self.sendEvent&lt;>null and self.receiveEvent&lt;>null"/>
         <expressions
             body="'OpaqueExpression'"/>
         <expressions

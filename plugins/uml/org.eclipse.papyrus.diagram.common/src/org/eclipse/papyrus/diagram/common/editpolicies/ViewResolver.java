@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  * Lets a D&D policy know if an <EObject> is a <Node> or a <Edge> in the host <EditPart>.
  * 
  * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
- *@deprecated -->new functionality for drag and drop
+ * @deprecated -->new functionality for drag and drop
  */
 public interface ViewResolver {
 

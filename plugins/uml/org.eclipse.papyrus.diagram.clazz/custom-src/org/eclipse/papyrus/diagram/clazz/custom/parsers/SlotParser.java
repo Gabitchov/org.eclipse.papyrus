@@ -17,31 +17,67 @@ import java.util.Iterator;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
+import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
+import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.uml2.uml.InstanceValue;
 import org.eclipse.uml2.uml.Slot;
 import org.eclipse.uml2.uml.ValueSpecification;
 
+/**
+ * this is a parser to display  a slot in the diagram
+ *
+ */
 public class SlotParser implements IParser {
 
+	/**
+	 * 
+	 * @see org.eclipse.gmf.runtime.common.ui.services.parser.IParser#getCompletionProcessor(org.eclipse.core.runtime.IAdaptable)
+	 *
+	 * @param element
+	 * @return
+	 */
 	public IContentAssistProcessor getCompletionProcessor(IAdaptable element) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	/**
+	 * 
+	 * @see org.eclipse.gmf.runtime.common.ui.services.parser.IParser#getEditString(org.eclipse.core.runtime.IAdaptable, int)
+	 *
+	 * @param element
+	 * @param flags
+	 * @return
+	 */
 	public String getEditString(IAdaptable element, int flags) {
 		// TODO Auto-generated method stub
-		return null;
+		return getPrintString(element, flags);
 	}
-
+	/**
+	 * 
+	 * @see org.eclipse.gmf.runtime.common.ui.services.parser.IParser#getParseCommand(org.eclipse.core.runtime.IAdaptable, java.lang.String, int)
+	 *
+	 * @param element
+	 * @param newString
+	 * @param flags
+	 * @return
+	 */
 	public ICommand getParseCommand(IAdaptable element, String newString, int flags) {
 		// TODO Auto-generated method stub
-		return null;
+		return UnexecutableCommand.INSTANCE;
 	}
-
+	/**
+	 * 
+	 * @see org.eclipse.gmf.runtime.common.ui.services.parser.IParser#getPrintString(org.eclipse.core.runtime.IAdaptable, int)
+	 *
+	 * @param element
+	 * @param flags
+	 * @return
+	 */
 	public String getPrintString(IAdaptable element, int flags) {
 		if(element instanceof EObjectAdapter) {
 			final Slot slot = ((Slot)((EObjectAdapter)element).getRealObject());
@@ -56,7 +92,7 @@ public class SlotParser implements IParser {
 				Iterator<ValueSpecification> iter = slot.getValues().iterator();
 				while(iter.hasNext()) {
 					ValueSpecification currentSpecification = iter.next();
-					if(currentSpecification instanceof InstanceValue) {
+					if(currentSpecification instanceof InstanceValue &&((InstanceValue)currentSpecification).getInstance()!=null) {
 						result = result + ((InstanceValue)currentSpecification).getInstance().getName() + ", ";
 					} else {
 						result = result + currentSpecification.stringValue() + ", ";
@@ -68,15 +104,28 @@ public class SlotParser implements IParser {
 		}
 		return "<UNDEFINED>";
 	}
-
+	/**
+	 * 
+	 * @see org.eclipse.gmf.runtime.common.ui.services.parser.IParser#isAffectingEvent(java.lang.Object, int)
+	 *
+	 * @param event
+	 * @param flags
+	 * @return
+	 */
 	public boolean isAffectingEvent(Object event, int flags) {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
-
+	/**
+	 * 
+	 * @see org.eclipse.gmf.runtime.common.ui.services.parser.IParser#isValidEditString(org.eclipse.core.runtime.IAdaptable, java.lang.String)
+	 *
+	 * @param element
+	 * @param editString
+	 * @return
+	 */
 	public IParserEditStatus isValidEditString(IAdaptable element, String editString) {
-		// TODO Auto-generated method stub
-		return null;
+		return new ParserEditStatus(UMLDiagramEditorPlugin.ID, IParserEditStatus.CANCEL, "");
 	}
 
 }

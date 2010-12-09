@@ -1,23 +1,21 @@
 package org.eclipse.papyrus.diagram.statemachine.edit.policies;
 
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
-import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
-import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.command.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.diagram.statemachine.edit.commands.TransitionCreateCommand;
 import org.eclipse.papyrus.diagram.statemachine.edit.commands.TransitionReorientCommand;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.TransitionEditPart;
-import org.eclipse.papyrus.diagram.statemachine.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.statemachine.providers.UMLElementTypes;
 
 /**
@@ -62,37 +60,14 @@ public class FinalStateItemSemanticEditPolicy extends
 		View view = (View) getHost().getModel();
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(
 				getEditingDomain(), null);
-		cmd.setTransactionNestingEnabled(false);
+		cmd.setTransactionNestingEnabled(true);
 
-		for (Iterator<?> it = view.getTargetEdges().iterator(); it.hasNext();) {
-			Edge incomingLink = (Edge) it.next();
-			switch (UMLVisualIDRegistry.getVisualID(incomingLink)) {
-			case TransitionEditPart.VISUAL_ID:
-				DestroyElementRequest destroyEltReq = new DestroyElementRequest(
-						incomingLink.getElement(), false);
-				cmd.add(new DestroyElementCommand(destroyEltReq));
-				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
-				break;
-			}
-		}
-
-		for (Iterator<?> it = view.getSourceEdges().iterator(); it.hasNext();) {
-			Edge outgoingLink = (Edge) it.next();
-			switch (UMLVisualIDRegistry.getVisualID(outgoingLink)) {
-			case TransitionEditPart.VISUAL_ID:
-				DestroyElementRequest destroyEltReq = new DestroyElementRequest(
-						outgoingLink.getElement(), false);
-				cmd.add(new DestroyElementCommand(destroyEltReq));
-				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
-				break;
-			}
-		}
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 		if (annotation == null) {
 			// there are indirectly referenced children, need extra commands: false
 			addDestroyShortcutsCommand(cmd, view);
 			// delete host element
-			ArrayList todestroy = new ArrayList();
+			List<EObject> todestroy = new ArrayList<EObject>();
 			todestroy.add(req.getElementToDestroy());
 			//cmd.add(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(req));
 			cmd.add(new EMFtoGMFCommandWrapper(

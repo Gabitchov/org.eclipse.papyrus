@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.diagram.common.part;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -26,11 +27,11 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.Tool;
-import org.eclipse.gef.palette.CombinedTemplateCreationEntry;
 import org.eclipse.gef.palette.PaletteContainer;
 import org.eclipse.gef.palette.PaletteEntry;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.ToolEntry;
+import org.eclipse.gmf.runtime.common.core.service.IProvider;
 import org.eclipse.gmf.runtime.common.core.service.ProviderPriority;
 import org.eclipse.gmf.runtime.diagram.ui.internal.services.palette.ContributeToPaletteOperation;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditorWithFlyOutPalette;
@@ -42,11 +43,13 @@ import org.eclipse.papyrus.core.utils.PapyrusTrace;
 import org.eclipse.papyrus.diagram.common.service.AspectUnspecifiedTypeConnectionTool;
 import org.eclipse.papyrus.diagram.common.service.AspectUnspecifiedTypeCreationTool;
 import org.eclipse.papyrus.diagram.common.service.IPapyrusPaletteConstant;
+import org.eclipse.papyrus.diagram.common.service.IProfileDependantPaletteProvider;
 import org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService;
 import org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService.ProviderDescriptor;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IMemento;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Profile;
 
 /**
@@ -87,7 +90,7 @@ public class PaletteUtil {
 	 *        the entry for which metaclass created is searched
 	 * @return the type of metaclasses created by the toolentry or <code>null</code>.
 	 */
-	public static EClass getToolMetaclass(CombinedTemplateCreationEntry entry) {
+	public static EClass getToolMetaclass(ToolEntry entry) {
 		Tool tool = entry.createTool();
 		List<IElementType> types = null;
 		if(tool instanceof AspectUnspecifiedTypeCreationTool) {
@@ -247,17 +250,54 @@ public class PaletteUtil {
 		Set<? extends PaletteEntry> entries = new HashSet<PaletteEntry>();
 
 		// retrieve all provider for the given editor ID
-		List<? extends PapyrusPaletteService.ProviderDescriptor> providers = (List<? extends ProviderDescriptor>)PapyrusPaletteService.getInstance().getProviders();
-		ContributeToPaletteOperation operation = new ContributeToPaletteOperation(part, part.getEditorInput(), new PaletteRoot(), new HashMap<Object, Object>());
 		PaletteRoot root = new PaletteRoot();
+		List<? extends PapyrusPaletteService.ProviderDescriptor> providers = (List<? extends ProviderDescriptor>)PapyrusPaletteService.getInstance().getProviders();
+		ContributeToPaletteOperation operation = new ContributeToPaletteOperation(part, part.getEditorInput(), root, new HashMap<Object, Object>());
 
-		for(PapyrusPaletteService.ProviderDescriptor descriptor : providers) {
-			if(descriptor.providesWithVisibility(operation)) {
-				((IPaletteProvider)descriptor.getProvider()).contributeToPalette(part, part.getEditorInput(), root, new HashMap<Object, Object>());
+
+		// generate for each provider, according to priority
+		@SuppressWarnings("unchecked")
+		List<PapyrusPaletteService.ProviderDescriptor> providerList = (List<PapyrusPaletteService.ProviderDescriptor>)PapyrusPaletteService.getInstance().getProviders();
+		for(PapyrusPaletteService.ProviderDescriptor descriptor : providerList) {
+			int compare = descriptor.getPriority().compareTo(priority);
+			if(compare < 0) {
+				if(descriptor.providesWithVisibility(operation)) {
+					((IPaletteProvider)descriptor.getProvider()).contributeToPalette(part, part.getEditorInput(), root, new HashMap<Object, Object>());
+				}
 			}
-
 		}
+		return entries;
+	}
 
+	/**
+	 * Returns all available entries for the given editor ID
+	 * 
+	 * @param editorID
+	 *        the editor to be contributed
+	 * @param priority
+	 *        the priority max for the entries
+	 * @return the set of available entries
+	 */
+	public static Map<String, PaletteEntry> getAvailableEntriesSet(IEditorPart part, ProviderPriority priority) {
+		Map<String, PaletteEntry> entries = new HashMap<String, PaletteEntry>();
+
+		// retrieve all provider for the given editor ID
+		PaletteRoot root = new PaletteRoot();
+		List<? extends PapyrusPaletteService.ProviderDescriptor> providers = (List<? extends ProviderDescriptor>)PapyrusPaletteService.getInstance().getProviders();
+		ContributeToPaletteOperation operation = new ContributeToPaletteOperation(part, part.getEditorInput(), root, entries);
+
+
+		// generate for each provider, according to priority
+		@SuppressWarnings("unchecked")
+		List<PapyrusPaletteService.ProviderDescriptor> providerList = (List<PapyrusPaletteService.ProviderDescriptor>)PapyrusPaletteService.getInstance().getProviders();
+		for(PapyrusPaletteService.ProviderDescriptor descriptor : providerList) {
+			int compare = descriptor.getPriority().compareTo(priority);
+			if(compare <= 0) {
+				if(descriptor.providesWithVisibility(operation)) {
+					((IPaletteProvider)descriptor.getProvider()).contributeToPalette(part, part.getEditorInput(), root, entries);
+				}
+			}
+		}
 		return entries;
 	}
 
@@ -294,6 +334,17 @@ public class PaletteUtil {
 			}
 		}
 		return buffer.toString();
+	}
+
+	/**
+	 * Returns the name of the profile from the given stereotype qualified Name
+	 * 
+	 * @param stereotypeName
+	 *        the name of the stereotype to parse
+	 * @return the qualified name of the profile from the given stereotype qualified Name
+	 */
+	public static String findProfileNameFromStereotypeName(String stereotypeName) {
+		return stereotypeName.substring(0, stereotypeName.lastIndexOf(NamedElement.SEPARATOR));
 	}
 
 	/**
@@ -372,6 +423,28 @@ public class PaletteUtil {
 						}
 					}
 				}
+			}
+		} else {
+			IProvider provider = papyrusProviderDesc.getProvider();
+			if(provider instanceof IProfileDependantPaletteProvider) {
+				Diagram diagram = ((DiagramEditorWithFlyOutPalette)part).getDiagram();
+				EObject element = diagram.getElement();
+				if(element instanceof Element) {
+					org.eclipse.uml2.uml.Package package_ = ((Element)element).getNearestPackage();
+					List<Profile> appliedProfiles = package_.getAllAppliedProfiles();
+					List<String> appliedProfilesNames = new ArrayList<String>();
+					for(Profile profile : appliedProfiles) {
+						appliedProfilesNames.add(profile.getQualifiedName());
+					}
+					// not null also
+					Collection<String> requiredProfiles = ((IProfileDependantPaletteProvider)provider).getRequiredProfiles();
+					for(String requiredProfileName : requiredProfiles) {
+						if(!appliedProfilesNames.contains(requiredProfileName)) {
+							return false;
+						}
+					}
+				}
+				return true;
 			}
 		}
 		// by default, returns true if the descriptor is not a local descriptor, as they do not use

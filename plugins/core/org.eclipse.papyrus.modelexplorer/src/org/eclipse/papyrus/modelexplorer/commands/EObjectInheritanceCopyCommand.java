@@ -28,8 +28,6 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
@@ -38,6 +36,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.core.utils.PapyrusEcoreUtils;
 
 /**
  * The Class EObjectInheritanceCopyCommand. it takes an eobject in parameter and
@@ -247,7 +246,7 @@ public class EObjectInheritanceCopyCommand extends CompositeCommand {
 	 *            the target eobject
 	 */
 	private void crossReference(EObject source, EObject target) {
-		Collection<EStructuralFeature.Setting> collection = getUsages(source);
+		Collection<EStructuralFeature.Setting> collection = PapyrusEcoreUtils.getUsages(source);
 		if (collection != null) {
 			for (EStructuralFeature.Setting nonNavigableInverseReference : collection) {
 				EStructuralFeature structuralFeature = nonNavigableInverseReference
@@ -262,29 +261,6 @@ public class EObjectInheritanceCopyCommand extends CompositeCommand {
 				}
 			}
 		}
-	}
-
-	/**
-	 * Gets the usages.
-	 * 
-	 * @param source
-	 *            the source
-	 * 
-	 * @return the usages or null if there is no usages
-	 */
-	public static Collection<EStructuralFeature.Setting> getUsages(
-			EObject source) {
-		Collection<EStructuralFeature.Setting> collection = null;
-		ECrossReferenceAdapter crossReferenceAdapter = ECrossReferenceAdapter
-				.getCrossReferenceAdapter(source);
-		if (crossReferenceAdapter != null) {
-			collection = crossReferenceAdapter
-					.getNonNavigableInverseReferences(source);
-		} else {
-			collection = EcoreUtil.UsageCrossReferencer.find(source, source
-					.eResource().getResourceSet());
-		}
-		return collection;
 	}
 
 	/**

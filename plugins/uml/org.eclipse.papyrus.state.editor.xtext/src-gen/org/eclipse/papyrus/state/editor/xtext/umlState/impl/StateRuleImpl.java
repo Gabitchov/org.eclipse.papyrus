@@ -1,16 +1,9 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+/**
+ * <copyright>
+ * </copyright>
  *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
+
+ */
 package org.eclipse.papyrus.state.editor.xtext.umlState.impl;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -26,6 +19,7 @@ import org.eclipse.papyrus.state.editor.xtext.umlState.DoRule;
 import org.eclipse.papyrus.state.editor.xtext.umlState.EntryRule;
 import org.eclipse.papyrus.state.editor.xtext.umlState.ExitRule;
 import org.eclipse.papyrus.state.editor.xtext.umlState.StateRule;
+import org.eclipse.papyrus.state.editor.xtext.umlState.SubmachineRule;
 import org.eclipse.papyrus.state.editor.xtext.umlState.UmlStatePackage;
 
 /**
@@ -36,6 +30,7 @@ import org.eclipse.papyrus.state.editor.xtext.umlState.UmlStatePackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.papyrus.state.editor.xtext.umlState.impl.StateRuleImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.state.editor.xtext.umlState.impl.StateRuleImpl#getSubmachine <em>Submachine</em>}</li>
  *   <li>{@link org.eclipse.papyrus.state.editor.xtext.umlState.impl.StateRuleImpl#getEntry <em>Entry</em>}</li>
  *   <li>{@link org.eclipse.papyrus.state.editor.xtext.umlState.impl.StateRuleImpl#getDo <em>Do</em>}</li>
  *   <li>{@link org.eclipse.papyrus.state.editor.xtext.umlState.impl.StateRuleImpl#getExit <em>Exit</em>}</li>
@@ -65,6 +60,16 @@ public class StateRuleImpl extends MinimalEObjectImpl.Container implements State
    * @ordered
    */
   protected String name = NAME_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getSubmachine() <em>Submachine</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getSubmachine()
+   * @generated
+   * @ordered
+   */
+  protected SubmachineRule submachine;
 
   /**
    * The cached value of the '{@link #getEntry() <em>Entry</em>}' containment reference.
@@ -138,6 +143,54 @@ public class StateRuleImpl extends MinimalEObjectImpl.Container implements State
     name = newName;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, UmlStatePackage.STATE_RULE__NAME, oldName, name));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public SubmachineRule getSubmachine()
+  {
+    return submachine;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetSubmachine(SubmachineRule newSubmachine, NotificationChain msgs)
+  {
+    SubmachineRule oldSubmachine = submachine;
+    submachine = newSubmachine;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UmlStatePackage.STATE_RULE__SUBMACHINE, oldSubmachine, newSubmachine);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setSubmachine(SubmachineRule newSubmachine)
+  {
+    if (newSubmachine != submachine)
+    {
+      NotificationChain msgs = null;
+      if (submachine != null)
+        msgs = ((InternalEObject)submachine).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UmlStatePackage.STATE_RULE__SUBMACHINE, null, msgs);
+      if (newSubmachine != null)
+        msgs = ((InternalEObject)newSubmachine).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - UmlStatePackage.STATE_RULE__SUBMACHINE, null, msgs);
+      msgs = basicSetSubmachine(newSubmachine, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, UmlStatePackage.STATE_RULE__SUBMACHINE, newSubmachine, newSubmachine));
   }
 
   /**
@@ -294,6 +347,8 @@ public class StateRuleImpl extends MinimalEObjectImpl.Container implements State
   {
     switch (featureID)
     {
+      case UmlStatePackage.STATE_RULE__SUBMACHINE:
+        return basicSetSubmachine(null, msgs);
       case UmlStatePackage.STATE_RULE__ENTRY:
         return basicSetEntry(null, msgs);
       case UmlStatePackage.STATE_RULE__DO:
@@ -316,6 +371,8 @@ public class StateRuleImpl extends MinimalEObjectImpl.Container implements State
     {
       case UmlStatePackage.STATE_RULE__NAME:
         return getName();
+      case UmlStatePackage.STATE_RULE__SUBMACHINE:
+        return getSubmachine();
       case UmlStatePackage.STATE_RULE__ENTRY:
         return getEntry();
       case UmlStatePackage.STATE_RULE__DO:
@@ -338,6 +395,9 @@ public class StateRuleImpl extends MinimalEObjectImpl.Container implements State
     {
       case UmlStatePackage.STATE_RULE__NAME:
         setName((String)newValue);
+        return;
+      case UmlStatePackage.STATE_RULE__SUBMACHINE:
+        setSubmachine((SubmachineRule)newValue);
         return;
       case UmlStatePackage.STATE_RULE__ENTRY:
         setEntry((EntryRule)newValue);
@@ -365,6 +425,9 @@ public class StateRuleImpl extends MinimalEObjectImpl.Container implements State
       case UmlStatePackage.STATE_RULE__NAME:
         setName(NAME_EDEFAULT);
         return;
+      case UmlStatePackage.STATE_RULE__SUBMACHINE:
+        setSubmachine((SubmachineRule)null);
+        return;
       case UmlStatePackage.STATE_RULE__ENTRY:
         setEntry((EntryRule)null);
         return;
@@ -390,6 +453,8 @@ public class StateRuleImpl extends MinimalEObjectImpl.Container implements State
     {
       case UmlStatePackage.STATE_RULE__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case UmlStatePackage.STATE_RULE__SUBMACHINE:
+        return submachine != null;
       case UmlStatePackage.STATE_RULE__ENTRY:
         return entry != null;
       case UmlStatePackage.STATE_RULE__DO:

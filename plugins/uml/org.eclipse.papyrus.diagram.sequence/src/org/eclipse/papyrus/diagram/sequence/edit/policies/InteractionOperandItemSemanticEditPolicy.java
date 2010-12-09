@@ -13,23 +13,20 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.edit.policies;
 
-import java.util.List;
-
-import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.ReconnectRequest;
-import org.eclipse.gmf.runtime.common.core.command.ICompositeCommand;
-import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
-import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
-import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
-import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.CombinedFragmentCreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.CommentAnnotatedElementCreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.CommentAnnotatedElementReorientCommand;
@@ -62,9 +59,8 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.Message6EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.Message7EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
-import org.eclipse.papyrus.diagram.sequence.util.SequenceDeleteHelper;
-import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.InteractionOperand;
+import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.service.edit.service.IElementEditService;
 
 /**
  * @generated
@@ -85,11 +81,11 @@ public class InteractionOperandItemSemanticEditPolicy extends UMLBaseItemSemanti
 		if(UMLElementTypes.InteractionUse_3002 == req.getElementType()) {
 			return getGEFWrapper(new InteractionUseCreateCommand(req));
 		}
-		if(UMLElementTypes.CombinedFragment_3004 == req.getElementType()) {
-			return getGEFWrapper(new CombinedFragmentCreateCommand(req));
-		}
 		if(UMLElementTypes.ConsiderIgnoreFragment_3007 == req.getElementType()) {
 			return getGEFWrapper(new ConsiderIgnoreFragmentCreateCommand(req));
+		}
+		if(UMLElementTypes.CombinedFragment_3004 == req.getElementType()) {
+			return getGEFWrapper(new CombinedFragmentCreateCommand(req));
 		}
 		if(UMLElementTypes.Continuation_3016 == req.getElementType()) {
 			return getGEFWrapper(new ContinuationCreateCommand(req));
@@ -111,84 +107,96 @@ public class InteractionOperandItemSemanticEditPolicy extends UMLBaseItemSemanti
 	}
 
 	/**
-	 * Generated not for handle CombinedFragment if no InteractionOperand left
-	 * 
-	 * @generated NOT
+	 * @generated
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
-		View view = (View)getHost().getModel();
-		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
-		cmd.setTransactionNestingEnabled(false);
+		EObject selectedEObject = req.getElementToDestroy();
+		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(selectedEObject);
+		if(provider != null) {
+			// Retrieve delete command from the Element Edit service
+			ICommand deleteCommand = provider.getEditCommand(req);
 
-		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
-		if(annotation == null) {
-			if(req.getElementToDestroy() instanceof InteractionOperand) {
-				List<Element> destroyedElements = SequenceDeleteHelper.destroyInteractionOperandRelatives((InteractionOperand)req.getElementToDestroy(), cmd);
-				SequenceDeleteHelper.deleteView(cmd, destroyedElements, getEditingDomain());
+			if(deleteCommand != null) {
+				return new ICommandProxy(deleteCommand);
 			}
-			// there are indirectly referenced children, need extra commands: false
-			addDestroyShortcutsCommand(cmd, view);
-			// delete host element
-			cmd.add(new DestroyElementCommand(req));
-		} else {
-			cmd.add(new DeleteCommand(getEditingDomain(), view));
 		}
-
-		// Delete parent CombinedFragment if no InteractionOperand left after this delete
-		EditPart compartmentEditPart = getHost().getParent();
-		if(compartmentEditPart.getChildren().size() == 1) {
-			View model = (View)compartmentEditPart.getParent().getModel();
-			DestroyElementRequest r = new DestroyElementRequest(model.getElement(), false);
-			cmd.add(new DestroyElementCommand(r));
-			cmd.add(new DeleteCommand(getEditingDomain(), model));
-		}
-
-		return getGEFWrapper(cmd.reduce());
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	@SuppressWarnings("unused")
-	private void addDestroyChildNodesCommand(ICompositeCommand cmd) {
-		// Not use anymore
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if(UMLElementTypes.Message_4004 == req.getElementType()) {
-			return null;
-		}
-		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req) : getCompleteCreateRelationshipCommand(req);
-		return command != null ? command : super.getCreateRelationshipCommand(req);
+		return UnexecutableCommand.INSTANCE;
 	}
 
 	/**
 	 * @generated
 	 */
+	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
+		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req) : getCompleteCreateRelationshipCommand(req);
+		return command != null ? command : super.getCreateRelationshipCommand(req);
+	}
+
+	/**
+	 * @generated NOT redirect message creation to CF
+	 */
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
 		if(UMLElementTypes.Message_4003 == req.getElementType()) {
-			return getGEFWrapper(new MessageCreateCommand(req, req.getSource(), req.getTarget()));
+			// redirect message creation to CF
+			EditPart combinedFragmentPart = getHost().getParent().getParent();
+			EObject combinedFragment = ((IGraphicalEditPart)combinedFragmentPart).resolveSemanticElement();
+			if(((IGraphicalEditPart)getHost()).resolveSemanticElement().equals(req.getSource())) {
+				return getGEFWrapper(new MessageCreateCommand(req, combinedFragment, req.getTarget()));
+			}
+			return null;//return getGEFWrapper(new MessageCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if(UMLElementTypes.Message_4004 == req.getElementType()) {
-			return getGEFWrapper(new Message2CreateCommand(req, req.getSource(), req.getTarget()));
+			// redirect message creation to CF
+			EditPart combinedFragmentPart = getHost().getParent().getParent();
+			EObject combinedFragment = ((IGraphicalEditPart)combinedFragmentPart).resolveSemanticElement();
+			if(((IGraphicalEditPart)getHost()).resolveSemanticElement().equals(req.getSource())) {
+				return getGEFWrapper(new Message2CreateCommand(req, combinedFragment, req.getTarget()));
+			}
+			return null;//return getGEFWrapper(new Message2CreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if(UMLElementTypes.Message_4005 == req.getElementType()) {
-			return getGEFWrapper(new Message3CreateCommand(req, req.getSource(), req.getTarget()));
+			// redirect message creation to CF
+			EditPart combinedFragmentPart = getHost().getParent().getParent();
+			EObject combinedFragment = ((IGraphicalEditPart)combinedFragmentPart).resolveSemanticElement();
+			if(((IGraphicalEditPart)getHost()).resolveSemanticElement().equals(req.getSource())) {
+				return getGEFWrapper(new Message3CreateCommand(req, combinedFragment, req.getTarget()));
+			}
+			return null;//return getGEFWrapper(new Message3CreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if(UMLElementTypes.Message_4006 == req.getElementType()) {
-			return getGEFWrapper(new Message4CreateCommand(req, req.getSource(), req.getTarget()));
+			// redirect message creation to CF
+			EditPart combinedFragmentPart = getHost().getParent().getParent();
+			EObject combinedFragment = ((IGraphicalEditPart)combinedFragmentPart).resolveSemanticElement();
+			if(((IGraphicalEditPart)getHost()).resolveSemanticElement().equals(req.getSource())) {
+				return getGEFWrapper(new Message4CreateCommand(req, combinedFragment, req.getTarget()));
+			}
+			return null;//return getGEFWrapper(new Message4CreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if(UMLElementTypes.Message_4007 == req.getElementType()) {
-			return getGEFWrapper(new Message5CreateCommand(req, req.getSource(), req.getTarget()));
+			// redirect message creation to CF
+			EditPart combinedFragmentPart = getHost().getParent().getParent();
+			EObject combinedFragment = ((IGraphicalEditPart)combinedFragmentPart).resolveSemanticElement();
+			if(((IGraphicalEditPart)getHost()).resolveSemanticElement().equals(req.getSource())) {
+				return getGEFWrapper(new Message5CreateCommand(req, combinedFragment, req.getTarget()));
+			}
+			return null;//return getGEFWrapper(new Message5CreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if(UMLElementTypes.Message_4008 == req.getElementType()) {
-			return getGEFWrapper(new Message6CreateCommand(req, req.getSource(), req.getTarget()));
+			// redirect message creation to CF
+			EditPart combinedFragmentPart = getHost().getParent().getParent();
+			EObject combinedFragment = ((IGraphicalEditPart)combinedFragmentPart).resolveSemanticElement();
+			if(((IGraphicalEditPart)getHost()).resolveSemanticElement().equals(req.getSource())) {
+				return getGEFWrapper(new Message6CreateCommand(req, combinedFragment, req.getTarget()));
+			}
+			return null;//return getGEFWrapper(new Message6CreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if(UMLElementTypes.Message_4009 == req.getElementType()) {
-			return getGEFWrapper(new Message7CreateCommand(req, req.getSource(), req.getTarget()));
+			// redirect message creation to CF
+			EditPart combinedFragmentPart = getHost().getParent().getParent();
+			EObject combinedFragment = ((IGraphicalEditPart)combinedFragmentPart).resolveSemanticElement();
+			if(((IGraphicalEditPart)getHost()).resolveSemanticElement().equals(req.getSource())) {
+				return getGEFWrapper(new Message7CreateCommand(req, combinedFragment, req.getTarget()));
+			}
+			return null;//return getGEFWrapper(new Message7CreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if(UMLElementTypes.CommentAnnotatedElement_4010 == req.getElementType()) {
 			return null;
@@ -200,29 +208,36 @@ public class InteractionOperandItemSemanticEditPolicy extends UMLBaseItemSemanti
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT let InteractionOperandLayoutEditPolicy redirect messages
 	 */
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
 		if(UMLElementTypes.Message_4003 == req.getElementType()) {
-			return getGEFWrapper(new MessageCreateCommand(req, req.getSource(), req.getTarget()));
+			// let InteractionOperandLayoutEditPolicy redirect messages
+			return null;//return getGEFWrapper(new MessageCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if(UMLElementTypes.Message_4004 == req.getElementType()) {
-			return getGEFWrapper(new Message2CreateCommand(req, req.getSource(), req.getTarget()));
+			// let InteractionOperandLayoutEditPolicy redirect messages
+			return null;//return getGEFWrapper(new Message2CreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if(UMLElementTypes.Message_4005 == req.getElementType()) {
-			return getGEFWrapper(new Message3CreateCommand(req, req.getSource(), req.getTarget()));
+			// let InteractionOperandLayoutEditPolicy redirect messages
+			return null;//return getGEFWrapper(new Message3CreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if(UMLElementTypes.Message_4006 == req.getElementType()) {
-			return getGEFWrapper(new Message4CreateCommand(req, req.getSource(), req.getTarget()));
+			// let InteractionOperandLayoutEditPolicy redirect messages
+			return null;//return getGEFWrapper(new Message4CreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if(UMLElementTypes.Message_4007 == req.getElementType()) {
-			return getGEFWrapper(new Message5CreateCommand(req, req.getSource(), req.getTarget()));
+			// let InteractionOperandLayoutEditPolicy redirect messages
+			return null;//return getGEFWrapper(new Message5CreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if(UMLElementTypes.Message_4008 == req.getElementType()) {
-			return getGEFWrapper(new Message6CreateCommand(req, req.getSource(), req.getTarget()));
+			// let InteractionOperandLayoutEditPolicy redirect messages
+			return null;//return getGEFWrapper(new Message6CreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if(UMLElementTypes.Message_4009 == req.getElementType()) {
-			return getGEFWrapper(new Message7CreateCommand(req, req.getSource(), req.getTarget()));
+			// let InteractionOperandLayoutEditPolicy redirect messages
+			return null;//return getGEFWrapper(new Message7CreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if(UMLElementTypes.CommentAnnotatedElement_4010 == req.getElementType()) {
 			return getGEFWrapper(new CommentAnnotatedElementCreateCommand(req, req.getSource(), req.getTarget()));

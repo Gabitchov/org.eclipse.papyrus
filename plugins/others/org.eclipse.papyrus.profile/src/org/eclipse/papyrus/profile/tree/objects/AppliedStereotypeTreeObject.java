@@ -18,19 +18,20 @@ import java.util.Iterator;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.profile.Message;
 import org.eclipse.papyrus.profile.utils.Util;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
 
-//TODO: Auto-generated Javadoc
 /**
- * The Class StereotypeTreeObject.
+ * The Class StereotypeTreeObject is the first-level child of a StereotypedElementTreeObject.
+ * It references a certain stereotype that is applied to an object.
  */
 public class AppliedStereotypeTreeObject extends ParentTreeObject {
 
+	protected Stereotype stereotype;
+	
 	/**
 	 * The Constructor.
 	 * 
@@ -39,8 +40,9 @@ public class AppliedStereotypeTreeObject extends ParentTreeObject {
 	 * @param parent
 	 *        the parent
 	 */
-	public AppliedStereotypeTreeObject(StereotypedElementTreeObject parent, Element stereotype, TransactionalEditingDomain domain) {
-		super(parent, stereotype, domain);
+	public AppliedStereotypeTreeObject(StereotypedElementTreeObject parent, Stereotype stereotype) {
+		super(parent);
+		this.stereotype = stereotype;
 	}
 
 	/**
@@ -52,14 +54,12 @@ public class AppliedStereotypeTreeObject extends ParentTreeObject {
 		while(propIt.hasNext()) {
 			final Property currentProp = propIt.next();
 			// Select authorized properties
-			// if(currentProp.isComposite() || (currentProp.getAssociation() == null)) {
 			if(currentProp.getAssociation() != null) {
 				if(!currentProp.getName().startsWith("base_"))
-					addChild(new AppliedStereotypePropertyTreeObject(this, currentProp, domain));
+					addChild(new AppliedStereotypePropertyTreeObject(this, currentProp));
 			} else {
-				addChild(new AppliedStereotypePropertyTreeObject(this, currentProp, domain));
+				addChild(new AppliedStereotypePropertyTreeObject(this, currentProp));
 			}
-			// }
 		}
 	}
 
@@ -69,20 +69,18 @@ public class AppliedStereotypeTreeObject extends ParentTreeObject {
 	 * @return the stereotype
 	 */
 	public Stereotype getStereotype() {
-		return (Stereotype)element;
+		return stereotype;
 	}
 
 	/**
-	 * Removes the me.
+	 * Removes me. Only done on tree level (not on model level)
 	 */
 	public void removeMe() {
 
-		Element element = getParent().getElement();
 		Stereotype stereotype = getStereotype();
 
 		try {
 			getParent().removeChild(this);
-			// Force model change
 		} catch (IllegalArgumentException requiredEx) {
 			Message.warning((stereotype).getName() + " stereotype is required for this element");
 			requiredEx.printStackTrace();
@@ -90,7 +88,8 @@ public class AppliedStereotypeTreeObject extends ParentTreeObject {
 	}
 
 	/**
-	 * Move me up.
+	 * Move me up. This is first done on model level (@see Util.reoderStereotypeApplications)
+	 * then on tree level.
 	 */
 	public void moveMeUp() {
 
@@ -98,12 +97,12 @@ public class AppliedStereotypeTreeObject extends ParentTreeObject {
 		Stereotype stereotype = getStereotype();
 		Element root = rTO.getElement();
 
-		EList stereotypes = new BasicEList();
+		EList<Stereotype> stereotypes = new BasicEList<Stereotype>();
 		stereotypes.addAll(root.getAppliedStereotypes());
 
 		int index = stereotypes.indexOf(stereotype);
 		if(index < 1) {
-			// Not found of already on top...
+			// Not found or already on top...
 			return;
 		}
 
@@ -114,7 +113,8 @@ public class AppliedStereotypeTreeObject extends ParentTreeObject {
 	}
 
 	/**
-	 * Move me down.
+	 * Move me down. This is first done on model level (@see Util.reoderStereotypeApplications)
+	 * then on tree level.
 	 */
 	public void moveMeDown() {
 
@@ -122,7 +122,7 @@ public class AppliedStereotypeTreeObject extends ParentTreeObject {
 		Stereotype stereotype = getStereotype();
 		Element root = rTO.getElement();
 
-		EList stereotypes = new BasicEList();
+		EList<Stereotype> stereotypes = new BasicEList<Stereotype> ();
 		stereotypes.addAll(root.getAppliedStereotypes());
 
 		int index = stereotypes.indexOf(stereotype);

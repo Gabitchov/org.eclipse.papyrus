@@ -16,7 +16,6 @@ package org.eclipse.papyrus.profile.ui.compositeforview;
 
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.resource.JFaceColors;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -52,10 +51,9 @@ public class AppliedStereotypeCompositeWithView extends org.eclipse.papyrus.prof
 	 * @param parent
 	 *        the parent
 	 */
-	public AppliedStereotypeCompositeWithView(Composite parent, TransactionalEditingDomain domain) {
+	public AppliedStereotypeCompositeWithView(Composite parent) {
 		super(parent);
 		this.setBackground(JFaceColors.getBannerBackground(parent.getDisplay()));
-		this.setDomain(domain);
 	}
 
 	/**

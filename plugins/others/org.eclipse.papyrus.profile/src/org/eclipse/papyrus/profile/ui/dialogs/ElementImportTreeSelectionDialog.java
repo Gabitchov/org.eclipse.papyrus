@@ -56,6 +56,8 @@ public class ElementImportTreeSelectionDialog extends Dialog {
 
 	protected List<Package> models;
 
+	protected boolean subSelection = false;
+	
 	/**
 	 * 
 	 */
@@ -105,10 +107,9 @@ public class ElementImportTreeSelectionDialog extends Dialog {
 
 
 	/**
-	 * 
-	 * 
-	 * @param model
-	 * @param parent
+	 * @param parent the parent shell
+	 * @param model the UML model of profile or import library
+	 * @param subselection true, if the selection of an element automatically selects all sub-elements
 	 */
 	public ElementImportTreeSelectionDialog(Shell parent, Package model) {
 		super(parent);
@@ -161,11 +162,15 @@ public class ElementImportTreeSelectionDialog extends Dialog {
 				if(event.detail == SWT.CHECK) {
 					if(elementsToImport.contains(event.item.getData())) {
 						elementsToImport.remove(event.item.getData());
-						remChildSelection((TreeItem)event.item);
+						if (subSelection) {
+							remChildSelection((TreeItem)event.item);
+						}
 
 					} else {
 						elementsToImport.add((Element)event.item.getData());
-						addChildSelection((TreeItem)event.item);
+						if (subSelection) {
+							addChildSelection((TreeItem)event.item);
+						}
 					}
 				}
 			}

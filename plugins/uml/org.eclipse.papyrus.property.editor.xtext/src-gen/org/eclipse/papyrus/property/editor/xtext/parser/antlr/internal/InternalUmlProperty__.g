@@ -10,43 +10,44 @@ import org.eclipse.xtext.parser.antlr.Lexer;
 T12 : '/' ;
 T13 : ':' ;
 T14 : '<Undefined>' ;
-T15 : '[' ;
-T16 : '..' ;
-T17 : ']' ;
-T18 : '{' ;
-T19 : ',' ;
-T20 : '}' ;
-T21 : '+' ;
-T22 : '-' ;
-T23 : '#' ;
-T24 : '~' ;
-T25 : 'readOnly' ;
-T26 : 'union' ;
-T27 : 'ordered' ;
-T28 : 'unique' ;
+T15 : '::' ;
+T16 : '[' ;
+T17 : '..' ;
+T18 : ']' ;
+T19 : '{' ;
+T20 : ',' ;
+T21 : '}' ;
+T22 : '+' ;
+T23 : '-' ;
+T24 : '#' ;
+T25 : '~' ;
+T26 : 'readOnly' ;
+T27 : 'union' ;
+T28 : 'ordered' ;
+T29 : 'unique' ;
 
-// $ANTLR src "../org.eclipse.papyrus.property.editor.xtext/src-gen/org/eclipse/papyrus/property/editor/xtext/parser/antlr/internal/InternalUmlProperty.g" 566
+// $ANTLR src "../org.eclipse.papyrus.property.editor.xtext/src-gen/org/eclipse/papyrus/property/editor/xtext/parser/antlr/internal/InternalUmlProperty.g" 702
 RULE_UNLIMITEDLITERAL : ('0'..'9' ('0'..'9')*|'*');
 
-// $ANTLR src "../org.eclipse.papyrus.property.editor.xtext/src-gen/org/eclipse/papyrus/property/editor/xtext/parser/antlr/internal/InternalUmlProperty.g" 568
+// $ANTLR src "../org.eclipse.papyrus.property.editor.xtext/src-gen/org/eclipse/papyrus/property/editor/xtext/parser/antlr/internal/InternalUmlProperty.g" 704
 RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 
-// $ANTLR src "../org.eclipse.papyrus.property.editor.xtext/src-gen/org/eclipse/papyrus/property/editor/xtext/parser/antlr/internal/InternalUmlProperty.g" 570
+// $ANTLR src "../org.eclipse.papyrus.property.editor.xtext/src-gen/org/eclipse/papyrus/property/editor/xtext/parser/antlr/internal/InternalUmlProperty.g" 706
 RULE_INT : ('0'..'9')+;
 
-// $ANTLR src "../org.eclipse.papyrus.property.editor.xtext/src-gen/org/eclipse/papyrus/property/editor/xtext/parser/antlr/internal/InternalUmlProperty.g" 572
+// $ANTLR src "../org.eclipse.papyrus.property.editor.xtext/src-gen/org/eclipse/papyrus/property/editor/xtext/parser/antlr/internal/InternalUmlProperty.g" 708
 RULE_STRING : ('"' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\')|~(('\\'|'"')))* '"'|'\'' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\')|~(('\\'|'\'')))* '\'');
 
-// $ANTLR src "../org.eclipse.papyrus.property.editor.xtext/src-gen/org/eclipse/papyrus/property/editor/xtext/parser/antlr/internal/InternalUmlProperty.g" 574
+// $ANTLR src "../org.eclipse.papyrus.property.editor.xtext/src-gen/org/eclipse/papyrus/property/editor/xtext/parser/antlr/internal/InternalUmlProperty.g" 710
 RULE_ML_COMMENT : '/*' ( options {greedy=false;} : . )*'*/';
 
-// $ANTLR src "../org.eclipse.papyrus.property.editor.xtext/src-gen/org/eclipse/papyrus/property/editor/xtext/parser/antlr/internal/InternalUmlProperty.g" 576
+// $ANTLR src "../org.eclipse.papyrus.property.editor.xtext/src-gen/org/eclipse/papyrus/property/editor/xtext/parser/antlr/internal/InternalUmlProperty.g" 712
 RULE_SL_COMMENT : '//' ~(('\n'|'\r'))* ('\r'? '\n')?;
 
-// $ANTLR src "../org.eclipse.papyrus.property.editor.xtext/src-gen/org/eclipse/papyrus/property/editor/xtext/parser/antlr/internal/InternalUmlProperty.g" 578
+// $ANTLR src "../org.eclipse.papyrus.property.editor.xtext/src-gen/org/eclipse/papyrus/property/editor/xtext/parser/antlr/internal/InternalUmlProperty.g" 714
 RULE_WS : (' '|'\t'|'\r'|'\n')+;
 
-// $ANTLR src "../org.eclipse.papyrus.property.editor.xtext/src-gen/org/eclipse/papyrus/property/editor/xtext/parser/antlr/internal/InternalUmlProperty.g" 580
+// $ANTLR src "../org.eclipse.papyrus.property.editor.xtext/src-gen/org/eclipse/papyrus/property/editor/xtext/parser/antlr/internal/InternalUmlProperty.g" 716
 RULE_ANY_OTHER : .;
 
 

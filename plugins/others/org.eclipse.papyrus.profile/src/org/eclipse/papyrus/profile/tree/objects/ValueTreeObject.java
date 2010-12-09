@@ -10,6 +10,7 @@
  * Contributors:
  *  Chokri Mraidha (CEA LIST) Chokri.Mraidha@cea.fr - Initial API and implementation
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - modification
+ *  Ansgar Radermacher (CEA LIST) Ansgar.Radermacher@cea.fr - modification, documentation, clean-up
  *
  *****************************************************************************/
 package org.eclipse.papyrus.profile.tree.objects;
@@ -17,21 +18,20 @@ package org.eclipse.papyrus.profile.tree.objects;
 import java.util.ArrayList;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.profile.utils.Util;
 import org.eclipse.uml2.uml.DataType;
-import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.uml2.uml.PrimitiveType;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.Type;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class ValueTreeObject.
- * Pseudo extension of ParentTreeObject (property is always null)
+ * The Class ValueTreeObject. Superclass for stereotype values ("right" side of the stereotype
+ * dialog. The attribute value corresponds to the stereotype value. Its type depends on the
+ * stereotype, e.g. it might be a Java boolean or the class of another stereotype (an EObject).
+ * Each ValueTreeObject provides the ability to edit its value, i.e. to call a dialog in which
+ * the user selects a new value.
  */
 public abstract class ValueTreeObject extends ParentTreeObject {
 
@@ -56,8 +56,8 @@ public abstract class ValueTreeObject extends ParentTreeObject {
 	 * @param domain
 	 *        editing domain used to modify element values
 	 */
-	public ValueTreeObject(AppliedStereotypePropertyTreeObject parent, Object value, TransactionalEditingDomain domain) {
-		super(parent, null, domain);
+	public ValueTreeObject(AppliedStereotypePropertyTreeObject parent, Object value) {
+		super(parent);
 		thePropertyTreeObjectParent = parent;
 		this.value = value;
 	}
@@ -82,19 +82,19 @@ public abstract class ValueTreeObject extends ParentTreeObject {
 	
 
 	/**
-	 * Move me up.
+	 * Move me up: change order of values in case of a stereotype attribute supporting
+	 * a set of values. Updates the order on model model level and tree level
 	 * 
-	 * @param index
+	 * @param index index of value that should move up
 	 */
 	public void moveMeUp(int index) {
-
-		Property property = ((AppliedStereotypePropertyTreeObject)getParent()).getProperty();
 
 		Object currentVal = ((AppliedStereotypePropertyTreeObject)getParent()).getValue();
 		ArrayList<Object> tempValues = new ArrayList<Object>();
 
-		if(property.isMultivalued()) {
-			EList currentValues = (EList)currentVal;
+		if (currentVal instanceof EList) {
+			@SuppressWarnings("unchecked")
+			EList<Object> currentValues = (EList<Object>) currentVal;
 
 			for(int i = 0; i < currentValues.size(); i++) {
 				tempValues.add(currentValues.get(i));
@@ -114,28 +114,30 @@ public abstract class ValueTreeObject extends ParentTreeObject {
 		tempValues.set(index, tmp);
 
 		// update
-		updateValue (tempValues);
-
+		AppliedStereotypePropertyTreeObject pTO = (AppliedStereotypePropertyTreeObject)getParent();
+		pTO.updateValue (tempValues);
+		
 		// Refresh - move tree elements
 		getParent().moveChildUp(this);
 	}
 
 	/**
-	 * Move me down.
+	 * Move me down: change order of values in case of a stereotype attribute supporting
+	 * a set of values. Updates the order on model model level and tree level
 	 * 
-	 * @param index
+	 * @param index index of the value that should move down
 	 */
 	public void moveMeDown(int index) {
 
-		Property property = ((AppliedStereotypePropertyTreeObject)getParent()).getProperty();
 		// Stereotype stereotype = ((AppliedStereotypeTreeObject)getParent().getParent()).getStereotype();
 		// Element element = ((StereotypedElementTreeObject)getParent().getParent().getParent()).element;
 
 		Object currentVal = ((AppliedStereotypePropertyTreeObject)getParent()).getValue();
 		ArrayList<Object> tempValues = new ArrayList <Object>();
 
-		if(property.isMultivalued()) {
-			EList currentValues = (EList) currentVal;
+		if (currentVal instanceof EList) {
+			@SuppressWarnings("unchecked")
+			EList<Object> currentValues = (EList<Object>) currentVal;
 
 			for(int i = 0; i < currentValues.size(); i++) {
 				tempValues.add(currentValues.get(i));
@@ -155,7 +157,8 @@ public abstract class ValueTreeObject extends ParentTreeObject {
 		tempValues.set(index, tmp);
 
 		// update
-		updateValue (tempValues);
+		AppliedStereotypePropertyTreeObject pTO = (AppliedStereotypePropertyTreeObject)getParent();
+		pTO.updateValue (tempValues);
 		
 		// Refresh - move tree elements
 		getParent().moveChildDown(this);
@@ -173,74 +176,44 @@ public abstract class ValueTreeObject extends ParentTreeObject {
 	 * 
 	 * @return the value tree object
 	 */
-	public static ValueTreeObject createInstance(AppliedStereotypePropertyTreeObject parent, Object newValue, TransactionalEditingDomain domain) {
+	public static ValueTreeObject createInstance(AppliedStereotypePropertyTreeObject parent, Object newValue) {
 
 		Property property = parent.getProperty();
 		Type type = property.getType();
 		ValueTreeObject newVTO = null;
 
-		/** primitive type **/
+			/** primitive type **/
 		if(type instanceof PrimitiveType) {
-			newVTO = PrimitiveTypeValueTreeObject.createInstance(parent, newValue, domain);
+			newVTO = PrimitiveTypeValueTreeObject.createInstance(parent, newValue);
 			/** Composite **/
 		} else if((type instanceof org.eclipse.uml2.uml.Class) && !(type instanceof Stereotype) && property.isComposite()) {
 			//
 			/** Enumeration **/
 		} else if(type instanceof Enumeration) {
-			newVTO = new EnumerationValueTreeObject(parent, newValue, domain);
+			newVTO = new EnumerationValueTreeObject(parent, newValue);
 			/** DataType **/
 		} else if(type instanceof DataType) {
-			newVTO = new DataTypeValueTreeObject(parent, newValue, domain);
+			newVTO = new DataTypeValueTreeObject(parent, newValue);
 			/** Stereotype **/
-		} else if(type instanceof Stereotype) {
-			newVTO = new StereotypeValueTreeObject(parent, newValue, domain);
+		} else	if(type instanceof Stereotype) {
+			newVTO = new StereotypeValueTreeObject(parent, newValue);
 			/** Metaclass **/
 		} else if(Util.isMetaclass(type)) {
-			newVTO = new MetaclassValueTreeObject(parent, newValue, domain);
+			newVTO = new MetaclassValueTreeObject(parent, newValue);
 		}
-
+		
 		return newVTO;
 	}
 
+	
 	/**
-	 * Update value.
-	 * 
-	 * @param newValue
-	 *        the new value
-	 */
-	protected void updateValue(final Object newValue) {
-
-		// use domain to update the value
-		RecordingCommand command = new RecordingCommand(domain, "Edit Stereotype Property Value") {
-
-			/**
-			 * {@inheritDoc}
-			 */
-			@Override
-			protected void doExecute() {
-				AppliedStereotypePropertyTreeObject pTO = (AppliedStereotypePropertyTreeObject)getParent();
-				Stereotype stereotype = ((AppliedStereotypeTreeObject)getParent().getParent()).getStereotype();
-				Element element = ((StereotypedElementTreeObject)getParent().getParent().getParent()).getElement();
-
-				Property property = pTO.getProperty();
-
-				if(newValue != null) {
-					// Affect newValue in UML model
-					element.setValue(stereotype, property.getName(), newValue);
-					if (!property.isMultivalued()) {
-						// update of multi-value is handled in add/remove/up/down/
-						// => (no need to do it here)
-						value = newValue;
-					}
-				}
-			}
-		};
-		domain.getCommandStack().execute(command);
-
-	}
-
-	/**
-	 * Edits the me.
+	 * Edit me.
+	 * Abstract method that must be implemented by heirs. It will open a dialog and provide a selection
+	 * of possible stereotype values.
+	 * The implementation should update the model with the new stereotype value. However, it does not
+	 * need to update the value attribute with the new value entered by the user, this is the responsibility
+	 * of the function that has called editMe (can be done by recreating the values from the model via
+	 * reInitChilds on the owning property tree object (@see AppliedStereotypePropertyTreeObject).
 	 */
 	public abstract void editMe();
 }

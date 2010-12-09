@@ -55,8 +55,11 @@ import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.GeneralOrdering;
 import org.eclipse.uml2.uml.Interaction;
+import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.Message;
+import org.eclipse.uml2.uml.OccurrenceSpecification;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -70,6 +73,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	public static final String VISUAL_ID_KEY = "visual_id"; //$NON-NLS-1$
+
+	/**
+	 * Extended request data key to hold the edge view during a reconnect request.
+	 * 
+	 * @generated
+	 */
+	public static final String GRAPHICAL_RECONNECTED_EDGE = "graphical_edge"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -91,12 +101,14 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * 
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public Command getCommand(Request request) {
 		if(request instanceof ReconnectRequest) {
 			Object view = ((ReconnectRequest)request).getConnectionEditPart().getModel();
 			if(view instanceof View) {
 				Integer id = new Integer(UMLVisualIDRegistry.getVisualID((View)view));
 				request.getExtendedData().put(VISUAL_ID_KEY, id);
+				request.getExtendedData().put(GRAPHICAL_RECONNECTED_EDGE, (View)view);
 			}
 		}
 		return super.getCommand(request);
@@ -159,7 +171,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	/**
 	 * @generated
 	 */
-	private IElementType getContextElementType(IEditCommandRequest request) {
+	protected IElementType getContextElementType(IEditCommandRequest request) {
 		IElementType requestContextElementType = UMLElementTypes.getElementType(getVisualID(request));
 		return requestContextElementType != null ? requestContextElementType : myElementType;
 	}
@@ -408,6 +420,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
+		public boolean canCreateGeneralOrdering_4012(InteractionFragment container, OccurrenceSpecification source, OccurrenceSpecification target) {
+			return canExistGeneralOrdering_4012(container, null, source, target);
+		}
+
+		/**
+		 * @generated
+		 */
 		public boolean canExistMessage_4003(Interaction container, Message linkInstance, Element source, Element target) {
 			try {
 				if(source == null) {
@@ -626,6 +645,17 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 * @generated
 		 */
 		public boolean canExistConstraintConstrainedElement_4011(Constraint source, Element target) {
+			return true;
+		}
+
+		/**
+		 * @generated NOT disable general ordering on same lifeline
+		 */
+		public boolean canExistGeneralOrdering_4012(InteractionFragment container, GeneralOrdering linkInstance, OccurrenceSpecification source, OccurrenceSpecification target) {
+			// disable general ordering on same lifeline
+			if(source != null && target != null) {
+				return Collections.disjoint(source.getCovereds(), target.getCovereds());
+			}
 			return true;
 		}
 

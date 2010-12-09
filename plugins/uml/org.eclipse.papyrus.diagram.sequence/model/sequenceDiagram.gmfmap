@@ -104,12 +104,12 @@
                     href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction/fragment"/>
               </children>
               <children
-                  referencedChild="//@nodes.0/@ownedChild/@children.1/@ownedChild">
+                  referencedChild="//@nodes.0/@ownedChild/@children.0/@ownedChild">
                 <containmentFeature
                     href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction/fragment"/>
               </children>
               <children
-                  referencedChild="//@nodes.0/@ownedChild/@children.0/@ownedChild">
+                  referencedChild="//@nodes.0/@ownedChild/@children.1/@ownedChild">
                 <containmentFeature
                     href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction/fragment"/>
               </children>
@@ -315,6 +315,11 @@
                 <diagramLabel
                     href="sequenceDiagram.gmfgraph#TimeMarkElementLabel"/>
               </labelMappings>
+              <labelMappings
+                  readOnly="true">
+                <diagramLabel
+                    href="sequenceDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
+              </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
                   href="sequenceDiagram.gmftool#//@palette/@tools.0/@tools.12"/>
@@ -344,6 +349,11 @@
               <labelMappings>
                 <diagramLabel
                     href="sequenceDiagram.gmfgraph#TimeMarkElementLabel"/>
+              </labelMappings>
+              <labelMappings
+                  readOnly="true">
+                <diagramLabel
+                    href="sequenceDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
               </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
@@ -393,6 +403,11 @@
               <labelMappings>
                 <diagramLabel
                     href="sequenceDiagram.gmfgraph#DurationConstraintLabel"/>
+              </labelMappings>
+              <labelMappings
+                  readOnly="true">
+                <diagramLabel
+                    href="sequenceDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
               </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
@@ -598,11 +613,16 @@
             <diagramLabel
                 href="sequenceDiagram.gmfgraph#DurationConstraintOnMessage"/>
           </labelMappings>
+          <labelMappings
+              readOnly="true">
+            <diagramLabel
+                href="sequenceDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
+          </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
               href="sequenceDiagram.gmftool#//@palette/@tools.0/@tools.14"/>
           <diagramNode
-              href="sequenceDiagram.gmfgraph#DurationConstraintOnMessage"/>
+              href="sequenceDiagram.gmfgraph#DurationObservationConstraintNode"/>
         </ownedChild>
       </children>
       <children>
@@ -627,11 +647,16 @@
             <diagramLabel
                 href="sequenceDiagram.gmfgraph#DurationObservationLabel"/>
           </labelMappings>
+          <labelMappings
+              readOnly="true">
+            <diagramLabel
+                href="sequenceDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
+          </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
               href="sequenceDiagram.gmftool#//@palette/@tools.0/@tools.11"/>
           <diagramNode
-              href="sequenceDiagram.gmfgraph#DurationObservationLabel"/>
+              href="sequenceDiagram.gmfgraph#DurationObservationConstraintNode"/>
         </ownedChild>
       </children>
       <compartments
@@ -717,7 +742,7 @@
       <sourceEnd
           body="self.oclIsKindOf(uml::InteractionFragment) or self.oclIsKindOf(uml::Lifeline)"/>
       <targetEnd
-          body="(self.oclIsKindOf(uml::InteractionFragment) or self.oclIsKindOf(uml::Lifeline)) and (self.owner = oppositeEnd.owner or self.owner = oppositeEnd or self = oppositeEnd.owner)"/>
+          body="true&#xD;&#xA;-- The following rule is completely false : check can not be performed with only source and target (depends on the the location on the lifeline). Anyway, job is previously done by method CommandHelper.hasValidContainer(IEditCommandRequest)&#xD;&#xA;--(self.oclIsKindOf(uml::InteractionFragment) or self.oclIsKindOf(uml::Lifeline)) and (self.owner = oppositeEnd.owner or self.owner = oppositeEnd or self = oppositeEnd.owner)"/>
     </creationConstraints>
   </links>
   <links
@@ -756,7 +781,7 @@
       <sourceEnd
           body="self.oclIsKindOf(uml::InteractionFragment)"/>
       <targetEnd
-          body="self.oclIsKindOf(uml::InteractionFragment)"/>
+          body="self.oclIsKindOf(uml::InteractionFragment) or self.oclIsKindOf(uml::Lifeline)"/>
     </creationConstraints>
   </links>
   <links
@@ -921,7 +946,7 @@
       relatedDiagrams="//@diagram">
     <tool
         xsi:type="gmftool:CreationTool"
-        href="sequenceDiagram.gmftool#//@palette/@tools.1/@tools.7"/>
+        href="sequenceDiagram.gmftool#//@palette/@tools.1/@tools.8"/>
     <diagramLink
         href="../../org.eclipse.papyrus.diagram.common/model/Comment.gmfgraph#CommentLinkConnection"/>
     <linkMetaFeature
@@ -932,12 +957,47 @@
       relatedDiagrams="//@diagram">
     <tool
         xsi:type="gmftool:CreationTool"
-        href="sequenceDiagram.gmftool#//@palette/@tools.1/@tools.8"/>
+        href="sequenceDiagram.gmftool#//@palette/@tools.1/@tools.9"/>
     <diagramLink
-        href="../../org.eclipse.papyrus.diagram.common/model/Comment.gmfgraph#CommentLinkConnection"/>
+        href="../../org.eclipse.papyrus.diagram.common/model/Constraint.gmfgraph#ConstraintLinkConnection"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Constraint/constrainedElement"/>
+  </links>
+  <links
+      relatedDiagrams="//@diagram">
+    <domainMetaElement
+        href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//GeneralOrdering"/>
+    <domainInitializer
+        xsi:type="gmfmap:FeatureSeqInitializer">
+      <initializers
+          xsi:type="gmfmap:FeatureValueSpec">
+        <feature
+            xsi:type="ecore:EAttribute"
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+        <value
+            body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"
+            language="java"/>
+      </initializers>
+    </domainInitializer>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="sequenceDiagram.gmfgraph#GeneralOrderingStereotypeLabel"/>
+    </labelMappings>
+    <containmentFeature
+        href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InteractionFragment/generalOrdering"/>
+    <tool
+        xsi:type="gmftool:CreationTool"
+        href="sequenceDiagram.gmftool#//@palette/@tools.1/@tools.7"/>
+    <diagramLink
+        href="sequenceDiagram.gmfgraph#GeneralOrderingLink"/>
+    <sourceMetaFeature
+        xsi:type="ecore:EReference"
+        href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//GeneralOrdering/before"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//GeneralOrdering/after"/>
   </links>
   <diagram>
     <diagramCanvas
@@ -949,4 +1009,57 @@
     <palette
         href="sequenceDiagram.gmftool#//@palette"/>
   </diagram>
+  <audits
+      id="org.eclipse.uml2.uml.util.UMLValidator.validate"
+      name="validateUMLModel"
+      description="Validate the UML model">
+    <childContainers
+        id="org.eclipse.papyrus.diagram.sequence.validation.FragmentOrderingKeeper"
+        name="fragmentsOrder"
+        description="Fragments order">
+      <audits
+          name="Interaction fragment ordering"
+          description="The fragment property of an Interaction must be ordered as a valid trace."
+          id="FragmentOrderingKeeper.Interaction"
+          useInLiveMode="true"
+          message="There is no valid trace sequencing the InteractionFragments in the fragment property. Some of them can not be organized as a valid sequence :{0}">
+        <rule
+            body="return UMLValidationHelper.validateFragmentsOrder(context, ctx);"
+            language="java"/>
+        <target
+            xsi:type="gmfmap:DomainElementTarget">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction"/>
+        </target>
+      </audits>
+      <audits
+          name="InteractionOperand fragment ordering"
+          description="The fragment property of an InteractionOperand must be ordered as a valid trace."
+          id="FragmentOrderingKeeper.InteractionOperand"
+          useInLiveMode="true"
+          message="There is no valid trace sequencing the InteractionFragments in the fragment property. Some of them can not be organized as a valid sequence :{0}">
+        <rule
+            body="return UMLValidationHelper.validateFragmentsOrder(context, ctx);"
+            language="java"/>
+        <target
+            xsi:type="gmfmap:DomainElementTarget">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InteractionOperand"/>
+        </target>
+      </audits>
+      <audits
+          name="Fragment ordering"
+          description="The fragment property of an Interaction or InteractionOperand must be ordered as a valid trace."
+          id="FragmentOrderingKeeper.LifelineFigure"
+          useInLiveMode="true"
+          message="There is no valid trace sequencing the InteractionFragments in the fragment property. Some of them can not be organized as a valid sequence :{0}">
+        <rule
+            body="return UMLValidationHelper.validateFragmentsOrder(context, ctx);"
+            language="java"/>
+        <target
+            xsi:type="gmfmap:DiagramElementTarget"
+            element="//@nodes.0/@ownedChild/@children.2/@ownedChild"/>
+      </audits>
+    </childContainers>
+  </audits>
 </gmfmap:Mapping>

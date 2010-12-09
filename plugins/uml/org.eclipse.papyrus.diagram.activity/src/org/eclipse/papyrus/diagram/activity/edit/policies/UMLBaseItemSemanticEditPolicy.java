@@ -55,9 +55,11 @@ import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.ActivityEdge;
 import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.ActivityParameterNode;
+import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.ControlFlow;
 import org.eclipse.uml2.uml.DecisionNode;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ExceptionHandler;
 import org.eclipse.uml2.uml.ExecutableNode;
 import org.eclipse.uml2.uml.FinalNode;
@@ -197,7 +199,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	/**
 	 * @generated
 	 */
-	private IElementType getContextElementType(IEditCommandRequest request) {
+	protected IElementType getContextElementType(IEditCommandRequest request) {
 		IElementType requestContextElementType = UMLElementTypes.getElementType(getVisualID(request));
 		return requestContextElementType != null ? requestContextElementType : myElementType;
 	}
@@ -293,9 +295,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 */
 	protected Command getMoveCommand(MoveRequest req) {
 
-
 		return getGEFWrapper(new MoveElementsCommand(req));
-
 
 	}
 
@@ -419,6 +419,19 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canCreateExceptionHandler_4005(ExecutableNode container, ExecutableNode source, ObjectNode target) {
 			return canExistExceptionHandler_4005(container, null, source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean canCreateCommentAnnotatedElement_4006(Comment source, Element target) {
+			if(source != null) {
+				if(source.getAnnotatedElements().contains(target)) {
+					return false;
+				}
+			}
+
+			return canExistCommentAnnotatedElement_4006(source, target);
 		}
 
 		/**
@@ -750,6 +763,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 * @generated
 		 */
 		public boolean canExistExceptionHandler_4005(ExecutableNode container, ExceptionHandler linkInstance, ExecutableNode source, ObjectNode target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean canExistCommentAnnotatedElement_4006(Comment source, Element target) {
 			return true;
 		}
 	}

@@ -26,36 +26,40 @@ import org.eclipse.swt.widgets.Group;
  * The Class DecorationGroup that display field for shadow, element icon, and qualified name
  */
 public class DecorationGroup extends AbstractGroup {
-	
+
 	/** The Constant SHADOW_BOOLEANFIELDEDITOR_LABEL. */
 	protected static final String SHADOW_BOOLEANFIELDEDITOR_LABEL = "Shadow";
-	
+
 	/** The Constant ELEMENTICON_BOOLEANFIELDEDITOR_LABEL. */
 	private static final String ELEMENTICON_BOOLEANFIELDEDITOR_LABEL = "Element icon";
-	
+
 	/** The Constant QUALIFIEDNAME_BOOLEANFIELDEDITOR_LABEL. */
 	private static final String QUALIFIEDNAME_BOOLEANFIELDEDITOR_LABEL = "Qualified name";
-	
+
 	/** The shadow fied editor. */
 	protected BooleanFieldEditor shadowFiedEditor;
-	
+
 	/** The element icon. */
 	protected BooleanFieldEditor elementIcon;
-	
+
 	/** The qualifiedname. */
 	protected BooleanFieldEditor qualifiedname;
 
 	/**
 	 * Instantiates a new decoration group.
 	 * 
-	 * @param parent the parent
-	 * @param key the key
-	 * @param dialogPage the dialog page
+	 * @param parent
+	 *        the parent
+	 * @param key
+	 *        the key
+	 * @param dialogPage
+	 *        the dialog page
 	 */
 	public DecorationGroup(Composite parent, String key, DialogPage dialogPage) {
 		super(parent, key, dialogPage);
 		createContent(parent);
 	}
+
 	/**
 	 * Creates the content.
 	 * 
@@ -67,22 +71,16 @@ public class DecorationGroup extends AbstractGroup {
 		decorationGroup.setLayout(new GridLayout());
 		decorationGroup.setText(Messages.DecorationGroup_Name);
 
-		shadowFiedEditor = new BooleanFieldEditor(
-				getPreferenceConstant(PreferenceConstantHelper.SHADOW),
-				SHADOW_BOOLEANFIELDEDITOR_LABEL, decorationGroup);
+		shadowFiedEditor = new BooleanFieldEditor(getPreferenceConstant(PreferenceConstantHelper.SHADOW), SHADOW_BOOLEANFIELDEDITOR_LABEL, decorationGroup);
 		shadowFiedEditor.setPage(dialogPage);
 
 		addFieldEditor(shadowFiedEditor);
-		
-		elementIcon= new BooleanFieldEditor(
-				getPreferenceConstant(PreferenceConstantHelper.ELEMENTICON),
-				ELEMENTICON_BOOLEANFIELDEDITOR_LABEL, decorationGroup);
+
+		elementIcon = new BooleanFieldEditor(getPreferenceConstant(PreferenceConstantHelper.ELEMENTICON), ELEMENTICON_BOOLEANFIELDEDITOR_LABEL, decorationGroup);
 		elementIcon.setPage(dialogPage);
 		addFieldEditor(elementIcon);
-		
-		qualifiedname= new BooleanFieldEditor(
-				getPreferenceConstant(PreferenceConstantHelper.QUALIFIEDNAME),
-				QUALIFIEDNAME_BOOLEANFIELDEDITOR_LABEL, decorationGroup);
+
+		qualifiedname = new BooleanFieldEditor(getPreferenceConstant(PreferenceConstantHelper.QUALIFIEDNAME), QUALIFIEDNAME_BOOLEANFIELDEDITOR_LABEL, decorationGroup);
 		qualifiedname.setPage(dialogPage);
 		addFieldEditor(qualifiedname);
 

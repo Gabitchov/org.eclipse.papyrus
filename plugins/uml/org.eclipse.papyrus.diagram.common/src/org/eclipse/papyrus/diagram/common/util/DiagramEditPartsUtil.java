@@ -423,14 +423,14 @@ public class DiagramEditPartsUtil {
 
 	// Code extracted from PackageCanonicalEditPolicy
 	/**
-	 * Gets the edits the part from view.
+	 * Gets the editpart from view.
 	 * 
 	 * @param view
 	 *        the view
 	 * @param anyEditPart
 	 *        the any edit part
 	 * 
-	 * @return the edits the part from view
+	 * @return null or the editpart from view
 	 */
 	public static EditPart getEditPartFromView(View view, EditPart anyEditPart) {
 		if(view != null) {

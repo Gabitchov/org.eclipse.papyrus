@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
+ *  Saadia Dhouib saadia.dhouib@cea.fr  
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.edit.parts;
@@ -82,6 +82,7 @@ import org.eclipse.ui.PlatformUI;
  */
 public class DurationObservationLabelEditPartCN
 
+
 extends AbstractLabelEditPart
 
 implements ITextAwareEditPart, IBorderItemEditPart {
@@ -111,19 +112,21 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 	 */
 	private String defaultText;
 
+
+
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
-	 * 
 	 * @generated
 	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
 	/**
 	 * configuration from a registered edit dialog
-	 * 
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
+
+
 
 	/**
 	 * @generated
@@ -605,11 +608,12 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 		return getPrimaryView();
 	}
 
+
+
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
-	 * @return an <code>int</code> corresponding to the kind of direct editor, @see
-	 *         org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
+	 * @return an <code>int</code> corresponding to the kind of direct editor, @see org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
 	 * @generated
 	 */
 	public int getDirectEditionType() {
@@ -650,7 +654,6 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 
 	/**
 	 * Initializes the extended editor configuration
-	 * 
 	 * @generated
 	 */
 	protected void initExtendedEditorConfiguration() {
@@ -666,7 +669,6 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 
 	/**
 	 * Updates the preference configuration
-	 * 
 	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
@@ -680,9 +682,7 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 
 	/**
 	 * Performs the direct edit usually used by GMF editors.
-	 * 
-	 * @param theRequest
-	 *        the direct edit request that starts the direct edit system
+	 * @param theRequest the direct edit request that starts the direct edit system
 	 * @generated
 	 */
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {
@@ -708,6 +708,8 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 			e.printStackTrace();
 		}
 	}
+
+
 
 	/**
 	 * @generated

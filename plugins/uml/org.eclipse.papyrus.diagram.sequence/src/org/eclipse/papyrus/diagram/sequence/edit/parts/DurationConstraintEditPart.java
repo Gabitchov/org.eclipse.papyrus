@@ -37,13 +37,13 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderItemEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.BorderedBorderItemEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
@@ -54,8 +54,10 @@ import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.common.draw2d.CenterLayout;
 import org.eclipse.papyrus.diagram.common.draw2d.LinesBorder;
 import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
+import org.eclipse.papyrus.diagram.common.locator.ExternalLabelPositionLocator;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.DeleteTimeElementWithoutEventPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.DurationConstraintItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.sequence.edit.policies.ExternalLabelPrimaryDragRoleEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.TimeRelatedSelectionEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
@@ -69,7 +71,7 @@ import org.eclipse.swt.graphics.Color;
  */
 public class DurationConstraintEditPart extends
 
-AbstractBorderItemEditPart {
+BorderedBorderItemEditPart {
 
 	/**
 	 * @generated
@@ -120,12 +122,19 @@ AbstractBorderItemEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT use ExternalLabelPrimaryDragRoleEditPolicy
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
+				View childView = (View)child.getModel();
+				switch(UMLVisualIDRegistry.getVisualID(childView)) {
+				case DurationConstraintLabelEditPart.VISUAL_ID:
+				case DurationConstraintAppliedStereotypeEditPart.VISUAL_ID:
+					// use ExternalLabelPrimaryDragRoleEditPolicy
+					return new ExternalLabelPrimaryDragRoleEditPolicy();
+				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if(result == null) {
 					result = new NonResizableEditPolicy();
@@ -159,53 +168,16 @@ AbstractBorderItemEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT use ExternalLabelPositionLocator
 	 */
-	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof DurationConstraintLabelEditPart) {
-			((DurationConstraintLabelEditPart)childEditPart).setLabel(getPrimaryShape().getDurationConstraintLabel());
-			return true;
+	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
+		if(borderItemEditPart instanceof DurationConstraintLabelEditPart || borderItemEditPart instanceof DurationConstraintAppliedStereotypeEditPart) {
+			//use ExternalLabelPositionLocator
+			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
+			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
+		} else {
+			super.addBorderItem(borderItemContainer, borderItemEditPart);
 		}
-
-
-		return false;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof DurationConstraintLabelEditPart) {
-			return true;
-		}
-		return false;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
-			return;
-		}
-		super.addChildVisual(childEditPart, -1);
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
-			return;
-		}
-		super.removeChildVisual(childEditPart);
-	}
-
-	/**
-	 * @generated
-	 */
-	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		return getContentPane();
 	}
 
 	/**
@@ -232,7 +204,7 @@ AbstractBorderItemEditPart {
 	 * 
 	 * @generated
 	 */
-	protected NodeFigure createNodeFigure() {
+	protected NodeFigure createMainFigure() {
 		NodeFigure figure = createNodePlate();
 		figure.setLayoutManager(new StackLayout());
 		IFigure shape = createNodeShape();
@@ -250,11 +222,6 @@ AbstractBorderItemEditPart {
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
-		if(nodeShape.getLayoutManager() == null) {
-			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
-			layout.setSpacing(5);
-			nodeShape.setLayoutManager(layout);
-		}
 		return nodeShape; // use nodeShape itself as contentPane
 	}
 
@@ -374,6 +341,12 @@ AbstractBorderItemEditPart {
 		if(targetEditPart instanceof CommentEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
+		if(targetEditPart instanceof DurationConstraintInMessageEditPart) {
+			types.add(UMLElementTypes.Message_4003);
+		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			types.add(UMLElementTypes.Message_4003);
+		}
 		if(targetEditPart instanceof InteractionEditPart) {
 			types.add(UMLElementTypes.Message_4004);
 		}
@@ -425,6 +398,12 @@ AbstractBorderItemEditPart {
 		if(targetEditPart instanceof CommentEditPart) {
 			types.add(UMLElementTypes.Message_4004);
 		}
+		if(targetEditPart instanceof DurationConstraintInMessageEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
 		if(targetEditPart instanceof InteractionEditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
@@ -476,6 +455,12 @@ AbstractBorderItemEditPart {
 		if(targetEditPart instanceof CommentEditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
+		if(targetEditPart instanceof DurationConstraintInMessageEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
 		if(targetEditPart instanceof InteractionEditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
@@ -527,6 +512,12 @@ AbstractBorderItemEditPart {
 		if(targetEditPart instanceof CommentEditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
+		if(targetEditPart instanceof DurationConstraintInMessageEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
 		if(targetEditPart instanceof InteractionEditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
@@ -578,6 +569,12 @@ AbstractBorderItemEditPart {
 		if(targetEditPart instanceof CommentEditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
+		if(targetEditPart instanceof DurationConstraintInMessageEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
 		if(targetEditPart instanceof InteractionEditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
@@ -629,6 +626,12 @@ AbstractBorderItemEditPart {
 		if(targetEditPart instanceof CommentEditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
+		if(targetEditPart instanceof DurationConstraintInMessageEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
 		if(targetEditPart instanceof InteractionEditPart) {
 			types.add(UMLElementTypes.Message_4009);
 		}
@@ -680,6 +683,12 @@ AbstractBorderItemEditPart {
 		if(targetEditPart instanceof CommentEditPart) {
 			types.add(UMLElementTypes.Message_4009);
 		}
+		if(targetEditPart instanceof DurationConstraintInMessageEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
 		if(targetEditPart instanceof InteractionEditPart) {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
 		}
@@ -729,6 +738,12 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
 		}
 		if(targetEditPart instanceof CommentEditPart) {
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
+		}
+		if(targetEditPart instanceof DurationConstraintInMessageEditPart) {
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
+		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
 		}
 		return types;
@@ -757,6 +772,8 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.Message_4004) {
 			types.add(UMLElementTypes.Interaction_2001);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
@@ -775,6 +792,8 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.Message_4005) {
 			types.add(UMLElementTypes.Interaction_2001);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
@@ -793,6 +812,8 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.Message_4006) {
 			types.add(UMLElementTypes.Interaction_2001);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
@@ -811,6 +832,8 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.Message_4007) {
 			types.add(UMLElementTypes.Interaction_2001);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
@@ -829,6 +852,8 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.Message_4008) {
 			types.add(UMLElementTypes.Interaction_2001);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
@@ -847,6 +872,8 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.Message_4009) {
 			types.add(UMLElementTypes.Interaction_2001);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
@@ -865,6 +892,8 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
 			types.add(UMLElementTypes.Interaction_2001);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
@@ -883,6 +912,8 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		}
 		return types;
 	}
@@ -927,6 +958,8 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.Message_4004) {
 			types.add(UMLElementTypes.Interaction_2001);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
@@ -945,6 +978,8 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.Message_4005) {
 			types.add(UMLElementTypes.Interaction_2001);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
@@ -963,6 +998,8 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.Message_4006) {
 			types.add(UMLElementTypes.Interaction_2001);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
@@ -981,6 +1018,8 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.Message_4007) {
 			types.add(UMLElementTypes.Interaction_2001);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
@@ -999,6 +1038,8 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.Message_4008) {
 			types.add(UMLElementTypes.Interaction_2001);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
@@ -1017,6 +1058,8 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.Message_4009) {
 			types.add(UMLElementTypes.Interaction_2001);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
@@ -1035,12 +1078,15 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.DestructionEvent_3022);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+			types.add(UMLElementTypes.DurationObservation_3024);
 		} else if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4010) {
 			types.add(UMLElementTypes.Comment_3009);
 		} else if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.DurationConstraint_3021);
 			types.add(UMLElementTypes.Constraint_3008);
+			types.add(UMLElementTypes.DurationConstraint_3023);
 		}
 		return types;
 	}
@@ -1068,11 +1114,6 @@ AbstractBorderItemEditPart {
 		 * @generated
 		 */
 		private PolylineShape fDurationArrow;
-
-		/**
-		 * @generated
-		 */
-		private WrappingLabel fDurationConstraintLabel;
 
 		/**
 		 * @generated
@@ -1129,6 +1170,8 @@ AbstractBorderItemEditPart {
 				points.addPoint(figureWidth / 2, figureHeight - getLineWidth() * 2);
 				points.addPoint(figureWidth / 2 + ARROW_SEMI_WIDTH, figureHeight - getLineWidth() * 2 - ARROW_HEIGHT);
 				getDurationArrow().setPoints(points);
+				Point topLeft = getLocation().getTranslated(getInsets().left, getInsets().top);
+				getDurationArrow().setBounds(new Rectangle(topLeft, new Dimension(figureWidth, figureHeight)));
 			}
 		}
 
@@ -1143,39 +1186,6 @@ AbstractBorderItemEditPart {
 			fDurationArrow.addPoint(new Point(getMapMode().DPtoLP(10), getMapMode().DPtoLP(0)));
 
 			this.add(fDurationArrow);
-
-
-
-			fDurationConstraintLabel = new WrappingLabel();
-
-
-
-
-			fDurationConstraintLabel.setTextAlignment(PositionConstants.CENTER);
-
-
-
-
-			fDurationConstraintLabel.setAlignment(PositionConstants.CENTER);
-
-
-
-
-			fDurationConstraintLabel.setBackgroundColor(getBackgroundColor());
-
-
-
-
-			fDurationConstraintLabel.setTextWrap(true);
-
-
-
-
-			fDurationConstraintLabel.setTextJustification(PositionConstants.CENTER);
-
-
-
-			this.add(fDurationConstraintLabel);
 
 
 		}
@@ -1201,13 +1211,6 @@ AbstractBorderItemEditPart {
 		 */
 		public PolylineShape getDurationArrow() {
 			return fDurationArrow;
-		}
-
-		/**
-		 * @generated
-		 */
-		public WrappingLabel getDurationConstraintLabel() {
-			return fDurationConstraintLabel;
 		}
 
 	}

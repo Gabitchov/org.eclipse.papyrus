@@ -45,9 +45,7 @@
 			icon="icons/obj16/Diagram_BlockDefinition.gif" label="Create a new Block Definition Diagram"
 			style="push" tooltip="Create a new Block Definition Diagram">
 			<visibleWhen>
-				<with variable="activeEditorId">
-					<equals value="org.eclipse.papyrus.core.papyrusEditor" />
-				</with>
+				<reference definitionId="org.eclipse.papyrus.sysml.diagram.common.IsPapyrusActiveWithSysML"/>
 			</visibleWhen>
 		</command>
 	</menu>
@@ -58,13 +56,23 @@
 		<command commandId="org.eclipse.papyrus.sysml.diagram.blockdefinition.CreateCommand"
 			icon="icons/obj16/Diagram_BlockDefinition.gif" label="Create a new Block Definition Diagram"
 			style="push" tooltip="Create a new Block Definition Diagram">
-				<visibleWhen>
-					<with variable="activeEditorId">
-						<equals value="org.eclipse.papyrus.core.papyrusEditor" />
-					</with>
-				</visibleWhen>
+			<visibleWhen>
+				<reference definitionId="org.eclipse.papyrus.sysml.diagram.common.IsPapyrusActiveWithSysML"/>
+			</visibleWhen>
 		</command>
 	</toolbar>
+	</menuContribution>
+
+	<menuContribution locationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.creatediagram">
+		<command commandId="org.eclipse.papyrus.sysml.diagram.blockdefinition.CreateCommand"
+			icon="icons/obj16/Diagram_BlockDefinition.gif"
+			label="Create a new Block Definition Diagram"
+			style="push"
+			tooltip="Create a new Block Definition Diagram">
+			<visibleWhen>
+				<reference definitionId="org.eclipse.papyrus.sysml.diagram.common.IsPapyrusActiveWithSysML"/>
+			</visibleWhen>
+		</command>
 	</menuContribution>
 </extension>
 
@@ -120,6 +128,36 @@
 			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif">
 		</entry>
 		
+		<entry
+			defineOnly="true"
+			description="Create new Part"
+			id="blockdefinition.tool.part"
+			kind="tool"
+			label="Part"
+			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
+			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif">
+		</entry>
+
+		<entry
+			defineOnly="true"
+			description="Create new Reference"
+			id="blockdefinition.tool.reference"
+			kind="tool"
+			label="Reference"
+			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
+			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif">
+		</entry>
+
+		<entry
+			defineOnly="true"
+			description="Create new Constraint Property"
+			id="blockdefinition.tool.constraintproperty"
+			kind="tool"
+			label="Constraint Property"
+			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
+			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif">
+		</entry>
+
 	</contribution>	
 	
 	</paletteProvider>	
@@ -137,7 +175,7 @@
 	<!-- Block view provider -->
 	<viewProvider class="org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.BlockViewProvider">
 		<Priority name="Low"/>
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="Block, Constraint"/>		
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="SysML::Block, Constraint, Part, Reference, ConstraintProperty"/>		
 	</viewProvider>	
 
 	<!-- ViewProvider for inherited elements (from ClassDiagram UMLViewProvider) -->
@@ -218,7 +256,7 @@
 		<object
 			class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)"
 			id="org.eclipse.papyrus.sysml.diagram.blockdefinition.Block">
-			<method name="getType()" value="Block, Block_Constraint_Compartment, Constraint"/>
+			<method name="getType()" value="SysML::Block, Block_Constraint_Compartment, Constraint, Part, Reference, ConstraintProperty"/>
 		</object>
 	</editpartProvider>
 
@@ -359,7 +397,9 @@
 			"6002" = Association name label
 			"6001" = Association applied stereotype label
 			"6003" = Association role source label
-			"6005" = Association role target label		
+			"6005" = Association role target label
+			"6033" = Association multiplicity source label
+			"6034" = Association multiplicity target label						
 			"4017" = AssociationClass	
 			"6031" = AssociationClass role source label
 			"6032" = AssociationClass role target label
@@ -402,7 +442,7 @@
 		<object
 			id="Association"
 			class="org.eclipse.gmf.runtime.notation.Edge">
-			<method name="getType()" value="4001, 6002, 6001, 6003, 6005"/>
+			<method name="getType()" value="4001, 6002, 6001, 6003, 6005, 6033, 6034"/>
 		</object>
 				
 		<object
@@ -469,27 +509,45 @@
 <!-- A kind type should be created for diagram elements       -->
 <extension
 		point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
-           
-	<specializationType
-		edithelperadvice="org.eclipse.papyrus.sysml.diagram.blockdefinition.helper.BlockEditHelperAdvice"
-		icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Block.gif"
-		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.Block"
-		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-		name="Block">
-		<specializes id="org.eclipse.papyrus.uml.Class"/>
-		<param name="semanticHint" value="Block"/>
-		<matcher class = "org.eclipse.papyrus.sysml.diagram.blockdefinition.matcher.BlockMatcher" />
-	</specializationType>
 	
 	<specializationType
-		icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
-		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.Constraint"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.BlockDefinition"
+		icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif"
 		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-		name="Constraint">
-		<specializes id="org.eclipse.papyrus.diagram.clazz.Constraint_3029"/>
-		<param name="semanticHint" value="Constraint"/>
+		name="BlockDefinition">
+		<specializes id="org.eclipse.papyrus.diagram.clazz.Package_1000"/>
+		<param name="semanticHint" value="BlockDefinition"/>
 	</specializationType>
-	
+
+	<specializationType
+		edithelperadvice="org.eclipse.papyrus.sysml.diagram.blockdefinition.helper.BlockPartEditHelperAdvice"
+		icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.Part"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+		name="Part">
+		<specializes id="org.eclipse.papyrus.diagram.clazz.Property_3005"/>
+		<param name="semanticHint" value="Part"/>
+		<matcher class = "org.eclipse.papyrus.sysml.diagram.blockdefinition.matcher.BlockPartMatcher"/>
+	</specializationType>
+
+	<specializationType
+		icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.Reference"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+		name="Reference">
+		<specializes id="org.eclipse.papyrus.diagram.clazz.Property_3005"/>
+		<param name="semanticHint" value="Reference"/>
+	</specializationType>
+
+	<specializationType
+		icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.ConstraintProperty"
+		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+		name="ConstraintProperty">
+		<specializes id="org.eclipse.papyrus.diagram.clazz.Property_3005"/>
+		<param name="semanticHint" value="ConstraintProperty"/>
+	</specializationType>
+
 </extension>
 
 

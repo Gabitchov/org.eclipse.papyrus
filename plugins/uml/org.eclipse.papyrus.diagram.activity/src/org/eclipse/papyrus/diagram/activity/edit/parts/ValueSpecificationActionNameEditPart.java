@@ -57,7 +57,6 @@ import org.eclipse.papyrus.diagram.activity.providers.UMLParserProvider;
 import org.eclipse.papyrus.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
-import org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel;
 import org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.extensionpoints.editors.Activator;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IAdvancedEditorConfiguration;
@@ -105,15 +104,11 @@ public class ValueSpecificationActionNameEditPart extends CompartmentEditPart im
 	 */
 	private String defaultText;
 
-
-
 	/** direct edition mode (default, undefined, registered editor, etc.) */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
 	/** configuration from a registered edit dialog */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -187,7 +182,7 @@ public class ValueSpecificationActionNameEditPart extends CompartmentEditPart im
 	/**
 	 * @generated
 	 */
-	public void setLabel(CenteredWrappedLabel figure) {
+	public void setLabel(WrappingLabel figure) {
 		unregisterVisuals();
 		setFigure(figure);
 		defaultText = getLabelTextHelper(figure);
@@ -566,8 +561,6 @@ public class ValueSpecificationActionNameEditPart extends CompartmentEditPart im
 		return getPrimaryView();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -668,8 +661,6 @@ public class ValueSpecificationActionNameEditPart extends CompartmentEditPart im
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -685,7 +676,6 @@ public class ValueSpecificationActionNameEditPart extends CompartmentEditPart im
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
-
 
 	/**
 	 * @generated
@@ -718,7 +708,6 @@ public class ValueSpecificationActionNameEditPart extends CompartmentEditPart im
 			}
 		}
 
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -730,10 +719,7 @@ public class ValueSpecificationActionNameEditPart extends CompartmentEditPart im
 		return null;
 	}
 
-
-
 	private static final String ADD_PARENT_MODEL = "AddParentModel";
-
 
 	/**
 	 * @generated
@@ -760,7 +746,6 @@ public class ValueSpecificationActionNameEditPart extends CompartmentEditPart im
 
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -768,6 +753,5 @@ public class ValueSpecificationActionNameEditPart extends CompartmentEditPart im
 		removeListenerFilter(ADD_PARENT_MODEL);
 
 	}
-
 
 }

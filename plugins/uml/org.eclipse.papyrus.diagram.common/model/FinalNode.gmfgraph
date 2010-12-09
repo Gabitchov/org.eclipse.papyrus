@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gmfgraph:Canvas xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:gmfgraph="http://www.eclipse.org/gmf/2006/GraphicalDefinition" name="umlclassdiagram">
+  <figures
+      name="Default">
+    <descriptors
+        name="FinalNodeFigureDescriptor">
+      <actualFigure
+          xsi:type="gmfgraph:CustomFigure"
+          name="FinalNodeFigure"
+          qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.FinalNode"/>
+    </descriptors>
+  </figures>
+  <nodes
+      name="FinalNodeFigureNode"
+      figure="FinalNodeFigureDescriptor"/>
+</gmfgraph:Canvas>

@@ -16,10 +16,12 @@ package org.eclipse.papyrus.diagram.activity.edit.policies;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.diagram.activity.edit.commands.AcceptEventActionCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.ActivityCreateCommandCN;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ActivityFinalNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ActivityPartitionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.CallBehaviorActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.CallOperationActionCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.CommentCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ConditionalNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.DataStoreNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.DecisionNodeCreateCommand;
@@ -32,6 +34,7 @@ import org.eclipse.papyrus.diagram.activity.edit.commands.JoinNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.LoopNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.MergeNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.OpaqueActionCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.ReadSelfActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.SendObjectActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.SendSignalActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.SequenceNodeCreateCommand;
@@ -72,6 +75,12 @@ public class ActivityActivityContentCompartmentItemSemanticEditPolicy extends UM
 		}
 		if(UMLElementTypes.CallOperationAction_3010 == req.getElementType()) {
 			return getGEFWrapper(new CallOperationActionCreateCommand(req));
+		}
+		if(UMLElementTypes.ReadSelfAction_3081 == req.getElementType()) {
+			return getGEFWrapper(new ReadSelfActionCreateCommand(req));
+		}
+		if(UMLElementTypes.Activity_3083 == req.getElementType()) {
+			return getGEFWrapper(new ActivityCreateCommandCN(req));
 		}
 		//		if(UMLElementTypes.DurationConstraint_3034 == req.getElementType()) {
 		//			return getGEFWrapper(new DurationConstraintAsLocalPrecondCreateCommand(req));
@@ -150,6 +159,9 @@ public class ActivityActivityContentCompartmentItemSemanticEditPolicy extends UM
 		}
 		if(UMLElementTypes.InterruptibleActivityRegion_3068 == req.getElementType()) {
 			return getGEFWrapper(new InterruptibleActivityRegionCreateCommand(req));
+		}
+		if(UMLElementTypes.Comment_3080 == req.getElementType()) {
+			return getGEFWrapper(new CommentCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

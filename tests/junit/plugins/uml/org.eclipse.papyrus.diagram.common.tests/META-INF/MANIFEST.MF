@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.papyrus.diagram.common.tests;singleton:=true
+Bundle-Version: 0.7.1.qualifier
+Bundle-Vendor: %providerName
+Require-Bundle: org.eclipse.core.runtime,
+ org.junit4
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy
+Fragment-Host: org.eclipse.papyrus.diagram.common;bundle-version="0.7.1"
+Export-Package: org.eclipse.papyrus.diagram.common.tests.parser
+Bundle-Localization: plugin

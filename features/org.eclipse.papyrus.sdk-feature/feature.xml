@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eclipse.papyrus.sdk"
+      label="%featureName"
+      version="0.7.1.qualifier"
+      provider-name="%providerName">
+
+   <description>
+      %description
+   </description>
+
+   <copyright url="http://www.eclipse.org/legal/epl-v10.html">
+      Copyright (c) 2008-2009 CEA LIST, Atos Origin, Conselleria de
+Infraestructuras y Transporte, Generalitat de la Comunitat Valenciana
+and others 
+All rights reserved.   This program and the accompanying materials
+are made available under the terms of the Eclipse Public License
+v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <includes
+         id="org.eclipse.papyrus"
+         version="0.0.0"/>
+   <includes
+         id="org.eclipse.papyrus.sdk.source"
+         version="0.0.0"/>
+   <includes
+         id="org.eclipse.papyrus.doc"
+         version="0.0.0"/>
+   <includes
+         id="org.eclipse.papyrus.doc.source"
+         version="0.0.0"/>
+</feature>

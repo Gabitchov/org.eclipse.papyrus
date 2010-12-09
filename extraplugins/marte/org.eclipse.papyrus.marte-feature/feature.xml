@@ -1,45 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.eclipse.papyrus.marte"
-      label="UML profile for MARTE"
-      version="1.2.0"
+      id="org.eclipse.papyrus.marte.feature"
+      label="MARTE profile"
+      version="0.7.1.qualifier"
       provider-name="CEA LIST">
 
-   <description url="http://www.papyrusuml.org/">
-      Papyrus plug-in implementing the second revised version of the
-MARTE profile. It contains an implementation of the MARTE profile
-itself, but also an implementation of the MARTE_Library.
+   <description>
+      This feature includes implementation of the OMG MARTE profile
+v1.1.
    </description>
 
-   <copyright url="http://www.eclipse.org/legal/epl-v10.html">
+   <copyright>
       Copyright (c) 2010 CEA LIST.
-All rights reserved. This program and the accompanying materials
-are made available under the terms of the Eclipse Public License
-v1.0 which accompanies this distribution, and is available at
-http://www.eclipse.org/legal/epl-v10.html
-Contributors:
-CEA LIST - initial API and implementation
    </copyright>
 
-   <license url="%licenseURL">
-      Every component, library examples and documentation contained
-by MARTE feature are property of CEA LIST.
-This program and the accompanying materials are made available
-under the terms of the Eclipse Public License v1.0 which accompanies
-this distribution, and is available at
+   <license url="http://www.example.com/license">
+      Copyright (c) 2010 CEA LIST.
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
    </license>
 
-   <requires>
-      <import plugin="org.eclipse.emf.ecore"/>
-      <import plugin="org.eclipse.papyrus.extensionpoints.uml2"/>
-      <import plugin="org.eclipse.papyrus.umlutils"/>
-   </requires>
-
    <plugin
-         id="org.eclipse.papyrus.marte.profile"
+         id="org.eclipse.papyrus.marte.static.profile"
          download-size="0"
          install-size="0"
-         version="0.0.0"/>
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.marte.vsl"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.marte.vsl.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.stereotypeapplicationwithvsl.editor.xtext.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.constraintwithvsl.editor.xtext"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.constraintwithvsl.editor.xtext.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
 </feature>

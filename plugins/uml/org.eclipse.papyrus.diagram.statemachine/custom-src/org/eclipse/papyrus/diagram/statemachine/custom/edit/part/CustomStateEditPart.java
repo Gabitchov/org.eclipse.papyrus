@@ -1,5 +1,6 @@
 package org.eclipse.papyrus.diagram.statemachine.custom.edit.part;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateEditPart;
@@ -18,4 +19,5 @@ public class CustomStateEditPart extends StateEditPart {
 		removeEditPolicy(EditPolicyRoles.POPUPBAR_ROLE);
 
 	}
+	
 }

@@ -60,7 +60,6 @@ public class ComponentCompositeCompartmentItemSemanticEditPolicyCN extends UMLBa
 		super(UMLElementTypes.Component_3081);
 	}
 
-
 	/**
 	 * @generated
 	 */

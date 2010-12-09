@@ -25,31 +25,32 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
-import org.eclipse.gmf.runtime.diagram.core.commands.AddCommand;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
-import org.eclipse.gmf.runtime.diagram.ui.commands.CreateCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
-import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyReferenceCommand;
-import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
-import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.common.command.wrappers.CommandProxyWithResult;
+import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.diagram.common.editpolicies.CommonDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.diagram.common.helper.DurationConstraintHelper;
 import org.eclipse.papyrus.diagram.common.helper.DurationObservationHelper;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
+import org.eclipse.papyrus.diagram.sequence.command.CreateLocatedConnectionViewCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintEditPart;
@@ -57,6 +58,7 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.DestructionEventEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInMessageEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationObservationEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.GeneralOrderingEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.Message2EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.Message3EditPart;
@@ -77,24 +79,24 @@ import org.eclipse.uml2.uml.DurationConstraint;
 import org.eclipse.uml2.uml.DurationObservation;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ExecutionSpecification;
+import org.eclipse.uml2.uml.GeneralOrdering;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.IntervalConstraint;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
+import org.eclipse.uml2.uml.MessageEnd;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.StateInvariant;
 import org.eclipse.uml2.uml.TimeObservation;
-import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * A policy to support dNd from the Model Explorer in the sequence diagram
  * 
  */
 public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPolicy {
-
 
 	public CustomDiagramDragDropEditPolicy() {
 		super(SequenceLinkMappingHelper.getInstance());
@@ -117,6 +119,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		elementsVisualId.add(Message6EditPart.VISUAL_ID);
 		elementsVisualId.add(Message7EditPart.VISUAL_ID);
 		elementsVisualId.add(Message6EditPart.VISUAL_ID);
+		elementsVisualId.add(GeneralOrderingEditPart.VISUAL_ID);
 		elementsVisualId.add(DestructionEventEditPart.VISUAL_ID);
 		elementsVisualId.add(StateInvariantEditPart.VISUAL_ID);
 		elementsVisualId.add(TimeConstraintEditPart.VISUAL_ID);
@@ -156,8 +159,10 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 
 	@Override
 	protected Command getSpecificDropCommand(DropObjectsRequest dropRequest, Element semanticLink, int nodeVISUALID, int linkVISUALID) {
-		// handle specifically the case when node is a label on a message
-		Command cmd = handleMessageLabelNode(semanticLink, nodeVISUALID, linkVISUALID);
+		Point location = dropRequest.getLocation().getCopy();
+
+		// handle specifically the case when node is on a message
+		Command cmd = handleNodeOnMessage(semanticLink, nodeVISUALID, linkVISUALID);
 		if(cmd != null) {
 			return cmd;
 		}
@@ -166,23 +171,22 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			switch(nodeVISUALID) {
 			case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
 			case ActionExecutionSpecificationEditPart.VISUAL_ID:
-				return dropExecutionSpecification((ExecutionSpecification)semanticLink, nodeVISUALID);
+				return dropExecutionSpecification((ExecutionSpecification)semanticLink, nodeVISUALID, location);
 			case DestructionEventEditPart.VISUAL_ID:
-				return dropDestructionEvent((DestructionEvent)semanticLink, nodeVISUALID);
+				return dropDestructionEvent((DestructionEvent)semanticLink, nodeVISUALID, location);
 			case StateInvariantEditPart.VISUAL_ID:
-				return dropStateInvariant((StateInvariant)semanticLink, nodeVISUALID);
+				return dropStateInvariant((StateInvariant)semanticLink, nodeVISUALID, location);
 			case TimeConstraintEditPart.VISUAL_ID:
 			case DurationConstraintEditPart.VISUAL_ID:
 				return dropIntervalConstraintInLifeline((IntervalConstraint)semanticLink, nodeVISUALID);
 			case TimeObservationEditPart.VISUAL_ID:
 				return dropTimeObservationInLifeline((TimeObservation)semanticLink, nodeVISUALID);
 			case LifelineEditPart.VISUAL_ID:
-				return dropLifeline((Lifeline)semanticLink, nodeVISUALID);
+				return dropLifeline((Lifeline)semanticLink, nodeVISUALID, location);
 			default:
 				return UnexecutableCommand.INSTANCE;
 			}
 		}
-
 
 		if(linkVISUALID != -1) {
 			switch(linkVISUALID) {
@@ -194,6 +198,8 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			case Message6EditPart.VISUAL_ID:
 			case Message7EditPart.VISUAL_ID:
 				return dropMessage(dropRequest, semanticLink, linkVISUALID);
+			case GeneralOrderingEditPart.VISUAL_ID:
+				return dropGeneralOrdering(dropRequest, semanticLink, linkVISUALID);
 			default:
 				return UnexecutableCommand.INSTANCE;
 			}
@@ -210,18 +216,15 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 *        the node visual id
 	 * @return the drop command if the lifeline can be dropped
 	 */
-	private Command dropLifeline(Lifeline lifeline, int nodeVISUALID) {
+	private Command dropLifeline(Lifeline lifeline, int nodeVISUALID, Point location) {
 		if(getHostObject().equals(lifeline.getOwner())) {
-			List<View> existingViews = DiagramEditPartsUtil.findViews(lifeline, getViewer());
-			if(existingViews.isEmpty()) {
-				return getCreateCommand(lifeline, nodeVISUALID);
-			}
+			return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, location, lifeline));
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
 
 	/**
-	 * Get the drop command in case the element can be handled as a label on a message
+	 * Get the drop command in case the element can be handled as a node on a message
 	 * 
 	 * @param semanticElement
 	 *        the element being dropped from the model
@@ -231,14 +234,14 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 *        link visual id or -1
 	 * @return the drop command if the element can be dropped as a message label node, or null otherwise
 	 */
-	private Command handleMessageLabelNode(Element semanticElement, int nodeVISUALID, int linkVISUALID) {
+	private Command handleNodeOnMessage(Element semanticElement, int nodeVISUALID, int linkVISUALID) {
 
 		if(nodeVISUALID == -1 && linkVISUALID == -1) {
 			// detect duration observation on a message
 			if(semanticElement instanceof DurationObservation) {
 				List<NamedElement> events = ((DurationObservation)semanticElement).getEvents();
 				if(events.size() >= 2) {
-					return dropMessageLabelNodeBetweenEvents(semanticElement, events.get(0), events.get(1));
+					return dropMessageNodeBetweenEvents(semanticElement, events.get(0), events.get(1));
 				}
 			}
 		}
@@ -247,7 +250,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			if(semanticElement instanceof DurationConstraint) {
 				List<Element> events = ((DurationConstraint)semanticElement).getConstrainedElements();
 				if(events.size() >= 2) {
-					return dropMessageLabelNodeBetweenEvents(semanticElement, events.get(0), events.get(1));
+					return dropMessageNodeBetweenEvents(semanticElement, events.get(0), events.get(1));
 				}
 			}
 		}
@@ -266,13 +269,16 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * @param element
 	 * @return the command or false if the elements can not be dropped as message label
 	 */
-	private Command dropMessageLabelNodeBetweenEvents(Element droppedElement, Element event1, Element event2) {
+	private Command dropMessageNodeBetweenEvents(Element droppedElement, Element event1, Element event2) {
 		if(event1 instanceof MessageOccurrenceSpecification && event2 instanceof MessageOccurrenceSpecification) {
 			if(!event1.equals(event2)) {
 				boolean endsOfSameMessage = false;
+				int visualId = -1;
 				if(droppedElement instanceof DurationConstraint) {
+					visualId = DurationConstraintInMessageEditPart.VISUAL_ID;
 					endsOfSameMessage = DurationConstraintHelper.endsOfSameMessage((OccurrenceSpecification)event1, (OccurrenceSpecification)event2);
 				} else if(droppedElement instanceof DurationObservation) {
+					visualId = DurationObservationEditPart.VISUAL_ID;
 					endsOfSameMessage = DurationObservationHelper.endsOfSameMessage((OccurrenceSpecification)event1, (OccurrenceSpecification)event2);
 				}
 				if(endsOfSameMessage) {
@@ -283,7 +289,16 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 						if(conn instanceof ConnectionNodeEditPart) {
 							EObject connElt = ((ConnectionNodeEditPart)conn).resolveSemanticElement();
 							if(message.equals(connElt)) {
-								return dropMessageLabelNode((PackageableElement)droppedElement, (ConnectionNodeEditPart)conn, DurationConstraintInMessageEditPart.VISUAL_ID);
+								// check that node isn't already represented, or dropping is impossible
+								for(Object child : ((ConnectionNodeEditPart)conn).getChildren()) {
+									if(child instanceof GraphicalEditPart) {
+										EObject childElt = ((GraphicalEditPart)child).resolveSemanticElement();
+										if(droppedElement.equals(childElt)) {
+											return null;
+										}
+									}
+								}
+								return dropNodeOnMessage((PackageableElement)droppedElement, (ConnectionNodeEditPart)conn, visualId);
 							}
 						}
 					}
@@ -321,14 +336,11 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 *        the label node visual id
 	 * @return the command or UnexecutableCommand
 	 */
-	private Command dropMessageLabelNode(PackageableElement durationLabelElement, ConnectionNodeEditPart messageEditPart, int nodeVISUALID) {
-		CompositeCommand cc = new CompositeCommand("Drop");
+	private Command dropNodeOnMessage(PackageableElement durationLabelElement, ConnectionNodeEditPart messageEditPart, int nodeVISUALID) {
 		IAdaptable elementAdapter = new EObjectAdapter(durationLabelElement);
 
 		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType)getUMLElementType(nodeVISUALID)).getSemanticHint(), ViewUtil.APPEND, false, getDiagramPreferencesHint());
-		CreateCommand createCommand = new CreateCommand(getEditingDomain(), descriptor, ((View)messageEditPart.getModel()));
-		cc.compose(createCommand);
-		return new ICommandProxy(cc);
+		return messageEditPart.getCommand(new CreateViewRequest(descriptor));
 	}
 
 	/**
@@ -341,12 +353,11 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * @return the command if the lifeline is the correct one or UnexecutableCommand
 	 */
 	private Command dropTimeObservationInLifeline(TimeObservation observation, int nodeVISUALID) {
-		CompositeCommand cc = new CompositeCommand("Drop");
+		CompoundCommand cc = new CompoundCommand("Drop");
 		IAdaptable elementAdapter = new EObjectAdapter(observation);
 
 		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType)getUMLElementType(nodeVISUALID)).getSemanticHint(), ViewUtil.APPEND, false, getDiagramPreferencesHint());
-		CreateCommand createCommand = new CreateCommand(getEditingDomain(), descriptor, ((View)getHost().getModel()));
-		cc.compose(createCommand);
+		cc.add(getHost().getCommand(new CreateViewRequest(descriptor)));
 
 		LifelineEditPart lifelinePart = SequenceUtil.getParentLifelinePart(getHost());
 		if(lifelinePart != null) {
@@ -363,9 +374,9 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 					lifelinePart.getFigure().translateToRelative(newBounds);
 					Point parentLoc = lifelinePart.getLocation();
 					newBounds.translate(parentLoc.getNegated());
-					SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)createCommand.getCommandResult().getReturnValue(), newBounds);
-					cc.compose(setBoundsCommand);
-					return new ICommandProxy(cc);
+					SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", descriptor, newBounds);
+					cc.add(new ICommandProxy(setBoundsCommand));
+					return cc;
 				}
 			}
 		}
@@ -382,12 +393,11 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * @return the command if the lifeline is the correct one or UnexecutableCommand
 	 */
 	private Command dropIntervalConstraintInLifeline(IntervalConstraint constraint, int nodeVISUALID) {
-		CompositeCommand cc = new CompositeCommand("Drop");
+		CompoundCommand cc = new CompoundCommand("Drop");
 		IAdaptable elementAdapter = new EObjectAdapter(constraint);
 
 		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType)getUMLElementType(nodeVISUALID)).getSemanticHint(), ViewUtil.APPEND, false, getDiagramPreferencesHint());
-		CreateCommand createCommand = new CreateCommand(getEditingDomain(), descriptor, ((View)getHost().getModel()));
-		cc.compose(createCommand);
+		cc.add(getHost().getCommand(new CreateViewRequest(descriptor)));
 
 		LifelineEditPart lifelinePart = SequenceUtil.getParentLifelinePart(getHost());
 		if(lifelinePart != null && constraint.getConstrainedElements().size() >= 2) {
@@ -407,9 +417,9 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 					lifelinePart.getFigure().translateToRelative(newBounds);
 					Point parentLoc = lifelinePart.getLocation();
 					newBounds.translate(parentLoc.getNegated());
-					SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)createCommand.getCommandResult().getReturnValue(), newBounds);
-					cc.compose(setBoundsCommand);
-					return new ICommandProxy(cc);
+					SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", descriptor, newBounds);
+					cc.add(new ICommandProxy(setBoundsCommand));
+					return cc;
 				}
 			}
 		} else if(lifelinePart != null && constraint.getConstrainedElements().size() == 1) {
@@ -426,9 +436,9 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 					lifelinePart.getFigure().translateToRelative(newBounds);
 					Point parentLoc = lifelinePart.getLocation();
 					newBounds.translate(parentLoc.getNegated());
-					SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)createCommand.getCommandResult().getReturnValue(), newBounds);
-					cc.compose(setBoundsCommand);
-					return new ICommandProxy(cc);
+					SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", descriptor, newBounds);
+					cc.add(new ICommandProxy(setBoundsCommand));
+					return cc;
 				}
 			}
 		}
@@ -449,30 +459,13 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		return -1;
 	}
 
-	private Command dropStateInvariant(StateInvariant stateInvariant, int nodeVISUALID) {
-		List<View> existingViews = DiagramEditPartsUtil.findViews(stateInvariant, getViewer());
-		if(existingViews.isEmpty()) {
+	private Command dropStateInvariant(StateInvariant stateInvariant, int nodeVISUALID, Point location) {
 
-			// an StateInvariant covereds systematically a unique lifeline
-			Lifeline lifeline = stateInvariant.getCovereds().get(0);
-			// Check that the container view is the view of the lifeline
-			if(lifeline.equals(getHostObject())) {
-				return getCreateCommand(stateInvariant, nodeVISUALID);
-			}
-		} else {
-			CompositeCommand cc = new CompositeCommand("Moving a StateInvariant");
-
-			// Add the view to the new container
-			AddCommand addCommand = new AddCommand(getEditingDomain(), new EObjectAdapter((View)getHost().getModel()), new EObjectAdapter(existingViews.get(0)));
-			cc.add(addCommand);
-
-			Lifeline oldCoveredLifeline = (Lifeline)ViewUtil.resolveSemanticElement((View)existingViews.get(0).eContainer());
-
-			// Update the ES covered lifeline
-			updateCoveredLifeline(stateInvariant, cc, oldCoveredLifeline);
-
-
-			return new ICommandProxy(cc);
+		// an StateInvariant covereds systematically a unique lifeline
+		Lifeline lifeline = stateInvariant.getCovereds().get(0);
+		// Check that the container view is the view of the lifeline
+		if(lifeline.equals(getHostObject())) {
+			return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, location, stateInvariant));
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
@@ -504,7 +497,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 *        the node visualID
 	 * @return the command to drop the destructionEvent on a lifeline if allowed.
 	 */
-	private Command dropDestructionEvent(DestructionEvent destructionEvent, int nodeVISUALID) {
+	private Command dropDestructionEvent(DestructionEvent destructionEvent, int nodeVISUALID, Point location) {
 		// Get all the view of this destructionEvent.
 		List<View> existingViews = DiagramEditPartsUtil.findViews(destructionEvent, getViewer());
 		// Get the lifelines containing the graphical destructionEvent
@@ -518,7 +511,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 					OccurrenceSpecification occurrenceSpecification = (OccurrenceSpecification)ift;
 					// if the event of the occurrenceSpecification is the DestructionEvent, create the command
 					if(destructionEvent.equals(occurrenceSpecification.getEvent())) {
-						return getCreateCommand(destructionEvent, nodeVISUALID);
+						return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, location, destructionEvent));
 					}
 				}
 			}
@@ -527,92 +520,362 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	}
 
 	/**
-	 * Get the create command
+	 * Get the command to drop an execution specification node
 	 * 
-	 * @param semanticLink
-	 *        the element
+	 * @param es
+	 *        execution specification
 	 * @param nodeVISUALID
-	 *        the visualID
-	 * @return the command
+	 *        the execution specification's visual id
+	 * @param location
+	 *        the location of the drop request
+	 * @return the drop command
 	 */
-	private Command getCreateCommand(Element semanticLink, int nodeVISUALID) {
-		ViewDescriptor viewDescriptor = new ViewDescriptor(new EObjectAdapter(semanticLink), Node.class, String.valueOf(nodeVISUALID), ViewUtil.APPEND, true, ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint());
-		CreateCommand cc = new CreateCommand(getEditingDomain(), viewDescriptor, (View)getHost().getModel());
-		return new ICommandProxy(cc);
-	}
-
-	private Command dropExecutionSpecification(ExecutionSpecification es, int nodeVISUALID) {
+	private Command dropExecutionSpecification(ExecutionSpecification es, int nodeVISUALID, Point location) {
 		List<View> existingViews = DiagramEditPartsUtil.findViews(es, getViewer());
+		// only allow one view instance of a single element by diagram
 		if(existingViews.isEmpty()) {
 			// Find the lifeline of the ES
-
-			if(es.getStart() != null) {
-				// an Occurrence Specification covereds systematically a unique lifeline
+			if(es.getStart() != null && !es.getStart().getCovereds().isEmpty()) {
+				// an Occurrence Specification covers systematically a unique lifeline
 				Lifeline lifeline = es.getStart().getCovereds().get(0);
 				// Check that the container view is the view of the lifeline
 				if(lifeline.equals(getHostObject())) {
-					return getCreateCommand(es, nodeVISUALID);
+					//return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, location, es));
+
+
+					IHintedType type = ((IHintedType)getUMLElementType(nodeVISUALID));
+
+					String semanticHint = null;
+					if(type != null) {
+						semanticHint = type.getSemanticHint();
+					}
+
+					IAdaptable elementAdapter = new EObjectAdapter(es);
+
+					ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, semanticHint, ViewUtil.APPEND, false, getDiagramPreferencesHint());
+					CreateViewRequest createViewRequest = new CreateViewRequest(descriptor);
+					// find best bounds
+					Rectangle bounds = getExecutionSpecificationBounds(es);
+					if(bounds != null) {
+						createViewRequest.setLocation(bounds.getLocation());
+						createViewRequest.setSize(bounds.getSize());
+					} else {
+						createViewRequest.setLocation(location);
+					}
+
+					// "ask" the host for a command associated with the CreateViewRequest
+					Command command = getHost().getCommand(createViewRequest);
+					// set the viewdescriptor as result
+					// it then can be used as an adaptable to retrieve the View
+					return new ICommandProxy(new CommandProxyWithResult(command, descriptor));
 				}
 			}
-		} else {
-
-			CompositeCommand cc = new CompositeCommand("Moving an ES");
-
-			// Add the view to the new container
-			AddCommand addCommand = new AddCommand(getEditingDomain(), new EObjectAdapter((View)getHost().getModel()), new EObjectAdapter(existingViews.get(0)));
-			cc.add(addCommand);
-
-
-			Lifeline oldCoveredLifeline = (Lifeline)ViewUtil.resolveSemanticElement((View)existingViews.get(0).eContainer());
-
-			// Update the ES covered lifeline
-			updateCoveredLifeline(es, cc, oldCoveredLifeline);
-
-			// Update the start and finish occurrence specification covered lifeline
-			updateCoveredLifeline(es.getStart(), cc, oldCoveredLifeline);
-			updateCoveredLifeline(es.getFinish(), cc, oldCoveredLifeline);
-
-			//TODO  Set the new location of the view. 
-			// Actually there is some layout problems, so it is disable. 
-			//				SetBoundsCommand boundsCommand = new SetBoundsCommand(getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(existingViews.get(0)), dropRequest.getLocation());
-			//				cc.add(boundsCommand);
-
-			return new ICommandProxy(cc);
 		}
-
 
 		return UnexecutableCommand.INSTANCE;
 	}
 
 	/**
-	 * Update the covered feature of the interactionFragment : remove the old lifeline and add the new lifeline.
+	 * Get the advised bounds to drop an execution specification
 	 * 
-	 * @param interactionFragment
-	 *        the interaction fragment impacted
-	 * @param cc
-	 *        the composite command to add the new commands
-	 * @param oldCoveredLifeline
-	 *        the old covered lifeline
+	 * @param es
+	 *        the dropped execution specification
+	 * @return bounds of the es in absolute coordinates or null
 	 */
-	private void updateCoveredLifeline(InteractionFragment interactionFragment, CompositeCommand cc, Lifeline oldCoveredLifeline) {
-		// Remove old covered lifeline 
-		DestroyReferenceRequest destroyReferenceRequest = new DestroyReferenceRequest(interactionFragment, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), oldCoveredLifeline, false);
-		DestroyReferenceCommand destroyReferenceCommand = new DestroyReferenceCommand(destroyReferenceRequest);
-		cc.add(destroyReferenceCommand);
-
-		// Add new covered lifeline
-		SetRequest setRequest = new SetRequest(interactionFragment, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), ViewUtil.resolveSemanticElement((View)getHost().getModel()));
-		SetValueCommand coveredLifelineCommand = new SetValueCommand(setRequest);
-		cc.add(coveredLifelineCommand);
+	private Rectangle getExecutionSpecificationBounds(ExecutionSpecification es) {
+		Point startLocation = null;
+		Point finishLocation = null;
+		Rectangle possibleStartLocations = null;
+		Rectangle possibleFinishLocations = null;
+		// end events of the link
+		OccurrenceSpecification startEvent = es.getStart();
+		OccurrenceSpecification finishEvent = es.getFinish();
+		if(startEvent != null && finishEvent != null && getHost() instanceof LifelineEditPart) {
+			LifelineEditPart hostLifeline = (LifelineEditPart)getHost();
+			// find location constraints for source
+			startLocation = SequenceUtil.findLocationOfEvent((LifelineEditPart)getHost(), startEvent);
+			if(startLocation == null) {
+				possibleStartLocations = SequenceUtil.findPossibleLocationsForEvent(hostLifeline, startEvent);
+			}
+			// find location constraints for target
+			finishLocation = SequenceUtil.findLocationOfEvent(hostLifeline, finishEvent);
+			if(finishLocation == null) {
+				possibleFinishLocations = SequenceUtil.findPossibleLocationsForEvent(hostLifeline, finishEvent);
+			}
+			// find start and finish locations with correct y (start.y < finish.y) and proportions
+			if(startLocation == null) {
+				if(finishLocation != null) {
+					int top = possibleStartLocations.x;
+					int bottom = possibleStartLocations.bottom();
+					if(top > finishLocation.y) {
+						return null;
+					} else {
+						startLocation = possibleStartLocations.getTop();
+						startLocation.y = (top + Math.min(bottom, finishLocation.y)) / 2;
+					}
+				} else {
+					int topS = possibleStartLocations.y;
+					int bottomS = possibleStartLocations.bottom();
+					int topF = possibleFinishLocations.y;
+					int bottomF = possibleFinishLocations.bottom();
+					if(topS > bottomF) {
+						return null;
+					} else {
+						startLocation = possibleStartLocations.getTop();
+						finishLocation = possibleFinishLocations.getBottom();
+						if(bottomS<topF){
+							startLocation.y = (topS + bottomS) / 2;
+							finishLocation.y = (topF + bottomF) / 2;
+						} else {
+							startLocation.y = (topS + bottomS + topS + topF) / 4;
+							finishLocation.y = (bottomF + topF + bottomF + bottomS) / 4;
+						}
+					}
+				}
+			}
+			if(finishLocation == null) {
+				// startLocation != null
+				int top = possibleFinishLocations.y;
+				int bottom = possibleFinishLocations.bottom();
+				if(bottom < startLocation.y) {
+					return null;
+				} else {
+					finishLocation = possibleFinishLocations.getBottom();
+					finishLocation.y = (bottom + Math.max(top, startLocation.y)) / 2;
+				}
+			}
+			// deduce bounds
+			Rectangle result = new Rectangle(startLocation, finishLocation);
+			result.width = LifelineXYLayoutEditPolicy.EXECUTION_INIT_WIDTH;
+			return result;
+		}
+		return null;
 	}
 
+	/**
+	 * Get the command to drop a message link
+	 * 
+	 * @param dropRequest
+	 *        request to drop
+	 * @param semanticLink
+	 *        message link
+	 * @param linkVISUALID
+	 *        the message's visual id
+	 * @return the drop command
+	 */
 	private Command dropMessage(DropObjectsRequest dropRequest, Element semanticLink, int linkVISUALID) {
 		Collection<?> sources = SequenceLinkMappingHelper.getInstance().getSource(semanticLink);
 		Collection<?> targets = SequenceLinkMappingHelper.getInstance().getTarget(semanticLink);
 		if(!sources.isEmpty() && !targets.isEmpty()) {
 			Element source = (Element)sources.toArray()[0];
 			Element target = (Element)targets.toArray()[0];
-			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Message"), source, target, linkVISUALID, dropRequest.getLocation(), semanticLink));
+			return getDropLocatedLinkCommand(dropRequest, source, target, linkVISUALID, semanticLink);
+		} else {
+			return UnexecutableCommand.INSTANCE;
+		}
+	}
+
+	/**
+	 * The method provides command to create the binary link into the diagram. If the source and the
+	 * target views do not exist, these views will be created.
+	 * 
+	 * This implementation is very similar to
+	 * {@link CommonDiagramDragDropEditPolicy#dropBinaryLink(CompositeCommand, Element, Element, int, Point, Element)}.
+	 * 
+	 * @param dropRequest
+	 *        the drop request
+	 * @param cc
+	 *        the composite command that will contain the set of command to create the binary
+	 *        link
+	 * @param source
+	 *        the element source of the link
+	 * @param target
+	 *        the element target of the link
+	 * @param linkVISUALID
+	 *        the link VISUALID used to create the view
+	 * @param location
+	 *        the location the location where the view will be be created
+	 * @param semanticLink
+	 *        the semantic link that will be attached to the view
+	 * 
+	 * @return the composite command
+	 */
+	protected Command getDropLocatedLinkCommand(DropObjectsRequest dropRequest, Element source, Element target, int linkVISUALID, Element semanticLink) {
+		// look for editpart
+		GraphicalEditPart sourceEditPart = (GraphicalEditPart)lookForEditPart(source);
+		GraphicalEditPart targetEditPart = (GraphicalEditPart)lookForEditPart(target);
+
+		CompositeCommand cc = new CompositeCommand("Drop");
+
+		// descriptor of the link
+		CreateConnectionViewRequest.ConnectionViewDescriptor linkdescriptor = new CreateConnectionViewRequest.ConnectionViewDescriptor(getUMLElementType(linkVISUALID), ((IHintedType)getUMLElementType(linkVISUALID)).getSemanticHint(), getDiagramPreferencesHint());
+
+		// get source and target adapters, creating the add commands if necessary
+		IAdaptable sourceAdapter = null;
+		IAdaptable targetAdapter = null;
+		if(sourceEditPart == null) {
+			ICommand createCommand = getDefaultDropNodeCommand(getLinkSourceDropLocation(dropRequest.getLocation(), source, target), source);
+			cc.add(createCommand);
+
+			sourceAdapter = (IAdaptable)createCommand.getCommandResult().getReturnValue();
+		} else {
+			sourceAdapter = new SemanticAdapter(null, sourceEditPart.getModel());
+		}
+		if(targetEditPart == null) {
+			ICommand createCommand = getDefaultDropNodeCommand(getLinkTargetDropLocation(dropRequest.getLocation(), source, target), target);
+			cc.add(createCommand);
+
+			targetAdapter = (IAdaptable)createCommand.getCommandResult().getReturnValue();
+		} else {
+			targetAdapter = new SemanticAdapter(null, targetEditPart.getModel());
+		}
+
+		CreateLocatedConnectionViewCommand aLinkCommand = new CreateLocatedConnectionViewCommand(getEditingDomain(), ((IHintedType)getUMLElementType(linkVISUALID)).getSemanticHint(), sourceAdapter, targetAdapter, getViewer(), getDiagramPreferencesHint(), linkdescriptor, null);
+		aLinkCommand.setElement(semanticLink);
+		Point[] sourceAndTarget = getLinkSourceAndTargetLocations(semanticLink, sourceEditPart, targetEditPart);
+		aLinkCommand.setLocations(sourceAndTarget[0], sourceAndTarget[1]);
+		cc.compose(aLinkCommand);
+		return new ICommandProxy(cc);
+	}
+
+	/**
+	 * Get the source and target recommended points for creating the link
+	 * 
+	 * @param semanticLink
+	 *        link to create
+	 * @param sourceEditPart
+	 *        edit part source of the link
+	 * @param targetEditPart
+	 *        edit part target of the link
+	 * @return a point array of size 2, with eventually null values (when no point constraint). Index 0 : source location, 1 : target location
+	 */
+	private Point[] getLinkSourceAndTargetLocations(Element semanticLink, GraphicalEditPart sourceEditPart, GraphicalEditPart targetEditPart) {
+		// index 0 : source location, 1 : target location
+		Point[] sourceAndTarget = new Point[]{ null, null };
+		// end events of the link
+		OccurrenceSpecification sourceEvent = null;
+		OccurrenceSpecification targetEvent = null;
+		if(semanticLink instanceof Message) {
+			MessageEnd sendEvent = ((Message)semanticLink).getSendEvent();
+			if(sendEvent instanceof OccurrenceSpecification) {
+				sourceEvent = (OccurrenceSpecification)sendEvent;
+			}
+			MessageEnd rcvEvent = ((Message)semanticLink).getReceiveEvent();
+			if(rcvEvent instanceof OccurrenceSpecification) {
+				targetEvent = (OccurrenceSpecification)rcvEvent;
+			}
+		} else if(semanticLink instanceof GeneralOrdering) {
+			sourceEvent = ((GeneralOrdering)semanticLink).getBefore();
+			targetEvent = ((GeneralOrdering)semanticLink).getAfter();
+		}
+		if(sourceEvent != null || targetEvent != null) {
+			Rectangle possibleSourceLocations = null;
+			Rectangle possibleTargetLocations = null;
+			// find location constraints for source
+			if(sourceEvent != null && sourceEditPart instanceof LifelineEditPart) {
+				sourceAndTarget[0] = SequenceUtil.findLocationOfEvent((LifelineEditPart)sourceEditPart, sourceEvent);
+				if(sourceAndTarget[0] == null) {
+					possibleSourceLocations = SequenceUtil.findPossibleLocationsForEvent((LifelineEditPart)sourceEditPart, sourceEvent);
+				}
+			}
+			// find location constraints for target
+			if(targetEvent != null && targetEditPart instanceof LifelineEditPart) {
+				sourceAndTarget[1] = SequenceUtil.findLocationOfEvent((LifelineEditPart)targetEditPart, targetEvent);
+				if(sourceAndTarget[1] == null) {
+					possibleTargetLocations = SequenceUtil.findPossibleLocationsForEvent((LifelineEditPart)targetEditPart, targetEvent);
+				}
+			}
+			// deduce a possibility
+			if(sourceAndTarget[0] == null && possibleSourceLocations != null) {
+				// we must fix the source
+				if(sourceAndTarget[1] == null && possibleTargetLocations == null) {
+					// no target constraint, take center for source
+					sourceAndTarget[0] = possibleSourceLocations.getCenter();
+				} else if(sourceAndTarget[1] != null) {
+					// target is fixed, find arranging source
+					int topSource = possibleSourceLocations.y;
+					int centerSource = possibleSourceLocations.getCenter().y;
+					if(sourceAndTarget[1].y < topSource) {
+						// we would draw an uphill message (forbidden).
+						// return best locations (command will not execute correctly and handle error report)
+						sourceAndTarget[0] = possibleSourceLocations.getTop();
+					} else if(centerSource <= sourceAndTarget[1].y) {
+						// simply fix to the center of constraint
+						sourceAndTarget[0] = possibleSourceLocations.getCenter();
+					} else {
+						// horizontal message makes source as near as possible to the center
+						sourceAndTarget[0] = possibleSourceLocations.getCenter();
+						sourceAndTarget[0].y = sourceAndTarget[1].y;
+					}
+				} else {
+					// possibleTargetLocations !=null
+					// find arranging target and source
+					int centerTarget = possibleTargetLocations.getCenter().y;
+					int bottomTarget = possibleTargetLocations.bottom();
+					int topSource = possibleSourceLocations.y;
+					int centerSource = possibleSourceLocations.getCenter().y;
+					if(bottomTarget < topSource) {
+						// we would draw an uphill message (forbidden).
+						// return best locations (command will not execute correctly and handle error report)
+						sourceAndTarget[0] = possibleSourceLocations.getTop();
+						sourceAndTarget[1] = possibleTargetLocations.getBottom();
+					} else if(centerSource <= centerTarget) {
+						// simply fix to centers
+						sourceAndTarget[0] = possibleSourceLocations.getCenter();
+						sourceAndTarget[1] = possibleTargetLocations.getCenter();
+					} else {
+						// horizontal message makes source and target as near as possible to the centers
+						sourceAndTarget[0] = possibleSourceLocations.getCenter();
+						sourceAndTarget[0].y = (topSource + bottomTarget) / 2;
+						sourceAndTarget[1] = possibleTargetLocations.getCenter();
+						sourceAndTarget[1].y = (topSource + bottomTarget) / 2;
+					}
+				}
+			}
+			if(sourceAndTarget[1] == null && possibleTargetLocations != null) {
+				// we must fix the target
+				// fixedSourceLocation == null => possibleSourceLocations == null
+				// source is fixed, find arranging target
+				int centerTarget = possibleTargetLocations.getCenter().y;
+				int bottomTarget = possibleTargetLocations.bottom();
+				if(sourceAndTarget[0] == null) {
+					// simply fix to the center of constraint
+					sourceAndTarget[1] = possibleTargetLocations.getCenter();
+				} else if(bottomTarget < sourceAndTarget[0].y) {
+					// we would draw an uphill message (forbidden).
+					// return best locations (command will not execute correctly and handle error report)
+					sourceAndTarget[1] = possibleTargetLocations.getBottom();
+				} else if(sourceAndTarget[0].y <= centerTarget) {
+					// simply fix to the center of constraint
+					sourceAndTarget[1] = possibleTargetLocations.getCenter();
+				} else {
+					// horizontal message makes target as near as possible to the center
+					sourceAndTarget[1] = possibleTargetLocations.getCenter();
+					sourceAndTarget[1].y = sourceAndTarget[0].y;
+				}
+			}
+		}
+		return sourceAndTarget;
+	}
+
+	/**
+	 * Get the command to drop a general ordering link
+	 * 
+	 * @param dropRequest
+	 *        request to drop
+	 * @param semanticLink
+	 *        general ordering link
+	 * @param linkVISUALID
+	 *        the link's visual id
+	 * @return the drop command
+	 */
+	private Command dropGeneralOrdering(DropObjectsRequest dropRequest, Element semanticLink, int linkVISUALID) {
+		Collection<?> sources = SequenceLinkMappingHelper.getInstance().getSource(semanticLink);
+		Collection<?> targets = SequenceLinkMappingHelper.getInstance().getTarget(semanticLink);
+		if(!sources.isEmpty() && !targets.isEmpty()) {
+			Element source = (Element)sources.toArray()[0];
+			Element target = (Element)targets.toArray()[0];
+			return getDropLocatedLinkCommand(dropRequest, source, target, linkVISUALID, semanticLink);
 		} else {
 			return UnexecutableCommand.INSTANCE;
 		}

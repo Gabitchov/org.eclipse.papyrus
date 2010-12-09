@@ -38,10 +38,17 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DestructionEventEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintAppliedStereotypeEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInMessageAppliedStereotypeEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInMessageEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInMessageLabelEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintLabelEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationObservationAppliedStereotypeEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationObservationEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationObservationLabelEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.GeneralOrderingAppliedStereotypeEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.GeneralOrderingEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionNameEditPart;
@@ -75,8 +82,10 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageSyncAppliedStereot
 import org.eclipse.papyrus.diagram.sequence.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantNameEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeConstraintAppliedStereotypeEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeConstraintEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeConstraintLabelEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeObservationAppliedStereotypeEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeObservationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeObservationLabelEditPart;
 import org.eclipse.papyrus.diagram.sequence.expressions.UMLOCLFactory;
@@ -169,7 +178,7 @@ public class UMLVisualIDRegistry {
 	/**
 	 * Generated not for add lifelines on lifeline
 	 * 
-	 * @generated NOT (update at each gmf change) lifeline, order, handle duration constraint/observation on message
+	 * @generated NOT (update at each gmf change) lifeline, handle duration constraint/observation on message
 	 */
 	public static int getNodeVisualID(View containerView, EObject domainElement) {
 		if(domainElement == null) {
@@ -190,6 +199,13 @@ public class UMLVisualIDRegistry {
 			}
 		}
 		switch(containerVisualID) {
+		case PackageEditPart.VISUAL_ID:
+			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return InteractionEditPart.VISUAL_ID;
+			}
+			break;
 		case InteractionEditPart.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())
 
@@ -208,7 +224,6 @@ public class UMLVisualIDRegistry {
 			) {
 				return InteractionUseEditPart.VISUAL_ID;
 			}
-			// order : ConsiderIgnoreFragment must appear before CombinedFragment
 			if(UMLPackage.eINSTANCE.getConsiderIgnoreFragment().isSuperTypeOf(domainElement.eClass())
 
 			) {
@@ -330,13 +345,6 @@ public class UMLVisualIDRegistry {
 				return InteractionOperandEditPart.VISUAL_ID;
 			}
 			break;
-		case PackageEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return InteractionEditPart.VISUAL_ID;
-			}
-			break;
 		// handle duration constraint/observation on message
 		case MessageEditPart.VISUAL_ID:
 		case Message2EditPart.VISUAL_ID:
@@ -403,10 +411,10 @@ public class UMLVisualIDRegistry {
 			if(InteractionUseEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if(CombinedFragmentEditPart.VISUAL_ID == nodeVisualID) {
+			if(ConsiderIgnoreFragmentEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if(ConsiderIgnoreFragmentEditPart.VISUAL_ID == nodeVisualID) {
+			if(CombinedFragmentEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if(ContinuationEditPart.VISUAL_ID == nodeVisualID) {
@@ -464,14 +472,23 @@ public class UMLVisualIDRegistry {
 			if(TimeConstraintLabelEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(TimeConstraintAppliedStereotypeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case TimeObservationEditPart.VISUAL_ID:
 			if(TimeObservationLabelEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(TimeObservationAppliedStereotypeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case DurationConstraintEditPart.VISUAL_ID:
 			if(DurationConstraintLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(DurationConstraintAppliedStereotypeEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -485,6 +502,22 @@ public class UMLVisualIDRegistry {
 			break;
 		case CommentEditPart.VISUAL_ID:
 			if(CommentBodyEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case DurationConstraintInMessageEditPart.VISUAL_ID:
+			if(DurationConstraintInMessageLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(DurationConstraintInMessageAppliedStereotypeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case DurationObservationEditPart.VISUAL_ID:
+			if(DurationObservationLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(DurationObservationAppliedStereotypeEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -569,6 +602,11 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
+		case GeneralOrderingEditPart.VISUAL_ID:
+			if(GeneralOrderingAppliedStereotypeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		}
 		return false;
 	}
@@ -628,6 +666,13 @@ public class UMLVisualIDRegistry {
 
 		) {
 			return Message7EditPart.VISUAL_ID;
+		}
+		if(UMLPackage.eINSTANCE.getGeneralOrdering().isSuperTypeOf(domainElement.eClass())
+
+
+
+		) {
+			return GeneralOrderingEditPart.VISUAL_ID;
 		}
 		return -1;
 	}
@@ -816,6 +861,14 @@ public class UMLVisualIDRegistry {
 
 		viewInfo = new BaseViewInfo(4011, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(4012, ViewInfo.Edge, "");
+		root.addNode(1000, viewInfo);
+
+
+		labelInfo = new BaseViewInfo(6015, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
 
 
 		viewInfo = new BaseViewInfo(3007, ViewInfo.Node, "ConsiderIgnoreFragment");

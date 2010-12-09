@@ -8,6 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
+ *  Saadia Dhouib saadia.dhouib@cea.fr  
  * Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
@@ -106,9 +107,8 @@ NamedElementEditPart {
 
 
 	/**
-	 * Papyrus codeGen
-	 * 
-	 * @generated
+	 *Papyrus codeGen
+	 *@generated
 	 **/
 	@Override
 	protected void handleNotificationEvent(Notification event) {
@@ -251,6 +251,9 @@ NamedElementEditPart {
 	}
 
 	/**
+	 * Default implementation treats passed figure as content pane.
+	 * Respects layout one may have set for generated figure.
+	 * @param nodeShape instance of generated figure class
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
 	 * 

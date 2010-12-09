@@ -86,6 +86,8 @@ public class ProfileItemSemanticEditPolicyTN extends UMLBaseItemSemanticEditPoli
 	}
 
 
+
+
 	/**
 	 * @generated
 	 */
@@ -550,6 +552,7 @@ public class ProfileItemSemanticEditPolicyTN extends UMLBaseItemSemanticEditPoli
 			}
 		}
 	}
+
 
 	/**
 	 * @generated

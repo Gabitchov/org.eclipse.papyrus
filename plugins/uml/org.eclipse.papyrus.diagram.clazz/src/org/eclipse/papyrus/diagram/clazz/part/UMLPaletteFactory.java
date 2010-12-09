@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2010 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -8,9 +8,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ */
 package org.eclipse.papyrus.diagram.clazz.part;
 
 import java.util.ArrayList;
@@ -31,17 +30,12 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private final static String CLAZZ_TOOL_MODEL = "clazz.tool.model"; //$NON-NLS-1$
+	private final static String CLAZZ_TOOL_CLASS = "clazz.tool.class"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CLAZZ_TOOL_PACKAGE = "clazz.tool.package"; //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	private final static String CLAZZ_TOOL_CONSTRAINT = "clazz.tool.constraint"; //$NON-NLS-1$
+	private final static String CLAZZ_TOOL_CLASSIFIERTEMPLATEPARAMETER = "clazz.tool.classifiertemplateparameter"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -51,12 +45,12 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private final static String CLAZZ_TOOL_CLASS = "clazz.tool.class"; //$NON-NLS-1$
+	private final static String CLAZZ_TOOL_COMPONENT = "clazz.tool.component"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CLAZZ_TOOL_COMPONENT = "clazz.tool.component"; //$NON-NLS-1$
+	private final static String CLAZZ_TOOL_CONSTRAINT = "clazz.tool.constraint"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -76,7 +70,17 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
+	private final static String CLAZZ_TOOL_ENUMERATIONLITERAL = "clazz.tool.enumerationliteral"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	private final static String CLAZZ_TOOL_INTERFACE = "clazz.tool.interface"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CLAZZ_TOOL_INSTANCESPECIFICATION = "clazz.tool.instancespecification"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -86,12 +90,67 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
+	private final static String CLAZZ_TOOL_MODEL = "clazz.tool.model"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CLAZZ_TOOL_OPERATION = "clazz.tool.operation"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CLAZZ_TOOL_OPERATIONTEMPLATEPARAMETER = "clazz.tool.OperationTemplateParameter"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CLAZZ_TOOL_PACKAGE = "clazz.tool.package"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CLAZZ_TOOL_PROPERTY = "clazz.tool.property"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CLAZZ_TOOL_RECEPTION = "clazz.tool.reception"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CLAZZ_TOOL_REDEFINABLETEMPLATESIGNATURE = "clazz.tool.redefinabletemplatesignature"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	private final static String CLAZZ_TOOL_SIGNAL = "clazz.tool.signal"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CLAZZ_TOOL_INSTANCESPECIFICATION = "clazz.tool.instancespecification"; //$NON-NLS-1$
+	private final static String CLAZZ_TOOL_SLOT = "clazz.tool.slot"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CLAZZ_TOOL_TEMPLATEPARAMETER = "clazz.tool.templateparameter"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CLAZZ_TOOL_TEMPLATESIGNATURE = "clazz.tool.templatesignature"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CREATETIMEOBSERVATION22CREATIONTOOL = "createTimeObservation22CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CLAZZ_TOOL_CONNECTABLEELEMENTTEMPLATEPARAMETER = "clazz.tool.connectableelementtemplateparameter"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -116,6 +175,11 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
+	private final static String CLAZZ_TOOL_CONTAINMENTLINK = "clazz.tool.containmentlink"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	private final static String CLAZZ_TOOL_DEPENDENCY = "clazz.tool.dependency"; //$NON-NLS-1$
 
 	/**
@@ -136,7 +200,22 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
+	private final static String CLAZZ_TOOL_GENERALIZATIONSET = "clazz.tool.generalizationset"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CLAZZ_TOOL_INSTANCESPECIFICATIONLINK = "clazz.tool.instancespecificationlink"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	private final static String CLAZZ_TOOL_INTERFACEREALIZATION = "clazz.tool.interfacerealization"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CLAZZ_TOOL_LINK = "clazz.tool.link"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -172,71 +251,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	private final static String CLAZZ_TOOL_TEMPLATEBINDING = "clazz.tool.templatebinding"; //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	private final static String CLAZZ_TOOL_GENERALIZATIONSET = "clazz.tool.generalizationset"; //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	private final static String CLAZZ_TOOL_INSTANCESPECIFICATIONLINK = "clazz.tool.instancespecificationlink"; //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	private final static String CLAZZ_TOOL_CONTAINMENTLINK = "clazz.tool.containmentlink"; //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	private final static String CLAZZ_TOOL_LINK = "clazz.tool.link"; //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	private final static String CLAZZ_TOOL_RECEPTION = "clazz.tool.reception"; //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	private final static String CLAZZ_TOOL_PROPERTY = "clazz.tool.property"; //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	private final static String CLAZZ_TOOL_OPERATION = "clazz.tool.operation"; //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	private final static String CLAZZ_TOOL_SLOT = "clazz.tool.slot"; //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	private final static String CLAZZ_TOOL_ENUMERATIONLITERAL = "clazz.tool.enumerationliteral"; //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	private final static String CLAZZ_TOOL_REDEFINABLETEMPLATESIGNATURE = "clazz.tool.redefinabletemplatesignature"; //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	private final static String CLAZZ_TOOL_TEMPLATEPARAMETER = "clazz.tool.templateparameter"; //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	private final static String CREATETIMEOBSERVATION22CREATIONTOOL = "createTimeObservation22CreationTool"; //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	private final static String CLAZZ_TOOL_CLASSIFIERTEMPLATEPARAMETER = "clazz.tool.classifiertemplateparameter"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -291,29 +305,38 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		if(toolId.equals(CLAZZ_TOOL_OPERATION)) {
 			return createOperation14CreationTool();
 		}
+		if(toolId.equals(CLAZZ_TOOL_OPERATIONTEMPLATEPARAMETER)) {
+			return createOperationTemplateParameterCreationTool();
+		}
 		if(toolId.equals(CLAZZ_TOOL_PACKAGE)) {
-			return createPackage15CreationTool();
+			return createPackage16CreationTool();
 		}
 		if(toolId.equals(CLAZZ_TOOL_PROPERTY)) {
-			return createProperty16CreationTool();
+			return createProperty17CreationTool();
 		}
 		if(toolId.equals(CLAZZ_TOOL_RECEPTION)) {
-			return createReception17CreationTool();
+			return createReception18CreationTool();
 		}
 		if(toolId.equals(CLAZZ_TOOL_REDEFINABLETEMPLATESIGNATURE)) {
-			return createRedefinableTemplateSignature18CreationTool();
+			return createRedefinableTemplateSignature19CreationTool();
 		}
 		if(toolId.equals(CLAZZ_TOOL_SIGNAL)) {
-			return createSignal19CreationTool();
+			return createSignal20CreationTool();
 		}
 		if(toolId.equals(CLAZZ_TOOL_SLOT)) {
-			return createSlot20CreationTool();
+			return createSlot21CreationTool();
 		}
 		if(toolId.equals(CLAZZ_TOOL_TEMPLATEPARAMETER)) {
-			return createTemplateParameter21CreationTool();
+			return createTemplateParameter22CreationTool();
+		}
+		if(toolId.equals(CLAZZ_TOOL_TEMPLATESIGNATURE)) {
+			return createTemplateSignatureCreationTool();
 		}
 		if(toolId.equals(CREATETIMEOBSERVATION22CREATIONTOOL)) {
 			return createTimeObservation22CreationTool();
+		}
+		if(toolId.equals(CLAZZ_TOOL_CONNECTABLEELEMENTTEMPLATEPARAMETER)) {
+			return createConnectableElementTemplateParameter25CreationTool();
 		}
 		if(toolId.equals(CLAZZ_TOOL_ABSTRACTION)) {
 			return createAbstraction1CreationTool();
@@ -380,10 +403,39 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		return null;
 	}
 
+	/**
+	 * @generated
+	 */
 	public Object getTemplate(String templateId) {
 
 		// default return: null
 		return null;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Tool createClass1CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(5);
+		types.add(UMLElementTypes.Class_3004);
+		types.add(UMLElementTypes.Class_3008);
+		types.add(UMLElementTypes.Class_3010);
+		types.add(UMLElementTypes.Class_3014);
+		types.add(UMLElementTypes.Class_2008);
+
+		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Tool createClassifierTemplateParameter2CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.ClassifierTemplateParameter_3031);
+
+		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		return tool;
 	}
 
 	/**
@@ -483,6 +535,18 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
+	private Tool createInstanceSpecification11CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(2);
+		types.add(UMLElementTypes.InstanceSpecification_2001);
+		types.add(UMLElementTypes.InstanceSpecification_3020);
+
+		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
 	private Tool createPrimitiveType12CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(2);
 		types.add(UMLElementTypes.PrimitiveType_3026);
@@ -521,7 +585,18 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createPackage15CreationTool() {
+	private Tool createOperationTemplateParameterCreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.OperationTemplateParameter_3035);
+
+		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Tool createPackage16CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(2);
 		types.add(UMLElementTypes.Package_3009);
 		types.add(UMLElementTypes.Package_2007);
@@ -533,7 +608,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createProperty16CreationTool() {
+	private Tool createProperty17CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(5);
 		types.add(UMLElementTypes.Property_3002);
 		types.add(UMLElementTypes.Property_3005);
@@ -548,7 +623,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createReception17CreationTool() {
+	private Tool createReception18CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Reception_3011);
 
@@ -559,7 +634,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createRedefinableTemplateSignature18CreationTool() {
+	private Tool createRedefinableTemplateSignature19CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 
@@ -570,7 +645,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createSignal19CreationTool() {
+	private Tool createSignal20CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(2);
 		types.add(UMLElementTypes.Signal_2003);
 		types.add(UMLElementTypes.Signal_3022);
@@ -582,7 +657,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createSlot20CreationTool() {
+	private Tool createSlot21CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Slot_3030);
 
@@ -593,9 +668,20 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createTemplateParameter21CreationTool() {
+	private Tool createTemplateParameter22CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.TemplateParameter_3016);
+
+		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Tool createTemplateSignatureCreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.TemplateSignature_3033);
 
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
@@ -607,6 +693,17 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	private Tool createTimeObservation22CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.TimeObservation_2096);
+
+		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Tool createConnectableElementTemplateParameter25CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.ConnectableElementTemplateParameter_3034);
 
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
@@ -727,21 +824,9 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 */
 	private Tool createInstanceSpecificationLinkCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.Link_4021);
+		types.add(UMLElementTypes.InstanceSpecification_4021);
 
 		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
-		return tool;
-	}
-
-	/**
-	 * @generated
-	 */
-	private Tool createInstanceSpecification11CreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(2);
-		types.add(UMLElementTypes.InstanceSpecification_2001);
-		types.add(UMLElementTypes.InstanceSpecification_3020);
-
-		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
 	}
 
@@ -844,32 +929,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		types.add(UMLElementTypes.TemplateBinding_4015);
 
 		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
-		return tool;
-	}
-
-	/**
-	 * @generated
-	 */
-	private Tool createClass1CreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(5);
-		types.add(UMLElementTypes.Class_3004);
-		types.add(UMLElementTypes.Class_3008);
-		types.add(UMLElementTypes.Class_3010);
-		types.add(UMLElementTypes.Class_3014);
-		types.add(UMLElementTypes.Class_2008);
-
-		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
-		return tool;
-	}
-
-	/**
-	 * @generated
-	 */
-	private Tool createClassifierTemplateParameter2CreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.ClassifierTemplateParameter_3031);
-
-		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
 	}
 

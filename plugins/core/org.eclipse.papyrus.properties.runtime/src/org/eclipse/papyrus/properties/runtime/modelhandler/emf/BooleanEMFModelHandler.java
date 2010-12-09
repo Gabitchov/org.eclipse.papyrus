@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
+ *  Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr
  *****************************************************************************/
 package org.eclipse.papyrus.properties.runtime.modelhandler.emf;
 
@@ -16,6 +17,8 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IBoundedValuesPropertyEditorDescriptor;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
@@ -26,7 +29,7 @@ import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropert
 public class BooleanEMFModelHandler extends EnumerationEMFModelHandler {
 
 	/** id of this model handler */
-	public static final String ID = "Boolean";
+	public static final String ID = "Boolean"; //$NON-NLS-1$
 
 	/**
 	 * Creates a new BooleanEMFModelHandler.
@@ -56,6 +59,7 @@ public class BooleanEMFModelHandler extends EnumerationEMFModelHandler {
 	/**
 	 * {@inheritDoc}
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void setValueInModel(EObject objectToEdit, Object newValue) {
 		EStructuralFeature featureToEdit = getFeatureByName(objectToEdit);
@@ -63,12 +67,22 @@ public class BooleanEMFModelHandler extends EnumerationEMFModelHandler {
 			return;
 		}
 		// remove value if result of the editor is empty
-		if(newValue == null || newValue.equals("")) {
+		if(newValue == null || newValue.equals("")) { //$NON-NLS-1$
 			objectToEdit.eUnset(featureToEdit);
 		} else if(newValue instanceof String) {
 			objectToEdit.eSet(featureToEdit, Boolean.parseBoolean((String)newValue));
 		} else if(newValue instanceof Boolean) {
-			objectToEdit.eSet(featureToEdit, (Boolean)newValue);
+			objectToEdit.eSet(featureToEdit, newValue);
+		} else if(newValue instanceof List<?>) {
+			List<Object> newValues = new ArrayList<Object>();
+			for(Object value : (List<Object>)newValue) {
+				if(value instanceof String) {
+					newValues.add(Boolean.parseBoolean((String)value));
+				} else if(value instanceof Boolean) {
+					newValues.add(value);
+				}
+			}
+			objectToEdit.eSet(featureToEdit, newValues);
 		}
 	}
 
@@ -89,23 +103,56 @@ public class BooleanEMFModelHandler extends EnumerationEMFModelHandler {
 
 		// check if there is an empty string at the beginning. there is one if the lower bound of the feature to edit equal 0 
 		if(featureToEdit.getLowerBound() == 0) {
-			values.add("");
+			values.add(""); //$NON-NLS-1$
 		}
 
-		values.add("true");
-		values.add("false");
+		values.add("true"); //$NON-NLS-1$
+		values.add("false"); //$NON-NLS-1$
 		if(descriptor instanceof IBoundedValuesPropertyEditorDescriptor) {
 			((IBoundedValuesPropertyEditorDescriptor)descriptor).setAvailableValues(values);
 		} else {
-			Activator.log.error("Warning: " + descriptor + "could not be completed.", null);
+			Activator.log.debug("Warning: " + descriptor + "could not be completed."); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public String getId() {
 		return ID;
 	}
 
+	/**
+	 * 
+	 * @param objectToEdit
+	 * @param newValue
+	 * @return
+	 */
+	@Override
+	public SetRequest[] getSetRequest(TransactionalEditingDomain domain, EObject objectToEdit, Object newValue) {
+		EStructuralFeature featureToEdit = getFeatureByName(objectToEdit);
+		if(featureToEdit == null) {
+			return null;
+		}
+		// remove value if result of the editor is empty
+		if(newValue == null || newValue.equals("")) { //$NON-NLS-1$
+			return new SetRequest[]{ new SetRequest(domain, objectToEdit, featureToEdit, featureToEdit.getDefaultValue()) };
+		} else if(newValue instanceof String) {
+			return new SetRequest[]{ new SetRequest(domain, objectToEdit, featureToEdit, Boolean.parseBoolean((String)newValue)) };
+		} else if(newValue instanceof Boolean) {
+			return new SetRequest[]{ new SetRequest(domain, objectToEdit, featureToEdit, newValue) };
+		} else if(newValue instanceof List<?>) {
+			List<Object> newValues = new ArrayList<Object>();
+			for(Object value : (List<?>)newValue) {
+				if(value instanceof String) {
+					newValues.add(Boolean.parseBoolean((String)value));
+				} else if(value instanceof Boolean) {
+					newValues.add(value);
+				}
+			}
+			return new SetRequest[]{ new SetRequest(domain, objectToEdit, featureToEdit, newValues) };
+		}
+		return null;
+	}
 }

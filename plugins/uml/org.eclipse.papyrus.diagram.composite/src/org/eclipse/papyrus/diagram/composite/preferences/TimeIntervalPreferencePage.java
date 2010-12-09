@@ -37,7 +37,7 @@ public class TimeIntervalPreferencePage extends AbstractPapyrusNodePreferencePag
 	 */
 	@Override
 	protected String getBundleId() {
-		return UMLDiagramEditorPlugin.getInstance().ID;
+		return UMLDiagramEditorPlugin.ID;
 	}
 
 	/**

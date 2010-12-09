@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2010 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,8 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ */
 package org.eclipse.papyrus.diagram.clazz.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
@@ -29,6 +28,7 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.RemoveOrphanViewPolicy;
+import org.eclipse.papyrus.diagram.clazz.custom.policies.itemsemantic.CRedefinableTemplateSignatureTemplateParameterCompartmentItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.RedefinableTemplateSignatureTemplateParameterCompartmentItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.part.Messages;
 import org.eclipse.papyrus.diagram.common.editpolicies.DuplicatePasteEditPolicy;
@@ -36,7 +36,11 @@ import org.eclipse.papyrus.diagram.common.editpolicies.DuplicatePasteEditPolicy;
 /**
  * @generated
  */
-public class RedefinableTemplateSignatureTemplateParameterCompartmentEditPart extends ListCompartmentEditPart {
+public class RedefinableTemplateSignatureTemplateParameterCompartmentEditPart
+
+extends ListCompartmentEditPart
+
+{
 
 	/**
 	 * @generated
@@ -83,12 +87,12 @@ public class RedefinableTemplateSignatureTemplateParameterCompartmentEditPart ex
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new DuplicatePasteEditPolicy());
 
-
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.clazz.edit.policies.RedefinableTemplateSignatureTemplateParameterCompartmentCanonicalEditPolicy());
 
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new ClassDiagramDragDropEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CRedefinableTemplateSignatureTemplateParameterCompartmentItemSemanticEditPolicy());
 	}
 
 	/**
@@ -131,5 +135,4 @@ public class RedefinableTemplateSignatureTemplateParameterCompartmentEditPart ex
 		super.refreshVisuals();
 		refreshBounds();
 	}
-
 }

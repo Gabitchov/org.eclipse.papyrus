@@ -105,15 +105,11 @@ public class StructuredActivityNodeKeywordEditPart extends CompartmentEditPart i
 	 */
 	private String defaultText;
 
-
-
 	/** direct edition mode (default, undefined, registered editor, etc.) */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
 	/** configuration from a registered edit dialog */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -566,8 +562,6 @@ public class StructuredActivityNodeKeywordEditPart extends CompartmentEditPart i
 		return getPrimaryView();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -668,8 +662,6 @@ public class StructuredActivityNodeKeywordEditPart extends CompartmentEditPart i
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -685,7 +677,6 @@ public class StructuredActivityNodeKeywordEditPart extends CompartmentEditPart i
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
-
 
 	/**
 	 * @generated
@@ -718,7 +709,6 @@ public class StructuredActivityNodeKeywordEditPart extends CompartmentEditPart i
 			}
 		}
 
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -730,10 +720,7 @@ public class StructuredActivityNodeKeywordEditPart extends CompartmentEditPart i
 		return null;
 	}
 
-
-
 	private static final String ADD_PARENT_MODEL = "AddParentModel";
-
 
 	/**
 	 * @generated
@@ -760,7 +747,6 @@ public class StructuredActivityNodeKeywordEditPart extends CompartmentEditPart i
 
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -768,6 +754,5 @@ public class StructuredActivityNodeKeywordEditPart extends CompartmentEditPart i
 		removeListenerFilter(ADD_PARENT_MODEL);
 
 	}
-
 
 }

@@ -45,7 +45,7 @@
             activeByDefault="false"
             contentProvider="org.eclipse.papyrus.modelexplorer.MoDiscoContentProvider"
             id="org.eclipse.papyrus.modelexplorer.navigatorContent"
-            labelProvider="org.eclipse.papyrus.modelexplorer.MoDiscoLabelProvider"
+            labelProvider="org.eclipse.papyrus.modelexplorer.MoDiscoLabelProviderWTooltips"
             name="Model Contents"
             priority="lowest">
          <triggerPoints>
@@ -62,7 +62,10 @@
             </or></triggerPoints>
          <possibleChildren>
             <or>
-               <instanceof value="org.eclipse.gmt.modisco.infra.browser.uicore.internal.model.ModelElementItem"/> 
+               <instanceof
+                     value="org.eclipse.gmf.runtime.notation.impl.DiagramImpl">
+               </instanceof>
+               <instanceof value="org.eclipse.gmt.modisco.infra.browser.uicore.internal.model.ModelElementItem"/>
             </or>
          </possibleChildren>
          <actionProvider
@@ -74,22 +77,6 @@
                         type="org.eclipse.emf.ecore.EObject">
                   </adapt>
                </or>
-            </enablement>
-         </actionProvider>
-          <actionProvider
-               class="org.eclipse.papyrus.modelexplorer.actionprovider.CreateDiagramActionProvider"
-               id="org.eclipse.papyrus.modelexplorer.actionprovider.CreateDiagramActionProvider">
-                 <enablement>
-               <and>
-                  <not>
-                     <instanceof
-                           value="org.eclipse.gmf.runtime.notation.Diagram">
-                     </instanceof>
-                  </not>
-                  <adapt
-                        type="org.eclipse.emf.ecore.EObject">
-                  </adapt>
-               </and>
             </enablement>
          </actionProvider>
           
@@ -123,7 +110,15 @@
          <dropAssistant
                class="org.eclipse.papyrus.modelexplorer.dnd.CommonDropAdapterAssistant"
                id="org.eclipse.papyrus.modelexplorer.dnd.CommonDropAdapterAssistant">
-            <possibleDropTargets></possibleDropTargets>
+            <possibleDropTargets>
+               <or>
+                  <instanceof
+                        value="org.eclipse.gmf.runtime.notation.impl.DiagramImpl">
+                  </instanceof>
+                  <instanceof
+                        value="org.eclipse.gmt.modisco.infra.browser.uicore.internal.model.ModelElementItem">
+                  </instanceof>
+               </or></possibleDropTargets>
          </dropAssistant>
     
       </navigatorContent>
@@ -161,50 +156,180 @@
             needSeparator="true">
       </customAction>
    </extension>
-    <extension
-          point="org.eclipse.ui.menus">
-       <menuContribution
-             allPopups="false"
-             locationURI="toolbar:org.eclipse.papyrus.modelexplorer.modelexplorer">
-          <command
-                commandId="org.eclipse.papyrus.modelexplorer.LoadBrowserCustomization"
-                icon="icons/etool16/uiCustom.gif"
-                label="Load browser customization"
-                style="push">
-          </command>
-          <command
-                commandId="org.eclipse.papyrus.modelexplorer.searchelement"
-                icon="icons/etool16/search.gif"
-                label="Search element"
-                style="push">
-          </command>
-       </menuContribution>
-       <menuContribution
-             allPopups="false"
-             locationURI="popup:org.eclipse.papyrus.modelexplorer.modelexplorer.popup">
-          <menu
-                id="org.eclipse.papyrus.modelexplorer.popupmenu.createchild"
-                label="New Child">
-          </menu>
-       </menuContribution>
-    </extension>
-    <extension
-          point="org.eclipse.ui.commands">
-       <command
-             categoryId="org.eclipse.papyrus.editor.category"
-             defaultHandler="org.eclipse.papyrus.modelexplorer.handler.LoadBrowserCustomization"
-             description="Load a customization for the papyrus browser"
-             id="org.eclipse.papyrus.modelexplorer.LoadBrowserCustomization"
-             name="loadBrowserCustomization">
-       </command>
-       <command
-             categoryId="org.eclipse.papyrus.editor.category"
-             defaultHandler="org.eclipse.papyrus.modelexplorer.handler.SearchElementHandler"
-             description="Search an element in the model explorer"
-             id="org.eclipse.papyrus.modelexplorer.searchelement"
-             name="searchelement">
-       </command>
-    </extension>
+
+<extension point="org.eclipse.ui.menus">
+
+	<!-- ModelExplorer toolbar -->
+	<menuContribution locationURI="toolbar:org.eclipse.papyrus.modelexplorer.modelexplorer"
+			allPopups="false">
+
+		<!-- Load modisco browser customization command -->		
+		<command 
+			commandId="org.eclipse.papyrus.modelexplorer.LoadBrowserCustomization"
+			icon="icons/etool16/uiCustom.gif"
+			label="Load browser customization"
+			style="push">
+		</command>
+
+		<!-- Search element command -->	
+		<command
+			commandId="org.eclipse.papyrus.modelexplorer.searchelement"
+			icon="icons/etool16/search.gif"
+			label="Search element"
+			style="push">
+		</command>
+		
+		<!-- Sort elements command -->	
+		<command
+	        commandId="org.eclipse.papyrus.modelexplorer.sortelement"
+	        icon="icons/etool16/sort.gif"
+	        label="sort"
+	        style="toggle">
+		</command>
+	</menuContribution>
+ <menuContribution
+       allPopups="false"
+       locationURI="popup:org.eclipse.papyrus.modelexplorer.modelexplorer.popup">
+    <menu
+          id="org.eclipse.papyrus.modelexplorer.popupmenu.createchild"
+          label="New Child">
+    </menu>
+    <menu
+          id="org.eclipse.papyrus.modelexplorer.popupmenu.creatediagram"
+          label="New Diagram">
+    </menu>
+    <command
+          commandId="org.eclipse.ui.edit.delete"
+          disabledIcon="IMG_TOOL_DELETE_DISABLED"
+          icon="IMG_TOOL_DELETE"
+          label="Delete"
+          style="push"
+          tooltip="Delete">
+       <visibleWhen
+             checkEnabled="true">
+          <and>
+             <with
+                   variable="selection">
+                <iterate>
+                   <adapt
+                         type="org.eclipse.emf.ecore.EObject">
+                   </adapt>
+                </iterate>
+             </with>
+          </and>
+       </visibleWhen>
+    </command>
+    <menu
+          icon="icons/etool16/validate.gif"
+          id="org.eclipse.papyrus.modelexplorer.popup.validation"
+          label="Validation"
+          path="papyrus">
+    </menu>
+ </menuContribution>
+	<!-- ModelExplorer Contextual menu -->       
+	<menuContribution
+       allPopups="true"
+       locationURI="popup:org.eclipse.papyrus.modelexplorer.popup.validation">
+  <command
+        commandId="org.eclipse.papyrus.modelexplorer.ValidateModelCommand"
+        icon="icons/etool16/validate.gif"
+        id="org.eclipse.papyrus.modelexplorer.ValidateModel"
+        label="Validate model"
+        tooltip="Validate model">
+  </command>  
+  <command
+        categoryId="org.eclipse.papyrus.editor.category"
+        commandId="org.eclipse.papyrus.modelexplorer.ValidateSubtreeCommand"
+        defaultHandler="org.eclipse.papyrus.modelexplorer.handler.ValidateModelHandler"
+        description="Validate Model"
+        icon="icons/etool16/validate.gif"
+        id="org.eclipse.papyrus.modelexplorer.ValidateSubtree"
+        label="Validate subtree"
+        name="Validate Model"
+        tooltip="Validate subtree">
+  </command>
+  <command
+        commandId="org.eclipse.papyrus.modelexplorer.ValidateDelMarkersFromModelCommand"
+        disabledIcon="IMG_TOOL_DELETE_DISABLED"
+        icon="IMG_TOOL_DELETE"
+        id="org.eclipse.papyrus.modelexplorer.DeleteMarkersFromModel"
+        label="Remove markers from model"
+        tooltip="Validate model">
+  </command>
+  <command
+        commandId="org.eclipse.papyrus.modelexplorer.ValidateDelMarkersFromSubtreeCommand"
+        disabledIcon="IMG_TOOL_DELETE_DISABLED"
+        icon="IMG_TOOL_DELETE"
+        id="org.eclipse.papyrus.modelexplorer.DelMarkersFromSubtree"
+        label="Remove markers from subtree"
+        tooltip="Validate model">
+  </command>
+		<!-- <visibleWhen checkEnabled="true"/> -->		
+	</menuContribution>
+       
+</extension>
+
+<!-- Command declarations (for model explorer toolbar and contextual menu -->
+<extension point="org.eclipse.ui.commands">
+
+	<!-- Command declaration : Load modisco browser customization command -->			
+	<command id="org.eclipse.papyrus.modelexplorer.LoadBrowserCustomization"
+		name="loadBrowserCustomization" description="Load a customization for the papyrus browser"
+		categoryId="org.eclipse.papyrus.editor.category"
+		defaultHandler="org.eclipse.papyrus.modelexplorer.handler.LoadBrowserCustomization">
+	</command>
+	
+	<!-- Command declaration : Search element command -->			
+	<command id="org.eclipse.papyrus.modelexplorer.searchelement"
+		name="searchelement" description="Search an element in the model explorer"
+		categoryId="org.eclipse.papyrus.editor.category"
+		defaultHandler="org.eclipse.papyrus.modelexplorer.handler.SearchElementHandler">
+	</command>
+	
+	<!-- Command declaration : Sort elements command -->			
+	<command id="org.eclipse.papyrus.modelexplorer.sortelement"
+		name="SortElement" description="Sort elements"
+		categoryId="org.eclipse.papyrus.editor.category"
+		defaultHandler="org.eclipse.papyrus.modelexplorer.handler.SortElementHandler">
+	</command>
+       
+	<!-- Command declaration : Delete element command -->
+	<command id="org.eclipse.papyrus.uml.service.creation.DeleteCommand"
+		name="Delete" description="Delete"	
+		categoryId="org.eclipse.papyrus.editor.category"
+		defaultHandler="org.eclipse.papyrus.modelexplorer.handler.DeleteCommandHandler">
+	</command>
+	<command
+       categoryId="org.eclipse.papyrus.editor.category"
+       defaultHandler="org.eclipse.papyrus.modelexplorer.handler.ValidateModelHandler"
+       description="ValidateModel"
+       id="org.eclipse.papyrus.modelexplorer.ValidateModelCommand"
+       name="ValidateModel">
+	</command>
+ <command
+       categoryId="org.eclipse.papyrus.editor.category"
+       defaultHandler="org.eclipse.papyrus.modelexplorer.handler.ValidateSubtreeHandler"
+       description="ValidateSubtree"
+       id="org.eclipse.papyrus.modelexplorer.ValidateSubtreeCommand"
+       name="ValidateSubtree">
+ </command>
+ <command
+       categoryId="org.eclipse.papyrus.editor.category"
+       defaultHandler="org.eclipse.papyrus.modelexplorer.handler.ValidateDelMarkersFromModelHandler"
+       description="ValidateDelMarkersFromModel"
+       id="org.eclipse.papyrus.modelexplorer.ValidateDelMarkersFromModelCommand"
+       name="ValidateDelMarkersFromModel">
+ </command>
+ <command
+       categoryId="org.eclipse.papyrus.editor.category"
+       defaultHandler="org.eclipse.papyrus.modelexplorer.handler.ValidateDelMarkersFromSubtreeHandler"
+       description="ValidateDelMarkersFromSubtree"
+       id="org.eclipse.papyrus.modelexplorer.ValidateDelMarkersFromSubtreeCommand"
+       name="ValidateDelMarkersFromSubtree">
+ </command>       
+</extension>
+    
+    
      <extension point="org.eclipse.core.runtime.preferences">
 		<?gmfgen generated="false"?>
 		<initializer class="org.eclipse.papyrus.modelexplorer.preferences.NavigatorPreferenceInitializer"/>
@@ -218,5 +343,51 @@
             name="Papyrus Model Explorer">
       </page>
    </extension>
+
+<!-- This declaration is added in order command (DeleteCommandHandler) status to be
+     verified (isVisible and isEnabled) before any attempt to execute the command, 
+     and to mask the command in case it is not supported or executable.
+  -->
+<extension point="org.eclipse.ui.startup">
+	<startup class="org.eclipse.papyrus.modelexplorer.Activator"/>
+</extension>
+<extension
+      point="org.eclipse.ui.navigator.linkHelper">
+   <linkHelper
+         class="org.eclipse.papyrus.modelexplorer.LinkHelper"
+         id="org.eclipse.papyrus.modelexplorer.linkHelper">
+       <selectionEnablement>
+         <instanceof
+               value="java.lang.Object">
+         </instanceof>
+      </selectionEnablement>
+      <editorInputEnablement>
+         <instanceof
+               value="org.eclipse.ui.part.IFileEditorInput">
+         </instanceof>
+      </editorInputEnablement>
+   </linkHelper>
+</extension>
+
+<!-- This service listen the selection, ensures that the modelExplorer is active, and update the  
+	 deleteInModelExplorer variable according to the selection.
+  -->
+<extension point="org.eclipse.ui.services">
+	<sourceProvider provider="org.eclipse.papyrus.modelexplorer.provider.ActionStateSourceProvider">
+		<variable name="deleteInModelExplorer" priorityLevel="workbench" />
+	</sourceProvider>
+</extension>
+
+<!-- This handler is activated when deleteInModelExplorer variable is valid.
+  -->
+<extension point="org.eclipse.ui.handlers">
+	<handler commandId="org.eclipse.ui.edit.delete" class="org.eclipse.papyrus.modelexplorer.handler.DeleteCommandHandler">
+		<activeWhen>
+		<with variable="deleteInModelExplorer">
+			<equals value="enabled" />
+		</with>
+		</activeWhen>
+	</handler>
+</extension>
 
 </plugin>

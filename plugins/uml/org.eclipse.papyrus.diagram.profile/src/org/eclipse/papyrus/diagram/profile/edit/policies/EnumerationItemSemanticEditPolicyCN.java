@@ -76,6 +76,8 @@ public class EnumerationItemSemanticEditPolicyCN extends UMLBaseItemSemanticEdit
 	}
 
 
+
+
 	/**
 	 * @generated
 	 */
@@ -126,6 +128,7 @@ public class EnumerationItemSemanticEditPolicyCN extends UMLBaseItemSemanticEdit
 			}
 		}
 	}
+
 
 	/**
 	 * @generated

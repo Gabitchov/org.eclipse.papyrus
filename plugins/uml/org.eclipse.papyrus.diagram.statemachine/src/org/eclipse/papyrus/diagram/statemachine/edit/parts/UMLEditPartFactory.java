@@ -192,15 +192,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case RegionEditPart.VISUAL_ID:
 				return new RegionEditPart(view);
 
-			case PseudostateEditPart.VISUAL_ID:
-				return new PseudostateEditPart(view);
-
-			case PseudostateNameEditPart.VISUAL_ID:
-				return new PseudostateNameEditPart(view);
-
-			case PseudostateStereotypeEditPart.VISUAL_ID:
-				return new PseudostateStereotypeEditPart(view);
-
 			case FinalStateEditPart.VISUAL_ID:
 				return new FinalStateEditPart(view);
 
@@ -216,11 +207,113 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case StateNameEditPart.VISUAL_ID:
 				return new StateNameEditPart(view);
 
+			case PseudostateInitialEditPart.VISUAL_ID:
+				return new PseudostateInitialEditPart(view);
+
+			case PseudostateInitialNameEditPart.VISUAL_ID:
+				return new PseudostateInitialNameEditPart(view);
+
+			case PseudostateInitialStereotypeEditPart.VISUAL_ID:
+				return new PseudostateInitialStereotypeEditPart(view);
+
+			case PseudostateJoinEditPart.VISUAL_ID:
+				return new PseudostateJoinEditPart(view);
+
+			case PseudostateJoinNameEditPart.VISUAL_ID:
+				return new PseudostateJoinNameEditPart(view);
+
+			case PseudostateJoinStereotypeEditPart.VISUAL_ID:
+				return new PseudostateJoinStereotypeEditPart(view);
+
+			case PseudostateForkEditPart.VISUAL_ID:
+				return new PseudostateForkEditPart(view);
+
+			case PseudostateForkNameEditPart.VISUAL_ID:
+				return new PseudostateForkNameEditPart(view);
+
+			case PseudostateForkStereotypeEditPart.VISUAL_ID:
+				return new PseudostateForkStereotypeEditPart(view);
+
+			case PseudostateChoiceEditPart.VISUAL_ID:
+				return new PseudostateChoiceEditPart(view);
+
+			case PseudostateChoiceNameEditPart.VISUAL_ID:
+				return new PseudostateChoiceNameEditPart(view);
+
+			case PseudostateChoiceStereotypeEditPart.VISUAL_ID:
+				return new PseudostateChoiceStereotypeEditPart(view);
+
+			case PseudostateJunctionEditPart.VISUAL_ID:
+				return new PseudostateJunctionEditPart(view);
+
+			case PseudostateJunctionNameEditPart.VISUAL_ID:
+				return new PseudostateJunctionNameEditPart(view);
+
+			case PseudostateJunctionStereotypeEditPart.VISUAL_ID:
+				return new PseudostateJunctionStereotypeEditPart(view);
+
+			case PseudostateShallowHistoryEditPart.VISUAL_ID:
+				return new PseudostateShallowHistoryEditPart(view);
+
+			case PseudostateShallowHistoryNameEditPart.VISUAL_ID:
+				return new PseudostateShallowHistoryNameEditPart(view);
+
+			case PseudostateShallowHistoryStereotypeEditPart.VISUAL_ID:
+				return new PseudostateShallowHistoryStereotypeEditPart(view);
+
+			case PseudostateDeepHistoryEditPart.VISUAL_ID:
+				return new PseudostateDeepHistoryEditPart(view);
+
+			case PseudostateDeepHistoryNameEditPart.VISUAL_ID:
+				return new PseudostateDeepHistoryNameEditPart(view);
+
+			case PseudostateDeepHistoryStereotypeEditPart.VISUAL_ID:
+				return new PseudostateDeepHistoryStereotypeEditPart(view);
+
+			case PseudostateTerminateEditPart.VISUAL_ID:
+				return new PseudostateTerminateEditPart(view);
+
+			case PseudostateTerminateNameEditPart.VISUAL_ID:
+				return new PseudostateTerminateNameEditPart(view);
+
+			case PseudostateTerminateStereotypeEditPart.VISUAL_ID:
+				return new PseudostateTerminateStereotypeEditPart(view);
+
+			case PseudostateEntryPointEditPart.VISUAL_ID:
+				return new PseudostateEntryPointEditPart(view);
+
+			case PseudostateEntryPointNameEditPart.VISUAL_ID:
+				return new PseudostateEntryPointNameEditPart(view);
+
+			case PseudostateEntryPointStereotypeEditPart.VISUAL_ID:
+				return new PseudostateEntryPointStereotypeEditPart(view);
+
+			case PseudostateExitPointEditPart.VISUAL_ID:
+				return new PseudostateExitPointEditPart(view);
+
+			case PseudostateExitPointNameEditPart.VISUAL_ID:
+				return new PseudostateExitPointNameEditPart(view);
+
+			case PseudostateExitPointStereotypeEditPart.VISUAL_ID:
+				return new PseudostateExitPointStereotypeEditPart(view);
+
+			case ConnectionPointReferenceEditPart.VISUAL_ID:
+				return new ConnectionPointReferenceEditPart(view);
+
+			case ConnectionPointReferenceNameEditPart.VISUAL_ID:
+				return new ConnectionPointReferenceNameEditPart(view);
+
+			case ConnectionPointReferenceStereotypeEditPart.VISUAL_ID:
+				return new ConnectionPointReferenceStereotypeEditPart(view);
+
 			case RegionCompartmentEditPart.VISUAL_ID:
 				return new RegionCompartmentEditPart(view);
 
 			case StateMachineCompartmentEditPart.VISUAL_ID:
 				return new StateMachineCompartmentEditPart(view);
+
+			case StateCompartmentEditPart.VISUAL_ID:
+				return new StateCompartmentEditPart(view);
 
 			case TransitionEditPart.VISUAL_ID:
 				return new TransitionEditPart(view);
@@ -233,6 +326,12 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case TransitionStereotypeEditPart.VISUAL_ID:
 				return new TransitionStereotypeEditPart(view);
+
+			case GeneralizationEditPart.VISUAL_ID:
+				return new GeneralizationEditPart(view);
+
+			case GeneralizationStereotypeEditPart.VISUAL_ID:
+				return new GeneralizationStereotypeEditPart(view);
 
 			}
 		}
