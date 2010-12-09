@@ -47,30 +47,6 @@ public class Messages extends NLS {
 
 
 	/** The Message parser. */
-	/**
-	 * 
-	 */
-	public static String CommandHelper_SelectProperty;
-
-	/**
-	 * 
-	 */
-	public static String CommandHelper_SelectSignature;
-
-	/**
-	 * 
-	 */
-	public static String CommandHelper_signatureslection;
-
-	public static String MessageInverseOrientation_setconnectionends;
-
-	public static String MessageInverseOrientation_setconnectionanchors;
-
-	public static String MessageLabelInverseOrientation_setconnectionends;
-
-	public static String MessageLabelInverseOrientation_setconnectionanchors;
-
-	/** The Message parser. */
 	public static String MessageParser_undefined;
 	static {
 		// initialize resource bundle

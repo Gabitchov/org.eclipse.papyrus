@@ -134,14 +134,6 @@ public abstract class AbstractShowHideAction implements IActionDelegate, IWorkbe
 		initAction();
 		buildInitialSelection();
 		CheckedTreeSelectionDialog selectionDialog = getSelectionDialog();
-
-		CheckedTreeSelectionDialog selectionDialog = new CheckedTreeSelectionDialog(DisplayUtils.getDisplay().getActiveShell(), labelProvider, contentProvider);
-		selectionDialog.setTitle(title);
-		selectionDialog.setMessage(message);
-		selectionDialog.setContainerMode(true);
-		selectionDialog.setInput(getInput());
-		selectionDialog.setExpandedElements(getInput().toArray());
-		selectionDialog.setInitialElementSelections(this.initialSelection);
 		selectionDialog.open();
 		if(selectionDialog.getReturnCode() == Dialog.OK) {
 			buildShowHideElementsList(selectionDialog.getResult());

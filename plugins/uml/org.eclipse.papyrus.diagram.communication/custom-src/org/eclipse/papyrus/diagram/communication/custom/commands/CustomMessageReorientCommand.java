@@ -17,7 +17,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
-import org.eclipse.papyrus.diagram.communication.custom.util.ReconnectMessageHelper;
+import org.eclipse.papyrus.diagram.communication.custom.helper.ReconnectMessageHelper;
 import org.eclipse.papyrus.diagram.communication.edit.commands.MessageReorientCommand;
 import org.eclipse.papyrus.diagram.communication.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.uml2.uml.Element;
@@ -26,7 +26,7 @@ import org.eclipse.uml2.uml.Interaction;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class CustomMessageReorientCommand.
+ * The Class CustomMessageReorientCommand permits to reorient a UML message.
  */
 public class CustomMessageReorientCommand extends MessageReorientCommand {
 
@@ -86,7 +86,7 @@ public class CustomMessageReorientCommand extends MessageReorientCommand {
 		if(!(oldEnd instanceof Element && newEnd instanceof Element)) {
 			return false;
 		}
-		Element source = getLink().getOwner();
+
 		if(!(getLink().eContainer() instanceof Interaction)) {
 			return false;
 		}

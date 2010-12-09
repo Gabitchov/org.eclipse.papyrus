@@ -25,32 +25,10 @@ import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.Messages;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Collaboration;
-import org.eclipse.uml2.uml.Constraint;
-import org.eclipse.uml2.uml.DataType;
-import org.eclipse.uml2.uml.Enumeration;
-import org.eclipse.uml2.uml.EnumerationLiteral;
-import org.eclipse.uml2.uml.FunctionBehavior;
-import org.eclipse.uml2.uml.InformationItem;
-import org.eclipse.uml2.uml.Interaction;
-import org.eclipse.uml2.uml.Interface;
-import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.OpaqueBehavior;
-import org.eclipse.uml2.uml.Operation;
-import org.eclipse.uml2.uml.Port;
-import org.eclipse.uml2.uml.Profile;
-import org.eclipse.uml2.uml.Property;
-import org.eclipse.uml2.uml.ProtocolStateMachine;
-import org.eclipse.uml2.uml.Reception;
-import org.eclipse.uml2.uml.Signal;
-import org.eclipse.uml2.uml.StateMachine;
-import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.Type;
-import org.eclipse.uml2.uml.UseCase;
 
 
 /**
@@ -69,14 +47,6 @@ public class EditorLabelProvider implements ILabelProvider {
 
 	/** the plugin where owning the icons for the UML Element */
 	public static final String pluginID = "org.eclipse.uml2.uml.edit"; //$NON-NLS-1$
-	/** icon for an Enumeration */
-	public static final String ICON_ENUMERATION = "/icons/Enumeration.gif"; //$NON-NLS-1$
-
-	/** icon for an EnumerationLiteral */
-	public static final String ICON_ENUMERATION_LITERAL = "/icons/EnumerationLiteral.gif"; //$NON-NLS-1$
-
-	/** icon for a DataType */
-	public static final String ICON_DATATYPE = "/icons/DataType.gif"; //$NON-NLS-1$
 
 	/** folder where are the UML Icon */
 	public static final String imageFolder = "/icons/full/obj16/"; //$NON-NLS-1$
@@ -90,39 +60,6 @@ public class EditorLabelProvider implements ILabelProvider {
 	/** icon for a compartment */
 	public static final String ICON_COMPARTMENT = "/icons/none_comp_vis.gif"; //$NON-NLS-1$
 
-
-	/** icon for an activity */
-	public static final String ICON_ACTIVITY = "/icons/Activity.gif"; //$NON-NLS-1$
-
-	/** icon for a collaboration */
-	public static final String ICON_COLLABORATION = "/icons/Collaboration.gif"; //$NON-NLS-1$
-
-	/** icon for function behavior */
-	public static final String ICON_FUNCTION_BEHAVIOR = "/icons/obj16/FunctionBehavior.gif"; //$NON-NLS-1$
-
-	/** icon for an information item */
-	public static final String ICON_INFORMATION_ITEM = "/icons/obj16/InformationItem.gif"; //$NON-NLS-1$
-
-	/** icon for an interaction */
-	public static final String ICON_INTERACTION = "/icons/obj16/Interaction.gif"; //$NON-NLS-1$
-
-	/** icon for an opaque behavior */
-	public static final String ICON_OPAQUE_BEHAVIOR = "/icons/obj16/OpaqueBehavior.gif"; //$NON-NLS-1$
-
-	/** icon for a protocol state machine */
-	public static final String ICON_PROTOCOL_STATE_MACHINE = "/icons/obj16/ProtocolStateMachine.gif"; //$NON-NLS-1$
-
-	/** icon for a state machine */
-	public static final String ICON_STATE_MACHINE = "/icons/obj16/StateMachine.gif"; //$NON-NLS-1$
-
-	/** icon for a constraint */
-	public static final String ICON_CONSTRAINT = "/icons/obj16/Constraint.gif"; //$NON-NLS-1$
-
-	/** icon for a constraint */
-	public static final String ICON_SIGNAL = "/icons/obj16/Signal.gif"; //$NON-NLS-1$
-
-	/** icon for a constraint */
-	public static final String ICON_USECASE = "/icons/obj16/Usecase.gif"; //$NON-NLS-1$
 
 	/**
 	 * 
@@ -187,38 +124,6 @@ public class EditorLabelProvider implements ILabelProvider {
 
 		//test for Metaclass
 		if(element instanceof Class) {
-
-		if(element instanceof UseCase) {
-			return Activator.getPluginIconImage(Activator.ID, ICON_USECASE);
-		} else if(element instanceof Signal) {
-			return Activator.getPluginIconImage(Activator.ID, ICON_SIGNAL);
-		} else if(element instanceof Enumeration) {
-			return Activator.getPluginIconImage(Activator.ID, ICON_ENUMERATION);
-		} else if(element instanceof EnumerationLiteral) {
-			return Activator.getPluginIconImage(Activator.ID, ICON_ENUMERATION_LITERAL);
-		} else if(element instanceof Stereotype) {
-			return Activator.getPluginIconImage(Activator.ID, ICON_STEREOTYPE);
-		} else if(element instanceof Interface) {
-			return Activator.getPluginIconImage(Activator.ID, ICON_INTERFACE);
-		} else if(element instanceof Interaction) {
-			return Activator.getPluginIconImage(Activator.ID, ICON_INTERACTION);
-		} else if(element instanceof Constraint) {
-			return Activator.getPluginIconImage(Activator.ID, ICON_CONSTRAINT);
-		} else if(element instanceof Activity) {
-			return Activator.getPluginIconImage(Activator.ID, ICON_ACTIVITY);
-		} else if(element instanceof Collaboration) {
-			return Activator.getPluginIconImage(Activator.ID, ICON_COLLABORATION);
-		} else if(element instanceof InformationItem) {
-			return Activator.getPluginIconImage(Activator.ID, ICON_INFORMATION_ITEM);
-		} else if(element instanceof FunctionBehavior) {
-			return Activator.getPluginIconImage(Activator.ID, ICON_FUNCTION_BEHAVIOR);
-		} else if(element instanceof OpaqueBehavior) {
-			return Activator.getPluginIconImage(Activator.ID, ICON_OPAQUE_BEHAVIOR);
-		} else if(element instanceof ProtocolStateMachine) {
-			return Activator.getPluginIconImage(Activator.ID, ICON_PROTOCOL_STATE_MACHINE);
-		} else if(element instanceof StateMachine) {
-			return Activator.getPluginIconImage(Activator.ID, ICON_STATE_MACHINE);
-		} else if(element instanceof Class) {
 			if(org.eclipse.papyrus.diagram.common.util.Util.isMetaclass((Type)element)) {
 				return Activator.getPluginIconImage(Activator.ID, ICON_METACLASS);
 			}
@@ -243,16 +148,6 @@ public class EditorLabelProvider implements ILabelProvider {
 		//if the element is a compartment
 		if(element instanceof BasicCompartment || element instanceof DecorationNode) {
 			return Activator.getPluginIconImage(Activator.ID, ICON_COMPARTMENT);
-		} else if(element instanceof Reception) {
-			return Activator.getPluginIconImage(Activator.ID, ICON_RECEPTION);
-		} else if(element instanceof Port) {
-			return Activator.getPluginIconImage(Activator.ID, ICON_PORT);
-		} else if(element instanceof Property) {
-			return Activator.getPluginIconImage(Activator.ID, ICON_PROPERTY);
-		} else if(element instanceof Operation) {
-			return Activator.getPluginIconImage(Activator.ID, ICON_OPERATION);
-		} else if(element instanceof BasicCompartment) {
-			Activator.getPluginIconImage(Activator.ID, ICON_COMPARTMENT);
 		}
 
 		return null;

@@ -57,6 +57,7 @@ import org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPoli
 import org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.diagram.profile.edit.policies.UMLTextSelectionEditPolicy;
+import org.eclipse.papyrus.diagram.profile.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.profile.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.profile.providers.UMLParserProvider;
 import org.eclipse.papyrus.extensionpoints.editors.Activator;
@@ -343,7 +344,7 @@ public class PrimitiveTypeNameEditPartCN extends CompartmentEditPart implements 
 	 */
 	public IParser getParser() {
 		if(parser == null) {
-			parser = UMLParserProvider.get().getPrimitiveTypeName_5058Parser();
+			parser = UMLParserProvider.getParser(UMLElementTypes.PrimitiveType_3026, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.profile.edit.parts.PrimitiveTypeNameEditPartCN.VISUAL_ID));
 		}
 		return parser;
 	}

@@ -1,5 +1,4 @@
 /*****************************************************************************
-/*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
  *
  *    
@@ -25,10 +24,8 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.papyrus.diagram.communication.custom.commands.CustomMessageCreateCommand;
 import org.eclipse.papyrus.diagram.communication.custom.commands.CustomMessagesReorientCommand;
-import org.eclipse.papyrus.diagram.communication.custom.commands.CustomMessageReorientCommand;
 import org.eclipse.papyrus.diagram.communication.edit.commands.CommentAnnotatedElementCreateCommand;
 import org.eclipse.papyrus.diagram.communication.edit.commands.ConnectorDurationObservationCreateCommand;
 import org.eclipse.papyrus.diagram.communication.edit.commands.ConnectorTimeObservationCreateCommand;
@@ -127,17 +124,6 @@ public class CustomLifelineItemSemanticEditPolicyCN extends LifelineItemSemantic
 				return UnexecutableCommand.INSTANCE;
 			}
 			return getGEFWrapper(reorientCommand.reduce());
-		}
-		return super.getReorientRelationshipCommand(req);
-	}
-
-
-	@Override
-	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
-
-		switch(getVisualID(req)) {
-		case MessageEditPart.VISUAL_ID:
-			return getGEFWrapper(new CustomMessageReorientCommand(req));
 		}
 		return super.getReorientRelationshipCommand(req);
 	}

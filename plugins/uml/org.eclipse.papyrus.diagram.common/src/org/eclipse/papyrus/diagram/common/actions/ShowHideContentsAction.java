@@ -48,7 +48,6 @@ import org.eclipse.papyrus.diagram.common.editpolicies.ShowHideClassifierContent
 import org.eclipse.papyrus.diagram.common.providers.EditorLabelProvider;
 import org.eclipse.papyrus.diagram.common.util.Util;
 import org.eclipse.papyrus.wizards.Activator;
-import org.eclipse.papyrus.diagram.common.util.Util;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IActionDelegate;
 import org.eclipse.ui.IWorkbenchWindow;
@@ -573,77 +572,6 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 
 	}
 
-	public class CustomComparator implements Comparator<Object> {
-
-		/** this list contains the name of all the classes which want sort */
-		private List<String> classesList;
-
-		/**
-		 * 
-		 * Constructor.
-		 * 
-		 * @param members
-		 *        the elements to sort
-		 */
-		public CustomComparator(List<NamedElement> elements) {
-			buildList(elements);
-		}
-
-		/**
-		 * Fill {@link #classesList} with the class name of each element to sort
-		 * 
-		 * @param elements
-		 *        the elements to sort
-		 */
-		public void buildList(List<NamedElement> elements) {
-			this.classesList = new ArrayList<String>();
-			for(NamedElement namedElement : elements) {
-				this.classesList.add(new String(namedElement.getClass().getSimpleName()));
-			}
-			Collections.sort(classesList);
-		}
-
-		/**
-		 * 
-		 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
-		 * 
-		 * @param o1
-		 * @param o2
-		 * @return
-		 */
-		public int compare(Object o1, Object o2) {
-
-			String name1 = o1.getClass().getSimpleName();
-			String name2 = o2.getClass().getSimpleName();
-			int index1 = classesList.indexOf(name1);
-			int index2 = classesList.indexOf(name2);
-			int classIndex = classesList.indexOf("ClassImpl"); //$NON-NLS-1$
-			if(index1 == index2 && index1 == classIndex) {
-				boolean metaclassO1 = Util.isMetaclass((Type)o1);
-				boolean metaclassO2 = Util.isMetaclass((Type)o2);
-				if(metaclassO1 && !metaclassO2) {
-					return 1;
-				} else if(!metaclassO1 && metaclassO2) {
-					return -1;
-				}
-				return 0;
-			}
-			if(index1 == -1) {
-				System.out.println(name1);
-				return -1;
-			} else if(index1 == index2) {
-				return 0;
-			} else if(index1 > index2) {
-				return 1;
-			} else if(index1 < index2) {
-				return -1;
-			}
-			return 0;
-		}
-
-
-	}
-
 	/**
 	 * 
 	 * Content provider for the {@link CheckedTreeSelectionDialog}
@@ -714,12 +642,6 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 						members.add(namedElement);
 					}
 				}
-				localMembers = ((ClassifierRepresentation)parentElement).getRepresentedClassifier().getMembers();
-				for(NamedElement namedElement : localMembers) {
-					if(((ClassifierRepresentation)parentElement).getEditPartRepresentation().getPossibleElement().contains(namedElement)) {
-						members.add(namedElement);
-					}
-				}
 			}
 			Collections.sort(members, new CustomComparator(members));
 			return members.toArray();
@@ -739,16 +661,6 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 				if(rep != null) {
 
 					Classifier classifier = (Classifier)(rep).getUMLElement();
-					if(classifier.getOwnedMembers().contains(element)) {
-						return rep;
-					} else {
-						for(ClassifierRepresentation classRep : ((CustomEditPartRepresentation)rep).getSuperClasses()) {
-							if(classRep.ownsElement(element)) {
-								return classRep;
-							}
-				if(rep != null) {
-
-					Classifier classifier = (Classifier)((EditPartRepresentation)element).getUMLElement();
 					if(classifier.getOwnedMembers().contains(element)) {
 						return rep;
 					} else {
@@ -908,5 +820,4 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 		}
 
 	}
-}
 }

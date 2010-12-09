@@ -74,15 +74,7 @@ abstract public class AbstractShowHideHandler extends AbstractHandler {
 			this.action.setSelection(selection);
 			this.action.run(null);
 		}
-		setLastActionInToolBarMenu();
 		return null;
-	}
-
-	/**
-	 * Initialize {@link ShowHideDropDownHandler#lastAction}.If the user clicks on the toolbar menu, this action will be done.
-	 */
-	private void setLastActionInToolBarMenu() {
-		ShowHideDropDownHandler.lastAction = this.action;
 	}
 
 	/**
