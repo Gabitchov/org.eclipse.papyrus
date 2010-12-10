@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.papyrus.build"
-      label="Papyrus Build Site"
+      label="Papyrus (Incubation)"
       version="0.8.0.qualifier"
       provider-name="Eclipse Modeling Project"
       image="eclipse_update_120.jpg">
