@@ -70,6 +70,7 @@ public class ReferenceSelector implements IElementSelector {
 		if(unique && elements.length > 0) {
 			contentProvider.addFilteredElements(elements);
 			fList.setElements(contentProvider.getElements());
+
 		}
 	}
 
@@ -102,6 +103,10 @@ public class ReferenceSelector implements IElementSelector {
 			contentProvider.setFilteredElements(elements);
 			fList.setElements(contentProvider.getElements());
 		}
+	}
+
+	public void refresh() {
+		fList.setElements(contentProvider.getElements());
 	}
 
 	/**
