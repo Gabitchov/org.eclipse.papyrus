@@ -63,28 +63,17 @@ public class CompareTwoElementsAction extends TeamAction {
 	}
 	
 	public boolean isEnabled() {
-		//TODO
-		return true;
+		Object[] selectedElements = getSelection().toArray();
+		if(selectedElements.length != 2) {
+			return false;
+		}
+		EObject left = getElementFor(selectedElements[0]);
+		EObject right = getElementFor(selectedElements[1]);
+		return left != null && right!= null;
 	}
 
 	private void openInCompare(ComparisonSnapshot snapshot) {
-		IWorkbenchPage workBenchPage = getTargetPage();
-		CompareEditorInput input = new ModelCompareEditorInput(snapshot);
-		IEditorPart editor = Utils.findReusableCompareEditor(input, workBenchPage, new Class[]{ CompareFileRevisionEditorInput.class });
-		if(editor != null) {
-			IEditorInput otherInput = editor.getEditorInput();
-			if(otherInput.equals(input)) {
-				// simply provide focus to editor
-				workBenchPage.activate(editor);
-			} else {
-				// if editor is currently not open on that input either re-use
-				// existing
-				CompareUI.reuseCompareEditor(input, (IReusableEditor)editor);
-				workBenchPage.activate(editor);
-			}
-		} else {
-			CompareUI.openCompareEditor(input);
-		}
+		CompareUI.openCompareEditor(new ModelCompareEditorInput(snapshot));
 	}
 
 	protected ComparisonResourceSnapshot doContentCompare(final EObject left, final EObject right) {
