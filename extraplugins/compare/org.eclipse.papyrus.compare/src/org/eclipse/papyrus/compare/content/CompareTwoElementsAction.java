@@ -22,6 +22,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.compare.EMFCompareException;
 import org.eclipse.emf.compare.EMFComparePlugin;
 import org.eclipse.emf.compare.diff.metamodel.ComparisonResourceSnapshot;
+import org.eclipse.emf.compare.diff.metamodel.ComparisonSnapshot;
 import org.eclipse.emf.compare.diff.metamodel.DiffFactory;
 import org.eclipse.emf.compare.diff.metamodel.DiffModel;
 import org.eclipse.emf.compare.diff.service.DiffService;
@@ -31,6 +32,7 @@ import org.eclipse.emf.compare.match.engine.IMatchEngine;
 import org.eclipse.emf.compare.match.metamodel.MatchFactory;
 import org.eclipse.emf.compare.match.metamodel.MatchModel;
 import org.eclipse.emf.compare.match.service.MatchService;
+import org.eclipse.emf.compare.ui.editor.ModelCompareEditorInput;
 import org.eclipse.emf.compare.util.EMFCompareMap;
 import org.eclipse.emf.compare.util.EngineConstants;
 import org.eclipse.emf.compare.util.ModelUtils;
@@ -68,7 +70,8 @@ public class CompareTwoElementsAction extends TeamAction {
 			return;
 		}
 		ComparisonResourceSnapshot snapshot = doContentCompare(left, right);
-		save(snapshot);
+//		save(snapshot);
+		openInCompare(snapshot);
 
 		//		openInCompare(ancestor, left, right);
 	}
@@ -82,9 +85,9 @@ public class CompareTwoElementsAction extends TeamAction {
 		}
 	}
 
-	private void openInCompare(ITypedElement ancestor, ITypedElement left, ITypedElement right) {
+	private void openInCompare(ComparisonSnapshot snapshot) {
 		IWorkbenchPage workBenchPage = getTargetPage();
-		CompareEditorInput input = new SaveablesCompareEditorInput(ancestor, left, right, workBenchPage);
+		CompareEditorInput input = new ModelCompareEditorInput(snapshot);
 		IEditorPart editor = Utils.findReusableCompareEditor(input, workBenchPage, new Class[]{ CompareFileRevisionEditorInput.class });
 		if(editor != null) {
 			IEditorInput otherInput = editor.getEditorInput();
