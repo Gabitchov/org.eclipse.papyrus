@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.papyrus.build"
       label="Papyrus Build Site"
-      version="0.7.1.qualifier"
+      version="0.8.0.qualifier"
       provider-name="Eclipse Modeling Project"
       image="eclipse_update_120.jpg">
 

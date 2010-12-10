@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-SymbolicName: org.eclipse.papyrus.sysml.diagram.common;singleton:=true
-Bundle-Version: 0.7.1.qualifier
+Bundle-Version: 0.8.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.sysml.diagram.common.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,

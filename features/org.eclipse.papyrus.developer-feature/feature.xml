@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.papyrus.developer.feature"
       label="%featureName"
-      version="0.7.1.qualifier"
+      version="0.8.0.qualifier"
       provider-name="%providerName">
 
    <description url="http://www.example.com/description">
