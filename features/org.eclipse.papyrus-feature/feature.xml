@@ -34,7 +34,7 @@ http://www.eclipse.org/legal/epl-v10.html
    <includes
          id="org.eclipse.papyrus.backbone"
          version="0.0.0"/>
-
+<!--
    <includes
          id="org.eclipse.papyrus.diagram.clazz"
          version="0.0.0"/>
@@ -110,5 +110,5 @@ http://www.eclipse.org/legal/epl-v10.html
    <includes
          id="org.eclipse.papyrus.profiletool"
          version="0.0.0"/>
-
+-->
 </feature>
