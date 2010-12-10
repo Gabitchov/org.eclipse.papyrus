@@ -49,8 +49,7 @@ import org.eclipse.ui.PlatformUI;
 
 public class CompareTwoElementsAction extends TeamAction {
 
-	protected void execute(IAction action) throws InvocationTargetException,
-			InterruptedException {
+	protected void execute(IAction action) throws InvocationTargetException, InterruptedException {
 
 		Object[] selectedElements = getSelection().toArray();
 
@@ -58,37 +57,44 @@ public class CompareTwoElementsAction extends TeamAction {
 		EObject left = null;
 		EObject right = null;
 
-		if (selectedElements.length == 2) {
-			if (selectedElements[0] != null)
+		if(selectedElements.length == 2) {
+			if(selectedElements[0] != null)
 				left = getElementFor(selectedElements[0]);
 
-			if (selectedElements[1] != null)
+			if(selectedElements[1] != null)
 				right = getElementFor(selectedElements[1]);
 
-		}else {
+		} else {
 			return;
 		}
-		doContentCompare(left, right);
-//		openInCompare(ancestor, left, right);
+		ComparisonResourceSnapshot snapshot = doContentCompare(left, right);
+		save(snapshot);
+
+		//		openInCompare(ancestor, left, right);
+	}
+	
+	private void save(ComparisonResourceSnapshot snapshot) {
+		try {
+			ModelUtils.save(snapshot, "//export//home//tatiana//target-workspace//AAA//result.emfdiff");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
-	private void openInCompare(ITypedElement ancestor, ITypedElement left,
-			ITypedElement right) {
+	private void openInCompare(ITypedElement ancestor, ITypedElement left, ITypedElement right) {
 		IWorkbenchPage workBenchPage = getTargetPage();
-		CompareEditorInput input = new SaveablesCompareEditorInput(ancestor,
-				left, right, workBenchPage);
-		IEditorPart editor = Utils.findReusableCompareEditor(input,
-				workBenchPage,
-				new Class[] { CompareFileRevisionEditorInput.class });
-		if (editor != null) {
+		CompareEditorInput input = new SaveablesCompareEditorInput(ancestor, left, right, workBenchPage);
+		IEditorPart editor = Utils.findReusableCompareEditor(input, workBenchPage, new Class[]{ CompareFileRevisionEditorInput.class });
+		if(editor != null) {
 			IEditorInput otherInput = editor.getEditorInput();
-			if (otherInput.equals(input)) {
+			if(otherInput.equals(input)) {
 				// simply provide focus to editor
 				workBenchPage.activate(editor);
 			} else {
 				// if editor is currently not open on that input either re-use
 				// existing
-				CompareUI.reuseCompareEditor(input, (IReusableEditor) editor);
+				CompareUI.reuseCompareEditor(input, (IReusableEditor)editor);
 				workBenchPage.activate(editor);
 			}
 		} else {
@@ -102,37 +108,47 @@ public class CompareTwoElementsAction extends TeamAction {
 	}
 
 	private EObject getElementFor(Object object) {
-		if (object instanceof IAdaptable) {
-			return (EObject)((IAdaptable) object).getAdapter (EObject.class);
+		if(object instanceof IAdaptable) {
+			return (EObject)((IAdaptable)object).getAdapter(EObject.class);
 		}
 
-		if (object instanceof EObject) {
-			return (EObject) object;
+		if(object instanceof EObject) {
+			return (EObject)object;
 		}
 		return null;
 	}
-	
+
 	protected ComparisonResourceSnapshot doContentCompare(final EObject left, final EObject right) {
 		// create snapshot
 		final ComparisonResourceSnapshot snapshot = DiffFactory.eINSTANCE.createComparisonResourceSnapshot();
-		snapshot.setDiff(DiffFactory.eINSTANCE.createDiffModel());
-		snapshot.setMatch(MatchFactory.eINSTANCE.createMatchModel());
 
 		try {
 			PlatformUI.getWorkbench().getProgressService().busyCursorWhile(new IRunnableWithProgress() {
-				public void run(IProgressMonitor monitor) throws InterruptedException {
-					final Map<String, Object> options = new EMFCompareMap<String, Object>();
-					options.put(MatchOptions.OPTION_PROGRESS_MONITOR, monitor);
 
-					// do comparison
-						options.put(MatchOptions.OPTION_MATCH_SCOPE_PROVIDER, new GenericMatchScopeProvider(
-								left.eResource(), right.eResource()));
-					final IMatchEngine matchEngine = new ElementContentMatchEngine(left, right);
-					final MatchModel match = matchEngine.contentMatch(left, right, options);
-					ElementContentDiffEngine engine = new ElementContentDiffEngine(left, right);
-					final DiffModel diff = engine.doDiff(match);
+				public void run(IProgressMonitor monitor) throws InterruptedException {
+					final MatchModel match = contentMatch(left, right, monitor);
+					final DiffModel diff = contentDiff(left, right, match);
+
 					snapshot.setDiff(diff);
 					snapshot.setMatch(match);
+				}
+
+				protected DiffModel contentDiff(final EObject left, final EObject right, final MatchModel match) {
+					ElementContentDiffEngine engine = new ElementContentDiffEngine(left, right);
+					final DiffModel diff = engine.doDiff(match);
+					return diff;
+				}
+
+				protected MatchModel contentMatch(final EObject left, final EObject right, IProgressMonitor monitor) throws InterruptedException {
+					final Map<String, Object> options = new EMFCompareMap<String, Object>();
+					options.put(MatchOptions.OPTION_PROGRESS_MONITOR, monitor);
+					options.put(MatchOptions.OPTION_MATCH_SCOPE_PROVIDER, new GenericMatchScopeProvider(left.eResource(), right.eResource()));
+					options.put(MatchOptions.OPTION_IGNORE_ID, Boolean.TRUE);
+					options.put(MatchOptions.OPTION_IGNORE_XMI_ID, Boolean.TRUE);
+
+					final IMatchEngine matchEngine = new ElementContentMatchEngine(left, right);
+					final MatchModel match = matchEngine.contentMatch(left, right, options);
+					return match;
 				}
 			});
 		} catch (final InterruptedException e) {
@@ -142,13 +158,6 @@ public class CompareTwoElementsAction extends TeamAction {
 		} catch (final InvocationTargetException e) {
 			EMFComparePlugin.log(e, true);
 		}
-		try {
-			ModelUtils.save(snapshot, "//export//home//tatiana//target-workspace//AAA//result.emfdiff");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
 		return snapshot;
 	}
 
