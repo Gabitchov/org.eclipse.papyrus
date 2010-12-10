@@ -189,7 +189,7 @@
 		<eclipse.launch app="director">
 					<args>
 						<jvmarg value="-Declipse.p2.mirrors=false" />
-						<jvmarg value="-Dorg.eclipse.update.jarprocessor.pack200=${jdk1.5.dir}/jre/bin" />
+						<jvmarg value="-Dorg.eclipse.update.jarprocessor.pack200=${JAVA_HOME}/jre/bin" />
 						<arg value="-r" />
 						<arg value="http://download.cloudsmith.com/buckminster/external-3.6" />
 						<arg value="-d" />
