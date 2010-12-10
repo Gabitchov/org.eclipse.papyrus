@@ -27,7 +27,7 @@ DROPS_DIR=/home/data/httpd/download.eclipse.org/modeling/mdt/papyrus/downloads/d
 BUILD_LOC_N=/opt/public/modeling/mdt/papyrus/lastSuccessfulBuildN
 BUILD_LOC_I=/opt/public/modeling/mdt/papyrus/lastSuccessfulBuildI
 
-#ADD_DOWNLOAD_STATS=/opt/public/modeling/mdt/papyrus/addDownloadStats.sh
+ADD_DOWNLOAD_STATS=/opt/public/modeling/mdt/papyrus/addDownloadStats.sh
 
 DATE=`date +%Y%m%d-%H%M`
 
@@ -92,7 +92,7 @@ if [ $signalDateN -gt $lastPromoteDateN ]; then
         unzip $zipName -d $tmpDrop
         unzip -o $tmpDrop/?20*/Papyrus-Update-*.zip -d $updates_nightly
         # add download stats to the update repository
-        $ADD_DOWNLOAD_STATS $updates_nightly/$VERSION
+        $ADD_DOWNLOAD_STATS $updates_nightly
         chmod -R 755 $BUILDS_DIR
         chmod -R 755 $updates_nightly
         echo "$DATE: done" >> $logFile
@@ -108,7 +108,7 @@ if [ $signalDateI -gt $lastPromoteDateI ]; then
         cd $BUILD_LOC_I
         zipName=$(cat $promoteSignalI).zip
         # see http://wiki.hudson-ci.org/display/HUDSON/Remote+access+API
-        wget --no-check-certificate "https://hudson.eclipse.org/hudson/job/papyrus-integration/lastSuccessfulBuild/artifact/${zipName}"
+        wget --no-check-certificate "https://hudson.eclipse.org/hudson/job/cbi-papyrus-integration/lastSuccessfulBuild/artifact/${zipName}"
         if [ ! -f $zipName ]; then echo "ERROR:$zipName (from Hudson) not found"; exit -2; fi
         VERSION=$(cat $promoteVersionI)
         if [ -z "$VERSION" ]; then echo "ERROR:version not found"; exit -2; fi
