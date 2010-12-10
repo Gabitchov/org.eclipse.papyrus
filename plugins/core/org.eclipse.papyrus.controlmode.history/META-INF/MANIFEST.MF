@@ -14,5 +14,5 @@ Export-Package: org.eclipse.papyrus.controlmode.history,
  org.eclipse.papyrus.controlmode.mm.history.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
- org.eclipse.papyrus.core;bundle-version="0.7.0"
+ org.eclipse.papyrus.core;bundle-version="0.8.0"
 Bundle-ActivationPolicy: lazy

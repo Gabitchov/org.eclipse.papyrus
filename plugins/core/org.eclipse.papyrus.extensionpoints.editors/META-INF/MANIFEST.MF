@@ -7,7 +7,7 @@ Bundle-Version: 0.8.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.extensionpoints.editors.Activator
 Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.ui.editors;bundle-version="3.4.0",
- org.eclipse.papyrus.core;bundle-version="0.7.0",
+ org.eclipse.papyrus.core;bundle-version="0.8.0",
  org.eclipse.emf.edit.ui;bundle-version="2.4.0",
  org.antlr.runtime;bundle-version="3.0.0"
 Bundle-ActivationPolicy: lazy

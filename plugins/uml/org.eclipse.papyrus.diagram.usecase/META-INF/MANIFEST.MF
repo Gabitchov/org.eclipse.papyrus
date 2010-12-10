@@ -52,10 +52,10 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.draw2d;visibility:=reexport,
  org.eclipse.gmf.runtime.draw2d.ui;visibility:=reexport,
  org.eclipse.gef;visibility:=reexport,
- org.eclipse.papyrus.core.adaptor.gmf;bundle-version="0.7.0",
+ org.eclipse.papyrus.core.adaptor.gmf;bundle-version="0.8.0",
  org.eclipse.papyrus.diagram.common,
- org.eclipse.papyrus.preferences;bundle-version="0.7.0",
- org.eclipse.papyrus.ui.toolbox;bundle-version="0.7.0",
+ org.eclipse.papyrus.preferences;bundle-version="0.8.0",
+ org.eclipse.papyrus.ui.toolbox;bundle-version="0.8.0",
  org.eclipse.papyrus.extensionpoints.editors,
  org.eclipse.emf.validation;visibility:=reexport
 Bundle-ActivationPolicy: lazy

@@ -1,13 +1,13 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.papyrus.modelexplorer;bundle-version="0.7.0",
+ org.eclipse.papyrus.modelexplorer;bundle-version="0.8.0",
  org.eclipse.ui.navigator;bundle-version="3.4.0",
  org.eclipse.emf.transaction;bundle-version="1.4.0",
  org.eclipse.gmt.modisco.infra.query.core;bundle-version="0.8.0",
  org.eclipse.uml2.uml.editor;bundle-version="3.1.0",
- org.eclipse.papyrus.uml.service.types;bundle-version="0.7.1",
- org.eclipse.papyrus.service.edit;bundle-version="0.7.1",
+ org.eclipse.papyrus.uml.service.types;bundle-version="0.8.0",
+ org.eclipse.papyrus.service.edit;bundle-version="0.8.0",
  org.eclipse.gmt.modisco.infra.facet;bundle-version="0.8.0"
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.8.0.qualifier

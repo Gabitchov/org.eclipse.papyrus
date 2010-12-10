@@ -15,7 +15,7 @@ Export-Package: org.eclipse.papyrus.sasheditor.contentprovider.di,
  org.eclipse.papyrus.sashwindows.di.impl,
  org.eclipse.papyrus.sashwindows.di.util
 Require-Bundle: org.eclipse.swt;bundle-version="3.5.0";visibility:=reexport,
- org.eclipse.papyrus.sasheditor;bundle-version="0.7.0";visibility:=reexport,
+ org.eclipse.papyrus.sasheditor;bundle-version="0.8.0";visibility:=reexport,
  org.eclipse.ui;bundle-version="3.6.0",
  org.eclipse.core.runtime;bundle-version="3.6.0",
  org.eclipse.emf.ecore;visibility:=reexport,

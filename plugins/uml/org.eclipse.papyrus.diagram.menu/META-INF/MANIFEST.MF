@@ -6,8 +6,8 @@ Bundle-Version: 0.8.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.diagram.menu.Activator
 Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.ui,
- org.eclipse.papyrus.core.adaptor.gmf;bundle-version="0.7.0",
- org.eclipse.papyrus.preferences;bundle-version="0.7.0",
+ org.eclipse.papyrus.core.adaptor.gmf;bundle-version="0.8.0",
+ org.eclipse.papyrus.preferences;bundle-version="0.8.0",
  org.eclipse.gmf.runtime.diagram.ui.actions,
  org.eclipse.gmf.runtime.draw2d.ui.render;bundle-version="1.4.0",
  org.eclipse.core.expressions,
@@ -17,7 +17,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.gmf.runtime.diagram.ui.actions,
  org.eclipse.gmf.runtime.diagram.ui.render;bundle-version="1.2.0",
  org.eclipse.papyrus.wizards,
- org.eclipse.papyrus.diagram.common;bundle-version="0.7.1"
+ org.eclipse.papyrus.diagram.common;bundle-version="0.8.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.papyrus.diagram.menu,
