@@ -197,7 +197,7 @@
 						<arg value="-p" />
 						<arg value="Buckminster" />
 						<arg value="-i" />
-						<arg value="org.eclipse.buckminster.subversive.headless.feature.feature.group" />
+						<arg value="org.eclipse.buckminster.subclipse.headless.feature.feature.group" />
 					</args>
 				</eclipse.launch>
 	</target>
