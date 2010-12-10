@@ -27,6 +27,7 @@ import org.eclipse.emf.compare.diff.metamodel.DiffModel;
 import org.eclipse.emf.compare.diff.service.DiffService;
 import org.eclipse.emf.compare.match.MatchOptions;
 import org.eclipse.emf.compare.match.engine.GenericMatchScopeProvider;
+import org.eclipse.emf.compare.match.engine.IMatchEngine;
 import org.eclipse.emf.compare.match.metamodel.MatchFactory;
 import org.eclipse.emf.compare.match.metamodel.MatchModel;
 import org.eclipse.emf.compare.match.service.MatchService;
@@ -37,6 +38,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.papyrus.compare.CompareTwoElementsEngine;
+import org.eclipse.papyrus.compare.CompareTwoElementsMatchEngine;
 import org.eclipse.team.internal.ui.Utils;
 import org.eclipse.team.internal.ui.actions.TeamAction;
 import org.eclipse.team.internal.ui.history.CompareFileRevisionEditorInput;
@@ -125,13 +127,11 @@ public class CompareTwoElementsAction extends TeamAction {
 					options.put(MatchOptions.OPTION_PROGRESS_MONITOR, monitor);
 
 					// do comparison
-					final MatchModel match;
 						options.put(MatchOptions.OPTION_MATCH_SCOPE_PROVIDER, new GenericMatchScopeProvider(
 								left.eResource(), right.eResource()));
-						match = MatchService.doMatch(left, right, options);
-					CompareTwoElementsEngine engine = new CompareTwoElementsEngine();
-					engine.left = left;
-					engine.right = right;
+					final IMatchEngine matchEngine = new CompareTwoElementsMatchEngine(left, right);
+					final MatchModel match = matchEngine.contentMatch(left, right, options);
+					CompareTwoElementsEngine engine = new CompareTwoElementsEngine(left, right);
 					final DiffModel diff = engine.doDiff(match);
 					snapshot.setDiff(diff);
 					snapshot.setMatch(match);
