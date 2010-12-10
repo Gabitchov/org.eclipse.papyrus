@@ -15,19 +15,23 @@
 package org.eclipse.papyrus.diagram.common.util;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.BorderedBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
+import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ElementImport;
 import org.eclipse.uml2.uml.Enumeration;
-import org.eclipse.uml2.uml.InteractionFragment;
+import org.eclipse.uml2.uml.Generalization;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageImport;
@@ -474,5 +478,31 @@ public class Util {
 			return true;
 		}
 		return false;
+	}
+
+	/**
+	 * 
+	 * Returns a {@link Set} owning all the level of super classes for the Classifier
+	 * With this method we don't have loop problems with {@link Generalization}
+	 * 
+	 * @param visitedClassifier
+	 *        the list of the visited Classifier (can be <code>null</code>)
+	 * @param clazz
+	 *        the classifier to visit
+	 * @return
+	 *         a {@link Set} owning all the level of super classes for the Classifier
+	 */
+	public static Set<Classifier> getAllSuperClasses(Set<Classifier> visitedClassifier, Classifier clazz) {
+		Assert.isNotNull(clazz);
+		if(visitedClassifier == null) {
+			visitedClassifier = new HashSet<Classifier>();
+		}
+		for(Classifier classifier : clazz.getGenerals()) {
+			if(!visitedClassifier.contains(classifier)) {
+				visitedClassifier.add(classifier);
+				visitedClassifier.addAll(getAllSuperClasses(visitedClassifier, classifier));
+			}
+		}
+		return visitedClassifier;
 	}
 }
