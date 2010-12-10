@@ -63,7 +63,7 @@
 	<property name="targetPlatformPath" location="${result}/tp" />
 	<property name="buckminster.output.root" location="${result}/output" />
 	<property name="buckminster.temp.root" location="${result}/temp" />
-	<property name="site.p2.dir" location="${workspace}/_temp/org.eclipse.papyrus.build_0.7.1-eclipse.feature/site.p2" />
+	<property name="site.p2.dir" location="${workspace}/_temp/org.eclipse.papyrus.build_0.8.0-eclipse.feature/site.p2" />
 
 	<!-- This macro executes the default application of an eclipse installation
 			 that resides in the folder ${buildtools}/@app -->
@@ -189,7 +189,7 @@
 		<eclipse.launch app="director">
 					<args>
 						<jvmarg value="-Declipse.p2.mirrors=false" />
-						<!--<jvmarg value="-Dorg.eclipse.update.jarprocessor.pack200=${org.eclipse.update.jarprocessor.pack200}" />-->
+						<jvmarg value="-Dorg.eclipse.update.jarprocessor.pack200=${jdk1.5.dir}/jre/bin" />
 						<arg value="-r" />
 						<arg value="http://download.cloudsmith.com/buckminster/external-3.6" />
 						<arg value="-d" />
