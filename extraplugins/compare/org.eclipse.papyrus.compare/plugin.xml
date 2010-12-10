@@ -28,7 +28,7 @@
                <groupMarker name="acceleo"/> 
          </menu>
          <action
-               class="org.eclipse.papyrus.compare.action.CompareTwoElementsAction"
+               class="org.eclipse.papyrus.compare.content.CompareTwoElementsAction"
                enablesFor="2"
                id="org.eclipse.papyrus.compare.action.CompareTwoElementsAction"
                icon="icons/export_as_html.gif"
