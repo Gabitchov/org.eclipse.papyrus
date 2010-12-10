@@ -18,6 +18,7 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.editors.providers.EncapsulatedContentProvider;
 import org.eclipse.papyrus.editors.providers.IStaticContentProvider;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CCombo;
 import org.eclipse.swt.widgets.Composite;
 
@@ -69,9 +70,8 @@ public class ReferenceCombo extends AbstractValueEditor {
 	public ReferenceCombo(Composite parent, int style, String label) {
 		super(parent, label);
 
-		control = factory.createCCombo(this, style);
+		control = factory.createCCombo(this, style | SWT.BORDER);
 		control.setLayoutData(getDefaultLayoutData());
-		//control = new CCombo(this, style);
 		control.setEditable(false);
 		viewer = new ComboViewer(control);
 	}

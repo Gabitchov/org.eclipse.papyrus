@@ -75,6 +75,7 @@ public class EncapsulatedContentProvider implements IStructuredContentProvider {
 	 * {@inheritDoc}
 	 */
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+		encapsulated.inputChanged(viewer, oldInput, newInput);
 	}
 
 	/**
