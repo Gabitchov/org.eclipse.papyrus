@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.papyrus.compare.content;
 
+import static org.eclipse.papyrus.compare.Activator.log;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
@@ -47,21 +48,26 @@ public class CompareTwoElementsAction extends TeamAction {
 
 		Object[] selectedElements = getSelection().toArray();
 		if(selectedElements.length != 2) {
-			// log
+			log.info("Cannot compare elements: 2 elements should be selected, but only " + selectedElements.length + " is selected");
 			return;
 		}
 
 		EObject left = getElementFor(selectedElements[0]);
 		EObject right = getElementFor(selectedElements[1]);
-		if (left == null || right == null) {
-			// log
+		if(left == null) {
+			log.info("Cannot compare elements: left element is null");
+			return;
+		}
+
+		if(right == null) {
+			log.info("Cannot compare elements: right element is null");
 			return;
 		}
 
 		ComparisonResourceSnapshot snapshot = doContentCompare(left, right);
 		openInCompare(snapshot);
 	}
-	
+
 	public boolean isEnabled() {
 		Object[] selectedElements = getSelection().toArray();
 		if(selectedElements.length != 2) {
@@ -69,7 +75,7 @@ public class CompareTwoElementsAction extends TeamAction {
 		}
 		EObject left = getElementFor(selectedElements[0]);
 		EObject right = getElementFor(selectedElements[1]);
-		return left != null && right!= null;
+		return left != null && right != null;
 	}
 
 	private void openInCompare(ComparisonSnapshot snapshot) {
@@ -77,7 +83,6 @@ public class CompareTwoElementsAction extends TeamAction {
 	}
 
 	protected ComparisonResourceSnapshot doContentCompare(final EObject left, final EObject right) {
-		// create snapshot
 		final ComparisonResourceSnapshot snapshot = DiffFactory.eINSTANCE.createComparisonResourceSnapshot();
 
 		try {
@@ -91,35 +96,36 @@ public class CompareTwoElementsAction extends TeamAction {
 					snapshot.setMatch(match);
 				}
 
-				protected DiffModel contentDiff(final EObject left, final EObject right, final MatchModel match) {
-					ElementContentDiffEngine engine = new ElementContentDiffEngine(left, right);
-					final DiffModel diff = engine.doDiff(match);
-					return diff;
-				}
-
-				protected MatchModel contentMatch(final EObject left, final EObject right, IProgressMonitor monitor) throws InterruptedException {
-					final Map<String, Object> options = new EMFCompareMap<String, Object>();
-					options.put(MatchOptions.OPTION_PROGRESS_MONITOR, monitor);
-					options.put(MatchOptions.OPTION_MATCH_SCOPE_PROVIDER, new GenericMatchScopeProvider(left.eResource(), right.eResource()));
-					options.put(MatchOptions.OPTION_IGNORE_ID, Boolean.TRUE);
-					options.put(MatchOptions.OPTION_IGNORE_XMI_ID, Boolean.TRUE);
-
-					final IMatchEngine matchEngine = new ElementContentMatchEngine(left, right);
-					final MatchModel match = matchEngine.contentMatch(left, right, options);
-					return match;
-				}
 			});
 		} catch (final InterruptedException e) {
-			EMFComparePlugin.log(e, false);
+			log.error(e);
 		} catch (final EMFCompareException e) {
-			EMFComparePlugin.log(e, false);
+			log.error(e);
 		} catch (final InvocationTargetException e) {
-			EMFComparePlugin.log(e, true);
+			log.error(e);
 		}
 		return snapshot;
 	}
-	
-	private EObject getElementFor(Object object) {
+
+	protected DiffModel contentDiff(final EObject left, final EObject right, final MatchModel match) {
+		ElementContentDiffEngine engine = new ElementContentDiffEngine(left, right);
+		final DiffModel diff = engine.doDiff(match);
+		return diff;
+	}
+
+	protected MatchModel contentMatch(final EObject left, final EObject right, IProgressMonitor monitor) throws InterruptedException {
+		final Map<String, Object> options = new EMFCompareMap<String, Object>();
+		options.put(MatchOptions.OPTION_PROGRESS_MONITOR, monitor);
+		options.put(MatchOptions.OPTION_MATCH_SCOPE_PROVIDER, new GenericMatchScopeProvider(left.eResource(), right.eResource()));
+		options.put(MatchOptions.OPTION_IGNORE_ID, Boolean.TRUE);
+		options.put(MatchOptions.OPTION_IGNORE_XMI_ID, Boolean.TRUE);
+
+		final IMatchEngine matchEngine = new ElementContentMatchEngine(left, right);
+		final MatchModel match = matchEngine.contentMatch(left, right, options);
+		return match;
+	}
+
+	protected EObject getElementFor(Object object) {
 		if(object instanceof IAdaptable) {
 			return (EObject)((IAdaptable)object).getAdapter(EObject.class);
 		}
