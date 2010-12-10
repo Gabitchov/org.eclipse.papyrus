@@ -451,7 +451,7 @@
 	
 	<!-- IElementTypes for Dependency -->
 	<metamodelType eclass="Dependency" id="org.eclipse.papyrus.uml.Dependency"
-		edithelper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.DependencyEditHelper"
 		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Dependency">
 		<param name="semanticHint" value="UML::Dependency"/>
 	</metamodelType>
@@ -850,7 +850,7 @@
 	
 	<!-- IElementTypes for InterfaceRealization -->
 	<metamodelType eclass="InterfaceRealization" id="org.eclipse.papyrus.uml.InterfaceRealization"
-		edithelper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.InterfaceRealizationEditHelper"
 		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::InterfaceRealization">
 		<param name="semanticHint" value="UML::InterfaceRealization"/>
 	</metamodelType>
@@ -1662,7 +1662,7 @@
 	
 	<!-- IElementTypes for Usage -->
 	<metamodelType eclass="Usage" id="org.eclipse.papyrus.uml.Usage"
-		edithelper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper"
+		edithelper="org.eclipse.papyrus.uml.service.types.helper.UsageEditHelper"
 		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Usage">
 		<param name="semanticHint" value="UML::Usage"/>
 	</metamodelType>
