@@ -191,7 +191,7 @@
     <types specificName="DECISION_NODE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DecisionNode"/>
     </types>
-    <types specificName="DEPENDENCY" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types specificName="DEPENDENCY" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DependencyEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Dependency"/>
     </types>
     <types specificName="DEPLOYED_ARTIFACT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
@@ -362,7 +362,7 @@
     <types specificName="INTERFACE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interface"/>
     </types>
-    <types specificName="INTERFACE_REALIZATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types specificName="INTERFACE_REALIZATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.InterfaceRealizationEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InterfaceRealization"/>
     </types>
     <types specificName="INTERRUPTIBLE_ACTIVITY_REGION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
@@ -710,7 +710,7 @@
     <types specificName="UNMARSHALL_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//UnmarshallAction"/>
     </types>
-    <types specificName="USAGE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types specificName="USAGE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.UsageEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Usage"/>
     </types>
     <types specificName="USE_CASE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
