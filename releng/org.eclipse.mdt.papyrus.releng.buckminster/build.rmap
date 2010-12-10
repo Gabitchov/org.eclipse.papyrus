@@ -146,6 +146,13 @@
 			</rm:uri>
 		</rm:provider>
 		
+		<!-- MWE -->
+		<rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+			<rm:uri format="{0}/modeling/emft/mwe/updates/" >
+				<bc:propertyRef key="eclipse.downloads" />
+			</rm:uri>
+		</rm:provider>
+		
 		<!--  QVT OML -->
 		<rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
 			<rm:uri format="{0}/modeling/m2m/qvtoml/updates/3.1.0/milestones/" >
