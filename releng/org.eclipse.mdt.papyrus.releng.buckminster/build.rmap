@@ -183,7 +183,7 @@
 		
 		<!-- UML2 -->
 		<rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-			<rm:uri format="{0}/modeling/mdt/updates/releases/">
+			<rm:uri format="{0}/modeling/mdt/updates/milestones/">
 				<bc:propertyRef key="eclipse.downloads" />
 			</rm:uri>
 		</rm:provider>
@@ -236,6 +236,11 @@
 		</rm:provider>
 		
 		<!--  Eclipse -->
+		rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+			<rm:uri format="{0}/eclipse/updates/3.7milestones">
+				<bc:propertyRef key="eclipse.downloads"/>
+			</rm:uri>
+		</rm:provider>
 		<rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
 			<rm:uri format="{0}/eclipse/updates/3.7milestones/S-3.7M3-201010281441">
 				<bc:propertyRef key="eclipse.downloads"/>
