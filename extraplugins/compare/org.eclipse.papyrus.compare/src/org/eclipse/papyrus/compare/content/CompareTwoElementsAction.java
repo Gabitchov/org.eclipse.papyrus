@@ -10,13 +10,11 @@
  *******************************************************************************/
 package org.eclipse.papyrus.compare.content;
 
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
 import org.eclipse.compare.CompareEditorInput;
 import org.eclipse.compare.CompareUI;
-import org.eclipse.compare.ITypedElement;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.compare.EMFCompareException;
@@ -25,24 +23,18 @@ import org.eclipse.emf.compare.diff.metamodel.ComparisonResourceSnapshot;
 import org.eclipse.emf.compare.diff.metamodel.ComparisonSnapshot;
 import org.eclipse.emf.compare.diff.metamodel.DiffFactory;
 import org.eclipse.emf.compare.diff.metamodel.DiffModel;
-import org.eclipse.emf.compare.diff.service.DiffService;
 import org.eclipse.emf.compare.match.MatchOptions;
 import org.eclipse.emf.compare.match.engine.GenericMatchScopeProvider;
 import org.eclipse.emf.compare.match.engine.IMatchEngine;
-import org.eclipse.emf.compare.match.metamodel.MatchFactory;
 import org.eclipse.emf.compare.match.metamodel.MatchModel;
-import org.eclipse.emf.compare.match.service.MatchService;
 import org.eclipse.emf.compare.ui.editor.ModelCompareEditorInput;
 import org.eclipse.emf.compare.util.EMFCompareMap;
-import org.eclipse.emf.compare.util.EngineConstants;
-import org.eclipse.emf.compare.util.ModelUtils;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.team.internal.ui.Utils;
 import org.eclipse.team.internal.ui.actions.TeamAction;
 import org.eclipse.team.internal.ui.history.CompareFileRevisionEditorInput;
-import org.eclipse.team.internal.ui.synchronize.SaveablesCompareEditorInput;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IReusableEditor;
@@ -54,35 +46,25 @@ public class CompareTwoElementsAction extends TeamAction {
 	protected void execute(IAction action) throws InvocationTargetException, InterruptedException {
 
 		Object[] selectedElements = getSelection().toArray();
-
-		EObject ancestor = null;
-		EObject left = null;
-		EObject right = null;
-
-		if(selectedElements.length == 2) {
-			if(selectedElements[0] != null)
-				left = getElementFor(selectedElements[0]);
-
-			if(selectedElements[1] != null)
-				right = getElementFor(selectedElements[1]);
-
-		} else {
+		if(selectedElements.length != 2) {
+			// log
 			return;
 		}
-		ComparisonResourceSnapshot snapshot = doContentCompare(left, right);
-//		save(snapshot);
-		openInCompare(snapshot);
 
-		//		openInCompare(ancestor, left, right);
+		EObject left = getElementFor(selectedElements[0]);
+		EObject right = getElementFor(selectedElements[1]);
+		if (left == null || right == null) {
+			// log
+			return;
+		}
+
+		ComparisonResourceSnapshot snapshot = doContentCompare(left, right);
+		openInCompare(snapshot);
 	}
 	
-	private void save(ComparisonResourceSnapshot snapshot) {
-		try {
-			ModelUtils.save(snapshot, "//export//home//tatiana//target-workspace//AAA//result.emfdiff");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public boolean isEnabled() {
+		//TODO
+		return true;
 	}
 
 	private void openInCompare(ComparisonSnapshot snapshot) {
@@ -103,22 +85,6 @@ public class CompareTwoElementsAction extends TeamAction {
 		} else {
 			CompareUI.openCompareEditor(input);
 		}
-	}
-
-	public boolean isEnabled() {
-		//TODO
-		return true;
-	}
-
-	private EObject getElementFor(Object object) {
-		if(object instanceof IAdaptable) {
-			return (EObject)((IAdaptable)object).getAdapter(EObject.class);
-		}
-
-		if(object instanceof EObject) {
-			return (EObject)object;
-		}
-		return null;
 	}
 
 	protected ComparisonResourceSnapshot doContentCompare(final EObject left, final EObject right) {
@@ -162,6 +128,17 @@ public class CompareTwoElementsAction extends TeamAction {
 			EMFComparePlugin.log(e, true);
 		}
 		return snapshot;
+	}
+	
+	private EObject getElementFor(Object object) {
+		if(object instanceof IAdaptable) {
+			return (EObject)((IAdaptable)object).getAdapter(EObject.class);
+		}
+
+		if(object instanceof EObject) {
+			return (EObject)object;
+		}
+		return null;
 	}
 
 
