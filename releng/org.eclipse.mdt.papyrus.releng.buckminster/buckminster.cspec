@@ -12,12 +12,9 @@
         <cs:dependency name="org.eclipse.emf.sdk" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.emf.validation.sdk" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.equinox.executable" componentType="eclipse.feature"/>
-        <cs:dependency name="org.eclipse.gmt.modisco.all" componentType="eclipse.feature"/>
+        <cs:dependency name="org.eclipse.gmt.modisco.sdk" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.jdt" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.jet.core" componentType="osgi.bundle"/>
-        <cs:dependency name="org.eclipse.m2m.atl.dsls" componentType="osgi.bundle"/>
-        <cs:dependency name="org.eclipse.m2m.atl.sdk" componentType="eclipse.feature"/>
-        <cs:dependency name="org.eclipse.m2m.qvt.oml.sdk" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.net4j.sdk" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.ocl.all.sdk" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.pde.core" componentType="osgi.bundle"/>
@@ -27,14 +24,16 @@
         <cs:dependency name="org.eclipse.sdk" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.uml2.sdk" componentType="eclipse.feature"/>
 	
-		<!--<cs:dependency name="org.junit" componentType="osgi.bundle" />
 		<cs:dependency name="org.junit4" componentType="osgi.bundle" />
 		<cs:dependency name="org.eclipse.jdt.junit4.runtime" componentType="osgi.bundle" />-->
 		
-      	<cs:dependency name="org.eclipse.emf.transaction.sdk" componentType="eclipse.feature"/>
+      	<cs:dependency name="org.eclipse.emf.transaction.sdk" componentType="eclipse.feature"/>-->
 		<cs:dependency name="org.eclipse.gmf.runtime.sdk" componentType="eclipse.feature"/>
-		<cs:dependency name="org.eclipse.gmf.sdk" componentType="eclipse.feature"/>
-  		<cs:dependency name="org.eclipse.xtext.sdk" componentType="eclipse.feature"/>
+		<cs:dependency name="org.eclipse.gmf.runtime.notation.sdk" componentType="eclipse.feature"/>
+  		<!--<cs:dependency name="org.eclipse.xtext.sdk" componentType="eclipse.feature"/>
+  		 <cs:dependency name="org.eclipse.m2m.atl.dsls" componentType="osgi.bundle"/>
+        <cs:dependency name="org.eclipse.m2m.atl.sdk" componentType="eclipse.feature"/>
+        <cs:dependency name="org.eclipse.m2m.qvt.oml.sdk" componentType="eclipse.feature"/>-->
         <cs:dependency name="org.apache.ant" componentType="osgi.bundle"/>
         <cs:dependency name="org.apache.derby" componentType="osgi.bundle"/>
         <cs:dependency name="org.eclipse.zest.sdk" componentType="eclipse.feature"/>
