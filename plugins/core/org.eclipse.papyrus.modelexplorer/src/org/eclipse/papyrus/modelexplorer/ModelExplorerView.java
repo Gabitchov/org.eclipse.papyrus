@@ -167,7 +167,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 			if(part instanceof IEditorPart) {
 				if( selection instanceof IStructuredSelection){
 					Iterator<?> selectionIterator=((IStructuredSelection)selection).iterator();
-					ArrayList semanticElementList= new ArrayList();
+					ArrayList<Object> semanticElementList= new ArrayList<Object>();
 					while(selectionIterator.hasNext()) {
 						Object currentSelection = (Object)selectionIterator.next();
 						if( currentSelection instanceof IAdaptable){

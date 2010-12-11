@@ -15,6 +15,7 @@ package org.eclipse.papyrus.modelexplorer.handler;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -33,7 +34,7 @@ import org.eclipse.gmt.modisco.infra.browser.Messages;
 import org.eclipse.gmt.modisco.infra.browser.MoDiscoBrowserPlugin;
 import org.eclipse.gmt.modisco.infra.browser.custom.MetamodelView;
 import org.eclipse.gmt.modisco.infra.browser.custom.TypeView;
-import org.eclipse.gmt.modisco.infra.browser.ui.LoadCustomizationsDialog;
+import org.eclipse.gmt.modisco.infra.browser.dialogs.LoadCustomizationsDialog;
 import org.eclipse.gmt.modisco.infra.browser.uicore.CustomizationManager;
 import org.eclipse.gmt.modisco.infra.facet.Facet;
 import org.eclipse.gmt.modisco.infra.facet.FacetSet;
@@ -84,9 +85,8 @@ public class LoadBrowserCustomization extends AbstractHandler {
 			final List<MetamodelView> registeredCustomizations = customizationManager
 					.getRegisteredCustomizations();
 
-			final LoadCustomizationsDialog loadCustomizationsDialog = new LoadCustomizationsDialog(
-					new Shell(), registeredCustomizations, getMetamodelURI());
-			if (loadCustomizationsDialog.open() == Window.OK) {
+			final LoadCustomizationsDialog loadCustomizationsDialog = new LoadCustomizationsDialog(new Shell(), registeredCustomizations, getMetamodels());
+			if (Window.OK == loadCustomizationsDialog.open() ) {
 				try {
 
 					 customizationManager.clearCustomizations();
@@ -251,6 +251,27 @@ public class LoadBrowserCustomization extends AbstractHandler {
 			Activator.log.error(e);
 		}
 		return ""; //$NON-NLS-1$
+	}
+
+	/**
+	 * Get the metmodel URI
+	 * **/
+	public List<EPackage> getMetamodels() {
+
+		try {
+			EList<EObject> contents = getDiResourceSet().getModelResource()
+					.getContents();
+			if (contents.size() > 0) {
+				EObject eObject = contents.get(0);
+				EClass eClass = eObject.eClass();
+				if (eClass != null) {
+					return Collections.singletonList(eClass.getEPackage());
+				}
+			}
+		} catch (Exception e) {
+			Activator.log.error(e);
+		}
+		return Collections.emptyList(); //$NON-NLS-1$
 	}
 
 }

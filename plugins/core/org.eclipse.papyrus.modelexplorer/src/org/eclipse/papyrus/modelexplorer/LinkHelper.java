@@ -58,7 +58,7 @@ public class LinkHelper implements ILinkHelper {
 		if (diagramEditor instanceof IRevealSemanticElement){
 			if( aSelection instanceof IStructuredSelection){
 				Iterator<?> selectionIterator=((IStructuredSelection)aSelection).iterator();
-				ArrayList semanticElementList= new ArrayList();
+				ArrayList<Object> semanticElementList= new ArrayList<Object>();
 				while(selectionIterator.hasNext()) {
 					Object currentSelection = (Object)selectionIterator.next();
 					if( currentSelection instanceof IAdaptable){

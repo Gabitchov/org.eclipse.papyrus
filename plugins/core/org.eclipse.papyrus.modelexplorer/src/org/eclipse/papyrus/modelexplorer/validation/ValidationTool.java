@@ -46,10 +46,12 @@ public class ValidationTool {
 		if (eObject == null) {
 			// TODO: is it possible to access the children in another way (without internal access?)
 			if (element instanceof LinkItem) {
-				List<EObject> items = ((LinkItem) element).getChildrenElements();
+				List<Object> items = ((LinkItem) element).getChildrenElements();
 				if (items.size() > 0) {
 					// element = items[0];
-					eObject = items.get(0);
+					if(items.get(0) instanceof EObject) {
+						eObject = (EObject)items.get(0);
+					}
 				}
 			}
 		}
