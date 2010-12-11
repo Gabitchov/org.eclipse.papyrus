@@ -20,12 +20,19 @@ package org.eclipse.papyrus.ui.toolbox.notification.exception;
  */
 public class NotificationException extends RuntimeException {
 
+	/** serialization UID */
+	private static final long serialVersionUID = 3538113727604912133L;
+	
 	private final String message;
 
 	public NotificationException(String message) {
 		this.message = message;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public String getMessage() {
 		return message;
 	}

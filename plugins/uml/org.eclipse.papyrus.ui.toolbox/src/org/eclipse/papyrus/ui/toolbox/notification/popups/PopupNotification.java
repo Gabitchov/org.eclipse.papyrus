@@ -23,12 +23,9 @@ import org.eclipse.swt.SWT;
  */
 public class PopupNotification implements INotification {
 
-	private final PapyrusPopup popup;
-
 	private int popupResult = SWT.NONE;
 
 	public PopupNotification(PapyrusPopup popup) {
-		this.popup = popup;
 	}
 
 	public void delete() {

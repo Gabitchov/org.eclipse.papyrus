@@ -154,11 +154,7 @@ public abstract class AbstractNotificationPopup extends Window {
 	 */
 	protected String getPopupShellTitle() {
 		String productName = "Papyrus ";
-		if(productName != null) {
-			return productName + LABEL_NOTIFICATION; //$NON-NLS-1$
-		} else {
-			return LABEL_NOTIFICATION;
-		}
+		return productName + LABEL_NOTIFICATION; //$NON-NLS-1$
 	}
 
 	protected Image getPopupShellImage(int maximumHeight) {
