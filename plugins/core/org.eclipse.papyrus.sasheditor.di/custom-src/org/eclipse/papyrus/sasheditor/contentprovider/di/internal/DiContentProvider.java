@@ -14,25 +14,15 @@
 
 package org.eclipse.papyrus.sasheditor.contentprovider.di.internal;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.papyrus.sasheditor.contentprovider.IAbstractPanelModel;
-import org.eclipse.papyrus.sasheditor.contentprovider.IContentChangedListener;
-import org.eclipse.papyrus.sasheditor.contentprovider.IContentChangedProvider;
+import org.eclipse.papyrus.sasheditor.contentprovider.IContentChangedListener.ContentEvent;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.sasheditor.contentprovider.ITabFolderModel;
-import org.eclipse.papyrus.sasheditor.contentprovider.IContentChangedListener.ContentEvent;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageModelFactory;
-import org.eclipse.papyrus.sashwindows.di.AbstractPanel;
 import org.eclipse.papyrus.sashwindows.di.DiFactory;
-import org.eclipse.papyrus.sashwindows.di.PageRef;
 import org.eclipse.papyrus.sashwindows.di.SashModel;
 import org.eclipse.papyrus.sashwindows.di.SashPanel;
 import org.eclipse.papyrus.sashwindows.di.TabFolder;
-import org.eclipse.papyrus.sashwindows.di.Window;
 
 
 /**

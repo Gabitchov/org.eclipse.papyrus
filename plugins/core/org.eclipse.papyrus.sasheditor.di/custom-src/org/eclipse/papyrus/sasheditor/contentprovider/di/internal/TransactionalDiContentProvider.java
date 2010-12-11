@@ -6,8 +6,6 @@ package org.eclipse.papyrus.sasheditor.contentprovider.di.internal;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.sasheditor.contentprovider.IAbstractPanelModel;
-import org.eclipse.papyrus.sasheditor.contentprovider.IContentChangedListener;
-import org.eclipse.papyrus.sasheditor.contentprovider.IContentChangedProvider;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.sasheditor.contentprovider.ITabFolderModel;
 
