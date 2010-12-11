@@ -12,8 +12,12 @@
         <cs:dependency name="org.eclipse.emf.sdk" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.emf.validation.sdk" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.equinox.executable" componentType="eclipse.feature"/>
+        <cs:dependency name="org.eclipse.gmt.modisco.all" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.jdt" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.jet.core" componentType="osgi.bundle"/>
+        <cs:dependency name="org.eclipse.m2m.atl.dsls" componentType="osgi.bundle"/>
+        <cs:dependency name="org.eclipse.m2m.atl.sdk" componentType="eclipse.feature"/>
+        <cs:dependency name="org.eclipse.m2m.qvt.oml.sdk" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.net4j.sdk" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.ocl.all.sdk" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.pde.core" componentType="osgi.bundle"/>
@@ -23,14 +27,11 @@
         <cs:dependency name="org.eclipse.sdk" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.uml2.sdk" componentType="eclipse.feature"/>
 	
+		<!--<cs:dependency name="org.junit" componentType="osgi.bundle" />
 		<cs:dependency name="org.junit4" componentType="osgi.bundle" />
 		<cs:dependency name="org.eclipse.jdt.junit4.runtime" componentType="osgi.bundle" />-->
 		
-		<!--<cs:dependency name="org.eclipse.mdt.modisco.all" componentType="eclipse.feature"/>
-		<cs:dependency name="org.eclipse.m2m.atl.dsls" componentType="osgi.bundle"/>
-        <cs:dependency name="org.eclipse.m2m.atl.sdk" componentType="eclipse.feature"/>
-        <cs:dependency name="org.eclipse.m2m.qvt.oml.sdk" componentType="eclipse.feature"/>
-      	--><cs:dependency name="org.eclipse.emf.transaction.sdk" componentType="eclipse.feature"/>
+      	<cs:dependency name="org.eclipse.emf.transaction.sdk" componentType="eclipse.feature"/>
 		<cs:dependency name="org.eclipse.gmf.runtime.sdk" componentType="eclipse.feature"/>
 		<cs:dependency name="org.eclipse.gmf.sdk" componentType="eclipse.feature"/>
   		<cs:dependency name="org.eclipse.xtext.sdk" componentType="eclipse.feature"/>
@@ -39,6 +40,48 @@
         <cs:dependency name="org.eclipse.zest.sdk" componentType="eclipse.feature"/>
 	</cs:dependencies>
 	<cs:actions>
+		<!-- 
+		<cs:public name="clear.site" actor="ant" always="true">
+			<cs:actorProperties>
+				<cs:property key="buildFile" value="buckminster.ant"/>
+				<cs:property key="targets" value="clear.directory"/>
+			</cs:actorProperties>
+			<cs:properties>
+				<cs:property key="directory" value="${cdo.download.area}/updates/3.0/"/>
+			</cs:properties>
+		</cs:public>
+		 
+		<cs:public name="promote.site" actor="ant">
+			<cs:actorProperties>
+				<cs:property key="buildFileId" value="buckminster.pdetasks"/>
+				<cs:property key="targets" value="copy.group"/>
+			</cs:actorProperties>
+			<cs:prerequisites alias="action.requirements">
+				<cs:attribute name="site.p2" component="org.eclipse.emf.cdo.site"/>
+				<cs:attribute name="clear.site" contributor="false"/>
+			</cs:prerequisites>
+			<cs:products alias="action.output" base="${cdo.download.area}/updates/3.0/"/>
+		</cs:public>
+		<cs:public name="promote.site.to.archive" actor="ant">
+			<cs:actorProperties>
+				<cs:property key="buildFileId" value="buckminster.pdetasks"/>
+				<cs:property key="targets" value="copy.group"/>
+			</cs:actorProperties>
+			<cs:prerequisites alias="action.requirements">
+				<cs:attribute name="site.p2.zip" component="org.eclipse.emf.cdo.site"/>
+			</cs:prerequisites>
+			<cs:products alias="action.output" base="${cdo.download.area}/archives/3.0/"/>
+		</cs:public>
+		-->
 	</cs:actions>
+	
+	<!-- 
+	<cs:groups>
+		<cs:public name="promote">
+			<cs:attribute name="promote.site"/>
+			<cs:attribute name="promote.site.to.archive"/>
+		</cs:public>
+	</cs:groups>
+	 -->
 	
 </cs:cspec>
