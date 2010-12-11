@@ -12,7 +12,7 @@
         <cs:dependency name="org.eclipse.emf.sdk" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.emf.validation.sdk" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.equinox.executable" componentType="eclipse.feature"/>
-        <cs:dependency name="org.eclipse.gmt.modisco.sdk" componentType="eclipse.feature"/>
+        <cs:dependency name="org.eclipse.gmt.modisco.infrastructure" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.jdt" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.jet.core" componentType="osgi.bundle"/>
         <cs:dependency name="org.eclipse.net4j.sdk" componentType="eclipse.feature"/>
