@@ -31,9 +31,7 @@ import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.util.SafeRunnable;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin;
-import org.eclipse.papyrus.ui.toolbox.LookForElement;
-import org.eclipse.papyrus.umlutils.ICustomAppearence;
-import org.eclipse.papyrus.umlutils.PropertyUtil;
+import org.eclipse.ui.internal.preferences.PropertyUtil;
 import org.eclipse.uml2.uml.Property;
 
 /**
@@ -72,14 +70,14 @@ public class PropertyParser implements IParser {
 		final Property property = ((Property)((EObjectAdapter)element).getRealObject());
 		final String result = newString;
 
-		AbstractTransactionalCommand tc = new AbstractTransactionalCommand(LookForElement.getTransactionalEditingDomain(), "Edit Property", (List)null) {
+		AbstractTransactionalCommand tc = new AbstractTransactionalCommand(EditorUtils.getTransactionalEditingDomain(), "Edit Property", (List)null) {
 
 			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 				SafeRunnable.run(new SafeRunnable() {
 
 					public void run() {
-						RecordingCommand rc = new RecordingCommand(LookForElement.getTransactionalEditingDomain()) {
+						RecordingCommand rc = new RecordingCommand(EditorUtils.getTransactionalEditingDomain()) {
 
 							protected void doExecute() {
 								property.setName(result);

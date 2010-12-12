@@ -27,10 +27,6 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.profile.custom.messages.Messages;
 import org.eclipse.papyrus.diagram.profile.part.UMLDiagramEditorPlugin;
-import org.eclipse.papyrus.profile.ui.dialogs.AlphabeticalViewerSorter;
-import org.eclipse.papyrus.profile.ui.dialogs.ChooseSetAssistedDialog;
-import org.eclipse.papyrus.profile.ui.dialogs.IChooseDialog;
-import org.eclipse.papyrus.ui.toolbox.LookForElement;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -94,7 +90,7 @@ public class ChooseSetMetaclassDialog extends ChooseSetAssistedDialog implements
 		labelProvider = new MetaclassLabelProvider();
 		decoratedContentProposalProvider = new MetaclassContentProposalProvider();
 
-		Iterator<?> metaclasses = LookForElement.getPossibleMetaclasses(this.profile).iterator();
+		Iterator<?> metaclasses = ElementUtil.getPossibleMetaclasses(this.profile).iterator();
 		while(metaclasses.hasNext()) {
 			possibleElementList.addElement(metaclasses.next());
 		}

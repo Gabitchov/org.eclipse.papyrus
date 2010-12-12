@@ -19,7 +19,6 @@ import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.util.SafeRunnable;
 import org.eclipse.papyrus.core.utils.EditorUtils;
-import org.eclipse.papyrus.ui.toolbox.LookForElement;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
@@ -45,14 +44,14 @@ public class TransitionPropertiesParser implements IParser {
 		final Transition transition = ((Transition)((EObjectAdapter)element).getRealObject());
 		final String result = newString;
 
-		AbstractTransactionalCommand tc = new AbstractTransactionalCommand(LookForElement.getTransactionalEditingDomain(), "Edit Transition Properties", (List)null) {
+		AbstractTransactionalCommand tc = new AbstractTransactionalCommand(EditorUtils.getTransactionalEditingDomain(), "Edit Transition Properties", (List)null) {
 
 			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 				SafeRunnable.run(new SafeRunnable() {
 
 					public void run() {
-						RecordingCommand rc = new RecordingCommand(LookForElement.getTransactionalEditingDomain()) {
+						RecordingCommand rc = new RecordingCommand(EditorUtils.getTransactionalEditingDomain()) {
 
 							protected void doExecute() {
 								// 1. Cherchez dans le model, si une contrainst

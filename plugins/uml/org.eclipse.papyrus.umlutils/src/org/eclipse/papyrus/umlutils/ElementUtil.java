@@ -14,15 +14,25 @@
 package org.eclipse.papyrus.umlutils;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Image;
 import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.Type;
+import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.resource.UMLResource;
 
 public class ElementUtil {
 
@@ -242,5 +252,67 @@ public class ElementUtil {
 	 */
 	public static boolean hasShapes(Element element, Stereotype stereotype) {
 		return stereotype != null && !StereotypeUtil.getShapes(stereotype).isEmpty();
+	}
+	
+	/**
+	 * look for all metaclasses of the meta model UML2 for a profile.
+	 * 
+	 * @param element
+	 *        the profile which needs the metaclasses list
+	 * @return the possible metaclasses
+	 */
+	// @unused
+	public static List<org.eclipse.uml2.uml.Class> getPossibleMetaclasses(Element element) {
+		List<org.eclipse.uml2.uml.Class> metaList = new ArrayList<org.eclipse.uml2.uml.Class>();
+		List<Type> metaclasses = getMetaclasses(element); // get all type of the
+		// metaclass
+
+		for(int i = 0; i < metaclasses.size(); i++) {
+			if(metaclasses.get(i) instanceof org.eclipse.uml2.uml.Class) {
+				metaList.add((org.eclipse.uml2.uml.Class)metaclasses.get(i));
+			}
+		}
+
+		return metaList;
+	}
+	
+	/**
+	 * return all type contained in the metamodel UML2. Elements in the list are the UML2
+	 * representation of the concepts of the metamodel. each element of the list must be casted with
+	 * org.eclipse.uml2.Classifier
+	 * 
+	 * @return list of metaclasses of the metamodel UML2
+	 */
+	public static List<Type> getMetaclasses(Element element) {
+		if(element == null) {
+			System.err.println("element should not be null to retrieve metaclasses");
+		}
+		org.eclipse.uml2.uml.Package uml2Metamodel = contentload(URI.createURI(UMLResource.UML_METAMODEL_URI), element);
+
+		return uml2Metamodel.getOwnedTypes();
+	}
+	
+	/**
+	 * Loads content for the given URI, and returns the top package of this content.
+	 * 
+	 * @param uri
+	 *        the uri of the content to load
+	 * @param element
+	 *        the Element used to retrieve ResourceSet
+	 * @return the top package of the loaded content
+	 */
+	public static org.eclipse.uml2.uml.Package contentload(URI uri, Element element) {
+		ResourceSet resourceSet = element.eResource().getResourceSet();
+		org.eclipse.uml2.uml.Package package_ = null;
+		try {
+			Resource resource = resourceSet.getResource(uri, true);
+
+			package_ = (org.eclipse.uml2.uml.Package)EcoreUtil.getObjectByType(resource.getContents(),
+					UMLPackage.eINSTANCE.getPackage());
+		} catch (WrappedException we) {
+			Activator.logError("impossible to load content for URI: " + uri);
+		}
+
+		return package_;
 	}
 }

@@ -31,7 +31,6 @@ import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.util.SafeRunnable;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin;
-import org.eclipse.papyrus.ui.toolbox.LookForElement;
 import org.eclipse.uml2.uml.Operation;
 
 /**
@@ -69,14 +68,14 @@ public class OperationParser implements IParser {
 		final Operation operation = ((Operation)((EObjectAdapter)element).getRealObject());
 		final String result = newString;
 
-		AbstractTransactionalCommand tc = new AbstractTransactionalCommand(LookForElement.getTransactionalEditingDomain(), "Edit Operation", (List)null) {
+		AbstractTransactionalCommand tc = new AbstractTransactionalCommand(EditorUtils.getTransactionalEditingDomain(), "Edit Operation", (List)null) {
 
 			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 				SafeRunnable.run(new SafeRunnable() {
 
 					public void run() {
-						RecordingCommand rc = new RecordingCommand(LookForElement.getTransactionalEditingDomain()) {
+						RecordingCommand rc = new RecordingCommand(EditorUtils.getTransactionalEditingDomain()) {
 
 							protected void doExecute() {
 								operation.setName(result);
