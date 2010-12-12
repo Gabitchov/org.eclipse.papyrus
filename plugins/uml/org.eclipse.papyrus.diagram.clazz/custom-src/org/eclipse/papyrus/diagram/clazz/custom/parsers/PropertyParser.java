@@ -31,7 +31,8 @@ import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.util.SafeRunnable;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin;
-import org.eclipse.ui.internal.preferences.PropertyUtil;
+import org.eclipse.papyrus.umlutils.ICustomAppearence;
+import org.eclipse.papyrus.umlutils.PropertyUtil;
 import org.eclipse.uml2.uml.Property;
 
 /**
