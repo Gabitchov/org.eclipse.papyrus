@@ -221,11 +221,13 @@
       </rm:uri>
     </rm:provider>
 		<rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-			<rm:uri format="http://download.eclipse.org/eclipse/updates/3.7milestones/S-3.7M4-201012081300" />
+			<rm:uri format="{0}/eclipse/updates/3.7milestones/S-3.7M4-201012081300">
+				<bc:propertyRef key="eclipse.downloads"/>
+			</rm:uri>
 		</rm:provider>
-		<rm:provider componentTypes="osgi.bundle" readerType="cvs" mutable="false">
-			<rm:uri format=":pserver:anonymous@dev.eclipse.org:/cvsroot/eclipse,{0}">
-				<bc:propertyRef key="buckminster.component" />
+		<rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+			<rm:uri format="{0}/eclipse/updates/3.7milestones" >
+				<bc:propertyRef key="eclipse.downloads"/>
 			</rm:uri>
 		</rm:provider>
   </rm:searchPath>
