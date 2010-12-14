@@ -13,15 +13,27 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.eclipse.papyrus.domaincontextcodegen.Advice;
 import org.eclipse.papyrus.domaincontextcodegen.AdviceBinding;
 import org.eclipse.papyrus.domaincontextcodegen.Binding;
+import org.eclipse.papyrus.domaincontextcodegen.Command;
+import org.eclipse.papyrus.domaincontextcodegen.CommandDeclaration;
 import org.eclipse.papyrus.domaincontextcodegen.DomainContext;
 import org.eclipse.papyrus.domaincontextcodegen.DomaincontextcodegenFactory;
 import org.eclipse.papyrus.domaincontextcodegen.DomaincontextcodegenPackage;
 import org.eclipse.papyrus.domaincontextcodegen.ElementType;
+import org.eclipse.papyrus.domaincontextcodegen.ElementTypeBinding;
+import org.eclipse.papyrus.domaincontextcodegen.ElementTypeBindings;
 import org.eclipse.papyrus.domaincontextcodegen.ElementTypes;
 import org.eclipse.papyrus.domaincontextcodegen.GenHandlers;
+import org.eclipse.papyrus.domaincontextcodegen.GenHelper;
+import org.eclipse.papyrus.domaincontextcodegen.GenMatcher;
 import org.eclipse.papyrus.domaincontextcodegen.InheritanceKind;
+import org.eclipse.papyrus.domaincontextcodegen.MenuDeclaration;
+import org.eclipse.papyrus.domaincontextcodegen.MetaClassType;
+import org.eclipse.papyrus.domaincontextcodegen.SpecializationType;
+import org.eclipse.papyrus.domaincontextcodegen.StereotypedElementHelper;
+import org.eclipse.papyrus.domaincontextcodegen.StereotypedElementMatcher;
 
 /**
  * <!-- begin-user-doc -->
@@ -62,6 +74,38 @@ public class DomaincontextcodegenPackageImpl extends EPackageImpl implements Dom
 	 * 
 	 * @generated
 	 */
+	private EClass metaClassTypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass specializationTypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass adviceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass elementTypeBindingsEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	private EClass adviceBindingEClass = null;
 
 	/**
@@ -78,7 +122,71 @@ public class DomaincontextcodegenPackageImpl extends EPackageImpl implements Dom
 	 * 
 	 * @generated
 	 */
+	private EClass elementTypeBindingEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	private EClass genHandlersEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass genMatcherEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass genHelperEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass stereotypedElementMatcherEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass stereotypedElementHelperEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass menuDeclarationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass commandDeclarationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass commandEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -145,7 +253,6 @@ public class DomaincontextcodegenPackageImpl extends EPackageImpl implements Dom
 
 		// Mark meta-data to indicate it can't be changed
 		theDomaincontextcodegenPackage.freeze();
-
 
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(DomaincontextcodegenPackage.eNS_URI, theDomaincontextcodegenPackage);
@@ -238,18 +345,8 @@ public class DomaincontextcodegenPackageImpl extends EPackageImpl implements Dom
 	 * 
 	 * @generated
 	 */
-	public EAttribute getDomainContext_MatcherPatch() {
-		return (EAttribute)domainContextEClass.getEStructuralFeatures().get(7);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
 	public EReference getDomainContext_ElementTypes() {
-		return (EReference)domainContextEClass.getEStructuralFeatures().get(8);
+		return (EReference)domainContextEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -259,7 +356,7 @@ public class DomaincontextcodegenPackageImpl extends EPackageImpl implements Dom
 	 * @generated
 	 */
 	public EAttribute getDomainContext_DefaultHelperPath() {
-		return (EAttribute)domainContextEClass.getEStructuralFeatures().get(9);
+		return (EAttribute)domainContextEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -268,8 +365,8 @@ public class DomaincontextcodegenPackageImpl extends EPackageImpl implements Dom
 	 * 
 	 * @generated
 	 */
-	public EReference getDomainContext_Advicebindings() {
-		return (EReference)domainContextEClass.getEStructuralFeatures().get(10);
+	public EReference getDomainContext_Advices() {
+		return (EReference)domainContextEClass.getEStructuralFeatures().get(9);
 	}
 
 	/**
@@ -279,7 +376,7 @@ public class DomaincontextcodegenPackageImpl extends EPackageImpl implements Dom
 	 * @generated
 	 */
 	public EReference getDomainContext_Bindings() {
-		return (EReference)domainContextEClass.getEStructuralFeatures().get(11);
+		return (EReference)domainContextEClass.getEStructuralFeatures().get(10);
 	}
 
 	/**
@@ -289,7 +386,7 @@ public class DomaincontextcodegenPackageImpl extends EPackageImpl implements Dom
 	 * @generated
 	 */
 	public EReference getDomainContext_GenHandlers() {
-		return (EReference)domainContextEClass.getEStructuralFeatures().get(12);
+		return (EReference)domainContextEClass.getEStructuralFeatures().get(11);
 	}
 
 	/**
@@ -299,7 +396,27 @@ public class DomaincontextcodegenPackageImpl extends EPackageImpl implements Dom
 	 * @generated
 	 */
 	public EAttribute getDomainContext_GeneratedSourceFolder() {
-		return (EAttribute)domainContextEClass.getEStructuralFeatures().get(13);
+		return (EAttribute)domainContextEClass.getEStructuralFeatures().get(12);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getDomainContext_Menu() {
+		return (EReference)domainContextEClass.getEStructuralFeatures().get(13);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getDomainContext_Command() {
+		return (EReference)domainContextEClass.getEStructuralFeatures().get(14);
 	}
 
 	/**
@@ -328,6 +445,16 @@ public class DomaincontextcodegenPackageImpl extends EPackageImpl implements Dom
 	 * 
 	 * @generated
 	 */
+	public EReference getElementTypes_Domain() {
+		return (EReference)elementTypesEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	public EClass getElementType() {
 		return elementTypeEClass;
 	}
@@ -338,8 +465,8 @@ public class DomaincontextcodegenPackageImpl extends EPackageImpl implements Dom
 	 * 
 	 * @generated
 	 */
-	public EReference getElementType_MetaClass() {
-		return (EReference)elementTypeEClass.getEStructuralFeatures().get(0);
+	public EAttribute getElementType_Name() {
+		return (EAttribute)elementTypeEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -348,7 +475,7 @@ public class DomaincontextcodegenPackageImpl extends EPackageImpl implements Dom
 	 * 
 	 * @generated
 	 */
-	public EAttribute getElementType_SpecificName() {
+	public EAttribute getElementType_Helper() {
 		return (EAttribute)elementTypeEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -358,8 +485,8 @@ public class DomaincontextcodegenPackageImpl extends EPackageImpl implements Dom
 	 * 
 	 * @generated
 	 */
-	public EAttribute getElementType_Edithelper_EditHelperAdvicePath() {
-		return (EAttribute)elementTypeEClass.getEStructuralFeatures().get(2);
+	public EReference getElementType_Owner() {
+		return (EReference)elementTypeEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -368,7 +495,7 @@ public class DomaincontextcodegenPackageImpl extends EPackageImpl implements Dom
 	 * 
 	 * @generated
 	 */
-	public EAttribute getElementType_Kind() {
+	public EAttribute getElementType_Icon() {
 		return (EAttribute)elementTypeEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -378,8 +505,8 @@ public class DomaincontextcodegenPackageImpl extends EPackageImpl implements Dom
 	 * 
 	 * @generated
 	 */
-	public EReference getElementType_Specializationof() {
-		return (EReference)elementTypeEClass.getEStructuralFeatures().get(4);
+	public EClass getMetaClassType() {
+		return metaClassTypeEClass;
 	}
 
 	/**
@@ -388,8 +515,138 @@ public class DomaincontextcodegenPackageImpl extends EPackageImpl implements Dom
 	 * 
 	 * @generated
 	 */
-	public EAttribute getElementType_SpecializationIDof() {
-		return (EAttribute)elementTypeEClass.getEStructuralFeatures().get(5);
+	public EReference getMetaClassType_MetaClass() {
+		return (EReference)metaClassTypeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EClass getSpecializationType() {
+		return specializationTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getSpecializationType_Ref() {
+		return (EReference)specializationTypeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EAttribute getSpecializationType_Matcher() {
+		return (EAttribute)specializationTypeEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getSpecializationType_GenMatcher() {
+		return (EReference)specializationTypeEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getSpecializationType_GenHelper() {
+		return (EReference)specializationTypeEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EClass getAdvice() {
+		return adviceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EAttribute getAdvice_AdviceID() {
+		return (EAttribute)adviceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getAdvice_Ref() {
+		return (EReference)adviceEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EAttribute getAdvice_AdvicePath() {
+		return (EAttribute)adviceEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EAttribute getAdvice_Inheritance() {
+		return (EAttribute)adviceEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EClass getElementTypeBindings() {
+		return elementTypeBindingsEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EAttribute getElementTypeBindings_ClientContextID() {
+		return (EAttribute)elementTypeBindingsEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getElementTypeBindings_Bindings() {
+		return (EReference)elementTypeBindingsEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -408,48 +665,8 @@ public class DomaincontextcodegenPackageImpl extends EPackageImpl implements Dom
 	 * 
 	 * @generated
 	 */
-	public EAttribute getAdviceBinding_AdvicePath() {
-		return (EAttribute)adviceBindingEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EAttribute getAdviceBinding_AdviceID() {
-		return (EAttribute)adviceBindingEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EAttribute getAdviceBinding_Inheritance() {
-		return (EAttribute)adviceBindingEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EReference getAdviceBinding_ElementTypeRef() {
-		return (EReference)adviceBindingEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EAttribute getAdviceBinding_ElementTypeIDref() {
-		return (EAttribute)adviceBindingEClass.getEStructuralFeatures().get(4);
+	public EReference getAdviceBinding_Ref() {
+		return (EReference)adviceBindingEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -468,7 +685,7 @@ public class DomaincontextcodegenPackageImpl extends EPackageImpl implements Dom
 	 * 
 	 * @generated
 	 */
-	public EReference getBinding_Advice() {
+	public EReference getBinding_Owner() {
 		return (EReference)bindingEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -478,7 +695,7 @@ public class DomaincontextcodegenPackageImpl extends EPackageImpl implements Dom
 	 * 
 	 * @generated
 	 */
-	public EAttribute getBinding_ElementTypePattern() {
+	public EAttribute getBinding_Pattern() {
 		return (EAttribute)bindingEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -488,8 +705,18 @@ public class DomaincontextcodegenPackageImpl extends EPackageImpl implements Dom
 	 * 
 	 * @generated
 	 */
-	public EAttribute getBinding_AdviceID() {
-		return (EAttribute)bindingEClass.getEStructuralFeatures().get(2);
+	public EClass getElementTypeBinding() {
+		return elementTypeBindingEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getElementTypeBinding_Ref() {
+		return (EReference)elementTypeBindingEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -558,6 +785,256 @@ public class DomaincontextcodegenPackageImpl extends EPackageImpl implements Dom
 	 * 
 	 * @generated
 	 */
+	public EReference getGenHandlers_VisibleCreateChildHandlers() {
+		return (EReference)genHandlersEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getGenHandlers_ParentDomainCreateChild() {
+		return (EReference)genHandlersEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EAttribute getGenHandlers_CreateChildMenuLocationURI() {
+		return (EAttribute)genHandlersEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EClass getGenMatcher() {
+		return genMatcherEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EAttribute getGenMatcher_Name() {
+		return (EAttribute)genMatcherEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EClass getGenHelper() {
+		return genHelperEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EAttribute getGenHelper_Name() {
+		return (EAttribute)genHelperEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EClass getStereotypedElementMatcher() {
+		return stereotypedElementMatcherEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EAttribute getStereotypedElementMatcher_StereotypeName() {
+		return (EAttribute)stereotypedElementMatcherEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EAttribute getStereotypedElementMatcher_StereotypePackage() {
+		return (EAttribute)stereotypedElementMatcherEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EAttribute getStereotypedElementMatcher_BaseElementName() {
+		return (EAttribute)stereotypedElementMatcherEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EAttribute getStereotypedElementMatcher_BaseElementPackage() {
+		return (EAttribute)stereotypedElementMatcherEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EClass getStereotypedElementHelper() {
+		return stereotypedElementHelperEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EAttribute getStereotypedElementHelper_StereotypeName() {
+		return (EAttribute)stereotypedElementHelperEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EAttribute getStereotypedElementHelper_StereotypePackage() {
+		return (EAttribute)stereotypedElementHelperEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EAttribute getStereotypedElementHelper_BaseElementName() {
+		return (EAttribute)stereotypedElementHelperEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EAttribute getStereotypedElementHelper_BaseElementPackage() {
+		return (EAttribute)stereotypedElementHelperEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EClass getMenuDeclaration() {
+		return menuDeclarationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EAttribute getMenuDeclaration_LocationURI() {
+		return (EAttribute)menuDeclarationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getMenuDeclaration_Commands() {
+		return (EReference)menuDeclarationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EClass getCommandDeclaration() {
+		return commandDeclarationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getCommandDeclaration_Commands() {
+		return (EReference)commandDeclarationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EClass getCommand() {
+		return commandEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getCommand_ElementType() {
+		return (EReference)commandEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EAttribute getCommand_Icon() {
+		return (EAttribute)commandEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	public EEnum getInheritanceKind() {
 		return inheritanceKindEEnum;
 	}
@@ -602,36 +1079,53 @@ public class DomaincontextcodegenPackageImpl extends EPackageImpl implements Dom
 		createEReference(domainContextEClass, DOMAIN_CONTEXT__SPECIALIZATION_OF);
 		createEAttribute(domainContextEClass, DOMAIN_CONTEXT__ELEMENT_TYPE_ID_PREFIX);
 		createEAttribute(domainContextEClass, DOMAIN_CONTEXT__ELEMENT_TYPE_NAME_PREFIX);
-		createEAttribute(domainContextEClass, DOMAIN_CONTEXT__MATCHER_PATCH);
 		createEReference(domainContextEClass, DOMAIN_CONTEXT__ELEMENT_TYPES);
 		createEAttribute(domainContextEClass, DOMAIN_CONTEXT__DEFAULT_HELPER_PATH);
-		createEReference(domainContextEClass, DOMAIN_CONTEXT__ADVICEBINDINGS);
+		createEReference(domainContextEClass, DOMAIN_CONTEXT__ADVICES);
 		createEReference(domainContextEClass, DOMAIN_CONTEXT__BINDINGS);
 		createEReference(domainContextEClass, DOMAIN_CONTEXT__GEN_HANDLERS);
 		createEAttribute(domainContextEClass, DOMAIN_CONTEXT__GENERATED_SOURCE_FOLDER);
+		createEReference(domainContextEClass, DOMAIN_CONTEXT__MENU);
+		createEReference(domainContextEClass, DOMAIN_CONTEXT__COMMAND);
 
 		elementTypesEClass = createEClass(ELEMENT_TYPES);
 		createEReference(elementTypesEClass, ELEMENT_TYPES__TYPES);
+		createEReference(elementTypesEClass, ELEMENT_TYPES__DOMAIN);
 
 		elementTypeEClass = createEClass(ELEMENT_TYPE);
-		createEReference(elementTypeEClass, ELEMENT_TYPE__META_CLASS);
-		createEAttribute(elementTypeEClass, ELEMENT_TYPE__SPECIFIC_NAME);
-		createEAttribute(elementTypeEClass, ELEMENT_TYPE__EDITHELPER_EDIT_HELPER_ADVICE_PATH);
-		createEAttribute(elementTypeEClass, ELEMENT_TYPE__KIND);
-		createEReference(elementTypeEClass, ELEMENT_TYPE__SPECIALIZATIONOF);
-		createEAttribute(elementTypeEClass, ELEMENT_TYPE__SPECIALIZATION_IDOF);
+		createEAttribute(elementTypeEClass, ELEMENT_TYPE__NAME);
+		createEAttribute(elementTypeEClass, ELEMENT_TYPE__HELPER);
+		createEReference(elementTypeEClass, ELEMENT_TYPE__OWNER);
+		createEAttribute(elementTypeEClass, ELEMENT_TYPE__ICON);
 
-		adviceBindingEClass = createEClass(ADVICE_BINDING);
-		createEAttribute(adviceBindingEClass, ADVICE_BINDING__ADVICE_PATH);
-		createEAttribute(adviceBindingEClass, ADVICE_BINDING__ADVICE_ID);
-		createEAttribute(adviceBindingEClass, ADVICE_BINDING__INHERITANCE);
-		createEReference(adviceBindingEClass, ADVICE_BINDING__ELEMENT_TYPE_REF);
-		createEAttribute(adviceBindingEClass, ADVICE_BINDING__ELEMENT_TYPE_IDREF);
+		metaClassTypeEClass = createEClass(META_CLASS_TYPE);
+		createEReference(metaClassTypeEClass, META_CLASS_TYPE__META_CLASS);
+
+		specializationTypeEClass = createEClass(SPECIALIZATION_TYPE);
+		createEReference(specializationTypeEClass, SPECIALIZATION_TYPE__REF);
+		createEAttribute(specializationTypeEClass, SPECIALIZATION_TYPE__MATCHER);
+		createEReference(specializationTypeEClass, SPECIALIZATION_TYPE__GEN_MATCHER);
+		createEReference(specializationTypeEClass, SPECIALIZATION_TYPE__GEN_HELPER);
+
+		adviceEClass = createEClass(ADVICE);
+		createEAttribute(adviceEClass, ADVICE__ADVICE_ID);
+		createEReference(adviceEClass, ADVICE__REF);
+		createEAttribute(adviceEClass, ADVICE__ADVICE_PATH);
+		createEAttribute(adviceEClass, ADVICE__INHERITANCE);
+
+		elementTypeBindingsEClass = createEClass(ELEMENT_TYPE_BINDINGS);
+		createEAttribute(elementTypeBindingsEClass, ELEMENT_TYPE_BINDINGS__CLIENT_CONTEXT_ID);
+		createEReference(elementTypeBindingsEClass, ELEMENT_TYPE_BINDINGS__BINDINGS);
 
 		bindingEClass = createEClass(BINDING);
-		createEReference(bindingEClass, BINDING__ADVICE);
-		createEAttribute(bindingEClass, BINDING__ELEMENT_TYPE_PATTERN);
-		createEAttribute(bindingEClass, BINDING__ADVICE_ID);
+		createEReference(bindingEClass, BINDING__OWNER);
+		createEAttribute(bindingEClass, BINDING__PATTERN);
+
+		elementTypeBindingEClass = createEClass(ELEMENT_TYPE_BINDING);
+		createEReference(elementTypeBindingEClass, ELEMENT_TYPE_BINDING__REF);
+
+		adviceBindingEClass = createEClass(ADVICE_BINDING);
+		createEReference(adviceBindingEClass, ADVICE_BINDING__REF);
 
 		genHandlersEClass = createEClass(GEN_HANDLERS);
 		createEAttribute(genHandlersEClass, GEN_HANDLERS__HANDLER_PACKAGE);
@@ -639,6 +1133,38 @@ public class DomaincontextcodegenPackageImpl extends EPackageImpl implements Dom
 		createEAttribute(genHandlersEClass, GEN_HANDLERS__SUPER_CLASS_PACKAGE);
 		createEAttribute(genHandlersEClass, GEN_HANDLERS__ELEMENT_TYPE_ENUMERATOR);
 		createEAttribute(genHandlersEClass, GEN_HANDLERS__ELEMENT_TYPE_ENUMERATOR_PACKAGE);
+		createEReference(genHandlersEClass, GEN_HANDLERS__VISIBLE_CREATE_CHILD_HANDLERS);
+		createEReference(genHandlersEClass, GEN_HANDLERS__PARENT_DOMAIN_CREATE_CHILD);
+		createEAttribute(genHandlersEClass, GEN_HANDLERS__CREATE_CHILD_MENU_LOCATION_URI);
+
+		genMatcherEClass = createEClass(GEN_MATCHER);
+		createEAttribute(genMatcherEClass, GEN_MATCHER__NAME);
+
+		genHelperEClass = createEClass(GEN_HELPER);
+		createEAttribute(genHelperEClass, GEN_HELPER__NAME);
+
+		stereotypedElementMatcherEClass = createEClass(STEREOTYPED_ELEMENT_MATCHER);
+		createEAttribute(stereotypedElementMatcherEClass, STEREOTYPED_ELEMENT_MATCHER__STEREOTYPE_NAME);
+		createEAttribute(stereotypedElementMatcherEClass, STEREOTYPED_ELEMENT_MATCHER__STEREOTYPE_PACKAGE);
+		createEAttribute(stereotypedElementMatcherEClass, STEREOTYPED_ELEMENT_MATCHER__BASE_ELEMENT_NAME);
+		createEAttribute(stereotypedElementMatcherEClass, STEREOTYPED_ELEMENT_MATCHER__BASE_ELEMENT_PACKAGE);
+
+		stereotypedElementHelperEClass = createEClass(STEREOTYPED_ELEMENT_HELPER);
+		createEAttribute(stereotypedElementHelperEClass, STEREOTYPED_ELEMENT_HELPER__STEREOTYPE_NAME);
+		createEAttribute(stereotypedElementHelperEClass, STEREOTYPED_ELEMENT_HELPER__STEREOTYPE_PACKAGE);
+		createEAttribute(stereotypedElementHelperEClass, STEREOTYPED_ELEMENT_HELPER__BASE_ELEMENT_NAME);
+		createEAttribute(stereotypedElementHelperEClass, STEREOTYPED_ELEMENT_HELPER__BASE_ELEMENT_PACKAGE);
+
+		menuDeclarationEClass = createEClass(MENU_DECLARATION);
+		createEAttribute(menuDeclarationEClass, MENU_DECLARATION__LOCATION_URI);
+		createEReference(menuDeclarationEClass, MENU_DECLARATION__COMMANDS);
+
+		commandDeclarationEClass = createEClass(COMMAND_DECLARATION);
+		createEReference(commandDeclarationEClass, COMMAND_DECLARATION__COMMANDS);
+
+		commandEClass = createEClass(COMMAND);
+		createEReference(commandEClass, COMMAND__ELEMENT_TYPE);
+		createEAttribute(commandEClass, COMMAND__ICON);
 
 		// Create enums
 		inheritanceKindEEnum = createEEnum(INHERITANCE_KIND);
@@ -670,11 +1196,20 @@ public class DomaincontextcodegenPackageImpl extends EPackageImpl implements Dom
 		setNsPrefix(eNS_PREFIX);
 		setNsURI(eNS_URI);
 
+		// Obtain other dependent packages
+		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
+
 		// Create type parameters
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		metaClassTypeEClass.getESuperTypes().add(this.getElementType());
+		specializationTypeEClass.getESuperTypes().add(this.getElementType());
+		elementTypeBindingEClass.getESuperTypes().add(this.getBinding());
+		adviceBindingEClass.getESuperTypes().add(this.getBinding());
+		stereotypedElementMatcherEClass.getESuperTypes().add(this.getGenMatcher());
+		stereotypedElementHelperEClass.getESuperTypes().add(this.getGenHelper());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(domainContextEClass, DomainContext.class, "DomainContext", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -685,36 +1220,53 @@ public class DomaincontextcodegenPackageImpl extends EPackageImpl implements Dom
 		initEReference(getDomainContext_SpecializationOf(), this.getDomainContext(), null, "specializationOf", null, 0, 1, DomainContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDomainContext_ElementTypeIDPrefix(), ecorePackage.getEString(), "elementTypeIDPrefix", null, 1, 1, DomainContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDomainContext_ElementTypeNamePrefix(), ecorePackage.getEString(), "elementTypeNamePrefix", null, 1, 1, DomainContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getDomainContext_MatcherPatch(), ecorePackage.getEString(), "matcherPatch", null, 1, 1, DomainContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDomainContext_ElementTypes(), this.getElementTypes(), null, "elementTypes", null, 0, 1, DomainContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDomainContext_ElementTypes(), this.getElementTypes(), this.getElementTypes_Domain(), "elementTypes", null, 0, 1, DomainContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDomainContext_DefaultHelperPath(), ecorePackage.getEString(), "defaultHelperPath", null, 1, 1, DomainContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDomainContext_Advicebindings(), this.getAdviceBinding(), null, "advicebindings", null, 0, -1, DomainContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDomainContext_Bindings(), this.getBinding(), null, "bindings", null, 0, -1, DomainContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDomainContext_Advices(), this.getAdvice(), null, "advices", null, 0, -1, DomainContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDomainContext_Bindings(), this.getElementTypeBindings(), null, "bindings", null, 0, -1, DomainContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDomainContext_GenHandlers(), this.getGenHandlers(), null, "genHandlers", null, 0, 1, DomainContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDomainContext_GeneratedSourceFolder(), ecorePackage.getEString(), "generatedSourceFolder", null, 1, 1, DomainContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDomainContext_Menu(), this.getMenuDeclaration(), null, "menu", null, 0, -1, DomainContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDomainContext_Command(), this.getCommandDeclaration(), null, "command", null, 0, -1, DomainContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(elementTypesEClass, ElementTypes.class, "ElementTypes", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getElementTypes_Types(), this.getElementType(), null, "types", null, 0, -1, ElementTypes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getElementTypes_Types(), this.getElementType(), this.getElementType_Owner(), "types", null, 0, -1, ElementTypes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getElementTypes_Domain(), this.getDomainContext(), this.getDomainContext_ElementTypes(), "domain", null, 0, 1, ElementTypes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(elementTypeEClass, ElementType.class, "ElementType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getElementType_MetaClass(), ecorePackage.getEClass(), null, "metaClass", null, 1, 1, ElementType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getElementType_SpecificName(), ecorePackage.getEString(), "specificName", null, 0, 1, ElementType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getElementType_Edithelper_EditHelperAdvicePath(), ecorePackage.getEString(), "edithelper_EditHelperAdvicePath", null, 0, 1, ElementType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getElementType_Kind(), ecorePackage.getEString(), "kind", null, 0, 1, ElementType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getElementType_Specializationof(), this.getElementType(), null, "specializationof", null, 0, 1, ElementType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getElementType_SpecializationIDof(), ecorePackage.getEString(), "specializationIDof", null, 0, 1, ElementType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(elementTypeEClass, ElementType.class, "ElementType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getElementType_Name(), ecorePackage.getEString(), "name", null, 0, 1, ElementType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getElementType_Helper(), ecorePackage.getEString(), "helper", null, 0, 1, ElementType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getElementType_Owner(), this.getElementTypes(), this.getElementTypes_Types(), "owner", null, 0, 1, ElementType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getElementType_Icon(), theEcorePackage.getEString(), "icon", null, 0, 1, ElementType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(metaClassTypeEClass, MetaClassType.class, "MetaClassType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getMetaClassType_MetaClass(), ecorePackage.getEClass(), null, "metaClass", null, 1, 1, MetaClassType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(specializationTypeEClass, SpecializationType.class, "SpecializationType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSpecializationType_Ref(), this.getElementType(), null, "ref", null, 0, 1, SpecializationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSpecializationType_Matcher(), ecorePackage.getEString(), "matcher", null, 0, 1, SpecializationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSpecializationType_GenMatcher(), this.getGenMatcher(), null, "genMatcher", null, 0, 1, SpecializationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSpecializationType_GenHelper(), this.getGenHelper(), null, "genHelper", null, 0, 1, SpecializationType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(adviceEClass, Advice.class, "Advice", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getAdvice_AdviceID(), ecorePackage.getEString(), "adviceID", null, 0, 1, Advice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAdvice_Ref(), this.getElementType(), null, "ref", null, 0, 1, Advice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAdvice_AdvicePath(), ecorePackage.getEString(), "advicePath", null, 0, 1, Advice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAdvice_Inheritance(), this.getInheritanceKind(), "inheritance", null, 0, 1, Advice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(elementTypeBindingsEClass, ElementTypeBindings.class, "ElementTypeBindings", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getElementTypeBindings_ClientContextID(), ecorePackage.getEString(), "clientContextID", null, 0, 1, ElementTypeBindings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getElementTypeBindings_Bindings(), this.getBinding(), this.getBinding_Owner(), "bindings", null, 0, -1, ElementTypeBindings.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(bindingEClass, Binding.class, "Binding", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getBinding_Owner(), this.getElementTypeBindings(), this.getElementTypeBindings_Bindings(), "owner", null, 1, 1, Binding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBinding_Pattern(), ecorePackage.getEString(), "pattern", null, 0, 1, Binding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(elementTypeBindingEClass, ElementTypeBinding.class, "ElementTypeBinding", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getElementTypeBinding_Ref(), this.getElementType(), null, "ref", null, 0, 1, ElementTypeBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(adviceBindingEClass, AdviceBinding.class, "AdviceBinding", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getAdviceBinding_AdvicePath(), ecorePackage.getEString(), "advicePath", null, 0, 1, AdviceBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAdviceBinding_AdviceID(), ecorePackage.getEString(), "adviceID", null, 0, 1, AdviceBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAdviceBinding_Inheritance(), this.getInheritanceKind(), "inheritance", null, 0, 1, AdviceBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAdviceBinding_ElementTypeRef(), this.getElementType(), null, "elementTypeRef", null, 0, 1, AdviceBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAdviceBinding_ElementTypeIDref(), ecorePackage.getEString(), "elementTypeIDref", null, 0, 1, AdviceBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(bindingEClass, Binding.class, "Binding", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getBinding_Advice(), this.getAdviceBinding(), null, "advice", null, 0, 1, Binding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBinding_ElementTypePattern(), ecorePackage.getEString(), "elementTypePattern", null, 0, 1, Binding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBinding_AdviceID(), ecorePackage.getEString(), "adviceID", null, 0, 1, Binding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAdviceBinding_Ref(), this.getAdvice(), null, "ref", null, 0, 1, AdviceBinding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(genHandlersEClass, GenHandlers.class, "GenHandlers", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getGenHandlers_HandlerPackage(), ecorePackage.getEString(), "handlerPackage", null, 0, 1, GenHandlers.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -722,6 +1274,38 @@ public class DomaincontextcodegenPackageImpl extends EPackageImpl implements Dom
 		initEAttribute(getGenHandlers_SuperClassPackage(), ecorePackage.getEString(), "superClassPackage", null, 0, 1, GenHandlers.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getGenHandlers_ElementTypeEnumerator(), ecorePackage.getEString(), "elementTypeEnumerator", null, 0, 1, GenHandlers.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getGenHandlers_ElementTypeEnumeratorPackage(), ecorePackage.getEString(), "elementTypeEnumeratorPackage", null, 0, 1, GenHandlers.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGenHandlers_VisibleCreateChildHandlers(), this.getElementType(), null, "visibleCreateChildHandlers", null, 0, -1, GenHandlers.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGenHandlers_ParentDomainCreateChild(), this.getElementType(), null, "parentDomainCreateChild", null, 0, -1, GenHandlers.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getGenHandlers_CreateChildMenuLocationURI(), theEcorePackage.getEString(), "createChildMenuLocationURI", null, 0, 1, GenHandlers.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(genMatcherEClass, GenMatcher.class, "GenMatcher", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getGenMatcher_Name(), ecorePackage.getEString(), "name", null, 0, 1, GenMatcher.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(genHelperEClass, GenHelper.class, "GenHelper", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getGenHelper_Name(), ecorePackage.getEString(), "name", null, 0, 1, GenHelper.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(stereotypedElementMatcherEClass, StereotypedElementMatcher.class, "StereotypedElementMatcher", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getStereotypedElementMatcher_StereotypeName(), theEcorePackage.getEString(), "stereotypeName", null, 0, 1, StereotypedElementMatcher.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getStereotypedElementMatcher_StereotypePackage(), theEcorePackage.getEString(), "stereotypePackage", null, 0, 1, StereotypedElementMatcher.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getStereotypedElementMatcher_BaseElementName(), theEcorePackage.getEString(), "baseElementName", null, 0, 1, StereotypedElementMatcher.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getStereotypedElementMatcher_BaseElementPackage(), theEcorePackage.getEString(), "baseElementPackage", null, 0, 1, StereotypedElementMatcher.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(stereotypedElementHelperEClass, StereotypedElementHelper.class, "StereotypedElementHelper", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getStereotypedElementHelper_StereotypeName(), theEcorePackage.getEString(), "stereotypeName", null, 0, 1, StereotypedElementHelper.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getStereotypedElementHelper_StereotypePackage(), theEcorePackage.getEString(), "stereotypePackage", null, 0, 1, StereotypedElementHelper.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getStereotypedElementHelper_BaseElementName(), theEcorePackage.getEString(), "baseElementName", null, 0, 1, StereotypedElementHelper.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getStereotypedElementHelper_BaseElementPackage(), theEcorePackage.getEString(), "baseElementPackage", null, 0, 1, StereotypedElementHelper.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(menuDeclarationEClass, MenuDeclaration.class, "MenuDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getMenuDeclaration_LocationURI(), theEcorePackage.getEString(), "locationURI", null, 0, 1, MenuDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMenuDeclaration_Commands(), this.getCommand(), null, "commands", null, 0, -1, MenuDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(commandDeclarationEClass, CommandDeclaration.class, "CommandDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCommandDeclaration_Commands(), this.getCommand(), null, "commands", null, 0, -1, CommandDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(commandEClass, Command.class, "Command", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCommand_ElementType(), this.getElementType(), null, "elementType", null, 0, 1, Command.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCommand_Icon(), theEcorePackage.getEString(), "icon", null, 0, 1, Command.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(inheritanceKindEEnum, InheritanceKind.class, "InheritanceKind");

@@ -8,21 +8,89 @@
   <foreignModel>DomainContext.ecore</foreignModel>
   <genPackages prefix="Domaincontextcodegen" basePackage="org.eclipse.papyrus" disposableProviderFactory="true"
       ecorePackage="DomainContext.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="DomainContext.ecore#//InheritanceKind">
+      <genEnumLiterals ecoreEnumLiteral="DomainContext.ecore#//InheritanceKind/none"/>
+      <genEnumLiterals ecoreEnumLiteral="DomainContext.ecore#//InheritanceKind/all"/>
+    </genEnums>
     <genClasses ecoreClass="DomainContext.ecore#//DomainContext">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DomainContext.ecore#//DomainContext/typeProjectName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DomainContext.ecore#//DomainContext/handlerProjectName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DomainContext.ecore#//DomainContext/IClientContextID"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DomainContext.ecore#//DomainContext/metamodel"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DomainContext.ecore#//DomainContext/specializationOf"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DomainContext.ecore#//DomainContext/elementTypeIDPrefix"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DomainContext.ecore#//DomainContext/elementTypeNamePrefix"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DomainContext.ecore#//DomainContext/matcherPatch"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DomainContext.ecore#//DomainContext/elementTypes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DomainContext.ecore#//DomainContext/defaultHelperPath"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DomainContext.ecore#//DomainContext/advices"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DomainContext.ecore#//DomainContext/bindings"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DomainContext.ecore#//DomainContext/genHandlers"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DomainContext.ecore#//DomainContext/generatedSourceFolder"/>
+    </genClasses>
+    <genClasses ecoreClass="DomainContext.ecore#//ElementTypes">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DomainContext.ecore#//ElementTypes/types"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference DomainContext.ecore#//ElementTypes/domain"/>
     </genClasses>
     <genClasses ecoreClass="DomainContext.ecore#//ElementType">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DomainContext.ecore#//ElementType/eclass"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DomainContext.ecore#//ElementType/specificName"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DomainContext.ecore#//ElementType/edithelper_EditHelperAdvicePath"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DomainContext.ecore#//ElementType/kind"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DomainContext.ecore#//ElementType/specializationof"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DomainContext.ecore#//ElementType/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DomainContext.ecore#//ElementType/helper"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference DomainContext.ecore#//ElementType/owner"/>
+    </genClasses>
+    <genClasses ecoreClass="DomainContext.ecore#//MetaClassType">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DomainContext.ecore#//MetaClassType/metaClass"/>
+    </genClasses>
+    <genClasses ecoreClass="DomainContext.ecore#//SpecializationType">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DomainContext.ecore#//SpecializationType/ref"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DomainContext.ecore#//SpecializationType/matcher"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DomainContext.ecore#//SpecializationType/genMatcher"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DomainContext.ecore#//SpecializationType/genHelper"/>
+    </genClasses>
+    <genClasses ecoreClass="DomainContext.ecore#//Advice">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DomainContext.ecore#//Advice/adviceID"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DomainContext.ecore#//Advice/ref"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DomainContext.ecore#//Advice/advicePath"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DomainContext.ecore#//Advice/inheritance"/>
+    </genClasses>
+    <genClasses ecoreClass="DomainContext.ecore#//ElementTypeBindings">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DomainContext.ecore#//ElementTypeBindings/clientContextID"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DomainContext.ecore#//ElementTypeBindings/bindings"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="DomainContext.ecore#//Binding">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference DomainContext.ecore#//Binding/owner"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DomainContext.ecore#//Binding/pattern"/>
+    </genClasses>
+    <genClasses ecoreClass="DomainContext.ecore#//ElementTypeBinding">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DomainContext.ecore#//ElementTypeBinding/ref"/>
+    </genClasses>
+    <genClasses ecoreClass="DomainContext.ecore#//AdviceBinding">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DomainContext.ecore#//AdviceBinding/ref"/>
+    </genClasses>
+    <genClasses ecoreClass="DomainContext.ecore#//GenHandlers">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DomainContext.ecore#//GenHandlers/handlerPackage"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DomainContext.ecore#//GenHandlers/superClass"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DomainContext.ecore#//GenHandlers/superClassPackage"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DomainContext.ecore#//GenHandlers/elementTypeEnumerator"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DomainContext.ecore#//GenHandlers/elementTypeEnumeratorPackage"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DomainContext.ecore#//GenHandlers/visibleCreateChildHandlers"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DomainContext.ecore#//GenHandlers/parentDomainCreateChild"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="DomainContext.ecore#//GenMatcher">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DomainContext.ecore#//GenMatcher/name"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="DomainContext.ecore#//GenHelper">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DomainContext.ecore#//GenHelper/name"/>
+    </genClasses>
+    <genClasses ecoreClass="DomainContext.ecore#//StereotypedElementMatcher">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DomainContext.ecore#//StereotypedElementMatcher/stereotypeName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DomainContext.ecore#//StereotypedElementMatcher/stereotypePackage"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DomainContext.ecore#//StereotypedElementMatcher/baseElementName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DomainContext.ecore#//StereotypedElementMatcher/baseElementPackage"/>
+    </genClasses>
+    <genClasses ecoreClass="DomainContext.ecore#//StereotypedElementHelper">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DomainContext.ecore#//StereotypedElementHelper/stereotypeName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DomainContext.ecore#//StereotypedElementHelper/stereotypePackage"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DomainContext.ecore#//StereotypedElementHelper/baseElementName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DomainContext.ecore#//StereotypedElementHelper/baseElementPackage"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

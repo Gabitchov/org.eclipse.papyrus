@@ -12,15 +12,23 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.domaincontextcodegen.Advice;
 import org.eclipse.papyrus.domaincontextcodegen.AdviceBinding;
-import org.eclipse.papyrus.domaincontextcodegen.Binding;
+import org.eclipse.papyrus.domaincontextcodegen.Command;
+import org.eclipse.papyrus.domaincontextcodegen.CommandDeclaration;
 import org.eclipse.papyrus.domaincontextcodegen.DomainContext;
 import org.eclipse.papyrus.domaincontextcodegen.DomaincontextcodegenFactory;
 import org.eclipse.papyrus.domaincontextcodegen.DomaincontextcodegenPackage;
-import org.eclipse.papyrus.domaincontextcodegen.ElementType;
+import org.eclipse.papyrus.domaincontextcodegen.ElementTypeBinding;
+import org.eclipse.papyrus.domaincontextcodegen.ElementTypeBindings;
 import org.eclipse.papyrus.domaincontextcodegen.ElementTypes;
 import org.eclipse.papyrus.domaincontextcodegen.GenHandlers;
 import org.eclipse.papyrus.domaincontextcodegen.InheritanceKind;
+import org.eclipse.papyrus.domaincontextcodegen.MenuDeclaration;
+import org.eclipse.papyrus.domaincontextcodegen.MetaClassType;
+import org.eclipse.papyrus.domaincontextcodegen.SpecializationType;
+import org.eclipse.papyrus.domaincontextcodegen.StereotypedElementHelper;
+import org.eclipse.papyrus.domaincontextcodegen.StereotypedElementMatcher;
 
 /**
  * <!-- begin-user-doc -->
@@ -74,14 +82,30 @@ public class DomaincontextcodegenFactoryImpl extends EFactoryImpl implements Dom
 			return createDomainContext();
 		case DomaincontextcodegenPackage.ELEMENT_TYPES:
 			return createElementTypes();
-		case DomaincontextcodegenPackage.ELEMENT_TYPE:
-			return createElementType();
+		case DomaincontextcodegenPackage.META_CLASS_TYPE:
+			return createMetaClassType();
+		case DomaincontextcodegenPackage.SPECIALIZATION_TYPE:
+			return createSpecializationType();
+		case DomaincontextcodegenPackage.ADVICE:
+			return createAdvice();
+		case DomaincontextcodegenPackage.ELEMENT_TYPE_BINDINGS:
+			return createElementTypeBindings();
+		case DomaincontextcodegenPackage.ELEMENT_TYPE_BINDING:
+			return createElementTypeBinding();
 		case DomaincontextcodegenPackage.ADVICE_BINDING:
 			return createAdviceBinding();
-		case DomaincontextcodegenPackage.BINDING:
-			return createBinding();
 		case DomaincontextcodegenPackage.GEN_HANDLERS:
 			return createGenHandlers();
+		case DomaincontextcodegenPackage.STEREOTYPED_ELEMENT_MATCHER:
+			return createStereotypedElementMatcher();
+		case DomaincontextcodegenPackage.STEREOTYPED_ELEMENT_HELPER:
+			return createStereotypedElementHelper();
+		case DomaincontextcodegenPackage.MENU_DECLARATION:
+			return createMenuDeclaration();
+		case DomaincontextcodegenPackage.COMMAND_DECLARATION:
+			return createCommandDeclaration();
+		case DomaincontextcodegenPackage.COMMAND:
+			return createCommand();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -147,9 +171,53 @@ public class DomaincontextcodegenFactoryImpl extends EFactoryImpl implements Dom
 	 * 
 	 * @generated
 	 */
-	public ElementType createElementType() {
-		ElementTypeImpl elementType = new ElementTypeImpl();
-		return elementType;
+	public MetaClassType createMetaClassType() {
+		MetaClassTypeImpl metaClassType = new MetaClassTypeImpl();
+		return metaClassType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public SpecializationType createSpecializationType() {
+		SpecializationTypeImpl specializationType = new SpecializationTypeImpl();
+		return specializationType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public Advice createAdvice() {
+		AdviceImpl advice = new AdviceImpl();
+		return advice;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public ElementTypeBindings createElementTypeBindings() {
+		ElementTypeBindingsImpl elementTypeBindings = new ElementTypeBindingsImpl();
+		return elementTypeBindings;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public ElementTypeBinding createElementTypeBinding() {
+		ElementTypeBindingImpl elementTypeBinding = new ElementTypeBindingImpl();
+		return elementTypeBinding;
 	}
 
 	/**
@@ -169,9 +237,9 @@ public class DomaincontextcodegenFactoryImpl extends EFactoryImpl implements Dom
 	 * 
 	 * @generated
 	 */
-	public Binding createBinding() {
-		BindingImpl binding = new BindingImpl();
-		return binding;
+	public GenHandlers createGenHandlers() {
+		GenHandlersImpl genHandlers = new GenHandlersImpl();
+		return genHandlers;
 	}
 
 	/**
@@ -180,9 +248,53 @@ public class DomaincontextcodegenFactoryImpl extends EFactoryImpl implements Dom
 	 * 
 	 * @generated
 	 */
-	public GenHandlers createGenHandlers() {
-		GenHandlersImpl genHandlers = new GenHandlersImpl();
-		return genHandlers;
+	public StereotypedElementMatcher createStereotypedElementMatcher() {
+		StereotypedElementMatcherImpl stereotypedElementMatcher = new StereotypedElementMatcherImpl();
+		return stereotypedElementMatcher;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public StereotypedElementHelper createStereotypedElementHelper() {
+		StereotypedElementHelperImpl stereotypedElementHelper = new StereotypedElementHelperImpl();
+		return stereotypedElementHelper;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public MenuDeclaration createMenuDeclaration() {
+		MenuDeclarationImpl menuDeclaration = new MenuDeclarationImpl();
+		return menuDeclaration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public CommandDeclaration createCommandDeclaration() {
+		CommandDeclarationImpl commandDeclaration = new CommandDeclarationImpl();
+		return commandDeclaration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public Command createCommand() {
+		CommandImpl command = new CommandImpl();
+		return command;
 	}
 
 	/**

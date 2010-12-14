@@ -22,8 +22,8 @@ import java.util.Comparator;
 public class ElementTypeComparator implements Comparator<ElementType> {
 
 	public int compare(ElementType o1, ElementType o2) {
-		String name1 = o1.getSpecificName();
-		String name2 = o2.getSpecificName();
+		String name1 = o1.getName();
+		String name2 = o2.getName();
 		name1.compareTo(name2);
 		return name1.compareTo(name2);
 	}

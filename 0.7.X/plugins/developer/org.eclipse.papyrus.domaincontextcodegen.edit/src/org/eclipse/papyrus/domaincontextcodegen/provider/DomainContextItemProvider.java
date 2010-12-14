@@ -6,7 +6,6 @@
  */
 package org.eclipse.papyrus.domaincontextcodegen.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -67,7 +66,6 @@ public class DomainContextItemProvider extends ItemProviderAdapter implements IE
 			addSpecializationOfPropertyDescriptor(object);
 			addElementTypeIDPrefixPropertyDescriptor(object);
 			addElementTypeNamePrefixPropertyDescriptor(object);
-			addMatcherPatchPropertyDescriptor(object);
 			addDefaultHelperPathPropertyDescriptor(object);
 			addGeneratedSourceFolderPropertyDescriptor(object);
 		}
@@ -152,17 +150,6 @@ public class DomainContextItemProvider extends ItemProviderAdapter implements IE
 	}
 
 	/**
-	 * This adds a property descriptor for the Matcher Patch feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected void addMatcherPatchPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_DomainContext_matcherPatch_feature"), getString("_UI_PropertyDescriptor_description", "_UI_DomainContext_matcherPatch_feature", "_UI_DomainContext_type"), DomaincontextcodegenPackage.Literals.DOMAIN_CONTEXT__MATCHER_PATCH, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-	}
-
-	/**
 	 * This adds a property descriptor for the Default Helper Path feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -198,9 +185,11 @@ public class DomainContextItemProvider extends ItemProviderAdapter implements IE
 		if(childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(DomaincontextcodegenPackage.Literals.DOMAIN_CONTEXT__ELEMENT_TYPES);
-			childrenFeatures.add(DomaincontextcodegenPackage.Literals.DOMAIN_CONTEXT__ADVICEBINDINGS);
+			childrenFeatures.add(DomaincontextcodegenPackage.Literals.DOMAIN_CONTEXT__ADVICES);
 			childrenFeatures.add(DomaincontextcodegenPackage.Literals.DOMAIN_CONTEXT__BINDINGS);
 			childrenFeatures.add(DomaincontextcodegenPackage.Literals.DOMAIN_CONTEXT__GEN_HANDLERS);
+			childrenFeatures.add(DomaincontextcodegenPackage.Literals.DOMAIN_CONTEXT__MENU);
+			childrenFeatures.add(DomaincontextcodegenPackage.Literals.DOMAIN_CONTEXT__COMMAND);
 		}
 		return childrenFeatures;
 	}
@@ -262,15 +251,16 @@ public class DomainContextItemProvider extends ItemProviderAdapter implements IE
 		case DomaincontextcodegenPackage.DOMAIN_CONTEXT__ICLIENT_CONTEXT_ID:
 		case DomaincontextcodegenPackage.DOMAIN_CONTEXT__ELEMENT_TYPE_ID_PREFIX:
 		case DomaincontextcodegenPackage.DOMAIN_CONTEXT__ELEMENT_TYPE_NAME_PREFIX:
-		case DomaincontextcodegenPackage.DOMAIN_CONTEXT__MATCHER_PATCH:
 		case DomaincontextcodegenPackage.DOMAIN_CONTEXT__DEFAULT_HELPER_PATH:
 		case DomaincontextcodegenPackage.DOMAIN_CONTEXT__GENERATED_SOURCE_FOLDER:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case DomaincontextcodegenPackage.DOMAIN_CONTEXT__ELEMENT_TYPES:
-		case DomaincontextcodegenPackage.DOMAIN_CONTEXT__ADVICEBINDINGS:
+		case DomaincontextcodegenPackage.DOMAIN_CONTEXT__ADVICES:
 		case DomaincontextcodegenPackage.DOMAIN_CONTEXT__BINDINGS:
 		case DomaincontextcodegenPackage.DOMAIN_CONTEXT__GEN_HANDLERS:
+		case DomaincontextcodegenPackage.DOMAIN_CONTEXT__MENU:
+		case DomaincontextcodegenPackage.DOMAIN_CONTEXT__COMMAND:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -291,11 +281,15 @@ public class DomainContextItemProvider extends ItemProviderAdapter implements IE
 
 		newChildDescriptors.add(createChildParameter(DomaincontextcodegenPackage.Literals.DOMAIN_CONTEXT__ELEMENT_TYPES, DomaincontextcodegenFactory.eINSTANCE.createElementTypes()));
 
-		newChildDescriptors.add(createChildParameter(DomaincontextcodegenPackage.Literals.DOMAIN_CONTEXT__ADVICEBINDINGS, DomaincontextcodegenFactory.eINSTANCE.createAdviceBinding()));
+		newChildDescriptors.add(createChildParameter(DomaincontextcodegenPackage.Literals.DOMAIN_CONTEXT__ADVICES, DomaincontextcodegenFactory.eINSTANCE.createAdvice()));
 
-		newChildDescriptors.add(createChildParameter(DomaincontextcodegenPackage.Literals.DOMAIN_CONTEXT__BINDINGS, DomaincontextcodegenFactory.eINSTANCE.createBinding()));
+		newChildDescriptors.add(createChildParameter(DomaincontextcodegenPackage.Literals.DOMAIN_CONTEXT__BINDINGS, DomaincontextcodegenFactory.eINSTANCE.createElementTypeBindings()));
 
 		newChildDescriptors.add(createChildParameter(DomaincontextcodegenPackage.Literals.DOMAIN_CONTEXT__GEN_HANDLERS, DomaincontextcodegenFactory.eINSTANCE.createGenHandlers()));
+
+		newChildDescriptors.add(createChildParameter(DomaincontextcodegenPackage.Literals.DOMAIN_CONTEXT__MENU, DomaincontextcodegenFactory.eINSTANCE.createMenuDeclaration()));
+
+		newChildDescriptors.add(createChildParameter(DomaincontextcodegenPackage.Literals.DOMAIN_CONTEXT__COMMAND, DomaincontextcodegenFactory.eINSTANCE.createCommandDeclaration()));
 	}
 
 	/**
