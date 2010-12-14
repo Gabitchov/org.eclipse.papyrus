@@ -8,8 +8,9 @@ import org.eclipse.papyrus.uml.modelexplorer.handler.CreateCommandHandler;
 /**
  * <pre>
  * Command handler for ValueSpecificationAction creation
- *
+ * 
  * </pre>
+ * 
  * @generated
  */
 public class ValueSpecificationActionHandler extends CreateCommandHandler implements IHandler {
@@ -17,14 +18,14 @@ public class ValueSpecificationActionHandler extends CreateCommandHandler implem
 	/**
 	 * <pre>
 	 * @see org.eclipse.papyrus.uml.service.creation.handler.CreateHandler#getElementTypeToCreate()
-	 *
+	 * 
 	 * @return the IElementType this handler is supposed to create
-	 *
+	 * 
 	 * </pre>
+	 * 
 	 * @generated
 	 */
 	protected IElementType getElementTypeToCreate() {
 		return UMLElementTypes.VALUE_SPECIFICATION_ACTION;
 	}
 }
-

@@ -8,8 +8,9 @@ import org.eclipse.papyrus.uml.modelexplorer.handler.CreateCommandHandler;
 /**
  * <pre>
  * Command handler for DirectedRelationship creation
- *
+ * 
  * </pre>
+ * 
  * @generated
  */
 public class DirectedRelationshipHandler extends CreateCommandHandler implements IHandler {
@@ -17,14 +18,14 @@ public class DirectedRelationshipHandler extends CreateCommandHandler implements
 	/**
 	 * <pre>
 	 * @see org.eclipse.papyrus.uml.service.creation.handler.CreateHandler#getElementTypeToCreate()
-	 *
+	 * 
 	 * @return the IElementType this handler is supposed to create
-	 *
+	 * 
 	 * </pre>
+	 * 
 	 * @generated
 	 */
 	protected IElementType getElementTypeToCreate() {
 		return UMLElementTypes.DIRECTED_RELATIONSHIP;
 	}
 }
-

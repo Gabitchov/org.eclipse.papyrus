@@ -8,8 +8,9 @@ import org.eclipse.papyrus.uml.modelexplorer.handler.CreateCommandHandler;
 /**
  * <pre>
  * Command handler for ConnectableElementTemplateParameter creation
- *
+ * 
  * </pre>
+ * 
  * @generated
  */
 public class ConnectableElementTemplateParameterHandler extends CreateCommandHandler implements IHandler {
@@ -17,14 +18,14 @@ public class ConnectableElementTemplateParameterHandler extends CreateCommandHan
 	/**
 	 * <pre>
 	 * @see org.eclipse.papyrus.uml.service.creation.handler.CreateHandler#getElementTypeToCreate()
-	 *
+	 * 
 	 * @return the IElementType this handler is supposed to create
-	 *
+	 * 
 	 * </pre>
+	 * 
 	 * @generated
 	 */
 	protected IElementType getElementTypeToCreate() {
 		return UMLElementTypes.CONNECTABLE_ELEMENT_TEMPLATE_PARAMETER;
 	}
 }
-

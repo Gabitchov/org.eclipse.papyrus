@@ -1,748 +1,781 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<domaincontextcodegen:DomainContext xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:domaincontextcodegen="http://www.eclipse.org/papyrus/2010/domaincontextcodegen" typeProjectName="org.eclipse.papyrus.uml.service.types" handlerProjectName="org.eclipse.papyrus.uml.modelexplorer" IClientContextID="org.eclipse.papyrus.service.creation.TypeContext" elementTypeIDPrefix="org.eclipse.papyrus.uml" elementTypeNamePrefix="UML" matcherPatch="org.eclipse.papyrus.service.edit.matcher.NoContextEnablementMatcher" defaultHelperPath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" generatedSourceFolder="src-gen">
+<domaincontextcodegen:DomainContext xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:domaincontextcodegen="http://www.eclipse.org/papyrus/2010/domaincontextcodegen" typeProjectName="org.eclipse.papyrus.uml.service.types" handlerProjectName="org.eclipse.papyrus.uml.modelexplorer" IClientContextID="org.eclipse.papyrus.service.creation.TypeContext" elementTypeIDPrefix="org.eclipse.papyrus.uml" elementTypeNamePrefix="UML" defaultHelperPath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" generatedSourceFolder="src-gen">
   <metamodel href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#/"/>
   <elementTypes>
-    <types specificName="ABSTRACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Abstraction" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Abstraction.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Abstraction"/>
     </types>
-    <types specificName="ACCEPT_CALL_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="AcceptCallAction" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AcceptCallAction.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//AcceptCallAction"/>
     </types>
-    <types specificName="ACCEPT_EVENT_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="AcceptEventAction" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AcceptEventAction.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//AcceptEventAction"/>
     </types>
-    <types specificName="ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Action" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Action.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Action"/>
     </types>
-    <types specificName="ACTION_EXECUTION_SPECIFICATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ActionExecutionSpecification" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActionExecutionSpecification.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ActionExecutionSpecification"/>
     </types>
-    <types specificName="ACTION_INPUT_PIN" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ActionInputPin" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActionInputPin.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ActionInputPin"/>
     </types>
-    <types specificName="ACTIVITY" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Activity" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Activity.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity"/>
     </types>
-    <types specificName="ACTIVITY_EDGE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ActivityEdge" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActivityEdge.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ActivityEdge"/>
     </types>
-    <types specificName="ACTIVITY_FINAL_NODE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ActivityFinalNode" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActivityFinalNode.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ActivityFinalNode"/>
     </types>
-    <types specificName="ACTIVITY_GROUP" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ActivityGroup" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActivityGroup.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ActivityGroup"/>
     </types>
-    <types specificName="ACTIVITY_NODE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ActivityNode" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActivityNode.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ActivityNode"/>
     </types>
-    <types specificName="ACTIVITY_PARAMETER_NODE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ActivityParameterNode" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActivityParameterNode.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ActivityParameterNode"/>
     </types>
-    <types specificName="ACTIVITY_PARTITION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ActivityPartition" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActivityPartition.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ActivityPartition"/>
     </types>
-    <types specificName="ACTOR" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Actor" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Actor.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Actor"/>
     </types>
-    <types specificName="ADD_STRUCTURAL_FEATURE_VALUE_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="AddStructuralFeatureValueAction" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AddStructuralFeatureValueAction.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//AddStructuralFeatureValueAction"/>
     </types>
-    <types specificName="ADD_VARIABLE_VALUE_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="AddVariableValueAction" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AddVariableValueAction.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//AddVariableValueAction"/>
     </types>
-    <types specificName="ANY_RECEIVE_EVENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="AnyReceiveEvent" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AnyReceiveEvent.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//AnyReceiveEvent"/>
     </types>
-    <types specificName="ARTIFACT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Artifact" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Artifact.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Artifact"/>
     </types>
-    <types specificName="ASSOCIATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Association" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Association"/>
     </types>
-    <types specificName="ASSOCIATION_CLASS" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="AssociationClass" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AssociationClass.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//AssociationClass"/>
     </types>
-    <types specificName="BEHAVIOR" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Behavior" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Behavior.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Behavior"/>
     </types>
-    <types specificName="BEHAVIORAL_FEATURE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//BehavioralFeature"/>
-    </types>
-    <types specificName="BEHAVIORED_CLASSIFIER" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//BehavioredClassifier"/>
-    </types>
-    <types specificName="BEHAVIOR_EXECUTION_SPECIFICATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="BehaviorExecutionSpecification" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/BehaviorExecutionSpecification.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//BehaviorExecutionSpecification"/>
     </types>
-    <types specificName="BROADCAST_SIGNAL_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="BehavioralFeature" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/BehavioralFeature.gif">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//BehavioralFeature"/>
+    </types>
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="BehavioredClassifier" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/BehavioredClassifier.gif">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//BehavioredClassifier"/>
+    </types>
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="BroadcastSignalAction" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/BroadcastSignalAction.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//BroadcastSignalAction"/>
     </types>
-    <types specificName="CALL_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="CallAction" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CallAction.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CallAction"/>
     </types>
-    <types specificName="CALL_BEHAVIOR_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="CallBehaviorAction" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CallBehaviorAction.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CallBehaviorAction"/>
     </types>
-    <types specificName="CALL_EVENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="CallEvent" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CallEvent.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CallEvent"/>
     </types>
-    <types specificName="CALL_OPERATION_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="CallOperationAction" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CallOperationAction.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CallOperationAction"/>
     </types>
-    <types specificName="CENTRAL_BUFFER_NODE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="CentralBufferNode" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CentralBufferNode.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CentralBufferNode"/>
     </types>
-    <types specificName="CHANGE_EVENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ChangeEvent" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ChangeEvent.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ChangeEvent"/>
     </types>
-    <types specificName="CLASS" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Class" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Class"/>
     </types>
-    <types specificName="CLASSIFIER" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Classifier" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Classifier.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
     </types>
-    <types specificName="CLASSIFIER_TEMPLATE_PARAMETER" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ClassifierTemplateParameter" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ClassifierTemplateParameter.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ClassifierTemplateParameter"/>
     </types>
-    <types specificName="CLAUSE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Clause" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Clause.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Clause"/>
     </types>
-    <types specificName="CLEAR_ASSOCIATION_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ClearAssociationAction" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ClearAssociationAction.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ClearAssociationAction"/>
     </types>
-    <types specificName="CLEAR_STRUCTURAL_FEATURE_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ClearStructuralFeatureAction" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ClearStructuralFeatureAction.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ClearStructuralFeatureAction"/>
     </types>
-    <types specificName="CLEAR_VARIABLE_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ClearVariableAction" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ClearVariableAction.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ClearVariableAction"/>
     </types>
-    <types specificName="COLLABORATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Collaboration" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Collaboration.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Collaboration"/>
     </types>
-    <types specificName="COLLABORATION_USE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="CollaborationUse" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CollaborationUse.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CollaborationUse"/>
     </types>
-    <types specificName="COMBINED_FRAGMENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="CombinedFragment" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CombinedFragment.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CombinedFragment"/>
     </types>
-    <types specificName="COMMENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Comment" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Comment"/>
     </types>
-    <types specificName="COMMUNICATION_PATH" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="CommunicationPath" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CommunicationPath.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CommunicationPath"/>
     </types>
-    <types specificName="COMPONENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Component" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Component.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Component"/>
     </types>
-    <types specificName="COMPONENT_REALIZATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ComponentRealization" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ComponentRealization.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ComponentRealization"/>
     </types>
-    <types specificName="CONDITIONAL_NODE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ConditionalNode" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConditionalNode.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ConditionalNode"/>
     </types>
-    <types specificName="CONNECTABLE_ELEMENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ConnectableElement" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConnectableElement.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ConnectableElement"/>
     </types>
-    <types specificName="CONNECTABLE_ELEMENT_TEMPLATE_PARAMETER" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ConnectableElementTemplateParameter" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConnectableElementTemplateParameter.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ConnectableElementTemplateParameter"/>
     </types>
-    <types specificName="CONNECTION_POINT_REFERENCE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ConnectionPointReference" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConnectionPointReference.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ConnectionPointReference"/>
     </types>
-    <types specificName="CONNECTOR" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Connector" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Connector.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Connector"/>
     </types>
-    <types specificName="CONNECTOR_END" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ConnectorEnd" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConnectorEnd.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ConnectorEnd"/>
     </types>
-    <types specificName="CONSIDER_IGNORE_FRAGMENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ConsiderIgnoreFragment" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConsiderIgnoreFragment.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ConsiderIgnoreFragment"/>
     </types>
-    <types specificName="CONSTRAINT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Constraint" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Constraint"/>
     </types>
-    <types specificName="CONTINUATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Continuation" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Continuation.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Continuation"/>
     </types>
-    <types specificName="CONTROL_FLOW" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ControlFlow" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ControlFlow.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ControlFlow"/>
     </types>
-    <types specificName="CONTROL_NODE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ControlNode" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ControlNode.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ControlNode"/>
     </types>
-    <types specificName="CREATE_LINK_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="CreateLinkAction" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CreateLinkAction.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CreateLinkAction"/>
     </types>
-    <types specificName="CREATE_LINK_OBJECT_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="CreateLinkObjectAction" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CreateLinkObjectAction.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CreateLinkObjectAction"/>
     </types>
-    <types specificName="CREATE_OBJECT_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="CreateObjectAction" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CreateObjectAction.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CreateObjectAction"/>
     </types>
-    <types specificName="CREATION_EVENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="CreationEvent" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CreationEvent.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CreationEvent"/>
     </types>
-    <types specificName="DATA_STORE_NODE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="DataStoreNode" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DataStoreNode.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DataStoreNode"/>
     </types>
-    <types specificName="DATA_TYPE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="DataType" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DataType.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DataType"/>
     </types>
-    <types specificName="DECISION_NODE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="DecisionNode" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DecisionNode.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DecisionNode"/>
     </types>
-    <types specificName="DEPENDENCY" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DependencyEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Dependency" helper="org.eclipse.papyrus.uml.service.types.helper.DependencyEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Dependency"/>
     </types>
-    <types specificName="DEPLOYED_ARTIFACT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="DeployedArtifact" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DeployedArtifact.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DeployedArtifact"/>
     </types>
-    <types specificName="DEPLOYMENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Deployment" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Deployment.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Deployment"/>
     </types>
-    <types specificName="DEPLOYMENT_SPECIFICATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="DeploymentSpecification" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DeploymentSpecification.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DeploymentSpecification"/>
     </types>
-    <types specificName="DEPLOYMENT_TARGET" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="DeploymentTarget" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DeploymentTarget.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DeploymentTarget"/>
     </types>
-    <types specificName="DESTROY_LINK_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="DestroyLinkAction" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DestroyLinkAction.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DestroyLinkAction"/>
     </types>
-    <types specificName="DESTROY_OBJECT_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="DestroyObjectAction" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DestroyObjectAction.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DestroyObjectAction"/>
     </types>
-    <types specificName="DESTRUCTION_EVENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="DestructionEvent" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DestructionEvent.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DestructionEvent"/>
     </types>
-    <types specificName="DEVICE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Device" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Device.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Device"/>
     </types>
-    <types specificName="DIRECTED_RELATIONSHIP" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="DirectedRelationship" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DirectedRelationship.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DirectedRelationship"/>
     </types>
-    <types specificName="DURATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Duration" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Duration.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Duration"/>
     </types>
-    <types specificName="DURATION_CONSTRAINT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="DurationConstraint" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationConstraint.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DurationConstraint"/>
     </types>
-    <types specificName="DURATION_INTERVAL" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="DurationInterval" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationInterval.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DurationInterval"/>
     </types>
-    <types specificName="DURATION_OBSERVATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="DurationObservation" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationObservation.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DurationObservation"/>
     </types>
-    <types specificName="ELEMENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Element" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Element.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Element"/>
     </types>
-    <types specificName="ELEMENT_IMPORT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ElementImport" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ElementImport.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ElementImport"/>
     </types>
-    <types specificName="ENCAPSULATED_CLASSIFIER" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="EncapsulatedClassifier" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/EncapsulatedClassifier.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//EncapsulatedClassifier"/>
     </types>
-    <types specificName="ENUMERATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Enumeration" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Enumeration.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Enumeration"/>
     </types>
-    <types specificName="ENUMERATION_LITERAL" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="EnumerationLiteral" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/EnumerationLiteral.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//EnumerationLiteral"/>
     </types>
-    <types specificName="EVENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Event" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Event.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Event"/>
     </types>
-    <types specificName="EXCEPTION_HANDLER" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ExceptionHandler" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExceptionHandler.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ExceptionHandler"/>
     </types>
-    <types specificName="EXECUTABLE_NODE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ExecutableNode" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExecutableNode.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ExecutableNode"/>
     </types>
-    <types specificName="EXECUTION_ENVIRONMENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ExecutionEnvironment" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExecutionEnvironment.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ExecutionEnvironment"/>
     </types>
-    <types specificName="EXECUTION_EVENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ExecutionEvent" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExecutionEvent.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ExecutionEvent"/>
     </types>
-    <types specificName="EXECUTION_OCCURRENCE_SPECIFICATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ExecutionOccurrenceSpecification" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExecutionOccurrenceSpecification.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ExecutionOccurrenceSpecification"/>
     </types>
-    <types specificName="EXECUTION_SPECIFICATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ExecutionSpecification" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExecutionSpecification.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ExecutionSpecification"/>
     </types>
-    <types specificName="EXPANSION_NODE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ExpansionNode" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExpansionNode.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ExpansionNode"/>
     </types>
-    <types specificName="EXPANSION_REGION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ExpansionRegion" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExpansionRegion.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ExpansionRegion"/>
     </types>
-    <types specificName="EXPRESSION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Expression" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Expression.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Expression"/>
     </types>
-    <types specificName="EXTEND" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Extend" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Extend.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Extend"/>
     </types>
-    <types specificName="EXTENSION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Extension" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Extension.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Extension"/>
     </types>
-    <types specificName="EXTENSION_END" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ExtensionEnd" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExtensionEnd.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ExtensionEnd"/>
     </types>
-    <types specificName="EXTENSION_POINT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ExtensionPoint" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExtensionPoint.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ExtensionPoint"/>
     </types>
-    <types specificName="FEATURE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Feature" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Feature.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Feature"/>
     </types>
-    <types specificName="FINAL_NODE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="FinalNode" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/FinalNode.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//FinalNode"/>
     </types>
-    <types specificName="FINAL_STATE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="FinalState" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/FinalState.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//FinalState"/>
     </types>
-    <types specificName="FLOW_FINAL_NODE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="FlowFinalNode" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/FlowFinalNode.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//FlowFinalNode"/>
     </types>
-    <types specificName="FORK_NODE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ForkNode" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ForkNode.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ForkNode"/>
     </types>
-    <types specificName="FUNCTION_BEHAVIOR" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="FunctionBehavior" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/FunctionBehavior.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//FunctionBehavior"/>
     </types>
-    <types specificName="GATE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Gate" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Gate.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Gate"/>
     </types>
-    <types specificName="GENERALIZATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.GeneralizationEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Generalization"/>
-    </types>
-    <types specificName="GENERALIZATION_SET" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//GeneralizationSet"/>
-    </types>
-    <types specificName="GENERAL_ORDERING" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="GeneralOrdering" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/GeneralOrdering.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//GeneralOrdering"/>
     </types>
-    <types specificName="IMAGE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Generalization" helper="org.eclipse.papyrus.uml.service.types.helper.GeneralizationEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Generalization"/>
+    </types>
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="GeneralizationSet" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/GeneralizationSet.gif">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//GeneralizationSet"/>
+    </types>
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Image" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Image.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Image"/>
     </types>
-    <types specificName="INCLUDE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Include" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Include.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Include"/>
     </types>
-    <types specificName="INFORMATION_FLOW" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="InformationFlow" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InformationFlow.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InformationFlow"/>
     </types>
-    <types specificName="INFORMATION_ITEM" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="InformationItem" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InformationItem.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InformationItem"/>
     </types>
-    <types specificName="INITIAL_NODE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="InitialNode" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InitialNode.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InitialNode"/>
     </types>
-    <types specificName="INPUT_PIN" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="InputPin" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InputPin.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InputPin"/>
     </types>
-    <types specificName="INSTANCE_SPECIFICATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="InstanceSpecification" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InstanceSpecification.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InstanceSpecification"/>
     </types>
-    <types specificName="INSTANCE_VALUE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="InstanceValue" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InstanceValue.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InstanceValue"/>
     </types>
-    <types specificName="INTERACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Interaction" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interaction.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction"/>
     </types>
-    <types specificName="INTERACTION_CONSTRAINT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="InteractionConstraint" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionConstraint.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InteractionConstraint"/>
     </types>
-    <types specificName="INTERACTION_FRAGMENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="InteractionFragment" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionFragment.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InteractionFragment"/>
     </types>
-    <types specificName="INTERACTION_OPERAND" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="InteractionOperand" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionOperand.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InteractionOperand"/>
     </types>
-    <types specificName="INTERACTION_USE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="InteractionUse" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionUse.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InteractionUse"/>
     </types>
-    <types specificName="INTERFACE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Interface" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interface.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interface"/>
     </types>
-    <types specificName="INTERFACE_REALIZATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.InterfaceRealizationEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="InterfaceRealization" helper="org.eclipse.papyrus.uml.service.types.helper.InterfaceRealizationEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InterfaceRealization.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InterfaceRealization"/>
     </types>
-    <types specificName="INTERRUPTIBLE_ACTIVITY_REGION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="InterruptibleActivityRegion" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InterruptibleActivityRegion.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InterruptibleActivityRegion"/>
     </types>
-    <types specificName="INTERVAL" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Interval" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interval.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interval"/>
     </types>
-    <types specificName="INTERVAL_CONSTRAINT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="IntervalConstraint" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/IntervalConstraint.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//IntervalConstraint"/>
     </types>
-    <types specificName="INVOCATION_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="InvocationAction" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InvocationAction.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InvocationAction"/>
     </types>
-    <types specificName="JOIN_NODE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="JoinNode" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/JoinNode.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//JoinNode"/>
     </types>
-    <types specificName="LIFELINE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Lifeline" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Lifeline.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Lifeline"/>
     </types>
-    <types specificName="LINK_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="LinkAction" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LinkAction.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LinkAction"/>
     </types>
-    <types specificName="LINK_END_CREATION_DATA" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="LinkEndCreationData" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LinkEndCreationData.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LinkEndCreationData"/>
     </types>
-    <types specificName="LINK_END_DATA" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="LinkEndData" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LinkEndData.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LinkEndData"/>
     </types>
-    <types specificName="LINK_END_DESTRUCTION_DATA" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="LinkEndDestructionData" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LinkEndDestructionData.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LinkEndDestructionData"/>
     </types>
-    <types specificName="LITERAL_BOOLEAN" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="LiteralBoolean" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LiteralBoolean.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LiteralBoolean"/>
     </types>
-    <types specificName="LITERAL_INTEGER" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="LiteralInteger" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LiteralInteger.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LiteralInteger"/>
     </types>
-    <types specificName="LITERAL_NULL" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="LiteralNull" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LiteralNull.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LiteralNull"/>
     </types>
-    <types specificName="LITERAL_SPECIFICATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="LiteralSpecification" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LiteralSpecification.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LiteralSpecification"/>
     </types>
-    <types specificName="LITERAL_STRING" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="LiteralString" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LiteralString.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LiteralString"/>
     </types>
-    <types specificName="LITERAL_UNLIMITED_NATURAL" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="LiteralUnlimitedNatural" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LiteralUnlimitedNatural.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LiteralUnlimitedNatural"/>
     </types>
-    <types specificName="LOOP_NODE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="LoopNode" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LoopNode.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LoopNode"/>
     </types>
-    <types specificName="MANIFESTATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Manifestation" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Manifestation.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Manifestation"/>
     </types>
-    <types specificName="MERGE_NODE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="MergeNode" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/MergeNode.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//MergeNode"/>
     </types>
-    <types specificName="MESSAGE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.MessageEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Message" helper="org.eclipse.papyrus.uml.service.types.helper.MessageEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Message"/>
     </types>
-    <types specificName="MESSAGE_END" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="MessageEnd" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/MessageEnd.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//MessageEnd"/>
     </types>
-    <types specificName="MESSAGE_EVENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="MessageEvent" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/MessageEvent.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//MessageEvent"/>
     </types>
-    <types specificName="MESSAGE_OCCURRENCE_SPECIFICATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="MessageOccurrenceSpecification" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/MessageOccurrenceSpecification.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//MessageOccurrenceSpecification"/>
     </types>
-    <types specificName="MODEL" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Model" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Model.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Model"/>
     </types>
-    <types specificName="MULTIPLICITY_ELEMENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="MultiplicityElement" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/MultiplicityElement.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//MultiplicityElement"/>
     </types>
-    <types specificName="NAMED_ELEMENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="NamedElement" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/NamedElement.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement"/>
     </types>
-    <types specificName="NAMESPACE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Namespace" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Namespace.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Namespace"/>
     </types>
-    <types specificName="NODE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Node" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Node.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Node"/>
     </types>
-    <types specificName="OBJECT_FLOW" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ObjectFlow" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ObjectFlow.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ObjectFlow"/>
     </types>
-    <types specificName="OBJECT_NODE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ObjectNode" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ObjectNode.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ObjectNode"/>
     </types>
-    <types specificName="OBSERVATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Observation" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Observation.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Observation"/>
     </types>
-    <types specificName="OCCURRENCE_SPECIFICATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="OccurrenceSpecification" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OccurrenceSpecification.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//OccurrenceSpecification"/>
     </types>
-    <types specificName="OPAQUE_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="OpaqueAction" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OpaqueAction.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//OpaqueAction"/>
     </types>
-    <types specificName="OPAQUE_BEHAVIOR" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="OpaqueBehavior" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OpaqueBehavior.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//OpaqueBehavior"/>
     </types>
-    <types specificName="OPAQUE_EXPRESSION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="OpaqueExpression" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OpaqueExpression.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//OpaqueExpression"/>
     </types>
-    <types specificName="OPERATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Operation" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Operation.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Operation"/>
     </types>
-    <types specificName="OPERATION_TEMPLATE_PARAMETER" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="OperationTemplateParameter" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OperationTemplateParameter.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//OperationTemplateParameter"/>
     </types>
-    <types specificName="OUTPUT_PIN" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="OutputPin" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OutputPin.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//OutputPin"/>
     </types>
-    <types specificName="PACKAGE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Package" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Package"/>
     </types>
-    <types specificName="PACKAGEABLE_ELEMENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//PackageableElement"/>
-    </types>
-    <types specificName="PACKAGE_IMPORT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="PackageImport" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PackageImport.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//PackageImport"/>
     </types>
-    <types specificName="PACKAGE_MERGE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="PackageMerge" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PackageMerge.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//PackageMerge"/>
     </types>
-    <types specificName="PARAMETER" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="PackageableElement" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PackageableElement.gif">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//PackageableElement"/>
+    </types>
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Parameter" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Parameter.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Parameter"/>
     </types>
-    <types specificName="PARAMETERABLE_ELEMENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ParameterableElement"/>
-    </types>
-    <types specificName="PARAMETER_SET" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ParameterSet" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ParameterSet.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ParameterSet"/>
     </types>
-    <types specificName="PART_DECOMPOSITION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ParameterableElement" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ParameterableElement.gif">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ParameterableElement"/>
+    </types>
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="PartDecomposition" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PartDecomposition.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//PartDecomposition"/>
     </types>
-    <types specificName="PIN" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Pin" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pin.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Pin"/>
     </types>
-    <types specificName="PORT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.PortEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Port" helper="org.eclipse.papyrus.uml.service.types.helper.PortEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Port.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Port"/>
     </types>
-    <types specificName="PRIMITIVE_TYPE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="PrimitiveType" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PrimitiveType.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//PrimitiveType"/>
     </types>
-    <types specificName="PROFILE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Profile" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Profile.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Profile"/>
     </types>
-    <types specificName="PROFILE_APPLICATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ProfileApplication" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ProfileApplication.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ProfileApplication"/>
     </types>
-    <types specificName="PROPERTY" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Property" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Property"/>
     </types>
-    <types specificName="PROTOCOL_CONFORMANCE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ProtocolConformance" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ProtocolConformance.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ProtocolConformance"/>
     </types>
-    <types specificName="PROTOCOL_STATE_MACHINE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ProtocolStateMachine" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ProtocolStateMachine.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ProtocolStateMachine"/>
     </types>
-    <types specificName="PROTOCOL_TRANSITION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ProtocolTransition" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ProtocolTransition.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ProtocolTransition"/>
     </types>
-    <types specificName="PSEUDOSTATE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Pseudostate" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Pseudostate"/>
     </types>
-    <types specificName="QUALIFIER_VALUE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="QualifierValue" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/QualifierValue.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//QualifierValue"/>
     </types>
-    <types specificName="RAISE_EXCEPTION_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="RaiseExceptionAction" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/RaiseExceptionAction.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//RaiseExceptionAction"/>
     </types>
-    <types specificName="READ_EXTENT_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ReadExtentAction" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadExtentAction.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReadExtentAction"/>
     </types>
-    <types specificName="READ_IS_CLASSIFIED_OBJECT_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ReadIsClassifiedObjectAction" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadIsClassifiedObjectAction.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReadIsClassifiedObjectAction"/>
     </types>
-    <types specificName="READ_LINK_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ReadLinkAction" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadLinkAction.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReadLinkAction"/>
     </types>
-    <types specificName="READ_LINK_OBJECT_END_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ReadLinkObjectEndAction" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadLinkObjectEndAction.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReadLinkObjectEndAction"/>
     </types>
-    <types specificName="READ_LINK_OBJECT_END_QUALIFIER_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ReadLinkObjectEndQualifierAction" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadLinkObjectEndQualifierAction.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReadLinkObjectEndQualifierAction"/>
     </types>
-    <types specificName="READ_SELF_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ReadSelfAction" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadSelfAction.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReadSelfAction"/>
     </types>
-    <types specificName="READ_STRUCTURAL_FEATURE_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ReadStructuralFeatureAction" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadStructuralFeatureAction.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReadStructuralFeatureAction"/>
     </types>
-    <types specificName="READ_VARIABLE_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ReadVariableAction" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadVariableAction.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReadVariableAction"/>
     </types>
-    <types specificName="REALIZATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Realization" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Realization.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Realization"/>
     </types>
-    <types specificName="RECEIVE_OPERATION_EVENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ReceiveOperationEvent" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReceiveOperationEvent.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReceiveOperationEvent"/>
     </types>
-    <types specificName="RECEIVE_SIGNAL_EVENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ReceiveSignalEvent" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReceiveSignalEvent.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReceiveSignalEvent"/>
     </types>
-    <types specificName="RECEPTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Reception" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Reception.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Reception"/>
     </types>
-    <types specificName="RECLASSIFY_OBJECT_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ReclassifyObjectAction" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReclassifyObjectAction.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReclassifyObjectAction"/>
     </types>
-    <types specificName="REDEFINABLE_ELEMENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="RedefinableElement" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/RedefinableElement.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//RedefinableElement"/>
     </types>
-    <types specificName="REDEFINABLE_TEMPLATE_SIGNATURE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="RedefinableTemplateSignature" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/RedefinableTemplateSignature.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//RedefinableTemplateSignature"/>
     </types>
-    <types specificName="REDUCE_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ReduceAction" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReduceAction.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReduceAction"/>
     </types>
-    <types specificName="REGION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Region" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Region.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Region"/>
     </types>
-    <types specificName="RELATIONSHIP" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Relationship" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Relationship.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Relationship"/>
     </types>
-    <types specificName="REMOVE_STRUCTURAL_FEATURE_VALUE_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="RemoveStructuralFeatureValueAction" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/RemoveStructuralFeatureValueAction.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//RemoveStructuralFeatureValueAction"/>
     </types>
-    <types specificName="REMOVE_VARIABLE_VALUE_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="RemoveVariableValueAction" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/RemoveVariableValueAction.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//RemoveVariableValueAction"/>
     </types>
-    <types specificName="REPLY_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ReplyAction" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReplyAction.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ReplyAction"/>
     </types>
-    <types specificName="SEND_OBJECT_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="SendObjectAction" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/SendObjectAction.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//SendObjectAction"/>
     </types>
-    <types specificName="SEND_OPERATION_EVENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="SendOperationEvent" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/SendOperationEvent.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//SendOperationEvent"/>
     </types>
-    <types specificName="SEND_SIGNAL_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="SendSignalAction" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/SendSignalAction.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//SendSignalAction"/>
     </types>
-    <types specificName="SEND_SIGNAL_EVENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="SendSignalEvent" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/SendSignalEvent.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//SendSignalEvent"/>
     </types>
-    <types specificName="SEQUENCE_NODE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="SequenceNode" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/SequenceNode.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//SequenceNode"/>
     </types>
-    <types specificName="SIGNAL" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Signal" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Signal.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Signal"/>
     </types>
-    <types specificName="SIGNAL_EVENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="SignalEvent" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/SignalEvent.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//SignalEvent"/>
     </types>
-    <types specificName="SLOT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Slot" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Slot.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Slot"/>
     </types>
-    <types specificName="START_CLASSIFIER_BEHAVIOR_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="StartClassifierBehaviorAction" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StartClassifierBehaviorAction.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//StartClassifierBehaviorAction"/>
     </types>
-    <types specificName="START_OBJECT_BEHAVIOR_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="StartObjectBehaviorAction" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StartObjectBehaviorAction.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//StartObjectBehaviorAction"/>
     </types>
-    <types specificName="STATE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="State" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/State.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//State"/>
     </types>
-    <types specificName="STATE_INVARIANT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="StateInvariant" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StateInvariant.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//StateInvariant"/>
     </types>
-    <types specificName="STATE_MACHINE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="StateMachine" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StateMachine.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//StateMachine"/>
     </types>
-    <types specificName="STEREOTYPE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Stereotype" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Stereotype.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Stereotype"/>
     </types>
-    <types specificName="STRING_EXPRESSION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="StringExpression" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StringExpression.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//StringExpression"/>
     </types>
-    <types specificName="STRUCTURAL_FEATURE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="StructuralFeature" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StructuralFeature.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//StructuralFeature"/>
     </types>
-    <types specificName="STRUCTURAL_FEATURE_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="StructuralFeatureAction" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StructuralFeatureAction.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//StructuralFeatureAction"/>
     </types>
-    <types specificName="STRUCTURED_ACTIVITY_NODE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="StructuredActivityNode" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StructuredActivityNode.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//StructuredActivityNode"/>
     </types>
-    <types specificName="STRUCTURED_CLASSIFIER" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="StructuredClassifier" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StructuredClassifier.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//StructuredClassifier"/>
     </types>
-    <types specificName="SUBSTITUTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Substitution" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Substitution.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Substitution"/>
     </types>
-    <types specificName="TEMPLATEABLE_ELEMENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//TemplateableElement"/>
-    </types>
-    <types specificName="TEMPLATE_BINDING" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="TemplateBinding" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateBinding.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//TemplateBinding"/>
     </types>
-    <types specificName="TEMPLATE_PARAMETER" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="TemplateParameter" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateParameter.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//TemplateParameter"/>
     </types>
-    <types specificName="TEMPLATE_PARAMETER_SUBSTITUTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="TemplateParameterSubstitution" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateParameterSubstitution.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//TemplateParameterSubstitution"/>
     </types>
-    <types specificName="TEMPLATE_SIGNATURE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="TemplateSignature" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateSignature.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//TemplateSignature"/>
     </types>
-    <types specificName="TEST_IDENTITY_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="TemplateableElement" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateableElement.gif">
+      <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//TemplateableElement"/>
+    </types>
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="TestIdentityAction" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TestIdentityAction.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//TestIdentityAction"/>
     </types>
-    <types specificName="TIME_CONSTRAINT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="TimeConstraint" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeConstraint.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//TimeConstraint"/>
     </types>
-    <types specificName="TIME_EVENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="TimeEvent" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeEvent.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//TimeEvent"/>
     </types>
-    <types specificName="TIME_EXPRESSION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="TimeExpression" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeExpression.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//TimeExpression"/>
     </types>
-    <types specificName="TIME_INTERVAL" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="TimeInterval" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeInterval.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//TimeInterval"/>
     </types>
-    <types specificName="TIME_OBSERVATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="TimeObservation" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeObservation.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//TimeObservation"/>
     </types>
-    <types specificName="TRANSITION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Transition" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Transition.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Transition"/>
     </types>
-    <types specificName="TRIGGER" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Trigger" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Trigger.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Trigger"/>
     </types>
-    <types specificName="TYPE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Type" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Type.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Type"/>
     </types>
-    <types specificName="TYPED_ELEMENT" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="TypedElement" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TypedElement.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//TypedElement"/>
     </types>
-    <types specificName="UNMARSHALL_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="UnmarshallAction" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/UnmarshallAction.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//UnmarshallAction"/>
     </types>
-    <types specificName="USAGE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.UsageEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Usage" helper="org.eclipse.papyrus.uml.service.types.helper.UsageEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Usage.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Usage"/>
     </types>
-    <types specificName="USE_CASE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="UseCase" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/UseCase.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//UseCase"/>
     </types>
-    <types specificName="VALUE_PIN" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ValuePin" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ValuePin.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ValuePin"/>
     </types>
-    <types specificName="VALUE_SPECIFICATION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ValueSpecification" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ValueSpecification.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ValueSpecification"/>
     </types>
-    <types specificName="VALUE_SPECIFICATION_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="ValueSpecificationAction" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ValueSpecificationAction.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ValueSpecificationAction"/>
     </types>
-    <types specificName="VARIABLE" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Variable" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Variable.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Variable"/>
     </types>
-    <types specificName="VARIABLE_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="VariableAction" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/VariableAction.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//VariableAction"/>
     </types>
-    <types specificName="VERTEX" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="Vertex" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Vertex.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Vertex"/>
     </types>
-    <types specificName="WRITE_LINK_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="WriteLinkAction" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/WriteLinkAction.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//WriteLinkAction"/>
     </types>
-    <types specificName="WRITE_STRUCTURAL_FEATURE_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="WriteStructuralFeatureAction" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/WriteStructuralFeatureAction.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//WriteStructuralFeatureAction"/>
     </types>
-    <types specificName="WRITE_VARIABLE_ACTION" edithelper_EditHelperAdvicePath="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+    <types xsi:type="domaincontextcodegen:MetaClassType" name="WriteVariableAction" helper="org.eclipse.papyrus.uml.service.types.helper.DefaultUMLEditHelper" icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/WriteVariableAction.gif">
       <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//WriteVariableAction"/>
     </types>
   </elementTypes>
-  <genHandlers handlerPackage="org.eclipse.papyrus.uml.modelexplorer.handler" superClass="CreateCommandHandler" superClassPackage="org.eclipse.papyrus.uml.modelexplorer.handler" elementTypeEnumerator="UMLElementTypes" elementTypeEnumeratorPackage="org.eclipse.papyrus.uml.service.types.element"/>
+  <advices adviceID="org.eclipse.papyrus.uml.advice.Classifier" ref="//@elementTypes/@types.32" advicePath="org.eclipse.papyrus.uml.service.types.helper.advice.ClassifierHelperAdvice" inheritance="all"/>
+  <advices adviceID="org.eclipse.papyrus.uml.advice.Collaboration" ref="//@elementTypes/@types.38" advicePath="org.eclipse.papyrus.uml.service.types.helper.advice.CollaborationHelperAdvice"/>
+  <advices adviceID="org.eclipse.papyrus.uml.advice.CollaborationUse" ref="//@elementTypes/@types.39" advicePath="org.eclipse.papyrus.uml.service.types.helper.advice.CollaborationUseHelperAdvice"/>
+  <advices adviceID="org.eclipse.papyrus.uml.advice.ConnectorEnd" ref="//@elementTypes/@types.50" advicePath="org.eclipse.papyrus.uml.service.types.helper.advice.ConnectorEndHelperAdvice"/>
+  <advices adviceID="org.eclipse.papyrus.uml.advice.DestructionEvent" ref="//@elementTypes/@types.70" advicePath="org.eclipse.papyrus.uml.service.types.helper.advice.DestructionEventHelperAdvice" inheritance="all"/>
+  <advices adviceID="org.eclipse.papyrus.uml.advice.ElementUnapplyStereotype" ref="//@elementTypes/@types.77" advicePath="org.eclipse.papyrus.uml.service.types.helper.advice.ElementUnapplyStereotypeHelperAdvice" inheritance="all"/>
+  <advices adviceID="org.eclipse.papyrus.uml.advice.ExecutionSpecification" ref="//@elementTypes/@types.88" advicePath="org.eclipse.papyrus.uml.service.types.helper.advice.ExecutionSpecificationHelperAdvice" inheritance="all"/>
+  <advices adviceID="org.eclipse.papyrus.uml.advice.Generalization" ref="//@elementTypes/@types.104" advicePath="org.eclipse.papyrus.uml.service.types.helper.advice.GeneralizationHelperAdvice"/>
+  <advices adviceID="org.eclipse.papyrus.uml.advice.Lifeline" ref="//@elementTypes/@types.126" advicePath="org.eclipse.papyrus.uml.service.types.helper.advice.LifelineHelperAdvice" inheritance="all"/>
+  <advices adviceID="org.eclipse.papyrus.uml.advice.Message" ref="//@elementTypes/@types.140" advicePath="org.eclipse.papyrus.uml.service.types.helper.advice.MessageHelperAdvice" inheritance="all"/>
+  <advices adviceID="org.eclipse.papyrus.uml.advice.MessageEnd" ref="//@elementTypes/@types.141" advicePath="org.eclipse.papyrus.uml.service.types.helper.advice.MessageEndHelperAdvice" inheritance="all"/>
+  <advices adviceID="org.eclipse.papyrus.uml.advice.NameElementInitializer" ref="//@elementTypes/@types.146" advicePath="org.eclipse.papyrus.uml.service.types.helper.advice.NamedElementInitializerHelperAdvice" inheritance="all"/>
+  <advices adviceID="org.eclipse.papyrus.uml.advice.OccurrenceSpecification" ref="//@elementTypes/@types.152" advicePath="org.eclipse.papyrus.uml.service.types.helper.advice.OccurrenceSpecificationHelperAdvice" inheritance="all"/>
+  <advices adviceID="org.eclipse.papyrus.uml.advice.PartDecomposition" ref="//@elementTypes/@types.166" advicePath="org.eclipse.papyrus.uml.service.types.helper.advice.PartDecompositionHelperAdvice"/>
+  <advices adviceID="org.eclipse.papyrus.uml.advice.Property" ref="//@elementTypes/@types.172" advicePath="org.eclipse.papyrus.uml.service.types.helper.advice.PropertyHelperAdvice" inheritance="all"/>
+  <bindings clientContextID="org.eclipse.papyrus.service.edit.TypeContext">
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" pattern="org.eclipse.papyrus.uml.*"/>
+    <bindings xsi:type="domaincontextcodegen:AdviceBinding" ref="//@advices.0"/>
+    <bindings xsi:type="domaincontextcodegen:AdviceBinding" ref="//@advices.1"/>
+    <bindings xsi:type="domaincontextcodegen:AdviceBinding" ref="//@advices.2"/>
+    <bindings xsi:type="domaincontextcodegen:AdviceBinding" ref="//@advices.3"/>
+    <bindings xsi:type="domaincontextcodegen:AdviceBinding" ref="//@advices.4"/>
+    <bindings xsi:type="domaincontextcodegen:AdviceBinding" ref="//@advices.5"/>
+    <bindings xsi:type="domaincontextcodegen:AdviceBinding" ref="//@advices.6"/>
+    <bindings xsi:type="domaincontextcodegen:AdviceBinding" ref="//@advices.7"/>
+    <bindings xsi:type="domaincontextcodegen:AdviceBinding" ref="//@advices.8"/>
+    <bindings xsi:type="domaincontextcodegen:AdviceBinding" ref="//@advices.9"/>
+    <bindings xsi:type="domaincontextcodegen:AdviceBinding" ref="//@advices.10"/>
+    <bindings xsi:type="domaincontextcodegen:AdviceBinding" ref="//@advices.11"/>
+    <bindings xsi:type="domaincontextcodegen:AdviceBinding" ref="//@advices.12"/>
+    <bindings xsi:type="domaincontextcodegen:AdviceBinding" ref="//@advices.13"/>
+    <bindings xsi:type="domaincontextcodegen:AdviceBinding" ref="//@advices.14"/>
+  </bindings>
+  <genHandlers handlerPackage="org.eclipse.papyrus.uml.modelexplorer.handler" superClass="CreateCommandHandler" superClassPackage="org.eclipse.papyrus.uml.modelexplorer.handler" elementTypeEnumerator="UMLElementTypes" elementTypeEnumeratorPackage="org.eclipse.papyrus.uml.service.types.element" visibleCreateChildHandlers="//@elementTypes/@types.1 //@elementTypes/@types.2 //@elementTypes/@types.4 //@elementTypes/@types.5 //@elementTypes/@types.6 //@elementTypes/@types.8 //@elementTypes/@types.11 //@elementTypes/@types.12 //@elementTypes/@types.13 //@elementTypes/@types.14 //@elementTypes/@types.15 //@elementTypes/@types.16 //@elementTypes/@types.17 //@elementTypes/@types.21 //@elementTypes/@types.24 //@elementTypes/@types.26 //@elementTypes/@types.27 //@elementTypes/@types.28 //@elementTypes/@types.29 //@elementTypes/@types.30 //@elementTypes/@types.31 //@elementTypes/@types.33 //@elementTypes/@types.34 //@elementTypes/@types.35 //@elementTypes/@types.36 //@elementTypes/@types.37 //@elementTypes/@types.38 //@elementTypes/@types.39 //@elementTypes/@types.40 //@elementTypes/@types.41 //@elementTypes/@types.43 //@elementTypes/@types.45 //@elementTypes/@types.47 //@elementTypes/@types.51 //@elementTypes/@types.52 //@elementTypes/@types.53 //@elementTypes/@types.54 //@elementTypes/@types.56 //@elementTypes/@types.57 //@elementTypes/@types.58 //@elementTypes/@types.59 //@elementTypes/@types.60 //@elementTypes/@types.61 //@elementTypes/@types.62 //@elementTypes/@types.66 //@elementTypes/@types.68 //@elementTypes/@types.69 //@elementTypes/@types.70 //@elementTypes/@types.71 //@elementTypes/@types.73 //@elementTypes/@types.74 //@elementTypes/@types.75 //@elementTypes/@types.76 //@elementTypes/@types.78 //@elementTypes/@types.80 //@elementTypes/@types.81 //@elementTypes/@types.83 //@elementTypes/@types.85 //@elementTypes/@types.86 //@elementTypes/@types.87 //@elementTypes/@types.89 //@elementTypes/@types.90 //@elementTypes/@types.91 //@elementTypes/@types.95 //@elementTypes/@types.98 //@elementTypes/@types.99 //@elementTypes/@types.100 //@elementTypes/@types.101 //@elementTypes/@types.102 //@elementTypes/@types.103 //@elementTypes/@types.106 //@elementTypes/@types.109 //@elementTypes/@types.110 //@elementTypes/@types.111 //@elementTypes/@types.112 //@elementTypes/@types.113 //@elementTypes/@types.114 //@elementTypes/@types.115 //@elementTypes/@types.117 //@elementTypes/@types.118 //@elementTypes/@types.119 //@elementTypes/@types.121 //@elementTypes/@types.122 //@elementTypes/@types.123 //@elementTypes/@types.125 //@elementTypes/@types.126 //@elementTypes/@types.128 //@elementTypes/@types.129 //@elementTypes/@types.130 //@elementTypes/@types.131 //@elementTypes/@types.132 //@elementTypes/@types.133 //@elementTypes/@types.135 //@elementTypes/@types.136 //@elementTypes/@types.137 //@elementTypes/@types.139 //@elementTypes/@types.144 //@elementTypes/@types.148 //@elementTypes/@types.149 //@elementTypes/@types.152 //@elementTypes/@types.153 //@elementTypes/@types.154 //@elementTypes/@types.155 //@elementTypes/@types.156 //@elementTypes/@types.157 //@elementTypes/@types.158 //@elementTypes/@types.159 //@elementTypes/@types.160 //@elementTypes/@types.163 //@elementTypes/@types.164 //@elementTypes/@types.166 //@elementTypes/@types.167 //@elementTypes/@types.168 //@elementTypes/@types.169 //@elementTypes/@types.170 //@elementTypes/@types.172 //@elementTypes/@types.174 //@elementTypes/@types.175 //@elementTypes/@types.177 //@elementTypes/@types.178 //@elementTypes/@types.179 //@elementTypes/@types.180 //@elementTypes/@types.181 //@elementTypes/@types.182 //@elementTypes/@types.183 //@elementTypes/@types.184 //@elementTypes/@types.185 //@elementTypes/@types.186 //@elementTypes/@types.188 //@elementTypes/@types.189 //@elementTypes/@types.190 //@elementTypes/@types.191 //@elementTypes/@types.193 //@elementTypes/@types.194 //@elementTypes/@types.195 //@elementTypes/@types.197 //@elementTypes/@types.198 //@elementTypes/@types.199 //@elementTypes/@types.200 //@elementTypes/@types.201 //@elementTypes/@types.202 //@elementTypes/@types.203 //@elementTypes/@types.204 //@elementTypes/@types.205 //@elementTypes/@types.206 //@elementTypes/@types.207 //@elementTypes/@types.208 //@elementTypes/@types.209 //@elementTypes/@types.210 //@elementTypes/@types.211 //@elementTypes/@types.212 //@elementTypes/@types.213 //@elementTypes/@types.214 //@elementTypes/@types.217 //@elementTypes/@types.220 //@elementTypes/@types.221 //@elementTypes/@types.222 //@elementTypes/@types.223 //@elementTypes/@types.225 //@elementTypes/@types.226 //@elementTypes/@types.227 //@elementTypes/@types.228 //@elementTypes/@types.229 //@elementTypes/@types.230 //@elementTypes/@types.232 //@elementTypes/@types.235 //@elementTypes/@types.237 //@elementTypes/@types.238 //@elementTypes/@types.240 //@elementTypes/@types.241" createChildMenuLocationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.createchild"/>
 </domaincontextcodegen:DomainContext>

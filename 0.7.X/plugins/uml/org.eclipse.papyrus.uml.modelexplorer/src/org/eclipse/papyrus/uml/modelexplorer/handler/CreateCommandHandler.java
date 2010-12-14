@@ -22,6 +22,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.service.edit.service.IElementEditService;
+import org.eclipse.papyrus.uml.modelexplorer.filter.CommandFilter;
 
 /**
  * Default handler for Create command used in the ModelExplorer contextual ("Create new child") menu.

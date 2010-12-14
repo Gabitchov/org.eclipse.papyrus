@@ -677,6 +677,13 @@
 		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.GateHandler">
 	</command>
 	
+	<!-- Creation command for GeneralOrdering -->
+	<command categoryId="org.eclipse.papyrus.editor.category"
+		id="org.eclipse.papyrus.uml.modelexplorer.GeneralOrderingCreateCommand"
+		name="Create a new GeneralOrdering" description="Create a new GeneralOrdering"
+		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.GeneralOrderingHandler">
+	</command>
+	
 	<!-- Creation command for Generalization -->
 	<command categoryId="org.eclipse.papyrus.editor.category"
 		id="org.eclipse.papyrus.uml.modelexplorer.GeneralizationCreateCommand"
@@ -689,13 +696,6 @@
 		id="org.eclipse.papyrus.uml.modelexplorer.GeneralizationSetCreateCommand"
 		name="Create a new GeneralizationSet" description="Create a new GeneralizationSet"
 		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.GeneralizationSetHandler">
-	</command>
-	
-	<!-- Creation command for GeneralOrdering -->
-	<command categoryId="org.eclipse.papyrus.editor.category"
-		id="org.eclipse.papyrus.uml.modelexplorer.GeneralOrderingCreateCommand"
-		name="Create a new GeneralOrdering" description="Create a new GeneralOrdering"
-		defaultHandler="org.eclipse.papyrus.uml.modelexplorer.handler.GeneralOrderingHandler">
 	</command>
 	
 	<!-- Creation command for Image -->
@@ -1502,8 +1502,7 @@
 <!-- UI Menu declaration for creation commands -->
 <extension point="org.eclipse.ui.menus">
 
-	<menuContribution locationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.createchild"
-		allPopups="false">
+	<menuContribution locationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.createchild" allPopups="false">
 	
 		<!-- Creation menu action for Abstraction -->
 		<command commandId="org.eclipse.papyrus.uml.modelexplorer.AbstractionCreateCommand"
@@ -2079,6 +2078,13 @@
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
+		<!-- Creation menu action for GeneralOrdering -->
+		<command commandId="org.eclipse.papyrus.uml.modelexplorer.GeneralOrderingCreateCommand"
+			label="Create a new GeneralOrdering" tooltip="Create a new GeneralOrdering" style="push"		
+			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/GeneralOrdering.gif" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
 		<!-- Creation menu action for Generalization -->
 		<command commandId="org.eclipse.papyrus.uml.modelexplorer.GeneralizationCreateCommand"
 			label="Create a new Generalization" tooltip="Create a new Generalization" style="push"		
@@ -2090,13 +2096,6 @@
 		<command commandId="org.eclipse.papyrus.uml.modelexplorer.GeneralizationSetCreateCommand"
 			label="Create a new GeneralizationSet" tooltip="Create a new GeneralizationSet" style="push"		
 			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/GeneralizationSet.gif" >
-			<visibleWhen checkEnabled="true"/>
-		</command>
-		
-		<!-- Creation menu action for GeneralOrdering -->
-		<command commandId="org.eclipse.papyrus.uml.modelexplorer.GeneralOrderingCreateCommand"
-			label="Create a new GeneralOrdering" tooltip="Create a new GeneralOrdering" style="push"		
-			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/GeneralOrdering.gif" >
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		

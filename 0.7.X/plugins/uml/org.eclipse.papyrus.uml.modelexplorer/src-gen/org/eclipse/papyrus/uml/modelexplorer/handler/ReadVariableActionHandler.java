@@ -8,8 +8,9 @@ import org.eclipse.papyrus.uml.modelexplorer.handler.CreateCommandHandler;
 /**
  * <pre>
  * Command handler for ReadVariableAction creation
- *
+ * 
  * </pre>
+ * 
  * @generated
  */
 public class ReadVariableActionHandler extends CreateCommandHandler implements IHandler {
@@ -17,14 +18,14 @@ public class ReadVariableActionHandler extends CreateCommandHandler implements I
 	/**
 	 * <pre>
 	 * @see org.eclipse.papyrus.uml.service.creation.handler.CreateHandler#getElementTypeToCreate()
-	 *
+	 * 
 	 * @return the IElementType this handler is supposed to create
-	 *
+	 * 
 	 * </pre>
+	 * 
 	 * @generated
 	 */
 	protected IElementType getElementTypeToCreate() {
 		return UMLElementTypes.READ_VARIABLE_ACTION;
 	}
 }
-
