@@ -78,8 +78,11 @@ public class CustomAdapterFactoryContentProvider extends AdapterFactoryContentPr
 		Iterator iter = iPageMngr.allPages().iterator();
 		while(iter.hasNext()) {
 			Diagram diag = (Diagram)iter.next();
-			if(diag.getElement().equals(object)) {
-				result.add(diag);
+			//sometimes diag can loose the link to the element, so we need to test it.
+			if(diag.getElement()!=null){
+				if(diag.getElement().equals(object)) {
+					result.add(diag);
+				}
 			}
 		}
 		return result;

@@ -105,8 +105,8 @@ public class ContainmentHelper extends ElementHelper {
 	 */
 	public Command getCreateContainmentCommand(CreateConnectionViewRequest createConnectionViewRequest, Command command) {
 		CompositeCommand compoundCommand = new CompositeCommand(CREATE_CONTAINMENT);
-		
-		
+
+
 		IGraphicalEditPart sourceEditPart = (GraphicalEditPart)createConnectionViewRequest.getSourceEditPart();
 		View sourceView = (View)sourceEditPart.getModel();
 		EditPartViewer editPartViewer = (EditPartViewer)sourceEditPart.getViewer();
@@ -126,12 +126,14 @@ public class ContainmentHelper extends ElementHelper {
 			circleAdapter = new SemanticAdapter(null, sourceEditPart.getNotationView());
 			sourceView = (View)sourceEditPart.getParent().getModel();
 		} else {
-			
+
 			//detect if we draw a containment link between two class or packages
 			circleCommand = new ContainmentCircleViewCreateCommand(createConnectionViewRequest, getEditingDomain(), sourceView, editPartViewer, preferencesHint);
 			compoundCommand.add(circleCommand);
-			SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), CONTAINMENT_CIRCLE_POSITION, (IAdaptable)circleCommand.getCommandResult().getReturnValue(), createConnectionViewRequest.getLocation());
-			compoundCommand.add(setBoundsCommand);
+			if( createConnectionViewRequest.getLocation()!=null){
+				SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), CONTAINMENT_CIRCLE_POSITION, (IAdaptable)circleCommand.getCommandResult().getReturnValue(), createConnectionViewRequest.getLocation());
+				compoundCommand.add(setBoundsCommand);
+			}
 
 		}
 
@@ -143,7 +145,7 @@ public class ContainmentHelper extends ElementHelper {
 		return new ICommandProxy(compoundCommand);
 	}
 
-	
+
 	/**
 	 * Delete all incoming link that go this node
 	 * @param cc a  composite command in which the behavior of deletion
@@ -184,7 +186,7 @@ public class ContainmentHelper extends ElementHelper {
 
 	}
 
-	
+
 
 	/**
 	 * DragDrop the contained class from the modelexplorer to the diagram and from the compartment to the diagram.
@@ -226,13 +228,13 @@ public class ContainmentHelper extends ElementHelper {
 	 * @return the command
 	 */
 	public Command dropElementToDiagram(PackageableElement droppedElement, EditPartViewer viewer, PreferencesHint diagramPreferencesHint, Point location, View containerView) {
-		
+
 		//0 what is the context of this call
 		//- drop from the model explorer
 		//- drop intra diagram form its container to outside of this class
 		// - the edit part of a the dropped element already exist?
 		EditPart droppedElementEditPart = findEditPartFor(viewer.getEditPartRegistry(), droppedElement);
-		
+
 		//Is is contained into a class ?
 		Element owner = (Element)droppedElement.getOwner();
 		//the container editpart is the the class that can contained the dropped element.
@@ -278,14 +280,14 @@ public class ContainmentHelper extends ElementHelper {
 
 	}
 
-	
-/**
- * TO DO: to investigate about the use of this code
- * this method is used to display applied stereotype of the dropped element
- * @param cc the command where the behavior will be add
- * @param droppedElement the dropped element <B> cannot be null</B>
- * @param createdEditPartAdapter a wrapper that contained the created view of the dropped element
- */
+
+	/**
+	 * TO DO: to investigate about the use of this code
+	 * this method is used to display applied stereotype of the dropped element
+	 * @param cc the command where the behavior will be add
+	 * @param droppedElement the dropped element <B> cannot be null</B>
+	 * @param createdEditPartAdapter a wrapper that contained the created view of the dropped element
+	 */
 	protected void addStereotypeLabelToDroppedElement(CompositeCommand cc, PackageableElement droppedElement, IAdaptable createdEditPartAdapter) {
 		if(droppedElement.getAppliedStereotypes().isEmpty()) {
 			return;
@@ -294,8 +296,8 @@ public class ContainmentHelper extends ElementHelper {
 		Iterator<Stereotype> stereotypeAppliedIterator = stereotypeAppliedList.iterator();
 		while(stereotypeAppliedIterator.hasNext()) {
 			Stereotype stereotype = (Stereotype)stereotypeAppliedIterator.next();
-			
-			
+
+
 			String profileApplied = "\"" + stereotype.getProfile() + "\"::";
 			cc.add(new CustomDropAppliedStereotypeCommand(this.editDomain, createdEditPartAdapter, profileApplied, VisualInformationPapyrusConstant.STEREOTYPE_COMPARTMENT_LOCATION));
 		}
