@@ -2884,5 +2884,50 @@
       </activeWhen>
    </handler>
 </extension>
-   
+<!-- The Command to manages the Provided and Required Interfaces for a Port-->
+<extension
+      point="org.eclipse.ui.commands">
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         description="Allows to manage easily provided Interfaces for a Port"
+         id="org.eclipse.papyrus.diagram.composite.command.manage.interfaces"
+         name="Manage Provided Interfaces">
+   </command>
+</extension>
+<!-- The Handler to manages the Provided and Required Interfaces for a Port-->
+<extension
+      point="org.eclipse.ui.handlers">
+   <handler
+         class="org.eclipse.papyrus.diagram.composite.custom.actions.ManageProvidedInterfacesHandler"
+         commandId="org.eclipse.papyrus.diagram.composite.command.manage.interfaces">
+      <activeWhen>
+         <with
+               variable="selection">
+            <iterate>
+               <instanceof
+                     value="org.eclipse.papyrus.diagram.composite.edit.parts.PortEditPart">
+               </instanceof>
+            </iterate>
+         </with>
+      </activeWhen>
+     </handler>         
+</extension>
+<!-- Add the Menu to manages the Provided and Required Interfaces for a Port-->
+<extension
+      point="org.eclipse.ui.menus">
+   <menuContribution
+         allPopups="false"
+         locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu?endof=editMenu">
+      <command
+            commandId="org.eclipse.papyrus.diagram.composite.command.manage.interfaces"
+            icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interface.gif"
+            label="Manage Interfaces"
+            mnemonic="&amp;I"
+            style="push">
+         <visibleWhen
+               checkEnabled="true">
+         </visibleWhen>
+      </command>
+      </menuContribution>
+</extension>
 </plugin>

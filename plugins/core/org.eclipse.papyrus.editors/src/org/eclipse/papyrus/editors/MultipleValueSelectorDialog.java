@@ -204,6 +204,8 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements Sele
 		getShell().layout();
 
 		setResult(new LinkedList<Object>(allElements));
+
+		super.getShell().setImage(Activator.getImage("/icons/papyrus.png"));
 	}
 
 	/**

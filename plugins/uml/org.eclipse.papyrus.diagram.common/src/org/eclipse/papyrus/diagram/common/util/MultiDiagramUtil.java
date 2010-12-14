@@ -156,8 +156,10 @@ public class MultiDiagramUtil {
 		for(EObject child : resource.getContents()) {
 			if(child instanceof Diagram) {
 				Diagram diagram = (Diagram)child;
-				if(element.equals(diagram.getElement())) {
-					diagrams.add(diagram);
+				if(diagram.getElement()!=null){
+					if(element.equals(diagram.getElement())) {
+						diagrams.add(diagram);
+					}
 				}
 			}
 		}
