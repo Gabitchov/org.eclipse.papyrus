@@ -6,7 +6,6 @@
  */
 package org.eclipse.papyrus.domaincontextcodegen.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -58,56 +57,20 @@ public class BindingItemProvider extends ItemProviderAdapter implements IEditing
 		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addAdvicePropertyDescriptor(object);
-			addElementTypePatternPropertyDescriptor(object);
-			addAdviceIDPropertyDescriptor(object);
+			addPatternPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Advice feature.
+	 * This adds a property descriptor for the Pattern feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
-	protected void addAdvicePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Binding_advice_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Binding_advice_feature", "_UI_Binding_type"), DomaincontextcodegenPackage.Literals.BINDING__ADVICE, true, false, true, null, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Element Type Pattern feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected void addElementTypePatternPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Binding_elementTypePattern_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Binding_elementTypePattern_feature", "_UI_Binding_type"), DomaincontextcodegenPackage.Literals.BINDING__ELEMENT_TYPE_PATTERN, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Advice ID feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected void addAdviceIDPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Binding_adviceID_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Binding_adviceID_feature", "_UI_Binding_type"), DomaincontextcodegenPackage.Literals.BINDING__ADVICE_ID, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This returns Binding.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Binding"));
+	protected void addPatternPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Binding_pattern_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Binding_pattern_feature", "_UI_Binding_type"), DomaincontextcodegenPackage.Literals.BINDING__PATTERN, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -119,7 +82,7 @@ public class BindingItemProvider extends ItemProviderAdapter implements IEditing
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Binding)object).getElementTypePattern();
+		String label = ((Binding)object).getPattern();
 		return label == null || label.length() == 0 ? getString("_UI_Binding_type") : getString("_UI_Binding_type") + " " + label;
 	}
 
@@ -136,8 +99,7 @@ public class BindingItemProvider extends ItemProviderAdapter implements IEditing
 		updateChildren(notification);
 
 		switch(notification.getFeatureID(Binding.class)) {
-		case DomaincontextcodegenPackage.BINDING__ELEMENT_TYPE_PATTERN:
-		case DomaincontextcodegenPackage.BINDING__ADVICE_ID:
+		case DomaincontextcodegenPackage.BINDING__PATTERN:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}

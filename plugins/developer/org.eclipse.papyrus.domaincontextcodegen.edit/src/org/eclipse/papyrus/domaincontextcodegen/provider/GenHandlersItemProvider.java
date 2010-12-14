@@ -6,7 +6,6 @@
  */
 package org.eclipse.papyrus.domaincontextcodegen.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -63,6 +62,9 @@ public class GenHandlersItemProvider extends ItemProviderAdapter implements IEdi
 			addSuperClassPackagePropertyDescriptor(object);
 			addElementTypeEnumeratorPropertyDescriptor(object);
 			addElementTypeEnumeratorPackagePropertyDescriptor(object);
+			addVisibleCreateChildHandlersPropertyDescriptor(object);
+			addParentDomainCreateChildPropertyDescriptor(object);
+			addCreateChildMenuLocationURIPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -123,6 +125,39 @@ public class GenHandlersItemProvider extends ItemProviderAdapter implements IEdi
 	}
 
 	/**
+	 * This adds a property descriptor for the Visible Create Child Handlers feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addVisibleCreateChildHandlersPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_GenHandlers_visibleCreateChildHandlers_feature"), getString("_UI_PropertyDescriptor_description", "_UI_GenHandlers_visibleCreateChildHandlers_feature", "_UI_GenHandlers_type"), DomaincontextcodegenPackage.Literals.GEN_HANDLERS__VISIBLE_CREATE_CHILD_HANDLERS, true, false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Parent Domain Create Child feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addParentDomainCreateChildPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_GenHandlers_parentDomainCreateChild_feature"), getString("_UI_PropertyDescriptor_description", "_UI_GenHandlers_parentDomainCreateChild_feature", "_UI_GenHandlers_type"), DomaincontextcodegenPackage.Literals.GEN_HANDLERS__PARENT_DOMAIN_CREATE_CHILD, true, false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Create Child Menu Location URI feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addCreateChildMenuLocationURIPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_GenHandlers_createChildMenuLocationURI_feature"), getString("_UI_PropertyDescriptor_description", "_UI_GenHandlers_createChildMenuLocationURI_feature", "_UI_GenHandlers_type"), DomaincontextcodegenPackage.Literals.GEN_HANDLERS__CREATE_CHILD_MENU_LOCATION_URI, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
 	 * This returns GenHandlers.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -165,6 +200,7 @@ public class GenHandlersItemProvider extends ItemProviderAdapter implements IEdi
 		case DomaincontextcodegenPackage.GEN_HANDLERS__SUPER_CLASS_PACKAGE:
 		case DomaincontextcodegenPackage.GEN_HANDLERS__ELEMENT_TYPE_ENUMERATOR:
 		case DomaincontextcodegenPackage.GEN_HANDLERS__ELEMENT_TYPE_ENUMERATOR_PACKAGE:
+		case DomaincontextcodegenPackage.GEN_HANDLERS__CREATE_CHILD_MENU_LOCATION_URI:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}

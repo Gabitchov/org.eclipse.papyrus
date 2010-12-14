@@ -6,7 +6,6 @@
  */
 package org.eclipse.papyrus.domaincontextcodegen;
 
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -17,189 +16,131 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.papyrus.domaincontextcodegen.ElementType#getMetaClass <em>Meta Class</em>}</li>
- * <li>{@link org.eclipse.papyrus.domaincontextcodegen.ElementType#getSpecificName <em>Specific Name</em>}</li>
- * <li>{@link org.eclipse.papyrus.domaincontextcodegen.ElementType#getEdithelper_EditHelperAdvicePath <em>Edithelper Edit Helper Advice Path</em>}</li>
- * <li>{@link org.eclipse.papyrus.domaincontextcodegen.ElementType#getKind <em>Kind</em>}</li>
- * <li>{@link org.eclipse.papyrus.domaincontextcodegen.ElementType#getSpecializationof <em>Specializationof</em>}</li>
- * <li>{@link org.eclipse.papyrus.domaincontextcodegen.ElementType#getSpecializationIDof <em>Specialization IDof</em>}</li>
+ * <li>{@link org.eclipse.papyrus.domaincontextcodegen.ElementType#getName <em>Name</em>}</li>
+ * <li>{@link org.eclipse.papyrus.domaincontextcodegen.ElementType#getHelper <em>Helper</em>}</li>
+ * <li>{@link org.eclipse.papyrus.domaincontextcodegen.ElementType#getOwner <em>Owner</em>}</li>
+ * <li>{@link org.eclipse.papyrus.domaincontextcodegen.ElementType#getIcon <em>Icon</em>}</li>
  * </ul>
  * </p>
  * 
  * @see org.eclipse.papyrus.domaincontextcodegen.DomaincontextcodegenPackage#getElementType()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface ElementType extends EObject {
 
 	/**
-	 * Returns the value of the '<em><b>Meta Class</b></em>' reference.
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Meta Class</em>' reference isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Name</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
-	 * @return the value of the '<em>Meta Class</em>' reference.
-	 * @see #setMetaClass(EClass)
-	 * @see org.eclipse.papyrus.domaincontextcodegen.DomaincontextcodegenPackage#getElementType_MetaClass()
-	 * @model required="true"
-	 * @generated
-	 */
-	EClass getMetaClass();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.domaincontextcodegen.ElementType#getMetaClass <em>Meta Class</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *        the new value of the '<em>Meta Class</em>' reference.
-	 * @see #getMetaClass()
-	 * @generated
-	 */
-	void setMetaClass(EClass value);
-
-	/**
-	 * Returns the value of the '<em><b>Specific Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Specific Name</em>' attribute isn't clear, there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Specific Name</em>' attribute.
-	 * @see #setSpecificName(String)
-	 * @see org.eclipse.papyrus.domaincontextcodegen.DomaincontextcodegenPackage#getElementType_SpecificName()
+	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #setName(String)
+	 * @see org.eclipse.papyrus.domaincontextcodegen.DomaincontextcodegenPackage#getElementType_Name()
 	 * @model
 	 * @generated
 	 */
-	String getSpecificName();
+	String getName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.domaincontextcodegen.ElementType#getSpecificName <em>Specific Name</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.domaincontextcodegen.ElementType#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @param value
-	 *        the new value of the '<em>Specific Name</em>' attribute.
-	 * @see #getSpecificName()
+	 *        the new value of the '<em>Name</em>' attribute.
+	 * @see #getName()
 	 * @generated
 	 */
-	void setSpecificName(String value);
+	void setName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Edithelper Edit Helper Advice Path</b></em>' attribute.
+	 * Returns the value of the '<em><b>Helper</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Edithelper Edit Helper Advice Path</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Helper</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
-	 * @return the value of the '<em>Edithelper Edit Helper Advice Path</em>' attribute.
-	 * @see #setEdithelper_EditHelperAdvicePath(String)
-	 * @see org.eclipse.papyrus.domaincontextcodegen.DomaincontextcodegenPackage#getElementType_Edithelper_EditHelperAdvicePath()
+	 * @return the value of the '<em>Helper</em>' attribute.
+	 * @see #setHelper(String)
+	 * @see org.eclipse.papyrus.domaincontextcodegen.DomaincontextcodegenPackage#getElementType_Helper()
 	 * @model
 	 * @generated
 	 */
-	String getEdithelper_EditHelperAdvicePath();
+	String getHelper();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.domaincontextcodegen.ElementType#getEdithelper_EditHelperAdvicePath
-	 * <em>Edithelper Edit Helper Advice Path</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.domaincontextcodegen.ElementType#getHelper <em>Helper</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @param value
-	 *        the new value of the '<em>Edithelper Edit Helper Advice Path</em>' attribute.
-	 * @see #getEdithelper_EditHelperAdvicePath()
+	 *        the new value of the '<em>Helper</em>' attribute.
+	 * @see #getHelper()
 	 * @generated
 	 */
-	void setEdithelper_EditHelperAdvicePath(String value);
+	void setHelper(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Kind</b></em>' attribute.
+	 * Returns the value of the '<em><b>Owner</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.domaincontextcodegen.ElementTypes#getTypes <em>Types</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Kind</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Owner</em>' container reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
-	 * @return the value of the '<em>Kind</em>' attribute.
-	 * @see #setKind(String)
-	 * @see org.eclipse.papyrus.domaincontextcodegen.DomaincontextcodegenPackage#getElementType_Kind()
-	 * @model
+	 * @return the value of the '<em>Owner</em>' container reference.
+	 * @see #setOwner(ElementTypes)
+	 * @see org.eclipse.papyrus.domaincontextcodegen.DomaincontextcodegenPackage#getElementType_Owner()
+	 * @see org.eclipse.papyrus.domaincontextcodegen.ElementTypes#getTypes
+	 * @model opposite="types" transient="false"
 	 * @generated
 	 */
-	String getKind();
+	ElementTypes getOwner();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.domaincontextcodegen.ElementType#getKind <em>Kind</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.domaincontextcodegen.ElementType#getOwner <em>Owner</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @param value
-	 *        the new value of the '<em>Kind</em>' attribute.
-	 * @see #getKind()
+	 *        the new value of the '<em>Owner</em>' container reference.
+	 * @see #getOwner()
 	 * @generated
 	 */
-	void setKind(String value);
+	void setOwner(ElementTypes value);
 
 	/**
-	 * Returns the value of the '<em><b>Specializationof</b></em>' reference.
+	 * Returns the value of the '<em><b>Icon</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Specializationof</em>' reference isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Icon</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
-	 * @return the value of the '<em>Specializationof</em>' reference.
-	 * @see #setSpecializationof(ElementType)
-	 * @see org.eclipse.papyrus.domaincontextcodegen.DomaincontextcodegenPackage#getElementType_Specializationof()
+	 * @return the value of the '<em>Icon</em>' attribute.
+	 * @see #setIcon(String)
+	 * @see org.eclipse.papyrus.domaincontextcodegen.DomaincontextcodegenPackage#getElementType_Icon()
 	 * @model
 	 * @generated
 	 */
-	ElementType getSpecializationof();
+	String getIcon();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.domaincontextcodegen.ElementType#getSpecializationof <em>Specializationof</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.domaincontextcodegen.ElementType#getIcon <em>Icon</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @param value
-	 *        the new value of the '<em>Specializationof</em>' reference.
-	 * @see #getSpecializationof()
+	 *        the new value of the '<em>Icon</em>' attribute.
+	 * @see #getIcon()
 	 * @generated
 	 */
-	void setSpecializationof(ElementType value);
-
-	/**
-	 * Returns the value of the '<em><b>Specialization IDof</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Specialization IDof</em>' attribute isn't clear, there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Specialization IDof</em>' attribute.
-	 * @see #setSpecializationIDof(String)
-	 * @see org.eclipse.papyrus.domaincontextcodegen.DomaincontextcodegenPackage#getElementType_SpecializationIDof()
-	 * @model
-	 * @generated
-	 */
-	String getSpecializationIDof();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.domaincontextcodegen.ElementType#getSpecializationIDof <em>Specialization IDof</em>}'
-	 * attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *        the new value of the '<em>Specialization IDof</em>' attribute.
-	 * @see #getSpecializationIDof()
-	 * @generated
-	 */
-	void setSpecializationIDof(String value);
+	void setIcon(String value);
 
 } // ElementType

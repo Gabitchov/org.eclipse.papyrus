@@ -6,7 +6,6 @@
  */
 package org.eclipse.papyrus.domaincontextcodegen.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -150,7 +149,9 @@ public class ElementTypesItemProvider extends ItemProviderAdapter implements IEd
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(DomaincontextcodegenPackage.Literals.ELEMENT_TYPES__TYPES, DomaincontextcodegenFactory.eINSTANCE.createElementType()));
+		newChildDescriptors.add(createChildParameter(DomaincontextcodegenPackage.Literals.ELEMENT_TYPES__TYPES, DomaincontextcodegenFactory.eINSTANCE.createMetaClassType()));
+
+		newChildDescriptors.add(createChildParameter(DomaincontextcodegenPackage.Literals.ELEMENT_TYPES__TYPES, DomaincontextcodegenFactory.eINSTANCE.createSpecializationType()));
 	}
 
 	/**
