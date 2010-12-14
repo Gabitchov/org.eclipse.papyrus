@@ -209,10 +209,11 @@ public class UMLContentProvider extends AdapterFactoryContentProvider implements
 			}
 			// We have a GMF Diagram
 			Diagram diagram = (Diagram)page;
-			if(owner.equals(diagram.getElement())) {
-				diagrams.add(diagram);
+			if(diagram.getElement()!=null){
+				if(owner.equals(diagram.getElement())) {
+					diagrams.add(diagram);
+				}
 			}
-
 		}
 
 		return diagrams;
