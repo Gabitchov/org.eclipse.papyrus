@@ -17,11 +17,9 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
-import org.eclipse.papyrus.sysml.modelelements.ModelelementsPackage;
 import org.eclipse.papyrus.sysml.modelelements.Problem;
-import org.eclipse.papyrus.sysml.service.types.utils.NamedElementHelper;
 import org.eclipse.papyrus.sysml.util.SysmlResource;
-import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 
 /** SysML {@link Problem} edit helper advice */
@@ -39,17 +37,12 @@ public class ProblemEditHelperAdvice extends AbstractStereotypedElementEditHelpe
 		return new ConfigureElementCommand(request) {
 
 			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
-				NamedElement element = (NamedElement)request.getElementToConfigure();
+				Element element = (Element)request.getElementToConfigure();
 				if(element != null) {
 					Stereotype stereotypeToApply = element.getApplicableStereotype(SysmlResource.PROBLEM_ID);
 					if(stereotypeToApply != null) {
 						element.applyStereotype(stereotypeToApply);
 					}
-
-					// Set default name
-					// Initialize the element name based on the created IElementType
-					String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(), ModelelementsPackage.eINSTANCE.getProblem());
-					element.setName(initializedName);
 				}
 				return CommandResult.newOKCommandResult();
 			}
