@@ -3257,13 +3257,13 @@
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
 					<container>
-						<controller predefinedId="UML_Property_subsettedProperty"/>
-						<layout kind="Grid" numColumns="1" sameWidth="true"/>
-					</container>
-					<container>
 						<controller predefinedId="UML_Port_provided"/>
 						<controller predefinedId="UML_Port_required"/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
+					</container>
+					<container>
+						<controller predefinedId="UML_Property_subsettedProperty"/>
+						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
 				</content>
 			</fragment>
