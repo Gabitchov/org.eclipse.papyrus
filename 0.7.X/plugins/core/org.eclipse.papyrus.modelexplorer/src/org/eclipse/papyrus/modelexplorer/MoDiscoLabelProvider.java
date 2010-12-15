@@ -151,9 +151,9 @@ public class MoDiscoLabelProvider extends CustomizableModelLabelProvider {
 			text = diagram.getName();
 		} else if(element instanceof IAdaptable) {
 			EObject obj = (EObject)((IAdaptable)element).getAdapter(EObject.class);
-			if(obj.eIsProxy()) {
+			if(obj != null && obj.eIsProxy()) {
 				InternalEObject internal = (InternalEObject)obj;
-				text = "unreachable " + obj.getClass().getSimpleName() + " in " + internal.eProxyURI().trimFragment();;
+				text = "Unreachable " + obj.getClass().getSimpleName() + " in " + internal.eProxyURI().trimFragment();;
 			} else {
 				text = super.getText(element);
 			}
