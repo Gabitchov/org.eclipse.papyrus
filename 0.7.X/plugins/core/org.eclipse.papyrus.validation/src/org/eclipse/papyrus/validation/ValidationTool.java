@@ -32,6 +32,16 @@ import org.eclipse.gmt.modisco.infra.browser.uicore.internal.model.LinkItem;
 
 public class ValidationTool {
 
+	/** Current element */
+	private Object element;
+
+	/** current eobject */
+	private EObject eObject;
+
+	/** current editing domain */
+	private EditingDomain domain;
+
+
 	/**
 	 * Constructor:
 	 * create a new instance of the validation tool for a specific model element
@@ -40,35 +50,58 @@ public class ValidationTool {
 	 */
 	public ValidationTool (Object element) {
 		this.element = element;
-		eObject = (EObject) Platform.getAdapterManager().getAdapter(element, EObject.class);
+		setEObject((EObject)Platform.getAdapterManager().getAdapter(element, EObject.class));
 	}	
 
+	/**
+	 * Constructor:
+	 * create a new instance of the validation tool for a specific model element
+	 * 
+	 * @param eObject
+	 *        a model element
+	 */
 	public ValidationTool (EObject eObject) {
-		this.eObject = eObject;
+		setEObject(eObject);
 	}	
+
 
 	public void tryChildIfEmpty() {
 		// element has no eObject. try parent
-		if (eObject == null) {
+		if(getEObject() == null) {
 			// TODO: is it possible to access the children in another way (without internal access?)
 			if (element instanceof LinkItem) {
-				List<EObject> items = ((LinkItem) element).getChildrenElements();
-				if (items.size() > 0) {
+				List<?> items = ((LinkItem)element).getChildrenElements();
+				if(items.size() > 0 && items.get(0) instanceof EObject) {
 					// element = items[0];
-					eObject = items.get(0);
+					setEObject((EObject)items.get(0));
 				}
 			}
 		}
 	}
 
-	public EObject getEObject () {
+	/**
+	 * Returns the current EObject
+	 * 
+	 * @return the current EObject
+	 */
+	public EObject getEObject() {
 		return eObject;
 	}
 	
+
+	/**
+	 * sets the current EObject
+	 * 
+	 * eObject the current EObject
+	 */
+	public void setEObject(EObject eObject) {
+		this.eObject = eObject;
+	}
+
 	public IMarker [] getMarkers () {
-		if (eObject != null) { 
-			if (eObject.eResource () != null) {
-				URI uri = eObject.eResource().getURI();
+		if(getEObject() != null) {
+			if(getEObject().eResource() != null) {
+				URI uri = getEObject().eResource().getURI();
 				String platformResourceString = uri.toPlatformString(true);
 				IFile file = (platformResourceString != null ?
 				      ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(platformResourceString)) : null);
@@ -86,9 +119,14 @@ public class ValidationTool {
 		return null;
 	}
 	
+	/**
+	 * 
+	 * @param marker
+	 * @return
+	 */
 	public EObject eObjectOfMarker (IMarker marker) {
-		if (eObject != null) {
-			domain = AdapterFactoryEditingDomain.getEditingDomainFor(eObject);
+		if(getEObject() != null) {
+			domain = AdapterFactoryEditingDomain.getEditingDomainFor(getEObject());
 			try {
 				if (marker.isSubtypeOf((EValidator.MARKER))) {
 					return ValidationUtils.eObjectFromMarkerOrMap (marker, null, domain);
@@ -103,12 +141,11 @@ public class ValidationTool {
 	
 	/**
 	 * Delete all markers that refer to eObjects owned by the passed parentEObj
-	 * @param eObj
 	 */
 	public void deleteSubMarkers() {
 		for (IMarker marker : getMarkers ()) {
 			EObject eObjOfMarker = eObjectOfMarker (marker);
-			if (isContainedBy (eObjOfMarker, eObject)) {
+			if(isContainedBy(eObjOfMarker, getEObject())) {
 				try {
 					marker.delete ();
 				}
@@ -199,7 +236,4 @@ public class ValidationTool {
 		return false;
 	}
 	
-	private Object element;
-	private EObject eObject;
-	private EditingDomain domain;
 }
