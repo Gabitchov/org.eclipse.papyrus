@@ -125,10 +125,10 @@ public class ResourceUpdateService implements IService, IResourceChangeListener,
 	 * A visitor for resource changes. Detects, whether a changed resource belongs to an opened editor
 	 */
 	public boolean visit(IResourceDelta delta) {
-		// if(!isActive) {
+		if(!isActive) {
 			// don't follow resource changes, once inactive (either due to save or due to a pending user dialog) 
-			// return false;
-		// }
+			return false;
+		}
 		IResource changedResource = delta.getResource();
 		if(delta.getFlags() == IResourceDelta.MARKERS) {
 			// only markers have been changed. Refresh their display only (no need to reload resources)
