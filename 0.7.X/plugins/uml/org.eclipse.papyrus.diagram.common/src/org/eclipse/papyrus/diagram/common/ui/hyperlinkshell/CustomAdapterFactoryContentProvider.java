@@ -41,6 +41,7 @@ public class CustomAdapterFactoryContentProvider extends AdapterFactoryContentPr
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public Object[] getChildren(Object object) {
 		Object[] result = super.getChildren(object);
 		ArrayList diagfound = lookForAttachedDiagram(object);
@@ -55,6 +56,7 @@ public class CustomAdapterFactoryContentProvider extends AdapterFactoryContentPr
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public boolean hasChildren(Object object) {
 		if(object instanceof Diagram) {
 			return false;
@@ -74,12 +76,12 @@ public class CustomAdapterFactoryContentProvider extends AdapterFactoryContentPr
 	 */
 	public ArrayList lookForAttachedDiagram(Object object) {
 		ArrayList result = new ArrayList();
-		IPageMngr iPageMngr = (IPageMngr)EditorUtils.getIPageMngr();
+		IPageMngr iPageMngr = EditorUtils.getIPageMngr();
 		Iterator iter = iPageMngr.allPages().iterator();
 		while(iter.hasNext()) {
 			Diagram diag = (Diagram)iter.next();
 			//sometimes diag can loose the link to the element, so we need to test it.
-			if(diag.getElement()!=null){
+			if(diag != null && diag.getElement() != null) {//if the model is a little corrupted, we can have diag==null
 				if(diag.getElement().equals(object)) {
 					result.add(diag);
 				}
