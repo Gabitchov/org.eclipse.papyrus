@@ -1,6 +1,8 @@
 [comment encoding = UTF-8 /]
 [module generateXMLElementHandler('http://www.eclipse.org/papyrus/2010/domaincontextcodegen','http://www.eclipse.org/emf/2002/Ecore')/]
 
+[import org::eclipse::papyrus::domaincontextcodegen::ModelUtils /]
+
 [template public generateXMLElementHandler(domain : DomainContext)]
 	[comment @main /]
 	[comment this template is used to generate the plugin.xml /]
@@ -13,16 +15,14 @@
 [comment generation of all command attached to an handler /]
 <!-- Creation command declarations -->
 <extension point="org.eclipse.ui.commands">
-[for (type:ElementType|domain.elementTypes.types)]
-	[if (type.metaClass.abstract=false)]
-	<!-- Creation command for [type.metaClass.name/] -->
+[for (type : ElementType | domain.elementTypes.types->select(not isAbstract()))]
+	<!-- Creation command for [type.name/] -->
 	<command categoryId="org.eclipse.papyrus.editor.category"
-		id="[domain.handlerProjectName+'.'+type.metaClass.name+'CreateCommand'/]"
-		name="Create a new [type.metaClass.name/]" description="Create a new [type.metaClass.name/]"
-		defaultHandler="[domain.handlerProjectName.concat('.handler.')+type.metaClass.name/]Handler">
+		id="[type.getCommandID()/]"
+		name="Create a new [type.name/]" description="Create a new [type.name/]"
+		defaultHandler="[type.getCommandHandler()/]">
 	</command>
 	
-	[/if]
 [/for ]
 </extension>
 
@@ -31,20 +31,26 @@
 <!-- UI Menu declaration for creation commands -->
 <extension point="org.eclipse.ui.menus">
 
-	<menuContribution locationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.createchild"
-		allPopups="false">
-	
-	[for (type:ElementType|domain.elementTypes.types)]
-	[if (type.metaClass.abstract=false)]
-		<!-- Creation menu action for [type.metaClass.name/] -->
-		<command commandId="[domain.handlerProjectName+'.'+type.metaClass.name+'CreateCommand'/]"
-			label="Create a new [type.metaClass.name/]" tooltip="Create a new [type.metaClass.name/]" style="push"		
-			icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/[type.metaClass.name/].gif" >
+	<menuContribution locationURI="[domain.genHandlers.createChildMenuLocationURI/]" allPopups="false">
+
+[for (type : ElementType | domain.elementTypes.types->select(not isAbstract()))]
+		<!-- Creation menu action for [type.name/] -->
+		<command commandId="[type.getCommandID()/]"
+			label="Create a new [type.name/]" tooltip="Create a new [type.name/]" style="push"		
+			icon="[type.icon/]" >
 			<visibleWhen checkEnabled="true"/>
 		</command>
 		
-	[/if]
-	[/for ]
+[/for ]	
+[for (type : ElementType | domain.genHandlers.parentDomainCreateChild->select(not isAbstract()))]
+		<!-- Creation menu action for [type.name/] -->
+		<command commandId="[type.getCommandID()/]"
+			label="Create a new [type.name/]" tooltip="Create a new [type.name/]" style="push"		
+			icon="[type.icon/]" >
+			<visibleWhen checkEnabled="true"/>
+		</command>
+		
+[/for ]
 	</menuContribution>
 	
 </extension>

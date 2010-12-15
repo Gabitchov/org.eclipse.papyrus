@@ -49,14 +49,54 @@ public interface DomaincontextcodegenFactory extends EFactory {
 	ElementTypes createElementTypes();
 
 	/**
-	 * Returns a new object of class '<em>Element Type</em>'.
+	 * Returns a new object of class '<em>Meta Class Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
-	 * @return a new object of class '<em>Element Type</em>'.
+	 * @return a new object of class '<em>Meta Class Type</em>'.
 	 * @generated
 	 */
-	ElementType createElementType();
+	MetaClassType createMetaClassType();
+
+	/**
+	 * Returns a new object of class '<em>Specialization Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return a new object of class '<em>Specialization Type</em>'.
+	 * @generated
+	 */
+	SpecializationType createSpecializationType();
+
+	/**
+	 * Returns a new object of class '<em>Advice</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return a new object of class '<em>Advice</em>'.
+	 * @generated
+	 */
+	Advice createAdvice();
+
+	/**
+	 * Returns a new object of class '<em>Element Type Bindings</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return a new object of class '<em>Element Type Bindings</em>'.
+	 * @generated
+	 */
+	ElementTypeBindings createElementTypeBindings();
+
+	/**
+	 * Returns a new object of class '<em>Element Type Binding</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return a new object of class '<em>Element Type Binding</em>'.
+	 * @generated
+	 */
+	ElementTypeBinding createElementTypeBinding();
 
 	/**
 	 * Returns a new object of class '<em>Advice Binding</em>'.
@@ -69,16 +109,6 @@ public interface DomaincontextcodegenFactory extends EFactory {
 	AdviceBinding createAdviceBinding();
 
 	/**
-	 * Returns a new object of class '<em>Binding</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return a new object of class '<em>Binding</em>'.
-	 * @generated
-	 */
-	Binding createBinding();
-
-	/**
 	 * Returns a new object of class '<em>Gen Handlers</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -87,6 +117,56 @@ public interface DomaincontextcodegenFactory extends EFactory {
 	 * @generated
 	 */
 	GenHandlers createGenHandlers();
+
+	/**
+	 * Returns a new object of class '<em>Stereotyped Element Matcher</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return a new object of class '<em>Stereotyped Element Matcher</em>'.
+	 * @generated
+	 */
+	StereotypedElementMatcher createStereotypedElementMatcher();
+
+	/**
+	 * Returns a new object of class '<em>Stereotyped Element Helper</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return a new object of class '<em>Stereotyped Element Helper</em>'.
+	 * @generated
+	 */
+	StereotypedElementHelper createStereotypedElementHelper();
+
+	/**
+	 * Returns a new object of class '<em>Menu Declaration</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return a new object of class '<em>Menu Declaration</em>'.
+	 * @generated
+	 */
+	MenuDeclaration createMenuDeclaration();
+
+	/**
+	 * Returns a new object of class '<em>Command Declaration</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return a new object of class '<em>Command Declaration</em>'.
+	 * @generated
+	 */
+	CommandDeclaration createCommandDeclaration();
+
+	/**
+	 * Returns a new object of class '<em>Command</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return a new object of class '<em>Command</em>'.
+	 * @generated
+	 */
+	Command createCommand();
 
 	/**
 	 * Returns the package supported by this factory.

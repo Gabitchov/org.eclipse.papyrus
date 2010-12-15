@@ -6,6 +6,7 @@
  */
 package org.eclipse.papyrus.domaincontextcodegen;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -21,6 +22,9 @@ import org.eclipse.emf.ecore.EObject;
  * <li>{@link org.eclipse.papyrus.domaincontextcodegen.GenHandlers#getSuperClassPackage <em>Super Class Package</em>}</li>
  * <li>{@link org.eclipse.papyrus.domaincontextcodegen.GenHandlers#getElementTypeEnumerator <em>Element Type Enumerator</em>}</li>
  * <li>{@link org.eclipse.papyrus.domaincontextcodegen.GenHandlers#getElementTypeEnumeratorPackage <em>Element Type Enumerator Package</em>}</li>
+ * <li>{@link org.eclipse.papyrus.domaincontextcodegen.GenHandlers#getVisibleCreateChildHandlers <em>Visible Create Child Handlers</em>}</li>
+ * <li>{@link org.eclipse.papyrus.domaincontextcodegen.GenHandlers#getParentDomainCreateChild <em>Parent Domain Create Child</em>}</li>
+ * <li>{@link org.eclipse.papyrus.domaincontextcodegen.GenHandlers#getCreateChildMenuLocationURI <em>Create Child Menu Location URI</em>}</li>
  * </ul>
  * </p>
  * 
@@ -172,5 +176,66 @@ public interface GenHandlers extends EObject {
 	 * @generated
 	 */
 	void setElementTypeEnumeratorPackage(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Visible Create Child Handlers</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.papyrus.domaincontextcodegen.ElementType}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Visible Create Child Handlers</em>' reference list isn't clear, there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Visible Create Child Handlers</em>' reference list.
+	 * @see org.eclipse.papyrus.domaincontextcodegen.DomaincontextcodegenPackage#getGenHandlers_VisibleCreateChildHandlers()
+	 * @model
+	 * @generated
+	 */
+	EList<ElementType> getVisibleCreateChildHandlers();
+
+	/**
+	 * Returns the value of the '<em><b>Parent Domain Create Child</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.papyrus.domaincontextcodegen.ElementType}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Parent Domain Create Child</em>' reference list isn't clear, there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Parent Domain Create Child</em>' reference list.
+	 * @see org.eclipse.papyrus.domaincontextcodegen.DomaincontextcodegenPackage#getGenHandlers_ParentDomainCreateChild()
+	 * @model
+	 * @generated
+	 */
+	EList<ElementType> getParentDomainCreateChild();
+
+	/**
+	 * Returns the value of the '<em><b>Create Child Menu Location URI</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Create Child Menu Location URI</em>' attribute isn't clear, there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Create Child Menu Location URI</em>' attribute.
+	 * @see #setCreateChildMenuLocationURI(String)
+	 * @see org.eclipse.papyrus.domaincontextcodegen.DomaincontextcodegenPackage#getGenHandlers_CreateChildMenuLocationURI()
+	 * @model
+	 * @generated
+	 */
+	String getCreateChildMenuLocationURI();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.domaincontextcodegen.GenHandlers#getCreateChildMenuLocationURI
+	 * <em>Create Child Menu Location URI</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Create Child Menu Location URI</em>' attribute.
+	 * @see #getCreateChildMenuLocationURI()
+	 * @generated
+	 */
+	void setCreateChildMenuLocationURI(String value);
 
 } // GenHandlers

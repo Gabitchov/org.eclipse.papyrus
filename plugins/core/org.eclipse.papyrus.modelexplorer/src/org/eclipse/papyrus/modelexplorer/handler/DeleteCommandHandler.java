@@ -51,6 +51,10 @@ public class DeleteCommandHandler extends AbstractCommandHandler implements IHan
 		ICommand gmfCommand = null;
 		for(EObject selectedEObject : getSelectedElements()) {
 
+			if(selectedEObject == null) {
+				continue;
+			}
+
 			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(selectedEObject);
 			if(provider == null) {
 				continue;

@@ -14,9 +14,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.modelexplorer;
 
-import org.apache.commons.lang.WordUtils;
 import org.eclipse.core.resources.IMarker;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -29,7 +27,7 @@ import org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.core.editorsfactory.PageIconsRegistry;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.utils.EditorUtils;
-import org.eclipse.papyrus.modelexplorer.validation.ValidationTool;
+import org.eclipse.papyrus.validation.ValidationTool;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.ui.ISharedImages;
@@ -51,45 +49,9 @@ public class MoDiscoLabelProvider extends CustomizableModelLabelProvider {
 	public String getMarkerMessage(Object element) {
 		
 		ValidationTool vt = new ValidationTool (element);
-		IMarker markers[] = vt.getMarkers();
-		if (markers != null) {
-			boolean examineChilds = true;
-			String message = "";
-			for (IMarker marker : markers) {
-				EObject eObjectOfMarker = vt.eObjectOfMarker(marker);
-				if (eObjectOfMarker == vt.getEObject()) {
-					if (message.length() > 0) {
-						message += "\n";
-					}
-					// vt.getWrappedMessage (marker);
-					try {
-						message += "- " + WordUtils.wrap ((String) marker.getAttribute(IMarker.MESSAGE), 100, "\n  ", true);
-					}
-					catch (CoreException e) {
-					}
-				}
-				if (examineChilds && (eObjectOfMarker != null)) {
-					eObjectOfMarker = eObjectOfMarker.eContainer();
-					while (eObjectOfMarker != null) {
-						if (eObjectOfMarker == vt.getEObject ()) {
-							if (message.length() > 0) {
-								message += "\n";
-							}
-							message += "- Problem marker in (at least) one of the children";
-							examineChilds = false;
-							break;
-						}
-						// navigate to parents, since parent folder is contaminated as well
-						eObjectOfMarker = eObjectOfMarker.eContainer();
-					}
-				}
-			}
-			return (message.length() > 0) ? message : null; 
-		}
-		return null;
+		return vt.getMarkerMessages();
 	}
 	
-	// A virer (??)
 	@Override
 	/**
 	 * return the image of an element in the model browser
@@ -99,27 +61,7 @@ public class MoDiscoLabelProvider extends CustomizableModelLabelProvider {
 	      
 		ValidationTool vt = new ValidationTool (element);
 		vt.tryChildIfEmpty();
-		int severity = 0;
-		IMarker markers[] = vt.getMarkers();
-		if (markers != null) {
-			for (IMarker marker : markers) {
-				EObject eObjectOfMarker = vt.eObjectOfMarker(marker);
-				while (eObjectOfMarker != null) {
-					if (eObjectOfMarker == vt.getEObject()) {
-						try {
-							Integer severityI = (Integer) marker.getAttribute(IMarker.SEVERITY);
-							if (severityI.intValue () > severity) {
-								severity = severityI.intValue();
-							}
-						}
-						catch (CoreException e) {
-						}
-					}
-					// navigate to parents, since parent folder is contaminated as well
-					eObjectOfMarker = eObjectOfMarker.eContainer();
-				}
-			}
-		}
+		int severity = vt.getSeverity();
 		if(element instanceof Diagram) {
 			return getDecoratedImage (getEditorRegistry().getEditorIcon(element), severity);
 		}
@@ -209,9 +151,9 @@ public class MoDiscoLabelProvider extends CustomizableModelLabelProvider {
 			text = diagram.getName();
 		} else if(element instanceof IAdaptable) {
 			EObject obj = (EObject)((IAdaptable)element).getAdapter(EObject.class);
-			if(obj.eIsProxy()) {
+			if(obj != null && obj.eIsProxy()) {
 				InternalEObject internal = (InternalEObject)obj;
-				text = "unreachable " + obj.getClass().getSimpleName() + " in " + internal.eProxyURI().trimFragment();;
+				text = "Unreachable " + obj.getClass().getSimpleName() + " in " + internal.eProxyURI().trimFragment();;
 			} else {
 				text = super.getText(element);
 			}

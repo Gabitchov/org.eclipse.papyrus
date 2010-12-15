@@ -7,12 +7,15 @@
 package org.eclipse.papyrus.domaincontextcodegen.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.domaincontextcodegen.DomaincontextcodegenPackage;
 import org.eclipse.papyrus.domaincontextcodegen.ElementType;
+import org.eclipse.papyrus.domaincontextcodegen.ElementTypes;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,129 +24,82 @@ import org.eclipse.papyrus.domaincontextcodegen.ElementType;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.domaincontextcodegen.impl.ElementTypeImpl#getMetaClass <em>Meta Class</em>}</li>
- * <li>{@link org.eclipse.papyrus.domaincontextcodegen.impl.ElementTypeImpl#getSpecificName <em>Specific Name</em>}</li>
- * <li>{@link org.eclipse.papyrus.domaincontextcodegen.impl.ElementTypeImpl#getEdithelper_EditHelperAdvicePath <em>Edithelper Edit Helper Advice Path
- * </em>}</li>
- * <li>{@link org.eclipse.papyrus.domaincontextcodegen.impl.ElementTypeImpl#getKind <em>Kind</em>}</li>
- * <li>{@link org.eclipse.papyrus.domaincontextcodegen.impl.ElementTypeImpl#getSpecializationof <em>Specializationof</em>}</li>
- * <li>{@link org.eclipse.papyrus.domaincontextcodegen.impl.ElementTypeImpl#getSpecializationIDof <em>Specialization IDof</em>}</li>
+ * <li>{@link org.eclipse.papyrus.domaincontextcodegen.impl.ElementTypeImpl#getName <em>Name</em>}</li>
+ * <li>{@link org.eclipse.papyrus.domaincontextcodegen.impl.ElementTypeImpl#getHelper <em>Helper</em>}</li>
+ * <li>{@link org.eclipse.papyrus.domaincontextcodegen.impl.ElementTypeImpl#getOwner <em>Owner</em>}</li>
+ * <li>{@link org.eclipse.papyrus.domaincontextcodegen.impl.ElementTypeImpl#getIcon <em>Icon</em>}</li>
  * </ul>
  * </p>
  * 
  * @generated
  */
-public class ElementTypeImpl extends EObjectImpl implements ElementType {
+public abstract class ElementTypeImpl extends EObjectImpl implements ElementType {
 
 	/**
-	 * The cached value of the '{@link #getMetaClass() <em>Meta Class</em>}' reference.
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
-	 * @see #getMetaClass()
+	 * @see #getName()
 	 * @generated
 	 * @ordered
 	 */
-	protected EClass metaClass;
+	protected static final String NAME_EDEFAULT = null;
 
 	/**
-	 * The default value of the '{@link #getSpecificName() <em>Specific Name</em>}' attribute.
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
-	 * @see #getSpecificName()
+	 * @see #getName()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String SPECIFIC_NAME_EDEFAULT = null;
+	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getSpecificName() <em>Specific Name</em>}' attribute.
+	 * The default value of the '{@link #getHelper() <em>Helper</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
-	 * @see #getSpecificName()
+	 * @see #getHelper()
 	 * @generated
 	 * @ordered
 	 */
-	protected String specificName = SPECIFIC_NAME_EDEFAULT;
+	protected static final String HELPER_EDEFAULT = null;
 
 	/**
-	 * The default value of the '{@link #getEdithelper_EditHelperAdvicePath() <em>Edithelper Edit Helper Advice Path</em>}' attribute.
+	 * The cached value of the '{@link #getHelper() <em>Helper</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
-	 * @see #getEdithelper_EditHelperAdvicePath()
+	 * @see #getHelper()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String EDITHELPER_EDIT_HELPER_ADVICE_PATH_EDEFAULT = null;
+	protected String helper = HELPER_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getEdithelper_EditHelperAdvicePath() <em>Edithelper Edit Helper Advice Path</em>}' attribute.
+	 * The default value of the '{@link #getIcon() <em>Icon</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
-	 * @see #getEdithelper_EditHelperAdvicePath()
+	 * @see #getIcon()
 	 * @generated
 	 * @ordered
 	 */
-	protected String edithelper_EditHelperAdvicePath = EDITHELPER_EDIT_HELPER_ADVICE_PATH_EDEFAULT;
+	protected static final String ICON_EDEFAULT = null;
 
 	/**
-	 * The default value of the '{@link #getKind() <em>Kind</em>}' attribute.
+	 * The cached value of the '{@link #getIcon() <em>Icon</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
-	 * @see #getKind()
+	 * @see #getIcon()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String KIND_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getKind() <em>Kind</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @see #getKind()
-	 * @generated
-	 * @ordered
-	 */
-	protected String kind = KIND_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getSpecializationof() <em>Specializationof</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @see #getSpecializationof()
-	 * @generated
-	 * @ordered
-	 */
-	protected ElementType specializationof;
-
-	/**
-	 * The default value of the '{@link #getSpecializationIDof() <em>Specialization IDof</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @see #getSpecializationIDof()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String SPECIALIZATION_IDOF_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getSpecializationIDof() <em>Specialization IDof</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @see #getSpecializationIDof()
-	 * @generated
-	 * @ordered
-	 */
-	protected String specializationIDof = SPECIALIZATION_IDOF_EDEFAULT;
+	protected String icon = ICON_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -172,16 +128,129 @@ public class ElementTypeImpl extends EObjectImpl implements ElementType {
 	 * 
 	 * @generated
 	 */
-	public EClass getMetaClass() {
-		if(metaClass != null && metaClass.eIsProxy()) {
-			InternalEObject oldMetaClass = (InternalEObject)metaClass;
-			metaClass = (EClass)eResolveProxy(oldMetaClass);
-			if(metaClass != oldMetaClass) {
-				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DomaincontextcodegenPackage.ELEMENT_TYPE__META_CLASS, oldMetaClass, metaClass));
-			}
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public void setName(String newName) {
+		String oldName = name;
+		name = newName;
+		if(eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DomaincontextcodegenPackage.ELEMENT_TYPE__NAME, oldName, name));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public String getHelper() {
+		return helper;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public void setHelper(String newHelper) {
+		String oldHelper = helper;
+		helper = newHelper;
+		if(eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DomaincontextcodegenPackage.ELEMENT_TYPE__HELPER, oldHelper, helper));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public ElementTypes getOwner() {
+		if(eContainerFeatureID() != DomaincontextcodegenPackage.ELEMENT_TYPE__OWNER)
+			return null;
+		return (ElementTypes)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public NotificationChain basicSetOwner(ElementTypes newOwner, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newOwner, DomaincontextcodegenPackage.ELEMENT_TYPE__OWNER, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public void setOwner(ElementTypes newOwner) {
+		if(newOwner != eInternalContainer() || (eContainerFeatureID() != DomaincontextcodegenPackage.ELEMENT_TYPE__OWNER && newOwner != null)) {
+			if(EcoreUtil.isAncestor(this, newOwner))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if(eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if(newOwner != null)
+				msgs = ((InternalEObject)newOwner).eInverseAdd(this, DomaincontextcodegenPackage.ELEMENT_TYPES__TYPES, ElementTypes.class, msgs);
+			msgs = basicSetOwner(newOwner, msgs);
+			if(msgs != null)
+				msgs.dispatch();
+		} else if(eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DomaincontextcodegenPackage.ELEMENT_TYPE__OWNER, newOwner, newOwner));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public String getIcon() {
+		return icon;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public void setIcon(String newIcon) {
+		String oldIcon = icon;
+		icon = newIcon;
+		if(eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DomaincontextcodegenPackage.ELEMENT_TYPE__ICON, oldIcon, icon));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch(featureID) {
+		case DomaincontextcodegenPackage.ELEMENT_TYPE__OWNER:
+			if(eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			return basicSetOwner((ElementTypes)otherEnd, msgs);
 		}
-		return metaClass;
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -190,108 +259,13 @@ public class ElementTypeImpl extends EObjectImpl implements ElementType {
 	 * 
 	 * @generated
 	 */
-	public EClass basicGetMetaClass() {
-		return metaClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public void setMetaClass(EClass newMetaClass) {
-		EClass oldMetaClass = metaClass;
-		metaClass = newMetaClass;
-		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DomaincontextcodegenPackage.ELEMENT_TYPE__META_CLASS, oldMetaClass, metaClass));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public String getSpecificName() {
-		return specificName;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public void setSpecificName(String newSpecificName) {
-		String oldSpecificName = specificName;
-		specificName = newSpecificName;
-		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DomaincontextcodegenPackage.ELEMENT_TYPE__SPECIFIC_NAME, oldSpecificName, specificName));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public String getEdithelper_EditHelperAdvicePath() {
-		return edithelper_EditHelperAdvicePath;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public void setEdithelper_EditHelperAdvicePath(String newEdithelper_EditHelperAdvicePath) {
-		String oldEdithelper_EditHelperAdvicePath = edithelper_EditHelperAdvicePath;
-		edithelper_EditHelperAdvicePath = newEdithelper_EditHelperAdvicePath;
-		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DomaincontextcodegenPackage.ELEMENT_TYPE__EDITHELPER_EDIT_HELPER_ADVICE_PATH, oldEdithelper_EditHelperAdvicePath, edithelper_EditHelperAdvicePath));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public String getKind() {
-		return kind;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public void setKind(String newKind) {
-		String oldKind = kind;
-		kind = newKind;
-		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DomaincontextcodegenPackage.ELEMENT_TYPE__KIND, oldKind, kind));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public ElementType getSpecializationof() {
-		if(specializationof != null && specializationof.eIsProxy()) {
-			InternalEObject oldSpecializationof = (InternalEObject)specializationof;
-			specializationof = (ElementType)eResolveProxy(oldSpecializationof);
-			if(specializationof != oldSpecializationof) {
-				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DomaincontextcodegenPackage.ELEMENT_TYPE__SPECIALIZATIONOF, oldSpecializationof, specializationof));
-			}
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch(featureID) {
+		case DomaincontextcodegenPackage.ELEMENT_TYPE__OWNER:
+			return basicSetOwner(null, msgs);
 		}
-		return specializationof;
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -300,44 +274,13 @@ public class ElementTypeImpl extends EObjectImpl implements ElementType {
 	 * 
 	 * @generated
 	 */
-	public ElementType basicGetSpecializationof() {
-		return specializationof;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public void setSpecializationof(ElementType newSpecializationof) {
-		ElementType oldSpecializationof = specializationof;
-		specializationof = newSpecializationof;
-		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DomaincontextcodegenPackage.ELEMENT_TYPE__SPECIALIZATIONOF, oldSpecializationof, specializationof));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public String getSpecializationIDof() {
-		return specializationIDof;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public void setSpecializationIDof(String newSpecializationIDof) {
-		String oldSpecializationIDof = specializationIDof;
-		specializationIDof = newSpecializationIDof;
-		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DomaincontextcodegenPackage.ELEMENT_TYPE__SPECIALIZATION_IDOF, oldSpecializationIDof, specializationIDof));
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch(eContainerFeatureID()) {
+		case DomaincontextcodegenPackage.ELEMENT_TYPE__OWNER:
+			return eInternalContainer().eInverseRemove(this, DomaincontextcodegenPackage.ELEMENT_TYPES__TYPES, ElementTypes.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
@@ -349,22 +292,14 @@ public class ElementTypeImpl extends EObjectImpl implements ElementType {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch(featureID) {
-		case DomaincontextcodegenPackage.ELEMENT_TYPE__META_CLASS:
-			if(resolve)
-				return getMetaClass();
-			return basicGetMetaClass();
-		case DomaincontextcodegenPackage.ELEMENT_TYPE__SPECIFIC_NAME:
-			return getSpecificName();
-		case DomaincontextcodegenPackage.ELEMENT_TYPE__EDITHELPER_EDIT_HELPER_ADVICE_PATH:
-			return getEdithelper_EditHelperAdvicePath();
-		case DomaincontextcodegenPackage.ELEMENT_TYPE__KIND:
-			return getKind();
-		case DomaincontextcodegenPackage.ELEMENT_TYPE__SPECIALIZATIONOF:
-			if(resolve)
-				return getSpecializationof();
-			return basicGetSpecializationof();
-		case DomaincontextcodegenPackage.ELEMENT_TYPE__SPECIALIZATION_IDOF:
-			return getSpecializationIDof();
+		case DomaincontextcodegenPackage.ELEMENT_TYPE__NAME:
+			return getName();
+		case DomaincontextcodegenPackage.ELEMENT_TYPE__HELPER:
+			return getHelper();
+		case DomaincontextcodegenPackage.ELEMENT_TYPE__OWNER:
+			return getOwner();
+		case DomaincontextcodegenPackage.ELEMENT_TYPE__ICON:
+			return getIcon();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -378,23 +313,17 @@ public class ElementTypeImpl extends EObjectImpl implements ElementType {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch(featureID) {
-		case DomaincontextcodegenPackage.ELEMENT_TYPE__META_CLASS:
-			setMetaClass((EClass)newValue);
+		case DomaincontextcodegenPackage.ELEMENT_TYPE__NAME:
+			setName((String)newValue);
 			return;
-		case DomaincontextcodegenPackage.ELEMENT_TYPE__SPECIFIC_NAME:
-			setSpecificName((String)newValue);
+		case DomaincontextcodegenPackage.ELEMENT_TYPE__HELPER:
+			setHelper((String)newValue);
 			return;
-		case DomaincontextcodegenPackage.ELEMENT_TYPE__EDITHELPER_EDIT_HELPER_ADVICE_PATH:
-			setEdithelper_EditHelperAdvicePath((String)newValue);
+		case DomaincontextcodegenPackage.ELEMENT_TYPE__OWNER:
+			setOwner((ElementTypes)newValue);
 			return;
-		case DomaincontextcodegenPackage.ELEMENT_TYPE__KIND:
-			setKind((String)newValue);
-			return;
-		case DomaincontextcodegenPackage.ELEMENT_TYPE__SPECIALIZATIONOF:
-			setSpecializationof((ElementType)newValue);
-			return;
-		case DomaincontextcodegenPackage.ELEMENT_TYPE__SPECIALIZATION_IDOF:
-			setSpecializationIDof((String)newValue);
+		case DomaincontextcodegenPackage.ELEMENT_TYPE__ICON:
+			setIcon((String)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -409,23 +338,17 @@ public class ElementTypeImpl extends EObjectImpl implements ElementType {
 	@Override
 	public void eUnset(int featureID) {
 		switch(featureID) {
-		case DomaincontextcodegenPackage.ELEMENT_TYPE__META_CLASS:
-			setMetaClass((EClass)null);
+		case DomaincontextcodegenPackage.ELEMENT_TYPE__NAME:
+			setName(NAME_EDEFAULT);
 			return;
-		case DomaincontextcodegenPackage.ELEMENT_TYPE__SPECIFIC_NAME:
-			setSpecificName(SPECIFIC_NAME_EDEFAULT);
+		case DomaincontextcodegenPackage.ELEMENT_TYPE__HELPER:
+			setHelper(HELPER_EDEFAULT);
 			return;
-		case DomaincontextcodegenPackage.ELEMENT_TYPE__EDITHELPER_EDIT_HELPER_ADVICE_PATH:
-			setEdithelper_EditHelperAdvicePath(EDITHELPER_EDIT_HELPER_ADVICE_PATH_EDEFAULT);
+		case DomaincontextcodegenPackage.ELEMENT_TYPE__OWNER:
+			setOwner((ElementTypes)null);
 			return;
-		case DomaincontextcodegenPackage.ELEMENT_TYPE__KIND:
-			setKind(KIND_EDEFAULT);
-			return;
-		case DomaincontextcodegenPackage.ELEMENT_TYPE__SPECIALIZATIONOF:
-			setSpecializationof((ElementType)null);
-			return;
-		case DomaincontextcodegenPackage.ELEMENT_TYPE__SPECIALIZATION_IDOF:
-			setSpecializationIDof(SPECIALIZATION_IDOF_EDEFAULT);
+		case DomaincontextcodegenPackage.ELEMENT_TYPE__ICON:
+			setIcon(ICON_EDEFAULT);
 			return;
 		}
 		super.eUnset(featureID);
@@ -440,18 +363,14 @@ public class ElementTypeImpl extends EObjectImpl implements ElementType {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch(featureID) {
-		case DomaincontextcodegenPackage.ELEMENT_TYPE__META_CLASS:
-			return metaClass != null;
-		case DomaincontextcodegenPackage.ELEMENT_TYPE__SPECIFIC_NAME:
-			return SPECIFIC_NAME_EDEFAULT == null ? specificName != null : !SPECIFIC_NAME_EDEFAULT.equals(specificName);
-		case DomaincontextcodegenPackage.ELEMENT_TYPE__EDITHELPER_EDIT_HELPER_ADVICE_PATH:
-			return EDITHELPER_EDIT_HELPER_ADVICE_PATH_EDEFAULT == null ? edithelper_EditHelperAdvicePath != null : !EDITHELPER_EDIT_HELPER_ADVICE_PATH_EDEFAULT.equals(edithelper_EditHelperAdvicePath);
-		case DomaincontextcodegenPackage.ELEMENT_TYPE__KIND:
-			return KIND_EDEFAULT == null ? kind != null : !KIND_EDEFAULT.equals(kind);
-		case DomaincontextcodegenPackage.ELEMENT_TYPE__SPECIALIZATIONOF:
-			return specializationof != null;
-		case DomaincontextcodegenPackage.ELEMENT_TYPE__SPECIALIZATION_IDOF:
-			return SPECIALIZATION_IDOF_EDEFAULT == null ? specializationIDof != null : !SPECIALIZATION_IDOF_EDEFAULT.equals(specializationIDof);
+		case DomaincontextcodegenPackage.ELEMENT_TYPE__NAME:
+			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+		case DomaincontextcodegenPackage.ELEMENT_TYPE__HELPER:
+			return HELPER_EDEFAULT == null ? helper != null : !HELPER_EDEFAULT.equals(helper);
+		case DomaincontextcodegenPackage.ELEMENT_TYPE__OWNER:
+			return getOwner() != null;
+		case DomaincontextcodegenPackage.ELEMENT_TYPE__ICON:
+			return ICON_EDEFAULT == null ? icon != null : !ICON_EDEFAULT.equals(icon);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -468,14 +387,12 @@ public class ElementTypeImpl extends EObjectImpl implements ElementType {
 			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (specificName: ");
-		result.append(specificName);
-		result.append(", edithelper_EditHelperAdvicePath: ");
-		result.append(edithelper_EditHelperAdvicePath);
-		result.append(", kind: ");
-		result.append(kind);
-		result.append(", specializationIDof: ");
-		result.append(specializationIDof);
+		result.append(" (name: ");
+		result.append(name);
+		result.append(", helper: ");
+		result.append(helper);
+		result.append(", icon: ");
+		result.append(icon);
 		result.append(')');
 		return result.toString();
 	}

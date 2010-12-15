@@ -25,13 +25,14 @@ import org.eclipse.emf.ecore.EPackage;
  * <li>{@link org.eclipse.papyrus.domaincontextcodegen.DomainContext#getSpecializationOf <em>Specialization Of</em>}</li>
  * <li>{@link org.eclipse.papyrus.domaincontextcodegen.DomainContext#getElementTypeIDPrefix <em>Element Type ID Prefix</em>}</li>
  * <li>{@link org.eclipse.papyrus.domaincontextcodegen.DomainContext#getElementTypeNamePrefix <em>Element Type Name Prefix</em>}</li>
- * <li>{@link org.eclipse.papyrus.domaincontextcodegen.DomainContext#getMatcherPatch <em>Matcher Patch</em>}</li>
  * <li>{@link org.eclipse.papyrus.domaincontextcodegen.DomainContext#getElementTypes <em>Element Types</em>}</li>
  * <li>{@link org.eclipse.papyrus.domaincontextcodegen.DomainContext#getDefaultHelperPath <em>Default Helper Path</em>}</li>
- * <li>{@link org.eclipse.papyrus.domaincontextcodegen.DomainContext#getAdvicebindings <em>Advicebindings</em>}</li>
+ * <li>{@link org.eclipse.papyrus.domaincontextcodegen.DomainContext#getAdvices <em>Advices</em>}</li>
  * <li>{@link org.eclipse.papyrus.domaincontextcodegen.DomainContext#getBindings <em>Bindings</em>}</li>
  * <li>{@link org.eclipse.papyrus.domaincontextcodegen.DomainContext#getGenHandlers <em>Gen Handlers</em>}</li>
  * <li>{@link org.eclipse.papyrus.domaincontextcodegen.DomainContext#getGeneratedSourceFolder <em>Generated Source Folder</em>}</li>
+ * <li>{@link org.eclipse.papyrus.domaincontextcodegen.DomainContext#getMenu <em>Menu</em>}</li>
+ * <li>{@link org.eclipse.papyrus.domaincontextcodegen.DomainContext#getCommand <em>Command</em>}</li>
  * </ul>
  * </p>
  * 
@@ -243,35 +244,8 @@ public interface DomainContext extends EObject {
 	void setElementTypeNamePrefix(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Matcher Patch</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Matcher Patch</em>' attribute isn't clear, there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Matcher Patch</em>' attribute.
-	 * @see #setMatcherPatch(String)
-	 * @see org.eclipse.papyrus.domaincontextcodegen.DomaincontextcodegenPackage#getDomainContext_MatcherPatch()
-	 * @model required="true"
-	 * @generated
-	 */
-	String getMatcherPatch();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.domaincontextcodegen.DomainContext#getMatcherPatch <em>Matcher Patch</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *        the new value of the '<em>Matcher Patch</em>' attribute.
-	 * @see #getMatcherPatch()
-	 * @generated
-	 */
-	void setMatcherPatch(String value);
-
-	/**
 	 * Returns the value of the '<em><b>Element Types</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.domaincontextcodegen.ElementTypes#getDomain <em>Domain</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Element Types</em>' containment reference list isn't clear, there really should be more of a description here...
@@ -281,7 +255,8 @@ public interface DomainContext extends EObject {
 	 * @return the value of the '<em>Element Types</em>' containment reference.
 	 * @see #setElementTypes(ElementTypes)
 	 * @see org.eclipse.papyrus.domaincontextcodegen.DomaincontextcodegenPackage#getDomainContext_ElementTypes()
-	 * @model containment="true"
+	 * @see org.eclipse.papyrus.domaincontextcodegen.ElementTypes#getDomain
+	 * @model opposite="domain" containment="true"
 	 * @generated
 	 */
 	ElementTypes getElementTypes();
@@ -329,24 +304,24 @@ public interface DomainContext extends EObject {
 	void setDefaultHelperPath(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Advicebindings</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.papyrus.domaincontextcodegen.AdviceBinding}.
+	 * Returns the value of the '<em><b>Advices</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.papyrus.domaincontextcodegen.Advice}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Advicebindings</em>' reference list isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Advices</em>' containment reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
-	 * @return the value of the '<em>Advicebindings</em>' containment reference list.
-	 * @see org.eclipse.papyrus.domaincontextcodegen.DomaincontextcodegenPackage#getDomainContext_Advicebindings()
+	 * @return the value of the '<em>Advices</em>' containment reference list.
+	 * @see org.eclipse.papyrus.domaincontextcodegen.DomaincontextcodegenPackage#getDomainContext_Advices()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<AdviceBinding> getAdvicebindings();
+	EList<Advice> getAdvices();
 
 	/**
 	 * Returns the value of the '<em><b>Bindings</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.papyrus.domaincontextcodegen.Binding}.
+	 * The list contents are of type {@link org.eclipse.papyrus.domaincontextcodegen.ElementTypeBindings}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Bindings</em>' reference list isn't clear, there really should be more of a description here...
@@ -358,7 +333,7 @@ public interface DomainContext extends EObject {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Binding> getBindings();
+	EList<ElementTypeBindings> getBindings();
 
 	/**
 	 * Returns the value of the '<em><b>Gen Handlers</b></em>' containment reference.
@@ -417,5 +392,37 @@ public interface DomainContext extends EObject {
 	 * @generated
 	 */
 	void setGeneratedSourceFolder(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Menu</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.papyrus.domaincontextcodegen.MenuDeclaration}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Menu</em>' containment reference list isn't clear, there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Menu</em>' containment reference list.
+	 * @see org.eclipse.papyrus.domaincontextcodegen.DomaincontextcodegenPackage#getDomainContext_Menu()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<MenuDeclaration> getMenu();
+
+	/**
+	 * Returns the value of the '<em><b>Command</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.papyrus.domaincontextcodegen.CommandDeclaration}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Command</em>' containment reference list isn't clear, there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Command</em>' containment reference list.
+	 * @see org.eclipse.papyrus.domaincontextcodegen.DomaincontextcodegenPackage#getDomainContext_Command()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<CommandDeclaration> getCommand();
 
 } // DomainContext

@@ -130,28 +130,128 @@ public class DomaincontextcodegenItemProviderAdapterFactory extends Domaincontex
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.domaincontextcodegen.ElementType} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.domaincontextcodegen.MetaClassType} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
-	protected ElementTypeItemProvider elementTypeItemProvider;
+	protected MetaClassTypeItemProvider metaClassTypeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.papyrus.domaincontextcodegen.ElementType}.
+	 * This creates an adapter for a {@link org.eclipse.papyrus.domaincontextcodegen.MetaClassType}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	@Override
-	public Adapter createElementTypeAdapter() {
-		if(elementTypeItemProvider == null) {
-			elementTypeItemProvider = new ElementTypeItemProvider(this);
+	public Adapter createMetaClassTypeAdapter() {
+		if(metaClassTypeItemProvider == null) {
+			metaClassTypeItemProvider = new MetaClassTypeItemProvider(this);
 		}
 
-		return elementTypeItemProvider;
+		return metaClassTypeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.domaincontextcodegen.SpecializationType} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected SpecializationTypeItemProvider specializationTypeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.domaincontextcodegen.SpecializationType}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createSpecializationTypeAdapter() {
+		if(specializationTypeItemProvider == null) {
+			specializationTypeItemProvider = new SpecializationTypeItemProvider(this);
+		}
+
+		return specializationTypeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.domaincontextcodegen.Advice} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected AdviceItemProvider adviceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.domaincontextcodegen.Advice}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createAdviceAdapter() {
+		if(adviceItemProvider == null) {
+			adviceItemProvider = new AdviceItemProvider(this);
+		}
+
+		return adviceItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.domaincontextcodegen.ElementTypeBindings} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected ElementTypeBindingsItemProvider elementTypeBindingsItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.domaincontextcodegen.ElementTypeBindings}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createElementTypeBindingsAdapter() {
+		if(elementTypeBindingsItemProvider == null) {
+			elementTypeBindingsItemProvider = new ElementTypeBindingsItemProvider(this);
+		}
+
+		return elementTypeBindingsItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.domaincontextcodegen.ElementTypeBinding} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected ElementTypeBindingItemProvider elementTypeBindingItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.domaincontextcodegen.ElementTypeBinding}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createElementTypeBindingAdapter() {
+		if(elementTypeBindingItemProvider == null) {
+			elementTypeBindingItemProvider = new ElementTypeBindingItemProvider(this);
+		}
+
+		return elementTypeBindingItemProvider;
 	}
 
 	/**
@@ -180,31 +280,6 @@ public class DomaincontextcodegenItemProviderAdapterFactory extends Domaincontex
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.domaincontextcodegen.Binding} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected BindingItemProvider bindingItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.papyrus.domaincontextcodegen.Binding}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	@Override
-	public Adapter createBindingAdapter() {
-		if(bindingItemProvider == null) {
-			bindingItemProvider = new BindingItemProvider(this);
-		}
-
-		return bindingItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.domaincontextcodegen.GenHandlers} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -227,6 +302,131 @@ public class DomaincontextcodegenItemProviderAdapterFactory extends Domaincontex
 		}
 
 		return genHandlersItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.domaincontextcodegen.StereotypedElementMatcher} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected StereotypedElementMatcherItemProvider stereotypedElementMatcherItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.domaincontextcodegen.StereotypedElementMatcher}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createStereotypedElementMatcherAdapter() {
+		if(stereotypedElementMatcherItemProvider == null) {
+			stereotypedElementMatcherItemProvider = new StereotypedElementMatcherItemProvider(this);
+		}
+
+		return stereotypedElementMatcherItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.domaincontextcodegen.StereotypedElementHelper} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected StereotypedElementHelperItemProvider stereotypedElementHelperItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.domaincontextcodegen.StereotypedElementHelper}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createStereotypedElementHelperAdapter() {
+		if(stereotypedElementHelperItemProvider == null) {
+			stereotypedElementHelperItemProvider = new StereotypedElementHelperItemProvider(this);
+		}
+
+		return stereotypedElementHelperItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.domaincontextcodegen.MenuDeclaration} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected MenuDeclarationItemProvider menuDeclarationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.domaincontextcodegen.MenuDeclaration}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createMenuDeclarationAdapter() {
+		if(menuDeclarationItemProvider == null) {
+			menuDeclarationItemProvider = new MenuDeclarationItemProvider(this);
+		}
+
+		return menuDeclarationItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.domaincontextcodegen.CommandDeclaration} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected CommandDeclarationItemProvider commandDeclarationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.domaincontextcodegen.CommandDeclaration}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createCommandDeclarationAdapter() {
+		if(commandDeclarationItemProvider == null) {
+			commandDeclarationItemProvider = new CommandDeclarationItemProvider(this);
+		}
+
+		return commandDeclarationItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.domaincontextcodegen.Command} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected CommandItemProvider commandItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.domaincontextcodegen.Command}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createCommandAdapter() {
+		if(commandItemProvider == null) {
+			commandItemProvider = new CommandItemProvider(this);
+		}
+
+		return commandItemProvider;
 	}
 
 	/**
@@ -341,14 +541,30 @@ public class DomaincontextcodegenItemProviderAdapterFactory extends Domaincontex
 			domainContextItemProvider.dispose();
 		if(elementTypesItemProvider != null)
 			elementTypesItemProvider.dispose();
-		if(elementTypeItemProvider != null)
-			elementTypeItemProvider.dispose();
+		if(metaClassTypeItemProvider != null)
+			metaClassTypeItemProvider.dispose();
+		if(specializationTypeItemProvider != null)
+			specializationTypeItemProvider.dispose();
+		if(adviceItemProvider != null)
+			adviceItemProvider.dispose();
+		if(elementTypeBindingsItemProvider != null)
+			elementTypeBindingsItemProvider.dispose();
+		if(elementTypeBindingItemProvider != null)
+			elementTypeBindingItemProvider.dispose();
 		if(adviceBindingItemProvider != null)
 			adviceBindingItemProvider.dispose();
-		if(bindingItemProvider != null)
-			bindingItemProvider.dispose();
 		if(genHandlersItemProvider != null)
 			genHandlersItemProvider.dispose();
+		if(stereotypedElementMatcherItemProvider != null)
+			stereotypedElementMatcherItemProvider.dispose();
+		if(stereotypedElementHelperItemProvider != null)
+			stereotypedElementHelperItemProvider.dispose();
+		if(menuDeclarationItemProvider != null)
+			menuDeclarationItemProvider.dispose();
+		if(commandDeclarationItemProvider != null)
+			commandDeclarationItemProvider.dispose();
+		if(commandItemProvider != null)
+			commandItemProvider.dispose();
 	}
 
 }

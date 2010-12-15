@@ -22,6 +22,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.service.edit.service.IElementEditService;
+import org.eclipse.papyrus.sysml.modelexplorer.filter.CommandFilter;
 
 /**
  * Default handler for Create command used in the ModelExplorer contextual ("Create new child") menu.
@@ -84,6 +85,24 @@ public abstract class CreateCommandHandler extends AbstractCommandHandler {
 
 	/**
 	 * 
+	 * @see org.eclipse.papyrus.uml.modelexplorer.handler.AbstractCommandHandler#isVisible()
+	 * 
+	 * @return
+	 */
+	@Override
+	public boolean isVisible() {
+
+		// Temporary (customizable implementation to be provided) filter to avoid all
+		// creation command to be visible (avoid to large set of possible children).
+		if(!CommandFilter.getVisibleCommands().contains(getElementTypeToCreate())) {
+			return false;
+		}
+
+		return super.isVisible();
+	}
+
+	/**
+	 * 
 	 * @see org.eclipse.papyrus.uml.modelexplorer.handler.AbstractCommandHandler#isEnabled()
 	 * 
 	 * @return
@@ -96,6 +115,12 @@ public abstract class CreateCommandHandler extends AbstractCommandHandler {
 		// This assumes the isEnabled() method is called each time the contextual menu
 		// opens. 
 		createCommand = buildCommand();
+
+		// Temporary (customizable implementation to be provided) filter to avoid all
+		// creation command to be visible (avoid to large set of possible children).
+		if(!CommandFilter.getVisibleCommands().contains(getElementTypeToCreate())) {
+			return false;
+		}
 
 		return super.isEnabled();
 	}

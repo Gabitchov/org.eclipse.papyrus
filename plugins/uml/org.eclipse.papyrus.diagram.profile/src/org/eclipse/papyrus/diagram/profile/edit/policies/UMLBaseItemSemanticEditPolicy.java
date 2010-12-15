@@ -112,6 +112,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * 
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public Command getCommand(Request request) {
 		if(request instanceof ReconnectRequest) {
@@ -138,6 +139,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected Command getSemanticCommand(IEditCommandRequest request) {
 		IEditCommandRequest completedRequest = completeRequest(request);
 		Command semanticCommand = getSemanticCommandSwitch(completedRequest);
@@ -490,6 +492,15 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				if((source instanceof Type) && Util.isMetaclass((Type)source)) {
 					return false;
 				}
+				if(source instanceof Extension) {
+					return false;
+				}
+				//AssociationTarget
+				if(target != null) {
+					if(target instanceof Extension) {
+						return false;
+					}
+				}
 				return true;
 			} catch (Exception e) {
 				UMLDiagramEditorPlugin.getInstance().logError("Link constraint evaluation error", e); //$NON-NLS-1$
@@ -513,6 +524,15 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				if((source instanceof Type) && Util.isMetaclass((Type)source)) {
 					return false;
 				}
+				if(source instanceof Extension) {
+					return false;
+				}
+				//AssociationTarget
+				if(target != null) {
+					if(target instanceof Extension) {
+						return false;
+					}
+				}
 				return true;
 			} catch (Exception e) {
 				UMLDiagramEditorPlugin.getInstance().logError("Link constraint evaluation error", e); //$NON-NLS-1$
@@ -526,8 +546,26 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		public boolean canExistGeneralization_4002(Generalization linkInstance, Classifier source, Classifier target) {
 			try {
 				//GeneralizationSource
-				if((source instanceof Type) && Util.isMetaclass((Type)source)) {
+				if(!(source instanceof Classifier)) {
 					return false;
+				}
+				if(Util.isMetaclass(source)) {
+					return false;
+				}
+				if(source instanceof Extension) {
+					return false; //meaningless
+				}
+				//GeneralizationTarget
+				if(target != null) {
+					if(!(target instanceof Classifier)) {
+						return false;
+					}
+					if(Util.isMetaclass(target)) {
+						return false;
+					}
+					if(target instanceof Extension) {
+						return false;//meaningless
+					}
 				}
 				return true;
 			} catch (Exception e) {
@@ -545,6 +583,15 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				if((source instanceof Type) && Util.isMetaclass((Type)source)) {
 					return false;
 				}
+				if(source instanceof Extension) {
+					return false;
+				}
+				//DependencyTarget 
+				if(target != null) {
+					if(target instanceof Extension) {
+						return false;
+					}
+				}
 				return true;
 			} catch (Exception e) {
 				UMLDiagramEditorPlugin.getInstance().logError("Link constraint evaluation error", e); //$NON-NLS-1$
@@ -560,6 +607,15 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				//DependencySource
 				if((source instanceof Type) && Util.isMetaclass((Type)source)) {
 					return false;
+				}
+				if(source instanceof Extension) {
+					return false;
+				}
+				//DependencyTarget 
+				if(target != null) {
+					if(target instanceof Extension) {
+						return false;
+					}
 				}
 				return true;
 			} catch (Exception e) {
@@ -577,6 +633,15 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				if((source instanceof Type) && Util.isMetaclass((Type)source)) {
 					return false;
 				}
+				if(source instanceof Extension) {
+					return false;
+				}
+				//ElementImportTarget
+				if(target != null) {
+					if(target instanceof Extension) {
+						return false;
+					}
+				}
 				return true;
 			} catch (Exception e) {
 				UMLDiagramEditorPlugin.getInstance().logError("Link constraint evaluation error", e); //$NON-NLS-1$
@@ -591,6 +656,9 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			try {
 				//PackageImportSource
 				if((source instanceof Type) && Util.isMetaclass((Type)source)) {
+					return false;
+				}
+				if(source instanceof Extension) {
 					return false;
 				}
 				return true;

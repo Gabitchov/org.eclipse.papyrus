@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 
-import org.eclipse.emf.codegen.util.CodeGenUtil;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.jface.action.IAction;
@@ -36,8 +35,6 @@ import org.eclipse.ui.IWorkbenchPart;
  */
 public class GenerateElementTypeModelAction implements IObjectActionDelegate {
 
-	protected static final String I_HINTED_TYPE = "org.eclipse.gmf.runtime.emf.type.core.IHintedType";
-
 	protected DomainContext selectedContext = null;
 
 	public GenerateElementTypeModelAction() {
@@ -51,18 +48,22 @@ public class GenerateElementTypeModelAction implements IObjectActionDelegate {
 		if(selectedContext.getSpecializationOf() == null) {
 			if(selectedContext.getMetamodel() != null) {
 				Iterator<EClassifier> iterClass = selectedContext.getMetamodel().getEClassifiers().iterator();
-				ArrayList<ElementType> result = new ArrayList<ElementType>();
+				ArrayList<MetaClassType> result = new ArrayList<MetaClassType>();
 				while(iterClass.hasNext()) {
 					EClassifier eClassifier = (EClassifier)iterClass.next();
 					if(eClassifier instanceof EClass) {
-						ElementType elemenType = DomaincontextcodegenFactory.eINSTANCE.createElementType();
-						elemenType.setEdithelper_EditHelperAdvicePath(selectedContext.getDefaultHelperPath());
-						elemenType.setKind(I_HINTED_TYPE);
+						MetaClassType elemenType = DomaincontextcodegenFactory.eINSTANCE.createMetaClassType();
+						elemenType.setHelper(selectedContext.getDefaultHelperPath());
 						elemenType.setMetaClass((EClass)eClassifier);
+						elemenType.setIcon("platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/" + eClassifier.getName() + ".gif");
 
 						// Convert name to upper case with '_' separator between name parts e.g. NamedElement -> NAMED_ELEMENT
-						String formattedName = CodeGenUtil.format(eClassifier.getName(), '_', null, false, true).toUpperCase();
-						elemenType.setSpecificName(formattedName);
+						// String formattedName = CodeGenUtil.format(eClassifier.getName(), '_', null, false, true).toUpperCase();
+						// elemenType.setName(not_formattedName);
+
+						// No formatting
+						String not_formattedName = eClassifier.getName();
+						elemenType.setName(not_formattedName);
 
 						result.add(elemenType);
 					}

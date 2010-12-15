@@ -95,17 +95,7 @@ public class SimpleReferencePropertyEditor extends AbstractPropertyEditor {
 			}
 
 			public void mouseDoubleClick(MouseEvent e) {
-				// open property dialog on the current object
-				List<Object> objectsToEdit = Arrays.asList(getValue());
-
-				// find editor descriptor...
-				DialogDescriptor descriptor = PropertyViewService.getInstance().getDialogDescriptor(objectsToEdit);
-
-				if(descriptor != null) {
-					Shell parentShell = getShell();
-					PropertyDialog dialog = new PropertyDialog(parentShell, descriptor, objectsToEdit, getWidgetFactory());
-					dialog.open();
-				}
+				openPropertyDialog();
 			}
 		});
 		referenceArea.setToolTipText(getTooltipText());
@@ -120,14 +110,7 @@ public class SimpleReferencePropertyEditor extends AbstractPropertyEditor {
 			 * {@inheritDoc}
 			 */
 			public void mouseUp(MouseEvent e) {
-				// pops up a window to ask for a new reference
-				Shell currentShell = getShell();
-				ReferenceExplorerDialog dialog = new ReferenceExplorerDialog(currentShell, (IBoundedValuesController)getController(), false);
-				// should select the current value by default
-				if(Dialog.OK == dialog.open()) {
-					currentValue = dialog.getFirstResult();
-					getController().updateModel();
-				}
+				openReferenceDialog();
 			}
 
 			/**
@@ -154,9 +137,7 @@ public class SimpleReferencePropertyEditor extends AbstractPropertyEditor {
 			 * {@inheritDoc}
 			 */
 			public void mouseUp(MouseEvent e) {
-				// remove the reference of the element
-				currentValue = null;
-				getController().updateModel();
+				removeValueAction();
 			}
 
 			/**
@@ -180,6 +161,52 @@ public class SimpleReferencePropertyEditor extends AbstractPropertyEditor {
 		}
 
 		return composite;
+	}
+
+	/**
+	 * Removes the current value.
+	 */
+	protected void removeValueAction() {
+		// remove the reference of the element
+		currentValue = null;
+		getController().updateModel();
+	}
+
+	/**
+	 * Opens the property dialog of current value and apply changes
+	 */
+	protected void openPropertyDialog() {
+
+		/*
+		 * deactivated part
+		 * // open property dialog on the current object
+		 * List<Object> objectsToEdit = Arrays.asList(getValue());
+		 * 
+		 * // find editor descriptor...
+		 * DialogDescriptor descriptor = PropertyViewService.getInstance().getDialogDescriptor(objectsToEdit);
+		 * 
+		 * if(descriptor != null) {
+		 * Shell parentShell = getShell();
+		 * PropertyDialog dialog = new PropertyDialog(parentShell, descriptor, objectsToEdit, getWidgetFactory());
+		 * dialog.open();
+		 * }
+		 * 
+		 * // end of deactivated
+		 */
+	}
+
+	/**
+	 * Opens the reference dialog and apply changes
+	 */
+	protected void openReferenceDialog() {
+		// pops up a window to ask for a new reference
+		Shell currentShell = getShell();
+		ReferenceExplorerDialog dialog = new ReferenceExplorerDialog(currentShell, (IBoundedValuesController)getController(), false);
+		// should select the current value by default
+		if(Dialog.OK == dialog.open()) {
+			currentValue = dialog.getFirstResult();
+			getController().updateModel();
+		}
 	}
 
 	/**

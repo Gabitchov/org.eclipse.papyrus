@@ -16,100 +16,73 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.papyrus.domaincontextcodegen.Binding#getAdvice <em>Advice</em>}</li>
- * <li>{@link org.eclipse.papyrus.domaincontextcodegen.Binding#getElementTypePattern <em>Element Type Pattern</em>}</li>
- * <li>{@link org.eclipse.papyrus.domaincontextcodegen.Binding#getAdviceID <em>Advice ID</em>}</li>
+ * <li>{@link org.eclipse.papyrus.domaincontextcodegen.Binding#getOwner <em>Owner</em>}</li>
+ * <li>{@link org.eclipse.papyrus.domaincontextcodegen.Binding#getPattern <em>Pattern</em>}</li>
  * </ul>
  * </p>
  * 
  * @see org.eclipse.papyrus.domaincontextcodegen.DomaincontextcodegenPackage#getBinding()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface Binding extends EObject {
 
 	/**
-	 * Returns the value of the '<em><b>Advice</b></em>' reference.
+	 * Returns the value of the '<em><b>Owner</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.domaincontextcodegen.ElementTypeBindings#getBindings <em>Bindings</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Advice</em>' reference isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Owner</em>' container reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
-	 * @return the value of the '<em>Advice</em>' reference.
-	 * @see #setAdvice(AdviceBinding)
-	 * @see org.eclipse.papyrus.domaincontextcodegen.DomaincontextcodegenPackage#getBinding_Advice()
-	 * @model
+	 * @return the value of the '<em>Owner</em>' container reference.
+	 * @see #setOwner(ElementTypeBindings)
+	 * @see org.eclipse.papyrus.domaincontextcodegen.DomaincontextcodegenPackage#getBinding_Owner()
+	 * @see org.eclipse.papyrus.domaincontextcodegen.ElementTypeBindings#getBindings
+	 * @model opposite="bindings" required="true" transient="false"
 	 * @generated
 	 */
-	AdviceBinding getAdvice();
+	ElementTypeBindings getOwner();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.domaincontextcodegen.Binding#getAdvice <em>Advice</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.domaincontextcodegen.Binding#getOwner <em>Owner</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @param value
-	 *        the new value of the '<em>Advice</em>' reference.
-	 * @see #getAdvice()
+	 *        the new value of the '<em>Owner</em>' container reference.
+	 * @see #getOwner()
 	 * @generated
 	 */
-	void setAdvice(AdviceBinding value);
+	void setOwner(ElementTypeBindings value);
 
 	/**
-	 * Returns the value of the '<em><b>Element Type Pattern</b></em>' attribute.
+	 * Returns the value of the '<em><b>Pattern</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Element Type Pattern</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Pattern</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
-	 * @return the value of the '<em>Element Type Pattern</em>' attribute.
-	 * @see #setElementTypePattern(String)
-	 * @see org.eclipse.papyrus.domaincontextcodegen.DomaincontextcodegenPackage#getBinding_ElementTypePattern()
+	 * @return the value of the '<em>Pattern</em>' attribute.
+	 * @see #setPattern(String)
+	 * @see org.eclipse.papyrus.domaincontextcodegen.DomaincontextcodegenPackage#getBinding_Pattern()
 	 * @model
 	 * @generated
 	 */
-	String getElementTypePattern();
+	String getPattern();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.domaincontextcodegen.Binding#getElementTypePattern <em>Element Type Pattern</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.domaincontextcodegen.Binding#getPattern <em>Pattern</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @param value
-	 *        the new value of the '<em>Element Type Pattern</em>' attribute.
-	 * @see #getElementTypePattern()
+	 *        the new value of the '<em>Pattern</em>' attribute.
+	 * @see #getPattern()
 	 * @generated
 	 */
-	void setElementTypePattern(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Advice ID</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Advice ID</em>' attribute isn't clear, there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Advice ID</em>' attribute.
-	 * @see #setAdviceID(String)
-	 * @see org.eclipse.papyrus.domaincontextcodegen.DomaincontextcodegenPackage#getBinding_AdviceID()
-	 * @model
-	 * @generated
-	 */
-	String getAdviceID();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.domaincontextcodegen.Binding#getAdviceID <em>Advice ID</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *        the new value of the '<em>Advice ID</em>' attribute.
-	 * @see #getAdviceID()
-	 * @generated
-	 */
-	void setAdviceID(String value);
+	void setPattern(String value);
 
 } // Binding

@@ -6,7 +6,6 @@
  */
 package org.eclipse.papyrus.domaincontextcodegen.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -58,80 +57,44 @@ public class ElementTypeItemProvider extends ItemProviderAdapter implements IEdi
 		if(itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addMetaClassPropertyDescriptor(object);
-			addSpecificNamePropertyDescriptor(object);
-			addEdithelper_EditHelperAdvicePathPropertyDescriptor(object);
-			addKindPropertyDescriptor(object);
-			addSpecializationofPropertyDescriptor(object);
-			addSpecializationIDofPropertyDescriptor(object);
+			addNamePropertyDescriptor(object);
+			addHelperPropertyDescriptor(object);
+			addIconPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Meta Class feature.
+	 * This adds a property descriptor for the Name feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
-	protected void addMetaClassPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ElementType_metaClass_feature"), getString("_UI_PropertyDescriptor_description", "_UI_ElementType_metaClass_feature", "_UI_ElementType_type"), DomaincontextcodegenPackage.Literals.ELEMENT_TYPE__META_CLASS, true, false, true, null, null, null));
+	protected void addNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ElementType_name_feature"), getString("_UI_PropertyDescriptor_description", "_UI_ElementType_name_feature", "_UI_ElementType_type"), DomaincontextcodegenPackage.Literals.ELEMENT_TYPE__NAME, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Specific Name feature.
+	 * This adds a property descriptor for the Helper feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
-	protected void addSpecificNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ElementType_specificName_feature"), getString("_UI_PropertyDescriptor_description", "_UI_ElementType_specificName_feature", "_UI_ElementType_type"), DomaincontextcodegenPackage.Literals.ELEMENT_TYPE__SPECIFIC_NAME, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	protected void addHelperPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ElementType_helper_feature"), getString("_UI_PropertyDescriptor_description", "_UI_ElementType_helper_feature", "_UI_ElementType_type"), DomaincontextcodegenPackage.Literals.ELEMENT_TYPE__HELPER, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Edithelper Edit Helper Advice Path feature.
+	 * This adds a property descriptor for the Icon feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
-	protected void addEdithelper_EditHelperAdvicePathPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ElementType_edithelper_EditHelperAdvicePath_feature"), getString("_UI_PropertyDescriptor_description", "_UI_ElementType_edithelper_EditHelperAdvicePath_feature", "_UI_ElementType_type"), DomaincontextcodegenPackage.Literals.ELEMENT_TYPE__EDITHELPER_EDIT_HELPER_ADVICE_PATH, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Kind feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected void addKindPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ElementType_kind_feature"), getString("_UI_PropertyDescriptor_description", "_UI_ElementType_kind_feature", "_UI_ElementType_type"), DomaincontextcodegenPackage.Literals.ELEMENT_TYPE__KIND, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Specializationof feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected void addSpecializationofPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ElementType_specializationof_feature"), getString("_UI_PropertyDescriptor_description", "_UI_ElementType_specializationof_feature", "_UI_ElementType_type"), DomaincontextcodegenPackage.Literals.ELEMENT_TYPE__SPECIALIZATIONOF, true, false, true, null, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Specialization IDof feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected void addSpecializationIDofPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ElementType_specializationIDof_feature"), getString("_UI_PropertyDescriptor_description", "_UI_ElementType_specializationIDof_feature", "_UI_ElementType_type"), DomaincontextcodegenPackage.Literals.ELEMENT_TYPE__SPECIALIZATION_IDOF, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	protected void addIconPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ElementType_icon_feature"), getString("_UI_PropertyDescriptor_description", "_UI_ElementType_icon_feature", "_UI_ElementType_type"), DomaincontextcodegenPackage.Literals.ELEMENT_TYPE__ICON, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -155,7 +118,7 @@ public class ElementTypeItemProvider extends ItemProviderAdapter implements IEdi
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ElementType)object).getSpecificName();
+		String label = ((ElementType)object).getName();
 		return label == null || label.length() == 0 ? getString("_UI_ElementType_type") : getString("_UI_ElementType_type") + " " + label;
 	}
 
@@ -172,10 +135,9 @@ public class ElementTypeItemProvider extends ItemProviderAdapter implements IEdi
 		updateChildren(notification);
 
 		switch(notification.getFeatureID(ElementType.class)) {
-		case DomaincontextcodegenPackage.ELEMENT_TYPE__SPECIFIC_NAME:
-		case DomaincontextcodegenPackage.ELEMENT_TYPE__EDITHELPER_EDIT_HELPER_ADVICE_PATH:
-		case DomaincontextcodegenPackage.ELEMENT_TYPE__KIND:
-		case DomaincontextcodegenPackage.ELEMENT_TYPE__SPECIALIZATION_IDOF:
+		case DomaincontextcodegenPackage.ELEMENT_TYPE__NAME:
+		case DomaincontextcodegenPackage.ELEMENT_TYPE__HELPER:
+		case DomaincontextcodegenPackage.ELEMENT_TYPE__ICON:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}

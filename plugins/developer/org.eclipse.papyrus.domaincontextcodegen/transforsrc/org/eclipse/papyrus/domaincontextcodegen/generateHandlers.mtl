@@ -7,6 +7,7 @@
 [template public generateHandlers(domain : DomainContext)]
 	
 	[domain.generateElementHandler()/]
+	[domain.generateCommandFilter()/]
 	[domain.generateXMLElementHandler()/]
 	
 [/template]

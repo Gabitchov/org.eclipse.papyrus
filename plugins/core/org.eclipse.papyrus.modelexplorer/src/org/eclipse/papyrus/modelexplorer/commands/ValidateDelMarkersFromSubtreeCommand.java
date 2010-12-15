@@ -20,7 +20,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
-import org.eclipse.papyrus.modelexplorer.validation.ValidationTool;
+import org.eclipse.papyrus.validation.ValidationTool;
 
 
 public class ValidateDelMarkersFromSubtreeCommand extends AbstractValidateCommand {

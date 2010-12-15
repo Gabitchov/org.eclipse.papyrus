@@ -13,7 +13,6 @@ package org.eclipse.papyrus.properties.runtime.controller;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.core.commands.operations.IUndoableOperation;
@@ -34,7 +33,6 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalC
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.Viewer;
@@ -284,7 +282,6 @@ public class EMFTEReferenceController extends EMFTStructuralFeatureController im
 		if(eClass == null || getObjectsToEdit() == null || getObjectsToEdit().size() == 0 || !(getModelHandler() instanceof EMFFeatureModelHandler)) {
 			return undoableOperation;
 		}
-		EObject eObject = getObjectsToEdit().get(0);
 		for(Object objectToDelete : objectsToDelete) {
 			if(objectToDelete instanceof EObject) {
 				DestroyElementRequest request = new DestroyElementRequest(getEditingDomain(), (EObject)objectToDelete, false);

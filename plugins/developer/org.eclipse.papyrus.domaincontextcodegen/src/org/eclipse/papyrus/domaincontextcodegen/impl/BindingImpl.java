@@ -7,13 +7,15 @@
 package org.eclipse.papyrus.domaincontextcodegen.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.papyrus.domaincontextcodegen.AdviceBinding;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.domaincontextcodegen.Binding;
 import org.eclipse.papyrus.domaincontextcodegen.DomaincontextcodegenPackage;
+import org.eclipse.papyrus.domaincontextcodegen.ElementTypeBindings;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,70 +24,36 @@ import org.eclipse.papyrus.domaincontextcodegen.DomaincontextcodegenPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.domaincontextcodegen.impl.BindingImpl#getAdvice <em>Advice</em>}</li>
- * <li>{@link org.eclipse.papyrus.domaincontextcodegen.impl.BindingImpl#getElementTypePattern <em>Element Type Pattern</em>}</li>
- * <li>{@link org.eclipse.papyrus.domaincontextcodegen.impl.BindingImpl#getAdviceID <em>Advice ID</em>}</li>
+ * <li>{@link org.eclipse.papyrus.domaincontextcodegen.impl.BindingImpl#getOwner <em>Owner</em>}</li>
+ * <li>{@link org.eclipse.papyrus.domaincontextcodegen.impl.BindingImpl#getPattern <em>Pattern</em>}</li>
  * </ul>
  * </p>
  * 
  * @generated
  */
-public class BindingImpl extends EObjectImpl implements Binding {
+public abstract class BindingImpl extends EObjectImpl implements Binding {
 
 	/**
-	 * The cached value of the '{@link #getAdvice() <em>Advice</em>}' reference.
+	 * The default value of the '{@link #getPattern() <em>Pattern</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
-	 * @see #getAdvice()
+	 * @see #getPattern()
 	 * @generated
 	 * @ordered
 	 */
-	protected AdviceBinding advice;
+	protected static final String PATTERN_EDEFAULT = null;
 
 	/**
-	 * The default value of the '{@link #getElementTypePattern() <em>Element Type Pattern</em>}' attribute.
+	 * The cached value of the '{@link #getPattern() <em>Pattern</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
-	 * @see #getElementTypePattern()
+	 * @see #getPattern()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String ELEMENT_TYPE_PATTERN_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getElementTypePattern() <em>Element Type Pattern</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @see #getElementTypePattern()
-	 * @generated
-	 * @ordered
-	 */
-	protected String elementTypePattern = ELEMENT_TYPE_PATTERN_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getAdviceID() <em>Advice ID</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @see #getAdviceID()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String ADVICE_ID_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getAdviceID() <em>Advice ID</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @see #getAdviceID()
-	 * @generated
-	 * @ordered
-	 */
-	protected String adviceID = ADVICE_ID_EDEFAULT;
+	protected String pattern = PATTERN_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -114,16 +82,83 @@ public class BindingImpl extends EObjectImpl implements Binding {
 	 * 
 	 * @generated
 	 */
-	public AdviceBinding getAdvice() {
-		if(advice != null && advice.eIsProxy()) {
-			InternalEObject oldAdvice = (InternalEObject)advice;
-			advice = (AdviceBinding)eResolveProxy(oldAdvice);
-			if(advice != oldAdvice) {
-				if(eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DomaincontextcodegenPackage.BINDING__ADVICE, oldAdvice, advice));
-			}
+	public ElementTypeBindings getOwner() {
+		if(eContainerFeatureID() != DomaincontextcodegenPackage.BINDING__OWNER)
+			return null;
+		return (ElementTypeBindings)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public NotificationChain basicSetOwner(ElementTypeBindings newOwner, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newOwner, DomaincontextcodegenPackage.BINDING__OWNER, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public void setOwner(ElementTypeBindings newOwner) {
+		if(newOwner != eInternalContainer() || (eContainerFeatureID() != DomaincontextcodegenPackage.BINDING__OWNER && newOwner != null)) {
+			if(EcoreUtil.isAncestor(this, newOwner))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if(eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if(newOwner != null)
+				msgs = ((InternalEObject)newOwner).eInverseAdd(this, DomaincontextcodegenPackage.ELEMENT_TYPE_BINDINGS__BINDINGS, ElementTypeBindings.class, msgs);
+			msgs = basicSetOwner(newOwner, msgs);
+			if(msgs != null)
+				msgs.dispatch();
+		} else if(eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DomaincontextcodegenPackage.BINDING__OWNER, newOwner, newOwner));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public String getPattern() {
+		return pattern;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public void setPattern(String newPattern) {
+		String oldPattern = pattern;
+		pattern = newPattern;
+		if(eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DomaincontextcodegenPackage.BINDING__PATTERN, oldPattern, pattern));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch(featureID) {
+		case DomaincontextcodegenPackage.BINDING__OWNER:
+			if(eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			return basicSetOwner((ElementTypeBindings)otherEnd, msgs);
 		}
-		return advice;
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -132,8 +167,13 @@ public class BindingImpl extends EObjectImpl implements Binding {
 	 * 
 	 * @generated
 	 */
-	public AdviceBinding basicGetAdvice() {
-		return advice;
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch(featureID) {
+		case DomaincontextcodegenPackage.BINDING__OWNER:
+			return basicSetOwner(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -142,57 +182,13 @@ public class BindingImpl extends EObjectImpl implements Binding {
 	 * 
 	 * @generated
 	 */
-	public void setAdvice(AdviceBinding newAdvice) {
-		AdviceBinding oldAdvice = advice;
-		advice = newAdvice;
-		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DomaincontextcodegenPackage.BINDING__ADVICE, oldAdvice, advice));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public String getElementTypePattern() {
-		return elementTypePattern;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public void setElementTypePattern(String newElementTypePattern) {
-		String oldElementTypePattern = elementTypePattern;
-		elementTypePattern = newElementTypePattern;
-		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DomaincontextcodegenPackage.BINDING__ELEMENT_TYPE_PATTERN, oldElementTypePattern, elementTypePattern));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public String getAdviceID() {
-		return adviceID;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public void setAdviceID(String newAdviceID) {
-		String oldAdviceID = adviceID;
-		adviceID = newAdviceID;
-		if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DomaincontextcodegenPackage.BINDING__ADVICE_ID, oldAdviceID, adviceID));
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch(eContainerFeatureID()) {
+		case DomaincontextcodegenPackage.BINDING__OWNER:
+			return eInternalContainer().eInverseRemove(this, DomaincontextcodegenPackage.ELEMENT_TYPE_BINDINGS__BINDINGS, ElementTypeBindings.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
@@ -204,14 +200,10 @@ public class BindingImpl extends EObjectImpl implements Binding {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch(featureID) {
-		case DomaincontextcodegenPackage.BINDING__ADVICE:
-			if(resolve)
-				return getAdvice();
-			return basicGetAdvice();
-		case DomaincontextcodegenPackage.BINDING__ELEMENT_TYPE_PATTERN:
-			return getElementTypePattern();
-		case DomaincontextcodegenPackage.BINDING__ADVICE_ID:
-			return getAdviceID();
+		case DomaincontextcodegenPackage.BINDING__OWNER:
+			return getOwner();
+		case DomaincontextcodegenPackage.BINDING__PATTERN:
+			return getPattern();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -225,14 +217,11 @@ public class BindingImpl extends EObjectImpl implements Binding {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch(featureID) {
-		case DomaincontextcodegenPackage.BINDING__ADVICE:
-			setAdvice((AdviceBinding)newValue);
+		case DomaincontextcodegenPackage.BINDING__OWNER:
+			setOwner((ElementTypeBindings)newValue);
 			return;
-		case DomaincontextcodegenPackage.BINDING__ELEMENT_TYPE_PATTERN:
-			setElementTypePattern((String)newValue);
-			return;
-		case DomaincontextcodegenPackage.BINDING__ADVICE_ID:
-			setAdviceID((String)newValue);
+		case DomaincontextcodegenPackage.BINDING__PATTERN:
+			setPattern((String)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -247,14 +236,11 @@ public class BindingImpl extends EObjectImpl implements Binding {
 	@Override
 	public void eUnset(int featureID) {
 		switch(featureID) {
-		case DomaincontextcodegenPackage.BINDING__ADVICE:
-			setAdvice((AdviceBinding)null);
+		case DomaincontextcodegenPackage.BINDING__OWNER:
+			setOwner((ElementTypeBindings)null);
 			return;
-		case DomaincontextcodegenPackage.BINDING__ELEMENT_TYPE_PATTERN:
-			setElementTypePattern(ELEMENT_TYPE_PATTERN_EDEFAULT);
-			return;
-		case DomaincontextcodegenPackage.BINDING__ADVICE_ID:
-			setAdviceID(ADVICE_ID_EDEFAULT);
+		case DomaincontextcodegenPackage.BINDING__PATTERN:
+			setPattern(PATTERN_EDEFAULT);
 			return;
 		}
 		super.eUnset(featureID);
@@ -269,12 +255,10 @@ public class BindingImpl extends EObjectImpl implements Binding {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch(featureID) {
-		case DomaincontextcodegenPackage.BINDING__ADVICE:
-			return advice != null;
-		case DomaincontextcodegenPackage.BINDING__ELEMENT_TYPE_PATTERN:
-			return ELEMENT_TYPE_PATTERN_EDEFAULT == null ? elementTypePattern != null : !ELEMENT_TYPE_PATTERN_EDEFAULT.equals(elementTypePattern);
-		case DomaincontextcodegenPackage.BINDING__ADVICE_ID:
-			return ADVICE_ID_EDEFAULT == null ? adviceID != null : !ADVICE_ID_EDEFAULT.equals(adviceID);
+		case DomaincontextcodegenPackage.BINDING__OWNER:
+			return getOwner() != null;
+		case DomaincontextcodegenPackage.BINDING__PATTERN:
+			return PATTERN_EDEFAULT == null ? pattern != null : !PATTERN_EDEFAULT.equals(pattern);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -291,10 +275,8 @@ public class BindingImpl extends EObjectImpl implements Binding {
 			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (elementTypePattern: ");
-		result.append(elementTypePattern);
-		result.append(", adviceID: ");
-		result.append(adviceID);
+		result.append(" (pattern: ");
+		result.append(pattern);
 		result.append(')');
 		return result.toString();
 	}
