@@ -2316,7 +2316,7 @@
           </modelFacet>
         </labels>
         <creationConstraints
-            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.9"/>
+            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.10"/>
       </links>
       <links
           visualID="1045">
@@ -2438,7 +2438,7 @@
           </modelFacet>
         </labels>
         <creationConstraints
-            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.9"/>
+            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.10"/>
       </links>
       <links
           visualID="4002">
@@ -2498,7 +2498,8 @@
           </modelFacet>
         </labels>
         <creationConstraints
-            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.8"/>
+            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.8"
+            targetEnd="/0/@expressionProviders/@providers.0/@expressions.9"/>
       </links>
       <links
           visualID="4008">
@@ -2586,7 +2587,7 @@
           </modelFacet>
         </labels>
         <creationConstraints
-            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.10"/>
+            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.11"/>
       </links>
       <links
           visualID="4018"
@@ -2629,7 +2630,7 @@
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Dependency/supplier"/>
         </modelFacet>
         <creationConstraints
-            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.10"/>
+            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.11"/>
       </links>
       <links
           visualID="1064">
@@ -2714,7 +2715,7 @@
           </modelFacet>
         </labels>
         <creationConstraints
-            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.11"/>
+            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.12"/>
       </links>
       <links
           visualID="1065">
@@ -2772,7 +2773,7 @@
           </modelFacet>
         </labels>
         <creationConstraints
-            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.12"/>
+            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.13"/>
       </links>
       <links
           visualID="1022"
@@ -2800,7 +2801,7 @@
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Comment/annotatedElement"/>
         </modelFacet>
         <creationConstraints
-            targetEnd="/0/@expressionProviders/@providers.0/@expressions.13"/>
+            targetEnd="/0/@expressionProviders/@providers.0/@expressions.14"/>
       </links>
       <links
           visualID="4014">
@@ -2824,7 +2825,7 @@
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint/constrainedElement"/>
         </modelFacet>
         <creationConstraints
-            targetEnd="/0/@expressionProviders/@providers.0/@expressions.14"/>
+            targetEnd="/0/@expressionProviders/@providers.0/@expressions.15"/>
       </links>
       <compartments
           visualID="1005"
@@ -3541,7 +3542,10 @@
             body="org.eclipse.uml2.uml.LiteralString literalString=org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createLiteralString();&#xD;&#xA;literalString.setValue(&quot;&quot;);&#xD;&#xA;return literalString;"/>
         <expressions
             xsi:type="gmfgen:GenConstraint"
-            body="//GeneralizationSource&#xD;&#xA;if((source instanceof org.eclipse.uml2.uml.Type) &amp;&amp; org.eclipse.papyrus.profile.utils.Util.isMetaclass((org.eclipse.uml2.uml.Type)source)) {&#xD;&#xA;&#x9;return false;&#xD;&#xA;}"/>
+            body="//GeneralizationSource&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if(!(source instanceof org.eclipse.uml2.uml.Classifier)) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;return false;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if(org.eclipse.papyrus.profile.utils.Util.isMetaclass(source)) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;return false;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="//GeneralizationTarget&#xD;&#xA;if(target != null) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(!(target instanceof Classifier)) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;return false;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(Util.isMetaclass(target)) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;return false;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}"/>
         <expressions
             xsi:type="gmfgen:GenConstraint"
             body="//AssociationSource&#xD;&#xA;if((source instanceof org.eclipse.uml2.uml.Type) &amp;&amp; org.eclipse.papyrus.profile.utils.Util.isMetaclass((org.eclipse.uml2.uml.Type)source)) {&#xD;&#xA;&#x9;return false;&#xD;&#xA;}"/>
