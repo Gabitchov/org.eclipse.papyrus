@@ -11,6 +11,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.runtime.propertyeditor;
 
+import java.util.List;
+
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.gmf.runtime.common.core.service.ExecutionStrategy;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
@@ -69,7 +71,12 @@ public class PropertyEditorService extends Service {
 	 * @return the created property editor
 	 */
 	public AbstractPropertyEditor createPropertyEditor(PropertyEditorController controller, String id, TabbedPropertySheetWidgetFactory widgetFactory) {
-		Object result = executeUnique(ExecutionStrategy.REVERSE, new CreatePropertyEditorOperation(controller, id));
+		List<Object> results = (List<Object>)execute(ExecutionStrategy.FORWARD, new CreatePropertyEditorOperation(controller, id));
+		if(results == null || results.size()==0) {
+			Activator.log.error("impossible to create the editor using id " + id, null);
+			return null;
+		}
+		Object result = results.get(0);
 		if(result instanceof AbstractPropertyEditor) {
 			((AbstractPropertyEditor)result).setWidgetFactory(widgetFactory);
 			return (AbstractPropertyEditor)result;
@@ -88,7 +95,13 @@ public class PropertyEditorService extends Service {
 	 * @return the configuration descriptor for the property editor
 	 */
 	public IPropertyEditorDescriptor createPropertyEditorDescriptor(String editorID, Node editorNode) {
-		return (IPropertyEditorDescriptor)executeUnique(ExecutionStrategy.REVERSE, new CreatePropertyEditorDescriptorOperation(editorID, editorNode));
+		List<IPropertyEditorDescriptor> results = (List<IPropertyEditorDescriptor>)execute(ExecutionStrategy.FORWARD, new CreatePropertyEditorDescriptorOperation(editorID, editorNode));
+		if(results == null || results.size()==0) {
+			throw new RuntimeException("Impossible to create this property editor: "+editorID);
+		} else {
+			IPropertyEditorDescriptor descriptor = results.get(0);
+			return results.get(0);
+		}
 	}
 
 	/**
