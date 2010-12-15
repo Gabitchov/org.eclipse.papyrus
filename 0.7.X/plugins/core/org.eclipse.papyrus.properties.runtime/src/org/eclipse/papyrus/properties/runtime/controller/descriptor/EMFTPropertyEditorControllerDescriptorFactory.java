@@ -79,6 +79,9 @@ public class EMFTPropertyEditorControllerDescriptorFactory implements IPropertyE
 				if(child.hasAttributes()) {
 					Node editorIDNode = child.getAttributes().getNamedItem("id");
 					editorDescriptor = PropertyEditorService.getInstance().createPropertyEditorDescriptor(editorIDNode.getNodeValue(), child);
+					if(editorDescriptor == null) {
+						Activator.log.error("impossible to create editor descriptor", null);
+					}
 				}
 
 			} else if("constraints".equals(child.getNodeName())) {
@@ -88,7 +91,6 @@ public class EMFTPropertyEditorControllerDescriptorFactory implements IPropertyE
 
 		assert (modelHandler != null) : "impossible to find handler for controller " + controllerID;
 		assert (featureName != null && !"".equals(featureName)) : "impossible to find feature name for controller " + controllerID;
-		assert (editorDescriptor != null) : "impossible to create editor descriptor";
 		assert (constraints != null) : "Impossible to parse constraints";
 
 		return new EMFTPropertyEditorControllerDescriptor(controllerID, multiSelection, featureName, modelHandler, editorDescriptor, constraints);
