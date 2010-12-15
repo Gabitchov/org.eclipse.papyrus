@@ -75,21 +75,23 @@ public class ResourceUpdateService implements IService, IResourceChangeListener,
 		lifeCycleEvents.addDoSaveListener(new ISaveEventListener() {
 
 			public void doSave(DoSaveEvent event) {
-				isActive = false;
+				deactivate();
 			}
 
 			public void doSaveAs(DoSaveEvent event) {
-				isActive = false;
+				// isActive = false;
+				deactivate();
 			}
 		});
 		lifeCycleEvents.addPostDoSaveListener(new ISaveEventListener() {
 
 			public void doSave(DoSaveEvent event) {
-				isActive = true;
+				activate();
 			}
 
 			public void doSaveAs(DoSaveEvent event) {
 				isActive = true;
+				activate();
 			}
 		});
 	}
@@ -123,10 +125,10 @@ public class ResourceUpdateService implements IService, IResourceChangeListener,
 	 * A visitor for resource changes. Detects, whether a changed resource belongs to an opened editor
 	 */
 	public boolean visit(IResourceDelta delta) {
-		if(!isActive) {
+		// if(!isActive) {
 			// don't follow resource changes, once inactive (either due to save or due to a pending user dialog) 
-			return false;
-		}
+			// return false;
+		// }
 		IResource changedResource = delta.getResource();
 		if(delta.getFlags() == IResourceDelta.MARKERS) {
 			// only markers have been changed. Refresh their display only (no need to reload resources)
@@ -241,16 +243,24 @@ public class ResourceUpdateService implements IService, IResourceChangeListener,
 
 	private ModelSet modelSet;
 
-
-	public void startService() throws ServiceException {
+	// private ILifeCycleEventsProvider lifeCycleEvents;
+	
+	private void activate() {
 		// ... add service to the workspace
 		ResourcesPlugin.getWorkspace().addResourceChangeListener(this, IResourceChangeEvent.POST_CHANGE);
+	}
 
+	private void deactivate() {
+		// remove it from workspace
+		ResourcesPlugin.getWorkspace().removeResourceChangeListener(this);
+	}
 
+	public void startService() throws ServiceException {
+		activate();
 	}
 
 	public void disposeService() throws ServiceException {
-		// remove it from workspace
-		ResourcesPlugin.getWorkspace().removeResourceChangeListener(this);
+		deactivate();
+		// lifeCycleEvents.removeDoSaveListener(listener);
 	}
 }
