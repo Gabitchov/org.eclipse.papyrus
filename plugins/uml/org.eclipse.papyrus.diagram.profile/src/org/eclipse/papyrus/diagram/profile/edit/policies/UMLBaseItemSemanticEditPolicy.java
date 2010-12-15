@@ -633,6 +633,15 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				if((source instanceof Type) && Util.isMetaclass((Type)source)) {
 					return false;
 				}
+				if(source instanceof Extension) {
+					return false;
+				}
+				//ElementImportTarget
+				if(target != null) {
+					if(target instanceof Extension) {
+						return false;
+					}
+				}
 				return true;
 			} catch (Exception e) {
 				UMLDiagramEditorPlugin.getInstance().logError("Link constraint evaluation error", e); //$NON-NLS-1$
@@ -647,6 +656,9 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			try {
 				//PackageImportSource
 				if((source instanceof Type) && Util.isMetaclass((Type)source)) {
+					return false;
+				}
+				if(source instanceof Extension) {
 					return false;
 				}
 				return true;
