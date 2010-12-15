@@ -18,10 +18,15 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.gmf.runtime.notation.TitleStyle;
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.core.commands.SetPropertyCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
@@ -34,7 +39,7 @@ import org.eclipse.gmf.runtime.diagram.ui.services.editpart.EditPartService;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.BasicCompartment;
 import org.eclipse.gmf.runtime.notation.DecorationNode;
-import org.eclipse.gmf.runtime.notation.ListCompartment;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ITreeContentProvider;
@@ -264,6 +269,11 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 		public ShowHideTitleOfCompartmentCommand(ShowNameOfCompartmentItem showNameOfCompartmentItem, boolean showNotHide) {
 			super(domain, new EObjectAdapter(showNameOfCompartmentItem.compartment), Properties.ID_SHOWCOMPARTMENTTITLE, "Show/Hide Compartment Title", Boolean.valueOf(showNotHide));
 		}
+
+		protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
+			return super.doExecuteWithResult(progressMonitor, info);
+		}
+
 
 	}
 
@@ -534,9 +544,10 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 			List<ShowNameOfCompartmentItem> result = new ArrayList<ShowNameOfCompartmentItem>();
 			View notationView = ((GraphicalEditPart)representedEditPart).getNotationView();
 			for(Object next : notationView.getChildren()) {
-				if(next instanceof ListCompartment) {
-					ListCompartment compartment = (ListCompartment)next;
-					if(compartment.isShowTitle()) {
+				if(next instanceof View) {
+					View compartment = (View)next;
+					TitleStyle style = (TitleStyle)compartment.getStyle(NotationPackage.eINSTANCE.getTitleStyle());
+					if(style != null && style.isShowTitle()) {
 						result.add(new ShowNameOfCompartmentItem(compartment));
 					}
 
