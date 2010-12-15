@@ -65,8 +65,8 @@ public class PreSaveProfileListener implements ISaveEventListener {
 			IMultiDiagramEditor multidiag = event.getMultiDiagramEditor();
 			if(multidiag instanceof PapyrusMultiDiagramEditor) {
 				diag = ((PapyrusMultiDiagramEditor)multidiag).getDiagram();
-				
-				if(diag == null ||diag.getElement()==null|| (!(diag.getElement() instanceof Profile))) {
+
+				if(diag == null || diag.getElement() == null || (!(diag.getElement() instanceof Profile))) {
 					return;
 				}
 			}

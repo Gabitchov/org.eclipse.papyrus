@@ -145,7 +145,7 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		Object object = notification.getNotifier();
 		Property property = getUMLElement();
 
-		if(object == null||property==null) {
+		if(object == null || property == null) {
 			return;
 		}
 

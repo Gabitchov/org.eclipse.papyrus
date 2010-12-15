@@ -492,6 +492,15 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				if((source instanceof Type) && Util.isMetaclass((Type)source)) {
 					return false;
 				}
+				if(source instanceof Extension) {
+					return false;
+				}
+				//AssociationTarget
+				if(target != null) {
+					if(target instanceof Extension) {
+						return false;
+					}
+				}
 				return true;
 			} catch (Exception e) {
 				UMLDiagramEditorPlugin.getInstance().logError("Link constraint evaluation error", e); //$NON-NLS-1$
@@ -515,6 +524,15 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				if((source instanceof Type) && Util.isMetaclass((Type)source)) {
 					return false;
 				}
+				if(source instanceof Extension) {
+					return false;
+				}
+				//AssociationTarget
+				if(target != null) {
+					if(target instanceof Extension) {
+						return false;
+					}
+				}
 				return true;
 			} catch (Exception e) {
 				UMLDiagramEditorPlugin.getInstance().logError("Link constraint evaluation error", e); //$NON-NLS-1$
@@ -534,6 +552,9 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				if(Util.isMetaclass(source)) {
 					return false;
 				}
+				if(source instanceof Extension) {
+					return false; //meaningless
+				}
 				//GeneralizationTarget
 				if(target != null) {
 					if(!(target instanceof Classifier)) {
@@ -541,6 +562,9 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					}
 					if(Util.isMetaclass(target)) {
 						return false;
+					}
+					if(target instanceof Extension) {
+						return false;//meaningless
 					}
 				}
 				return true;
@@ -559,6 +583,15 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				if((source instanceof Type) && Util.isMetaclass((Type)source)) {
 					return false;
 				}
+				if(source instanceof Extension) {
+					return false;
+				}
+				//DependencyTarget 
+				if(target != null) {
+					if(target instanceof Extension) {
+						return false;
+					}
+				}
 				return true;
 			} catch (Exception e) {
 				UMLDiagramEditorPlugin.getInstance().logError("Link constraint evaluation error", e); //$NON-NLS-1$
@@ -574,6 +607,15 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				//DependencySource
 				if((source instanceof Type) && Util.isMetaclass((Type)source)) {
 					return false;
+				}
+				if(source instanceof Extension) {
+					return false;
+				}
+				//DependencyTarget 
+				if(target != null) {
+					if(target instanceof Extension) {
+						return false;
+					}
 				}
 				return true;
 			} catch (Exception e) {
