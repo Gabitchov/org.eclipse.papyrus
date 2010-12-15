@@ -1,0 +1,823 @@
+--Author Manel Fredj-CEA LIST
+library HelpersClassDiagram;
+
+
+import VisualIDs;
+import NotationQueries;
+import GeneralMappingsandHelpers;
+
+
+
+modeltype di2 uses 'http://www.papyrusuml.org/di2';
+modeltype notation uses 'http://www.eclipse.org/gmf/runtime/1.0.2/notation';
+modeltype ecore uses 'http://www.eclipse.org/emf/2002/Ecore';
+modeltype uml uses 'http://www.eclipse.org/uml2/2.1.0/UML';
+
+
+mapping di2::GraphNode::Graphnode2ShapeClass() : notation::Shape inherits di2::GraphNode::Graphnode2Node --di2::GraphElement::Element2View
+{
+	
+	if (self.getElement().oclIsTypeOf(uml::Class)) then {
+	
+			type := VisualId_Class;
+	}endif;
+	
+	if (self.getElement().oclIsTypeOf(uml::Comment)) then {
+	
+			type := VisualId_Comment;
+	}endif;
+	if (self.getElement().oclIsTypeOf(uml::Profile)) then {
+	
+			type := VisualId_Profile;
+	}endif;
+	if (self.getElement().oclIsTypeOf(uml::Stereotype)) then {
+	
+			type := VisualId_Stereotype;
+	}endif;
+	if (self.getElement().oclIsTypeOf(uml::Package)) then {
+	
+			type := VisualId_Package;
+	}endif;
+	
+	if (self.getElement().oclIsTypeOf(uml::Enumeration)) then {
+	
+			type := VisualId_Enum;
+	}endif;	
+		
+	if (self.getElement().oclIsTypeOf(uml::Interface)) then {
+	
+			type := VisualId_Interface;
+	}endif;
+	
+	if (self.getElement().oclIsTypeOf(uml::PrimitiveType)) then {
+	
+			type := VisualId_PrimitiveType;
+	}endif;
+	
+	if (self.getElement().oclIsTypeOf(uml::DataType)) then {
+	
+			type := VisualId_DataType;
+	}endif;
+	if (self.getElement().oclIsTypeOf(uml::Model)) then {
+	
+			type := VisualId_Package;
+	}endif;
+	if (self.getElement().oclIsTypeOf(uml::Component)) then {
+	
+			type := VisualId_Component;
+	}endif;
+	if (self.getElement().oclIsTypeOf(uml::RedefinableTemplateSignature)) then {
+	
+			type := VisualId_RedefinableTemplateSig;
+			
+	}endif;	
+	fontHeight="8";
+	lineColor="0";
+	layoutConstraint := object notation::Bounds {
+		var size : notation::Size :=
+			self.size.map dimension2Size();
+		
+		
+		var relativeLocation: notation::Location :=null;
+		
+		var location : notation::Location :=
+			self.position.map point2Location();
+		x := location.x; 
+		y := location.y; 
+		width := size.width;
+		height := size.height; 
+	};
+	--adding 3 eAnnotations (shared by all: Class, Comment, Package, interface, primitiveType, datatype,Enumeration)
+	eAnnotations := setEAnnotations ();
+	if type = VisualId_Class then {
+		--adding children
+	  	children := setChildrenForClass(self);
+		--adding style
+	    styles := setStylesForClass();
+	} endif;
+	
+	if type = VisualId_Component then {
+		--adding children
+	  	children := setChildrenForComponent(self);
+	  			
+	} endif;
+	
+	if type = VisualId_Comment then {
+		--adding children
+	  	children := setChildrenForComment();
+		
+	} endif;	
+	
+	if type = VisualId_Package then {
+		--adding children
+	  	children := setChildrenForPackage(self);
+		
+	} endif;
+	
+	if type = VisualId_Enum then {
+		--adding children
+	  	children := setChildrenForEnum(self);
+	} endif;
+	
+	if type = VisualId_Interface then {
+		--adding children
+	  	children := setChildrenForInterface(self);
+	} endif;
+
+	if type = VisualId_PrimitiveType then {
+		--adding children
+	  	children := setChildrenForPrimitiveType(self);
+	} endif;
+	
+	if type = VisualId_DataType then {
+		--adding children
+	  	children := setChildrenForDataType(self);		
+	} endif;
+	
+	if type = VisualId_Profile then {
+		--adding children
+	  	children := setChildrenForProfile(self);		
+	} endif;
+	
+	if type = VisualId_Stereotype then {
+		--adding children
+	  	children := setChildrenForStereotype();		
+	} endif; 
+	
+	if type = VisualId_RedefinableTemplateSig then {
+		--adding children
+	  	children := setChildrenForRedefinableTemplateSignature(self);
+	  			
+	} endif;
+	
+}
+
+
+
+--for a class
+--first argument is related to the contained operations which are integrated in the third child, i.e. the
+--basic compartment typed 7018
+helper setChildrenForClass (in node:di2::GraphNode) : OrderedSet(notation::Node)
+{
+	var setofchildren: OrderedSet(notation::Node);
+	
+   --<children xmi:type="notation:DecorationNode" type="5029"/>
+
+    --<children xmi:type="notation:BasicCompartment"  type="7017">
+    --  <styles xmi:type="notation:SortingStyle" />
+    -- <styles xmi:type="notation:FilteringStyle"/>
+    -- <layoutConstraint xmi:type="notation:Bounds" />
+   --</children>
+
+   -- <children xmi:type="notation:BasicCompartment" type="7018">
+   --   <styles xmi:type="notation:SortingStyle" xmi:id="..."/>
+   --   <styles xmi:type="notation:FilteringStyle" xmi:id=".../>
+   --   <layoutConstraint xmi:type="notation:Bounds" xmi:id="..."/>
+   -- </children>
+
+   -- <children xmi:type="notation:BasicCompartment" xmi:id="..." type="7019">
+   --   <styles xmi:type="notation:SortingStyle" xmi:id="..."/>
+   --  <styles xmi:type="notation:FilteringStyle" xmi:id="..."/>
+   --  <layoutConstraint xmi:type="notation:Bounds" xmi:id="..."/>
+   -- </children>
+
+	-- first child	
+	var child1 := object notation::DecorationNode {
+		type:=VisualId_Class_Label;
+		--the id is set automatically
+	};
+
+	-- second child	
+	var child2 := object notation::BasicCompartment {
+		type:=VisualId_Class_Attributes;
+		--the id is set automatically
+		--set the properties
+		children := setAttributesForClass(node);
+		var style1 := object notation::SortingStyle {
+			--the id is set automatically
+		};
+		var style2 := object notation::FilteringStyle {
+			--the id is set automatically
+		};
+		styles := OrderedSet {
+			style1, style2
+		};
+		layoutConstraint:=object notation::Bounds {};
+	};
+	
+	-- third child	includes operations
+	var child3 := object notation::BasicCompartment { 
+		type := VisualId_Class_Operations;
+		--the id is set automatically
+		--set the operations
+		children := setOperationsForClass(node);
+		--set the styles
+		var style1 := object notation::SortingStyle {
+			--the id is set automatically
+		};
+		var style2 := object notation::FilteringStyle {
+			--the id is set automatically
+		};
+		styles := OrderedSet {
+			style1, style2
+		};
+		layoutConstraint := object notation::Bounds {};
+	};
+
+	-- fourth child	
+	var child4 := object notation::BasicCompartment {
+		type := VisualId_Class_UseCase;
+		--the id is set automatically
+		var style1 := object notation::SortingStyle {
+			--the id is set automatically
+		};
+		var style2 := object notation::FilteringStyle {
+			--the id is set automatically
+		};
+		styles := OrderedSet {
+			style1,
+			style2
+		};
+		layoutConstraint := object notation::Bounds {};		
+	};
+	
+	
+	
+	setofchildren := OrderedSet{child1, child2, child3, child4};
+	--add the set of children to the node
+	return  setofchildren;
+}
+
+
+
+--for a ForRedefinableTemplateSignature
+
+helper setChildrenForRedefinableTemplateSignature (in node:di2::GraphNode) : OrderedSet(notation::Node)
+{
+	var containedCTP:= object notation::DecorationNode {
+		type:=VisualId_ContainerofCTP;
+		
+		children:= setClassifierTemplateParameters(node);
+		
+		var style1 := object notation::SortingStyle {
+		};
+		var style2 := object notation::FilteringStyle {
+		};
+		styles := OrderedSet {
+			style1, style2
+		};
+		layoutConstraint:=object notation::Bounds {};
+		
+	};
+	var containedCTPs : OrderedSet(notation::Node);
+	containedCTPs += containedCTP;
+	return containedCTPs;
+
+}
+
+helper setClassifierTemplateParameters(in node:di2::GraphNode):OrderedSet (notation::Node){
+	var CTPShapes : OrderedSet(notation::Shape); 
+	var containedCTPs : OrderedSet(ecore::EObject) := node.getClassifierTemplateParameter();
+	containedCTPs->forEach (CTP) {
+		  -- <children xmi:type="notation:Shape" type="3031" fontHeight="8" lineColor="0">
+          --  <element xmi:type="uml:ClassifierTemplateParameter" href="model.uml#_tisGcNxYEd-VL4dXZB1kyw"/>
+          --  <layoutConstraint xmi:type="notation:Location" />
+          -- </children>   
+           
+       
+		
+		var CTPShape := object notation::Shape {
+			type := VisualId_ClassifierTemplateParameter;
+			element := CTP;
+        	layoutConstraint := object notation::Location{};   
+         					
+		};					
+	
+	
+		CTPShapes += CTPShape;
+	};
+
+return CTPShapes;
+
+}
+--for a primitive type
+helper setChildrenForPrimitiveType (in node:di2::GraphNode) : OrderedSet(notation::Node)
+{
+    -- <children xmi:type="notation:DecorationNode" xmi:id="_i40XxNMjEd-9-ci4J3MfKg" type="5020"/>
+    -- <children xmi:type="notation:DecorationNode" xmi:id="_i40XxdMjEd-9-ci4J3MfKg" type="7009">
+    --  <layoutConstraint xmi:type="notation:Bounds" xmi:id="_i40XxtMjEd-9-ci4J3MfKg"/>
+    -- </children>
+
+	-- first child	
+	var child1 := object notation::DecorationNode {
+		type := VisualId_PrimitiveTypeChild;
+		--the id is set automatically
+	};
+
+	--add the set of children to the node
+	return OrderedSet {
+		child1
+	};
+}
+
+--for a data type
+helper setChildrenForDataType (in node:di2::GraphNode) : OrderedSet(notation::Node)
+{
+    -- <children xmi:type="notation:DecorationNode" xmi:id="_i40XxNMjEd-9-ci4J3MfKg" type="5020"/>
+    -- <children xmi:type="notation:DecorationNode" xmi:id="_i40XxdMjEd-9-ci4J3MfKg" type="7009">
+    --  <layoutConstraint xmi:type="notation:Bounds" xmi:id="_i40XxtMjEd-9-ci4J3MfKg"/>
+    -- </children>
+
+	-- first child	
+	var child1 := object notation::DecorationNode {
+		type := "5035";
+		--the id is set automatically
+	};
+
+	-- second child	
+	var child2 := object notation::BasicCompartment {
+		type := "7020";
+		--the id is set automatically
+		--set the operations
+		children := setAttributesForClass(node);
+		var style1 := object notation::SortingStyle {
+			--the id is set automatically
+		};
+		var style2 := object notation::FilteringStyle {
+			--the id is set automatically
+		};
+		styles := OrderedSet {
+			style1, style2
+		};
+		layoutConstraint:=object notation::Bounds {};
+	};
+	
+	-- third child	includes operations
+	var child3 := object notation::BasicCompartment { 
+		type := "7021";
+		--the id is set automatically
+		--set the operations
+		children := setOperationsForClass(node);
+		--set the styles
+		var style1 := object notation::SortingStyle {
+			--the id is set automatically
+		};
+		var style2 := object notation::FilteringStyle {
+			--the id is set automatically
+		};
+		styles := OrderedSet {
+			style1, style2
+		};
+		layoutConstraint := object notation::Bounds {};
+	};
+	--add the set of children to the node
+	return OrderedSet {
+		child1, child2, child3
+	};
+}
+
+--for an interface
+helper setChildrenForInterface (in node:di2::GraphNode) : OrderedSet(notation::Node)
+{
+    -- <children xmi:type="notation:DecorationNode" xmi:id="_i40XxNMjEd-9-ci4J3MfKg" type="5020"/>
+    -- <children xmi:type="notation:DecorationNode" xmi:id="_i40XxdMjEd-9-ci4J3MfKg" type="7009">
+    --  <layoutConstraint xmi:type="notation:Bounds" xmi:id="_i40XxtMjEd-9-ci4J3MfKg"/>
+    -- </children>
+
+	-- first child	
+		-- first child	
+	var child1 := object notation::DecorationNode {
+		type := "5011";
+		--the id is set automatically
+	};
+
+	-- second child	
+	var child2 := object notation::BasicCompartment {
+		type := "7006";
+		--the id is set automatically
+		--set the operations
+		children := setAttributesForClass(node);
+		var style1 := object notation::SortingStyle {
+			--the id is set automatically
+		};
+		var style2 := object notation::FilteringStyle {
+			--the id is set automatically
+		};
+		styles := OrderedSet {
+			style1, style2
+		};
+		layoutConstraint:=object notation::Bounds {};
+	};
+	
+	-- third child	includes operations
+	var child3 := object notation::BasicCompartment { 
+		type := "7007";
+		--the id is set automatically
+		--set the operations
+		children := setOperationsForClass(node);
+		--set the styles
+		var style1 := object notation::SortingStyle {
+			--the id is set automatically
+		};
+		var style2 := object notation::FilteringStyle {
+			--the id is set automatically
+		};
+		styles := OrderedSet {
+			style1, style2
+		};
+		layoutConstraint := object notation::Bounds {};
+	};
+	
+	-- third child	includes operations
+	var child4 := object notation::BasicCompartment { 
+		type := "7008";
+		--the id is set automatically
+		--set the operations
+		--children := setOperationsForClass(node);
+		--set the styles
+		var style1 := object notation::SortingStyle {
+			--the id is set automatically
+		};
+		var style2 := object notation::FilteringStyle {
+			--the id is set automatically
+		};
+		styles := OrderedSet {
+			style1, style2
+		};
+		layoutConstraint := object notation::Bounds {};
+	};
+	
+	--add the set of children to the node
+	return OrderedSet {
+		child1, child2, child3, child4
+	};
+}
+
+--for an enumeration
+helper setChildrenForEnum (in node : di2::GraphNode) : OrderedSet(notation::Node)
+{
+    -- <children xmi:type="notation:DecorationNode" xmi:id="_WrbFYtP1Ed-9-ci4J3MfKg" type="5023"/>
+    -- <children xmi:type="notation:BasicCompartment" xmi:id="_WrbFY9P1Ed-9-ci4J3MfKg" type="7015">
+    --  <styles xmi:type="notation:SortingStyle" xmi:id="_WrbFZNP1Ed-9-ci4J3MfKg"/>
+    --  <styles xmi:type="notation:FilteringStyle" xmi:id="_WrbFZdP1Ed-9-ci4J3MfKg"/>
+    --  <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WrbFZtP1Ed-9-ci4J3MfKg"/>
+    --</children>
+
+	-- first child	
+	var child1 := object notation::DecorationNode {
+		type := VisualId_Enum_Label;
+		--the id is set automatically
+	};
+
+	-- second child	
+	var child2 := object notation::BasicCompartment {
+		type := VisualId_Enum_Literals;
+		--set the literals
+		children := getLiterals(node);
+		var style1 := object notation::SortingStyle { };
+		var style2 := object notation::FilteringStyle { };
+		styles := OrderedSet {
+			style1, style2
+		};
+		layoutConstraint := object notation::Bounds {};
+		--the id is set automatically
+	};
+
+	--add the set of children to the node
+	return OrderedSet {
+		child1, child2
+	};
+}
+
+
+helper setStylesForClass() : OrderedSet(notation::Style)
+{
+	var style:=object notation::HintedDiagramLinkStyle {
+		--the id is set automatically
+	};
+
+	return OrderedSet{style};	
+}
+
+
+--reusable Helpers
+helper setOperations(in node:di2::GraphNode,in VisualId:String): OrderedSet(notation::Node)
+{	
+	var operationsShape : OrderedSet(notation::Node); 
+	var containedOp : OrderedSet(ecore::EObject) := node.getOperations();
+	containedOp->forEach (operation) {
+		var operationShape := object notation::Shape {
+			--an operation is typed 3013
+			type := VisualId;
+			--fontHeight="8";
+			--lineColor="0";        						 	
+			element := operation;
+        	layoutConstraint := object notation::Location{};        					
+		};					
+
+		operationsShape += operationShape;
+	};
+
+	return operationsShape;
+}
+
+helper setAttributes(in node : di2::GraphNode, in VisualId:String) : OrderedSet(notation::Node)
+{
+	var attributesShape : OrderedSet(notation::Node); 
+	var attributes : OrderedSet(ecore::EObject) := node.getProperties();
+	attributes->forEach (attribute) {
+		var attributeShape := object notation::Shape {
+			-- an attribute is type 3012
+			type := VisualId;
+			--fontName="Sans Serif";
+			--lineColor="0";
+        	element := attribute;
+        	layoutConstraint := object notation::Location{};
+		};
+		attributesShape += attributeShape;
+	};
+
+	return attributesShape;
+}
+--in containedOp:OrderedSet(ecore::EObject)
+helper setOperationsForClass(in node:di2::GraphNode): OrderedSet(notation::Node)
+{	
+	return setOperations(node,VisualId_Class_Operation);
+}
+
+
+--in containedAttr:OrderedSet (ecore::EObject)
+helper setAttributesForClass(in node : di2::GraphNode) : OrderedSet(notation::Node)
+{
+	return setAttributes(node,VisualId_Class_Attribute);
+}
+--for Enumeration
+--in containedAttr:OrderedSet (ecore::EObject)
+helper getLiterals(in node : di2::GraphNode) : OrderedSet(notation::Node)
+{
+	var enumLiteralsShape : OrderedSet(notation::Node); 
+	var enumLiterals : OrderedSet(ecore::EObject) := node.getEnumLiterals();
+	enumLiterals->forEach (enumLiteral) {
+		var enumLiteralShape := object notation::Shape {
+			-- an attribute is typed 3017
+			type := VisualId_Enum_literal;
+			--fontName="Sans Serif";
+			--lineColor="0";
+        	element := enumLiteral;
+        	layoutConstraint := object notation::Location{};
+		};
+		enumLiteralsShape += enumLiteralShape;
+	};
+									
+									
+	return enumLiteralsShape;
+}
+
+
+--for a component
+helper setChildrenForComponent (in node:di2::GraphNode) : OrderedSet(notation::Node)
+{
+
+	-- first child	
+	var child1 := object notation::DecorationNode {
+		type := VisualId_Component_child1;
+		--the id is set automatically
+	};
+
+	-- second child	
+	var child2 := object notation::BasicCompartment {
+		type := VisualId_Component_child2;
+		--the id is set automatically
+		--set the properties
+		children := setAttributesForComponent(node);
+		var style1 := object notation::SortingStyle {
+			--the id is set automatically
+		};
+		var style2 := object notation::FilteringStyle {
+			--the id is set automatically
+		};
+		styles := OrderedSet {
+			style1, style2
+		};
+		layoutConstraint := object notation::Bounds {};
+		
+	};
+	-- third child	
+	var child3 := object notation::BasicCompartment {
+		type := VisualId_Component_child3;
+		--the id is set automatically
+		--set the operations
+		children := setOperationsForComponent(node);
+		var style1 := object notation::SortingStyle {
+			--the id is set automatically
+		};
+		var style2 := object notation::FilteringStyle {
+			--the id is set automatically
+		};
+		styles := OrderedSet {
+			style1, style2
+		};
+		layoutConstraint := object notation::Bounds {};
+	};
+	-- fourth child	
+	var child4 := object notation::BasicCompartment {
+		type := VisualId_Component_child4;
+		--the id is set automatically
+		var style1 := object notation::SortingStyle {
+			--the id is set automatically
+		};
+		var style2 := object notation::FilteringStyle {
+			--the id is set automatically
+		};
+		styles := OrderedSet {
+			style1, style2
+		};
+		layoutConstraint := object notation::Bounds {};
+	};
+	var SetofChildren : OrderedSet(notation::Node);
+	--add the set of children to the node
+	SetofChildren := OrderedSet{child1, child2,child3,child4}; 
+	
+	
+	 return SetofChildren;
+}
+
+
+--in containedOp:OrderedSet(ecore::EObject)
+helper setOperationsForComponent(in node:di2::GraphNode): OrderedSet(notation::Node)
+{	
+	return setOperations(node,VisualId_Component_Operation);
+}
+
+
+--in containedAttr:OrderedSet (ecore::EObject)
+helper setAttributesForComponent(in node : di2::GraphNode) : OrderedSet(notation::Node)
+{
+	return setAttributes(node, VisualId_Component_Attribute);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+--for a stereotype
+helper setChildrenForStereotype() : OrderedSet(notation::Node)
+{
+  
+
+	-- first child	
+	var child1 := object notation::DecorationNode {
+		type := VisualId_Stereotype_child1;
+		--the id is set automatically
+	};
+
+	-- second child	
+	var child2 := object notation::BasicCompartment {
+		type := VisualId_Stereotype_child2;
+		--the id is set automatically
+		var style1 := object notation::SortingStyle {
+			--the id is set automatically
+		};
+		var style2 := object notation::FilteringStyle {
+			--the id is set automatically
+		};
+		styles := OrderedSet {
+			style1, style2
+		};
+		layoutConstraint := object notation::Bounds {};
+		
+	};
+	-- third child	
+	var child3 := object notation::BasicCompartment {
+		type := VisualId_Stereotype_child3;
+		--the id is set automatically
+		var style1 := object notation::SortingStyle {
+			--the id is set automatically
+		};
+		var style2 := object notation::FilteringStyle {
+			--the id is set automatically
+		};
+		styles := OrderedSet {
+			style1, style2
+		};
+		layoutConstraint := object notation::Bounds {};
+	};
+	-- fourth child	
+	var child4 := object notation::BasicCompartment {
+		type := VisualId_Stereotype_child4;
+		--the id is set automatically
+		var style1 := object notation::SortingStyle {
+			--the id is set automatically
+		};
+		var style2 := object notation::FilteringStyle {
+			--the id is set automatically
+		};
+		styles := OrderedSet {
+			style1, style2
+		};
+		layoutConstraint := object notation::Bounds {};
+	};
+	var Children : OrderedSet(notation::Node);
+	--add the set of children to the node
+	Children := OrderedSet{child1, child2,child3,child4}; 
+	return Children;
+}
+
+
+--for a profile in a class diagram
+helper setChildrenForProfile (in node : di2::GraphNode) : OrderedSet(notation::Node)
+{
+	-- first child	
+	var child1 := object notation::DecorationNode {
+		type := VisualId_Profile_child1;
+		--the id is set automatically
+	};
+
+	-- second child	
+	var child2 := object notation::DecorationNode {
+		type := VisualId_Profile_child2;
+		children := addStereotypestoProfile(node);
+		layoutConstraint := object notation::Bounds {};
+		--the id is set automatically
+	};
+
+	--add the set of children to the node
+	return OrderedSet {child1, child2};
+}
+
+--stereotype
+helper addStereotypestoProfile (in node : di2::GraphNode) : OrderedSet(notation::Node)
+{
+
+	var SetofStereotypes: OrderedSet(notation::Node);
+	node.contained->forEach (elem|elem.oclIsTypeOf(di2::GraphNode)){
+		if (elem.oclAsType(di2::GraphNode).getElement().oclIsTypeOf(uml::Stereotype))then{
+		--create a new stereotype
+			var stereo:notation::Shape:=elem.oclAsType(di2::GraphNode).map Graphnode2ShapeClass();
+			SetofStereotypes += stereo;
+		}endif;
+	};
+	
+		
+	return  SetofStereotypes;
+	
+}
+
+--for a package
+helper setChildrenForPackage (in node:di2::GraphNode) : OrderedSet(notation::Node)
+{
+    -- <children xmi:type="notation:DecorationNode" xmi:id="_i40XxNMjEd-9-ci4J3MfKg" type="5020"/>
+    -- <children xmi:type="notation:DecorationNode" xmi:id="_i40XxdMjEd-9-ci4J3MfKg" type="7009">
+    --  <layoutConstraint xmi:type="notation:Bounds" xmi:id="_i40XxtMjEd-9-ci4J3MfKg"/>
+    -- </children>
+
+	-- first child	
+	var child1 := object notation::DecorationNode {
+		type := VisualId_Package_Label;
+		--the id is set automatically
+	};
+
+	-- second child	
+	var child2 := object notation::DecorationNode {
+		type := VisualId_Package_Label2;
+		--the id is set automatically
+	};
+
+	var Children : OrderedSet(notation::Node);
+	--add the set of children to the node
+	Children := OrderedSet{child1, child2}; 
+	var containedClass: notation::Shape;
+	var containedClasses : OrderedSet(di2::GraphNode) := node.getSubClassesOfPackage();
+	containedClasses->forEach (classe) {
+		containedClass:=classe.map Graphnode2ShapeClass();		
+
+		Children += containedClass;
+	};
+	
+	 return Children;
+}
+
+
+--Helpers related to a Comment
+--------------------------------
+
+helper setChildrenForComment () : OrderedSet(notation::Node)
+{
+ 
+	--  <children xmi:type="notation:DecorationNode" xmi:id="_OVAHGNhVEd-Fo-h2aSJB1A" type="5038"/>
+	var child1 := object notation::DecorationNode {
+		type:=VisualId_Comment_Child;
+		
+	};
+	return OrderedSet {child1};
+}
+
+    

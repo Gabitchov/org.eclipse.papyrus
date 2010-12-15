@@ -1,0 +1,99 @@
+
+--Author Manel Fredj-CEA LIST
+
+
+modeltype di uses 'http://www.eclipse.org/papyrus/0.7.0/sashdi';
+modeltype di2 uses 'http://www.papyrusuml.org/di2';
+modeltype notation uses 'http://www.eclipse.org/gmf/runtime/1.0.2/notation';
+modeltype ecore uses 'http://www.eclipse.org/emf/2002/Ecore';
+
+
+transformation Transfo(in src : di2, out target1 : notation, out target2:di);
+
+
+mapping di2::Diagram::diagram2SashWindowsMngr(): di::SashWindowsMngr 
+{
+	--pageRefsclassandOp
+	var pageRefs: Set(di::PageRef):=SetPageRef();
+	--pageList
+	pageList:= SetPageList(pageRefs);
+
+	--sashModel
+	sashModel:=SetsashModel();
+}
+
+mapping notation::Diagram::diagram2PageRef(): di::PageRef
+{
+	emfPageIdentifier := self.oclAsType(ecore::EObject);
+}  
+
+
+-------------------------------------------------------------------------------------------------------------------------
+----------------------------------------            Helpers for di                ---------------------------------------
+-------------------------------------------------------------------------------------------------------------------------
+
+helper SetPageList(in pagerefs:Set(di::PageRef)): di::PageList
+{
+	var PL:=object di::PageList{
+		availablePage:=pagerefs;
+	};
+	
+ 	return PL;
+};
+		
+	
+helper SetPageRef(): Set(di::PageRef)
+{
+	var setPages : Set(di::PageRef) := Set{};
+	var page: di::PageRef;
+	target1.rootObjects()->forEach(diagram|diagram.oclIsTypeOf(notation::Diagram)){
+		page := diagram.oclAsType(notation::Diagram).map diagram2PageRef();
+		setPages+=page;
+	};
+ 	return setPages;
+};	
+
+	
+helper SetsashModel(): di::SashModel
+{
+	var SM:=object di::SashModel{
+		currentSelection:= object di::TabFolder{} ;
+		windows:=SetWindows();
+	};
+	return SM;
+};	
+
+helper SetWindows(): Set(di::Window)
+{
+	var setwindows:Set(di::Window);
+	setwindows += SetWindow();	
+	return setwindows;
+};	
+	
+helper SetWindow() : di::Window {
+
+	var child := object di::TabFolder {
+	
+	target1.rootObjects()->forEach(diagram|diagram.oclIsTypeOf(notation::Diagram)){
+		var page : di::PageRef=object di::PageRef {
+			emfPageIdentifier:= diagram.oclAsType(ecore::EObject)
+		};
+		children += page;
+		};
+	};
+	
+	
+	var SetofChild : Set (di::AbstractPanel) := Set{child};
+	var window:=object di::Window {
+		children:=SetofChild;	
+	};			
+	return window;
+};	
+	
+--helper SetChildren(): Set(di::PageRef){
+
+	--var setchildren:Set(di::PageRef):=Set{};
+	--var page: di::PageRef;
+
+ 	--return setchildren;
+--};	

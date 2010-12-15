@@ -1,0 +1,97 @@
+--Author Manel Fredj-CEA LIST
+library GeneralMappings;
+
+import Converter.Utils.ConverterLibs;
+import NotationQueries;
+
+
+modeltype di2 uses 'http://www.papyrusuml.org/di2';
+modeltype notation uses 'http://www.eclipse.org/gmf/runtime/1.0.2/notation';
+modeltype ecore uses 'http://www.eclipse.org/emf/2002/Ecore';
+modeltype uml uses 'http://www.eclipse.org/uml2/2.1.0/UML';
+
+
+-------------------------------------------------------------------------------------------------------------------------
+----------------------------------------           Generic  Mappings              ---------------------------------------
+-------------------------------------------------------------------------------------------------------------------------
+abstract mapping di2::GraphElement::Element2View() : notation::View
+{
+   --assign visibility attribute
+	visible := self.isVisible; 	
+	--assign the fontcolor
+	styles->select (e|e.oclIsTypeOf(notation::FontStyle))->forEach(style){
+		style.oclAsType (notation::FontStyle).fontColor := self.fontColor.rgb2int()
+	};		
+
+	--element=self.getElement();	
+	element := self.getElement().oclAsType(ecore::EObject);	
+}
+
+
+mapping di2::GraphNode::Graphnode2Node() : notation::Node inherits di2::GraphElement::Element2View
+{
+}
+
+-------------------------------------------------------------------------------------------------------------------------
+----------------------------------------                    Mappings              ---------------------------------------
+-------------------------------------------------------------------------------------------------------------------------
+
+mapping di2::Dimension::dimension2Size() : notation::Size
+{
+	width := self.dimensionGetWidth();
+ 	height := self.dimensionGetHeight();
+}
+
+-- transformation mapping dimension into location
+mapping  di2::Point::point2Location() : notation::Location
+{
+	
+	x := self.pointGetX();
+	y := self.pointGetY();
+	
+}
+
+-------------------------------------------------------------------------------------------------------------------------
+----------------------------------------                   Helpers                ---------------------------------------
+-------------------------------------------------------------------------------------------------------------------------
+
+--Set EAnnotation: not specific to a diagram (it is used in class diagram and composite diagram)
+-------------------------------- 
+helper setEAnnotations() : OrderedSet (ecore::EAnnotation)
+{	
+	-- first eAnnotation	
+	var eAnnot1 := object ecore::EAnnotation {
+		--the id is set automatically
+		--eAnnot1.eModelElement:=self.resolveone(notation::Node);
+		source := "ShadowFigure";
+		details := object ecore::EStringToStringMapEntry {
+			key:="ShadowFigure_Value";
+			value:="false";
+		};
+	};
+
+	-- second annotation
+	var eAnnot2 := object ecore::EAnnotation {
+		--the id is set automatically
+		source := "displayNameLabelIcon";
+		details := object ecore::EStringToStringMapEntry {
+			 key:="displayNameLabelIcon_value";
+			 value:="false";
+		};
+	};
+	
+	-- third annotation	
+	var eAnnot3 := object ecore::EAnnotation {	
+		-- the id is set automatically	
+		source := "QualifiedName";
+		details := object ecore::EStringToStringMapEntry {
+			key:="QualifiedNameDepth";
+			value:="1000";
+		};	
+	};
+
+	-- add the set of annotations to the node
+	return OrderedSet {
+		eAnnot1, eAnnot2, eAnnot3
+	};
+}
