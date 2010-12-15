@@ -2719,7 +2719,8 @@
           </modelFacet>
         </labels>
         <creationConstraints
-            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.14"/>
+            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.14"
+            targetEnd="/0/@expressionProviders/@providers.0/@expressions.15"/>
       </links>
       <links
           visualID="1065">
@@ -2777,7 +2778,7 @@
           </modelFacet>
         </labels>
         <creationConstraints
-            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.15"/>
+            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.16"/>
       </links>
       <links
           visualID="1022"
@@ -2805,7 +2806,7 @@
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Comment/annotatedElement"/>
         </modelFacet>
         <creationConstraints
-            targetEnd="/0/@expressionProviders/@providers.0/@expressions.16"/>
+            targetEnd="/0/@expressionProviders/@providers.0/@expressions.17"/>
       </links>
       <links
           visualID="4014">
@@ -2829,7 +2830,7 @@
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint/constrainedElement"/>
         </modelFacet>
         <creationConstraints
-            targetEnd="/0/@expressionProviders/@providers.0/@expressions.17"/>
+            targetEnd="/0/@expressionProviders/@providers.0/@expressions.18"/>
       </links>
       <compartments
           visualID="1005"
@@ -3564,10 +3565,13 @@
             body="//DependencyTarget &#xD;&#xA;if(target!=null){&#xD;&#xA;&#x9;if(target instanceof org.eclipse.uml2.uml.Extension){&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}"/>
         <expressions
             xsi:type="gmfgen:GenConstraint"
-            body="//ElementImportSource&#xD;&#xA;if((source instanceof org.eclipse.uml2.uml.Type) &amp;&amp; org.eclipse.papyrus.profile.utils.Util.isMetaclass((org.eclipse.uml2.uml.Type)source)) {&#xD;&#xA;&#x9;return false;&#xD;&#xA;}"/>
+            body="//ElementImportSource&#xD;&#xA;if((source instanceof org.eclipse.uml2.uml.Type) &amp;&amp; org.eclipse.papyrus.profile.utils.Util.isMetaclass((org.eclipse.uml2.uml.Type)source)) {&#xD;&#xA;&#x9;return false;&#xD;&#xA;}&#xD;&#xA;if(source instanceof  org.eclipse.uml2.uml.Extension){&#xD;&#xA;&#x9;return false;&#xD;&#xA;}"/>
         <expressions
             xsi:type="gmfgen:GenConstraint"
-            body="//PackageImportSource&#xD;&#xA;if((source instanceof org.eclipse.uml2.uml.Type) &amp;&amp; org.eclipse.papyrus.profile.utils.Util.isMetaclass((org.eclipse.uml2.uml.Type)source)) {&#xD;&#xA;&#x9;return false;&#xD;&#xA;}"/>
+            body="//ElementImportTarget&#xD;&#xA;if(target!=null){&#xD;&#xA;&#x9;if(target instanceof  org.eclipse.uml2.uml.Extension){&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="//PackageImportSource&#xD;&#xA;if((source instanceof org.eclipse.uml2.uml.Type) &amp;&amp; org.eclipse.papyrus.profile.utils.Util.isMetaclass((org.eclipse.uml2.uml.Type)source)) {&#xD;&#xA;&#x9;return false;&#xD;&#xA;}&#xD;&#xA;if(source instanceof org.eclipse.uml2.uml.Extension){&#xD;&#xA;&#x9;return false;&#xD;&#xA;}"/>
         <expressions
             xsi:type="gmfgen:GenConstraint"
             body="//AnnotatedElementLink target&#xD;&#xA;if((target instanceof org.eclipse.uml2.uml.Type) &amp;&amp; org.eclipse.papyrus.profile.utils.Util.isMetaclass((org.eclipse.uml2.uml.Type)target)) {&#xD;&#xA;&#x9;return false;&#xD;&#xA;}"/>
