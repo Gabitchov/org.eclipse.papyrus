@@ -13,7 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.ui.hyperlinkshell;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -306,7 +308,16 @@ public class EditorLookForDiagram extends AbstractLookForDiagramShell {
 			try {
 				IPageMngr iPageMngr = EditorUtils.getIPageMngr();
 				Object[] result = iPageMngr.allPages().toArray();
-				return result;
+
+				List<Object> res = new ArrayList<Object>();
+				for(Object current : result) {
+					if(current != null) { //if the model is a little bit corrupted, we can have a null element in the list
+						res.add(current);
+					}
+				}
+				return res.toArray();
+
+				//				return result;
 			} catch (Exception e) {
 			}
 			return null;
