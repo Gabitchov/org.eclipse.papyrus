@@ -118,7 +118,6 @@ public class CustomMessageCreateCommand extends MessageCreateCommand {
 
 		Message message = CommunicationCommandHelper.doCreateMessage(container, MessageSort.SYNCH_CALL_LITERAL, getSource(), getTarget());
 
-		//Message message = CommunicationCommandHelper.doCreateMessage(container, getSource(), getTarget());
 		if(message != null) {
 			doConfigure(message, monitor, info);
 			((CreateElementRequest)getRequest()).setNewElement(message);
@@ -129,7 +128,6 @@ public class CustomMessageCreateCommand extends MessageCreateCommand {
 		return CommandResult.newErrorCommandResult("There is no valid container for events"); //$NON-NLS-1$
 
 	}
-
 
 	@Override
 	protected void doConfigure(Message newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
