@@ -263,7 +263,7 @@
 		</rm:provider>
 		<rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false"
 			resolutionFilter="(|(build.type=M)(build.type=S)(build.type=R))">
-			<rm:uri format="{0}/releases/staging">
+			<rm:uri format="{0}/releases/helios">
 				<bc:propertyRef key="eclipse.downloads"/>
 			</rm:uri>
 		</rm:provider>
