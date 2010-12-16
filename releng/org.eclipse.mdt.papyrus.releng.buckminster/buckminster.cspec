@@ -24,6 +24,7 @@
         <cs:dependency name="org.eclipse.sdk" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.uml2.sdk" componentType="eclipse.feature"/>
 	
+		<!--<cs:dependency name="org.junit" componentType="osgi.bundle" />
 		<cs:dependency name="org.junit4" componentType="osgi.bundle" />
 		<cs:dependency name="org.eclipse.jdt.junit4.runtime" componentType="osgi.bundle" />-->
 		
