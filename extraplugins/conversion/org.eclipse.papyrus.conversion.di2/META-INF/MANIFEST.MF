@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: di2 model code
+Bundle-SymbolicName: org.eclipse.papyrus.conversion.di2;singleton:=true
+Bundle-Version: 0.7.0.qualifier
+Bundle-ClassPath: .
+Bundle-Vendor: CEA LIST
+Bundle-Localization: plugin
+Export-Package: org.eclipse.papyrus.conversion.di2,
+ org.eclipse.papyrus.conversion.di2.impl,
+ org.eclipse.papyrus.conversion.di2.util
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.gef,
+ org.eclipse.uml2.uml
+Eclipse-LazyStart: true
