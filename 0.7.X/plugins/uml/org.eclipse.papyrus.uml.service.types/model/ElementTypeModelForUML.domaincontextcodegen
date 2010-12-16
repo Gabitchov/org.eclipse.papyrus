@@ -760,7 +760,7 @@
   <advices adviceID="org.eclipse.papyrus.uml.advice.PartDecomposition" ref="//@elementTypes/@types.166" advicePath="org.eclipse.papyrus.uml.service.types.helper.advice.PartDecompositionHelperAdvice"/>
   <advices adviceID="org.eclipse.papyrus.uml.advice.Property" ref="//@elementTypes/@types.172" advicePath="org.eclipse.papyrus.uml.service.types.helper.advice.PropertyHelperAdvice" inheritance="all"/>
   <bindings clientContextID="org.eclipse.papyrus.service.edit.TypeContext">
-    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" pattern="org.eclipse.papyrus.uml.*"/>
+    <bindings xsi:type="domaincontextcodegen:ElementTypeBinding" pattern="org\.eclipse\.papyrus\.uml\..*"/>
     <bindings xsi:type="domaincontextcodegen:AdviceBinding" ref="//@advices.0"/>
     <bindings xsi:type="domaincontextcodegen:AdviceBinding" ref="//@advices.1"/>
     <bindings xsi:type="domaincontextcodegen:AdviceBinding" ref="//@advices.2"/>
