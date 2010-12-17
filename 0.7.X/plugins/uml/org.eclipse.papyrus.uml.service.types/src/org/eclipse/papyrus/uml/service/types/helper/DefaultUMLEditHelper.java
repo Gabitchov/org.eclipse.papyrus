@@ -9,7 +9,7 @@
  *
  * Contributors:
  * 
- * 		Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ * 		Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.helper;
@@ -23,8 +23,10 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelper;
+import org.eclipse.gmf.runtime.emf.type.core.edithelper.IEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 
 /**
  * <pre>
@@ -59,6 +61,8 @@ public class DefaultUMLEditHelper extends AbstractEditHelper {
 	/** Defined in org.eclipse.gmf.runtime.emf.type.core.internal.requests.RequestCacheEntries (internal) */
 	public static final String Checked_Elements = "Checked_Elements";//$NON-NLS-1$	
 	
+	/** Defined in org.eclipse.gmf.runtime.emf.type.core.internal.requests.RequestCacheEntries (internal) */	
+	public static final String EditHelper_Advice = "EditHelper_Advice";//$NON-NLS-1$
 	/**
 	 * Gets the command to destroy a single child of an element of my kind along
 	 * with its dependents (not related by containment). By default, returns a
@@ -222,4 +226,41 @@ public class DefaultUMLEditHelper extends AbstractEditHelper {
 		return result;
 	}
 
+	/**
+	 * Gets the array of edit helper advice for this request.
+	 * 
+	 * @param req the edit request
+	 * @return the edit helper advice, or <code>null</code> if there is none
+	 */
+	protected IEditHelperAdvice[] getEditHelperAdvice(IEditCommandRequest req) {
+		IEditHelperAdvice[] advices = null;
+		Object editHelperContext = req.getEditHelperContext();
+		Map cacheMaps = (Map) req
+			.getParameter(Cache_Maps);
+		if (cacheMaps != null) {
+			Map contextMap = (Map) cacheMaps.get(editHelperContext);
+			if (contextMap != null) {
+				advices = (IEditHelperAdvice[]) contextMap.get(EditHelper_Advice);
+			}			
+		}		
+		
+		if (advices == null) {
+			
+			if (editHelperContext instanceof EObject) {
+				advices = ElementTypeRegistry.getInstance().getEditHelperAdvice(
+					(EObject)editHelperContext, req.getClientContext());
+				
+			} else if (editHelperContext instanceof IElementType) {
+				advices = ElementTypeRegistry.getInstance().getEditHelperAdvice(
+					(IElementType)editHelperContext, req.getClientContext());
+				
+			} else {
+				advices = ElementTypeRegistry.getInstance().getEditHelperAdvice(
+					editHelperContext);
+			}
+			
+		}
+		
+		return advices;
+	}
 }
