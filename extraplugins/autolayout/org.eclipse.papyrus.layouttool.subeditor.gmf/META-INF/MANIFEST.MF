@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-SymbolicName: org.eclipse.papyrus.layouttool.subeditor.gmf;singleton:=true
-Bundle-Version: 0.7.1.qualifier
+Bundle-Version: 0.7.2.qualifier
 Bundle-Activator: org.eclipse.papyrus.layouttool.subeditor.gmf.Activator
 Require-Bundle: org.eclipse.gmf.runtime.diagram.ui,
  org.eclipse.papyrus.layouttool

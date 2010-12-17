@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.extensionpoints.uml2;singleton:=true
-Bundle-Version: 0.7.1.qualifier
+Bundle-Version: 0.7.2.qualifier
 Bundle-Activator: org.eclipse.papyrus.extensionpoints.uml2.Activator
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.core.runtime,
