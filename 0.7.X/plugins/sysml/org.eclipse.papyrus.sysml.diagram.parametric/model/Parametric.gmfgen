@@ -398,7 +398,7 @@
         iD="org.eclipse.papyrus.sysml.diagram.parametric"
         name="Sysml Parametric diagram Plugin"
         provider="Eclipse.org"
-        version="0.7.1.qualifier">
+        version="0.7.2.qualifier">
       <requiredPlugins>org.eclipse.draw2d</requiredPlugins>
       <requiredPlugins>org.eclipse.gmf.runtime.draw2d.ui</requiredPlugins>
     </plugin>

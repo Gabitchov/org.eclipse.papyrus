@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-SymbolicName: org.eclipse.papyrus.service.edit;singleton:=true
-Bundle-Version: 0.7.1.qualifier
+Bundle-Version: 0.7.2.qualifier
 Bundle-Activator: org.eclipse.papyrus.service.edit.Activator
 Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.ui,

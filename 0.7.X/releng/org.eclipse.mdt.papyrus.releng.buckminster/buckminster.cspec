@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cs:cspec xmlns:cs="http://www.eclipse.org/buckminster/CSpec-1.0" name="org.eclipse.mdt.papyrus.releng.buckminster"
-	componentType="buckminster" version="0.7.1.qualifier">
+	componentType="buckminster" version="0.7.2.qualifier">
 	<cs:dependencies>
 		<cs:dependency name="org.eclipse.papyrus.build" componentType="eclipse.feature"/>
 
@@ -35,4 +35,49 @@
         <cs:dependency name="org.apache.derby" componentType="osgi.bundle"/>
         <cs:dependency name="org.eclipse.zest.sdk" componentType="eclipse.feature"/>
 	</cs:dependencies>
+	<cs:actions>
+		<!-- 
+		<cs:public name="clear.site" actor="ant" always="true">
+			<cs:actorProperties>
+				<cs:property key="buildFile" value="buckminster.ant"/>
+				<cs:property key="targets" value="clear.directory"/>
+			</cs:actorProperties>
+			<cs:properties>
+				<cs:property key="directory" value="${cdo.download.area}/updates/3.0/"/>
+			</cs:properties>
+		</cs:public>
+		 
+		<cs:public name="promote.site" actor="ant">
+			<cs:actorProperties>
+				<cs:property key="buildFileId" value="buckminster.pdetasks"/>
+				<cs:property key="targets" value="copy.group"/>
+			</cs:actorProperties>
+			<cs:prerequisites alias="action.requirements">
+				<cs:attribute name="site.p2" component="org.eclipse.emf.cdo.site"/>
+				<cs:attribute name="clear.site" contributor="false"/>
+			</cs:prerequisites>
+			<cs:products alias="action.output" base="${cdo.download.area}/updates/3.0/"/>
+		</cs:public>
+		<cs:public name="promote.site.to.archive" actor="ant">
+			<cs:actorProperties>
+				<cs:property key="buildFileId" value="buckminster.pdetasks"/>
+				<cs:property key="targets" value="copy.group"/>
+			</cs:actorProperties>
+			<cs:prerequisites alias="action.requirements">
+				<cs:attribute name="site.p2.zip" component="org.eclipse.emf.cdo.site"/>
+			</cs:prerequisites>
+			<cs:products alias="action.output" base="${cdo.download.area}/archives/3.0/"/>
+		</cs:public>
+		-->
+	</cs:actions>
+	
+	<!-- 
+	<cs:groups>
+		<cs:public name="promote">
+			<cs:attribute name="promote.site"/>
+			<cs:attribute name="promote.site.to.archive"/>
+		</cs:public>
+	</cs:groups>
+	 -->
+	
 </cs:cspec>

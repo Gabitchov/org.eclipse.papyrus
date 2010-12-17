@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.papyrus.diagram.menu"
       label="%featureName"
-      version="0.7.1.qualifier"
+      version="0.7.2.qualifier"
       provider-name="%providerName">
 
    <description>
@@ -40,7 +40,7 @@ http://www.eclipse.org/legal/epl-v10.html
       <import plugin="org.eclipse.gmf.runtime.diagram.ui.properties" version="1.2.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.gmf.runtime.diagram.ui.render" version="1.2.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.papyrus.wizards"/>
-      <import plugin="org.eclipse.papyrus.diagram.common" version="0.7.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.papyrus.diagram.common" version="0.7.2" match="greaterOrEqual"/>
    </requires>
 
    <plugin

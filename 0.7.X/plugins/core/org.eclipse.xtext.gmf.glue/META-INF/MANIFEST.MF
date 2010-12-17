@@ -1,10 +1,11 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Glue
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
 Bundle-SymbolicName: org.eclipse.xtext.gmf.glue;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 0.7.2.qualifier
 Bundle-Activator: org.eclipse.xtext.gmf.glue.Activator
-Bundle-Vendor: Eclipse Modeling Project
+Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.emf.common;bundle-version="2.5.0",
@@ -14,7 +15,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.xtext.ui;bundle-version="0.8.0",
  org.eclipse.core.expressions;bundle-version="3.4.100",
  org.eclipse.xtext.ui.shared;bundle-version="0.8.0",
- org.eclipse.papyrus.extensionpoints.editors;bundle-version="0.7.1",
+ org.eclipse.papyrus.extensionpoints.editors;bundle-version="0.7.2",
  org.eclipse.uml2.uml;bundle-version="3.1.0",
  org.eclipse.papyrus.sasheditor;bundle-version="0.7.0",
  org.eclipse.papyrus.editor;bundle-version="0.7.0",

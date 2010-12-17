@@ -6,14 +6,14 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.papyrus.sysml,
  org.eclipse.swt,
  org.eclipse.papyrus.diagram.common,
- org.eclipse.papyrus.service.edit;bundle-version="0.7.1",
- org.eclipse.papyrus.sysml.service.types;bundle-version="0.7.1",
- org.eclipse.papyrus.uml.service.types;bundle-version="0.7.1"
+ org.eclipse.papyrus.service.edit;bundle-version="0.7.2",
+ org.eclipse.papyrus.sysml.service.types;bundle-version="0.7.2",
+ org.eclipse.papyrus.uml.service.types;bundle-version="0.7.2"
 Bundle-Localization: plugin
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .,bin
-Bundle-Version: 0.7.1.qualifier
+Bundle-Version: 0.7.2.qualifier
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.sysml.modelexplorer.Activator
 Bundle-ManifestVersion: 2
