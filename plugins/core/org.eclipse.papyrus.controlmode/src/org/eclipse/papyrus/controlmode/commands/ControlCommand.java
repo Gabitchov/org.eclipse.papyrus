@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.controlmode.commands;
 
-import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -45,7 +44,6 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.EditingDomainUndoContext;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.controlmode.commands.IControlCommand.STATE_CONTROL;
 import org.eclipse.papyrus.controlmode.history.HistoryModel;
 import org.eclipse.papyrus.controlmode.history.utils.HistoryUtils;
@@ -54,7 +52,6 @@ import org.eclipse.papyrus.controlmode.mm.history.historyFactory;
 import org.eclipse.papyrus.controlmode.mm.history.historyPackage;
 import org.eclipse.papyrus.core.modelsetquery.ModelSetQuery;
 import org.eclipse.papyrus.core.utils.EditorUtils;
-import org.eclipse.papyrus.resource.ModelIdentifiers;
 import org.eclipse.papyrus.resource.ModelSet;
 import org.eclipse.papyrus.resource.notation.NotationModel;
 import org.eclipse.papyrus.resource.notation.NotationUtils;
@@ -65,7 +62,11 @@ import org.eclipse.papyrus.sashwindows.di.PageRef;
 import org.eclipse.papyrus.sashwindows.di.SashWindowsMngr;
 import org.eclipse.papyrus.sashwindows.di.exception.SashEditorException;
 import org.eclipse.papyrus.sashwindows.di.util.DiUtils;
+import org.eclipse.papyrus.ui.toolbox.notification.NotificationRunnable;
+import org.eclipse.papyrus.ui.toolbox.notification.Type;
+import org.eclipse.papyrus.ui.toolbox.notification.builders.IContext;
 import org.eclipse.papyrus.ui.toolbox.notification.builders.NotificationBuilder;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 
 /**
@@ -148,7 +149,7 @@ public class ControlCommand extends AbstractTransactionalCommand {
 
 		final URI newDiURI = URI.createURI(controlledModel.getURI().trimFileExtension().appendFileExtension(DiModel.DI_FILE_EXTENSION).toString());
 		this.controlledDI = getResource(newDiURI);
-		final List<Diagram> diagrams = NotationUtils.getDiagrams(NotationUtils.getNotationModel(diResourceSet).getResource(), eObject);
+		final List<Diagram> diagrams = getDiagrams(eObject);
 
 		// compound command that executes whole control action
 		CompoundCommand compoundCommand = new CompoundCommand();
@@ -162,18 +163,33 @@ public class ControlCommand extends AbstractTransactionalCommand {
 			return Status.CANCEL_STATUS;
 		}
 
-		// Ensure that all proxies are resolved so that references into the controlled object will
-		// be saved to reference the new resource
+		// Ensure that all proxies are resolved so that references into the controlled object will be saved to reference the new resource
 		EcoreUtil.resolveAll(getEditingDomain().getResourceSet());
 
 		if(compoundCommand.canExecute()) {
 			compoundCommand.execute();
-			saveResources();
+			notifySave();
 			return Status.OK_STATUS;
 		} else {
 			NotificationBuilder.createErrorPopup("Unable to execute control command").setTitle("Unable to control").run();
 			return Status.CANCEL_STATUS;
 		}
+	}
+	
+	/**
+	 * Search for diagrams in all the resources
+	 * 
+	 * @param eObject
+	 * @return
+	 */
+	private List<Diagram> getDiagrams(EObject eObject) {
+		List<Diagram> diagrams = new LinkedList<Diagram>();
+		for(Resource r : diResourceSet.getResources()) {
+			if(NotationModel.NOTATION_FILE_EXTENSION.equals(r.getURI().fileExtension())) {
+				diagrams.addAll(NotationUtils.getDiagrams(r, eObject));
+			}
+		}
+		return diagrams;
 	}
 
 	/**
@@ -189,156 +205,10 @@ public class ControlCommand extends AbstractTransactionalCommand {
 		compoundCommand.append(new AddCommand(getEditingDomain(), controlledModel.getContents(), eObject));
 
 		// update history
-		HistoryModel historyModel = getHistoryModel();
-		assignControlledResourceOfCurrentElement(getEditingDomain(), compoundCommand, historyModel, eObject.eResource().getURI().toString(), controlledModel.getURI().toString());
+		assignControlledResourceOfCurrentElement(getEditingDomain(), compoundCommand, getHistoryResource(eObject), eObject.eResource().getURI().toString(), controlledModel.getURI().toString());
 
 		// POST control operation
 		control(getEditingDomain(), eObject, UmlUtils.getUmlModel(diResourceSet).getResource(), controlledModel, compoundCommand, STATE_CONTROL.POST_MODEL);
-	}
-
-	protected HistoryModel getHistoryModel() {
-		HistoryModel historyModel = HistoryUtils.getHistoryModel(diResourceSet);
-		if(historyModel == null) {
-			diResourceSet.createsModels(new ModelIdentifiers(HistoryModel.MODEL_ID));
-			historyModel = HistoryUtils.getHistoryModel(diResourceSet);
-		}
-		return historyModel;
-	}
-
-	/**
-	 * Analyze the history model to update the controlled children
-	 * 
-	 * @param domain
-	 * @param compoundCommand
-	 * @param model
-	 * @param currentURL
-	 * @param newURL
-	 */
-	private void assignControlledResourceOfCurrentElement(EditingDomain domain, CompoundCommand compoundCommand, HistoryModel model, String currentURL, String newURL) {
-		if(model == null) {
-			return;
-		}
-		// create relative path
-		URI uriPath = HistoryUtils.getURIFullPath(currentURL);
-		String currentURLResolved = HistoryUtils.resolve(uriPath, currentURL);
-		String newURLResolved = HistoryUtils.resolve(uriPath, newURL);
-
-		ControledResource child = historyFactory.eINSTANCE.createControledResource();
-		child.setResourceURL(newURLResolved);
-
-		ControledResource resource = model.getModelRoot();
-		Resource parentResource = null;
-
-		// create the controlled resource according to the control action
-		ControledResource parent = null;
-		if(resource == null) {
-			parent = historyFactory.eINSTANCE.createControledResource();
-			parent.setResourceURL(currentURLResolved);
-			parent.getChildren().add(child);
-			parentResource = model.getResource();
-			compoundCommand.append(new AddCommand(domain, parentResource.getContents(), Collections.singleton(parent)));
-		} else {
-			if(isCurrentURL(currentURLResolved, resource)) {
-				parent = resource;
-			}
-			if(parent == null) {
-				Collection<EObject> controled = ModelSetQuery.getObjectsOfType(model.getModelRoot(), historyPackage.Literals.CONTROLED_RESOURCE);
-				for(EObject next : controled) {
-					if(next instanceof ControledResource) {
-						ControledResource tmp = (ControledResource)next;
-						if(isCurrentURL(currentURLResolved, tmp)) {
-							parent = tmp;
-							break;
-						}
-					}
-				}
-			}
-			if(parent == null) {
-				parent = historyFactory.eINSTANCE.createControledResource();
-				parent.setResourceURL(currentURLResolved);
-				parentResource = resource.eResource();
-				compoundCommand.append(new AddCommand(domain, parentResource.getContents(), Collections.singleton(parent)));
-			}
-			if(parent != null) {
-				compoundCommand.append(AddCommand.create(domain, parent, historyPackage.Literals.CONTROLED_RESOURCE__CHILDREN, Collections.singleton(child)));
-			}
-		}
-		List<ControledResource> controledFromParent = new LinkedList<ControledResource>();
-		if(parentResource == null) {
-			parentResource = model.getResource();
-		}
-		if(parentResource != null) {
-			for(EObject e : parentResource.getContents()) {
-				if(e instanceof ControledResource) {
-					ControledResource aControled = (ControledResource)e;
-					controledFromParent.add(aControled);
-					for(Iterator<EObject> i = aControled.eAllContents(); i.hasNext();) {
-						EObject tmp = i.next();
-						if(tmp instanceof ControledResource) {
-							controledFromParent.add((ControledResource)tmp);
-						}
-					}
-				}
-			}
-		}
-		// manage move of existing controlled resource
-		if(!newURL.endsWith(NotationModel.NOTATION_FILE_EXTENSION)) {
-			assignToChildExistingControledResources(domain, compoundCommand, child, newURL, controledFromParent, currentURL, URI.createURI(newURL), uriPath);
-		}
-	}
-
-	private void assignToChildExistingControledResources(EditingDomain domain, CompoundCommand compoundCommand, ControledResource child, String controledResourceURL, List<ControledResource> controledFromParent, String parentURL, URI controledURIFullPath, URI parentURIFullPath) {
-		for(ControledResource r : controledFromParent) {
-			if(r.getResourceURL() != null) {
-				URI fullPathParent = URI.createURI(r.getResourceURL()).resolve(parentURIFullPath);
-				Resource resourceLoaded = diResourceSet.getResource(fullPathParent, false);
-				if(resourceLoaded != null && !resourceLoaded.getContents().isEmpty()) {
-					EObject top = resourceLoaded.getContents().get(0);
-					if(isInRootHierarchy(top, eObject)) {
-						// manage model
-						URI newResolvedURIFromChild = fullPathParent.deresolve(controledURIFullPath);
-						ControledResource aNewOne = historyFactory.eINSTANCE.createControledResource();
-						aNewOne.setResourceURL(newResolvedURIFromChild.toString());
-						compoundCommand.append(new AddCommand(domain, getControledResource(controlledDI, URI.createURI(controledResourceURL).lastSegment(), compoundCommand, getEditingDomain()), historyPackage.Literals.CONTROLED_RESOURCE__CHILDREN, aNewOne));
-						// manage notation
-						URI newNotation = newResolvedURIFromChild.trimFileExtension().appendFileExtension(NotationModel.NOTATION_FILE_EXTENSION);
-						ControledResource aNewOneNotation = historyFactory.eINSTANCE.createControledResource();
-						aNewOneNotation.setResourceURL(newNotation.toString());
-						compoundCommand.append(new AddCommand(domain, getControledResource(controlledDI, URI.createURI(URI.createURI(controledResourceURL).trimFileExtension().appendFileExtension(NotationModel.NOTATION_FILE_EXTENSION).toString()).lastSegment(), compoundCommand, getEditingDomain()), historyPackage.Literals.CONTROLED_RESOURCE__CHILDREN, aNewOneNotation));
-
-					}
-				}
-			}
-		}
-	}
-
-	private ControledResource getControledResource(Resource eResource, String controledResourceURL, CompoundCommand command, EditingDomain domain) {
-		ControledResource result = null;
-		for(EObject e : eResource.getContents()) {
-			if(e instanceof ControledResource) {
-				ControledResource controled = (ControledResource)e;
-				if(controledResourceURL != null && controledResourceURL.equals(controled.getResourceURL())) {
-					result = controled;
-				}
-			}
-		}
-		if(result == null) {
-			result = historyFactory.eINSTANCE.createControledResource();
-			result.setResourceURL(controledResourceURL);
-			command.append(new AddCommand(domain, eResource.getContents(), result, 0));
-		}
-		return result;
-	}
-
-	protected boolean isInRootHierarchy(EObject start, EObject search) {
-		while(start != null && start != search) {
-			start = start.eContainer();
-		}
-		return start != null;
-	}
-
-	protected boolean isCurrentURL(String currentURL, ControledResource resource) {
-		return resource.getResourceURL() != null && resource.getResourceURL().equals(currentURL);
 	}
 
 	/**
@@ -351,25 +221,25 @@ public class ControlCommand extends AbstractTransactionalCommand {
 	private void controlNotation(CompoundCommand compoundCommand, List<Diagram> diagrams) {
 		// PRE control operation
 		for(Diagram diag : diagrams) {
-			control(getEditingDomain(), diag, NotationUtils.getNotationModel(diResourceSet).getResource(), controlledNotation, compoundCommand, STATE_CONTROL.PRE_NOTATION);
+			control(getEditingDomain(), diag, getNotationResourceForCurrent(eObject), controlledNotation, compoundCommand, STATE_CONTROL.PRE_NOTATION);
+		}
+		if(!diagrams.isEmpty()) {
+			// Control the Notation model
+			compoundCommand.append(new AddCommand(getEditingDomain(), controlledNotation.getContents(), diagrams));
 		}
 
-		// Control the Notation model
-		compoundCommand.append(new AddCommand(getEditingDomain(), controlledNotation.getContents(), diagrams));
-
 		// update history
-		HistoryModel historyModel = getHistoryModel();
 		Set<Resource> resources = new HashSet<Resource>(diagrams.size());
 		for(Diagram d : diagrams) {
 			resources.add(d.eResource());
 		}
 		for(Resource r : resources) {
-			assignControlledResourceOfCurrentElement(getEditingDomain(), compoundCommand, historyModel, r.getURI().toString(), controlledNotation.getURI().toString());
+			assignControlledResourceOfCurrentElement(getEditingDomain(), compoundCommand, getHistoryResource(eObject), r.getURI().toString(), controlledNotation.getURI().toString());
 		}
 
 		// POST control operation
 		for(Diagram diag : diagrams) {
-			control(getEditingDomain(), diag, NotationUtils.getNotationModel(diResourceSet).getResource(), controlledNotation, compoundCommand, STATE_CONTROL.POST_NOTATION);
+			control(getEditingDomain(), diag, getNotationResourceForCurrent(eObject), controlledNotation, compoundCommand, STATE_CONTROL.POST_NOTATION);
 		}
 	}
 
@@ -400,6 +270,242 @@ public class ControlCommand extends AbstractTransactionalCommand {
 		// POST control operation
 		control(getEditingDomain(), eObject, diResource, controlledDI, compoundCommand, STATE_CONTROL.POST_DI);
 	}
+	
+	/**
+	 * Display asynchronous popup to inform user about the control action
+	 */
+	protected void notifySave() {
+		new NotificationBuilder().setMessage("Your element has been controlled.\nYou need to save your model to see modifications in your workspace.\nDo you want to save ?").addAction(new NotificationRunnable() {
+			public void run(IContext context) {
+				try {
+					Display.getDefault().syncExec(new Runnable() {
+						public void run() {
+							PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().doSave(new NullProgressMonitor());
+						}
+					});
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+
+			public String getLabel() {
+				return "Save";
+			}
+		}).setTemporary(true).setAsynchronous(true).setType(Type.INFO).setDelay(2000).run();
+	}
+
+	/**
+	 * Analyze the history model to update the controlled children
+	 * 
+	 * @param domain
+	 * @param compoundCommand
+	 * @param model
+	 * @param currentURL
+	 * @param newURL
+	 */
+	private void assignControlledResourceOfCurrentElement(EditingDomain domain, CompoundCommand compoundCommand, Resource model, String currentURL, String newURL) {
+		if(model == null) {
+			return;
+		}
+		// create relative path
+		URI uriPath = HistoryUtils.getURIFullPath(currentURL);
+		String currentURLResolved = HistoryUtils.resolve(uriPath, currentURL);
+		String newURLResolved = HistoryUtils.resolve(uriPath, newURL);
+
+		ControledResource child = historyFactory.eINSTANCE.createControledResource();
+		child.setResourceURL(newURLResolved);
+
+		ControledResource resource = getControledResource(model);
+		Resource parentResource = null;
+
+		// create the controlled resource according to the control action
+		ControledResource parent = null;
+		if(resource == null) {
+			parent = historyFactory.eINSTANCE.createControledResource();
+			parent.setResourceURL(currentURLResolved);
+			parent.getChildren().add(child);
+			parentResource = model;
+			compoundCommand.append(new AddCommand(domain, parentResource.getContents(), Collections.singleton(parent)));
+		} else {
+			if(isCurrentURL(currentURLResolved, resource)) {
+				parent = resource;
+			}
+			if(parent == null) {
+				EObject modelRoot = getControledResource(model);
+				Collection<EObject> controled = ModelSetQuery.getObjectsOfType(modelRoot, historyPackage.Literals.CONTROLED_RESOURCE);
+				for(EObject next : controled) {
+					if(next instanceof ControledResource) {
+						ControledResource tmp = (ControledResource)next;
+						if(isCurrentURL(currentURLResolved, tmp)) {
+							parent = tmp;
+							break;
+						}
+					}
+				}
+			}
+			if(parent == null) {
+				parent = historyFactory.eINSTANCE.createControledResource();
+				parent.setResourceURL(currentURLResolved);
+				parentResource = resource.eResource();
+				compoundCommand.append(new AddCommand(domain, parentResource.getContents(), Collections.singleton(parent)));
+			}
+			if(parent != null) {
+				compoundCommand.append(AddCommand.create(domain, parent, historyPackage.Literals.CONTROLED_RESOURCE__CHILDREN, Collections.singleton(child)));
+			}
+		}
+		List<ControledResource> controledFromParent = new LinkedList<ControledResource>();
+		if(parentResource == null) {
+			parentResource = model;
+		}
+		if(parentResource != null) {
+			for(EObject e : parentResource.getContents()) {
+				if(e instanceof ControledResource) {
+					ControledResource aControled = (ControledResource)e;
+					controledFromParent.add(aControled);
+					for(Iterator<EObject> i = aControled.eAllContents(); i.hasNext();) {
+						EObject tmp = i.next();
+						if(tmp instanceof ControledResource) {
+							controledFromParent.add((ControledResource)tmp);
+						}
+					}
+				}
+			}
+		}
+		// manage move of existing controlled resources
+		if(!newURL.endsWith(NotationModel.NOTATION_FILE_EXTENSION)) {
+			assignToChildExistingControledResources(domain, compoundCommand, child, newURL, controledFromParent, currentURL, URI.createURI(newURL), uriPath);
+		}
+	}
+
+	/**
+	 * Manage move of existing controlled resources
+	 * 
+	 * @param domain
+	 * @param compoundCommand
+	 * @param child
+	 * @param controledResourceURL
+	 * @param controledFromParent
+	 * @param parentURL
+	 * @param controledURIFullPath
+	 * @param parentURIFullPath
+	 */
+	private void assignToChildExistingControledResources(EditingDomain domain, CompoundCommand compoundCommand, ControledResource child, String controledResourceURL, List<ControledResource> controledFromParent, String parentURL, URI controledURIFullPath, URI parentURIFullPath) {
+		for(ControledResource r : controledFromParent) {
+			if(r.getResourceURL() != null) {
+				URI fullPathParent = URI.createURI(r.getResourceURL()).resolve(parentURIFullPath);
+				Resource resourceLoaded = diResourceSet.getResource(fullPathParent, false);
+				if(resourceLoaded != null && !resourceLoaded.getContents().isEmpty()) {
+					EObject top = resourceLoaded.getContents().get(0);
+					if(isInRootHierarchy(top, eObject)) {
+						// manage model
+						URI newResolvedURIFromChild = fullPathParent.deresolve(controledURIFullPath);
+						ControledResource aNewOne = historyFactory.eINSTANCE.createControledResource();
+						aNewOne.setResourceURL(newResolvedURIFromChild.toString());
+						compoundCommand.append(new AddCommand(domain, getControledResource(controlledDI, URI.createURI(controledResourceURL).lastSegment(), compoundCommand, getEditingDomain()), historyPackage.Literals.CONTROLED_RESOURCE__CHILDREN, aNewOne));
+						// manage notation
+						URI newNotation = newResolvedURIFromChild.trimFileExtension().appendFileExtension(NotationModel.NOTATION_FILE_EXTENSION);
+						ControledResource aNewOneNotation = historyFactory.eINSTANCE.createControledResource();
+						aNewOneNotation.setResourceURL(newNotation.toString());
+						compoundCommand.append(new AddCommand(domain, getControledResource(controlledDI, URI.createURI(URI.createURI(controledResourceURL).trimFileExtension().appendFileExtension(NotationModel.NOTATION_FILE_EXTENSION).toString()).lastSegment(), compoundCommand, getEditingDomain()), historyPackage.Literals.CONTROLED_RESOURCE__CHILDREN, aNewOneNotation));
+
+					}
+				}
+			}
+		}
+	}
+	
+//	protected HistoryModel getHistoryModel() {
+//		HistoryModel historyModel = HistoryUtils.getHistoryModel(diResourceSet);
+//		if(historyModel == null) {
+//			diResourceSet.createsModels(new ModelIdentifiers(HistoryModel.MODEL_ID));
+//			historyModel = HistoryUtils.getHistoryModel(diResourceSet);
+//		}
+//		return historyModel;
+//	}
+
+	/**
+	 * Get the controlled resource in a specified resource
+	 */
+	private ControledResource getControledResource(Resource resource) {
+		for(EObject e : resource.getContents()) {
+			if(e instanceof ControledResource) {
+				return (ControledResource)e;
+
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Get the controlled resource for the specified URL, create it if it doesn't exist
+	 * 
+	 * @param resource
+	 * @param controledResourceURL
+	 * @param command
+	 * @param domain
+	 * @return
+	 */
+	private ControledResource getControledResource(Resource resource, String controledResourceURL, CompoundCommand command, EditingDomain domain) {
+		ControledResource result = null;
+		for(EObject e : resource.getContents()) {
+			if(e instanceof ControledResource) {
+				ControledResource controled = (ControledResource)e;
+				if(controledResourceURL != null && controledResourceURL.equals(controled.getResourceURL())) {
+					result = controled;
+				}
+			}
+		}
+		if(result == null) {
+			result = historyFactory.eINSTANCE.createControledResource();
+			result.setResourceURL(controledResourceURL);
+			command.append(new AddCommand(domain, resource.getContents(), result, 0));
+		}
+		return result;
+	}
+
+	/**
+	 * Check if an EObject start is in root hierarchy of another eObject search
+	 * @param start
+	 * @param search
+	 * @return
+	 */
+	protected boolean isInRootHierarchy(EObject start, EObject search) {
+		while(start != null && start != search) {
+			start = start.eContainer();
+		}
+		return start != null;
+	}
+
+	/**
+	 * Check if an URL is the current one of the specified resource 
+	 * @param currentURL
+	 * @param resource
+	 * @return
+	 */
+	protected boolean isCurrentURL(String currentURL, ControledResource resource) {
+		return resource.getResourceURL() != null && resource.getResourceURL().equals(currentURL);
+	}
+
+	/**
+	 * Get the notation resource for the specified eObject
+	 * @param eObject
+	 * @return
+	 */
+	private Resource getNotationResourceForCurrent(EObject eObject) {
+		return diResourceSet.getResource(eObject.eResource().getURI().trimFileExtension().appendFileExtension(NotationModel.NOTATION_FILE_EXTENSION), true);
+	}
+
+	/**
+	 * Get the history resource of the specified eObject
+	 * @param eObject
+	 * @return
+	 */
+	private Resource getHistoryResource(EObject eObject) {
+		if (eObject.eResource() != null) {
+			return diResourceSet.getResource(eObject.eResource().getURI().trimFileExtension().appendFileExtension(HistoryModel.MODEL_FILE_EXTENSION), true);			
+		}
+		return null;
+	}
 
 	/**
 	 * Control action applied on the specified selection
@@ -420,7 +526,8 @@ public class ControlCommand extends AbstractTransactionalCommand {
 	}
 
 	/**
-	 * Gets the custom command extensions that will be executed with the default control action.
+	 * Gets the custom command extensions that will be executed with the default
+	 * control action.
 	 * 
 	 * @return the command extensions
 	 */
@@ -453,26 +560,6 @@ public class ControlCommand extends AbstractTransactionalCommand {
 			res = getEditingDomain().getResourceSet().createResource(uri);
 		}
 		return res;
-	}
-
-	/**
-	 * Save resources.
-	 */
-	private void saveResources() {
-		try {
-			controlledModel.save(null);
-			controlledNotation.save(null);
-			controlledDI.save(null);
-
-			// TODO save parent resources, check if it is useful
-			// diResourceSet.save(new NullProgressMonitor());
-		} catch (IOException exception) {
-			if(getEditingDomain().getCommandStack().canUndo()) {
-				getEditingDomain().getCommandStack().undo();
-			}
-			MessageDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), EMFEditUIPlugin.INSTANCE.getString("_UI_InvalidURI_label"), EMFEditUIPlugin.INSTANCE.getString("_WARN_CannotCreateResource"));
-			EMFEditUIPlugin.INSTANCE.log(exception);
-		}
 	}
 
 }
