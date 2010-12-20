@@ -11,10 +11,10 @@
  *  Mathieu Velten (Atos Origin) mathieu.velten@atosorigin.com - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.documentation.uml;
+package org.eclipse.papyrus.uml.profile;
 
 
-public class IUMLDocumentationConstants {
+public interface IUMLDocumentationConstants {
 
 	public static final String STEREOTYPE_NAME = "Documentation"; //$NON-NLS-1$
 
