@@ -28,17 +28,20 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.FeatureMap;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.ui.EMFEditUIPlugin;
 import org.eclipse.emf.edit.ui.action.ControlAction;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.controlmode.commands.ControlCommand;
 import org.eclipse.papyrus.controlmode.commands.IControlCondition;
 import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.resource.notation.NotationModel;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 
@@ -82,7 +85,31 @@ public class PapyrusControlAction extends ControlAction {
 			// check if action is disabled by an extension
 			enableControl &= cond.enableControl(eObject);
 		}
-		return enableControl && getEditingDomain().isControllable(eObject) && !AdapterFactoryEditingDomain.isControlled(eObject) && !eObject.eContents().isEmpty();
+		return enableControl && getEditingDomain().isControllable(eObject) && !AdapterFactoryEditingDomain.isControlled(eObject) && getDiagram(eObject);
+	}
+	
+	/**
+	 * Checks if a specified element gets a diagram
+	 * @param eObject
+	 * @return true if a diagram exists
+	 */
+	private boolean getDiagram(EObject eObject) {
+		Resource modelResource = eObject.eResource();
+		if (modelResource != null) {
+			// only check for diagrams in the relative notation resource (same name)
+			Resource notationResource = modelResource.getResourceSet().getResource(modelResource.getURI().trimFileExtension().appendFileExtension(NotationModel.NOTATION_FILE_EXTENSION), true);
+			if (notationResource != null) {
+				for (EObject o : notationResource.getContents()) {
+					if (o instanceof Diagram) {
+						EObject element = ((Diagram)o).getElement();
+						if (element != null && (element.equals(eObject) || EcoreUtil.isAncestor(this.eObject, element))) {
+							return true;
+						}
+					}
+				}				
+			}
+		}
+		return false;
 	}
 
 	/**
@@ -102,8 +129,6 @@ public class PapyrusControlAction extends ControlAction {
 			result = domain.isControllable(object);
 			if(result) {
 				eObject = (EObject)object;
-				// active control if selection has children
-				result = !eObject.eContents().isEmpty();
 			} else {
 				eObject = null;
 			}
