@@ -18,7 +18,7 @@
             label="Papyrus Differencing Engine"/>
    </extension>
    
-   <!--<extension point="org.eclipse.ui.popupMenus">
+   <extension point="org.eclipse.ui.popupMenus">
       <objectContribution
             adaptable="true"
             objectClass="org.eclipse.gmt.modisco.infra.browser.uicore.internal.model.ModelElementItem"
@@ -35,6 +35,6 @@
                label="Compare two models"
                menubarPath="org.eclipse.papyrus.compare.menu/compare"/>
       </objectContribution>
-   </extension>-->
+   </extension>
 
 </plugin>
