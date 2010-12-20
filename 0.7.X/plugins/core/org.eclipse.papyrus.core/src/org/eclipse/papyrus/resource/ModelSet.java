@@ -25,10 +25,12 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.WorkspaceEditingDomainFactory;
+import org.eclipse.papyrus.resource.additional.AdditionalResourcesModel;
 
 
 
@@ -60,6 +62,8 @@ public class ModelSet extends ResourceSetImpl {
 
 	/** The snippets. */
 	private ModelSetSnippetList snippets = new ModelSetSnippetList();
+	
+	private AdditionalResourcesModel additional = new AdditionalResourcesModel(); 
 
 	/**
 	 * The associated EditingDomain.
@@ -77,7 +81,9 @@ public class ModelSet extends ResourceSetImpl {
 	 * 
 	 */
 	public ModelSet() {
+		registerModel(additional);
 	}
+	
 
 	/**
 	 * Register the specified model under its associated key.
@@ -366,9 +372,13 @@ public class ModelSet extends ResourceSetImpl {
 		try {
 			// Walk all registered models
 			for(IModel model : modelList) {
-				model.saveModel();
-				monitor.worked(1);
+				if (!(model instanceof AdditionalResourcesModel))
+				{
+					model.saveModel();
+					monitor.worked(1);
+				}
 			}
+			additional.saveModel();
 		} finally {
 			monitor.done();
 		}
@@ -407,8 +417,12 @@ public class ModelSet extends ResourceSetImpl {
 
 		// Walk all registered models
 		for(IModel model : models.values()) {
-			model.unload();
+			if (!(model instanceof AdditionalResourcesModel))
+			{
+				model.unload();
+			}
 		}
+		additional.unload();
 
 		// Unload remaining resources 
 		for(Iterator<Resource> iter = getResources().iterator(); iter.hasNext();) {
@@ -427,7 +441,7 @@ public class ModelSet extends ResourceSetImpl {
 	public void addModelSetSnippet(IModelSetSnippet snippet) {
 		snippets.add(snippet);
 	}
-
+	
 	/**
 	 * A list of {@link IModelSetSnippet}.
 	 * 
@@ -466,4 +480,19 @@ public class ModelSet extends ResourceSetImpl {
 
 		}
 	}
+
+	/**
+	 * Check is a resource is additional in the resource set
+	 * @param uri the specified URI of the resource
+	 * @return true if it is an additional resource
+	 */
+	public boolean isAdditionalResource(URI uri) {
+		if (uri != null) {
+			String platformString = uri.trimFileExtension().toPlatformString(false);
+			return ((platformString == null) || !getFilenameWithoutExtension().toString().equals(platformString.toString()));			
+		}
+		return false;
+	}
+	
+	
 }
