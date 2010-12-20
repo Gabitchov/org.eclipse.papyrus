@@ -20,6 +20,7 @@ import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.papyrus.documentation.IDocumentationChangedListener;
+import org.eclipse.papyrus.uml.profile.IUMLDocumentationConstants;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;

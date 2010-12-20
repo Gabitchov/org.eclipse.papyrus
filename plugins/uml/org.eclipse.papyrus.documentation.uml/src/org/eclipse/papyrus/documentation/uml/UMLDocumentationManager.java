@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.documentation.DocumentationUnsupportedException;
 import org.eclipse.papyrus.documentation.IDocumentationChangedListener;
 import org.eclipse.papyrus.documentation.IDocumentationManager;
+import org.eclipse.papyrus.uml.profile.IUMLDocumentationConstants;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;

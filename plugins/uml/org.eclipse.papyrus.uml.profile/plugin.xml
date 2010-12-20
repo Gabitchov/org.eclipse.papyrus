@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.emf.ecore.uri_mapping">
+      <mapping
+            source="pathmap://Papyrus.profile.uml"
+            target="platform:/plugin/org.eclipse.papyrus.uml.profile/model/Papyrus.profile.uml">
+      </mapping>
+   </extension>
+
+</plugin>
