@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Documentation View
+Bundle-SymbolicName: org.eclipse.papyrus.documentation.view;singleton:=true
+Bundle-Version: 0.7.2.qualifier
+Bundle-Activator: org.eclipse.papyrus.documentation.view.DocViewPlugin
+Require-Bundle: org.eclipse.core.expressions;visibility:=reexport,
+ org.eclipse.ui.editors;visibility:=reexport,
+ org.eclipse.ui.ide;visibility:=reexport,
+ org.eclipse.emf.edit.ui,
+ org.eclipse.jface.text,
+ org.eclipse.core.resources,
+ org.eclipse.epf.richtext,
+ org.eclipse.papyrus.documentation;visibility:=reexport
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.eclipse.papyrus.documentation.view
+Import-Package: org.eclipse.ui.views.contentoutline

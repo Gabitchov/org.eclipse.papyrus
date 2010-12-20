@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.papyrus.documentation.uml;singleton:=true
+Bundle-Version: 0.7.2.qualifier
+Bundle-Activator: org.eclipse.papyrus.documentation.uml.Activator
+Require-Bundle: org.eclipse.papyrus.documentation,
+ org.eclipse.uml2.uml,
+ org.eclipse.papyrus.uml.profile
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Vendor: %providerName
