@@ -155,7 +155,7 @@ public class HistoryUtils {
 	 */
 	public static List<ControledResource> getControledResourcesForURL(ModelSet set, String url) {
 		if(url == null || set == null) {
-			return Collections.EMPTY_LIST;
+			return Collections.emptyList();
 		}
 		List<ControledResource> result = new LinkedList<ControledResource>();
 		for(Resource r : set.getResources()) {

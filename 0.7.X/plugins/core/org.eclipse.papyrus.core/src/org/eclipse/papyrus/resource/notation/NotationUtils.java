@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.resource.notation;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
@@ -21,8 +21,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.core.services.ServiceException;
-import org.eclipse.papyrus.resource.ModelUtils;
 import org.eclipse.papyrus.resource.ModelSet;
+import org.eclipse.papyrus.resource.ModelUtils;
 
 /**
  * Utilities method to manage notation models. Should be moved in a more suitable plugin
@@ -133,7 +133,7 @@ public class NotationUtils {
 	 * 
 	 */
 	public static List<Diagram> getDiagrams(Resource notationResource, EObject eObject) {
-		List<Diagram> diagrams = new ArrayList<Diagram>();
+		List<Diagram> diagrams = new LinkedList<Diagram>();
 		if(notationResource != null) {
 			for(EObject obj : notationResource.getContents()) {
 				if(obj instanceof Diagram) {
