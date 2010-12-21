@@ -2092,7 +2092,7 @@
 	<!-- Bindings declaration -->
 	<binding context="org.eclipse.papyrus.service.edit.TypeContext">
 	
-		<elementType pattern="org.eclipse.papyrus.uml.*" />
+		<elementType pattern="org\.eclipse\.papyrus\.uml\..*" />
 		<advice ref="org.eclipse.papyrus.uml.advice.Classifier" />
 		<advice ref="org.eclipse.papyrus.uml.advice.Collaboration" />
 		<advice ref="org.eclipse.papyrus.uml.advice.CollaborationUse" />
