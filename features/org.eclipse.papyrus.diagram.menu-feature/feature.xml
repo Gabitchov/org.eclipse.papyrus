@@ -28,21 +28,6 @@ http://www.eclipse.org/legal/epl-v10.html
       <discovery label="%PapyrusUpdateSiteName" url="http://www.eclipse.org/modeling/mdt/?project=papyrus#papyrus"/>
    </url>
 
-   <requires>
-      <import plugin="org.eclipse.ui"/>
-      <import plugin="org.eclipse.papyrus.core.adaptor.gmf" version="0.7.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.core.expressions"/>
-      <import plugin="org.eclipse.gmf.runtime.diagram.ui.resources.editor"/>
-      <import plugin="org.eclipse.papyrus.preferences" version="0.7.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.gmf.runtime.diagram.ui.actions"/>
-      <import plugin="org.eclipse.gmf.runtime.draw2d.ui.render" version="1.4.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.gmf.runtime.diagram.ui.providers" version="1.1.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.gmf.runtime.diagram.ui.properties" version="1.2.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.gmf.runtime.diagram.ui.render" version="1.2.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.papyrus.wizards"/>
-      <import plugin="org.eclipse.papyrus.diagram.common" version="0.7.1" match="greaterOrEqual"/>
-   </requires>
-
    <plugin
          id="org.eclipse.papyrus.diagram.menu"
          download-size="0"

@@ -28,18 +28,6 @@ http://www.eclipse.org/legal/epl-v10.html
       <discovery label="%PapyrusUpdateSiteName" url="http://www.eclipse.org/modeling/mdt/?project=papyrus#papyrus"/>
    </url>
 
-   <requires>
-      <import plugin="org.eclipse.core.runtime"/>
-      <import plugin="org.eclipse.emf.ecore"/>
-      <import plugin="org.eclipse.ui.navigator"/>
-      <import plugin="org.eclipse.jface"/>
-      <import plugin="org.eclipse.emf.edit"/>
-      <import plugin="org.eclipse.emf.ecore.edit"/>
-      <import plugin="org.eclipse.ui"/>
-      <import plugin="org.eclipse.core.resources"/>
-      <import plugin="org.eclipse.emf.codegen.ecore"/>
-   </requires>
-
    <plugin
          id="org.eclipse.papyrus.resource"
          download-size="0"

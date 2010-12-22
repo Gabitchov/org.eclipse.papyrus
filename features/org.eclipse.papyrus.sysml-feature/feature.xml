@@ -28,13 +28,6 @@ http://www.eclipse.org/legal/epl-v10.html
       <discovery label="%PapyrusUpdateSiteName" url="http://www.eclipse.org/modeling/mdt/?project=papyrus#papyrus"/>
    </url>
 
-   <requires>
-      <import plugin="org.eclipse.papyrus.uml.standard" version="0.7.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.papyrus.extensionpoints.uml2" version="0.7.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.papyrus.uml.standard.edit"/>
-      <import plugin="org.eclipse.core.runtime" version="3.6.0" match="greaterOrEqual"/>
-   </requires>
-
    <plugin
          id="org.eclipse.papyrus.sysml"
          download-size="0"
