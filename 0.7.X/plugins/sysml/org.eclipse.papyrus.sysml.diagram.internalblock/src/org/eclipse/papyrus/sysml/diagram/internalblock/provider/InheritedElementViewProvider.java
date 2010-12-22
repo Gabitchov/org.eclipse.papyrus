@@ -103,21 +103,24 @@ public class InheritedElementViewProvider extends UMLViewProvider {
 		}
 
 		// SemanticHint may be null (especially when drop from ModelExplorer)
-		EObject eobject = (EObject)op.getSemanticAdapter().getAdapter(EObject.class);
-		if(eobject instanceof org.eclipse.uml2.uml.Class) {
-			return true;
-		}
-		if(eobject instanceof Port) {
-			return true;
-		}
-		if(eobject instanceof Property) {
-			return true;
-		}
-		if(eobject instanceof Comment) {
-			return true;
-		}
-		if(eobject instanceof Constraint) {
-			return true;
+		if(elementType == null) {
+
+			EObject eobject = (EObject)op.getSemanticAdapter().getAdapter(EObject.class);
+			if(eobject instanceof org.eclipse.uml2.uml.Class) {
+				return true;
+			}
+			if(eobject instanceof Port) {
+				return true;
+			}
+			if(eobject instanceof Property) {
+				return true;
+			}
+			if(eobject instanceof Comment) {
+				return true;
+			}
+			if(eobject instanceof Constraint) {
+				return true;
+			}
 		}
 
 		return false;

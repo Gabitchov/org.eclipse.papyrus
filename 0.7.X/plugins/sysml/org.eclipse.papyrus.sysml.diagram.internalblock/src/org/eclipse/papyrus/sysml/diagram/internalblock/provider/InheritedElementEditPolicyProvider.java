@@ -23,6 +23,7 @@ import org.eclipse.papyrus.diagram.composite.edit.parts.PortEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.PropertyPartCompartmentEditPartCN;
 import org.eclipse.papyrus.diagram.composite.edit.parts.PropertyPartEditPartCN;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.part.InternalBlockDiagramEditPart;
+import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.BlockCompositeCompartmentItemSemanticEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.CustomDragDropEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.StereotypeNodeLabelDisplayEditPolicy;
 
@@ -50,6 +51,10 @@ public class InheritedElementEditPolicyProvider extends AbstractProvider impleme
 	public void createEditPolicies(EditPart editPart) {
 		editPart.installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new StereotypeNodeLabelDisplayEditPolicy());
 		editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDragDropEditPolicy());
+
+		if(editPart instanceof ClassCompositeCompartmentEditPart) {
+			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new BlockCompositeCompartmentItemSemanticEditPolicy());
+		}
 	}
 
 }
