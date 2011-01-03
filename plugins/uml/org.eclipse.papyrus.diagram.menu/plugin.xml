@@ -196,12 +196,24 @@
                   removeFromMenubar="true"
                   removeFromToolbar="false">
             </partPredefinedItem>
+            <partPredefinedItem
+                  id="copyAppearancePropertiesAction"
+                  menubarPath="/diagramMenu/copyAppearanceGroup"
+                  removeFromMenubar="true"
+                  removeFromToolbar="true"
+                  toolbarPath="/toolbarCopyAppearanceGroup">
+            </partPredefinedItem>
          </partContribution>
          <popupContribution
                class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupPredefinedItem
                   id="autoSizeAction"
                   path="/formatMenu/sizeGroup"
+                  remove="true">
+            </popupPredefinedItem>
+            <popupPredefinedItem
+                  id="copyAppearancePropertiesAction"
+                  path="/formatMenu/applyAppearanceGroup"
                   remove="true">
             </popupPredefinedItem>
          </popupContribution>
@@ -268,6 +280,18 @@
          locationURI="toolbar:org.eclipse.ui.main.toolbar?before=org.eclipse.papyrus.diagram.ui.toolbar">
       <toolbar
             id="org.eclipes.papyrus.menu.toolbar">
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.commands.CopyAppearancePropertiesCommand"
+               icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/copy_appearance_properties.gif"
+               label="Apply Appearance &amp;Properties"
+               mnemonic="Apply Appearance &amp;Properties"
+               style="push"
+               tooltip="Apply the applicable appearance properties of the last selected shape to the other selected shapes.">
+         </command>
+         <separator
+               name="org.eclipse.papyrus.diagram.menu.toolbar.separator0"
+               visible="true">
+         </separator>
          <command
                commandId="org.eclipse.papyrus.diagram.menu.toolbar.command"
                icon="icons/alignleft.gif"
@@ -780,6 +804,18 @@
                tooltip="The Show/Hide Compartments Action">
          </command>
       </menu>
+      <separator
+            name="org.eclipse.papyrus.diagram.menu.separator3"
+            visible="true">
+      </separator>
+      <command
+            commandId="org.eclipse.papyrus.diagram.menu.commands.CopyAppearancePropertiesCommand"
+            icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/copy_appearance_properties.gif"
+            label="Apply Appearance &amp;Properties"
+            mnemonic="Apply Appearance &amp;Properties"
+            style="push"
+            tooltip="Apply the applicable appearance properties of the last selected shape to the other selected shapes.">
+      </command>
    </menuContribution>
 </extension>
 <extension
@@ -971,6 +1007,18 @@
                tooltip="Set the width of the last selected element">
          </command>
       </menu>
+      <separator
+            name="org.eclipse.papyrus.diagram.menu.popup.separator2"
+            visible="true">
+      </separator>
+      <command
+            commandId="org.eclipse.papyrus.diagram.menu.commands.CopyAppearancePropertiesCommand"
+            icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/copy_appearance_properties.gif"
+            label="Apply Appearance &amp;Properties"
+            mnemonic="Apply Appearance &amp;Properties"
+            style="push"
+            tooltip="Apply the applicable appearance properties of the last selected shape to the other selected shapes.">
+      </command>
    </menuContribution>
    <menuContribution
          allPopups="false"
@@ -1248,6 +1296,12 @@
          id="org.eclipse.papyrus.diagram.menu.commands.ShowHideContentsCommand"
          name="Show/Hide Contents Command">
    </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         description="Copy the appearance propertiescePropertiesCommand"
+         id="org.eclipse.papyrus.diagram.menu.commands.CopyAppearancePropertiesCommand"
+         name="Copy Appearance &amp;Properties Command">
+   </command>
 </extension>
 <extension
       id="update-cmd-binding"
@@ -1365,17 +1419,35 @@
          </and>
       </activeWhen>
    </handler>
+   <handler
+         class="org.eclipse.papyrus.diagram.menu.actions.handlers.CopyAppearancePropertiesHandler"
+         commandId="org.eclipse.papyrus.diagram.menu.commands.CopyAppearancePropertiesCommand">
+      <activeWhen>
+         <and>
+            <with
+                  variable="copyAppearanceProperties">
+               <equals
+                     value="enabled">
+               </equals>
+            </with>
+         </and>
+      </activeWhen>
+   </handler>
 </extension>
 <extension
       point="org.eclipse.ui.services">
    <sourceProvider
-         provider="org.eclipse.papyrus.diagram.menu.providers.ActionStateSourceProvider:2">
+         provider="org.eclipse.papyrus.diagram.menu.providers.ActionStateSourceProvider">
       <variable
             name="showHideContents"
             priorityLevel="workbench">
       </variable>
       <variable
             name="showHideCompartments"
+            priorityLevel="workbench">
+      </variable>
+      <variable
+            name="copyAppearanceProperties"
             priorityLevel="workbench">
       </variable>
    </sourceProvider>
