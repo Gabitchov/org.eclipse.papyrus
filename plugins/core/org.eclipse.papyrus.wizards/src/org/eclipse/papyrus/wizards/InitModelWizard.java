@@ -49,7 +49,8 @@ public class InitModelWizard extends CreateModelWizard {
 	}
 	
 	protected SelectRootElementPage createSelectRootElementPage(IFile file) {
-		if (!isInitNotCreateModel) {
+		if (isInitNotCreateModel) {
+			// create model - nothing to choose from
 			return null;
 		}
 		return new SelectRootElementPage(file);
@@ -57,11 +58,10 @@ public class InitModelWizard extends CreateModelWizard {
 	
 	@Override
 	protected SelectDiagramKindPage createSelectDiagramKindPage() {
-		if (!isInitNotCreateModel) {
-			return super.createSelectDiagramKindPage();
-		}
 		SelectDiagramKindPage page = super.createSelectDiagramKindPage();
-		page.setDisableTemplates();
+		if (isInitNotCreateModel) {
+			page.setDisableTemplates();
+		}
 		return page;
 	}
 	

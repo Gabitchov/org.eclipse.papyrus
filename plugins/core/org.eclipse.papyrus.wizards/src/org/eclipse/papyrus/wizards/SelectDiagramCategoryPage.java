@@ -13,27 +13,16 @@
  *****************************************************************************/
 package org.eclipse.papyrus.wizards;
 
-import static org.eclipse.papyrus.wizards.Activator.log;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.core.resources.IFile;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
-import org.eclipse.papyrus.core.editor.BackboneException;
-import org.eclipse.papyrus.core.extension.commands.IModelCreationCommand;
-import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.wizards.category.DiagramCategoryDescriptor;
 import org.eclipse.papyrus.wizards.category.DiagramCategoryRegistry;
-import org.eclipse.papyrus.wizards.category.NewPapyrusModelCommand;
-import org.eclipse.papyrus.wizards.category.PapyrusModelFromExistingDomainModelCommand;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;

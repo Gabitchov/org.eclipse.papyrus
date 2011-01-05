@@ -118,11 +118,6 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		selectDiagramKindPage = createSelectDiagramKindPage();
 	}
 
-	/**
-	 * Gets the select diagram kind page.
-	 * 
-	 * @return the select diagram kind page
-	 */
 	protected SelectDiagramKindPage createSelectDiagramKindPage() {
 		return new SelectDiagramKindPage();
 	}
