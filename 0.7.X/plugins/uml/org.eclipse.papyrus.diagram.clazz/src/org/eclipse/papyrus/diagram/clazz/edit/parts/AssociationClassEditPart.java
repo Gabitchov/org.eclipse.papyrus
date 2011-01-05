@@ -165,6 +165,7 @@ ClassifierEditPart {
 			return true;
 		}
 
+
 		if(childEditPart instanceof AssociationClassAttributeCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
