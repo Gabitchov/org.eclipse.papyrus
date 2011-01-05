@@ -71,6 +71,11 @@ public class NewPapyrusProjectWizard extends CreateModelWizard {
 		super.addPages();
 	}
 	
+	@Override
+	protected NewModelFilePage createNewModelFilePage(IStructuredSelection selection) {
+		return null;
+	}
+	
 
 	/**
 	 * Perform finish.

@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.sysml.diagram.ui;
 
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.sysml.diagram.common.commands.CreateSysMLModelCommand;
 import org.eclipse.papyrus.wizards.NewPapyrusProjectWizard;
 import org.eclipse.papyrus.wizards.SelectDiagramCategoryPage;
 import org.eclipse.ui.IWorkbench;
@@ -53,7 +54,13 @@ public class NewSysMLProjectWizard extends NewPapyrusProjectWizard {
 
 	@Override
 	protected void saveDiagramCategorySettings() {
+		//do nothing
 		//here SysML is the only available category
+	}
+
+	@Override
+	protected String getDiagramCategoryId() {
+		return CreateSysMLModelCommand.COMMAND_ID;
 	}
 
 }
