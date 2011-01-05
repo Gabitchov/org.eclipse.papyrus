@@ -366,6 +366,16 @@
                mnemonic="Apply Appearance &amp;Properties"
                style="push"
                tooltip="Apply the applicable appearance properties of the last selected shape to the other selected shapes.">
+            <visibleWhen>
+               <and>
+                  <with
+                        variable="activeEditorId">
+                     <equals
+                           value="org.eclipse.papyrus.core.papyrusEditor">
+                     </equals>
+                  </with>
+               </and>
+            </visibleWhen>
          </command>
          <separator
                name="org.eclipse.papyrus.diagram.menu.toolbar.separator0"
@@ -948,6 +958,16 @@
             mnemonic="Apply Appearance &amp;Properties"
             style="push"
             tooltip="Apply the applicable appearance properties of the last selected shape to the other selected shapes.">
+         <visibleWhen>
+            <and>
+               <with
+                     variable="activeEditorId">
+                  <equals
+                        value="org.eclipse.papyrus.core.papyrusEditor">
+                  </equals>
+               </with>
+            </and>
+         </visibleWhen>
       </command>
    </menuContribution>
 </extension>
@@ -1151,6 +1171,16 @@
             mnemonic="Apply Appearance &amp;Properties"
             style="push"
             tooltip="Apply the applicable appearance properties of the last selected shape to the other selected shapes.">
+         <visibleWhen>
+            <and>
+               <with
+                     variable="activeEditorId">
+                  <equals
+                        value="org.eclipse.papyrus.core.papyrusEditor">
+                  </equals>
+               </with>
+            </and>
+         </visibleWhen>
       </command>
    </menuContribution>
    <menuContribution
