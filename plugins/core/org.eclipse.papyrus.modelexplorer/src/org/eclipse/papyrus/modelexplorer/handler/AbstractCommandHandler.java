@@ -81,7 +81,6 @@ public abstract class AbstractCommandHandler extends AbstractHandler {
 
 		// Treat non-null selected object (try to adapt and return EObject)
 		if(selection != null) {
-
 			if(selection instanceof IAdaptable) {
 				selection = ((IAdaptable)selection).getAdapter(EObject.class);
 			}
@@ -141,27 +140,20 @@ public abstract class AbstractCommandHandler extends AbstractHandler {
 	 * @throws ExecutionException
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-
 		try {
-
 			ServiceUtilsForActionHandlers util = new ServiceUtilsForActionHandlers();
 			util.getTransactionalEditingDomain().getCommandStack().execute(getCommand());
-
 		} catch (ServiceException e) {
-
 			Activator.log.error("Unexpected error while executing command.", e);
-
 		}
 
 		return null;
 	}
 
 	/**
-	 * 
-	 * @see org.eclipse.core.commands.AbstractHandler#isEnabled()
-	 * 
-	 * @return true (enabled) when the command can be executed.
+	 * {@inheritDoc}
 	 */
+	@Override
 	public boolean isEnabled() {
 		return getCommand().canExecute();
 	}

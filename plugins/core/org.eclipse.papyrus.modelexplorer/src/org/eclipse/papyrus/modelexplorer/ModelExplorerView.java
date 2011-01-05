@@ -80,21 +80,16 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
  */
 public class ModelExplorerView extends CommonNavigator implements IRevealSemanticElement{
 
-	/**
-	 * The associated EditorPart
-	 */
+	/** The associated EditorPart */
 	private IMultiDiagramEditor editorPart;
 
-	/**
-	 * The save aservice associated to the editor.
-	 */
+	/** The save aservice associated to the editor. */
 	private ISaveAndDirtyService saveAndDirtyService;
 
+	/** editing domain used to read/write the model */
 	private TransactionalEditingDomain editingDomain;
 
-	/**
-	 * Flag to avoid reentrant call to refresh.
-	 */
+	/** Flag to avoid reentrant call to refresh. */
 	private AtomicBoolean isRefreshing = new AtomicBoolean(false);
 
 	/**
@@ -123,20 +118,14 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	};
 
 
-	/**
-	 * Undo action handler
-	 */
+	/** Undo action handler */
 	UndoActionHandler undoHandler;
 
-	/**
-	 * Redo action handler
-	 */
+	/** Redo action handler */
 	RedoActionHandler redoHandler;
 
 
-	/**
-	 * The {@link IPropertySheetPage} this model explorer will use.
-	 */
+	/** The {@link IPropertySheetPage} this model explorer will use. */
 	private IPropertySheetPage propertySheetPage = null;
 
 	/**
@@ -211,7 +200,6 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 				Object treeItem=contentProvider.getChildren(o)[i];
 
 				List<Object> tmppath=new ArrayList<Object>();
-				//can  be change into IADAPTER by using new API of modisco 
 				Object element=semanticGetter.getSemanticElement(treeItem);
 				if(element !=null){
 					if(element instanceof EReference){
@@ -247,8 +235,12 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		return new ArrayList<Object>();
 	}
 
-	// Use of internal class (NavigatorContentService) - in the hope that the bug gets fixed soon.
-	@SuppressWarnings("restriction")
+ 
+	/**
+	 * {@inheritDoc}
+	 */
+	// FIXME Use of internal class (NavigatorContentService) - in the hope that the bug gets fixed soon.
+	@Override
 	protected CommonViewer createCommonViewerObject(Composite aParent) {
 		CommonViewer viewer = new CustomCommonViewer(getViewSite().getId(), aParent,
 			SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
@@ -268,7 +260,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 					viewer.setLabelProvider(labelProvider);
 				}
 				catch (CoreException e) {
-					System.err.println(e);
+					Activator.log.error(e);
 				}
 				break;
 			}
@@ -279,11 +271,9 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 	@Override
 	public void createPartControl(Composite aParent) {
-		// TODO Auto-generated method stub
 		super.createPartControl(aParent);
 		getCommonViewer().setSorter(null);
 		((CustomCommonViewer)getCommonViewer()).getDropAdapter().setFeedbackEnabled(true);
-
 		getCommonViewer().addDoubleClickListener(new DoubleClickListener());
 
 	}
@@ -292,15 +282,17 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	 * 
 	 * @see org.eclipse.papyrus.core.ui.pagebookview.IPageBookNestableViewPart#getControl()
 	 * 
-	 * @return
+	 * @return the main control of the navigator viewer
 	 */
 	public Control getControl() {
 		return getCommonViewer().getControl();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void init(IViewSite site, IMemento aMemento) throws PartInitException {
-		// TODO Auto-generated method stub
 		super.init(site, aMemento);
 
 		// Hook undo/redo action
@@ -311,6 +303,10 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public void init(IViewSite site) throws PartInitException {
 		super.init(site);
 		IWorkbenchPage page = site.getPage();
@@ -340,6 +336,9 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	 */
 	private final ResourceSetListener resourceSetListener = new ResourceSetListenerImpl() {
 
+		/**
+		 * {@inheritDoc}
+		 */
 		@Override
 		public void resourceSetChanged(ResourceSetChangeEvent event) {
 			super.resourceSetChanged(event);
@@ -384,11 +383,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	}
 
 	/**
-	 * Get the initial input of the viewer.
-	 * 
-	 * @see org.eclipse.ui.navigator.CommonNavigator#getInitialInput()
-	 * 
-	 * @return
+	 * {@inheritDoc}
 	 */
 	@Override
 	protected Object getInitialInput() {
@@ -452,11 +447,11 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	 * Deactivate the Model Explorer.
 	 */
 	private void deactivate() {
-
-
 		// deactivate global handler
 		if(editorPart != null) {
-			Activator.log.debug("deactivate " + editorPart.getTitle());
+			if(Activator.log.isDebugEnabled()) {
+				Activator.log.debug("deactivate " + editorPart.getTitle()); //$NON-NLS-1$
+			}
 
 			// Stop Listenning to isDirty flag
 			saveAndDirtyService.removeInputChangedListener(editorInputChangedListener);
@@ -476,6 +471,9 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void dispose() {
 		super.dispose();
@@ -522,7 +520,6 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		}
 
 		if( ISaveablePart.class.equals(adapter)) {
-
 			return saveAndDirtyService;
 		}
 
@@ -539,14 +536,11 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	}
 
 	/**
-	 * 
-	 * @see org.eclipse.ui.navigator.CommonNavigator#selectReveal(org.eclipse.jface.viewers.ISelection)
-	 * 
-	 * @param selection
+	 * {@inheritDoc}
 	 */
+	@Override
 	public void selectReveal(ISelection selection) {
 		if(getCommonViewer() != null) {
-
 			getCommonViewer().setSelection(selection, true);
 		}
 	}
@@ -566,18 +560,12 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 					tmpList.remove(tmpList.get(0));
 					expandItems(tmpList, list[i].getItems());
 				}
-
 			}
-
 		}
-
 	}
+
 	/**
-	 * reveal all tree element that represent a semantic element in the given list.
-
-
-	 * @see org.eclipse.papyrus.core.ui.IRevealSemanticElement#revealSemanticElement(java.util.List)
-	 *
+	 * {@inheritDoc}
 	 */
 	public void revealSemanticElement(List<?> elementList) {
 		//for each element we reveal it
@@ -597,13 +585,10 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 						//expand in the common viewer the path
 						expandItems(path, getCommonViewer().getTree().getItems());
 						selectReveal(new StructuredSelection(path.get(path.size()-1)));
-
 					}
-
 				}
 			}
 		}
-
 	}
 
 }

@@ -23,22 +23,19 @@ import java.util.Set;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.gmt.modisco.infra.browser.Messages;
-import org.eclipse.gmt.modisco.infra.browser.MoDiscoBrowserPlugin;
-import org.eclipse.gmt.modisco.infra.browser.custom.MetamodelView;
-import org.eclipse.gmt.modisco.infra.browser.custom.TypeView;
-import org.eclipse.gmt.modisco.infra.browser.dialogs.LoadCustomizationsDialog;
-import org.eclipse.gmt.modisco.infra.browser.uicore.CustomizationManager;
-import org.eclipse.gmt.modisco.infra.facet.Facet;
-import org.eclipse.gmt.modisco.infra.facet.FacetSet;
-import org.eclipse.gmt.modisco.infra.facet.core.FacetSetCatalog;
+import org.eclipse.emf.facet.infra.browser.Messages;
+import org.eclipse.emf.facet.infra.browser.custom.MetamodelView;
+import org.eclipse.emf.facet.infra.browser.custom.TypeView;
+import org.eclipse.emf.facet.infra.browser.custom.ui.dialogs.LoadCustomizationsDialog;
+import org.eclipse.emf.facet.infra.browser.uicore.CustomizationManager;
+import org.eclipse.emf.facet.infra.facet.Facet;
+import org.eclipse.emf.facet.infra.facet.FacetSet;
+import org.eclipse.emf.facet.infra.facet.core.FacetSetCatalog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
@@ -53,7 +50,6 @@ import org.eclipse.ui.navigator.CommonNavigator;
  * This is a class that launches the button load Customization. this code comes
  * from the {@link LoadCustomizationsDialog}
  */
-@SuppressWarnings("restriction")
 public class LoadBrowserCustomization extends AbstractHandler {
 
 	/**
@@ -63,7 +59,7 @@ public class LoadBrowserCustomization extends AbstractHandler {
 	 */
 	protected CommonNavigator getCommonNavigator() {
 		IViewPart part = org.eclipse.papyrus.modelexplorer.NavigatorUtils
-.findViewPart("org.eclipse.papyrus.modelexplorer.modelexplorer"); // FIXME should use a constant here!
+.findViewPart(ModelExplorerPageBookView.VIEW_ID); 
 		// the part is only a book, retrieving correct page
 		if (part instanceof ModelExplorerPageBookView) {
 			IViewPart page = ((ModelExplorerPageBookView)part).getActiveView();
@@ -107,9 +103,7 @@ public class LoadBrowserCustomization extends AbstractHandler {
 					// Activator.getDefault().getCustomizationManager().loadCustomizations(selectedCustomizations);
 
 				} catch (final Exception e) {
-					Activator.getDefault().getLog().log(
-							new Status(IStatus.ERROR, Activator.PLUGIN_ID,
-									"Error initializing customizations", e)); //$NON-NLS-1$
+					Activator.log.error(e);
 				}
 			}
 			// load customizations defined as default through the customization
@@ -169,8 +163,7 @@ public class LoadBrowserCustomization extends AbstractHandler {
 				if (facet != null) {
 					referencedFacets.add(facet);
 				} else {
-					MoDiscoBrowserPlugin
-							.logWarning(NLS
+					Activator.log.warn(NLS
 									.bind(
 											Messages.BrowserActionBarContributor_missingRequiredFacet,
 											new Object[] {
@@ -271,7 +264,7 @@ public class LoadBrowserCustomization extends AbstractHandler {
 		} catch (Exception e) {
 			Activator.log.error(e);
 		}
-		return Collections.emptyList(); //$NON-NLS-1$
+		return Collections.emptyList(); 
 	}
 
 }

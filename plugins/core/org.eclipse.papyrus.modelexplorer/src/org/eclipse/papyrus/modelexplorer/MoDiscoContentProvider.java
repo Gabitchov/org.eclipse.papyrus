@@ -14,11 +14,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.facet.infra.browser.uicore.CustomizableModelContentProvider;
+import org.eclipse.emf.facet.infra.browser.uicore.internal.model.ModelElementItem;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.gmt.modisco.infra.browser.uicore.CustomizableModelContentProvider;
-import org.eclipse.gmt.modisco.infra.browser.uicore.internal.model.ModelElementItem;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.core.utils.EditorUtils;
@@ -32,22 +33,19 @@ import org.eclipse.papyrus.sasheditor.contentprovider.di.DiSashModelMngr;
 /**
  * the content provider that inherits of modisco properties
  */
-@SuppressWarnings("restriction")
 public class MoDiscoContentProvider extends CustomizableModelContentProvider {
 
-	
-	/**
-	 * The ModelSet containing all the models.
-	 * This is the initial input.
-	 */
+	/** The ModelSet containing all the models. This is the initial input.*/
 	protected ModelSet modelSet;
 	
 	/** The list of open pages (diagrams) */
 	protected IPageMngr pageMngr;
 
+	/**
+	 * Creates a new MoDiscoContentProvider.
+	 */
 	public MoDiscoContentProvider() {
 		super(Activator.getDefault().getCustomizationManager());
-
 	}
 
 	private DiResourceSet getDiResourceSet() {
@@ -56,7 +54,6 @@ public class MoDiscoContentProvider extends CustomizableModelContentProvider {
 
 	@Override
 	public Object[] getChildren(final Object parentElement) {
-
 		ArrayList<Object> result = new ArrayList<Object>();
 
 		Object[] arrayObject = super.getChildren(parentElement);
@@ -65,15 +62,28 @@ public class MoDiscoContentProvider extends CustomizableModelContentProvider {
 				result.add(arrayObject[i]);
 			}
 		}
-		if (parentElement instanceof ModelElementItem
-			&& ((ModelElementItem) (parentElement)).getEObject() instanceof EObject) {
-			List<Diagram> diagramList = findAllExistingDiagrams((EObject) ((ModelElementItem) parentElement)
-				.getEObject());
-			Iterator<Diagram> iterator = diagramList.iterator();
-			while (iterator.hasNext()) {
-				result.add(iterator.next());
+		
+		if (parentElement instanceof IAdaptable) {
+			EObject eObject = (EObject)((IAdaptable)parentElement).getAdapter(EObject.class);
+			if(eObject !=null) {
+				List<Diagram> diagramList = findAllExistingDiagrams(eObject);
+					Iterator<Diagram> iterator = diagramList.iterator();
+					while (iterator.hasNext()) {
+						result.add(iterator.next());
+					}
 			}
+			
 		}
+// old code from the previous modisco API, when ModelElementItem was not castable into a IAdaptable		
+//		if (parentElement instanceof ModelElementItem
+//			&& ((ModelElementItem) (parentElement)).getEObject() instanceof EObject) {
+//			List<Diagram> diagramList = findAllExistingDiagrams((EObject) ((ModelElementItem) parentElement)
+//					.getEObject());
+//				Iterator<Diagram> iterator = diagramList.iterator();
+//				while (iterator.hasNext()) {
+//					result.add(iterator.next());
+//				}
+//		}
 		return result.toArray();
 	}
 

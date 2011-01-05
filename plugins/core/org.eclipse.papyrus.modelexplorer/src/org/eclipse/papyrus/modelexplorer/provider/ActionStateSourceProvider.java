@@ -45,17 +45,17 @@ public class ActionStateSourceProvider extends AbstractSourceProvider {
 	/**
 	 * The name of the variable to check.
 	 */
-	public static final String DELETE_IN_MODEL_EXPLORER = "deleteInModelExplorer";
+	public static final String DELETE_IN_MODEL_EXPLORER = "deleteInModelExplorer"; //$NON-NLS-1$
 
 	/**
 	 * The enabled state value.
 	 */
-	private static final String ENABLED = "enabled";
+	private static final String ENABLED = "enabled"; //$NON-NLS-1$
 
 	/**
 	 * The disabled state value.
 	 */
-	private static final String DISABLED = "disabled";
+	private static final String DISABLED = "disabled"; //$NON-NLS-1$
 
 	/**
 	 * Map used to register the state of the actions
@@ -210,82 +210,54 @@ public class ActionStateSourceProvider extends AbstractSourceProvider {
 	}
 
 	/**
-	 * 
 	 * The class {@link PartListener}
-	 * 
-	 * 
 	 */
 	public class PartListener implements IPartListener {
 
 		/**
-		 * 
-		 * @see org.eclipse.ui.IPartListener#partOpened(org.eclipse.ui.IWorkbenchPart)
-		 * 
-		 * @param part
+		 * {@inheritDoc}
 		 */
 		public void partOpened(IWorkbenchPart part) {
-			// TODO Auto-generated method stub
+			// nothing here
 		}
 
 		/**
-		 * 
-		 * @see org.eclipse.ui.IPartListener#partDeactivated(org.eclipse.ui.IWorkbenchPart)
-		 * 
-		 * @param part
+		 * {@inheritDoc}
 		 */
 		public void partDeactivated(IWorkbenchPart part) {
-			// TODO Auto-generated method stub
+			// nothing here
 		}
 
 		/**
-		 * 
-		 * @see org.eclipse.ui.IPartListener#partClosed(org.eclipse.ui.IWorkbenchPart)
-		 * 
-		 * @param part
+		 * {@inheritDoc}
 		 */
 		public void partClosed(IWorkbenchPart part) {
-			// TODO Auto-generated method stub
-
+			// nothing here
 		}
 
 		/**
-		 * 
-		 * @see org.eclipse.ui.IPartListener#partBroughtToTop(org.eclipse.ui.IWorkbenchPart)
-		 * 
-		 * @param part
+		 * {@inheritDoc}
 		 */
 		public void partBroughtToTop(IWorkbenchPart part) {
-			// TODO Auto-generated method stub
-
+			// nothing here
 		}
 
 		/**
-		 * 
-		 * @see org.eclipse.ui.IPartListener#partActivated(org.eclipse.ui.IWorkbenchPart)
-		 * 
-		 * @param part
+		 * {@inheritDoc}
 		 */
 		public void partActivated(IWorkbenchPart part) {
 			title = part.getTitle();
 			refreshDeleteAction();
 		}
-
-
 	}
 
 	/**
-	 * 
 	 * This class provides the listener for the selection service
-	 * 
 	 */
 	public class SelectionListener implements ISelectionListener {
 
 		/**
-		 * 
-		 * @see org.eclipse.ui.ISelectionListener#selectionChanged(org.eclipse.ui.IWorkbenchPart, org.eclipse.jface.viewers.ISelection)
-		 * 
-		 * @param part
-		 * @param selection
+		 * {@inheritDoc}
 		 */
 		public void selectionChanged(IWorkbenchPart part, ISelection selection) {
 			refreshDeleteAction();

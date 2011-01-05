@@ -23,6 +23,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.modelexplorer.Activator;
+import org.eclipse.papyrus.modelexplorer.Messages;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 
 /**
@@ -42,13 +43,13 @@ public class DoubleClickListener implements IDoubleClickListener {
 		try {
 			pageMngr = ServiceUtilsForActionHandlers.getInstance().getIPageMngr();
 		} catch (Exception e) {
-			Activator.log.error("Impossibility to load the page manager", e);
+			Activator.log.error(Messages.DoubleClickListener_Error_NoLoadManagerToOpen, e);
 		}
 		if(pageMngr!=null){
 			if( selection instanceof IStructuredSelection){
-				Iterator iter=((IStructuredSelection)selection).iterator();
+				Iterator<?> iter=((IStructuredSelection)selection).iterator();
 				while(iter.hasNext()) {
-					Object currentObject = (Object)iter.next();
+					Object currentObject = iter.next();
 					if(currentObject instanceof Diagram){
 						// open the page
 						pageMngr.openPage(currentObject);

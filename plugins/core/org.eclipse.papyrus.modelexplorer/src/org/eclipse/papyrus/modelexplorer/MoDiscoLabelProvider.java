@@ -18,11 +18,12 @@ import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.facet.infra.browser.uicore.CustomizableModelLabelProvider;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.gmt.modisco.infra.browser.uicore.CustomizableModelLabelProvider;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.jface.viewers.DecorationOverlayIcon;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.core.editorsfactory.PageIconsRegistry;
 import org.eclipse.papyrus.core.services.ServiceException;
@@ -38,43 +39,53 @@ import org.eclipse.ui.PlatformUI;
  * 
  */
 public class MoDiscoLabelProvider extends CustomizableModelLabelProvider {
-		
+	
+	/** icon registry */
 	private IPageIconsRegistry editorRegistry;
 
+	/** point corresponding to the size 16x16 */
+	private static final Point size16  = new Point (16, 16);
+	
+	/** image registry */
+	private static final ImageRegistry registry = new ImageRegistry ();
+	
+	/**
+	 * Creates a new MoDiscoLabelProvider.
+	 */
 	public MoDiscoLabelProvider() {
 		super(Activator.getDefault().getCustomizationManager());
 	}
 
-	
+	/**
+	 * Returns the message of the marker for the specified element
+	 * @param element the element for which the marker message should be found
+	 * @return the message of the marker for the specified element
+	 */
 	public String getMarkerMessage(Object element) {
-		
 		ValidationTool vt = new ValidationTool (element);
 		return vt.getMarkerMessages();
 	}
 	
-	@Override
 	/**
 	 * return the image of an element in the model browser
 	 * evaluates error markers.
 	 */
+	@Override
 	public Image getImage(Object element) {
-	      
 		ValidationTool vt = new ValidationTool (element);
 		vt.tryChildIfEmpty();
 		int severity = vt.getSeverity();
 		if(element instanceof Diagram) {
 			return getDecoratedImage (getEditorRegistry().getEditorIcon(element), severity);
 		}
-		
 		return getDecoratedImage (super.getImage(element), severity);
 	}
 
 	/**
 	 * Return a DecoratedImage, thanks to Torkild U. Resheim (Trondheim, Norway)
-	 * @param registry
-	 * @param baseImageId
-	 * @param status
-	 * @return
+	 * @param baseImage the base image to decorate
+	 * @param severity the severity of the error
+	 * @return the decorated image
 	 */
 	private Image getDecoratedImage(Image baseImage, int severity) {
 		ISharedImages sharedImages = PlatformUI.getWorkbench().getSharedImages();		
@@ -102,10 +113,6 @@ public class MoDiscoLabelProvider extends CustomizableModelLabelProvider {
 		}
 		return registry.get(decoratedImageId);
 	}
-	
-	private static final Point size16  = new Point (16, 16);
-	
-	private static final ImageRegistry registry = new ImageRegistry ();
 	
 	/**
 	 * Get the EditorRegistry used to create editor instances. This default
@@ -141,7 +148,7 @@ public class MoDiscoLabelProvider extends CustomizableModelLabelProvider {
 	}
 
 	/**
-	 * @see org.eclipse.gmt.modisco.infra.browser.uicore.CustomizableModelLabelProvider#getText(java.lang.Object)
+	 * {@inheritDoc}
 	 */
 	@Override
 	public String getText(Object element) {
@@ -151,9 +158,10 @@ public class MoDiscoLabelProvider extends CustomizableModelLabelProvider {
 			text = diagram.getName();
 		} else if(element instanceof IAdaptable) {
 			EObject obj = (EObject)((IAdaptable)element).getAdapter(EObject.class);
-			if(obj != null && obj.eIsProxy()) {
+			if(obj instanceof InternalEObject && obj.eIsProxy()) {
 				InternalEObject internal = (InternalEObject)obj;
-				text = "Unreachable " + obj.getClass().getSimpleName() + " in " + internal.eProxyURI().trimFragment();;
+				text = NLS.bind(Messages.MoDiscoLabelProvider_ProxyLabel, obj.getClass().getSimpleName(), internal.eProxyURI().trimFragment()); 
+					// Messages.MoDiscoLabelProvider_0 +  + Messages.MoDiscoLabelProvider_1 + ;;
 			} else {
 				text = super.getText(element);
 			}

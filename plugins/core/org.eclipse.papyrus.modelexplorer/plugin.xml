@@ -6,14 +6,6 @@
          point="org.eclipse.ui.views">
       <view
             category="org.eclipse.papyrus.views.category"
-            class="org.eclipse.papyrus.modelexplorer.ModelExplorer"
-            icon="icons/ModelExplorer.gif"
-            id="org.eclipse.papyrus.modelexplorer.modelexplorer-orig"
-            name="Papyrus Model Explorer (orig - to be removed)"
-            restorable="true">
-      </view>
-      <view
-            category="org.eclipse.papyrus.views.category"
             class="org.eclipse.papyrus.modelexplorer.ModelExplorerPageBookView"
             icon="icons/ModelExplorer.gif"
             id="org.eclipse.papyrus.modelexplorer.modelexplorer"

@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.gmt.modisco.infra.browser.custom.MetamodelView;
-import org.eclipse.gmt.modisco.infra.browser.custom.core.CustomizationsCatalog;
-import org.eclipse.gmt.modisco.infra.browser.uicore.CustomizationManager;
+import org.eclipse.emf.facet.infra.browser.custom.MetamodelView;
+import org.eclipse.emf.facet.infra.browser.custom.core.CustomizationsCatalog;
+import org.eclipse.emf.facet.infra.browser.uicore.CustomizationManager;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.papyrus.log.LogHelper;
 import org.eclipse.swt.graphics.Image;

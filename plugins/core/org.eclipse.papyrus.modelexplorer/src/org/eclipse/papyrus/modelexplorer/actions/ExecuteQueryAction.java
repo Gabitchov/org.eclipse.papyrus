@@ -24,15 +24,21 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 
 /**
- * this class is used to execute an action (modisco query)
- * 
+ * This class is used to execute an action (modisco query)
  */
 public class ExecuteQueryAction extends
-		org.eclipse.gmt.modisco.infra.query.ui.actions.ExecuteQueryAction {
+		org.eclipse.emf.facet.infra.query.ui.actions.ExecuteQueryAction {
 
+	/**
+	 * Create a new ExecuteQueryAction.
+	 */
 	public ExecuteQueryAction() {
+		// nothing here
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@SuppressWarnings("rawtypes")
 	public void selectionChanged(final IAction action,
 			final ISelection selection) {

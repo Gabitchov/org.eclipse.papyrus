@@ -192,67 +192,67 @@ public class NavigatorUtils {
 		return views;
 	}
 
-	// //
-	// get an object name
-	// //
-
-	/**
-	 * Gets the object name or empty string.
-	 * 
-	 * @param object
-	 *            the object
-	 * 
-	 * @return the object name or empty string
-	 */
-	// @unused
-	public static String getObjectNameOrEmptyString(Object object) {
-		String name = getObjectName(object);
-		return name == null ? "" : name;
-	}
-
-	/** The Constant getNameNames. */
-	private static final String[] getNameNames = { "getName", "getname" };
-
-	/**
-	 * Gets the object name.
-	 * 
-	 * @param object
-	 *            the object
-	 * 
-	 * @return the object name
-	 */
-	// @unused
-	public static String getObjectName(Object object) {
-		if (object == null) {
-			return null;
-		}
-		Method method = null;
-		Object o = null;
-		for (String methodName : getNameNames) {
-			try {
-				method = object.getClass()
-						.getMethod(methodName, (Class[]) null);
-			} catch (NoSuchMethodException e) {
-				method = null;
-			}
-			if (method != null) {
-				break;
-			}
-		}
-		if (method != null) {
-			try {
-				o = method.invoke(object, (Object[]) null);
-			} catch (IllegalAccessException ex) {
-				return null;
-			} catch (InvocationTargetException ex) {
-				return null;
-			}
-			if (o instanceof String) {
-				return (String) o;
-			}
-		}
-		return null;
-	}
+//	// //
+//	// get an object name
+//	// //
+//
+//	/**
+//	 * Gets the object name or empty string.
+//	 * 
+//	 * @param object
+//	 *            the object
+//	 * 
+//	 * @return the object name or empty string
+//	 */
+//	// @unused
+//	public static String getObjectNameOrEmptyString(Object object) {
+//		String name = getObjectName(object);
+//		return name == null ? "" : name;
+//	}
+//
+//	/** The Constant getNameNames. */
+//	private static final String[] getNameNames = { "getName", "getname" };
+//
+//	/**
+//	 * Gets the object name.
+//	 * 
+//	 * @param object
+//	 *            the object
+//	 * 
+//	 * @return the object name
+//	 */
+//	// @unused
+//	public static String getObjectName(Object object) {
+//		if (object == null) {
+//			return null;
+//		}
+//		Method method = null;
+//		Object o = null;
+//		for (String methodName : getNameNames) {
+//			try {
+//				method = object.getClass()
+//						.getMethod(methodName, (Class[]) null);
+//			} catch (NoSuchMethodException e) {
+//				method = null;
+//			}
+//			if (method != null) {
+//				break;
+//			}
+//		}
+//		if (method != null) {
+//			try {
+//				o = method.invoke(object, (Object[]) null);
+//			} catch (IllegalAccessException ex) {
+//				return null;
+//			} catch (InvocationTargetException ex) {
+//				return null;
+//			}
+//			if (o instanceof String) {
+//				return (String) o;
+//			}
+//		}
+//		return null;
+//	}
 
 	/**
 	 * Opens a {@link Diagram} in the sash editor.

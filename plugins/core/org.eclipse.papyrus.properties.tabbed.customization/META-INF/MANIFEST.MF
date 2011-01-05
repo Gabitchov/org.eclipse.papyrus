@@ -22,9 +22,9 @@ Require-Bundle: org.eclipse.ui,
  org.apache.xml.serializer;bundle-version="2.7.1",
  org.apache.batik.xml;bundle-version="1.6.0",
  org.apache.xml.resolver;bundle-version="1.2.0",
- org.eclipse.gmt.modisco.infra.browser.uicore;bundle-version="0.8.0",
- org.eclipse.gmt.modisco.infra.browser.custom;bundle-version="0.8.0",
- org.eclipse.gmt.modisco.infra.browser.custom.core;bundle-version="0.8.0"
+ org.eclipse.emf.facet.infra.browser.custom;bundle-version="0.1.0",
+ org.eclipse.emf.facet.infra.browser.custom.core;bundle-version="0.1.0",
+ org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.1.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.papyrus.properties.tabbed.customization,

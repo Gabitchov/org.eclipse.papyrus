@@ -18,7 +18,7 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.expressions.EvaluationContext;
-import org.eclipse.gmt.modisco.infra.browser.uicore.CustomizationManager;
+import org.eclipse.emf.facet.infra.browser.uicore.CustomizationManager;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.papyrus.core.ui.pagebookview.MultiViewPageBookView;
 import org.eclipse.papyrus.modelexplorer.Activator;

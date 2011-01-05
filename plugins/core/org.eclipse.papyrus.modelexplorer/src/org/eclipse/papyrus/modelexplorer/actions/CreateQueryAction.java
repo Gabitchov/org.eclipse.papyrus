@@ -24,12 +24,15 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 
 public class CreateQueryAction extends
-		org.eclipse.gmt.modisco.infra.query.ui.actions.CreateQueryAction {
+		org.eclipse.emf.facet.infra.query.ui.actions.CreateQueryAction {
 
 	public CreateQueryAction() {
-		// TODO Auto-generated constructor stub
+		// nothing here
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@SuppressWarnings("rawtypes")
 	public void selectionChanged(final IAction action,
 			final ISelection selection) {

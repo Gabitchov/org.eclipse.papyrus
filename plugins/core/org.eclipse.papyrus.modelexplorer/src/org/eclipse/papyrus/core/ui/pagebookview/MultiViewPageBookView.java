@@ -16,13 +16,13 @@ package org.eclipse.papyrus.core.ui.pagebookview;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.modelexplorer.Activator;
 import org.eclipse.ui.IMemento;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IViewSite;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.internal.WorkbenchPlugin;
 import org.eclipse.ui.part.IPage;
 import org.eclipse.ui.part.IPageBookViewPage;
 import org.eclipse.ui.part.PageBook;
@@ -159,9 +159,9 @@ public abstract class MultiViewPageBookView extends PageBookView {
 		try {
 			page.init(part, new ViewPageSite(getViewSite()), memento, getConfigurationElement());
 		} catch (PartInitException e) {
-			WorkbenchPlugin.log(getClass(), "initPage", e); //$NON-NLS-1$
+			Activator.log.error("initPage", e); //$NON-NLS-1$
 		} catch (CoreException e) {
-			WorkbenchPlugin.log(getClass(), "initPage", e); //$NON-NLS-1$
+			Activator.log.error("initPage", e); //$NON-NLS-1$
 		}
 
 	}

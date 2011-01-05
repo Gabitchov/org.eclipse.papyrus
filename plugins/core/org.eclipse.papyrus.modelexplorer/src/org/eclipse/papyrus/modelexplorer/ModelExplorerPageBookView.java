@@ -49,13 +49,11 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
  */
 public class ModelExplorerPageBookView extends MultiViewPageBookView implements IGotoMarker, ITabbedPropertySheetPageContributor {
 
+	/** ID of the view, as given in the plugin.xml file */
+	public static final String VIEW_ID = "org.eclipse.papyrus.modelexplorer.modelexplorer"; //$NON-NLS-1$
+	
 	/**
-	 * Create the page handling the View for the specified part.
-	 * 
-	 * @see org.eclipse.ui.part.PageBookView#doCreatePage(org.eclipse.ui.IWorkbenchPart)
-	 * 
-	 * @param part
-	 * @return
+	 * {@inheritDoc}
 	 */
 	@Override
 	protected PageRec doCreatePage(IWorkbenchPart part) {
@@ -72,10 +70,7 @@ public class ModelExplorerPageBookView extends MultiViewPageBookView implements 
 
 
 	/**
-	 * @see org.eclipse.ui.part.PageBookView#getAdapter(java.lang.Class)
-	 * 
-	 * @param key
-	 * @return
+	 * {@inheritDoc}
 	 */
 	@SuppressWarnings("rawtypes")
 	@Override
@@ -91,11 +86,7 @@ public class ModelExplorerPageBookView extends MultiViewPageBookView implements 
 	}
 
 	/**
-	 * Overrides getContributorId.
-	 * 
 	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributor#getContributorId()
 	 */
 	public String getContributorId() {
 		// return Activator.PLUGIN_ID;
@@ -136,6 +127,9 @@ public class ModelExplorerPageBookView extends MultiViewPageBookView implements 
 		return null;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	public void gotoMarker(IMarker marker) {
 		try {
 			if (marker.isSubtypeOf((EValidator.MARKER))) {

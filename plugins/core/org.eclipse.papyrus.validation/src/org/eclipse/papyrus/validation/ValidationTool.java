@@ -28,7 +28,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.gmt.modisco.infra.browser.uicore.internal.model.LinkItem;
+import org.eclipse.emf.facet.infra.browser.uicore.internal.model.LinkItem;
 
 public class ValidationTool {
 
