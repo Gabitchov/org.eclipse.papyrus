@@ -15,13 +15,18 @@ import static org.eclipse.papyrus.wizards.Activator.log;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
+import org.eclipse.papyrus.core.editor.BackboneException;
+import org.eclipse.papyrus.core.extension.commands.IModelCreationCommand;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.wizards.category.DiagramCategoryDescriptor;
 import org.eclipse.papyrus.wizards.category.DiagramCategoryRegistry;
+import org.eclipse.papyrus.wizards.category.NewPapyrusModelCommand;
+import org.eclipse.papyrus.wizards.category.PapyrusModelFromExistingDomainModelCommand;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
@@ -142,30 +147,64 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		// create a new file, result != null if successful
 		EObject root = getRoot();
 		final IFile newFile = createNewModelFile();
-		selectDiagramCategoryPage.initDomainModel(diResourceSet, newFile, root);
 		if(newFile == null) {
 			return false;
 		}
+		initDomainModel(diResourceSet, root, newFile);
 
-		selectDiagramKindPage.initDiagramModel(diResourceSet, root);
+		initDiagramModel(diResourceSet, root);
 
+		openDiagram(newFile);
+		
+		saveDiagramCategorySettings();
+		saveDiagramKindSettings();
+		return true;
+	}
+	
+	protected void saveDiagramCategorySettings() {
+		IDialogSettings settings = getDialogSettings();
+		if(settings != null) {
+			SettingsHelper settingsHelper = new SettingsHelper(settings);
+			settingsHelper.saveDefaultDiagramCategory(getDiagramCategoryId());
+		}
+	}
+
+	protected void saveDiagramKindSettings() {
+		IDialogSettings settings = getDialogSettings();
+		if(settings != null) {
+			selectDiagramKindPage.saveSettings();
+		}
+	}
+
+	protected void openDiagram(final IFile newFile) {
 		IWorkbenchPage page = workbench.getActiveWorkbenchWindow().getActivePage();
 		if(page != null) {
 			try {
 				IDE.openEditor(page, newFile, true);
 			} catch (PartInitException e) {
 				log.error(e);
-				return false;
 			}
 		}
+	}
 
-		IDialogSettings settings = getDialogSettings();
-		if(settings != null) {
-			selectDiagramCategoryPage.saveSettings(settings);
-			selectDiagramKindPage.saveSettings();
+
+	protected void initDiagramModel(DiResourceSet diResourceSet, EObject root) {
+		selectDiagramKindPage.initDiagramModel(diResourceSet, root);
+	}
+
+
+	protected void initDomainModel(DiResourceSet diResourceSet, EObject root, final IFile newFile) {
+		RecordingCommand command = (root != null) ? new PapyrusModelFromExistingDomainModelCommand(diResourceSet, newFile, root) : new NewPapyrusModelCommand(diResourceSet, newFile);
+		diResourceSet.getTransactionalEditingDomain().getCommandStack().execute(command);
+		boolean useTemplate = selectDiagramKindPage.useTemplate();
+		if(root == null && !useTemplate) {
+			try {
+				IModelCreationCommand creationCommand = DiagramCategoryRegistry.getInstance().getDiagramCategoryMap().get(getDiagramCategoryId()).getCommand();
+				creationCommand.createModel(diResourceSet);
+			} catch (BackboneException e) {
+				log.error(e);
+			}
 		}
-
-		return true;
 	}
 	
 	protected IFile createNewModelFile() {

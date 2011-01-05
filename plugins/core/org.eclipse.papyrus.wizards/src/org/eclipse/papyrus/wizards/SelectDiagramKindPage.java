@@ -225,12 +225,8 @@ public class SelectDiagramKindPage extends WizardPage {
 	 * 
 	 * @return the diagram category
 	 */
-	protected String getDiagramCategory() {
-		IWizardPage previousPage = getPreviousPage();
-		if(previousPage == null || false == previousPage instanceof SelectDiagramCategoryPage) {
-			return null;
-		}
-		return ((SelectDiagramCategoryPage)previousPage).getDiagramCategory();
+	private String getDiagramCategory() {
+		return ((CreateModelWizard)getWizard()).getDiagramCategoryId();
 	}
 
 

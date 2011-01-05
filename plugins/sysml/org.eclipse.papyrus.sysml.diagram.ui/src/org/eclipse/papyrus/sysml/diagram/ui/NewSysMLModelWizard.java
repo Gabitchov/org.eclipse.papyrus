@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.sysml.diagram.ui;
 
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.papyrus.sysml.diagram.common.commands.CreateSysMLModelCommand;
 import org.eclipse.papyrus.wizards.CreateModelWizard;
 import org.eclipse.papyrus.wizards.NewModelFilePage;
@@ -48,21 +47,6 @@ public class NewSysMLModelWizard extends CreateModelWizard {
 		super();
 	}
 
-	/**
-	 * @see org.eclipse.jface.wizard.Wizard#getNextPage(org.eclipse.jface.wizard.IWizardPage)
-	 * 
-	 * @param page
-	 * @return
-	 */
-	@Override
-	public IWizardPage getNextPage(IWizardPage page) {
-		IWizardPage next = super.getNextPage(page);
-		if(next != null && SelectDiagramCategoryPage.PAGE_ID.equals(next.getName())) {
-			return super.getNextPage(next);
-		}
-		return next;
-	}
-
 	@Override
 	protected NewModelFilePage createNewModelFilePage(IStructuredSelection selection) {
 		NewModelFilePage page = super.createNewModelFilePage(selection);
@@ -72,21 +56,21 @@ public class NewSysMLModelWizard extends CreateModelWizard {
 		}
 		return page;
 	}
-
-	/**
-	 * @see org.eclipse.papyrus.wizards.CreateModelWizard#createSelectDiagramKindPage()
-	 * 
-	 * @return
-	 */
+	
 	@Override
-	protected SelectDiagramKindPage createSelectDiagramKindPage() {
-		return new SelectDiagramKindPage() {
+	protected String getDiagramCategoryId() {
+		return CreateSysMLModelCommand.COMMAND_ID;
+	}
 
-			@Override
-			protected String getDiagramCategory() {
-				return CreateSysMLModelCommand.COMMAND_ID;
-			}
-		};
+	@Override
+	protected SelectDiagramCategoryPage createSelectDiagramCategoryPage() {
+		//here SysML is the only available category
+		return null;
+	}
+	
+	@Override
+	protected void saveDiagramCategorySettings() {
+		//here SysML is the only available category
 	}
 
 }

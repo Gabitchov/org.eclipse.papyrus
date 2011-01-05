@@ -14,11 +14,8 @@
 package org.eclipse.papyrus.sysml.diagram.ui;
 
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.wizard.IWizardPage;
-import org.eclipse.papyrus.sysml.diagram.common.commands.CreateSysMLModelCommand;
 import org.eclipse.papyrus.wizards.NewPapyrusProjectWizard;
 import org.eclipse.papyrus.wizards.SelectDiagramCategoryPage;
-import org.eclipse.papyrus.wizards.SelectDiagramKindPage;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
 
@@ -40,21 +37,6 @@ public class NewSysMLProjectWizard extends NewPapyrusProjectWizard {
 		setWindowTitle("New SysML Project");
 	}
 
-	/**
-	 * @see org.eclipse.jface.wizard.Wizard#getNextPage(org.eclipse.jface.wizard.IWizardPage)
-	 * 
-	 * @param page
-	 * @return
-	 */
-	@Override
-	public IWizardPage getNextPage(IWizardPage page) {
-		IWizardPage next = super.getNextPage(page);
-		if(next != null && SelectDiagramCategoryPage.PAGE_ID.equals(next.getName())) {
-			return super.getNextPage(next);
-		}
-		return next;
-	}
-	
 	@Override
 	protected WizardNewProjectCreationPage createNewProjectCreationPage() {
 		WizardNewProjectCreationPage newProjectPage = super.createNewProjectCreationPage();
@@ -63,20 +45,15 @@ public class NewSysMLProjectWizard extends NewPapyrusProjectWizard {
 		return newProjectPage;
 	}
 
-	/**
-	 * @see org.eclipse.papyrus.wizards.NewPapyrusProjectWizard#createSelectDiagramKindPage()
-	 * 
-	 * @return
-	 */
+	@Override
+	protected SelectDiagramCategoryPage createSelectDiagramCategoryPage() {
+		//here SysML is the only available category
+		return null;
+	}
 
 	@Override
-	protected SelectDiagramKindPage createSelectDiagramKindPage() {
-		return new SelectDiagramKindPage() {
-
-			@Override
-			protected String getDiagramCategory() {
-				return CreateSysMLModelCommand.COMMAND_ID;
-			}
-		};
+	protected void saveDiagramCategorySettings() {
+		//here SysML is the only available category
 	}
+
 }

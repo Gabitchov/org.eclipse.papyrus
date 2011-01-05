@@ -113,39 +113,6 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	}
 
 	/**
-	 * Initialize model resource.
-	 * 
-	 * @param diResourceSet
-	 *        the di resource set
-	 * @param newFile
-	 *        the new file
-	 * @param root
-	 *        the root
-	 */
-	public void initDomainModel(final DiResourceSet diResourceSet, final IFile newFile, final EObject root) {
-		RecordingCommand command = (root != null) ? new PapyrusModelFromExistingDomainModelCommand(diResourceSet, newFile, root) : new NewPapyrusModelCommand(diResourceSet, newFile);
-		diResourceSet.getTransactionalEditingDomain().getCommandStack().execute(command);
-		if(root == null && !useTemplate()) {
-			try {
-				IModelCreationCommand creationCommand = DiagramCategoryRegistry.getInstance().getDiagramCategoryMap().get(mySelectedDiagramCategoryId).getCommand();
-				creationCommand.createModel(diResourceSet);
-			} catch (BackboneException e) {
-				log.error(e);
-			}
-		}
-	}
-
-	/**
-	 * Save settings.
-	 * 
-	 * @param settings
-	 *        the settings
-	 */
-	public void saveSettings(IDialogSettings settings) {
-		mySettingsHelper.saveDefaultDiagramCategory(getDiagramCategory());
-	}
-	
-	/**
 	 * Sets the settings helper.
 	 *
 	 * @param helper the new settings helper
@@ -157,19 +124,6 @@ public class SelectDiagramCategoryPage extends WizardPage {
 
 	private void initSelectedCategory() {
 		mySelectedDiagramCategoryId = mySettingsHelper.getDefaultDiagramCategory();
-	}
-
-	/**
-	 * Use template.
-	 * 
-	 * @return true, if successful
-	 */
-	private boolean useTemplate() {
-		IWizardPage nextPage = getNextPage();
-		if(nextPage == null || false == nextPage instanceof SelectDiagramKindPage) {
-			return false;
-		}
-		return ((SelectDiagramKindPage)nextPage).useTemplate();
 	}
 
 	/**
