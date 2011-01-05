@@ -55,15 +55,7 @@ public class NewPapyrusProjectWizard extends CreateModelWizard {
 	}
 
 	protected WizardNewProjectCreationPage createNewProjectCreationPage() {
-		WizardNewProjectCreationPage newProjectPage = new WizardNewProjectCreationPage("papyrusNewProjectPage") {
-			protected boolean validatePage() {
-				if (super.validatePage()) {
-					newModelFilePage.setContainerFullPath(getProjectHandle().getFullPath());
-					return true;
-				}
-				return false;
-			};
-		};
+		WizardNewProjectCreationPage newProjectPage = new WizardNewProjectCreationPage("papyrusNewProjectPage");
 		newProjectPage.setInitialProjectName(initialProjectName);
 		newProjectPage.setTitle("Papyrus Project");
 		newProjectPage.setDescription("Create a New Papyrus Project");
@@ -76,9 +68,9 @@ public class NewPapyrusProjectWizard extends CreateModelWizard {
 	 */
 	public void addPages() {
 		addPage(myNewProjectPage);
-		addPage(selectDiagramCategoryPage);
-		addPage(selectDiagramKindPage);
+		super.addPages();
 	}
+	
 
 	/**
 	 * Perform finish.
@@ -134,7 +126,7 @@ public class NewPapyrusProjectWizard extends CreateModelWizard {
 	
 	@Override
 	protected IFile createNewModelFile() {
-		IPath newFilePath = myNewProjectPage.getProjectHandle().getFullPath().append(NewModelFilePage.DEFAULT_NAME + "." + NewModelFilePage.DEFAULT_DIAGRAM_EXTENSION);
+		IPath newFilePath = myNewProjectPage.getProjectHandle().getFullPath().append(NewModelFilePage.DEFAULT_NAME + "." + getDiagramFileExtension());
 		return ResourcesPlugin.getWorkspace().getRoot().getFile(newFilePath);
 	}
 

@@ -13,13 +13,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.ui;
 
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.IWizardPage;
+import org.eclipse.papyrus.sysml.diagram.common.commands.CreateSysMLModelCommand;
 import org.eclipse.papyrus.wizards.CreateModelWizard;
+import org.eclipse.papyrus.wizards.NewModelFilePage;
 import org.eclipse.papyrus.wizards.SelectDiagramCategoryPage;
 import org.eclipse.papyrus.wizards.SelectDiagramKindPage;
-import org.eclipse.papyrus.sysml.diagram.common.commands.CreateSysMLModelCommand;
 import org.eclipse.ui.IWorkbench;
 
 
@@ -63,17 +63,14 @@ public class NewSysMLModelWizard extends CreateModelWizard {
 		return next;
 	}
 
-	/**
-	 * @see org.eclipse.papyrus.wizards.NewPapyrusProjectWizard#addPages()
-	 *
-	 */
 	@Override
-	public void addPages() {
-		super.addPages();
-		if(newModelFilePage != null) {
-			newModelFilePage.setTitle("Papyrus SysML Project");
-			newModelFilePage.setDescription("Create a New Papyrus SysML Project");
+	protected NewModelFilePage createNewModelFilePage(IStructuredSelection selection) {
+		NewModelFilePage page = super.createNewModelFilePage(selection);
+		if (page != null) {
+			page.setTitle("Papyrus SysML Project");
+			page.setDescription("Create a New Papyrus SysML Project");
 		}
+		return page;
 	}
 
 	/**

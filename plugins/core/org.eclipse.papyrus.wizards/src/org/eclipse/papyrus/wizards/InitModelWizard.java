@@ -27,6 +27,8 @@ public class InitModelWizard extends CreateModelWizard {
 
 	/** Select the root element containing the new diagram */
 	private SelectRootElementPage selectRootElementPage;
+	
+	private boolean isInitNotCreateModel;
 
 	/**
 	 * @see org.eclipse.papyrus.wizards.CreateModelWizard#init(org.eclipse.ui.IWorkbench, org.eclipse.jface.viewers.IStructuredSelection)
@@ -38,31 +40,55 @@ public class InitModelWizard extends CreateModelWizard {
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		super.init(workbench, selection);
 		IFile file = getSelectedFile(selection);
-		if(isSupportedDomainModelFile(file)) {
+		isInitNotCreateModel = isSupportedDomainModelFile(file);
+		if(isInitNotCreateModel) {
 			// Init Model not Create a new one
-			selectRootElementPage = new SelectRootElementPage(file);
-
+			selectRootElementPage = createSelectRootElementPage(file);
 			setWindowTitle("Init Papyrus Diagram");
-			newModelFilePage.setTitle("Init a new Papyrus model");
-			newModelFilePage.setDescription("Init a new Papyrus model from the existing domain model");
-
-			final String diagramFileName = getDiagramFileName(file);
-			newModelFilePage = new NewModelFilePage(selection) {
-
-				protected boolean validatePage() {
-					if(!super.validatePage()) {
-						return false;
-					}
-					if(!diagramFileName.equals(getFileName())) {
-						setErrorMessage(String.format("Diagram file name should be the same as domain model file name (%s)", diagramFileName));
-						return false;
-					}
-					return true;
-				};
-			};
-			newModelFilePage.setFileName(diagramFileName);
-			selectDiagramKindPage.setDisableTemplates();
 		}
+	}
+	
+	protected SelectRootElementPage createSelectRootElementPage(IFile file) {
+		if (!isInitNotCreateModel) {
+			return null;
+		}
+		return new SelectRootElementPage(file);
+	}
+	
+	@Override
+	protected SelectDiagramKindPage createSelectDiagramKindPage() {
+		if (!isInitNotCreateModel) {
+			return super.createSelectDiagramKindPage();
+		}
+		SelectDiagramKindPage page = super.createSelectDiagramKindPage();
+		page.setDisableTemplates();
+		return page;
+	}
+	
+	@Override
+	protected NewModelFilePage createNewModelFilePage(IStructuredSelection selection) {
+		if (!isInitNotCreateModel) {
+			return super.createNewModelFilePage(selection);
+		}
+		IFile file = getSelectedFile(selection);
+		final String diagramFileName = getDiagramFileName(file);
+		NewModelFilePage page = new NewModelFilePage(selection) {
+
+			protected boolean validatePage() {
+				if(!super.validatePage()) {
+					return false;
+				}
+				if(!diagramFileName.equals(getFileName())) {
+					setErrorMessage(String.format("Diagram file name should be the same as domain model file name (%s)", diagramFileName));
+					return false;
+				}
+				return true;
+			};
+		};
+		page.setFileName(diagramFileName);
+		page.setTitle("Init a new Papyrus model");
+		page.setDescription("Init a new Papyrus model from the existing domain model");
+		return page;
 	}
 
 	/**
@@ -71,9 +97,7 @@ public class InitModelWizard extends CreateModelWizard {
 	 */
 	public void addPages() {
 		super.addPages();
-		if (isInitNotCreateModel()) {
-			addPage(selectRootElementPage);
-		}
+		addPageIfNotNull(selectRootElementPage);
 	};
 
 	/**
@@ -120,7 +144,7 @@ public class InitModelWizard extends CreateModelWizard {
 	 */
 	private String getDiagramFileName(IFile domainModel) {
 		IPath filePath = domainModel.getLocation().removeFileExtension();
-		filePath = filePath.addFileExtension(selectDiagramCategoryPage.getDiagramFileExtension());
+		filePath = filePath.addFileExtension(getDiagramFileExtension());
 		return filePath.lastSegment();
 	}
 

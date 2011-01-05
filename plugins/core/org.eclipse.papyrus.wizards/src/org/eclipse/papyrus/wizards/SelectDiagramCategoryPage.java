@@ -223,7 +223,7 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	 * 
 	 * @return the diagram file extension
 	 */
-	public String getDiagramFileExtension() {
+	String getDiagramFileExtension() {
 		DiagramCategoryDescriptor diagramCategory = DiagramCategoryRegistry.getInstance().getDiagramCategoryMap().get(mySelectedDiagramCategoryId);
 		String extensionPrefix = diagramCategory != null ? diagramCategory.getExtensionPrefix() : null;
 		return (extensionPrefix != null) ? extensionPrefix + "." + NewModelFilePage.DEFAULT_DIAGRAM_EXTENSION : NewModelFilePage.DEFAULT_DIAGRAM_EXTENSION;

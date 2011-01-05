@@ -17,6 +17,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.ui.INewWizard;
@@ -39,13 +40,13 @@ import org.eclipse.ui.ide.IDE;
 public class CreateModelWizard extends Wizard implements INewWizard {
 
 	/** New model file page for the file */
-	protected NewModelFilePage newModelFilePage;
+	private NewModelFilePage newModelFilePage;
 
 	/** Select kind of new diagram the wizard must create */
-	protected SelectDiagramKindPage selectDiagramKindPage;
+	private SelectDiagramKindPage selectDiagramKindPage;
 
 	/** The select diagram category page. */
-	protected SelectDiagramCategoryPage selectDiagramCategoryPage;
+	private SelectDiagramCategoryPage selectDiagramCategoryPage;
 
 
 	/** Current workbench */
@@ -72,9 +73,15 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	 */
 	@Override
 	public void addPages() {
-		addPage(newModelFilePage);
-		addPage(selectDiagramCategoryPage);
-		addPage(selectDiagramKindPage);
+		addPageIfNotNull(newModelFilePage);
+		addPageIfNotNull(selectDiagramCategoryPage);
+		addPageIfNotNull(selectDiagramKindPage);
+	}
+	
+	protected void addPageIfNotNull(IWizardPage page) {
+		if (page!= null) {
+			addPage(page);
+		}
 	}
 
 	/**
@@ -99,8 +106,8 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		}
 		setDialogSettings(section);
 
-		newModelFilePage = new NewModelFilePage(selection);
-		selectDiagramCategoryPage = new SelectDiagramCategoryPage();
+		newModelFilePage = createNewModelFilePage(selection);
+		selectDiagramCategoryPage = createSelectDiagramCategoryPage();
 		selectDiagramKindPage = createSelectDiagramKindPage();
 	}
 
@@ -111,6 +118,14 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	 */
 	protected SelectDiagramKindPage createSelectDiagramKindPage() {
 		return new SelectDiagramKindPage();
+	}
+	
+	protected NewModelFilePage createNewModelFilePage(IStructuredSelection selection) {
+		return new NewModelFilePage(selection);
+	}
+	
+	protected SelectDiagramCategoryPage createSelectDiagramCategoryPage() {
+		return new SelectDiagramCategoryPage();
 	}
 
 	/**
@@ -163,6 +178,9 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	protected EObject getRoot() {
 		return null;
 	}
-
+	
+	protected String getDiagramFileExtension() {
+		return selectDiagramCategoryPage.getDiagramFileExtension();
+	}
 
 }
