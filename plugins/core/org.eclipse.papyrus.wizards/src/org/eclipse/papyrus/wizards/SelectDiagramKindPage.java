@@ -13,26 +13,19 @@ package org.eclipse.papyrus.wizards;
 
 import static org.eclipse.papyrus.wizards.Activator.log;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.viewers.CheckboxTableViewer;
 import org.eclipse.jface.wizard.IWizard;
-import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.papyrus.core.extension.commands.CreationCommandDescriptor;
 import org.eclipse.papyrus.core.extension.commands.ICreationCommand;
-import org.eclipse.papyrus.core.utils.DiResourceSet;
-import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.wizards.kind.DiagramKindContentProvider;
 import org.eclipse.papyrus.wizards.kind.DiagramKindLabelProvider;
-import org.eclipse.papyrus.wizards.template.InitFromTemplateCommand;
 import org.eclipse.papyrus.wizards.template.ModelTemplateDescription;
 import org.eclipse.papyrus.wizards.template.SelectModelTemplateComposite;
 import org.eclipse.swt.SWT;
@@ -71,16 +64,25 @@ public class SelectDiagramKindPage extends WizardPage {
 
 	private Button rememberCurrentSelection;
 
-	private boolean disableTemplates;
+	private boolean allowTemplates;
 
 	/**
 	 * Instantiates a new select diagram kind page.
 	 * 
 	 */
 	public SelectDiagramKindPage() {
+		this(true);
+	}
+
+	/**
+	 * Instantiates a new select diagram kind page.
+	 * 
+	 */
+	public SelectDiagramKindPage(boolean allowTemplates) {
 		super("Select kind of diagram");
 		setTitle("Initialization information");
 		setDescription("Select name and kind of the diagram");
+		this.allowTemplates = allowTemplates;
 	}
 
 	/**
@@ -126,13 +128,6 @@ public class SelectDiagramKindPage extends WizardPage {
 	}
 
 	/**
-	 * Sets the disable templates.
-	 */
-	protected void setDisableTemplates() {
-		disableTemplates = true;
-	}
-
-	/**
 	 * @see org.eclipse.jface.dialogs.DialogPage#setVisible(boolean)
 	 * 
 	 * @param visible
@@ -142,7 +137,7 @@ public class SelectDiagramKindPage extends WizardPage {
 		super.setVisible(visible);
 		fillInTables();
 		validatePage();
-		if(disableTemplates) {
+		if(!allowTemplates) {
 			selectTemplateComposite.disable();
 		}
 	}
@@ -158,66 +153,13 @@ public class SelectDiagramKindPage extends WizardPage {
 		selectDefaultDiagramTemplates(category);
 	}
 
-	/**
-	 * Creates the diagram.
-	 * 
-	 * @param diResourceSet
-	 *        the di resource set
-	 * @param root
-	 *        the root
-	 * @return true, if successful
-	 */
-	public boolean initDiagramModel(final DiResourceSet diResourceSet, EObject root) {
-		initFromTemplateIfNeeded(diResourceSet);
-		initDiagrams(diResourceSet, root);
-		saveDiagram(diResourceSet);
-		return true;
+	
+	protected String getTemplatePath() {
+		return selectTemplateComposite.getTemplatePath();
 	}
 
-	/**
-	 * Save diagram.
-	 * 
-	 * @param diResourceSet
-	 *        the di resource set
-	 */
-	private void saveDiagram(final DiResourceSet diResourceSet) {
-		try {
-			diResourceSet.save(new NullProgressMonitor());
-		} catch (IOException e) {
-			log.error(e);
-			//			return false;
-		}
-	}
-
-	private void initDiagrams(final DiResourceSet diResourceSet, EObject root) {
-		String diagramName = getDiagramName();
-		List<ICreationCommand> creationCommands = getCreationCommands();
-		if(!creationCommands.isEmpty()) {
-			for(int i = 0; i < creationCommands.size(); i++) {
-				creationCommands.get(i).createDiagram(diResourceSet, root, diagramName);
-			}
-		} else {
-			// Create an empty editor (no diagrams opened)
-			// Geting an IPageMngr is enough to initialize the
-			// SashSystem.
-			EditorUtils.getTransactionalIPageMngr(diResourceSet.getDiResource(), diResourceSet.getTransactionalEditingDomain());
-		}
-	}
-
-	private void initFromTemplateIfNeeded(final DiResourceSet diResourceSet) {
-		if(useTemplate()) {
-			diResourceSet.getTransactionalEditingDomain().getCommandStack().execute(new InitFromTemplateCommand(diResourceSet, selectTemplateComposite.getTemplatePluginId(), selectTemplateComposite.getTemplatePath()));
-		}
-	}
-
-	/**
-	 * Use template.
-	 * 
-	 * @return true, if successful
-	 */
-	protected boolean useTemplate() {
-		String templatePath = selectTemplateComposite.getTemplatePath();
-		return templatePath != null;
+	protected String getTemplatePluginId() {
+		return selectTemplateComposite.getTemplatePluginId();
 	}
 
 	/**
@@ -233,14 +175,14 @@ public class SelectDiagramKindPage extends WizardPage {
 	/**
 	 * @return the new diagram name
 	 */
-	private String getDiagramName() {
+	protected String getDiagramName() {
 		return nameText.getText();
 	}
 
 	/**
 	 * @return the creation command
 	 */
-	private List<ICreationCommand> getCreationCommands() {
+	protected List<ICreationCommand> getCreationCommands() {
 		CreationCommandDescriptor[] selected = getSelectedDiagramKinds();
 		List<ICreationCommand> commands = new ArrayList<ICreationCommand>();
 		for(int i = 0; i < selected.length; i++) {
@@ -444,7 +386,7 @@ public class SelectDiagramKindPage extends WizardPage {
 	}
 
 	private void saveDefaultTemplates(IDialogSettings settings) {
-		if(disableTemplates) {
+		if(!allowTemplates) {
 			return;
 		}
 		String path = selectTemplateComposite.getTemplatePath();
