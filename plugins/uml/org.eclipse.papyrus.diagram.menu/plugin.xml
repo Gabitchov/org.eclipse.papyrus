@@ -1643,21 +1643,25 @@
       point="org.eclipse.ui.bindings">
    <key
          commandId="org.eclipse.papyrus.diagram.menu.command.alignment.left"
+         contextId="org.eclipse.gmf.runtime.diagram.ui.diagramContext"
          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
          sequence="CTRL+ARROW_LEFT">
    </key>
    <key
          commandId="org.eclipse.papyrus.diagram.menu.command.alignment.right"
+         contextId="org.eclipse.gmf.runtime.diagram.ui.diagramContext"
          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
          sequence="CTRL+ARROW_RIGHT">
    </key>
    <key
          commandId="org.eclipse.papyrus.diagram.menu.command.alignment.top"
+         contextId="org.eclipse.gmf.runtime.diagram.ui.diagramContext"
          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
          sequence="CTRL+ARROW_UP">
    </key>
    <key
          commandId="org.eclipse.papyrus.diagram.menu.command.alignment.bottom"
+         contextId="org.eclipse.gmf.runtime.diagram.ui.diagramContext"
          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
          sequence="CTRL+ARROW_DOWN">
    </key>
@@ -1675,21 +1679,25 @@
    </key>
    <key
          commandId="org.eclipse.papyrus.diagram.menu.command.routing.left"
+         contextId="org.eclipse.gmf.runtime.diagram.ui.diagramContext"
          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
          sequence="CTRL+SHIFT+ARROW_LEFT">
    </key>
    <key
          commandId="org.eclipse.papyrus.diagram.menu.command.routing.right"
+         contextId="org.eclipse.gmf.runtime.diagram.ui.diagramContext"
          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
          sequence="CTRL+SHIFT+ARROW_RIGHT">
    </key>
    <key
          commandId="org.eclipse.papyrus.diagram.menu.command.routing.top"
+         contextId="org.eclipse.gmf.runtime.diagram.ui.diagramContext"
          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
          sequence="CTRL+SHIFT+ARROW_UP">
    </key>
    <key
          commandId="org.eclipse.papyrus.diagram.menu.command.routing.bottom"
+         contextId="org.eclipse.gmf.runtime.diagram.ui.diagramContext"
          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
          sequence="CTRL+SHIFT+ARROW_DOWN">
    </key>
