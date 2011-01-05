@@ -73,6 +73,7 @@ public class ClassifierTemplateParameterCreateCommand extends EditElementCommand
 	 */
 	protected EObject getElementToEdit() {
 
+
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -88,7 +89,10 @@ public class ClassifierTemplateParameterCreateCommand extends EditElementCommand
 	 */
 	public boolean canExecute() {
 
+
 		return true;
+
+
 
 	}
 
@@ -97,12 +101,16 @@ public class ClassifierTemplateParameterCreateCommand extends EditElementCommand
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
+
+
 		ClassifierTemplateParameter newElement = UMLFactory.eINSTANCE.createClassifierTemplateParameter();
 
 		TemplateSignature owner = (TemplateSignature)getElementToEdit();
 		owner.getOwnedParameters().add(newElement);
 		TemplateSignature childHolder = (TemplateSignature)getElementToEdit();
 		childHolder.getParameters().add(newElement);
+
+
 
 		doConfigure(newElement, monitor, info);
 

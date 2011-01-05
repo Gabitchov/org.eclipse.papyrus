@@ -716,6 +716,9 @@ public class AppliedStereotypeGeneralizationSetLabelEditPart extends LabelEditPa
 			}
 		}
 
+
+
+
 		super.handleNotificationEvent(event);
 	}
 

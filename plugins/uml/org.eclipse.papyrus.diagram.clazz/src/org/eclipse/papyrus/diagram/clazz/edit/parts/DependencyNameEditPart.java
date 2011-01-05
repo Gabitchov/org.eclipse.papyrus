@@ -716,6 +716,9 @@ public class DependencyNameEditPart extends LabelEditPart implements ITextAwareE
 			}
 		}
 
+
+
+
 		super.handleNotificationEvent(event);
 	}
 

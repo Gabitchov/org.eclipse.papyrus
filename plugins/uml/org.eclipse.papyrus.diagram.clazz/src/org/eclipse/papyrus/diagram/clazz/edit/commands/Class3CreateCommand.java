@@ -74,6 +74,7 @@ public class Class3CreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
+
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -89,7 +90,10 @@ public class Class3CreateCommand extends EditElementCommand {
 	 */
 	public boolean canExecute() {
 
+
 		return true;
+
+
 
 	}
 
@@ -98,10 +102,13 @@ public class Class3CreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
+
+
 		Class newElement = UMLFactory.eINSTANCE.createClass();
 
 		Interface owner = (Interface)getElementToEdit();
 		owner.getNestedClassifiers().add(newElement);
+
 
 		ElementInitializers.getInstance().init_Class_3008(newElement);
 
