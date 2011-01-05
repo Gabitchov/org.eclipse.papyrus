@@ -77,12 +77,12 @@ public class NewSysMLModelWizard extends CreateModelWizard {
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.wizards.CreateModelWizard#getSelectDiagramKindPage()
+	 * @see org.eclipse.papyrus.wizards.CreateModelWizard#createSelectDiagramKindPage()
 	 * 
 	 * @return
 	 */
 	@Override
-	protected SelectDiagramKindPage getSelectDiagramKindPage() {
+	protected SelectDiagramKindPage createSelectDiagramKindPage() {
 		return new SelectDiagramKindPage() {
 
 			@Override

@@ -20,6 +20,7 @@ import org.eclipse.papyrus.wizards.NewPapyrusProjectWizard;
 import org.eclipse.papyrus.wizards.SelectDiagramCategoryPage;
 import org.eclipse.papyrus.wizards.SelectDiagramKindPage;
 import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
 
 
 /**
@@ -53,28 +54,23 @@ public class NewSysMLProjectWizard extends NewPapyrusProjectWizard {
 		}
 		return next;
 	}
-
-	/**
-	 * @see org.eclipse.papyrus.wizards.NewPapyrusProjectWizard#addPages()
-	 * 
-	 */
+	
 	@Override
-	public void addPages() {
-		super.addPages();
-		if(myNewProjectPage != null) {
-			myNewProjectPage.setTitle("Papyrus SysML Project");
-			myNewProjectPage.setDescription("Create a New Papyrus SysML Project");
-		}
+	protected WizardNewProjectCreationPage createNewProjectCreationPage() {
+		WizardNewProjectCreationPage newProjectPage = super.createNewProjectCreationPage();
+		newProjectPage.setTitle("Papyrus SysML Project");
+		newProjectPage.setDescription("Create a New Papyrus SysML Project");
+		return newProjectPage;
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.wizards.NewPapyrusProjectWizard#getSelectDiagramKindPage()
+	 * @see org.eclipse.papyrus.wizards.NewPapyrusProjectWizard#createSelectDiagramKindPage()
 	 * 
 	 * @return
 	 */
 
 	@Override
-	protected SelectDiagramKindPage getSelectDiagramKindPage() {
+	protected SelectDiagramKindPage createSelectDiagramKindPage() {
 		return new SelectDiagramKindPage() {
 
 			@Override

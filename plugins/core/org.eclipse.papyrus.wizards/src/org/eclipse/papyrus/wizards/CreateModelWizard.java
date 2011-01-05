@@ -101,7 +101,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 		newModelFilePage = new NewModelFilePage(selection);
 		selectDiagramCategoryPage = new SelectDiagramCategoryPage();
-		selectDiagramKindPage = getSelectDiagramKindPage();
+		selectDiagramKindPage = createSelectDiagramKindPage();
 	}
 
 	/**
@@ -109,7 +109,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	 * 
 	 * @return the select diagram kind page
 	 */
-	protected SelectDiagramKindPage getSelectDiagramKindPage() {
+	protected SelectDiagramKindPage createSelectDiagramKindPage() {
 		return new SelectDiagramKindPage();
 	}
 
@@ -124,7 +124,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		DiResourceSet diResourceSet = new DiResourceSet();
 		// create a new file, result != null if successful
 		EObject root = getRoot();
-		final IFile newFile = newModelFilePage.createNewFile();
+		final IFile newFile = createNewModelFile();
 		selectDiagramCategoryPage.initDomainModel(diResourceSet, newFile, root);
 		if(newFile == null) {
 			return false;
@@ -149,6 +149,10 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		}
 
 		return true;
+	}
+	
+	protected IFile createNewModelFile() {
+		return newModelFilePage.createNewFile();
 	}
 
 	/**

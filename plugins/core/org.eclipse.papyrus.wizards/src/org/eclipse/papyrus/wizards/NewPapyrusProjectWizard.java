@@ -13,39 +13,30 @@
  *****************************************************************************/
 package org.eclipse.papyrus.wizards;
 
-import static org.eclipse.papyrus.wizards.Activator.log;
+import java.net.URI;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IProjectDescription;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.jface.dialogs.IDialogSettings;
+import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.wizard.IWizardPage;
-import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.ui.IWorkbench;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
-import org.eclipse.ui.ide.IDE;
-import org.eclipse.ui.wizards.newresource.BasicNewProjectResourceWizard;
 
 /**
- * The Wizard creates a Papyrus Project and a Papyrus Model inside it.
+ * The Wizard creates a new Project and a Papyrus Model inside it
  */
-public class NewPapyrusProjectWizard extends BasicNewProjectResourceWizard {
+public class NewPapyrusProjectWizard extends CreateModelWizard {
 
 	/** The Constant WIZARD_ID. */
 	public static final String WIZARD_ID = "org.eclipse.papyrus.wizards.1createproject";
 
 	/** The new project page. */
-	protected WizardNewProjectCreationPage myNewProjectPage;
-
-	/** The diagram kind page. */
-	private SelectDiagramKindPage myDiagramKindPage;
-
-	/** The select diagram category page. */
-	private SelectDiagramCategoryPage selectDiagramCategoryPage;
+	private WizardNewProjectCreationPage myNewProjectPage;
 
 	/** The initial project name. */
 	private String initialProjectName;
@@ -60,27 +51,23 @@ public class NewPapyrusProjectWizard extends BasicNewProjectResourceWizard {
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		super.init(workbench, selection);
 		setWindowTitle("New Papyrus Project");
-
-		IDialogSettings workbenchSettings = Activator.getDefault().getDialogSettings();
-		IDialogSettings section = workbenchSettings.getSection(CreateModelWizard.NEW_MODEL_SETTINGS);
-		if(section == null) {
-			section = workbenchSettings.addNewSection(CreateModelWizard.NEW_MODEL_SETTINGS);
-		}
-		setDialogSettings(section);
-
-		selectDiagramCategoryPage = new SelectDiagramCategoryPage();
-		myDiagramKindPage = getSelectDiagramKindPage();
-
+		myNewProjectPage = createNewProjectCreationPage();
 	}
 
-	/**
-	 * Gets the select diagram kind page.
-	 * 
-	 * @return the select diagram kind page
-	 */
-	protected SelectDiagramKindPage getSelectDiagramKindPage() {
-		return new SelectDiagramKindPage();
-
+	protected WizardNewProjectCreationPage createNewProjectCreationPage() {
+		WizardNewProjectCreationPage newProjectPage = new WizardNewProjectCreationPage("papyrusNewProjectPage") {
+			protected boolean validatePage() {
+				if (super.validatePage()) {
+					newModelFilePage.setContainerFullPath(getProjectHandle().getFullPath());
+					return true;
+				}
+				return false;
+			};
+		};
+		newProjectPage.setInitialProjectName(initialProjectName);
+		newProjectPage.setTitle("Papyrus Project");
+		newProjectPage.setDescription("Create a New Papyrus Project");
+		return newProjectPage;
 	}
 
 	/**
@@ -88,104 +75,67 @@ public class NewPapyrusProjectWizard extends BasicNewProjectResourceWizard {
 	 * 
 	 */
 	public void addPages() {
-		super.addPages();
-		myNewProjectPage = (WizardNewProjectCreationPage)getPage("basicNewProjectPage"); //$NON-NLS-1$
-		if(myNewProjectPage != null) {
-			myNewProjectPage.setInitialProjectName(initialProjectName);
-			myNewProjectPage.setTitle("Papyrus Project");
-			myNewProjectPage.setDescription("Create a New Papyrus Project");
-		}
-
+		addPage(myNewProjectPage);
 		addPage(selectDiagramCategoryPage);
-		addPage(myDiagramKindPage);
-
-	}
-
-	/**
-	 * Gets the next page.
-	 *
-	 * @param page the page
-	 * @return the next page
-	 * @see org.eclipse.jface.wizard.Wizard#getNextPage(org.eclipse.jface.wizard.IWizardPage)
-	 */
-	@Override
-	public IWizardPage getNextPage(IWizardPage page) {
-		IWizardPage next = super.getNextPage(page);
-		// 316160 [Wizard] Do not display WizardNewProjectReferencePage in New Papyrus Project Wizard  
-		if(next != null && "basicReferenceProjectPage".equals(next.getName())) {
-			return super.getNextPage(next);
-		}
-		return next;
-	}
-
-	/**
-	 * Gets the previous page.
-	 *
-	 * @param page the page
-	 * @return the previous page
-	 * @see org.eclipse.jface.wizard.Wizard#getPreviousPage(org.eclipse.jface.wizard.IWizardPage)
-	 */
-	@Override
-	public IWizardPage getPreviousPage(IWizardPage page) {
-		IWizardPage prev = super.getPreviousPage(page);
-		// 316160 [Wizard] Do not display WizardNewProjectReferencePage in New Papyrus Project Wizard  
-		if(prev != null && "basicReferenceProjectPage".equals(prev.getName())) {
-			return super.getPreviousPage(prev);
-		}
-		return prev;
-	}
-
-
-	/**
-	 * Creates the file.
-	 * 
-	 * @return the file
-	 */
-	private IFile createFile() {
-		IPath newFilePath = myNewProjectPage.getProjectHandle().getFullPath().append(NewModelFilePage.DEFAULT_NAME + "." + NewModelFilePage.DEFAULT_DIAGRAM_EXTENSION);
-		return ResourcesPlugin.getWorkspace().getRoot().getFile(newFilePath);
+		addPage(selectDiagramKindPage);
 	}
 
 	/**
 	 * Perform finish.
-	 *
+	 * 
 	 * @return true, if successful
 	 * @see org.eclipse.ui.wizards.newresource.BasicNewProjectResourceWizard#performFinish()
 	 */
 	public boolean performFinish() {
-		boolean created = super.performFinish();
-		if(!created) {
+		IProject newProjectHandle;
+		try {
+			newProjectHandle = createNewProject();
+		} catch (CoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 			return false;
 		}
-		final DiResourceSet diResourceSet = new DiResourceSet();
-		// create a new file, result != null if successful
-		final IFile newFile = createFile();
-		EObject root = null;
-		selectDiagramCategoryPage.initDomainModel(diResourceSet, newFile, root);
-		if(newFile == null) {
+		if (newProjectHandle == null) {
 			return false;
 		}
+		return super.performFinish();
+	}
 
-		myDiagramKindPage.initDiagramModel(diResourceSet, root);
+	private IProject createNewProject() throws CoreException {
+		// get a project handle
+		final IProject project = myNewProjectPage.getProjectHandle();
 
-		IWorkbenchPage page = getWorkbench().getActiveWorkbenchWindow().getActivePage();
-		if(page != null) {
-			try {
-				IDE.openEditor(page, newFile, true);
-			} catch (PartInitException e) {
-				log.error(e);
-				return false;
-			}
+		// get a project descriptor
+		URI projectLocationURI = null;
+		if (!myNewProjectPage.useDefaults()) {
+			projectLocationURI = myNewProjectPage.getLocationURI();
 		}
 
-		IDialogSettings settings = getDialogSettings();
-		if(settings != null) {
-			selectDiagramCategoryPage.saveSettings(settings);
-			myDiagramKindPage.saveSettings();
-		}
+        IProjectDescription projectDescription = null;
+        NullProgressMonitor progressMonitor = new NullProgressMonitor();
+        if (!project.exists())
+        {
+          projectDescription = ResourcesPlugin.getWorkspace().newProjectDescription(project.getName());
+          if (projectLocationURI != null)
+          {
+            projectDescription.setLocationURI(projectLocationURI);
+          }
+          project.create(projectDescription, new SubProgressMonitor(progressMonitor, 1));
+          project.open(new SubProgressMonitor(progressMonitor, 1));
+        }
+        else 
+        {
+          projectDescription = project.getDescription();
+          project.open(new SubProgressMonitor(progressMonitor, 1));
+        }
 
-		return true;
-
+        return project;
+	}
+	
+	@Override
+	protected IFile createNewModelFile() {
+		IPath newFilePath = myNewProjectPage.getProjectHandle().getFullPath().append(NewModelFilePage.DEFAULT_NAME + "." + NewModelFilePage.DEFAULT_DIAGRAM_EXTENSION);
+		return ResourcesPlugin.getWorkspace().getRoot().getFile(newFilePath);
 	}
 
 	/**
