@@ -181,7 +181,7 @@ public class SelectDiagramCategoryPage extends WizardPage {
 		//316943 -  [Wizard] Wrong suffix for file name when creating a profile model
 		NewModelFilePage newModelFilePage = getNewModelFilePage();
 		if(newModelFilePage != null) {
-			String newExtension = getDiagramFileExtension();
+			String newExtension = ((CreateModelWizard)getWizard()).getDiagramFileExtension();
 			String currentExtension = newModelFilePage.getFileExtension();
 			if(!currentExtension.equals(newExtension)) {
 
@@ -217,18 +217,6 @@ public class SelectDiagramCategoryPage extends WizardPage {
 		}
 		return null;
 	}
-
-	/**
-	 * Gets the diagram file extension.
-	 * 
-	 * @return the diagram file extension
-	 */
-	String getDiagramFileExtension() {
-		DiagramCategoryDescriptor diagramCategory = DiagramCategoryRegistry.getInstance().getDiagramCategoryMap().get(mySelectedDiagramCategoryId);
-		String extensionPrefix = diagramCategory != null ? diagramCategory.getExtensionPrefix() : null;
-		return (extensionPrefix != null) ? extensionPrefix + "." + NewModelFilePage.DEFAULT_DIAGRAM_EXTENSION : NewModelFilePage.DEFAULT_DIAGRAM_EXTENSION;
-	}
-
 
 	/**
 	 * Creates the diagram language form.

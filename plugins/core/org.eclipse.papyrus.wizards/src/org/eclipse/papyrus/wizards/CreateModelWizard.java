@@ -20,6 +20,8 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
+import org.eclipse.papyrus.wizards.category.DiagramCategoryDescriptor;
+import org.eclipse.papyrus.wizards.category.DiagramCategoryRegistry;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
@@ -179,8 +181,22 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		return null;
 	}
 	
+	protected String getDiagramCategoryId() {
+		if (selectDiagramCategoryPage != null) {
+			return selectDiagramCategoryPage.getDiagramCategory();
+		}
+		return null;
+	}
+	
 	protected String getDiagramFileExtension() {
-		return selectDiagramCategoryPage.getDiagramFileExtension();
+		return getDiagramFileExtension(NewModelFilePage.DEFAULT_DIAGRAM_EXTENSION);
+	}
+
+	protected String getDiagramFileExtension(String defaultExtension) {
+		String сategoryId = getDiagramCategoryId();
+		DiagramCategoryDescriptor diagramCategory = DiagramCategoryRegistry.getInstance().getDiagramCategoryMap().get(сategoryId);
+		String extensionPrefix = diagramCategory != null ? diagramCategory.getExtensionPrefix() : null;
+		return (extensionPrefix != null) ? extensionPrefix + "." + defaultExtension : defaultExtension;
 	}
 
 }
