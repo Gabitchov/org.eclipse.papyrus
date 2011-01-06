@@ -18,7 +18,6 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.resource.uml.UmlModel;
 import org.eclipse.papyrus.wizards.category.PapyrusModelFromExistingDomainModelCommand;
 import org.eclipse.ui.IWorkbench;
@@ -124,19 +123,19 @@ public class InitModelWizard extends CreateModelWizard {
 		return null;
 	}
 
-	protected RecordingCommand getCreatePapyrusModelCommand(DiResourceSet diResourceSet, final IFile newFile) {
+	protected RecordingCommand getCreatePapyrusModelCommand(final IFile newFile) {
 		if(isCreateFromExistingDomainModel()) {
-			return new PapyrusModelFromExistingDomainModelCommand(diResourceSet, newFile, getRoot());
+			return new PapyrusModelFromExistingDomainModelCommand(getResourseSet(), newFile, getRoot());
 		} else {
-			return super.getCreatePapyrusModelCommand(diResourceSet, newFile);
+			return super.getCreatePapyrusModelCommand(newFile);
 		}
 	}
 
-	protected void initDomainModel(DiResourceSet diResourceSet, final IFile newFile) {
+	protected void initDomainModel(final IFile newFile) {
 		if(isCreateFromExistingDomainModel()) {
 			// do nothing
 		} else {
-			super.initDomainModel(diResourceSet, newFile);
+			super.initDomainModel(newFile);
 		}
 	}
 
@@ -153,8 +152,8 @@ public class InitModelWizard extends CreateModelWizard {
 		return isInitFromExistingDomainModel;
 	}
 
-	protected void initDiagrams(final DiResourceSet diResourceSet) {
-		initDiagrams(diResourceSet, getRoot());
+	protected void initDiagrams() {
+		initDiagrams(getRoot());
 	}
 
 	private class NewDiagramForExistingModelPage extends NewModelFilePage {
