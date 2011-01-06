@@ -200,7 +200,7 @@ public class SelectDiagramKindPage extends WizardPage {
 			// Create an empty editor (no diagrams opened)
 			// Geting an IPageMngr is enough to initialize the
 			// SashSystem.
-			EditorUtils.getTransactionalIPageMngr(diResourceSet.getDiResource(), diResourceSet.getTransactionalEditingDomain());
+			EditorUtils.getTransactionalIPageMngr(diResourceSet.getAssociatedDiResource(root), diResourceSet.getTransactionalEditingDomain());
 		}
 	}
 
