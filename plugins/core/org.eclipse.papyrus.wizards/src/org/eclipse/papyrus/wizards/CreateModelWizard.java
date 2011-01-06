@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2008 Obeo.
+ * Copyright (c) 2008 Obeo, CEA LIST.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -48,8 +48,6 @@ import org.eclipse.ui.ide.IDE;
  * (Model, Package, Class,...)
  * 
  * Those files can be used with the PapyrusEditor (see plugin.xml).
- * 
- * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
 public class CreateModelWizard extends Wizard implements INewWizard {
 
@@ -68,12 +66,10 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	/** The select diagram category page. */
 	private SelectDiagramCategoryPage selectDiagramCategoryPage;
 
-
 	/** Current workbench */
 	private IWorkbench workbench;
 
 	private DiResourceSet diResourceSet;
-
 
 	/**
 	 * Instantiates a new creates the model wizard.
@@ -101,16 +97,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	}
 
 	/**
-	 * Initializes this creation wizard using the passed workbench and object
-	 * selection.
-	 * <p>
-	 * This method is called after the no argument constructor and before other methods are called.
-	 * </p>
-	 * 
-	 * @param workbench
-	 *        the current workbench
-	 * @param selection
-	 *        the current object selection
+	 * {@inheritDoc}
 	 */
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		this.workbench = workbench;
@@ -128,10 +115,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	}
 
 	/**
-	 * This method will be invoked, when the "Finish" button is pressed.
-	 * 
-	 * @return <code>true</code> if everything runs without problems, <code>false</code> if an exception must be caught.
-	 * 
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean performFinish() {
@@ -152,13 +136,13 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		saveDiagramKindSettings();
 		return true;
 	}
-	
+
 	protected final DiResourceSet getResourseSet() {
 		return diResourceSet;
 	}
 
 	protected final CommandStack getCommandStack() {
-		return getResourseSet().getTransactionalEditingDomain().getCommandStack();	
+		return getResourseSet().getTransactionalEditingDomain().getCommandStack();
 	}
 
 	protected NewModelFilePage createNewModelFilePage(IStructuredSelection selection) {

@@ -33,11 +33,9 @@ public class InitModelWizard extends CreateModelWizard {
 	private boolean isInitFromExistingDomainModel;
 
 	/**
-	 * @see org.eclipse.papyrus.wizards.CreateModelWizard#init(org.eclipse.ui.IWorkbench, org.eclipse.jface.viewers.IStructuredSelection)
-	 * 
-	 * @param workbench
-	 * @param selection
+	 * {@inheritDoc}
 	 */
+	@Override
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		super.init(workbench, selection);
 		IFile file = getSelectedFile(selection);
@@ -57,6 +55,9 @@ public class InitModelWizard extends CreateModelWizard {
 		return new SelectRootElementPage(file);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected SelectDiagramKindPage createSelectDiagramKindPage() {
 		if(isCreateFromExistingDomainModel()) {
@@ -65,6 +66,9 @@ public class InitModelWizard extends CreateModelWizard {
 		return super.createSelectDiagramKindPage();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected NewModelFilePage createNewModelFilePage(IStructuredSelection selection) {
 		if(!isCreateFromExistingDomainModel()) {
@@ -75,9 +79,9 @@ public class InitModelWizard extends CreateModelWizard {
 
 
 	/**
-	 * @see org.eclipse.papyrus.wizards.CreateModelWizard#addPages()
-	 * 
+	 * {@inheritDoc}
 	 */
+	@Override
 	public void addPages() {
 		super.addPages();
 		addPageIfNotNull(selectRootElementPage);
