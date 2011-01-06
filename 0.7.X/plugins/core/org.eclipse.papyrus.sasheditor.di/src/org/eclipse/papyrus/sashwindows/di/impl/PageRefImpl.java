@@ -164,7 +164,10 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	 * @generated NOT
 	 */
 	public boolean isForIdentifier(Object pageIdentifier) {
-		return getPageIdentifier().equals(pageIdentifier);
+		if (pageIdentifier != null) {
+			return pageIdentifier.equals(getPageIdentifier());
+		}
+		return false;
 	}
 
 	/**
