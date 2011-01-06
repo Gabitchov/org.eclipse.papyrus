@@ -253,11 +253,15 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 				creationCommands.get(i).createDiagram(resourceSet, root, diagramName);
 			}
 		} else {
-			// Create an empty editor (no diagrams opened)
-			// Geting an IPageMngr is enough to initialize the
-			// SashSystem.
-			EditorUtils.getTransactionalIPageMngr(resourceSet.getDiResource(), resourceSet.getTransactionalEditingDomain());
+			createEmptyDiagramEditor();
 		}
+	}
+	
+	private void createEmptyDiagramEditor() {
+		// Create an empty editor (no diagrams opened)
+		// Geting an IPageMngr is enough to initialize the
+		// SashSystem.
+		EditorUtils.getTransactionalIPageMngr(getResourseSet().getDiResource(), getResourseSet().getTransactionalEditingDomain());
 	}
 
 	protected final DiResourceSet getResourseSet() {
