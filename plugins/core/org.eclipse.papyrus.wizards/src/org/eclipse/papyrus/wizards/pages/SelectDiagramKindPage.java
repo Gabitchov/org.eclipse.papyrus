@@ -15,16 +15,13 @@ import static org.eclipse.papyrus.wizards.Activator.log;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.viewers.CheckboxTableViewer;
 import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.papyrus.core.extension.commands.CreationCommandDescriptor;
 import org.eclipse.papyrus.core.extension.commands.ICreationCommand;
-import org.eclipse.papyrus.wizards.CreateModelWizard;
 import org.eclipse.papyrus.wizards.SettingsHelper;
 import org.eclipse.papyrus.wizards.kind.DiagramKindContentProvider;
 import org.eclipse.papyrus.wizards.kind.DiagramKindLabelProvider;
@@ -63,6 +60,8 @@ public class SelectDiagramKindPage extends WizardPage {
 
 	/** The select template composite. */
 	private SelectModelTemplateComposite selectTemplateComposite;
+	
+	private final CategoryProvider myCategoryProvider;
 
 	private Button rememberCurrentSelection;
 
@@ -72,19 +71,20 @@ public class SelectDiagramKindPage extends WizardPage {
 	 * Instantiates a new select diagram kind page.
 	 * 
 	 */
-	public SelectDiagramKindPage() {
-		this(true);
+	public SelectDiagramKindPage(CategoryProvider categoryProvider) {
+		this(true, categoryProvider);
 	}
 
 	/**
 	 * Instantiates a new select diagram kind page.
 	 * 
 	 */
-	public SelectDiagramKindPage(boolean allowTemplates) {
+	public SelectDiagramKindPage(boolean allowTemplates, CategoryProvider categoryProvider) {
 		super("Select kind of diagram");
 		setTitle("Initialization information");
 		setDescription("Select name and kind of the diagram");
 		this.allowTemplates = allowTemplates;
+		myCategoryProvider = categoryProvider;
 	}
 
 	/**
@@ -171,7 +171,7 @@ public class SelectDiagramKindPage extends WizardPage {
 	 * @return the diagram category
 	 */
 	private String getDiagramCategory() {
-		return ((CreateModelWizard)getWizard()).getDiagramCategoryIdTEMP();
+		return myCategoryProvider.getCurrentCategory();
 	}
 
 
@@ -390,7 +390,10 @@ public class SelectDiagramKindPage extends WizardPage {
 				return;
 			}
 		}
-
+	}
+	
+	public static interface CategoryProvider{
+		String getCurrentCategory();
 	}
 
 }

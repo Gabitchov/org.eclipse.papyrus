@@ -40,6 +40,7 @@ import org.eclipse.papyrus.wizards.category.NewPapyrusModelCommand;
 import org.eclipse.papyrus.wizards.pages.NewModelFilePage;
 import org.eclipse.papyrus.wizards.pages.SelectDiagramCategoryPage;
 import org.eclipse.papyrus.wizards.pages.SelectDiagramKindPage;
+import org.eclipse.papyrus.wizards.pages.SelectDiagramKindPage.CategoryProvider;
 import org.eclipse.papyrus.wizards.template.InitFromTemplateCommand;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
@@ -145,10 +146,6 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	}
 
 
-	public String getDiagramCategoryIdTEMP() {
-		return getDiagramCategoryId();
-	}
-
 	protected String getDiagramCategoryId() {
 		if(selectDiagramCategoryPage != null) {
 			return selectDiagramCategoryPage.getDiagramCategory();
@@ -175,7 +172,13 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	}
 
 	protected SelectDiagramKindPage createSelectDiagramKindPage() {
-		return new SelectDiagramKindPage();
+		return new SelectDiagramKindPage(new CategoryProvider() {
+
+			public String getCurrentCategory() {
+				return getDiagramCategoryId();
+			}
+			
+		});
 	}
 
 	protected IFile createNewModelFile() {
@@ -313,6 +316,5 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	protected final Map<String, DiagramCategoryDescriptor> getDiagramCategoryMap() {
 		return DiagramCategoryRegistry.getInstance().getDiagramCategoryMap();
 	}
-
-
+	
 }

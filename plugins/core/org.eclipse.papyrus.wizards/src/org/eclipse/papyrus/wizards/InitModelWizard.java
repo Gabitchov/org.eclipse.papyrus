@@ -24,6 +24,7 @@ import org.eclipse.papyrus.wizards.category.PapyrusModelFromExistingDomainModelC
 import org.eclipse.papyrus.wizards.pages.NewModelFilePage;
 import org.eclipse.papyrus.wizards.pages.SelectDiagramKindPage;
 import org.eclipse.papyrus.wizards.pages.SelectRootElementPage;
+import org.eclipse.papyrus.wizards.pages.SelectDiagramKindPage.CategoryProvider;
 import org.eclipse.ui.IWorkbench;
 
 /**
@@ -65,8 +66,14 @@ public class InitModelWizard extends CreateModelWizard {
 	@Override
 	protected SelectDiagramKindPage createSelectDiagramKindPage() {
 		if(isCreateFromExistingDomainModel()) {
-			return new SelectDiagramKindPage(false);
-		}
+			return new SelectDiagramKindPage(false, new CategoryProvider() {
+
+				public String getCurrentCategory() {
+					return getDiagramCategoryId();
+				}
+				
+			});
+		};
 		return super.createSelectDiagramKindPage();
 	}
 
