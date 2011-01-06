@@ -18,7 +18,6 @@ import org.eclipse.papyrus.sysml.diagram.common.commands.CreateSysMLModelCommand
 import org.eclipse.papyrus.wizards.CreateModelWizard;
 import org.eclipse.papyrus.wizards.NewModelFilePage;
 import org.eclipse.papyrus.wizards.SelectDiagramCategoryPage;
-import org.eclipse.papyrus.wizards.SelectDiagramKindPage;
 import org.eclipse.ui.IWorkbench;
 
 
