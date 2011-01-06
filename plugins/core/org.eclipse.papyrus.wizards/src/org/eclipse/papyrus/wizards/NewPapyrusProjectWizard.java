@@ -42,12 +42,9 @@ public class NewPapyrusProjectWizard extends CreateModelWizard {
 	private String initialProjectName;
 
 	/**
-	 * @see org.eclipse.ui.wizards.newresource.BasicNewProjectResourceWizard#init(org.eclipse.ui.IWorkbench,
-	 *      org.eclipse.jface.viewers.IStructuredSelection)
-	 * 
-	 * @param workbench
-	 * @param selection
+	 * {@inheritDoc}
 	 */
+	@Override
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		super.init(workbench, selection);
 		setWindowTitle("New Papyrus Project");
@@ -63,14 +60,17 @@ public class NewPapyrusProjectWizard extends CreateModelWizard {
 	}
 
 	/**
-	 * @see org.eclipse.ui.wizards.newresource.BasicNewProjectResourceWizard#addPages()
-	 * 
+	 * {@inheritDoc}
 	 */
+	@Override
 	public void addPages() {
 		addPage(myNewProjectPage);
 		super.addPages();
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected NewModelFilePage createNewModelFilePage(IStructuredSelection selection) {
 		return null;
@@ -78,11 +78,9 @@ public class NewPapyrusProjectWizard extends CreateModelWizard {
 	
 
 	/**
-	 * Perform finish.
-	 * 
-	 * @return true, if successful
-	 * @see org.eclipse.ui.wizards.newresource.BasicNewProjectResourceWizard#performFinish()
+	 * {@inheritDoc}
 	 */
+	@Override
 	public boolean performFinish() {
 		IProject newProjectHandle;
 		try {
@@ -129,6 +127,9 @@ public class NewPapyrusProjectWizard extends CreateModelWizard {
         return project;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected IFile createNewModelFile() {
 		IPath newFilePath = myNewProjectPage.getProjectHandle().getFullPath().append(NewModelFilePage.DEFAULT_NAME + "." + getDiagramFileExtension());
