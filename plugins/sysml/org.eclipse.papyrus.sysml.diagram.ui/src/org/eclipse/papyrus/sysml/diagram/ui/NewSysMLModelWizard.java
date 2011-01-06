@@ -51,8 +51,8 @@ public class NewSysMLModelWizard extends CreateModelWizard {
 	protected NewModelFilePage createNewModelFilePage(IStructuredSelection selection) {
 		NewModelFilePage page = super.createNewModelFilePage(selection);
 		if (page != null) {
-			page.setTitle("Papyrus SysML Project");
-			page.setDescription("Create a New Papyrus SysML Project");
+			page.setTitle("Papyrus SysML Model");
+			page.setDescription("Create a New Papyrus SysML Model");
 		}
 		return page;
 	}
