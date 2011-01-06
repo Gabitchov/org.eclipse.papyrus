@@ -3,11 +3,11 @@
 <plugin>
 
 <!-- SysML ModelExplorer customization -->
-<extension point="org.eclipse.gmt.modisco.infra.browser.custom.core.registration">
+<extension point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
 	<browserCustomization file="resources/SysMLDefaultExplorerCustomization.uiCustom"/>
 </extension>
    
-<extension point="org.eclipse.gmt.modisco.infra.query.registration">
+<extension point="org.eclipse.emf.facet.infra.query.registration">
 	<modelqueryset file="resources/SysMLDefaultExplorerQueries.querySet"/>
 </extension>
 

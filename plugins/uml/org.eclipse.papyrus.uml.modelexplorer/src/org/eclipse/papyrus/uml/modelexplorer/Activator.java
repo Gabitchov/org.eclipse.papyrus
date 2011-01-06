@@ -1,7 +1,7 @@
 package org.eclipse.papyrus.uml.modelexplorer;
 
 import org.eclipse.emf.ecore.EValidator;
-import org.eclipse.gmt.modisco.infra.facet.validation.EValidatorAdapter;
+import org.eclipse.emf.facet.infra.facet.validation.EValidatorAdapter;
 import org.eclipse.papyrus.log.LogHelper;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.uml2.uml.UMLPackage;

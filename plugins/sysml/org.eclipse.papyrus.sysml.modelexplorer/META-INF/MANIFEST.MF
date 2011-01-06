@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.gmt.modisco.infra.common.core,
- org.eclipse.gmt.modisco.infra.query.core,
+ org.eclipse.emf.facet.infra.common.core,
+ org.eclipse.emf.facet.infra.query.core,
  org.eclipse.uml2.uml,
  org.eclipse.papyrus.sysml,
  org.eclipse.swt,

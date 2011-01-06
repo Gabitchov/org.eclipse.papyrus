@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="ASCII"?>
-<uicustom:MetamodelView xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:query="http://www.eclipse.org/MoDisco/infra/query/0.8.incubation" xmlns:uicustom="http://www.eclipse.org/MoDisco/infra/browser/custom/0.8" metamodelURI="http://www.eclipse.org/uml2/3.0.0/UML">
+<uicustom:MetamodelView xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:query="http://www.eclipse.org/EmfFacet/infra/query/0.8.incubation" xmlns:uicustom="http://www.eclipse.org/EmfFacet/infra/browser/custom/0.8" metamodelURI="http://www.eclipse.org/uml2/3.0.0/UML">
   <types metaclassName="uml.Element">
     <customizedFeatures customizedFeature="icon">
       <valueCases>
         <value xsi:type="uicustom:DerivedFeatureValue">
-          <valueCalculator xsi:type="query:JavaModelQuery" href="modisco:/query/SysMLDefaultExplorerQueries#getImage"/>
+          <valueCalculator xsi:type="query:JavaModelQuery" href="emffacet:/query/SysMLDefaultExplorerQueries#getImage"/>
         </value>
-        <condition xsi:type="query:JavaModelQuery" href="modisco:/query/SysMLDefaultExplorerQueries#hasImage"/>
+        <condition xsi:type="query:JavaModelQuery" href="emffacet:/query/SysMLDefaultExplorerQueries#hasImage"/>
       </valueCases>
     </customizedFeatures>
     <customizedFeatures customizedFeature="hideMetaclassName">
@@ -91,7 +91,7 @@
   <types metaclassName="uml.NamedElement">
     <customizedFeatures customizedFeature="label">
       <defaultValue xsi:type="uicustom:DerivedFeatureValue">
-        <valueCalculator xsi:type="query:JavaModelQuery" href="modisco:/query/SysMLDefaultExplorerQueries#getLabel"/>
+        <valueCalculator xsi:type="query:JavaModelQuery" href="emffacet:/query/SysMLDefaultExplorerQueries#getLabel"/>
       </defaultValue>
     </customizedFeatures>
     <references referenceName="eAnnotations">

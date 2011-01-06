@@ -1,8 +1,8 @@
 package org.eclipse.papyrus.sysml.modelexplorer.query;
 
-import org.eclipse.gmt.modisco.infra.query.core.exception.ModelQueryExecutionException;
-import org.eclipse.gmt.modisco.infra.query.core.java.IJavaModelQuery;
-import org.eclipse.gmt.modisco.infra.query.core.java.ParameterValueList;
+import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionException;
+import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
+import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
 import org.eclipse.papyrus.umlutils.ElementUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
