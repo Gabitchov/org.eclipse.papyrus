@@ -169,13 +169,21 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	}
 
 	protected void initDomainModel(DiResourceSet diResourceSet, final IFile newFile) {
-		if(!isToInitFromTemplate()) {
-			try {
-				IModelCreationCommand creationCommand = DiagramCategoryRegistry.getInstance().getDiagramCategoryMap().get(getDiagramCategoryId()).getCommand();
-				creationCommand.createModel(diResourceSet);
-			} catch (BackboneException e) {
-				log.error(e);
-			}
+		boolean isToInitFromTemplate = selectDiagramKindPage.getTemplatePath() != null;
+		if(isToInitFromTemplate) {
+			initDomainModelFromTemplate(diResourceSet);
+		} else {
+			createEmptyDomainModel(diResourceSet);
+		}
+	}
+
+
+	protected void createEmptyDomainModel(DiResourceSet diResourceSet) {
+		try {
+			IModelCreationCommand creationCommand = DiagramCategoryRegistry.getInstance().getDiagramCategoryMap().get(getDiagramCategoryId()).getCommand();
+			creationCommand.createModel(diResourceSet);
+		} catch (BackboneException e) {
+			log.error(e);
 		}
 	}
 
@@ -217,7 +225,6 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 
 	protected void initDiagramModel(DiResourceSet diResourceSet) {
-		initFromTemplateIfNeeded(diResourceSet);
 		initDiagrams(diResourceSet);
 		saveDiagram(diResourceSet);
 	}
@@ -257,20 +264,8 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		}
 	}
 
-	private void initFromTemplateIfNeeded(final DiResourceSet diResourceSet) {
-		if(isToInitFromTemplate()) {
+	protected void initDomainModelFromTemplate(final DiResourceSet diResourceSet) {
 			diResourceSet.getTransactionalEditingDomain().getCommandStack().execute(new InitFromTemplateCommand(diResourceSet, selectDiagramKindPage.getTemplatePluginId(), selectDiagramKindPage.getTemplatePath()));
-		}
-	}
-
-	/**
-	 * Use template.
-	 * 
-	 * @return true, if successful
-	 */
-	protected boolean isToInitFromTemplate() {
-		String templatePath = selectDiagramKindPage.getTemplatePath();
-		return templatePath != null;
 	}
 
 	protected String getDiagramCategoryId() {

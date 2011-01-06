@@ -31,7 +31,7 @@ public class InitModelWizard extends CreateModelWizard {
 	/** Select the root element containing the new diagram */
 	private SelectRootElementPage selectRootElementPage;
 
-	private boolean isInitNotCreateModel;
+	private boolean isInitFromExistingDomainModel;
 
 	/**
 	 * @see org.eclipse.papyrus.wizards.CreateModelWizard#init(org.eclipse.ui.IWorkbench, org.eclipse.jface.viewers.IStructuredSelection)
@@ -39,20 +39,19 @@ public class InitModelWizard extends CreateModelWizard {
 	 * @param workbench
 	 * @param selection
 	 */
-
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		super.init(workbench, selection);
 		IFile file = getSelectedFile(selection);
-		isInitNotCreateModel = isSupportedDomainModelFile(file);
+		isInitFromExistingDomainModel = isSupportedDomainModelFile(file);
 		selectRootElementPage = createSelectRootElementPage(file);
-		if(isInitNotCreateModel) {
+		if(isCreateFromExistingDomainModel()) {
 			// Init Model not Create a new one
 			setWindowTitle("Init Papyrus Diagram");
 		}
 	}
 
 	protected SelectRootElementPage createSelectRootElementPage(IFile file) {
-		if(!isInitNotCreateModel) {
+		if(!isCreateFromExistingDomainModel()) {
 			// create model - nothing to choose from
 			return null;
 		}
@@ -61,7 +60,7 @@ public class InitModelWizard extends CreateModelWizard {
 
 	@Override
 	protected SelectDiagramKindPage createSelectDiagramKindPage() {
-		if(isInitNotCreateModel) {
+		if(isCreateFromExistingDomainModel()) {
 			return new SelectDiagramKindPage(false);
 		}
 		return super.createSelectDiagramKindPage();
@@ -69,7 +68,7 @@ public class InitModelWizard extends CreateModelWizard {
 
 	@Override
 	protected NewModelFilePage createNewModelFilePage(IStructuredSelection selection) {
-		if(!isInitNotCreateModel) {
+		if(!isCreateFromExistingDomainModel()) {
 			return super.createNewModelFilePage(selection);
 		}
 		return new NewDiagramForExistingModelPage(selection);
@@ -126,7 +125,7 @@ public class InitModelWizard extends CreateModelWizard {
 	}
 
 	protected RecordingCommand getCreatePapyrusModelCommand(DiResourceSet diResourceSet, final IFile newFile) {
-		if(isInitNotCreateModel()) {
+		if(isCreateFromExistingDomainModel()) {
 			return new PapyrusModelFromExistingDomainModelCommand(diResourceSet, newFile, getRoot());
 		} else {
 			return super.getCreatePapyrusModelCommand(diResourceSet, newFile);
@@ -134,10 +133,10 @@ public class InitModelWizard extends CreateModelWizard {
 	}
 
 	protected void initDomainModel(DiResourceSet diResourceSet, final IFile newFile) {
-		if(!isInitNotCreateModel()) {
-			super.initDomainModel(diResourceSet, newFile);
-		} else {
+		if(isCreateFromExistingDomainModel()) {
 			// do nothing
+		} else {
+			super.initDomainModel(diResourceSet, newFile);
 		}
 	}
 
@@ -150,20 +149,12 @@ public class InitModelWizard extends CreateModelWizard {
 		return filePath.lastSegment();
 	}
 
-	private boolean isInitNotCreateModel() {
-		return isInitNotCreateModel;
+	private boolean isCreateFromExistingDomainModel() {
+		return isInitFromExistingDomainModel;
 	}
 
 	protected void initDiagrams(final DiResourceSet diResourceSet) {
 		initDiagrams(diResourceSet, getRoot());
-	}
-
-	@Override
-	protected boolean isToInitFromTemplate() {
-		if(isInitNotCreateModel()) {
-			return false;
-		}
-		return super.isToInitFromTemplate();
 	}
 
 	private class NewDiagramForExistingModelPage extends NewModelFilePage {
