@@ -15,6 +15,7 @@ import static org.eclipse.papyrus.wizards.Activator.log;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -90,7 +91,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		addPageIfNotNull(selectDiagramKindPage);
 	}
 
-	protected void addPageIfNotNull(IWizardPage page) {
+	protected final void addPageIfNotNull(IWizardPage page) {
 		if(page != null) {
 			addPage(page);
 		}
@@ -137,13 +138,6 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		return true;
 	}
 
-	protected final DiResourceSet getResourseSet() {
-		return diResourceSet;
-	}
-
-	protected final CommandStack getCommandStack() {
-		return getResourseSet().getTransactionalEditingDomain().getCommandStack();
-	}
 
 	protected String getDiagramCategoryId() {
 		if(selectDiagramCategoryPage != null) {
@@ -153,12 +147,11 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	}
 
 	protected String getDiagramFileExtension() {
-		return getDiagramFileExtension(NewModelFilePage.DEFAULT_DIAGRAM_EXTENSION);
+		return getDiagramFileExtension(getDiagramCategoryId(), NewModelFilePage.DEFAULT_DIAGRAM_EXTENSION);
 	}
 
-	protected String getDiagramFileExtension(String defaultExtension) {
-		String сategoryId = getDiagramCategoryId();
-		DiagramCategoryDescriptor diagramCategory = DiagramCategoryRegistry.getInstance().getDiagramCategoryMap().get(сategoryId);
+	protected String getDiagramFileExtension(String сategoryId, String defaultExtension) {
+		DiagramCategoryDescriptor diagramCategory = getDiagramCategoryMap().get(сategoryId);
 		String extensionPrefix = diagramCategory != null ? diagramCategory.getExtensionPrefix() : null;
 		return (extensionPrefix != null) ? extensionPrefix + "." + defaultExtension : defaultExtension;
 	}
@@ -194,7 +187,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 	protected void createEmptyDomainModel() {
 		try {
-			IModelCreationCommand creationCommand = DiagramCategoryRegistry.getInstance().getDiagramCategoryMap().get(getDiagramCategoryId()).getCommand();
+			IModelCreationCommand creationCommand = getDiagramCategoryMap().get(getDiagramCategoryId()).getCommand();
 			creationCommand.createModel(getResourseSet());
 		} catch (BackboneException e) {
 			log.error(e);
@@ -265,6 +258,18 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 			// SashSystem.
 			EditorUtils.getTransactionalIPageMngr(resourceSet.getDiResource(), resourceSet.getTransactionalEditingDomain());
 		}
+	}
+
+	protected final DiResourceSet getResourseSet() {
+		return diResourceSet;
+	}
+
+	protected final CommandStack getCommandStack() {
+		return getResourseSet().getTransactionalEditingDomain().getCommandStack();
+	}
+	
+	protected final Map<String, DiagramCategoryDescriptor> getDiagramCategoryMap() {
+		return DiagramCategoryRegistry.getInstance().getDiagramCategoryMap();
 	}
 
 
