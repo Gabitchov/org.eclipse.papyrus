@@ -153,12 +153,12 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		return true;
 	}
 	
-	protected final CommandStack getCommandStack() {
-		return diResourceSet.getTransactionalEditingDomain().getCommandStack();	
-	}
-	
 	protected final DiResourceSet getResourseSet() {
 		return diResourceSet;
+	}
+
+	protected final CommandStack getCommandStack() {
+		return getResourseSet().getTransactionalEditingDomain().getCommandStack();	
 	}
 
 	protected NewModelFilePage createNewModelFilePage(IStructuredSelection selection) {
@@ -273,7 +273,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	}
 
 	protected void initDomainModelFromTemplate() {
-		getCommandStack().execute(new InitFromTemplateCommand(getResourseSet(), selectDiagramKindPage.getTemplatePluginId(), selectDiagramKindPage.getTemplatePath()));
+		getCommandStack().execute(new InitFromTemplateCommand(getResourseSet().getTransactionalEditingDomain(), getResourseSet().getModelResource(), selectDiagramKindPage.getTemplatePluginId(), selectDiagramKindPage.getTemplatePath()));
 	}
 
 	protected String getDiagramCategoryId() {

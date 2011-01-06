@@ -17,8 +17,8 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.resource.IModel;
+import org.eclipse.papyrus.resource.ModelSet;
 import org.eclipse.papyrus.resource.notation.NotationModel;
 import org.eclipse.papyrus.resource.sasheditor.DiModel;
 import org.eclipse.papyrus.resource.uml.UmlModel;
@@ -28,7 +28,7 @@ import org.eclipse.papyrus.resource.uml.UmlModel;
  */
 public class PapyrusModelFromExistingDomainModelCommand extends RecordingCommand {
 
-	private final DiResourceSet myDiResourceSet;
+	private final ModelSet myDiResourceSet;
 
 	private final IPath myFileNameWithoutExtension;
 
@@ -41,7 +41,7 @@ public class PapyrusModelFromExistingDomainModelCommand extends RecordingCommand
 	 * @param newFile the new file
 	 * @param root the root
 	 */
-	public PapyrusModelFromExistingDomainModelCommand(DiResourceSet diResourceSet, IFile newFile, EObject root) {
+	public PapyrusModelFromExistingDomainModelCommand(ModelSet diResourceSet, IFile newFile, EObject root) {
 		super(diResourceSet.getTransactionalEditingDomain());
 		myDiResourceSet = diResourceSet;
 		myFileNameWithoutExtension = newFile.getFullPath().removeFileExtension();

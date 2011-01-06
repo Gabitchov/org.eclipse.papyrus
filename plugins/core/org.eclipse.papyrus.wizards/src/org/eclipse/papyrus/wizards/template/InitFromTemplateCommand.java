@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.papyrus.core.utils.DiResourceSet;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 /**
  * The Class InitFromTemplateCommand.
@@ -44,9 +44,9 @@ public class InitFromTemplateCommand extends RecordingCommand {
 	 * @param pluginId the plugin id
 	 * @param templatePath the template path
 	 */
-	public InitFromTemplateCommand(DiResourceSet diResourceSet, String pluginId, String templatePath) {
-		super(diResourceSet.getTransactionalEditingDomain());
-		myModelResource = diResourceSet.getModelResource();
+	public InitFromTemplateCommand(TransactionalEditingDomain editingDomain, Resource modelResource, String pluginId, String templatePath) {
+		super(editingDomain);
+		myModelResource = modelResource;
 		myPluginId = pluginId;
 		myTemplatePath = templatePath;
 

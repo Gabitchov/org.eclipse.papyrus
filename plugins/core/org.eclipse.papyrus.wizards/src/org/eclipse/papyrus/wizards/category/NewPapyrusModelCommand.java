@@ -15,32 +15,32 @@ package org.eclipse.papyrus.wizards.category;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.papyrus.core.utils.DiResourceSet;
+import org.eclipse.papyrus.resource.ModelSet;
 
 /**
  * The Class NewPapyrusModelCommand.
  */
 public class NewPapyrusModelCommand extends RecordingCommand {
 
-	private final DiResourceSet myDiResourceSet;
+	private final ModelSet myModelSet;
 
 	private final IFile myFile;
 
 	/**
 	 * Instantiates a new new papyrus model command.
 	 *
-	 * @param diResourceSet the di resource set
+	 * @param modelSet the di resource set
 	 * @param newFile the new file
 	 */
-	public NewPapyrusModelCommand(DiResourceSet diResourceSet, IFile newFile) {
-		super(diResourceSet.getTransactionalEditingDomain());
-		myDiResourceSet = diResourceSet;
+	public NewPapyrusModelCommand(ModelSet modelSet, IFile newFile) {
+		super(modelSet.getTransactionalEditingDomain());
+		myModelSet = modelSet;
 		myFile = newFile;
 	}
 
 	@Override
 	protected void doExecute() {
-		myDiResourceSet.createsModels(myFile);
+		myModelSet.createsModels(myFile);
 	}
 
 }
