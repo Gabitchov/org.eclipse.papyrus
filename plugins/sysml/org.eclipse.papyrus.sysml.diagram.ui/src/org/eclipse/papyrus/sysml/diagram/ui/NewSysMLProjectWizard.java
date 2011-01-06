@@ -27,10 +27,7 @@ import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
 public class NewSysMLProjectWizard extends NewPapyrusProjectWizard {
 
 	/**
-	 * @see org.eclipse.papyrus.wizards.NewPapyrusProjectWizard#init(org.eclipse.ui.IWorkbench, org.eclipse.jface.viewers.IStructuredSelection)
-	 * 
-	 * @param workbench
-	 * @param selection
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
@@ -38,6 +35,9 @@ public class NewSysMLProjectWizard extends NewPapyrusProjectWizard {
 		setWindowTitle("New SysML Project");
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected WizardNewProjectCreationPage createNewProjectCreationPage() {
 		WizardNewProjectCreationPage newProjectPage = super.createNewProjectCreationPage();
@@ -46,18 +46,27 @@ public class NewSysMLProjectWizard extends NewPapyrusProjectWizard {
 		return newProjectPage;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected SelectDiagramCategoryPage createSelectDiagramCategoryPage() {
 		//here SysML is the only available category
 		return null;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected void saveDiagramCategorySettings() {
 		//do nothing
 		//here SysML is the only available category
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected String getDiagramCategoryId() {
 		return CreateSysMLModelCommand.COMMAND_ID;

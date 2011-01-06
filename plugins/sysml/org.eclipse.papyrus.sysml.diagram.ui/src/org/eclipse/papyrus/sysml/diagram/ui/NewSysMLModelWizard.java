@@ -27,12 +27,15 @@ import org.eclipse.ui.IWorkbench;
 public class NewSysMLModelWizard extends CreateModelWizard {
 
 	/**
-	 * @see org.eclipse.papyrus.wizards.CreateModelWizard#init(org.eclipse.ui.IWorkbench, org.eclipse.jface.viewers.IStructuredSelection)
-	 * 
-	 * @param workbench
-	 * @param selection
+	 * Instantiates a new new sys ml model wizard.
 	 */
+	public NewSysMLModelWizard() {
+		super();
+	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		super.init(workbench, selection);
@@ -40,12 +43,8 @@ public class NewSysMLModelWizard extends CreateModelWizard {
 	}
 
 	/**
-	 * Instantiates a new new sys ml model wizard.
+	 * {@inheritDoc}
 	 */
-	public NewSysMLModelWizard() {
-		super();
-	}
-
 	@Override
 	protected NewModelFilePage createNewModelFilePage(IStructuredSelection selection) {
 		NewModelFilePage page = super.createNewModelFilePage(selection);
@@ -56,17 +55,26 @@ public class NewSysMLModelWizard extends CreateModelWizard {
 		return page;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected String getDiagramCategoryId() {
 		return CreateSysMLModelCommand.COMMAND_ID;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected SelectDiagramCategoryPage createSelectDiagramCategoryPage() {
 		//here SysML is the only available category
 		return null;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected void saveDiagramCategorySettings() {
 		//here SysML is the only available category
