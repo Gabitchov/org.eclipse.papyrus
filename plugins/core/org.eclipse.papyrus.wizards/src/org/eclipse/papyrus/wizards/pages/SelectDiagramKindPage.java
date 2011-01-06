@@ -9,7 +9,7 @@
  *     Obeo - initial API and implementation
  *     Tatiana Fesenko(CEA) - improved look&feel
  *******************************************************************************/
-package org.eclipse.papyrus.wizards;
+package org.eclipse.papyrus.wizards.pages;
 
 import static org.eclipse.papyrus.wizards.Activator.log;
 
@@ -24,6 +24,8 @@ import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.papyrus.core.extension.commands.CreationCommandDescriptor;
 import org.eclipse.papyrus.core.extension.commands.ICreationCommand;
+import org.eclipse.papyrus.wizards.CreateModelWizard;
+import org.eclipse.papyrus.wizards.SettingsHelper;
 import org.eclipse.papyrus.wizards.kind.DiagramKindContentProvider;
 import org.eclipse.papyrus.wizards.kind.DiagramKindLabelProvider;
 import org.eclipse.papyrus.wizards.template.ModelTemplateDescription;
@@ -154,11 +156,11 @@ public class SelectDiagramKindPage extends WizardPage {
 	}
 
 	
-	protected String getTemplatePath() {
+	public String getTemplatePath() {
 		return selectTemplateComposite.getTemplatePath();
 	}
 
-	protected String getTemplatePluginId() {
+	public String getTemplatePluginId() {
 		return selectTemplateComposite.getTemplatePluginId();
 	}
 
@@ -175,14 +177,14 @@ public class SelectDiagramKindPage extends WizardPage {
 	/**
 	 * @return the new diagram name
 	 */
-	protected String getDiagramName() {
+	public String getDiagramName() {
 		return nameText.getText();
 	}
 
 	/**
 	 * @return the creation command
 	 */
-	protected List<ICreationCommand> getCreationCommands() {
+	public List<ICreationCommand> getCreationCommands() {
 		CreationCommandDescriptor[] selected = getSelectedDiagramKinds();
 		List<ICreationCommand> commands = new ArrayList<ICreationCommand>();
 		for(int i = 0; i < selected.length; i++) {

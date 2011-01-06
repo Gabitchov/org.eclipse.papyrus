@@ -21,6 +21,9 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.resource.uml.UmlModel;
 import org.eclipse.papyrus.wizards.category.NewPapyrusModelCommand;
 import org.eclipse.papyrus.wizards.category.PapyrusModelFromExistingDomainModelCommand;
+import org.eclipse.papyrus.wizards.pages.NewModelFilePage;
+import org.eclipse.papyrus.wizards.pages.SelectDiagramKindPage;
+import org.eclipse.papyrus.wizards.pages.SelectRootElementPage;
 import org.eclipse.ui.IWorkbench;
 
 /**

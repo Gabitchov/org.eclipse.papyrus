@@ -9,7 +9,7 @@
  *     Obeo - initial API and implementation
  *     Tatiana Fesenko(CEA) - initial API and implementation
  *******************************************************************************/
-package org.eclipse.papyrus.wizards;
+package org.eclipse.papyrus.wizards.pages;
 
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;

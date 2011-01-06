@@ -8,7 +8,7 @@
  * Contributors:
  *     Obeo - initial API and implementation
  *******************************************************************************/
-package org.eclipse.papyrus.wizards;
+package org.eclipse.papyrus.wizards.pages;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,7 +68,7 @@ public class SelectRootElementPage extends WizardPage {
 	 * @param diagramRoot
 	 *        the root model element use to initialize the TreeViewer
 	 */
-	protected SelectRootElementPage(IFile file) {
+	public SelectRootElementPage(IFile file) {
 		super(PAGE_ID);
 		setTitle("Select the root element");
 		setDescription("Select the root element");

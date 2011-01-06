@@ -11,7 +11,7 @@
  *  Tatiana Fesenko (CEA LIST) - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.wizards;
+package org.eclipse.papyrus.wizards.pages;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +21,8 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
+import org.eclipse.papyrus.wizards.CreateModelWizard;
+import org.eclipse.papyrus.wizards.SettingsHelper;
 import org.eclipse.papyrus.wizards.category.DiagramCategoryDescriptor;
 import org.eclipse.papyrus.wizards.category.DiagramCategoryRegistry;
 import org.eclipse.swt.SWT;

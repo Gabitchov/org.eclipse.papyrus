@@ -34,6 +34,9 @@ import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.wizards.category.DiagramCategoryDescriptor;
 import org.eclipse.papyrus.wizards.category.DiagramCategoryRegistry;
 import org.eclipse.papyrus.wizards.category.NewPapyrusModelCommand;
+import org.eclipse.papyrus.wizards.pages.NewModelFilePage;
+import org.eclipse.papyrus.wizards.pages.SelectDiagramCategoryPage;
+import org.eclipse.papyrus.wizards.pages.SelectDiagramKindPage;
 import org.eclipse.papyrus.wizards.template.InitFromTemplateCommand;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
@@ -139,14 +142,14 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	}
 
 
-	protected String getDiagramCategoryId() {
+	public String getDiagramCategoryId() {
 		if(selectDiagramCategoryPage != null) {
 			return selectDiagramCategoryPage.getDiagramCategory();
 		}
 		return null;
 	}
 
-	protected String getDiagramFileExtension() {
+	public String getDiagramFileExtension() {
 		return getDiagramFileExtension(getDiagramCategoryId(), NewModelFilePage.DEFAULT_DIAGRAM_EXTENSION);
 	}
 

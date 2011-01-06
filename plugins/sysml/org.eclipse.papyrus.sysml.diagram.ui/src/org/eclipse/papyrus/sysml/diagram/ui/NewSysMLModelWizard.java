@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+on * Copyright (c) 2010 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -16,8 +16,8 @@ package org.eclipse.papyrus.sysml.diagram.ui;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.sysml.diagram.common.commands.CreateSysMLModelCommand;
 import org.eclipse.papyrus.wizards.CreateModelWizard;
-import org.eclipse.papyrus.wizards.NewModelFilePage;
-import org.eclipse.papyrus.wizards.SelectDiagramCategoryPage;
+import org.eclipse.papyrus.wizards.pages.NewModelFilePage;
+import org.eclipse.papyrus.wizards.pages.SelectDiagramCategoryPage;
 import org.eclipse.ui.IWorkbench;
 
 
@@ -59,7 +59,7 @@ public class NewSysMLModelWizard extends CreateModelWizard {
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected String getDiagramCategoryId() {
+	public String getDiagramCategoryId() {
 		return CreateSysMLModelCommand.COMMAND_ID;
 	}
 
