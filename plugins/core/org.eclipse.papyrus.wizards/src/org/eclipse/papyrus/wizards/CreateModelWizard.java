@@ -145,6 +145,24 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		return getResourseSet().getTransactionalEditingDomain().getCommandStack();
 	}
 
+	protected String getDiagramCategoryId() {
+		if(selectDiagramCategoryPage != null) {
+			return selectDiagramCategoryPage.getDiagramCategory();
+		}
+		return null;
+	}
+
+	protected String getDiagramFileExtension() {
+		return getDiagramFileExtension(NewModelFilePage.DEFAULT_DIAGRAM_EXTENSION);
+	}
+
+	protected String getDiagramFileExtension(String defaultExtension) {
+		String сategoryId = getDiagramCategoryId();
+		DiagramCategoryDescriptor diagramCategory = DiagramCategoryRegistry.getInstance().getDiagramCategoryMap().get(сategoryId);
+		String extensionPrefix = diagramCategory != null ? diagramCategory.getExtensionPrefix() : null;
+		return (extensionPrefix != null) ? extensionPrefix + "." + defaultExtension : defaultExtension;
+	}
+
 	protected NewModelFilePage createNewModelFilePage(IStructuredSelection selection) {
 		return new NewModelFilePage(selection);
 	}
@@ -170,6 +188,9 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		}
 	}
 
+	protected void initDomainModelFromTemplate() {
+		getCommandStack().execute(new InitFromTemplateCommand(getResourseSet().getTransactionalEditingDomain(), getResourseSet().getModelResource(), selectDiagramKindPage.getTemplatePluginId(), selectDiagramKindPage.getTemplatePath()));
+	}
 
 	protected void createEmptyDomainModel() {
 		try {
@@ -181,14 +202,9 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	}
 
 	protected void createPapyrusModels(IFile newFile) {
-		RecordingCommand command = getCreatePapyrusModelCommand(newFile);
+		RecordingCommand command = new NewPapyrusModelCommand(getResourseSet(), newFile);
 		getCommandStack().execute(command);
 	}
-
-	protected RecordingCommand getCreatePapyrusModelCommand(final IFile newFile) {
-		return new NewPapyrusModelCommand(getResourseSet(), newFile);
-	}
-
 
 	protected void saveDiagramCategorySettings() {
 		IDialogSettings settings = getDialogSettings();
@@ -222,10 +238,6 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		saveDiagram();
 	}
 
-	/**
-	 * Save diagram.
-	 * 
-	 */
 	private void saveDiagram() {
 		try {
 			getResourseSet().save(new NullProgressMonitor());
@@ -237,7 +249,6 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 	protected void initDiagrams() {
 		initDiagrams(null);
-
 	}
 
 	protected void initDiagrams(EObject root) {
@@ -256,26 +267,5 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		}
 	}
 
-	protected void initDomainModelFromTemplate() {
-		getCommandStack().execute(new InitFromTemplateCommand(getResourseSet().getTransactionalEditingDomain(), getResourseSet().getModelResource(), selectDiagramKindPage.getTemplatePluginId(), selectDiagramKindPage.getTemplatePath()));
-	}
-
-	protected String getDiagramCategoryId() {
-		if(selectDiagramCategoryPage != null) {
-			return selectDiagramCategoryPage.getDiagramCategory();
-		}
-		return null;
-	}
-
-	protected String getDiagramFileExtension() {
-		return getDiagramFileExtension(NewModelFilePage.DEFAULT_DIAGRAM_EXTENSION);
-	}
-
-	protected String getDiagramFileExtension(String defaultExtension) {
-		String сategoryId = getDiagramCategoryId();
-		DiagramCategoryDescriptor diagramCategory = DiagramCategoryRegistry.getInstance().getDiagramCategoryMap().get(сategoryId);
-		String extensionPrefix = diagramCategory != null ? diagramCategory.getExtensionPrefix() : null;
-		return (extensionPrefix != null) ? extensionPrefix + "." + defaultExtension : defaultExtension;
-	}
 
 }

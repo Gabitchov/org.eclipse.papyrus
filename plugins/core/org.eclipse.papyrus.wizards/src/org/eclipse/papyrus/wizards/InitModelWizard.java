@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.resource.uml.UmlModel;
+import org.eclipse.papyrus.wizards.category.NewPapyrusModelCommand;
 import org.eclipse.papyrus.wizards.category.PapyrusModelFromExistingDomainModelCommand;
 import org.eclipse.ui.IWorkbench;
 
@@ -127,11 +128,12 @@ public class InitModelWizard extends CreateModelWizard {
 		return null;
 	}
 
-	protected RecordingCommand getCreatePapyrusModelCommand(final IFile newFile) {
+	protected void createPapyrusModels(IFile newFile) {
 		if(isCreateFromExistingDomainModel()) {
-			return new PapyrusModelFromExistingDomainModelCommand(getResourseSet(), newFile, getRoot());
+		RecordingCommand command = new PapyrusModelFromExistingDomainModelCommand(getResourseSet(), newFile, getRoot());
+		getCommandStack().execute(command);
 		} else {
-			return super.getCreatePapyrusModelCommand(newFile);
+			super.createPapyrusModels(newFile);
 		}
 	}
 
