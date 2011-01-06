@@ -101,15 +101,17 @@ public class SelectDiagramKindPage extends WizardPage {
 		plate.setLayout(gridLayout);
 		setControl(plate);
 
+		String category = getDiagramCategory();
+
 		createNameForm(plate);
 
-		createDiagramKindForm(plate);
+		createDiagramKindForm(plate, category);
 
 		createModelTemplateComposite(plate);
 
 		createRememberCurrentSelectionForm(plate);
 
-		fillInTables();
+		fillInTables(category);
 
 	}
 
@@ -137,15 +139,14 @@ public class SelectDiagramKindPage extends WizardPage {
 	@Override
 	public void setVisible(boolean visible) {
 		super.setVisible(visible);
-		fillInTables();
+		fillInTables(getDiagramCategory());
 		validatePage();
 		if(!allowTemplates) {
 			selectTemplateComposite.disable();
 		}
 	}
 
-	private void fillInTables() {
-		String category = getDiagramCategory();
+	private void fillInTables(String category) {
 		if(category == null) {
 			return;
 		}
@@ -170,7 +171,7 @@ public class SelectDiagramKindPage extends WizardPage {
 	 * @return the diagram category
 	 */
 	private String getDiagramCategory() {
-		return ((CreateModelWizard)getWizard()).getDiagramCategoryId();
+		return ((CreateModelWizard)getWizard()).getDiagramCategoryIdTEMP();
 	}
 
 
@@ -179,6 +180,10 @@ public class SelectDiagramKindPage extends WizardPage {
 	 */
 	public String getDiagramName() {
 		return nameText.getText();
+	}
+	
+	public boolean templatesEnabled() {
+		return allowTemplates;
 	}
 
 	/**
@@ -212,7 +217,7 @@ public class SelectDiagramKindPage extends WizardPage {
 	 * @param composite
 	 *        the composite
 	 */
-	private void createDiagramKindForm(Composite composite) {
+	private void createDiagramKindForm(Composite composite, String category) {
 		Group group = createGroup(composite, "Select a Diagram Kind:");
 		GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
 		group.setData(data);
@@ -256,7 +261,7 @@ public class SelectDiagramKindPage extends WizardPage {
 		diagramKindTableViewer = new CheckboxTableViewer(diagramKindTable);
 		diagramKindTableViewer.setContentProvider(new DiagramKindContentProvider());
 		diagramKindTableViewer.setLabelProvider(new DiagramKindLabelProvider());
-		diagramKindTableViewer.setInput(getDiagramCategory());
+		diagramKindTableViewer.setInput(category);
 	}
 
 
@@ -347,32 +352,8 @@ public class SelectDiagramKindPage extends WizardPage {
 		setPageComplete(message == null);
 	}
 
-	/**
-	 * Save settings.
-	 * 
-	 */
-	public void saveSettings() {
-		IDialogSettings settings = getDialogSettings();
-		if(isRememberCurrentSelection()) {
-			saveDefaultDiagramKinds(settings);
-			saveDefaultTemplates(settings);
-		} else {
-			mySettingsHelper.saveDefaultDiagramKinds(getDiagramCategory(), Collections.<String> emptyList());
-			mySettingsHelper.saveDefaultTemplates(getDiagramCategory(), Collections.<String> emptyList());
-		}
-		mySettingsHelper.saveRememberCurrentSelection(isRememberCurrentSelection());
-	}
-
-	private boolean isRememberCurrentSelection() {
+	public boolean isRememberCurrentSelection() {
 		return rememberCurrentSelection.getSelection();
-	}
-
-	private void saveDefaultDiagramKinds(IDialogSettings settings) {
-		List<String> kinds = new ArrayList<String>();
-		for(CreationCommandDescriptor selected : getSelectedDiagramKinds()) {
-			kinds.add(selected.getCommandId());
-		}
-		mySettingsHelper.saveDefaultDiagramKinds(getDiagramCategory(), kinds);
 	}
 
 	/**
@@ -380,19 +361,11 @@ public class SelectDiagramKindPage extends WizardPage {
 	 * 
 	 * @return the selected diagram kinds
 	 */
-	protected CreationCommandDescriptor[] getSelectedDiagramKinds() {
+	public CreationCommandDescriptor[] getSelectedDiagramKinds() {
 		Object[] checked = diagramKindTableViewer.getCheckedElements();
 		// as Object is not a subclass of String we cannot cast Object[] to String[] 
 		CreationCommandDescriptor[] result = Arrays.asList(checked).toArray(new CreationCommandDescriptor[checked.length]);
 		return result;
-	}
-
-	private void saveDefaultTemplates(IDialogSettings settings) {
-		if(!allowTemplates) {
-			return;
-		}
-		String path = selectTemplateComposite.getTemplatePath();
-		mySettingsHelper.saveDefaultTemplates(getDiagramCategory(), Collections.singletonList(path));
 	}
 
 	private void selectDefaultDiagramKinds(String category) {

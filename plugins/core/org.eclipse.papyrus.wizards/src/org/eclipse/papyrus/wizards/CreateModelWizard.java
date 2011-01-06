@@ -14,6 +14,8 @@ package org.eclipse.papyrus.wizards;
 import static org.eclipse.papyrus.wizards.Activator.log;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -27,6 +29,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.papyrus.core.editor.BackboneException;
+import org.eclipse.papyrus.core.extension.commands.CreationCommandDescriptor;
 import org.eclipse.papyrus.core.extension.commands.ICreationCommand;
 import org.eclipse.papyrus.core.extension.commands.IModelCreationCommand;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
@@ -142,7 +145,11 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	}
 
 
-	public String getDiagramCategoryId() {
+	public String getDiagramCategoryIdTEMP() {
+		return getDiagramCategoryId();
+	}
+
+	protected String getDiagramCategoryId() {
 		if(selectDiagramCategoryPage != null) {
 			return selectDiagramCategoryPage.getDiagramCategory();
 		}
@@ -153,8 +160,8 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		return getDiagramFileExtension(getDiagramCategoryId(), NewModelFilePage.DEFAULT_DIAGRAM_EXTENSION);
 	}
 
-	protected String getDiagramFileExtension(String сategoryId, String defaultExtension) {
-		DiagramCategoryDescriptor diagramCategory = getDiagramCategoryMap().get(сategoryId);
+	protected String getDiagramFileExtension(String categoryId, String defaultExtension) {
+		DiagramCategoryDescriptor diagramCategory = getDiagramCategoryMap().get(categoryId);
 		String extensionPrefix = diagramCategory != null ? diagramCategory.getExtensionPrefix() : null;
 		return (extensionPrefix != null) ? extensionPrefix + "." + defaultExtension : defaultExtension;
 	}
@@ -212,10 +219,38 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 	protected void saveDiagramKindSettings() {
 		IDialogSettings settings = getDialogSettings();
-		if(settings != null) {
-			selectDiagramKindPage.saveSettings();
+		if(settings == null) {
+			return;
 		}
+		SettingsHelper settingsHelper = new SettingsHelper(settings);
+		String category = getDiagramCategoryId();
+		if(selectDiagramKindPage.isRememberCurrentSelection()) {
+			saveDefaultDiagramKinds(settingsHelper, category);
+			saveDefaultTemplates(settingsHelper, category);
+		} else {
+			settingsHelper.saveDefaultDiagramKinds(category, Collections.<String> emptyList());
+			settingsHelper.saveDefaultTemplates(category, Collections.<String> emptyList());
+		}
+		settingsHelper.saveRememberCurrentSelection(selectDiagramKindPage.isRememberCurrentSelection());
 	}
+	
+	private void saveDefaultDiagramKinds(SettingsHelper settingsHelper, String category) {
+		List<String> kinds = new ArrayList<String>();
+		for(CreationCommandDescriptor selected : selectDiagramKindPage.getSelectedDiagramKinds()) {
+			kinds.add(selected.getCommandId());
+		}
+		settingsHelper.saveDefaultDiagramKinds(category, kinds);
+	}
+
+	private void saveDefaultTemplates(SettingsHelper settingsHelper, String category) {
+		if(!selectDiagramKindPage.templatesEnabled()) {
+			return;
+		}
+		String path = selectDiagramKindPage.getTemplatePath();
+		settingsHelper.saveDefaultTemplates(category, Collections.singletonList(path));
+	}
+
+
 
 	protected void openDiagram(final IFile newFile) {
 		IWorkbenchPage page = workbench.getActiveWorkbenchWindow().getActivePage();

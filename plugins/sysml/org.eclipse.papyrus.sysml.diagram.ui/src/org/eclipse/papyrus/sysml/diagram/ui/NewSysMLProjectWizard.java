@@ -68,7 +68,7 @@ public class NewSysMLProjectWizard extends NewPapyrusProjectWizard {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public String getDiagramCategoryId() {
+	protected String getDiagramCategoryId() {
 		return CreateSysMLModelCommand.COMMAND_ID;
 	}
 
