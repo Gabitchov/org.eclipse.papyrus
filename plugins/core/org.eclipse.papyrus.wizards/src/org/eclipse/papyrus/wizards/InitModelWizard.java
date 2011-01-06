@@ -112,6 +112,52 @@ public class InitModelWizard extends CreateModelWizard {
 	}
 
 	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void createPapyrusModels(IFile newFile) {
+		if(isCreateFromExistingDomainModel()) {
+		RecordingCommand command = new PapyrusModelFromExistingDomainModelCommand(getResourseSet(), newFile, getRoot());
+		getCommandStack().execute(command);
+		} else {
+			super.createPapyrusModels(newFile);
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void initDomainModel(final IFile newFile) {
+		if(isCreateFromExistingDomainModel()) {
+			// do nothing
+		} else {
+			super.initDomainModel(newFile);
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void initDiagrams() {
+		initDiagrams(getRoot());
+	}
+
+	private boolean isCreateFromExistingDomainModel() {
+		return isInitFromExistingDomainModel;
+	}
+
+	/**
+	 * Suggests a name of diagram file for the domain model file
+	 */
+	private String getDiagramFileName(IFile domainModel) {
+		IPath filePath = domainModel.getLocation().removeFileExtension();
+		filePath = filePath.addFileExtension(getDiagramFileExtension());
+		return filePath.lastSegment();
+	}
+
+	/**
 	 * Returns the first file from the given selection
 	 */
 	private static IFile getSelectedFile(IStructuredSelection selection) {
@@ -126,40 +172,6 @@ public class InitModelWizard extends CreateModelWizard {
 			return selectRootElementPage.getModelElement();
 		}
 		return null;
-	}
-
-	protected void createPapyrusModels(IFile newFile) {
-		if(isCreateFromExistingDomainModel()) {
-		RecordingCommand command = new PapyrusModelFromExistingDomainModelCommand(getResourseSet(), newFile, getRoot());
-		getCommandStack().execute(command);
-		} else {
-			super.createPapyrusModels(newFile);
-		}
-	}
-
-	protected void initDomainModel(final IFile newFile) {
-		if(isCreateFromExistingDomainModel()) {
-			// do nothing
-		} else {
-			super.initDomainModel(newFile);
-		}
-	}
-
-	/**
-	 * Suggests a name of diagram file for the domain model file
-	 */
-	private String getDiagramFileName(IFile domainModel) {
-		IPath filePath = domainModel.getLocation().removeFileExtension();
-		filePath = filePath.addFileExtension(getDiagramFileExtension());
-		return filePath.lastSegment();
-	}
-
-	private boolean isCreateFromExistingDomainModel() {
-		return isInitFromExistingDomainModel;
-	}
-
-	protected void initDiagrams() {
-		initDiagrams(getRoot());
 	}
 
 	private class NewDiagramForExistingModelPage extends NewModelFilePage {
