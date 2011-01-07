@@ -185,7 +185,7 @@ public class ProxyManager implements IProxyManager {
 	 * 
 	 * @return the current strategy, strategy 0 (load all resources) is loaded by default if null
 	 */
-	private int getCurrentStrategy() {
+	private static int getCurrentStrategy() {
 		if(strategyChooser == null) {
 			return 0;
 		}
@@ -257,7 +257,7 @@ public class ProxyManager implements IProxyManager {
 	 * 
 	 * @return
 	 */
-	private static IStrategyChooser getStrategyChooser() {
+	public static IStrategyChooser getStrategyChooser() {
 		IStrategyChooser result = null;
 		IConfigurationElement[] element = Platform.getExtensionRegistry().getConfigurationElementsFor(STRATEGY_CHOOSER_EXTENSION_POINT_ID);
 		if(element.length > 0) {

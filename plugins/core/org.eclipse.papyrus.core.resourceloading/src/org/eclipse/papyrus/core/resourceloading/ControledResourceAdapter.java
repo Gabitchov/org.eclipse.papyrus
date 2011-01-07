@@ -153,7 +153,10 @@ public class ControledResourceAdapter implements Adapter.Internal {
 		if(o instanceof ControledResource) {
 			ControledResource res = (ControledResource)o;
 			List<ControledResource> list = resources.get(res.getResourceURL());
-			list.remove(res);
+			if (list != null)
+			{
+				list.remove(res);
+			}
 			if(list.isEmpty()) {
 				resources.remove(res.getResourceURL());
 			}
