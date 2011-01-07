@@ -31,7 +31,8 @@ Require-Bundle: org.eclipse.ui,
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %providerName
-Export-Package: org.eclipse.papyrus.modelexplorer,
+Export-Package: org.eclipse.papyrus.core.ui.pagebookview,
+ org.eclipse.papyrus.modelexplorer,
  org.eclipse.papyrus.modelexplorer.actionprovider,
  org.eclipse.papyrus.modelexplorer.actions,
  org.eclipse.papyrus.modelexplorer.commands,

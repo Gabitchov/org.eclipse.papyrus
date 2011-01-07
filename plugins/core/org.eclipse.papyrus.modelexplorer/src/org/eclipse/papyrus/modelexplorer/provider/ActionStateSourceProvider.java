@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.papyrus.modelexplorer.ModelExplorerPageBookView;
 import org.eclipse.papyrus.modelexplorer.handler.DeleteCommandHandler;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.AbstractSourceProvider;
@@ -83,9 +84,9 @@ public class ActionStateSourceProvider extends AbstractSourceProvider {
 	private IPartListener partListener;
 
 	/**
-	 * Title of the activated part
+	 * the current activated part
 	 */
-	private String title = null;
+	private IWorkbenchPart currentActivatedPart = null;
 
 	/**
 	 * 
@@ -206,7 +207,7 @@ public class ActionStateSourceProvider extends AbstractSourceProvider {
 	 *         <code>true</code> if the current activePart is the Model Explorer <code>false</code> if not
 	 */
 	protected boolean isSelectionInModelExplorer() {
-		return (title != null) ? title.equals("Model Explorer") : false;
+		return (currentActivatedPart instanceof ModelExplorerPageBookView);
 	}
 
 	/**
@@ -246,7 +247,7 @@ public class ActionStateSourceProvider extends AbstractSourceProvider {
 		 * {@inheritDoc}
 		 */
 		public void partActivated(IWorkbenchPart part) {
-			title = part.getTitle();
+			currentActivatedPart = part;
 			refreshDeleteAction();
 		}
 	}
