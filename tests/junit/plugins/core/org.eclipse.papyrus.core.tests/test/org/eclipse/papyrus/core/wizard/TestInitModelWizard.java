@@ -35,7 +35,9 @@ public class TestInitModelWizard extends TestNewModelWizardBase {
 			SelectDiagramKindPage.class,
 			SelectRootElementPage.class,			
 		};
-		testOrderOfPages(expectedPages);
+
+		IWorkbenchWizard wizard = initWizardDialog();
+		testOrderOfPages(wizard, expectedPages);
 	}
 	
 }

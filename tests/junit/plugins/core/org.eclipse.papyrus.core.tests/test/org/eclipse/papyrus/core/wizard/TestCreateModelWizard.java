@@ -17,11 +17,6 @@ public class TestCreateModelWizard extends TestNewModelWizardBase {
 				return false;
 			}
 			
-			@Override
-			public String getDiagramFileExtension() {
-				return "test.xxx";
-			}
-			
 		};
 	}
 
@@ -31,12 +26,29 @@ public class TestCreateModelWizard extends TestNewModelWizardBase {
 			SelectDiagramCategoryPage.class,
 			SelectDiagramKindPage.class,
 		};
-		testOrderOfPages(expectedPages);
+
+		IWorkbenchWizard wizard = initWizardDialog();
+		testOrderOfPages(wizard, expectedPages);
 	}
 	
 	public void testDiagramFileExtenstion() {
-		NewModelFilePage page = (NewModelFilePage)getWizard().getPages()[0];
-		assertEquals("test.xxx", page.getFileExtension());
+		final String expectedExtension = "test.xxx";
+		IWorkbenchWizard wizard = new InitModelWizard() {
+			@Override
+			protected boolean isCreateFromExistingDomainModel() {
+				return false;
+			}
+			
+			@Override
+			public String getDiagramFileExtension() {
+				return expectedExtension;
+			}
+			
+		};
+ 
+		initWizardDialog(wizard);
+		NewModelFilePage page = (NewModelFilePage)wizard.getPages()[0];
+		assertEquals(expectedExtension, page.getFileExtension());
 	}
 
 }

@@ -16,8 +16,6 @@ import org.eclipse.ui.IWorkbenchWizard;
 
 public abstract class TestNewModelWizardBase extends TestCase {
 	
-	private IWorkbenchWizard myWizard;
-	
 	protected static final IStructuredSelection EMPTY_SELECTION = new StructuredSelection();	
 	
 	protected abstract IWorkbenchWizard createWizard();
@@ -25,20 +23,25 @@ public abstract class TestNewModelWizardBase extends TestCase {
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
-		myWizard = createWizard();
-		myWizard.init(getWorkbench(), getSelection());
-		initWizardDialog(myWizard, getShell()); 
 	}
 	
 	protected IStructuredSelection getSelection() {
 		return EMPTY_SELECTION;
 	}
 
-	protected void initWizardDialog(IWorkbenchWizard wizard, Shell shell) {
-		WizardDialog dialog= new WizardDialog(shell, wizard);
+	protected IWorkbenchWizard initWizardDialog() {
+		IWorkbenchWizard wizard = createWizard();
+		initWizardDialog(wizard);
+		return wizard; 
+	}
+	
+	protected IWorkbenchWizard initWizardDialog(IWorkbenchWizard wizard) {
+		wizard.init(getWorkbench(), getSelection());
+		WizardDialog dialog= new WizardDialog(getShell(), wizard);
 		PixelConverter converter= new PixelConverter(JFaceResources.getDialogFont());
 		dialog.setMinimumPageSize(converter.convertWidthInCharsToPixels(70), converter.convertHeightInCharsToPixels(20));
 		dialog.create();
+		return wizard; 
 	}
 	
 	protected Shell getShell() {
@@ -49,13 +52,8 @@ public abstract class TestNewModelWizardBase extends TestCase {
 		return Activator.getDefault().getWorkbench();
 	}
 	
-	protected IWorkbenchWizard getWizard() {
-		return myWizard;
-	}
-	
-	
-	protected void testOrderOfPages(Class[] expectedPages) {
-		IWizardPage next = getWizard().getPages()[0];
+	protected void testOrderOfPages(IWorkbenchWizard wizard, Class[] expectedPages) {
+		IWizardPage next = wizard.getPages()[0];
 		for (int i = 0; i < expectedPages.length; i++) {
 			String isNullMessageFormat = "page %s expected, but actual is: null";
 			assertNotNull(String.format(isNullMessageFormat, i), next);

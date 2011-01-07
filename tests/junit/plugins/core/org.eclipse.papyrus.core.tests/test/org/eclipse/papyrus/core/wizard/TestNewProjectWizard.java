@@ -15,12 +15,15 @@ public class TestNewProjectWizard extends TestNewModelWizardBase {
 	}
 
 	public void testOrderOfPages() {
+		
 		Class[] expectedPages = new Class[]{
 			WizardNewProjectCreationPage.class,
 			SelectDiagramCategoryPage.class,
 			SelectDiagramKindPage.class,
 		};
-		testOrderOfPages(expectedPages);
+
+		IWorkbenchWizard wizard = initWizardDialog();
+		testOrderOfPages(wizard, expectedPages);
 	}
 
 	public void testProfileExtension() {
