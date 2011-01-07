@@ -25,8 +25,7 @@ public class PseudostateJunctionCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public static PseudostateJunctionCreateCommand create(
-			CreateElementRequest req, EObject eObject) {
+	public static PseudostateJunctionCreateCommand create(CreateElementRequest req, EObject eObject) {
 		return new PseudostateJunctionCreateCommand(req, eObject);
 	}
 
@@ -50,8 +49,7 @@ public class PseudostateJunctionCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public PseudostateJunctionCreateCommand(CreateElementRequest req,
-			EObject eObject) {
+	public PseudostateJunctionCreateCommand(CreateElementRequest req, EObject eObject) {
 		super(req.getLabel(), null, req);
 		this.eObject = eObject;
 		this.eClass = eObject != null ? eObject.eClass() : null;
@@ -62,26 +60,23 @@ public class PseudostateJunctionCreateCommand extends EditElementCommand {
 	 */
 	public boolean canExecute() {
 
+
 		return true;
+
+
 
 	}
 
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(Pseudostate newElement,
-			IProgressMonitor monitor, IAdaptable info)
-			throws ExecutionException {
-		IElementType elementType = ((CreateElementRequest) getRequest())
-				.getElementType();
-		ConfigureRequest configureRequest = new ConfigureRequest(
-				getEditingDomain(), newElement, elementType);
-		configureRequest.setClientContext(((CreateElementRequest) getRequest())
-				.getClientContext());
+	protected void doConfigure(Pseudostate newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
+		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
+		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());
 		configureRequest.addParameters(getRequest().getParameters());
-		ICommand configureCommand = elementType
-				.getEditCommand(configureRequest);
-		if (configureCommand != null && configureCommand.canExecute()) {
+		ICommand configureCommand = elementType.getEditCommand(configureRequest);
+		if(configureCommand != null && configureCommand.canExecute()) {
 			configureCommand.execute(monitor, info);
 		}
 	}
@@ -89,19 +84,21 @@ public class PseudostateJunctionCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
+
 
 		Pseudostate newElement = UMLFactory.eINSTANCE.createPseudostate();
 
-		Region owner = (Region) getElementToEdit();
+		Region owner = (Region)getElementToEdit();
 		owner.getSubvertices().add(newElement);
+
 
 		ElementInitializers.getInstance().init_Pseudostate_12000(newElement);
 
 		doConfigure(newElement, monitor, info);
 
-		((CreateElementRequest) getRequest()).setNewElement(newElement);
+		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
 
@@ -112,12 +109,12 @@ public class PseudostateJunctionCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-		EObject container = ((CreateElementRequest) getRequest())
-				.getContainer();
-		if (container instanceof View) {
-			container = ((View) container).getElement();
+
+		EObject container = ((CreateElementRequest)getRequest()).getContainer();
+		if(container instanceof View) {
+			container = ((View)container).getElement();
 		}
-		if (container != null) {
+		if(container != null) {
 			return container;
 		}
 		return eObject;

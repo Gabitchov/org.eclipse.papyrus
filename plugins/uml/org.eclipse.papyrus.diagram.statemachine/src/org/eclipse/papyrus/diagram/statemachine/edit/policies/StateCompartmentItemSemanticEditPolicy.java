@@ -9,8 +9,7 @@ import org.eclipse.papyrus.diagram.statemachine.providers.UMLElementTypes;
 /**
  * @generated
  */
-public class StateCompartmentItemSemanticEditPolicy extends
-		UMLBaseItemSemanticEditPolicy {
+public class StateCompartmentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
@@ -23,11 +22,10 @@ public class StateCompartmentItemSemanticEditPolicy extends
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (UMLElementTypes.Region_3000 == req.getElementType()) {
+		if(UMLElementTypes.Region_3000 == req.getElementType()) {
 			return getGEFWrapper(new RegionCreateCommand(req));
 		}
-		if (UMLElementTypes.ConnectionPointReference_18000 == req
-				.getElementType()) {
+		if(UMLElementTypes.ConnectionPointReference_18000 == req.getElementType()) {
 			return getGEFWrapper(new ConnectionPointReferenceCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
