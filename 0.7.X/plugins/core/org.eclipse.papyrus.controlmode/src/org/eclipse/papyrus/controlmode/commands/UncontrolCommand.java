@@ -43,6 +43,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.RemoveCommand;
+import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.ui.EMFEditUIPlugin;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -186,7 +187,7 @@ public class UncontrolCommand extends AbstractTransactionalCommand {
 		// Create the Command to Uncontrol the model object
 		compoundCommand.append(new RemoveCommand(getEditingDomain(), eObject.eResource().getContents(), eObject));
 
-		unassignControlledResourceOfCurrentElement(getEditingDomain(), compoundCommand, HistoryUtils.getHistoryModel(diResourceSet), eObject.eResource().getURI().toString(), resource.getURI().toString());
+		unassignControlledResourceOfCurrentElement(getEditingDomain(), compoundCommand, getDIResource(eObject), eObject.eResource().getURI().toString(), resource.getURI().toString());
 
 		// POST uncontrol operation
 		uncontrol(getEditingDomain(), eObject, controlledModel, resource, compoundCommand, STATE_CONTROL.POST_MODEL);
@@ -204,6 +205,7 @@ public class UncontrolCommand extends AbstractTransactionalCommand {
 		if(!controlledDiagrams.isEmpty()) {
 			// PRE uncontrol operation
 			Resource notationResource = NotationUtils.getNotationModel(diResourceSet).getResource();
+			
 			for(Diagram diag : controlledDiagrams) {
 				uncontrol(getEditingDomain(), diag, controlledNotation, notationResource, compoundCommand, STATE_CONTROL.PRE_NOTATION);
 			}
@@ -215,7 +217,7 @@ public class UncontrolCommand extends AbstractTransactionalCommand {
 				resources.add(d.eResource());
 			}
 			for(Resource r : resources) {
-				unassignControlledResourceOfCurrentElement(getEditingDomain(), compoundCommand, HistoryUtils.getHistoryModel(diResourceSet), r.getURI().toString(), notationResource.getURI().toString());
+				unassignControlledResourceOfCurrentElement(getEditingDomain(), compoundCommand, getDIResource(eObject), r.getURI().toString(), notationResource.getURI().toString());
 			}
 
 			// POST uncontrol operation
@@ -234,28 +236,53 @@ public class UncontrolCommand extends AbstractTransactionalCommand {
 	 * @param currentURL
 	 * @param newURL
 	 */
-	private void unassignControlledResourceOfCurrentElement(EditingDomain domain, CompoundCommand compoundCommand, HistoryModel model, String oldURL, String newURL) {
-		if(model == null) {
-			return;
-		}
-		// TODO move the history model from the controlled resource to the parent DI resource
-		URI uriPath = HistoryUtils.getURIFullPath(newURL);
-		newURL = HistoryUtils.resolve(uriPath, newURL);
-		oldURL = HistoryUtils.resolve(uriPath, oldURL);
-		List<ControledResource> controled = HistoryUtils.getControledResourcesForURL(diResourceSet, oldURL);
-		for(ControledResource resource : controled) {
-			if(resource.getChildren().isEmpty()) {
-				compoundCommand.append(RemoveCommand.create(domain, resource.eContainer(), historyPackage.Literals.CONTROLED_RESOURCE__CHILDREN, resource));
-			} else {
-				if(resource.eContainer() instanceof ControledResource) {
-					compoundCommand.append(AddCommand.create(domain, resource.eContainer(), historyPackage.Literals.CONTROLED_RESOURCE__CHILDREN, Collections.singleton(resource)));
+	private void unassignControlledResourceOfCurrentElement(EditingDomain domain, CompoundCommand compoundCommand, Resource model, String oldURL, String newURL) {
+		if(model != null) {
+			URI uriPath = HistoryUtils.getURIFullPath(newURL);
+			newURL = HistoryUtils.resolve(uriPath, newURL);
+			oldURL = HistoryUtils.resolve(uriPath, oldURL);
+			Set<ControledResource> controledOldURL = new HashSet<ControledResource>(HistoryUtils.getControledResourcesForURL(diResourceSet, oldURL));
+			controledOldURL.addAll(HistoryUtils.getControledResourcesForURL(diResourceSet, oldURL.substring(oldURL.lastIndexOf("/")+1,oldURL.length())));
+			List<ControledResource> controledNewURL = HistoryUtils.getControledResourcesForURL(diResourceSet, newURL);
+			for(ControledResource resourceOldURL : controledOldURL) {
+				if(resourceOldURL.getChildren().isEmpty()) {
+					compoundCommand.append(RemoveCommand.create(domain, resourceOldURL.eContainer(), historyPackage.Literals.CONTROLED_RESOURCE__CHILDREN, resourceOldURL));
 				} else {
-					compoundCommand.append(new AddCommand(getEditingDomain(), resource.eResource().getContents(), resource));
+					if(resourceOldURL.eContainer() instanceof ControledResource) {
+						compoundCommand.append(AddCommand.create(domain, resourceOldURL.eContainer(), historyPackage.Literals.CONTROLED_RESOURCE__CHILDREN, Collections.singleton(resourceOldURL)));
+					} else {
+						for (ControledResource resourceNewURL : controledNewURL) {
+							// add children of the old controlled resource to the controlled resource with the new URL
+							compoundCommand.append(AddCommand.create(domain, resourceNewURL, historyPackage.Literals.CONTROLED_RESOURCE__CHILDREN, resourceOldURL.getChildren()));
+
+							// resolve url to be relative to the new resource
+							for (ControledResource c : resourceOldURL.getChildren())
+							{
+								String childRelativeUrl = c.getResourceURL();
+								URI absoluteChildPath = URI.createURI(c.eResource().getURI().trimSegments(1).toString() + "/");
+								URI absoluteChildURI = URI.createURI(childRelativeUrl).resolve(absoluteChildPath);
+								String urlResolved = absoluteChildURI.deresolve(uriPath).toString(); 
+								compoundCommand.append(SetCommand.create(domain, c, historyPackage.Literals.CONTROLED_RESOURCE__RESOURCE_URL, urlResolved));
+							}
+						}					
+					}
 				}
 			}
 		}
 	}
-
+	
+	/**
+	 * Get the history resource of the specified eObject
+	 * @param eObject
+	 * @return
+	 */
+	private Resource getDIResource(EObject eObject) {		
+		if (eObject.eResource() != null) {
+			return diResourceSet.getResource(eObject.eResource().getURI().trimFileExtension().appendFileExtension(HistoryModel.MODEL_FILE_EXTENSION), false);			
+		}
+		return null;
+	}
+	
 	/**
 	 * Control action applied on the specified selection
 	 * 

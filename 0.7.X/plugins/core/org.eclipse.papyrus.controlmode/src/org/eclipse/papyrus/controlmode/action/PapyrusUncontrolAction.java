@@ -18,6 +18,7 @@ import org.eclipse.core.commands.operations.OperationHistoryFactory;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.ui.EMFEditUIPlugin;
@@ -26,6 +27,12 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.controlmode.commands.UncontrolCommand;
 import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.resource.AbstractBaseModel;
+import org.eclipse.papyrus.resource.IModel;
+import org.eclipse.papyrus.resource.ModelUtils;
+import org.eclipse.papyrus.resource.uml.UmlModel;
+import org.eclipse.papyrus.ui.toolbox.notification.Type;
+import org.eclipse.papyrus.ui.toolbox.notification.builders.NotificationBuilder;
 import org.eclipse.ui.PlatformUI;
 
 /**
@@ -56,7 +63,7 @@ public class PapyrusUncontrolAction extends CommandActionHandler {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public boolean isEnabled() {
+	public boolean isEnabled() {		
 		return getEditingDomain().isControllable(eObject) && AdapterFactoryEditingDomain.isControlled(eObject);
 	}
 
@@ -95,6 +102,18 @@ public class PapyrusUncontrolAction extends CommandActionHandler {
 	 */
 	@Override
 	public void run() {
+		// check if the uncontrol is made from the parent resource. If not, warn the user and disable action
+		IModel umlModel = ModelUtils.getModelSet().getModel(UmlModel.MODEL_ID);
+		Resource parentOfControlledResource = getParentOfControlledResource(eObject);
+		boolean enableAction = false;
+		if (eObject != null && umlModel instanceof AbstractBaseModel) {
+			enableAction = ((AbstractBaseModel) umlModel).getResource().equals(parentOfControlledResource);
+		}
+		if (!enableAction) {
+			NotificationBuilder.createAsyncPopup("You must perform uncontrol action from the resource:\n" + parentOfControlledResource.getURI().trimFileExtension().toString() + " for this element").setType(Type.INFO).run();			
+			return;
+		}
+		
 		try {
 			UncontrolCommand transactionalCommand = new UncontrolCommand(EditorUtils.getTransactionalEditingDomain(), eObject, "Uncontrol", null);
 			OperationHistoryFactory.getOperationHistory().execute(transactionalCommand, new NullProgressMonitor(), null);
@@ -102,5 +121,22 @@ public class PapyrusUncontrolAction extends CommandActionHandler {
 			MessageDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), EMFEditUIPlugin.INSTANCE.getString("_UI_InvalidURI_label"), EMFEditUIPlugin.INSTANCE.getString("_WARN_CannotCreateResource"));
 			EMFEditUIPlugin.INSTANCE.log(e);
 		}
+	}
+	
+	/**
+	 * Returns the first parent resource of the controlled resource in wich the eObject is. 
+	 * @param eObject the specified eObject
+	 * @return null otherwise
+	 */
+	private Resource getParentOfControlledResource(EObject eObject) {
+		Resource currentResource = eObject.eResource();
+		if (eObject.eContainer() != null) {
+			if (!currentResource.equals(eObject.eContainer().eResource())) {
+				return eObject.eContainer().eResource();
+			} else {
+				getParentOfControlledResource(eObject.eContainer());
+			}			
+		}
+		return null;
 	}
 }

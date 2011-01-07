@@ -41,7 +41,13 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.controlmode.commands.ControlCommand;
 import org.eclipse.papyrus.controlmode.commands.IControlCondition;
 import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.resource.AbstractBaseModel;
+import org.eclipse.papyrus.resource.IModel;
+import org.eclipse.papyrus.resource.ModelUtils;
 import org.eclipse.papyrus.resource.notation.NotationModel;
+import org.eclipse.papyrus.resource.uml.UmlModel;
+import org.eclipse.papyrus.ui.toolbox.notification.Type;
+import org.eclipse.papyrus.ui.toolbox.notification.builders.NotificationBuilder;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 
@@ -61,7 +67,7 @@ public class PapyrusControlAction extends ControlAction {
 
 	/** custom commands from extensions */
 	private static List<IControlCondition> commands;
-
+	
 	/**
 	 * Instantiates a new papyrus control action.
 	 * 
@@ -96,8 +102,9 @@ public class PapyrusControlAction extends ControlAction {
 	private boolean getDiagram(EObject eObject) {
 		Resource modelResource = eObject.eResource();
 		if (modelResource != null) {
-			// only check for diagrams in the relative notation resource (same name)
+			// only check for diagrams in the relative notation resource (same name as the opened resource), use ModelSetQueryAdapter instead
 			Resource notationResource = modelResource.getResourceSet().getResource(modelResource.getURI().trimFileExtension().appendFileExtension(NotationModel.NOTATION_FILE_EXTENSION), true);
+			//ModelSetQueryAdapter.getExistingTypeCacheAdapter(eObject).getReachableObjectsOfType(eObject, NotationPackage.Literals.DIAGRAM);
 			if (notationResource != null) {
 				for (EObject o : notationResource.getContents()) {
 					if (o instanceof Diagram) {
@@ -141,6 +148,17 @@ public class PapyrusControlAction extends ControlAction {
 	 */
 	@Override
 	public void run() {
+		// check if object selection is in the current model set. If not, warn the user and disable action
+		IModel umlModel = ModelUtils.getModelSet().getModel(UmlModel.MODEL_ID);
+		boolean enableControl = false;
+		if (eObject != null && umlModel instanceof AbstractBaseModel) {
+			enableControl = ((AbstractBaseModel) umlModel).getResource().equals(eObject.eResource());
+		}
+		if (!enableControl) {
+			NotificationBuilder.createAsyncPopup("You must perform control action from the resource:\n" + eObject.eResource().getURI().trimFileExtension().toString() + " for this element").setType(Type.INFO).run();			
+			return;
+		}
+		
 		Resource controlledModel = getControlledResource();
 		if(controlledModel == null) {
 			return;
