@@ -55,7 +55,7 @@ public class SelectRootElementPage extends WizardPage {
 	 */
 	private TreeViewer modelViewer;
 
-	private IFile myDomainModelFile;
+	private final Resource myDomainModelResource;
 
 	/** The Constant PAGE_ID. */
 	public static final String PAGE_ID = "SelectRootPage";
@@ -73,7 +73,7 @@ public class SelectRootElementPage extends WizardPage {
 		setTitle("Select the root element");
 		setDescription("Select the root element");
 
-		myDomainModelFile = file;
+		myDomainModelResource = getResourceForFile(file);
 
 	}
 
@@ -114,11 +114,10 @@ public class SelectRootElementPage extends WizardPage {
 		modelViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
 		modelViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 
-		Resource modelResource = getResourceForFile(myDomainModelFile);
-		modelViewer.setInput(modelResource);
+		modelViewer.setInput(myDomainModelResource);
 
-		selectedModelElement = getModelRoot(modelResource);
-		modelViewer.setSelection(new StructuredSelection(selectedModelElement));
+		selectedModelElement = getModelRoot(myDomainModelResource);
+		modelViewer.setSelection(selectedModelElement == null ? new StructuredSelection() :  new StructuredSelection(selectedModelElement));
 
 		modelViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
@@ -131,10 +130,18 @@ public class SelectRootElementPage extends WizardPage {
 	}
 
 	private EObject getModelRoot(Resource modelResource) {
+		if (modelResource == null) {
+			//log
+			return null;
+		}
 		return modelResource.getContents().get(0);
 	}
 
 	private Resource getResourceForFile(IFile file) {
+		if (file == null) {
+			// log
+			return null;
+		}
 		return new ModelSet().getResource(URI.createPlatformResourceURI(file.getFullPath().toString(), true), true);
 	}
 

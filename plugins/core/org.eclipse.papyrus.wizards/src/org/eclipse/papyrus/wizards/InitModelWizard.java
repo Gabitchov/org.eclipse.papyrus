@@ -163,6 +163,14 @@ public class InitModelWizard extends CreateModelWizard {
 	protected String getDiagramFileName(IFile domainModel) {
 		return domainModel.getLocation().removeFileExtension().lastSegment();
 	}
+	
+	@Override
+	public String getDiagramFileExtension() {
+		if (isCreateFromExistingDomainModel()) {
+			return NewModelFilePage.DEFAULT_DIAGRAM_EXTENSION;
+		}
+		return super.getDiagramFileExtension();
+	}
 
 	/**
 	 * Returns the first file from the given selection
@@ -185,11 +193,11 @@ public class InitModelWizard extends CreateModelWizard {
 
 		private String myDiagramFileName;
 
-		public NewDiagramForExistingModelPage(IStructuredSelection selection, String defaultDiagramFileName, String extension) {
+		public NewDiagramForExistingModelPage(IStructuredSelection selection, String defaultFileName, String diagramExtension) {
 			super(selection);
-			myDiagramFileName = defaultDiagramFileName;
-			setFileName(defaultDiagramFileName);
-			setFileExtension(extension);
+			myDiagramFileName = defaultFileName;
+			setFileName(defaultFileName);
+			setFileExtension(diagramExtension);
 			setTitle("Init a new Papyrus model");
 			setDescription("Init a new Papyrus model from the existing domain model");
 		}
