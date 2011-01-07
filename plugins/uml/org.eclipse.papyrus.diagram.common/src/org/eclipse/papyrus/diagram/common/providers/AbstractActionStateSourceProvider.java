@@ -138,7 +138,7 @@ public abstract class AbstractActionStateSourceProvider extends AbstractSourcePr
 
 				public void run() {
 					IWorkbench workbench = PlatformUI.getWorkbench();
-					selectionService = (ISelectionService)workbench.getService(ISelectionService.class);
+					//					selectionService = (ISelectionService)workbench.getService(ISelectionService.class);
 					IWorkbenchWindow activeWorkbench = workbench.getActiveWorkbenchWindow();
 					if(activeWorkbench != null) {
 						selectionService = activeWorkbench.getSelectionService();
@@ -160,7 +160,7 @@ public abstract class AbstractActionStateSourceProvider extends AbstractSourcePr
 
 				public void run() {
 					IWorkbench workbench = PlatformUI.getWorkbench();
-					partService = (IPartService)workbench.getService(IPartService.class);
+					//					partService = (IPartService)workbench.getService(IPartService.class);
 					IWorkbenchWindow activeWorkbench = workbench.getActiveWorkbenchWindow();
 					if(activeWorkbench != null) {
 						partService = activeWorkbench.getPartService();
@@ -262,6 +262,7 @@ public abstract class AbstractActionStateSourceProvider extends AbstractSourcePr
 		 * @param selection
 		 */
 		public void selectionChanged(IWorkbenchPart part, ISelection selection) {
+			workbenchPart = part;
 			refreshActions();
 		}
 	}
