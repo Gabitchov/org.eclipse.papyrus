@@ -9,7 +9,8 @@ Fragment-Host: org.eclipse.papyrus.core;bundle-version="0.8.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.junit;bundle-version="3.8.2",
  org.eclipse.uml2.uml;bundle-version="3.1.0",
- org.eclipse.papyrus.wizards;bundle-version="0.8.0"
+ org.eclipse.papyrus.wizards;bundle-version="0.8.0",
+ org.eclipse.papyrus.diagram.profile;bundle-version="0.8.0"
 Export-Package: org.eclipse.papyrus.core.lifecycleevents,
  org.eclipse.papyrus.core.services,
  org.eclipse.papyrus.core.tests,
