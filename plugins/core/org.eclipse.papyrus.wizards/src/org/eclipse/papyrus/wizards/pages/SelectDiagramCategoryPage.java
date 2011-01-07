@@ -13,8 +13,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.wizards.pages;
 
+import static org.eclipse.papyrus.wizards.Activator.log;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -135,8 +138,13 @@ public class SelectDiagramCategoryPage extends WizardPage {
 
 				newModelFilePage.setFileName(newFileName);
 				newModelFilePage.setFileExtension(newExtension);
-
-				String categoryLabel = DiagramCategoryRegistry.getInstance().getDiagramCategoryMap().get(mySelectedDiagramCategoryId).getLabel();
+				
+				DiagramCategoryDescriptor selected = getDiagramCategoryMap().get(mySelectedDiagramCategoryId);
+				if (selected == null) {
+					log.warn("Could not find DiagramCategory for " + mySelectedDiagramCategoryId);
+					return false;
+				}
+				String categoryLabel = selected.getLabel();
 				String message = String.format("The %s diagram category requires a specific diagram file extension. " + "Thus, the diagram file has been renamed from %s to %s ", categoryLabel, oldFileName, newFileName);
 				setMessage(message, IMessageProvider.INFORMATION);
 
@@ -149,6 +157,10 @@ public class SelectDiagramCategoryPage extends WizardPage {
 			}
 		}
 		return mySelectedDiagramCategoryId != null;
+	}
+	
+	private Map<String, DiagramCategoryDescriptor> getDiagramCategoryMap() {
+		return DiagramCategoryRegistry.getInstance().getDiagramCategoryMap();
 	}
 
 	private NewModelFilePage getNewModelFilePage() {
@@ -187,7 +199,7 @@ public class SelectDiagramCategoryPage extends WizardPage {
 			}
 		};
 
-		for(DiagramCategoryDescriptor diagramCategoryDescriptor : DiagramCategoryRegistry.getInstance().getDiagramCategories()) {
+		for(DiagramCategoryDescriptor diagramCategoryDescriptor : getDiagramCategoryMap().values()) {
 			Button button = createCategoryButton(diagramCategoryDescriptor, group);
 			button.addSelectionListener(listener);
 			myDiagramKindButtons.add(button);

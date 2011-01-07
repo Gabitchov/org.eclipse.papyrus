@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.wizards;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -84,7 +83,7 @@ public class InitModelWizard extends CreateModelWizard {
 		if(!isCreateFromExistingDomainModel()) {
 			return super.createNewModelFilePage(selection);
 		}
-		return new NewDiagramForExistingModelPage(selection, getDiagramFileName(getSelectedFile(selection)), getDiagramFileExtension());
+		return new NewDiagramForExistingModelPage(selection, getDiagramFileName(getSelectedFile(selection)) + "." + getDiagramFileExtension(), getDiagramFileExtension());
 	}
 
 
