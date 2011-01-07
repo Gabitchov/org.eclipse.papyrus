@@ -234,6 +234,12 @@
                   removeFromMenubar="true"
                   removeFromToolbar="true">
             </partPredefinedItem>
+            <partPredefinedItem
+                  id="sortfilterAction"
+                  menubarPath="/diagramMenu/filtersMenu/expandFilterGroup"
+                  removeFromMenubar="true"
+                  removeFromToolbar="false">
+            </partPredefinedItem>
          </partContribution>
          <popupContribution
                class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
@@ -270,6 +276,11 @@
             <popupPredefinedItem
                   id="snapToGridAction"
                   path="/viewMenu/snapToGroup"
+                  remove="true">
+            </popupPredefinedItem>
+            <popupPredefinedItem
+                  id="sortfilterAction"
+                  path="/filtersMenu/expandFilterGroup"
                   remove="true">
             </popupPredefinedItem>
          </popupContribution>
@@ -587,6 +598,25 @@
             </and>
          </visibleWhen>
       </command>
+      <command
+            commandId="org.eclipse.papyrus.diagram.menu.commands.SortFilterCompartmentItemsCommand"
+            helpContextId="ActionToolTipText"
+            icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/sortfilter.gif"
+            label="Sort/Filter Compartments Items..."
+            mnemonic="&amp;F"
+            style="push"
+            tooltip="Sort or Filter Compartments Items for this shape">
+         <visibleWhen>
+            <and>
+               <with
+                     variable="activeEditorId">
+                  <equals
+                        value="org.eclipse.papyrus.core.papyrusEditor">
+                  </equals>
+               </with>
+            </and>
+         </visibleWhen>
+      </command>
    </menuContribution>
    <menuContribution
          locationURI="menu:org.eclipse.papyrus.menu.routing.toolbar.command">
@@ -891,6 +921,15 @@
                mnemonic="&amp;p"
                style="push"
                tooltip="The Show/Hide Compartments Action">
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.commands.SortFilterCompartmentItemsCommand"
+               helpContextId="ActionToolTipText"
+               icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/sortfilter.gif"
+               label="Sort/Filter Compartments Items..."
+               mnemonic="&amp;F"
+               style="push"
+               tooltip="Sort or Filter Compartments Items for this shape">
          </command>
       </menu>
       <separator
@@ -1203,6 +1242,15 @@
             mnemonic="&amp;p"
             style="push"
             tooltip="The Show/Hide Compartments Action">
+      </command>
+      <command
+            commandId="org.eclipse.papyrus.diagram.menu.commands.SortFilterCompartmentItemsCommand"
+            helpContextId="ActionToolTipText"
+            icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/sortfilter.gif"
+            label="Sort/Filter Compartments Items..."
+            mnemonic="&amp;F"
+            style="push"
+            tooltip="Sort or Filter Compartments Items for this shape">
       </command>
    </menuContribution>
    <menuContribution
@@ -1520,7 +1568,7 @@
       point="org.eclipse.ui.commands">
    <command
          categoryId="org.eclipse.papyrus.editor.category"
-         description="Command to view the Grid"
+         description="The command to view the Grid"
          id="org.eclipse.papyrus.diagram.menu.commands.ViewGridCommand"
          name="Grid Command">
       <state
@@ -1530,7 +1578,7 @@
    </command>
    <command
          categoryId="org.eclipse.papyrus.editor.category"
-         description="Command to view the Rulers"
+         description="The command to view the Rulers"
          id="org.eclipse.papyrus.diagram.menu.commands.ViewRulersCommand"
          name="Rulers Command">
       <state
@@ -1540,9 +1588,9 @@
    </command>
    <command
          categoryId="org.eclipse.papyrus.editor.category"
-         description="Command to view the page breaks"
+         description="The command to view the page breaks"
          id="org.eclipse.papyrus.diagram.menu.commands.ViewPageBreaksCommand"
-         name="Ppage breaks Command">
+         name="Page breaks Command">
       <state
             class="org.eclipse.jface.commands.ToggleState"
             id="org.eclipse.ui.commands.toggleState">
@@ -1562,6 +1610,12 @@
             class="org.eclipse.papyrus.diagram.menu.providers.InitTrueToggleState"
             id="org.eclipse.ui.commands.toggleState">
       </state>
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         description="The command to sort Compartments Items"
+         id="org.eclipse.papyrus.diagram.menu.commands.SortFilterCompartmentItemsCommand"
+         name="Sort/Filter Compartments Items...">
    </command>
 </extension>
 <extension
@@ -1630,6 +1684,20 @@
          <and>
             <with
                   variable="rulers">
+               <equals
+                     value="enabled">
+               </equals>
+            </with>
+         </and>
+      </activeWhen>
+   </handler>
+   <handler
+         class="org.eclipse.papyrus.diagram.menu.actions.handlers.SortFilterCompartmentItemsHandler"
+         commandId="org.eclipse.papyrus.diagram.menu.commands.SortFilterCompartmentItemsCommand">
+      <activeWhen>
+         <and>
+            <with
+                  variable="sortFilterCompartmentItems">
                <equals
                      value="enabled">
                </equals>
@@ -1811,6 +1879,10 @@
       </variable>
       <variable
             name="snapToGrid"
+            priorityLevel="workbench">
+      </variable>
+      <variable
+            name="sortFilterCompartmentItems"
             priorityLevel="workbench">
       </variable>
    </sourceProvider>
