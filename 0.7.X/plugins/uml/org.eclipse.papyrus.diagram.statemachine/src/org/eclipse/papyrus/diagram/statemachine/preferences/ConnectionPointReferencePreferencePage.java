@@ -9,8 +9,7 @@ import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 /**
  * @generated
  */
-public class ConnectionPointReferencePreferencePage extends
-		AbstractPapyrusNodePreferencePage {
+public class ConnectionPointReferencePreferencePage extends AbstractPapyrusNodePreferencePage {
 
 	/**
 	 * @generated
@@ -18,10 +17,9 @@ public class ConnectionPointReferencePreferencePage extends
 	public static void initDefaults(IPreferenceStore store) {
 
 		String key = PackageEditPart.MODEL_ID + "_ConnectionPointReference";
-		store.setDefault(PreferenceConstantHelper.getElementConstant(key,
-				PreferenceConstantHelper.WIDTH), 4);
-		store.setDefault(PreferenceConstantHelper.getElementConstant(key,
-				PreferenceConstantHelper.HEIGHT), 4);
+		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.WIDTH), 4);
+		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.HEIGHT), 4);
+
 
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_FILL), new org.eclipse.swt.graphics.RGB(255, 255, 255));
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_LINE), new org.eclipse.swt.graphics.RGB(0, 0, 0));

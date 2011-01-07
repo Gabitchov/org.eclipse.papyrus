@@ -79,15 +79,12 @@ UMLNodeEditPart {
 	/**
 	 * @generated
 	 */
-	protected void addBorderItem(IFigure borderItemContainer,
-			IBorderItemEditPart borderItemEditPart) {
-		if (borderItemEditPart instanceof PseudostateInitialNameEditPart) {
-			IBorderItemLocator locator = new ExternalLabelPositionLocator(
-					getMainFigure());
+	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
+		if(borderItemEditPart instanceof PseudostateInitialNameEditPart) {
+			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
-		} else if (borderItemEditPart instanceof PseudostateInitialStereotypeEditPart) {
-			IBorderItemLocator locator = new ExternalLabelPositionLocator(
-					getMainFigure());
+		} else if(borderItemEditPart instanceof PseudostateInitialStereotypeEditPart) {
+			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
 		} else {
 			super.addBorderItem(borderItemContainer, borderItemEditPart);
@@ -99,14 +96,10 @@ UMLNodeEditPart {
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new PseudostateInitialItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new PseudostateInitialItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY,
-				new QualifiedNameDisplayEditPolicy());
-		installEditPolicy(
-				AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
-				new AppliedStereotypeNodeLabelDisplayEditPolicy());
+		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -118,33 +111,31 @@ UMLNodeEditPart {
 		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				View childView = (View) child.getModel();
-				switch (UMLVisualIDRegistry.getVisualID(childView)) {
+				View childView = (View)child.getModel();
+				switch(UMLVisualIDRegistry.getVisualID(childView)) {
 				case PseudostateInitialNameEditPart.VISUAL_ID:
 				case PseudostateInitialStereotypeEditPart.VISUAL_ID:
 					return new BorderItemSelectionEditPolicy() {
 
 						protected List createSelectionHandles() {
-							MoveHandle mh = new MoveHandle(
-									(GraphicalEditPart) getHost());
+							MoveHandle mh = new MoveHandle((GraphicalEditPart)getHost());
 							mh.setBorder(null);
 							return Collections.singletonList(mh);
 						}
 					};
 				}
-				EditPolicy result = child
-						.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if (result == null) {
+				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
+				if(result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
 			}
 
-			protected Command getCreateCommand(CreateRequest request) {
+			protected Command getMoveChildrenCommand(Request request) {
 				return null;
 			}
 
-			protected Command getMoveChildrenCommand(Request request) {
+			protected Command getCreateCommand(CreateRequest request) {
 				return null;
 			}
 		};
@@ -173,17 +164,10 @@ UMLNodeEditPart {
 	 */
 	protected NodeFigure createNodePlate() {
 		String prefElementId = "Pseudostate";
-		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance()
-				.getPreferenceStore();
-		String preferenceConstantWitdh = PreferenceInitializerForElementHelper
-				.getpreferenceKey(getNotationView(), prefElementId,
-						PreferenceConstantHelper.WIDTH);
-		String preferenceConstantHeight = PreferenceInitializerForElementHelper
-				.getpreferenceKey(getNotationView(), prefElementId,
-						PreferenceConstantHelper.HEIGHT);
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(
-				store.getInt(preferenceConstantWitdh),
-				store.getInt(preferenceConstantHeight));
+		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
+		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
+		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
 
 		return result;
 	}
@@ -199,7 +183,7 @@ UMLNodeEditPart {
 	 * @generated
 	 */
 	public IFigure getContentPane() {
-		if (contentPane != null) {
+		if(contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -217,46 +201,45 @@ UMLNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List<IElementType> getMARelTypesOnSourceAndTarget(
-			IGraphicalEditPart targetEditPart) {
+	public List<IElementType> getMARelTypesOnSourceAndTarget(IGraphicalEditPart targetEditPart) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (targetEditPart instanceof FinalStateEditPart) {
+		if(targetEditPart instanceof FinalStateEditPart) {
 			types.add(UMLElementTypes.Transition_7000);
 		}
-		if (targetEditPart instanceof StateEditPart) {
+		if(targetEditPart instanceof StateEditPart) {
 			types.add(UMLElementTypes.Transition_7000);
 		}
-		if (targetEditPart instanceof org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateInitialEditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateInitialEditPart) {
 			types.add(UMLElementTypes.Transition_7000);
 		}
-		if (targetEditPart instanceof PseudostateJoinEditPart) {
+		if(targetEditPart instanceof PseudostateJoinEditPart) {
 			types.add(UMLElementTypes.Transition_7000);
 		}
-		if (targetEditPart instanceof PseudostateForkEditPart) {
+		if(targetEditPart instanceof PseudostateForkEditPart) {
 			types.add(UMLElementTypes.Transition_7000);
 		}
-		if (targetEditPart instanceof PseudostateChoiceEditPart) {
+		if(targetEditPart instanceof PseudostateChoiceEditPart) {
 			types.add(UMLElementTypes.Transition_7000);
 		}
-		if (targetEditPart instanceof PseudostateJunctionEditPart) {
+		if(targetEditPart instanceof PseudostateJunctionEditPart) {
 			types.add(UMLElementTypes.Transition_7000);
 		}
-		if (targetEditPart instanceof PseudostateShallowHistoryEditPart) {
+		if(targetEditPart instanceof PseudostateShallowHistoryEditPart) {
 			types.add(UMLElementTypes.Transition_7000);
 		}
-		if (targetEditPart instanceof PseudostateDeepHistoryEditPart) {
+		if(targetEditPart instanceof PseudostateDeepHistoryEditPart) {
 			types.add(UMLElementTypes.Transition_7000);
 		}
-		if (targetEditPart instanceof PseudostateTerminateEditPart) {
+		if(targetEditPart instanceof PseudostateTerminateEditPart) {
 			types.add(UMLElementTypes.Transition_7000);
 		}
-		if (targetEditPart instanceof PseudostateEntryPointEditPart) {
+		if(targetEditPart instanceof PseudostateEntryPointEditPart) {
 			types.add(UMLElementTypes.Transition_7000);
 		}
-		if (targetEditPart instanceof PseudostateExitPointEditPart) {
+		if(targetEditPart instanceof PseudostateExitPointEditPart) {
 			types.add(UMLElementTypes.Transition_7000);
 		}
-		if (targetEditPart instanceof ConnectionPointReferenceEditPart) {
+		if(targetEditPart instanceof ConnectionPointReferenceEditPart) {
 			types.add(UMLElementTypes.Transition_7000);
 		}
 		return types;
@@ -276,7 +259,7 @@ UMLNodeEditPart {
 	 */
 	public List<IElementType> getMATypesForSource(IElementType relationshipType) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (relationshipType == UMLElementTypes.Transition_7000) {
+		if(relationshipType == UMLElementTypes.Transition_7000) {
 			types.add(UMLElementTypes.FinalState_5000);
 			types.add(UMLElementTypes.State_6000);
 			types.add(UMLElementTypes.Pseudostate_8000);
@@ -299,7 +282,7 @@ UMLNodeEditPart {
 	 */
 	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (relationshipType == UMLElementTypes.Transition_7000) {
+		if(relationshipType == UMLElementTypes.Transition_7000) {
 			types.add(UMLElementTypes.FinalState_5000);
 			types.add(UMLElementTypes.State_6000);
 			types.add(UMLElementTypes.Pseudostate_8000);
@@ -322,48 +305,30 @@ UMLNodeEditPart {
 	 */
 	@Override
 	public Object getPreferredValue(EStructuralFeature feature) {
-		IPreferenceStore preferenceStore = (IPreferenceStore) getDiagramPreferencesHint()
-				.getPreferenceStore();
+		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
 
-		if (feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()
-				|| feature == NotationPackage.eINSTANCE
-						.getFontStyle_FontColor()
-				|| feature == NotationPackage.eINSTANCE
-						.getFillStyle_FillColor()) {
+		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
-			if (feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant(
-						"Pseudostate", PreferenceConstantHelper.COLOR_LINE);
-			} else if (feature == NotationPackage.eINSTANCE
-					.getFontStyle_FontColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant(
-						"Pseudostate", PreferenceConstantHelper.COLOR_FONT);
-			} else if (feature == NotationPackage.eINSTANCE
-					.getFillStyle_FillColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant(
-						"Pseudostate", PreferenceConstantHelper.COLOR_FILL);
+			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
+				prefColor = PreferenceConstantHelper.getElementConstant("Pseudostate", PreferenceConstantHelper.COLOR_LINE);
+			} else if(feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()) {
+				prefColor = PreferenceConstantHelper.getElementConstant("Pseudostate", PreferenceConstantHelper.COLOR_FONT);
+			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
+				prefColor = PreferenceConstantHelper.getElementConstant("Pseudostate", PreferenceConstantHelper.COLOR_FILL);
 			}
-			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor(
-					(IPreferenceStore) preferenceStore, prefColor));
-		} else if (feature == NotationPackage.eINSTANCE
-				.getFillStyle_Transparency()
-				|| feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
-			String prefGradient = PreferenceConstantHelper.getElementConstant(
-					"Pseudostate", PreferenceConstantHelper.COLOR_GRADIENT);
-			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(
-					preferenceStore.getString(prefGradient));
-			if (feature == NotationPackage.eINSTANCE
-					.getFillStyle_Transparency()) {
-				result = new Integer(
-						gradientPreferenceConverter.getTransparency());
-			} else if (feature == NotationPackage.eINSTANCE
-					.getFillStyle_Gradient()) {
+			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore)preferenceStore, prefColor));
+		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency() || feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
+			String prefGradient = PreferenceConstantHelper.getElementConstant("Pseudostate", PreferenceConstantHelper.COLOR_GRADIENT);
+			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore.getString(prefGradient));
+			if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()) {
+				result = new Integer(gradientPreferenceConverter.getTransparency());
+			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
 
-		if (result == null) {
+		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}
 		return result;
@@ -373,20 +338,20 @@ UMLNodeEditPart {
 	 * @generated
 	 */
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(UMLVisualIDRegistry
-				.getType(PseudostateInitialNameEditPart.VISUAL_ID));
+		return getChildBySemanticHint(UMLVisualIDRegistry.getType(PseudostateInitialNameEditPart.VISUAL_ID));
 	}
 
 	/**
 	 * @generated
 	 */
 	public PseudostateInitialFigure getPrimaryShape() {
-		return (PseudostateInitialFigure) primaryShape;
+		return (PseudostateInitialFigure)primaryShape;
 	}
 
 	/**
-	 *Papyrus codeGen
-	 *@generated
+	 * Papyrus codeGen
+	 * 
+	 * @generated
 	 **/
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
@@ -397,7 +362,7 @@ UMLNodeEditPart {
 	 * @generated
 	 */
 	protected void setForegroundColor(Color color) {
-		if (primaryShape != null) {
+		if(primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -406,8 +371,8 @@ UMLNodeEditPart {
 	 * @generated
 	 */
 	protected void setLineType(int style) {
-		if (primaryShape instanceof Shape) {
-			((Shape) primaryShape).setLineStyle(style);
+		if(primaryShape instanceof Shape) {
+			((Shape)primaryShape).setLineStyle(style);
 		}
 	}
 
@@ -415,8 +380,8 @@ UMLNodeEditPart {
 	 * @generated
 	 */
 	protected void setLineWidth(int width) {
-		if (primaryShape instanceof Shape) {
-			((Shape) primaryShape).setLineWidth(width);
+		if(primaryShape instanceof Shape) {
+			((Shape)primaryShape).setLineWidth(width);
 		}
 	}
 

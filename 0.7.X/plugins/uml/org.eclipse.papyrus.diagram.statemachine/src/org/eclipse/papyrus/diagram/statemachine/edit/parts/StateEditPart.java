@@ -87,7 +87,7 @@ NamedElementEditPart {
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -97,52 +97,54 @@ NamedElementEditPart {
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof StateNameEditPart) {
-			((StateNameEditPart) childEditPart).setLabel(getPrimaryShape()
-					.getNameLabel());
+		if(childEditPart instanceof StateNameEditPart) {
+			((StateNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
 
-		if (childEditPart instanceof StateCompartmentEditPart) {
+
+		if(childEditPart instanceof StateCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getStateCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.add(((StateCompartmentEditPart) childEditPart).getFigure());
+			pane.add(((StateCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
 
+
+
+
+
 		//Papyrus Gencode :Affixed EntryExitPoints ConnectionPointReferences Locator
-		if (childEditPart instanceof PseudostateEntryPointEditPart) {
-			IBorderItemLocator locator = new CustomEntryExitPointPositionLocator(
-					getMainFigure(), PositionConstants.NONE);
-			getBorderedFigure()
-					.getBorderItemContainer()
-					.add(((PseudostateEntryPointEditPart) childEditPart)
-							.getFigure(),
-							locator);
+		if(childEditPart instanceof PseudostateEntryPointEditPart) {
+			IBorderItemLocator locator = new CustomEntryExitPointPositionLocator(getMainFigure(), PositionConstants.NONE);
+			getBorderedFigure().getBorderItemContainer().add(((PseudostateEntryPointEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
 
+
+
+
+
 		//Papyrus Gencode :Affixed EntryExitPoints ConnectionPointReferences Locator
-		if (childEditPart instanceof PseudostateExitPointEditPart) {
-			IBorderItemLocator locator = new CustomEntryExitPointPositionLocator(
-					getMainFigure(), PositionConstants.NONE);
-			getBorderedFigure().getBorderItemContainer().add(
-					((PseudostateExitPointEditPart) childEditPart).getFigure(),
-					locator);
+		if(childEditPart instanceof PseudostateExitPointEditPart) {
+			IBorderItemLocator locator = new CustomEntryExitPointPositionLocator(getMainFigure(), PositionConstants.NONE);
+			getBorderedFigure().getBorderItemContainer().add(((PseudostateExitPointEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
 
+
+
+
+
 		//Papyrus Gencode :Affixed EntryExitPoints ConnectionPointReferences Locator
-		if (childEditPart instanceof ConnectionPointReferenceEditPart) {
-			IBorderItemLocator locator = new CustomEntryExitPointPositionLocator(
-					getMainFigure(), PositionConstants.NONE);
-			getBorderedFigure()
-					.getBorderItemContainer()
-					.add(((ConnectionPointReferenceEditPart) childEditPart)
-							.getFigure(),
-							locator);
+		if(childEditPart instanceof ConnectionPointReferenceEditPart) {
+			IBorderItemLocator locator = new CustomEntryExitPointPositionLocator(getMainFigure(), PositionConstants.NONE);
+			getBorderedFigure().getBorderItemContainer().add(((ConnectionPointReferenceEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
+
+
+
 
 		return false;
 	}
@@ -151,37 +153,24 @@ NamedElementEditPart {
 	 * @generated
 	 */
 	protected void createDefaultEditPolicies() {
-		installEditPolicy(EditPolicyRoles.CREATION_ROLE,
-				new CreationEditPolicy());
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy());
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new StateItemSemanticEditPolicy());
-		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE,
-				new DragDropEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new StateItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
+
 
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.statemachine.edit.policies.StateCanonicalEditPolicy());
 
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY,
-				new QualifiedNameDisplayEditPolicy());
-		installEditPolicy(
-				AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
-				new AppliedStereotypeNodeLabelDisplayEditPolicy());
-		installEditPolicy(EditPolicy.LAYOUT_ROLE,
-				new CustomStateLayoutEditPolicy());
-		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE,
-				new CustomStateMachineDiagramDragDropEditPolicy());
-		installEditPolicy(
-				ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY,
-				new ShowHideCompartmentEditPolicy());
-		installEditPolicy(EditPolicyRoles.CREATION_ROLE,
-				new CustomStateCreationEditPolicy());
-		installEditPolicy(
-				AffixedNodeAlignmentEditPolicy.AFFIXED_CHILD_ALIGNMENT_ROLE,
-				new AffixedNodeAlignmentEditPolicy());
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new CustomStateItemSemanticEditPolicy());
+		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
+		installEditPolicy(EditPolicy.LAYOUT_ROLE, new CustomStateLayoutEditPolicy());
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomStateMachineDiagramDragDropEditPolicy());
+		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CustomStateCreationEditPolicy());
+		installEditPolicy(AffixedNodeAlignmentEditPolicy.AFFIXED_CHILD_ALIGNMENT_ROLE, new AffixedNodeAlignmentEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomStateItemSemanticEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -193,8 +182,8 @@ NamedElementEditPart {
 		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				View childView = (View) child.getModel();
-				switch (UMLVisualIDRegistry.getVisualID(childView)) {
+				View childView = (View)child.getModel();
+				switch(UMLVisualIDRegistry.getVisualID(childView)) {
 				case PseudostateEntryPointEditPart.VISUAL_ID:
 				case PseudostateExitPointEditPart.VISUAL_ID:
 				case ConnectionPointReferenceEditPart.VISUAL_ID:
@@ -202,19 +191,18 @@ NamedElementEditPart {
 					return new BorderItemResizableEditPolicy();
 
 				}
-				EditPolicy result = child
-						.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if (result == null) {
+				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
+				if(result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
 			}
 
-			protected Command getCreateCommand(CreateRequest request) {
+			protected Command getMoveChildrenCommand(Request request) {
 				return null;
 			}
 
-			protected Command getMoveChildrenCommand(Request request) {
+			protected Command getCreateCommand(CreateRequest request) {
 				return null;
 			}
 		};
@@ -243,17 +231,10 @@ NamedElementEditPart {
 	 */
 	protected NodeFigure createNodePlate() {
 		String prefElementId = "State";
-		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance()
-				.getPreferenceStore();
-		String preferenceConstantWitdh = PreferenceInitializerForElementHelper
-				.getpreferenceKey(getNotationView(), prefElementId,
-						PreferenceConstantHelper.WIDTH);
-		String preferenceConstantHeight = PreferenceInitializerForElementHelper
-				.getpreferenceKey(getNotationView(), prefElementId,
-						PreferenceConstantHelper.HEIGHT);
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(
-				store.getInt(preferenceConstantWitdh),
-				store.getInt(preferenceConstantHeight));
+		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
+		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
+		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
 
 		return result;
 	}
@@ -269,7 +250,7 @@ NamedElementEditPart {
 	 * @generated
 	 */
 	public IFigure getContentPane() {
-		if (contentPane != null) {
+		if(contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -279,10 +260,10 @@ NamedElementEditPart {
 	 * @generated
 	 */
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		if (editPart instanceof StateCompartmentEditPart) {
+		if(editPart instanceof StateCompartmentEditPart) {
 			return getPrimaryShape().getStateCompartmentFigure();
 		}
-		if (editPart instanceof IBorderItemEditPart) {
+		if(editPart instanceof IBorderItemEditPart) {
 			return getBorderedFigure().getBorderItemContainer();
 		}
 		return getContentPane();
@@ -300,46 +281,45 @@ NamedElementEditPart {
 	/**
 	 * @generated
 	 */
-	public List<IElementType> getMARelTypesOnSourceAndTarget(
-			IGraphicalEditPart targetEditPart) {
+	public List<IElementType> getMARelTypesOnSourceAndTarget(IGraphicalEditPart targetEditPart) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (targetEditPart instanceof FinalStateEditPart) {
+		if(targetEditPart instanceof FinalStateEditPart) {
 			types.add(UMLElementTypes.Transition_7000);
 		}
-		if (targetEditPart instanceof org.eclipse.papyrus.diagram.statemachine.edit.parts.StateEditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.statemachine.edit.parts.StateEditPart) {
 			types.add(UMLElementTypes.Transition_7000);
 		}
-		if (targetEditPart instanceof PseudostateInitialEditPart) {
+		if(targetEditPart instanceof PseudostateInitialEditPart) {
 			types.add(UMLElementTypes.Transition_7000);
 		}
-		if (targetEditPart instanceof PseudostateJoinEditPart) {
+		if(targetEditPart instanceof PseudostateJoinEditPart) {
 			types.add(UMLElementTypes.Transition_7000);
 		}
-		if (targetEditPart instanceof PseudostateForkEditPart) {
+		if(targetEditPart instanceof PseudostateForkEditPart) {
 			types.add(UMLElementTypes.Transition_7000);
 		}
-		if (targetEditPart instanceof PseudostateChoiceEditPart) {
+		if(targetEditPart instanceof PseudostateChoiceEditPart) {
 			types.add(UMLElementTypes.Transition_7000);
 		}
-		if (targetEditPart instanceof PseudostateJunctionEditPart) {
+		if(targetEditPart instanceof PseudostateJunctionEditPart) {
 			types.add(UMLElementTypes.Transition_7000);
 		}
-		if (targetEditPart instanceof PseudostateShallowHistoryEditPart) {
+		if(targetEditPart instanceof PseudostateShallowHistoryEditPart) {
 			types.add(UMLElementTypes.Transition_7000);
 		}
-		if (targetEditPart instanceof PseudostateDeepHistoryEditPart) {
+		if(targetEditPart instanceof PseudostateDeepHistoryEditPart) {
 			types.add(UMLElementTypes.Transition_7000);
 		}
-		if (targetEditPart instanceof PseudostateTerminateEditPart) {
+		if(targetEditPart instanceof PseudostateTerminateEditPart) {
 			types.add(UMLElementTypes.Transition_7000);
 		}
-		if (targetEditPart instanceof PseudostateEntryPointEditPart) {
+		if(targetEditPart instanceof PseudostateEntryPointEditPart) {
 			types.add(UMLElementTypes.Transition_7000);
 		}
-		if (targetEditPart instanceof PseudostateExitPointEditPart) {
+		if(targetEditPart instanceof PseudostateExitPointEditPart) {
 			types.add(UMLElementTypes.Transition_7000);
 		}
-		if (targetEditPart instanceof ConnectionPointReferenceEditPart) {
+		if(targetEditPart instanceof ConnectionPointReferenceEditPart) {
 			types.add(UMLElementTypes.Transition_7000);
 		}
 		return types;
@@ -359,7 +339,7 @@ NamedElementEditPart {
 	 */
 	public List<IElementType> getMATypesForSource(IElementType relationshipType) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (relationshipType == UMLElementTypes.Transition_7000) {
+		if(relationshipType == UMLElementTypes.Transition_7000) {
 			types.add(UMLElementTypes.FinalState_5000);
 			types.add(UMLElementTypes.State_6000);
 			types.add(UMLElementTypes.Pseudostate_8000);
@@ -382,7 +362,7 @@ NamedElementEditPart {
 	 */
 	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
 		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if (relationshipType == UMLElementTypes.Transition_7000) {
+		if(relationshipType == UMLElementTypes.Transition_7000) {
 			types.add(UMLElementTypes.FinalState_5000);
 			types.add(UMLElementTypes.State_6000);
 			types.add(UMLElementTypes.Pseudostate_8000);
@@ -405,48 +385,30 @@ NamedElementEditPart {
 	 */
 	@Override
 	public Object getPreferredValue(EStructuralFeature feature) {
-		IPreferenceStore preferenceStore = (IPreferenceStore) getDiagramPreferencesHint()
-				.getPreferenceStore();
+		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
 		Object result = null;
 
-		if (feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()
-				|| feature == NotationPackage.eINSTANCE
-						.getFontStyle_FontColor()
-				|| feature == NotationPackage.eINSTANCE
-						.getFillStyle_FillColor()) {
+		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
-			if (feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant(
-						"State", PreferenceConstantHelper.COLOR_LINE);
-			} else if (feature == NotationPackage.eINSTANCE
-					.getFontStyle_FontColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant(
-						"State", PreferenceConstantHelper.COLOR_FONT);
-			} else if (feature == NotationPackage.eINSTANCE
-					.getFillStyle_FillColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant(
-						"State", PreferenceConstantHelper.COLOR_FILL);
+			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
+				prefColor = PreferenceConstantHelper.getElementConstant("State", PreferenceConstantHelper.COLOR_LINE);
+			} else if(feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()) {
+				prefColor = PreferenceConstantHelper.getElementConstant("State", PreferenceConstantHelper.COLOR_FONT);
+			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
+				prefColor = PreferenceConstantHelper.getElementConstant("State", PreferenceConstantHelper.COLOR_FILL);
 			}
-			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor(
-					(IPreferenceStore) preferenceStore, prefColor));
-		} else if (feature == NotationPackage.eINSTANCE
-				.getFillStyle_Transparency()
-				|| feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
-			String prefGradient = PreferenceConstantHelper.getElementConstant(
-					"State", PreferenceConstantHelper.COLOR_GRADIENT);
-			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(
-					preferenceStore.getString(prefGradient));
-			if (feature == NotationPackage.eINSTANCE
-					.getFillStyle_Transparency()) {
-				result = new Integer(
-						gradientPreferenceConverter.getTransparency());
-			} else if (feature == NotationPackage.eINSTANCE
-					.getFillStyle_Gradient()) {
+			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore)preferenceStore, prefColor));
+		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency() || feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
+			String prefGradient = PreferenceConstantHelper.getElementConstant("State", PreferenceConstantHelper.COLOR_GRADIENT);
+			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore.getString(prefGradient));
+			if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()) {
+				result = new Integer(gradientPreferenceConverter.getTransparency());
+			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
 
-		if (result == null) {
+		if(result == null) {
 			result = getStructuralFeatureValue(feature);
 		}
 		return result;
@@ -456,15 +418,14 @@ NamedElementEditPart {
 	 * @generated
 	 */
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(UMLVisualIDRegistry
-				.getType(StateNameEditPart.VISUAL_ID));
+		return getChildBySemanticHint(UMLVisualIDRegistry.getType(StateNameEditPart.VISUAL_ID));
 	}
 
 	/**
 	 * @generated
 	 */
 	public StateFigure getPrimaryShape() {
-		return (StateFigure) primaryShape;
+		return (StateFigure)primaryShape;
 	}
 
 	/**
@@ -481,7 +442,7 @@ NamedElementEditPart {
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -491,30 +452,25 @@ NamedElementEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof StateNameEditPart) {
+		if(childEditPart instanceof StateNameEditPart) {
 			return true;
 		}
-		if (childEditPart instanceof StateCompartmentEditPart) {
+		if(childEditPart instanceof StateCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getStateCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.remove(((StateCompartmentEditPart) childEditPart).getFigure());
+			pane.remove(((StateCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
-		if (childEditPart instanceof PseudostateEntryPointEditPart) {
-			getBorderedFigure().getBorderItemContainer()
-					.remove(((PseudostateEntryPointEditPart) childEditPart)
-							.getFigure());
+		if(childEditPart instanceof PseudostateEntryPointEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((PseudostateEntryPointEditPart)childEditPart).getFigure());
 			return true;
 		}
-		if (childEditPart instanceof PseudostateExitPointEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(
-					((PseudostateExitPointEditPart) childEditPart).getFigure());
+		if(childEditPart instanceof PseudostateExitPointEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((PseudostateExitPointEditPart)childEditPart).getFigure());
 			return true;
 		}
-		if (childEditPart instanceof ConnectionPointReferenceEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(
-					((ConnectionPointReferenceEditPart) childEditPart)
-							.getFigure());
+		if(childEditPart instanceof ConnectionPointReferenceEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((ConnectionPointReferenceEditPart)childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -524,7 +480,7 @@ NamedElementEditPart {
 	 * @generated
 	 */
 	protected void setForegroundColor(Color color) {
-		if (primaryShape != null) {
+		if(primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -533,8 +489,8 @@ NamedElementEditPart {
 	 * @generated
 	 */
 	protected void setLineType(int style) {
-		if (primaryShape instanceof Shape) {
-			((Shape) primaryShape).setLineStyle(style);
+		if(primaryShape instanceof Shape) {
+			((Shape)primaryShape).setLineStyle(style);
 		}
 	}
 
@@ -542,8 +498,8 @@ NamedElementEditPart {
 	 * @generated
 	 */
 	protected void setLineWidth(int width) {
-		if (primaryShape instanceof Shape) {
-			((Shape) primaryShape).setLineWidth(width);
+		if(primaryShape instanceof Shape) {
+			((Shape)primaryShape).setLineWidth(width);
 		}
 	}
 
@@ -556,7 +512,7 @@ NamedElementEditPart {
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
-		if (nodeShape.getLayoutManager() == null) {
+		if(nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
 			layout.setSpacing(5);
 			nodeShape.setLayoutManager(layout);

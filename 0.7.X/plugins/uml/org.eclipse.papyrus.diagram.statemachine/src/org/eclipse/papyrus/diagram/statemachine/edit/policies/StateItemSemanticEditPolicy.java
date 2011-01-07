@@ -50,166 +50,139 @@ public class StateItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 	 * @generated
 	 */
 	protected void addDestroyChildNodesCommand(ICompositeCommand cmd) {
-		View view = (View) getHost().getModel();
-		for (Iterator<?> nit = view.getChildren().iterator(); nit.hasNext();) {
-			Node node = (Node) nit.next();
-			switch (UMLVisualIDRegistry.getVisualID(node)) {
+		View view = (View)getHost().getModel();
+		for(Iterator<?> nit = view.getChildren().iterator(); nit.hasNext();) {
+			Node node = (Node)nit.next();
+			switch(UMLVisualIDRegistry.getVisualID(node)) {
 			case RegionEditPart.VISUAL_ID:
 
-				cmd.add(new DestroyElementCommand(new DestroyElementRequest(
-						getEditingDomain(), node.getElement(), false))); // directlyOwned: false
+
+
+				cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), node.getElement(), false))); // directlyOwned: false
 				// don't need explicit deletion of node as parent's view deletion would clean child views as well 
 				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
 				break;
 			case PseudostateEntryPointEditPart.VISUAL_ID:
 
-				for (Iterator<?> it = node.getTargetEdges().iterator(); it
-						.hasNext();) {
-					Edge incomingLink = (Edge) it.next();
-					switch (UMLVisualIDRegistry.getVisualID(incomingLink)) {
+
+				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
+					Edge incomingLink = (Edge)it.next();
+					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
 					case TransitionEditPart.VISUAL_ID:
-						DestroyElementRequest destroyEltReq = new DestroyElementRequest(
-								incomingLink.getElement(), false);
+						DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
 						cmd.add(new DestroyElementCommand(destroyEltReq));
-						cmd.add(new DeleteCommand(getEditingDomain(),
-								incomingLink));
+						cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 						break;
 					}
 				}
 
-				for (Iterator<?> it = node.getSourceEdges().iterator(); it
-						.hasNext();) {
-					Edge outgoingLink = (Edge) it.next();
-					switch (UMLVisualIDRegistry.getVisualID(outgoingLink)) {
+				for(Iterator<?> it = node.getSourceEdges().iterator(); it.hasNext();) {
+					Edge outgoingLink = (Edge)it.next();
+					switch(UMLVisualIDRegistry.getVisualID(outgoingLink)) {
 					case TransitionEditPart.VISUAL_ID:
-						DestroyElementRequest destroyEltReq = new DestroyElementRequest(
-								outgoingLink.getElement(), false);
+						DestroyElementRequest destroyEltReq = new DestroyElementRequest(outgoingLink.getElement(), false);
 						cmd.add(new DestroyElementCommand(destroyEltReq));
-						cmd.add(new DeleteCommand(getEditingDomain(),
-								outgoingLink));
+						cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 						break;
 					}
 				}
-				cmd.add(new DestroyElementCommand(new DestroyElementRequest(
-						getEditingDomain(), node.getElement(), false))); // directlyOwned: false
+				cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), node.getElement(), false))); // directlyOwned: false
 				// don't need explicit deletion of node as parent's view deletion would clean child views as well 
 				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
 				break;
 			case PseudostateExitPointEditPart.VISUAL_ID:
 
-				for (Iterator<?> it = node.getTargetEdges().iterator(); it
-						.hasNext();) {
-					Edge incomingLink = (Edge) it.next();
-					switch (UMLVisualIDRegistry.getVisualID(incomingLink)) {
+
+				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
+					Edge incomingLink = (Edge)it.next();
+					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
 					case TransitionEditPart.VISUAL_ID:
-						DestroyElementRequest destroyEltReq = new DestroyElementRequest(
-								incomingLink.getElement(), false);
+						DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
 						cmd.add(new DestroyElementCommand(destroyEltReq));
-						cmd.add(new DeleteCommand(getEditingDomain(),
-								incomingLink));
+						cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 						break;
 					}
 				}
 
-				for (Iterator<?> it = node.getSourceEdges().iterator(); it
-						.hasNext();) {
-					Edge outgoingLink = (Edge) it.next();
-					switch (UMLVisualIDRegistry.getVisualID(outgoingLink)) {
+				for(Iterator<?> it = node.getSourceEdges().iterator(); it.hasNext();) {
+					Edge outgoingLink = (Edge)it.next();
+					switch(UMLVisualIDRegistry.getVisualID(outgoingLink)) {
 					case TransitionEditPart.VISUAL_ID:
-						DestroyElementRequest destroyEltReq = new DestroyElementRequest(
-								outgoingLink.getElement(), false);
+						DestroyElementRequest destroyEltReq = new DestroyElementRequest(outgoingLink.getElement(), false);
 						cmd.add(new DestroyElementCommand(destroyEltReq));
-						cmd.add(new DeleteCommand(getEditingDomain(),
-								outgoingLink));
+						cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 						break;
 					}
 				}
-				cmd.add(new DestroyElementCommand(new DestroyElementRequest(
-						getEditingDomain(), node.getElement(), false))); // directlyOwned: false
+				cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), node.getElement(), false))); // directlyOwned: false
 				// don't need explicit deletion of node as parent's view deletion would clean child views as well 
 				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
 				break;
 			case ConnectionPointReferenceEditPart.VISUAL_ID:
 
-				for (Iterator<?> it = node.getTargetEdges().iterator(); it
-						.hasNext();) {
-					Edge incomingLink = (Edge) it.next();
-					switch (UMLVisualIDRegistry.getVisualID(incomingLink)) {
+
+				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
+					Edge incomingLink = (Edge)it.next();
+					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
 					case TransitionEditPart.VISUAL_ID:
-						DestroyElementRequest destroyEltReq = new DestroyElementRequest(
-								incomingLink.getElement(), false);
+						DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
 						cmd.add(new DestroyElementCommand(destroyEltReq));
-						cmd.add(new DeleteCommand(getEditingDomain(),
-								incomingLink));
+						cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 						break;
 					}
 				}
 
-				for (Iterator<?> it = node.getSourceEdges().iterator(); it
-						.hasNext();) {
-					Edge outgoingLink = (Edge) it.next();
-					switch (UMLVisualIDRegistry.getVisualID(outgoingLink)) {
+				for(Iterator<?> it = node.getSourceEdges().iterator(); it.hasNext();) {
+					Edge outgoingLink = (Edge)it.next();
+					switch(UMLVisualIDRegistry.getVisualID(outgoingLink)) {
 					case TransitionEditPart.VISUAL_ID:
-						DestroyElementRequest destroyEltReq = new DestroyElementRequest(
-								outgoingLink.getElement(), false);
+						DestroyElementRequest destroyEltReq = new DestroyElementRequest(outgoingLink.getElement(), false);
 						cmd.add(new DestroyElementCommand(destroyEltReq));
-						cmd.add(new DeleteCommand(getEditingDomain(),
-								outgoingLink));
+						cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 						break;
 					}
 				}
-				cmd.add(new DestroyElementCommand(new DestroyElementRequest(
-						getEditingDomain(), node.getElement(), false))); // directlyOwned: true
+				cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), node.getElement(), false))); // directlyOwned: true
 				// don't need explicit deletion of node as parent's view deletion would clean child views as well 
 				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
 				break;
 			case StateCompartmentEditPart.VISUAL_ID:
-				for (Iterator<?> cit = node.getChildren().iterator(); cit
-						.hasNext();) {
-					Node cnode = (Node) cit.next();
-					switch (UMLVisualIDRegistry.getVisualID(cnode)) {
+				for(Iterator<?> cit = node.getChildren().iterator(); cit.hasNext();) {
+					Node cnode = (Node)cit.next();
+					switch(UMLVisualIDRegistry.getVisualID(cnode)) {
 					case RegionEditPart.VISUAL_ID:
 
-						cmd.add(new DestroyElementCommand(
-								new DestroyElementRequest(getEditingDomain(),
-										cnode.getElement(), false))); // directlyOwned: false
+
+
+						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: false
 						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					case ConnectionPointReferenceEditPart.VISUAL_ID:
 
-						for (Iterator<?> it = cnode.getTargetEdges().iterator(); it
-								.hasNext();) {
-							Edge incomingLink = (Edge) it.next();
-							switch (UMLVisualIDRegistry
-									.getVisualID(incomingLink)) {
+
+						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
+							Edge incomingLink = (Edge)it.next();
+							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
 							case TransitionEditPart.VISUAL_ID:
-								DestroyElementRequest destroyEltReq = new DestroyElementRequest(
-										incomingLink.getElement(), false);
+								DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(destroyEltReq));
-								cmd.add(new DeleteCommand(getEditingDomain(),
-										incomingLink));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 								break;
 							}
 						}
 
-						for (Iterator<?> it = cnode.getSourceEdges().iterator(); it
-								.hasNext();) {
-							Edge outgoingLink = (Edge) it.next();
-							switch (UMLVisualIDRegistry
-									.getVisualID(outgoingLink)) {
+						for(Iterator<?> it = cnode.getSourceEdges().iterator(); it.hasNext();) {
+							Edge outgoingLink = (Edge)it.next();
+							switch(UMLVisualIDRegistry.getVisualID(outgoingLink)) {
 							case TransitionEditPart.VISUAL_ID:
-								DestroyElementRequest destroyEltReq = new DestroyElementRequest(
-										outgoingLink.getElement(), false);
+								DestroyElementRequest destroyEltReq = new DestroyElementRequest(outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(destroyEltReq));
-								cmd.add(new DeleteCommand(getEditingDomain(),
-										outgoingLink));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 								break;
 							}
 						}
-						cmd.add(new DestroyElementCommand(
-								new DestroyElementRequest(getEditingDomain(),
-										cnode.getElement(), false))); // directlyOwned: true
+						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
 						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
@@ -223,11 +196,9 @@ public class StateItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 	/**
 	 * @generated
 	 */
-	protected Command getCompleteCreateRelationshipCommand(
-			CreateRelationshipRequest req) {
-		if (UMLElementTypes.Transition_7000 == req.getElementType()) {
-			return getGEFWrapper(new TransitionCreateCommand(req,
-					req.getSource(), req.getTarget()));
+	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
+		if(UMLElementTypes.Transition_7000 == req.getElementType()) {
+			return getGEFWrapper(new TransitionCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -236,17 +207,16 @@ public class StateItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (UMLElementTypes.Region_3000 == req.getElementType()) {
+		if(UMLElementTypes.Region_3000 == req.getElementType()) {
 			return getGEFWrapper(new RegionCreateCommand(req));
 		}
-		if (UMLElementTypes.Pseudostate_16000 == req.getElementType()) {
+		if(UMLElementTypes.Pseudostate_16000 == req.getElementType()) {
 			return getGEFWrapper(new PseudostateEntryPointCreateCommand(req));
 		}
-		if (UMLElementTypes.Pseudostate_17000 == req.getElementType()) {
+		if(UMLElementTypes.Pseudostate_17000 == req.getElementType()) {
 			return getGEFWrapper(new PseudostateExitPointCreateCommand(req));
 		}
-		if (UMLElementTypes.ConnectionPointReference_18000 == req
-				.getElementType()) {
+		if(UMLElementTypes.ConnectionPointReference_18000 == req.getElementType()) {
 			return getGEFWrapper(new ConnectionPointReferenceCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
@@ -256,23 +226,20 @@ public class StateItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 	 * @generated
 	 */
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
-		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req)
-				: getCompleteCreateRelationshipCommand(req);
-		return command != null ? command : super
-				.getCreateRelationshipCommand(req);
+		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req) : getCompleteCreateRelationshipCommand(req);
+		return command != null ? command : super.getCreateRelationshipCommand(req);
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
-		View view = (View) getHost().getModel();
-		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(
-				getEditingDomain(), null);
+		View view = (View)getHost().getModel();
+		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(true);
 
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
-		if (annotation == null) {
+		if(annotation == null) {
 			// there are indirectly referenced children, need extra commands: true
 			addDestroyChildNodesCommand(cmd);
 			addDestroyShortcutsCommand(cmd, view);
@@ -280,9 +247,7 @@ public class StateItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 			List<EObject> todestroy = new ArrayList<EObject>();
 			todestroy.add(req.getElementToDestroy());
 			//cmd.add(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(req));
-			cmd.add(new EMFtoGMFCommandWrapper(
-					new org.eclipse.emf.edit.command.DeleteCommand(
-							getEditingDomain(), todestroy)));
+			cmd.add(new EMFtoGMFCommandWrapper(new org.eclipse.emf.edit.command.DeleteCommand(getEditingDomain(), todestroy)));
 		} else {
 			cmd.add(new DeleteCommand(getEditingDomain(), view));
 		}
@@ -295,9 +260,8 @@ public class StateItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 	 * 
 	 * @generated
 	 */
-	protected Command getReorientRelationshipCommand(
-			ReorientRelationshipRequest req) {
-		switch (getVisualID(req)) {
+	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
+		switch(getVisualID(req)) {
 		case TransitionEditPart.VISUAL_ID:
 			return getGEFWrapper(new TransitionReorientCommand(req));
 		}
@@ -307,11 +271,9 @@ public class StateItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 	/**
 	 * @generated
 	 */
-	protected Command getStartCreateRelationshipCommand(
-			CreateRelationshipRequest req) {
-		if (UMLElementTypes.Transition_7000 == req.getElementType()) {
-			return getGEFWrapper(new TransitionCreateCommand(req,
-					req.getSource(), req.getTarget()));
+	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
+		if(UMLElementTypes.Transition_7000 == req.getElementType()) {
+			return getGEFWrapper(new TransitionCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;
 	}

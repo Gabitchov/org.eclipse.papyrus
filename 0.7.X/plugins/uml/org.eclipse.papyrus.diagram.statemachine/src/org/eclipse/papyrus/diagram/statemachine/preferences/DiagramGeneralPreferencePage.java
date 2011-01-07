@@ -13,8 +13,7 @@ public class DiagramGeneralPreferencePage extends DiagramPreferencePage {
 	 * @generated
 	 */
 	public DiagramGeneralPreferencePage() {
-		setPreferenceStore(UMLDiagramEditorPlugin.getInstance()
-				.getPreferenceStore());
+		setPreferenceStore(UMLDiagramEditorPlugin.getInstance().getPreferenceStore());
 		setPreferenceKey(PackageEditPart.MODEL_ID);
 
 	}
