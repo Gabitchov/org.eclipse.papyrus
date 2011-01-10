@@ -102,9 +102,8 @@ public class PapyrusControlAction extends ControlAction {
 	private boolean getDiagram(EObject eObject) {
 		Resource modelResource = eObject.eResource();
 		if (modelResource != null) {
-			// only check for diagrams in the relative notation resource (same name as the opened resource), use ModelSetQueryAdapter instead
+			// only check for diagrams in the relative notation resource (same name as the opened resource)
 			Resource notationResource = modelResource.getResourceSet().getResource(modelResource.getURI().trimFileExtension().appendFileExtension(NotationModel.NOTATION_FILE_EXTENSION), true);
-			//ModelSetQueryAdapter.getExistingTypeCacheAdapter(eObject).getReachableObjectsOfType(eObject, NotationPackage.Literals.DIAGRAM);
 			if (notationResource != null) {
 				for (EObject o : notationResource.getContents()) {
 					if (o instanceof Diagram) {

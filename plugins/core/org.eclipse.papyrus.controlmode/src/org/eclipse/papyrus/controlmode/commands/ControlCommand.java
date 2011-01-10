@@ -37,6 +37,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.command.AddCommand;
+import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.ui.EMFEditUIPlugin;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -401,27 +402,31 @@ public class ControlCommand extends AbstractTransactionalCommand {
 						URI newResolvedURIFromChild = fullPathParent.deresolve(controledURIFullPath);
 						ControledResource aNewOne = historyFactory.eINSTANCE.createControledResource();
 						aNewOne.setResourceURL(newResolvedURIFromChild.toString());
+						// add new control resource to the new history
 						compoundCommand.append(new AddCommand(domain, getControledResource(controlledDI, URI.createURI(controledResourceURL).lastSegment(), compoundCommand, getEditingDomain()), historyPackage.Literals.CONTROLED_RESOURCE__CHILDREN, aNewOne));
+						// remove old controlled resource from the parent resource
+						compoundCommand.append(RemoveCommand.create(domain, r.eContainer(), historyPackage.Literals.CONTROLED_RESOURCE__CHILDREN, r));
+						
 						// manage notation
 						URI newNotation = newResolvedURIFromChild.trimFileExtension().appendFileExtension(NotationModel.NOTATION_FILE_EXTENSION);
 						ControledResource aNewOneNotation = historyFactory.eINSTANCE.createControledResource();
 						aNewOneNotation.setResourceURL(newNotation.toString());
+						// add new control resource to the new history
 						compoundCommand.append(new AddCommand(domain, getControledResource(controlledDI, URI.createURI(URI.createURI(controledResourceURL).trimFileExtension().appendFileExtension(NotationModel.NOTATION_FILE_EXTENSION).toString()).lastSegment(), compoundCommand, getEditingDomain()), historyPackage.Literals.CONTROLED_RESOURCE__CHILDREN, aNewOneNotation));
-
+						// remove old controlled resource from the parent resource
+						URI notationParentURL = URI.createURI(r.getParent().getResourceURL()).trimFileExtension().appendFileExtension(NotationModel.NOTATION_FILE_EXTENSION);
+						ControledResource notationParent = getControledResource(r.eResource(), notationParentURL.toString(), compoundCommand, domain);
+						for (ControledResource notationChild : notationParent.getChildren()) {
+							URI notationURI = newResolvedURIFromChild.trimFileExtension().appendFileExtension(NotationModel.NOTATION_FILE_EXTENSION);
+							if (notationChild.getResourceURL().equals(notationURI.toString())) {
+								compoundCommand.append(RemoveCommand.create(domain, notationParent, historyPackage.Literals.CONTROLED_RESOURCE__CHILDREN, notationChild));										
+							}
+						}							
 					}
 				}
 			}
 		}
 	}
-	
-//	protected HistoryModel getHistoryModel() {
-//		HistoryModel historyModel = HistoryUtils.getHistoryModel(diResourceSet);
-//		if(historyModel == null) {
-//			diResourceSet.createsModels(new ModelIdentifiers(HistoryModel.MODEL_ID));
-//			historyModel = HistoryUtils.getHistoryModel(diResourceSet);
-//		}
-//		return historyModel;
-//	}
 
 	/**
 	 * Get the controlled resource in a specified resource
