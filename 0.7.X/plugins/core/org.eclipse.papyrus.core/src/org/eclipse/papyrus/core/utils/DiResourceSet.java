@@ -275,8 +275,7 @@ public class DiResourceSet extends ModelSet {
 
 	private Resource getAssociatedResource(Resource modelResource, String associatedResourceExtension) {
 		URI trimmedModelURI = modelResource.getURI().trimFileExtension();
-		trimmedModelURI.appendFileExtension(associatedResourceExtension);
-		return getResource(trimmedModelURI, true);
+		return getResource(trimmedModelURI.appendFileExtension(associatedResourceExtension), true);
 	}
 
 	/**
