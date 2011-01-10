@@ -156,9 +156,9 @@ public class ControledResourceAdapter implements Adapter.Internal {
 			if (list != null)
 			{
 				list.remove(res);
-			}
-			if(list.isEmpty()) {
-				resources.remove(res.getResourceURL());
+				if(list.isEmpty()) {
+					resources.remove(res.getResourceURL());
+				}
 			}
 		}
 
