@@ -25,12 +25,31 @@ import org.eclipse.papyrus.core.extension.commands.ICreationCommandRegistry;
 /**
  * The Class DiagramCategoryTableContentProvider.
  */
+/**
+ * @author tatiana
+ *
+ */
 public class DiagramKindContentProvider implements IStructuredContentProvider {
 
 	/**
 	 * The creation command registry
 	 */
-	private ICreationCommandRegistry creationCommandRegistry;
+	private final ICreationCommandRegistry creationCommandRegistry;
+	
+	
+	/**
+	 * 
+	 */
+	public DiagramKindContentProvider() {
+		this(new CreationCommandRegistry(org.eclipse.papyrus.core.Activator.PLUGIN_ID));
+	}
+
+	/**
+	 * @param creationCommandRegistry
+	 */
+	public DiagramKindContentProvider(ICreationCommandRegistry creationCommandRegistry) {
+		this.creationCommandRegistry = creationCommandRegistry;
+	}
 
 
 	/**
@@ -58,15 +77,23 @@ public class DiagramKindContentProvider implements IStructuredContentProvider {
 	public Object[] getElements(Object inputElement) {
 		if(inputElement instanceof String) {
 			String diagramCategory = (String)inputElement;
-			List<CreationCommandDescriptor> result = new ArrayList<CreationCommandDescriptor>();
-			for(CreationCommandDescriptor desc : getCreationCommandRegistry().getCommandDescriptors()) {
-				if(diagramCategory != null && diagramCategory.equals(desc.getLanguage())) {
-					result.add(desc);
-				}
-			}
-			return result.toArray();
+			return getCreationCommands(diagramCategory);
 		}
 		return null;
+	}
+
+	/**
+	 * @param diagramCategory
+	 * @return
+	 */
+	protected Object[] getCreationCommands(String diagramCategory) {
+		List<CreationCommandDescriptor> result = new ArrayList<CreationCommandDescriptor>();
+		for(CreationCommandDescriptor desc : getCreationCommandRegistry().getCommandDescriptors()) {
+			if(diagramCategory != null && diagramCategory.equals(desc.getLanguage())) {
+				result.add(desc);
+			}
+		}
+		return result.toArray();
 	}
 	
 	/**
@@ -75,9 +102,6 @@ public class DiagramKindContentProvider implements IStructuredContentProvider {
 	 * @return the creation command registry
 	 */
 	private ICreationCommandRegistry getCreationCommandRegistry() {
-		if(creationCommandRegistry == null) {
-			creationCommandRegistry = new CreationCommandRegistry(org.eclipse.papyrus.core.Activator.PLUGIN_ID);
-		}
 		return creationCommandRegistry;
 	}
 }

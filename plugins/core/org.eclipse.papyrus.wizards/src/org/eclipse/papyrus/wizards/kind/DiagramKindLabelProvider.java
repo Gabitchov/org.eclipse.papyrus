@@ -28,7 +28,7 @@ public class DiagramKindLabelProvider implements ILabelProvider {
 
 	public Image getImage(Object element) {
 		// TODO use ImageRegistry to store images
-		if(element != null && element instanceof CreationCommandDescriptor) {
+		if(element instanceof CreationCommandDescriptor) {
 			ImageDescriptor image = ((CreationCommandDescriptor)element).getIcon();
 			// image is an optional attribute
 			if(image != null) {
@@ -39,7 +39,7 @@ public class DiagramKindLabelProvider implements ILabelProvider {
 	}
 
 	public String getText(Object element) {
-		if(element != null && element instanceof CreationCommandDescriptor) {
+		if(element instanceof CreationCommandDescriptor) {
 			return ((CreationCommandDescriptor)element).getLabel();
 		}
 		return UNDEFINED_ELEMENT;

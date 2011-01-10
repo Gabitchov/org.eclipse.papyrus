@@ -21,6 +21,7 @@ import org.eclipse.jface.viewers.CheckboxTableViewer;
 import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.papyrus.core.extension.commands.CreationCommandDescriptor;
+import org.eclipse.papyrus.core.extension.commands.CreationCommandRegistry;
 import org.eclipse.papyrus.core.extension.commands.ICreationCommand;
 import org.eclipse.papyrus.wizards.SettingsHelper;
 import org.eclipse.papyrus.wizards.kind.DiagramKindContentProvider;
@@ -259,7 +260,8 @@ public class SelectDiagramKindPage extends WizardPage {
 			}
 		});
 		diagramKindTableViewer = new CheckboxTableViewer(diagramKindTable);
-		diagramKindTableViewer.setContentProvider(new DiagramKindContentProvider());
+		CreationCommandRegistry creationCommandregistry = new CreationCommandRegistry(org.eclipse.papyrus.core.Activator.PLUGIN_ID);
+		diagramKindTableViewer.setContentProvider(new DiagramKindContentProvider(creationCommandregistry));
 		diagramKindTableViewer.setLabelProvider(new DiagramKindLabelProvider());
 		diagramKindTableViewer.setInput(category);
 	}
@@ -392,7 +394,7 @@ public class SelectDiagramKindPage extends WizardPage {
 		}
 	}
 	
-	public static interface CategoryProvider{
+	public static interface CategoryProvider {
 		String getCurrentCategory();
 	}
 
