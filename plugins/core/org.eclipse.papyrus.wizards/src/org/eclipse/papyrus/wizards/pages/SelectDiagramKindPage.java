@@ -71,27 +71,29 @@ public class SelectDiagramKindPage extends WizardPage {
 
 	private final boolean allowTemplates;
 	
-	private final CreationCommandRegistry myCreationCommandRegistry;
+	private final ICreationCommandRegistry myCreationCommandRegistry;
+	
+	public static final ICreationCommandRegistry DEFAULT_CREATION_COMMAND_REGISTRY = new CreationCommandRegistry(org.eclipse.papyrus.core.Activator.PLUGIN_ID);
 
 	/**
 	 * Instantiates a new select diagram kind page.
 	 * 
 	 */
 	public SelectDiagramKindPage(CategoryProvider categoryProvider) {
-		this(true, categoryProvider);
+		this(true, categoryProvider, DEFAULT_CREATION_COMMAND_REGISTRY);
 	}
 
 	/**
 	 * Instantiates a new select diagram kind page.
 	 * 
 	 */
-	public SelectDiagramKindPage(boolean allowTemplates, CategoryProvider categoryProvider) {
+	public SelectDiagramKindPage(boolean allowTemplates, CategoryProvider categoryProvider, ICreationCommandRegistry creationCommandRegistry) {
 		super("Select kind of diagram");
 		setTitle("Initialization information");
 		setDescription("Select name and kind of the diagram");
 		this.allowTemplates = allowTemplates;
 		myCategoryProvider = categoryProvider;
-		myCreationCommandRegistry = new CreationCommandRegistry(org.eclipse.papyrus.core.Activator.PLUGIN_ID);
+		myCreationCommandRegistry = creationCommandRegistry;
 	}
 
 	/**
@@ -269,10 +271,6 @@ public class SelectDiagramKindPage extends WizardPage {
 		diagramKindTableViewer.setContentProvider(new DiagramKindContentProvider(getCreationCommandRegistry()));
 		diagramKindTableViewer.setLabelProvider(createDiagramKindLabelProvider());
 		diagramKindTableViewer.setInput(category);
-	}
-	
-	protected ICreationCommandRegistry createCreationCommandRegistry() {
-		return new CreationCommandRegistry(org.eclipse.papyrus.core.Activator.PLUGIN_ID);
 	}
 	
 	protected IBaseLabelProvider createDiagramKindLabelProvider() {

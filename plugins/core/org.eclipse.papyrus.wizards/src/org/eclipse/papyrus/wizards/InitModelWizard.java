@@ -70,7 +70,7 @@ public class InitModelWizard extends CreateModelWizard {
 					return getDiagramCategoryId();
 				}
 				
-			});
+			}, SelectDiagramKindPage.DEFAULT_CREATION_COMMAND_REGISTRY);
 		};
 		return super.createSelectDiagramKindPage();
 	}
