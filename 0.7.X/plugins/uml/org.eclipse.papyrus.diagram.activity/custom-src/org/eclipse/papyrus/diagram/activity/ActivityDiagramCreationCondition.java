@@ -13,8 +13,6 @@ package org.eclipse.papyrus.diagram.activity;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.core.extension.commands.PerspectiveContextDependence;
 import org.eclipse.uml2.uml.Activity;
-import org.eclipse.uml2.uml.BehavioredClassifier;
-import org.eclipse.uml2.uml.Package;
 
 /**
  * ActivityDiagramCreationCondition class allows to check if an Activity diagram can be added to the
@@ -27,7 +25,7 @@ public class ActivityDiagramCreationCondition extends PerspectiveContextDependen
 	 */
 	public boolean create(EObject selectedElement) {
 		if(super.create(selectedElement)) {
-			return selectedElement instanceof Activity || selectedElement instanceof Package || selectedElement instanceof BehavioredClassifier;
+			return selectedElement instanceof Activity;
 		}
 		return false;
 	}

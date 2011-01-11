@@ -28,6 +28,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
@@ -43,6 +45,7 @@ import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.core.utils.BusinessModelResolver;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
@@ -112,45 +115,17 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 		}
 
 		if(name != null) {
-			// Get the uml element to which the newly created diagram will be attached.
-			// Create the diagram
-			final Resource modelResource = diResourceSet.getModelResource();
-			final Resource diagramResource = diResourceSet.getNotationResource();
-			final Resource diResource = diResourceSet.getDiResource();
-			final String diagramName = name;
-			// TODO: get the appropriate value from diResourceSet
-			TransactionalEditingDomain editingDomain = diResourceSet.getTransactionalEditingDomain();
-
-			AbstractTransactionalCommand command = new AbstractTransactionalCommand(editingDomain,
-					Messages.AbstractPapyrusGmfCreateDiagramCommandHandler_CreateDiagramCommandLabel,
-					Collections.EMPTY_LIST) {
-
-				@Override
-				protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
-						throws ExecutionException {
-
-					CommandResult commandResult = CommandResult.newErrorCommandResult("Error during diagram creation");
-					EObject model = container;
-					if(model == null) {
-						model = getRootElement(modelResource);
-						attachModelToResource(model, modelResource);
-					}
-
-					Diagram diagram = createDiagram(diagramResource, model, diagramName);
-
-					if(diagram != null) {
-						openDiagram(diResource, diagram);
-						commandResult = CommandResult.newOKCommandResult();
-					}
-					return commandResult;
-				}
-			};
 			try {
-				OperationHistoryFactory.getOperationHistory().execute(command, new NullProgressMonitor(), null);
+				CompositeCommand cmd = new CompositeCommand("Create diagram");
+				ICommand createCmd = getCreateDiagramCommand(diResourceSet, container, name);
+				cmd.add(createCmd);
+				cmd.add(new OpenDiagramCommand(diResourceSet.getAssociatedDiResource(container), diResourceSet.getTransactionalEditingDomain(), createCmd));
+
+				OperationHistoryFactory.getOperationHistory().execute(cmd, new NullProgressMonitor(), null);
 			} catch (ExecutionException e) {
 				e.printStackTrace();
 				Activator.getInstance().logError(
-						Messages.AbstractPapyrusGmfCreateDiagramCommandHandler_UnableCreateModelAndDiagram, e);
+					Messages.AbstractPapyrusGmfCreateDiagramCommandHandler_UnableCreateModelAndDiagram, e);
 			}
 		}
 	}
@@ -166,9 +141,7 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 					rootElement = (EObject)root;
 			}
 		}
-//		else {
-//			rootElement = createRootElement();
-//		}
+
 		return rootElement;
 	}
 
@@ -178,19 +151,6 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	protected void attachModelToResource(EObject root, Resource resource) {
 		resource.getContents().add(root);
 	}
-	/**
-	 * Open the specified diagram.
-	 * 
-	 * @param diResource
-	 * @param diagram
-	 */
-	protected void openDiagram(Resource diResource, Diagram diagram) {
-		// Lookup Editor ContentProvider
-
-		EditorUtils.getIPageMngr(diResource).openPage(diagram);
-
-	}
-
 
 	/**
 	 * @return
@@ -259,8 +219,8 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 		if(diagram != null) {
 			diagram.setName(name);
 			diagram.setElement(owner);
-			diagramResource.getContents().add(diagram);
 			initializeDiagram(diagram);
+			diagramResource.getContents().add(diagram);
 		}
 		return diagram;
 	}
@@ -304,16 +264,54 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	/**
 	 * {@inheritDoc}
 	 */
-	public void createDiagram(final DiResourceSet diResourceSet, final EObject container, final String name) {
+	public void createDiagram(final DiResourceSet diResourceSet, final EObject container, final String diagramName) {
 		TransactionalEditingDomain transactionalEditingDomain = diResourceSet.getTransactionalEditingDomain();
 		RecordingCommand command = new RecordingCommand(transactionalEditingDomain) {
 
 			@Override
 			protected void doExecute() {
-				runAsTransaction(diResourceSet, container, name);
+				runAsTransaction(diResourceSet, container, diagramName);
 			}
 		};
 		transactionalEditingDomain.getCommandStack().execute(command);
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	public ICommand getCreateDiagramCommand(final DiResourceSet diResourceSet, final EObject container, final String diagramName) {
+		// Get the uml element to which the newly created diagram will be attached.
+		// Create the diagram
+		final Resource modelResource = diResourceSet.getAssociatedModelResource(container);
+		final Resource notationResource = diResourceSet.getAssociatedNotationResource(container);
+		final Resource diResource = diResourceSet.getAssociatedDiResource(container);
+		final TransactionalEditingDomain editingDomain = diResourceSet.getTransactionalEditingDomain();
+
+		return new AbstractTransactionalCommand(editingDomain,
+				Messages.AbstractPapyrusGmfCreateDiagramCommandHandler_CreateDiagramCommandLabel,
+				Collections.EMPTY_LIST) {
+
+			@Override
+			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
+					throws ExecutionException {
+
+				CommandResult commandResult = CommandResult.newErrorCommandResult("Error during diagram creation");
+				EObject model = container;
+				if(model == null) {
+					model = getRootElement(modelResource);
+					attachModelToResource(model, modelResource);
+				}
+
+				Diagram diagram = createDiagram(notationResource, model, diagramName);
+
+				if(diagram != null) {
+					IPageMngr pageMngr = EditorUtils.getIPageMngr(diResource);
+					pageMngr.addPage(diagram);
+					commandResult = CommandResult.newOKCommandResult(diagram);
+				}
+				return commandResult;
+			}
+		};
 	}
 
 	/**

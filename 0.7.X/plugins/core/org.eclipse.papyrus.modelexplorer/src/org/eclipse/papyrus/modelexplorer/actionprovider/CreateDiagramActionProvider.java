@@ -11,22 +11,26 @@
  *******************************************************************************/
 package org.eclipse.papyrus.modelexplorer.actionprovider;
 
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.papyrus.core.extension.commands.CreationCommandDescriptor;
 import org.eclipse.papyrus.core.extension.commands.CreationCommandRegistry;
 import org.eclipse.papyrus.core.extension.commands.ICreationCommandRegistry;
+import org.eclipse.papyrus.core.navigation.ExistingNavigableElement;
+import org.eclipse.papyrus.core.navigation.NavigableElement;
+import org.eclipse.papyrus.core.navigation.NavigationHelper;
 import org.eclipse.papyrus.modelexplorer.actions.CreateDiagramAction;
 
 /**
  * Provider used to create a new diagram actions
  * 
- * @deprecated
  */
 public class CreateDiagramActionProvider extends AbstractSubmenuActionProvider {
-
-	ICreationCommandRegistry creationCommandRegistry;
 
 	/**
 	 * {@inheritDoc}
@@ -35,24 +39,38 @@ public class CreateDiagramActionProvider extends AbstractSubmenuActionProvider {
 	public void fillContextMenu(IMenuManager menu) {
 		Object selectedElement = resolveSemanticObject(getFirstSelectedElement());
 
-		if(selectedElement != null && selectedElement instanceof EObject) {
+		if(selectedElement instanceof EObject) {
 			EObject eobject = (EObject)selectedElement;
 			MenuManager newDiagramMenu = new MenuManager("New Diagram");
-			menu.add(newDiagramMenu);
-			for(CreationCommandDescriptor desc : getCreationCommandRegistry().getCommandDescriptors()) {
-				if(desc.getCondition() == null || desc.getCondition().create(eobject)) {
-					CreateDiagramAction createDiagramAction = new CreateDiagramAction(eobject, desc);
-					newDiagramMenu.add(createDiagramAction);
+			menu.insertAfter("additions", newDiagramMenu);
+
+			List<NavigableElement> navElements =  NavigationHelper.getInstance().getAllNavigableElements(eobject);
+			// this will sort by depth so existing elements come first
+			Collections.sort(navElements);
+
+			// this set keeps track of already used creation commands so that only one entry for each diagram can appears
+			HashSet<CreationCommandDescriptor> alreadyUsedCommandDescs = new HashSet<CreationCommandDescriptor>();
+
+			for (final NavigableElement navElement : navElements) {
+				final EObject element = navElement.getElement();
+				// if it is not a creation of element only authorize the current element as existing element
+				if (!(navElement instanceof ExistingNavigableElement && !eobject.equals(element))) {
+					for(final CreationCommandDescriptor desc : getCreationCommandRegistry().getCommandDescriptors()) {
+						if (!alreadyUsedCommandDescs.contains(desc)) {
+							if(desc.getCondition() == null || desc.getCondition().create(element)) {
+								CreateDiagramAction createDiagramAction = new CreateDiagramAction(navElement, desc);
+								newDiagramMenu.add(createDiagramAction);
+								alreadyUsedCommandDescs.add(desc);
+							}
+						}
+					}
 				}
 			}
 		}
 	}
 
-	private ICreationCommandRegistry getCreationCommandRegistry() {
-		if(creationCommandRegistry == null) {
-			this.creationCommandRegistry = new CreationCommandRegistry(org.eclipse.papyrus.core.Activator.PLUGIN_ID);
-		}
-		return creationCommandRegistry;
+	private static ICreationCommandRegistry getCreationCommandRegistry() {
+		return CreationCommandRegistry.getInstance(org.eclipse.papyrus.core.Activator.PLUGIN_ID);
 	}
 
 }

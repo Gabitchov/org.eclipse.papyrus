@@ -2145,66 +2145,12 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 
 
 
-		case ActorInComponentEditPart.VISUAL_ID:
+		case ComponentInPackageEditPart.VISUAL_ID:
 		{
 
 
 			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForActorInComponentEditPart(view, parentElement);
-
-		}
-
-		case GeneralizationEditPart.VISUAL_ID:
-		{
-
-
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForGeneralizationEditPart(view, parentElement);
-
-		}
-
-		case ConstraintInComponentEditPart.VISUAL_ID:
-		{
-
-
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForConstraintInComponentEditPart(view, parentElement);
-
-		}
-
-		case ActorInPackageEditPart.VISUAL_ID:
-		{
-
-
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForActorInPackageEditPart(view, parentElement);
-
-		}
-
-		case ConstraintEditPartTN.VISUAL_ID:
-		{
-
-
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForConstraintEditPartTN(view, parentElement);
-
-		}
-
-		case CommentEditPartCN.VISUAL_ID:
-		{
-
-
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForCommentEditPartCN(view, parentElement);
-
-		}
-
-		case UseCaseEditPartTN.VISUAL_ID:
-		{
-
-
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForUseCaseEditPartTN(view, parentElement);
+			return getViewChildrenForComponentInPackageEditPart(view, parentElement);
 
 		}
 
@@ -2217,30 +2163,30 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 
 		}
 
-		case UseCaseInComponentEditPart.VISUAL_ID:
+		case ActorInComponentEditPart.VISUAL_ID:
 		{
 
 
 			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForUseCaseInComponentEditPart(view, parentElement);
+			return getViewChildrenForActorInComponentEditPart(view, parentElement);
 
 		}
 
-		case CommentEditPartTN.VISUAL_ID:
+		case ConstraintEditPartTN.VISUAL_ID:
 		{
 
 
 			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForCommentEditPartTN(view, parentElement);
+			return getViewChildrenForConstraintEditPartTN(view, parentElement);
 
 		}
 
-		case PackageEditPartTN.VISUAL_ID:
+		case CommentAnnotatedElementEditPart.VISUAL_ID:
 		{
 
 
 			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForPackageEditPartTN(view, parentElement);
+			return getViewChildrenForCommentAnnotatedElementEditPart(view, parentElement);
 
 		}
 
@@ -2262,120 +2208,39 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 
 		}
 
-		case UseCaseInPackageEditPart.VISUAL_ID:
+		case ExtendEditPart.VISUAL_ID:
 		{
 
 
 			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForUseCaseInPackageEditPart(view, parentElement);
+			return getViewChildrenForExtendEditPart(view, parentElement);
 
 		}
 
-		case PackageImportEditPart.VISUAL_ID:
+		case PackageEditPartTN.VISUAL_ID:
 		{
 
 
 			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForPackageImportEditPart(view, parentElement);
+			return getViewChildrenForPackageEditPartTN(view, parentElement);
 
 		}
 
-		case AssociationEditPart.VISUAL_ID:
+		case AbstractionEditPart.VISUAL_ID:
 		{
 
 
 			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForAssociationEditPart(view, parentElement);
+			return getViewChildrenForAbstractionEditPart(view, parentElement);
 
 		}
 
-		case ComponentEditPartTN.VISUAL_ID:
+		case ActorInPackageEditPart.VISUAL_ID:
 		{
 
 
 			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForComponentEditPartTN(view, parentElement);
-
-		}
-
-		case DependencyEditPart.VISUAL_ID:
-		{
-
-
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForDependencyEditPart(view, parentElement);
-
-		}
-
-		case UsageEditPart.VISUAL_ID:
-		{
-
-
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForUsageEditPart(view, parentElement);
-
-		}
-
-		case PackageMergeEditPart.VISUAL_ID:
-		{
-
-
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForPackageMergeEditPart(view, parentElement);
-
-		}
-
-		case IncludeEditPart.VISUAL_ID:
-		{
-
-
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForIncludeEditPart(view, parentElement);
-
-		}
-
-		case RealizationEditPart.VISUAL_ID:
-		{
-
-
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForRealizationEditPart(view, parentElement);
-
-		}
-
-		case ConstraintInPackageEditPart.VISUAL_ID:
-		{
-
-
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForConstraintInPackageEditPart(view, parentElement);
-
-		}
-
-		case ComponentInComponentEditPart.VISUAL_ID:
-		{
-
-
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForComponentInComponentEditPart(view, parentElement);
-
-		}
-
-		case ActorAsRectangleEditPartTN.VISUAL_ID:
-		{
-
-
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForActorAsRectangleEditPartTN(view, parentElement);
-
-		}
-
-		case CommentAnnotatedElementEditPart.VISUAL_ID:
-		{
-
-
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForCommentAnnotatedElementEditPart(view, parentElement);
+			return getViewChildrenForActorInPackageEditPart(view, parentElement);
 
 		}
 
@@ -2388,21 +2253,21 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 
 		}
 
-		case ExtendEditPart.VISUAL_ID:
+		case PackageMergeEditPart.VISUAL_ID:
 		{
 
 
 			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForExtendEditPart(view, parentElement);
+			return getViewChildrenForPackageMergeEditPart(view, parentElement);
 
 		}
 
-		case PackageEditPartCN.VISUAL_ID:
+		case PackageImportEditPart.VISUAL_ID:
 		{
 
 
 			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForPackageEditPartCN(view, parentElement);
+			return getViewChildrenForPackageImportEditPart(view, parentElement);
 
 		}
 
@@ -2415,15 +2280,6 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 
 		}
 
-		case ComponentInPackageEditPart.VISUAL_ID:
-		{
-
-
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForComponentInPackageEditPart(view, parentElement);
-
-		}
-
 		case ExtensionPointEditPart.VISUAL_ID:
 		{
 
@@ -2433,12 +2289,156 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 
 		}
 
-		case AbstractionEditPart.VISUAL_ID:
+		case CommentEditPartCN.VISUAL_ID:
 		{
 
 
 			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForAbstractionEditPart(view, parentElement);
+			return getViewChildrenForCommentEditPartCN(view, parentElement);
+
+		}
+
+		case ComponentEditPartTN.VISUAL_ID:
+		{
+
+
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForComponentEditPartTN(view, parentElement);
+
+		}
+
+		case ActorAsRectangleEditPartTN.VISUAL_ID:
+		{
+
+
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForActorAsRectangleEditPartTN(view, parentElement);
+
+		}
+
+		case UseCaseInPackageEditPart.VISUAL_ID:
+		{
+
+
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForUseCaseInPackageEditPart(view, parentElement);
+
+		}
+
+		case DependencyEditPart.VISUAL_ID:
+		{
+
+
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForDependencyEditPart(view, parentElement);
+
+		}
+
+		case AssociationEditPart.VISUAL_ID:
+		{
+
+
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForAssociationEditPart(view, parentElement);
+
+		}
+
+		case RealizationEditPart.VISUAL_ID:
+		{
+
+
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForRealizationEditPart(view, parentElement);
+
+		}
+
+		case UsageEditPart.VISUAL_ID:
+		{
+
+
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForUsageEditPart(view, parentElement);
+
+		}
+
+		case IncludeEditPart.VISUAL_ID:
+		{
+
+
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForIncludeEditPart(view, parentElement);
+
+		}
+
+		case ConstraintInPackageEditPart.VISUAL_ID:
+		{
+
+
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForConstraintInPackageEditPart(view, parentElement);
+
+		}
+
+		case UseCaseInComponentEditPart.VISUAL_ID:
+		{
+
+
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForUseCaseInComponentEditPart(view, parentElement);
+
+		}
+
+		case CommentEditPartTN.VISUAL_ID:
+		{
+
+
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForCommentEditPartTN(view, parentElement);
+
+		}
+
+		case ConstraintInComponentEditPart.VISUAL_ID:
+		{
+
+
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForConstraintInComponentEditPart(view, parentElement);
+
+		}
+
+		case UseCaseEditPartTN.VISUAL_ID:
+		{
+
+
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForUseCaseEditPartTN(view, parentElement);
+
+		}
+
+		case ComponentInComponentEditPart.VISUAL_ID:
+		{
+
+
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForComponentInComponentEditPart(view, parentElement);
+
+		}
+
+		case PackageEditPartCN.VISUAL_ID:
+		{
+
+
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForPackageEditPartCN(view, parentElement);
+
+		}
+
+		case GeneralizationEditPart.VISUAL_ID:
+		{
+
+
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForGeneralizationEditPart(view, parentElement);
 
 		}
 

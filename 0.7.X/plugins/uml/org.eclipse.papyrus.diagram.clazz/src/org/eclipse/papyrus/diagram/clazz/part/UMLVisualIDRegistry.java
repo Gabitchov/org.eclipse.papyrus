@@ -2522,7 +2522,7 @@ public class UMLVisualIDRegistry {
 		root.addNode(7035, viewInfo);
 
 
-		viewInfo = new BaseViewInfo(3032, ViewInfo.Node, "org.eclipse.emf.ecore.impl.DynamicEObjectImpl@1174f7a (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1630c97 (name: OclInvalid_Class) (instanceClassName: null) (abstract: false, interface: false))");
+		viewInfo = new BaseViewInfo(3032, ViewInfo.Node, "org.eclipse.emf.ecore.impl.DynamicEObjectImpl@5a71fd (eClass: org.eclipse.emf.ecore.impl.EClassImpl@1f1a588 (name: OclInvalid_Class) (instanceClassName: null) (abstract: false, interface: false))");
 
 		root.addNode(2008, viewInfo);
 

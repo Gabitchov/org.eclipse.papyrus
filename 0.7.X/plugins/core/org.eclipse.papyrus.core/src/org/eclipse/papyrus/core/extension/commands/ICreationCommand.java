@@ -11,6 +11,7 @@
 package org.eclipse.papyrus.core.extension.commands;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 
 /**
@@ -22,15 +23,27 @@ import org.eclipse.papyrus.core.utils.DiResourceSet;
 public interface ICreationCommand {
 
 	/**
-	 * Create a new diagram in diResourceSet with the given name.
+	 * Create a new diagram in diResourceSet with the given name and open it.
 	 * 
 	 * @param diResourceSet
 	 *        the resourceSet containing all diagrams
 	 * @param container
 	 *        of the diagram, if container is null, the diagram is contained by the top level container
-	 * @param name
+	 * @param diagramName
 	 *        the name of the new diagram
 	 */
-	public void createDiagram(DiResourceSet diResourceSet, EObject container, String name);
+	public void createDiagram(DiResourceSet diResourceSet, EObject container, String diagramName);
+	
+	/**
+	 * Get a command to create a new diagram in diResourceSet with the given name.
+	 * 
+	 * @param diResourceSet
+	 *        the resourceSet containing all diagrams
+	 * @param container
+	 *        of the diagram, if container is null, the diagram is contained by the top level container
+	 * @param diagramName
+	 *        the name of the new diagram
+	 */
+	public ICommand getCreateDiagramCommand(final DiResourceSet diResourceSet, final EObject container, final String diagramName);
 
 }

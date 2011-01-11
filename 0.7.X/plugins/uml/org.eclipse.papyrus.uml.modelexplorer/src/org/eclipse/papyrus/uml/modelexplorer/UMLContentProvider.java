@@ -18,10 +18,8 @@ import java.util.Iterator;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.papyrus.modelexplorer.MoDiscoContentProvider;
-import org.eclipse.papyrus.resource.ModelSet;
-import org.eclipse.papyrus.resource.uml.UmlModel;
-import org.eclipse.papyrus.resource.uml.UmlUtils;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
@@ -29,25 +27,14 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  * 
  */
 public class UMLContentProvider extends MoDiscoContentProvider {
-
-
+	
 	/**
-	 * Return the initial values from the input.
-	 * Input should be of type {@link UmlModel}.
-	 * 
-	 * @see org.eclipse.gmt.modisco.infra.browser.uicore.CustomizableModelContentProvider#getRootElements(java.lang.Object)
-	 * 
-	 * @param inputElement
+	 * Get the roots elements from the model resource provided as input.
 	 * @return
 	 */
-	@Override
-	protected EObject[] getRootElements(ModelSet modelSet) {
-		UmlModel umlModel = (UmlUtils.getUmlModel(modelSet));
+	protected EObject[] getRootElements(Resource modelResource) {
 
-		if(umlModel == null)
-			return null;
-
-		EList<EObject> contents = umlModel.getResource().getContents();
+		EList<EObject> contents = modelResource.getContents();
 		ArrayList<EObject> result = new ArrayList<EObject>();
 		Iterator<EObject> iterator = contents.iterator();
 		while(iterator.hasNext()) {

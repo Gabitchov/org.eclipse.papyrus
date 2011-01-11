@@ -19,6 +19,7 @@ import java.util.Set;
 
 import org.eclipse.papyrus.diagram.sequence.expressions.UMLOCLFactory;
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.umlutils.NamedElementUtil;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.ConsiderIgnoreFragment;
@@ -567,38 +568,7 @@ public class ElementInitializers {
 		return base;
 	}
 
-	@SuppressWarnings("rawtypes")
 	public static String getNextNumberedName(Collection currentElements, String base) {
-		int nextNumber = -1;
-
-		for(Object o : currentElements) {
-			if(o instanceof NamedElement) {
-				String name = ((NamedElement)o).getName();
-				if(name != null && name.startsWith(base)) {
-					String end = name.substring(base.length());
-					int nextNumberTmp = -1;
-
-					if(end.trim().equals("")) {
-						nextNumberTmp = 0;
-					} else {
-						try {
-							nextNumberTmp = Integer.parseInt(end) + 1;
-						} catch (NumberFormatException ex) {
-							nextNumberTmp = -1;
-						}
-					}
-
-					if(nextNumberTmp > nextNumber) {
-						nextNumber = nextNumberTmp;
-					}
-				}
-			}
-		}
-
-		if(nextNumber == -1) {
-			return base;
-		} else {
-			return base + nextNumber;
-		}
+		return NamedElementUtil.getDefaultNameWithIncrementFromBase(base, currentElements);
 	}
 }
