@@ -7,7 +7,10 @@
 
 	<rm:locator pattern="^org\.eclipse\.mdt\.papyrus\.extra\.releng.*" searchPathRef="releng"/>
 	<rm:locator pattern="^org\.eclipse\.papyrus\.extra\.build.*" searchPathRef="releng"/>
-	<rm:locator pattern="^org\.eclipse\.papyrus.*" searchPathRef="sources"/>
+	<rm:locator pattern="^org\.eclipse\.papyrus\.marte.*" searchPathRef="sources"/>
+	<rm:locator pattern="^org\.eclipse\.papyrus\.constraintwithvsl.*" searchPathRef="sources"/>
+	<rm:locator pattern="^org\.eclipse\.papyrus\.properties\.tabbed\.marte" searchPathRef="sources"/>
+	<rm:locator pattern="^org\.eclipse\.papyrus\.stereotypeapplicationwithvsl.*" searchPathRef="sources"/>
 
 	<rm:locator searchPathRef="orbit" failOnError="false"/> <!-- MUST COME BEFORE MODELING! -->
 	<rm:locator searchPathRef="platform.binaries"/>
