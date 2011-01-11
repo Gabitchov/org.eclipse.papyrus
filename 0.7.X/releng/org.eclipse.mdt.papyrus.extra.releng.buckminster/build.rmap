@@ -92,7 +92,8 @@
 
 	<rm:searchPath name="platform.binaries">
 		<rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-			<rm:uri format="https://hudson.eclipse.org/hudson/job/cbi-papyrus-0.7-nightly/ws/result/site.p2/" >
+			<rm:uri format="{0}/modeling/mdt/papyrus/updates/nightly/helios" >
+				<bc:propertyRef key="eclipse.downloads" />
 			</rm:uri>
 		</rm:provider>
 		
