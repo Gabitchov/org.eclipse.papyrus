@@ -1,6 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Documentation View
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
 Bundle-SymbolicName: org.eclipse.papyrus.documentation.view;singleton:=true
 Bundle-Version: 0.7.2.qualifier
 Bundle-Activator: org.eclipse.papyrus.documentation.view.DocViewPlugin
@@ -11,8 +12,9 @@ Require-Bundle: org.eclipse.core.expressions;visibility:=reexport,
  org.eclipse.jface.text,
  org.eclipse.core.resources,
  org.eclipse.epf.richtext,
- org.eclipse.papyrus.documentation;visibility:=reexport
+ org.eclipse.papyrus.documentation;bundle-version="0.7.2";visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.papyrus.documentation.view
 Import-Package: org.eclipse.ui.views.contentoutline
+Bundle-Vendor: %providerName
