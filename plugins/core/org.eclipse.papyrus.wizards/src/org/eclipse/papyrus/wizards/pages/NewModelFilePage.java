@@ -93,7 +93,7 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 	 *        the extension
 	 * @return the unique file name
 	 */
-	public static String getUniqueFileName(IPath containerFullPath, String fileName, String extension) {
+	protected static String getUniqueFileName(IPath containerFullPath, String fileName, String extension) {
 		if(extension == null) {
 			extension = "";
 		}
