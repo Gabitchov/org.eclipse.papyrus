@@ -1,8 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Papyrus Standard Profile
+Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.uml.profile;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 0.7.2.qualifier
 Require-Bundle: org.eclipse.uml2.uml
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.papyrus.uml.profile
+Bundle-Vendor: %providerName
