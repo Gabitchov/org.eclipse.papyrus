@@ -44,6 +44,11 @@ public class TestInitModelWizard extends TestNewModelWizardBase {
 				return expectedExtension;
 			}
 			
+			@Override
+			protected String getDiagramFileName(IFile domainModel) {
+				return "tanya"; // arbitrary extension to avoid NPE
+			}
+			
 		};
  
 		initWizardDialog(wizard);
@@ -65,7 +70,8 @@ public class TestInitModelWizard extends TestNewModelWizardBase {
 	}
 	
 	public void testDiagramFileExtenstionForUML() {
-		final String expectedExtension = "profile.di";
+		// 333849 - [Wizard] Init Diagram: Respect file extension of the UML model
+		final String expectedExtension = "di";
 		InitModelWizard wizard = new InitModelWizard() {
 			@Override
 			protected boolean isCreateFromExistingDomainModel() {
@@ -73,8 +79,14 @@ public class TestInitModelWizard extends TestNewModelWizardBase {
 			}
 			
 			@Override
+			protected String getDiagramFileName(IFile domainModel) {
+				return "tanya"; // arbitrary extension to avoid NPE
+			}
+			
+			@Override
 			protected String getDiagramCategoryId() {
-				return CreateProfileModelCommand.COMMAND_ID;
+				// profile has custom extension
+				return CreateProfileModelCommand.COMMAND_ID; 
 			}
 			
 		};
