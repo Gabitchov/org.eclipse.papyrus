@@ -73,7 +73,7 @@ public class CreateStateMachineDiagramCommand extends CreateBehavioredClassifier
 	 */
 	@Override
 	protected String getDefaultDiagramName() {
-		return openDiagramNameDialog("NewDiagram");
+		return "SmDiagram";
 	}
 
 	/**

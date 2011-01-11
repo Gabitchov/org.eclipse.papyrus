@@ -57,7 +57,7 @@ public class CreateParametricDiagramCommand extends AbstractPapyrusGmfCreateDiag
 
 	@Override
 	protected String getDefaultDiagramName() {
-		return super.openDiagramNameDialog("ParametricDiagram");
+		return "ParametricDiagram";
 	}
 
 //	@Override

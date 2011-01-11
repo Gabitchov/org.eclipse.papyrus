@@ -51,7 +51,7 @@ public class OpenDiagramCommand extends AbstractTransactionalCommand {
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		try {
-			if (diagramToOpen == null) {
+			if (diagramToOpen == null && previousCreateDiagramCommand != null) {
 				diagramToOpen = (Diagram)previousCreateDiagramCommand.getCommandResult().getReturnValue();
 			}
 

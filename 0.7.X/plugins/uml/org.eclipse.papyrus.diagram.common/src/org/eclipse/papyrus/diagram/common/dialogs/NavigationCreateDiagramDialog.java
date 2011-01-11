@@ -127,9 +127,9 @@ public class NavigationCreateDiagramDialog extends Dialog {
 				CCombo diagramTypeCombo = (CCombo)tableItem.getData(DIAGRAM_TYPE_COMBO_KEY);
 				int diagramTypeSelectionIndex = diagramTypeCombo.getSelectionIndex();
 
-				if(elementTypeSelectionIndex != -1 && diagramTypeSelectionIndex != -1) {
+				if(tableItem.getChecked() && elementTypeSelectionIndex != -1 && diagramTypeSelectionIndex != -1) {
 					List<NavigableElement> possibleElements = (List<NavigableElement>)tableItem.getData(CREATION_ENTRY_KEY);
-					final NavigableElement navElement = possibleElements.get(elementTypeSelectionIndex);
+					NavigableElement navElement = possibleElements.get(elementTypeSelectionIndex);
 
 					CreationCommandDescriptor desc = possibleCreations.get(navElement).get(diagramTypeSelectionIndex);
 
@@ -149,7 +149,7 @@ public class NavigationCreateDiagramDialog extends Dialog {
 
 	@Override
 	protected Control createDialogArea(Composite parent) {
-		table = new Table(parent, SWT.BORDER | SWT.V_SCROLL);
+		table = new Table(parent, SWT.BORDER | SWT.V_SCROLL | SWT.CHECK);
 		table.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
 		table.setHeaderVisible(true);
 		table.setLinesVisible(true);
@@ -191,6 +191,7 @@ public class NavigationCreateDiagramDialog extends Dialog {
 
 
 			TableItem tableItem = new TableItem(table, SWT.NONE);
+			tableItem.setChecked(false);
 			tableItem.setData(CREATION_ENTRY_KEY, successors);
 
 			tableItem.setText(0, groupKey.navigationType.toString());
@@ -213,6 +214,7 @@ public class NavigationCreateDiagramDialog extends Dialog {
 				elementTypeCombo.add(typeName);
 				elementTypeCombo.setData(typeName, successor);
 			}
+			elementTypeCombo.select(0);
 			elementTypeEditor.grabHorizontal = true;
 			elementTypeEditor.setEditor(elementTypeCombo, tableItem, 2);
 			tableItem.setData(ELEMENT_TYPE_COMBO_KEY, elementTypeCombo);
@@ -228,7 +230,7 @@ public class NavigationCreateDiagramDialog extends Dialog {
 					for(CreationCommandDescriptor desc : possibleCreations.get(successor)) {
 						diagramTypeCombo.add(desc.getLabel());
 					}
-
+					diagramTypeCombo.select(0);
 				}
 			});
 

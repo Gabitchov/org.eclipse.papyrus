@@ -37,7 +37,6 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.extension.commands.ICreationCommand;
 import org.eclipse.papyrus.core.services.ServiceException;
@@ -109,22 +108,16 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	 *        The eObject to which the diagram should be attached, if possible.
 	 */
 	protected void runAsTransaction(final DiResourceSet diResourceSet, final EObject container, String name) {
-		if(name == null) {
-			name = getDefaultDiagramName();
-		}
+		try {
+			CompositeCommand cmd = new CompositeCommand("Create diagram");
+			ICommand createCmd = getCreateDiagramCommand(diResourceSet, container, name);
+			cmd.add(createCmd);
+			cmd.add(new OpenDiagramCommand(diResourceSet.getAssociatedDiResource(container), diResourceSet.getTransactionalEditingDomain(), createCmd));
 
-		if(name != null) {
-			try {
-				CompositeCommand cmd = new CompositeCommand("Create diagram");
-				ICommand createCmd = getCreateDiagramCommand(diResourceSet, container, name);
-				cmd.add(createCmd);
-				cmd.add(new OpenDiagramCommand(diResourceSet.getAssociatedDiResource(container), diResourceSet.getTransactionalEditingDomain(), createCmd));
-
-				OperationHistoryFactory.getOperationHistory().execute(cmd, new NullProgressMonitor(), null);
-			} catch (ExecutionException e) {
-				e.printStackTrace();
-				Activator.getInstance().logError(Messages.AbstractPapyrusGmfCreateDiagramCommandHandler_UnableCreateModelAndDiagram, e);
-			}
+			OperationHistoryFactory.getOperationHistory().execute(cmd, new NullProgressMonitor(), null);
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+			Activator.getInstance().logError(Messages.AbstractPapyrusGmfCreateDiagramCommandHandler_UnableCreateModelAndDiagram, e);
 		}
 	}
 
@@ -244,14 +237,11 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	 * @return the entered diagram name
 	 */
 	protected String openDiagramNameDialog(final String defaultValue) {
-		String name = null;
 		InputDialog inputDialog = new InputDialog(Display.getCurrent().getActiveShell(), Messages.AbstractPapyrusGmfCreateDiagramCommandHandler_SelectNewDiagramName, Messages.AbstractPapyrusGmfCreateDiagramCommandHandler_NewDiagramName, defaultValue, null);
-		int ret = inputDialog.open();
-		if(ret == Window.OK) {
-			name = inputDialog.getValue();
-			if(name == null || name.length() == 0) {
-				name = defaultValue;
-			}
+		inputDialog.open();
+		String name = inputDialog.getValue();
+		if(name == null || name.length() == 0) {
+			name = defaultValue;
 		}
 		return name;
 	}
@@ -286,6 +276,13 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 				Resource notationResource = diResourceSet.getAssociatedNotationResource(container);
 				Resource diResource = diResourceSet.getAssociatedDiResource(container);
 
+				String name;
+				if(diagramName == null) {
+					name = openDiagramNameDialog(getDefaultDiagramName());
+				} else {
+					name = diagramName;
+				}
+
 				CommandResult commandResult = CommandResult.newErrorCommandResult("Error during diagram creation");
 				EObject model = container;
 				if(model == null) {
@@ -293,7 +290,7 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 					attachModelToResource(model, modelResource);
 				}
 
-				Diagram diagram = createDiagram(notationResource, model, diagramName);
+				Diagram diagram = createDiagram(notationResource, model, name);
 
 				if(diagram != null) {
 					IPageMngr pageMngr = EditorUtils.getIPageMngr(diResource);
