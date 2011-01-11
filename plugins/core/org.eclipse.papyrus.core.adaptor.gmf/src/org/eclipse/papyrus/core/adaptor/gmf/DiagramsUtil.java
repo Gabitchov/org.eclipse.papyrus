@@ -14,6 +14,7 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.gmf.runtime.emf.core.resources.GMFResource;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.core.extension.commands.ICreationCommand;
 import org.eclipse.papyrus.core.navigation.CreatedNavigableElement;
@@ -28,34 +29,32 @@ public class DiagramsUtil {
 	 * Gets the diagrams associated to element.
 	 * 
 	 * @param element
-	 * @param diResourceSet
+	 * @param resourceSet
 	 *        can be null, it will then try to retrieve it from the element.
 	 * @return the list of diagrams associated with the given element
 	 */
-	public static List<Diagram> getAssociatedDiagrams(EObject element, DiResourceSet diResourceSet) {
-		if(diResourceSet == null) {
+	public static List<Diagram> getAssociatedDiagrams(EObject element, ResourceSet resourceSet) {
+		if(resourceSet == null) {
 			if(element != null && element.eResource() != null) {
-				ResourceSet rs = element.eResource().getResourceSet();
-				if(rs instanceof DiResourceSet) {
-					diResourceSet = (DiResourceSet)rs;
-				}
+				resourceSet = element.eResource().getResourceSet();
 			}
 		}
 
-		if(diResourceSet != null) {
-			Resource notationResource = diResourceSet.getAssociatedNotationResource(element);
-			if(notationResource != null) {
-				LinkedList<Diagram> diagrams = new LinkedList<Diagram>();
-				for(EObject eObj : notationResource.getContents()) {
-					if(eObj instanceof Diagram) {
-						Diagram diagram = (Diagram)eObj;
-						if(element.equals(diagram.getElement())) {
-							diagrams.add(diagram);
+		if(resourceSet != null) {
+			LinkedList<Diagram> diagrams = new LinkedList<Diagram>();
+			for (Resource r : resourceSet.getResources()) {
+				if (r instanceof GMFResource) {
+					for(EObject eObj : r.getContents()) {
+						if(eObj instanceof Diagram) {
+							Diagram diagram = (Diagram)eObj;
+							if(element.equals(diagram.getElement())) {
+								diagrams.add(diagram);
+							}
 						}
 					}
 				}
-				return diagrams;
 			}
+			return diagrams;
 		}
 
 		return Collections.EMPTY_LIST;
