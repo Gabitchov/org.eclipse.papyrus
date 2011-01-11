@@ -136,7 +136,7 @@ public class SelectDiagramCategoryPage extends WizardPage {
 			return false;
 		}
 		IStatus status = ((CreateModelWizard)getWizard()).diagramCategoryChanged(getDiagramCategory());
-		switch (status.getCode()) {
+		switch (status.getSeverity()) {
 			case Status.ERROR: setErrorMessage(status.getMessage()); return false;
 			case Status.WARNING: setMessage(status.getMessage(), IMessageProvider.WARNING);
 			case Status.INFO: setMessage(status.getMessage(), IMessageProvider.INFORMATION);

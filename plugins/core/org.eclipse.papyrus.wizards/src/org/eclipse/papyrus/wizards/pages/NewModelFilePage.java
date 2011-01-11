@@ -17,6 +17,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.wizards.Activator;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 
@@ -70,11 +71,11 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 			setFileExtension(newExtension);
 
 			String message = String.format("The new diagram category requires a specific diagram file extension. " + "Thus, the diagram file has been renamed from %s to %s ", oldFileName, newFileName);
-			Status resultStatus = new Status(Status.INFO, "", message);
+			Status resultStatus = new Status(Status.INFO, Activator.PLUGIN_ID, message);
 
 			String errorMessage = getErrorMessage();
 			if(errorMessage != null) {
-				resultStatus = new Status(Status.ERROR, "", errorMessage);
+				resultStatus = new Status(Status.ERROR, Activator.PLUGIN_ID, errorMessage);
 			}
 			return resultStatus;
 		}
