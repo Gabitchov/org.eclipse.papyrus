@@ -2,6 +2,7 @@ package org.eclipse.papyrus.core.wizard;
 
 import org.eclipse.papyrus.sysml.diagram.common.commands.CreateSysMLModelCommand;
 import org.eclipse.papyrus.sysml.diagram.ui.NewSysMLModelWizard;
+import org.eclipse.papyrus.wizards.InitModelWizard;
 import org.eclipse.papyrus.wizards.pages.NewModelFilePage;
 import org.eclipse.papyrus.wizards.pages.SelectDiagramKindPage;
 import org.eclipse.ui.IWorkbenchWizard;
@@ -41,4 +42,19 @@ public class TestCreateSysMLModelWizard extends TestNewModelWizardBase {
 		assertEquals(CreateSysMLModelCommand.COMMAND_ID, actualCategory);
 	}
 
+	public void testDiagramFileExtenstion() {
+		final String expectedExtension = "di";
+		NewSysMLModelWizard wizard = new NewSysMLModelWizard() {
+			@Override
+			protected String getDiagramCategoryId() {
+				return CreateSysMLModelCommand.COMMAND_ID;
+			}
+			
+		};
+ 
+		initWizardDialog(wizard);
+		String actual = wizard.getDiagramFileExtension();
+		assertEquals(expectedExtension, actual);
+	}
+	
 }
