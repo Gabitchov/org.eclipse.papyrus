@@ -54,14 +54,14 @@ public class CreateCompositeDiagramCommand extends AbstractPapyrusGmfCreateDiagr
 	/**
 	 * Name of the Diagram
 	 */
-	protected static final String CSD_DEFAULT_NAME = "NewDiagram"; //$NON-NLS-1$
+	protected static final String CSD_DEFAULT_NAME = "CompositeDiagram"; //$NON-NLS-1$
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	protected String getDefaultDiagramName() {
-		return openDiagramNameDialog(CSD_DEFAULT_NAME);
+		return CSD_DEFAULT_NAME;
 	}
 
 	/**

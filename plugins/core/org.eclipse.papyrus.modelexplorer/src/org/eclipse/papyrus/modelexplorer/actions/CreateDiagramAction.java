@@ -56,7 +56,7 @@ public class CreateDiagramAction extends Action {
 		try {
 			DiResourceSet diResourceSet = EditorUtils.getDiResourceSet();
 			
-			CompositeCommand compositeCommand = DiagramsUtil.getLinkCreateAndOpenNavigableDiagram(navElement, commandDescriptor.getCommand(), "DefaultName", diResourceSet);
+			CompositeCommand compositeCommand = DiagramsUtil.getLinkCreateAndOpenNavigableDiagram(navElement, commandDescriptor.getCommand(), null, diResourceSet);
 
 			diResourceSet.getTransactionalEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(compositeCommand));
 		} catch (Exception e) {

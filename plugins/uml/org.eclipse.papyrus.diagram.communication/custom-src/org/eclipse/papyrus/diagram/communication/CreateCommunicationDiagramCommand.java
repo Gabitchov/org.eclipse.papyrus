@@ -31,26 +31,22 @@ public class CreateCommunicationDiagramCommand extends CreateBehavioredClassifie
 
 	@Override
 	protected EClass getBehaviorEClass() {
-		// TODO Auto-generated method stub
 		return UMLPackage.eINSTANCE.getInteraction();
 	}
 
 	@Override
 	protected String getDiagramNotationID() {
-		// TODO Auto-generated method stub
 		return ModelEditPart.MODEL_ID;
 	}
 
 	@Override
 	protected PreferencesHint getPreferenceHint() {
-		// TODO Auto-generated method stub
 		return UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT;
 	}
 
 	@Override
 	protected String getDefaultDiagramName() {
-		// TODO Auto-generated method stub
-		return super.openDiagramNameDialog("NewDiagram"); //$NON-NLS-1$
+		return "ComDiagram"; //$NON-NLS-1$
 	}
 
 
