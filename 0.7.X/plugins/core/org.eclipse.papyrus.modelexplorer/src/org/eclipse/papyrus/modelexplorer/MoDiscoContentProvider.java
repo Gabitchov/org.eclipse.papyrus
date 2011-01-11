@@ -28,7 +28,7 @@ import org.eclipse.papyrus.resource.uml.UmlModel;
 /**
  * the content provider that inherits of modisco properties
  * 
- * The notation resource is now directly used to find associated diagrams isntead of IPageMngr
+ * The notation resource is now directly used to find associated diagrams instead of IPageMngr
  * This is needed to handle correctly the display of diagrams in controlled resources
  */
 @SuppressWarnings("restriction")

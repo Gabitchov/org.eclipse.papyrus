@@ -501,20 +501,4 @@
          rule="org.eclipse.papyrus.diagram.common.navigation.StateRule">
    </navigationRule>
 </extension>
-<extension
-      point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
-   <decoratorProvider
-         class="org.eclipse.papyrus.diagram.common.providers.NavigationDecoratorProvider">
-      <Priority
-            name="Lowest">
-      </Priority>
-      <context
-            decoratorTargets="VIEW_EP">
-      </context>
-      <object
-            class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart(org.eclipse.gmf.runtime.diagram.ui)"
-            id="VIEW_EP">
-      </object>
-   </decoratorProvider>
-</extension>
 </plugin>
