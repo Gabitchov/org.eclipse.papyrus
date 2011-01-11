@@ -13,16 +13,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.wizards.pages;
 
-import static org.eclipse.papyrus.wizards.Activator.log;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.wizard.IWizard;
-import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.papyrus.wizards.CreateModelWizard;
 import org.eclipse.papyrus.wizards.SettingsHelper;
@@ -127,52 +123,11 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	 */
 	private boolean validatePage() {
 		//316943 -  [Wizard] Wrong suffix for file name when creating a profile model
-		NewModelFilePage newModelFilePage = getNewModelFilePage();
-		if(newModelFilePage != null) {
-			String newExtension = ((CreateModelWizard)getWizard()).getDiagramFileExtension();
-			String currentExtension = newModelFilePage.getFileExtension();
-			if(!currentExtension.equals(newExtension)) {
-
-				String oldFileName = newModelFilePage.getFileName();
-				String newFileName = NewModelFilePage.getUniqueFileName(newModelFilePage.getContainerFullPath(), newModelFilePage.getFileName(), newExtension);
-
-				newModelFilePage.setFileName(newFileName);
-				newModelFilePage.setFileExtension(newExtension);
-				
-				DiagramCategoryDescriptor selected = getDiagramCategoryMap().get(mySelectedDiagramCategoryId);
-				if (selected == null) {
-					log.warn("Could not find DiagramCategory for " + mySelectedDiagramCategoryId);
-					return false;
-				}
-				String categoryLabel = selected.getLabel();
-				String message = String.format("The %s diagram category requires a specific diagram file extension. " + "Thus, the diagram file has been renamed from %s to %s ", categoryLabel, oldFileName, newFileName);
-				setMessage(message, IMessageProvider.INFORMATION);
-
-				String errorMessage = newModelFilePage.getErrorMessage();
-				if(errorMessage != null) {
-					setErrorMessage(errorMessage);
-				}
-			} else {
-				setMessage(null);
-			}
-		}
-		return mySelectedDiagramCategoryId != null;
+		return ((CreateModelWizard)getWizard()).validateSelectDiagramCategoryPage();
 	}
 	
 	private Map<String, DiagramCategoryDescriptor> getDiagramCategoryMap() {
 		return DiagramCategoryRegistry.getInstance().getDiagramCategoryMap();
-	}
-
-	private NewModelFilePage getNewModelFilePage() {
-		IWizardPage prev = getPreviousPage();
-		if(prev instanceof NewModelFilePage) {
-			return (NewModelFilePage)prev;
-		}
-		prev = prev.getPreviousPage();
-		if(prev instanceof NewModelFilePage) {
-			return (NewModelFilePage)prev;
-		}
-		return null;
 	}
 
 	/**

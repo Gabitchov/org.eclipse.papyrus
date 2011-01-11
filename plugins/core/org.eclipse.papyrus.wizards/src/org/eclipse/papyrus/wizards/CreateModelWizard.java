@@ -26,6 +26,7 @@ import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.jface.dialogs.IDialogSettings;
+import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
@@ -178,7 +179,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 			public String getCurrentCategory() {
 				return getDiagramCategoryId();
 			}
-			
+
 		});
 	}
 
@@ -237,7 +238,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		}
 		settingsHelper.saveRememberCurrentSelection(selectDiagramKindPage.isRememberCurrentSelection());
 	}
-	
+
 	private void saveDefaultDiagramKinds(SettingsHelper settingsHelper, String category) {
 		String[] selected = selectDiagramKindPage.getSelectedDiagramKinds();
 		settingsHelper.saveDefaultDiagramKinds(category, Arrays.asList(selected));
@@ -295,7 +296,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 			createEmptyDiagramEditor();
 		}
 	}
-	
+
 	private void createEmptyDiagramEditor() {
 		// Create an empty editor (no diagrams opened)
 		// Geting an IPageMngr is enough to initialize the
@@ -310,9 +311,43 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	protected final CommandStack getCommandStack() {
 		return getResourseSet().getTransactionalEditingDomain().getCommandStack();
 	}
-	
+
 	protected final Map<String, DiagramCategoryDescriptor> getDiagramCategoryMap() {
 		return DiagramCategoryRegistry.getInstance().getDiagramCategoryMap();
 	}
-	
+
+	public boolean validateSelectDiagramCategoryPage() {
+		if(newModelFilePage == null) {
+			return true;
+		}
+		String newCategory = selectDiagramCategoryPage.getDiagramCategory();
+		String newExtension = getDiagramFileExtension();
+		String currentExtension = newModelFilePage.getFileExtension();
+		if(!currentExtension.equals(newExtension)) {
+
+			String oldFileName = newModelFilePage.getFileName();
+			String newFileName = NewModelFilePage.getUniqueFileName(newModelFilePage.getContainerFullPath(), newModelFilePage.getFileName(), newExtension);
+
+			newModelFilePage.setFileName(newFileName);
+			newModelFilePage.setFileExtension(newExtension);
+
+			DiagramCategoryDescriptor selected = getDiagramCategoryMap().get(newCategory);
+			if(selected == null) {
+				selectDiagramCategoryPage.setErrorMessage("Could not find DiagramCategory for " + newCategory);
+				return false;
+			}
+			String categoryLabel = selected.getLabel();
+			String message = String.format("The %s diagram category requires a specific diagram file extension. " + "Thus, the diagram file has been renamed from %s to %s ", categoryLabel, oldFileName, newFileName);
+			selectDiagramCategoryPage.setMessage(message, IMessageProvider.INFORMATION);
+
+			String errorMessage = newModelFilePage.getErrorMessage();
+			if(errorMessage != null) {
+				selectDiagramCategoryPage.setErrorMessage(errorMessage);
+			}
+		} else {
+			selectDiagramCategoryPage.setMessage(null);
+		}
+		return newCategory != null;
+	}
+
 }
