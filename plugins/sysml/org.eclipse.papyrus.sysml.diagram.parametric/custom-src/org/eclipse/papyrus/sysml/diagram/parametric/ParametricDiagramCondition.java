@@ -16,8 +16,7 @@ package org.eclipse.papyrus.sysml.diagram.parametric;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.core.extension.commands.PerspectiveContextDependence;
 import org.eclipse.papyrus.sysml.util.SysmlResource;
-import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.Class;
 
 /**
  * ParametricDiagramCondition to set conditions for the diagram creation
@@ -29,13 +28,10 @@ public class ParametricDiagramCondition extends PerspectiveContextDependence {
 	 */
 	public boolean create(EObject selectedElement) {
 		if(super.create(selectedElement)) {
-			if(selectedElement instanceof Element) {
-				Element element = (Element)selectedElement;
-				Package pack = element.getNearestPackage();
-				if((pack.getAppliedProfile(SysmlResource.BLOCKS_ID, true) != null) && (pack.getAppliedProfile(SysmlResource.CONSTRAINTS_ID, true) != null)) {
-					if((element.getAppliedStereotype(SysmlResource.CONSTRAINT_BLOCK_ID) != null) || (element.getAppliedStereotype(SysmlResource.BLOCK_ID) != null)) {
-						return true;
-					}
+			if(selectedElement instanceof org.eclipse.uml2.uml.Class) {
+				Class clazz = (org.eclipse.uml2.uml.Class)selectedElement;
+				if(clazz.getAppliedStereotype(SysmlResource.BLOCK_ID) != null) {
+					return true;
 				}
 			}
 		}

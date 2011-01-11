@@ -12,7 +12,8 @@ package org.eclipse.papyrus.diagram.composite;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.core.extension.commands.PerspectiveContextDependence;
-import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Collaboration;
+
 /**
  * CompositeDiagramCreationCondition class allows to check if a Composite diagram can be added to the
  * selected element.
@@ -24,8 +25,7 @@ public class CompositeDiagramCreationCondition  extends PerspectiveContextDepend
 	 */
 	public boolean create(EObject selectedElement) {
 		if(super.create(selectedElement)){
-			// TODO : to specify according to the spec
-			return selectedElement instanceof Element;
+			return selectedElement instanceof org.eclipse.uml2.uml.Package || selectedElement instanceof org.eclipse.uml2.uml.Class || selectedElement instanceof Collaboration;
 		}
 		return false;
 	}

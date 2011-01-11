@@ -5,11 +5,12 @@
 <!-- Diagram declaration -->
 <extension point="org.eclipse.papyrus.core.papyrusDiagram">
 	<creationCommand
-		creationCommandClass="org.eclipse.papyrus.sysml.diagram.requirement.RequirementDiagramCreateCommand"
-		icon="icons/obj16/Diagram_Requirement.gif"
-		id="org.eclipse.papyrus.sysml.diagram.requirement.CreateCommand"
-		label="SysML Requirement Diagram"
-        language="sysml"/>
+       creationCommandClass="org.eclipse.papyrus.sysml.diagram.requirement.RequirementDiagramCreateCommand"
+       creationCondition="org.eclipse.papyrus.sysml.diagram.requirement.RequirementDiagramCondition"
+       icon="icons/obj16/Diagram_Requirement.gif"
+       id="org.eclipse.papyrus.sysml.diagram.requirement.CreateCommand"
+       label="SysML Requirement Diagram"
+       language="sysml"/>
 	<editorDiagram
 		actionBarContributorId="org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor"
 		factoryClass="org.eclipse.papyrus.sysml.diagram.requirement.RequirementDiagramEditorFactory"
@@ -37,45 +38,6 @@
 </extension>
 
 <!-- Diagram creation command registration in menu and toolbar -->
-<extension point="org.eclipse.ui.menus">
-      
-	<menuContribution locationURI="menu:org.eclipse.papyrus.ui.menu">
-	<menu id="org.eclipse.papyrus.diagram.ui.menu.diagrams" label="Diagrams">
-		<command commandId="org.eclipse.papyrus.sysml.diagram.requirement.CreateCommand"
-			icon="icons/obj16/Diagram_Requirement.gif" label="Create a new Requirement Diagram"
-			style="push" tooltip="Create a new Requirement Diagram">
-			<visibleWhen>
-				<reference definitionId="org.eclipse.papyrus.sysml.diagram.common.IsPapyrusActiveWithSysML"/>
-			</visibleWhen>
-		</command>
-	</menu>
-	</menuContribution>
-
-	<menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar">
-	<toolbar id="org.eclipse.papyrus.diagram.ui.toolbar">
-		<command commandId="org.eclipse.papyrus.sysml.diagram.requirement.CreateCommand"
-			icon="icons/obj16/Diagram_Requirement.gif" label="Create a new Requirement Diagram"
-			style="push" tooltip="Create a new Requirement Diagram">
-			<visibleWhen>
-				<reference definitionId="org.eclipse.papyrus.sysml.diagram.common.IsPapyrusActiveWithSysML"/>
-			</visibleWhen>
-		</command>
-	</toolbar>
-	</menuContribution>
-	
-	<menuContribution locationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.creatediagram">
-	    <command commandId="org.eclipse.papyrus.sysml.diagram.requirement.CreateCommand"
-			icon="icons/obj16/Diagram_Requirement.gif"
-			label="Create a new Requirement Diagram"
-			style="push"
-			tooltip="Create a new Requirement Diagram">
-	       <visibleWhen>
-				<reference definitionId="org.eclipse.papyrus.sysml.diagram.common.IsPapyrusActiveWithSysML"/>
-	       </visibleWhen>
-	    </command>
-	</menuContribution>
-		
-</extension>
 
 <!-- Palette tool declaration (declares the real palette containment) -->
 <extension point="org.eclipse.papyrus.diagram.common.paletteDefinition">

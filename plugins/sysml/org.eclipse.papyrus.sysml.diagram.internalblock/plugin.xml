@@ -5,11 +5,12 @@
 <!-- Diagram declaration -->
 <extension point="org.eclipse.papyrus.core.papyrusDiagram">
 	<creationCommand
-		creationCommandClass="org.eclipse.papyrus.sysml.diagram.internalblock.InternalBlockDiagramCreateCommand"
-		icon="icons/obj16/Diagram_InternalBlock.gif"
-		id="org.eclipse.papyrus.sysml.diagram.internalblock.CreateCommand"
-		language="sysml"
-		label="SysML Internal Block Diagram"/>
+       creationCommandClass="org.eclipse.papyrus.sysml.diagram.internalblock.InternalBlockDiagramCreateCommand"
+       creationCondition="org.eclipse.papyrus.sysml.diagram.internalblock.InternalBlockDiagramCondition"
+       icon="icons/obj16/Diagram_InternalBlock.gif"
+       id="org.eclipse.papyrus.sysml.diagram.internalblock.CreateCommand"
+       label="SysML Internal Block Diagram"
+       language="sysml"/>
 	<editorDiagram
 		actionBarContributorId="org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor"
 		factoryClass="org.eclipse.papyrus.sysml.diagram.internalblock.InternalBlockDiagramEditorFactory"
@@ -37,46 +38,6 @@
 </extension>
 
 <!-- Diagram creation command registration in menu and toolbar -->
-<extension point="org.eclipse.ui.menus">
-
-	<menuContribution locationURI="menu:org.eclipse.papyrus.ui.menu">
-	<menu id="org.eclipse.papyrus.diagram.ui.menu.diagrams" label="Diagrams">
-		<command commandId="org.eclipse.papyrus.sysml.diagram.internalblock.CreateCommand"
-			icon="icons/obj16/Diagram_InternalBlock.gif" label="Create a new Internal Block Diagram"
-			style="push" tooltip="Create a new Internal Block Diagram">
-			<visibleWhen>
-				<reference definitionId="org.eclipse.papyrus.sysml.diagram.common.IsPapyrusActiveWithSysML"/>
-			</visibleWhen>
-		</command>
-	</menu>
-	</menuContribution>
-	
-	<menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar">
-	<toolbar id="org.eclipse.papyrus.diagram.ui.toolbar">
-		<command commandId="org.eclipse.papyrus.sysml.diagram.internalblock.CreateCommand"
-			icon="icons/obj16/Diagram_InternalBlock.gif" label="Create a new Internal Block Diagram"
-			style="push" tooltip="Create a new Internal Block Diagram">
-			<visibleWhen>
-				<reference definitionId="org.eclipse.papyrus.sysml.diagram.common.IsPapyrusActiveWithSysML"/>
-			</visibleWhen>
-		</command>
-	</toolbar>
-	</menuContribution>
-	
-	<menuContribution
-		locationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.creatediagram">
-	    <command commandId="org.eclipse.papyrus.sysml.diagram.internalblock.CreateCommand"
-			icon="icons/obj16/Diagram_InternalBlock.gif"
-			label="Create a new Internal Block Diagram"
-			style="push"
-			tooltip="Create a new Internal Block Diagram">
-	       <visibleWhen>
-				<reference definitionId="org.eclipse.papyrus.sysml.diagram.common.IsPapyrusActiveWithSysML"/>
-	       </visibleWhen>
-	    </command>
-	</menuContribution>
-	
-</extension>
 
 <!-- Palette tool declaration (declares the real palette containment) -->
 <extension point="org.eclipse.papyrus.diagram.common.paletteDefinition"

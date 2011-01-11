@@ -1,39 +1,27 @@
-/*******************************************************************************
- * Copyright (c) 2009 Obeo.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *     Obeo - initial API and implementation
- *******************************************************************************/
 package org.eclipse.papyrus.modelexplorer.actions;
 
 import static org.eclipse.papyrus.modelexplorer.Activator.log;
 
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.jface.action.Action;
-import org.eclipse.papyrus.core.extension.NotFoundException;
+import org.eclipse.papyrus.core.adaptor.gmf.DiagramsUtil;
 import org.eclipse.papyrus.core.extension.commands.CreationCommandDescriptor;
-import org.eclipse.papyrus.core.extension.commands.CreationCommandRegistry;
-import org.eclipse.papyrus.core.extension.commands.ICreationCommand;
-import org.eclipse.papyrus.core.extension.commands.ICreationCommandRegistry;
+import org.eclipse.papyrus.core.navigation.NavigableElement;
+import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.core.utils.EditorUtils;
-
+import org.eclipse.papyrus.modelexplorer.handler.GMFtoEMFCommandWrapper;
 /**
- * Action used to create a new diagram for given type modified to remove link
- * toUML
- * 
- * @deprecated
+ * Action to create a diagram on a navigable element
+ *
+ * @author mvelten
+ *
  */
+// TODO change diagram name
 public class CreateDiagramAction extends Action {
 
-	private final EObject container;
+	private final NavigableElement navElement;
 
 	private final CreationCommandDescriptor commandDescriptor;
-
-	private ICreationCommandRegistry creationCommandRegistry;
 
 	/**
 	 * Constructor
@@ -41,8 +29,8 @@ public class CreateDiagramAction extends Action {
 	 * @param selectedObject
 	 *        the selected Element on which the diagram is to be associated
 	 */
-	public CreateDiagramAction(EObject eObject, CreationCommandDescriptor commandDescriptor) {
-		this.container = eObject;
+	public CreateDiagramAction(NavigableElement navElement, CreationCommandDescriptor commandDescriptor) {
+		this.navElement = navElement;
 		this.commandDescriptor = commandDescriptor;
 		setText(commandDescriptor.getLabel());
 		setImageDescriptor(commandDescriptor.getIcon());
@@ -53,7 +41,7 @@ public class CreateDiagramAction extends Action {
 	 */
 	@Override
 	public boolean isEnabled() {
-		return container != null;
+		return navElement != null && navElement.getElement() != null;
 	}
 
 	/**
@@ -65,29 +53,14 @@ public class CreateDiagramAction extends Action {
 	@Override
 	public void run() {
 
-		// Start LOG
-		if(log.isDebugEnabled()) {
-			log.debug("Start - CreateDiagramAction#run"); //$NON-NLS-1$
-		}
-
 		try {
-			ICreationCommand creationCommand = getCreationCommandRegistry().getCommand(commandDescriptor.getCommandId());
-			creationCommand.createDiagram(EditorUtils.getDiResourceSet(), container, null);
-		} catch (NotFoundException e) {
+			DiResourceSet diResourceSet = EditorUtils.getDiResourceSet();
+			
+			CompositeCommand compositeCommand = DiagramsUtil.getLinkCreateAndOpenNavigableDiagram(navElement, commandDescriptor.getCommand(), "DefaultName", diResourceSet);
+
+			diResourceSet.getTransactionalEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(compositeCommand));
+		} catch (Exception e) {
 			log.error(e);
 		}
-
-		// END LOG
-		if(log.isDebugEnabled()) {
-			log.debug("End - CreateDiagramAction#run"); //$NON-NLS-1$
-		}
 	}
-
-	private ICreationCommandRegistry getCreationCommandRegistry() {
-		if(creationCommandRegistry == null) {
-			this.creationCommandRegistry = new CreationCommandRegistry(org.eclipse.papyrus.core.Activator.PLUGIN_ID);
-		}
-		return creationCommandRegistry;
-	}
-
 }

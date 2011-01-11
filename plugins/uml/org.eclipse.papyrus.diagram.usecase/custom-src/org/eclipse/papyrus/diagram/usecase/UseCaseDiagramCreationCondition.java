@@ -12,7 +12,6 @@ package org.eclipse.papyrus.diagram.usecase;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.core.extension.commands.PerspectiveContextDependence;
-import org.eclipse.uml2.uml.Element;
 
 /**
  * UseCaseDiagramCreationCondition class allows to check if a UseCase diagram can be added to the
@@ -25,8 +24,7 @@ public class UseCaseDiagramCreationCondition extends PerspectiveContextDependenc
 	 */
 	public boolean create(EObject selectedElement) {
 		if(super.create(selectedElement)) {
-			// TODO : to specify according to the spec
-			return selectedElement instanceof Element;
+			return selectedElement instanceof org.eclipse.uml2.uml.Package;
 		}
 		return false;
 	}

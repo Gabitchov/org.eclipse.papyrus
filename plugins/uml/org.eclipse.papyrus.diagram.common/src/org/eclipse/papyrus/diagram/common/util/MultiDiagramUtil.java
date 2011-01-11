@@ -41,11 +41,13 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.common.core.util.Log;
 import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
+import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
 import org.eclipse.gmf.runtime.emf.core.resources.GMFResource;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
@@ -136,63 +138,6 @@ public class MultiDiagramUtil {
 			}
 		}
 		return diagrams;
-	}
-
-	/**
-	 * Gets the diagrams associated to element.
-	 * 
-	 * @param element
-	 *        the element
-	 * 
-	 * @return the diagrams associated to element
-	 */
-	// @unused
-	public static List<Diagram> getDiagramsAssociatedToElement(EObject element) {
-		Resource resource = getDiagramResource();
-		if(resource == null || element == null) {
-			return Collections.EMPTY_LIST;
-		}
-		List<Diagram> diagrams = new ArrayList<Diagram>();
-		for(EObject child : resource.getContents()) {
-			if(child instanceof Diagram) {
-				Diagram diagram = (Diagram)child;
-				if(diagram.getElement()!=null){
-					if(element.equals(diagram.getElement())) {
-						diagrams.add(diagram);
-					}
-				}
-			}
-		}
-		return diagrams;
-	}
-
-	/**
-	 * Gets the diagram resource.
-	 * 
-	 * @return the diagram resource
-	 */
-	private static GMFResource getDiagramResource() {
-		IEditorPart activeEditor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
-		if(activeEditor != null && activeEditor instanceof DiagramEditor) {
-			TransactionalEditingDomain domain = ((DiagramEditor)activeEditor).getEditingDomain();
-			if(domain == null) {
-				return null;
-			}
-			for(Resource resource : domain.getResourceSet().getResources()) {
-				if(resource instanceof GMFResource) {
-					return (GMFResource)resource;
-				}
-			}
-		} else {
-			if(activeEditor != null) {
-				Diagram diagram = (Diagram)activeEditor.getAdapter(Diagram.class);
-				if(diagram != null && diagram.eResource() != null) {
-					GMFResource resource = (GMFResource)Platform.getAdapterManager().getAdapter(diagram.eResource(), GMFResource.class);
-					return resource;
-				}
-			}
-		}
-		return null;
 	}
 
 	// //****////

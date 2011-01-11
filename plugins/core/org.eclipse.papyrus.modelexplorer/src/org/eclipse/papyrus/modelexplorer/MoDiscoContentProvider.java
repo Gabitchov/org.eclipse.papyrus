@@ -10,67 +10,51 @@
  *******************************************************************************/
 package org.eclipse.papyrus.modelexplorer;
 
-import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmt.modisco.infra.browser.uicore.CustomizableModelContentProvider;
 import org.eclipse.gmt.modisco.infra.browser.uicore.internal.model.ModelElementItem;
+import org.eclipse.papyrus.core.adaptor.gmf.DiagramsUtil;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
-import org.eclipse.papyrus.core.utils.EditorUtils;
-import org.eclipse.papyrus.resource.ModelSet;
-import org.eclipse.papyrus.resource.ModelUtils;
 import org.eclipse.papyrus.resource.uml.UmlModel;
-import org.eclipse.papyrus.resource.uml.UmlUtils;
-import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
-import org.eclipse.papyrus.sasheditor.contentprovider.di.DiSashModelMngr;
 
 /**
  * the content provider that inherits of modisco properties
+ * 
+ * The notation resource is now directly used to find associated diagrams isntead of IPageMngr
+ * This is needed to handle correctly the display of diagrams in controlled resources
  */
 @SuppressWarnings("restriction")
 public class MoDiscoContentProvider extends CustomizableModelContentProvider {
 
-	
-	/**
-	 * The ModelSet containing all the models.
-	 * This is the initial input.
-	 */
-	protected ModelSet modelSet;
-	
-	/** The list of open pages (diagrams) */
-	protected IPageMngr pageMngr;
+	private DiResourceSet diResourceSet;
 
 	public MoDiscoContentProvider() {
 		super(Activator.getDefault().getCustomizationManager());
-
-	}
-
-	private DiResourceSet getDiResourceSet() {
-		return EditorUtils.getDiResourceSet();
 	}
 
 	@Override
 	public Object[] getChildren(final Object parentElement) {
 
-		ArrayList<Object> result = new ArrayList<Object>();
+		LinkedList<Object> result = new LinkedList<Object>();
 
 		Object[] arrayObject = super.getChildren(parentElement);
-		if (arrayObject != null) {
-			for (int i = 0; i < arrayObject.length; i++) {
+		if(arrayObject != null) {
+			for(int i = 0; i < arrayObject.length; i++) {
 				result.add(arrayObject[i]);
 			}
 		}
-		if (parentElement instanceof ModelElementItem
-			&& ((ModelElementItem) (parentElement)).getEObject() instanceof EObject) {
-			List<Diagram> diagramList = findAllExistingDiagrams((EObject) ((ModelElementItem) parentElement)
-				.getEObject());
+		if(parentElement instanceof ModelElementItem && ((ModelElementItem)(parentElement)).getEObject() instanceof EObject) {
+			List<Diagram> diagramList = DiagramsUtil.getAssociatedDiagrams(((EObject)((ModelElementItem)parentElement).getEObject()), diResourceSet);
 			Iterator<Diagram> iterator = diagramList.iterator();
-			while (iterator.hasNext()) {
+			while(iterator.hasNext()) {
 				result.add(iterator.next());
 			}
 		}
@@ -78,34 +62,11 @@ public class MoDiscoContentProvider extends CustomizableModelContentProvider {
 	}
 
 	/**
-	 * @param owner
-	 *            the owner of the diagrams
-	 * @return the list of diagrams contained by the given owner
-	 */
-	private List<Diagram> findAllExistingDiagrams(EObject owner) {
-		ArrayList<Diagram> diagrams = new ArrayList<Diagram>();
-
-		// Walk on page (Diagram) references
-		for (Object page : pageMngr.allPages()) {
-			if (!(page instanceof Diagram)) {
-				continue;
-			}
-			// We have a GMF Diagram
-			Diagram diagram = (Diagram) page;
-			if (owner.equals(diagram.getElement())) {
-				diagrams.add(diagram);
-			}
-
-		}
-
-		return diagrams;
-	}
-
-	/**
 	 * Return the initial values from the input.
 	 * Input should be of type {@link UmlModel}.
+	 * 
 	 * @see org.eclipse.gmt.modisco.infra.browser.uicore.CustomizableModelContentProvider#getRootElements(java.lang.Object)
-	 *
+	 * 
 	 * @param inputElement
 	 * @return
 	 */
@@ -113,39 +74,38 @@ public class MoDiscoContentProvider extends CustomizableModelContentProvider {
 	public EObject[] getRootElements(Object inputElement) {
 
 		try {
-			if(! (inputElement instanceof ServicesRegistry) )
-			{
+			if(!(inputElement instanceof ServicesRegistry)) {
 				return null;
 			}
 
 			ServicesRegistry servicesRegistry = (ServicesRegistry)inputElement;
-			
-			modelSet = ModelUtils.getModelSetChecked(servicesRegistry);
-			pageMngr = servicesRegistry.getService(DiSashModelMngr.class).getIPageMngr();
-			
-			return getRootElements(modelSet);
+
+			diResourceSet = servicesRegistry.getService(DiResourceSet.class);
+
+			Resource modelResource = diResourceSet.getModelResource();
+
+			if(modelResource != null) {
+				return getRootElements(diResourceSet.getModelResource());
+			}
 		} catch (Exception e) {
 			Activator.log.error(e);
 		}
-		
+
 		return new EObject[0];
-}
+	}
 
 	/**
-	 * Get the roots elements from the {@link ModelSet} provided as input.
+	 * Get the roots elements from the model resource provided as input.
+	 * 
 	 * @return
 	 */
-	protected EObject[] getRootElements( ModelSet modelSet) {
-		UmlModel umlModel = (UmlUtils.getUmlModel(modelSet));
+	protected EObject[] getRootElements(Resource modelResource) {
 
-		if( umlModel == null)
-			return null;
-
-		EList<EObject> contents = umlModel.getResource().getContents();
-		ArrayList<EObject> result = new ArrayList<EObject>();
+		EList<EObject> contents = modelResource.getContents();
+		LinkedList<EObject> result = new LinkedList<EObject>();
 		Iterator<EObject> iterator = contents.iterator();
-		while (iterator.hasNext()) {
-			EObject eObject = (EObject) iterator.next();
+		while(iterator.hasNext()) {
+			EObject eObject = (EObject)iterator.next();
 			result.add(eObject);
 		}
 		return result.toArray(new EObject[result.size()]);

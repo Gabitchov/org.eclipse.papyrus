@@ -120,6 +120,16 @@
                   </instanceof>
                </or></possibleDropTargets>
          </dropAssistant>
+         <actionProvider
+               class="org.eclipse.papyrus.modelexplorer.actionprovider.CreateDiagramActionProvider">
+            <enablement>
+               <or>
+                  <adapt
+                        type="org.eclipse.emf.ecore.EObject">
+                  </adapt>
+               </or>
+            </enablement>
+         </actionProvider>
     
       </navigatorContent>
    </extension>

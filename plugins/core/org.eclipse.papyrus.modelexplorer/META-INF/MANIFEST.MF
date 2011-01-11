@@ -27,7 +27,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.expressions;bundle-version="3.4.200",
  org.eclipse.papyrus.service.edit;bundle-version="0.7.2",
  org.eclipse.gmt.modisco.infra.common.core;bundle-version="0.8.0",
- org.eclipse.papyrus.validation;bundle-version="0.7.2"
+ org.eclipse.papyrus.validation;bundle-version="0.7.2",
+ org.eclipse.papyrus.core.adaptor.gmf
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %providerName

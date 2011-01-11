@@ -380,7 +380,7 @@ public class EditorLookForDiagram extends AbstractLookForDiagramShell {
 		// add listner on the new button to display menu for each diagram
 		diagramMenuButton = new Menu(getNewDiagrambutton());
 		getNewDiagrambutton().setMenu(diagramMenuButton);
-		CreationCommandRegistry commandRegistry = new CreationCommandRegistry(org.eclipse.papyrus.core.Activator.PLUGIN_ID);
+		CreationCommandRegistry commandRegistry = CreationCommandRegistry.getInstance(org.eclipse.papyrus.core.Activator.PLUGIN_ID);
 		for(CreationCommandDescriptor desc : commandRegistry.getCommandDescriptors()) {
 			MenuItem menuItem = new MenuItem(diagramMenuButton, SWT.PUSH);
 			menuItem.addSelectionListener(new DiagramCreateListener(desc, null, commandRegistry));

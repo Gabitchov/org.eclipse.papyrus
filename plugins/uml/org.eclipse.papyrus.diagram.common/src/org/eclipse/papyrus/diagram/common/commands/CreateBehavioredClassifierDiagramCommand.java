@@ -114,9 +114,9 @@ public abstract class CreateBehavioredClassifierDiagramCommand extends AbstractP
 		if(diagram != null) {
 			setName(name);
 
-			diagramResource.getContents().add(diagram);
 			initializeModel(owner);
 			initializeDiagram(diagram);
+			diagramResource.getContents().add(diagram);
 		}
 		return diagram;
 	}

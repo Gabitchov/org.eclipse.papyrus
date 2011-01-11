@@ -28,12 +28,6 @@ import org.eclipse.papyrus.core.extension.commands.ICreationCommandRegistry;
 public class DiagramKindContentProvider implements IStructuredContentProvider {
 
 	/**
-	 * The creation command registry
-	 */
-	private ICreationCommandRegistry creationCommandRegistry;
-
-
-	/**
 	 * @see org.eclipse.jface.viewers.IContentProvider#dispose()
 	 *
 	 */
@@ -74,10 +68,7 @@ public class DiagramKindContentProvider implements IStructuredContentProvider {
 	 * 
 	 * @return the creation command registry
 	 */
-	private ICreationCommandRegistry getCreationCommandRegistry() {
-		if(creationCommandRegistry == null) {
-			creationCommandRegistry = new CreationCommandRegistry(org.eclipse.papyrus.core.Activator.PLUGIN_ID);
-		}
-		return creationCommandRegistry;
+	private static ICreationCommandRegistry getCreationCommandRegistry() {
+		return CreationCommandRegistry.getInstance(org.eclipse.papyrus.core.Activator.PLUGIN_ID);
 	}
 }
