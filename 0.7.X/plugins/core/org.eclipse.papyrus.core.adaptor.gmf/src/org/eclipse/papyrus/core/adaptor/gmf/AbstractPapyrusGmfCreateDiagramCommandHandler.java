@@ -46,6 +46,7 @@ import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
@@ -237,8 +238,18 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	 * @return the entered diagram name
 	 */
 	protected String openDiagramNameDialog(final String defaultValue) {
-		InputDialog inputDialog = new InputDialog(Display.getCurrent().getActiveShell(), Messages.AbstractPapyrusGmfCreateDiagramCommandHandler_SelectNewDiagramName, Messages.AbstractPapyrusGmfCreateDiagramCommandHandler_NewDiagramName, defaultValue, null);
+		InputDialog inputDialog = new InputDialog(Display.getCurrent().getActiveShell(), Messages.AbstractPapyrusGmfCreateDiagramCommandHandler_SelectNewDiagramName, Messages.AbstractPapyrusGmfCreateDiagramCommandHandler_NewDiagramName, defaultValue, null) {
+
+			@Override
+			protected void createButtonsForButtonBar(Composite parent) {
+				super.createButtonsForButtonBar(parent);
+				getCancelButton().setEnabled(false);
+			}
+
+		};
+
 		inputDialog.open();
+
 		String name = inputDialog.getValue();
 		if(name == null || name.length() == 0) {
 			name = defaultValue;
