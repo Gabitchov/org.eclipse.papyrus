@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.eclipse.papyrus.marte.feature"
-      label="MARTE profile"
-      version="0.7.1.qualifier"
-      provider-name="CEA LIST">
+      id="org.eclipse.papyrus.marte"
+      label="%featureName"
+      version="0.7.2.qualifier"
+      provider-name="%providerName">
 
    <description>
       This feature includes implementation of the OMG MARTE profile
