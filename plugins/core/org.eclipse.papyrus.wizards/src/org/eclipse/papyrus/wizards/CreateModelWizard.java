@@ -15,6 +15,7 @@ import static org.eclipse.papyrus.wizards.Activator.log;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -238,11 +239,8 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	}
 	
 	private void saveDefaultDiagramKinds(SettingsHelper settingsHelper, String category) {
-		List<String> kinds = new ArrayList<String>();
-		for(CreationCommandDescriptor selected : selectDiagramKindPage.getSelectedDiagramKinds()) {
-			kinds.add(selected.getCommandId());
-		}
-		settingsHelper.saveDefaultDiagramKinds(category, kinds);
+		String[] selected = selectDiagramKindPage.getSelectedDiagramKinds();
+		settingsHelper.saveDefaultDiagramKinds(category, Arrays.asList(selected));
 	}
 
 	private void saveDefaultTemplates(SettingsHelper settingsHelper, String category) {

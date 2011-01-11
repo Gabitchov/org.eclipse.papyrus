@@ -38,13 +38,6 @@ public class DiagramKindContentProvider implements IStructuredContentProvider {
 	
 	
 	/**
-	 * 
-	 */
-	public DiagramKindContentProvider() {
-		this(new CreationCommandRegistry(org.eclipse.papyrus.core.Activator.PLUGIN_ID));
-	}
-
-	/**
 	 * @param creationCommandRegistry
 	 */
 	public DiagramKindContentProvider(ICreationCommandRegistry creationCommandRegistry) {

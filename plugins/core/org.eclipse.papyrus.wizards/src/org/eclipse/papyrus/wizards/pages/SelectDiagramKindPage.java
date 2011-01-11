@@ -15,14 +15,17 @@ import static org.eclipse.papyrus.wizards.Activator.log;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.jface.viewers.CheckboxTableViewer;
+import org.eclipse.jface.viewers.IBaseLabelProvider;
 import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.papyrus.core.extension.commands.CreationCommandDescriptor;
 import org.eclipse.papyrus.core.extension.commands.CreationCommandRegistry;
 import org.eclipse.papyrus.core.extension.commands.ICreationCommand;
+import org.eclipse.papyrus.core.extension.commands.ICreationCommandRegistry;
 import org.eclipse.papyrus.wizards.SettingsHelper;
 import org.eclipse.papyrus.wizards.kind.DiagramKindContentProvider;
 import org.eclipse.papyrus.wizards.kind.DiagramKindLabelProvider;
@@ -62,11 +65,13 @@ public class SelectDiagramKindPage extends WizardPage {
 	/** The select template composite. */
 	private SelectModelTemplateComposite selectTemplateComposite;
 	
-	private final CategoryProvider myCategoryProvider;
-
 	private Button rememberCurrentSelection;
 
-	private boolean allowTemplates;
+	private final CategoryProvider myCategoryProvider;
+
+	private final boolean allowTemplates;
+	
+	private final CreationCommandRegistry myCreationCommandRegistry;
 
 	/**
 	 * Instantiates a new select diagram kind page.
@@ -86,6 +91,7 @@ public class SelectDiagramKindPage extends WizardPage {
 		setDescription("Select name and kind of the diagram");
 		this.allowTemplates = allowTemplates;
 		myCategoryProvider = categoryProvider;
+		myCreationCommandRegistry = new CreationCommandRegistry(org.eclipse.papyrus.core.Activator.PLUGIN_ID);
 	}
 
 	/**
@@ -191,7 +197,7 @@ public class SelectDiagramKindPage extends WizardPage {
 	 * @return the creation command
 	 */
 	public List<ICreationCommand> getCreationCommands() {
-		CreationCommandDescriptor[] selected = getSelectedDiagramKinds();
+		CreationCommandDescriptor[] selected = getSelectedDiagramKindDescriptors();
 		List<ICreationCommand> commands = new ArrayList<ICreationCommand>();
 		for(int i = 0; i < selected.length; i++) {
 
@@ -260,10 +266,17 @@ public class SelectDiagramKindPage extends WizardPage {
 			}
 		});
 		diagramKindTableViewer = new CheckboxTableViewer(diagramKindTable);
-		CreationCommandRegistry creationCommandregistry = new CreationCommandRegistry(org.eclipse.papyrus.core.Activator.PLUGIN_ID);
-		diagramKindTableViewer.setContentProvider(new DiagramKindContentProvider(creationCommandregistry));
-		diagramKindTableViewer.setLabelProvider(new DiagramKindLabelProvider());
+		diagramKindTableViewer.setContentProvider(new DiagramKindContentProvider(getCreationCommandRegistry()));
+		diagramKindTableViewer.setLabelProvider(createDiagramKindLabelProvider());
 		diagramKindTableViewer.setInput(category);
+	}
+	
+	protected ICreationCommandRegistry createCreationCommandRegistry() {
+		return new CreationCommandRegistry(org.eclipse.papyrus.core.Activator.PLUGIN_ID);
+	}
+	
+	protected IBaseLabelProvider createDiagramKindLabelProvider() {
+		return new DiagramKindLabelProvider();
 	}
 
 
@@ -363,7 +376,16 @@ public class SelectDiagramKindPage extends WizardPage {
 	 * 
 	 * @return the selected diagram kinds
 	 */
-	public CreationCommandDescriptor[] getSelectedDiagramKinds() {
+	public String[] getSelectedDiagramKinds() {
+		CreationCommandDescriptor[] descriptors = getSelectedDiagramKindDescriptors();
+		String[] result = new String[descriptors.length];
+		for(int i = 0; i < descriptors.length; i++) {
+			result[i] = descriptors[i].getCommandId();
+		}
+		return result;
+	}
+
+	protected CreationCommandDescriptor[] getSelectedDiagramKindDescriptors() {
 		Object[] checked = diagramKindTableViewer.getCheckedElements();
 		// as Object is not a subclass of String we cannot cast Object[] to String[] 
 		CreationCommandDescriptor[] result = Arrays.asList(checked).toArray(new CreationCommandDescriptor[checked.length]);
@@ -371,16 +393,18 @@ public class SelectDiagramKindPage extends WizardPage {
 	}
 
 	private void selectDefaultDiagramKinds(String category) {
-		List<String> kinds = mySettingsHelper.getDefaultDiagramKinds(category);
+		diagramKindTableViewer.setCheckedElements(findCreationCommandDescriptorsFor(mySettingsHelper.getDefaultDiagramKinds(category)));
+	}
+	
+	protected CreationCommandDescriptor[] findCreationCommandDescriptorsFor(List<String> kinds) {
 		List<CreationCommandDescriptor> result = new ArrayList<CreationCommandDescriptor>();
-		for(Object next : ((DiagramKindContentProvider)diagramKindTableViewer.getContentProvider()).getElements(category)) {
-			CreationCommandDescriptor desc = (CreationCommandDescriptor)next;
+		Collection<CreationCommandDescriptor> availableDescriptors = getCreationCommandRegistry().getCommandDescriptors();
+		for(CreationCommandDescriptor desc : availableDescriptors) {
 			if(kinds.contains(desc.getCommandId())) {
 				result.add(desc);
 			}
 		}
-
-		diagramKindTableViewer.setCheckedElements(result.toArray(new CreationCommandDescriptor[result.size()]));
+		return result.toArray(new CreationCommandDescriptor[result.size()]);
 	}
 
 	private void selectDefaultDiagramTemplates(String category) {
@@ -392,6 +416,10 @@ public class SelectDiagramKindPage extends WizardPage {
 				return;
 			}
 		}
+	}
+	
+	protected final ICreationCommandRegistry getCreationCommandRegistry() {
+		return myCreationCommandRegistry;
 	}
 	
 	public static interface CategoryProvider {
