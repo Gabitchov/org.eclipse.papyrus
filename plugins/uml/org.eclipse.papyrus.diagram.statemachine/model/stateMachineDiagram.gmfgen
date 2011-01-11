@@ -245,8 +245,8 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.statemachine.custom.policies.CustomStateItemSemanticEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.OPEN_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.NavigationOpenEditPolicy"/>
+            key="org.eclipse.papyrus.diagram.common.editpolicies.NavigationEditPolicy.NAVIGATION_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.NavigationEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/State"/>
@@ -278,8 +278,8 @@
           </viewmap>
           <behaviour
               xsi:type="gmfgen:CustomBehaviour"
-              key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.OPEN_ROLE"
-              editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.NavigationOpenEditPolicy"/>
+              key="org.eclipse.papyrus.diagram.common.editpolicies.NavigationEditPolicy.NAVIGATION_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.NavigationEditPolicy"/>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
               parser="/0/@labelParsers/@implementations.0">
@@ -1570,8 +1570,8 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.OPEN_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.NavigationOpenEditPolicy"/>
+            key="org.eclipse.papyrus.diagram.common.editpolicies.NavigationEditPolicy.NAVIGATION_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.NavigationEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass

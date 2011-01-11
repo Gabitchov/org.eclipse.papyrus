@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2010 Atos Origin.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Mathieu Velten (Atos Origin) mathieu.velten@atosorigin.com - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.providers;
 
 import java.util.HashSet;
@@ -29,8 +42,6 @@ import org.eclipse.papyrus.diagram.common.draw2d.ManuallyDrawnShortcutDecoration
 
 public class NavigationDecorator extends AbstractDecorator implements Adapter {
 
-	private EObject element = null;
-
 	private Set<Resource> listenedNotationResources = new HashSet<Resource>();
 
 	private ManuallyDrawnShortcutDecorationFigure shortcutFigure = new ManuallyDrawnShortcutDecorationFigure();
@@ -39,18 +50,7 @@ public class NavigationDecorator extends AbstractDecorator implements Adapter {
 
 	public NavigationDecorator(IDecoratorTarget decoratorTarget) {
 		super(decoratorTarget);
-		EditPart editPart = (EditPart)decoratorTarget.getAdapter(EditPart.class);
-		if(editPart instanceof IGraphicalEditPart) {
-			gep = (IGraphicalEditPart)editPart;
-			shortcutFigure.setVisible(false);
-			element = gep.resolveSemanticElement();
-
-			if(editPart instanceof ShapeEditPart) {
-				setDecoration(getDecoratorTarget().addShapeDecoration(shortcutFigure, IDecoratorTarget.Direction.NORTH_EAST, 0, false));
-			} else if(editPart instanceof ConnectionEditPart) {
-				setDecoration(getDecoratorTarget().addConnectionDecoration(shortcutFigure, 20, false));
-			}
-		}
+		shortcutFigure.setVisible(false);
 	}
 
 	@Override
@@ -60,60 +60,74 @@ public class NavigationDecorator extends AbstractDecorator implements Adapter {
 	}
 
 	public void activate() {
+		EditPart editPart = (EditPart)getDecoratorTarget().getAdapter(EditPart.class);
+		if(editPart instanceof IGraphicalEditPart) {
+			gep = (IGraphicalEditPart)editPart;
+
+
+			if(editPart instanceof ShapeEditPart) {
+				setDecoration(getDecoratorTarget().addShapeDecoration(shortcutFigure, IDecoratorTarget.Direction.NORTH_EAST, 0, false));
+			} else if(editPart instanceof ConnectionEditPart) {
+				setDecoration(getDecoratorTarget().addConnectionDecoration(shortcutFigure, 20, false));
+			}
+		}
 		refresh();
 	}
 
 	public void refresh() {
-		View view = gep.getNotationView();
+		if (gep != null) {
+			View view = gep.getNotationView();
+			EObject element = gep.resolveSemanticElement();
 
-		Diagram currentDiagram = null;
-		if(view != null) {
-			currentDiagram = view.getDiagram();
-		}
+			Diagram currentDiagram = null;
+			if(view != null) {
+				currentDiagram = view.getDiagram();
+			}
 
-		boolean structuralNavigable = false;
-		boolean behavioralNavigable = false;
+			boolean structuralNavigable = false;
+			boolean behavioralNavigable = false;
 
-		removeListenerFromAllResources();
-		List<NavigableElement> navElements = NavigationHelper.getInstance().getAllNavigableElements(element);
+			removeListenerFromAllResources();
+			List<NavigableElement> navElements = NavigationHelper.getInstance().getAllNavigableElements(element);
 
-		for(NavigableElement navElement : navElements) {
-			if(navElement instanceof ExistingNavigableElement) {
-				EObject eObj = navElement.getElement();
-				Resource res = eObj.eResource();
-				if (res != null && res.getResourceSet() instanceof DiResourceSet) {
-					DiResourceSet diResourceSet = (DiResourceSet)res.getResourceSet();
+			for(NavigableElement navElement : navElements) {
+				if(navElement instanceof ExistingNavigableElement) {
+					EObject eObj = navElement.getElement();
+					Resource res = eObj.eResource();
+					if (res != null && res.getResourceSet() instanceof DiResourceSet) {
+						DiResourceSet diResourceSet = (DiResourceSet)res.getResourceSet();
 
-					addResourceListener(diResourceSet.getAssociatedNotationResource(eObj));
+						addResourceListener(diResourceSet.getAssociatedNotationResource(eObj));
 
-					List<Diagram> associatedDiagrams = DiagramsUtil.getAssociatedDiagrams(eObj, diResourceSet);
+						List<Diagram> associatedDiagrams = DiagramsUtil.getAssociatedDiagrams(eObj, diResourceSet);
 
-					if(associatedDiagrams != null) {
-						for(Diagram diag : associatedDiagrams) {
-							addResourceListener(diag.eResource());
-							if(!diag.equals(currentDiagram)) {
-								if(NavigationType.BEHAVIORAL.equals(navElement.getNavigationType())) {
-									behavioralNavigable = true;
-								} else {
-									structuralNavigable = true;
+						if(associatedDiagrams != null) {
+							for(Diagram diag : associatedDiagrams) {
+								addResourceListener(diag.eResource());
+								if(!diag.equals(currentDiagram)) {
+									if(NavigationType.BEHAVIORAL.equals(navElement.getNavigationType())) {
+										behavioralNavigable = true;
+									} else {
+										structuralNavigable = true;
+									}
 								}
 							}
 						}
 					}
 				}
 			}
-		}
 
-		if(!structuralNavigable && !behavioralNavigable) {
-			shortcutFigure.setVisible(false);
-		} else {
-			shortcutFigure.setVisible(true);
-			if (structuralNavigable && behavioralNavigable) {
-				shortcutFigure.setBackgroundColor(ColorConstants.white);
-			} else if(structuralNavigable) {
-				shortcutFigure.setBackgroundColor(ColorConstants.lightGreen);
+			if(!structuralNavigable && !behavioralNavigable) {
+				shortcutFigure.setVisible(false);
 			} else {
-				shortcutFigure.setBackgroundColor(ColorConstants.lightBlue);
+				shortcutFigure.setVisible(true);
+				if (structuralNavigable && behavioralNavigable) {
+					shortcutFigure.setBackgroundColor(ColorConstants.white);
+				} else if(structuralNavigable) {
+					shortcutFigure.setBackgroundColor(ColorConstants.lightGreen);
+				} else {
+					shortcutFigure.setBackgroundColor(ColorConstants.lightBlue);
+				}
 			}
 		}
 	}
