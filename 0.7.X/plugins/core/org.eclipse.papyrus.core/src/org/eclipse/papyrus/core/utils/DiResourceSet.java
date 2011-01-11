@@ -233,13 +233,7 @@ public class DiResourceSet extends ModelSet {
 	 * @return the di resource or null
 	 */
 	public Resource getAssociatedDiResource(EObject modelElement) {
-		if(modelElement != null) {
-			Resource modelResource = modelElement.eResource();
-			if(modelResource != null && !modelResource.equals(getModelResource())) {
-				// handle controlled resource
-				return getAssociatedResource(modelResource, DiModel.MODEL_FILE_EXTENSION);
-			}
-		}
+		// return the "base" di since we want the opened tabs in a unique di
 		return getDiResource();
 	}
 

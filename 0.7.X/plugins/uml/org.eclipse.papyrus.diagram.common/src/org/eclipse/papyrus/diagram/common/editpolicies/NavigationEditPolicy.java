@@ -65,7 +65,8 @@ public class NavigationEditPolicy extends DecorationEditPolicy {
 			final EObject element = navElement.getElement();
 			if(navElement instanceof ExistingNavigableElement) {
 				List<Diagram> associatedDiagrams = DiagramsUtil.getAssociatedDiagrams(element, null);
-				
+
+				// ignore the current diagram
 				associatedDiagrams.remove(gep.getNotationView().getDiagram());
 				if(associatedDiagrams != null && !associatedDiagrams.isEmpty()) {
 					existingDiagrams.put(navElement, associatedDiagrams);
