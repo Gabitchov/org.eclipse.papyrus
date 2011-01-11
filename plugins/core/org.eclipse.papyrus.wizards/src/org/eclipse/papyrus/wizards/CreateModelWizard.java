@@ -14,24 +14,23 @@ package org.eclipse.papyrus.wizards;
 import static org.eclipse.papyrus.wizards.Activator.log;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.jface.dialogs.IDialogSettings;
-import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.papyrus.core.editor.BackboneException;
-import org.eclipse.papyrus.core.extension.commands.CreationCommandDescriptor;
 import org.eclipse.papyrus.core.extension.commands.ICreationCommand;
 import org.eclipse.papyrus.core.extension.commands.IModelCreationCommand;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
@@ -157,6 +156,10 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 	public String getDiagramFileExtension() {
 		return getDiagramFileExtension(getDiagramCategoryId(), NewModelFilePage.DEFAULT_DIAGRAM_EXTENSION);
+	}
+
+	protected final String getDiagramFileExtension(String diagramCategoryId) {
+		return getDiagramFileExtension(diagramCategoryId, NewModelFilePage.DEFAULT_DIAGRAM_EXTENSION);
 	}
 
 	protected String getDiagramFileExtension(String categoryId, String defaultExtension) {
@@ -316,38 +319,12 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		return DiagramCategoryRegistry.getInstance().getDiagramCategoryMap();
 	}
 
-	public boolean validateSelectDiagramCategoryPage() {
-		if(newModelFilePage == null) {
-			return true;
+	public IStatus diagramCategoryChanged(String newCategory) {
+		if(newModelFilePage != null) {
+			//316943 -  [Wizard] Wrong suffix for file name when creating a profile model
+			return newModelFilePage.diagramExtensionChanged(getDiagramFileExtension(newCategory));
 		}
-		String newCategory = selectDiagramCategoryPage.getDiagramCategory();
-		String newExtension = getDiagramFileExtension();
-		String currentExtension = newModelFilePage.getFileExtension();
-		if(!currentExtension.equals(newExtension)) {
-
-			String oldFileName = newModelFilePage.getFileName();
-			String newFileName = NewModelFilePage.getUniqueFileName(newModelFilePage.getContainerFullPath(), newModelFilePage.getFileName(), newExtension);
-
-			newModelFilePage.setFileName(newFileName);
-			newModelFilePage.setFileExtension(newExtension);
-
-			DiagramCategoryDescriptor selected = getDiagramCategoryMap().get(newCategory);
-			if(selected == null) {
-				selectDiagramCategoryPage.setErrorMessage("Could not find DiagramCategory for " + newCategory);
-				return false;
-			}
-			String categoryLabel = selected.getLabel();
-			String message = String.format("The %s diagram category requires a specific diagram file extension. " + "Thus, the diagram file has been renamed from %s to %s ", categoryLabel, oldFileName, newFileName);
-			selectDiagramCategoryPage.setMessage(message, IMessageProvider.INFORMATION);
-
-			String errorMessage = newModelFilePage.getErrorMessage();
-			if(errorMessage != null) {
-				selectDiagramCategoryPage.setErrorMessage(errorMessage);
-			}
-		} else {
-			selectDiagramCategoryPage.setMessage(null);
-		}
-		return newCategory != null;
+		return Status.OK_STATUS;
 	}
 
 }

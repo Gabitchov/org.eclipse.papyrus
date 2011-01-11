@@ -17,6 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.jface.wizard.WizardPage;
@@ -122,8 +125,23 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	 * @return true, if successful
 	 */
 	private boolean validatePage() {
-		//316943 -  [Wizard] Wrong suffix for file name when creating a profile model
-		return ((CreateModelWizard)getWizard()).validateSelectDiagramCategoryPage();
+		String newCategory = getDiagramCategory();
+		if (newCategory == null) {
+			setErrorMessage("Please select at least one category");
+			return false;
+		}
+		DiagramCategoryDescriptor selected = getDiagramCategoryMap().get(newCategory);
+		if(selected == null) {
+			setErrorMessage("Could not find DiagramCategory for " + newCategory);
+			return false;
+		}
+		IStatus status = ((CreateModelWizard)getWizard()).diagramCategoryChanged(getDiagramCategory());
+		switch (status.getCode()) {
+			case Status.ERROR: setErrorMessage(status.getMessage()); return false;
+			case Status.WARNING: setMessage(status.getMessage(), IMessageProvider.WARNING);
+			case Status.INFO: setMessage(status.getMessage(), IMessageProvider.INFORMATION);
+		}
+		return true;
 	}
 	
 	private Map<String, DiagramCategoryDescriptor> getDiagramCategoryMap() {

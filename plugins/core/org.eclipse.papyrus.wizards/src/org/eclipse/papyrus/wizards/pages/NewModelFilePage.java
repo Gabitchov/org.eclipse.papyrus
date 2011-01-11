@@ -13,7 +13,9 @@ package org.eclipse.papyrus.wizards.pages;
 
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
@@ -36,8 +38,9 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 
 	/**
 	 * Instantiates a new new model file page.
-	 *
-	 * @param selection the selection
+	 * 
+	 * @param selection
+	 *        the selection
 	 */
 	public NewModelFilePage(IStructuredSelection selection) {
 		super(PAGE_ID, selection);
@@ -55,6 +58,29 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 		setFileName(getUniqueFileName(getContainerFullPath(), getFileName(), getFileExtension()));
 		setPageComplete(validatePage());
 	}
+
+	public IStatus diagramExtensionChanged(String newExtension) {
+		String currentExtension = getFileExtension();
+		if(!currentExtension.equals(newExtension)) {
+
+			String oldFileName = getFileName();
+			String newFileName = NewModelFilePage.getUniqueFileName(getContainerFullPath(), getFileName(), newExtension);
+
+			setFileName(newFileName);
+			setFileExtension(newExtension);
+
+			String message = String.format("The new diagram category requires a specific diagram file extension. " + "Thus, the diagram file has been renamed from %s to %s ", oldFileName, newFileName);
+			Status resultStatus = new Status(Status.INFO, "", message);
+
+			String errorMessage = getErrorMessage();
+			if(errorMessage != null) {
+				resultStatus = new Status(Status.ERROR, "", errorMessage);
+			}
+			return resultStatus;
+		}
+		return Status.OK_STATUS;
+	}
+
 
 	/**
 	 * Gets the unique file name.
