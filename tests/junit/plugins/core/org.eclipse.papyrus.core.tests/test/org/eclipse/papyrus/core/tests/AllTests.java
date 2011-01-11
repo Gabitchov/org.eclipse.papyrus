@@ -14,6 +14,11 @@ package org.eclipse.papyrus.core.tests;
 import org.eclipse.papyrus.core.lifecycleevents.LifeCycleEventsProviderTest;
 import org.eclipse.papyrus.core.services.ComposedServiceTest;
 import org.eclipse.papyrus.core.services.ServicesRegistryTest;
+import org.eclipse.papyrus.core.wizard.TestCreateModelWizard;
+import org.eclipse.papyrus.core.wizard.TestCreateSysMLModelWizard;
+import org.eclipse.papyrus.core.wizard.TestInitModelWizard;
+import org.eclipse.papyrus.core.wizard.TestNewProjectWizard;
+import org.eclipse.papyrus.core.wizard.TestNewSysMLProjectWizard;
 import org.eclipse.papyrus.resource.AbstractModelWithSharedResourceTest;
 import org.eclipse.papyrus.resource.ModelSetTest;
 import org.junit.runner.RunWith;
@@ -29,7 +34,10 @@ ModelSetTest.class, AbstractModelWithSharedResourceTest.class,
 // {oep}.core.services
 ComposedServiceTest.class, ServicesRegistryTest.class,
 // {oep}.core.lifecycleevents
-/* SaveAndDirtyServiceTest.class, */LifeCycleEventsProviderTest.class
+/* SaveAndDirtyServiceTest.class, */LifeCycleEventsProviderTest.class, 
+//{oep.wizard}
+TestCreateModelWizard.class, TestCreateSysMLModelWizard.class, TestInitModelWizard.class, TestNewProjectWizard.class, TestNewSysMLProjectWizard.class
+
 })
 /**
  * Suite Class for all tests in the plugin
