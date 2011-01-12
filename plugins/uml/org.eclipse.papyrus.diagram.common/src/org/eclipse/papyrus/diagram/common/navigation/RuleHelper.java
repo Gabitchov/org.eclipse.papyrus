@@ -38,9 +38,6 @@ public class RuleHelper {
 		navElements.add(new CreatedNavigableElement(activity, currentNavElement, NavigationType.BEHAVIORAL, feature, modelLinker, UMLBaseNameSetter.instance));
 
 		final StateMachine sm = UMLFactory.eINSTANCE.createStateMachine();
-		final Region region = UMLFactory.eINSTANCE.createRegion();
-		sm.getRegions().add(region);
-
 		navElements.add(new CreatedNavigableElement(sm, currentNavElement, NavigationType.BEHAVIORAL, feature, modelLinker, UMLBaseNameSetter.instance));
 	}
 }
