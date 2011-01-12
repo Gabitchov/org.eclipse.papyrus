@@ -39,7 +39,8 @@ public class UMLBaseNameSetter implements IBaseNameSetter {
 			} else {
 				contents = Collections.EMPTY_LIST;
 			}
-			namedElement.setName(NamedElementUtil.getDefaultNameWithIncrementFromBase(base + toName.eClass().getName(), contents));
+
+			namedElement.setName(NamedElementUtil.getDefaultNameWithIncrement(base, namedElement, contents));
 		}
 	}
 

@@ -17,6 +17,7 @@ package org.eclipse.papyrus.diagram.statemachine;
 import java.util.Iterator;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
@@ -38,6 +39,7 @@ import org.eclipse.papyrus.diagram.statemachine.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.statemachine.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.statemachine.providers.ElementInitializers;
 import org.eclipse.papyrus.diagram.statemachine.providers.UMLElementTypes;
+import org.eclipse.papyrus.umlutils.NamedElementUtil;
 import org.eclipse.uml2.uml.BehavioredClassifier;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Region;
@@ -124,7 +126,16 @@ public class CreateStateMachineDiagramCommand extends CreateBehavioredClassifier
 						compartmentView = currentNode;
 					}
 				}
-				Region region = stateMachine.getRegions().get(0);
+
+				Region region = null;
+				EList<Region> regions = stateMachine.getRegions();
+				if (regions.isEmpty()) {
+					region = UMLFactory.eINSTANCE.createRegion();
+					regions.add(region);
+					region.setName(NamedElementUtil.getDefaultNameWithIncrement(region, regions));
+				} else {
+					region = stateMachine.getRegions().get(0);
+				}
 
 				IAdaptable regionAdaptable = new SemanticAdapter(region, null);
 				String semanticHint = ((IHintedType)UMLElementTypes.Region_3000).getSemanticHint();

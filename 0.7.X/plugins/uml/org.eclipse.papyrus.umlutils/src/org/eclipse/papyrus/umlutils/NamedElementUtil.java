@@ -14,8 +14,6 @@
 package org.eclipse.papyrus.umlutils;
 
 import java.util.Collection;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.NamedElement;
@@ -77,13 +75,22 @@ public class NamedElementUtil {
 	 * 
 	 * @param newElement
 	 */
-	public static String getDefaultNameWithIncrement(EObject newElement, Collection<EObject> contents) {
+	@SuppressWarnings("rawtypes")
+	public static String getDefaultNameWithIncrement(EObject newElement, Collection contents) {
+		return getDefaultNameWithIncrement("", newElement, contents);
+	}
+
+	@SuppressWarnings("rawtypes")
+	public static String getDefaultNameWithIncrement(String base, EObject newElement, Collection contents) {
+		if (base == null) {
+			base = "";
+		}
 		String eclassName = newElement.eClass().getName();
-		if(eclassName.length() > 0) {
+		if(eclassName.length() > 0 && "".equals(base)) {
 			eclassName = eclassName.substring(0, 1).toLowerCase() + eclassName.substring(1, eclassName.length());
 		}
 		
-		return getDefaultNameWithIncrementFromBase(eclassName, contents);
+		return getDefaultNameWithIncrementFromBase(base + eclassName, contents);
 	}
 	
 	@SuppressWarnings("rawtypes")
