@@ -52,6 +52,7 @@ public class TestCreateModelWizard extends TestNewModelWizardBase {
 		assertEquals(expectedExtension, page.getFileExtension());
 	}
 	
+	
 	public void testDiagramFileExtenstionForProfile() {
 		final String expectedExtension = "profile.di";
 		InitModelWizard wizard = new InitModelWizard() {
