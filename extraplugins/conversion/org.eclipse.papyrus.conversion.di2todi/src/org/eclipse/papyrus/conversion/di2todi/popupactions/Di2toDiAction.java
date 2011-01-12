@@ -1,6 +1,6 @@
 /**
  * @author: Manel Fredj - CEA
- * This class enables to invoke QVTO transformation in order to convert a diagram from di2 into di+notation
+ * This class invoke QVTO transformations that convert a diagram from di2 into di+notation
  */
 
 package org.eclipse.papyrus.conversion.di2todi.popupactions;
@@ -13,6 +13,10 @@ import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -38,18 +42,17 @@ import org.eclipse.m2m.internal.qvt.oml.trace.TraceRecord;
 import org.eclipse.m2m.qvt.oml.util.IContext;
 import org.eclipse.papyrus.conversion.di2.util.Di2AdapterFactory;
 import org.eclipse.papyrus.conversion.di2todi.Activator;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IActionDelegate;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 
 
-
 @SuppressWarnings("restriction")
 public class Di2toDiAction implements IObjectActionDelegate {
 
 	private static final Map<?, ?> options = null;
-	private Shell shell;
 	private IPath inModelPath;	//reference to selected Model
 	private String inAbsolutepath;
 	
@@ -66,7 +69,6 @@ public class Di2toDiAction implements IObjectActionDelegate {
 	 * @see IObjectActionDelegate#setActivePart(IAction, IWorkbenchPart)
 	 */
 	public void setActivePart(IAction action, IWorkbenchPart targetPart) {
-		shell = targetPart.getSite().getShell();
 	}
 
 	/**
@@ -78,103 +80,129 @@ public class Di2toDiAction implements IObjectActionDelegate {
 			adapterFactory = new Di2AdapterFactory();
 		}
 		// Refer to an existing transformation via URI
-		URI transformationURI = URI.createURI("platform:/plugin/" + Activator.PLUGIN_ID + "/TransfoQvtoDi2toDi/Transfo.qvto");
+		final URI transformationURI =
+			URI.createURI("platform:/plugin/" + Activator.PLUGIN_ID + "/TransfoQvtoDi2toDi/Transfo.qvto");
 		
 		//get the resources from the input URI
-		ResourceSet resourceSet = new ResourceSetImpl();
-		try {
-			URI inURI = URI.createPlatformResourceURI(inModelPath.toString(), true);
-			Resource inResource = resourceSet.getResource(inURI, true);
-			// create the inputs
-			List<EObject> inObjects =inResource.getContents();
-			ModelContent input_di2 = new ModelContent (inObjects);
-			ModelContent[] inputs = new ModelContent[1];
-			inputs[0]=input_di2;
-			
-			// setup the execution environment details -> context
-			IContext mycontext = new Context();
-			Trace trace= null;
-			
-			QvtInterpretedTransformation transformation = new QvtInterpretedTransformation (TransformationUtil.getQvtModule(transformationURI));
-			In IntransformationRunner=new TransformationRunner.In(inputs, mycontext);
-			Out OuttransformationRunner=new TransformationRunner.Out(null,null, null);
-			
-			// running the transformation
-			OuttransformationRunner=transformation.run(IntransformationRunner);
-			
-			// retrieve the outputs
-			List<ModelExtentContents> outputs= OuttransformationRunner.getExtents();
-			
-			// retrieve the trace
-			trace= OuttransformationRunner.getTrace();
-			
-			if (trace !=null && outputs.size()==2) {
-				// processing the trace
-				URI Uri_trace = inURI.trimFileExtension().appendFileExtension("trace");
-				EList<TraceRecord> outObjects_trace =  trace.getTraceRecords();
-				Resource outResource_trace  = resourceSet.createResource(Uri_trace);
-				outResource_trace.getContents().addAll(outObjects_trace);
-			
-				// processing the outputs
-				ModelExtentContents  output_notation=outputs.get(0);
-				ModelExtentContents  output_di=outputs.get(1);
+		final ResourceSet resourceSet = new ResourceSetImpl();
+		Job job = new Job("Convert diagram " + inModelPath.toString()) {
+			@Override
+			protected IStatus run(IProgressMonitor monitor) {
+				// execute the task ...
 				
-				URI Uri_notation = inURI.trimFileExtension().appendFileExtension("notation");
-				URI Uri_di = inURI.trimFileExtension().appendFileExtension("di");
-		
-				// the output objects got captured in the output extent
-				List<EObject> outObjects_notation = output_notation.getAllRootElements();
-				List<EObject> outObjects_di = output_di.getAllRootElements();	
+				try {
+					monitor.beginTask("converting ...", 4);
+
+					URI inURI = URI.createPlatformResourceURI(inModelPath.toString(), true);
+					Resource inResource = resourceSet.getResource(inURI, true);
+					// create the inputs
+					List<EObject> inObjects =inResource.getContents();
+					ModelContent input_di2 = new ModelContent (inObjects);
+					ModelContent[] inputs = new ModelContent[1];
+					inputs[0]=input_di2;		
+						
+					// setup the execution environment details -> context
+					IContext mycontext = new Context();
+					Trace trace= null;
+					
+					QvtInterpretedTransformation transformation = new QvtInterpretedTransformation (TransformationUtil.getQvtModule(transformationURI));
+					In IntransformationRunner=new TransformationRunner.In(inputs, mycontext);
+					Out OuttransformationRunner=new TransformationRunner.Out(null,null, null);
+					
+					monitor.worked(1);
+					// running the transformation
+					OuttransformationRunner=transformation.run(IntransformationRunner);
+					
+					// retrieve the outputs
+					List<ModelExtentContents> outputs= OuttransformationRunner.getExtents();
+					
+					// retrieve the trace
+					trace= OuttransformationRunner.getTrace();
+					
+					if (trace !=null && outputs.size()==2) {
+						// processing the trace
+						URI Uri_trace = inURI.trimFileExtension().appendFileExtension("trace");
+						EList<TraceRecord> outObjects_trace =  trace.getTraceRecords();
+						Resource outResource_trace  = resourceSet.createResource(Uri_trace);
+						outResource_trace.getContents().addAll(outObjects_trace);
+					
+						// processing the outputs
+						ModelExtentContents  output_notation = outputs.get(0);
+						ModelExtentContents  output_di = outputs.get(1);
+						monitor.worked(1);
+						
+						URI Uri_notation = inURI.trimFileExtension().appendFileExtension("notation");
+						URI Uri_di = inURI.trimFileExtension().appendFileExtension("di");
 				
-				//Let's persist them using a resource for notation
-				Resource	outResource_notation   = resourceSet.createResource(Uri_notation );
-				outResource_notation.getContents().addAll(outObjects_notation);
-				
-				// let's persist them using a resource for di
-				Resource outResource_di   = resourceSet.createResource(Uri_di);
-				outResource_di.getContents().addAll(outObjects_di);
-				
-				try{
-					outResource_notation.save(Collections.emptyMap());
-					outResource_di.save(Collections.emptyMap());
-					outResource_trace.save(Collections.emptyMap());
+						// the output objects got captured in the output extent
+						List<EObject> outObjects_notation = output_notation.getAllRootElements();
+						List<EObject> outObjects_di = output_di.getAllRootElements();	
+						
+						//Let's persist them using a resource for notation
+						Resource	outResource_notation   = resourceSet.createResource(Uri_notation );
+						outResource_notation.getContents().addAll(outObjects_notation);
+						
+						// let's persist them using a resource for di
+						Resource outResource_di   = resourceSet.createResource(Uri_di);
+						outResource_di.getContents().addAll(outObjects_di);
+						
+						monitor.worked(1);
+
+						try{
+							outResource_notation.save(Collections.emptyMap());
+							outResource_di.save(Collections.emptyMap());
+							outResource_trace.save(Collections.emptyMap());
+						} 
+						catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}	
+						monitor.worked(1);
+						
+						// remove trace file				
+						URIConverter uri= resourceSet.getURIConverter();
+						uri.delete(Uri_trace, options);
+					}
 				} 
-				catch (IOException e) {
-					// TODO Auto-generated catch block
+				catch (final MdaException e) {
+					Display.getDefault().syncExec(new Runnable() {
+						public void run() {
+							MessageDialog.openError(
+								new Shell(), "Model transformation error during conversion", e.toString ());		
+						}
+					});
 					e.printStackTrace();
-				}	
+				}
+				catch (final IOException e) {
+					Display.getDefault().syncExec(new Runnable() {
+						public void run() {
+							MessageDialog.openError(
+								new Shell(), "IO error during conversion", e.toString ());		
+						}
+					});
+					e.printStackTrace();
+				}
+				catch (final RuntimeException e) {
+					Display.getDefault().syncExec(new Runnable() {
+						public void run() {
+							MessageDialog.openError(
+								new Shell(), "Error during conversion", e.toString ());		
+						}
+					});
+					e.printStackTrace ();
+				}
+				finally {
+					// when the transformation succeeds
+					//1- restore the content of Di2 file i.e., di2 namespace
+					PapyrusNamespace.restoreDi2Namespace(inAbsolutepath);
+				}
 				
-				//remove trace file				
-				URIConverter uri= resourceSet.getURIConverter();
-				uri.delete(Uri_trace, options);
+				monitor.done();
+				return Status.OK_STATUS;
 			}
-			// when the transformation succeeds
-			//1- restore the content of Di2 file i.e., di2 namespace
-			PapyrusNamespace.restoreDi2Namespace(this.inAbsolutepath);
-			//2-show dialog
-			MessageDialog.openInformation(
-					shell,
-					"Paryrus1 => Payrus MDT converter",
-					"Di2toDi Action was executed.");
-		} 
-		catch (MdaException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		catch (RuntimeException e) {
-			// Shell shell = new Shell ();
-			MessageDialog.openError(
-					shell,
-					"Error during conversion",
-					e.toString ());		
-			e.printStackTrace ();
-		}
-		
-			
+		};
+		job.setUser (true);
+		job.schedule ();
 	}
 
 	/**
@@ -183,11 +211,6 @@ public class Di2toDiAction implements IObjectActionDelegate {
 	public void selectionChanged(IAction action, ISelection selection)
 	{
 		this.inModelPath = null;
-		this.inAbsolutepath=null;
-		IPath di2Path=null;
-		IPath location = null;
-		
-
 		
 		if (!(selection instanceof IStructuredSelection)) {
 			// no structured-selection
@@ -204,8 +227,8 @@ public class Di2toDiAction implements IObjectActionDelegate {
 			
 			IFile di2Select = (IFile) firstElement;
 			// retrieve the path of the file
-			di2Path=di2Select.getFullPath();
-			location = ((IFile) firstElement).getLocation();
+			IPath di2Path = di2Select.getFullPath();
+			IPath location = di2Select.getLocation();
 			if (location != null) {
 				// Get the file for the location
 				File file = location.toFile();

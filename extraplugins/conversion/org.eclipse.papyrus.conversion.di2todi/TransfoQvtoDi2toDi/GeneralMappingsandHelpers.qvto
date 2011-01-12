@@ -14,22 +14,48 @@ modeltype uml uses 'http://www.eclipse.org/uml2/2.1.0/UML';
 -------------------------------------------------------------------------------------------------------------------------
 ----------------------------------------           Generic  Mappings              ---------------------------------------
 -------------------------------------------------------------------------------------------------------------------------
-abstract mapping di2::GraphElement::Element2View() : notation::View
+abstract mapping di2::GraphElement::element2View() : notation::View
 {
-   --assign visibility attribute
-	visible := self.isVisible; 	
-	--assign the fontcolor
-	styles->select (e|e.oclIsTypeOf(notation::FontStyle))->forEach(style){
-		style.oclAsType (notation::FontStyle).fontColor := self.fontColor.rgb2int()
-	};		
+	--assign visibility attribute (it seems that this is not supported by Papyrus MDT
+	--  if false, diagram is visible but has no contents
+	--visible := self.isVisible;
+	visible := true; 	
 
-	--element=self.getElement();	
 	element := self.getElement().oclAsType(ecore::EObject);	
 }
 
 
-mapping di2::GraphNode::Graphnode2Node() : notation::Node inherits di2::GraphElement::Element2View
+mapping di2::GraphEdge::edge2Connector() : notation::Connector inherits di2::GraphElement::element2View
 {
+	lineColor := self.borderColor.rgb2int();
+}
+
+mapping di2::GraphNode::node2Shape() : notation::Shape inherits di2::GraphElement::element2View
+{
+	--assign colors	and bounds
+	lineColor := self.borderColor.rgb2int();
+	fillColor := self.backgroundColor.rgb2int();
+	fontColor := self.fontColor.rgb2int();
+
+	if (self.oclIsTypeOf(di2::GraphNode)) then {
+		layoutConstraint := object notation::Bounds {
+			var size : notation::Size := self.oclAsType(di2::GraphNode).size.map dimension2Size();
+		
+			var relativeLocation: notation::Location :=null;
+		
+			var location : notation::Location :=
+			self.position.map point2Location();
+			x := location.x; 
+			y := location.y; 
+			width := size.width;
+			height := size.height;
+			if (self.container.oclIsTypeOf(di2::GraphNode)) then {
+				// correct position (why necessary??) of nested items
+				y := y - 20;
+			} endif;
+		};
+		
+	} endif;
 }
 
 -------------------------------------------------------------------------------------------------------------------------
@@ -45,7 +71,6 @@ mapping di2::Dimension::dimension2Size() : notation::Size
 -- transformation mapping dimension into location
 mapping  di2::Point::point2Location() : notation::Location
 {
-	
 	x := self.pointGetX();
 	y := self.pointGetY();
 	
@@ -54,6 +79,7 @@ mapping  di2::Point::point2Location() : notation::Location
 -------------------------------------------------------------------------------------------------------------------------
 ----------------------------------------                   Helpers                ---------------------------------------
 -------------------------------------------------------------------------------------------------------------------------
+
 
 --Set EAnnotation: not specific to a diagram (it is used in class diagram and composite diagram)
 -------------------------------- 
@@ -93,5 +119,22 @@ helper setEAnnotations() : OrderedSet (ecore::EAnnotation)
 	-- add the set of annotations to the node
 	return OrderedSet {
 		eAnnot1, eAnnot2, eAnnot3
+	};
+}
+
+--suppresses showing type information for an element (used for associations by default)
+helper noTypeEAnnotation() : OrderedSet (ecore::EAnnotation)
+{
+	var eAnnotationNoType := object ecore::EAnnotation {
+		--the id is set automatically
+		--eAnnot1.eModelElement:=self.resolveone(notation::Node);
+		source := "CustomAppearance_Annotation";
+		details := object ecore::EStringToStringMapEntry {
+			key     := "CustomAppearance_MaskValue";
+			value	:= "14";
+		};
+	};
+	return OrderedSet {
+		eAnnotationNoType
 	};
 }

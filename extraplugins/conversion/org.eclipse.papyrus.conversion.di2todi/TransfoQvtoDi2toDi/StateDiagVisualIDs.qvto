@@ -1,0 +1,38 @@
+
+--Author Ansgar Radermacher -CEA LIST
+
+library StateDiagVisualIDs;
+
+--transition
+property VisualId_Edge_Transition					: String = "7000";
+property VisualId_DecoNode1_Transition				: String = "7001";
+property VisualId_DecoNode2_Transition				: String = "7002";
+property VisualId_DecoNode3_Transition				: String = "7003";
+		
+--state machine
+property VisualId_StateMachine						: String = "2000";
+property VisualId_StateMachine_DecoNode			: String = "2002";
+
+--region
+property VisualId_Region							: String = "3000";
+property VisualId_Region_DecoNode					: String = "3002";
+
+--state
+property VisualId_State							: String = "6000"; 
+property VisualId_State_DecoNode1					: String = "6001";
+property VisualId_State_DecoNode2					: String = "6002"; 
+
+--initial state (pseudo state)
+property VisualId_InitialState						: String = "8000"; 
+property VisualId_InitialState_DecoNode1			: String = "8001";
+property VisualId_InitialState_DecoNode2			: String = "8002";
+
+--deep history state (pseudo state)
+property VisualId_HistoryState						: String = "14000"; 
+property VisualId_HistoryState_DecoNode1			: String = "14001";
+property VisualId_HistoryState_DecoNode2			: String = "14002";
+
+--choice point (pseudo state)
+property VisualId_Choice							: String = "11000"; 
+property VisualId_Choice_DecoNode1					: String = "11001";
+property VisualId_Choice_DecoNode2					: String = "11002";

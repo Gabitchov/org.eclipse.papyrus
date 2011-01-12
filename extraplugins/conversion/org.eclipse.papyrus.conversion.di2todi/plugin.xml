@@ -16,32 +16,16 @@
       </unit>
             
             
-      <unit
-            name="VisualIds" namespace="Converter.Utils">
-              	<library
-            class="org.eclipse.papyrus.conversion.di2todi.blackboxes.VisualIDs"
-            name="VisualIDS">
-            <metamodel nsURI="http://www.eclipse.org/emf/2002/Ecore"/>
-            <metamodel nsURI="http://www.eclipse.org/uml2/2.1.0/UML"/>
-            <metamodel nsURI="http://www.papyrusuml.org/di2"/>
-            <metamodel nsURI="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
-     	 </library>
-      </unit>
       
-      <unit
-            name="ElementType" namespace="Converter.Utils">
-             	 
-     	 <library
-            class="org.eclipse.papyrus.conversion.di2todi.blackboxes.ElementType"
-            name="ElementType">
-              <metamodel nsURI="http://www.eclipse.org/emf/2002/Ecore"/>
-            <metamodel nsURI="http://www.eclipse.org/uml2/2.1.0/UML"/>
-            <metamodel nsURI="http://www.papyrusuml.org/di2"/>
-            <metamodel nsURI="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      
+      
+   </extension>
+   <extension
+         point="org.eclipse.m2m.qvt.oml.runtime.qvtTransformation">
+      <library
+            file="TransfoQvtoDi2toDi/"
+            id="org.eclipse.papyrus.conversion.di2todi.library1">
       </library>
-      </unit>
-      
-      
    </extension>
 
    <extension
