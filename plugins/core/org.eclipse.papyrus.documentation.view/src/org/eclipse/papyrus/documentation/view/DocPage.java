@@ -1,5 +1,5 @@
 /***********************************************************************
- * Copyright (c) 2008, 2009 Anyware Technologies and others
+ * Copyright (c) 2009 Anyware Technologies and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -7,11 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors:
- *    David Sciamma (Anyware Technologies) - initial API and implementation 
- *    Mathieu Garcia (Anyware Technologies) - initial API and implementation
- *    Jacques Lescot (Anyware Technologies) - initial API and implementation
- *    Thomas Friol (Anyware Technologies) - initial API and implementation
- *    Jacques Lescot (Anyware Technologies) - feature #1414
+ *    Jacques Lescot (Anyware Technologies) - initial API and documentation
  **********************************************************************/
 package org.eclipse.papyrus.documentation.view;
 
@@ -21,59 +17,166 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.TabFolder;
+import org.eclipse.swt.widgets.TabItem;
+import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.part.Page;
 
 /**
- * This class creates the page to edit documentation EAnnotation of a given EModelElement<br>
- * <br>
- * Created : 3 June 2005<br>
- * Updated : 8 August 2008<br>
- * Updated : 11 August 2009 (Completely refactor that class into an abstract class {@link AbstractDocPage} and a default
- * implementation one<br>
+ * This class defines a page used to edit a documentation text and some resources to be associated with a
+ * given model element<br>
  * 
- * @author <a href="mailto:david@anyware-tech.com">David Sciamma</a>
+ * Created : 11 August 2009<br>
+ * 
  * @author <a href="mailto:jacques.lescot@anyware-tech.com">Jacques LESCOT</a>
  */
-public class DocPage extends AbstractDocPage
+public class DocPage extends Page implements IDocPage
 {
+    private EObject documentedElement;
+
+    // SWT Widgets
+    private Composite mainComp;
+
+    protected CommentsComposite commentsComposite;
+
+    protected ResourcesComposite resourcesComposite;
+
+    private TabFolder tabFolder;
+    
     /**
      * This constant is used to determine if the composite has to insert a text field
      */
     public static final int STYLE_TEXT_TYPE = 1 << 28;
 
-    private final boolean displayTypeLabel;
-
     /**
-     * Build the page with the editor command stack : used to execute commands.
+     * @see org.eclipse.ui.part.Page#createControl(org.eclipse.swt.widgets.Composite)
      */
-    public DocPage()
+    public void createControl(Composite parent)
     {
-        this(true);
+        mainComp = new Composite(parent, SWT.NONE);
+        mainComp.setLayout(new GridLayout());
+        mainComp.setLayoutData(new GridData(GridData.FILL_BOTH));
+
+        tabFolder = new TabFolder(mainComp, SWT.TOP);
+        tabFolder.setLayoutData(new GridData(GridData.FILL_BOTH));
+
+        createCommentsTabItem(tabFolder);
+        createResourcesTabItem(tabFolder);
     }
 
     /**
-     * Build the page
+     * Create the content of the comments tab item. It contains a multi lines text field in order to edit the comments
+     * of the documentation.
      * 
-     * @param displayTypeLabel whether label for type is displayed
+     * @param parent the parent tab folder
      */
-    public DocPage(boolean displayTypeLabel)
+    private void createCommentsTabItem(TabFolder parent)
     {
-        super();
-        this.displayTypeLabel = displayTypeLabel;
+        TabItem tabItem = new TabItem(parent, SWT.NONE);
+        tabItem.setText(Messages.AbstractDocPage_commentsTitle);
+
+        Composite container = new Composite(parent, SWT.NONE);
+
+        GridLayout containerLayout = new GridLayout();
+        containerLayout.marginWidth = 0;
+        containerLayout.marginHeight = 0;
+        container.setLayout(containerLayout);
+        container.setLayoutData(new GridData(GridData.FILL_BOTH));
+
+        tabItem.setControl(container);
+
+        commentsComposite = createCommentsComposite(container);
+        commentsComposite.setLayoutData(new GridData(GridData.FILL_BOTH));
     }
 
     /**
-     * @see org.topcased.modeler.documentation.AbstractDocPage#createCommentsComposite(org.eclipse.swt.widgets.Composite)
+     * Create the content of the resources tab item. It contains a list and three buttons in order to view, add, remove
+     * and edit linked resources.
+     * 
+     * @param parent the parent tab folder
+     */
+    private void createResourcesTabItem(TabFolder parent)
+    {
+        TabItem tabItem = new TabItem(parent, SWT.NONE);
+        tabItem.setText(Messages.AbstractDocPage_resourcesTitle);
+
+        Composite container = new Composite(parent, SWT.NONE);
+        GridLayout containerLayout = new GridLayout();
+        containerLayout.marginWidth = 0;
+        containerLayout.marginHeight = 0;
+        container.setLayout(containerLayout);
+        container.setLayoutData(new GridData(GridData.FILL_BOTH));
+
+        tabItem.setControl(container);
+
+        resourcesComposite = new ResourcesComposite(container, SWT.NONE);
+        resourcesComposite.setLayoutData(new GridData(GridData.FILL_BOTH));
+    }
+
+    /**
+     * @see org.eclipse.ui.part.Page#getControl()
+     */
+    public Control getControl()
+    {
+        return mainComp;
+    }
+
+    /**
+     * @see org.eclipse.ui.ISelectionListener#selectionChanged(org.eclipse.ui.IWorkbenchPart,
+     *      org.eclipse.jface.viewers.ISelection)
+     */
+    public void selectionChanged(IWorkbenchPart part, ISelection selection)
+    {
+        manageDocumentatedElement(part, selection, true);
+    }
+
+    protected void manageDocumentatedElement(IWorkbenchPart part, ISelection selection, boolean checkResources)
+    {
+        EObject elt = getSelectedModelElement(selection);
+        if (elt == null || elt != documentedElement)
+        {
+            documentedElement = elt;
+            if (commentsComposite != null && !commentsComposite.isDisposed())
+            {
+                commentsComposite.setActivePart(part);
+                commentsComposite.setDocumentedElement(documentedElement);
+            }
+            if (resourcesComposite != null && !resourcesComposite.isDisposed())
+            {
+            	resourcesComposite.setActivePart(part);
+            	resourcesComposite.setDocumentedElement(documentedElement);
+            }
+            if (documentedElement != null && checkResources)
+            {
+        		IDocumentationPartHandler documentationPartHandler = DocumentionPartHandlerRegistry.getInstance().getDocumentationPartHandler(part);
+            	if (documentationPartHandler != null) {
+            		boolean readOnly = documentationPartHandler.isReadOnly(part, documentedElement);
+            		commentsComposite.setReadOnly(readOnly);
+            		resourcesComposite.setReadOnly(readOnly);
+            	}
+            }
+        }
+    }
+
+    /**
+     * @see org.eclipse.ui.part.Page#setFocus()
      */
     @Override
-    protected AbstractCommentsComposite createCommentsComposite(Composite parent)
+    public void setFocus()
     {
-        int style = SWT.NONE;
-        if (displayTypeLabel)
+        if (commentsComposite != null && !commentsComposite.isDisposed())
         {
-            style |= STYLE_TEXT_TYPE;
+            commentsComposite.setFocus();
         }
-        return new CommentsComposite(parent, style);
+    }
+
+    protected CommentsComposite createCommentsComposite(Composite parent)
+    {
+        return new CommentsComposite(parent, SWT.NONE | STYLE_TEXT_TYPE);
     }
 
     /**
@@ -112,4 +215,5 @@ public class DocPage extends AbstractDocPage
 
         return null;
     }
+
 }

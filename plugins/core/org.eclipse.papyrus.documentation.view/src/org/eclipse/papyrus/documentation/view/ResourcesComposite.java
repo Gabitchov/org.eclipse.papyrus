@@ -79,9 +79,6 @@ import org.eclipse.ui.model.WorkbenchLabelProvider;
  */
 public class ResourcesComposite extends DocPageComposite
 {
-
-    private EObject documentedElement;
-
     private TreeViewer resourcesList;
 
     private Button addResourcesButton;
@@ -187,30 +184,6 @@ public class ResourcesComposite extends DocPageComposite
         editResourceButton.setText(Messages.ResourcesComposite_edit);
         editResourceButton.setLayoutData(new GridData(GridData.FILL_BOTH));
         editResourceButton.addSelectionListener(buttonSelectionListener);
-    }
-
-    /**
-     * Change the edited object
-     * 
-     * @param modelElement the edited object
-     */
-    public void setDocumentedElement(EObject modelElement)
-    {
-        if (modelElement == null || this.documentedElement != modelElement)
-        {
-            this.documentedElement = modelElement;
-            refresh();
-        }
-    }
-
-    /**
-     * Get the element to be documented
-     * 
-     * @return EObject
-     */
-    public EObject getDocumentedElement()
-    {
-        return documentedElement;
     }
 
     /**

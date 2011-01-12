@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.documentation.view.papyrus;
 
-import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.operations.OperationHistoryFactory;
@@ -23,29 +23,30 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature.Setting;
-import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.core.ui.pagebookview.MultiViewPageBookView;
-import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.core.adaptor.gmf.DiagramsUtil;
+import org.eclipse.papyrus.core.editor.CoreMultiDiagramEditor;
 import org.eclipse.papyrus.documentation.DocumentationManager;
 import org.eclipse.papyrus.documentation.IDocumentationManager;
 import org.eclipse.papyrus.documentation.view.IDocumentationPartHandler;
 import org.eclipse.papyrus.documentation.view.SelectResourceDialog;
-import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
 import org.eclipse.papyrus.modelexplorer.MoDiscoContentProvider;
 import org.eclipse.papyrus.modelexplorer.MoDiscoLabelProvider;
+import org.eclipse.papyrus.modelexplorer.ModelExplorerPageBookView;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ISelectionStatusValidator;
 
 
 public class PapyrusDocumentationPartHandler implements IDocumentationPartHandler {
 
 	public boolean canHandlePart(IWorkbenchPart part) {
-		return part instanceof PapyrusMultiDiagramEditor || part instanceof MultiViewPageBookView;
+		return part instanceof CoreMultiDiagramEditor || part instanceof ModelExplorerPageBookView;
 	}
 
 	public IDocumentationManager getDocumentationManager() {
@@ -54,7 +55,10 @@ public class PapyrusDocumentationPartHandler implements IDocumentationPartHandle
 
 	public void executeCommand(IWorkbenchPart part, Command cmd) {
 		try {
-			OperationHistoryFactory.getOperationHistory().execute(new TransactionalUncheckedCommandProxy(EditorUtils.getTransactionalEditingDomain(), cmd), null, null);
+			CoreMultiDiagramEditor editor = getPapyrusEditor(part);
+			if(editor != null) {
+				OperationHistoryFactory.getOperationHistory().execute(new TransactionalUncheckedCommandProxy((TransactionalEditingDomain)editor.getEditingDomain(), cmd), null, null);
+			}
 		} catch (ExecutionException e) {
 			e.printStackTrace();
 		}
@@ -64,26 +68,44 @@ public class PapyrusDocumentationPartHandler implements IDocumentationPartHandle
 		if(eObject instanceof Diagram) {
 			return null;
 		}
-		return getFirstDiagramAssociatedToElement(eObject);
+
+		if(eObject != null) {
+			if(part instanceof IDiagramWorkbenchPart) {
+				Diagram currentDiagram = ((IDiagramWorkbenchPart)part).getDiagram();
+				if(currentDiagram != null && eObject.equals(currentDiagram.getElement())) {
+					return currentDiagram;
+				}
+			}
+		}
+
+		return null;
 	}
 
 	public void openElement(IWorkbenchPart part, URI elementUri) {
 		try {
-			EditingDomain ed = EditorUtils.getTransactionalEditingDomain();
-			if(ed != null) {
-				EObject eObject = ed.getResourceSet().getEObject(elementUri, false);
-				Diagram diagram = null;
-				if(eObject instanceof Diagram) {
-					diagram = (Diagram)eObject;
-				} else {
-					diagram = getFirstDiagramAssociatedToElement(eObject);
-				}
-				if(diagram != null) {
-					IPageMngr pageMngr = EditorUtils.getIPageMngr();
-					if(pageMngr.isOpen(diagram)) {
-						pageMngr.closePage(diagram);
+			CoreMultiDiagramEditor editor = getPapyrusEditor(part);
+			if(editor != null) {
+				EditingDomain ed = editor.getEditingDomain();
+				if(ed != null) {
+					EObject eObject = ed.getResourceSet().getEObject(elementUri, false);
+					Diagram diagram = null;
+					if(eObject instanceof Diagram) {
+						diagram = (Diagram)eObject;
+					} else {
+						List<Diagram> diagrams = DiagramsUtil.getAssociatedDiagrams(eObject, null);
+						if(!diagrams.isEmpty()) {
+							diagram = diagrams.get(0);
+						}
 					}
-					pageMngr.openPage(diagram);
+					if(diagram != null) {
+						IPageMngr pageMngr = (IPageMngr)editor.getAdapter(IPageMngr.class);
+						if(pageMngr != null) {
+							if(pageMngr.isOpen(diagram)) {
+								pageMngr.closePage(diagram);
+							}
+							pageMngr.openPage(diagram);
+						}
+					}
 				}
 			}
 		} catch (Exception e) {
@@ -91,26 +113,30 @@ public class PapyrusDocumentationPartHandler implements IDocumentationPartHandle
 	}
 
 	public EObject openElementSelectionDialog(IWorkbenchPart part) {
-		ISelectionStatusValidator validator = new ISelectionStatusValidator() {
+		Object selectedElement = null;
+		CoreMultiDiagramEditor editor = getPapyrusEditor(part);
+		if(editor != null) {
+			ISelectionStatusValidator validator = new ISelectionStatusValidator() {
 
-			public IStatus validate(Object[] selectedElements) {
-				boolean enableOK = false;
-				if(selectedElements.length == 1) {
-					Object selectedElement = selectedElements[0];
-					if(adapt(selectedElement) != null) {
-						enableOK = true;
+				public IStatus validate(Object[] selectedElements) {
+					boolean enableOK = false;
+					if(selectedElements.length == 1) {
+						Object selectedElement = selectedElements[0];
+						if(adapt(selectedElement) != null) {
+							enableOK = true;
+						}
 					}
-				}
 
-				String msg = "";
-				if(enableOK == false) {
-					msg = "Only one EObject can be selected";
+					String msg = "";
+					if(enableOK == false) {
+						msg = "Only one EObject can be selected";
+					}
+					return enableOK ? new Status(IStatus.OK, "org.eclipse.emf.common.ui", 0, msg, null) : new Status(IStatus.ERROR, "org.eclipse.emf.common.ui", 0, msg, null);
 				}
-				return enableOK ? new Status(IStatus.OK, "org.eclipse.emf.common.ui", 0, msg, null) : new Status(IStatus.ERROR, "org.eclipse.emf.common.ui", 0, msg, null);
-			}
-		};
-
-		return adapt(SelectResourceDialog.openElementSelection(EditorUtils.getServiceRegistry(), new MoDiscoLabelProvider(), new MoDiscoContentProvider(), validator, null, true));
+			};
+			selectedElement = SelectResourceDialog.openElementSelection(editor.getServicesRegistry(), new MoDiscoLabelProvider(), new MoDiscoContentProvider(), validator, null, true);
+		}
+		return adapt(selectedElement);
 	}
 
 	public boolean isReadOnly(IWorkbenchPart part, EObject eObject) {
@@ -127,16 +153,13 @@ public class PapyrusDocumentationPartHandler implements IDocumentationPartHandle
 		return null;
 	}
 
-	private static Diagram getFirstDiagramAssociatedToElement(EObject element) {
-		ECrossReferenceAdapter crossReferencer = ECrossReferenceAdapter.getCrossReferenceAdapter(element);
-		if(crossReferencer != null) {
-			Collection<Setting> settings = crossReferencer.getNonNavigableInverseReferences(element);
-			for(Setting setting : settings) {
-				if(setting.getEObject() instanceof View) {
-					View view = (View)setting.getEObject();
-					return view.getDiagram();
-				}
-			}
+	private static CoreMultiDiagramEditor getPapyrusEditor(IWorkbenchPart part) {
+		if(part instanceof CoreMultiDiagramEditor) {
+			return (CoreMultiDiagramEditor)part;
+		}
+		IEditorPart activeEditor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+		if(activeEditor instanceof CoreMultiDiagramEditor) {
+			return (CoreMultiDiagramEditor)activeEditor;
 		}
 		return null;
 	}

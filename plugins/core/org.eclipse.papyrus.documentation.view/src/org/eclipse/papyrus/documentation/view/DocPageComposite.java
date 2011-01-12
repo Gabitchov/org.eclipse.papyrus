@@ -32,6 +32,9 @@ import org.eclipse.ui.IWorkbenchPart;
 public abstract class DocPageComposite extends Composite implements IDocumentationChangedListener
 {
 	IWorkbenchPart activePart = null;
+	
+    /** The model element to be documented */
+    private EObject documentedElement;
 
     /**
      * Construct a new empty DocPageComposite.
@@ -57,6 +60,37 @@ public abstract class DocPageComposite extends Composite implements IDocumentati
 
         DocumentationManager.getInstance().registerDocumentationChangedListener(this);
         createContents(this);
+    }
+
+    /**
+     * Change the edited object
+     * 
+     * @param modelElement the edited object
+     */
+    public void setDocumentedElement(EObject modelElement)
+    {
+        if (modelElement == null || this.documentedElement != modelElement)
+        {
+            this.documentedElement = modelElement;
+            refresh();
+        }
+    }
+
+    /**
+     * Get the element to be documented
+     * 
+     * @return EObject
+     */
+    public EObject getDocumentedElement()
+    {
+    	IDocumentationPartHandler documentationPartHandler = DocumentionPartHandlerRegistry.getInstance().getDocumentationPartHandler(getActivePart());
+    	if (documentationPartHandler != null) {
+    		EObject associatedDiagram = documentationPartHandler.getAssociatedDiagram(getActivePart(), documentedElement);
+    		if (associatedDiagram != null) {
+    			return associatedDiagram;
+    		}
+    	}
+        return documentedElement;
     }
     
     public void setActivePart(IWorkbenchPart part) {

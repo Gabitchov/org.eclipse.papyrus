@@ -5,7 +5,7 @@ Bundle-SymbolicName: org.eclipse.papyrus.documentation.view.papyrus;singleton:=t
 Bundle-Version: 0.7.2.qualifier
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.papyrus.documentation.view;bundle-version="0.7.2",
- org.eclipse.papyrus.editor;bundle-version="0.7.2",
- org.eclipse.papyrus.modelexplorer;bundle-version="0.7.2"
+ org.eclipse.papyrus.modelexplorer;bundle-version="0.7.2",
+ org.eclipse.papyrus.core.adaptor.gmf;bundle-version="0.7.2"
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
