@@ -33,6 +33,8 @@ TestClassDiagramLink.class,
 TestClassDiagramLinkOwnedBySource.class,
 // multilinks
 TestMutliLink.class,
+//testContainment
+TestClassDiagramContainment.class,
 //test the order for the drop
 TestDropfunction.class,
 })
