@@ -41,7 +41,7 @@ public class TestCreateModelWizard extends TestNewModelWizardBase {
 			}
 			
 			@Override
-			public String getDiagramFileExtension() {
+			protected String getDiagramFileExtension(String categoryId, String defaultExtension) {
 				return expectedExtension;
 			}
 			
