@@ -42,7 +42,7 @@ public class NavigationOpenDiagramDialog extends Dialog {
 
 	private static final String[] COLUMN_NAMES = { "Navigation type", "Feature", "Element type", "Diagram type", "Diagram name" };
 
-	private static final int[] COLUMN_WIDTHS   = { 100              , 100      , 100           , 200           , 100            };
+	private static final int[] COLUMN_WIDTHS   = { 120              , 120      , 120           , 250           , 120            };
 
 	private static final String DIAGRAM_KEY = "DIAGRAM_KEY";
 
@@ -57,6 +57,7 @@ public class NavigationOpenDiagramDialog extends Dialog {
 	public NavigationOpenDiagramDialog(Shell parent, Map<NavigableElement, List<Diagram>> existingNavDiagrams) {
 		super(parent);
 		this.existingNavDiagrams = existingNavDiagrams;
+		setShellStyle(getShellStyle() | SWT.RESIZE);
 	}
 
 	@Override
@@ -138,12 +139,5 @@ public class NavigationOpenDiagramDialog extends Dialog {
 		}
 
 		return table;
-	}
-
-	@Override
-	protected void createButtonsForButtonBar(Composite parent) {
-		// create OK and Cancel buttons by default
-		createButton(parent, IDialogConstants.OK_ID, "Open in new tab(s)", true);
-		createButton(parent, IDialogConstants.CANCEL_ID, IDialogConstants.CANCEL_LABEL, false);
 	}
 }

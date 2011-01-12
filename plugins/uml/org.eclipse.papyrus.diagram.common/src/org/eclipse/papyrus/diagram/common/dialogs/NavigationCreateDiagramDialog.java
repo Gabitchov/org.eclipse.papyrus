@@ -67,8 +67,6 @@ public class NavigationCreateDiagramDialog extends Dialog {
 			}
 			return false;
 		}
-
-
 	}
 
 	private static final String CREATION_ENTRY_KEY = "CREATION_ENTRY";
@@ -81,7 +79,7 @@ public class NavigationCreateDiagramDialog extends Dialog {
 
 	private static final String[] COLUMN_NAMES = { "Navigation type", "Feature", "Element type", "Diagram type", "Diagram name" };
 
-	private static final int[] COLUMN_WIDTHS   = { 100              , 100      , 100           , 200           , 100            };
+	private static final int[] COLUMN_WIDTHS   = { 120              , 120      , 120           , 250           , 120            };
 
 	private Map<NavigableElement, List<CreationCommandDescriptor>> possibleCreations;
 
@@ -92,6 +90,7 @@ public class NavigationCreateDiagramDialog extends Dialog {
 	public NavigationCreateDiagramDialog(Shell parent, Map<NavigableElement, List<CreationCommandDescriptor>> possibleCreations) {
 		super(parent);
 		this.possibleCreations = possibleCreations;
+		setShellStyle(getShellStyle() | SWT.RESIZE);
 	}
 
 	@Override
@@ -214,7 +213,6 @@ public class NavigationCreateDiagramDialog extends Dialog {
 				elementTypeCombo.add(typeName);
 				elementTypeCombo.setData(typeName, successor);
 			}
-			elementTypeCombo.select(0);
 			elementTypeEditor.grabHorizontal = true;
 			elementTypeEditor.setEditor(elementTypeCombo, tableItem, 2);
 			tableItem.setData(ELEMENT_TYPE_COMBO_KEY, elementTypeCombo);
@@ -233,6 +231,7 @@ public class NavigationCreateDiagramDialog extends Dialog {
 					diagramTypeCombo.select(0);
 				}
 			});
+			elementTypeCombo.select(0);
 
 			TableEditor diagramNameEditor = new TableEditor(table);
 			Text text = new Text(table, SWT.NONE);
