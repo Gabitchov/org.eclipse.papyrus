@@ -220,6 +220,13 @@
 				<bc:propertyRef key="eclipse.downloads" />
 			</rm:uri>
 		</rm:provider>
+
+		<!--  EPF Richtext -->
+		<rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+			<rm:uri format="http://download.eclipse.org/modeling/mdt/papyrus/extra/updates/richtext/">
+				<bc:propertyRef key="eclipse.downloads" />
+			</rm:uri>
+		</rm:provider>
 		
 		<!--  Eclipse -->
 		<rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
