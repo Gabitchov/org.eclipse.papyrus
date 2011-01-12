@@ -88,23 +88,18 @@ public class NamedElementUtil {
 	
 	@SuppressWarnings("rawtypes")
 	public static String getDefaultNameWithIncrementFromBase(String base, Collection contents) {
-		int nextNumber = -1;
+		int nextNumber = 0;
 
 		for(Object o : contents) {
 			if(o instanceof NamedElement) {
 				String name = ((NamedElement)o).getName();
 				if(name != null && name.startsWith(base)) {
 					String end = name.substring(base.length());
-					int nextNumberTmp = -1;
+					int nextNumberTmp = 0;
 
-					if(end.trim().equals("")) {
-						nextNumberTmp = 0;
-					} else {
-						try {
-							nextNumberTmp = Integer.parseInt(end) + 1;
-						} catch (NumberFormatException ex) {
-							nextNumberTmp = -1;
-						}
+					try {
+						nextNumberTmp = Integer.parseInt(end) + 1;
+					} catch (NumberFormatException ex) {
 					}
 
 					if(nextNumberTmp > nextNumber) {
@@ -114,11 +109,7 @@ public class NamedElementUtil {
 			}
 		}
 
-		if(nextNumber == -1) {
-			return base;
-		} else {
-			return base + nextNumber;
-		}
+		return base + nextNumber;
 	}
 
 	/**

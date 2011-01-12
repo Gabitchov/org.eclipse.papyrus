@@ -69,7 +69,7 @@ public class DiagramsUtil {
 				@Override
 				protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 					NavigationHelper.linkToModel((CreatedNavigableElement)navElement);
-					NavigationHelper.setBaseName((CreatedNavigableElement)navElement, diagramName);
+					NavigationHelper.setBaseName((CreatedNavigableElement)navElement, "");
 					return CommandResult.newOKCommandResult();
 				}
 			});
