@@ -71,10 +71,10 @@
 			"2073" = CLASS
 			"3069" = PORT_CN
 			"3070" = PROPERTY_CN
-			"2109" = COMMENT
-			"2114" = CONSTRAINT								
+			"2109, 3097" = COMMENT, COMMENT_CN
+			"2114, 3120" = CONSTRAINT, CONSTRAINT_CN								
 		  -->			
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2073, 3069, 3070, 2109, 2114"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2073, 3069, 3070, 2109, 2114, 3097, 3120"/>
 		<!-- 
 			"4013" = CONNECTOR	
 			"4002" = COMMENT_ANNOTATED_ELEMENT
@@ -156,9 +156,14 @@
 			"7077" = PROPERTY_CN_COMPARTMENT_PROPERTY_PART_HINT
 			"2109" = COMMENT
 			"5192" = COMMENT_LABEL_BODY_HINT
+			"3097" = COMMENT_CN
+			"5150" = COMMENT_CN_LABEL_BODY_HINT			
 			"2114" = CONSTRAINT
 			"5197" = CONSTRAINT_LABEL_NAME_HINT
 			"6039" = CONSTRAINT_LABEL_SPECIFICATION_HINT
+			"3120" = CONSTRAINT_CN
+			"6048" = CONSTRAINT_CN_LABEL_NAME_HINT
+			"6049" = CONSTRAINT_CN_LABEL_SPECIFICATION_HINT			
 		 -->			
 		<object
 			id="CLASS"
@@ -181,11 +186,21 @@
 			<method name="getType()" value="2109, 5192"/>
 		</object>
 		<object
+			id="COMMENT_CN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3097, 5150"/>
+		</object>		
+		<object
 			id="CONSTRAINT"
 			class="org.eclipse.gmf.runtime.notation.Node">
 			<method name="getType()" value="2114, 5197, 6039"/>
 		</object>
-
+		<object
+			id="CONSTRAINT_CN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3120, 6048, 6049"/>
+		</object>
+		
 		<!-- 	
 			"4013" = CONNECTOR
 			"6025" = CONNECTOR_LABEL_APPLIED_STEREOTYPE_HINT
@@ -208,7 +223,7 @@
 			<method name="getType()" value="4003"/>
 		</object>
 
-		<context views="CLASS, PORT_CN, PROPERTY_CN, COMMENT, CONSTRAINT"/>
+		<context views="CLASS, PORT_CN, PROPERTY_CN, COMMENT, CONSTRAINT, COMMENT_CN, CONSTRAINT_CN"/>
 		<context views="CONNECTOR, COMMENT_ANNOTATED_ELEMENT, CONSTRAINT_CONSTRAINED_ELEMENT"/>
 		
 	</editpartProvider>

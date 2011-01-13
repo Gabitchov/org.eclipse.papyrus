@@ -102,7 +102,7 @@ public class InheritedElementViewProvider extends UMLViewProvider {
 
 			return false;
 		}
-		
+
 		if(elementType == InternalBlockDiagramElementTypes.PROPERTY_CN) {
 			//we can create a Property only on a Block Compartment or in another typed Property
 			if(containerSemanticHint.equals(InternalBlockDiagramElementTypes.CLASS_COMPARTMENT_CLASS_COMPOSITE_HINT)) {
@@ -113,10 +113,10 @@ public class InheritedElementViewProvider extends UMLViewProvider {
 			return false;
 
 		}
-		if(elementType == InternalBlockDiagramElementTypes.COMMENT) {
+		if((elementType == InternalBlockDiagramElementTypes.COMMENT) || (elementType == InternalBlockDiagramElementTypes.COMMENT_CN)) {
 			return true;
 		}
-		if(elementType == InternalBlockDiagramElementTypes.CONSTRAINT) {
+		if((elementType == InternalBlockDiagramElementTypes.CONSTRAINT) || (elementType == InternalBlockDiagramElementTypes.CONSTRAINT_CN)) {
 			return true;
 		}
 
