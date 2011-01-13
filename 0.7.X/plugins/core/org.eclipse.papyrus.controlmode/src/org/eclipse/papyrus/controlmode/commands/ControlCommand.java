@@ -348,7 +348,10 @@ public class ControlCommand extends AbstractTransactionalCommand {
 				parent = historyFactory.eINSTANCE.createControledResource();
 				parent.setResourceURL(currentURLResolved);
 				parentResource = resource.eResource();
-				compoundCommand.append(new AddCommand(domain, parentResource.getContents(), Collections.singleton(parent)));
+				// add controlled resource command for notation is done in assignToChildExistingControledResources
+				if (!currentURLResolved.endsWith(NotationModel.NOTATION_FILE_EXTENSION)) {
+					compoundCommand.append(new AddCommand(domain, parentResource.getContents(), Collections.singleton(parent)));					
+				}
 			}
 			if(parent != null) {
 				compoundCommand.append(AddCommand.create(domain, parent, historyPackage.Literals.CONTROLED_RESOURCE__CHILDREN, Collections.singleton(child)));
@@ -399,7 +402,7 @@ public class ControlCommand extends AbstractTransactionalCommand {
 					EObject top = resourceLoaded.getContents().get(0);
 					if(isInRootHierarchy(top, eObject)) {
 						// manage model
-						URI newResolvedURIFromChild = fullPathParent.deresolve(controledURIFullPath);
+						URI newResolvedURIFromChild = fullPathParent.deresolve(controledURIFullPath,false,true,true);
 						ControledResource aNewOne = historyFactory.eINSTANCE.createControledResource();
 						aNewOne.setResourceURL(newResolvedURIFromChild.toString());
 						// add new control resource to the new history
@@ -417,7 +420,8 @@ public class ControlCommand extends AbstractTransactionalCommand {
 						URI notationParentURL = URI.createURI(r.getParent().getResourceURL()).trimFileExtension().appendFileExtension(NotationModel.NOTATION_FILE_EXTENSION);
 						ControledResource notationParent = getControledResource(r.eResource(), notationParentURL.toString(), compoundCommand, domain);
 						for (ControledResource notationChild : notationParent.getChildren()) {
-							URI notationURI = newResolvedURIFromChild.trimFileExtension().appendFileExtension(NotationModel.NOTATION_FILE_EXTENSION);
+							//URI notationURI = newResolvedURIFromChild.trimFileExtension().appendFileExtension(NotationModel.NOTATION_FILE_EXTENSION);
+							URI notationURI = URI.createURI(r.getResourceURL()).trimFileExtension().appendFileExtension(NotationModel.NOTATION_FILE_EXTENSION);
 							if (notationChild.getResourceURL().equals(notationURI.toString())) {
 								compoundCommand.append(RemoveCommand.create(domain, notationParent, historyPackage.Literals.CONTROLED_RESOURCE__CHILDREN, notationChild));										
 							}
