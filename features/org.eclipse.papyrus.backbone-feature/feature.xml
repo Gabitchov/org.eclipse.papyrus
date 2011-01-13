@@ -26,6 +26,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
    <url>
       <discovery label="%PapyrusUpdateSiteName" url="http://www.eclipse.org/modeling/mdt/?project=papyrus#papyrus"/>
+      <discovery label="EPF Richtext Update Site" url="http://download.eclipse.org/modeling/mdt/papyrus/extra/updates/richtext/"/>
    </url>
 
    <includes
