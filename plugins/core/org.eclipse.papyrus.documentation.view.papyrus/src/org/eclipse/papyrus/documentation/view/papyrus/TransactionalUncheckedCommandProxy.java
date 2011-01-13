@@ -17,6 +17,8 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
@@ -45,20 +47,22 @@ public class TransactionalUncheckedCommandProxy extends AbstractTransactionalCom
         return CommandResult.newOKCommandResult();
     }
 
-    protected CommandResult doRedoWithResult(IProgressMonitor progressMonitor,
-            IAdaptable info)
-        throws ExecutionException {
-
-        command.redo();
-        return CommandResult.newOKCommandResult();
-    }
-
-    protected CommandResult doUndoWithResult(IProgressMonitor progressMonitor,
-            IAdaptable info)
+    protected IStatus doUndo(IProgressMonitor monitor, IAdaptable info)
         throws ExecutionException {
 
         command.undo();
-        return CommandResult.newOKCommandResult();
+        setResult(CommandResult.newOKCommandResult());
+
+        return Status.OK_STATUS;
+    }
+
+    protected IStatus doRedo(IProgressMonitor monitor, IAdaptable info)
+        throws ExecutionException {
+
+        command.redo();
+        setResult(CommandResult.newOKCommandResult());
+
+        return Status.OK_STATUS;
     }
 
     /**
