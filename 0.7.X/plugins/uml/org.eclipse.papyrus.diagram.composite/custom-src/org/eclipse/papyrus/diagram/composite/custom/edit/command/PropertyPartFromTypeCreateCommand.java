@@ -23,6 +23,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.diagram.composite.providers.ElementInitializers;
+import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.StructuredClassifier;
 import org.eclipse.uml2.uml.Type;
@@ -71,6 +72,7 @@ public class PropertyPartFromTypeCreateCommand extends EditElementCommand {
 		StructuredClassifier owner = (StructuredClassifier)getElementToEdit();
 		owner.getOwnedAttributes().add(newElement);
 		newElement.setType(type);
+		newElement.setAggregation(AggregationKind.COMPOSITE_LITERAL);
 
 		ElementInitializers.getInstance().init_Property_3070(newElement);
 

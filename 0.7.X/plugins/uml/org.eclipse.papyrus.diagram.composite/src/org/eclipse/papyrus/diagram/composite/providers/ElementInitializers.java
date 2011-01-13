@@ -793,6 +793,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Property_3070(instance);
 			instance.setName((String)value_0);
+			instance.setAggregation(AggregationKind.COMPOSITE_LITERAL);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
