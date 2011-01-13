@@ -78,6 +78,8 @@ public class InheritedElementViewProvider extends UMLViewProvider {
 		if(op.getContainerView() == null) {
 			return false;
 		}
+		//get the semanticHint of the container
+		String containerSemanticHint = op.getContainerView().getType();
 
 		// This provider is registered for Internal Block Diagram only
 		String diagramType = op.getContainerView().getDiagram().getType();
@@ -89,11 +91,27 @@ public class InheritedElementViewProvider extends UMLViewProvider {
 		if(elementType == InternalBlockDiagramElementTypes.CLASS) {
 			return true;
 		}
+
 		if(elementType == InternalBlockDiagramElementTypes.PORT_CN) {
-			return true;
+			//we can create a Port only on a Block or on a Typed Property
+			if(containerSemanticHint.equals(InternalBlockDiagramElementTypes.CLASS.getSemanticHint())) {
+				return true;
+			} else if(containerSemanticHint.equals(InternalBlockDiagramElementTypes.PROPERTY_CN.getSemanticHint())) {
+				return true;
+			}
+
+			return false;
 		}
+		
 		if(elementType == InternalBlockDiagramElementTypes.PROPERTY_CN) {
-			return true;
+			//we can create a Property only on a Block Compartment or in another typed Property
+			if(containerSemanticHint.equals(InternalBlockDiagramElementTypes.CLASS_COMPARTMENT_CLASS_COMPOSITE_HINT)) {
+				return true;
+			} else if(containerSemanticHint.equals(InternalBlockDiagramElementTypes.PROPERTY_CN_COMPARTMENT_PROPERTY_PART_HINT)) {
+				return true;
+			}
+			return false;
+
 		}
 		if(elementType == InternalBlockDiagramElementTypes.COMMENT) {
 			return true;
@@ -109,11 +127,25 @@ public class InheritedElementViewProvider extends UMLViewProvider {
 			if(eobject instanceof org.eclipse.uml2.uml.Class) {
 				return true;
 			}
+			//InternalBlockDiagramElementTypes.PORT_CN.getSemanticHint()
 			if(eobject instanceof Port) {
-				return true;
+				//we can create a Port only on a Block or on a Typed Property
+				if(containerSemanticHint.equals(InternalBlockDiagramElementTypes.CLASS.getSemanticHint())) {
+					return true;
+				} else if(containerSemanticHint.equals(InternalBlockDiagramElementTypes.PROPERTY_CN.getSemanticHint())) {
+					return true;
+				}
+				return false;
 			}
+
 			if(eobject instanceof Property) {
-				return true;
+				//we can create a Property only on a Block Compartment or in another typed Property
+				if(containerSemanticHint.equals(InternalBlockDiagramElementTypes.CLASS_COMPARTMENT_CLASS_COMPOSITE_HINT)) {
+					return true;
+				} else if(containerSemanticHint.equals(InternalBlockDiagramElementTypes.PROPERTY_CN_COMPARTMENT_PROPERTY_PART_HINT)) {
+					return true;
+				}
+				return false;
 			}
 			if(eobject instanceof Comment) {
 				return true;
