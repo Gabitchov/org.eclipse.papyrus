@@ -113,6 +113,12 @@
 				<bc:propertyRef key="eclipse.download" />
 			</uri>
 		</provider>
+
+		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+			<uri format="http://download.eclipse.org/modeling/mdt/papyrus/extra/updates/richtext/">
+				<bc:propertyRef key="eclipse.download" />
+			</uri>
+		</provider>
 	</searchPath>
 
 	<property key="checkout.location" value="${workspace.root}/releng/" />
