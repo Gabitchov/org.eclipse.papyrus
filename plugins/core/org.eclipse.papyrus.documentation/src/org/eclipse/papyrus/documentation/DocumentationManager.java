@@ -48,12 +48,13 @@ public class DocumentationManager extends DocumentationManagerRegistry implement
 	 * {@inheritDoc}
 	 */
 	public String getDocumentation(EObject eObject) throws DocumentationUnsupportedException {
-		IDocumentationManager documentationManager = getDocumentationManager(eObject.eClass().getEPackage().getNsURI());
-		if(documentationManager != null) {
-			return documentationManager.getDocumentation(eObject);
-		} else {
-			throw new DocumentationUnsupportedException(Messages.DocumentationManager_UnsupportedModelType);
+		if (eObject != null) {
+			IDocumentationManager documentationManager = getDocumentationManager(eObject.eClass().getEPackage().getNsURI());
+			if(documentationManager != null) {
+				return documentationManager.getDocumentation(eObject);
+			}
 		}
+		throw new DocumentationUnsupportedException(Messages.DocumentationManager_UnsupportedModelType);
 	}
 
 	/**

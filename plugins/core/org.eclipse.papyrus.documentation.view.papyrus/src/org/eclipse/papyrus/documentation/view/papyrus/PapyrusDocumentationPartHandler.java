@@ -56,7 +56,7 @@ public class PapyrusDocumentationPartHandler implements IDocumentationPartHandle
 	public void executeCommand(IWorkbenchPart part, Command cmd) {
 		try {
 			CoreMultiDiagramEditor editor = getPapyrusEditor(part);
-			if(editor != null) {
+			if(editor != null && cmd != null) {
 				OperationHistoryFactory.getOperationHistory().execute(new TransactionalUncheckedCommandProxy((TransactionalEditingDomain)editor.getEditingDomain(), cmd), null, null);
 			}
 		} catch (ExecutionException e) {
