@@ -95,11 +95,11 @@ public class NavigationDecorator extends AbstractDecorator implements Adapter {
 					EObject eObj = navElement.getElement();
 					Resource res = eObj.eResource();
 					if(res != null && res.getResourceSet() instanceof DiResourceSet) {
-						DiResourceSet diResourceSet = (DiResourceSet)res.getResourceSet();
+						Resource notationResource = ((DiResourceSet)res.getResourceSet()).getAssociatedNotationResource(eObj, false);
 
-						addResourceListener(diResourceSet.getAssociatedNotationResource(eObj, false));
+						addResourceListener(notationResource);
 
-						List<Diagram> associatedDiagrams = DiagramsUtil.getAssociatedDiagrams(eObj, diResourceSet);
+						List<Diagram> associatedDiagrams = DiagramsUtil.getAssociatedDiagramsFromNotationResource(eObj, notationResource);
 
 						if(associatedDiagrams != null) {
 							for(Diagram diag : associatedDiagrams) {

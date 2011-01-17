@@ -27,7 +27,6 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
-import org.eclipse.gmf.runtime.emf.core.resources.GMFResource;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.core.extension.commands.ICreationCommand;
 import org.eclipse.papyrus.core.navigation.CreatedNavigableElement;
@@ -53,23 +52,35 @@ public class DiagramsUtil {
 			}
 		}
 
-		if(resourceSet != null) {
+		if(resourceSet instanceof DiResourceSet) {
+			Resource notationResource = ((DiResourceSet)resourceSet).getAssociatedNotationResource(element, false);
+			return getAssociatedDiagramsFromNotationResource(element, notationResource);
+		}
+
+		return Collections.EMPTY_LIST;
+	}
+
+	/**
+	 * Gets the diagrams associated to element.
+	 * 
+	 * @param element
+	 * @param notationResource
+	 *        the notation resource where to look for diagrams
+	 * @return the list of diagrams associated with the given element
+	 */
+	public static List<Diagram> getAssociatedDiagramsFromNotationResource(EObject element, Resource notationResource) {
+		if(notationResource != null) {
 			LinkedList<Diagram> diagrams = new LinkedList<Diagram>();
-			for (Resource r : resourceSet.getResources()) {
-				if (r instanceof GMFResource) {
-					for(EObject eObj : r.getContents()) {
-						if(eObj instanceof Diagram) {
-							Diagram diagram = (Diagram)eObj;
-							if(element.equals(diagram.getElement())) {
-								diagrams.add(diagram);
-							}
-						}
+			for(EObject eObj : notationResource.getContents()) {
+				if(eObj instanceof Diagram) {
+					Diagram diagram = (Diagram)eObj;
+					if(element.equals(diagram.getElement())) {
+						diagrams.add(diagram);
 					}
 				}
 			}
 			return diagrams;
 		}
-
 		return Collections.EMPTY_LIST;
 	}
 
