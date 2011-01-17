@@ -124,7 +124,7 @@ public class PapyrusUncontrolAction extends CommandActionHandler {
 	}
 	
 	/**
-	 * Returns the first parent resource of the controlled resource in wich the eObject is. 
+	 * Returns the first parent resource of the controlled resource in which the eObject is. 
 	 * @param eObject the specified eObject
 	 * @return null otherwise
 	 */
