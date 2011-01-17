@@ -21,6 +21,7 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 
@@ -32,7 +33,7 @@ public class OpenDiagramCommand extends AbstractTransactionalCommand {
 
 	/** The diagram to open. */
 	private Diagram diagramToOpen = null;
-	
+
 	private ICommand previousCreateDiagramCommand = null;
 
 	/**
@@ -47,7 +48,7 @@ public class OpenDiagramCommand extends AbstractTransactionalCommand {
 		super(editingDomain, "Open diagram", null);
 		diagramToOpen = diagram;
 	}
-	
+
 	public OpenDiagramCommand(TransactionalEditingDomain editingDomain, ICommand previousCreateDiagramCommand) {
 		super(editingDomain, "Open diagram", null);
 		this.previousCreateDiagramCommand = previousCreateDiagramCommand;
@@ -59,16 +60,20 @@ public class OpenDiagramCommand extends AbstractTransactionalCommand {
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		try {
-			if (diagramToOpen == null && previousCreateDiagramCommand != null) {
+			if(diagramToOpen == null && previousCreateDiagramCommand != null) {
 				diagramToOpen = (Diagram)previousCreateDiagramCommand.getCommandResult().getReturnValue();
 			}
 
-			IPageMngr pageMngr = EditorUtils.getIPageMngr();
+			if(getEditingDomain().getResourceSet() instanceof DiResourceSet) {
+				DiResourceSet diResourceSet = (DiResourceSet)getEditingDomain().getResourceSet();
 
-			if(pageMngr.isOpen(diagramToOpen)) {
-				pageMngr.closePage(diagramToOpen);
+				IPageMngr pageMngr = EditorUtils.getIPageMngr(diResourceSet.getDiResource());
+
+				if(pageMngr.isOpen(diagramToOpen)) {
+					pageMngr.closePage(diagramToOpen);
+				}
+				pageMngr.openPage(diagramToOpen);
 			}
-			pageMngr.openPage(diagramToOpen);
 
 			return CommandResult.newOKCommandResult();
 		} catch (Exception e) {
