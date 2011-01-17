@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -41,7 +42,10 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ViewerDropAdapter;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.modelexplorer.commands.ChangeContainingResourceCommand;
+import org.eclipse.papyrus.modelexplorer.handler.GMFtoEMFCommandWrapper;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTargetEvent;
 import org.eclipse.swt.dnd.TransferData;
@@ -143,15 +147,21 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 	protected List<Command> getDropDiagramIntoCommand(TransactionalEditingDomain domain,EObject targetOwner, Diagram childElement){
 		ArrayList<Command> commandList= new ArrayList<Command>();
 		EReference eref= NotationPackage.eINSTANCE.getView_Element();
-		if(eref!=null){
+		if(eref != null && domain != null){
 			ArrayList<EObject> tmp=new ArrayList<EObject>();
 			tmp.add(childElement);
 			if(targetOwner.eGet(eref) instanceof Collection<?>){
 				tmp.addAll((Collection<EObject>)targetOwner.eGet(eref));}
 
-			commandList.add( SetCommand.create(domain, childElement, eref, targetOwner));
+			if (domain.getResourceSet() instanceof DiResourceSet) {
+				DiResourceSet diResourceSet = (DiResourceSet)domain.getResourceSet();
+				Resource newNotationResource = diResourceSet.getAssociatedNotationResource(targetOwner);
+				if (newNotationResource != null && !newNotationResource.equals(targetOwner.eResource())) {
+					commandList.add(new GMFtoEMFCommandWrapper(new ChangeContainingResourceCommand(domain, childElement, newNotationResource)));
+				}
+			}
+			commandList.add(SetCommand.create(domain, childElement, eref, targetOwner));
 		}
-
 
 		return commandList;
 	}
