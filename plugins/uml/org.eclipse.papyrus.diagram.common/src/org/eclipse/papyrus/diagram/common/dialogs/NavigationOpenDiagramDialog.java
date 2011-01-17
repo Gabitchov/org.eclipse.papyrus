@@ -17,13 +17,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.Dialog;
-import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.papyrus.core.adaptor.gmf.OpenDiagramCommand;
 import org.eclipse.papyrus.core.navigation.NavigableElement;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
@@ -45,8 +42,6 @@ public class NavigationOpenDiagramDialog extends Dialog {
 	private static final int[] COLUMN_WIDTHS   = { 120              , 120      , 120           , 250           , 120            };
 
 	private static final String DIAGRAM_KEY = "DIAGRAM_KEY";
-
-	private static final String ELEMENT_KEY = "ELEMENT_KEY";
 
 	private Map<NavigableElement, List<Diagram>> existingNavDiagrams;
 
@@ -79,7 +74,7 @@ public class NavigationOpenDiagramDialog extends Dialog {
 			List<Diagram> diagrams = entry.getValue();
 			if(diagrams.size() == 1) {
 				DiResourceSet diResourceSet = EditorUtils.getDiResourceSet();
-				command = new OpenDiagramCommand(diResourceSet.getAssociatedDiResource(entry.getKey().getElement()), diResourceSet.getTransactionalEditingDomain(), diagrams.get(0));
+				command = new OpenDiagramCommand(diResourceSet.getTransactionalEditingDomain(), diagrams.get(0));
 				return Dialog.OK;
 			}
 		}
@@ -94,8 +89,7 @@ public class NavigationOpenDiagramDialog extends Dialog {
 
 		for(TableItem tableItem : table.getItems()) {
 			if(tableItem.getChecked()) {
-				Resource diResource = diResourceSet.getAssociatedDiResource((EObject)tableItem.getData(ELEMENT_KEY));
-				compositeCommand.add(new OpenDiagramCommand(diResource, diResourceSet.getTransactionalEditingDomain(), (Diagram)tableItem.getData(DIAGRAM_KEY)));
+				compositeCommand.add(new OpenDiagramCommand(diResourceSet.getTransactionalEditingDomain(), (Diagram)tableItem.getData(DIAGRAM_KEY)));
 			}
 		}
 		command = compositeCommand;
@@ -134,7 +128,6 @@ public class NavigationOpenDiagramDialog extends Dialog {
 				tableItem.setText(4, diagram.getName());
 
 				tableItem.setData(DIAGRAM_KEY, diagram);
-				tableItem.setData(ELEMENT_KEY, navElement.getElement());
 			}
 		}
 

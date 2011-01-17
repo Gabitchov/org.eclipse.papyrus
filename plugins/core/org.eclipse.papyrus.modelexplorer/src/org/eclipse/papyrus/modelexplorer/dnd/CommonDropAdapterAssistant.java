@@ -155,7 +155,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 
 			if (domain.getResourceSet() instanceof DiResourceSet) {
 				DiResourceSet diResourceSet = (DiResourceSet)domain.getResourceSet();
-				Resource newNotationResource = diResourceSet.getAssociatedNotationResource(targetOwner);
+				Resource newNotationResource = diResourceSet.getAssociatedNotationResource(targetOwner, true);
 				if (newNotationResource != null && !newNotationResource.equals(targetOwner.eResource())) {
 					commandList.add(new GMFtoEMFCommandWrapper(new ChangeContainingResourceCommand(domain, childElement, newNotationResource)));
 				}

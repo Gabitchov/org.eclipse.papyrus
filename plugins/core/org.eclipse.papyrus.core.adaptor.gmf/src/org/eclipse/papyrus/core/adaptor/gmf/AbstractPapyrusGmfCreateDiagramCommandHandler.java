@@ -113,7 +113,7 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 			CompositeCommand cmd = new CompositeCommand("Create diagram");
 			ICommand createCmd = getCreateDiagramCommand(diResourceSet, container, name);
 			cmd.add(createCmd);
-			cmd.add(new OpenDiagramCommand(diResourceSet.getAssociatedDiResource(container), diResourceSet.getTransactionalEditingDomain(), createCmd));
+			cmd.add(new OpenDiagramCommand(diResourceSet.getTransactionalEditingDomain(), createCmd));
 
 			OperationHistoryFactory.getOperationHistory().execute(cmd, new NullProgressMonitor(), null);
 		} catch (ExecutionException e) {
@@ -283,9 +283,9 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 
 			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-				Resource modelResource = diResourceSet.getAssociatedModelResource(container);
-				Resource notationResource = diResourceSet.getAssociatedNotationResource(container);
-				Resource diResource = diResourceSet.getAssociatedDiResource(container);
+				Resource modelResource = diResourceSet.getAssociatedModelResource(container, true);
+				Resource notationResource = diResourceSet.getAssociatedNotationResource(container, true);
+				Resource diResource = diResourceSet.getAssociatedDiResource(container, true);
 
 				String name;
 				if(diagramName == null) {

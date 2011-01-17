@@ -16,7 +16,6 @@ package org.eclipse.papyrus.core.adaptor.gmf;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
@@ -36,8 +35,6 @@ public class OpenDiagramCommand extends AbstractTransactionalCommand {
 	
 	private ICommand previousCreateDiagramCommand = null;
 
-	private Resource diResource = null;
-
 	/**
 	 * Instantiates a new open diagram command.
 	 * 
@@ -46,15 +43,13 @@ public class OpenDiagramCommand extends AbstractTransactionalCommand {
 	 * @param diagram
 	 *        the diagram
 	 */
-	public OpenDiagramCommand(Resource diResource, TransactionalEditingDomain editingDomain, Diagram diagram) {
+	public OpenDiagramCommand(TransactionalEditingDomain editingDomain, Diagram diagram) {
 		super(editingDomain, "Open diagram", null);
-		this.diResource  = diResource;
 		diagramToOpen = diagram;
 	}
 	
-	public OpenDiagramCommand(Resource diResource, TransactionalEditingDomain editingDomain, ICommand previousCreateDiagramCommand) {
+	public OpenDiagramCommand(TransactionalEditingDomain editingDomain, ICommand previousCreateDiagramCommand) {
 		super(editingDomain, "Open diagram", null);
-		this.diResource  = diResource;
 		this.previousCreateDiagramCommand = previousCreateDiagramCommand;
 	}
 
@@ -68,7 +63,7 @@ public class OpenDiagramCommand extends AbstractTransactionalCommand {
 				diagramToOpen = (Diagram)previousCreateDiagramCommand.getCommandResult().getReturnValue();
 			}
 
-			IPageMngr pageMngr = EditorUtils.getIPageMngr(diResource);
+			IPageMngr pageMngr = EditorUtils.getIPageMngr();
 
 			if(pageMngr.isOpen(diagramToOpen)) {
 				pageMngr.closePage(diagramToOpen);

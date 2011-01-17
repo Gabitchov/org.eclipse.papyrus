@@ -21,13 +21,13 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.papyrus.resource.ModelException;
 import org.eclipse.papyrus.resource.ModelMultiException;
 import org.eclipse.papyrus.resource.ModelSet;
 import org.eclipse.papyrus.resource.ModelsReader;
 import org.eclipse.papyrus.resource.notation.NotationModel;
 import org.eclipse.papyrus.resource.notation.NotationUtils;
-import org.eclipse.papyrus.resource.sasheditor.DiModel;
 import org.eclipse.papyrus.resource.sasheditor.DiModelUtils;
 import org.eclipse.papyrus.resource.sasheditor.SashModelUtils;
 import org.eclipse.papyrus.resource.uml.UmlModel;
@@ -228,27 +228,33 @@ public class DiResourceSet extends ModelSet {
 
 	/**
 	 * Retrieve the di resource associated with a given model element.
+	 * Please refers to {@link ResourceSet#getResource(URI, boolean)}
+	 * for the meaning of loadOnDemand.
 	 * 
 	 * @param modelElement
+	 * @param loadOnDemand
 	 * @return the di resource or null
 	 */
-	public Resource getAssociatedDiResource(EObject modelElement) {
+	public Resource getAssociatedDiResource(EObject modelElement, boolean loadOnDemand) {
 		// return the "base" di since we want the opened tabs in a unique di
 		return getDiResource();
 	}
 
 	/**
 	 * Retrieve the notation resource associated with a given model element.
+	 * Please refers to {@link ResourceSet#getResource(URI, boolean)}
+	 * for the meaning of loadOnDemand.
 	 * 
 	 * @param modelElement
+	 * @param loadOnDemand
 	 * @return the notation resource or null
 	 */
-	public Resource getAssociatedNotationResource(EObject modelElement) {
+	public Resource getAssociatedNotationResource(EObject modelElement, boolean loadOnDemand) {
 		if(modelElement != null) {
 			Resource modelResource = modelElement.eResource();
 			if(modelResource != null && !modelResource.equals(getModelResource())) {
 				// handle controlled resource
-				return getAssociatedResource(modelResource, NotationModel.NOTATION_FILE_EXTENSION);
+				return getAssociatedResource(modelResource, NotationModel.NOTATION_FILE_EXTENSION, loadOnDemand);
 			}
 		}
 		return getNotationResource();
@@ -256,20 +262,23 @@ public class DiResourceSet extends ModelSet {
 
 	/**
 	 * Retrieve the model resource associated with a given model element.
+	 * Please refers to {@link ResourceSet#getResource(URI, boolean)}
+	 * for the meaning of loadOnDemand.
 	 * 
 	 * @param modelElement
+	 * @param loadOnDemand
 	 * @return the model resource or null
 	 */
-	public Resource getAssociatedModelResource(EObject modelElement) {
+	public Resource getAssociatedModelResource(EObject modelElement, boolean loadOnDemand) {
 		if(modelElement != null && modelElement.eResource() != null) {
 			return modelElement.eResource();
 		}
 		return getModelResource();
 	}
 
-	private Resource getAssociatedResource(Resource modelResource, String associatedResourceExtension) {
+	private Resource getAssociatedResource(Resource modelResource, String associatedResourceExtension, boolean loadOnDemand) {
 		URI trimmedModelURI = modelResource.getURI().trimFileExtension();
-		return getResource(trimmedModelURI.appendFileExtension(associatedResourceExtension), true);
+		return getResource(trimmedModelURI.appendFileExtension(associatedResourceExtension), loadOnDemand);
 	}
 
 	/**
