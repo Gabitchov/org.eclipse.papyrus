@@ -147,7 +147,7 @@ public class HistoryUtils {
 	}
 
 	/**
-	 * Get all the controled resource in the Model Set with the corresponding url
+	 * Get all the controlled resource in the Model Set with the corresponding url
 	 * 
 	 * @param set
 	 * @param url

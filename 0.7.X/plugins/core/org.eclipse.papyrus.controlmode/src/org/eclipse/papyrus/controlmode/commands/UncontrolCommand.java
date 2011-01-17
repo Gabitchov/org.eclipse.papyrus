@@ -53,7 +53,6 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.EditingDomainUndoContex
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.controlmode.commands.IUncontrolCommand.STATE_CONTROL;
-import org.eclipse.papyrus.controlmode.history.HistoryModel;
 import org.eclipse.papyrus.controlmode.history.utils.HistoryUtils;
 import org.eclipse.papyrus.controlmode.mm.history.ControledResource;
 import org.eclipse.papyrus.controlmode.mm.history.historyPackage;
@@ -62,6 +61,7 @@ import org.eclipse.papyrus.resource.ModelSet;
 import org.eclipse.papyrus.resource.notation.NotationModel;
 import org.eclipse.papyrus.resource.notation.NotationUtils;
 import org.eclipse.papyrus.resource.sasheditor.DiModel;
+import org.eclipse.papyrus.resource.sasheditor.SashModelUtils;
 import org.eclipse.papyrus.resource.uml.UmlUtils;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
@@ -92,6 +92,10 @@ public class UncontrolCommand extends AbstractTransactionalCommand {
 	private Resource controlledDI;
 
 	private List<IUncontrolCommand> commands;
+	
+	private List<ControledResource> controlledResourceToRemove;
+	
+	private List<ControledResource> addedControlledResource;
 
 	/**
 	 * Instantiates a new uncontrol command.
@@ -106,6 +110,8 @@ public class UncontrolCommand extends AbstractTransactionalCommand {
 		this.eObject = selectedObject;
 		// Add an undo context to allow the editor to react to that change
 		addContext(new EditingDomainUndoContext(domain));
+		controlledResourceToRemove = new LinkedList<ControledResource>();
+		addedControlledResource = new LinkedList<ControledResource>();
 	}
 
 	/**
@@ -156,7 +162,7 @@ public class UncontrolCommand extends AbstractTransactionalCommand {
 		// Ensure that all proxies are resolved so that references to the controlled object will be
 		// updated to reference the new resource.
 		EcoreUtil.resolveAll(getEditingDomain().getResourceSet());
-
+		
 		if(compoundCommand.canExecute()) {
 			compoundCommand.execute();
 			// TODO save resources, check if it is useful
@@ -237,6 +243,8 @@ public class UncontrolCommand extends AbstractTransactionalCommand {
 	 * @param newURL
 	 */
 	private void unassignControlledResourceOfCurrentElement(EditingDomain domain, CompoundCommand compoundCommand, Resource model, String oldURL, String newURL) {
+		controlledResourceToRemove.clear();
+		addedControlledResource.clear();
 		if(model != null) {
 			URI uriPath = HistoryUtils.getURIFullPath(newURL);
 			newURL = HistoryUtils.resolve(uriPath, newURL);
@@ -246,7 +254,8 @@ public class UncontrolCommand extends AbstractTransactionalCommand {
 			List<ControledResource> controledNewURL = HistoryUtils.getControledResourcesForURL(diResourceSet, newURL);
 			for(ControledResource resourceOldURL : controledOldURL) {
 				if(resourceOldURL.getChildren().isEmpty()) {
-					compoundCommand.append(RemoveCommand.create(domain, resourceOldURL.eContainer(), historyPackage.Literals.CONTROLED_RESOURCE__CHILDREN, resourceOldURL));
+					// store the controlled resource to remove
+					controlledResourceToRemove.add(resourceOldURL);
 				} else {
 					if(resourceOldURL.eContainer() instanceof ControledResource) {
 						compoundCommand.append(AddCommand.create(domain, resourceOldURL.eContainer(), historyPackage.Literals.CONTROLED_RESOURCE__CHILDREN, Collections.singleton(resourceOldURL)));
@@ -254,7 +263,8 @@ public class UncontrolCommand extends AbstractTransactionalCommand {
 						for (ControledResource resourceNewURL : controledNewURL) {
 							// add children of the old controlled resource to the controlled resource with the new URL
 							compoundCommand.append(AddCommand.create(domain, resourceNewURL, historyPackage.Literals.CONTROLED_RESOURCE__CHILDREN, resourceOldURL.getChildren()));
-
+							addedControlledResource.addAll(resourceOldURL.getChildren());
+							
 							// resolve url to be relative to the new resource
 							for (ControledResource c : resourceOldURL.getChildren())
 							{
@@ -268,6 +278,17 @@ public class UncontrolCommand extends AbstractTransactionalCommand {
 					}
 				}
 			}
+			// remove children and parent if needed
+			for (ControledResource parent : controledNewURL) {
+				if (controlledResourceToRemove.containsAll(parent.getChildren()) && addedControlledResource.isEmpty()) {					
+					compoundCommand.append(new RemoveCommand(domain, parent.eResource().getContents(), parent));							
+				}
+				else {
+					for (ControledResource r : controlledResourceToRemove) {
+						compoundCommand.append(RemoveCommand.create(domain, r.eContainer(), historyPackage.Literals.CONTROLED_RESOURCE__CHILDREN, r));
+					}
+				}
+			}
 		}
 	}
 	
@@ -276,11 +297,9 @@ public class UncontrolCommand extends AbstractTransactionalCommand {
 	 * @param eObject
 	 * @return
 	 */
-	private Resource getDIResource(EObject eObject) {		
-		if (eObject.eResource() != null) {
-			return diResourceSet.getResource(eObject.eResource().getURI().trimFileExtension().appendFileExtension(HistoryModel.MODEL_FILE_EXTENSION), false);			
-		}
-		return null;
+	private Resource getDIResource(EObject eObject) {
+		// uncontrol command is only available from its parent. With this condition, the current sashModel is the parent
+		return SashModelUtils.getSashModel(diResourceSet).getResource();
 	}
 	
 	/**
