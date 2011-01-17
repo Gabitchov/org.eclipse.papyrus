@@ -38,11 +38,12 @@ public class ShortCutDiagramEditPolicy extends OpenEditPolicy {
 		if(((GraphicalEditPart)getHost()).getNotationView().getElement() instanceof Diagram && ((GraphicalEditPart)getHost()).getNotationView().getElement().eResource() != null) {
 			Diagram diagram = (Diagram)((GraphicalEditPart)getHost()).getNotationView().getElement();
 			DiResourceSet diResourceSet = EditorUtils.getDiResourceSet();
-			OpenDiagramCommand openDiagramCommand = new OpenDiagramCommand(diResourceSet.getAssociatedDiResource(diagram.getElement()), diResourceSet.getTransactionalEditingDomain(), diagram);
-			return new ICommandProxy(openDiagramCommand);
-		} else {
-			return UnexecutableCommand.INSTANCE;
+			if (diResourceSet != null) {
+				OpenDiagramCommand openDiagramCommand = new OpenDiagramCommand(diResourceSet.getTransactionalEditingDomain(), diagram);
+				return new ICommandProxy(openDiagramCommand);
+			}
 		}
+		return UnexecutableCommand.INSTANCE;
 	}
 
 }

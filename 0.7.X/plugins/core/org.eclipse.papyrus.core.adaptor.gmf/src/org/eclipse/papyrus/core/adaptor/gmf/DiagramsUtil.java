@@ -90,7 +90,7 @@ public class DiagramsUtil {
 
 		ICommand createDiagCommand = creationCommandInterface.getCreateDiagramCommand(diResourceSet, navElement.getElement(), diagramName);
 		compositeCommand.add(createDiagCommand);
-		compositeCommand.add(new OpenDiagramCommand(diResourceSet.getAssociatedDiResource(navElement.getElement()), diResourceSet.getTransactionalEditingDomain(), createDiagCommand));
+		compositeCommand.add(new OpenDiagramCommand(diResourceSet.getTransactionalEditingDomain(), createDiagCommand));
 
 		return compositeCommand;
 	}
