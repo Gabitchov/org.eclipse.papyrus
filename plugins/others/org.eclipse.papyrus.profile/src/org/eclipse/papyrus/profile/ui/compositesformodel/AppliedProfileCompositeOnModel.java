@@ -467,10 +467,20 @@ public class AppliedProfileCompositeOnModel extends Composite {
 		boolean isDirty = false;
 
 		// Retrieve model resourceSet
-		ResourceSet pkge_resourceSet = _package.eResource().getResourceSet();
+		Resource pkge_resource = _package.eResource();
+		if(pkge_resource == null) {
+			Activator.logWarning("The package resource was null");
+			return false;
+		}
+		ResourceSet pkge_resourceSet = pkge_resource.getResourceSet();
 
 		// Retrieve profile resource
-		URI prof_URI = _profile.eResource().getURI();
+		Resource profileResource = _profile.eResource();
+		if(profileResource == null) {
+			Activator.logWarning("The profile resource was null");
+			return false;
+		}
+		URI prof_URI = profileResource.getURI();
 		Resource modelResource = pkge_resourceSet.getResource(prof_URI, true);
 
 		if(modelResource.getContents().get(0) instanceof Profile) {
