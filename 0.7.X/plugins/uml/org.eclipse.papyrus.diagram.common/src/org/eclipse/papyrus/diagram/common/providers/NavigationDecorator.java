@@ -75,7 +75,7 @@ public class NavigationDecorator extends AbstractDecorator implements Adapter {
 	}
 
 	public void refresh() {
-		if (gep != null) {
+		if(gep != null) {
 			View view = gep.getNotationView();
 			EObject element = gep.resolveSemanticElement();
 
@@ -94,10 +94,10 @@ public class NavigationDecorator extends AbstractDecorator implements Adapter {
 				if(navElement instanceof ExistingNavigableElement) {
 					EObject eObj = navElement.getElement();
 					Resource res = eObj.eResource();
-					if (res != null && res.getResourceSet() instanceof DiResourceSet) {
+					if(res != null && res.getResourceSet() instanceof DiResourceSet) {
 						DiResourceSet diResourceSet = (DiResourceSet)res.getResourceSet();
 
-						addResourceListener(diResourceSet.getAssociatedNotationResource(eObj));
+						addResourceListener(diResourceSet.getAssociatedNotationResource(eObj, false));
 
 						List<Diagram> associatedDiagrams = DiagramsUtil.getAssociatedDiagrams(eObj, diResourceSet);
 
@@ -121,7 +121,7 @@ public class NavigationDecorator extends AbstractDecorator implements Adapter {
 				shortcutFigure.setVisible(false);
 			} else {
 				shortcutFigure.setVisible(true);
-				if (structuralNavigable && behavioralNavigable) {
+				if(structuralNavigable && behavioralNavigable) {
 					shortcutFigure.setBackgroundColor(ColorConstants.white);
 				} else if(structuralNavigable) {
 					shortcutFigure.setBackgroundColor(ColorConstants.lightGreen);
@@ -133,9 +133,11 @@ public class NavigationDecorator extends AbstractDecorator implements Adapter {
 	}
 
 	private void addResourceListener(Resource r) {
-		synchronized(listenedNotationResources) {
-			if(listenedNotationResources.add(r)) {
-				r.eAdapters().add(this);
+		if(r != null) {
+			synchronized(listenedNotationResources) {
+				if(listenedNotationResources.add(r)) {
+					r.eAdapters().add(this);
+				}
 			}
 		}
 	}
