@@ -187,11 +187,13 @@ public class CommentsComposite extends DocPageComposite
                 plainTextComposite.setDocumentationValue(getDocumentationValueFromElement());
             }
         }
-		if (docElement != null) {
-			infoText.setText(typeLabel + docElement.eClass().getName());
-		} else {
-			infoText.setText("");
-		}
+        if (infoText != null) {
+        	if (docElement != null) {
+        		infoText.setText(typeLabel + docElement.eClass().getName());
+        	} else {
+        		infoText.setText("");
+        	}
+        }
     }
 
     /**
