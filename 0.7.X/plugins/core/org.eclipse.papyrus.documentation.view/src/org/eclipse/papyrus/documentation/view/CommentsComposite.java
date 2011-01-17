@@ -121,22 +121,13 @@ public class CommentsComposite extends DocPageComposite
             }
         }
 
-        // Initialize editor depending of editors preferences
-        if (isRichTextEnabled)
-        {
-            // Rich Text Editor
-            richTextComposite = createRichCommentsComposite();
-        }
-        else
-        {
-            // Simple Text Editor
-            plainTextComposite = createEAnnotationCommentsComposite();
-        }
+        // Initialize Simple Text Editor by default
+        plainTextComposite = createPlainCommentsComposite();
 
         useRichTextEditorButton = new Button(parent, SWT.CHECK | SWT.RIGHT);
         useRichTextEditorButton.setText("Use HTML Editor");
         useRichTextEditorButton.setImage(DocViewPlugin.getDefault().getImageRegistry().get("HTML_EDITOR"));
-        useRichTextEditorButton.setSelection(isRichTextEnabled);
+        useRichTextEditorButton.setSelection(false);
         useRichTextEditorButton.addSelectionListener(new SelectionAdapter()
         {
             public void widgetSelected(SelectionEvent e)
@@ -228,7 +219,7 @@ public class CommentsComposite extends DocPageComposite
         {
             String comment = richTextComposite.getDocumentationValue();
             richTextComposite.dispose();
-            plainTextComposite = createEAnnotationCommentsComposite();
+            plainTextComposite = createPlainCommentsComposite();
             plainTextComposite.setFocus();
             plainTextComposite.setDocumentationValue(comment);
             useRichTextEditorButton.setToolTipText("Use HTML Editor to edit documentation");
@@ -332,7 +323,7 @@ public class CommentsComposite extends DocPageComposite
      * 
      * @return PlainTextComposite
      */
-    protected PlainTextComposite createEAnnotationCommentsComposite()
+    protected PlainTextComposite createPlainCommentsComposite()
     {
         plainTextComposite = new PlainTextComposite(editorContainer, SWT.NONE);
         focusListener = new FocusAdapter()
