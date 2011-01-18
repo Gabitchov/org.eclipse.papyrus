@@ -1036,51 +1036,6 @@
          sequence="F5"/>
    </extension>
 
-<extension
-		point="org.eclipse.ui.menus">
-	
-	<menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar">
-	<toolbar id="org.eclipse.papyrus.diagram.ui.toolbar">
-		<command commandId="org.eclipse.papyrus.diagram.profile.CreateProfileDiagramCommand"
-			icon="icons/obj16/Diagram_Profile.gif"
-			label="Create a new Profile Diagram"
-			style="push"
-			tooltip="Create a new Profile Diagram">
-			<visibleWhen>
-				<reference definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLProfile"/>
-			</visibleWhen> 
-		</command>
-	</toolbar>
-	</menuContribution>
-      
-	<menuContribution locationURI="menu:org.eclipse.papyrus.ui.menu">
-	<menu id="org.eclipse.papyrus.diagram.ui.menu.diagrams"
-		label="Diagrams">
-		<command commandId="org.eclipse.papyrus.diagram.profile.CreateProfileDiagramCommand"
-			icon="icons/obj16/Diagram_Profile.gif"
-			label="Create a new Profile Diagram"
-			style="push"
-			tooltip="Create a new Profile Diagram">
-			<visibleWhen>
-				<reference definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLProfile"/>
-			</visibleWhen>                 
-		</command>
-	</menu>
-	</menuContribution>
-
-	<menuContribution locationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.creatediagram">
-		<command commandId="org.eclipse.papyrus.diagram.profile.CreateProfileDiagramCommand"
-			icon="icons/obj16/Diagram_Profile.gif"
-			label="Create a new Profile Diagram"
-			style="push"
-			tooltip="Create a new Profile Diagram">
-			<visibleWhen>
-				<reference definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLProfile"/>
-			</visibleWhen>
-		</command>
-	</menuContribution>
-	
-</extension>
 
    <extension point="org.eclipse.ui.menus" id="context-menus">
       <?gmfgen generated="true"?>
