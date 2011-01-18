@@ -60,13 +60,17 @@ public class ProfileApplicationHelper {
 	 *        package to remove duplicated profile application from
 	 * @param profile
 	 *        profile to unapply
+	 * @param force
+	 *        true when package is no longer controlled for forcing profile application removal
 	 */
-	public static void removeProfileApplicationDuplication(Package _package, Profile profile) {
+	public static void removeProfileApplicationDuplication(Package _package, Profile profile, boolean force) {
 		if(isSameProfileApplied(_package, profile)) {
 			ProfileApplication profileAppl = _package.getProfileApplication(profile);
 			// remove only duplicated profile applications with eannotation
 			if(isDuplicatedProfileApplication(profileAppl)) {
-				if(getParentPackageWithProfile(_package, profile, false) == null) {
+				if(force || getParentPackageWithProfile(_package, profile, false) == null) {
+					// first remove eannotation to ensure it will not added again by checker
+					profileAppl.getEAnnotations().remove(profileAppl.getEAnnotation(DUPLICATED_PROFILE));
 					_package.unapplyProfile(profile);
 				}
 				// else, there is another parent profile which justifies the duplication
