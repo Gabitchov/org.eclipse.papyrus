@@ -148,7 +148,7 @@ public class UncontrolCommand extends AbstractTransactionalCommand {
 		if(eObject != null) {
 			controlledModel = eObject.eResource();
 			final URI newNotationURI = URI.createURI(controlledModel.getURI().trimFileExtension().appendFileExtension(NotationModel.NOTATION_FILE_EXTENSION).toString());
-			this.controlledNotation = getEditingDomain().getResourceSet().getResource(newNotationURI, false);
+			this.controlledNotation = getEditingDomain().getResourceSet().getResource(newNotationURI, true);
 
 			final URI newDiURI = URI.createURI(controlledModel.getURI().trimFileExtension().appendFileExtension(DiModel.DI_FILE_EXTENSION).toString());
 			this.controlledDI = getEditingDomain().getResourceSet().getResource(newDiURI, true);
