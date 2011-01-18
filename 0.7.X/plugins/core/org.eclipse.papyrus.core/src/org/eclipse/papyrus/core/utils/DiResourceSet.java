@@ -228,33 +228,27 @@ public class DiResourceSet extends ModelSet {
 
 	/**
 	 * Retrieve the di resource associated with a given model element.
-	 * Please refers to {@link ResourceSet#getResource(URI, boolean)}
-	 * for the meaning of loadOnDemand.
 	 * 
 	 * @param modelElement
-	 * @param loadOnDemand
 	 * @return the di resource or null
 	 */
-	public Resource getAssociatedDiResource(EObject modelElement, boolean loadOnDemand) {
+	public Resource getAssociatedDiResource(EObject modelElement) {
 		// return the "base" di since we want the opened tabs in a unique di
 		return getDiResource();
 	}
 
 	/**
 	 * Retrieve the notation resource associated with a given model element.
-	 * Please refers to {@link ResourceSet#getResource(URI, boolean)}
-	 * for the meaning of loadOnDemand.
 	 * 
 	 * @param modelElement
-	 * @param loadOnDemand
 	 * @return the notation resource or null
 	 */
-	public Resource getAssociatedNotationResource(EObject modelElement, boolean loadOnDemand) {
+	public Resource getAssociatedNotationResource(EObject modelElement) {
 		if(modelElement != null) {
 			Resource modelResource = modelElement.eResource();
 			if(modelResource != null && !modelResource.equals(getModelResource())) {
 				// handle controlled resource
-				return getAssociatedResource(modelResource, NotationModel.NOTATION_FILE_EXTENSION, loadOnDemand);
+				return getAssociatedResource(modelResource, NotationModel.NOTATION_FILE_EXTENSION);
 			}
 		}
 		return getNotationResource();
@@ -269,16 +263,16 @@ public class DiResourceSet extends ModelSet {
 	 * @param loadOnDemand
 	 * @return the model resource or null
 	 */
-	public Resource getAssociatedModelResource(EObject modelElement, boolean loadOnDemand) {
+	public Resource getAssociatedModelResource(EObject modelElement) {
 		if(modelElement != null && modelElement.eResource() != null) {
 			return modelElement.eResource();
 		}
 		return getModelResource();
 	}
 
-	private Resource getAssociatedResource(Resource modelResource, String associatedResourceExtension, boolean loadOnDemand) {
+	private Resource getAssociatedResource(Resource modelResource, String associatedResourceExtension) {
 		URI trimmedModelURI = modelResource.getURI().trimFileExtension();
-		return getResource(trimmedModelURI.appendFileExtension(associatedResourceExtension), loadOnDemand);
+		return getResource(trimmedModelURI.appendFileExtension(associatedResourceExtension), true);
 	}
 
 	/**

@@ -283,9 +283,9 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 
 			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-				Resource modelResource = diResourceSet.getAssociatedModelResource(container, true);
-				Resource notationResource = diResourceSet.getAssociatedNotationResource(container, true);
-				Resource diResource = diResourceSet.getAssociatedDiResource(container, true);
+				Resource modelResource = diResourceSet.getAssociatedModelResource(container);
+				Resource notationResource = diResourceSet.getAssociatedNotationResource(container);
+				Resource diResource = diResourceSet.getAssociatedDiResource(container);
 
 				String name;
 				if(diagramName == null) {

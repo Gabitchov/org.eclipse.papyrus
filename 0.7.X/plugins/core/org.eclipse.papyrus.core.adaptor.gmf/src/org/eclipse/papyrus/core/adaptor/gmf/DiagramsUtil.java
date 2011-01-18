@@ -53,7 +53,7 @@ public class DiagramsUtil {
 		}
 
 		if(resourceSet instanceof DiResourceSet) {
-			Resource notationResource = ((DiResourceSet)resourceSet).getAssociatedNotationResource(element, false);
+			Resource notationResource = ((DiResourceSet)resourceSet).getAssociatedNotationResource(element);
 			return getAssociatedDiagramsFromNotationResource(element, notationResource);
 		}
 
