@@ -16,19 +16,40 @@ package org.eclipse.papyrus.diagram.menu.actions.handlers;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
-import org.eclipse.papyrus.diagram.menu.actions.SortFilterCompartmentItemsAction;
+import org.eclipse.papyrus.diagram.menu.actions.ZOrderAction;
+
 
 /**
- * Handler for the SortFilterCompartmentItemsAction
+ * The handler for the ZOrderAction
  * 
  * 
  * 
  */
-public class SortFilterCompartmentItemsHandler extends AbstractGraphicalCommandHandler {
+public class ZOrderHandler extends AbstractGraphicalCommandHandler {
 
-	public SortFilterCompartmentItemsHandler() {
-		super(null);
+	/** id of the parameter for the ZOrderAction */
+	public static final String parameterID = "order_parameter"; //$NON-NLS-1$
+
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param parameter
+	 *        the command parameter
+	 */
+	public ZOrderHandler(String parameter) {
+		super(parameterID, parameter);
 	}
+
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 */
+	public ZOrderHandler() {
+		super(parameterID);
+	}
+
 
 	/**
 	 * 
@@ -39,7 +60,7 @@ public class SortFilterCompartmentItemsHandler extends AbstractGraphicalCommandH
 	 */
 	@Override
 	protected Command getCommand() throws ExecutionException {
-		SortFilterCompartmentItemsAction action = new SortFilterCompartmentItemsAction(getSelectedElements());
+		ZOrderAction action = new ZOrderAction(this.parameter, getSelectedElements());
 		Command cmd = action.getCommand();
 		return (cmd == null) ? UnexecutableCommand.INSTANCE : cmd;
 	}

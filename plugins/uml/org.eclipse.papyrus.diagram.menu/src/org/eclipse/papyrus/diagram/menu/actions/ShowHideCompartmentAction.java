@@ -67,7 +67,7 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 	/** String used when the name of an element was not found */
 	public static final String NO_NAME = Messages.ShowHideCompartmentAction_No_Name;
 
-	private static final String SHOW_NAME_OF_COMPARTMENT = "Show title of the compartment";
+	private static final String SHOW_NAME_OF_COMPARTMENT = "Show title of the compartment"; //$NON-NLS-1$
 
 	/** the transactional editing domain */
 	protected TransactionalEditingDomain domain;
@@ -267,7 +267,7 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 	private class ShowHideTitleOfCompartmentCommand extends SetPropertyCommand {
 
 		public ShowHideTitleOfCompartmentCommand(ShowNameOfCompartmentItem showNameOfCompartmentItem, boolean showNotHide) {
-			super(domain, new EObjectAdapter(showNameOfCompartmentItem.compartment), Properties.ID_SHOWCOMPARTMENTTITLE, "Show/Hide Compartment Title", Boolean.valueOf(showNotHide));
+			super(domain, new EObjectAdapter(showNameOfCompartmentItem.compartment), Properties.ID_SHOWCOMPARTMENTTITLE, "Show/Hide Compartment Title", Boolean.valueOf(showNotHide)); //$NON-NLS-1$
 		}
 
 		protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
@@ -703,7 +703,7 @@ public class ShowHideCompartmentAction extends AbstractShowHideAction {
 
 		@Override
 		public String toString() {
-			return SHOW_NAME_OF_COMPARTMENT + ": " + compartment.getType();
+			return SHOW_NAME_OF_COMPARTMENT + ": " + compartment.getType(); //$NON-NLS-1$
 		}
 
 		public String getText() {

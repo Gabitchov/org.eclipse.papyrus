@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2010 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -16,37 +16,38 @@ package org.eclipse.papyrus.diagram.menu.actions.handlers;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
-import org.eclipse.papyrus.diagram.menu.actions.CopyAppearancePropertiesAction;
+import org.eclipse.papyrus.diagram.menu.actions.FontAction;
 
 /**
  * 
- * The handler for the action {@link CopyAppearancePropertiesAction}
- * 
+ * Handler for the FontAction
  * 
  */
-public class CopyAppearancePropertiesHandler extends AbstractGraphicalCommandHandler {
+public class FontHandler extends AbstractGraphicalCommandHandler {
 
 	/**
 	 * 
 	 * Constructor.
 	 * 
 	 */
-	public CopyAppearancePropertiesHandler() {
+	public FontHandler() {
 		super(null);
 	}
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.diagram.menu.actions.handlers.AbstractGraphicalCommandHandler#getCommand()
+	 * @see org.eclipse.papyrus.diagram.common.handlers.GraphicalCommandHandler#getCommand()
 	 * 
 	 * @return
 	 * @throws ExecutionException
 	 */
 	@Override
 	protected Command getCommand() throws ExecutionException {
-		CopyAppearancePropertiesAction action = new CopyAppearancePropertiesAction(getSelectedElements());
-		Command cmd = action.getCommand();
-		return (cmd == null) ? UnexecutableCommand.INSTANCE : cmd;
+		FontAction action = new FontAction(getSelectedElements());
+		if(action.isEnabled()) {
+			return action.getCommand();
+		}
+		return UnexecutableCommand.INSTANCE;
 	}
 
 	/**
@@ -57,10 +58,7 @@ public class CopyAppearancePropertiesHandler extends AbstractGraphicalCommandHan
 	 */
 	@Override
 	public boolean isEnabled() {
-		if(getSelectedElements().isEmpty() || getSelectedElements().size() == 1) {
-			return false;
-		}
-		return super.isEnabled();
+		FontAction action = new FontAction(getSelectedElements());
+		return action.isEnabled();
 	}
-
 }

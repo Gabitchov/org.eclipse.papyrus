@@ -1,4 +1,5 @@
 package org.eclipse.papyrus.diagram.menu.actions;
+
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
  *

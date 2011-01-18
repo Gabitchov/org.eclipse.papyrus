@@ -15,19 +15,41 @@ package org.eclipse.papyrus.diagram.menu.actions.handlers;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.gef.commands.Command;
-import org.eclipse.gef.commands.UnexecutableCommand;
-import org.eclipse.papyrus.diagram.menu.actions.SortFilterCompartmentItemsAction;
+import org.eclipse.papyrus.diagram.menu.actions.AbstractColorAction;
+import org.eclipse.papyrus.diagram.menu.actions.FillColorAction;
 
 /**
- * Handler for the SortFilterCompartmentItemsAction
+ * The handler for the {@link FillColorAction}
  * 
  * 
  * 
  */
-public class SortFilterCompartmentItemsHandler extends AbstractGraphicalCommandHandler {
+public class FillColorHandler extends AbstractGraphicalCommandHandler {
 
-	public SortFilterCompartmentItemsHandler() {
-		super(null);
+	/** id of the parameter for the ZOrderAction */
+	public static final String parameterID = "color_parameter"; //$NON-NLS-1$
+
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param parameter
+	 *        parameter for the arrange action
+	 */
+	public FillColorHandler(String parameter) {
+		super(parameterID, parameter);
+	}
+
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param parameter
+	 *        parameter for the arrange action
+	 */
+	public FillColorHandler() {
+		//when we have no parameter, we fill in black!
+		super(parameterID, AbstractColorAction.BLACK_.colorName);
 	}
 
 	/**
@@ -39,9 +61,7 @@ public class SortFilterCompartmentItemsHandler extends AbstractGraphicalCommandH
 	 */
 	@Override
 	protected Command getCommand() throws ExecutionException {
-		SortFilterCompartmentItemsAction action = new SortFilterCompartmentItemsAction(getSelectedElements());
-		Command cmd = action.getCommand();
-		return (cmd == null) ? UnexecutableCommand.INSTANCE : cmd;
+		AbstractColorAction action = new FillColorAction(parameter, getSelectedElements());
+		return action.getCommand();
 	}
-
 }

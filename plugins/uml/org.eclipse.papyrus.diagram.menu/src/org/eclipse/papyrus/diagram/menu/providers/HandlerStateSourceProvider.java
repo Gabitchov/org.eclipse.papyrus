@@ -15,8 +15,16 @@ package org.eclipse.papyrus.diagram.menu.providers;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.papyrus.diagram.common.providers.AbstractActionStateSourceProvider;
+import org.eclipse.papyrus.diagram.menu.actions.ArrangeAction;
+import org.eclipse.papyrus.diagram.menu.actions.SelectAction;
+import org.eclipse.papyrus.diagram.menu.actions.ZOrderAction;
+import org.eclipse.papyrus.diagram.menu.actions.handlers.ArrangeHandler;
 import org.eclipse.papyrus.diagram.menu.actions.handlers.CopyAppearancePropertiesHandler;
+import org.eclipse.papyrus.diagram.menu.actions.handlers.FillColorHandler;
+import org.eclipse.papyrus.diagram.menu.actions.handlers.FontHandler;
+import org.eclipse.papyrus.diagram.menu.actions.handlers.LineColorHandler;
 import org.eclipse.papyrus.diagram.menu.actions.handlers.RecalculatePageBreaksHandler;
+import org.eclipse.papyrus.diagram.menu.actions.handlers.SelectHandler;
 import org.eclipse.papyrus.diagram.menu.actions.handlers.ShowHideCompartmentHandler;
 import org.eclipse.papyrus.diagram.menu.actions.handlers.ShowHideContentsHandler;
 import org.eclipse.papyrus.diagram.menu.actions.handlers.SnapToGridHandler;
@@ -24,6 +32,8 @@ import org.eclipse.papyrus.diagram.menu.actions.handlers.SortFilterCompartmentIt
 import org.eclipse.papyrus.diagram.menu.actions.handlers.ViewGridHandler;
 import org.eclipse.papyrus.diagram.menu.actions.handlers.ViewPageBreaksHandler;
 import org.eclipse.papyrus.diagram.menu.actions.handlers.ViewRulersHandler;
+import org.eclipse.papyrus.diagram.menu.actions.handlers.ZOrderHandler;
+import org.eclipse.papyrus.diagram.menu.actions.handlers.ZoomHandler;
 import org.eclipse.ui.ISources;
 
 /**
@@ -55,8 +65,33 @@ public class HandlerStateSourceProvider extends AbstractActionStateSourceProvide
 
 	public static final String SNAP_TO_GRID = "snapToGrid";//$NON-NLS-1$
 
-	public static final String SORT_FILTER_COMPARTMENT_ITEMS = "sortFilterCompartmentItems";
+	public static final String SORT_FILTER_COMPARTMENT_ITEMS = "sortFilterCompartmentItems"; //$NON-NLS-1$
 
+	public static final String ZOOM = "zoom"; //$NON-NLS-1$
+
+	public static final String BRING_TO_FRONT = ZOrderAction.BRING_TO_FRONT;
+
+	public static final String SEND_TO_BACK = ZOrderAction.SEND_TO_BACK;
+
+	public static final String BRING_FORWARD = ZOrderAction.BRING_FORWARD;
+
+	public static final String SEND_BACKWARD = ZOrderAction.SEND_BACKWARD;
+
+	public static final String ARRANGE_ALL = ArrangeAction.ARRANGE_ALL;
+
+	public static final String ARRANGE_SELECTION = ArrangeAction.ARRANGE_SELECTION;
+
+	public static final String SELECT_ALL = SelectAction.SELECT_ALL;
+
+	public static final String SELECT_ALL_SHAPES = SelectAction.SELECT_ALL_SHAPES;
+
+	public static final String SELECT_ALL_CONNECTORS = SelectAction.SELECT_ALL_CONNECTORS;
+
+	public static final String FONT = "font"; //$NON-NLS-1$
+
+	public static final String FILL_COLOR = "fillColor"; //$NON-NLS-1$
+
+	public static final String LINE_COLOR = "lineColor"; //$NON-NLS-1$
 
 	/**
 	 * 
@@ -74,6 +109,25 @@ public class HandlerStateSourceProvider extends AbstractActionStateSourceProvide
 		currentState.put(RECALCULATE_PAGE_BREAKS, DISABLED);
 		currentState.put(SNAP_TO_GRID, DISABLED);
 		currentState.put(SORT_FILTER_COMPARTMENT_ITEMS, DISABLED);
+		currentState.put(ZOOM, DISABLED);
+
+		currentState.put(BRING_TO_FRONT, DISABLED);
+		currentState.put(SEND_TO_BACK, DISABLED);
+		currentState.put(BRING_FORWARD, DISABLED);
+		currentState.put(SEND_BACKWARD, DISABLED);
+
+		currentState.put(ARRANGE_ALL, DISABLED);
+		currentState.put(ARRANGE_SELECTION, DISABLED);
+
+		currentState.put(SELECT_ALL, DISABLED);
+		currentState.put(SELECT_ALL_SHAPES, DISABLED);
+		currentState.put(SELECT_ALL_CONNECTORS, DISABLED);
+
+		currentState.put(FONT, DISABLED);
+
+		currentState.put(FILL_COLOR, DISABLED);
+		currentState.put(LINE_COLOR, DISABLED);
+
 	}
 
 
@@ -85,7 +139,19 @@ public class HandlerStateSourceProvider extends AbstractActionStateSourceProvide
 	 */
 	@Override
 	public String[] getProvidedSourceNames() {
-		return new String[]{ SHOW_HIDE_CONTENTS, SHOW_HIDE_COMPARTMENTS, COPY_APPEARANCE_PROPERTIES, GRID, RULERS, PAGE_BREAKS, RECALCULATE_PAGE_BREAKS, SNAP_TO_GRID };
+		return new String[]{ SHOW_HIDE_CONTENTS, SHOW_HIDE_COMPARTMENTS, COPY_APPEARANCE_PROPERTIES, GRID, RULERS, PAGE_BREAKS, RECALCULATE_PAGE_BREAKS, SNAP_TO_GRID, ZOOM
+
+
+		, BRING_TO_FRONT, SEND_TO_BACK, BRING_FORWARD, SEND_BACKWARD
+
+		, ARRANGE_ALL, ARRANGE_SELECTION
+
+		, SELECT_ALL, SELECT_ALL_CONNECTORS, SELECT_ALL_SHAPES
+
+		, FONT
+
+		, FILL_COLOR, LINE_COLOR };
+
 	}
 
 
@@ -105,6 +171,23 @@ public class HandlerStateSourceProvider extends AbstractActionStateSourceProvide
 		refresh(RECALCULATE_PAGE_BREAKS, new RecalculatePageBreaksHandler());
 		refresh(SNAP_TO_GRID, new SnapToGridHandler());
 		refresh(SORT_FILTER_COMPARTMENT_ITEMS, new SortFilterCompartmentItemsHandler());
+		refresh(ZOOM, new ZoomHandler());
+
+		refresh(BRING_TO_FRONT, new ZOrderHandler(BRING_TO_FRONT));
+		refresh(SEND_TO_BACK, new ZOrderHandler(SEND_TO_BACK));
+		refresh(BRING_FORWARD, new ZOrderHandler(BRING_FORWARD));
+		refresh(SEND_BACKWARD, new ZOrderHandler(SEND_BACKWARD));
+		refresh(ARRANGE_ALL, new ArrangeHandler(ARRANGE_ALL));
+		refresh(ARRANGE_SELECTION, new ArrangeHandler(ARRANGE_SELECTION));
+
+		refresh(SELECT_ALL, new SelectHandler(SELECT_ALL));
+		refresh(SELECT_ALL_CONNECTORS, new SelectHandler(SELECT_ALL_CONNECTORS));
+		refresh(SELECT_ALL_SHAPES, new SelectHandler(SELECT_ALL_SHAPES));
+
+		refresh(FONT, new FontHandler());
+
+		refresh(FILL_COLOR, new FillColorHandler());
+		refresh(LINE_COLOR, new LineColorHandler());
 	}
 
 	/**

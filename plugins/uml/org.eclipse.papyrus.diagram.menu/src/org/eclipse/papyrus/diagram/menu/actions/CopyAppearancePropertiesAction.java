@@ -26,10 +26,7 @@ import org.eclipse.gmf.runtime.notation.View;
  * The Class CopyAppearancePropertiesAction.
  */
 @SuppressWarnings("restriction")
-public class CopyAppearancePropertiesAction {
-
-	/** The selected elements. */
-	private List<IGraphicalEditPart> selectedElements;
+public class CopyAppearancePropertiesAction extends AbstractGraphicalParametricAction {
 
 	/**
 	 * 
@@ -39,31 +36,31 @@ public class CopyAppearancePropertiesAction {
 	 *        the selected elements
 	 */
 	public CopyAppearancePropertiesAction(List<IGraphicalEditPart> selectedElements) {
-		this.selectedElements = selectedElements;
+		super(null, selectedElements);
 	}
 
 	/**
-	 * Returns the command to apply the same appearance for each element
+	 * 
+	 * @see org.eclipse.papyrus.diagram.menu.actions.AbstractGraphicalParametricAction#getBuildedCommand()
 	 * 
 	 * @return
-	 *         the command to apply the same appearance for each element
 	 */
-	@SuppressWarnings("restriction")
-	public Command getCommand() {
+	@Override
+	protected Command getBuildedCommand() {
 		ApplyAppearancePropertiesRequest request = new ApplyAppearancePropertiesRequest();
-		if(!selectedElements.isEmpty()) {
+		if(!getSelection().isEmpty()) {
 			//the behavior provided by GMF for this action is to copy the appearance provided by the FIRST selected element
 			// for all other GMF action, the behavior used the last selected element
 			int reference = 0;
 
 			//we choose to apply the same behavior for each action!
-			reference = selectedElements.size() - 1;
-			View notationView = selectedElements.get(reference).getNotationView();
+			reference = getSelection().size() - 1;
+			View notationView = getSelection().get(reference).getNotationView();
 			request.setViewToCopyFrom(notationView);
 		}
 
 		CompoundCommand cmd = new CompoundCommand(""); //$NON-NLS-1$
-		for(IGraphicalEditPart current : selectedElements) {
+		for(IGraphicalEditPart current : getSelection()) {
 			Command tmp = current.getCommand(request);
 			if(tmp != null && tmp.canExecute()) {
 				cmd.add(tmp);
