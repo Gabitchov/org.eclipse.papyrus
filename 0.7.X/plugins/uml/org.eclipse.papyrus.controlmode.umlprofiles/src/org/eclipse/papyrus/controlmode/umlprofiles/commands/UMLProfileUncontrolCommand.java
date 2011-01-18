@@ -13,17 +13,16 @@
  *****************************************************************************/
 package org.eclipse.papyrus.controlmode.umlprofiles.commands;
 
-import java.util.Iterator;
+import java.util.ArrayList;
 
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.controlmode.commands.IUncontrolCommand;
+import org.eclipse.papyrus.controlmode.umlprofiles.helpers.ProfileApplicationHelper;
 import org.eclipse.uml2.common.edit.command.ChangeCommand;
-import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
 
@@ -57,7 +56,7 @@ public class UMLProfileUncontrolCommand implements IUncontrolCommand {
 			commandToModify.append(new ChangeCommand(domain, new Runnable() {
 
 				public void run() {
-					relocateStereotypeApplications(selection, target);
+					ProfileApplicationHelper.relocateStereotypeApplications((Package)selection, target);
 				}
 			}));
 			break;
@@ -67,44 +66,22 @@ public class UMLProfileUncontrolCommand implements IUncontrolCommand {
 
 	/**
 	 * Unapply profiles duplicated for control action
+	 * 
 	 * @param selection
-	 * @param the resource target 
+	 * @param target
+	 *        the resource target
 	 */
 	private void unapplyDuplicateProfiles(final EObject selection, Resource target) {
 		Package _package = (Package)selection;
 		EList<Profile> allAppliedProfiles = _package.getAllAppliedProfiles();
-		if (!allAppliedProfiles.isEmpty()) {
-			for(Profile profile : _package.getAppliedProfiles()) {
-				if (allAppliedProfiles.contains(profile)) {
-					// profile is duplicate, unapply it
-					_package.unapplyProfile(profile);
+		if(!allAppliedProfiles.isEmpty()) {
+			for(Profile profile : new ArrayList<Profile>(_package.getAppliedProfiles())) {
+				if(allAppliedProfiles.contains(profile)) {
+					// profile is duplicated, unapply it
+					ProfileApplicationHelper.removeProfileApplicationDuplication(_package, profile);
 				}
 			}
-			
-		}
-	}
 
-	/**
-	 * Relocate stereotype applications for the nested elements of the selection in the parent resource
-	 * 
-	 * @param selection
-	 * @param target
-	 *        the parent resource
-	 */
-	private void relocateStereotypeApplications(final EObject selection, final Resource target) {
-		Package pack = (Package)selection;
-		for(Iterator<EObject> i = EcoreUtil.getAllProperContents(pack, false); i.hasNext();) {
-			EObject current = i.next();
-			if(current instanceof Element) {
-				Element element = (Element)current;
-				EList<EObject> stereotypeApplications = element.getStereotypeApplications();
-				if(!stereotypeApplications.isEmpty()) {
-					for(EObject e : stereotypeApplications) {
-						int size = target.getContents().size();
-						target.getContents().add(size, e);
-					}
-				}
-			}
 		}
 	}
 

@@ -1,0 +1,171 @@
+/*****************************************************************************
+ * Copyright (c) 2011 Atos Origin.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   Atos Origin - Initial API and implementation
+ *
+ *****************************************************************************/
+package org.eclipse.papyrus.controlmode.umlprofiles.helpers;
+
+import java.util.Iterator;
+
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.Profile;
+import org.eclipse.uml2.uml.ProfileApplication;
+
+/**
+ * This helper provides methods to manipulate profile applications on packages.
+ * 
+ * @author vhemery
+ */
+public class ProfileApplicationHelper {
+
+	/** EAnnotation for duplicated profiles on controlled packages */
+	public static final String DUPLICATED_PROFILE = "duplicatedProfile";
+
+	/**
+	 * Duplicate a profile application on a child package.
+	 * 
+	 * @param _package
+	 *        package to duplicate profile application on
+	 * @param profile
+	 *        profile to apply
+	 */
+	public static void duplicateProfileApplication(Package _package, Profile profile) {
+		if(!isSameProfileApplied(_package, profile)) {
+			_package.applyProfile(profile);
+			ProfileApplication profileAppl = _package.getProfileApplication(profile);
+			if(profileAppl != null) {
+				markAsDuplicate(profileAppl);
+			}
+		}
+	}
+
+	/**
+	 * Remove a profile application duplicate on a child package
+	 * 
+	 * @param _package
+	 *        package to remove duplicated profile application from
+	 * @param profile
+	 *        profile to unapply
+	 */
+	public static void removeProfileApplicationDuplication(Package _package, Profile profile) {
+		if(isSameProfileApplied(_package, profile)) {
+			ProfileApplication profileAppl = _package.getProfileApplication(profile);
+			// remove only duplicated profile applications with eannotation
+			if(isDuplicatedProfileApplication(profileAppl)) {
+				if(getParentPackageWithProfile(_package, profile, false) == null) {
+					_package.unapplyProfile(profile);
+				}
+				// else, there is another parent profile which justifies the duplication
+			}
+		}
+	}
+
+	/**
+	 * Check if the profile is applied on a package, or one similar
+	 * 
+	 * @param _package
+	 *        package to test on
+	 * @param profile
+	 *        profile to check
+	 * @return true if a similar profile is applied
+	 */
+	private static boolean isSameProfileApplied(Package _package, Profile profile) {
+		for(Profile prof : _package.getAppliedProfiles()) {
+			if(prof.equals(profile)) {
+				return true;
+			}
+			if(profile.getQualifiedName().equals(prof.getQualifiedName())) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Relocate stereotype applications for the nested elements of the selection in the controlled resource
+	 * 
+	 * @param pack
+	 *        the package for which stereotype application must be relocated
+	 * @param target
+	 *        the target controlled resource
+	 */
+	public static void relocateStereotypeApplications(Package pack, Resource target) {
+		for(Iterator<EObject> i = EcoreUtil.getAllProperContents(pack, false); i.hasNext();) {
+			EObject current = i.next();
+			if(current instanceof Element) {
+				Element element = (Element)current;
+				EList<EObject> stereotypeApplications = element.getStereotypeApplications();
+				if(!stereotypeApplications.isEmpty()) {
+					for(EObject e : stereotypeApplications) {
+						int size = target.getContents().size();
+						target.getContents().add(size, e);
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * Check if the profile application is a duplicated one
+	 * 
+	 * @param profileAppl
+	 *        profile application to check
+	 * @return true if it is a duplicated copy
+	 */
+	public static boolean isDuplicatedProfileApplication(ProfileApplication profileAppl) {
+		return profileAppl.getEAnnotation(DUPLICATED_PROFILE) != null;
+	}
+
+	/**
+	 * Get the nearest parent package which has the profile applied.
+	 * 
+	 * @param packageElement
+	 *        child package
+	 * @param profile
+	 *        applied profile
+	 * @param notControlledOnly
+	 *        true to return only a not controlled package
+	 * @return the parent package with profile application
+	 */
+	public static Package getParentPackageWithProfile(Package packageElement, Profile profile, boolean notControlledOnly) {
+		Element parent = packageElement.getOwner();
+		while(parent != null) {
+			if(parent instanceof Package) {
+				Package parentPackage = (Package)parent;
+				if(isSameProfileApplied(parentPackage, profile)) {
+					if(!notControlledOnly || !AdapterFactoryEditingDomain.isControlled(parentPackage)) {
+						return parentPackage;
+					}
+				}
+			}
+			parent = parent.getOwner();
+		}
+		return null;
+	}
+
+	/**
+	 * Mark this profile application as the duplication of a parent profile
+	 * 
+	 * @param profileAppl
+	 *        profile application to mark
+	 */
+	public static void markAsDuplicate(ProfileApplication profileAppl) {
+		// add eannotation for duplicated profile applications
+		profileAppl.createEAnnotation(DUPLICATED_PROFILE);
+	}
+
+}

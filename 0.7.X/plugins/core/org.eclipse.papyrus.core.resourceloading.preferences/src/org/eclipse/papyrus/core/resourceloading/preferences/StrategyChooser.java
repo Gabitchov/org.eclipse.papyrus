@@ -50,6 +50,9 @@ public class StrategyChooser implements IStrategyChooser {
 	 */
 	public static void setCurrentStrategy(int strategy) {
 		currentStrategy = strategy;
+		if(Activator.getDefault().getPreferenceStore().getInt(ICorePreferenceConstants.PREF_CORE_DEFINE_LOADING_STRATEGY) != strategy) {
+			Activator.getDefault().getPreferenceStore().setValue(ICorePreferenceConstants.PREF_CORE_DEFINE_LOADING_STRATEGY, String.valueOf(strategy));
+		}
 	}
 
 
