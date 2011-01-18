@@ -11,16 +11,16 @@
  *  Mathieu Velten (Atos Origin) mathieu.velten@atosorigin.com - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.core.adaptor.gmf;
+package org.eclipse.papyrus.core.utils;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
-import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
@@ -32,7 +32,7 @@ import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 public class OpenDiagramCommand extends AbstractTransactionalCommand {
 
 	/** The diagram to open. */
-	private Diagram diagramToOpen = null;
+	private EObject diagramToOpen = null;
 
 	private ICommand previousCreateDiagramCommand = null;
 
@@ -44,7 +44,7 @@ public class OpenDiagramCommand extends AbstractTransactionalCommand {
 	 * @param diagram
 	 *        the diagram
 	 */
-	public OpenDiagramCommand(TransactionalEditingDomain editingDomain, Diagram diagram) {
+	public OpenDiagramCommand(TransactionalEditingDomain editingDomain, EObject diagram) {
 		super(editingDomain, "Open diagram", null);
 		diagramToOpen = diagram;
 	}
@@ -61,10 +61,13 @@ public class OpenDiagramCommand extends AbstractTransactionalCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		try {
 			if(diagramToOpen == null && previousCreateDiagramCommand != null) {
-				diagramToOpen = (Diagram)previousCreateDiagramCommand.getCommandResult().getReturnValue();
+				Object possibleDiagramToOpen = previousCreateDiagramCommand.getCommandResult().getReturnValue();
+				if (possibleDiagramToOpen instanceof EObject) {
+					diagramToOpen = (EObject)possibleDiagramToOpen;
+				}
 			}
 
-			if(getEditingDomain().getResourceSet() instanceof DiResourceSet) {
+			if(diagramToOpen != null && getEditingDomain().getResourceSet() instanceof DiResourceSet) {
 				DiResourceSet diResourceSet = (DiResourceSet)getEditingDomain().getResourceSet();
 
 				IPageMngr pageMngr = EditorUtils.getIPageMngr(diResourceSet.getDiResource());

@@ -23,12 +23,12 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.jface.dialogs.Dialog;
-import org.eclipse.papyrus.core.adaptor.gmf.DiagramsUtil;
 import org.eclipse.papyrus.core.editor.BackboneException;
 import org.eclipse.papyrus.core.extension.commands.CreationCommandDescriptor;
 import org.eclipse.papyrus.core.navigation.CreatedNavigableElement;
 import org.eclipse.papyrus.core.navigation.NavigableElement;
 import org.eclipse.papyrus.core.navigation.NavigableElement.NavigationType;
+import org.eclipse.papyrus.core.navigation.NavigationHelper;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.swt.SWT;
@@ -134,7 +134,7 @@ public class NavigationCreateDiagramDialog extends Dialog {
 
 					Text diagramNameText = (Text)tableItem.getData(DIAGRAM_NAME_TEXT_KEY);
 
-					compositeCommand.add(DiagramsUtil.getLinkCreateAndOpenNavigableDiagram(navElement, desc.getCommand(), diagramNameText.getText(), diResourceSet));
+					compositeCommand.add(NavigationHelper.getLinkCreateAndOpenNavigableDiagramCommand(navElement, desc.getCommand(), diagramNameText.getText(), diResourceSet));
 				}
 			} catch (BackboneException e) {
 				e.printStackTrace();

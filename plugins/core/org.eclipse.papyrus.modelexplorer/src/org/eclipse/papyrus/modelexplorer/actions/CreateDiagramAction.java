@@ -1,12 +1,25 @@
+/*****************************************************************************
+ * Copyright (c) 2010 Atos Origin.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Mathieu Velten (Atos Origin) mathieu.velten@atosorigin.com - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.modelexplorer.actions;
 
 import static org.eclipse.papyrus.modelexplorer.Activator.log;
 
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.jface.action.Action;
-import org.eclipse.papyrus.core.adaptor.gmf.DiagramsUtil;
 import org.eclipse.papyrus.core.extension.commands.CreationCommandDescriptor;
 import org.eclipse.papyrus.core.navigation.NavigableElement;
+import org.eclipse.papyrus.core.navigation.NavigationHelper;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.modelexplorer.handler.GMFtoEMFCommandWrapper;
@@ -16,8 +29,7 @@ import org.eclipse.papyrus.modelexplorer.handler.GMFtoEMFCommandWrapper;
  * @author mvelten
  *
  */
-// TODO change diagram name
-public class CreateDiagramAction extends Action {
+public class CreateDiagramAction extends Action implements Comparable<CreateDiagramAction> {
 
 	private final NavigableElement navElement;
 
@@ -55,12 +67,17 @@ public class CreateDiagramAction extends Action {
 
 		try {
 			DiResourceSet diResourceSet = EditorUtils.getDiResourceSet();
-			
-			CompositeCommand compositeCommand = DiagramsUtil.getLinkCreateAndOpenNavigableDiagram(navElement, commandDescriptor.getCommand(), null, diResourceSet);
 
-			diResourceSet.getTransactionalEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(compositeCommand));
+			if (diResourceSet != null) {
+				CompositeCommand command = NavigationHelper.getLinkCreateAndOpenNavigableDiagramCommand(navElement, commandDescriptor.getCommand(), null, diResourceSet);
+				diResourceSet.getTransactionalEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(command));
+			}
 		} catch (Exception e) {
 			log.error(e);
 		}
+	}
+
+	public int compareTo(CreateDiagramAction o) {
+		return commandDescriptor.compareTo(o.commandDescriptor);
 	}
 }

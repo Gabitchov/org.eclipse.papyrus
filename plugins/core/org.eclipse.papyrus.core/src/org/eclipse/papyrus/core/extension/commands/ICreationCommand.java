@@ -30,7 +30,7 @@ public interface ICreationCommand {
 	 * @param container
 	 *        of the diagram, if container is null, the diagram is contained by the top level container
 	 * @param diagramName
-	 *        the name of the new diagram
+	 *        the name of the new diagram or null to use a dialog to choose the name
 	 */
 	public void createDiagram(DiResourceSet diResourceSet, EObject container, String diagramName);
 	
@@ -42,7 +42,7 @@ public interface ICreationCommand {
 	 * @param container
 	 *        of the diagram, if container is null, the diagram is contained by the top level container
 	 * @param diagramName
-	 *        the name of the new diagram
+	 *        the name of the new diagram or null to use a dialog to choose the name
 	 */
 	public ICommand getCreateDiagramCommand(final DiResourceSet diResourceSet, final EObject container, final String diagramName);
 

@@ -17,11 +17,21 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.papyrus.core.extension.commands.ICreationCommand;
 import org.eclipse.papyrus.core.navigation.NavigableElement.NavigationType;
+import org.eclipse.papyrus.core.utils.DiResourceSet;
+import org.eclipse.papyrus.core.utils.OpenDiagramCommand;
 
 
 public class NavigationHelper {
@@ -115,5 +125,27 @@ public class NavigationHelper {
 			cne.setBaseName(base);
 			navElement = cne.getPreviousNavigableElement();
 		}
+	}
+
+	public static CompositeCommand getLinkCreateAndOpenNavigableDiagramCommand(final NavigableElement navElement, ICreationCommand creationCommandInterface, final String diagramName, DiResourceSet diResourceSet) {
+		CompositeCommand compositeCommand = new CompositeCommand("Create diagram");
+
+		if(navElement instanceof CreatedNavigableElement) {
+			compositeCommand.add(new AbstractTransactionalCommand(diResourceSet.getTransactionalEditingDomain(), "Create hierarchy", null) {
+
+				@Override
+				protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+					NavigationHelper.linkToModel((CreatedNavigableElement)navElement);
+					NavigationHelper.setBaseName((CreatedNavigableElement)navElement, "");
+					return CommandResult.newOKCommandResult();
+				}
+			});
+		}
+
+		ICommand createDiagCommand = creationCommandInterface.getCreateDiagramCommand(diResourceSet, navElement.getElement(), diagramName);
+		compositeCommand.add(createDiagCommand);
+		compositeCommand.add(new OpenDiagramCommand(diResourceSet.getTransactionalEditingDomain(), createDiagCommand));
+
+		return compositeCommand;
 	}
 }

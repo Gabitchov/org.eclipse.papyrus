@@ -1,12 +1,20 @@
-/**
- * 
- */
+/*****************************************************************************
+ * Copyright (c) 2008 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.core.multidiagram.actionbarcontributor;
 
 import java.util.List;
 
-import org.eclipse.gef.ui.actions.RedoRetargetAction;
-import org.eclipse.gef.ui.actions.UndoRetargetAction;
 import org.eclipse.papyrus.core.Activator;
 import org.eclipse.papyrus.core.editor.BackboneException;
 import org.eclipse.papyrus.sasheditor.editor.actionbarcontributor.ComposedActionBarContributor;
@@ -53,6 +61,9 @@ public class CoreComposedActionBarContributor extends ComposedActionBarContribut
 		actionBarContributorRegistry = new ActionBarContributorRegistry(Activator.PLUGIN_ID);
 
 		contributors = actionBarContributorRegistry.getActionBarContributors();
+
+		// Add default create diagram contributor
+		contributors.add(new ActionBarCreateDiagramContributor());
 	}
 
 
@@ -101,10 +112,12 @@ public class CoreComposedActionBarContributor extends ComposedActionBarContribut
 		//getActionBars().getToolBarManager().add(new RedoRetargetAction());
 	}
 
-
-	public void setActiveEditor(IEditorPart targetEditor) {
-		super.setActiveEditor(targetEditor);
+	@Override
+	public void setActiveEditor(IEditorPart part) {
+		super.setActiveEditor(part);
+		for (EditorActionBarContributor contributor : contributors) {
+			contributor.setActiveEditor(part);
+		}
 	}
-
 
 }

@@ -31,9 +31,6 @@
          </toolbar>
       </menuContribution>
       <menuContribution
-            locationURI="toolbar:org.eclipse.papyrus.diagram.ui.toolbar">
-      </menuContribution>
-      <menuContribution
             locationURI="popup:org.eclipse.papyrus.core.editor.ui.tabmenu?endof=tabcommands">
          <command
                commandId="org.eclipse.papyrus.core.commands.closediagram"
