@@ -70,7 +70,7 @@ public class AdditionalResourcesModel implements IModel {
 		for(Resource r : modelSet.getResources()) {
 			if(modelSet.isAdditionalResource(r.getURI())) {
 				EditingDomain editingDomain = modelSet.getTransactionalEditingDomain();
-				if(editingDomain != null && !editingDomain.isReadOnly(r) && (r.getURI().isPlatform() || r.getURI().isFile())) {
+				if(!r.getContents().isEmpty() && editingDomain != null && !editingDomain.isReadOnly(r) && (r.getURI().isPlatform() || r.getURI().isFile())) {
 					r.save(Collections.EMPTY_MAP);
 				}
 			}

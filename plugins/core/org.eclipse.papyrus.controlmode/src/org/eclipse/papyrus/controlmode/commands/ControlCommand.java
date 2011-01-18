@@ -274,8 +274,10 @@ public class ControlCommand extends AbstractTransactionalCommand {
 		// add pages to the page list
 		for(Diagram diagram : diagrams) {
 			PageRef pageRef = DiUtils.getPageRef(diResource, diagram);
-			windowsMngr.getPageList().addPage(pageRef.getPageIdentifier());
-			DiUtils.addPageToTabFolder(windowsMngr, pageRef);
+			if (pageRef != null) {
+				windowsMngr.getPageList().addPage(pageRef.getPageIdentifier());				
+				DiUtils.addPageToTabFolder(windowsMngr, pageRef);
+			}
 		}
 
 		// PRE control operation
