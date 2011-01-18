@@ -37,6 +37,7 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.extension.commands.ICreationCommand;
 import org.eclipse.papyrus.core.services.ServiceException;
@@ -44,9 +45,9 @@ import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.core.utils.BusinessModelResolver;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.core.utils.OpenDiagramCommand;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
-import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
@@ -237,24 +238,22 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	 *        the default value
 	 * @return the entered diagram name
 	 */
-	protected String openDiagramNameDialog(final String defaultValue) {
-		InputDialog inputDialog = new InputDialog(Display.getCurrent().getActiveShell(), Messages.AbstractPapyrusGmfCreateDiagramCommandHandler_SelectNewDiagramName, Messages.AbstractPapyrusGmfCreateDiagramCommandHandler_NewDiagramName, defaultValue, null) {
-
-			@Override
-			protected void createButtonsForButtonBar(Composite parent) {
-				super.createButtonsForButtonBar(parent);
-				getCancelButton().setEnabled(false);
-			}
-
-		};
-
-		inputDialog.open();
-
-		String name = inputDialog.getValue();
-		if(name == null || name.length() == 0) {
-			name = defaultValue;
+	protected String openDiagramNameDialog(String defaultValue) {
+		if(defaultValue == null) {
+			defaultValue = "";
 		}
-		return name;
+
+		InputDialog inputDialog = new InputDialog(Display.getCurrent().getActiveShell(), Messages.AbstractPapyrusGmfCreateDiagramCommandHandler_SelectNewDiagramName, Messages.AbstractPapyrusGmfCreateDiagramCommandHandler_NewDiagramName, defaultValue, null);
+		int result = inputDialog.open();
+
+		if(result == Window.OK) {
+			String name = inputDialog.getValue();
+			if(name == null || name.length() == 0) {
+				name = defaultValue;
+			}
+			return name;
+		}
+		return null;
 	}
 
 	/**
@@ -276,8 +275,6 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 	 * {@inheritDoc}
 	 */
 	public ICommand getCreateDiagramCommand(final DiResourceSet diResourceSet, final EObject container, final String diagramName) {
-		// Get the uml element to which the newly created diagram will be attached.
-		// Create the diagram
 
 		return new AbstractTransactionalCommand(diResourceSet.getTransactionalEditingDomain(), Messages.AbstractPapyrusGmfCreateDiagramCommandHandler_CreateDiagramCommandLabel, Collections.EMPTY_LIST) {
 
@@ -287,14 +284,15 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 				Resource notationResource = diResourceSet.getAssociatedNotationResource(container);
 				Resource diResource = diResourceSet.getAssociatedDiResource(container);
 
-				String name;
-				if(diagramName == null) {
+				String name = diagramName;
+				if(name == null) {
 					name = openDiagramNameDialog(getDefaultDiagramName());
-				} else {
-					name = diagramName;
+				}
+				// canceled
+				if(name == null) {
+					return CommandResult.newCancelledCommandResult();
 				}
 
-				CommandResult commandResult = CommandResult.newErrorCommandResult("Error during diagram creation");
 				EObject model = container;
 				if(model == null) {
 					model = getRootElement(modelResource);
@@ -306,9 +304,9 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 				if(diagram != null) {
 					IPageMngr pageMngr = EditorUtils.getIPageMngr(diResource);
 					pageMngr.addPage(diagram);
-					commandResult = CommandResult.newOKCommandResult(diagram);
+					return CommandResult.newOKCommandResult(diagram);
 				}
-				return commandResult;
+				return CommandResult.newErrorCommandResult("Error during diagram creation");
 			}
 		};
 	}

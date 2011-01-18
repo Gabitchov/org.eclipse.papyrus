@@ -8,9 +8,11 @@
  * Contributors:
  *     Obeo - initial API and implementation
  *     Tristan Faure (Atos Origin) tristan.faure@atosorigin.com - add condition to the create command (task #296902)
+ *     Mathieu Velten (Atos Origin) mathieu.velten@atosorigin.com - rewrote most of the code to use navigation in combination with the creation service
  *******************************************************************************/
 package org.eclipse.papyrus.modelexplorer.actionprovider;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -37,14 +39,15 @@ public class CreateDiagramActionProvider extends AbstractSubmenuActionProvider {
 	 */
 	@Override
 	public void fillContextMenu(IMenuManager menu) {
-		Object selectedElement = resolveSemanticObject(getFirstSelectedElement());
+		EObject selectedElement = resolveSemanticObject(getFirstSelectedElement());
 
-		if(selectedElement instanceof EObject) {
-			EObject eobject = (EObject)selectedElement;
+		if(selectedElement != null) {
 			MenuManager newDiagramMenu = new MenuManager("New Diagram");
 			menu.insertAfter("additions", newDiagramMenu);
 
-			List<NavigableElement> navElements =  NavigationHelper.getInstance().getAllNavigableElements(eobject);
+			ArrayList<CreateDiagramAction> createDiagramActions = new ArrayList<CreateDiagramAction>();
+
+			List<NavigableElement> navElements =  NavigationHelper.getInstance().getAllNavigableElements(selectedElement);
 			// this will sort by depth so existing elements come first
 			Collections.sort(navElements);
 
@@ -54,17 +57,23 @@ public class CreateDiagramActionProvider extends AbstractSubmenuActionProvider {
 			for (final NavigableElement navElement : navElements) {
 				final EObject element = navElement.getElement();
 				// if it is not a creation of element only authorize the current element as existing element
-				if (!(navElement instanceof ExistingNavigableElement && !eobject.equals(element))) {
+				if (!(navElement instanceof ExistingNavigableElement && !selectedElement.equals(element))) {
 					for(final CreationCommandDescriptor desc : getCreationCommandRegistry().getCommandDescriptors()) {
 						if (!alreadyUsedCommandDescs.contains(desc)) {
 							if(desc.getCondition() == null || desc.getCondition().create(element)) {
 								CreateDiagramAction createDiagramAction = new CreateDiagramAction(navElement, desc);
-								newDiagramMenu.add(createDiagramAction);
+								createDiagramActions.add(createDiagramAction);
 								alreadyUsedCommandDescs.add(desc);
 							}
 						}
 					}
 				}
+			}
+
+			// this will sort by language and diagram name
+			Collections.sort(createDiagramActions);
+			for (CreateDiagramAction createDiagramAction : createDiagramActions) {
+				newDiagramMenu.add(createDiagramAction);
 			}
 		}
 	}

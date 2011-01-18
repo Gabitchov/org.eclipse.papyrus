@@ -20,9 +20,9 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.OpenEditPolicy;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.papyrus.core.adaptor.gmf.OpenDiagramCommand;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.core.utils.OpenDiagramCommand;
 
 /**
  * This class is used to open a new diagram when the double click is detected. It is dependent of

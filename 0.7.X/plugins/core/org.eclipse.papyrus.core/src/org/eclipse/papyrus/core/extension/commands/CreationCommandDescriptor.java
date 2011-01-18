@@ -19,7 +19,7 @@ import org.eclipse.papyrus.core.editor.BackboneException;
  * 
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
-public class CreationCommandDescriptor {
+public class CreationCommandDescriptor implements Comparable<CreationCommandDescriptor> {
 
 	protected Class<? extends ICreationCommand> creationCommandClass;
 
@@ -93,6 +93,15 @@ public class CreationCommandDescriptor {
 			// programmer.
 			throw new RuntimeException(e);
 		}
+	}
+
+	public int compareTo(CreationCommandDescriptor o) {
+		// this sort algo allows to group by language and
+		// then sort the diagrams alphabetically by their name
+		if (getLanguage().equals(o.getLanguage())) {
+			return getLabel().compareTo(o.getLabel());
+		}
+		return o.getLanguage().compareTo(getLanguage());
 	}
 
 }

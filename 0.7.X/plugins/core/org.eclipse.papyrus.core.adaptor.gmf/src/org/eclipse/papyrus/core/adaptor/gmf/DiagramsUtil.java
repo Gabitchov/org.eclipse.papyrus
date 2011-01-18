@@ -83,26 +83,4 @@ public class DiagramsUtil {
 		}
 		return Collections.EMPTY_LIST;
 	}
-
-	public static CompositeCommand getLinkCreateAndOpenNavigableDiagram(final NavigableElement navElement, ICreationCommand creationCommandInterface, final String diagramName, DiResourceSet diResourceSet) {
-		CompositeCommand compositeCommand = new CompositeCommand("Create diagram");
-
-		if(navElement instanceof CreatedNavigableElement) {
-			compositeCommand.add(new AbstractTransactionalCommand(diResourceSet.getTransactionalEditingDomain(), "Create hierarchy", null) {
-
-				@Override
-				protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-					NavigationHelper.linkToModel((CreatedNavigableElement)navElement);
-					NavigationHelper.setBaseName((CreatedNavigableElement)navElement, "");
-					return CommandResult.newOKCommandResult();
-				}
-			});
-		}
-
-		ICommand createDiagCommand = creationCommandInterface.getCreateDiagramCommand(diResourceSet, navElement.getElement(), diagramName);
-		compositeCommand.add(createDiagCommand);
-		compositeCommand.add(new OpenDiagramCommand(diResourceSet.getTransactionalEditingDomain(), createDiagCommand));
-
-		return compositeCommand;
-	}
 }
