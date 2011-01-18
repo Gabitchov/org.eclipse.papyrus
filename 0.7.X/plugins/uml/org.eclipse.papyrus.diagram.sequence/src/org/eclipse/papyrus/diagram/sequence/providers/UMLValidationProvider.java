@@ -6,6 +6,7 @@ import java.util.Collection;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.IValidationContext;
@@ -32,6 +33,7 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.sequence.validation.UMLValidationHelper;
+import org.eclipse.papyrus.resource.ModelSet;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.InteractionOperand;
 
@@ -80,7 +82,7 @@ public class UMLValidationProvider {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT filter for Papyrus editor only
 	 */
 	static boolean isInDefaultEditorContext(Object object) {
 		if(shouldConstraintsBePrivate() && !constraintsActive) {
@@ -89,7 +91,13 @@ public class UMLValidationProvider {
 		if(object instanceof View) {
 			return constraintsActive && PackageEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID((View)object));
 		}
-		return true;
+		// filter for Papyrus editor only
+		if(object instanceof EObject) {
+			EObject eObj = (EObject)object;
+			ResourceSet set = eObj.eResource().getResourceSet();
+			return set instanceof ModelSet;
+		}
+		return false;
 	}
 
 
