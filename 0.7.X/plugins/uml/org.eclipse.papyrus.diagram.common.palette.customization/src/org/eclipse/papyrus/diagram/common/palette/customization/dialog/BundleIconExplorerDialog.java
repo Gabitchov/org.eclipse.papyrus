@@ -399,7 +399,7 @@ public class BundleIconExplorerDialog extends SelectionStatusDialog {
 		public ImageProxy(URL url) {
 			localPath = url.getPath();
 			path = PLUGIN_PROTOCOL + currentBundleName + localPath;
-			image = org.eclipse.papyrus.diagram.common.Activator.getImage(path, currentBundleName);
+			image = org.eclipse.papyrus.diagram.common.Activator.getImage(path, "");
 			int index = localPath.lastIndexOf('/');
 			if(index > 0 && index < localPath.length()) {
 				fileName = localPath.substring(index + 1, localPath.length() - GIF_EXTENSION_LENGTH);
