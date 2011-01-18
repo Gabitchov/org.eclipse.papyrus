@@ -35,10 +35,10 @@ import org.eclipse.ui.actions.BaseSelectionListenerAction;
  * to avoid heavy navigation computation on each selection change.
  * 
  * @author mvelten
- *
+ * 
  */
 public class ActionBarCreateDiagramAction extends BaseSelectionListenerAction {
-	
+
 	private CreationCommandDescriptor desc;
 
 	public ActionBarCreateDiagramAction(CreationCommandDescriptor desc) {
@@ -64,19 +64,19 @@ public class ActionBarCreateDiagramAction extends BaseSelectionListenerAction {
 	@Override
 	public void run() {
 		EObject selectedElement = resolveSemanticObject(getStructuredSelection().getFirstElement());
-		
-		if (selectedElement != null) {
+
+		if(selectedElement != null) {
 			// This is not necessary but it avoids to compute the whole navigation graph
 			// if the selected element is ok
-			if (desc.getCondition().create(selectedElement)) {
+			if(desc.getCondition().create(selectedElement)) {
 				createDiagram(selectedElement);
 			} else {
-				List<NavigableElement> navElements =  NavigationHelper.getInstance().getAllNavigableElements(selectedElement);
+				List<NavigableElement> navElements = NavigationHelper.getInstance().getAllNavigableElements(selectedElement);
 				// this will sort by depth so existing elements come first
 				Collections.sort(navElements);
 
-				for (NavigableElement navElement : navElements) {
-					if (desc.getCondition().create(navElement.getElement())) {
+				for(NavigableElement navElement : navElements) {
+					if(desc.getCondition().create(navElement.getElement())) {
 						createDiagram(navElement);
 						break;
 					}
@@ -88,7 +88,7 @@ public class ActionBarCreateDiagramAction extends BaseSelectionListenerAction {
 	private void createDiagram(NavigableElement navElement) {
 		DiResourceSet diResourceSet = EditorUtils.getDiResourceSet();
 
-		if (navElement != null && diResourceSet != null) {
+		if(navElement != null && diResourceSet != null) {
 			try {
 				CompositeCommand command = NavigationHelper.getLinkCreateAndOpenNavigableDiagramCommand(navElement, desc.getCommand(), null, diResourceSet);
 				diResourceSet.getTransactionalEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(command));
@@ -100,7 +100,7 @@ public class ActionBarCreateDiagramAction extends BaseSelectionListenerAction {
 	private void createDiagram(EObject element) {
 		DiResourceSet diResourceSet = EditorUtils.getDiResourceSet();
 
-		if (element != null && diResourceSet != null) {
+		if(element != null && diResourceSet != null) {
 			try {
 				desc.getCommand().createDiagram(diResourceSet, element, null);
 			} catch (Exception e) {
@@ -112,17 +112,17 @@ public class ActionBarCreateDiagramAction extends BaseSelectionListenerAction {
 	 * Resolve semantic element
 	 * 
 	 * @param object
-	 *            the object to resolve
+	 *        the object to resolve
 	 * @return <code>null</code> or the semantic element associated to the
 	 *         specified object
 	 */
 	protected EObject resolveSemanticObject(Object object) {
-		if (object instanceof EObject) {
-			return (EObject) object;
-		} else if (object instanceof IAdaptable) {
-			IAdaptable adaptable = (IAdaptable) object;
-			if (adaptable.getAdapter(EObject.class) != null) {
-				return (EObject) adaptable.getAdapter(EObject.class);
+		if(object instanceof EObject) {
+			return (EObject)object;
+		} else if(object instanceof IAdaptable) {
+			IAdaptable adaptable = (IAdaptable)object;
+			if(adaptable.getAdapter(EObject.class) != null) {
+				return (EObject)adaptable.getAdapter(EObject.class);
 			}
 		}
 		return null;
