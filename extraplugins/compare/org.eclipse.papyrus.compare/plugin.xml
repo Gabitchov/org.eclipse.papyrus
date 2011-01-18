@@ -18,6 +18,14 @@
             label="Papyrus Differencing Engine"/>
    </extension>
    
+   <extension
+         point="org.eclipse.compare.contentMergeViewers">
+      <viewer
+            class="org.eclipse.papyrus.compare.ui.viewer.content.UMLModelContentMergeViewerCreator"
+            extensions="uml"
+            id="org.eclipse.papyrus.compare.ui.viewer.content.UMLModelContentMergeViewer"/>
+   </extension>
+   
    <extension point="org.eclipse.ui.popupMenus">
       <objectContribution
             adaptable="true"
