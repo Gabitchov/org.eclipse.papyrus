@@ -20,6 +20,7 @@ import java.util.List;
 
 import org.eclipse.compare.CompareConfiguration;
 import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.compare.diff.metamodel.ComparisonSnapshot;
 import org.eclipse.emf.compare.ui.TypedElementWrapper;
 import org.eclipse.emf.compare.ui.viewer.content.ModelContentMergeViewer;
@@ -34,6 +35,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 
 public class UMLModelContentMergeViewer extends ModelContentMergeViewer {
@@ -58,6 +60,10 @@ public class UMLModelContentMergeViewer extends ModelContentMergeViewer {
 		};
 	}
 	
+	/**
+	 * @author tatiana
+	 *
+	 */
 	class ModelContentMergeDiffTabContentProvider extends AdapterFactoryContentProvider {
 		/**
 		 * Default constructor. Delegates to the super implementation.
@@ -97,11 +103,23 @@ public class UMLModelContentMergeViewer extends ModelContentMergeViewer {
 				result = ((List)object).toArray();
 			} else if (object instanceof Resource) {
 				// return contents of resource
-				return new Object[] {((Resource)object).getContents().get(0) };
+				return getElementsForResource((Resource)object);
 			} else {
 				result = super.getElements(object);
 			}
 			return result;
+		}
+		
+		private Object[] getElementsForResource(Resource object) {
+			EList<EObject> contents = object.getContents();
+			List<EObject> result = new ArrayList<EObject>();
+			for (int i = 0; i < contents.size(); i++) {
+				EObject next = contents.get(i);
+				if (!isStereotypeApplication(next)) {
+					result.add(next);
+				}
+			}
+			return result.toArray(new Object[result.size()]);
 		}
 
 		/**
@@ -127,6 +145,11 @@ public class UMLModelContentMergeViewer extends ModelContentMergeViewer {
 			}
 			return Collections.emptyList();
  		}
+		
+		private boolean isStereotypeApplication(EObject eObject) {
+			return UMLUtil.getStereotype(eObject) != null;
+		}
+
 
 
 		/**
