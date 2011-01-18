@@ -13,17 +13,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.controlmode.umlprofiles.commands;
 
-import java.util.Iterator;
-
 import org.eclipse.emf.common.command.CompoundCommand;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.controlmode.commands.IControlCommand;
+import org.eclipse.papyrus.controlmode.umlprofiles.helpers.ProfileApplicationHelper;
 import org.eclipse.uml2.common.edit.command.ChangeCommand;
-import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
 
@@ -56,7 +52,7 @@ public class UMLProfileControlCommand implements IControlCommand {
 			commandToModify.append(new ChangeCommand(domain, new Runnable() {
 
 				public void run() {
-					relocateStereotypeApplications(selection, target);
+					ProfileApplicationHelper.relocateStereotypeApplications((Package)selection, target);
 				}
 			}));
 			break;
@@ -72,33 +68,7 @@ public class UMLProfileControlCommand implements IControlCommand {
 	private void duplicateAppliedProfiles(final EObject selection) {
 		Package _package = (Package)selection;
 		for(Profile profile : _package.getAllAppliedProfiles()) {
-			if(!_package.isProfileApplied(profile)) {
-				_package.applyProfile(profile);
-			}
-		}
-	}
-
-	/**
-	 * Relocate stereotype applications for the nested elements of the selection in the controlled resource
-	 * 
-	 * @param selection
-	 * @param target
-	 *        the target controlled resource
-	 */
-	private void relocateStereotypeApplications(final EObject selection, final Resource target) {
-		Package pack = (Package)selection;
-		for(Iterator<EObject> i = EcoreUtil.getAllProperContents(pack, false); i.hasNext();) {
-			EObject current = i.next();
-			if(current instanceof Element) {
-				Element element = (Element)current;
-				EList<EObject> stereotypeApplications = element.getStereotypeApplications();
-				if(!stereotypeApplications.isEmpty()) {
-					for(EObject e : stereotypeApplications) {
-						int size = target.getContents().size();
-						target.getContents().add(size, e);
-					}
-				}
-			}
+			ProfileApplicationHelper.duplicateProfileApplication(_package, profile);
 		}
 	}
 

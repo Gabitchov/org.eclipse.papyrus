@@ -9,6 +9,9 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.papyrus.controlmode,
  org.eclipse.gmf.runtime.emf.commands.core,
  org.eclipse.uml2.uml,
- org.eclipse.uml2.uml.edit
+ org.eclipse.uml2.uml.edit,
+ org.eclipse.papyrus.ui.toolbox,
+ org.eclipse.papyrus.core,
+ org.eclipse.papyrus.core.resourceloading.preferences
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
