@@ -78,7 +78,7 @@ public class UMLProfileUncontrolCommand implements IUncontrolCommand {
 			for(Profile profile : new ArrayList<Profile>(_package.getAppliedProfiles())) {
 				if(allAppliedProfiles.contains(profile)) {
 					// profile is duplicated, unapply it
-					ProfileApplicationHelper.removeProfileApplicationDuplication(_package, profile);
+					ProfileApplicationHelper.removeProfileApplicationDuplication(_package, profile, true);
 				}
 			}
 

@@ -212,7 +212,7 @@ public class ProfileApplicationDuplicationChecker extends AbstractModelConstrain
 		boolean update = checkControlledPackagesUpdateable(controlledPack);
 		if(update) {
 			for(Package pack : controlledPack) {
-				ProfileApplicationHelper.removeProfileApplicationDuplication(pack, profile);
+				ProfileApplicationHelper.removeProfileApplicationDuplication(pack, profile, false);
 			}
 			return true;
 		} else {
