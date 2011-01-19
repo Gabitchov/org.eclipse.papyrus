@@ -1,4 +1,3 @@
-package org.eclipse.papyrus.compare.diff;
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
  *
@@ -12,6 +11,7 @@ package org.eclipse.papyrus.compare.diff;
  *  Tatiana Fesenko (CEA LIST) - Initial API and implementation
  *
  *****************************************************************************/
+package org.eclipse.papyrus.compare.diff;
 
 import java.util.Iterator;
 
@@ -30,7 +30,7 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 
 
 public class ChangeTaggedValueExtension extends UMLDiffExtensionImpl {
-
+	
 	@Override
 	public void visit(DiffModel diffModel) {
 		final Iterator<EObject> it = diffModel.eAllContents();

@@ -12,7 +12,7 @@
   <extension
          point="org.eclipse.emf.compare.diff.engine">
       <diffengine
-            engineClass="org.eclipse.papyrus.compare.PapyrusDiffEngine"
+            engineClass="org.eclipse.papyrus.compare.diff.PapyrusDiffEngine"
             priority="highest"
             icon="icons/DiffEngine.gif"
             label="Papyrus Differencing Engine"/>
