@@ -19,14 +19,17 @@ import java.util.List;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
+import org.eclipse.jface.action.Action;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.core.extension.commands.CreationCommandDescriptor;
 import org.eclipse.papyrus.core.navigation.NavigableElement;
 import org.eclipse.papyrus.core.navigation.NavigationHelper;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.core.utils.GMFtoEMFCommandWrapper;
-import org.eclipse.ui.actions.BaseSelectionListenerAction;
+import org.eclipse.ui.IEditorPart;
 
 /**
  * This action will try to create a diagram on the currently selected element,
@@ -37,9 +40,11 @@ import org.eclipse.ui.actions.BaseSelectionListenerAction;
  * @author mvelten
  * 
  */
-public class ActionBarCreateDiagramAction extends BaseSelectionListenerAction {
+public class ActionBarCreateDiagramAction extends Action {
 
 	private CreationCommandDescriptor desc;
+
+	private IEditorPart activeEditor = null;
 
 	public ActionBarCreateDiagramAction(CreationCommandDescriptor desc) {
 		super(desc.getLabel());
@@ -61,9 +66,13 @@ public class ActionBarCreateDiagramAction extends BaseSelectionListenerAction {
 		return getText();
 	}
 
+	public void setActiveEditor(IEditorPart editor) {
+		activeEditor = editor;
+	}
+
 	@Override
 	public void run() {
-		EObject selectedElement = resolveSemanticObject(getStructuredSelection().getFirstElement());
+		EObject selectedElement = getSelectedElement();
 
 		if(selectedElement != null) {
 			// This is not necessary but it avoids to compute the whole navigation graph
@@ -106,6 +115,18 @@ public class ActionBarCreateDiagramAction extends BaseSelectionListenerAction {
 			} catch (Exception e) {
 			}
 		}
+	}
+
+	private EObject getSelectedElement() {
+		if(activeEditor != null) {
+			ISelection selection = activeEditor.getEditorSite().getSelectionProvider().getSelection();
+			if(selection instanceof IStructuredSelection) {
+				Object obj = ((IStructuredSelection)selection).getFirstElement();
+				return resolveSemanticObject(obj);
+
+			}
+		}
+		return null;
 	}
 
 	/**
