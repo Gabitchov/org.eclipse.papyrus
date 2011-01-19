@@ -9,7 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.editors;
+package org.eclipse.papyrus.widgets.editors;
 
 import java.util.Collection;
 import java.util.LinkedList;
@@ -23,9 +23,9 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.ListViewer;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.editors.creation.ReferenceValueFactory;
-import org.eclipse.papyrus.editors.messages.Messages;
-import org.eclipse.papyrus.editors.providers.CollectionContentProvider;
+import org.eclipse.papyrus.widgets.creation.ReferenceValueFactory;
+import org.eclipse.papyrus.widgets.messages.Messages;
+import org.eclipse.papyrus.widgets.providers.CollectionContentProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.events.SelectionEvent;

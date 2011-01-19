@@ -9,7 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.editors.selectors;
+package org.eclipse.papyrus.widgets.selectors;
 
 /**
  * A Selector for Integer values

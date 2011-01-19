@@ -9,15 +9,15 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.editors;
+package org.eclipse.papyrus.widgets.editors;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.jface.databinding.viewers.ViewerProperties;
 import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.editors.providers.EncapsulatedContentProvider;
-import org.eclipse.papyrus.editors.providers.IStaticContentProvider;
+import org.eclipse.papyrus.widgets.providers.EncapsulatedContentProvider;
+import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CCombo;
 import org.eclipse.swt.graphics.Color;

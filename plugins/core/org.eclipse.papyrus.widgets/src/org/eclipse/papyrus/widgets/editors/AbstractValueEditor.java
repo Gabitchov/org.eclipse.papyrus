@@ -9,7 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.editors;
+package org.eclipse.papyrus.widgets.editors;
 
 import org.eclipse.core.databinding.UpdateValueStrategy;
 import org.eclipse.core.databinding.conversion.IConverter;
@@ -155,7 +155,7 @@ public abstract class AbstractValueEditor extends AbstractEditor {
 	 * Binds the Widget Observable to the Model observable property,
 	 * using the specified converters or Update strategies when available
 	 * 
-	 * @see org.eclipse.papyrus.editors.AbstractEditor#doBinding()
+	 * @see org.eclipse.papyrus.widgets.AbstractEditor#doBinding()
 	 */
 	@Override
 	protected void doBinding() {

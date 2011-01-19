@@ -9,11 +9,11 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.editors;
+package org.eclipse.papyrus.widgets.editors;
 
 import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.papyrus.editors.providers.IStaticContentProvider;
-import org.eclipse.papyrus.editors.selectors.ReferenceSelector;
+import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
+import org.eclipse.papyrus.widgets.selectors.ReferenceSelector;
 import org.eclipse.swt.widgets.Composite;
 
 /**

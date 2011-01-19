@@ -9,9 +9,9 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.editors;
+package org.eclipse.papyrus.widgets.editors;
 
-import org.eclipse.papyrus.editors.selectors.IntegerSelector;
+import org.eclipse.papyrus.widgets.selectors.IntegerSelector;
 import org.eclipse.swt.widgets.Composite;
 
 /**

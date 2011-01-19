@@ -9,15 +9,15 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.editors.selectors;
+package org.eclipse.papyrus.widgets.selectors;
 
 import java.util.Collection;
 import java.util.LinkedList;
 
 import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.papyrus.editors.IElementSelector;
-import org.eclipse.papyrus.editors.providers.EncapsulatedContentProvider;
-import org.eclipse.papyrus.editors.providers.IStaticContentProvider;
+import org.eclipse.papyrus.widgets.IElementSelector;
+import org.eclipse.papyrus.widgets.providers.EncapsulatedContentProvider;
+import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
@@ -77,7 +77,7 @@ public class ReferenceSelector implements IElementSelector {
 	 * Returns all the elements that are currently displayed, i.e. matching
 	 * the filter
 	 * 
-	 * @see org.eclipse.papyrus.editors.IElementSelector#getAllElements()
+	 * @see org.eclipse.papyrus.widgets.IElementSelector#getAllElements()
 	 * 
 	 * @return all elements matching the filter
 	 */

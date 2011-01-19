@@ -9,7 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.editors.creation;
+package org.eclipse.papyrus.widgets.creation;
 
 import java.util.Collection;
 

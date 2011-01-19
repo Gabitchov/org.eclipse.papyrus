@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.editors
+Bundle-SymbolicName: org.eclipse.papyrus.widgets
 Bundle-Version: 0.8.0.qualifier
-Bundle-Activator: org.eclipse.papyrus.editors.Activator
+Bundle-Activator: org.eclipse.papyrus.widgets.Activator
 Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
@@ -14,8 +14,9 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.views.properties.tabbed;bundle-version="3.5.100"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.papyrus.editors,
- org.eclipse.papyrus.editors.creation,
- org.eclipse.papyrus.editors.providers,
- org.eclipse.papyrus.editors.selectors
+Export-Package:org.eclipse.papyrus.widgets, 
+ org.eclipse.papyrus.widgets.editors,
+ org.eclipse.papyrus.widgets.creation,
+ org.eclipse.papyrus.widgets.providers,
+ org.eclipse.papyrus.widgets.selectors
 Bundle-Localization: plugin

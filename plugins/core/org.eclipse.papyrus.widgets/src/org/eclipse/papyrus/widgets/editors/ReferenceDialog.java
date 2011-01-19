@@ -9,7 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.editors;
+package org.eclipse.papyrus.widgets.editors;
 
 import java.util.Collections;
 
@@ -17,9 +17,9 @@ import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.papyrus.editors.messages.Messages;
-import org.eclipse.papyrus.editors.providers.IStaticContentProvider;
-import org.eclipse.papyrus.editors.providers.WrappedLabelProvider;
+import org.eclipse.papyrus.widgets.messages.Messages;
+import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
+import org.eclipse.papyrus.widgets.providers.WrappedLabelProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.events.DisposeEvent;

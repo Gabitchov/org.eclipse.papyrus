@@ -9,9 +9,9 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.editors.selectors;
+package org.eclipse.papyrus.widgets.selectors;
 
-import org.eclipse.papyrus.editors.IElementSelector;
+import org.eclipse.papyrus.widgets.IElementSelector;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
@@ -57,7 +57,7 @@ public class StringSelector implements IElementSelector {
 	/**
 	 * Returns a single-element array containing the current text
 	 * 
-	 * @see org.eclipse.papyrus.editors.IElementSelector#getSelectedElements()
+	 * @see org.eclipse.papyrus.widgets.IElementSelector#getSelectedElements()
 	 */
 	public Object[] getSelectedElements() {
 		String[] result = new String[]{ text.getText() };
@@ -82,7 +82,7 @@ public class StringSelector implements IElementSelector {
 	/**
 	 * Returns the same value as getSelectedElements
 	 * 
-	 * @see org.eclipse.papyrus.editors.IElementSelector#getAllElements()
+	 * @see org.eclipse.papyrus.widgets.IElementSelector#getAllElements()
 	 */
 	public Object[] getAllElements() {
 		return getSelectedElements();

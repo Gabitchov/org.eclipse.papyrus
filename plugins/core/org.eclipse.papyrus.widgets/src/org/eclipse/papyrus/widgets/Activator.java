@@ -9,7 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.editors;
+package org.eclipse.papyrus.widgets;
 
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.papyrus.log.LogHelper;
@@ -25,7 +25,7 @@ public class Activator extends AbstractUIPlugin {
 	/**
 	 * The plug-in ID
 	 */
-	public static final String PLUGIN_ID = "org.eclipse.papyrus.editors"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.widgets"; //$NON-NLS-1$
 
 	/**
 	 * The shared instance

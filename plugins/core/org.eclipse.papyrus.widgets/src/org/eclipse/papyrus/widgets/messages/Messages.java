@@ -9,7 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.editors.messages;
+package org.eclipse.papyrus.widgets.messages;
 
 import org.eclipse.osgi.util.NLS;
 
@@ -19,7 +19,7 @@ import org.eclipse.osgi.util.NLS;
 public class Messages extends NLS {
 
 	/** The Constant BUNDLE_NAME. */
-	private static final String BUNDLE_NAME = "org.eclipse.papyrus.editors.messages"; //$NON-NLS-1$
+	private static final String BUNDLE_NAME = "org.eclipse.papyrus.widgets.messages"; //$NON-NLS-1$
 
 	/** The Multiple value editor_ add elements. */
 	public static String MultipleValueEditor_AddElements;
