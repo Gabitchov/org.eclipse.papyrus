@@ -13,10 +13,19 @@ package org.eclipse.papyrus.editors;
 
 import org.eclipse.core.databinding.UpdateValueStrategy;
 import org.eclipse.core.databinding.conversion.IConverter;
+import org.eclipse.core.databinding.observable.ChangeEvent;
+import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.swt.widgets.Composite;
 
-
+/**
+ * An abstract class to represent Single-value Editors.
+ * Single-value editors are based on the Eclipse Databinding Framework
+ * They take {@link IObservableValue}s as Input
+ * 
+ * @author Camille Letavernier
+ * 
+ */
 public abstract class AbstractValueEditor extends AbstractEditor {
 
 	/**
@@ -81,13 +90,25 @@ public abstract class AbstractValueEditor extends AbstractEditor {
 		setConverters(targetToModel, modelToTarget);
 	}
 
+	protected void setWidgetObservable(IObservableValue widgetObservable, boolean commitOnChange) {
+		this.widgetObservable = widgetObservable;
+		if(commitOnChange) {
+			this.widgetObservable.addChangeListener(new IChangeListener() {
+
+				public void handleChange(ChangeEvent event) {
+					commit();
+				}
+			});
+		}
+	}
+
 	/**
 	 * Sets this editor's IObservableValue associated to the widget property
 	 * 
 	 * @param widgetObservable
 	 */
 	protected void setWidgetObservable(IObservableValue widgetObservable) {
-		this.widgetObservable = widgetObservable;
+		setWidgetObservable(widgetObservable, false);
 	}
 
 	/**
@@ -148,6 +169,9 @@ public abstract class AbstractValueEditor extends AbstractEditor {
 	/**
 	 * Returns the value from the widget
 	 * May be used even when the Model Observable is not set
+	 * 
+	 * @return
+	 *         The current value for this editor
 	 */
 	public abstract Object getValue();
 }

@@ -20,6 +20,7 @@ import org.eclipse.papyrus.editors.providers.EncapsulatedContentProvider;
 import org.eclipse.papyrus.editors.providers.IStaticContentProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CCombo;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Composite;
 
 
@@ -71,6 +72,7 @@ public class ReferenceCombo extends AbstractValueEditor {
 		super(parent, label);
 
 		control = factory.createCCombo(this, style | SWT.BORDER);
+		control.setBackground(new Color(control.getDisplay(), 255, 255, 255));
 		control.setLayoutData(getDefaultLayoutData());
 		control.setEditable(false);
 		viewer = new ComboViewer(control);
@@ -100,7 +102,7 @@ public class ReferenceCombo extends AbstractValueEditor {
 	public void setContentProvider(IStaticContentProvider provider) {
 		viewer.setContentProvider(new EncapsulatedContentProvider(provider));
 		viewer.setInput(""); //$NON-NLS-1$
-		setWidgetObservable(ViewerProperties.singleSelection().observe(viewer));
+		setWidgetObservable(ViewerProperties.singleSelection().observe(viewer), true);
 	}
 
 	/**
@@ -139,5 +141,15 @@ public class ReferenceCombo extends AbstractValueEditor {
 		if(selection.isEmpty())
 			return null;
 		return selection.getFirstElement();
+	}
+
+	@Override
+	public void setReadOnly(boolean readOnly) {
+		control.setEnabled(!readOnly);
+	}
+
+	@Override
+	public boolean isReadOnly() {
+		return !control.isEnabled();
 	}
 }

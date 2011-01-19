@@ -13,14 +13,17 @@ package org.eclipse.papyrus.editors;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
+import java.util.Set;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ListViewer;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.papyrus.editors.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.editors.messages.Messages;
 import org.eclipse.papyrus.editors.providers.CollectionContentProvider;
 import org.eclipse.swt.SWT;
@@ -31,6 +34,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.SelectionDialog;
@@ -80,6 +84,16 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements Sele
 	protected Button add;
 
 	/**
+	 * The create action button
+	 */
+	protected Button create;
+
+	/**
+	 * The delete action button
+	 */
+	protected Button delete;
+
+	/**
 	 * The remove action button
 	 */
 	protected Button remove;
@@ -118,6 +132,21 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements Sele
 	 * Indicates if the values should be unique (according to Object.equals())
 	 */
 	protected boolean unique;
+
+	/**
+	 * Indicates if the list is ordered
+	 */
+	protected boolean ordered;
+
+	/**
+	 * The factory for creating new elements
+	 */
+	protected ReferenceValueFactory factory;
+
+	/**
+	 * The list of newly created objects
+	 */
+	protected Set<Object> newObjects = new HashSet<Object>();
 
 	/**
 	 * Constructor.
@@ -205,7 +234,9 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements Sele
 
 		setResult(new LinkedList<Object>(allElements));
 
-		super.getShell().setImage(Activator.getImage("/icons/papyrus.png"));
+		super.getShell().setImage(Activator.getImage("/icons/papyrus.png")); //$NON-NLS-1$
+
+		updateControls();
 	}
 
 	/**
@@ -301,6 +332,17 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements Sele
 		down.setImage(Activator.getImage("/icons/Down_12x12.gif")); //$NON-NLS-1$
 		down.addSelectionListener(this);
 		down.setToolTipText(Messages.MultipleValueEditor_MoveSelectedElementsDown);
+
+		create = new Button(rightButtonsSection, SWT.PUSH);
+		create.setImage(Activator.getImage("/icons/add_12x12.gif")); //$NON-NLS-1$
+		create.addSelectionListener(this);
+		create.setToolTipText(Messages.MultipleValueSelectorDialog_CreateNewElement);
+
+		delete = new Button(rightButtonsSection, SWT.PUSH);
+		delete.setImage(Activator.getImage("/icons/delete_12x12.gif")); //$NON-NLS-1$
+		delete.addSelectionListener(this);
+		delete.setToolTipText(Messages.MultipleValueSelectorDialog_DeleteNewElement);
+		delete.setEnabled(false);
 	}
 
 	/**
@@ -333,7 +375,21 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements Sele
 			upAction();
 		} else if(e.widget == down) {
 			downAction();
+		} else if(e.widget == create) {
+			createAction();
 		}
+	}
+
+	/**
+	 * Sets the {@link ReferenceValueFactory} for this editor. The {@link ReferenceValueFactory} is used to create
+	 * new instances and edit existing ones.
+	 * 
+	 * @param factory
+	 *        The {@link ReferenceValueFactory} to be used by this editor
+	 */
+	public void setFactory(ReferenceValueFactory factory) {
+		this.factory = factory;
+		updateControls();
 	}
 
 	/**
@@ -405,6 +461,26 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements Sele
 	}
 
 	/**
+	 * Handles the "Create" action
+	 */
+	protected void createAction() {
+		if(factory == null)
+			return;
+
+		Object newObject = factory.createObject(getShell());
+		if(newObject == null)
+			return;
+
+		newObjects.add(newObject);
+		selector.newObjectCreated(newObject);
+
+		Object[] newObjects = new Object[]{ newObject };
+		addElements(newObjects);
+
+		selector.setSelectedElements(allElements.toArray());
+	}
+
+	/**
 	 * Moves an element from oldIndex to newIndex
 	 * 
 	 * @param list
@@ -443,6 +519,13 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements Sele
 	}
 
 	/**
+	 * Handles the "Delete" action
+	 */
+	protected void deleteAction() {
+		//TODO
+	}
+
+	/**
 	 * Handles the "Remove all" action
 	 */
 	protected void removeAllAction() {
@@ -477,6 +560,21 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements Sele
 		}
 	}
 
+	@Override
+	protected void okPressed() {
+		if(factory != null) {
+			java.util.List<Object> objectsToValidate = new LinkedList<Object>();
+			for(Object object : newObjects) {
+				if(allElements.contains(object)) {
+					objectsToValidate.add(object);
+				}
+			}
+			factory.validateObjects(objectsToValidate);
+			selector.clearTemporaryElements();
+		}
+		super.okPressed();
+	}
+
 	/**
 	 * Ignored
 	 */
@@ -491,6 +589,7 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements Sele
 	 */
 	public void setUnique(boolean unique) {
 		this.unique = unique;
+		updateControls();
 	}
 
 	/**
@@ -499,8 +598,18 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements Sele
 	 * @param ordered
 	 */
 	public void setOrdered(boolean ordered) {
-		if(ordered && rightButtonsSection == null) {
-			createRightButtonsSection(getDialogArea());
-		}
+		this.ordered = ordered;
+		updateControls();
+	}
+
+	private void updateControls() {
+		updateControl(up, ordered);
+		updateControl(down, ordered);
+		updateControl(create, this.factory != null);
+	}
+
+	private void updateControl(Control control, boolean enabled) {
+		if(control != null)
+			control.setEnabled(enabled);
 	}
 }

@@ -23,6 +23,7 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.ListViewer;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.editors.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.editors.messages.Messages;
 import org.eclipse.papyrus.editors.providers.CollectionContentProvider;
 import org.eclipse.swt.SWT;
@@ -82,6 +83,11 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	protected Button down;
 
 	/**
+	 * The edit control
+	 */
+	protected Button edit;
+
+	/**
 	 * The Dialog displayed when adding new elements
 	 */
 	protected MultipleValueSelectorDialog dialog;
@@ -90,6 +96,22 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	 * The element selector for this editor's dialog
 	 */
 	protected IElementSelector selector;
+
+	/**
+	 * Indicates whether the underlying is ordered
+	 */
+	protected boolean ordered;
+
+	/**
+	 * Indicates whether the underlying contains unique values
+	 */
+	protected boolean unique;
+
+	/**
+	 * The factory for creating and editing values from
+	 * this editor
+	 */
+	protected ReferenceValueFactory referenceFactory;
 
 	/**
 	 * 
@@ -135,6 +157,16 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 		dialog = new MultipleValueSelectorDialog(parent.getShell(), selector, label, unique);
 
 		setLabelProvider(new LabelProvider());
+
+		this.ordered = ordered;
+		this.unique = unique;
+		updateControls();
+	}
+
+	private void updateControls() {
+		up.setEnabled(ordered);
+		down.setEnabled(ordered);
+		edit.setEnabled(this.referenceFactory != null && referenceFactory.canEdit());
 	}
 
 	/**
@@ -170,6 +202,23 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	}
 
 	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param parent
+	 *        The Composite in which this Editor should be displayed
+	 * @param style
+	 *        This editor's list style
+	 * @param selector
+	 *        The element selector for this editor's dialog
+	 * @param label
+	 *        The label for this Editor
+	 */
+	public MultipleValueEditor(Composite parent, int style, IElementSelector selector, String label) {
+		this(parent, style, selector, false, false, label);
+	}
+
+	/**
 	 * Sets the label provider for this editor
 	 * 
 	 * @param labelProvider
@@ -195,14 +244,20 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	 * @param ordered
 	 */
 	public void setOrdered(boolean ordered) {
+		this.ordered = ordered;
 		this.dialog.setOrdered(ordered);
+
+		updateControls();
 	}
 
 	/**
 	 * @param unique
 	 */
 	public void setUnique(boolean unique) {
+		this.unique = unique;
 		this.dialog.setUnique(unique);
+
+		updateControls();
 	}
 
 	/**
@@ -211,18 +266,16 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	 * 
 	 * @param ordered
 	 */
-	private void createListControls(boolean ordered) {
-		if(ordered) {
-			up = new Button(controlsSection, SWT.PUSH);
-			up.setImage(Activator.getImage("/icons/Up_12x12.gif")); //$NON-NLS-1$
-			up.addSelectionListener(this);
-			up.setToolTipText(Messages.MultipleValueEditor_MoveSelectedElementsUp);
+	protected void createListControls(boolean ordered) {
+		up = new Button(controlsSection, SWT.PUSH);
+		up.setImage(Activator.getImage("/icons/Up_12x12.gif")); //$NON-NLS-1$
+		up.addSelectionListener(this);
+		up.setToolTipText(Messages.MultipleValueEditor_MoveSelectedElementsUp);
 
-			down = new Button(controlsSection, SWT.PUSH);
-			down.setImage(Activator.getImage("/icons/Down_12x12.gif")); //$NON-NLS-1$
-			down.addSelectionListener(this);
-			down.setToolTipText(Messages.MultipleValueEditor_MoveSelectedElementsDown);
-		}
+		down = new Button(controlsSection, SWT.PUSH);
+		down.setImage(Activator.getImage("/icons/Down_12x12.gif")); //$NON-NLS-1$
+		down.addSelectionListener(this);
+		down.setToolTipText(Messages.MultipleValueEditor_MoveSelectedElementsDown);
 
 		add = new Button(controlsSection, SWT.PUSH);
 		add.setImage(Activator.getImage("/icons/Add_12x12.gif")); //$NON-NLS-1$
@@ -233,6 +286,11 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 		remove.setImage(Activator.getImage("/icons/Delete_12x12.gif")); //$NON-NLS-1$
 		remove.addSelectionListener(this);
 		remove.setToolTipText(Messages.MultipleValueEditor_RemoveSelectedElements);
+
+		edit = new Button(controlsSection, SWT.PUSH);
+		edit.setImage(Activator.getImage("/icons/Edit_12x12.gif")); //$NON-NLS-1$
+		edit.addSelectionListener(this);
+		edit.setToolTipText(Messages.MultipleValueEditor_EditSelectedValue);
 	}
 
 	@Override
@@ -259,13 +317,15 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 			upAction();
 		} else if(e.widget == down) {
 			downAction();
+		} else if(e.widget == edit) {
+			editAction();
 		}
 	}
 
 	/**
 	 * Handle add Action
 	 */
-	private void addAction() {
+	protected void addAction() {
 		if(modelProperty != null)
 			dialog.setInitialSelections(modelProperty.toArray());
 		else
@@ -288,23 +348,27 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 		}
 
 		modelProperty.addAll(resultElements);
+
+		commit();
 	}
 
 	/**
 	 * Handle remove Action
 	 */
-	private void removeAction() {
+	protected void removeAction() {
 		IStructuredSelection selection = (IStructuredSelection)listViewer.getSelection();
 		for(Object value : selection.toArray()) {
 			modelProperty.remove(value);
 		}
 		listViewer.setSelection(null);
+
+		commit();
 	}
 
 	/**
 	 * Handle up Action
 	 */
-	private void upAction() {
+	protected void upAction() {
 		IStructuredSelection selection = (IStructuredSelection)listViewer.getSelection();
 		for(Object o : selection.toArray()) {
 			int oldIndex = modelProperty.indexOf(o);
@@ -314,12 +378,14 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 
 		IStructuredSelection selectionCopy = new StructuredSelection(selection.toArray());
 		listViewer.setSelection(selectionCopy);
+
+		commit();
 	}
 
 	/**
 	 * Handle down Action
 	 */
-	private void downAction() {
+	protected void downAction() {
 		IStructuredSelection selection = (IStructuredSelection)listViewer.getSelection();
 
 		int maxIndex = modelProperty.size() - 1;
@@ -334,8 +400,39 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 
 		IStructuredSelection selectionCopy = new StructuredSelection(selection.toArray());
 		listViewer.setSelection(selectionCopy);
+
+		commit();
 	}
 
+	/**
+	 * Handle edit Action
+	 */
+	protected void editAction() {
+		IStructuredSelection selection = (IStructuredSelection)listViewer.getSelection();
+
+		if(selection.size() != 1) {
+			return;
+		}
+
+		referenceFactory.edit(this, selection.getFirstElement());
+	}
+
+	/**
+	 * Sets the {@link ReferenceValueFactory} for this editor. The {@link ReferenceValueFactory} is used to create
+	 * new instances and edit existing ones.
+	 * 
+	 * @param factory
+	 *        The {@link ReferenceValueFactory} to be used by this editor
+	 */
+	public void setFactory(ReferenceValueFactory factory) {
+		this.referenceFactory = factory;
+		dialog.setFactory(factory);
+		updateControls();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
 	public void widgetDefaultSelected(SelectionEvent e) {
 	}
 
@@ -359,8 +456,38 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 		listViewer.refresh(true);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void widgetDisposed(org.eclipse.swt.events.DisposeEvent e) {
 		dispose();
 		modelProperty.removeChangeListener(this);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void setReadOnly(boolean readOnly) {
+		list.setEnabled(!readOnly);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean isReadOnly() {
+		return !list.isEnabled();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void setLabel(String label) {
+		if(this.label == null) {
+			setLayout(new GridLayout(2, false));
+		}
+		super.setLabel(label);
 	}
 }

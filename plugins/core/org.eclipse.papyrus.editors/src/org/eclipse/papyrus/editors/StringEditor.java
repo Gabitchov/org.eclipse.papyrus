@@ -70,7 +70,7 @@ public class StringEditor extends AbstractValueEditor implements KeyListener {
 		if((style & SWT.MULTI) == 0)
 			text.addKeyListener(this);
 
-		setWidgetObservable(WidgetProperties.text(SWT.FocusOut).observe(text));
+		setWidgetObservable(WidgetProperties.text(SWT.FocusOut).observe(text), true);
 	}
 
 	/**
@@ -109,5 +109,15 @@ public class StringEditor extends AbstractValueEditor implements KeyListener {
 	@Override
 	public Object getValue() {
 		return text.getText();
+	}
+
+	@Override
+	public void setReadOnly(boolean readOnly) {
+		text.setEnabled(!readOnly);
+	}
+
+	@Override
+	public boolean isReadOnly() {
+		return !text.isEnabled();
 	}
 }

@@ -58,7 +58,7 @@ public class BooleanCheckbox extends AbstractValueEditor {
 		checkbox = factory.createButton(this, label, SWT.CHECK | style);
 		//checkbox = new Button(this, SWT.CHECK | style);
 
-		setWidgetObservable(WidgetProperties.selection().observe(checkbox));
+		setWidgetObservable(WidgetProperties.selection().observe(checkbox), true);
 	}
 
 	/**
@@ -75,5 +75,15 @@ public class BooleanCheckbox extends AbstractValueEditor {
 	@Override
 	public Boolean getValue() {
 		return checkbox.getSelection();
+	}
+
+	@Override
+	public void setReadOnly(boolean readOnly) {
+		checkbox.setEnabled(!readOnly);
+	}
+
+	@Override
+	public boolean isReadOnly() {
+		return !checkbox.isEnabled();
 	}
 }

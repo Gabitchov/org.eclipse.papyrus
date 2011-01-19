@@ -230,4 +230,15 @@ public class CompactMultipleValueEditor extends AbstractListEditor implements IC
 	public void widgetDefaultSelected(SelectionEvent e) {
 		//Nothing
 	}
+
+	@Override
+	public void setReadOnly(boolean readOnly) {
+		valueLabel.setEnabled(!readOnly);
+		edit.setEnabled(!readOnly);
+	}
+
+	@Override
+	public boolean isReadOnly() {
+		return !valueLabel.isEnabled() || !edit.isEnabled();
+	}
 }

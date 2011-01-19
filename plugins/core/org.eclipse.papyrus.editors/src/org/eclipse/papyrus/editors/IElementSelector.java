@@ -49,4 +49,16 @@ public interface IElementSelector {
 	 */
 	public void createControls(Composite parent);
 
+	/**
+	 * Handles the "newObjectCreated" event
+	 * @param newObject The object that has been created
+	 */
+	public void newObjectCreated(Object newObject);
+	
+	/**
+	 * Clears this selector. Removes all temporary elements that
+	 * may have been created.
+	 */
+	public void clearTemporaryElements();
+
 }

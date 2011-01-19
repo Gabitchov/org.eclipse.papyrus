@@ -70,7 +70,6 @@ public class ReferenceSelector implements IElementSelector {
 		if(unique && elements.length > 0) {
 			contentProvider.addFilteredElements(elements);
 			fList.setElements(contentProvider.getElements());
-
 		}
 	}
 
@@ -105,6 +104,18 @@ public class ReferenceSelector implements IElementSelector {
 		}
 	}
 
+	public void newObjectCreated(Object newObject) {
+		contentProvider.addTemporaryElement(newObject);
+		refresh();
+	}
+
+	public void clearTemporaryElements() {
+		contentProvider.clearTemporaryElements();
+	}
+
+	/**
+	 * Refreshes this selector's {@link org.eclipse.swt.widgets.List}
+	 */
 	public void refresh() {
 		fList.setElements(contentProvider.getElements());
 	}
@@ -258,4 +269,5 @@ public class ReferenceSelector implements IElementSelector {
 		 */
 		private Collection<Listener> listeners;
 	}
+
 }

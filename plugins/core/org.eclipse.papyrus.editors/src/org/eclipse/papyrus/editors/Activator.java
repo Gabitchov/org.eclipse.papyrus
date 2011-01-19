@@ -22,12 +22,19 @@ import org.osgi.framework.BundleContext;
  */
 public class Activator extends AbstractUIPlugin {
 
-	// The plug-in ID
+	/**
+	 * The plug-in ID
+	 */
 	public static final String PLUGIN_ID = "org.eclipse.papyrus.editors"; //$NON-NLS-1$
 
-	// The shared instance
+	/**
+	 * The shared instance
+	 */
 	private static Activator plugin;
 
+	/**
+	 * The logger for this plugin
+	 */
 	public static LogHelper log;
 
 	/**
@@ -69,17 +76,31 @@ public class Activator extends AbstractUIPlugin {
 	}
 
 	/**
-	 * Returns the image from the given image descriptor
+	 * Returns the image from the given path
 	 * 
 	 * @param path
 	 *        the path of the image to be displayed
 	 * @return the image found
 	 */
 	public static Image getImage(String path) {
+		return getExternalImage(PLUGIN_ID, path);
+	}
+
+	/**
+	 * Search the specified plugin and returns the image from the given path
+	 * 
+	 * @param pluginId
+	 *        The plugin in which the image is located
+	 * @param path
+	 *        the path of the image to be displayed
+	 * @return
+	 *         The image from the given path in the given plugin
+	 */
+	public static Image getExternalImage(String pluginId, String path) {
 		final ImageRegistry registry = getDefault().getImageRegistry();
 		Image image = registry.get(path);
 		if(image == null) {
-			registry.put(path, Activator.imageDescriptorFromPlugin(PLUGIN_ID, path));
+			registry.put(path, Activator.imageDescriptorFromPlugin(pluginId, path));
 			image = registry.get(path);
 		}
 		return image;

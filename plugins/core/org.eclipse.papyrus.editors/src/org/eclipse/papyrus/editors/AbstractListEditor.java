@@ -19,7 +19,7 @@ import org.eclipse.swt.widgets.Composite;
 /**
  * An abstract class to represent List Editors.
  * List editors are based on the Eclipse Databinding Framework
- * They take IObservableLists as Input
+ * They take {@link IObservableList}s as Input
  * 
  * @author Camille Letavernier
  * 

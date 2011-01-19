@@ -45,6 +45,7 @@ public class CollectionContentProvider implements IStructuredContentProvider {
 	 * 
 	 * @param inputElement
 	 * @return
+	 *         The Array containing the input elements
 	 */
 	public Object[] getElements(Object inputElement) {
 		if(inputElement instanceof Collection) {

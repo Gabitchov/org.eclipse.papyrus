@@ -11,6 +11,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.editors;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.databinding.conversion.IConverter;
 import org.eclipse.swt.SWT;
@@ -37,9 +40,18 @@ public abstract class AbstractEditor extends Composite {
 	protected Label label;
 
 	/**
+	 * The set of elements listening on changes from this editor
+	 */
+	protected Set<ICommitListener> commitListeners = new HashSet<ICommitListener>();
+
+	/**
 	 * The factory for creating all the editors with a common style
 	 */
 	public static TabbedPropertySheetWidgetFactory factory = new TabbedPropertySheetWidgetFactory();
+
+	static {
+		factory.setBackground(null);
+	}
 
 	/**
 	 * 
@@ -142,18 +154,41 @@ public abstract class AbstractEditor extends Composite {
 	public void setLabel(String label) {
 		if(this.label != null) {
 			this.label.setText(label);
+		} else {
+			createLabel(label);
+			this.label.moveAbove(getChildren()[0]);
 		}
-		//TODO : else createLabel (Before the control(s))
 	}
 
 	/**
-	 * Sets the converters to convert data from Model to Target (Widget),
-	 * and from Widget to Model
+	 * Adds a commit listener to this editor. A Commit event is
+	 * fired when a modification occures on this editor.
 	 * 
-	 * @param targetToModel
-	 * @param modelToTarget
+	 * @param listener
+	 *        The commit listener to add to this editor
 	 */
-	abstract public void setConverters(IConverter targetToModel, IConverter modelToTarget);
+	public void addCommitListener(ICommitListener listener) {
+		commitListeners.add(listener);
+	}
+
+	/**
+	 * Removes a commit listener from this editor.
+	 * 
+	 * @param listener
+	 *        The commit listener to remove from this editor
+	 */
+	public void removeCommitListener(ICommitListener listener) {
+		commitListeners.remove(listener);
+	}
+
+	/**
+	 * Informs the commit listeners that a modification occured
+	 */
+	protected void commit() {
+		for(ICommitListener listener : commitListeners) {
+			listener.commit(this);
+		}
+	}
 
 	/**
 	 * Gets the BindingContext associated to the editors
@@ -165,6 +200,16 @@ public abstract class AbstractEditor extends Composite {
 	}
 
 	/**
+	 * Sets the converters to convert data from Model to Target (Widget),
+	 * and from Widget to Model
+	 * 
+	 * @param targetToModel
+	 * @param modelToTarget
+	 */
+	abstract public void setConverters(IConverter targetToModel, IConverter modelToTarget);
+
+
+	/**
 	 * Binds the Widget Observable to the Model observable property,
 	 * using the specified converters when available
 	 */
@@ -174,4 +219,20 @@ public abstract class AbstractEditor extends Composite {
 	 * @return the type of objects that this widget can edit
 	 */
 	public abstract Object getEditableType();
+
+	/**
+	 * Marks this editor as being read-only. The value of a read-only
+	 * editor cannot be changed by the editor itself.
+	 * 
+	 * @param readOnly
+	 */
+	public abstract void setReadOnly(boolean readOnly);
+
+	/**
+	 * Tests whether this editor is read-only or not
+	 * 
+	 * @return
+	 *         True if the editor is read-only
+	 */
+	public abstract boolean isReadOnly();
 }

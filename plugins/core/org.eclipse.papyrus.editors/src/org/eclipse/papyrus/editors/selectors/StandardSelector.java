@@ -90,4 +90,12 @@ public class StandardSelector implements IElementSelector {
 		}
 	}
 
+	public void newObjectCreated(Object newObject) {
+		//Ignored
+	}
+
+	public void clearTemporaryElements() {
+		//Ignored
+	}
+
 }

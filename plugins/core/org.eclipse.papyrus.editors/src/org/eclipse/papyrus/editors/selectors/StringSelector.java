@@ -58,8 +58,6 @@ public class StringSelector implements IElementSelector {
 	 * Returns a single-element array containing the current text
 	 * 
 	 * @see org.eclipse.papyrus.editors.IElementSelector#getSelectedElements()
-	 * 
-	 * @return
 	 */
 	public Object[] getSelectedElements() {
 		String[] result = new String[]{ text.getText() };
@@ -85,10 +83,22 @@ public class StringSelector implements IElementSelector {
 	 * Returns the same value as getSelectedElements
 	 * 
 	 * @see org.eclipse.papyrus.editors.IElementSelector#getAllElements()
-	 * 
-	 * @return
 	 */
 	public Object[] getAllElements() {
 		return getSelectedElements();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void newObjectCreated(Object newObject) {
+		//Ignored
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void clearTemporaryElements() {
+		//Ignored
 	}
 }

@@ -52,6 +52,18 @@ public class BooleanRadio extends AbstractValueEditor {
 		this(parent, style, null);
 	}
 
+	/**
+	 * 
+	 * Constructor. Creates a new Property Editor for a Boolean
+	 * value, represented by two radio buttons.
+	 * 
+	 * @param parent
+	 *        This editor's parent composite
+	 * @param style
+	 *        The style applied to this editor's radio buttons
+	 * @param label
+	 *        The label for this editor
+	 */
 	public BooleanRadio(Composite parent, int style, String label) {
 		super(parent, label);
 
@@ -65,7 +77,7 @@ public class BooleanRadio extends AbstractValueEditor {
 		//		falseRadio.setText("false");
 		falseRadio = factory.createButton(this, "false", style | SWT.RADIO); //$NON-NLS-1$
 
-		setWidgetObservable(getObservable());
+		setWidgetObservable(getObservable(), true);
 	}
 
 	/**
@@ -99,5 +111,16 @@ public class BooleanRadio extends AbstractValueEditor {
 	@Override
 	public Boolean getValue() {
 		return trueRadio.getSelection();
+	}
+
+	@Override
+	public void setReadOnly(boolean readOnly) {
+		trueRadio.setEnabled(!readOnly);
+		falseRadio.setEnabled(!readOnly);
+	}
+
+	@Override
+	public boolean isReadOnly() {
+		return !trueRadio.isEnabled() || !falseRadio.isEnabled();
 	}
 }

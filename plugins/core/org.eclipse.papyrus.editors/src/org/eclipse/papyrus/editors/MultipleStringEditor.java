@@ -26,6 +26,13 @@ public class MultipleStringEditor extends MultipleValueEditor {
 	/**
 	 * {@inheritDoc}
 	 */
+	public MultipleStringEditor(Composite parent, int style) {
+		super(parent, style, new StringSelector());
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
 	public MultipleStringEditor(Composite parent, int style, boolean ordered, boolean unique) {
 		super(parent, style, new StringSelector(), ordered, unique, null);
 	}
@@ -42,6 +49,27 @@ public class MultipleStringEditor extends MultipleValueEditor {
 	 */
 	public MultipleStringEditor(Composite parent, int style, IElementSelector selector, boolean ordered, boolean unique, String label) {
 		super(parent, style, selector, ordered, unique, label);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public MultipleStringEditor(Composite parent, int style, IElementSelector selector) {
+		super(parent, style, selector);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public MultipleStringEditor(Composite parent, int style, IElementSelector selector, String label) {
+		super(parent, style, selector, label);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public MultipleStringEditor(Composite parent, int style, String label) {
+		super(parent, style, new StringSelector(), label);
 	}
 
 }
