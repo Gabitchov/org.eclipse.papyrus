@@ -31,8 +31,6 @@ import org.eclipse.ui.part.EditorActionBarContributor;
  */
 public class ActionBarCreateDiagramContributor extends EditorActionBarContributor {
 
-	private IEditorPart currentEditor = null;
-
 	private ArrayList<ActionBarCreateDiagramAction> createDiagramActions = new ArrayList<ActionBarCreateDiagramAction>();
 
 	public ActionBarCreateDiagramContributor() {
@@ -54,14 +52,7 @@ public class ActionBarCreateDiagramContributor extends EditorActionBarContributo
 
 	public void setActiveEditor(IEditorPart targetEditor) {
 		for(ActionBarCreateDiagramAction createDiagramAction : createDiagramActions) {
-			if(currentEditor != null) {
-				currentEditor.getEditorSite().getSelectionProvider().removeSelectionChangedListener(createDiagramAction);
-			}
-
-			if(targetEditor != null) {
-				targetEditor.getEditorSite().getSelectionProvider().addSelectionChangedListener(createDiagramAction);
-			}
+			createDiagramAction.setActiveEditor(targetEditor);
 		}
-		currentEditor = targetEditor;
 	}
 }
