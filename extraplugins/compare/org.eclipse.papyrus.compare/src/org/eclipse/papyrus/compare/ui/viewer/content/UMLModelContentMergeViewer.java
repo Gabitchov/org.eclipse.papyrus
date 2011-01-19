@@ -193,14 +193,14 @@ public class UMLModelContentMergeViewer extends ModelContentMergeViewer {
 				result = ((List)object).toArray();
 			} else if (object instanceof Resource) {
 				// return contents of resource
-				return getElementsForResource((Resource)object);
+				return filterStereotypeApplications((Resource)object);
 			} else {
 				result = super.getElements(object);
 			}
 			return result;
 		}
 		
-		private Object[] getElementsForResource(Resource object) {
+		private Object[] filterStereotypeApplications(Resource object) {
 			EList<EObject> contents = object.getContents();
 			List<EObject> result = new ArrayList<EObject>();
 			for (int i = 0; i < contents.size(); i++) {
