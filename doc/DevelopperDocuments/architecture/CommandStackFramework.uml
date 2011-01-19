@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_JJIvUHOxEd-nKvj-XTCBkg" name="model">
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_JJIvUHOxEd-nKvj-XTCBkg" name="model">
   <ownedComment xmi:id="_L6CvgHh5Ed-ECKyh8Dg6Wg">
     <body> Transactional</body>
   </ownedComment>
@@ -10551,12 +10551,73 @@
               </ownedOperation>
             </packagedElement>
             <packagedElement xmi:type="uml:Package" xmi:id="_0YF0gXctEd-96YWU42lBhw" name="util">
-              <packagedElement xmi:type="uml:Interface" xmi:id="_0YF0gnctEd-96YWU42lBhw" name="ConditionalRedoCommand"/>
+              <packagedElement xmi:type="uml:Interface" xmi:id="_0YF0gnctEd-96YWU42lBhw" name="ConditionalRedoCommand">
+                <ownedComment xmi:id="_3FTAcXmEEd-Gxb67rYBBnw">
+                  <body>
+ * A specialization of the EMF {@link Command} API that accounts for conditional
+ * redoable-ness.  This interface adds a {@link #canRedo()} operation in
+ * conjunction with the {@link Command#canUndo()}.
+ * &lt;p>
+ * This interface is intended to be implemented by clients.
+ * &lt;/p>
+ * 
+ * @author Christian W. Damus (cdamus)
+ </body>
+                </ownedComment>
+                <generalization xmi:id="_3FcxcHmEEd-Gxb67rYBBnw" general="_vowe8HcqEd-96YWU42lBhw"/>
+                <ownedOperation xmi:id="_3FvsYHmEEd-Gxb67rYBBnw" name="canRedo">
+                  <ownedComment xmi:id="_3FvsYXmEEd-Gxb67rYBBnw">
+                    <body>
+	   * Queries whether I can be redone.  The result of calling this
+	   * operation is undefined until I have been {@link Command#undo() undone}.
+	   * Note that it is acceptable for a conditionally redoable command not
+	   * to be redoable if it has successfully been undone, or even after
+	   * having been successfully redone at least once before.
+	   * 
+	   * @return &lt;code>true&lt;/code> if I can be redone; &lt;code>false&lt;/code>,
+	   *    otherwise
+	   </body>
+                  </ownedComment>
+                  <ownedParameter xmi:id="_3GCnUHmEEd-Gxb67rYBBnw" type="_QJqLwnOxEd-nKvj-XTCBkg" direction="return"/>
+                </ownedOperation>
+                <nestedClassifier xmi:type="uml:Class" xmi:id="_3GViQHmEEd-Gxb67rYBBnw" name="Compound" clientDependency="_3GpEQHmEEd-Gxb67rYBBnw">
+                  <ownedComment xmi:id="_3GViQXmEEd-Gxb67rYBBnw">
+                    <body>
+	   * A conditionally redoable compound command.
+	   *
+	   * @author Christian W. Damus (cdamus)
+	   </body>
+                  </ownedComment>
+                  <generalization xmi:id="_3GfTQHmEEd-Gxb67rYBBnw" general="_vwW7wHcqEd-96YWU42lBhw"/>
+                  <ownedOperation xmi:id="_3GpEQXmEEd-Gxb67rYBBnw" name="canRedo" visibility="public">
+                    <ownedComment xmi:id="_3GpEQnmEEd-Gxb67rYBBnw">
+                      <body>
+		 * I can redo if none of my composed commands cannot redo.
+		 * 
+		 * @return &lt;code>false&lt;/code> if any command that is a
+		 *     {@link ConditionalRedoCommand} cannot redo;
+		 *     &lt;code>true&lt;/code>, otherwise
+		 </body>
+                    </ownedComment>
+                    <ownedParameter xmi:id="_3GyOMHmEEd-Gxb67rYBBnw" type="_QJqLwnOxEd-nKvj-XTCBkg" direction="return"/>
+                  </ownedOperation>
+                  <ownedOperation xmi:id="_3G7_MHmEEd-Gxb67rYBBnw" name="chain" visibility="public">
+                    <ownedComment xmi:id="_3G7_MXmEEd-Gxb67rYBBnw">
+                      <body>
+		 * I am self-chaining.
+		 </body>
+                    </ownedComment>
+                    <ownedParameter xmi:id="_3Hh1EHmEEd-Gxb67rYBBnw" type="_vowe8HcqEd-96YWU42lBhw" direction="return"/>
+                    <ownedParameter xmi:id="_3HrmEHmEEd-Gxb67rYBBnw" name="c" type="_vowe8HcqEd-96YWU42lBhw"/>
+                  </ownedOperation>
+                </nestedClassifier>
+              </packagedElement>
               <packagedElement xmi:type="uml:Class" xmi:id="_8uUqM3cuEd-96YWU42lBhw" name="TriggerCommand"/>
               <packagedElement xmi:type="uml:Class" xmi:id="_9HW1QHcuEd-96YWU42lBhw" name="ValidateEditSupport"/>
               <packagedElement xmi:type="uml:Class" xmi:id="_9QJk4XcuEd-96YWU42lBhw" name="CompositeChangeDescription"/>
               <packagedElement xmi:type="uml:Class" xmi:id="_9QwB0HcuEd-96YWU42lBhw" name="CommandChangeDescription"/>
               <packagedElement xmi:type="uml:Interface" xmi:id="_9mzKVXcuEd-96YWU42lBhw" name="Adaptable"/>
+              <packagedElement xmi:type="uml:Realization" xmi:id="_3GpEQHmEEd-Gxb67rYBBnw" name="Compound extends ConditionalRedoCommand" supplier="_0YF0gnctEd-96YWU42lBhw" client="_3GViQHmEEd-Gxb67rYBBnw"/>
             </packagedElement>
             <packagedElement xmi:type="uml:Realization" xmi:id="_0YF0g3ctEd-96YWU42lBhw" name="RecordingCommand extends ConditionalRedoCommand" supplier="_0YF0gnctEd-96YWU42lBhw" client="_0X8DgHctEd-96YWU42lBhw"/>
             <packagedElement xmi:type="uml:Class" xmi:id="_0a7GEHctEd-96YWU42lBhw" name="ResourceContentTypeFilter">
@@ -17390,5 +17451,95 @@
         </packagedElement>
       </packagedElement>
     </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Model" xmi:id="_8WZAIH11Ed-F4bwY8huSjw" name="Papyrus undo">
+    <ownedComment xmi:id="_WFqTUH15Ed-JUNbX4CeVmg" annotatedElement="_Doy2wH12Ed-F4bwY8huSjw">
+      <body>In GMF&#xD;
+defaultContext = EditingDomainUndoContext(editingDomain)&#xD;
+Automatically added to operation</body>
+    </ownedComment>
+    <ownedComment xmi:id="_xBuRIH15Ed-JUNbX4CeVmg" annotatedElement="_pOcCYH12Ed-F4bwY8huSjw">
+      <body>undoContext = EditingDomainUndoContext(editingDomain)</body>
+    </ownedComment>
+    <ownedComment xmi:id="_L_fa8H2BEd-JUNbX4CeVmg" annotatedElement="_C1HhoH13Ed-F4bwY8huSjw">
+      <body> contexts:&#xD;
+- EditingDomainUndoContext(editingDomain) added by notifier (who ??)</body>
+    </ownedComment>
+    <ownedComment xmi:id="_HqPnEH2DEd-JUNbX4CeVmg" annotatedElement="_Hh0hUH13Ed-F4bwY8huSjw">
+      <body>contexts:&#xD;
+- ResourceUndoContext(affected uml file) added by the operation&#xD;
+- EditingDomainUndoContext(editingDomain) added by notifier (who ??)</body>
+    </ownedComment>
+    <ownedComment xmi:id="_A6gRQH2GEd-JUNbX4CeVmg" annotatedElement="_FZ5A8H12Ed-F4bwY8huSjw">
+      <body> added contexts:&#xD;
+- WorkspaceCommandStackImpl.local – set by the WorkspaceCommandStack&#xD;
+- ResourceUndoContext – set when the transaction is commited&#xD;
+- EditingDomainUndoContext – set by one notifier (who ?)</body>
+    </ownedComment>
+    <packagedElement xmi:type="uml:Class" xmi:id="_Bvfy0H12Ed-F4bwY8huSjw" name="IOperationHistory">
+      <ownedOperation xmi:id="_KfVQwH12Ed-F4bwY8huSjw" name="execute"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_Doy2wH12Ed-F4bwY8huSjw" name="DiagramCommandStack" clientDependency="_VKjdUH12Ed-F4bwY8huSjw">
+      <ownedAttribute xmi:id="_Ql_loH15Ed-JUNbX4CeVmg" name="defaultContext" visibility="public">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ejKrIH15Ed-JUNbX4CeVmg" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ejA6IH15Ed-JUNbX4CeVmg" value="1"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_ejT1EH15Ed-JUNbX4CeVmg">
+          <value xsi:nil="true"/>
+        </defaultValue>
+      </ownedAttribute>
+      <ownedOperation xmi:id="_JWLQUH12Ed-F4bwY8huSjw" name="execute"/>
+      <ownedOperation xmi:id="_ZyWH0H12Ed-F4bwY8huSjw" name="undo"/>
+      <ownedOperation xmi:id="_a24uAH12Ed-F4bwY8huSjw" name="redo"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_FZ5A8H12Ed-F4bwY8huSjw" name="WorkspaceTransactionalCommandStack" clientDependency="_M-CH0H12Ed-F4bwY8huSjw">
+      <ownedOperation xmi:id="_LWKyIH12Ed-F4bwY8huSjw" name="execute"/>
+      <ownedOperation xmi:id="_d5DegH12Ed-F4bwY8huSjw" name="undo"/>
+      <ownedOperation xmi:id="_fR3EgH12Ed-F4bwY8huSjw" name="redo"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_M-CH0H12Ed-F4bwY8huSjw" name="[local IUndoContext + ResourceUndoContext(domain, Resource)]" supplier="_Bvfy0H12Ed-F4bwY8huSjw" client="_FZ5A8H12Ed-F4bwY8huSjw"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_VKjdUH12Ed-F4bwY8huSjw" name="[local IUndoContext]" supplier="_Bvfy0H12Ed-F4bwY8huSjw" client="_Doy2wH12Ed-F4bwY8huSjw"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_pOcCYH12Ed-F4bwY8huSjw" name="Papyrus Editor">
+      <ownedAttribute xmi:id="_75hBcH12Ed-F4bwY8huSjw" name="undoRedo" visibility="public">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_8ylXcH12Ed-F4bwY8huSjw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_8ybmcH12Ed-F4bwY8huSjw" value="1"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_8yvIcH12Ed-F4bwY8huSjw">
+          <value xsi:nil="true"/>
+        </defaultValue>
+      </ownedAttribute>
+      <nestedClassifier xmi:type="uml:Class" xmi:id="_v6Qx0H3REd-dytqMVVexsQ" name="Nested GMF Classifier">
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_c5JrQH13Ed-F4bwY8huSjw" name="Contextual Menu"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_Z-45kH13Ed-F4bwY8huSjw" name="Node Move" clientDependency="_qhFOoH15Ed-JUNbX4CeVmg"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_YKzs0H13Ed-F4bwY8huSjw" name="Tools (Palette)" clientDependency="_elhRAH14Ed-JUNbX4CeVmg"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_yLyoMH3UEd-dytqMVVexsQ" name="Notifier"/>
+      </nestedClassifier>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_rKkX4H12Ed-F4bwY8huSjw" name="Model Explorer">
+      <ownedAttribute xmi:id="_9VAIAH12Ed-F4bwY8huSjw" name="undoRedo" visibility="public">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-DzHsH12Ed-F4bwY8huSjw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-DpWsH12Ed-F4bwY8huSjw" value="1"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_-DzHsX12Ed-F4bwY8huSjw">
+          <value xsi:nil="true"/>
+        </defaultValue>
+      </ownedAttribute>
+      <nestedClassifier xmi:type="uml:Class" xmi:id="_edJNkH13Ed-F4bwY8huSjw" name="Create Child" clientDependency="_iqorQH2DEd-JUNbX4CeVmg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_tz_RMH12Ed-F4bwY8huSjw" name="Property View">
+      <ownedAttribute xmi:id="_-vmdwH12Ed-F4bwY8huSjw" name="undoRedo" visibility="public">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__bkL4H12Ed-F4bwY8huSjw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__baa4H12Ed-F4bwY8huSjw" value="1"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="__btV0H12Ed-F4bwY8huSjw">
+          <value xsi:nil="true"/>
+        </defaultValue>
+      </ownedAttribute>
+      <nestedClassifier xmi:type="uml:Class" xmi:id="_C1HhoH13Ed-F4bwY8huSjw" name="GMF Generated Properties" clientDependency="_aDEqcH2BEd-JUNbX4CeVmg"/>
+      <nestedClassifier xmi:type="uml:Class" xmi:id="_Hh0hUH13Ed-F4bwY8huSjw" name="UML Generated Properties" clientDependency="_teez4H15Ed-JUNbX4CeVmg"/>
+      <nestedClassifier xmi:type="uml:Class" xmi:id="_E0q-kH13Ed-F4bwY8huSjw" name="Appearance Properties" clientDependency="_MviCEH3UEd-dytqMVVexsQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_elhRAH14Ed-JUNbX4CeVmg" name="execute on" supplier="_Doy2wH12Ed-F4bwY8huSjw" client="_YKzs0H13Ed-F4bwY8huSjw"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_qhFOoH15Ed-JUNbX4CeVmg" name="execute on" supplier="_Doy2wH12Ed-F4bwY8huSjw" client="_Z-45kH13Ed-F4bwY8huSjw"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_teez4H15Ed-JUNbX4CeVmg" name="execute on" supplier="_Bvfy0H12Ed-F4bwY8huSjw" client="_Hh0hUH13Ed-F4bwY8huSjw"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_aDEqcH2BEd-JUNbX4CeVmg" name="execute on" supplier="_Bvfy0H12Ed-F4bwY8huSjw" client="_C1HhoH13Ed-F4bwY8huSjw"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_iqorQH2DEd-JUNbX4CeVmg" name="execute on" supplier="_FZ5A8H12Ed-F4bwY8huSjw" client="_edJNkH13Ed-F4bwY8huSjw"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_MviCEH3UEd-dytqMVVexsQ" name="executes on" supplier="_FZ5A8H12Ed-F4bwY8huSjw" client="_E0q-kH13Ed-F4bwY8huSjw"/>
   </packagedElement>
 </uml:Model>
