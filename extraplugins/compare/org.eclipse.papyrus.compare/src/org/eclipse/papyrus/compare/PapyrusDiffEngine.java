@@ -23,41 +23,15 @@ import org.eclipse.emf.compare.diff.engine.check.ReferencesCheck;
 import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
 import org.eclipse.emf.compare.match.internal.statistic.ResourceSimilarity;
 import org.eclipse.emf.compare.match.metamodel.Match2Elements;
-import org.eclipse.emf.compare.match.metamodel.MatchElement;
 import org.eclipse.emf.compare.util.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.EcoreUtil.CrossReferencer;
-import org.eclipse.uml2.uml.util.UMLUtil;
 
 
 public class PapyrusDiffEngine extends GenericDiffEngine {
 
-	@Override
-	protected void checkForDiffs(DiffGroup current, Match2Elements match) throws FactoryException {
-		// temporary hack in order to avoid displaying of StereotypeApplication as a child of resource  
-		if(!isStereotypeApplication(match.getLeftElement())) {
-			super.checkForDiffs(current, match);
-		}
-		checkStereotypesForElement(current, match);
-	}
-
-	private boolean isStereotypeApplication(EObject eObject) {
-		return UMLUtil.getStereotype(eObject) != null;
-	}
-
-	private void checkStereotypesForElement(DiffGroup current, Match2Elements matchElement) throws FactoryException {
-		final Iterator<MatchElement> it = matchElement.getSubMatchElements().iterator();
-		while(it.hasNext()) {
-			final Match2Elements element = (Match2Elements)it.next();
-			EObject left = element.getLeftElement();
-			if(UMLUtil.getStereotype(left) != null) {
-				super.checkForDiffs(current, element);
-			}
-		}
-	}
-	
 	@Override
 	protected ReferencesCheck getReferencesChecker() {
 		return new UMLReferenceCheck(matchCrossReferencer);

@@ -45,4 +45,13 @@
       </objectContribution>
    </extension>
 
+   <extension
+         point="org.eclipse.emf.compare.diff.extension">
+      <diffExtension
+            extensionClass="org.eclipse.papyrus.compare.diff.ChangeTaggedValueExtension"
+            fileExtension="uml">
+      </diffExtension>
+   </extension>
+
+
 </plugin>
