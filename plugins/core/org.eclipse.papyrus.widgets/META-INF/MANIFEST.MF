@@ -14,7 +14,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.views.properties.tabbed;bundle-version="3.5.100"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
-Export-Package:org.eclipse.papyrus.widgets, 
+Export-Package: org.eclipse.papyrus.widgets, 
  org.eclipse.papyrus.widgets.editors,
  org.eclipse.papyrus.widgets.creation,
  org.eclipse.papyrus.widgets.providers,

@@ -14,6 +14,7 @@ package org.eclipse.papyrus.widgets.editors;
 import org.eclipse.core.databinding.conversion.IConverter;
 import org.eclipse.core.databinding.conversion.NumberToStringConverter;
 import org.eclipse.core.databinding.conversion.StringToNumberConverter;
+import org.eclipse.papyrus.widgets.Activator;
 import org.eclipse.swt.widgets.Composite;
 
 /**

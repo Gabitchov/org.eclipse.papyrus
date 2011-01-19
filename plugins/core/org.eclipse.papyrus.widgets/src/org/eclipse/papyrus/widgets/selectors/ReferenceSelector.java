@@ -15,7 +15,7 @@ import java.util.Collection;
 import java.util.LinkedList;
 
 import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.papyrus.widgets.IElementSelector;
+import org.eclipse.papyrus.widgets.editors.IElementSelector;
 import org.eclipse.papyrus.widgets.providers.EncapsulatedContentProvider;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
 import org.eclipse.swt.SWT;

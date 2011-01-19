@@ -14,9 +14,9 @@ package org.eclipse.papyrus.widgets.selectors;
 import java.lang.reflect.Constructor;
 
 import org.eclipse.core.runtime.Assert;
-import org.eclipse.papyrus.widgets.AbstractValueEditor;
 import org.eclipse.papyrus.widgets.Activator;
-import org.eclipse.papyrus.widgets.IElementSelector;
+import org.eclipse.papyrus.widgets.editors.AbstractValueEditor;
+import org.eclipse.papyrus.widgets.editors.IElementSelector;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 

@@ -11,7 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.widgets.selectors;
 
-import org.eclipse.papyrus.widgets.IElementSelector;
+import org.eclipse.papyrus.widgets.editors.IElementSelector;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;

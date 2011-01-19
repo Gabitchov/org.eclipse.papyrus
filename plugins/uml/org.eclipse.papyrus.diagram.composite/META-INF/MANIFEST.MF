@@ -37,7 +37,7 @@ Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.papyrus.diagram.common;bundle-version="0.8.0",
  org.eclipse.papyrus.extensionpoints.editors,
  org.eclipse.papyrus.service.edit;bundle-version="0.8.0",
- org.eclipse.papyrus.editors;bundle-version="0.8.0",
+ org.eclipse.papyrus.widgets;bundle-version="0.8.0",
  org.eclipse.papyrus.uml.service.types
 Bundle-ClassPath: .
 Bundle-Activator: org.eclipse.papyrus.diagram.composite.part.UMLDiagramEditorPlugin

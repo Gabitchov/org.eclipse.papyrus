@@ -17,6 +17,7 @@ import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.papyrus.widgets.Activator;
 import org.eclipse.papyrus.widgets.messages.Messages;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.widgets.providers.WrappedLabelProvider;

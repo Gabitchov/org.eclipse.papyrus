@@ -23,6 +23,7 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.ListViewer;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.widgets.Activator;
 import org.eclipse.papyrus.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.widgets.messages.Messages;
 import org.eclipse.papyrus.widgets.providers.CollectionContentProvider;
