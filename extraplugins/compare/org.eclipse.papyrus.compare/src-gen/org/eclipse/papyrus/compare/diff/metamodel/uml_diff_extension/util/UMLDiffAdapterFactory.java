@@ -21,6 +21,7 @@ import org.eclipse.emf.compare.diff.metamodel.AttributeChange;
 import org.eclipse.emf.compare.diff.metamodel.AttributeChangeLeftTarget;
 import org.eclipse.emf.compare.diff.metamodel.AttributeChangeRightTarget;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
+import org.eclipse.emf.compare.diff.metamodel.ReferenceChange;
 import org.eclipse.emf.compare.diff.metamodel.UpdateAttribute;
 
 import org.eclipse.emf.ecore.EObject;
@@ -116,6 +117,10 @@ public class UMLDiffAdapterFactory extends AdapterFactoryImpl {
 				return createRemoveStereotypeApplicationAdapter();
 			}
 			@Override
+			public Adapter caseTaggedValueReferenceChange(TaggedValueReferenceChange object) {
+				return createTaggedValueReferenceChangeAdapter();
+			}
+			@Override
 			public Adapter caseAbstractDiffExtension(AbstractDiffExtension object) {
 				return createAbstractDiffExtensionAdapter();
 			}
@@ -138,6 +143,10 @@ public class UMLDiffAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseUpdateAttribute(UpdateAttribute object) {
 				return createUpdateAttributeAdapter();
+			}
+			@Override
+			public Adapter caseReferenceChange(ReferenceChange object) {
+				return createReferenceChangeAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -272,6 +281,20 @@ public class UMLDiffAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValueReferenceChange <em>Tagged Value Reference Change</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValueReferenceChange
+	 * @generated
+	 */
+	public Adapter createTaggedValueReferenceChangeAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.compare.diff.metamodel.AbstractDiffExtension <em>Abstract Diff Extension</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -352,6 +375,20 @@ public class UMLDiffAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createUpdateAttributeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.compare.diff.metamodel.ReferenceChange <em>Reference Change</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.compare.diff.metamodel.ReferenceChange
+	 * @generated
+	 */
+	public Adapter createReferenceChangeAdapter() {
 		return null;
 	}
 

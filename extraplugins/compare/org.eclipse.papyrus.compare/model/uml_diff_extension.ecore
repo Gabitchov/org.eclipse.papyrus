@@ -5,10 +5,11 @@
     nsURI="http://www.eclipse.org/uml/compare/diff_ext/1.0" nsPrefix="uml_diff_extension">
   <eClassifiers xsi:type="ecore:EClass" name="UMLDiffExtension" abstract="true" eSuperTypes="platform:/plugin/org.eclipse.emf.compare.diff/model/diff.ecore#//AbstractDiffExtension"/>
   <eClassifiers xsi:type="ecore:EClass" name="StereotypeChange" abstract="true" eSuperTypes="#//UMLDiffExtension"/>
-  <eClassifiers xsi:type="ecore:EClass" name="TaggedValueChange" abstract="true" eSuperTypes="platform:/plugin/org.eclipse.emf.compare.diff/model/diff.ecore#//AttributeChange platform:/plugin/org.eclipse.emf.compare.diff/model/diff.ecore#//AbstractDiffExtension"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TaggedValueChange" abstract="true" eSuperTypes="platform:/plugin/org.eclipse.emf.compare.diff/model/diff.ecore#//AttributeChange #//UMLDiffExtension"/>
   <eClassifiers xsi:type="ecore:EClass" name="TaggedValueChangeLeftTarget" eSuperTypes="platform:/plugin/org.eclipse.emf.compare.diff/model/diff.ecore#//AttributeChangeLeftTarget #//TaggedValueChange"/>
   <eClassifiers xsi:type="ecore:EClass" name="TaggedValueChangeRightTarget" eSuperTypes="platform:/plugin/org.eclipse.emf.compare.diff/model/diff.ecore#//AttributeChangeRightTarget #//TaggedValueChange"/>
   <eClassifiers xsi:type="ecore:EClass" name="UpdateTaggedValue" eSuperTypes="platform:/plugin/org.eclipse.emf.compare.diff/model/diff.ecore#//UpdateAttribute #//TaggedValueChange"/>
   <eClassifiers xsi:type="ecore:EClass" name="AddStereotypeApplication" eSuperTypes="#//StereotypeChange"/>
   <eClassifiers xsi:type="ecore:EClass" name="RemoveStereotypeApplication" eSuperTypes="#//StereotypeChange"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TaggedValueReferenceChange" eSuperTypes="#//UMLDiffExtension platform:/plugin/org.eclipse.emf.compare.diff/model/diff.ecore#//ReferenceChange"/>
 </ecore:EPackage>

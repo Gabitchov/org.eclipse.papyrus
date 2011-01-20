@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValueChange;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValueChangeRightTarget;
+import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UMLDiffExtension;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UMLDiffPackage;
 import org.eclipse.swt.graphics.Image;
 
@@ -298,6 +299,11 @@ public class TaggedValueChangeRightTargetImpl extends AttributeChangeRightTarget
 				default: return -1;
 			}
 		}
+		if (baseClass == UMLDiffExtension.class) {
+			switch (derivedFeatureID) {
+				default: return -1;
+			}
+		}
 		if (baseClass == TaggedValueChange.class) {
 			switch (derivedFeatureID) {
 				default: return -1;
@@ -317,6 +323,11 @@ public class TaggedValueChangeRightTargetImpl extends AttributeChangeRightTarget
 			switch (baseFeatureID) {
 				case DiffPackage.ABSTRACT_DIFF_EXTENSION__HIDE_ELEMENTS: return UMLDiffPackage.TAGGED_VALUE_CHANGE_RIGHT_TARGET__HIDE_ELEMENTS;
 				case DiffPackage.ABSTRACT_DIFF_EXTENSION__IS_COLLAPSED: return UMLDiffPackage.TAGGED_VALUE_CHANGE_RIGHT_TARGET__IS_COLLAPSED;
+				default: return -1;
+			}
+		}
+		if (baseClass == UMLDiffExtension.class) {
+			switch (baseFeatureID) {
 				default: return -1;
 			}
 		}

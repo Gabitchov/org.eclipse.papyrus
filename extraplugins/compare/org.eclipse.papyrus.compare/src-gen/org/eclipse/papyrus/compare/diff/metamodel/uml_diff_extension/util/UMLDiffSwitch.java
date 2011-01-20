@@ -18,6 +18,7 @@ import org.eclipse.emf.compare.diff.metamodel.AttributeChange;
 import org.eclipse.emf.compare.diff.metamodel.AttributeChangeLeftTarget;
 import org.eclipse.emf.compare.diff.metamodel.AttributeChangeRightTarget;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
+import org.eclipse.emf.compare.diff.metamodel.ReferenceChange;
 import org.eclipse.emf.compare.diff.metamodel.UpdateAttribute;
 
 import org.eclipse.emf.ecore.EClass;
@@ -118,8 +119,9 @@ public class UMLDiffSwitch<T> {
 				TaggedValueChange taggedValueChange = (TaggedValueChange)theEObject;
 				T result = caseTaggedValueChange(taggedValueChange);
 				if (result == null) result = caseAttributeChange(taggedValueChange);
-				if (result == null) result = caseAbstractDiffExtension(taggedValueChange);
+				if (result == null) result = caseUMLDiffExtension(taggedValueChange);
 				if (result == null) result = caseDiffElement(taggedValueChange);
+				if (result == null) result = caseAbstractDiffExtension(taggedValueChange);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -129,8 +131,9 @@ public class UMLDiffSwitch<T> {
 				if (result == null) result = caseAttributeChangeLeftTarget(taggedValueChangeLeftTarget);
 				if (result == null) result = caseTaggedValueChange(taggedValueChangeLeftTarget);
 				if (result == null) result = caseAttributeChange(taggedValueChangeLeftTarget);
-				if (result == null) result = caseAbstractDiffExtension(taggedValueChangeLeftTarget);
+				if (result == null) result = caseUMLDiffExtension(taggedValueChangeLeftTarget);
 				if (result == null) result = caseDiffElement(taggedValueChangeLeftTarget);
+				if (result == null) result = caseAbstractDiffExtension(taggedValueChangeLeftTarget);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -140,8 +143,9 @@ public class UMLDiffSwitch<T> {
 				if (result == null) result = caseAttributeChangeRightTarget(taggedValueChangeRightTarget);
 				if (result == null) result = caseTaggedValueChange(taggedValueChangeRightTarget);
 				if (result == null) result = caseAttributeChange(taggedValueChangeRightTarget);
-				if (result == null) result = caseAbstractDiffExtension(taggedValueChangeRightTarget);
+				if (result == null) result = caseUMLDiffExtension(taggedValueChangeRightTarget);
 				if (result == null) result = caseDiffElement(taggedValueChangeRightTarget);
+				if (result == null) result = caseAbstractDiffExtension(taggedValueChangeRightTarget);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -151,8 +155,9 @@ public class UMLDiffSwitch<T> {
 				if (result == null) result = caseUpdateAttribute(updateTaggedValue);
 				if (result == null) result = caseTaggedValueChange(updateTaggedValue);
 				if (result == null) result = caseAttributeChange(updateTaggedValue);
-				if (result == null) result = caseAbstractDiffExtension(updateTaggedValue);
+				if (result == null) result = caseUMLDiffExtension(updateTaggedValue);
 				if (result == null) result = caseDiffElement(updateTaggedValue);
+				if (result == null) result = caseAbstractDiffExtension(updateTaggedValue);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -171,6 +176,16 @@ public class UMLDiffSwitch<T> {
 				if (result == null) result = caseStereotypeChange(removeStereotypeApplication);
 				if (result == null) result = caseUMLDiffExtension(removeStereotypeApplication);
 				if (result == null) result = caseAbstractDiffExtension(removeStereotypeApplication);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case UMLDiffPackage.TAGGED_VALUE_REFERENCE_CHANGE: {
+				TaggedValueReferenceChange taggedValueReferenceChange = (TaggedValueReferenceChange)theEObject;
+				T result = caseTaggedValueReferenceChange(taggedValueReferenceChange);
+				if (result == null) result = caseUMLDiffExtension(taggedValueReferenceChange);
+				if (result == null) result = caseReferenceChange(taggedValueReferenceChange);
+				if (result == null) result = caseAbstractDiffExtension(taggedValueReferenceChange);
+				if (result == null) result = caseDiffElement(taggedValueReferenceChange);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -299,6 +314,21 @@ public class UMLDiffSwitch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Tagged Value Reference Change</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Tagged Value Reference Change</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTaggedValueReferenceChange(TaggedValueReferenceChange object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Abstract Diff Extension</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -385,6 +415,21 @@ public class UMLDiffSwitch<T> {
 	 * @generated
 	 */
 	public T caseUpdateAttribute(UpdateAttribute object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Reference Change</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Reference Change</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseReferenceChange(ReferenceChange object) {
 		return null;
 	}
 

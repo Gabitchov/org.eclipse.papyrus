@@ -668,6 +668,116 @@ public interface UMLDiffPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.impl.TaggedValueReferenceChangeImpl <em>Tagged Value Reference Change</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.impl.TaggedValueReferenceChangeImpl
+	 * @see org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.impl.UMLDiffPackageImpl#getTaggedValueReferenceChange()
+	 * @generated
+	 */
+	int TAGGED_VALUE_REFERENCE_CHANGE = 8;
+
+	/**
+	 * The feature id for the '<em><b>Hide Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGGED_VALUE_REFERENCE_CHANGE__HIDE_ELEMENTS = UML_DIFF_EXTENSION__HIDE_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Is Collapsed</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGGED_VALUE_REFERENCE_CHANGE__IS_COLLAPSED = UML_DIFF_EXTENSION__IS_COLLAPSED;
+
+	/**
+	 * The feature id for the '<em><b>Sub Diff Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGGED_VALUE_REFERENCE_CHANGE__SUB_DIFF_ELEMENTS = UML_DIFF_EXTENSION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Is Hidden By</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGGED_VALUE_REFERENCE_CHANGE__IS_HIDDEN_BY = UML_DIFF_EXTENSION_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Conflicting</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGGED_VALUE_REFERENCE_CHANGE__CONFLICTING = UML_DIFF_EXTENSION_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Kind</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGGED_VALUE_REFERENCE_CHANGE__KIND = UML_DIFF_EXTENSION_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Remote</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGGED_VALUE_REFERENCE_CHANGE__REMOTE = UML_DIFF_EXTENSION_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Reference</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGGED_VALUE_REFERENCE_CHANGE__REFERENCE = UML_DIFF_EXTENSION_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Right Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGGED_VALUE_REFERENCE_CHANGE__RIGHT_ELEMENT = UML_DIFF_EXTENSION_FEATURE_COUNT + 6;
+
+	/**
+	 * The feature id for the '<em><b>Left Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGGED_VALUE_REFERENCE_CHANGE__LEFT_ELEMENT = UML_DIFF_EXTENSION_FEATURE_COUNT + 7;
+
+	/**
+	 * The number of structural features of the '<em>Tagged Value Reference Change</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGGED_VALUE_REFERENCE_CHANGE_FEATURE_COUNT = UML_DIFF_EXTENSION_FEATURE_COUNT + 8;
+
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UMLDiffExtension <em>Extension</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -746,6 +856,16 @@ public interface UMLDiffPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getRemoveStereotypeApplication();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValueReferenceChange <em>Tagged Value Reference Change</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Tagged Value Reference Change</em>'.
+	 * @see org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValueReferenceChange
+	 * @generated
+	 */
+	EClass getTaggedValueReferenceChange();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -848,6 +968,16 @@ public interface UMLDiffPackage extends EPackage {
 		 * @generated
 		 */
 		EClass REMOVE_STEREOTYPE_APPLICATION = eINSTANCE.getRemoveStereotypeApplication();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.impl.TaggedValueReferenceChangeImpl <em>Tagged Value Reference Change</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.impl.TaggedValueReferenceChangeImpl
+		 * @see org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.impl.UMLDiffPackageImpl#getTaggedValueReferenceChange()
+		 * @generated
+		 */
+		EClass TAGGED_VALUE_REFERENCE_CHANGE = eINSTANCE.getTaggedValueReferenceChange();
 
 	}
 

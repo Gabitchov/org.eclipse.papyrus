@@ -24,6 +24,7 @@ import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.StereotypeC
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValueChange;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValueChangeLeftTarget;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValueChangeRightTarget;
+import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValueReferenceChange;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UMLDiffExtension;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UMLDiffFactory;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UMLDiffPackage;
@@ -91,6 +92,13 @@ public class UMLDiffPackageImpl extends EPackageImpl implements UMLDiffPackage {
 	 * @generated
 	 */
 	private EClass removeStereotypeApplicationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass taggedValueReferenceChangeEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -233,6 +241,15 @@ public class UMLDiffPackageImpl extends EPackageImpl implements UMLDiffPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getTaggedValueReferenceChange() {
+		return taggedValueReferenceChangeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public UMLDiffFactory getUMLDiffFactory() {
 		return (UMLDiffFactory)getEFactoryInstance();
 	}
@@ -271,6 +288,8 @@ public class UMLDiffPackageImpl extends EPackageImpl implements UMLDiffPackage {
 		addStereotypeApplicationEClass = createEClass(ADD_STEREOTYPE_APPLICATION);
 
 		removeStereotypeApplicationEClass = createEClass(REMOVE_STEREOTYPE_APPLICATION);
+
+		taggedValueReferenceChangeEClass = createEClass(TAGGED_VALUE_REFERENCE_CHANGE);
 	}
 
 	/**
@@ -307,7 +326,7 @@ public class UMLDiffPackageImpl extends EPackageImpl implements UMLDiffPackage {
 		umlDiffExtensionEClass.getESuperTypes().add(theDiffPackage.getAbstractDiffExtension());
 		stereotypeChangeEClass.getESuperTypes().add(this.getUMLDiffExtension());
 		taggedValueChangeEClass.getESuperTypes().add(theDiffPackage.getAttributeChange());
-		taggedValueChangeEClass.getESuperTypes().add(theDiffPackage.getAbstractDiffExtension());
+		taggedValueChangeEClass.getESuperTypes().add(this.getUMLDiffExtension());
 		taggedValueChangeLeftTargetEClass.getESuperTypes().add(theDiffPackage.getAttributeChangeLeftTarget());
 		taggedValueChangeLeftTargetEClass.getESuperTypes().add(this.getTaggedValueChange());
 		taggedValueChangeRightTargetEClass.getESuperTypes().add(theDiffPackage.getAttributeChangeRightTarget());
@@ -316,6 +335,8 @@ public class UMLDiffPackageImpl extends EPackageImpl implements UMLDiffPackage {
 		updateTaggedValueEClass.getESuperTypes().add(this.getTaggedValueChange());
 		addStereotypeApplicationEClass.getESuperTypes().add(this.getStereotypeChange());
 		removeStereotypeApplicationEClass.getESuperTypes().add(this.getStereotypeChange());
+		taggedValueReferenceChangeEClass.getESuperTypes().add(this.getUMLDiffExtension());
+		taggedValueReferenceChangeEClass.getESuperTypes().add(theDiffPackage.getReferenceChange());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(umlDiffExtensionEClass, UMLDiffExtension.class, "UMLDiffExtension", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -333,6 +354,8 @@ public class UMLDiffPackageImpl extends EPackageImpl implements UMLDiffPackage {
 		initEClass(addStereotypeApplicationEClass, AddStereotypeApplication.class, "AddStereotypeApplication", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(removeStereotypeApplicationEClass, RemoveStereotypeApplication.class, "RemoveStereotypeApplication", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(taggedValueReferenceChangeEClass, TaggedValueReferenceChange.class, "TaggedValueReferenceChange", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

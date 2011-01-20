@@ -76,6 +76,15 @@ public interface UMLDiffFactory extends EFactory {
 	RemoveStereotypeApplication createRemoveStereotypeApplication();
 
 	/**
+	 * Returns a new object of class '<em>Tagged Value Reference Change</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Tagged Value Reference Change</em>'.
+	 * @generated
+	 */
+	TaggedValueReferenceChange createTaggedValueReferenceChange();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

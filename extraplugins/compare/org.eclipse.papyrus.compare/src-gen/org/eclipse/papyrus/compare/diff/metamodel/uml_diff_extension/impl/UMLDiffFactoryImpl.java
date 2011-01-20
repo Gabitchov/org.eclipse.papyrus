@@ -70,6 +70,7 @@ public class UMLDiffFactoryImpl extends EFactoryImpl implements UMLDiffFactory {
 			case UMLDiffPackage.UPDATE_TAGGED_VALUE: return createUpdateTaggedValue();
 			case UMLDiffPackage.ADD_STEREOTYPE_APPLICATION: return createAddStereotypeApplication();
 			case UMLDiffPackage.REMOVE_STEREOTYPE_APPLICATION: return createRemoveStereotypeApplication();
+			case UMLDiffPackage.TAGGED_VALUE_REFERENCE_CHANGE: return createTaggedValueReferenceChange();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -123,6 +124,16 @@ public class UMLDiffFactoryImpl extends EFactoryImpl implements UMLDiffFactory {
 	public RemoveStereotypeApplication createRemoveStereotypeApplication() {
 		RemoveStereotypeApplicationImpl removeStereotypeApplication = new RemoveStereotypeApplicationImpl();
 		return removeStereotypeApplication;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TaggedValueReferenceChange createTaggedValueReferenceChange() {
+		TaggedValueReferenceChangeImpl taggedValueReferenceChange = new TaggedValueReferenceChangeImpl();
+		return taggedValueReferenceChange;
 	}
 
 	/**

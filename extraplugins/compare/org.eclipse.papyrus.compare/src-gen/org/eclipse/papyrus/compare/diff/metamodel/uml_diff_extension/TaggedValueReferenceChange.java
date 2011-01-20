@@ -11,18 +11,17 @@
  */
 package org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension;
 
-import org.eclipse.emf.compare.diff.metamodel.AbstractDiffExtension;
-import org.eclipse.emf.compare.diff.metamodel.AttributeChange;
+import org.eclipse.emf.compare.diff.metamodel.ReferenceChange;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Tagged Value Change</b></em>'.
+ * A representation of the model object '<em><b>Tagged Value Reference Change</b></em>'.
  * <!-- end-user-doc -->
  *
  *
- * @see org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UMLDiffPackage#getTaggedValueChange()
- * @model abstract="true"
+ * @see org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UMLDiffPackage#getTaggedValueReferenceChange()
+ * @model
  * @generated
  */
-public interface TaggedValueChange extends AttributeChange, UMLDiffExtension {
-} // TaggedValueChange
+public interface TaggedValueReferenceChange extends UMLDiffExtension, ReferenceChange {
+} // TaggedValueReferenceChange
