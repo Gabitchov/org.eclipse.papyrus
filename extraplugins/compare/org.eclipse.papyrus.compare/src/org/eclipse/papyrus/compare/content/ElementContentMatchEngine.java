@@ -18,7 +18,7 @@ import org.eclipse.emf.compare.match.engine.AbstractSimilarityChecker;
 import org.eclipse.emf.compare.match.statistic.MetamodelFilter;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.papyrus.compare.PapyrusMatchEngine;
+import org.eclipse.papyrus.compare.match.PapyrusMatchEngine;
 
 
 public class ElementContentMatchEngine extends PapyrusMatchEngine {

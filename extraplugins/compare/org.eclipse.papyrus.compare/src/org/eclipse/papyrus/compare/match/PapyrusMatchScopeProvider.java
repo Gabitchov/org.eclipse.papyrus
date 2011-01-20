@@ -11,7 +11,7 @@
  *  Tatiana Fesenko (CEA LIST) - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.compare;
+package org.eclipse.papyrus.compare.match;
 
 import org.eclipse.emf.compare.match.engine.GenericMatchScopeProvider;
 import org.eclipse.emf.compare.match.engine.IMatchScope;

@@ -11,7 +11,7 @@
  *  Tatiana Fesenko (CEA LIST) - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.compare;
+package org.eclipse.papyrus.compare.match;
 
 import java.util.ArrayList;
 import java.util.Collections;
