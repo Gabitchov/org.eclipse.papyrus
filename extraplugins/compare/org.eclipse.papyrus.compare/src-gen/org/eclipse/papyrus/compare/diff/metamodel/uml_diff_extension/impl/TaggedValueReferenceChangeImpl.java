@@ -23,6 +23,7 @@ import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.DiffPackage;
 import org.eclipse.emf.compare.diff.metamodel.DifferenceKind;
 import org.eclipse.emf.compare.diff.metamodel.ReferenceChange;
+import org.eclipse.emf.compare.util.AdapterUtils;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -593,5 +594,36 @@ public class TaggedValueReferenceChangeImpl extends UMLDiffExtensionImpl impleme
 		result.append(')');
 		return result.toString();
 	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @NOT-generated
+	 */
+	@Override
+	public Object getImage() {
+		return super.getImage();
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @NOT-generated
+	 */
+	@Override
+	public String getText() {
+		final String referenceLabel = AdapterUtils.getItemProviderText(getReference());
+		final String elementLabel = AdapterUtils.getItemProviderText(getLeftElement());
+		final Object leftValue = getLeftElement().eGet(getReference());
+		final Object rightValue = getRightElement().eGet(getReference());
+
+		final String diffLabel;
+		if(isRemote()) {
+			diffLabel = String.format("Tagged reference value %s : remote = %s, local = %s", elementLabel, leftValue, rightValue);
+		} else {
+			diffLabel = String.format("Tagged reference value %s: %s -> %s", referenceLabel, rightValue, leftValue);
+		}
+		return diffLabel;
+	};
 
 } //TaggedValueReferenceChangeImpl

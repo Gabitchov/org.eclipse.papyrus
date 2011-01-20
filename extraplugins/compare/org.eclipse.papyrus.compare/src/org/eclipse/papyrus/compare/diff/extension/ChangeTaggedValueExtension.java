@@ -22,12 +22,14 @@ import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.DiffFactory;
 import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
 import org.eclipse.emf.compare.diff.metamodel.DiffModel;
+import org.eclipse.emf.compare.diff.metamodel.ReferenceChange;
 import org.eclipse.emf.compare.diff.metamodel.UpdateAttribute;
 import org.eclipse.emf.compare.diff.metamodel.impl.ModelElementChangeLeftTargetImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValueChange;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValueChangeLeftTarget;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValueChangeRightTarget;
+import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValueReferenceChange;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UMLDiffFactory;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UpdateTaggedValue;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.impl.UMLDiffExtensionImpl;
@@ -43,14 +45,30 @@ public class ChangeTaggedValueExtension extends UMLDiffExtensionImpl {
 			final DiffElement element = (DiffElement)it.next();
 			if(element instanceof AttributeChange && (false == element instanceof TaggedValueChange)) {
 				AttributeChange attributeChange = (AttributeChange)element;
+				EObject stereotypeApplication = null;
 				if(isStereotypeApplication(attributeChange.getLeftElement())) {
-					EObject stereotypeApplication = attributeChange.getLeftElement();
-
+					stereotypeApplication = attributeChange.getLeftElement();
+				} else if(isStereotypeApplication(attributeChange.getRightElement())) {
+					stereotypeApplication = attributeChange.getRightElement();
+				}
+				if(stereotypeApplication != null) {
 					getHideElements().add(element);
-
-					final DiffElement group = findOrCreateDiffElementFor(diffModel, UMLUtil.getBaseElement(stereotypeApplication));
-
+					DiffElement group = findOrCreateDiffElementFor(diffModel, UMLUtil.getBaseElement(stereotypeApplication));
 					TaggedValueChange newElement = buildTaggedValueDiff(attributeChange);
+					group.getSubDiffElements().add(newElement);
+				}
+			} else if(element instanceof ReferenceChange && (false == element instanceof TaggedValueReferenceChange)) {
+				ReferenceChange referenceChange = (ReferenceChange)element;
+				EObject stereotypeApplication = null;
+				if(isStereotypeApplication(referenceChange.getLeftElement())) {
+					stereotypeApplication = referenceChange.getLeftElement();
+				} else if(isStereotypeApplication(referenceChange.getRightElement())) {
+					stereotypeApplication = referenceChange.getRightElement();
+				}
+				if(stereotypeApplication != null) {
+					getHideElements().add(element);
+					DiffElement group = findOrCreateDiffElementFor(diffModel, UMLUtil.getBaseElement(stereotypeApplication));
+					TaggedValueReferenceChange newElement = buildTaggedValueReferenceDiff(referenceChange);
 					group.getSubDiffElements().add(newElement);
 				}
 			}
@@ -79,13 +97,13 @@ public class ChangeTaggedValueExtension extends UMLDiffExtensionImpl {
 	}
 
 	protected TaggedValueChange buildTaggedValueDiff(AttributeChange attributeChange) {
-		if (attributeChange instanceof UpdateAttribute) {
+		if(attributeChange instanceof UpdateAttribute) {
 			return buildTaggedValueDiff((AttributeChangeRightTarget)attributeChange);
-		} else if (attributeChange instanceof AttributeChangeLeftTarget) {
+		} else if(attributeChange instanceof AttributeChangeLeftTarget) {
 			return buildTaggedValueDiff((AttributeChangeLeftTarget)attributeChange);
-		} else if (attributeChange instanceof AttributeChangeRightTarget) {
+		} else if(attributeChange instanceof AttributeChangeRightTarget) {
 			return buildTaggedValueDiff((AttributeChangeRightTarget)attributeChange);
-		} 
+		}
 		// make it not abstract
 		TaggedValueChange newElement = UMLDiffFactory.eINSTANCE.createUpdateTaggedValue();
 		initTaggedValueDiff(newElement, attributeChange);
@@ -96,6 +114,16 @@ public class ChangeTaggedValueExtension extends UMLDiffExtensionImpl {
 		newElement.setLeftElement(attributeChange.getLeftElement());
 		newElement.setRightElement(attributeChange.getRightElement());
 		newElement.setAttribute(attributeChange.getAttribute());
+		newElement.setRemote(attributeChange.isRemote());
+		return newElement;
+	}
+
+	protected TaggedValueReferenceChange buildTaggedValueReferenceDiff(ReferenceChange referenceChange) {
+		TaggedValueReferenceChange newElement = UMLDiffFactory.eINSTANCE.createTaggedValueReferenceChange();
+		newElement.setLeftElement(referenceChange.getLeftElement());
+		newElement.setRightElement(referenceChange.getRightElement());
+		newElement.setReference(referenceChange.getReference());
+		newElement.setRemote(referenceChange.isRemote());
 		return newElement;
 	}
 
