@@ -21,6 +21,7 @@ import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.DiffModel;
 import org.eclipse.emf.compare.diff.metamodel.DiffPackage;
 import org.eclipse.emf.compare.diff.metamodel.impl.AttributeChangeRightTargetImpl;
+import org.eclipse.emf.compare.util.AdapterUtils;
 
 import org.eclipse.emf.ecore.EClass;
 
@@ -152,12 +153,28 @@ public class TaggedValueChangeRightTargetImpl extends AttributeChangeRightTarget
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Object getImage() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		final String attributeLabel = AdapterUtils.getItemProviderText(getAttribute());
+		final String elementLabel = AdapterUtils.getItemProviderText(getLeftElement());
+		final Object leftValue = getLeftElement().eGet(getAttribute());
+		final Object rightValue = getRightElement().eGet(getAttribute());
+
+		final String diffLabel;
+		if (isRemote()) {
+			diffLabel = String.format("Tagged value %s: %s -> %s",
+					elementLabel, leftValue, rightValue);
+		} else {
+			if (isConflicting()) {
+				diffLabel = String.format("Tagged value %s : remote = %s, local = %s",
+						attributeLabel, rightValue, leftValue);
+			} else {
+				diffLabel = String.format("Tagged value %s: %s -> %s",
+						attributeLabel, rightValue, leftValue);
+			}
+		}
+		return diffLabel;
 	}
 
 	/**
