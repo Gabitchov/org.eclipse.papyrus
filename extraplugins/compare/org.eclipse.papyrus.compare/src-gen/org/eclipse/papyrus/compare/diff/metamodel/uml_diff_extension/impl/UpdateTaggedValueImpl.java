@@ -21,6 +21,7 @@ import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.DiffModel;
 import org.eclipse.emf.compare.diff.metamodel.DiffPackage;
 import org.eclipse.emf.compare.diff.metamodel.impl.UpdateAttributeImpl;
+import org.eclipse.emf.compare.util.AdapterUtils;
 
 import org.eclipse.emf.ecore.EClass;
 
@@ -28,9 +29,11 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValueChange;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UMLDiffPackage;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UpdateTaggedValue;
+import org.eclipse.swt.graphics.Image;
 
 /**
  * <!-- begin-user-doc -->
@@ -141,23 +144,40 @@ public class UpdateTaggedValueImpl extends UpdateAttributeImpl implements Update
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public String getText() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		
+		final String attributeLabel = AdapterUtils.getItemProviderText(getAttribute());
+		final String elementLabel = AdapterUtils.getItemProviderText(getLeftElement());
+		final Object leftValue = getLeftElement().eGet(getAttribute());
+		final Object rightValue = getRightElement().eGet(getAttribute());
+
+		final String diffLabel;
+		if (isRemote()) {
+			diffLabel = String.format("Tagged value %s: %s -> %s",
+					elementLabel, leftValue, rightValue);
+		} else {
+			if (isConflicting()) {
+				diffLabel = String.format("Tagged value %s : remote = %s, local = %s",
+						attributeLabel, rightValue, leftValue);
+			} else {
+				diffLabel = String.format("Tagged value %s: %s -> %s",
+						attributeLabel, rightValue, leftValue);
+			}
+		}
+		return diffLabel;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @NOT-generated 
+	 * @generated NOT 
 	 */
 	public Object getImage() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		AdapterFactoryLabelProvider adapterProvider = new AdapterFactoryLabelProvider(AdapterUtils.getAdapterFactory());
+		Image labelImage = adapterProvider.getImage(getAttribute());
+		return labelImage;
 	}
 
 	/**
@@ -166,9 +186,7 @@ public class UpdateTaggedValueImpl extends UpdateAttributeImpl implements Update
 	 * @generated
 	 */
 	public IMerger provideMerger() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return null;
 	}
 
 	/**
