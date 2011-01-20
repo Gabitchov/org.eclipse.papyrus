@@ -31,15 +31,6 @@ public interface UMLDiffFactory extends EFactory {
 	UMLDiffFactory eINSTANCE = org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.impl.UMLDiffFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Stereotype Change</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Stereotype Change</em>'.
-	 * @generated
-	 */
-	StereotypeChange createStereotypeChange();
-
-	/**
 	 * Returns a new object of class '<em>Tagged Value Change Left Target</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

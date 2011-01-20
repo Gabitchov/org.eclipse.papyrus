@@ -118,6 +118,7 @@ public class UMLDiffSwitch<T> {
 				TaggedValueChange taggedValueChange = (TaggedValueChange)theEObject;
 				T result = caseTaggedValueChange(taggedValueChange);
 				if (result == null) result = caseAttributeChange(taggedValueChange);
+				if (result == null) result = caseAbstractDiffExtension(taggedValueChange);
 				if (result == null) result = caseDiffElement(taggedValueChange);
 				if (result == null) result = defaultCase(theEObject);
 				return result;

@@ -307,6 +307,7 @@ public class UMLDiffPackageImpl extends EPackageImpl implements UMLDiffPackage {
 		umlDiffExtensionEClass.getESuperTypes().add(theDiffPackage.getAbstractDiffExtension());
 		stereotypeChangeEClass.getESuperTypes().add(this.getUMLDiffExtension());
 		taggedValueChangeEClass.getESuperTypes().add(theDiffPackage.getAttributeChange());
+		taggedValueChangeEClass.getESuperTypes().add(theDiffPackage.getAbstractDiffExtension());
 		taggedValueChangeLeftTargetEClass.getESuperTypes().add(theDiffPackage.getAttributeChangeLeftTarget());
 		taggedValueChangeRightTargetEClass.getESuperTypes().add(theDiffPackage.getAttributeChangeRightTarget());
 		updateTaggedValueEClass.getESuperTypes().add(theDiffPackage.getUpdateAttribute());
@@ -316,7 +317,7 @@ public class UMLDiffPackageImpl extends EPackageImpl implements UMLDiffPackage {
 		// Initialize classes and features; add operations and parameters
 		initEClass(umlDiffExtensionEClass, UMLDiffExtension.class, "UMLDiffExtension", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(stereotypeChangeEClass, StereotypeChange.class, "StereotypeChange", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(stereotypeChangeEClass, StereotypeChange.class, "StereotypeChange", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(taggedValueChangeEClass, TaggedValueChange.class, "TaggedValueChange", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

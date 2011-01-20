@@ -25,7 +25,7 @@ import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UMLDiffPack
  *
  * @generated
  */
-public class StereotypeChangeImpl extends UMLDiffExtensionImpl implements StereotypeChange {
+public abstract class StereotypeChangeImpl extends UMLDiffExtensionImpl implements StereotypeChange {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

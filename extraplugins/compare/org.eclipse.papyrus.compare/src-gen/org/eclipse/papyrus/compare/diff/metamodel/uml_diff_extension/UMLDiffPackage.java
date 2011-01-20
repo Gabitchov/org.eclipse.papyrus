@@ -221,13 +221,31 @@ public interface UMLDiffPackage extends EPackage {
 	int TAGGED_VALUE_CHANGE__RIGHT_ELEMENT = DiffPackage.ATTRIBUTE_CHANGE__RIGHT_ELEMENT;
 
 	/**
+	 * The feature id for the '<em><b>Hide Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGGED_VALUE_CHANGE__HIDE_ELEMENTS = DiffPackage.ATTRIBUTE_CHANGE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Is Collapsed</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGGED_VALUE_CHANGE__IS_COLLAPSED = DiffPackage.ATTRIBUTE_CHANGE_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Tagged Value Change</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TAGGED_VALUE_CHANGE_FEATURE_COUNT = DiffPackage.ATTRIBUTE_CHANGE_FEATURE_COUNT + 0;
+	int TAGGED_VALUE_CHANGE_FEATURE_COUNT = DiffPackage.ATTRIBUTE_CHANGE_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.impl.TaggedValueChangeLeftTargetImpl <em>Tagged Value Change Left Target</em>}' class.

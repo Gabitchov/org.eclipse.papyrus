@@ -19,7 +19,7 @@ package org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension;
  *
  *
  * @see org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UMLDiffPackage#getStereotypeChange()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface StereotypeChange extends UMLDiffExtension {

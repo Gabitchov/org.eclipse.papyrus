@@ -65,7 +65,6 @@ public class UMLDiffFactoryImpl extends EFactoryImpl implements UMLDiffFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case UMLDiffPackage.STEREOTYPE_CHANGE: return createStereotypeChange();
 			case UMLDiffPackage.TAGGED_VALUE_CHANGE_LEFT_TARGET: return createTaggedValueChangeLeftTarget();
 			case UMLDiffPackage.TAGGED_VALUE_CHANGE_RIGHT_TARGET: return createTaggedValueChangeRightTarget();
 			case UMLDiffPackage.UPDATE_TAGGED_VALUE: return createUpdateTaggedValue();
@@ -74,16 +73,6 @@ public class UMLDiffFactoryImpl extends EFactoryImpl implements UMLDiffFactory {
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public StereotypeChange createStereotypeChange() {
-		StereotypeChangeImpl stereotypeChange = new StereotypeChangeImpl();
-		return stereotypeChange;
 	}
 
 	/**
