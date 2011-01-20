@@ -11,7 +11,7 @@
  *  Tatiana Fesenko (CEA LIST) - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.compare.content;
+package org.eclipse.papyrus.compare.element;
 
 import static org.eclipse.papyrus.compare.Activator.log;
 

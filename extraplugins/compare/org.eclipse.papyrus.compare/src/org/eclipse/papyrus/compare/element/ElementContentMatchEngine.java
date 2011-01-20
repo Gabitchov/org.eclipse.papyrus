@@ -11,7 +11,7 @@
  *  Tatiana Fesenko (CEA LIST) - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.compare.content;
+package org.eclipse.papyrus.compare.element;
 
 import org.eclipse.emf.compare.FactoryException;
 import org.eclipse.emf.compare.match.engine.AbstractSimilarityChecker;
