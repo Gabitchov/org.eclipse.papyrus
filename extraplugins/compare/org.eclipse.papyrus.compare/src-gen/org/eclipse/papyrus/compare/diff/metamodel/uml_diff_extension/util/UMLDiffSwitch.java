@@ -127,7 +127,9 @@ public class UMLDiffSwitch<T> {
 				TaggedValueChangeLeftTarget taggedValueChangeLeftTarget = (TaggedValueChangeLeftTarget)theEObject;
 				T result = caseTaggedValueChangeLeftTarget(taggedValueChangeLeftTarget);
 				if (result == null) result = caseAttributeChangeLeftTarget(taggedValueChangeLeftTarget);
+				if (result == null) result = caseTaggedValueChange(taggedValueChangeLeftTarget);
 				if (result == null) result = caseAttributeChange(taggedValueChangeLeftTarget);
+				if (result == null) result = caseAbstractDiffExtension(taggedValueChangeLeftTarget);
 				if (result == null) result = caseDiffElement(taggedValueChangeLeftTarget);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -136,7 +138,9 @@ public class UMLDiffSwitch<T> {
 				TaggedValueChangeRightTarget taggedValueChangeRightTarget = (TaggedValueChangeRightTarget)theEObject;
 				T result = caseTaggedValueChangeRightTarget(taggedValueChangeRightTarget);
 				if (result == null) result = caseAttributeChangeRightTarget(taggedValueChangeRightTarget);
+				if (result == null) result = caseTaggedValueChange(taggedValueChangeRightTarget);
 				if (result == null) result = caseAttributeChange(taggedValueChangeRightTarget);
+				if (result == null) result = caseAbstractDiffExtension(taggedValueChangeRightTarget);
 				if (result == null) result = caseDiffElement(taggedValueChangeRightTarget);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -145,7 +149,9 @@ public class UMLDiffSwitch<T> {
 				UpdateTaggedValue updateTaggedValue = (UpdateTaggedValue)theEObject;
 				T result = caseUpdateTaggedValue(updateTaggedValue);
 				if (result == null) result = caseUpdateAttribute(updateTaggedValue);
+				if (result == null) result = caseTaggedValueChange(updateTaggedValue);
 				if (result == null) result = caseAttributeChange(updateTaggedValue);
+				if (result == null) result = caseAbstractDiffExtension(updateTaggedValue);
 				if (result == null) result = caseDiffElement(updateTaggedValue);
 				if (result == null) result = defaultCase(theEObject);
 				return result;

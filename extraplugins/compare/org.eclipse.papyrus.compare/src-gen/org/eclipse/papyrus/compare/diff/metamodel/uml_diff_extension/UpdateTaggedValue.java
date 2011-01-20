@@ -23,5 +23,5 @@ import org.eclipse.emf.compare.diff.metamodel.UpdateAttribute;
  * @model
  * @generated
  */
-public interface UpdateTaggedValue extends UpdateAttribute {
+public interface UpdateTaggedValue extends UpdateAttribute, TaggedValueChange {
 } // UpdateTaggedValue

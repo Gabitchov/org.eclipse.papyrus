@@ -339,13 +339,31 @@ public interface UMLDiffPackage extends EPackage {
 	int TAGGED_VALUE_CHANGE_LEFT_TARGET__LEFT_TARGET = DiffPackage.ATTRIBUTE_CHANGE_LEFT_TARGET__LEFT_TARGET;
 
 	/**
+	 * The feature id for the '<em><b>Hide Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGGED_VALUE_CHANGE_LEFT_TARGET__HIDE_ELEMENTS = DiffPackage.ATTRIBUTE_CHANGE_LEFT_TARGET_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Is Collapsed</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGGED_VALUE_CHANGE_LEFT_TARGET__IS_COLLAPSED = DiffPackage.ATTRIBUTE_CHANGE_LEFT_TARGET_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Tagged Value Change Left Target</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TAGGED_VALUE_CHANGE_LEFT_TARGET_FEATURE_COUNT = DiffPackage.ATTRIBUTE_CHANGE_LEFT_TARGET_FEATURE_COUNT + 0;
+	int TAGGED_VALUE_CHANGE_LEFT_TARGET_FEATURE_COUNT = DiffPackage.ATTRIBUTE_CHANGE_LEFT_TARGET_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.impl.TaggedValueChangeRightTargetImpl <em>Tagged Value Change Right Target</em>}' class.
@@ -439,13 +457,31 @@ public interface UMLDiffPackage extends EPackage {
 	int TAGGED_VALUE_CHANGE_RIGHT_TARGET__RIGHT_TARGET = DiffPackage.ATTRIBUTE_CHANGE_RIGHT_TARGET__RIGHT_TARGET;
 
 	/**
+	 * The feature id for the '<em><b>Hide Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGGED_VALUE_CHANGE_RIGHT_TARGET__HIDE_ELEMENTS = DiffPackage.ATTRIBUTE_CHANGE_RIGHT_TARGET_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Is Collapsed</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAGGED_VALUE_CHANGE_RIGHT_TARGET__IS_COLLAPSED = DiffPackage.ATTRIBUTE_CHANGE_RIGHT_TARGET_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Tagged Value Change Right Target</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TAGGED_VALUE_CHANGE_RIGHT_TARGET_FEATURE_COUNT = DiffPackage.ATTRIBUTE_CHANGE_RIGHT_TARGET_FEATURE_COUNT + 0;
+	int TAGGED_VALUE_CHANGE_RIGHT_TARGET_FEATURE_COUNT = DiffPackage.ATTRIBUTE_CHANGE_RIGHT_TARGET_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.impl.UpdateTaggedValueImpl <em>Update Tagged Value</em>}' class.
@@ -530,13 +566,31 @@ public interface UMLDiffPackage extends EPackage {
 	int UPDATE_TAGGED_VALUE__RIGHT_ELEMENT = DiffPackage.UPDATE_ATTRIBUTE__RIGHT_ELEMENT;
 
 	/**
+	 * The feature id for the '<em><b>Hide Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UPDATE_TAGGED_VALUE__HIDE_ELEMENTS = DiffPackage.UPDATE_ATTRIBUTE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Is Collapsed</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UPDATE_TAGGED_VALUE__IS_COLLAPSED = DiffPackage.UPDATE_ATTRIBUTE_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Update Tagged Value</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UPDATE_TAGGED_VALUE_FEATURE_COUNT = DiffPackage.UPDATE_ATTRIBUTE_FEATURE_COUNT + 0;
+	int UPDATE_TAGGED_VALUE_FEATURE_COUNT = DiffPackage.UPDATE_ATTRIBUTE_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.impl.AddStereotypeApplicationImpl <em>Add Stereotype Application</em>}' class.

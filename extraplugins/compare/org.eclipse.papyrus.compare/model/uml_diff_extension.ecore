@@ -6,9 +6,9 @@
   <eClassifiers xsi:type="ecore:EClass" name="UMLDiffExtension" abstract="true" eSuperTypes="platform:/plugin/org.eclipse.emf.compare.diff/model/diff.ecore#//AbstractDiffExtension"/>
   <eClassifiers xsi:type="ecore:EClass" name="StereotypeChange" abstract="true" eSuperTypes="#//UMLDiffExtension"/>
   <eClassifiers xsi:type="ecore:EClass" name="TaggedValueChange" abstract="true" eSuperTypes="platform:/plugin/org.eclipse.emf.compare.diff/model/diff.ecore#//AttributeChange platform:/plugin/org.eclipse.emf.compare.diff/model/diff.ecore#//AbstractDiffExtension"/>
-  <eClassifiers xsi:type="ecore:EClass" name="TaggedValueChangeLeftTarget" eSuperTypes="platform:/plugin/org.eclipse.emf.compare.diff/model/diff.ecore#//AttributeChangeLeftTarget"/>
-  <eClassifiers xsi:type="ecore:EClass" name="TaggedValueChangeRightTarget" eSuperTypes="platform:/plugin/org.eclipse.emf.compare.diff/model/diff.ecore#//AttributeChangeRightTarget"/>
-  <eClassifiers xsi:type="ecore:EClass" name="UpdateTaggedValue" eSuperTypes="platform:/plugin/org.eclipse.emf.compare.diff/model/diff.ecore#//UpdateAttribute"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TaggedValueChangeLeftTarget" eSuperTypes="platform:/plugin/org.eclipse.emf.compare.diff/model/diff.ecore#//AttributeChangeLeftTarget #//TaggedValueChange"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TaggedValueChangeRightTarget" eSuperTypes="platform:/plugin/org.eclipse.emf.compare.diff/model/diff.ecore#//AttributeChangeRightTarget #//TaggedValueChange"/>
+  <eClassifiers xsi:type="ecore:EClass" name="UpdateTaggedValue" eSuperTypes="platform:/plugin/org.eclipse.emf.compare.diff/model/diff.ecore#//UpdateAttribute #//TaggedValueChange"/>
   <eClassifiers xsi:type="ecore:EClass" name="AddStereotypeApplication" eSuperTypes="#//StereotypeChange"/>
   <eClassifiers xsi:type="ecore:EClass" name="RemoveStereotypeApplication" eSuperTypes="#//StereotypeChange"/>
 </ecore:EPackage>
