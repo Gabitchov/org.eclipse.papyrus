@@ -29,9 +29,11 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValueChange;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValueChangeLeftTarget;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UMLDiffPackage;
+import org.eclipse.swt.graphics.Image;
 
 /**
  * <!-- begin-user-doc -->
@@ -142,20 +144,9 @@ public class TaggedValueChangeLeftTargetImpl extends AttributeChangeLeftTargetIm
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getText() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Object getImage() {
+	public String getText() {
 		final String attributeLabel = AdapterUtils.getItemProviderText(getAttribute());
 		final String elementLabel = AdapterUtils.getItemProviderText(getLeftElement());
 		final Object leftValue = getLeftElement().eGet(getAttribute());
@@ -175,6 +166,17 @@ public class TaggedValueChangeLeftTargetImpl extends AttributeChangeLeftTargetIm
 			}
 		}
 		return diffLabel;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Object getImage() {
+		AdapterFactoryLabelProvider adapterProvider = new AdapterFactoryLabelProvider(AdapterUtils.getAdapterFactory());
+		Image labelImage = adapterProvider.getImage(getAttribute());
+		return labelImage;
 	}
 
 	/**
