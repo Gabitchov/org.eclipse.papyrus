@@ -16,13 +16,18 @@ package org.eclipse.papyrus.compare.diff.extension;
 import java.util.Iterator;
 
 import org.eclipse.emf.compare.diff.metamodel.AttributeChange;
+import org.eclipse.emf.compare.diff.metamodel.AttributeChangeLeftTarget;
+import org.eclipse.emf.compare.diff.metamodel.AttributeChangeRightTarget;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.DiffFactory;
 import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
 import org.eclipse.emf.compare.diff.metamodel.DiffModel;
+import org.eclipse.emf.compare.diff.metamodel.UpdateAttribute;
 import org.eclipse.emf.compare.diff.metamodel.impl.ModelElementChangeLeftTargetImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValueChange;
+import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValueChangeLeftTarget;
+import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValueChangeRightTarget;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UMLDiffFactory;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UpdateTaggedValue;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.impl.UMLDiffExtensionImpl;
@@ -30,7 +35,7 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 
 
 public class ChangeTaggedValueExtension extends UMLDiffExtensionImpl {
-	
+
 	@Override
 	public void visit(DiffModel diffModel) {
 		final Iterator<EObject> it = diffModel.eAllContents();
@@ -45,15 +50,53 @@ public class ChangeTaggedValueExtension extends UMLDiffExtensionImpl {
 
 					final DiffElement group = findOrCreateDiffElementFor(diffModel, UMLUtil.getBaseElement(stereotypeApplication));
 
-					UpdateTaggedValue newElement = UMLDiffFactory.eINSTANCE.createUpdateTaggedValue();
-					newElement.setLeftElement(attributeChange.getLeftElement());
-					newElement.setRightElement(attributeChange.getRightElement());
-					newElement.setAttribute(attributeChange.getAttribute());
-
+					TaggedValueChange newElement = buildTaggedValueDiff(attributeChange);
 					group.getSubDiffElements().add(newElement);
 				}
 			}
 		}
+	}
+
+	protected TaggedValueChange buildTaggedValueDiff(AttributeChangeLeftTarget attributeChange) {
+		TaggedValueChangeLeftTarget newElement = UMLDiffFactory.eINSTANCE.createTaggedValueChangeLeftTarget();
+		initTaggedValueDiff(newElement, attributeChange);
+		newElement.setLeftTarget(attributeChange.getLeftTarget());
+		return newElement;
+	}
+
+	protected TaggedValueChange buildTaggedValueDiff(AttributeChangeRightTarget attributeChange) {
+		TaggedValueChangeRightTarget newElement = UMLDiffFactory.eINSTANCE.createTaggedValueChangeRightTarget();
+		initTaggedValueDiff(newElement, attributeChange);
+		newElement.setRightTarget(attributeChange.getRightTarget());
+		return newElement;
+	}
+
+
+	protected TaggedValueChange buildTaggedValueDiff(UpdateAttribute attributeChange) {
+		UpdateTaggedValue newElement = UMLDiffFactory.eINSTANCE.createUpdateTaggedValue();
+		initTaggedValueDiff(newElement, attributeChange);
+		return newElement;
+	}
+
+	protected TaggedValueChange buildTaggedValueDiff(AttributeChange attributeChange) {
+		if (attributeChange instanceof UpdateAttribute) {
+			return buildTaggedValueDiff((AttributeChangeRightTarget)attributeChange);
+		} else if (attributeChange instanceof AttributeChangeLeftTarget) {
+			return buildTaggedValueDiff((AttributeChangeLeftTarget)attributeChange);
+		} else if (attributeChange instanceof AttributeChangeRightTarget) {
+			return buildTaggedValueDiff((AttributeChangeRightTarget)attributeChange);
+		} 
+		// make it not abstract
+		TaggedValueChange newElement = UMLDiffFactory.eINSTANCE.createUpdateTaggedValue();
+		initTaggedValueDiff(newElement, attributeChange);
+		return newElement;
+	}
+
+	protected TaggedValueChange initTaggedValueDiff(TaggedValueChange newElement, AttributeChange attributeChange) {
+		newElement.setLeftElement(attributeChange.getLeftElement());
+		newElement.setRightElement(attributeChange.getRightElement());
+		newElement.setAttribute(attributeChange.getAttribute());
+		return newElement;
 	}
 
 	private DiffElement findOrCreateDiffElementFor(DiffModel root, EObject object) {
