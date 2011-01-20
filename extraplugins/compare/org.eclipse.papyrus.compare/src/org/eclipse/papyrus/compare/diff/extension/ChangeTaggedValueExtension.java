@@ -11,7 +11,7 @@
  *  Tatiana Fesenko (CEA LIST) - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.compare.diff;
+package org.eclipse.papyrus.compare.diff.extension;
 
 import java.util.Iterator;
 
