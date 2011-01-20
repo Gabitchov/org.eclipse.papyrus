@@ -154,16 +154,11 @@ public class TaggedValueChangeRightTargetImpl extends AttributeChangeRightTarget
 
 		final String diffLabel;
 		if (isRemote()) {
-			diffLabel = String.format("Tagged value %s: %s -> %s",
-					elementLabel, leftValue, rightValue);
+			diffLabel = String.format("Tagged value %s has been remotely added: %s",
+					elementLabel, leftValue);
 		} else {
-			if (isConflicting()) {
-				diffLabel = String.format("Tagged value %s : remote = %s, local = %s",
-						attributeLabel, rightValue, leftValue);
-			} else {
-				diffLabel = String.format("Tagged value %s: %s -> %s",
-						attributeLabel, rightValue, leftValue);
-			}
+			diffLabel = String.format("Tagged value %s has been removed: %s",
+						attributeLabel, leftValue);
 		}
 		return diffLabel;
 	}

@@ -152,17 +152,10 @@ public abstract class TaggedValueChangeImpl extends AttributeChangeImpl implemen
 		final Object rightValue = getRightElement().eGet(getAttribute());
 
 		final String diffLabel;
-		if (isRemote()) {
-			diffLabel = String.format("Tagged value %s: %s -> %s",
-					elementLabel, leftValue, rightValue);
+		if(isRemote()) {
+			diffLabel = String.format("Tagged value %s : remote = %s, local = %s", elementLabel, leftValue, rightValue);
 		} else {
-			if (isConflicting()) {
-				diffLabel = String.format("Tagged value %s : remote = %s, local = %s",
-						attributeLabel, rightValue, leftValue);
-			} else {
-				diffLabel = String.format("Tagged value %s: %s -> %s",
-						attributeLabel, rightValue, leftValue);
-			}
+			diffLabel = String.format("Tagged value %s: %s -> %s", attributeLabel, rightValue, leftValue);
 		}
 		return diffLabel;
 	}

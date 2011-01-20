@@ -42,36 +42,43 @@ import org.eclipse.swt.graphics.Image;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.impl.TaggedValueChangeLeftTargetImpl#getHideElements <em>Hide Elements</em>}</li>
- *   <li>{@link org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.impl.TaggedValueChangeLeftTargetImpl#isIsCollapsed <em>Is Collapsed</em>}</li>
+ * <li>{@link org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.impl.TaggedValueChangeLeftTargetImpl#getHideElements <em>Hide Elements
+ * </em>}</li>
+ * <li>{@link org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.impl.TaggedValueChangeLeftTargetImpl#isIsCollapsed <em>Is Collapsed</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class TaggedValueChangeLeftTargetImpl extends AttributeChangeLeftTargetImpl implements TaggedValueChangeLeftTarget {
+
 	/**
 	 * The cached value of the '{@link #getHideElements() <em>Hide Elements</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getHideElements()
 	 * @generated
 	 * @ordered
 	 */
 	protected EList<DiffElement> hideElements;
+
 	/**
 	 * The default value of the '{@link #isIsCollapsed() <em>Is Collapsed</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #isIsCollapsed()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final boolean IS_COLLAPSED_EDEFAULT = false;
+
 	/**
 	 * The cached value of the '{@link #isIsCollapsed() <em>Is Collapsed</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #isIsCollapsed()
 	 * @generated
 	 * @ordered
@@ -81,6 +88,7 @@ public class TaggedValueChangeLeftTargetImpl extends AttributeChangeLeftTargetIm
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected TaggedValueChangeLeftTargetImpl() {
@@ -90,6 +98,7 @@ public class TaggedValueChangeLeftTargetImpl extends AttributeChangeLeftTargetIm
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -100,10 +109,11 @@ public class TaggedValueChangeLeftTargetImpl extends AttributeChangeLeftTargetIm
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<DiffElement> getHideElements() {
-		if (hideElements == null) {
+		if(hideElements == null) {
 			hideElements = new EObjectWithInverseResolvingEList.ManyInverse<DiffElement>(DiffElement.class, this, UMLDiffPackage.TAGGED_VALUE_CHANGE_LEFT_TARGET__HIDE_ELEMENTS, DiffPackage.DIFF_ELEMENT__IS_HIDDEN_BY);
 		}
 		return hideElements;
@@ -112,6 +122,7 @@ public class TaggedValueChangeLeftTargetImpl extends AttributeChangeLeftTargetIm
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public boolean isIsCollapsed() {
@@ -121,18 +132,20 @@ public class TaggedValueChangeLeftTargetImpl extends AttributeChangeLeftTargetIm
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setIsCollapsed(boolean newIsCollapsed) {
 		boolean oldIsCollapsed = isCollapsed;
 		isCollapsed = newIsCollapsed;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLDiffPackage.TAGGED_VALUE_CHANGE_LEFT_TARGET__IS_COLLAPSED, oldIsCollapsed, isCollapsed));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void visit(DiffModel diffModel) {
@@ -144,6 +157,7 @@ public class TaggedValueChangeLeftTargetImpl extends AttributeChangeLeftTargetIm
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	public String getText() {
@@ -153,17 +167,10 @@ public class TaggedValueChangeLeftTargetImpl extends AttributeChangeLeftTargetIm
 		final Object rightValue = getRightElement().eGet(getAttribute());
 
 		final String diffLabel;
-		if (isRemote()) {
-			diffLabel = String.format("Tagged value %s: %s -> %s",
-					elementLabel, leftValue, rightValue);
+		if(isRemote()) {
+			diffLabel = String.format("Tagged value %s has been remotely removed: %s", elementLabel, rightValue);
 		} else {
-			if (isConflicting()) {
-				diffLabel = String.format("Tagged value %s : remote = %s, local = %s",
-						attributeLabel, rightValue, leftValue);
-			} else {
-				diffLabel = String.format("Tagged value %s: %s -> %s",
-						attributeLabel, rightValue, leftValue);
-			}
+			diffLabel = String.format("Tagged value %s has been added: %s", attributeLabel, rightValue);
 		}
 		return diffLabel;
 	}
@@ -171,6 +178,7 @@ public class TaggedValueChangeLeftTargetImpl extends AttributeChangeLeftTargetIm
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated NOT
 	 */
 	public Object getImage() {
@@ -182,6 +190,7 @@ public class TaggedValueChangeLeftTargetImpl extends AttributeChangeLeftTargetIm
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public IMerger provideMerger() {
@@ -193,14 +202,15 @@ public class TaggedValueChangeLeftTargetImpl extends AttributeChangeLeftTargetIm
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLDiffPackage.TAGGED_VALUE_CHANGE_LEFT_TARGET__HIDE_ELEMENTS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getHideElements()).basicAdd(otherEnd, msgs);
+		switch(featureID) {
+		case UMLDiffPackage.TAGGED_VALUE_CHANGE_LEFT_TARGET__HIDE_ELEMENTS:
+			return ((InternalEList<InternalEObject>)(InternalEList<?>)getHideElements()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -208,13 +218,14 @@ public class TaggedValueChangeLeftTargetImpl extends AttributeChangeLeftTargetIm
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case UMLDiffPackage.TAGGED_VALUE_CHANGE_LEFT_TARGET__HIDE_ELEMENTS:
-				return ((InternalEList<?>)getHideElements()).basicRemove(otherEnd, msgs);
+		switch(featureID) {
+		case UMLDiffPackage.TAGGED_VALUE_CHANGE_LEFT_TARGET__HIDE_ELEMENTS:
+			return ((InternalEList<?>)getHideElements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -222,15 +233,16 @@ public class TaggedValueChangeLeftTargetImpl extends AttributeChangeLeftTargetIm
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case UMLDiffPackage.TAGGED_VALUE_CHANGE_LEFT_TARGET__HIDE_ELEMENTS:
-				return getHideElements();
-			case UMLDiffPackage.TAGGED_VALUE_CHANGE_LEFT_TARGET__IS_COLLAPSED:
-				return isIsCollapsed();
+		switch(featureID) {
+		case UMLDiffPackage.TAGGED_VALUE_CHANGE_LEFT_TARGET__HIDE_ELEMENTS:
+			return getHideElements();
+		case UMLDiffPackage.TAGGED_VALUE_CHANGE_LEFT_TARGET__IS_COLLAPSED:
+			return isIsCollapsed();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -238,19 +250,20 @@ public class TaggedValueChangeLeftTargetImpl extends AttributeChangeLeftTargetIm
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case UMLDiffPackage.TAGGED_VALUE_CHANGE_LEFT_TARGET__HIDE_ELEMENTS:
-				getHideElements().clear();
-				getHideElements().addAll((Collection<? extends DiffElement>)newValue);
-				return;
-			case UMLDiffPackage.TAGGED_VALUE_CHANGE_LEFT_TARGET__IS_COLLAPSED:
-				setIsCollapsed((Boolean)newValue);
-				return;
+		switch(featureID) {
+		case UMLDiffPackage.TAGGED_VALUE_CHANGE_LEFT_TARGET__HIDE_ELEMENTS:
+			getHideElements().clear();
+			getHideElements().addAll((Collection<? extends DiffElement>)newValue);
+			return;
+		case UMLDiffPackage.TAGGED_VALUE_CHANGE_LEFT_TARGET__IS_COLLAPSED:
+			setIsCollapsed((Boolean)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -258,17 +271,18 @@ public class TaggedValueChangeLeftTargetImpl extends AttributeChangeLeftTargetIm
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case UMLDiffPackage.TAGGED_VALUE_CHANGE_LEFT_TARGET__HIDE_ELEMENTS:
-				getHideElements().clear();
-				return;
-			case UMLDiffPackage.TAGGED_VALUE_CHANGE_LEFT_TARGET__IS_COLLAPSED:
-				setIsCollapsed(IS_COLLAPSED_EDEFAULT);
-				return;
+		switch(featureID) {
+		case UMLDiffPackage.TAGGED_VALUE_CHANGE_LEFT_TARGET__HIDE_ELEMENTS:
+			getHideElements().clear();
+			return;
+		case UMLDiffPackage.TAGGED_VALUE_CHANGE_LEFT_TARGET__IS_COLLAPSED:
+			setIsCollapsed(IS_COLLAPSED_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -276,15 +290,16 @@ public class TaggedValueChangeLeftTargetImpl extends AttributeChangeLeftTargetIm
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case UMLDiffPackage.TAGGED_VALUE_CHANGE_LEFT_TARGET__HIDE_ELEMENTS:
-				return hideElements != null && !hideElements.isEmpty();
-			case UMLDiffPackage.TAGGED_VALUE_CHANGE_LEFT_TARGET__IS_COLLAPSED:
-				return isCollapsed != IS_COLLAPSED_EDEFAULT;
+		switch(featureID) {
+		case UMLDiffPackage.TAGGED_VALUE_CHANGE_LEFT_TARGET__HIDE_ELEMENTS:
+			return hideElements != null && !hideElements.isEmpty();
+		case UMLDiffPackage.TAGGED_VALUE_CHANGE_LEFT_TARGET__IS_COLLAPSED:
+			return isCollapsed != IS_COLLAPSED_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -292,20 +307,25 @@ public class TaggedValueChangeLeftTargetImpl extends AttributeChangeLeftTargetIm
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == AbstractDiffExtension.class) {
-			switch (derivedFeatureID) {
-				case UMLDiffPackage.TAGGED_VALUE_CHANGE_LEFT_TARGET__HIDE_ELEMENTS: return DiffPackage.ABSTRACT_DIFF_EXTENSION__HIDE_ELEMENTS;
-				case UMLDiffPackage.TAGGED_VALUE_CHANGE_LEFT_TARGET__IS_COLLAPSED: return DiffPackage.ABSTRACT_DIFF_EXTENSION__IS_COLLAPSED;
-				default: return -1;
+		if(baseClass == AbstractDiffExtension.class) {
+			switch(derivedFeatureID) {
+			case UMLDiffPackage.TAGGED_VALUE_CHANGE_LEFT_TARGET__HIDE_ELEMENTS:
+				return DiffPackage.ABSTRACT_DIFF_EXTENSION__HIDE_ELEMENTS;
+			case UMLDiffPackage.TAGGED_VALUE_CHANGE_LEFT_TARGET__IS_COLLAPSED:
+				return DiffPackage.ABSTRACT_DIFF_EXTENSION__IS_COLLAPSED;
+			default:
+				return -1;
 			}
 		}
-		if (baseClass == TaggedValueChange.class) {
-			switch (derivedFeatureID) {
-				default: return -1;
+		if(baseClass == TaggedValueChange.class) {
+			switch(derivedFeatureID) {
+			default:
+				return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -314,20 +334,25 @@ public class TaggedValueChangeLeftTargetImpl extends AttributeChangeLeftTargetIm
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == AbstractDiffExtension.class) {
-			switch (baseFeatureID) {
-				case DiffPackage.ABSTRACT_DIFF_EXTENSION__HIDE_ELEMENTS: return UMLDiffPackage.TAGGED_VALUE_CHANGE_LEFT_TARGET__HIDE_ELEMENTS;
-				case DiffPackage.ABSTRACT_DIFF_EXTENSION__IS_COLLAPSED: return UMLDiffPackage.TAGGED_VALUE_CHANGE_LEFT_TARGET__IS_COLLAPSED;
-				default: return -1;
+		if(baseClass == AbstractDiffExtension.class) {
+			switch(baseFeatureID) {
+			case DiffPackage.ABSTRACT_DIFF_EXTENSION__HIDE_ELEMENTS:
+				return UMLDiffPackage.TAGGED_VALUE_CHANGE_LEFT_TARGET__HIDE_ELEMENTS;
+			case DiffPackage.ABSTRACT_DIFF_EXTENSION__IS_COLLAPSED:
+				return UMLDiffPackage.TAGGED_VALUE_CHANGE_LEFT_TARGET__IS_COLLAPSED;
+			default:
+				return -1;
 			}
 		}
-		if (baseClass == TaggedValueChange.class) {
-			switch (baseFeatureID) {
-				default: return -1;
+		if(baseClass == TaggedValueChange.class) {
+			switch(baseFeatureID) {
+			default:
+				return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
@@ -336,11 +361,13 @@ public class TaggedValueChangeLeftTargetImpl extends AttributeChangeLeftTargetIm
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if(eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (isCollapsed: ");
