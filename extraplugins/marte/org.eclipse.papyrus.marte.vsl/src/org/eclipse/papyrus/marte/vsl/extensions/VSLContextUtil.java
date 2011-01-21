@@ -19,7 +19,6 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.papyrus.marte.vsl.validation.VSLJavaValidator;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
@@ -196,10 +195,13 @@ public class VSLContextUtil {
 								getAppliedStereotype("MARTE::MARTE_Annexes::VSL::DataTypes::TupleType") ;
 		if (tupleStereotype != null) {
 			EObject stereotypeApplication = visited.getStereotypeApplication(tupleStereotype) ;
-			EStructuralFeature choiceAttrib = stereotypeApplication.eClass().getEStructuralFeature("tupleAttrib") ;
-			List<Property> attribCollection = (List<Property>) stereotypeApplication.eGet(choiceAttrib) ;
-			if (attribCollection.isEmpty()) { // all the attributes of "visited" represent choice attributes
+			EStructuralFeature tupleAttribute = stereotypeApplication.eClass().getEStructuralFeature("tupleAttrib") ;
+			List<Property> attribCollection = (List<Property>) stereotypeApplication.eGet(tupleAttribute) ;
+			if (attribCollection.isEmpty()) { // no attributes are specified, add all
 				tupleAttribs.addAll(visited.getAttributes()) ;
+			}
+			else {
+				tupleAttribs.addAll(attribCollection) ;
 			}
 		}
 		else { // see if NfpType is applied
