@@ -20,7 +20,6 @@ import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.papyrus.core.extension.commands.CreationCommandDescriptor;
 import org.eclipse.papyrus.core.extension.commands.CreationCommandRegistry;
 import org.eclipse.papyrus.core.extension.commands.ICreationCommandRegistry;
-import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.part.EditorActionBarContributor;
 
 /**
@@ -31,28 +30,15 @@ import org.eclipse.ui.part.EditorActionBarContributor;
  */
 public class ActionBarCreateDiagramContributor extends EditorActionBarContributor {
 
-	private ArrayList<ActionBarCreateDiagramAction> createDiagramActions = new ArrayList<ActionBarCreateDiagramAction>();
-
-	public ActionBarCreateDiagramContributor() {
-	}
-
 	public void contributeToToolBar(IToolBarManager toolBarManager) {
 		ArrayList<CreationCommandDescriptor> sortedDescs = new ArrayList<CreationCommandDescriptor>(getCreationCommandRegistry().getCommandDescriptors());
 		Collections.sort(sortedDescs);
 		for(CreationCommandDescriptor desc : sortedDescs) {
-			ActionBarCreateDiagramAction createDiagramAction = new ActionBarCreateDiagramAction(desc);
-			createDiagramActions.add(createDiagramAction);
-			toolBarManager.add(createDiagramAction);
+			toolBarManager.add(new ActionBarCreateDiagramAction(desc));
 		}
 	}
 
 	private static ICreationCommandRegistry getCreationCommandRegistry() {
 		return CreationCommandRegistry.getInstance(org.eclipse.papyrus.core.Activator.PLUGIN_ID);
-	}
-
-	public void setActiveEditor(IEditorPart targetEditor) {
-		for(ActionBarCreateDiagramAction createDiagramAction : createDiagramActions) {
-			createDiagramAction.setActiveEditor(targetEditor);
-		}
 	}
 }

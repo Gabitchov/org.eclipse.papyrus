@@ -29,7 +29,7 @@ import org.eclipse.papyrus.core.navigation.NavigationHelper;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.core.utils.GMFtoEMFCommandWrapper;
-import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.PlatformUI;
 
 /**
  * This action will try to create a diagram on the currently selected element,
@@ -43,8 +43,6 @@ import org.eclipse.ui.IEditorPart;
 public class ActionBarCreateDiagramAction extends Action {
 
 	private CreationCommandDescriptor desc;
-
-	private IEditorPart activeEditor = null;
 
 	public ActionBarCreateDiagramAction(CreationCommandDescriptor desc) {
 		super(desc.getLabel());
@@ -64,10 +62,6 @@ public class ActionBarCreateDiagramAction extends Action {
 	@Override
 	public String getToolTipText() {
 		return getText();
-	}
-
-	public void setActiveEditor(IEditorPart editor) {
-		activeEditor = editor;
 	}
 
 	@Override
@@ -118,13 +112,10 @@ public class ActionBarCreateDiagramAction extends Action {
 	}
 
 	private EObject getSelectedElement() {
-		if(activeEditor != null) {
-			ISelection selection = activeEditor.getEditorSite().getSelectionProvider().getSelection();
-			if(selection instanceof IStructuredSelection) {
-				Object obj = ((IStructuredSelection)selection).getFirstElement();
-				return resolveSemanticObject(obj);
-
-			}
+		ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().getSelection();
+		if(selection instanceof IStructuredSelection) {
+			Object obj = ((IStructuredSelection)selection).getFirstElement();
+			return resolveSemanticObject(obj);
 		}
 		return null;
 	}
