@@ -38,6 +38,12 @@
          <category
                categoryID="org.eclipse.papyrus.editor.category">
          </category>
+         <menu
+               menuID="org.eclipse.papyrus.diagram.ui.menu">
+         </menu>
+         <toolbar
+               toolbarID="org.eclipes.papyrus.menu.toolbar">
+         </toolbar>
       </configuration>
    </extension>
 
