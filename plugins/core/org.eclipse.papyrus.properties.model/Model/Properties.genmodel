@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.papyrus.properties.model/src-gen"
+    editDirectory="/org.eclipse.papyrus.properties.model.edit/src-gen" editorDirectory="/org.eclipse.papyrus.properties.model.editor/src-gen"
+    modelPluginID="org.eclipse.papyrus.properties.model" modelName="Properties" testsDirectory="/org.eclipse.papyrus.properties.model.tests/src-gen"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false">
+  <foreignModel>Properties.ecore</foreignModel>
+  <genPackages prefix="Properties" basePackage="org.eclipse.papyrus" disposableProviderFactory="true"
+      ecorePackage="Properties.ecore#/">
+    <nestedGenPackages prefix="Environment" basePackage="org.eclipse.papyrus.properties"
+        disposableProviderFactory="true" ecorePackage="Properties.ecore#//environment">
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="Properties.ecore#//environment/Type">
+        <genEnumLiterals ecoreEnumLiteral="Properties.ecore#//environment/Type/String"/>
+        <genEnumLiterals ecoreEnumLiteral="Properties.ecore#//environment/Type/Boolean"/>
+        <genEnumLiterals ecoreEnumLiteral="Properties.ecore#//environment/Type/Integer"/>
+        <genEnumLiterals ecoreEnumLiteral="Properties.ecore#//environment/Type/Reference"/>
+        <genEnumLiterals ecoreEnumLiteral="Properties.ecore#//environment/Type/Enumeration"/>
+      </genEnums>
+      <genClasses ecoreClass="Properties.ecore#//environment/Environment">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Properties.ecore#//environment/Environment/modelElementFactories"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Properties.ecore#//environment/Environment/constraintTypes"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Properties.ecore#//environment/Environment/widgetTypes"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Properties.ecore#//environment/Environment/propertyEditorTypes"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Properties.ecore#//environment/Environment/compositeWidgetTypes"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Properties.ecore#//environment/Environment/layoutTypes"/>
+      </genClasses>
+      <genClasses ecoreClass="Properties.ecore#//environment/PropertyEditorType">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//environment/PropertyEditorType/type"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//environment/PropertyEditorType/multiplicity"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="Properties.ecore#//environment/WidgetType">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//environment/WidgetType/label"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//environment/WidgetType/widgetClass"/>
+      </genClasses>
+      <genClasses ecoreClass="Properties.ecore#//environment/CompositeWidgetType"/>
+      <genClasses ecoreClass="Properties.ecore#//environment/LayoutType"/>
+      <genClasses ecoreClass="Properties.ecore#//environment/ConstraintType">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//environment/ConstraintType/label"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//environment/ConstraintType/constraintClass"/>
+      </genClasses>
+      <genClasses ecoreClass="Properties.ecore#//environment/ModelElementFactoryDescriptor">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//environment/ModelElementFactoryDescriptor/name"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//environment/ModelElementFactoryDescriptor/factoryClass"/>
+      </genClasses>
+      <genClasses ecoreClass="Properties.ecore#//environment/StandardWidgetType"/>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Contexts" basePackage="org.eclipse.papyrus.properties"
+        disposableProviderFactory="true" ecorePackage="Properties.ecore#//contexts">
+      <genClasses ecoreClass="Properties.ecore#//contexts/Context">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//contexts/Context/name"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Properties.ecore#//contexts/Context/views"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Properties.ecore#//contexts/Context/tabs"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Properties.ecore#//contexts/Context/dataContexts"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="Properties.ecore#//contexts/DisplayUnit">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Properties.ecore#//contexts/DisplayUnit/constraints"/>
+      </genClasses>
+      <genClasses ecoreClass="Properties.ecore#//contexts/View">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//contexts/View/name"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference Properties.ecore#//contexts/View/sections"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference Properties.ecore#//contexts/View/datacontexts"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//contexts/View/elementMultiplicity"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Properties.ecore#//contexts/View/context"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//contexts/View/automaticContext"/>
+      </genClasses>
+      <genClasses ecoreClass="Properties.ecore#//contexts/Tab">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//contexts/Tab/label"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//contexts/Tab/id"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//contexts/Tab/category"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//contexts/Tab/image"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference Properties.ecore#//contexts/Tab/afterTab"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Properties.ecore#//contexts/Tab/sections"/>
+      </genClasses>
+      <genClasses ecoreClass="Properties.ecore#//contexts/Section">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//contexts/Section/name"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Properties.ecore#//contexts/Section/tab"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//contexts/Section/sectionFile"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference Properties.ecore#//contexts/Section/widget"/>
+      </genClasses>
+      <genClasses ecoreClass="Properties.ecore#//contexts/DataContextElement">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//contexts/DataContextElement/name"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Properties.ecore#//contexts/DataContextElement/properties"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Properties.ecore#//contexts/DataContextElement/package"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference Properties.ecore#//contexts/DataContextElement/supertypes"/>
+      </genClasses>
+      <genClasses ecoreClass="Properties.ecore#//contexts/Property">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//contexts/Property/name"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//contexts/Property/label"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//contexts/Property/type"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Properties.ecore#//contexts/Property/contextElement"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//contexts/Property/multiplicity"/>
+      </genClasses>
+      <genClasses ecoreClass="Properties.ecore#//contexts/UnknownProperty"/>
+      <genClasses ecoreClass="Properties.ecore#//contexts/DataContextPackage">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Properties.ecore#//contexts/DataContextPackage/elements"/>
+      </genClasses>
+      <genClasses ecoreClass="Properties.ecore#//contexts/DataContextRoot">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//contexts/DataContextRoot/label"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference Properties.ecore#//contexts/DataContextRoot/modelElementFactory"/>
+      </genClasses>
+      <genClasses ecoreClass="Properties.ecore#//contexts/ConstraintDescriptor">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//contexts/ConstraintDescriptor/name"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Properties.ecore#//contexts/ConstraintDescriptor/display"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference Properties.ecore#//contexts/ConstraintDescriptor/constraintType"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Properties.ecore#//contexts/ConstraintDescriptor/constraints"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Properties.ecore#//contexts/ConstraintDescriptor/properties"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference Properties.ecore#//contexts/ConstraintDescriptor/overriddenConstraints"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="Properties.ecore#//contexts/ConfigProperty">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//contexts/ConfigProperty/name"/>
+      </genClasses>
+      <genClasses ecoreClass="Properties.ecore#//contexts/ValueProperty">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//contexts/ValueProperty/value"/>
+      </genClasses>
+      <genClasses ecoreClass="Properties.ecore#//contexts/ReferenceProperty">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference Properties.ecore#//contexts/ReferenceProperty/value"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Ui" basePackage="org.eclipse.papyrus.properties" disposableProviderFactory="true"
+        ecorePackage="Properties.ecore#//ui">
+      <genClasses ecoreClass="Properties.ecore#//ui/Element"/>
+      <genClasses image="false" ecoreClass="Properties.ecore#//ui/UIComponent">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Properties.ecore#//ui/UIComponent/attributes"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="Properties.ecore#//ui/Widget"/>
+      <genClasses ecoreClass="Properties.ecore#//ui/StandardWidget">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference Properties.ecore#//ui/StandardWidget/widgetType"/>
+      </genClasses>
+      <genClasses ecoreClass="Properties.ecore#//ui/PropertyEditor">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference Properties.ecore#//ui/PropertyEditor/property"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//ui/PropertyEditor/readOnly"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference Properties.ecore#//ui/PropertyEditor/widgetType"/>
+      </genClasses>
+      <genClasses ecoreClass="Properties.ecore#//ui/CompositeWidget">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Properties.ecore#//ui/CompositeWidget/layout"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Properties.ecore#//ui/CompositeWidget/widgets"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference Properties.ecore#//ui/CompositeWidget/widgetType"/>
+      </genClasses>
+      <genClasses ecoreClass="Properties.ecore#//ui/Layout">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference Properties.ecore#//ui/Layout/layoutType"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="Properties.ecore#//ui/WidgetAttribute">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//ui/WidgetAttribute/name"/>
+      </genClasses>
+      <genClasses ecoreClass="Properties.ecore#//ui/ValueAttribute">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//ui/ValueAttribute/value"/>
+      </genClasses>
+      <genClasses ecoreClass="Properties.ecore#//ui/ReferenceAttribute">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Properties.ecore#//ui/ReferenceAttribute/value"/>
+      </genClasses>
+      <genClasses ecoreClass="Properties.ecore#//ui/UnknownComponent">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//ui/UnknownComponent/typeName"/>
+      </genClasses>
+    </nestedGenPackages>
+  </genPackages>
+</genmodel:GenModel>

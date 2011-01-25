@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+   <extension-point id="context" name="%extension-point.context" schema="schema/context.exsd"/>
+   <extension-point id="environment" name="%extension-point.environment" schema="schema/environment.exsd"/>
+
+   <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
+      <propertyContributor
+            contributorId="TreeOutlinePage"
+            tabDescriptorProvider="org.eclipse.papyrus.properties.xwt.XWTTabDescriptorProvider">
+         <propertyCategory
+               category="org.eclipse.papyrus"></propertyCategory>
+      </propertyContributor>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            class="org.eclipse.papyrus.properties.runtime.preferences.PreferencesPackage"
+            genModel="Model/Preferences.genmodel"
+            uri="http://www.eclipse.org/papryus/properties/preferences">
+      </package>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.uri_mapping">
+      <mapping
+            source="pathmap://PPEResources/"
+            target="platform:/plugin/org.eclipse.papyrus.properties/Model/">
+      </mapping>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="org.eclipse.papyrus.preferences.generalcategory"
+            class="org.eclipse.papyrus.properties.preferences.Preferences"
+            id="org.eclipse.papyrus.properties.propertyview"
+            name="%page.name">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            class="org.eclipse.papyrus.properties.root.RootPackage"
+            genModel="Model/PropertiesRoot.genmodel"
+            uri="http://www.eclipse.org/papryus/properties/root">
+      </package>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.properties.environment">
+      <environment
+            environmentModel="model/Environment.xmi">
+      </environment>
+   </extension>
+</plugin>

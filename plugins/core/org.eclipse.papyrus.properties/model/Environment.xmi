@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ASCII"?>
+<environment:Environment xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:environment="http://www.eclipse.org/papyrus/properties/environment">
+  <modelElementFactories name="EMF Factory" factoryClass="org.eclipse.papyrus.properties.modelelement.EMFModelElementFactory"/>
+  <constraintTypes label="EMF Instance Of" constraintClass="org.eclipse.papyrus.properties.constraints.EMFInstanceOfConstraint"/>
+  <constraintTypes label="True Constraint" constraintClass="org.eclipse.papyrus.properties.constraints.TrueConstraint"/>
+  <constraintTypes label="EMF Query" constraintClass="org.eclipse.papyrus.properties.constraints.EMFQueryConstraint"/>
+  <widgetTypes label="Label" widgetClass="Label"/>
+  <widgetTypes label="Text" widgetClass="Text"/>
+  <propertyEditorTypes label="StringEditor" widgetClass="ppe:StringEditor"/>
+  <propertyEditorTypes label="BooleanCombo" widgetClass="ppe:BooleanCombo" type="Boolean"/>
+  <propertyEditorTypes label="BooleanCheckbox" widgetClass="ppe:BooleanCheckbox" type="Boolean"/>
+  <propertyEditorTypes label="BooleanRadio" widgetClass="ppe:BooleanRadio" type="Boolean"/>
+  <propertyEditorTypes label="IntegerEditor" widgetClass="ppe:IntegerEditor" type="Integer"/>
+  <propertyEditorTypes label="EnumCombo" widgetClass="ppe:EnumCombo" type="Enumeration"/>
+  <propertyEditorTypes label="EnumRadio" widgetClass="ppe:EnumRadio"/>
+  <propertyEditorTypes label="ReferenceCombo" widgetClass="ppe:ReferenceCombo" type="Reference"/>
+  <propertyEditorTypes label="MultiReference" widgetClass="ppe:MultiReference" type="Reference" multiplicity="-1"/>
+  <propertyEditorTypes label="MultiString" widgetClass="ppe:MultiString" multiplicity="-1"/>
+  <propertyEditorTypes label="MultiInteger" widgetClass="ppe:MultiInteger" type="Integer" multiplicity="-1"/>
+  <propertyEditorTypes label="ViewEditor" widgetClass="ppe:ViewEditor" type="Reference" multiplicity="-1"/>
+  <propertyEditorTypes label="ReferenceDialog" widgetClass="ppe:ReferenceDialog" type="Reference"/>
+  <compositeWidgetTypes label="Composite" widgetClass="Composite"/>
+  <compositeWidgetTypes label="Group" widgetClass="Group"/>
+  <layoutTypes label="GridLayout" widgetClass="GridLayout"/>
+  <layoutTypes label="FillLayout" widgetClass="FillLayout"/>
+  <layoutTypes label="RowLayout" widgetClass="RowLayout"/>
+  <layoutTypes label="PropertiesLayout" widgetClass="ppel:PropertiesLayout"/>
+</environment:Environment>
