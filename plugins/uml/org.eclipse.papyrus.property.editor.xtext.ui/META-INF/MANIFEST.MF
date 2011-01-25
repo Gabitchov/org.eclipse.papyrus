@@ -25,5 +25,7 @@ Require-Bundle: org.eclipse.papyrus.property.editor.xtext;visibility:=reexport,
  org.eclipse.papyrus.service.edit;bundle-version="0.8.0"
 Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.eclipse.papyrus.property.editor.xtext.ui.contentassist.antlr
+Export-Package: org.eclipse.papyrus.property.editor.xtext.ui.contentassist.antlr,
+ org.eclipse.papyrus.property.editor.xtext.ui.contributions,
+ org.eclipse.papyrus.property.editor.xtext.ui.internal
 Bundle-Activator: org.eclipse.papyrus.property.editor.xtext.ui.internal.UmlPropertyActivator
