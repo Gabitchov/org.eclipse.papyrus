@@ -15,8 +15,8 @@ import java.util.Collections;
 
 import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.IChangeListener;
-import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.widgets.Activator;
 import org.eclipse.papyrus.widgets.messages.Messages;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
@@ -109,10 +109,10 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 
 			public void widgetSelected(SelectionEvent e) {
 				int result = dialog.open();
-				if(result == Dialog.OK) {
-					Object value = dialog.getFirstResult();
+				if(result == Window.OK) {
+					Object newValue = dialog.getFirstResult();
 					updateLabel();
-					modelProperty.setValue(value);
+					modelProperty.setValue(newValue);
 				}
 			}
 
@@ -151,18 +151,18 @@ public class ReferenceDialog extends AbstractValueEditor implements IChangeListe
 			return;
 		}
 
-		String label;
+		String valueLabel;
 		Image image = null;
 		if(getValue() == null)
-			label = Messages.ReferenceDialog_Unset;
+			valueLabel = Messages.ReferenceDialog_Unset;
 		else if(labelProvider == null)
-			label = getValue().toString();
+			valueLabel = getValue().toString();
 		else {
-			label = labelProvider.getText(getValue());
+			valueLabel = labelProvider.getText(getValue());
 			image = labelProvider.getImage(getValue());
 		}
 
-		currentValueLabel.setText(label);
+		currentValueLabel.setText(valueLabel);
 		currentValueLabel.setImage(image);
 	}
 

@@ -105,6 +105,7 @@ public class EncapsulatedContentProvider implements IStructuredContentProvider {
 	 * {@inheritDoc}
 	 */
 	public void dispose() {
+		//Nothing
 	}
 
 	/**

@@ -76,7 +76,7 @@ public class StringSelector implements IElementSelector {
 	 * {@inheritDoc}
 	 */
 	public void createControls(Composite parent) {
-		text = new Text(parent, multiline ? SWT.MULTI : SWT.NONE);
+		text = new Text(parent, (multiline ? SWT.MULTI : SWT.NONE) | SWT.BORDER);
 	}
 
 	/**

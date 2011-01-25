@@ -30,7 +30,15 @@ import org.eclipse.swt.widgets.Control;
 public interface ReferenceValueFactory {
 
 	/**
-	 * Creates an Object of type T
+	 * Indicates if this factory can create new instances
+	 * 
+	 * @return
+	 *         True if the factory can create a new object
+	 */
+	public boolean canCreateObject();
+
+	/**
+	 * Creates a new Object
 	 * The widget Control can be used to display a dialog if additional
 	 * information is needed to create the object (e.g. the users needs
 	 * to input a name)
@@ -43,7 +51,7 @@ public interface ReferenceValueFactory {
 	 *        The widget calling this factory. It can be used for example to retrieve
 	 *        the Display for opening a Dialog
 	 * @return
-	 *         The newly created object.
+	 *         The newly created object, or null if no object has been created
 	 */
 	public Object createObject(Control widget);
 

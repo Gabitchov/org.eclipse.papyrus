@@ -100,7 +100,7 @@ public class Activator extends AbstractUIPlugin {
 		final ImageRegistry registry = getDefault().getImageRegistry();
 		Image image = registry.get(path);
 		if(image == null) {
-			registry.put(path, Activator.imageDescriptorFromPlugin(pluginId, path));
+			registry.put(path, AbstractUIPlugin.imageDescriptorFromPlugin(pluginId, path));
 			image = registry.get(path);
 		}
 		return image;

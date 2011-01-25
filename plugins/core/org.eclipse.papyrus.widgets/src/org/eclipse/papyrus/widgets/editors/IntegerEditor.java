@@ -44,9 +44,9 @@ public class IntegerEditor extends StringEditor {
 	public IntegerEditor(Composite parent, int style, String label) {
 		super(parent, style, label);
 
-		targetToModelConverter = StringToNumberConverter.toInteger(true);
+		targetToModelConverter = StringToNumberConverter.toInteger(false);
 
-		setConverters(targetToModelConverter, NumberToStringConverter.fromInteger(true));
+		setConverters(targetToModelConverter, NumberToStringConverter.fromInteger(false));
 	}
 
 	/**

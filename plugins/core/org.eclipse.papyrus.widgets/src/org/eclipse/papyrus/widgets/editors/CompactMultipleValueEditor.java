@@ -78,6 +78,19 @@ public class CompactMultipleValueEditor extends AbstractListEditor implements IC
 	 *        The widget in which this editor is created
 	 * @param style
 	 *        The style for this editor's control
+	 */
+	public CompactMultipleValueEditor(Composite parent, int style, IElementSelector selector) {
+		this(parent, style, selector, false, false, ", ", null);
+	}
+
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param parent
+	 *        The widget in which this editor is created
+	 * @param style
+	 *        The style for this editor's control
 	 * @param selector
 	 *        The element selector to be used in the selection dialog
 	 * @param ordered

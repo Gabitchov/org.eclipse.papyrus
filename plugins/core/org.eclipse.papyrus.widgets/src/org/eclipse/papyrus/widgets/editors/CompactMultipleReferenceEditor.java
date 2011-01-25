@@ -39,9 +39,28 @@ public class CompactMultipleReferenceEditor extends CompactMultipleValueEditor {
 	 * Constructor.
 	 * 
 	 * @param parent
+	 *        The widget in which this editor is created
 	 * @param style
+	 *        The style for this editor's control
+	 */
+	public CompactMultipleReferenceEditor(Composite parent, int style) {
+		this(parent, style, true, false);
+	}
+
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param parent
+	 *        The widget in which this editor is created
+	 * @param style
+	 *        The style for this editor's control
+	 * @param selector
+	 *        The element selector to be used in the selection dialog
 	 * @param ordered
+	 *        True if the multivalued property is ordered
 	 * @param unique
+	 *        True if the multivalued property needs unique values
 	 */
 	public CompactMultipleReferenceEditor(Composite parent, int style, boolean ordered, boolean unique) {
 		super(parent, style, new ReferenceSelector(unique), ordered, unique);

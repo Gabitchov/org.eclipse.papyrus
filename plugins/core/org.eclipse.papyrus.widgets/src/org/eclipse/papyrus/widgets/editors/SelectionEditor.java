@@ -409,7 +409,7 @@ public class SelectionEditor extends Composite implements SelectionListener {
 		if(newIndex < 0 || newIndex >= size)
 			throw new IndexOutOfBoundsException("newIndex: " + newIndex + ", size:" + size); //$NON-NLS-1$ //$NON-NLS-2$
 		Object element = list.remove(oldIndex);
-		list.add(newIndex, element);;
+		list.add(newIndex, element);
 	}
 
 	/**

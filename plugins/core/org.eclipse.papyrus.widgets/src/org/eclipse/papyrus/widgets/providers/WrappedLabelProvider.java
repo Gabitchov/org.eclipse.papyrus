@@ -64,12 +64,14 @@ public class WrappedLabelProvider implements ILabelProvider {
 	 * {@inheritDoc}
 	 */
 	public void addListener(ILabelProviderListener listener) {
+		//Nothing
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public void dispose() {
+		//Nothing
 	}
 
 	/**
@@ -83,6 +85,7 @@ public class WrappedLabelProvider implements ILabelProvider {
 	 * {@inheritDoc}
 	 */
 	public void removeListener(ILabelProviderListener listener) {
+		//Nothing
 	}
 
 	/**

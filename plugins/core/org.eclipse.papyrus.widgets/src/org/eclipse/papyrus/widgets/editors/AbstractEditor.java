@@ -105,7 +105,10 @@ public abstract class AbstractEditor extends Composite {
 	 */
 	public AbstractEditor(Composite parent, int style, String label) {
 		super(parent, style);
-		setLayout(new GridLayout(2, false));
+		GridLayout layout = new GridLayout(2, false);
+		layout.marginHeight = 0;
+		layout.marginWidth = 0;
+		setLayout(layout);
 		if(label != null) {
 			createLabel(label);
 		}

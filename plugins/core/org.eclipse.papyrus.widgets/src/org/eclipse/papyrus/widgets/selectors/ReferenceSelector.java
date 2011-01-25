@@ -85,6 +85,10 @@ public class ReferenceSelector implements IElementSelector {
 		//There is no way to retrieve the filteredElements on a FList
 		//We can only retrieve the selected ones
 		//Fix : we select everything, then we return the selection
+		if(contentProvider == null) {
+			return new Object[0];
+		}
+
 		fList.setSelection(contentProvider.getElements());
 		Object[] allElements = fList.getSelection();
 		addSelectedElements(allElements);
@@ -165,7 +169,8 @@ public class ReferenceSelector implements IElementSelector {
 		filter.addChangeListener(new Listener() {
 
 			public void handleEvent(Event event) {
-				fList.setFilter(filter.getFilter());
+				if(!fList.isDisposed())
+					fList.setFilter(filter.getFilter());
 			}
 		});
 	}

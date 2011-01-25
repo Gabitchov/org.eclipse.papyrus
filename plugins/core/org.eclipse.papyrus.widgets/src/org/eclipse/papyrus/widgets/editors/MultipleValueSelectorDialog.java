@@ -475,8 +475,8 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements Sele
 		newObjects.add(newObject);
 		selector.newObjectCreated(newObject);
 
-		Object[] newObjects = new Object[]{ newObject };
-		addElements(newObjects);
+		Object[] createdObjects = new Object[]{ newObject };
+		addElements(createdObjects);
 
 		selector.setSelectedElements(allElements.toArray());
 	}
@@ -497,7 +497,7 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements Sele
 		if(newIndex < 0 || newIndex >= size)
 			throw new IndexOutOfBoundsException("newIndex: " + newIndex + ", size:" + size); //$NON-NLS-1$ //$NON-NLS-2$
 		Object element = list.remove(oldIndex);
-		list.add(newIndex, element);;
+		list.add(newIndex, element);
 	}
 
 	/**
@@ -606,7 +606,7 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements Sele
 	private void updateControls() {
 		updateControl(up, ordered);
 		updateControl(down, ordered);
-		updateControl(create, this.factory != null);
+		updateControl(create, this.factory != null && this.factory.canCreateObject());
 	}
 
 	private void updateControl(Control control, boolean enabled) {

@@ -21,6 +21,17 @@ import org.eclipse.jface.viewers.Viewer;
  */
 public class EmptyContentProvider implements IStaticContentProvider {
 
+	/**
+	 * Singleton instance
+	 */
+	public static EmptyContentProvider instance = new EmptyContentProvider();
+
+	private final Object[] value = new Object[0];
+
+	private EmptyContentProvider() {
+
+	}
+
 	public void dispose() {
 		//Nothing
 	}
@@ -29,8 +40,14 @@ public class EmptyContentProvider implements IStaticContentProvider {
 		//Nothing
 	}
 
+	/**
+	 * @see org.eclipse.papyrus.widgets.providers.IStaticContentProvider#getElements()
+	 * 
+	 * @return
+	 *         an empty array
+	 */
 	public Object[] getElements() {
-		return new Object[0];
+		return value;
 	}
 
 }

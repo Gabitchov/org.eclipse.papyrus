@@ -115,6 +115,11 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	protected ReferenceValueFactory referenceFactory;
 
 	/**
+	 * Indicates if this editor is readOnly
+	 */
+	protected boolean readOnly;
+
+	/**
 	 * 
 	 * Constructor.
 	 * 
@@ -152,7 +157,7 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 		listViewer = new ListViewer(list);
 		listViewer.setContentProvider(new CollectionContentProvider());
 
-		createListControls(ordered);
+		createListControls();
 
 		this.selector = selector;
 		dialog = new MultipleValueSelectorDialog(parent.getShell(), selector, label, unique);
@@ -165,9 +170,11 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	}
 
 	private void updateControls() {
-		up.setEnabled(ordered);
-		down.setEnabled(ordered);
-		edit.setEnabled(this.referenceFactory != null && referenceFactory.canEdit());
+		add.setEnabled(!readOnly);
+		remove.setEnabled(!readOnly);
+		up.setEnabled(ordered && !readOnly);
+		down.setEnabled(ordered && !readOnly);
+		edit.setEnabled(this.referenceFactory != null && referenceFactory.canEdit() && !readOnly);
 	}
 
 	/**
@@ -267,7 +274,7 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	 * 
 	 * @param ordered
 	 */
-	protected void createListControls(boolean ordered) {
+	protected void createListControls() {
 		up = new Button(controlsSection, SWT.PUSH);
 		up.setImage(Activator.getImage("/icons/Up_12x12.gif")); //$NON-NLS-1$
 		up.addSelectionListener(this);
@@ -435,6 +442,7 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	 * {@inheritDoc}
 	 */
 	public void widgetDefaultSelected(SelectionEvent e) {
+		//Nothing
 	}
 
 	/**
@@ -470,6 +478,8 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	 */
 	@Override
 	public void setReadOnly(boolean readOnly) {
+		this.readOnly = readOnly;
+		updateControls();
 		list.setEnabled(!readOnly);
 	}
 

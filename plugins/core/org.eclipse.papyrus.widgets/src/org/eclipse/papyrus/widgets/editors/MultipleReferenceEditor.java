@@ -13,7 +13,9 @@ package org.eclipse.papyrus.widgets.editors;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.papyrus.widgets.providers.EmptyContentProvider;
 import org.eclipse.papyrus.widgets.providers.IStaticContentProvider;
+import org.eclipse.papyrus.widgets.providers.WrappedLabelProvider;
 import org.eclipse.papyrus.widgets.selectors.ReferenceSelector;
 import org.eclipse.swt.widgets.Composite;
 
@@ -50,6 +52,8 @@ public class MultipleReferenceEditor extends MultipleValueEditor {
 	public MultipleReferenceEditor(Composite parent, int style, boolean ordered, boolean unique, String label) {
 		super(parent, style, new ReferenceSelector(unique), ordered, unique, label);
 		this.selector = (ReferenceSelector)super.selector;
+		//Default providers
+		setProviders(EmptyContentProvider.instance, new WrappedLabelProvider());
 	}
 
 	/**
@@ -89,6 +93,7 @@ public class MultipleReferenceEditor extends MultipleValueEditor {
 	 *        The label provider for the elements
 	 */
 	public void setProviders(IStaticContentProvider contentProvider, ILabelProvider labelProvider) {
+
 		Assert.isNotNull(contentProvider, "The content provider should be defined"); //$NON-NLS-1$
 
 		selector.setContentProvider(contentProvider);
