@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts">
+  <contexts:Context name="SysML">
+    <dataContexts name="SysML" label="SysML">
+      <elements xsi:type="contexts:DataContextPackage" name="UseCases"/>
+      <elements xsi:type="contexts:DataContextPackage" name="Blocks">
+        <elements name="BindingConnector">
+          <supertypes href="UML.xmi#//@dataContexts.0/@elements.65"/>
+        </elements>
+        <elements name="ParticipantProperty">
+          <properties name="end" type="Reference"/>
+          <supertypes href="UML.xmi#//@dataContexts.0/@elements.35"/>
+        </elements>
+        <elements name="NestedConnectorEnd">
+          <properties name="propertyPath" type="Reference"/>
+          <supertypes href="UML.xmi#//@dataContexts.0/@elements.34"/>
+        </elements>
+        <elements name="ValueType">
+          <properties name="unit" type="Reference"/>
+          <properties name="dimension" type="Reference"/>
+          <supertypes href="UML.xmi#//@dataContexts.0/@elements.73"/>
+        </elements>
+        <elements name="Dimension">
+          <supertypes href="UML.xmi#//@dataContexts.0/@elements.92"/>
+        </elements>
+        <elements name="PropertySpecificType">
+          <supertypes href="UML.xmi#//@dataContexts.0/@elements.16"/>
+        </elements>
+        <elements name="DistributedProperty">
+          <supertypes href="UML.xmi#//@dataContexts.0/@elements.35"/>
+        </elements>
+        <elements name="ConnectorProperty">
+          <properties name="connector" type="Reference"/>
+          <supertypes href="UML.xmi#//@dataContexts.0/@elements.35"/>
+        </elements>
+        <elements name="Unit">
+          <properties name="dimension" type="Reference"/>
+          <supertypes href="UML.xmi#//@dataContexts.0/@elements.92"/>
+        </elements>
+        <elements name="Block">
+          <properties name="isEncapsulated" type="Boolean"/>
+          <supertypes href="UML.xmi#//@dataContexts.0/@elements.45"/>
+        </elements>
+      </elements>
+      <elements xsi:type="contexts:DataContextPackage" name="Constraints">
+        <elements name="ConstraintProperty">
+          <supertypes href="UML.xmi#//@dataContexts.0/@elements.35"/>
+        </elements>
+        <elements name="ConstraintBlock" supertypes="/0/@dataContexts.0/@elements.1/@elements.9"/>
+      </elements>
+      <elements xsi:type="contexts:DataContextPackage" name="PortAndFlows">
+        <elements name="ItemFlow">
+          <properties name="itemProperty" type="Reference"/>
+          <supertypes href="UML.xmi#//@dataContexts.0/@elements.224"/>
+        </elements>
+        <elements name="FlowProperty">
+          <properties name="direction" type="Enumeration"/>
+          <supertypes href="UML.xmi#//@dataContexts.0/@elements.35"/>
+        </elements>
+        <elements name="FlowPort">
+          <properties name="isConjugated" type="Boolean"/>
+          <properties name="isAtomic" type="Boolean"/>
+          <properties name="direction" type="Enumeration"/>
+          <supertypes href="UML.xmi#//@dataContexts.0/@elements.58"/>
+        </elements>
+        <elements name="FlowSpecification">
+          <supertypes href="UML.xmi#//@dataContexts.0/@elements.48"/>
+        </elements>
+      </elements>
+      <elements xsi:type="contexts:DataContextPackage" name="StateMachines"/>
+      <elements xsi:type="contexts:DataContextPackage" name="Requirements">
+        <elements name="Requirement">
+          <properties name="derived" type="Reference"/>
+          <properties name="refinedBy" type="Reference"/>
+          <properties name="tracedTo" type="Reference"/>
+          <properties name="derivedFrom" type="Reference"/>
+          <properties name="text"/>
+          <properties name="id"/>
+          <properties name="verifiedBy" type="Reference"/>
+          <properties name="master" type="Reference"/>
+          <properties name="satisfiedBy" type="Reference"/>
+          <supertypes href="UML.xmi#//@dataContexts.0/@elements.45"/>
+        </elements>
+        <elements name="Satisfy" supertypes="/1"/>
+        <elements name="TestCase">
+          <properties name="verifies" type="Reference"/>
+          <supertypes href="UML.xmi#//@dataContexts.0/@elements.42"/>
+          <supertypes href="UML.xmi#//@dataContexts.0/@elements.44"/>
+        </elements>
+        <elements name="DeriveReqt" supertypes="/1"/>
+        <elements name="Verify" supertypes="/1"/>
+        <elements name="Copy" supertypes="/1"/>
+        <elements name="RequirementRelated">
+          <properties name="tracedFrom" type="Reference"/>
+          <properties name="satisfies" type="Reference"/>
+          <properties name="refines" type="Reference"/>
+          <properties name="verifies" type="Reference"/>
+          <supertypes href="UML.xmi#//@dataContexts.0/@elements.4"/>
+        </elements>
+      </elements>
+      <elements xsi:type="contexts:DataContextPackage" name="ModelElements">
+        <elements name="Conform">
+          <supertypes href="UML.xmi#//@dataContexts.0/@elements.5"/>
+        </elements>
+        <elements name="View">
+          <properties name="viewPoint" type="Reference"/>
+          <supertypes href="UML.xmi#//@dataContexts.0/@elements.2"/>
+        </elements>
+        <elements name="Rationale">
+          <supertypes href="UML.xmi#//@dataContexts.0/@elements.0"/>
+        </elements>
+        <elements name="ViewPoint">
+          <properties name="purpose"/>
+          <properties name="concerns"/>
+          <properties name="stakeHolders"/>
+          <properties name="methods"/>
+          <properties name="languages"/>
+          <supertypes href="UML.xmi#//@dataContexts.0/@elements.45"/>
+        </elements>
+        <elements name="Problem">
+          <supertypes href="UML.xmi#//@dataContexts.0/@elements.0"/>
+        </elements>
+      </elements>
+      <elements xsi:type="contexts:DataContextPackage" name="Allocations">
+        <elements name="AllocateActivityPartition">
+          <supertypes href="UML.xmi#//@dataContexts.0/@elements.113"/>
+        </elements>
+        <elements name="Allocated">
+          <properties name="allocatedTo" type="Reference"/>
+          <properties name="allocatedFrom" type="Reference"/>
+          <supertypes href="UML.xmi#//@dataContexts.0/@elements.4"/>
+        </elements>
+        <elements name="Allocate">
+          <supertypes href="UML.xmi#//@dataContexts.0/@elements.29"/>
+        </elements>
+      </elements>
+      <elements xsi:type="contexts:DataContextPackage" name="Activities">
+        <elements name="Continuous" supertypes="/0/@dataContexts.0/@elements.8/@elements.3"/>
+        <elements name="NoBuffer">
+          <supertypes href="UML.xmi#//@dataContexts.0/@elements.116"/>
+        </elements>
+        <elements name="Optional">
+          <supertypes href="UML.xmi#//@dataContexts.0/@elements.31"/>
+        </elements>
+        <elements name="Rate">
+          <properties name="rate" type="Reference"/>
+          <supertypes href="UML.xmi#//@dataContexts.0/@elements.31"/>
+          <supertypes href="UML.xmi#//@dataContexts.0/@elements.112"/>
+        </elements>
+        <elements name="Probability">
+          <properties name="probability" type="Reference"/>
+          <supertypes href="UML.xmi#//@dataContexts.0/@elements.112"/>
+          <supertypes href="UML.xmi#//@dataContexts.0/@elements.72"/>
+        </elements>
+        <elements name="Overwrite">
+          <supertypes href="UML.xmi#//@dataContexts.0/@elements.116"/>
+        </elements>
+        <elements name="ControlOperator">
+          <supertypes href="UML.xmi#//@dataContexts.0/@elements.42"/>
+          <supertypes href="UML.xmi#//@dataContexts.0/@elements.44"/>
+        </elements>
+        <elements name="Discrete" supertypes="/0/@dataContexts.0/@elements.8/@elements.3"/>
+      </elements>
+      <elements xsi:type="contexts:DataContextPackage" name="Interactions"/>
+      <modelElementFactory href="pathmap://PPEResources/Environment.xmi#//@modelElementFactories.1"/>
+    </dataContexts>
+  </contexts:Context>
+  <contexts:DataContextElement name="Trace">
+    <supertypes href="UML.xmi#//@dataContexts.0/@elements.29"/>
+  </contexts:DataContextElement>
+</xmi:XMI>

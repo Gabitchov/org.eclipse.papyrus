@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="ASCII"?>
+<environment:Environment xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:environment="http://www.eclipse.org/papyrus/properties/environment">
+  <modelElementFactories name="UML Specific Factory" factoryClass="org.eclipse.papyrus.properties.uml.modelelement.UMLEditorFactory"/>
+  <modelElementFactories name="UML Factory" factoryClass="org.eclipse.papyrus.properties.uml.modelelement.UMLModelElementFactory"/>
+  <modelElementFactories name="Stereotype Factory" factoryClass="org.eclipse.papyrus.properties.uml.modelelement.StereotypeModelElementFactory"/>
+  <constraintTypes label="UML Instance Of" constraintClass="org.eclipse.papyrus.properties.uml.constraints.UmlInstanceOfConstraint"/>
+  <constraintTypes label="Has Stereotype" constraintClass="org.eclipse.papyrus.properties.uml.constraints.HasStereotypeConstraint"/>
+</environment:Environment>

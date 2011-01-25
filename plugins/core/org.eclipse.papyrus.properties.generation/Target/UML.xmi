@@ -1,0 +1,1051 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts" name="UML">
+  <dataContexts name="UML" label="UML">
+    <elements name="Comment" supertypes="//@dataContexts.0/@elements.1">
+      <properties name="body"/>
+      <properties name="annotatedElement" type="Reference"/>
+    </elements>
+    <elements name="Element" supertypes="//@dataContexts.0/@elements.247">
+      <properties name="ownedElement" type="Reference"/>
+      <properties name="owner" type="Reference"/>
+      <properties name="ownedComment" type="Reference"/>
+    </elements>
+    <elements name="Package" supertypes="//@dataContexts.0/@elements.8 //@dataContexts.0/@elements.3 //@dataContexts.0/@elements.18">
+      <properties name="ownedType" type="Reference"/>
+      <properties name="packageMerge" type="Reference"/>
+      <properties name="packagedElement" type="Reference"/>
+      <properties name="nestedPackage" type="Reference"/>
+      <properties name="nestingPackage" type="Reference"/>
+      <properties name="profileApplication" type="Reference"/>
+    </elements>
+    <elements name="PackageableElement" supertypes="//@dataContexts.0/@elements.4 //@dataContexts.0/@elements.22"/>
+    <elements name="NamedElement" supertypes="//@dataContexts.0/@elements.1">
+      <properties name="name"/>
+      <properties name="visibility" type="Enumeration"/>
+      <properties name="qualifiedName"/>
+      <properties name="clientDependency" type="Reference"/>
+      <properties name="namespace" type="Reference"/>
+      <properties name="nameExpression" type="Reference"/>
+    </elements>
+    <elements name="Dependency" supertypes="//@dataContexts.0/@elements.3 //@dataContexts.0/@elements.6">
+      <properties name="supplier" type="Reference"/>
+      <properties name="client" type="Reference"/>
+    </elements>
+    <elements name="DirectedRelationship" supertypes="//@dataContexts.0/@elements.7">
+      <properties name="source" type="Reference"/>
+      <properties name="target" type="Reference"/>
+    </elements>
+    <elements name="Relationship" supertypes="//@dataContexts.0/@elements.1">
+      <properties name="relatedElement" type="Reference"/>
+    </elements>
+    <elements name="Namespace" supertypes="//@dataContexts.0/@elements.4">
+      <properties name="elementImport" type="Reference"/>
+      <properties name="packageImport" type="Reference"/>
+      <properties name="ownedRule" type="Reference"/>
+      <properties name="member" type="Reference"/>
+      <properties name="importedMember" type="Reference"/>
+      <properties name="ownedMember" type="Reference"/>
+    </elements>
+    <elements name="ElementImport" supertypes="//@dataContexts.0/@elements.6">
+      <properties name="visibility" type="Enumeration"/>
+      <properties name="alias"/>
+      <properties name="importedElement" type="Reference"/>
+      <properties name="importingNamespace" type="Reference"/>
+    </elements>
+    <elements name="PackageImport" supertypes="//@dataContexts.0/@elements.6">
+      <properties name="visibility" type="Enumeration"/>
+      <properties name="importedPackage" type="Reference"/>
+      <properties name="importingNamespace" type="Reference"/>
+    </elements>
+    <elements name="Constraint" supertypes="//@dataContexts.0/@elements.3">
+      <properties name="constrainedElement" type="Reference"/>
+      <properties name="specification" type="Reference"/>
+      <properties name="context" type="Reference"/>
+    </elements>
+    <elements name="ValueSpecification" supertypes="//@dataContexts.0/@elements.3 //@dataContexts.0/@elements.13"/>
+    <elements name="TypedElement" supertypes="//@dataContexts.0/@elements.4">
+      <properties name="type" type="Reference"/>
+    </elements>
+    <elements name="Type" supertypes="//@dataContexts.0/@elements.3">
+      <properties name="package" type="Reference"/>
+    </elements>
+    <elements name="Association" supertypes="//@dataContexts.0/@elements.16 //@dataContexts.0/@elements.7">
+      <properties name="ownedEnd" type="Reference"/>
+      <properties name="memberEnd" type="Reference"/>
+      <properties name="isDerived"/>
+      <properties name="endType" type="Reference"/>
+      <properties name="navigableOwnedEnd" type="Reference"/>
+    </elements>
+    <elements name="Classifier" supertypes="//@dataContexts.0/@elements.8 //@dataContexts.0/@elements.17 //@dataContexts.0/@elements.14 //@dataContexts.0/@elements.18">
+      <properties name="isAbstract"/>
+      <properties name="generalization" type="Reference"/>
+      <properties name="powertypeExtent" type="Reference"/>
+      <properties name="feature" type="Reference"/>
+      <properties name="inheritedMember" type="Reference"/>
+      <properties name="redefinedClassifier" type="Reference"/>
+      <properties name="general" type="Reference"/>
+      <properties name="substitution" type="Reference"/>
+      <properties name="attribute" type="Reference"/>
+      <properties name="representation" type="Reference"/>
+      <properties name="collaborationUse" type="Reference"/>
+      <properties name="ownedUseCase" type="Reference"/>
+      <properties name="useCase" type="Reference"/>
+    </elements>
+    <elements name="RedefinableElement" supertypes="//@dataContexts.0/@elements.4">
+      <properties name="isLeaf"/>
+      <properties name="redefinedElement" type="Reference"/>
+      <properties name="redefinitionContext" type="Reference"/>
+    </elements>
+    <elements name="TemplateableElement" supertypes="//@dataContexts.0/@elements.1">
+      <properties name="templateBinding" type="Reference"/>
+      <properties name="ownedTemplateSignature" type="Reference"/>
+    </elements>
+    <elements name="TemplateBinding" supertypes="//@dataContexts.0/@elements.6">
+      <properties name="signature" type="Reference"/>
+      <properties name="parameterSubstitution" type="Reference"/>
+      <properties name="boundElement" type="Reference"/>
+    </elements>
+    <elements name="TemplateSignature" supertypes="//@dataContexts.0/@elements.1">
+      <properties name="parameter" type="Reference"/>
+      <properties name="ownedParameter" type="Reference"/>
+      <properties name="template" type="Reference"/>
+    </elements>
+    <elements name="TemplateParameter" supertypes="//@dataContexts.0/@elements.1">
+      <properties name="signature" type="Reference"/>
+      <properties name="parameteredElement" type="Reference"/>
+      <properties name="ownedParameteredElement" type="Reference"/>
+      <properties name="default" type="Reference"/>
+      <properties name="ownedDefault" type="Reference"/>
+    </elements>
+    <elements name="ParameterableElement" supertypes="//@dataContexts.0/@elements.1">
+      <properties name="owningTemplateParameter" type="Reference"/>
+      <properties name="templateParameter" type="Reference"/>
+    </elements>
+    <elements name="TemplateParameterSubstitution" supertypes="//@dataContexts.0/@elements.1">
+      <properties name="formal" type="Reference"/>
+      <properties name="actual" type="Reference"/>
+      <properties name="ownedActual" type="Reference"/>
+      <properties name="templateBinding" type="Reference"/>
+    </elements>
+    <elements name="Generalization" supertypes="//@dataContexts.0/@elements.6">
+      <properties name="isSubstitutable"/>
+      <properties name="general" type="Reference"/>
+      <properties name="generalizationSet" type="Reference"/>
+      <properties name="specific" type="Reference"/>
+    </elements>
+    <elements name="GeneralizationSet" supertypes="//@dataContexts.0/@elements.3">
+      <properties name="isCovering"/>
+      <properties name="isDisjoint"/>
+      <properties name="powertype" type="Reference"/>
+      <properties name="generalization" type="Reference"/>
+    </elements>
+    <elements name="Feature" supertypes="//@dataContexts.0/@elements.17">
+      <properties name="isStatic"/>
+      <properties name="featuringClassifier" type="Reference"/>
+    </elements>
+    <elements name="Substitution" supertypes="//@dataContexts.0/@elements.28">
+      <properties name="contract" type="Reference"/>
+      <properties name="substitutingClassifier" type="Reference"/>
+    </elements>
+    <elements name="Realization" supertypes="//@dataContexts.0/@elements.29"/>
+    <elements name="Abstraction" supertypes="//@dataContexts.0/@elements.5">
+      <properties name="mapping" type="Reference"/>
+    </elements>
+    <elements name="OpaqueExpression" supertypes="//@dataContexts.0/@elements.12">
+      <properties name="body"/>
+      <properties name="language"/>
+      <properties name="result" type="Reference"/>
+      <properties name="behavior" type="Reference"/>
+    </elements>
+    <elements name="Parameter" supertypes="//@dataContexts.0/@elements.33 //@dataContexts.0/@elements.32">
+      <properties name="parameterSet" type="Reference"/>
+      <properties name="operation" type="Reference"/>
+      <properties name="direction" type="Enumeration"/>
+      <properties name="default"/>
+      <properties name="defaultValue" type="Reference"/>
+      <properties name="isException"/>
+      <properties name="isStream"/>
+      <properties name="effect" type="Enumeration"/>
+    </elements>
+    <elements name="MultiplicityElement" supertypes="//@dataContexts.0/@elements.1">
+      <properties name="isOrdered"/>
+      <properties name="isUnique"/>
+      <properties name="upper"/>
+      <properties name="lower"/>
+      <properties name="upperValue" type="Reference"/>
+      <properties name="lowerValue" type="Reference"/>
+    </elements>
+    <elements name="ConnectableElement" supertypes="//@dataContexts.0/@elements.13 //@dataContexts.0/@elements.22">
+      <properties name="end" type="Reference"/>
+    </elements>
+    <elements name="ConnectorEnd" supertypes="//@dataContexts.0/@elements.32">
+      <properties name="definingEnd" type="Reference"/>
+      <properties name="role" type="Reference"/>
+      <properties name="partWithPort" type="Reference"/>
+    </elements>
+    <elements name="Property" supertypes="//@dataContexts.0/@elements.75 //@dataContexts.0/@elements.33 //@dataContexts.0/@elements.36">
+      <properties name="class" type="Reference"/>
+      <properties name="datatype" type="Reference"/>
+      <properties name="isDerived"/>
+      <properties name="isDerivedUnion"/>
+      <properties name="default"/>
+      <properties name="aggregation" type="Enumeration"/>
+      <properties name="isComposite"/>
+      <properties name="redefinedProperty" type="Reference"/>
+      <properties name="owningAssociation" type="Reference"/>
+      <properties name="defaultValue" type="Reference"/>
+      <properties name="opposite" type="Reference"/>
+      <properties name="subsettedProperty" type="Reference"/>
+      <properties name="association" type="Reference"/>
+      <properties name="qualifier" type="Reference"/>
+      <properties name="associationEnd" type="Reference"/>
+    </elements>
+    <elements name="DeploymentTarget" supertypes="//@dataContexts.0/@elements.4">
+      <properties name="deployment" type="Reference"/>
+      <properties name="deployedElement" type="Reference"/>
+    </elements>
+    <elements name="Deployment" supertypes="//@dataContexts.0/@elements.5">
+      <properties name="deployedArtifact" type="Reference"/>
+      <properties name="configuration" type="Reference"/>
+      <properties name="location" type="Reference"/>
+    </elements>
+    <elements name="DeployedArtifact" supertypes="//@dataContexts.0/@elements.4"/>
+    <elements name="DeploymentSpecification" supertypes="//@dataContexts.0/@elements.40">
+      <properties name="deploymentLocation"/>
+      <properties name="executionLocation"/>
+      <properties name="deployment" type="Reference"/>
+    </elements>
+    <elements name="Artifact" supertypes="//@dataContexts.0/@elements.16 //@dataContexts.0/@elements.38">
+      <properties name="fileName"/>
+      <properties name="nestedArtifact" type="Reference"/>
+      <properties name="manifestation" type="Reference"/>
+      <properties name="ownedOperation" type="Reference"/>
+      <properties name="ownedAttribute" type="Reference"/>
+    </elements>
+    <elements name="Manifestation" supertypes="//@dataContexts.0/@elements.29">
+      <properties name="utilizedElement" type="Reference"/>
+    </elements>
+    <elements name="Operation" supertypes="//@dataContexts.0/@elements.43 //@dataContexts.0/@elements.22 //@dataContexts.0/@elements.18">
+      <properties name="interface" type="Reference"/>
+      <properties name="class" type="Reference"/>
+      <properties name="isQuery"/>
+      <properties name="isOrdered"/>
+      <properties name="isUnique"/>
+      <properties name="lower"/>
+      <properties name="upper"/>
+      <properties name="precondition" type="Reference"/>
+      <properties name="postcondition" type="Reference"/>
+      <properties name="redefinedOperation" type="Reference"/>
+      <properties name="datatype" type="Reference"/>
+      <properties name="bodyCondition" type="Reference"/>
+      <properties name="type" type="Reference"/>
+    </elements>
+    <elements name="BehavioralFeature" supertypes="//@dataContexts.0/@elements.8 //@dataContexts.0/@elements.26">
+      <properties name="ownedParameter" type="Reference"/>
+      <properties name="isAbstract"/>
+      <properties name="method" type="Reference"/>
+      <properties name="concurrency" type="Enumeration"/>
+      <properties name="raisedException" type="Reference"/>
+      <properties name="ownedParameterSet" type="Reference"/>
+    </elements>
+    <elements name="Behavior" supertypes="//@dataContexts.0/@elements.45">
+      <properties name="isReentrant"/>
+      <properties name="redefinedBehavior" type="Reference"/>
+      <properties name="ownedParameter" type="Reference"/>
+      <properties name="context" type="Reference"/>
+      <properties name="precondition" type="Reference"/>
+      <properties name="postcondition" type="Reference"/>
+      <properties name="ownedParameterSet" type="Reference"/>
+      <properties name="specification" type="Reference"/>
+    </elements>
+    <elements name="Class" supertypes="//@dataContexts.0/@elements.63 //@dataContexts.0/@elements.46">
+      <properties name="nestedClassifier" type="Reference"/>
+      <properties name="ownedOperation" type="Reference"/>
+      <properties name="superClass" type="Reference"/>
+      <properties name="isActive"/>
+      <properties name="ownedReception" type="Reference"/>
+      <properties name="extension" type="Reference"/>
+    </elements>
+    <elements name="BehavioredClassifier" supertypes="//@dataContexts.0/@elements.16">
+      <properties name="ownedBehavior" type="Reference"/>
+      <properties name="classifierBehavior" type="Reference"/>
+      <properties name="interfaceRealization" type="Reference"/>
+      <properties name="ownedTrigger" type="Reference"/>
+    </elements>
+    <elements name="InterfaceRealization" supertypes="//@dataContexts.0/@elements.28">
+      <properties name="contract" type="Reference"/>
+      <properties name="implementingClassifier" type="Reference"/>
+    </elements>
+    <elements name="Interface" supertypes="//@dataContexts.0/@elements.16">
+      <properties name="ownedAttribute" type="Reference"/>
+      <properties name="ownedOperation" type="Reference"/>
+      <properties name="nestedClassifier" type="Reference"/>
+      <properties name="redefinedInterface" type="Reference"/>
+      <properties name="ownedReception" type="Reference"/>
+      <properties name="protocol" type="Reference"/>
+    </elements>
+    <elements name="Reception" supertypes="//@dataContexts.0/@elements.43">
+      <properties name="signal" type="Reference"/>
+    </elements>
+    <elements name="Signal" supertypes="//@dataContexts.0/@elements.16">
+      <properties name="ownedAttribute" type="Reference"/>
+    </elements>
+    <elements name="ProtocolStateMachine" supertypes="//@dataContexts.0/@elements.52">
+      <properties name="conformance" type="Reference"/>
+    </elements>
+    <elements name="StateMachine" supertypes="//@dataContexts.0/@elements.44">
+      <properties name="region" type="Reference"/>
+      <properties name="submachineState" type="Reference"/>
+      <properties name="connectionPoint" type="Reference"/>
+      <properties name="extendedStateMachine" type="Reference"/>
+    </elements>
+    <elements name="Region" supertypes="//@dataContexts.0/@elements.8 //@dataContexts.0/@elements.17">
+      <properties name="subvertex" type="Reference"/>
+      <properties name="transition" type="Reference"/>
+      <properties name="state" type="Reference"/>
+      <properties name="extendedRegion" type="Reference"/>
+      <properties name="stateMachine" type="Reference"/>
+    </elements>
+    <elements name="Vertex" supertypes="//@dataContexts.0/@elements.4">
+      <properties name="outgoing" type="Reference"/>
+      <properties name="incoming" type="Reference"/>
+      <properties name="container" type="Reference"/>
+    </elements>
+    <elements name="Transition" supertypes="//@dataContexts.0/@elements.8 //@dataContexts.0/@elements.17">
+      <properties name="kind" type="Enumeration"/>
+      <properties name="container" type="Reference"/>
+      <properties name="source" type="Reference"/>
+      <properties name="target" type="Reference"/>
+      <properties name="redefinedTransition" type="Reference"/>
+      <properties name="guard" type="Reference"/>
+      <properties name="effect" type="Reference"/>
+      <properties name="trigger" type="Reference"/>
+    </elements>
+    <elements name="Trigger" supertypes="//@dataContexts.0/@elements.4">
+      <properties name="event" type="Reference"/>
+      <properties name="port" type="Reference"/>
+    </elements>
+    <elements name="Event" supertypes="//@dataContexts.0/@elements.3"/>
+    <elements name="Port" supertypes="//@dataContexts.0/@elements.35">
+      <properties name="isBehavior"/>
+      <properties name="isService"/>
+      <properties name="required" type="Reference"/>
+      <properties name="redefinedPort" type="Reference"/>
+      <properties name="provided" type="Reference"/>
+      <properties name="protocol" type="Reference"/>
+    </elements>
+    <elements name="State" supertypes="//@dataContexts.0/@elements.8 //@dataContexts.0/@elements.17 //@dataContexts.0/@elements.54">
+      <properties name="isComposite"/>
+      <properties name="isOrthogonal"/>
+      <properties name="isSimple"/>
+      <properties name="isSubmachineState"/>
+      <properties name="submachine" type="Reference"/>
+      <properties name="connection" type="Reference"/>
+      <properties name="connectionPoint" type="Reference"/>
+      <properties name="redefinedState" type="Reference"/>
+      <properties name="stateInvariant" type="Reference"/>
+      <properties name="entry" type="Reference"/>
+      <properties name="exit" type="Reference"/>
+      <properties name="doActivity" type="Reference"/>
+      <properties name="deferrableTrigger" type="Reference"/>
+      <properties name="region" type="Reference"/>
+    </elements>
+    <elements name="ConnectionPointReference" supertypes="//@dataContexts.0/@elements.54">
+      <properties name="entry" type="Reference"/>
+      <properties name="exit" type="Reference"/>
+      <properties name="state" type="Reference"/>
+    </elements>
+    <elements name="Pseudostate" supertypes="//@dataContexts.0/@elements.54">
+      <properties name="kind" type="Enumeration"/>
+      <properties name="stateMachine" type="Reference"/>
+      <properties name="state" type="Reference"/>
+    </elements>
+    <elements name="ProtocolConformance" supertypes="//@dataContexts.0/@elements.6">
+      <properties name="generalMachine" type="Reference"/>
+      <properties name="specificMachine" type="Reference"/>
+    </elements>
+    <elements name="EncapsulatedClassifier" supertypes="//@dataContexts.0/@elements.64">
+      <properties name="ownedPort" type="Reference"/>
+    </elements>
+    <elements name="StructuredClassifier" supertypes="//@dataContexts.0/@elements.16">
+      <properties name="ownedAttribute" type="Reference"/>
+      <properties name="part" type="Reference"/>
+      <properties name="role" type="Reference"/>
+      <properties name="ownedConnector" type="Reference"/>
+    </elements>
+    <elements name="Connector" supertypes="//@dataContexts.0/@elements.26">
+      <properties name="type" type="Reference"/>
+      <properties name="redefinedConnector" type="Reference"/>
+      <properties name="end" type="Reference"/>
+      <properties name="kind" type="Enumeration"/>
+      <properties name="contract" type="Reference"/>
+    </elements>
+    <elements name="Extension" supertypes="//@dataContexts.0/@elements.15">
+      <properties name="isRequired"/>
+      <properties name="metaclass" type="Reference"/>
+    </elements>
+    <elements name="ExtensionEnd" supertypes="//@dataContexts.0/@elements.35"/>
+    <elements name="Stereotype" supertypes="//@dataContexts.0/@elements.45">
+      <properties name="icon" type="Reference"/>
+    </elements>
+    <elements name="Image" supertypes="//@dataContexts.0/@elements.1">
+      <properties name="content"/>
+      <properties name="location"/>
+      <properties name="format"/>
+    </elements>
+    <elements name="Profile" supertypes="//@dataContexts.0/@elements.2">
+      <properties name="ownedStereotype" type="Reference"/>
+      <properties name="metaclassReference" type="Reference"/>
+      <properties name="metamodelReference" type="Reference"/>
+    </elements>
+    <elements name="Model" supertypes="//@dataContexts.0/@elements.2">
+      <properties name="viewpoint"/>
+    </elements>
+    <elements name="ParameterSet" supertypes="//@dataContexts.0/@elements.4">
+      <properties name="parameter" type="Reference"/>
+      <properties name="condition" type="Reference"/>
+    </elements>
+    <elements name="DataType" supertypes="//@dataContexts.0/@elements.16">
+      <properties name="ownedAttribute" type="Reference"/>
+      <properties name="ownedOperation" type="Reference"/>
+    </elements>
+    <elements name="OperationTemplateParameter" supertypes="//@dataContexts.0/@elements.21"/>
+    <elements name="StructuralFeature" supertypes="//@dataContexts.0/@elements.26 //@dataContexts.0/@elements.13 //@dataContexts.0/@elements.32">
+      <properties name="isReadOnly"/>
+    </elements>
+    <elements name="ConnectableElementTemplateParameter" supertypes="//@dataContexts.0/@elements.21"/>
+    <elements name="CollaborationUse" supertypes="//@dataContexts.0/@elements.4">
+      <properties name="type" type="Reference"/>
+      <properties name="roleBinding" type="Reference"/>
+    </elements>
+    <elements name="Collaboration" supertypes="//@dataContexts.0/@elements.46 //@dataContexts.0/@elements.64">
+      <properties name="collaborationRole" type="Reference"/>
+    </elements>
+    <elements name="UseCase" supertypes="//@dataContexts.0/@elements.46">
+      <properties name="include" type="Reference"/>
+      <properties name="extend" type="Reference"/>
+      <properties name="extensionPoint" type="Reference"/>
+      <properties name="subject" type="Reference"/>
+    </elements>
+    <elements name="Include" supertypes="//@dataContexts.0/@elements.4 //@dataContexts.0/@elements.6">
+      <properties name="addition" type="Reference"/>
+      <properties name="includingCase" type="Reference"/>
+    </elements>
+    <elements name="Extend" supertypes="//@dataContexts.0/@elements.4 //@dataContexts.0/@elements.6">
+      <properties name="extendedCase" type="Reference"/>
+      <properties name="condition" type="Reference"/>
+      <properties name="extensionLocation" type="Reference"/>
+      <properties name="extension" type="Reference"/>
+    </elements>
+    <elements name="ExtensionPoint" supertypes="//@dataContexts.0/@elements.17">
+      <properties name="useCase" type="Reference"/>
+    </elements>
+    <elements name="RedefinableTemplateSignature" supertypes="//@dataContexts.0/@elements.17 //@dataContexts.0/@elements.20">
+      <properties name="extendedSignature" type="Reference"/>
+      <properties name="inheritedParameter" type="Reference"/>
+      <properties name="classifier" type="Reference"/>
+    </elements>
+    <elements name="ClassifierTemplateParameter" supertypes="//@dataContexts.0/@elements.21">
+      <properties name="allowSubstitutable"/>
+      <properties name="constrainingClassifier" type="Reference"/>
+    </elements>
+    <elements name="StringExpression" supertypes="//@dataContexts.0/@elements.86 //@dataContexts.0/@elements.18">
+      <properties name="subExpression" type="Reference"/>
+      <properties name="owningExpression" type="Reference"/>
+    </elements>
+    <elements name="Expression" supertypes="//@dataContexts.0/@elements.12">
+      <properties name="symbol"/>
+      <properties name="operand" type="Reference"/>
+    </elements>
+    <elements name="Usage" supertypes="//@dataContexts.0/@elements.5"/>
+    <elements name="PackageMerge" supertypes="//@dataContexts.0/@elements.6">
+      <properties name="mergedPackage" type="Reference"/>
+      <properties name="receivingPackage" type="Reference"/>
+    </elements>
+    <elements name="ProfileApplication" supertypes="//@dataContexts.0/@elements.6">
+      <properties name="appliedProfile" type="Reference"/>
+      <properties name="isStrict"/>
+      <properties name="applyingPackage" type="Reference"/>
+    </elements>
+    <elements name="Enumeration" supertypes="//@dataContexts.0/@elements.73">
+      <properties name="ownedLiteral" type="Reference"/>
+    </elements>
+    <elements name="EnumerationLiteral" supertypes="//@dataContexts.0/@elements.92">
+      <properties name="enumeration" type="Reference"/>
+    </elements>
+    <elements name="InstanceSpecification" supertypes="//@dataContexts.0/@elements.36 //@dataContexts.0/@elements.3 //@dataContexts.0/@elements.38">
+      <properties name="classifier" type="Reference"/>
+      <properties name="slot" type="Reference"/>
+      <properties name="specification" type="Reference"/>
+    </elements>
+    <elements name="Slot" supertypes="//@dataContexts.0/@elements.1">
+      <properties name="definingFeature" type="Reference"/>
+      <properties name="value" type="Reference"/>
+      <properties name="owningInstance" type="Reference"/>
+    </elements>
+    <elements name="PrimitiveType" supertypes="//@dataContexts.0/@elements.73"/>
+    <elements name="LiteralSpecification" supertypes="//@dataContexts.0/@elements.12"/>
+    <elements name="LiteralInteger" supertypes="//@dataContexts.0/@elements.95">
+      <properties name="value"/>
+    </elements>
+    <elements name="LiteralString" supertypes="//@dataContexts.0/@elements.95">
+      <properties name="value"/>
+    </elements>
+    <elements name="LiteralBoolean" supertypes="//@dataContexts.0/@elements.95">
+      <properties name="value"/>
+    </elements>
+    <elements name="LiteralNull" supertypes="//@dataContexts.0/@elements.95"/>
+    <elements name="InstanceValue" supertypes="//@dataContexts.0/@elements.12">
+      <properties name="instance" type="Reference"/>
+    </elements>
+    <elements name="LiteralUnlimitedNatural" supertypes="//@dataContexts.0/@elements.95">
+      <properties name="value"/>
+    </elements>
+    <elements name="OpaqueBehavior" supertypes="//@dataContexts.0/@elements.44">
+      <properties name="body"/>
+      <properties name="language"/>
+    </elements>
+    <elements name="FunctionBehavior" supertypes="//@dataContexts.0/@elements.102"/>
+    <elements name="OpaqueAction" supertypes="//@dataContexts.0/@elements.105">
+      <properties name="body"/>
+      <properties name="language"/>
+      <properties name="inputValue" type="Reference"/>
+      <properties name="outputValue" type="Reference"/>
+    </elements>
+    <elements name="Action" supertypes="//@dataContexts.0/@elements.106">
+      <properties name="output" type="Reference"/>
+      <properties name="input" type="Reference"/>
+      <properties name="context" type="Reference"/>
+      <properties name="localPrecondition" type="Reference"/>
+      <properties name="localPostcondition" type="Reference"/>
+    </elements>
+    <elements name="ExecutableNode" supertypes="//@dataContexts.0/@elements.107">
+      <properties name="handler" type="Reference"/>
+    </elements>
+    <elements name="ActivityNode" supertypes="//@dataContexts.0/@elements.17">
+      <properties name="inStructuredNode" type="Reference"/>
+      <properties name="activity" type="Reference"/>
+      <properties name="outgoing" type="Reference"/>
+      <properties name="incoming" type="Reference"/>
+      <properties name="inPartition" type="Reference"/>
+      <properties name="inInterruptibleRegion" type="Reference"/>
+      <properties name="inGroup" type="Reference"/>
+      <properties name="redefinedNode" type="Reference"/>
+    </elements>
+    <elements name="StructuredActivityNode" supertypes="//@dataContexts.0/@elements.105 //@dataContexts.0/@elements.8 //@dataContexts.0/@elements.109">
+      <properties name="variable" type="Reference"/>
+      <properties name="edge" type="Reference"/>
+      <properties name="mustIsolate"/>
+      <properties name="node" type="Reference"/>
+    </elements>
+    <elements name="ActivityGroup" supertypes="//@dataContexts.0/@elements.1">
+      <properties name="subgroup" type="Reference"/>
+      <properties name="superGroup" type="Reference"/>
+      <properties name="inActivity" type="Reference"/>
+      <properties name="containedEdge" type="Reference"/>
+      <properties name="containedNode" type="Reference"/>
+    </elements>
+    <elements name="Activity" supertypes="//@dataContexts.0/@elements.44">
+      <properties name="structuredNode" type="Reference"/>
+      <properties name="variable" type="Reference"/>
+      <properties name="node" type="Reference"/>
+      <properties name="isReadOnly"/>
+      <properties name="edge" type="Reference"/>
+      <properties name="partition" type="Reference"/>
+      <properties name="isSingleExecution"/>
+      <properties name="group" type="Reference"/>
+    </elements>
+    <elements name="Variable" supertypes="//@dataContexts.0/@elements.33 //@dataContexts.0/@elements.32">
+      <properties name="scope" type="Reference"/>
+      <properties name="activityScope" type="Reference"/>
+    </elements>
+    <elements name="ActivityEdge" supertypes="//@dataContexts.0/@elements.17">
+      <properties name="source" type="Reference"/>
+      <properties name="target" type="Reference"/>
+      <properties name="redefinedEdge" type="Reference"/>
+      <properties name="inPartition" type="Reference"/>
+      <properties name="guard" type="Reference"/>
+      <properties name="weight" type="Reference"/>
+      <properties name="interrupts" type="Reference"/>
+      <properties name="inStructuredNode" type="Reference"/>
+      <properties name="inGroup" type="Reference"/>
+      <properties name="activity" type="Reference"/>
+    </elements>
+    <elements name="ActivityPartition" supertypes="//@dataContexts.0/@elements.4 //@dataContexts.0/@elements.109">
+      <properties name="isDimension"/>
+      <properties name="isExternal"/>
+      <properties name="node" type="Reference"/>
+      <properties name="subpartition" type="Reference"/>
+      <properties name="superPartition" type="Reference"/>
+      <properties name="represents" type="Reference"/>
+      <properties name="edge" type="Reference"/>
+    </elements>
+    <elements name="InterruptibleActivityRegion" supertypes="//@dataContexts.0/@elements.109">
+      <properties name="node" type="Reference"/>
+      <properties name="interruptingEdge" type="Reference"/>
+    </elements>
+    <elements name="ExceptionHandler" supertypes="//@dataContexts.0/@elements.1">
+      <properties name="handlerBody" type="Reference"/>
+      <properties name="exceptionInput" type="Reference"/>
+      <properties name="exceptionType" type="Reference"/>
+      <properties name="protectedNode" type="Reference"/>
+    </elements>
+    <elements name="ObjectNode" supertypes="//@dataContexts.0/@elements.107 //@dataContexts.0/@elements.13">
+      <properties name="ordering" type="Enumeration"/>
+      <properties name="isControlType"/>
+      <properties name="upperBound" type="Reference"/>
+      <properties name="inState" type="Reference"/>
+      <properties name="selection" type="Reference"/>
+    </elements>
+    <elements name="OutputPin" supertypes="//@dataContexts.0/@elements.118"/>
+    <elements name="Pin" supertypes="//@dataContexts.0/@elements.116 //@dataContexts.0/@elements.32">
+      <properties name="isControl"/>
+    </elements>
+    <elements name="InputPin" supertypes="//@dataContexts.0/@elements.118"/>
+    <elements name="CallAction" supertypes="//@dataContexts.0/@elements.121">
+      <properties name="isSynchronous"/>
+      <properties name="result" type="Reference"/>
+    </elements>
+    <elements name="InvocationAction" supertypes="//@dataContexts.0/@elements.105">
+      <properties name="argument" type="Reference"/>
+      <properties name="onPort" type="Reference"/>
+    </elements>
+    <elements name="SendSignalAction" supertypes="//@dataContexts.0/@elements.121">
+      <properties name="target" type="Reference"/>
+      <properties name="signal" type="Reference"/>
+    </elements>
+    <elements name="CallOperationAction" supertypes="//@dataContexts.0/@elements.120">
+      <properties name="operation" type="Reference"/>
+      <properties name="target" type="Reference"/>
+    </elements>
+    <elements name="CallBehaviorAction" supertypes="//@dataContexts.0/@elements.120">
+      <properties name="behavior" type="Reference"/>
+    </elements>
+    <elements name="SequenceNode" supertypes="//@dataContexts.0/@elements.108">
+      <properties name="executableNode" type="Reference"/>
+    </elements>
+    <elements name="ControlNode" supertypes="//@dataContexts.0/@elements.107"/>
+    <elements name="ControlFlow" supertypes="//@dataContexts.0/@elements.112"/>
+    <elements name="InitialNode" supertypes="//@dataContexts.0/@elements.126"/>
+    <elements name="ActivityParameterNode" supertypes="//@dataContexts.0/@elements.116">
+      <properties name="parameter" type="Reference"/>
+    </elements>
+    <elements name="ValuePin" supertypes="//@dataContexts.0/@elements.119">
+      <properties name="value" type="Reference"/>
+    </elements>
+    <elements name="Message" supertypes="//@dataContexts.0/@elements.4">
+      <properties name="messageKind" type="Enumeration"/>
+      <properties name="messageSort" type="Enumeration"/>
+      <properties name="receiveEvent" type="Reference"/>
+      <properties name="sendEvent" type="Reference"/>
+      <properties name="connector" type="Reference"/>
+      <properties name="interaction" type="Reference"/>
+      <properties name="argument" type="Reference"/>
+      <properties name="signature" type="Reference"/>
+    </elements>
+    <elements name="MessageEnd" supertypes="//@dataContexts.0/@elements.4">
+      <properties name="message" type="Reference"/>
+    </elements>
+    <elements name="Interaction" supertypes="//@dataContexts.0/@elements.44 //@dataContexts.0/@elements.134">
+      <properties name="lifeline" type="Reference"/>
+      <properties name="fragment" type="Reference"/>
+      <properties name="action" type="Reference"/>
+      <properties name="formalGate" type="Reference"/>
+      <properties name="message" type="Reference"/>
+    </elements>
+    <elements name="InteractionFragment" supertypes="//@dataContexts.0/@elements.4">
+      <properties name="covered" type="Reference"/>
+      <properties name="generalOrdering" type="Reference"/>
+      <properties name="enclosingInteraction" type="Reference"/>
+      <properties name="enclosingOperand" type="Reference"/>
+    </elements>
+    <elements name="Lifeline" supertypes="//@dataContexts.0/@elements.4">
+      <properties name="represents" type="Reference"/>
+      <properties name="interaction" type="Reference"/>
+      <properties name="selector" type="Reference"/>
+      <properties name="decomposedAs" type="Reference"/>
+      <properties name="coveredBy" type="Reference"/>
+    </elements>
+    <elements name="PartDecomposition" supertypes="//@dataContexts.0/@elements.137"/>
+    <elements name="InteractionUse" supertypes="//@dataContexts.0/@elements.134">
+      <properties name="refersTo" type="Reference"/>
+      <properties name="actualGate" type="Reference"/>
+      <properties name="argument" type="Reference"/>
+    </elements>
+    <elements name="Gate" supertypes="//@dataContexts.0/@elements.132"/>
+    <elements name="GeneralOrdering" supertypes="//@dataContexts.0/@elements.4">
+      <properties name="before" type="Reference"/>
+      <properties name="after" type="Reference"/>
+    </elements>
+    <elements name="OccurrenceSpecification" supertypes="//@dataContexts.0/@elements.134">
+      <properties name="toBefore" type="Reference"/>
+      <properties name="event" type="Reference"/>
+      <properties name="toAfter" type="Reference"/>
+    </elements>
+    <elements name="InteractionOperand" supertypes="//@dataContexts.0/@elements.8 //@dataContexts.0/@elements.134">
+      <properties name="guard" type="Reference"/>
+      <properties name="fragment" type="Reference"/>
+    </elements>
+    <elements name="InteractionConstraint" supertypes="//@dataContexts.0/@elements.11">
+      <properties name="minint" type="Reference"/>
+      <properties name="maxint" type="Reference"/>
+    </elements>
+    <elements name="ExecutionSpecification" supertypes="//@dataContexts.0/@elements.134">
+      <properties name="start" type="Reference"/>
+      <properties name="finish" type="Reference"/>
+    </elements>
+    <elements name="StateInvariant" supertypes="//@dataContexts.0/@elements.134">
+      <properties name="invariant" type="Reference"/>
+    </elements>
+    <elements name="ActionExecutionSpecification" supertypes="//@dataContexts.0/@elements.143">
+      <properties name="action" type="Reference"/>
+    </elements>
+    <elements name="BehaviorExecutionSpecification" supertypes="//@dataContexts.0/@elements.143">
+      <properties name="behavior" type="Reference"/>
+    </elements>
+    <elements name="ExecutionEvent" supertypes="//@dataContexts.0/@elements.57"/>
+    <elements name="CreationEvent" supertypes="//@dataContexts.0/@elements.57"/>
+    <elements name="DestructionEvent" supertypes="//@dataContexts.0/@elements.57"/>
+    <elements name="SendOperationEvent" supertypes="//@dataContexts.0/@elements.151">
+      <properties name="operation" type="Reference"/>
+    </elements>
+    <elements name="MessageEvent" supertypes="//@dataContexts.0/@elements.57"/>
+    <elements name="SendSignalEvent" supertypes="//@dataContexts.0/@elements.151">
+      <properties name="signal" type="Reference"/>
+    </elements>
+    <elements name="MessageOccurrenceSpecification" supertypes="//@dataContexts.0/@elements.140 //@dataContexts.0/@elements.132"/>
+    <elements name="ExecutionOccurrenceSpecification" supertypes="//@dataContexts.0/@elements.140">
+      <properties name="execution" type="Reference"/>
+    </elements>
+    <elements name="ReceiveOperationEvent" supertypes="//@dataContexts.0/@elements.151">
+      <properties name="operation" type="Reference"/>
+    </elements>
+    <elements name="ReceiveSignalEvent" supertypes="//@dataContexts.0/@elements.151">
+      <properties name="signal" type="Reference"/>
+    </elements>
+    <elements name="Actor" supertypes="//@dataContexts.0/@elements.46"/>
+    <elements name="CallEvent" supertypes="//@dataContexts.0/@elements.151">
+      <properties name="operation" type="Reference"/>
+    </elements>
+    <elements name="ChangeEvent" supertypes="//@dataContexts.0/@elements.57">
+      <properties name="changeExpression" type="Reference"/>
+    </elements>
+    <elements name="SignalEvent" supertypes="//@dataContexts.0/@elements.151">
+      <properties name="signal" type="Reference"/>
+    </elements>
+    <elements name="AnyReceiveEvent" supertypes="//@dataContexts.0/@elements.151"/>
+    <elements name="ForkNode" supertypes="//@dataContexts.0/@elements.126"/>
+    <elements name="FlowFinalNode" supertypes="//@dataContexts.0/@elements.164"/>
+    <elements name="FinalNode" supertypes="//@dataContexts.0/@elements.126"/>
+    <elements name="CentralBufferNode" supertypes="//@dataContexts.0/@elements.116"/>
+    <elements name="MergeNode" supertypes="//@dataContexts.0/@elements.126"/>
+    <elements name="DecisionNode" supertypes="//@dataContexts.0/@elements.126">
+      <properties name="decisionInput" type="Reference"/>
+      <properties name="decisionInputFlow" type="Reference"/>
+    </elements>
+    <elements name="ObjectFlow" supertypes="//@dataContexts.0/@elements.112">
+      <properties name="isMulticast"/>
+      <properties name="isMultireceive"/>
+      <properties name="transformation" type="Reference"/>
+      <properties name="selection" type="Reference"/>
+    </elements>
+    <elements name="ActivityFinalNode" supertypes="//@dataContexts.0/@elements.164"/>
+    <elements name="ComponentRealization" supertypes="//@dataContexts.0/@elements.28">
+      <properties name="abstraction" type="Reference"/>
+      <properties name="realizingClassifier" type="Reference"/>
+    </elements>
+    <elements name="Component" supertypes="//@dataContexts.0/@elements.45">
+      <properties name="isIndirectlyInstantiated"/>
+      <properties name="required" type="Reference"/>
+      <properties name="provided" type="Reference"/>
+      <properties name="packagedElement" type="Reference"/>
+      <properties name="realization" type="Reference"/>
+    </elements>
+    <elements name="Node" supertypes="//@dataContexts.0/@elements.45 //@dataContexts.0/@elements.36">
+      <properties name="nestedNode" type="Reference"/>
+    </elements>
+    <elements name="CommunicationPath" supertypes="//@dataContexts.0/@elements.15"/>
+    <elements name="Device" supertypes="//@dataContexts.0/@elements.172"/>
+    <elements name="ExecutionEnvironment" supertypes="//@dataContexts.0/@elements.172"/>
+    <elements name="CombinedFragment" supertypes="//@dataContexts.0/@elements.134">
+      <properties name="interactionOperator" type="Enumeration"/>
+      <properties name="operand" type="Reference"/>
+      <properties name="cfragmentGate" type="Reference"/>
+    </elements>
+    <elements name="Continuation" supertypes="//@dataContexts.0/@elements.134">
+      <properties name="setting"/>
+    </elements>
+    <elements name="ConsiderIgnoreFragment" supertypes="//@dataContexts.0/@elements.176">
+      <properties name="message" type="Reference"/>
+    </elements>
+    <elements name="CreateObjectAction" supertypes="//@dataContexts.0/@elements.105">
+      <properties name="classifier" type="Reference"/>
+      <properties name="result" type="Reference"/>
+    </elements>
+    <elements name="DestroyObjectAction" supertypes="//@dataContexts.0/@elements.105">
+      <properties name="isDestroyLinks"/>
+      <properties name="isDestroyOwnedObjects"/>
+      <properties name="target" type="Reference"/>
+    </elements>
+    <elements name="TestIdentityAction" supertypes="//@dataContexts.0/@elements.105">
+      <properties name="first" type="Reference"/>
+      <properties name="second" type="Reference"/>
+      <properties name="result" type="Reference"/>
+    </elements>
+    <elements name="ReadSelfAction" supertypes="//@dataContexts.0/@elements.105">
+      <properties name="result" type="Reference"/>
+    </elements>
+    <elements name="StructuralFeatureAction" supertypes="//@dataContexts.0/@elements.105">
+      <properties name="structuralFeature" type="Reference"/>
+      <properties name="object" type="Reference"/>
+    </elements>
+    <elements name="ReadStructuralFeatureAction" supertypes="//@dataContexts.0/@elements.183">
+      <properties name="result" type="Reference"/>
+    </elements>
+    <elements name="WriteStructuralFeatureAction" supertypes="//@dataContexts.0/@elements.183">
+      <properties name="value" type="Reference"/>
+      <properties name="result" type="Reference"/>
+    </elements>
+    <elements name="ClearStructuralFeatureAction" supertypes="//@dataContexts.0/@elements.183">
+      <properties name="result" type="Reference"/>
+    </elements>
+    <elements name="RemoveStructuralFeatureValueAction" supertypes="//@dataContexts.0/@elements.185">
+      <properties name="isRemoveDuplicates"/>
+      <properties name="removeAt" type="Reference"/>
+    </elements>
+    <elements name="AddStructuralFeatureValueAction" supertypes="//@dataContexts.0/@elements.185">
+      <properties name="isReplaceAll"/>
+      <properties name="insertAt" type="Reference"/>
+    </elements>
+    <elements name="LinkAction" supertypes="//@dataContexts.0/@elements.105">
+      <properties name="endData" type="Reference"/>
+      <properties name="inputValue" type="Reference"/>
+    </elements>
+    <elements name="LinkEndData" supertypes="//@dataContexts.0/@elements.1">
+      <properties name="value" type="Reference"/>
+      <properties name="end" type="Reference"/>
+      <properties name="qualifier" type="Reference"/>
+    </elements>
+    <elements name="QualifierValue" supertypes="//@dataContexts.0/@elements.1">
+      <properties name="qualifier" type="Reference"/>
+      <properties name="value" type="Reference"/>
+    </elements>
+    <elements name="ReadLinkAction" supertypes="//@dataContexts.0/@elements.189">
+      <properties name="result" type="Reference"/>
+    </elements>
+    <elements name="LinkEndCreationData" supertypes="//@dataContexts.0/@elements.190">
+      <properties name="isReplaceAll"/>
+      <properties name="insertAt" type="Reference"/>
+    </elements>
+    <elements name="CreateLinkAction" supertypes="//@dataContexts.0/@elements.195"/>
+    <elements name="WriteLinkAction" supertypes="//@dataContexts.0/@elements.189"/>
+    <elements name="DestroyLinkAction" supertypes="//@dataContexts.0/@elements.195"/>
+    <elements name="LinkEndDestructionData" supertypes="//@dataContexts.0/@elements.190">
+      <properties name="isDestroyDuplicates"/>
+      <properties name="destroyAt" type="Reference"/>
+    </elements>
+    <elements name="ClearAssociationAction" supertypes="//@dataContexts.0/@elements.105">
+      <properties name="object" type="Reference"/>
+      <properties name="association" type="Reference"/>
+    </elements>
+    <elements name="BroadcastSignalAction" supertypes="//@dataContexts.0/@elements.121">
+      <properties name="signal" type="Reference"/>
+    </elements>
+    <elements name="SendObjectAction" supertypes="//@dataContexts.0/@elements.121">
+      <properties name="target" type="Reference"/>
+      <properties name="request" type="Reference"/>
+    </elements>
+    <elements name="ValueSpecificationAction" supertypes="//@dataContexts.0/@elements.105">
+      <properties name="value" type="Reference"/>
+      <properties name="result" type="Reference"/>
+    </elements>
+    <elements name="TimeExpression" supertypes="//@dataContexts.0/@elements.12">
+      <properties name="expr" type="Reference"/>
+      <properties name="observation" type="Reference"/>
+    </elements>
+    <elements name="Observation" supertypes="//@dataContexts.0/@elements.3"/>
+    <elements name="Duration" supertypes="//@dataContexts.0/@elements.12">
+      <properties name="expr" type="Reference"/>
+      <properties name="observation" type="Reference"/>
+    </elements>
+    <elements name="DurationInterval" supertypes="//@dataContexts.0/@elements.206"/>
+    <elements name="Interval" supertypes="//@dataContexts.0/@elements.12">
+      <properties name="min" type="Reference"/>
+      <properties name="max" type="Reference"/>
+    </elements>
+    <elements name="TimeConstraint" supertypes="//@dataContexts.0/@elements.208">
+      <properties name="firstEvent"/>
+    </elements>
+    <elements name="IntervalConstraint" supertypes="//@dataContexts.0/@elements.11"/>
+    <elements name="TimeInterval" supertypes="//@dataContexts.0/@elements.206"/>
+    <elements name="DurationConstraint" supertypes="//@dataContexts.0/@elements.208">
+      <properties name="firstEvent"/>
+    </elements>
+    <elements name="TimeObservation" supertypes="//@dataContexts.0/@elements.203">
+      <properties name="event" type="Reference"/>
+      <properties name="firstEvent"/>
+    </elements>
+    <elements name="DurationObservation" supertypes="//@dataContexts.0/@elements.203">
+      <properties name="event" type="Reference"/>
+      <properties name="firstEvent"/>
+    </elements>
+    <elements name="FinalState" supertypes="//@dataContexts.0/@elements.59"/>
+    <elements name="TimeEvent" supertypes="//@dataContexts.0/@elements.57">
+      <properties name="isRelative"/>
+      <properties name="when" type="Reference"/>
+    </elements>
+    <elements name="VariableAction" supertypes="//@dataContexts.0/@elements.105">
+      <properties name="variable" type="Reference"/>
+    </elements>
+    <elements name="ReadVariableAction" supertypes="//@dataContexts.0/@elements.215">
+      <properties name="result" type="Reference"/>
+    </elements>
+    <elements name="WriteVariableAction" supertypes="//@dataContexts.0/@elements.215">
+      <properties name="value" type="Reference"/>
+    </elements>
+    <elements name="ClearVariableAction" supertypes="//@dataContexts.0/@elements.215"/>
+    <elements name="AddVariableValueAction" supertypes="//@dataContexts.0/@elements.217">
+      <properties name="isReplaceAll"/>
+      <properties name="insertAt" type="Reference"/>
+    </elements>
+    <elements name="RemoveVariableValueAction" supertypes="//@dataContexts.0/@elements.217">
+      <properties name="isRemoveDuplicates"/>
+      <properties name="removeAt" type="Reference"/>
+    </elements>
+    <elements name="RaiseExceptionAction" supertypes="//@dataContexts.0/@elements.105">
+      <properties name="exception" type="Reference"/>
+    </elements>
+    <elements name="ActionInputPin" supertypes="//@dataContexts.0/@elements.119">
+      <properties name="fromAction" type="Reference"/>
+    </elements>
+    <elements name="InformationItem" supertypes="//@dataContexts.0/@elements.16">
+      <properties name="represented" type="Reference"/>
+    </elements>
+    <elements name="InformationFlow" supertypes="//@dataContexts.0/@elements.3 //@dataContexts.0/@elements.6">
+      <properties name="realization" type="Reference"/>
+      <properties name="conveyed" type="Reference"/>
+      <properties name="informationSource" type="Reference"/>
+      <properties name="informationTarget" type="Reference"/>
+      <properties name="realizingActivityEdge" type="Reference"/>
+      <properties name="realizingConnector" type="Reference"/>
+      <properties name="realizingMessage" type="Reference"/>
+    </elements>
+    <elements name="ReadExtentAction" supertypes="//@dataContexts.0/@elements.105">
+      <properties name="result" type="Reference"/>
+      <properties name="classifier" type="Reference"/>
+    </elements>
+    <elements name="ReclassifyObjectAction" supertypes="//@dataContexts.0/@elements.105">
+      <properties name="isReplaceAll"/>
+      <properties name="oldClassifier" type="Reference"/>
+      <properties name="newClassifier" type="Reference"/>
+      <properties name="object" type="Reference"/>
+    </elements>
+    <elements name="ReadIsClassifiedObjectAction" supertypes="//@dataContexts.0/@elements.105">
+      <properties name="isDirect"/>
+      <properties name="classifier" type="Reference"/>
+      <properties name="result" type="Reference"/>
+      <properties name="object" type="Reference"/>
+    </elements>
+    <elements name="StartClassifierBehaviorAction" supertypes="//@dataContexts.0/@elements.105">
+      <properties name="object" type="Reference"/>
+    </elements>
+    <elements name="ReadLinkObjectEndAction" supertypes="//@dataContexts.0/@elements.105">
+      <properties name="object" type="Reference"/>
+      <properties name="end" type="Reference"/>
+      <properties name="result" type="Reference"/>
+    </elements>
+    <elements name="ReadLinkObjectEndQualifierAction" supertypes="//@dataContexts.0/@elements.105">
+      <properties name="object" type="Reference"/>
+      <properties name="result" type="Reference"/>
+      <properties name="qualifier" type="Reference"/>
+    </elements>
+    <elements name="CreateLinkObjectAction" supertypes="//@dataContexts.0/@elements.194">
+      <properties name="result" type="Reference"/>
+    </elements>
+    <elements name="AcceptEventAction" supertypes="//@dataContexts.0/@elements.105">
+      <properties name="isUnmarshall"/>
+      <properties name="result" type="Reference"/>
+      <properties name="trigger" type="Reference"/>
+    </elements>
+    <elements name="AcceptCallAction" supertypes="//@dataContexts.0/@elements.232">
+      <properties name="returnInformation" type="Reference"/>
+    </elements>
+    <elements name="ReplyAction" supertypes="//@dataContexts.0/@elements.105">
+      <properties name="replyToCall" type="Reference"/>
+      <properties name="returnInformation" type="Reference"/>
+      <properties name="replyValue" type="Reference"/>
+    </elements>
+    <elements name="UnmarshallAction" supertypes="//@dataContexts.0/@elements.105">
+      <properties name="result" type="Reference"/>
+      <properties name="unmarshallType" type="Reference"/>
+      <properties name="object" type="Reference"/>
+    </elements>
+    <elements name="ReduceAction" supertypes="//@dataContexts.0/@elements.105">
+      <properties name="reducer" type="Reference"/>
+      <properties name="result" type="Reference"/>
+      <properties name="collection" type="Reference"/>
+      <properties name="isOrdered"/>
+    </elements>
+    <elements name="StartObjectBehaviorAction" supertypes="//@dataContexts.0/@elements.120">
+      <properties name="object" type="Reference"/>
+    </elements>
+    <elements name="JoinNode" supertypes="//@dataContexts.0/@elements.126">
+      <properties name="isCombineDuplicate"/>
+      <properties name="joinSpec" type="Reference"/>
+    </elements>
+    <elements name="DataStoreNode" supertypes="//@dataContexts.0/@elements.165"/>
+    <elements name="ConditionalNode" supertypes="//@dataContexts.0/@elements.108">
+      <properties name="isDeterminate"/>
+      <properties name="isAssured"/>
+      <properties name="clause" type="Reference"/>
+      <properties name="result" type="Reference"/>
+    </elements>
+    <elements name="Clause" supertypes="//@dataContexts.0/@elements.1">
+      <properties name="test" type="Reference"/>
+      <properties name="body" type="Reference"/>
+      <properties name="predecessorClause" type="Reference"/>
+      <properties name="successorClause" type="Reference"/>
+      <properties name="decider" type="Reference"/>
+      <properties name="bodyOutput" type="Reference"/>
+    </elements>
+    <elements name="LoopNode" supertypes="//@dataContexts.0/@elements.108">
+      <properties name="isTestedFirst"/>
+      <properties name="bodyPart" type="Reference"/>
+      <properties name="setupPart" type="Reference"/>
+      <properties name="decider" type="Reference"/>
+      <properties name="test" type="Reference"/>
+      <properties name="result" type="Reference"/>
+      <properties name="loopVariable" type="Reference"/>
+      <properties name="bodyOutput" type="Reference"/>
+      <properties name="loopVariableInput" type="Reference"/>
+    </elements>
+    <elements name="ExpansionNode" supertypes="//@dataContexts.0/@elements.116">
+      <properties name="regionAsOutput" type="Reference"/>
+      <properties name="regionAsInput" type="Reference"/>
+    </elements>
+    <elements name="ExpansionRegion" supertypes="//@dataContexts.0/@elements.108">
+      <properties name="mode" type="Enumeration"/>
+      <properties name="inputElement" type="Reference"/>
+      <properties name="outputElement" type="Reference"/>
+    </elements>
+    <elements name="ProtocolTransition" supertypes="//@dataContexts.0/@elements.55">
+      <properties name="postCondition" type="Reference"/>
+      <properties name="referred" type="Reference"/>
+      <properties name="preCondition" type="Reference"/>
+    </elements>
+    <elements name="AssociationClass" supertypes="//@dataContexts.0/@elements.45 //@dataContexts.0/@elements.15"/>
+    <elements name="EModelElement">
+      <properties name="eAnnotations" type="Reference"/>
+    </elements>
+    <modelElementFactory href="pathmap://PPEResources/Environment.xmi#//@modelElementFactories.0"/>
+  </dataContexts>
+  <dataContexts name="MemberEnd" label="Member End">
+    <properties name="owner" label="Owner"/>
+    <properties name="navigable" label="Navigable"/>
+    <modelElementFactory href="pathmap://PPEResources/Environment.xmi#//@modelElementFactories.3"/>
+  </dataContexts>
+  <dataContexts name="Multiplicity" label="Multiplicity">
+    <properties name="multiplicity" label="Multiplicity" type="Enumeration"/>
+    <modelElementFactory href="pathmap://PPEResources/Environment.xmi#//@modelElementFactories.3"/>
+  </dataContexts>
+</contexts:Context>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="org.eclipse.papyrus.properties.generation.generator" name="%extension-point.generator" schema="schema/org.eclipse.papyrus.properties.generation.generator.exsd"/>
+   <extension-point id="org.eclipse.papyrus.properties.generation.layout" name="%extension-point.layoutgenerator" schema="schema/org.eclipse.papyrus.properties.generation.layout.exsd"/>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            category="org.eclipse.papyrus.wizards.category"
+            class="org.eclipse.papyrus.properties.generation.wizard.CreateContextWizard"
+            icon="/icons/Context.gif"
+            id="org.eclipse.papyrus.properties.generation.wizard"
+            name="%generation.wizard.name">
+      </wizard>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            class="org.eclipse.papyrus.properties.generation.fieldselection.FieldSelectionPackage"
+            genModel="Model/Properties.genmodel"
+            uri="http://www.eclipse.org/papyrus/properties/fieldSelection">
+      </package>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.properties.generation.generator">
+      <generator
+            generator="org.eclipse.papyrus.properties.generation.generators.EcoreGenerator">
+      </generator>
+      <generator
+            generator="org.eclipse.papyrus.properties.generation.generators.ProfileGenerator">
+      </generator>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.properties.generation.layout">
+      <generator
+            generator="org.eclipse.papyrus.properties.generation.layout.StandardLayoutGenerator">
+      </generator>
+   </extension>
+
+</plugin>

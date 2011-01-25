@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="ASCII"?>
+<root:PropertiesRoot xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:root="http://www.eclipse.org/papyrus/properties/root">
+  <environments href="../../org.eclipse.papyrus.properties/Model/Environment.xmi#/"/>
+</root:PropertiesRoot>

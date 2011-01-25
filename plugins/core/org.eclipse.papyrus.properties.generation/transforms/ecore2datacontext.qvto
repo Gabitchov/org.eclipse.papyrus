@@ -1,0 +1,124 @@
+modeltype Ecore uses "http://www.eclipse.org/emf/2002/Ecore";
+modeltype PropertyContext uses "http://www.eclipse.org/papyrus/properties/contexts";
+modeltype PropertyEnvironment uses "http://www.eclipse.org/papyrus/properties/environment";
+modeltype PRoot uses "http://www.eclipse.org/papryus/properties/root";
+
+transformation ecore2datacontext(in ecore : Ecore, in pRoot : PRoot, out context : PropertyContext);
+
+main() {
+	ecore.rootObjects()[EPackage]->map toContext();
+}
+
+mapping EPackage::toContext() : c: Context, root:DataContextRoot{
+	c.name := self.name;
+	c.dataContexts := root;
+	c.views := self.eClassifiers->select(e | e.oclIsKindOf(EClass))->map toDataContextElement().viewSingle
+		->union(self.eClassifiers->select(e | e.oclIsKindOf(EClass))->map toDataContextElement().viewMultiple);
+	
+	root.name := self.name;
+	root.label := self.name;
+	root.elements := self.eClassifiers->select(e | e.oclIsKindOf(EClass))->map toDataContextElement().element
+				->union(self.eSubpackages->map toDataContextPackage());
+	
+	root.modelElementFactory := pRoot.rootObjects()[PropertiesRoot].environments.modelElementFactories
+		->any(e | e.factoryClass = 'org.eclipse.papyrus.properties.modelelement.EMFModelElementFactory');
+}
+
+mapping EPackage::toDataContextPackage() : DataContextPackage{
+	name := self.name;
+	elements := self.eClassifiers->select(e | e.oclIsKindOf(EClass))->map toDataContextElement().element
+					->union(self.eSubpackages->map toDataContextPackage());
+}
+
+query EPackage::getRootPackage() : EPackage {
+	var package : EPackage;
+	if self.eSuperPackage.oclIsUndefined() then 
+		package := self
+	else
+		package := self.eSuperPackage.getRootPackage()
+	endif;
+	return package;
+}
+
+query EClass::getRootPackage() : EPackage {
+	return self.ePackage.getRootPackage();
+}
+
+query EClass::getContext() : PropertyContext::Context {
+	return self.getRootPackage().map toContext().c;
+}
+
+abstract mapping EClassifier::toDataContextElement() : element : DataContextElement, viewSingle : View, viewMultiple : View {
+	element.name := self.name;
+}
+
+mapping EClass::toDataContextElement() : element : DataContextElement, viewSingle : View, viewMultiple : View  inherits EClassifier::toDataContextElement{
+	element.properties := self.eStructuralFeatures->map toProperty(); 
+	element.supertypes := self.eSuperTypes->map toDataContextElement().element; 
+
+	viewSingle.constraints := null;
+	viewSingle.name := 'Single '+self.name;
+	viewSingle.automaticContext := true;
+	viewSingle.datacontexts := element;
+	viewSingle.elementMultiplicity := 1;
+	viewSingle.constraints := self.map toConstraint(viewSingle);
+	viewSingle.context := self.getContext();
+	
+	viewMultiple.constraints := null;
+	viewMultiple.name := 'Multiple '+self.name;
+	viewMultiple.automaticContext := true;
+	viewMultiple.datacontexts := element;
+	viewMultiple.elementMultiplicity := -1;
+	viewMultiple.constraints := self.map toConstraint(viewMultiple);
+	viewMultiple.context := self.getContext();
+}
+
+mapping EClass::toConstraint(view : View) : ConstraintDescriptor {
+	name := "is" + view.name.replace(' ', '');
+	display := view;
+	constraintType := pRoot.objectsOfType(PropertiesRoot).environments.constraintTypes->any(e | e.constraintClass = 'org.eclipse.papyrus.properties.constraints.EMFInstanceOfConstraint');
+	var className := object ValueProperty {
+		name := 'className';
+		value := self.name;
+	};
+	var nsUri := object ValueProperty {
+		name := 'nsUri';
+		value := self.ePackage.nsURI;
+	};
+	properties := Set{className, nsUri};
+}
+
+mapping EStructuralFeature::toProperty() : Property {
+	name := self.name;
+	type := self.eType.toType();
+	multiplicity := if self.upperBound = 1 then 1 else -1 endif;
+	//multiplicity := self.upperBound;
+}
+
+query EClassifier::toType() : Type {
+	log("Unknown type : "+self.repr());
+	return null;
+}
+
+query EClass::toType() : Type {
+	return Type::Reference;
+}
+
+query EEnum::toType() : Type {
+	return Type::Enumeration;
+}
+
+query EDataType::toType() : Type {
+	var type : Type;
+	switch {
+		case (self.instanceClassName = "java.lang.String") type := Type::String; 
+		case (self.instanceClassName = "int") type := Type::Integer;
+		case (self.instanceClassName = "boolean") type := Type::Boolean;
+	};
+	if type.oclIsUndefined() then {
+		log("Type : "+self.name);
+		log("Instance : "+self.instanceClassName);
+		type := Type::String;
+	}endif;
+	return type;
+}
