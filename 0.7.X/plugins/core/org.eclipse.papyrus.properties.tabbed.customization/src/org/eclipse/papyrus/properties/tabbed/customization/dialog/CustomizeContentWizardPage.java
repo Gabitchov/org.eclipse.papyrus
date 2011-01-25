@@ -607,7 +607,7 @@ public class CustomizeContentWizardPage extends WizardPage {
 				});
 				dialog.open();
 				if(dialog.getValue() != null) {
-					DynamicTabDescriptor tabDescriptor = new DynamicTabDescriptor("", "tab_" + dialog.getValue(), dialog.getValue());
+					DynamicTabDescriptor tabDescriptor = new DynamicTabDescriptor("", "tab_" + dialog.getValue(), dialog.getValue(), false, ITabDescriptor.TOP);
 					StatesStore.getTabDescriptorStates().add(new TabDescriptorState(tabDescriptor, false));
 					tabViewer.refresh();
 				}

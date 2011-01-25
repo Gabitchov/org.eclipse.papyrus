@@ -83,6 +83,12 @@ public class PropertyTabViewProviderParser extends PropertyViewProviderParser {
 	/** name of the attribute: after section */
 	protected static final String AFTER_SECTION_ID = "afterSection";
 
+	/** name of the attribute: indented */
+	private static final String INDENTED = "indented";
+
+	/** name of the attribute: indented */
+	private static final String AFTER_TAB = "afterTab";
+
 	/** link to the list of all available tab descriptors */
 	protected List<ITabDescriptor> tabDescriptors;
 
@@ -163,6 +169,8 @@ public class PropertyTabViewProviderParser extends PropertyViewProviderParser {
 		String id = null;
 		String label = null;
 		String category = null;
+		boolean indented = false;
+		String afterTab = ITabDescriptor.TOP;
 
 		Node childNode = attributes.getNamedItem(ID);
 		if(childNode != null) {
@@ -183,8 +191,29 @@ public class PropertyTabViewProviderParser extends PropertyViewProviderParser {
 			Activator.log.error("impossible to parse label for the tab using " + node, null);
 		}
 
+		childNode = attributes.getNamedItem(INDENTED);
+		if(childNode != null) {
+			indented = Boolean.parseBoolean(childNode.getNodeValue());
+		} else {
+			indented = false;
+		}
+
+		childNode = attributes.getNamedItem(AFTER_TAB);
+		if(childNode != null) {
+			afterTab = childNode.getNodeValue();
+		} else {
+			afterTab = ITabDescriptor.TOP;
+		}
+
+		childNode = attributes.getNamedItem(LABEL);
+		if(childNode != null) {
+			label = childNode.getNodeValue();
+		} else {
+			Activator.log.error("impossible to parse label for the tab using " + node, null);
+		}
+
 		if(label != null && id != null && category != null) {
-			DynamicTabDescriptor tabDescriptor = new DynamicTabDescriptor(category, id, label);
+			DynamicTabDescriptor tabDescriptor = new DynamicTabDescriptor(category, id, label, indented, afterTab);
 			return tabDescriptor;
 		}
 		return null;

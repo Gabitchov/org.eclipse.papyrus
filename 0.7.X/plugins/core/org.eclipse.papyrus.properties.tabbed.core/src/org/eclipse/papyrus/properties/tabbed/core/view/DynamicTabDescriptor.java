@@ -28,6 +28,12 @@ public class DynamicTabDescriptor extends AbstractTabDescriptor {
 	/** label of the tab */
 	private final String label;
 
+	/** boolean that indicates if the tab should be indented */
+	private final boolean indented;
+
+	/** id of the tab before this one */
+	private final String afterTab;
+
 	/**
 	 * Creates a new DynamicTabDescriptor.
 	 * 
@@ -37,11 +43,17 @@ public class DynamicTabDescriptor extends AbstractTabDescriptor {
 	 *        the unique identifier for the tab
 	 * @param label
 	 *        the label of the tab
+	 * @param indented
+	 *        indicates if the tab should be indented or not
+	 * @param afterTab
+	 *        indicates after which tab this one should be placed.
 	 */
-	public DynamicTabDescriptor(String category, String id, String label) {
+	public DynamicTabDescriptor(String category, String id, String label, boolean indented, String afterTab) {
 		this.category = category;
 		this.id = id;
 		this.label = label;
+		this.indented = indented;
+		this.afterTab = afterTab;
 	}
 
 	/**
@@ -63,6 +75,20 @@ public class DynamicTabDescriptor extends AbstractTabDescriptor {
 	 */
 	public String getLabel() {
 		return label;
+	}
+
+	/**
+	 * @return the indented
+	 */
+	public boolean isIndented() {
+		return indented;
+	}
+
+	/**
+	 * @return the afterTab
+	 */
+	public String getAfterTab() {
+		return afterTab;
 	}
 
 }
