@@ -70,12 +70,8 @@ public class InitFromTemplateCommand extends RecordingCommand {
 	private void initializeFromTemplate() {
 		Resource templateResource = loadTemplateResource();
 		List<EObject> eObjectsToAdd = new ArrayList<EObject>();
-		for(EObject eObject : templateResource.getContents()) {
-			eObjectsToAdd.add(EcoreUtil.copy(eObject));
-		}
-		for(EObject eObject : eObjectsToAdd) {
-			myModelResource.getContents().add(eObject);
-		}
+		eObjectsToAdd = (List<EObject>)EcoreUtil.copyAll(templateResource.getContents());
+		myModelResource.getContents().addAll(eObjectsToAdd);
 	}
 
 
