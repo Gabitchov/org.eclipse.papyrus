@@ -48,7 +48,7 @@
    <extension
          point="org.eclipse.emf.compare.diff.extension">
       <diffExtension
-            extensionClass="org.eclipse.papyrus.compare.diff.extension.ChangeTaggedValueExtension"
+            extensionClass="org.eclipse.papyrus.compare.diff.extension.ProcessTaggedValues"
             fileExtension="uml">
       </diffExtension>
    </extension>

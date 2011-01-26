@@ -33,7 +33,7 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
 
-public class ChangeTaggedValueExtension extends AbstractDiffExtensionImpl {
+public class ProcessTaggedValues extends AbstractDiffExtensionImpl {
 	
 	private UMLDiffSwitch<DiffElement> myDiffElementBuilder = new TaggedValueDiffBuilder();
 
