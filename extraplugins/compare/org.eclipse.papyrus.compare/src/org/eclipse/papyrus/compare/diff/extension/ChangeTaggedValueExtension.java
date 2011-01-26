@@ -27,6 +27,7 @@ import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeRightTarget;
 import org.eclipse.emf.compare.diff.metamodel.ReferenceChange;
 import org.eclipse.emf.compare.diff.metamodel.UpdateAttribute;
 import org.eclipse.emf.compare.diff.metamodel.UpdateModelElement;
+import org.eclipse.emf.compare.diff.metamodel.impl.AbstractDiffExtensionImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValueChange;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValueChangeLeftTarget;
@@ -34,28 +35,31 @@ import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValue
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValueReferenceChange;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UMLDiffFactory;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UpdateTaggedValue;
-import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.impl.UMLDiffExtensionImpl;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
 
-public class ChangeTaggedValueExtension extends UMLDiffExtensionImpl {
+public class ChangeTaggedValueExtension extends AbstractDiffExtensionImpl {
 
 	@Override
 	public void visit(DiffModel diffModel) {
 		final Iterator<EObject> it = diffModel.eAllContents();
 		while(it.hasNext()) {
-			final DiffElement diffElement = (DiffElement)it.next();
-			EObject stereotypeApplication = getStereotypeApplication(diffElement);
-			boolean hasStereotypeApplication = stereotypeApplication != null; 
-			if(hasStereotypeApplication) {
-				getHideElements().add(diffElement);
-				
-				Element newVisualParent = UMLUtil.getBaseElement(stereotypeApplication);
-				DiffElement newDiffParent = findOrCreateDiffElementFor(diffModel, newVisualParent);
-				DiffElement taggedValueDiff = buildTaggedValueDiff(diffElement);
-				newDiffParent.getSubDiffElements().add(taggedValueDiff);
-			}
+			DiffElement diffElement = (DiffElement)it.next();
+			visitElement(diffModel, diffElement);
+		}
+	}
+	
+	protected void visitElement(DiffModel diffModel, DiffElement diffElement) {
+		EObject stereotypeApplication = getStereotypeApplication(diffElement);
+		boolean hasStereotypeApplication = stereotypeApplication != null; 
+		if(hasStereotypeApplication) {
+			getHideElements().add(diffElement);
+			
+			Element newVisualParent = UMLUtil.getBaseElement(stereotypeApplication);
+			DiffElement newDiffParent = findOrCreateDiffElementFor(diffModel, newVisualParent);
+			DiffElement taggedValueDiff = buildTaggedValueDiff(diffElement);
+			newDiffParent.getSubDiffElements().add(taggedValueDiff);
 		}
 	}
 	
