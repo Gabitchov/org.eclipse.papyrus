@@ -51,7 +51,7 @@ public class ValueTypeEditHelperAdvice extends AbstractStereotypedElementEditHel
 					String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(), BlocksPackage.eINSTANCE.getValueType());
 					element.setName(initializedName);
 				}
-				return CommandResult.newOKCommandResult();
+				return CommandResult.newOKCommandResult(element);
 			}
 		};
 	}

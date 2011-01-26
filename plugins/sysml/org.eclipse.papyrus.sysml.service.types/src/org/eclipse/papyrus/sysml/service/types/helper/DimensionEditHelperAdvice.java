@@ -51,7 +51,7 @@ public class DimensionEditHelperAdvice extends AbstractStereotypedElementEditHel
 					String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(), BlocksPackage.eINSTANCE.getDimension());
 					element.setName(initializedName);
 				}
-				return CommandResult.newOKCommandResult();
+				return CommandResult.newOKCommandResult(element);
 			}
 		};
 	}

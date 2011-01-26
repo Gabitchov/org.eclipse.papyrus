@@ -44,7 +44,7 @@ public class RationaleEditHelperAdvice extends AbstractStereotypedElementEditHel
 						element.applyStereotype(stereotypeToApply);
 					}
 				}
-				return CommandResult.newOKCommandResult();
+				return CommandResult.newOKCommandResult(element);
 			}
 		};
 	}

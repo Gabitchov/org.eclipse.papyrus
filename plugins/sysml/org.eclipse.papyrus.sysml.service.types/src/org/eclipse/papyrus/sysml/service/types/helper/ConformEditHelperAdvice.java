@@ -51,7 +51,7 @@ public class ConformEditHelperAdvice extends AbstractStereotypedElementEditHelpe
 					String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(), ModelelementsPackage.eINSTANCE.getConform());
 					element.setName(initializedName);
 				}
-				return CommandResult.newOKCommandResult();
+				return CommandResult.newOKCommandResult(element);
 			}
 		};
 	}

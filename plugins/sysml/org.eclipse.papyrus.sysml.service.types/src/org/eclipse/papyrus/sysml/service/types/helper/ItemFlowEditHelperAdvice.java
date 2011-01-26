@@ -51,7 +51,7 @@ public class ItemFlowEditHelperAdvice extends AbstractStereotypedElementEditHelp
 					String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(), PortandflowsPackage.eINSTANCE.getItemFlow());
 					element.setName(initializedName);
 				}
-				return CommandResult.newOKCommandResult();
+				return CommandResult.newOKCommandResult(element);
 			}
 		};
 	}

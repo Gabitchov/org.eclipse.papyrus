@@ -51,7 +51,7 @@ public class CopyEditHelperAdvice extends AbstractStereotypedElementEditHelperAd
 					String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(), RequirementsPackage.eINSTANCE.getCopy());
 					element.setName(initializedName);
 				}
-				return CommandResult.newOKCommandResult();
+				return CommandResult.newOKCommandResult(element);
 			}
 		};
 	}

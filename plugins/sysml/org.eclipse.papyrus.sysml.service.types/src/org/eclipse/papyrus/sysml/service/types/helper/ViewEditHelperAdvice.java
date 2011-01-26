@@ -51,7 +51,7 @@ public class ViewEditHelperAdvice extends AbstractStereotypedElementEditHelperAd
 					String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(), ModelelementsPackage.eINSTANCE.getView());
 					element.setName(initializedName);
 				}
-				return CommandResult.newOKCommandResult();
+				return CommandResult.newOKCommandResult(element);
 			}
 		};
 	}

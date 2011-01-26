@@ -51,7 +51,7 @@ public class UnitEditHelperAdvice extends AbstractStereotypedElementEditHelperAd
 					String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(), BlocksPackage.eINSTANCE.getUnit());
 					element.setName(initializedName);
 				}
-				return CommandResult.newOKCommandResult();
+				return CommandResult.newOKCommandResult(element);
 			}
 		};
 	}

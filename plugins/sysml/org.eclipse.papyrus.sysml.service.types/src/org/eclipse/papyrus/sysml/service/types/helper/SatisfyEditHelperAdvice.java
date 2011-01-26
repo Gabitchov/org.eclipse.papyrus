@@ -54,7 +54,7 @@ public class SatisfyEditHelperAdvice extends AbstractStereotypedElementEditHelpe
 					String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(), RequirementsPackage.eINSTANCE.getSatisfy());
 					element.setName(initializedName);
 				}
-				return CommandResult.newOKCommandResult();
+				return CommandResult.newOKCommandResult(element);
 			}
 		};
 	}
