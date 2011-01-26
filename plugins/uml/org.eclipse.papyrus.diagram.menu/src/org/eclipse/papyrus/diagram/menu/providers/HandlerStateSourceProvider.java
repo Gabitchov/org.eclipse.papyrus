@@ -16,6 +16,7 @@ package org.eclipse.papyrus.diagram.menu.providers;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.papyrus.diagram.common.providers.AbstractActionStateSourceProvider;
 import org.eclipse.papyrus.diagram.menu.actions.ArrangeAction;
+import org.eclipse.papyrus.diagram.menu.actions.LineStyleAction;
 import org.eclipse.papyrus.diagram.menu.actions.SelectAction;
 import org.eclipse.papyrus.diagram.menu.actions.ZOrderAction;
 import org.eclipse.papyrus.diagram.menu.actions.handlers.ArrangeHandler;
@@ -23,6 +24,7 @@ import org.eclipse.papyrus.diagram.menu.actions.handlers.CopyAppearancePropertie
 import org.eclipse.papyrus.diagram.menu.actions.handlers.FillColorHandler;
 import org.eclipse.papyrus.diagram.menu.actions.handlers.FontHandler;
 import org.eclipse.papyrus.diagram.menu.actions.handlers.LineColorHandler;
+import org.eclipse.papyrus.diagram.menu.actions.handlers.LineStyleHandler;
 import org.eclipse.papyrus.diagram.menu.actions.handlers.RecalculatePageBreaksHandler;
 import org.eclipse.papyrus.diagram.menu.actions.handlers.SelectHandler;
 import org.eclipse.papyrus.diagram.menu.actions.handlers.ShowHideCompartmentHandler;
@@ -93,6 +95,10 @@ public class HandlerStateSourceProvider extends AbstractActionStateSourceProvide
 
 	public static final String LINE_COLOR = "lineColor"; //$NON-NLS-1$
 
+	public static final String LINE_STYLE = "lineStyle"; //$NON-NLS-1$
+
+	public static final String LINE_STYLE_TREE = "lineStyleTree"; //$NON-NLS-1$
+
 	/**
 	 * 
 	 * Constructor.
@@ -128,6 +134,9 @@ public class HandlerStateSourceProvider extends AbstractActionStateSourceProvide
 		currentState.put(FILL_COLOR, DISABLED);
 		currentState.put(LINE_COLOR, DISABLED);
 
+		currentState.put(LINE_STYLE, DISABLED);
+		currentState.put(LINE_STYLE_TREE, DISABLED);
+
 	}
 
 
@@ -150,7 +159,7 @@ public class HandlerStateSourceProvider extends AbstractActionStateSourceProvide
 
 		, FONT
 
-		, FILL_COLOR, LINE_COLOR };
+		, FILL_COLOR, LINE_COLOR, LINE_STYLE, LINE_STYLE_TREE };
 
 	}
 
@@ -188,6 +197,8 @@ public class HandlerStateSourceProvider extends AbstractActionStateSourceProvide
 
 		refresh(FILL_COLOR, new FillColorHandler());
 		refresh(LINE_COLOR, new LineColorHandler());
+		refresh(LINE_STYLE, new LineStyleHandler(LineStyleAction.RECTILINEAR));
+		refresh(LINE_STYLE_TREE, new LineStyleHandler(LineStyleAction.TREE));
 	}
 
 	/**

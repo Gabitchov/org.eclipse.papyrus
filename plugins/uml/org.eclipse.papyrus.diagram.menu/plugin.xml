@@ -300,6 +300,27 @@
                   removeFromToolbar="true"
                   toolbarPath="/toolbarFilterGroup">
             </partPredefinedItem>
+            <partPredefinedItem
+                  id="rectilinearRouterAction"
+                  menubarPath="/diagramMenu/routerMenu/routerGroup"
+                  removeFromMenubar="true"
+                  removeFromToolbar="true"
+                  toolbarPath="/routerMenu/routerGroup">
+            </partPredefinedItem>
+            <partPredefinedItem
+                  id="obliqueRouterAction"
+                  menubarPath="/diagramMenu/routerMenu/routerGroup"
+                  removeFromMenubar="true"
+                  removeFromToolbar="true"
+                  toolbarPath="/routerMenu/routerGroup">
+            </partPredefinedItem>
+            <partPredefinedItem
+                  id="treeRouterAction"
+                  menubarPath="/diagramMenu/routerMenu/routerGroup"
+                  removeFromMenubar="true"
+                  removeFromToolbar="true"
+                  toolbarPath="/routerMenu/routerGroup">
+            </partPredefinedItem>
          </partContribution>
          <popupContribution
                class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
@@ -448,6 +469,21 @@
                   path="/formatMenu/arrangeMenu/arrangeGroup"
                   remove="true">
             </popupPredefinedItem>
+            <popupPredefinedItem
+                  id="rectilinearRouterAction"
+                  path="/formatMenu/routerMenu/routerGroup"
+                  remove="true">
+            </popupPredefinedItem>
+            <popupPredefinedItem
+                  id="obliqueRouterAction"
+                  path="/formatMenu/routerMenu/routerGroup"
+                  remove="true">
+            </popupPredefinedItem>
+            <popupPredefinedItem
+                  id="treeRouterAction"
+                  path="/formatMenu/routerMenu/routerGroup"
+                  remove="true">
+            </popupPredefinedItem>
          </popupContribution>
          <popupContribution
                class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
@@ -507,12 +543,14 @@
          locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu?after=filtersMenu">
       <menu
             icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/selectall.gif"
+            id="org.eclipse.papyrus.diagram.ui.popupmenu.select.menu"
             label="Select"
             mnemonic="&amp;l"
             tooltip="Select Menu">
          <command
                commandId="org.eclipse.papyrus.diagram.menu.commands.SelectAllCommand"
                icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/selectall.gif"
+               id="org.eclipse.papyrus.diagram.ui.popupmenu.select.all"
                label="All"
                mnemonic="&amp;A"
                style="push"
@@ -521,6 +559,7 @@
          <command
                commandId="org.eclipse.papyrus.diagram.menu.commands.SelectAllShapesCommand"
                icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/selectshapes.gif"
+               id="org.eclipse.papyrus.diagram.ui.popupmenu.select.all.shapes"
                label="All Shapes"
                mnemonic="&amp;S"
                style="push"
@@ -529,6 +568,7 @@
          <command
                commandId="org.eclipse.papyrus.diagram.menu.commands.SelectAllConnectorsCommand"
                icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/selectconnectors.gif"
+               id="org.eclipse.papyrus.diagram.ui.popupmenu.select.all.connectors"
                label="All Connectors"
                mnemonic="&amp;C"
                style="push"
@@ -562,6 +602,7 @@
       <command
             commandId="org.eclipse.papyrus.diagram.menu.commands.ArrangeAllCommand"
             icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/arrangeall.gif"
+            id="org.eclipse.papyrus.diagram.ui.popupmenu.arrange.all"
             label="Arrange All"
             mnemonic="&amp;g"
             style="push"
@@ -622,8 +663,7 @@
          </visibleWhen>
       </menu>
       <separator
-            name="endFilterMenu"
-            visible="true">
+            name="org.eclipse.papyrus.diagram.ui.popupmenu.filters.end.separator">
       </separator>
    </menuContribution>
    <menuContribution
@@ -666,6 +706,27 @@
             id="org.eclipes.papyrus.menu.toolbar"
             label="Papyrus Toolbar Action">
          <command
+               commandId="org.eclipse.papyrus.diagram.menu.toolbar.command"
+               icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/line_style_group.gif"
+               id="org.eclipse.papyrus.menu.line.style.toolbar.command"
+               style="pulldown"
+               tooltip="Line Style Action">
+            <visibleWhen>
+               <and>
+                  <with
+                        variable="activeEditorId">
+                     <equals
+                           value="org.eclipse.papyrus.core.papyrusEditor">
+                     </equals>
+                  </with>
+               </and>
+            </visibleWhen>
+         </command>
+         <separator
+               name="org.eclipse.papyrus.diagram.menu.toolbar.separator0"
+               visible="true">
+         </separator>
+         <command
                commandId="org.eclipse.papyrus.diagram.menu.commands.CopyAppearancePropertiesCommand"
                icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/copy_appearance_properties.gif"
                label="Apply Appearance &amp;Properties"
@@ -684,7 +745,7 @@
             </visibleWhen>
          </command>
          <separator
-               name="org.eclipse.papyrus.diagram.menu.toolbar.separator0"
+               name="org.eclipse.papyrus.diagram.menu.toolbar.separator1"
                visible="true">
          </separator>
          <command
@@ -790,7 +851,7 @@
             </visibleWhen>
          </command>
          <separator
-               name="org.eclipse.papyrus.diagram.menu.toolbar.separator1"
+               name="org.eclipse.papyrus.diagram.menu.toolbar.separator2"
                visible="true">
          </separator>
          <command
@@ -855,6 +916,49 @@
 </extension>
 <extension
       point="org.eclipse.ui.menus">
+   <menuContribution
+         locationURI="menu:org.eclipse.papyrus.menu.line.style.toolbar.command">
+      <command
+            commandId="org.eclipse.papyrus.diagram.menu.commands.line.style.rectilinear"
+            icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/rectilinear.gif"
+            id="org.eclipse.papyrus.menu.line.style.toolbar.rectilinear"
+            label="Rectilinear Style Routing"
+            mnemonic="&amp;R"
+            style="toggle"
+            tooltip="Change routing to rectilinear style for connectors">
+      </command>
+      <command
+            commandId="org.eclipse.papyrus.diagram.menu.commands.line.style.oblique"
+            icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/oblique.gif"
+            id="org.eclipse.papyrus.menu.line.style.toolbar.oblique"
+            label="Oblique Style Routing"
+            mnemonic="&amp;O"
+            style="toggle"
+            tooltip="Change routing to oblique style for connectors">
+      </command>
+      <command
+            commandId="org.eclipse.papyrus.diagram.menu.commands.line.style.tree"
+            icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/tree.gif"
+            id="org.eclipse.papyrus.menu.line.style.toolbar.tree"
+            label="Tree Style Routing"
+            mnemonic="&amp;T"
+            style="toggle"
+            tooltip="Change routing to tree style for connectors">
+      </command>
+      <separator
+            name="org.eclipse.papyrus.menu.line.style.toolbar.separator0"
+            visible="true">
+      </separator>
+      <command
+            commandId="org.eclipse.papyrus.diagram.menu.commands.line.style.removebendpoint"
+            icon="icons/no_bendpoints.gif"
+            id="org.eclipse.papyrus.menu.line.style.toolbar.no.bendpoint"
+            label="Remove all bendpoints"
+            mnemonic="&amp;B"
+            style="push"
+            tooltip="Remove all bendpoints on the selected connectors">
+      </command>
+   </menuContribution>
    <menuContribution
          locationURI="menu:org.eclipse.papyrus.menu.select.toolbar.command">
       <command
@@ -1346,6 +1450,53 @@
                label="More colors..."
                style="push"
                tooltip="More Colors">
+         </command>
+      </menu>
+      <menu
+            icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/line_style_group.gif"
+            id="org.eclipse.papyrus.diagram.ui.menu.line.style.menu"
+            label="Line Style"
+            mnemonic="&amp;S"
+            tooltip="Line Style">
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.commands.line.style.rectilinear"
+               icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/rectilinear.gif"
+               id="org.eclipse.papyrus.diagram.ui.menu.line.style.rectilinear"
+               label="Rectilinear Style Routing"
+               mnemonic="&amp;R"
+               style="toggle"
+               tooltip="Change routing to rectilinear style for connectors">
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.commands.line.style.oblique"
+               icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/oblique.gif"
+               id="org.eclipse.papyrus.diagram.ui.menu.line.style.oblique"
+               label="Oblique Style Routing"
+               mnemonic="&amp;O"
+               style="toggle"
+               tooltip="Change routing to oblique style for connectors">
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.commands.line.style.tree"
+               icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/tree.gif"
+               id="org.eclipse.papyrus.diagram.ui.menu.line.style.tree"
+               label="Tree Style Routing"
+               mnemonic="&amp;T"
+               style="toggle"
+               tooltip="Change routing to tree style for connectors">
+         </command>
+         <separator
+               name="org.eclipse.papyrus.diagram.ui.menu.line.style.separator0"
+               visible="true">
+         </separator>
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.commands.line.style.removebendpoint"
+               icon="icons/no_bendpoints.gif"
+               id="org.eclipse.papyrus.diagram.ui.menu.line.style.no.bendpoint"
+               label="Remove all bendpoints"
+               mnemonic="&amp;B"
+               style="push"
+               tooltip="Remove all bendpoints on the selected connectors">
          </command>
       </menu>
       <separator
@@ -2026,6 +2177,53 @@
                label="More colors..."
                style="push"
                tooltip="More Colors">
+         </command>
+      </menu>
+      <menu
+            icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/line_style_group.gif"
+            id="org.eclipse.papyrus.diagram.ui.popupmenu.format.line.style.menu"
+            label="Line Style"
+            mnemonic="&amp;S"
+            tooltip="Line Style">
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.commands.line.style.rectilinear"
+               icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/rectilinear.gif"
+               id="org.eclipse.papyrus.diagram.ui.popupmenu.format.line.style.rectilinear"
+               label="Rectilinear Style Routing"
+               mnemonic="&amp;R"
+               style="toggle"
+               tooltip="Change routing to rectilinear style for connectors">
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.commands.line.style.oblique"
+               icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/oblique.gif"
+               id="org.eclipse.papyrus.diagram.ui.popupmenu.format.line.style.oblique"
+               label="Oblique Style Routing"
+               mnemonic="&amp;O"
+               style="toggle"
+               tooltip="Change routing to oblique style for connectors">
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.commands.line.style.tree"
+               icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/tree.gif"
+               id="org.eclipse.papyrus.diagram.ui.popupmenu.format.line.style.tree"
+               label="Tree Style Routing"
+               mnemonic="&amp;T"
+               style="toggle"
+               tooltip="Change routing to tree style for connectors">
+         </command>
+         <separator
+               name="org.eclipse.papyrus.diagram.ui.popupmenu.format.line.style.separator0"
+               visible="true">
+         </separator>
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.commands.line.style.removebendpoint"
+               icon="icons/no_bendpoints.gif"
+               id="org.eclipse.papyrus.diagram.ui.popupmenu.format.line.style.no.bendpoint"
+               label="Remove all bendpoints"
+               mnemonic="&amp;B"
+               style="push"
+               tooltip="Remove all bendpoints on the selected connectors">
          </command>
       </menu>
       <separator
@@ -2848,6 +3046,42 @@
          id="org.eclipse.papyrus.diagram.menu.commands.FontCommand"
          name="Modify the Font Command">
    </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         description="The command to change routing to rectilinear style for connectors"
+         id="org.eclipse.papyrus.diagram.menu.commands.line.style.rectilinear"
+         name="Rectilinear Style Routing Command">
+      <state
+            class="org.eclipse.papyrus.diagram.menu.providers.RectilinearToggleState"
+            id="org.eclipse.ui.commands.toggleState">
+      </state>
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         description="The command to change routing to oblique style for connectors"
+         id="org.eclipse.papyrus.diagram.menu.commands.line.style.oblique"
+         name="Oblique Style Routing Command">
+      <state
+            class="org.eclipse.papyrus.diagram.menu.providers.ObliqueToggleState"
+            id="org.eclipse.ui.commands.toggleState">
+      </state>
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         description="The command to change routing to tree style for connectors"
+         id="org.eclipse.papyrus.diagram.menu.commands.line.style.tree"
+         name="Tree Style Routing Command">
+      <state
+            class="org.eclipse.papyrus.diagram.menu.providers.TreeToggleState"
+            id="org.eclipse.ui.commands.toggleState">
+      </state>
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         description="The command to remove all bendpoints"
+         id="org.eclipse.papyrus.diagram.menu.commands.line.style.removebendpoint"
+         name="Remove Bendpoints Command">
+   </command>
 </extension>
 <extension
       id="viewHandlers"
@@ -3408,6 +3642,86 @@
          </and>
       </activeWhen>
    </handler>
+   <handler
+         commandId="org.eclipse.papyrus.diagram.menu.commands.line.style.rectilinear">
+      <class
+            class="org.eclipse.papyrus.diagram.menu.actions.handlers.LineStyleHandler">
+         <parameter
+               name="line_style_parameter"
+               value="rectilinear">
+         </parameter>
+      </class>
+      <activeWhen>
+         <and>
+            <with
+                  variable="lineStyle">
+               <equals
+                     value="enabled">
+               </equals>
+            </with>
+         </and>
+      </activeWhen>
+   </handler>
+   <handler
+         commandId="org.eclipse.papyrus.diagram.menu.commands.line.style.oblique">
+      <class
+            class="org.eclipse.papyrus.diagram.menu.actions.handlers.LineStyleHandler">
+         <parameter
+               name="line_style_parameter"
+               value="oblique">
+         </parameter>
+      </class>
+      <activeWhen>
+         <and>
+            <with
+                  variable="lineStyle">
+               <equals
+                     value="enabled">
+               </equals>
+            </with>
+         </and>
+      </activeWhen>
+   </handler>
+   <handler
+         commandId="org.eclipse.papyrus.diagram.menu.commands.line.style.tree">
+      <class
+            class="org.eclipse.papyrus.diagram.menu.actions.handlers.LineStyleHandler">
+         <parameter
+               name="line_style_parameter"
+               value="tree">
+         </parameter>
+      </class>
+      <activeWhen>
+         <and>
+            <with
+                  variable="lineStyleTree">
+               <equals
+                     value="enabled">
+               </equals>
+            </with>
+         </and>
+      </activeWhen>
+   </handler>
+   <handler
+         commandId="org.eclipse.papyrus.diagram.menu.commands.line.style.removebendpoint">
+      <class
+            class="org.eclipse.papyrus.diagram.menu.actions.handlers.LineStyleHandler">
+         <parameter
+               name="line_style_parameter"
+               value="remove_benpoints">
+         </parameter>
+      </class>
+      <activeWhen>
+         <and>
+            <with
+                  variable="lineStyle">
+               <equals
+                     value="enabled">
+               </equals>
+            </with>
+         </and>
+      </activeWhen>
+   </handler>
 </extension>
 <extension
       point="org.eclipse.ui.services">
@@ -3495,6 +3809,14 @@
       </variable>
       <variable
             name="lineColor"
+            priorityLevel="workbench">
+      </variable>
+      <variable
+            name="lineStyle"
+            priorityLevel="workbench">
+      </variable>
+      <variable
+            name="lineTree"
             priorityLevel="workbench">
       </variable>
    </sourceProvider>
