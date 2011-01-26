@@ -22,9 +22,11 @@ import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.DiffFactory;
 import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
 import org.eclipse.emf.compare.diff.metamodel.DiffModel;
+import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeLeftTarget;
+import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeRightTarget;
 import org.eclipse.emf.compare.diff.metamodel.ReferenceChange;
 import org.eclipse.emf.compare.diff.metamodel.UpdateAttribute;
-import org.eclipse.emf.compare.diff.metamodel.impl.ModelElementChangeLeftTargetImpl;
+import org.eclipse.emf.compare.diff.metamodel.UpdateModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValueChange;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValueChangeLeftTarget;
@@ -142,7 +144,6 @@ public class ChangeTaggedValueExtension extends UMLDiffExtensionImpl {
 		}
 
 		DiffElement diffParent = findOrCreateDiffElementFor(root, getParent(object));
-
 		DiffGroup diffElementForObject = DiffFactory.eINSTANCE.createDiffGroup();
 		diffElementForObject.setRightParent(object);
 
@@ -158,38 +159,30 @@ public class ChangeTaggedValueExtension extends UMLDiffExtensionImpl {
 		if(modelElement == null) {
 			return null;
 		}
-		for(DiffElement diff : root.getOwnedElements()) {
-			if(isPertinentDiff(diff, modelElement)) {
-				return diff;
-			}
-			if(diff instanceof DiffGroup) {
-				return getDiffElementFor((DiffGroup)diff, modelElement);
-			}
-		}
-		return null;
-	}
-
-	private DiffElement getDiffElementFor(DiffGroup root, EObject modelElement) {
-		for(DiffElement diff : root.getSubDiffElements()) {
-			if(isPertinentDiff(diff, modelElement)) {
-				return diff;
-			}
-			if(diff instanceof DiffGroup) {
-				return getDiffElementFor((DiffGroup)diff, modelElement);
+		final Iterator<EObject> it = root.eAllContents();
+		while(it.hasNext()) {
+			final DiffElement element = (DiffElement)it.next();
+			if(isPertinentDiff(element, modelElement)) {
+				return element;
 			}
 		}
 		return null;
 	}
 
 	private boolean isPertinentDiff(DiffElement diff, EObject modelElement) {
-		boolean isPertinent = false;
 		if(diff instanceof DiffGroup) {
 			return modelElement.equals(((DiffGroup)diff).getRightParent());
 		}
-		if(diff instanceof ModelElementChangeLeftTargetImpl) {
-			isPertinent = ((ModelElementChangeLeftTargetImpl)diff).getLeftElement().equals(modelElement);
+		if(diff instanceof ModelElementChangeLeftTarget) {
+			return ((ModelElementChangeLeftTarget)diff).getLeftElement().equals(modelElement);
 		}
-		return isPertinent;
+		if(diff instanceof ModelElementChangeRightTarget) {
+			return ((ModelElementChangeRightTarget)diff).getRightElement().equals(modelElement);
+		}
+		if(diff instanceof UpdateModelElement) {
+			return ((UpdateModelElement)diff).getLeftElement().equals(modelElement);
+		}
+		return false;
 	}
 
 
