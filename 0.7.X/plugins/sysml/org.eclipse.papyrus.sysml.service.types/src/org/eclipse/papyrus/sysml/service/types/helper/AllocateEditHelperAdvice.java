@@ -51,7 +51,7 @@ public class AllocateEditHelperAdvice extends AbstractStereotypedElementEditHelp
 					String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(), AllocationsPackage.eINSTANCE.getAllocate());
 					element.setName(initializedName);
 				}
-				return CommandResult.newOKCommandResult();
+				return CommandResult.newOKCommandResult(element);
 			}
 		};
 	}

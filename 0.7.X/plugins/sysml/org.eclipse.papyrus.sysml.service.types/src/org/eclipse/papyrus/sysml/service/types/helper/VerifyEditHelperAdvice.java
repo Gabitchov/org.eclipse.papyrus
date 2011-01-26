@@ -54,7 +54,7 @@ public class VerifyEditHelperAdvice extends AbstractStereotypedElementEditHelper
 					String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(), RequirementsPackage.eINSTANCE.getVerify());
 					element.setName(initializedName);
 				}
-				return CommandResult.newOKCommandResult();
+				return CommandResult.newOKCommandResult(element);
 			}
 		};
 	}

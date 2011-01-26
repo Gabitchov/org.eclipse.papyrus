@@ -38,22 +38,19 @@ import org.eclipse.uml2.uml.Namespace;
  */
 public class NamedElementInitializerHelperAdvice extends AbstractEditHelperAdvice {
 
-
 	@Override
 	protected ICommand getAfterConfigureCommand(final ConfigureRequest request) {
 		return new ConfigureElementCommand(request) {
 
 			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 
-				if(request.getElementToConfigure() instanceof NamedElement) {
-					NamedElement element = (NamedElement)request.getElementToConfigure();
+				NamedElement element = (NamedElement)request.getElementToConfigure();
 
-					// Initialize the element name based on the created IElementType
-					String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(), element.eClass());
-					element.setName(initializedName);
-				}
+				// Initialize the element name based on the created IElementType
+				String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(), element.eClass());
+				element.setName(initializedName);
 
-				return CommandResult.newOKCommandResult();
+				return CommandResult.newOKCommandResult(element);
 			}
 		};
 	}
