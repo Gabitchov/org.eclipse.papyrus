@@ -18,6 +18,9 @@ import org.eclipse.emf.compare.diff.metamodel.AttributeChange;
 import org.eclipse.emf.compare.diff.metamodel.AttributeChangeLeftTarget;
 import org.eclipse.emf.compare.diff.metamodel.AttributeChangeRightTarget;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
+import org.eclipse.emf.compare.diff.metamodel.ModelElementChange;
+import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeLeftTarget;
+import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeRightTarget;
 import org.eclipse.emf.compare.diff.metamodel.ReferenceChange;
 import org.eclipse.emf.compare.diff.metamodel.UpdateAttribute;
 
@@ -165,8 +168,11 @@ public class UMLDiffSwitch<T> {
 				AddStereotypeApplication addStereotypeApplication = (AddStereotypeApplication)theEObject;
 				T result = caseAddStereotypeApplication(addStereotypeApplication);
 				if (result == null) result = caseStereotypeChange(addStereotypeApplication);
+				if (result == null) result = caseModelElementChangeRightTarget(addStereotypeApplication);
 				if (result == null) result = caseUMLDiffExtension(addStereotypeApplication);
+				if (result == null) result = caseModelElementChange(addStereotypeApplication);
 				if (result == null) result = caseAbstractDiffExtension(addStereotypeApplication);
+				if (result == null) result = caseDiffElement(addStereotypeApplication);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -174,8 +180,11 @@ public class UMLDiffSwitch<T> {
 				RemoveStereotypeApplication removeStereotypeApplication = (RemoveStereotypeApplication)theEObject;
 				T result = caseRemoveStereotypeApplication(removeStereotypeApplication);
 				if (result == null) result = caseStereotypeChange(removeStereotypeApplication);
+				if (result == null) result = caseModelElementChangeLeftTarget(removeStereotypeApplication);
 				if (result == null) result = caseUMLDiffExtension(removeStereotypeApplication);
+				if (result == null) result = caseModelElementChange(removeStereotypeApplication);
 				if (result == null) result = caseAbstractDiffExtension(removeStereotypeApplication);
+				if (result == null) result = caseDiffElement(removeStereotypeApplication);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -415,6 +424,51 @@ public class UMLDiffSwitch<T> {
 	 * @generated
 	 */
 	public T caseUpdateAttribute(UpdateAttribute object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Model Element Change</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Model Element Change</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseModelElementChange(ModelElementChange object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Model Element Change Right Target</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Model Element Change Right Target</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseModelElementChangeRightTarget(ModelElementChangeRightTarget object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Model Element Change Left Target</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Model Element Change Left Target</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseModelElementChangeLeftTarget(ModelElementChangeLeftTarget object) {
 		return null;
 	}
 

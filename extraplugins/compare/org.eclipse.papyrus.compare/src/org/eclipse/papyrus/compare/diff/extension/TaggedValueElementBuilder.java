@@ -17,9 +17,13 @@ import org.eclipse.emf.compare.diff.metamodel.AttributeChange;
 import org.eclipse.emf.compare.diff.metamodel.AttributeChangeLeftTarget;
 import org.eclipse.emf.compare.diff.metamodel.AttributeChangeRightTarget;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
+import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeLeftTarget;
+import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeRightTarget;
 import org.eclipse.emf.compare.diff.metamodel.ReferenceChange;
 import org.eclipse.emf.compare.diff.metamodel.UpdateAttribute;
 import org.eclipse.emf.compare.diff.metamodel.util.DiffSwitch;
+import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.AddStereotypeApplication;
+import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.RemoveStereotypeApplication;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValueChange;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValueChangeLeftTarget;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValueChangeRightTarget;
@@ -33,6 +37,20 @@ public class TaggedValueElementBuilder extends DiffSwitch<DiffElement> {
 	@Override
 	public DiffElement caseDiffElement(DiffElement object) {
 		throw new UnsupportedOperationException();
+	}
+	
+	@Override
+	public DiffElement caseModelElementChangeLeftTarget(ModelElementChangeLeftTarget object) {
+		RemoveStereotypeApplication newElement = UMLDiffFactory.eINSTANCE.createRemoveStereotypeApplication();
+		newElement.setLeftElement(object.getLeftElement());
+		return newElement;
+	}
+	
+	@Override
+	public DiffElement caseModelElementChangeRightTarget(ModelElementChangeRightTarget object) {
+		AddStereotypeApplication newElement = UMLDiffFactory.eINSTANCE.createAddStereotypeApplication();
+		newElement.setRightElement(object.getRightElement());
+		return newElement;
 	}
 	
 	@Override

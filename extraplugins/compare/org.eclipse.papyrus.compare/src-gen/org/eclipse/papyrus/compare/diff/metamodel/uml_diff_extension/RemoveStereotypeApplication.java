@@ -11,6 +11,8 @@
  */
 package org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension;
 
+import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeLeftTarget;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -22,5 +24,5 @@ package org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension;
  * @model
  * @generated
  */
-public interface RemoveStereotypeApplication extends StereotypeChange {
+public interface RemoveStereotypeApplication extends StereotypeChange, ModelElementChangeLeftTarget {
 } // RemoveStereotypeApplication

@@ -334,7 +334,9 @@ public class UMLDiffPackageImpl extends EPackageImpl implements UMLDiffPackage {
 		updateTaggedValueEClass.getESuperTypes().add(theDiffPackage.getUpdateAttribute());
 		updateTaggedValueEClass.getESuperTypes().add(this.getTaggedValueChange());
 		addStereotypeApplicationEClass.getESuperTypes().add(this.getStereotypeChange());
+		addStereotypeApplicationEClass.getESuperTypes().add(theDiffPackage.getModelElementChangeRightTarget());
 		removeStereotypeApplicationEClass.getESuperTypes().add(this.getStereotypeChange());
+		removeStereotypeApplicationEClass.getESuperTypes().add(theDiffPackage.getModelElementChangeLeftTarget());
 		taggedValueReferenceChangeEClass.getESuperTypes().add(this.getUMLDiffExtension());
 		taggedValueReferenceChangeEClass.getESuperTypes().add(theDiffPackage.getReferenceChange());
 

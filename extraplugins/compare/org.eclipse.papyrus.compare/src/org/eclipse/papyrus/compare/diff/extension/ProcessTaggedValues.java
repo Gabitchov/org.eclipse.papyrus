@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.compare.UMLCompareUtils;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValueChange;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValueReferenceChange;
+import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UMLDiffExtension;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
@@ -61,7 +62,10 @@ public class ProcessTaggedValues extends AbstractDiffExtensionImpl {
 	}
 	
 	protected EObject getStereotypeApplication(DiffElement element) {
-		if(element instanceof AttributeChange && (false == element instanceof TaggedValueChange)) {
+		if (element instanceof UMLDiffExtension) {
+			return null;
+		}
+		if(element instanceof AttributeChange) {
 			AttributeChange attributeChange = (AttributeChange)element;
 			EObject stereotypeApplication = attributeChange.getLeftElement();
 			if(UMLCompareUtils.isStereotypeApplication(stereotypeApplication)) {
@@ -71,13 +75,23 @@ public class ProcessTaggedValues extends AbstractDiffExtensionImpl {
 			if(UMLCompareUtils.isStereotypeApplication(stereotypeApplication)) {
 				return stereotypeApplication;
 			} 
-		} else if(element instanceof ReferenceChange && (false == element instanceof TaggedValueReferenceChange)) {
+		} else if(element instanceof ReferenceChange) {
 			ReferenceChange referenceChange = (ReferenceChange)element;
 			EObject stereotypeApplication = referenceChange.getLeftElement();
 			if(UMLCompareUtils.isStereotypeApplication(stereotypeApplication)) {
 				return stereotypeApplication;
 			} 
 			stereotypeApplication = referenceChange.getRightElement();
+			if(UMLCompareUtils.isStereotypeApplication(stereotypeApplication)) {
+				return stereotypeApplication;
+			} 
+		} else if (element instanceof ModelElementChangeLeftTarget) {
+			EObject stereotypeApplication = ((ModelElementChangeLeftTarget)element).getLeftElement();
+			if(UMLCompareUtils.isStereotypeApplication(stereotypeApplication)) {
+				return stereotypeApplication;
+			} 
+		} else if (element instanceof ModelElementChangeRightTarget) {
+			EObject stereotypeApplication = ((ModelElementChangeRightTarget)element).getRightElement();
 			if(UMLCompareUtils.isStereotypeApplication(stereotypeApplication)) {
 				return stereotypeApplication;
 			} 

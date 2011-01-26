@@ -621,13 +621,76 @@ public interface UMLDiffPackage extends EPackage {
 	int ADD_STEREOTYPE_APPLICATION__IS_COLLAPSED = STEREOTYPE_CHANGE__IS_COLLAPSED;
 
 	/**
+	 * The feature id for the '<em><b>Sub Diff Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ADD_STEREOTYPE_APPLICATION__SUB_DIFF_ELEMENTS = STEREOTYPE_CHANGE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Is Hidden By</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ADD_STEREOTYPE_APPLICATION__IS_HIDDEN_BY = STEREOTYPE_CHANGE_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Conflicting</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ADD_STEREOTYPE_APPLICATION__CONFLICTING = STEREOTYPE_CHANGE_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Kind</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ADD_STEREOTYPE_APPLICATION__KIND = STEREOTYPE_CHANGE_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Remote</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ADD_STEREOTYPE_APPLICATION__REMOTE = STEREOTYPE_CHANGE_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Left Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ADD_STEREOTYPE_APPLICATION__LEFT_PARENT = STEREOTYPE_CHANGE_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Right Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ADD_STEREOTYPE_APPLICATION__RIGHT_ELEMENT = STEREOTYPE_CHANGE_FEATURE_COUNT + 6;
+
+	/**
 	 * The number of structural features of the '<em>Add Stereotype Application</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ADD_STEREOTYPE_APPLICATION_FEATURE_COUNT = STEREOTYPE_CHANGE_FEATURE_COUNT + 0;
+	int ADD_STEREOTYPE_APPLICATION_FEATURE_COUNT = STEREOTYPE_CHANGE_FEATURE_COUNT + 7;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.impl.RemoveStereotypeApplicationImpl <em>Remove Stereotype Application</em>}' class.
@@ -658,13 +721,76 @@ public interface UMLDiffPackage extends EPackage {
 	int REMOVE_STEREOTYPE_APPLICATION__IS_COLLAPSED = STEREOTYPE_CHANGE__IS_COLLAPSED;
 
 	/**
+	 * The feature id for the '<em><b>Sub Diff Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REMOVE_STEREOTYPE_APPLICATION__SUB_DIFF_ELEMENTS = STEREOTYPE_CHANGE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Is Hidden By</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REMOVE_STEREOTYPE_APPLICATION__IS_HIDDEN_BY = STEREOTYPE_CHANGE_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Conflicting</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REMOVE_STEREOTYPE_APPLICATION__CONFLICTING = STEREOTYPE_CHANGE_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Kind</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REMOVE_STEREOTYPE_APPLICATION__KIND = STEREOTYPE_CHANGE_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Remote</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REMOVE_STEREOTYPE_APPLICATION__REMOTE = STEREOTYPE_CHANGE_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Right Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REMOVE_STEREOTYPE_APPLICATION__RIGHT_PARENT = STEREOTYPE_CHANGE_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Left Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REMOVE_STEREOTYPE_APPLICATION__LEFT_ELEMENT = STEREOTYPE_CHANGE_FEATURE_COUNT + 6;
+
+	/**
 	 * The number of structural features of the '<em>Remove Stereotype Application</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REMOVE_STEREOTYPE_APPLICATION_FEATURE_COUNT = STEREOTYPE_CHANGE_FEATURE_COUNT + 0;
+	int REMOVE_STEREOTYPE_APPLICATION_FEATURE_COUNT = STEREOTYPE_CHANGE_FEATURE_COUNT + 7;
 
 
 	/**

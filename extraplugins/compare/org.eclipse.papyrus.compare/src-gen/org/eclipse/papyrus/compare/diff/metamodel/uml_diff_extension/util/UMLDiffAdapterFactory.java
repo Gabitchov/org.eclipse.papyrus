@@ -21,6 +21,9 @@ import org.eclipse.emf.compare.diff.metamodel.AttributeChange;
 import org.eclipse.emf.compare.diff.metamodel.AttributeChangeLeftTarget;
 import org.eclipse.emf.compare.diff.metamodel.AttributeChangeRightTarget;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
+import org.eclipse.emf.compare.diff.metamodel.ModelElementChange;
+import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeLeftTarget;
+import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeRightTarget;
 import org.eclipse.emf.compare.diff.metamodel.ReferenceChange;
 import org.eclipse.emf.compare.diff.metamodel.UpdateAttribute;
 
@@ -143,6 +146,18 @@ public class UMLDiffAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseUpdateAttribute(UpdateAttribute object) {
 				return createUpdateAttributeAdapter();
+			}
+			@Override
+			public Adapter caseModelElementChange(ModelElementChange object) {
+				return createModelElementChangeAdapter();
+			}
+			@Override
+			public Adapter caseModelElementChangeRightTarget(ModelElementChangeRightTarget object) {
+				return createModelElementChangeRightTargetAdapter();
+			}
+			@Override
+			public Adapter caseModelElementChangeLeftTarget(ModelElementChangeLeftTarget object) {
+				return createModelElementChangeLeftTargetAdapter();
 			}
 			@Override
 			public Adapter caseReferenceChange(ReferenceChange object) {
@@ -375,6 +390,48 @@ public class UMLDiffAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createUpdateAttributeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.compare.diff.metamodel.ModelElementChange <em>Model Element Change</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.compare.diff.metamodel.ModelElementChange
+	 * @generated
+	 */
+	public Adapter createModelElementChangeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.compare.diff.metamodel.ModelElementChangeRightTarget <em>Model Element Change Right Target</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.compare.diff.metamodel.ModelElementChangeRightTarget
+	 * @generated
+	 */
+	public Adapter createModelElementChangeRightTargetAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.compare.diff.metamodel.ModelElementChangeLeftTarget <em>Model Element Change Left Target</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.compare.diff.metamodel.ModelElementChangeLeftTarget
+	 * @generated
+	 */
+	public Adapter createModelElementChangeLeftTargetAdapter() {
 		return null;
 	}
 
