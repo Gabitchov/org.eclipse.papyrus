@@ -29,7 +29,7 @@ import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UpdateTagge
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.util.UMLDiffSwitch;
 
 
-public class TaggedValueDiffBuilder extends UMLDiffSwitch<DiffElement> {
+public class TaggedValueElementBuilder extends UMLDiffSwitch<DiffElement> {
 	
 	@Override
 	public DiffElement caseUMLDiffExtension(UMLDiffExtension object) {

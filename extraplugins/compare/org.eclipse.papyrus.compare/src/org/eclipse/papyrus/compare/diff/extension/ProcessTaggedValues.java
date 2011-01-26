@@ -35,7 +35,7 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 
 public class ProcessTaggedValues extends AbstractDiffExtensionImpl {
 	
-	private UMLDiffSwitch<DiffElement> myDiffElementBuilder = new TaggedValueDiffBuilder();
+	private UMLDiffSwitch<DiffElement> myDiffElementBuilder = new TaggedValueElementBuilder();
 
 	@Override
 	public void visit(DiffModel diffModel) {
