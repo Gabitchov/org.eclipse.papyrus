@@ -40,6 +40,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.jface.viewers.IContentProvider;
+import org.eclipse.papyrus.compare.UMLCompareUtils;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.edit.providers.UMLItemProviderAdapterFactory;
@@ -62,7 +63,7 @@ public class UMLModelContentMergeViewer extends ModelContentMergeViewer {
 					protected void setSelectionToWidget(List l, boolean reveal) {
 						List result = new ArrayList();
 						for (Object next: l) {
-							if (next instanceof EObject && isStereotypeApplication((EObject)next)) {
+							if (next instanceof EObject && UMLCompareUtils.isStereotypeApplication((EObject)next)) {
 								EObject stereotypeApplication = (EObject)next;
 								result.add(UMLUtil.getBaseElement(stereotypeApplication));
 							} else {
@@ -205,7 +206,7 @@ public class UMLModelContentMergeViewer extends ModelContentMergeViewer {
 			List<EObject> result = new ArrayList<EObject>();
 			for (int i = 0; i < contents.size(); i++) {
 				EObject next = contents.get(i);
-				if (!isStereotypeApplication(next)) {
+				if (!UMLCompareUtils.isStereotypeApplication(next)) {
 					result.add(next);
 				}
 			}
@@ -247,10 +248,6 @@ public class UMLModelContentMergeViewer extends ModelContentMergeViewer {
 			return getChildren(object).length > 0;
  		}
 
-	}
-
-	private boolean isStereotypeApplication(EObject eObject) {
-		return UMLUtil.getStereotype(eObject) != null;
 	}
 
 }

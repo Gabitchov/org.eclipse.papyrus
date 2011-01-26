@@ -27,6 +27,7 @@ import org.eclipse.emf.compare.diff.metamodel.UpdateModelElement;
 import org.eclipse.emf.compare.diff.metamodel.impl.AbstractDiffExtensionImpl;
 import org.eclipse.emf.compare.diff.metamodel.util.DiffSwitch;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.compare.UMLCompareUtils;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValueChange;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValueReferenceChange;
 import org.eclipse.uml2.uml.Element;
@@ -62,16 +63,16 @@ public class ProcessTaggedValues extends AbstractDiffExtensionImpl {
 	protected EObject getStereotypeApplication(DiffElement element) {
 		if(element instanceof AttributeChange && (false == element instanceof TaggedValueChange)) {
 			AttributeChange attributeChange = (AttributeChange)element;
-			if(isStereotypeApplication(attributeChange.getLeftElement())) {
+			if(UMLCompareUtils.isStereotypeApplication(attributeChange.getLeftElement())) {
 				return attributeChange.getLeftElement();
-			} else if(isStereotypeApplication(attributeChange.getRightElement())) {
+			} else if(UMLCompareUtils.isStereotypeApplication(attributeChange.getRightElement())) {
 				return attributeChange.getRightElement();
 			}
 		} else if(element instanceof ReferenceChange && (false == element instanceof TaggedValueReferenceChange)) {
 			ReferenceChange referenceChange = (ReferenceChange)element;
-			if(isStereotypeApplication(referenceChange.getLeftElement())) {
+			if(UMLCompareUtils.isStereotypeApplication(referenceChange.getLeftElement())) {
 				return referenceChange.getLeftElement();
-			} else if(isStereotypeApplication(referenceChange.getRightElement())) {
+			} else if(UMLCompareUtils.isStereotypeApplication(referenceChange.getRightElement())) {
 				return referenceChange.getRightElement();
 			}
 		}
@@ -133,12 +134,5 @@ public class ProcessTaggedValues extends AbstractDiffExtensionImpl {
 		}
 		return false;
 	}
-
-
-
-	private boolean isStereotypeApplication(EObject eObject) {
-		return UMLUtil.getStereotype(eObject) != null;
-	}
-
 
 }
