@@ -98,7 +98,7 @@ public class ChangeTaggedValueExtension extends UMLDiffExtensionImpl {
 
 	protected TaggedValueChange buildTaggedValueDiff(AttributeChange attributeChange) {
 		if(attributeChange instanceof UpdateAttribute) {
-			return buildTaggedValueDiff((AttributeChangeRightTarget)attributeChange);
+			return buildTaggedValueDiff((UpdateAttribute)attributeChange);
 		} else if(attributeChange instanceof AttributeChangeLeftTarget) {
 			return buildTaggedValueDiff((AttributeChangeLeftTarget)attributeChange);
 		} else if(attributeChange instanceof AttributeChangeRightTarget) {
