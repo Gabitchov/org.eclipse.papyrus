@@ -2558,7 +2558,7 @@
     <plugin
         iD="org.eclipse.papyrus.diagram.sequence"
         provider="CEA"
-        version="0.7.2.qualifier">
+        version="0.7.3.qualifier">
       <requiredPlugins>org.eclipse.draw2d</requiredPlugins>
       <requiredPlugins>org.eclipse.papyrus.diagram.common</requiredPlugins>
       <requiredPlugins>org.eclipse.gmf.runtime.draw2d.ui</requiredPlugins>
