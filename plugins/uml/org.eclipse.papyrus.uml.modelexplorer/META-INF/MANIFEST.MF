@@ -6,11 +6,11 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.transaction;bundle-version="1.4.0",
  org.eclipse.gmt.modisco.infra.query.core;bundle-version="0.8.0",
  org.eclipse.uml2.uml.editor;bundle-version="3.1.0",
- org.eclipse.papyrus.uml.service.types;bundle-version="0.7.2",
- org.eclipse.papyrus.service.edit;bundle-version="0.7.2",
+ org.eclipse.papyrus.uml.service.types;bundle-version="0.7.3",
+ org.eclipse.papyrus.service.edit;bundle-version="0.7.3",
  org.eclipse.gmt.modisco.infra.facet;bundle-version="0.8.0"
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.7.2.qualifier
+Bundle-Version: 0.7.3.qualifier
 Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.modelexplorer.Activator

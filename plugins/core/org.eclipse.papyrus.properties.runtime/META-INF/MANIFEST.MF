@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-SymbolicName: org.eclipse.papyrus.properties.runtime;singleton:=true
-Bundle-Version: 0.7.2.qualifier
+Bundle-Version: 0.7.3.qualifier
 Bundle-Activator: org.eclipse.papyrus.properties.runtime.Activator
 Bundle-Vendor: %providerName
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
@@ -36,5 +36,5 @@ Require-Bundle: org.eclipse.ui;bundle-version="3.5.1",
  org.eclipse.emf.edit.ui;bundle-version="2.6.0",
  org.eclipse.uml2.uml;bundle-version="3.1.0",
  org.eclipse.papyrus.core;bundle-version="0.7.0",
- org.eclipse.papyrus.service.edit;bundle-version="0.7.2"
+ org.eclipse.papyrus.service.edit;bundle-version="0.7.3"
 

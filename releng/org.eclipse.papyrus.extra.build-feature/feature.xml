@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.papyrus.extra.build"
       label="Papyrus Extras (Incubation)"
-      version="0.7.2.qualifier"
+      version="0.7.3.qualifier"
       provider-name="Eclipse Modeling Project">
 
    <description>

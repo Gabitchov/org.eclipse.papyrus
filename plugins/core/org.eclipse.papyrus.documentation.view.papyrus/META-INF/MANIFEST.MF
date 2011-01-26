@@ -2,10 +2,10 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.documentation.view.papyrus;singleton:=true
-Bundle-Version: 0.7.2.qualifier
+Bundle-Version: 0.7.3.qualifier
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Require-Bundle: org.eclipse.papyrus.documentation.view;bundle-version="0.7.2",
- org.eclipse.papyrus.modelexplorer;bundle-version="0.7.2",
- org.eclipse.papyrus.core.adaptor.gmf;bundle-version="0.7.2"
+Require-Bundle: org.eclipse.papyrus.documentation.view;bundle-version="0.7.3",
+ org.eclipse.papyrus.modelexplorer;bundle-version="0.7.3",
+ org.eclipse.papyrus.core.adaptor.gmf;bundle-version="0.7.3"
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin

@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.diagram.composite; singleton:=true
-Bundle-Version: 0.7.2.qualifier
+Bundle-Version: 0.7.3.qualifier
 Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.core.runtime,
  org.eclipse.core.resources,
@@ -36,8 +36,8 @@ Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.papyrus.preferences,
  org.eclipse.papyrus.diagram.common;bundle-version="0.7.0",
  org.eclipse.papyrus.extensionpoints.editors,
- org.eclipse.papyrus.service.edit;bundle-version="0.7.2",
- org.eclipse.papyrus.editors;bundle-version="0.7.2",
+ org.eclipse.papyrus.service.edit;bundle-version="0.7.3",
+ org.eclipse.papyrus.editors;bundle-version="0.7.3",
  org.eclipse.papyrus.uml.service.types
 Bundle-ClassPath: .
 Bundle-Activator: org.eclipse.papyrus.diagram.composite.part.UMLDiagramEditorPlugin
