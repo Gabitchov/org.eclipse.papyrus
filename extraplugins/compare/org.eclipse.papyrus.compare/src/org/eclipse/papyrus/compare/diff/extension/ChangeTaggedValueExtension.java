@@ -16,8 +16,6 @@ package org.eclipse.papyrus.compare.diff.extension;
 import java.util.Iterator;
 
 import org.eclipse.emf.compare.diff.metamodel.AttributeChange;
-import org.eclipse.emf.compare.diff.metamodel.AttributeChangeLeftTarget;
-import org.eclipse.emf.compare.diff.metamodel.AttributeChangeRightTarget;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.DiffFactory;
 import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
@@ -25,21 +23,19 @@ import org.eclipse.emf.compare.diff.metamodel.DiffModel;
 import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeLeftTarget;
 import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeRightTarget;
 import org.eclipse.emf.compare.diff.metamodel.ReferenceChange;
-import org.eclipse.emf.compare.diff.metamodel.UpdateAttribute;
 import org.eclipse.emf.compare.diff.metamodel.UpdateModelElement;
 import org.eclipse.emf.compare.diff.metamodel.impl.AbstractDiffExtensionImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValueChange;
-import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValueChangeLeftTarget;
-import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValueChangeRightTarget;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValueReferenceChange;
-import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UMLDiffFactory;
-import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UpdateTaggedValue;
+import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.util.UMLDiffSwitch;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
 
 public class ChangeTaggedValueExtension extends AbstractDiffExtensionImpl {
+	
+	private UMLDiffSwitch<DiffElement> myDiffElementBuilder = new TaggedValueDiffBuilder();
 
 	@Override
 	public void visit(DiffModel diffModel) {
@@ -50,15 +46,15 @@ public class ChangeTaggedValueExtension extends AbstractDiffExtensionImpl {
 		}
 	}
 	
-	protected void visitElement(DiffModel diffModel, DiffElement diffElement) {
+	protected void visitElement(DiffModel root, DiffElement diffElement) {
 		EObject stereotypeApplication = getStereotypeApplication(diffElement);
 		boolean hasStereotypeApplication = stereotypeApplication != null; 
 		if(hasStereotypeApplication) {
 			getHideElements().add(diffElement);
 			
 			Element newVisualParent = UMLUtil.getBaseElement(stereotypeApplication);
-			DiffElement newDiffParent = findOrCreateDiffElementFor(diffModel, newVisualParent);
-			DiffElement taggedValueDiff = buildTaggedValueDiff(diffElement);
+			DiffElement newDiffParent = findOrCreateDiffElementFor(root, newVisualParent);
+			DiffElement taggedValueDiff = myDiffElementBuilder.doSwitch(diffElement);
 			newDiffParent.getSubDiffElements().add(taggedValueDiff);
 		}
 	}
@@ -80,69 +76,6 @@ public class ChangeTaggedValueExtension extends AbstractDiffExtensionImpl {
 			}
 		}
 		return null;
-	}
-
-	protected TaggedValueChange buildTaggedValueDiff(AttributeChangeLeftTarget attributeChange) {
-		TaggedValueChangeLeftTarget newElement = UMLDiffFactory.eINSTANCE.createTaggedValueChangeLeftTarget();
-		initTaggedValueDiff(newElement, attributeChange);
-		newElement.setLeftTarget(attributeChange.getLeftTarget());
-		return newElement;
-	}
-
-	protected TaggedValueChange buildTaggedValueDiff(AttributeChangeRightTarget attributeChange) {
-		TaggedValueChangeRightTarget newElement = UMLDiffFactory.eINSTANCE.createTaggedValueChangeRightTarget();
-		initTaggedValueDiff(newElement, attributeChange);
-		newElement.setRightTarget(attributeChange.getRightTarget());
-		return newElement;
-	}
-
-
-	protected TaggedValueChange buildTaggedValueDiff(UpdateAttribute attributeChange) {
-		UpdateTaggedValue newElement = UMLDiffFactory.eINSTANCE.createUpdateTaggedValue();
-		initTaggedValueDiff(newElement, attributeChange);
-		return newElement;
-	}
-
-	protected DiffElement buildTaggedValueDiff(DiffElement element) {
-		if (element instanceof AttributeChange) {
-			return buildTaggedValueDiff((AttributeChange)element);
-		}
-		if (element instanceof ReferenceChange) {
-			return buildTaggedValueReferenceDiff((ReferenceChange)element);
-		}
-		return null;
-		
-	}
-
-	protected TaggedValueChange buildTaggedValueDiff(AttributeChange attributeChange) {
-		if(attributeChange instanceof UpdateAttribute) {
-			return buildTaggedValueDiff((UpdateAttribute)attributeChange);
-		} else if(attributeChange instanceof AttributeChangeLeftTarget) {
-			return buildTaggedValueDiff((AttributeChangeLeftTarget)attributeChange);
-		} else if(attributeChange instanceof AttributeChangeRightTarget) {
-			return buildTaggedValueDiff((AttributeChangeRightTarget)attributeChange);
-		}
-		// make it not abstract
-		TaggedValueChange newElement = UMLDiffFactory.eINSTANCE.createUpdateTaggedValue();
-		initTaggedValueDiff(newElement, attributeChange);
-		return newElement;
-	}
-
-	protected TaggedValueChange initTaggedValueDiff(TaggedValueChange newElement, AttributeChange attributeChange) {
-		newElement.setLeftElement(attributeChange.getLeftElement());
-		newElement.setRightElement(attributeChange.getRightElement());
-		newElement.setAttribute(attributeChange.getAttribute());
-		newElement.setRemote(attributeChange.isRemote());
-		return newElement;
-	}
-
-	protected TaggedValueReferenceChange buildTaggedValueReferenceDiff(ReferenceChange referenceChange) {
-		TaggedValueReferenceChange newElement = UMLDiffFactory.eINSTANCE.createTaggedValueReferenceChange();
-		newElement.setLeftElement(referenceChange.getLeftElement());
-		newElement.setRightElement(referenceChange.getRightElement());
-		newElement.setReference(referenceChange.getReference());
-		newElement.setRemote(referenceChange.isRemote());
-		return newElement;
 	}
 
 	private DiffElement findOrCreateDiffElementFor(DiffModel root, EObject object) {
