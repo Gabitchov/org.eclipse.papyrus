@@ -63,18 +63,24 @@ public class ProcessTaggedValues extends AbstractDiffExtensionImpl {
 	protected EObject getStereotypeApplication(DiffElement element) {
 		if(element instanceof AttributeChange && (false == element instanceof TaggedValueChange)) {
 			AttributeChange attributeChange = (AttributeChange)element;
-			if(UMLCompareUtils.isStereotypeApplication(attributeChange.getLeftElement())) {
-				return attributeChange.getLeftElement();
-			} else if(UMLCompareUtils.isStereotypeApplication(attributeChange.getRightElement())) {
-				return attributeChange.getRightElement();
-			}
+			EObject stereotypeApplication = attributeChange.getLeftElement();
+			if(UMLCompareUtils.isStereotypeApplication(stereotypeApplication)) {
+				return stereotypeApplication;
+			} 
+			stereotypeApplication = attributeChange.getRightElement();
+			if(UMLCompareUtils.isStereotypeApplication(stereotypeApplication)) {
+				return stereotypeApplication;
+			} 
 		} else if(element instanceof ReferenceChange && (false == element instanceof TaggedValueReferenceChange)) {
 			ReferenceChange referenceChange = (ReferenceChange)element;
-			if(UMLCompareUtils.isStereotypeApplication(referenceChange.getLeftElement())) {
-				return referenceChange.getLeftElement();
-			} else if(UMLCompareUtils.isStereotypeApplication(referenceChange.getRightElement())) {
-				return referenceChange.getRightElement();
-			}
+			EObject stereotypeApplication = referenceChange.getLeftElement();
+			if(UMLCompareUtils.isStereotypeApplication(stereotypeApplication)) {
+				return stereotypeApplication;
+			} 
+			stereotypeApplication = referenceChange.getRightElement();
+			if(UMLCompareUtils.isStereotypeApplication(stereotypeApplication)) {
+				return stereotypeApplication;
+			} 
 		}
 		return null;
 	}
