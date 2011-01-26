@@ -523,7 +523,7 @@ public class RemoveStereotypeApplicationImpl extends StereotypeChangeImpl implem
 		if (UMLCompareUtils.isStereotypeApplication(element)) {
 			elementLabel = UMLUtil.getStereotype(element).getName(); 
 		}
-		return "Removed stereotype " + elementLabel;
+		return String.format("%s stereotype has been removed", elementLabel);
 	}
 
 	/**

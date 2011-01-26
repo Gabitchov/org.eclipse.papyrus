@@ -523,7 +523,7 @@ public class AddStereotypeApplicationImpl extends StereotypeChangeImpl implement
 		if (UMLCompareUtils.isStereotypeApplication(element)) {
 			elementLabel = UMLUtil.getStereotype(element).getName(); 
 		}
-		return "Added stereotype " + elementLabel;
+		return String.format("%s stereotype has been added", elementLabel);
 	}
 
 	/**
