@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cs:cspec xmlns:cs="http://www.eclipse.org/buckminster/CSpec-1.0" name="org.eclipse.mdt.papyrus.extra.releng.buckminster"
-	componentType="buckminster" version="0.7.2.qualifier">
+	componentType="buckminster" version="0.7.3.qualifier">
 	<cs:dependencies>
 		<cs:dependency name="org.eclipse.papyrus.extra.build" componentType="eclipse.feature"/>
 

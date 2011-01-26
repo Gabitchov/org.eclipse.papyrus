@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-SymbolicName: org.eclipse.papyrus.documentation;singleton:=true
-Bundle-Version: 0.7.2.qualifier
+Bundle-Version: 0.7.3.qualifier
 Bundle-Activator: org.eclipse.papyrus.documentation.Activator
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

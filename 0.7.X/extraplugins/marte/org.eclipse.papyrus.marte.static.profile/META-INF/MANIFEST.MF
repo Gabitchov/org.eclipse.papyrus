@@ -2,14 +2,14 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.marte.static.profile;singleton:=true
-Bundle-Version: 0.7.2.qualifier
+Bundle-Version: 0.7.3.qualifier
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.papyrus.extensionpoints.uml2;bundle-version="0.7.0",
  org.eclipse.uml2.uml;bundle-version="3.1.0",
  org.eclipse.papyrus.umlutils;bundle-version="0.7.0",
- org.eclipse.papyrus.diagram.common;bundle-version="0.7.1"
+ org.eclipse.papyrus.diagram.common;bundle-version="0.7.3"
 Export-Package: org.eclipse.papyrus.MARTE,
  org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM,
  org.eclipse.papyrus.MARTE.MARTE_AnalysisModel.GQAM.impl,
