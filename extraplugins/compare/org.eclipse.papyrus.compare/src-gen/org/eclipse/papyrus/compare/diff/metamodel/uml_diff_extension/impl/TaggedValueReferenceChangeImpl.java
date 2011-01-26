@@ -38,6 +38,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValueReferenceChange;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UMLDiffPackage;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -612,16 +613,21 @@ public class TaggedValueReferenceChangeImpl extends UMLDiffExtensionImpl impleme
 	 */
 	@Override
 	public String getText() {
+		
 		final String referenceLabel = AdapterUtils.getItemProviderText(getReference());
 		final String elementLabel = AdapterUtils.getItemProviderText(getLeftElement());
-		final Object leftValue = getLeftElement().eGet(getReference());
-		final Object rightValue = getRightElement().eGet(getReference());
+		
+		Object leftTaggedValue = UMLUtil.getBaseElement(getLeftElement()).getValue(UMLUtil.getStereotype(getLeftElement()), getReference().getName());
+		Object rightTaggedValue = UMLUtil.getBaseElement(getRightElement()).getValue(UMLUtil.getStereotype(getRightElement()), getReference().getName());
+
+		String leftValue = AdapterUtils.getItemProviderText((EObject)leftTaggedValue);
+		String rightValue = AdapterUtils.getItemProviderText((EObject)rightTaggedValue);
 
 		final String diffLabel;
 		if(isRemote()) {
-			diffLabel = String.format("Tagged reference value %s : remote = %s, local = %s", elementLabel, leftValue, rightValue);
+			diffLabel = String.format("Tagged value %s : remote = %s, local = %s", elementLabel, leftValue, rightValue);
 		} else {
-			diffLabel = String.format("Tagged reference value %s: %s -> %s", referenceLabel, rightValue, leftValue);
+			diffLabel = String.format("Tagged value %s: %s -> %s", referenceLabel, rightValue, leftValue);
 		}
 		return diffLabel;
 	};

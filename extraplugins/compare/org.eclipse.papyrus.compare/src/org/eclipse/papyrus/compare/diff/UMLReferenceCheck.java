@@ -41,6 +41,19 @@ public class UMLReferenceCheck extends ReferencesCheck {
 		}
 		super.checkReferenceUpdates(root, mapping, reference);
 	}
+	
+	@Override
+	protected boolean shouldBeIgnored(EReference reference) {
+		if (isTaggedValue(reference)) {
+			return false;
+		}
+		return super.shouldBeIgnored(reference);
+	}
+	
+	protected boolean isTaggedValue(EReference reference) {
+		// improve condition
+		return reference.isDerived();
+	}
 
 	private boolean isSimilarSingleReference(Match2Elements mapping, EReference reference) throws FactoryException {
 		final double similarReferenceURIThreshold = 0.8d;
