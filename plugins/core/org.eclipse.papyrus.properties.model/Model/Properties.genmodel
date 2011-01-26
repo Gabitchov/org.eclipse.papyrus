@@ -74,6 +74,7 @@
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference Properties.ecore#//contexts/Tab/afterTab"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Properties.ecore#//contexts/Tab/sections"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//contexts/Tab/indented"/>
       </genClasses>
       <genClasses ecoreClass="Properties.ecore#//contexts/Section">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//contexts/Section/name"/>

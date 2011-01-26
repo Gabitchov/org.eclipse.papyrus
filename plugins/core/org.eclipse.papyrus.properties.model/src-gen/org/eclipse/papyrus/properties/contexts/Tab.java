@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.papyrus.properties.contexts.Tab#getImage <em>Image</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.contexts.Tab#getAfterTab <em>After Tab</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.contexts.Tab#getSections <em>Sections</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.properties.contexts.Tab#isIndented <em>Indented</em>}</li>
  * </ul>
  * </p>
  *
@@ -179,5 +180,32 @@ public interface Tab extends EObject {
 	 * @generated
 	 */
 	EList<Section> getSections();
+
+	/**
+	 * Returns the value of the '<em><b>Indented</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Indented</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Indented</em>' attribute.
+	 * @see #setIndented(boolean)
+	 * @see org.eclipse.papyrus.properties.contexts.ContextsPackage#getTab_Indented()
+	 * @model default="false" required="true"
+	 * @generated
+	 */
+	boolean isIndented();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.properties.contexts.Tab#isIndented <em>Indented</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Indented</em>' attribute.
+	 * @see #isIndented()
+	 * @generated
+	 */
+	void setIndented(boolean value);
 
 } // Tab

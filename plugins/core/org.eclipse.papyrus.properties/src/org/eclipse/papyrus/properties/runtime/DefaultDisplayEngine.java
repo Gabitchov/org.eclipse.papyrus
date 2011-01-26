@@ -144,7 +144,7 @@ public class DefaultDisplayEngine implements DisplayEngine {
 		Control control = null;
 
 		try {
-			control = XWT.load(parent, sectionFile, source);
+			control = (Control)XWT.load(parent, sectionFile, source);
 			if(control != null) {
 				control.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 				controls.add(control);

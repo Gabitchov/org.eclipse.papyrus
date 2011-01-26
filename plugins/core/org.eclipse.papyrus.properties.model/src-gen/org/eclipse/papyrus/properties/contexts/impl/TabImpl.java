@@ -39,6 +39,7 @@ import org.eclipse.papyrus.properties.contexts.Tab;
  *   <li>{@link org.eclipse.papyrus.properties.contexts.impl.TabImpl#getImage <em>Image</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.contexts.impl.TabImpl#getAfterTab <em>After Tab</em>}</li>
  *   <li>{@link org.eclipse.papyrus.properties.contexts.impl.TabImpl#getSections <em>Sections</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.properties.contexts.impl.TabImpl#isIndented <em>Indented</em>}</li>
  * </ul>
  * </p>
  *
@@ -144,6 +145,26 @@ public class TabImpl extends EObjectImpl implements Tab {
 	 * @ordered
 	 */
 	protected EList<Section> sections;
+
+	/**
+	 * The default value of the '{@link #isIndented() <em>Indented</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIndented()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean INDENTED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isIndented() <em>Indented</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIndented()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean indented = INDENTED_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -303,6 +324,27 @@ public class TabImpl extends EObjectImpl implements Tab {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isIndented() {
+		return indented;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIndented(boolean newIndented) {
+		boolean oldIndented = indented;
+		indented = newIndented;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ContextsPackage.TAB__INDENTED, oldIndented, indented));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -348,6 +390,8 @@ public class TabImpl extends EObjectImpl implements Tab {
 				return basicGetAfterTab();
 			case ContextsPackage.TAB__SECTIONS:
 				return getSections();
+			case ContextsPackage.TAB__INDENTED:
+				return isIndented();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -380,6 +424,9 @@ public class TabImpl extends EObjectImpl implements Tab {
 				getSections().clear();
 				getSections().addAll((Collection<? extends Section>)newValue);
 				return;
+			case ContextsPackage.TAB__INDENTED:
+				setIndented((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -410,6 +457,9 @@ public class TabImpl extends EObjectImpl implements Tab {
 			case ContextsPackage.TAB__SECTIONS:
 				getSections().clear();
 				return;
+			case ContextsPackage.TAB__INDENTED:
+				setIndented(INDENTED_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -434,6 +484,8 @@ public class TabImpl extends EObjectImpl implements Tab {
 				return afterTab != null;
 			case ContextsPackage.TAB__SECTIONS:
 				return sections != null && !sections.isEmpty();
+			case ContextsPackage.TAB__INDENTED:
+				return indented != INDENTED_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -456,6 +508,8 @@ public class TabImpl extends EObjectImpl implements Tab {
 		result.append(category);
 		result.append(", image: ");
 		result.append(image);
+		result.append(", indented: ");
+		result.append(indented);
 		result.append(')');
 		return result.toString();
 	}

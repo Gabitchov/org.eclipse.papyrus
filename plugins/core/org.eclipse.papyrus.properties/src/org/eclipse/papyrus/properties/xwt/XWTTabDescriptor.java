@@ -53,8 +53,16 @@ public class XWTTabDescriptor extends AbstractTabDescriptor {
 	}
 
 	@Override
+	public boolean isIndented() {
+		return tab.isIndented();
+	}
+
+	@Override
 	public String getAfterTab() {
-		return tab.getAfterTab().getId();
+		if(tab.getAfterTab() != null) {
+			return tab.getAfterTab().getId();
+		}
+		return super.getAfterTab();
 	}
 
 	@Override

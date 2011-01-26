@@ -289,13 +289,22 @@ public interface ContextsPackage extends EPackage {
 	int TAB__SECTIONS = 5;
 
 	/**
+	 * The feature id for the '<em><b>Indented</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAB__INDENTED = 6;
+
+	/**
 	 * The number of structural features of the '<em>Tab</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TAB_FEATURE_COUNT = 6;
+	int TAB_FEATURE_COUNT = 7;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.properties.contexts.impl.SectionImpl <em>Section</em>}' class.
@@ -1094,6 +1103,17 @@ public interface ContextsPackage extends EPackage {
 	EReference getTab_Sections();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.properties.contexts.Tab#isIndented <em>Indented</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Indented</em>'.
+	 * @see org.eclipse.papyrus.properties.contexts.Tab#isIndented()
+	 * @see #getTab()
+	 * @generated
+	 */
+	EAttribute getTab_Indented();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.properties.contexts.Section <em>Section</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1665,6 +1685,14 @@ public interface ContextsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference TAB__SECTIONS = eINSTANCE.getTab_Sections();
+
+		/**
+		 * The meta object literal for the '<em><b>Indented</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TAB__INDENTED = eINSTANCE.getTab_Indented();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.properties.contexts.impl.SectionImpl <em>Section</em>}' class.

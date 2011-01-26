@@ -406,6 +406,15 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getTab_Indented() {
+		return (EAttribute)tabEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getSection() {
 		return sectionEClass;
 	}
@@ -768,6 +777,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 		createEAttribute(tabEClass, TAB__IMAGE);
 		createEReference(tabEClass, TAB__AFTER_TAB);
 		createEReference(tabEClass, TAB__SECTIONS);
+		createEAttribute(tabEClass, TAB__INDENTED);
 
 		sectionEClass = createEClass(SECTION);
 		createEAttribute(sectionEClass, SECTION__NAME);
@@ -880,6 +890,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 		initEAttribute(getTab_Image(), ecorePackage.getEString(), "image", null, 0, 1, Tab.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTab_AfterTab(), this.getTab(), null, "afterTab", null, 0, 1, Tab.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTab_Sections(), this.getSection(), this.getSection_Tab(), "sections", null, 0, -1, Tab.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTab_Indented(), ecorePackage.getEBoolean(), "indented", "false", 1, 1, Tab.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(sectionEClass, Section.class, "Section", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getSection_Name(), ecorePackage.getEString(), "name", null, 1, 1, Section.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
