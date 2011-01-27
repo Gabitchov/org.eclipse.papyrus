@@ -35,14 +35,16 @@ public class UmlPropertyGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cMultiplicityMultiplicityRuleParserRuleCall_5_0 = (RuleCall)cMultiplicityAssignment_5.eContents().get(0);
 		private final Assignment cModifiersAssignment_6 = (Assignment)cGroup.eContents().get(6);
 		private final RuleCall cModifiersModifiersRuleParserRuleCall_6_0 = (RuleCall)cModifiersAssignment_6.eContents().get(0);
+		private final Assignment cDefaultAssignment_7 = (Assignment)cGroup.eContents().get(7);
+		private final RuleCall cDefaultDefaultValueRuleParserRuleCall_7_0 = (RuleCall)cDefaultAssignment_7.eContents().get(0);
 		
 		//PropertyRule:
 		//	visibility=VisibilityKind isDerived="/"? name=ID ":" (type=TypeRule | "<Undefined>") multiplicity=MultiplicityRule?
-		//	modifiers=ModifiersRule?;
+		//	modifiers=ModifiersRule? default=DefaultValueRule?;
 		public ParserRule getRule() { return rule; }
 
 		//visibility=VisibilityKind isDerived="/"? name=ID ":" (type=TypeRule | "<Undefined>") multiplicity=MultiplicityRule?
-		//modifiers=ModifiersRule?
+		//modifiers=ModifiersRule? default=DefaultValueRule?
 		public Group getGroup() { return cGroup; }
 
 		//visibility=VisibilityKind
@@ -89,6 +91,12 @@ public class UmlPropertyGrammarAccess extends AbstractGrammarElementFinder {
 
 		//ModifiersRule
 		public RuleCall getModifiersModifiersRuleParserRuleCall_6_0() { return cModifiersModifiersRuleParserRuleCall_6_0; }
+
+		//default=DefaultValueRule?
+		public Assignment getDefaultAssignment_7() { return cDefaultAssignment_7; }
+
+		//DefaultValueRule
+		public RuleCall getDefaultDefaultValueRuleParserRuleCall_7_0() { return cDefaultDefaultValueRuleParserRuleCall_7_0; }
 	}
 
 	public class TypeRuleElements extends AbstractParserRuleElementFinder {
@@ -265,18 +273,118 @@ public class UmlPropertyGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class ModifierSpecificationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ModifierSpecification");
-		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cValueModifierKindEnumRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Assignment cValueAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
+		private final RuleCall cValueModifierKindEnumRuleCall_0_0 = (RuleCall)cValueAssignment_0.eContents().get(0);
+		private final Assignment cRedefinesAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
+		private final RuleCall cRedefinesRedefinesRuleParserRuleCall_1_0 = (RuleCall)cRedefinesAssignment_1.eContents().get(0);
+		private final Assignment cSubsetsAssignment_2 = (Assignment)cAlternatives.eContents().get(2);
+		private final RuleCall cSubsetsSubsetsRuleParserRuleCall_2_0 = (RuleCall)cSubsetsAssignment_2.eContents().get(0);
 		
 		//ModifierSpecification:
-		//	value=ModifierKind;
+		//	value=ModifierKind | redefines=RedefinesRule | subsets=SubsetsRule;
 		public ParserRule getRule() { return rule; }
 
+		//value=ModifierKind | redefines=RedefinesRule | subsets=SubsetsRule
+		public Alternatives getAlternatives() { return cAlternatives; }
+
 		//value=ModifierKind
-		public Assignment getValueAssignment() { return cValueAssignment; }
+		public Assignment getValueAssignment_0() { return cValueAssignment_0; }
 
 		//ModifierKind
-		public RuleCall getValueModifierKindEnumRuleCall_0() { return cValueModifierKindEnumRuleCall_0; }
+		public RuleCall getValueModifierKindEnumRuleCall_0_0() { return cValueModifierKindEnumRuleCall_0_0; }
+
+		//redefines=RedefinesRule
+		public Assignment getRedefinesAssignment_1() { return cRedefinesAssignment_1; }
+
+		//RedefinesRule
+		public RuleCall getRedefinesRedefinesRuleParserRuleCall_1_0() { return cRedefinesRedefinesRuleParserRuleCall_1_0; }
+
+		//subsets=SubsetsRule
+		public Assignment getSubsetsAssignment_2() { return cSubsetsAssignment_2; }
+
+		//SubsetsRule
+		public RuleCall getSubsetsSubsetsRuleParserRuleCall_2_0() { return cSubsetsSubsetsRuleParserRuleCall_2_0; }
+	}
+
+	public class RedefinesRuleElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "RedefinesRule");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cRedefinesKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cPropertyAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final CrossReference cPropertyPropertyCrossReference_1_0 = (CrossReference)cPropertyAssignment_1.eContents().get(0);
+		private final RuleCall cPropertyPropertyIDTerminalRuleCall_1_0_1 = (RuleCall)cPropertyPropertyCrossReference_1_0.eContents().get(1);
+		
+		//RedefinesRule:
+		//	"redefines" property=[uml::Property];
+		public ParserRule getRule() { return rule; }
+
+		//"redefines" property=[uml::Property]
+		public Group getGroup() { return cGroup; }
+
+		//"redefines"
+		public Keyword getRedefinesKeyword_0() { return cRedefinesKeyword_0; }
+
+		//property=[uml::Property]
+		public Assignment getPropertyAssignment_1() { return cPropertyAssignment_1; }
+
+		//[uml::Property]
+		public CrossReference getPropertyPropertyCrossReference_1_0() { return cPropertyPropertyCrossReference_1_0; }
+
+		//ID
+		public RuleCall getPropertyPropertyIDTerminalRuleCall_1_0_1() { return cPropertyPropertyIDTerminalRuleCall_1_0_1; }
+	}
+
+	public class SubsetsRuleElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SubsetsRule");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cSubsetsKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cPropertyAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final CrossReference cPropertyPropertyCrossReference_1_0 = (CrossReference)cPropertyAssignment_1.eContents().get(0);
+		private final RuleCall cPropertyPropertyIDTerminalRuleCall_1_0_1 = (RuleCall)cPropertyPropertyCrossReference_1_0.eContents().get(1);
+		
+		//SubsetsRule:
+		//	"subsets" property=[uml::Property];
+		public ParserRule getRule() { return rule; }
+
+		//"subsets" property=[uml::Property]
+		public Group getGroup() { return cGroup; }
+
+		//"subsets"
+		public Keyword getSubsetsKeyword_0() { return cSubsetsKeyword_0; }
+
+		//property=[uml::Property]
+		public Assignment getPropertyAssignment_1() { return cPropertyAssignment_1; }
+
+		//[uml::Property]
+		public CrossReference getPropertyPropertyCrossReference_1_0() { return cPropertyPropertyCrossReference_1_0; }
+
+		//ID
+		public RuleCall getPropertyPropertyIDTerminalRuleCall_1_0_1() { return cPropertyPropertyIDTerminalRuleCall_1_0_1; }
+	}
+
+	public class DefaultValueRuleElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "DefaultValueRule");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cEqualsSignKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cDefaultAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cDefaultSTRINGTerminalRuleCall_1_0 = (RuleCall)cDefaultAssignment_1.eContents().get(0);
+		
+		//DefaultValueRule:
+		//	"=" default=STRING;
+		public ParserRule getRule() { return rule; }
+
+		//"=" default=STRING
+		public Group getGroup() { return cGroup; }
+
+		//"="
+		public Keyword getEqualsSignKeyword_0() { return cEqualsSignKeyword_0; }
+
+		//default=STRING
+		public Assignment getDefaultAssignment_1() { return cDefaultAssignment_1; }
+
+		//STRING
+		public RuleCall getDefaultSTRINGTerminalRuleCall_1_0() { return cDefaultSTRINGTerminalRuleCall_1_0; }
 	}
 	
 	
@@ -378,6 +486,9 @@ public class UmlPropertyGrammarAccess extends AbstractGrammarElementFinder {
 	private ModifiersRuleElements pModifiersRule;
 	private ModifierSpecificationElements pModifierSpecification;
 	private ModifierKindElements unknownRuleModifierKind;
+	private RedefinesRuleElements pRedefinesRule;
+	private SubsetsRuleElements pSubsetsRule;
+	private DefaultValueRuleElements pDefaultValueRule;
 	
 	private final GrammarProvider grammarProvider;
 
@@ -402,7 +513,7 @@ public class UmlPropertyGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//PropertyRule:
 	//	visibility=VisibilityKind isDerived="/"? name=ID ":" (type=TypeRule | "<Undefined>") multiplicity=MultiplicityRule?
-	//	modifiers=ModifiersRule?;
+	//	modifiers=ModifiersRule? default=DefaultValueRule?;
 	public PropertyRuleElements getPropertyRuleAccess() {
 		return (pPropertyRule != null) ? pPropertyRule : (pPropertyRule = new PropertyRuleElements());
 	}
@@ -478,7 +589,7 @@ public class UmlPropertyGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ModifierSpecification:
-	//	value=ModifierKind;
+	//	value=ModifierKind | redefines=RedefinesRule | subsets=SubsetsRule;
 	public ModifierSpecificationElements getModifierSpecificationAccess() {
 		return (pModifierSpecification != null) ? pModifierSpecification : (pModifierSpecification = new ModifierSpecificationElements());
 	}
@@ -495,6 +606,36 @@ public class UmlPropertyGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public EnumRule getModifierKindRule() {
 		return getModifierKindAccess().getRule();
+	}
+
+	//RedefinesRule:
+	//	"redefines" property=[uml::Property];
+	public RedefinesRuleElements getRedefinesRuleAccess() {
+		return (pRedefinesRule != null) ? pRedefinesRule : (pRedefinesRule = new RedefinesRuleElements());
+	}
+	
+	public ParserRule getRedefinesRuleRule() {
+		return getRedefinesRuleAccess().getRule();
+	}
+
+	//SubsetsRule:
+	//	"subsets" property=[uml::Property];
+	public SubsetsRuleElements getSubsetsRuleAccess() {
+		return (pSubsetsRule != null) ? pSubsetsRule : (pSubsetsRule = new SubsetsRuleElements());
+	}
+	
+	public ParserRule getSubsetsRuleRule() {
+		return getSubsetsRuleAccess().getRule();
+	}
+
+	//DefaultValueRule:
+	//	"=" default=STRING;
+	public DefaultValueRuleElements getDefaultValueRuleAccess() {
+		return (pDefaultValueRule != null) ? pDefaultValueRule : (pDefaultValueRule = new DefaultValueRuleElements());
+	}
+	
+	public ParserRule getDefaultValueRuleRule() {
+		return getDefaultValueRuleAccess().getRule();
 	}
 
 	//terminal ID:

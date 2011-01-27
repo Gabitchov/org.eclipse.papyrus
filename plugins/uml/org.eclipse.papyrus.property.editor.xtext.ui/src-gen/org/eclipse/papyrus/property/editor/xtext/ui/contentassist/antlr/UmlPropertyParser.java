@@ -38,6 +38,7 @@ public class UmlPropertyParser extends AbstractContentAssistParser {
 				private static final long serialVersionUID = 1L;
 				{
 					put(grammarAccess.getPropertyRuleAccess().getAlternatives_4(), "rule__PropertyRule__Alternatives_4");
+					put(grammarAccess.getModifierSpecificationAccess().getAlternatives(), "rule__ModifierSpecification__Alternatives");
 					put(grammarAccess.getVisibilityKindAccess().getAlternatives(), "rule__VisibilityKind__Alternatives");
 					put(grammarAccess.getModifierKindAccess().getAlternatives(), "rule__ModifierKind__Alternatives");
 					put(grammarAccess.getPropertyRuleAccess().getGroup(), "rule__PropertyRule__Group__0");
@@ -47,12 +48,16 @@ public class UmlPropertyParser extends AbstractContentAssistParser {
 					put(grammarAccess.getMultiplicityRuleAccess().getGroup_2(), "rule__MultiplicityRule__Group_2__0");
 					put(grammarAccess.getModifiersRuleAccess().getGroup(), "rule__ModifiersRule__Group__0");
 					put(grammarAccess.getModifiersRuleAccess().getGroup_2(), "rule__ModifiersRule__Group_2__0");
+					put(grammarAccess.getRedefinesRuleAccess().getGroup(), "rule__RedefinesRule__Group__0");
+					put(grammarAccess.getSubsetsRuleAccess().getGroup(), "rule__SubsetsRule__Group__0");
+					put(grammarAccess.getDefaultValueRuleAccess().getGroup(), "rule__DefaultValueRule__Group__0");
 					put(grammarAccess.getPropertyRuleAccess().getVisibilityAssignment_0(), "rule__PropertyRule__VisibilityAssignment_0");
 					put(grammarAccess.getPropertyRuleAccess().getIsDerivedAssignment_1(), "rule__PropertyRule__IsDerivedAssignment_1");
 					put(grammarAccess.getPropertyRuleAccess().getNameAssignment_2(), "rule__PropertyRule__NameAssignment_2");
 					put(grammarAccess.getPropertyRuleAccess().getTypeAssignment_4_0(), "rule__PropertyRule__TypeAssignment_4_0");
 					put(grammarAccess.getPropertyRuleAccess().getMultiplicityAssignment_5(), "rule__PropertyRule__MultiplicityAssignment_5");
 					put(grammarAccess.getPropertyRuleAccess().getModifiersAssignment_6(), "rule__PropertyRule__ModifiersAssignment_6");
+					put(grammarAccess.getPropertyRuleAccess().getDefaultAssignment_7(), "rule__PropertyRule__DefaultAssignment_7");
 					put(grammarAccess.getTypeRuleAccess().getPathAssignment_0(), "rule__TypeRule__PathAssignment_0");
 					put(grammarAccess.getTypeRuleAccess().getTypeAssignment_1(), "rule__TypeRule__TypeAssignment_1");
 					put(grammarAccess.getQualifiedNameAccess().getPathAssignment_0(), "rule__QualifiedName__PathAssignment_0");
@@ -62,7 +67,12 @@ public class UmlPropertyParser extends AbstractContentAssistParser {
 					put(grammarAccess.getBoundSpecificationAccess().getValueAssignment(), "rule__BoundSpecification__ValueAssignment");
 					put(grammarAccess.getModifiersRuleAccess().getValuesAssignment_1(), "rule__ModifiersRule__ValuesAssignment_1");
 					put(grammarAccess.getModifiersRuleAccess().getValuesAssignment_2_1(), "rule__ModifiersRule__ValuesAssignment_2_1");
-					put(grammarAccess.getModifierSpecificationAccess().getValueAssignment(), "rule__ModifierSpecification__ValueAssignment");
+					put(grammarAccess.getModifierSpecificationAccess().getValueAssignment_0(), "rule__ModifierSpecification__ValueAssignment_0");
+					put(grammarAccess.getModifierSpecificationAccess().getRedefinesAssignment_1(), "rule__ModifierSpecification__RedefinesAssignment_1");
+					put(grammarAccess.getModifierSpecificationAccess().getSubsetsAssignment_2(), "rule__ModifierSpecification__SubsetsAssignment_2");
+					put(grammarAccess.getRedefinesRuleAccess().getPropertyAssignment_1(), "rule__RedefinesRule__PropertyAssignment_1");
+					put(grammarAccess.getSubsetsRuleAccess().getPropertyAssignment_1(), "rule__SubsetsRule__PropertyAssignment_1");
+					put(grammarAccess.getDefaultValueRuleAccess().getDefaultAssignment_1(), "rule__DefaultValueRule__DefaultAssignment_1");
 				}
 			};
 		}

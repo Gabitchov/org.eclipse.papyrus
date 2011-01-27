@@ -23,7 +23,8 @@ PropertyRule:
 	(isDerived = "/")? 
 	name=ID ':' ((type=TypeRule) | "<Undefined>")
 	(multiplicity = MultiplicityRule) ? 
-	(modifiers = ModifiersRule) ? ;
+	(modifiers = ModifiersRule) ? 
+	(default = DefaultValueRule) ? ;
 
 enum VisibilityKind:
 	public = "+"
@@ -50,11 +51,21 @@ ModifiersRule:
 	'{' values += ModifierSpecification (',' values += ModifierSpecification)* '}';
 
 ModifierSpecification:
-	value = ModifierKind ;
+	value = ModifierKind 
+	| redefines = RedefinesRule 
+	| subsets = SubsetsRule ;
 
 enum ModifierKind:
 	readOnly = "readOnly" 
 	| union = "union" 
 	| ordered = "ordered" 
 	| unique = "unique" ;
-	
+
+RedefinesRule :
+	'redefines' property = [uml::Property] ;
+
+SubsetsRule :
+	'subsets' property = [uml::Property] ;
+
+DefaultValueRule :
+	'=' default = STRING ;

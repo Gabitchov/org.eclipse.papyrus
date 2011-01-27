@@ -44,16 +44,15 @@ public class UMLPropertyEditorPropertyUtil extends PropertyUtil {
 			buffer.append(multiplicity);
 		}
 
-		// default value
-		if(property.getDefault() != null) {
-			buffer.append(" = ");
-			buffer.append(property.getDefault());
-		}
-
 		// property modifiers
 		buffer.append(" ") ;
 		buffer.append(PropertyUtil.getModifiersAsString(property, false));
-
+		
+		// default value
+		if(property.getDefault() != null) {
+			buffer.append(" = ");
+			buffer.append("\"" + property.getDefault() + "\"");
+		}
 		
 		
 		return buffer.toString();
