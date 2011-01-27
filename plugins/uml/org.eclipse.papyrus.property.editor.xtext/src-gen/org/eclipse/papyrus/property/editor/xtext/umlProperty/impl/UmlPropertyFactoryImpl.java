@@ -76,6 +76,9 @@ public class UmlPropertyFactoryImpl extends EFactoryImpl implements UmlPropertyF
       case UmlPropertyPackage.BOUND_SPECIFICATION: return createBoundSpecification();
       case UmlPropertyPackage.MODIFIERS_RULE: return createModifiersRule();
       case UmlPropertyPackage.MODIFIER_SPECIFICATION: return createModifierSpecification();
+      case UmlPropertyPackage.REDEFINES_RULE: return createRedefinesRule();
+      case UmlPropertyPackage.SUBSETS_RULE: return createSubsetsRule();
+      case UmlPropertyPackage.DEFAULT_VALUE_RULE: return createDefaultValueRule();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -194,6 +197,39 @@ public class UmlPropertyFactoryImpl extends EFactoryImpl implements UmlPropertyF
   {
     ModifierSpecificationImpl modifierSpecification = new ModifierSpecificationImpl();
     return modifierSpecification;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public RedefinesRule createRedefinesRule()
+  {
+    RedefinesRuleImpl redefinesRule = new RedefinesRuleImpl();
+    return redefinesRule;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public SubsetsRule createSubsetsRule()
+  {
+    SubsetsRuleImpl subsetsRule = new SubsetsRuleImpl();
+    return subsetsRule;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public DefaultValueRule createDefaultValueRule()
+  {
+    DefaultValueRuleImpl defaultValueRule = new DefaultValueRuleImpl();
+    return defaultValueRule;
   }
 
   /**

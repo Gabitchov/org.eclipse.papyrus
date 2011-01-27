@@ -28,6 +28,7 @@ import org.eclipse.jface.text.contentassist.ICompletionProposalExtension2;
 import org.eclipse.jface.text.contentassist.IContextInformation;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.core.utils.DisplayUtils;
+import org.eclipse.papyrus.property.editor.xtext.scoping.UmlPropertyScopeProvider;
 import org.eclipse.papyrus.property.editor.xtext.ui.contentassist.AbstractUmlPropertyProposalProvider;
 import org.eclipse.papyrus.property.editor.xtext.ui.contributions.UMLPropertyEditorPropertyUtil;
 import org.eclipse.papyrus.property.editor.xtext.umlProperty.ModifierSpecification;
@@ -196,8 +197,34 @@ public class UmlPropertyProposalProvider extends AbstractUmlPropertyProposalProv
 		}
 	}
 	
-	
-	
+	@Override
+	public void completeRedefinesRule_Property(EObject model,
+			Assignment assignment, ContentAssistContext context,
+			ICompletionProposalAcceptor acceptor) {
+		for (Property inherited : UmlPropertyScopeProvider.retrieveInheritedProperties()) {
+			if (inherited.getName().toLowerCase().contains(context.getPrefix().toLowerCase())) {
+				String completionString = inherited.getName() ;
+				String displayString = UMLPropertyEditorPropertyUtil.getLabel(inherited) ;
+				CustomCompletionProposal completionProposal = CompletionProposalUtils.createCompletionProposalWithReplacementOfPrefix(inherited, completionString, displayString, context) ;
+				acceptor.accept(completionProposal) ;
+			}
+		}
+	}
+
+	@Override
+	public void completeSubsetsRule_Property(EObject model,
+			Assignment assignment, ContentAssistContext context,
+			ICompletionProposalAcceptor acceptor) {
+		for (Property inherited : UmlPropertyScopeProvider.retrieveInheritedProperties()) {
+			if (inherited.getName().toLowerCase().contains(context.getPrefix().toLowerCase())) {
+				String completionString = inherited.getName() ;
+				String displayString = UMLPropertyEditorPropertyUtil.getLabel(inherited) ;
+				CustomCompletionProposal completionProposal = CompletionProposalUtils.createCompletionProposalWithReplacementOfPrefix(inherited, completionString, displayString, context) ;
+				acceptor.accept(completionProposal) ;
+			}
+		}
+	}
+
 	/**
 	 * Provides custom completion for keywords, in the context of "modifiers" specification
 	 * 
@@ -261,6 +288,7 @@ public class UmlPropertyProposalProvider extends AbstractUmlPropertyProposalProv
 	@Override
 	public void complete_MultiplicityRule(EObject model, RuleCall ruleCall,
 			ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		String zero_one = "[0..1]" ;
 		String one = "[1]" ;
 		String one_star = "[1..*]" ;
 		String star = "[*]" ;
@@ -268,6 +296,11 @@ public class UmlPropertyProposalProvider extends AbstractUmlPropertyProposalProv
 		String completionString = "" ;
 		String displayString = "";
 		ICompletionProposal completionProposal = null ;
+		
+		completionString = "" + zero_one.substring(context.getPrefix().length()) ;
+		displayString = "" + zero_one ;
+		completionProposal = CompletionProposalUtils.createCompletionProposal(completionString, displayString, context) ;
+		acceptor.accept(completionProposal) ;
 		
 		completionString = "" + one.substring(context.getPrefix().length()) ;
 		displayString = "" + one ;

@@ -20,6 +20,8 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.papyrus.property.editor.xtext.umlProperty.QualifiedName;
+import org.eclipse.papyrus.property.editor.xtext.umlProperty.RedefinesRule;
+import org.eclipse.papyrus.property.editor.xtext.umlProperty.SubsetsRule;
 import org.eclipse.papyrus.property.editor.xtext.umlProperty.TypeRule;
 import org.eclipse.papyrus.property.editor.xtext.validation.UmlPropertyJavaValidator;
 import org.eclipse.uml2.uml.Classifier;
@@ -28,6 +30,7 @@ import org.eclipse.uml2.uml.ElementImport;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.PackageImport;
+import org.eclipse.uml2.uml.Property;
 import org.eclipse.xtext.gmf.glue.edit.part.PopupXtextEditorHelper;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
@@ -63,8 +66,8 @@ public class UmlPropertyScopeProvider extends AbstractDeclarativeScopeProvider {
 				if (object instanceof Classifier)
 					allContent.add(object) ;
 			}
-			Iterable<IEObjectDescription> visibleParameterBoxes = Scopes.scopedElementsFor(allContent) ;
-			return new SimpleScope(visibleParameterBoxes) ;
+			Iterable<IEObjectDescription> visibleClassifiers = Scopes.scopedElementsFor(allContent) ;
+			return new SimpleScope(visibleClassifiers) ;
 		}
 		else {
 			// In the case where a path (qualified name prefix) has been specified,
@@ -170,4 +173,40 @@ public class UmlPropertyScopeProvider extends AbstractDeclarativeScopeProvider {
 		
 	}
 
+	/**
+	 * Rule for computing the scope of PropertyRule
+	 * @param ctx
+	 * @param ref
+	 * @return
+	 */
+	public IScope scope_RedefinesRule_property(RedefinesRule ctx, EReference ref) {
+		Iterable<IEObjectDescription> iterableIEobjectDescription = Scopes.scopedElementsFor(retrieveInheritedProperties()) ;		
+		return new SimpleScope(iterableIEobjectDescription) ;
+	}
+	
+	/**
+	 * Rule for computing the scope of PropertyRule
+	 * @param ctx
+	 * @param ref
+	 * @return
+	 */
+	public IScope scope_SubsetsRule_property(SubsetsRule ctx, EReference ref) {
+		Iterable<IEObjectDescription> iterableIEobjectDescription = Scopes.scopedElementsFor(retrieveInheritedProperties()) ;		
+		return new SimpleScope(iterableIEobjectDescription) ;
+	}
+	
+	public static List<Property> retrieveInheritedProperties() {
+		Property editedProperty = (Property)PopupXtextEditorHelper.context ;
+		if (editedProperty == null)
+			return null ;
+		Classifier owner = (Classifier) editedProperty.getNamespace() ;
+		List<Property> inheritedProperties = new ArrayList<Property>() ;
+		for (Classifier parent : owner.getGenerals()) {
+			for (Property p : parent.getAllAttributes()) {
+				if (! inheritedProperties.contains(p)) ;
+					inheritedProperties.add(p) ;
+			}
+		}
+		return inheritedProperties ;
+	}
 }

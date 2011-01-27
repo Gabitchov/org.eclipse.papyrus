@@ -13,6 +13,8 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="modifiers" eType="#//ModifiersRule"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="default" eType="#//DefaultValueRule"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="VisibilityKind">
     <eLiterals name="public" literal="+"/>
@@ -43,11 +45,24 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ModifierSpecification">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="#//ModifierKind"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="redefines" eType="#//RedefinesRule"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subsets" eType="#//SubsetsRule"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="ModifierKind">
     <eLiterals name="readOnly" literal="readOnly"/>
     <eLiterals name="union" value="1" literal="union"/>
     <eLiterals name="ordered" value="2" literal="ordered"/>
     <eLiterals name="unique" value="3" literal="unique"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RedefinesRule">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="property" eType="ecore:EClass ../../../../../../../model/UML.ecore#//Property"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SubsetsRule">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="property" eType="ecore:EClass ../../../../../../../model/UML.ecore#//Property"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DefaultValueRule">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="default" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>

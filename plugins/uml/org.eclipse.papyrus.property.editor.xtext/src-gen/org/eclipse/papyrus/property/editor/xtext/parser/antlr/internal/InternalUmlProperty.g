@@ -240,6 +240,30 @@ rulePropertyRule returns [EObject current=null]
 	    }
 
 )
+)?(
+(
+		{ 
+	        currentNode=createCompositeNode(grammarAccess.getPropertyRuleAccess().getDefaultDefaultValueRuleParserRuleCall_7_0(), currentNode); 
+	    }
+		lv_default_8_0=ruleDefaultValueRule		{
+	        if ($current==null) {
+	            $current = factory.create(grammarAccess.getPropertyRuleRule().getType().getClassifier());
+	            associateNodeWithAstElement(currentNode.getParent(), $current);
+	        }
+	        try {
+	       		set(
+	       			$current, 
+	       			"default",
+	        		lv_default_8_0, 
+	        		"DefaultValueRule", 
+	        		currentNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	        currentNode = currentNode.getParent();
+	    }
+
+)
 )?)
 ;
 
@@ -602,10 +626,10 @@ ruleModifierSpecification returns [EObject current=null]
     @after { resetLookahead(); 
     	lastConsumedNode = currentNode;
     }:
-(
+((
 (
 		{ 
-	        currentNode=createCompositeNode(grammarAccess.getModifierSpecificationAccess().getValueModifierKindEnumRuleCall_0(), currentNode); 
+	        currentNode=createCompositeNode(grammarAccess.getModifierSpecificationAccess().getValueModifierKindEnumRuleCall_0_0(), currentNode); 
 	    }
 		lv_value_0_0=ruleModifierKind		{
 	        if ($current==null) {
@@ -627,6 +651,189 @@ ruleModifierSpecification returns [EObject current=null]
 
 )
 )
+    |(
+(
+		{ 
+	        currentNode=createCompositeNode(grammarAccess.getModifierSpecificationAccess().getRedefinesRedefinesRuleParserRuleCall_1_0(), currentNode); 
+	    }
+		lv_redefines_1_0=ruleRedefinesRule		{
+	        if ($current==null) {
+	            $current = factory.create(grammarAccess.getModifierSpecificationRule().getType().getClassifier());
+	            associateNodeWithAstElement(currentNode.getParent(), $current);
+	        }
+	        try {
+	       		set(
+	       			$current, 
+	       			"redefines",
+	        		lv_redefines_1_0, 
+	        		"RedefinesRule", 
+	        		currentNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	        currentNode = currentNode.getParent();
+	    }
+
+)
+)
+    |(
+(
+		{ 
+	        currentNode=createCompositeNode(grammarAccess.getModifierSpecificationAccess().getSubsetsSubsetsRuleParserRuleCall_2_0(), currentNode); 
+	    }
+		lv_subsets_2_0=ruleSubsetsRule		{
+	        if ($current==null) {
+	            $current = factory.create(grammarAccess.getModifierSpecificationRule().getType().getClassifier());
+	            associateNodeWithAstElement(currentNode.getParent(), $current);
+	        }
+	        try {
+	       		set(
+	       			$current, 
+	       			"subsets",
+	        		lv_subsets_2_0, 
+	        		"SubsetsRule", 
+	        		currentNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	        currentNode = currentNode.getParent();
+	    }
+
+)
+))
+;
+
+
+
+
+
+// Entry rule entryRuleRedefinesRule
+entryRuleRedefinesRule returns [EObject current=null] 
+	:
+	{ currentNode = createCompositeNode(grammarAccess.getRedefinesRuleRule(), currentNode); }
+	 iv_ruleRedefinesRule=ruleRedefinesRule 
+	 { $current=$iv_ruleRedefinesRule.current; } 
+	 EOF 
+;
+
+// Rule RedefinesRule
+ruleRedefinesRule returns [EObject current=null] 
+    @init { EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+    }
+    @after { resetLookahead(); 
+    	lastConsumedNode = currentNode;
+    }:
+(	'redefines' 
+    {
+        createLeafNode(grammarAccess.getRedefinesRuleAccess().getRedefinesKeyword_0(), null); 
+    }
+(
+(
+		{
+			if ($current==null) {
+	            $current = factory.create(grammarAccess.getRedefinesRuleRule().getType().getClassifier());
+	            associateNodeWithAstElement(currentNode, $current);
+	        }
+        }
+	RULE_ID
+	{
+		createLeafNode(grammarAccess.getRedefinesRuleAccess().getPropertyPropertyCrossReference_1_0(), "property"); 
+	}
+
+)
+))
+;
+
+
+
+
+
+// Entry rule entryRuleSubsetsRule
+entryRuleSubsetsRule returns [EObject current=null] 
+	:
+	{ currentNode = createCompositeNode(grammarAccess.getSubsetsRuleRule(), currentNode); }
+	 iv_ruleSubsetsRule=ruleSubsetsRule 
+	 { $current=$iv_ruleSubsetsRule.current; } 
+	 EOF 
+;
+
+// Rule SubsetsRule
+ruleSubsetsRule returns [EObject current=null] 
+    @init { EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+    }
+    @after { resetLookahead(); 
+    	lastConsumedNode = currentNode;
+    }:
+(	'subsets' 
+    {
+        createLeafNode(grammarAccess.getSubsetsRuleAccess().getSubsetsKeyword_0(), null); 
+    }
+(
+(
+		{
+			if ($current==null) {
+	            $current = factory.create(grammarAccess.getSubsetsRuleRule().getType().getClassifier());
+	            associateNodeWithAstElement(currentNode, $current);
+	        }
+        }
+	RULE_ID
+	{
+		createLeafNode(grammarAccess.getSubsetsRuleAccess().getPropertyPropertyCrossReference_1_0(), "property"); 
+	}
+
+)
+))
+;
+
+
+
+
+
+// Entry rule entryRuleDefaultValueRule
+entryRuleDefaultValueRule returns [EObject current=null] 
+	:
+	{ currentNode = createCompositeNode(grammarAccess.getDefaultValueRuleRule(), currentNode); }
+	 iv_ruleDefaultValueRule=ruleDefaultValueRule 
+	 { $current=$iv_ruleDefaultValueRule.current; } 
+	 EOF 
+;
+
+// Rule DefaultValueRule
+ruleDefaultValueRule returns [EObject current=null] 
+    @init { EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+    }
+    @after { resetLookahead(); 
+    	lastConsumedNode = currentNode;
+    }:
+(	'=' 
+    {
+        createLeafNode(grammarAccess.getDefaultValueRuleAccess().getEqualsSignKeyword_0(), null); 
+    }
+(
+(
+		lv_default_1_0=RULE_STRING
+		{
+			createLeafNode(grammarAccess.getDefaultValueRuleAccess().getDefaultSTRINGTerminalRuleCall_1_0(), "default"); 
+		}
+		{
+	        if ($current==null) {
+	            $current = factory.create(grammarAccess.getDefaultValueRuleRule().getType().getClassifier());
+	            associateNodeWithAstElement(currentNode, $current);
+	        }
+	        try {
+	       		set(
+	       			$current, 
+	       			"default",
+	        		lv_default_1_0, 
+	        		"STRING", 
+	        		lastConsumedNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	    }
+
+)
+))
 ;
 
 

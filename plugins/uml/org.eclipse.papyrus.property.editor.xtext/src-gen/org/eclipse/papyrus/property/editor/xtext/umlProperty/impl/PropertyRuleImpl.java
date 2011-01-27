@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.papyrus.property.editor.xtext.umlProperty.DefaultValueRule;
 import org.eclipse.papyrus.property.editor.xtext.umlProperty.ModifiersRule;
 import org.eclipse.papyrus.property.editor.xtext.umlProperty.MultiplicityRule;
 import org.eclipse.papyrus.property.editor.xtext.umlProperty.PropertyRule;
@@ -35,6 +36,7 @@ import org.eclipse.papyrus.property.editor.xtext.umlProperty.VisibilityKind;
  *   <li>{@link org.eclipse.papyrus.property.editor.xtext.umlProperty.impl.PropertyRuleImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.eclipse.papyrus.property.editor.xtext.umlProperty.impl.PropertyRuleImpl#getMultiplicity <em>Multiplicity</em>}</li>
  *   <li>{@link org.eclipse.papyrus.property.editor.xtext.umlProperty.impl.PropertyRuleImpl#getModifiers <em>Modifiers</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.property.editor.xtext.umlProperty.impl.PropertyRuleImpl#getDefault <em>Default</em>}</li>
  * </ul>
  * </p>
  *
@@ -131,6 +133,16 @@ public class PropertyRuleImpl extends MinimalEObjectImpl.Container implements Pr
    * @ordered
    */
   protected ModifiersRule modifiers;
+
+  /**
+   * The cached value of the '{@link #getDefault() <em>Default</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDefault()
+   * @generated
+   * @ordered
+   */
+  protected DefaultValueRule default_;
 
   /**
    * <!-- begin-user-doc -->
@@ -371,6 +383,54 @@ public class PropertyRuleImpl extends MinimalEObjectImpl.Container implements Pr
    * <!-- end-user-doc -->
    * @generated
    */
+  public DefaultValueRule getDefault()
+  {
+    return default_;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetDefault(DefaultValueRule newDefault, NotificationChain msgs)
+  {
+    DefaultValueRule oldDefault = default_;
+    default_ = newDefault;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UmlPropertyPackage.PROPERTY_RULE__DEFAULT, oldDefault, newDefault);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setDefault(DefaultValueRule newDefault)
+  {
+    if (newDefault != default_)
+    {
+      NotificationChain msgs = null;
+      if (default_ != null)
+        msgs = ((InternalEObject)default_).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UmlPropertyPackage.PROPERTY_RULE__DEFAULT, null, msgs);
+      if (newDefault != null)
+        msgs = ((InternalEObject)newDefault).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - UmlPropertyPackage.PROPERTY_RULE__DEFAULT, null, msgs);
+      msgs = basicSetDefault(newDefault, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, UmlPropertyPackage.PROPERTY_RULE__DEFAULT, newDefault, newDefault));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -382,6 +442,8 @@ public class PropertyRuleImpl extends MinimalEObjectImpl.Container implements Pr
         return basicSetMultiplicity(null, msgs);
       case UmlPropertyPackage.PROPERTY_RULE__MODIFIERS:
         return basicSetModifiers(null, msgs);
+      case UmlPropertyPackage.PROPERTY_RULE__DEFAULT:
+        return basicSetDefault(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -408,6 +470,8 @@ public class PropertyRuleImpl extends MinimalEObjectImpl.Container implements Pr
         return getMultiplicity();
       case UmlPropertyPackage.PROPERTY_RULE__MODIFIERS:
         return getModifiers();
+      case UmlPropertyPackage.PROPERTY_RULE__DEFAULT:
+        return getDefault();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -439,6 +503,9 @@ public class PropertyRuleImpl extends MinimalEObjectImpl.Container implements Pr
         return;
       case UmlPropertyPackage.PROPERTY_RULE__MODIFIERS:
         setModifiers((ModifiersRule)newValue);
+        return;
+      case UmlPropertyPackage.PROPERTY_RULE__DEFAULT:
+        setDefault((DefaultValueRule)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -472,6 +539,9 @@ public class PropertyRuleImpl extends MinimalEObjectImpl.Container implements Pr
       case UmlPropertyPackage.PROPERTY_RULE__MODIFIERS:
         setModifiers((ModifiersRule)null);
         return;
+      case UmlPropertyPackage.PROPERTY_RULE__DEFAULT:
+        setDefault((DefaultValueRule)null);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -498,6 +568,8 @@ public class PropertyRuleImpl extends MinimalEObjectImpl.Container implements Pr
         return multiplicity != null;
       case UmlPropertyPackage.PROPERTY_RULE__MODIFIERS:
         return modifiers != null;
+      case UmlPropertyPackage.PROPERTY_RULE__DEFAULT:
+        return default_ != null;
     }
     return super.eIsSet(featureID);
   }

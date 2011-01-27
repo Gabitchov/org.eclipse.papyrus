@@ -28,6 +28,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UmlProperty.ecore#//PropertyRule/type"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UmlProperty.ecore#//PropertyRule/multiplicity"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UmlProperty.ecore#//PropertyRule/modifiers"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UmlProperty.ecore#//PropertyRule/default"/>
     </genClasses>
     <genClasses ecoreClass="UmlProperty.ecore#//TypeRule">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UmlProperty.ecore#//TypeRule/path"/>
@@ -48,6 +49,17 @@
     </genClasses>
     <genClasses ecoreClass="UmlProperty.ecore#//ModifierSpecification">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute UmlProperty.ecore#//ModifierSpecification/value"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UmlProperty.ecore#//ModifierSpecification/redefines"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UmlProperty.ecore#//ModifierSpecification/subsets"/>
+    </genClasses>
+    <genClasses ecoreClass="UmlProperty.ecore#//RedefinesRule">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference UmlProperty.ecore#//RedefinesRule/property"/>
+    </genClasses>
+    <genClasses ecoreClass="UmlProperty.ecore#//SubsetsRule">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference UmlProperty.ecore#//SubsetsRule/property"/>
+    </genClasses>
+    <genClasses ecoreClass="UmlProperty.ecore#//DefaultValueRule">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute UmlProperty.ecore#//DefaultValueRule/default"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

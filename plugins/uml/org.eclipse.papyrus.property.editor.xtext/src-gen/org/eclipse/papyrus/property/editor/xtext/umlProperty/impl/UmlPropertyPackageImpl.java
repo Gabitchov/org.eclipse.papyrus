@@ -15,12 +15,15 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.eclipse.papyrus.property.editor.xtext.umlProperty.BoundSpecification;
+import org.eclipse.papyrus.property.editor.xtext.umlProperty.DefaultValueRule;
 import org.eclipse.papyrus.property.editor.xtext.umlProperty.ModifierKind;
 import org.eclipse.papyrus.property.editor.xtext.umlProperty.ModifierSpecification;
 import org.eclipse.papyrus.property.editor.xtext.umlProperty.ModifiersRule;
 import org.eclipse.papyrus.property.editor.xtext.umlProperty.MultiplicityRule;
 import org.eclipse.papyrus.property.editor.xtext.umlProperty.PropertyRule;
 import org.eclipse.papyrus.property.editor.xtext.umlProperty.QualifiedName;
+import org.eclipse.papyrus.property.editor.xtext.umlProperty.RedefinesRule;
+import org.eclipse.papyrus.property.editor.xtext.umlProperty.SubsetsRule;
 import org.eclipse.papyrus.property.editor.xtext.umlProperty.TypeRule;
 import org.eclipse.papyrus.property.editor.xtext.umlProperty.UmlPropertyFactory;
 import org.eclipse.papyrus.property.editor.xtext.umlProperty.UmlPropertyPackage;
@@ -84,6 +87,27 @@ public class UmlPropertyPackageImpl extends EPackageImpl implements UmlPropertyP
    * @generated
    */
   private EClass modifierSpecificationEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass redefinesRuleEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass subsetsRuleEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass defaultValueRuleEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -240,6 +264,16 @@ public class UmlPropertyPackageImpl extends EPackageImpl implements UmlPropertyP
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getPropertyRule_Default()
+  {
+    return (EReference)propertyRuleEClass.getEStructuralFeatures().get(6);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getTypeRule()
   {
     return typeRuleEClass;
@@ -380,6 +414,86 @@ public class UmlPropertyPackageImpl extends EPackageImpl implements UmlPropertyP
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getModifierSpecification_Redefines()
+  {
+    return (EReference)modifierSpecificationEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getModifierSpecification_Subsets()
+  {
+    return (EReference)modifierSpecificationEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getRedefinesRule()
+  {
+    return redefinesRuleEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getRedefinesRule_Property()
+  {
+    return (EReference)redefinesRuleEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getSubsetsRule()
+  {
+    return subsetsRuleEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getSubsetsRule_Property()
+  {
+    return (EReference)subsetsRuleEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getDefaultValueRule()
+  {
+    return defaultValueRuleEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getDefaultValueRule_Default()
+  {
+    return (EAttribute)defaultValueRuleEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EEnum getVisibilityKind()
   {
     return visibilityKindEEnum;
@@ -432,6 +546,7 @@ public class UmlPropertyPackageImpl extends EPackageImpl implements UmlPropertyP
     createEReference(propertyRuleEClass, PROPERTY_RULE__TYPE);
     createEReference(propertyRuleEClass, PROPERTY_RULE__MULTIPLICITY);
     createEReference(propertyRuleEClass, PROPERTY_RULE__MODIFIERS);
+    createEReference(propertyRuleEClass, PROPERTY_RULE__DEFAULT);
 
     typeRuleEClass = createEClass(TYPE_RULE);
     createEReference(typeRuleEClass, TYPE_RULE__PATH);
@@ -452,6 +567,17 @@ public class UmlPropertyPackageImpl extends EPackageImpl implements UmlPropertyP
 
     modifierSpecificationEClass = createEClass(MODIFIER_SPECIFICATION);
     createEAttribute(modifierSpecificationEClass, MODIFIER_SPECIFICATION__VALUE);
+    createEReference(modifierSpecificationEClass, MODIFIER_SPECIFICATION__REDEFINES);
+    createEReference(modifierSpecificationEClass, MODIFIER_SPECIFICATION__SUBSETS);
+
+    redefinesRuleEClass = createEClass(REDEFINES_RULE);
+    createEReference(redefinesRuleEClass, REDEFINES_RULE__PROPERTY);
+
+    subsetsRuleEClass = createEClass(SUBSETS_RULE);
+    createEReference(subsetsRuleEClass, SUBSETS_RULE__PROPERTY);
+
+    defaultValueRuleEClass = createEClass(DEFAULT_VALUE_RULE);
+    createEAttribute(defaultValueRuleEClass, DEFAULT_VALUE_RULE__DEFAULT);
 
     // Create enums
     visibilityKindEEnum = createEEnum(VISIBILITY_KIND);
@@ -499,6 +625,7 @@ public class UmlPropertyPackageImpl extends EPackageImpl implements UmlPropertyP
     initEReference(getPropertyRule_Type(), this.getTypeRule(), null, "type", null, 0, 1, PropertyRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPropertyRule_Multiplicity(), this.getMultiplicityRule(), null, "multiplicity", null, 0, 1, PropertyRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPropertyRule_Modifiers(), this.getModifiersRule(), null, "modifiers", null, 0, 1, PropertyRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPropertyRule_Default(), this.getDefaultValueRule(), null, "default", null, 0, 1, PropertyRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(typeRuleEClass, TypeRule.class, "TypeRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getTypeRule_Path(), this.getQualifiedName(), null, "path", null, 0, 1, TypeRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -519,6 +646,17 @@ public class UmlPropertyPackageImpl extends EPackageImpl implements UmlPropertyP
 
     initEClass(modifierSpecificationEClass, ModifierSpecification.class, "ModifierSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getModifierSpecification_Value(), this.getModifierKind(), "value", null, 0, 1, ModifierSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getModifierSpecification_Redefines(), this.getRedefinesRule(), null, "redefines", null, 0, 1, ModifierSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getModifierSpecification_Subsets(), this.getSubsetsRule(), null, "subsets", null, 0, 1, ModifierSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(redefinesRuleEClass, RedefinesRule.class, "RedefinesRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getRedefinesRule_Property(), theUMLPackage.getProperty(), null, "property", null, 0, 1, RedefinesRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(subsetsRuleEClass, SubsetsRule.class, "SubsetsRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getSubsetsRule_Property(), theUMLPackage.getProperty(), null, "property", null, 0, 1, SubsetsRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(defaultValueRuleEClass, DefaultValueRule.class, "DefaultValueRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getDefaultValueRule_Default(), ecorePackage.getEString(), "default", null, 0, 1, DefaultValueRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Initialize enums and add enum literals
     initEEnum(visibilityKindEEnum, VisibilityKind.class, "VisibilityKind");

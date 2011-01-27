@@ -114,6 +114,21 @@ public class UmlPropertyAdapterFactory extends AdapterFactoryImpl
         return createModifierSpecificationAdapter();
       }
       @Override
+      public Adapter caseRedefinesRule(RedefinesRule object)
+      {
+        return createRedefinesRuleAdapter();
+      }
+      @Override
+      public Adapter caseSubsetsRule(SubsetsRule object)
+      {
+        return createSubsetsRuleAdapter();
+      }
+      @Override
+      public Adapter caseDefaultValueRule(DefaultValueRule object)
+      {
+        return createDefaultValueRuleAdapter();
+      }
+      @Override
       public Adapter defaultCase(EObject object)
       {
         return createEObjectAdapter();
@@ -236,6 +251,51 @@ public class UmlPropertyAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createModifierSpecificationAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.property.editor.xtext.umlProperty.RedefinesRule <em>Redefines Rule</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.papyrus.property.editor.xtext.umlProperty.RedefinesRule
+   * @generated
+   */
+  public Adapter createRedefinesRuleAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.property.editor.xtext.umlProperty.SubsetsRule <em>Subsets Rule</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.papyrus.property.editor.xtext.umlProperty.SubsetsRule
+   * @generated
+   */
+  public Adapter createSubsetsRuleAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.property.editor.xtext.umlProperty.DefaultValueRule <em>Default Value Rule</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.papyrus.property.editor.xtext.umlProperty.DefaultValueRule
+   * @generated
+   */
+  public Adapter createDefaultValueRuleAdapter()
   {
     return null;
   }
