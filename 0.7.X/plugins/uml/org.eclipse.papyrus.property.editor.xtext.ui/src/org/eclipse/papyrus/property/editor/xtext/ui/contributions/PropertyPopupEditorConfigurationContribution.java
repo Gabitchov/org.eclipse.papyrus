@@ -71,12 +71,18 @@ public class PropertyPopupEditorConfigurationContribution extends PopupEditorCon
 	private int newLowerBound;
 
 	private int newUpperBound;
+	
+	private String newDefault ;
 
 	private String newName;
 
 	private Classifier newType;
 
 	private org.eclipse.uml2.uml.VisibilityKind newVisibility;
+	
+	private List<Property> newRedefines = new ArrayList<Property>() ;
+	
+	private List<Property> newSubsets = new ArrayList<Property>() ;
 
 	/**
 	 * Default implementation of the constructor for this class
@@ -135,24 +141,33 @@ public class PropertyPopupEditorConfigurationContribution extends PopupEditorCon
 				newIsUnique = false;
 				newIsUnion = false;
 				newIsOrdered = false;
+				newRedefines = new ArrayList<Property>() ;
+				newSubsets = new ArrayList<Property>() ;
 				if(propertyRuleObject.getModifiers() != null) {
 					for(ModifierSpecification modifier : propertyRuleObject.getModifiers().getValues()) {
-						switch(modifier.getValue()) {
-						case ORDERED:
-							newIsOrdered = true;
-							break;
-						case READ_ONLY:
-							newIsReadOnly = true;
-							break;
-						case UNION:
-							newIsUnion = true;
-							break;
-						case UNIQUE:
-							newIsUnique = true;
-							break;
-						default:
-							break;
-						}
+						if (modifier.getRedefines() == null && modifier.getSubsets()==null)
+							switch(modifier.getValue()) {
+							case ORDERED:
+								newIsOrdered = true;
+								break;
+							case READ_ONLY:
+								newIsReadOnly = true;
+								break;
+							case UNION:
+								newIsUnion = true;
+								break;
+							case UNIQUE:
+								newIsUnique = true;
+								break;
+							default:
+								break;
+							}
+					}
+					for (ModifierSpecification modifier : propertyRuleObject.getModifiers().getValues()) {
+						if (modifier.getRedefines() != null)
+							newRedefines.add(modifier.getRedefines().getProperty()) ;
+						else if (modifier.getSubsets() != null)
+							newSubsets.add(modifier.getSubsets().getProperty()) ;
 					}
 				}
 				newLowerBound = 1;
@@ -179,6 +194,13 @@ public class PropertyPopupEditorConfigurationContribution extends PopupEditorCon
 					}
 				}
 
+				if (propertyRuleObject.getDefault() != null) {
+					newDefault = propertyRuleObject.getDefault().getDefault() ;
+				}
+				else {
+					newDefault = null ;
+				}
+				
 				newName = "" + propertyRuleObject.getName();
 
 				TypeRule typeRule = propertyRuleObject.getType();
@@ -268,6 +290,18 @@ public class PropertyPopupEditorConfigurationContribution extends PopupEditorCon
 		ICommand setVisibilityCommand = provider.getEditCommand(setVisibilityRequest);
 		updateCommand.add(setVisibilityCommand);
 
+		SetRequest setDefaultValueRequest = new SetRequest (editedObject, UMLPackage.eINSTANCE.getProperty_Default(), newDefault) ;
+		ICommand setDefaultValueCommand = provider.getEditCommand(setDefaultValueRequest) ;
+		updateCommand.add(setDefaultValueCommand) ;
+		
+		SetRequest setRedefinedPropertiesRequest = new SetRequest (editedObject, UMLPackage.eINSTANCE.getProperty_RedefinedProperty(), newRedefines) ;
+		ICommand setRedefinedPropertiesCommand = provider.getEditCommand(setRedefinedPropertiesRequest) ;
+		updateCommand.add(setRedefinedPropertiesCommand) ;
+		
+		SetRequest setSubsettedPropertiesRequest = new SetRequest (editedObject, UMLPackage.eINSTANCE.getProperty_SubsettedProperty(), newSubsets) ;
+		ICommand setSubsettedPropertiesCommand = provider.getEditCommand(setSubsettedPropertiesRequest) ;
+		updateCommand.add(setSubsettedPropertiesCommand) ;
+		
 		return updateCommand;
 	}
 

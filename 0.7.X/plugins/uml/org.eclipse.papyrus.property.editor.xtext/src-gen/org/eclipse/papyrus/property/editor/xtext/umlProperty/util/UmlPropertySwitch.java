@@ -145,6 +145,27 @@ public class UmlPropertySwitch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case UmlPropertyPackage.REDEFINES_RULE:
+      {
+        RedefinesRule redefinesRule = (RedefinesRule)theEObject;
+        T result = caseRedefinesRule(redefinesRule);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case UmlPropertyPackage.SUBSETS_RULE:
+      {
+        SubsetsRule subsetsRule = (SubsetsRule)theEObject;
+        T result = caseSubsetsRule(subsetsRule);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case UmlPropertyPackage.DEFAULT_VALUE_RULE:
+      {
+        DefaultValueRule defaultValueRule = (DefaultValueRule)theEObject;
+        T result = caseDefaultValueRule(defaultValueRule);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       default: return defaultCase(theEObject);
     }
   }
@@ -257,6 +278,54 @@ public class UmlPropertySwitch<T>
    * @generated
    */
   public T caseModifierSpecification(ModifierSpecification object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Redefines Rule</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Redefines Rule</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseRedefinesRule(RedefinesRule object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Subsets Rule</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Subsets Rule</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseSubsetsRule(SubsetsRule object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Default Value Rule</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Default Value Rule</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDefaultValueRule(DefaultValueRule object)
   {
     return null;
   }

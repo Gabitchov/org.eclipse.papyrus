@@ -90,6 +90,33 @@ public interface UmlPropertyFactory extends EFactory
   ModifierSpecification createModifierSpecification();
 
   /**
+   * Returns a new object of class '<em>Redefines Rule</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Redefines Rule</em>'.
+   * @generated
+   */
+  RedefinesRule createRedefinesRule();
+
+  /**
+   * Returns a new object of class '<em>Subsets Rule</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Subsets Rule</em>'.
+   * @generated
+   */
+  SubsetsRule createSubsetsRule();
+
+  /**
+   * Returns a new object of class '<em>Default Value Rule</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Default Value Rule</em>'.
+   * @generated
+   */
+  DefaultValueRule createDefaultValueRule();
+
+  /**
    * Returns the package supported by this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

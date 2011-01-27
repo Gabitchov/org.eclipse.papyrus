@@ -126,13 +126,22 @@ public interface UmlPropertyPackage extends EPackage
   int PROPERTY_RULE__MODIFIERS = 5;
 
   /**
+   * The feature id for the '<em><b>Default</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY_RULE__DEFAULT = 6;
+
+  /**
    * The number of structural features of the '<em>Property Rule</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PROPERTY_RULE_FEATURE_COUNT = 6;
+  int PROPERTY_RULE_FEATURE_COUNT = 7;
 
   /**
    * The meta object id for the '{@link org.eclipse.papyrus.property.editor.xtext.umlProperty.impl.TypeRuleImpl <em>Type Rule</em>}' class.
@@ -312,13 +321,115 @@ public interface UmlPropertyPackage extends EPackage
   int MODIFIER_SPECIFICATION__VALUE = 0;
 
   /**
+   * The feature id for the '<em><b>Redefines</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MODIFIER_SPECIFICATION__REDEFINES = 1;
+
+  /**
+   * The feature id for the '<em><b>Subsets</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MODIFIER_SPECIFICATION__SUBSETS = 2;
+
+  /**
    * The number of structural features of the '<em>Modifier Specification</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MODIFIER_SPECIFICATION_FEATURE_COUNT = 1;
+  int MODIFIER_SPECIFICATION_FEATURE_COUNT = 3;
+
+  /**
+   * The meta object id for the '{@link org.eclipse.papyrus.property.editor.xtext.umlProperty.impl.RedefinesRuleImpl <em>Redefines Rule</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.eclipse.papyrus.property.editor.xtext.umlProperty.impl.RedefinesRuleImpl
+   * @see org.eclipse.papyrus.property.editor.xtext.umlProperty.impl.UmlPropertyPackageImpl#getRedefinesRule()
+   * @generated
+   */
+  int REDEFINES_RULE = 7;
+
+  /**
+   * The feature id for the '<em><b>Property</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REDEFINES_RULE__PROPERTY = 0;
+
+  /**
+   * The number of structural features of the '<em>Redefines Rule</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REDEFINES_RULE_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link org.eclipse.papyrus.property.editor.xtext.umlProperty.impl.SubsetsRuleImpl <em>Subsets Rule</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.eclipse.papyrus.property.editor.xtext.umlProperty.impl.SubsetsRuleImpl
+   * @see org.eclipse.papyrus.property.editor.xtext.umlProperty.impl.UmlPropertyPackageImpl#getSubsetsRule()
+   * @generated
+   */
+  int SUBSETS_RULE = 8;
+
+  /**
+   * The feature id for the '<em><b>Property</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SUBSETS_RULE__PROPERTY = 0;
+
+  /**
+   * The number of structural features of the '<em>Subsets Rule</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SUBSETS_RULE_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link org.eclipse.papyrus.property.editor.xtext.umlProperty.impl.DefaultValueRuleImpl <em>Default Value Rule</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.eclipse.papyrus.property.editor.xtext.umlProperty.impl.DefaultValueRuleImpl
+   * @see org.eclipse.papyrus.property.editor.xtext.umlProperty.impl.UmlPropertyPackageImpl#getDefaultValueRule()
+   * @generated
+   */
+  int DEFAULT_VALUE_RULE = 9;
+
+  /**
+   * The feature id for the '<em><b>Default</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DEFAULT_VALUE_RULE__DEFAULT = 0;
+
+  /**
+   * The number of structural features of the '<em>Default Value Rule</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DEFAULT_VALUE_RULE_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link org.eclipse.papyrus.property.editor.xtext.umlProperty.VisibilityKind <em>Visibility Kind</em>}' enum.
@@ -328,7 +439,7 @@ public interface UmlPropertyPackage extends EPackage
    * @see org.eclipse.papyrus.property.editor.xtext.umlProperty.impl.UmlPropertyPackageImpl#getVisibilityKind()
    * @generated
    */
-  int VISIBILITY_KIND = 7;
+  int VISIBILITY_KIND = 10;
 
   /**
    * The meta object id for the '{@link org.eclipse.papyrus.property.editor.xtext.umlProperty.ModifierKind <em>Modifier Kind</em>}' enum.
@@ -338,7 +449,7 @@ public interface UmlPropertyPackage extends EPackage
    * @see org.eclipse.papyrus.property.editor.xtext.umlProperty.impl.UmlPropertyPackageImpl#getModifierKind()
    * @generated
    */
-  int MODIFIER_KIND = 8;
+  int MODIFIER_KIND = 11;
 
 
   /**
@@ -416,6 +527,17 @@ public interface UmlPropertyPackage extends EPackage
    * @generated
    */
   EReference getPropertyRule_Modifiers();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.property.editor.xtext.umlProperty.PropertyRule#getDefault <em>Default</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Default</em>'.
+   * @see org.eclipse.papyrus.property.editor.xtext.umlProperty.PropertyRule#getDefault()
+   * @see #getPropertyRule()
+   * @generated
+   */
+  EReference getPropertyRule_Default();
 
   /**
    * Returns the meta object for class '{@link org.eclipse.papyrus.property.editor.xtext.umlProperty.TypeRule <em>Type Rule</em>}'.
@@ -566,6 +688,91 @@ public interface UmlPropertyPackage extends EPackage
   EAttribute getModifierSpecification_Value();
 
   /**
+   * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.property.editor.xtext.umlProperty.ModifierSpecification#getRedefines <em>Redefines</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Redefines</em>'.
+   * @see org.eclipse.papyrus.property.editor.xtext.umlProperty.ModifierSpecification#getRedefines()
+   * @see #getModifierSpecification()
+   * @generated
+   */
+  EReference getModifierSpecification_Redefines();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.property.editor.xtext.umlProperty.ModifierSpecification#getSubsets <em>Subsets</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Subsets</em>'.
+   * @see org.eclipse.papyrus.property.editor.xtext.umlProperty.ModifierSpecification#getSubsets()
+   * @see #getModifierSpecification()
+   * @generated
+   */
+  EReference getModifierSpecification_Subsets();
+
+  /**
+   * Returns the meta object for class '{@link org.eclipse.papyrus.property.editor.xtext.umlProperty.RedefinesRule <em>Redefines Rule</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Redefines Rule</em>'.
+   * @see org.eclipse.papyrus.property.editor.xtext.umlProperty.RedefinesRule
+   * @generated
+   */
+  EClass getRedefinesRule();
+
+  /**
+   * Returns the meta object for the reference '{@link org.eclipse.papyrus.property.editor.xtext.umlProperty.RedefinesRule#getProperty <em>Property</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Property</em>'.
+   * @see org.eclipse.papyrus.property.editor.xtext.umlProperty.RedefinesRule#getProperty()
+   * @see #getRedefinesRule()
+   * @generated
+   */
+  EReference getRedefinesRule_Property();
+
+  /**
+   * Returns the meta object for class '{@link org.eclipse.papyrus.property.editor.xtext.umlProperty.SubsetsRule <em>Subsets Rule</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Subsets Rule</em>'.
+   * @see org.eclipse.papyrus.property.editor.xtext.umlProperty.SubsetsRule
+   * @generated
+   */
+  EClass getSubsetsRule();
+
+  /**
+   * Returns the meta object for the reference '{@link org.eclipse.papyrus.property.editor.xtext.umlProperty.SubsetsRule#getProperty <em>Property</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Property</em>'.
+   * @see org.eclipse.papyrus.property.editor.xtext.umlProperty.SubsetsRule#getProperty()
+   * @see #getSubsetsRule()
+   * @generated
+   */
+  EReference getSubsetsRule_Property();
+
+  /**
+   * Returns the meta object for class '{@link org.eclipse.papyrus.property.editor.xtext.umlProperty.DefaultValueRule <em>Default Value Rule</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Default Value Rule</em>'.
+   * @see org.eclipse.papyrus.property.editor.xtext.umlProperty.DefaultValueRule
+   * @generated
+   */
+  EClass getDefaultValueRule();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.eclipse.papyrus.property.editor.xtext.umlProperty.DefaultValueRule#getDefault <em>Default</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Default</em>'.
+   * @see org.eclipse.papyrus.property.editor.xtext.umlProperty.DefaultValueRule#getDefault()
+   * @see #getDefaultValueRule()
+   * @generated
+   */
+  EAttribute getDefaultValueRule_Default();
+
+  /**
    * Returns the meta object for enum '{@link org.eclipse.papyrus.property.editor.xtext.umlProperty.VisibilityKind <em>Visibility Kind</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -665,6 +872,14 @@ public interface UmlPropertyPackage extends EPackage
      * @generated
      */
     EReference PROPERTY_RULE__MODIFIERS = eINSTANCE.getPropertyRule_Modifiers();
+
+    /**
+     * The meta object literal for the '<em><b>Default</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PROPERTY_RULE__DEFAULT = eINSTANCE.getPropertyRule_Default();
 
     /**
      * The meta object literal for the '{@link org.eclipse.papyrus.property.editor.xtext.umlProperty.impl.TypeRuleImpl <em>Type Rule</em>}' class.
@@ -789,6 +1004,76 @@ public interface UmlPropertyPackage extends EPackage
      * @generated
      */
     EAttribute MODIFIER_SPECIFICATION__VALUE = eINSTANCE.getModifierSpecification_Value();
+
+    /**
+     * The meta object literal for the '<em><b>Redefines</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference MODIFIER_SPECIFICATION__REDEFINES = eINSTANCE.getModifierSpecification_Redefines();
+
+    /**
+     * The meta object literal for the '<em><b>Subsets</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference MODIFIER_SPECIFICATION__SUBSETS = eINSTANCE.getModifierSpecification_Subsets();
+
+    /**
+     * The meta object literal for the '{@link org.eclipse.papyrus.property.editor.xtext.umlProperty.impl.RedefinesRuleImpl <em>Redefines Rule</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.papyrus.property.editor.xtext.umlProperty.impl.RedefinesRuleImpl
+     * @see org.eclipse.papyrus.property.editor.xtext.umlProperty.impl.UmlPropertyPackageImpl#getRedefinesRule()
+     * @generated
+     */
+    EClass REDEFINES_RULE = eINSTANCE.getRedefinesRule();
+
+    /**
+     * The meta object literal for the '<em><b>Property</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference REDEFINES_RULE__PROPERTY = eINSTANCE.getRedefinesRule_Property();
+
+    /**
+     * The meta object literal for the '{@link org.eclipse.papyrus.property.editor.xtext.umlProperty.impl.SubsetsRuleImpl <em>Subsets Rule</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.papyrus.property.editor.xtext.umlProperty.impl.SubsetsRuleImpl
+     * @see org.eclipse.papyrus.property.editor.xtext.umlProperty.impl.UmlPropertyPackageImpl#getSubsetsRule()
+     * @generated
+     */
+    EClass SUBSETS_RULE = eINSTANCE.getSubsetsRule();
+
+    /**
+     * The meta object literal for the '<em><b>Property</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference SUBSETS_RULE__PROPERTY = eINSTANCE.getSubsetsRule_Property();
+
+    /**
+     * The meta object literal for the '{@link org.eclipse.papyrus.property.editor.xtext.umlProperty.impl.DefaultValueRuleImpl <em>Default Value Rule</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.papyrus.property.editor.xtext.umlProperty.impl.DefaultValueRuleImpl
+     * @see org.eclipse.papyrus.property.editor.xtext.umlProperty.impl.UmlPropertyPackageImpl#getDefaultValueRule()
+     * @generated
+     */
+    EClass DEFAULT_VALUE_RULE = eINSTANCE.getDefaultValueRule();
+
+    /**
+     * The meta object literal for the '<em><b>Default</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute DEFAULT_VALUE_RULE__DEFAULT = eINSTANCE.getDefaultValueRule_Default();
 
     /**
      * The meta object literal for the '{@link org.eclipse.papyrus.property.editor.xtext.umlProperty.VisibilityKind <em>Visibility Kind</em>}' enum.
