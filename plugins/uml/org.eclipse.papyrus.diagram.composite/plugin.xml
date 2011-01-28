@@ -2901,16 +2901,26 @@
          class="org.eclipse.papyrus.diagram.composite.custom.actions.ManageProvidedInterfacesHandler"
          commandId="org.eclipse.papyrus.diagram.composite.command.manage.interfaces">
       <activeWhen>
-         <with
-               variable="selection">
-            <iterate>
-               <instanceof
-                     value="org.eclipse.papyrus.diagram.composite.edit.parts.PortEditPart">
-               </instanceof>
-            </iterate>
-         </with>
+         <and>
+            <with
+                  variable="selection">
+               <iterate>
+                  <instanceof
+                        value="org.eclipse.papyrus.diagram.composite.edit.parts.PortEditPart">
+                  </instanceof>
+               </iterate>
+            </with>
+            <with
+                  variable="activeEditor">
+               <test
+                     forcePluginActivation="true"
+                     property="org.eclipse.papyrus.diagram.common.diagram.tester.diagramType"
+                     value="CompositeStructure">
+               </test>
+            </with>
+         </and>
       </activeWhen>
-     </handler>         
+   </handler>
 </extension>
 <!-- Add the Menu to manages the Provided and Required Interfaces for a Port-->
 <extension
@@ -2921,9 +2931,12 @@
       <command
             commandId="org.eclipse.papyrus.diagram.composite.command.manage.interfaces"
             icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interface.gif"
+            id="org.eclipse.papyrus.diagram.composite.popup.interface.manage.interface"
             label="Manage Interfaces"
             mnemonic="&amp;I"
-            style="push">
+            style="push"
+            tooltip="The command to manage the interfaces provided and required by a Port">
+            <!-- The action is visible only if there is an active handler for it  -->
          <visibleWhen
                checkEnabled="true">
          </visibleWhen>

@@ -44,6 +44,7 @@ Bundle-Activator: org.eclipse.papyrus.diagram.composite.part.UMLDiagramEditorPlu
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Export-Package: org.eclipse.papyrus.diagram.composite,
+ org.eclipse.papyrus.diagram.composite.custom.actions,
  org.eclipse.papyrus.diagram.composite.custom.edit.command,
  org.eclipse.papyrus.diagram.composite.custom.edit.policies,
  org.eclipse.papyrus.diagram.composite.custom.figures,

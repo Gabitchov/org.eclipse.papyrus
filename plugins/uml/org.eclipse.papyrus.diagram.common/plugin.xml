@@ -480,4 +480,15 @@
          </dependsOn>
  		</service>
 </extension>
+<!--Declare a property tester. The tested properties allow to enable/disable handlers which listen these properties   -->
+<extension
+      point="org.eclipse.core.expressions.propertyTesters">
+   <propertyTester
+         class="org.eclipse.papyrus.diagram.common.util.DiagramTester"
+         id="org.eclipse.papyrus.diagram.common.diagram.tester"
+         namespace="org.eclipse.papyrus.diagram.common.diagram.tester"
+         properties="diagramType"
+         type="org.eclipse.ui.IEditorPart">
+   </propertyTester>
+</extension>
 </plugin>

@@ -340,5 +340,55 @@
 	</page>
 		
 </extension>
+<extension
+      point="org.eclipse.ui.handlers">
+   <!-- we declare a handler for the Manger Interface Command. The handler is enabled only if the selected elements
+   is a Port, is on an InternalBlockDiagram and is not stereotyped with sysml flow port
+   -->
+   <handler
+   
+         class="org.eclipse.papyrus.diagram.composite.custom.actions.ManageProvidedInterfacesHandler"
+         commandId="org.eclipse.papyrus.diagram.composite.command.manage.interfaces">
+      <activeWhen>
+         <and>
+            <with
+                  variable="selection">
+               <iterate>
+                  <instanceof
+                        value="org.eclipse.papyrus.diagram.composite.edit.parts.PortEditPart">
+                  </instanceof>
+               </iterate>
+            </with>
+            <with
+                  variable="activeEditor">
+               <test
+                     forcePluginActivation="true"
+                     property="org.eclipse.papyrus.diagram.common.diagram.tester.diagramType"
+                     value="InternalBlock">
+               </test>
+            </with>
+            <with
+                  variable="selection">
+               <test
+                     forcePluginActivation="true"
+                     property="org.eclipse.papyrus.diagram.internalblock.tester.selection.isFlowPort"
+                     value="false">
+               </test>
+            </with>
+         </and>
+      </activeWhen>
+   </handler>
+</extension>
+<!-- add a property tester for this diagram. The tested properties allow to enable/disable handlers for commands -->
+<extension
+      point="org.eclipse.core.expressions.propertyTesters">
+   <propertyTester
+         class="org.eclipse.papyrus.sysml.diagram.internalblock.utils.InternalBlockDiagramTester"
+         id="org.eclipse.papyrus.diagram.internalblock.tester.selection"
+         namespace="org.eclipse.papyrus.diagram.internalblock.tester.selection"
+         properties="isFlowPort"
+         type="org.eclipse.jface.viewers.ISelection">
+   </propertyTester>
+</extension>
    
 </plugin>
