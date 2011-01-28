@@ -362,7 +362,11 @@ public class StereotypeUtil {
 		if((property.getUpper() == 1) && (umlElement.getValue(stereotype, property.getName()) != null)) {
 			if((property.getLower() != 0) || umlElement.getValue(stereotype, property.getName()) != null) {
 				if(property.isSetDefault() || umlElement.getValue(stereotype, property.getName()) != null) {
-					out = property.getName() + EQUAL_SEPARATOR + ((EnumerationLiteral)umlElement.getValue(stereotype, property.getName())).getLabel() + PROPERTY_VALUE_SEPARATOR;;
+					Object val = umlElement.getValue(stereotype, property.getName());
+					if (val instanceof EnumerationLiteral)
+						out = property.getName() + EQUAL_SEPARATOR + ((EnumerationLiteral)val).getLabel() + PROPERTY_VALUE_SEPARATOR;
+					else
+						out = property.getName() + EQUAL_SEPARATOR + val + PROPERTY_VALUE_SEPARATOR;
 				} else {
 					out = property.getName() + PROPERTY_VALUE_SEPARATOR;
 				}
