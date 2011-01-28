@@ -17,9 +17,9 @@ import java.util.List;
 
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.papyrus.diagramtemplate.diagramtemplate.AbstractSelection;
-import org.eclipse.papyrus.diagramtemplate.diagramtemplate.Selection;
-import org.eclipse.papyrus.diagramtemplate.diagramtemplate.SelectionRef;
+import org.eclipse.papyrus.diagramtemplate.AbstractSelection;
+import org.eclipse.papyrus.diagramtemplate.Selection;
+import org.eclipse.papyrus.diagramtemplate.SelectionRef;
 
 /**
  * 

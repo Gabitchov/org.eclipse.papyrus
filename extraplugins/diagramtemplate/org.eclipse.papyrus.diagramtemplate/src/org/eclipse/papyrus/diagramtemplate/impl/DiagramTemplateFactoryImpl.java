@@ -10,13 +10,15 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipse.papyrus.diagramtemplate.*;
-import org.eclipse.papyrus.diagramtemplate.diagramtemplate.*;
+import org.eclipse.papyrus.diagramtemplate.DiagramDefinition;
+import org.eclipse.papyrus.diagramtemplate.DiagramTemplateFactory;
+import org.eclipse.papyrus.diagramtemplate.DiagramTemplatePackage;
+import org.eclipse.papyrus.diagramtemplate.Selection;
+import org.eclipse.papyrus.diagramtemplate.SelectionKind;
+import org.eclipse.papyrus.diagramtemplate.SelectionRef;
+import org.eclipse.papyrus.diagramtemplate.Template;
 
 /**
  * <!-- begin-user-doc -->

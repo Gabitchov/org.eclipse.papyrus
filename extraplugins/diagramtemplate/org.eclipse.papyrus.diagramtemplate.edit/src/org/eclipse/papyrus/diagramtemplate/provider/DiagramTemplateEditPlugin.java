@@ -7,7 +7,6 @@
 package org.eclipse.papyrus.diagramtemplate.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
-
 import org.eclipse.emf.common.util.ResourceLocator;
 
 /**

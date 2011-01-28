@@ -13,7 +13,7 @@
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <factory
             uri="http://www.eclipse.org/papyrus/diagramtemplate"
-            class="org.eclipse.papyrus.diagramtemplate.diagramtemplate.provider.DiagramTemplateItemProviderAdapterFactory"
+            class="org.eclipse.papyrus.diagramtemplate.provider.DiagramTemplateItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider

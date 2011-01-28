@@ -18,10 +18,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ITableLabelProvider;
-import org.eclipse.papyrus.diagramtemplate.diagramtemplate.AbstractSelection;
-import org.eclipse.papyrus.diagramtemplate.diagramtemplate.Selection;
-import org.eclipse.papyrus.diagramtemplate.diagramtemplate.SelectionKind;
-import org.eclipse.papyrus.diagramtemplate.diagramtemplate.SelectionRef;
+import org.eclipse.papyrus.diagramtemplate.AbstractSelection;
+import org.eclipse.papyrus.diagramtemplate.Selection;
+import org.eclipse.papyrus.diagramtemplate.SelectionKind;
+import org.eclipse.papyrus.diagramtemplate.SelectionRef;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.NamedElement;
 
@@ -34,7 +34,9 @@ import com.swtdesigner.ResourceManager;
  */
 public class ForLabelProvider implements ITableLabelProvider {
 
-	@Override
+	/**
+	 * {@inheritDoc}
+	 */
 	public Image getColumnImage(Object element, int columnIndex) {
 		switch(columnIndex) {
 		case 0:
@@ -89,7 +91,9 @@ public class ForLabelProvider implements ITableLabelProvider {
 		return null;
 	}
 
-	@Override
+	/**
+	 * {@inheritDoc}
+	 */
 	public String getColumnText(Object element, int columnIndex) {
 		switch(columnIndex) {
 		case 0:
@@ -131,25 +135,33 @@ public class ForLabelProvider implements ITableLabelProvider {
 		return null;
 	}
 
-	@Override
+	/**
+	 * {@inheritDoc}
+	 */
 	public void addListener(ILabelProviderListener listener) {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
+	/**
+	 * {@inheritDoc}
+	 */
 	public void dispose() {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
+	/**
+	 * {@inheritDoc}
+	 */
 	public boolean isLabelProperty(Object element, String property) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	@Override
+	/**
+	 * {@inheritDoc}
+	 */
 	public void removeListener(ILabelProviderListener listener) {
 		// TODO Auto-generated method stub
 

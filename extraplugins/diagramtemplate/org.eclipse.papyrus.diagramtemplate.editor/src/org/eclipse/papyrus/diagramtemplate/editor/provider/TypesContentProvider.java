@@ -41,17 +41,23 @@ public class TypesContentProvider implements ITreeContentProvider {
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 	}
 
-	@Override
+	/**
+	 * {@inheritDoc}
+	 */
 	public Object[] getChildren(Object parentElement) {
 		return null;
 	}
 
-	@Override
+	/**
+	 * {@inheritDoc}
+	 */
 	public Object getParent(Object element) {
 		return null;
 	}
 
-	@Override
+	/**
+	 * {@inheritDoc}
+	 */
 	public boolean hasChildren(Object element) {
 		return false;
 	}

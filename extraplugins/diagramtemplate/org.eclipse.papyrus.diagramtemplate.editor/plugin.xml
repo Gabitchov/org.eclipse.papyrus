@@ -16,7 +16,7 @@
             class="org.eclipse.papyrus.diagramtemplate.editor.DiagramTemplateModelWizard"
             finalPerspective="org.eclipse.papyrus.core.perspective"
             icon="icons/full/obj16/DiagramTemplateModelFile.gif"
-            id="org.eclipse.papyrus.diagramtemplate.diagramtemplate.presentation.DiagramTemplateModelWizardID"
+            id="org.eclipse.papyrus.diagramtemplate.presentation.DiagramTemplateModelWizardID"
             name="%_UI_DiagramTemplateModelWizard_label">
          <description>%_UI_DiagramTemplateModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>
@@ -25,7 +25,7 @@
 
    <extension point="org.eclipse.ui.editors">
       <editor
-            id="org.eclipse.papyrus.diagramtemplate.diagramtemplate.presentation.DiagramTemplateEditorID"
+            id="org.eclipse.papyrus.diagramtemplate.presentation.DiagramTemplateEditorID"
             name="%_UI_DiagramTemplateEditor_label"
             icon="icons/full/obj16/DiagramTemplateModelFile.gif"
             extensions="diagramtemplate"

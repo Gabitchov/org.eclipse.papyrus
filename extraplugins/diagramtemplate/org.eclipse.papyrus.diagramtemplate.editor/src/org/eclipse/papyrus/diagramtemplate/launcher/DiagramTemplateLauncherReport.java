@@ -35,24 +35,34 @@ public class DiagramTemplateLauncherReport {
 
 	class DiagramTemplateLauncherReportLabelProvider implements ILabelProvider {
 
-		@Override
+		/**
+		 * {@inheritDoc}
+		 */
 		public void addListener(ILabelProviderListener listener) {
 		}
 
-		@Override
+		/**
+		 * {@inheritDoc}
+		 */
 		public void dispose() {
 		}
 
-		@Override
+		/**
+		 * {@inheritDoc}
+		 */
 		public boolean isLabelProperty(Object element, String property) {
 			return false;
 		}
 
-		@Override
+		/**
+		 * {@inheritDoc}
+		 */
 		public void removeListener(ILabelProviderListener listener) {
 		}
 
-		@Override
+		/**
+		 * {@inheritDoc}
+		 */
 		public Image getImage(Object element) {
 			if(element instanceof Entry) {
 				if(((Entry)element).getValue() == CreationReportKind.SUCCESS) {
@@ -64,7 +74,9 @@ public class DiagramTemplateLauncherReport {
 			return null;
 		}
 
-		@Override
+		/**
+		 * {@inheritDoc}
+		 */
 		public String getText(Object element) {
 			if(element instanceof Entry) {
 				Object key = ((Entry)element).getKey();
