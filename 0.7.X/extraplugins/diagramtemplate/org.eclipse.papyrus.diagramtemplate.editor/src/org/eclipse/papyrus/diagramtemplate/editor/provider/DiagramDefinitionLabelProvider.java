@@ -18,7 +18,7 @@ import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.papyrus.core.extension.commands.CreationCommandDescriptor;
 import org.eclipse.papyrus.core.extension.commands.CreationCommandRegistry;
 import org.eclipse.papyrus.core.extension.commands.ICreationCommandRegistry;
-import org.eclipse.papyrus.diagramtemplate.diagramtemplate.DiagramDefinition;
+import org.eclipse.papyrus.diagramtemplate.DiagramDefinition;
 import org.eclipse.swt.graphics.Image;
 
 /**
@@ -29,35 +29,40 @@ import org.eclipse.swt.graphics.Image;
 public class DiagramDefinitionLabelProvider implements ILabelProvider {
 
 	/**
-	 * The creation command registry
+	 * {@inheritDoc}
 	 */
-	private ICreationCommandRegistry creationCommandRegistry;
-
-	@Override
 	public void addListener(ILabelProviderListener listener) {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
+	/**
+	 * {@inheritDoc}
+	 */
 	public void dispose() {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
+	/**
+	 * {@inheritDoc}
+	 */
 	public boolean isLabelProperty(Object element, String property) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	@Override
+	/**
+	 * {@inheritDoc}
+	 */
 	public void removeListener(ILabelProviderListener listener) {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
+	/**
+	 * {@inheritDoc}
+	 */
 	public Image getImage(Object element) {
 		if(element instanceof DiagramDefinition) {
 			DiagramDefinition diagramDefinition = (DiagramDefinition)element;
@@ -71,7 +76,9 @@ public class DiagramDefinitionLabelProvider implements ILabelProvider {
 		return null;
 	}
 
-	@Override
+	/**
+	 * {@inheritDoc}
+	 */
 	public String getText(Object element) {
 		if(element instanceof DiagramDefinition) {
 			return ((DiagramDefinition)element).getName();
@@ -85,10 +92,7 @@ public class DiagramDefinitionLabelProvider implements ILabelProvider {
 	 * @return the creation command registry
 	 */
 	private ICreationCommandRegistry getCreationCommandRegistry() {
-		if(creationCommandRegistry == null) {
-			creationCommandRegistry = new CreationCommandRegistry(org.eclipse.papyrus.core.Activator.PLUGIN_ID);
-		}
-		return creationCommandRegistry;
+		return CreationCommandRegistry.getInstance(org.eclipse.papyrus.core.Activator.PLUGIN_ID);
 	}
 
 }

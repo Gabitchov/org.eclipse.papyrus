@@ -8,13 +8,14 @@ package org.eclipse.papyrus.diagramtemplate.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.papyrus.diagramtemplate.*;
-import org.eclipse.papyrus.diagramtemplate.diagramtemplate.*;
+import org.eclipse.papyrus.diagramtemplate.AbstractSelection;
+import org.eclipse.papyrus.diagramtemplate.DiagramDefinition;
+import org.eclipse.papyrus.diagramtemplate.DiagramTemplatePackage;
+import org.eclipse.papyrus.diagramtemplate.Selection;
+import org.eclipse.papyrus.diagramtemplate.SelectionRef;
+import org.eclipse.papyrus.diagramtemplate.Template;
 
 /**
  * <!-- begin-user-doc -->

@@ -49,12 +49,12 @@ import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.core.utils.EditorUtils;
-import org.eclipse.papyrus.diagramtemplate.diagramtemplate.AbstractSelection;
-import org.eclipse.papyrus.diagramtemplate.diagramtemplate.DiagramDefinition;
-import org.eclipse.papyrus.diagramtemplate.diagramtemplate.Selection;
-import org.eclipse.papyrus.diagramtemplate.diagramtemplate.SelectionKind;
-import org.eclipse.papyrus.diagramtemplate.diagramtemplate.SelectionRef;
-import org.eclipse.papyrus.diagramtemplate.diagramtemplate.Template;
+import org.eclipse.papyrus.diagramtemplate.AbstractSelection;
+import org.eclipse.papyrus.diagramtemplate.DiagramDefinition;
+import org.eclipse.papyrus.diagramtemplate.Selection;
+import org.eclipse.papyrus.diagramtemplate.SelectionKind;
+import org.eclipse.papyrus.diagramtemplate.SelectionRef;
+import org.eclipse.papyrus.diagramtemplate.Template;
 import org.eclipse.papyrus.diagramtemplate.editor.provider.DiagramKindContentProvider;
 import org.eclipse.papyrus.diagramtemplate.utils.Messages;
 import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
@@ -418,7 +418,7 @@ public class DiagramTemplateLauncher {
 
 			boolean matchStereotypes = true;
 			for(String stereo : stereotypes) {
-				if(!stereo.isEmpty()) {
+				if(stereo != null && stereo.length() > 0) {
 					if(((Element)element).getAppliedStereotype(stereo) != null) {
 						matchStereotypes = true;
 					} else {

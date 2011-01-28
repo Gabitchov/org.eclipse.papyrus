@@ -10,9 +10,12 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.papyrus.diagramtemplate.*;
-import org.eclipse.papyrus.diagramtemplate.diagramtemplate.*;
+import org.eclipse.papyrus.diagramtemplate.AbstractSelection;
+import org.eclipse.papyrus.diagramtemplate.DiagramDefinition;
+import org.eclipse.papyrus.diagramtemplate.DiagramTemplatePackage;
+import org.eclipse.papyrus.diagramtemplate.Selection;
+import org.eclipse.papyrus.diagramtemplate.SelectionRef;
+import org.eclipse.papyrus.diagramtemplate.Template;
 
 /**
  * <!-- begin-user-doc -->

@@ -75,15 +75,14 @@ import org.eclipse.jface.viewers.TreeViewerColumn;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.papyrus.core.extension.commands.CreationCommandDescriptor;
-import org.eclipse.papyrus.diagramtemplate.diagramtemplate.AbstractSelection;
-import org.eclipse.papyrus.diagramtemplate.diagramtemplate.DiagramDefinition;
-import org.eclipse.papyrus.diagramtemplate.diagramtemplate.DiagramTemplateFactory;
-import org.eclipse.papyrus.diagramtemplate.diagramtemplate.DiagramTemplatePackage;
-import org.eclipse.papyrus.diagramtemplate.diagramtemplate.Selection;
-import org.eclipse.papyrus.diagramtemplate.diagramtemplate.SelectionKind;
-import org.eclipse.papyrus.diagramtemplate.diagramtemplate.SelectionRef;
-import org.eclipse.papyrus.diagramtemplate.diagramtemplate.Template;
-import org.eclipse.papyrus.diagramtemplate.diagramtemplate.provider.DiagramTemplateItemProviderAdapterFactory;
+import org.eclipse.papyrus.diagramtemplate.AbstractSelection;
+import org.eclipse.papyrus.diagramtemplate.DiagramDefinition;
+import org.eclipse.papyrus.diagramtemplate.DiagramTemplateFactory;
+import org.eclipse.papyrus.diagramtemplate.DiagramTemplatePackage;
+import org.eclipse.papyrus.diagramtemplate.Selection;
+import org.eclipse.papyrus.diagramtemplate.SelectionKind;
+import org.eclipse.papyrus.diagramtemplate.SelectionRef;
+import org.eclipse.papyrus.diagramtemplate.Template;
 import org.eclipse.papyrus.diagramtemplate.editor.provider.DiagramDefinitionContentProvider;
 import org.eclipse.papyrus.diagramtemplate.editor.provider.DiagramDefinitionLabelProvider;
 import org.eclipse.papyrus.diagramtemplate.editor.provider.DiagramKindContentProvider;
@@ -94,6 +93,7 @@ import org.eclipse.papyrus.diagramtemplate.editor.provider.TypesAvailableFromERe
 import org.eclipse.papyrus.diagramtemplate.editor.provider.TypesContentProvider;
 import org.eclipse.papyrus.diagramtemplate.editor.provider.WhatContentProvider;
 import org.eclipse.papyrus.diagramtemplate.launcher.DiagramTemplateLauncher;
+import org.eclipse.papyrus.diagramtemplate.provider.DiagramTemplateItemProviderAdapterFactory;
 import org.eclipse.papyrus.diagramtemplate.utils.Messages;
 import org.eclipse.papyrus.wizards.category.DiagramCategoryDescriptor;
 import org.eclipse.papyrus.wizards.category.DiagramCategoryRegistry;
@@ -544,7 +544,9 @@ public class DiagramTemplateEditor extends EditorPart {
 		// Add a listener to set the most recent command's affected objects to be the selection of the viewer with focus.
 		commandStack.addCommandStackListener(new CommandStackListener() {
 
-			@Override
+			/**
+			 * {@inheritDoc}
+			 */
 			public void commandStackChanged(EventObject event) {
 				updateUI();
 				firePropertyChange(IEditorPart.PROP_DIRTY);
@@ -876,7 +878,9 @@ public class DiagramTemplateEditor extends EditorPart {
 		diagramDefinitionTableViewer.setInput(template.getDiagramDefinitions());
 		diagramDefinitionTableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
-			@Override
+			/**
+			 * {@inheritDoc}
+			 */
 			public void selectionChanged(SelectionChangedEvent event) {
 				if(event.getSelection() instanceof IStructuredSelection && !event.getSelection().isEmpty()) {
 

@@ -11,9 +11,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.eclipse.papyrus.diagramtemplate.AbstractSelection;
 import org.eclipse.papyrus.diagramtemplate.DiagramDefinition;
 import org.eclipse.papyrus.diagramtemplate.DiagramTemplateFactory;
@@ -22,14 +20,6 @@ import org.eclipse.papyrus.diagramtemplate.Selection;
 import org.eclipse.papyrus.diagramtemplate.SelectionKind;
 import org.eclipse.papyrus.diagramtemplate.SelectionRef;
 import org.eclipse.papyrus.diagramtemplate.Template;
-import org.eclipse.papyrus.diagramtemplate.diagramtemplate.AbstractSelection;
-import org.eclipse.papyrus.diagramtemplate.diagramtemplate.DiagramDefinition;
-import org.eclipse.papyrus.diagramtemplate.diagramtemplate.DiagramTemplateFactory;
-import org.eclipse.papyrus.diagramtemplate.diagramtemplate.DiagramTemplatePackage;
-import org.eclipse.papyrus.diagramtemplate.diagramtemplate.Selection;
-import org.eclipse.papyrus.diagramtemplate.diagramtemplate.SelectionKind;
-import org.eclipse.papyrus.diagramtemplate.diagramtemplate.SelectionRef;
-import org.eclipse.papyrus.diagramtemplate.diagramtemplate.Template;
 
 /**
  * <!-- begin-user-doc -->
