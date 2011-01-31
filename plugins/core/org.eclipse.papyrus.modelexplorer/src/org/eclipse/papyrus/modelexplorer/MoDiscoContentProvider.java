@@ -18,11 +18,8 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.facet.infra.browser.uicore.CustomizableModelContentProvider;
-import org.eclipse.emf.facet.infra.browser.uicore.internal.model.ModelElementItem;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
-import org.eclipse.papyrus.core.utils.DiResourceSet;
-import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.resource.ModelSet;
 import org.eclipse.papyrus.resource.ModelUtils;
 import org.eclipse.papyrus.resource.uml.UmlModel;
@@ -48,10 +45,11 @@ public class MoDiscoContentProvider extends CustomizableModelContentProvider {
 		super(Activator.getDefault().getCustomizationManager());
 	}
 
-	private DiResourceSet getDiResourceSet() {
-		return EditorUtils.getDiResourceSet();
+	@Override
+	public boolean hasChildren(Object element) {
+		return getChildren(element).length > 0;
 	}
-
+	
 	@Override
 	public Object[] getChildren(final Object parentElement) {
 		ArrayList<Object> result = new ArrayList<Object>();
@@ -74,16 +72,7 @@ public class MoDiscoContentProvider extends CustomizableModelContentProvider {
 			}
 			
 		}
-// old code from the previous modisco API, when ModelElementItem was not castable into a IAdaptable		
-//		if (parentElement instanceof ModelElementItem
-//			&& ((ModelElementItem) (parentElement)).getEObject() instanceof EObject) {
-//			List<Diagram> diagramList = findAllExistingDiagrams((EObject) ((ModelElementItem) parentElement)
-//					.getEObject());
-//				Iterator<Diagram> iterator = diagramList.iterator();
-//				while (iterator.hasNext()) {
-//					result.add(iterator.next());
-//				}
-//		}
+
 		return result.toArray();
 	}
 
