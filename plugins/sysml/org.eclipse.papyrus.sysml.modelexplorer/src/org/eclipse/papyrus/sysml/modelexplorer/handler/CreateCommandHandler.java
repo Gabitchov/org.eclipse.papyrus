@@ -14,12 +14,20 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.modelexplorer.handler;
 
-import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.common.command.UnexecutableCommand;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+import org.eclipse.core.commands.ExecutionEvent;
+import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.papyrus.modelexplorer.ModelExplorerPageBookView;
+import org.eclipse.papyrus.modelexplorer.ModelExplorerView;
+import org.eclipse.papyrus.modelexplorer.NavigatorUtils;
 import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.service.edit.service.IElementEditService;
 import org.eclipse.papyrus.sysml.modelexplorer.filter.CommandFilter;
@@ -33,7 +41,7 @@ public abstract class CreateCommandHandler extends AbstractCommandHandler {
 	protected abstract IElementType getElementTypeToCreate();
 
 	/** Current createCommand for selection (updated in {@link CreateCommandHandler#isEnabled()}) */
-	private Command createCommand;
+	private ICommand createCommand;
 
 	/**
 	 * <pre>
@@ -46,7 +54,7 @@ public abstract class CreateCommandHandler extends AbstractCommandHandler {
 	 * 
 	 * </pre>
 	 */
-	private Command buildCommand() {
+	private ICommand buildCommand() {
 
 		if(getSelectedElements().size() != 1) {
 			return UnexecutableCommand.INSTANCE;
@@ -63,8 +71,7 @@ public abstract class CreateCommandHandler extends AbstractCommandHandler {
 		CreateElementRequest createRequest = new CreateElementRequest(container, getElementTypeToCreate());
 		ICommand createGMFCommand = provider.getEditCommand(createRequest);
 
-		Command emfCommand = new GMFtoEMFCommandWrapper(createGMFCommand);
-		return emfCommand;
+		return createGMFCommand;
 	}
 
 	/**
@@ -73,7 +80,7 @@ public abstract class CreateCommandHandler extends AbstractCommandHandler {
 	 * 
 	 * @return current command (only built here when the stored command is null)
 	 */
-	protected Command getCommand() {
+	protected ICommand getCommand() {
 
 		// Build the command in case it is not initialized.
 		if(createCommand == null) {
@@ -81,6 +88,47 @@ public abstract class CreateCommandHandler extends AbstractCommandHandler {
 		}
 
 		return createCommand;
+	}
+	
+	/**
+	 * Add selection on new element after creation.
+	 * 
+	 * @see org.listerel.papyrus.sysml.modelexplorer.common.handler.AbstractCommandHandler#execute(org.eclipse.core.commands.ExecutionEvent)
+	 *
+	 * @param event
+	 * @return
+	 * @throws ExecutionException
+	 */
+	@Override
+	public Object execute(ExecutionEvent event) throws ExecutionException {
+		Object result = super.execute(event);
+		
+		// Find newly created element
+		EObject newElement = null;
+		
+		if (result instanceof Collection<?>) {
+			Collection<?> results = (Collection<?>) result;
+			if ((!results.isEmpty()) && (results.toArray()[0] instanceof EObject)) {
+				newElement = (EObject) results.toArray()[0];
+			}
+		}
+		
+		// Retrieve model explorer
+		ModelExplorerView modelExplorerView = null;
+		
+		ModelExplorerPageBookView bookViewPart = (ModelExplorerPageBookView) NavigatorUtils.findViewPart("org.eclipse.papyrus.modelexplorer.modelexplorer"); //$NON-NLS-0$
+		if (bookViewPart != null) {
+			modelExplorerView = (ModelExplorerView)((ModelExplorerPageBookView) bookViewPart).getActiveView();
+		}
+		
+		// Set selection on new element in the model explorer
+		if ((modelExplorerView != null) && (newElement != null)) {
+			List<EObject> semanticElementList= new ArrayList<EObject>();
+			semanticElementList.add(newElement);
+			modelExplorerView.revealSemanticElement(semanticElementList);
+		}			
+		
+		return result;
 	}
 
 	/**

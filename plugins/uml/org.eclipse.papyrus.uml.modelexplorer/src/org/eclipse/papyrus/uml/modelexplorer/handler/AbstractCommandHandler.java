@@ -24,6 +24,7 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.core.services.ServiceException;
@@ -55,7 +56,7 @@ public abstract class AbstractCommandHandler extends AbstractHandler {
 	 * 
 	 * </pre>
 	 */
-	protected abstract Command getCommand();
+	protected abstract ICommand getCommand();
 
 	/**
 	 * <pre>
@@ -141,18 +142,22 @@ public abstract class AbstractCommandHandler extends AbstractHandler {
 	 * @throws ExecutionException
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-
+		
 		try {
 
-			ServiceUtilsForActionHandlers util = new ServiceUtilsForActionHandlers();
-			util.getTransactionalEditingDomain().getCommandStack().execute(getCommand());
+			ServiceUtilsForActionHandlers util = ServiceUtilsForActionHandlers.getInstance();
+			Command emfCommand = new GMFtoEMFCommandWrapper(getCommand());
+			
+			util.getTransactionalEditingDomain().getCommandStack().execute(emfCommand);
+			
+			return emfCommand.getResult();
 
 		} catch (ServiceException e) {
 
 			Activator.log.error("Unexpected error while executing command.", e);
 
 		}
-
+		
 		return null;
 	}
 
