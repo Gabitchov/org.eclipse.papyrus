@@ -89,7 +89,7 @@ public class FlowPropertyEditHelperAdvice extends AbstractStereotypedElementEdit
 					String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(), PortandflowsPackage.eINSTANCE.getFlowProperty());
 					element.setName(initializedName);
 				}
-				return CommandResult.newOKCommandResult();
+				return CommandResult.newOKCommandResult(element);
 			}
 		};
 	}

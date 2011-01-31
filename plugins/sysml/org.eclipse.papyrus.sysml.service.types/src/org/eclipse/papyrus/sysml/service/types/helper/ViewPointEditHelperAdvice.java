@@ -51,7 +51,7 @@ public class ViewPointEditHelperAdvice extends AbstractStereotypedElementEditHel
 					String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(), ModelelementsPackage.eINSTANCE.getViewPoint());
 					element.setName(initializedName);
 				}
-				return CommandResult.newOKCommandResult();
+				return CommandResult.newOKCommandResult(element);
 			}
 		};
 	}

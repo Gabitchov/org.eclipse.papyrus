@@ -51,7 +51,7 @@ public class ConstraintPropertyEditHelperAdvice extends AbstractStereotypedEleme
 					String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(), ConstraintsPackage.eINSTANCE.getConstraintProperty());
 					element.setName(initializedName);
 				}
-				return CommandResult.newOKCommandResult();
+				return CommandResult.newOKCommandResult(element);
 			}
 		};
 	}

@@ -48,7 +48,7 @@ public class FlowPortInEditHelperAdvice extends AbstractStereotypedElementEditHe
 					flowPort.setDirection(FlowDirection.IN);
 				}
 
-				return CommandResult.newOKCommandResult();
+				return CommandResult.newOKCommandResult(port);
 			}
 		};
 	}

@@ -94,7 +94,7 @@ public class FlowPortEditHelperAdvice extends AbstractStereotypedElementEditHelp
 					port.setName(initializedName);
 				}
 
-				return CommandResult.newOKCommandResult();
+				return CommandResult.newOKCommandResult(port);
 			}
 		};
 	}

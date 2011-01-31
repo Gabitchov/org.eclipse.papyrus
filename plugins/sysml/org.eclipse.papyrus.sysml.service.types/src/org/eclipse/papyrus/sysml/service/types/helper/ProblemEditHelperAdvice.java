@@ -44,7 +44,7 @@ public class ProblemEditHelperAdvice extends AbstractStereotypedElementEditHelpe
 						element.applyStereotype(stereotypeToApply);
 					}
 				}
-				return CommandResult.newOKCommandResult();
+				return CommandResult.newOKCommandResult(element);
 			}
 		};
 	}

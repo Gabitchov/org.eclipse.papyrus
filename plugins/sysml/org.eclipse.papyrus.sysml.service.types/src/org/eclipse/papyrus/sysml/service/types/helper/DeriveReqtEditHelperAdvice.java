@@ -53,7 +53,7 @@ public class DeriveReqtEditHelperAdvice extends AbstractStereotypedElementEditHe
 					String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(), RequirementsPackage.eINSTANCE.getDeriveReqt());
 					element.setName(initializedName);
 				}
-				return CommandResult.newOKCommandResult();
+				return CommandResult.newOKCommandResult(element);
 			}
 		};
 	}
