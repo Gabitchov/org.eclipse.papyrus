@@ -22,6 +22,7 @@ import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
 import org.eclipse.emf.compare.diff.metamodel.DiffModel;
 import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeLeftTarget;
 import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeRightTarget;
+import org.eclipse.emf.compare.diff.metamodel.MoveModelElement;
 import org.eclipse.emf.compare.diff.metamodel.ReferenceChange;
 import org.eclipse.emf.compare.diff.metamodel.UpdateModelElement;
 import org.eclipse.emf.compare.diff.metamodel.impl.AbstractDiffExtensionImpl;
@@ -56,6 +57,10 @@ public class ProcessTaggedValues extends AbstractDiffExtensionImpl {
 			DiffElement newDiffParent = findOrCreateDiffElementFor(root, newVisualParent);
 			DiffElement taggedValueDiff = myDiffElementBuilder.doSwitch(diffElement);
 			newDiffParent.getSubDiffElements().add(taggedValueDiff);
+		}
+		if (diffElement instanceof MoveModelElement) {
+			// HACK
+			getHideElements().add(diffElement);
 		}
 	}
 	
