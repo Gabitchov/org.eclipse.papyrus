@@ -24,6 +24,7 @@ import org.eclipse.emf.compare.diff.metamodel.impl.UpdateAttributeImpl;
 import org.eclipse.emf.compare.util.AdapterUtils;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -35,6 +36,7 @@ import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UMLDiffExte
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UMLDiffPackage;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UpdateTaggedValue;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -155,8 +157,12 @@ public class UpdateTaggedValueImpl extends UpdateAttributeImpl implements Update
 
 		final String attributeLabel = AdapterUtils.getItemProviderText(getAttribute());
 		final String elementLabel = AdapterUtils.getItemProviderText(getLeftElement());
-		final Object leftValue = getLeftElement().eGet(getAttribute());
-		final Object rightValue = getRightElement().eGet(getAttribute());
+
+		Object leftTaggedValue = UMLUtil.getBaseElement(getLeftElement()).getValue(UMLUtil.getStereotype(getLeftElement()), getAttribute().getName());
+		Object rightTaggedValue = UMLUtil.getBaseElement(getRightElement()).getValue(UMLUtil.getStereotype(getRightElement()), getAttribute().getName());
+
+		String leftValue = leftTaggedValue != null ? leftTaggedValue.toString() : "";
+		String rightValue = rightTaggedValue != null ? rightTaggedValue.toString() : "";
 
 		final String diffLabel;
 		if(isRemote()) {
