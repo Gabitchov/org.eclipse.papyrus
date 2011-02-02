@@ -13,61 +13,61 @@ public class TestCreateModelWizard extends TestNewModelWizardBase {
 	@Override
 	protected IWorkbenchWizard createWizard() {
 		return new InitModelWizard() {
+
 			@Override
 			protected boolean isCreateFromExistingDomainModel() {
 				return false;
 			}
-			
+
 		};
 	}
 
 	public void testOrderOfPages() {
-		Class[] expectedPages = new Class[]{
-			NewModelFilePage.class,
-			SelectDiagramCategoryPage.class,
-			SelectDiagramKindPage.class,
-		};
+		Class[] expectedPages = new Class[]{ NewModelFilePage.class, SelectDiagramCategoryPage.class, SelectDiagramKindPage.class, };
 
 		IWorkbenchWizard wizard = initWizardDialog();
 		testOrderOfPages(wizard, expectedPages);
 	}
-	
+
 	public void testDiagramFileExtentionLabel() {
-		final String expectedExtension = "test.xxx";
+		// final String expectedExtension = "test.xxx";
+		final String expectedExtension = "di";
 		IWorkbenchWizard wizard = new InitModelWizard() {
+
 			@Override
 			protected boolean isCreateFromExistingDomainModel() {
 				return false;
 			}
-			
+
 			@Override
 			protected String getDiagramFileExtension(String categoryId, String defaultExtension) {
 				return expectedExtension;
 			}
-			
+
 		};
- 
+
 		initWizardDialog(wizard);
 		NewModelFilePage page = (NewModelFilePage)wizard.getPages()[0];
 		assertEquals(expectedExtension, page.getFileExtension());
 	}
-	
-	
+
+
 	public void testDiagramFileExtenstionForProfile() {
 		final String expectedExtension = "profile.di";
 		InitModelWizard wizard = new InitModelWizard() {
+
 			@Override
 			protected boolean isCreateFromExistingDomainModel() {
 				return false;
 			}
-			
+
 			@Override
 			protected String getDiagramCategoryId() {
 				return CreateProfileModelCommand.COMMAND_ID;
 			}
-			
+
 		};
- 
+
 		initWizardDialog(wizard);
 		String actual = wizard.getDiagramFileExtension();
 		assertEquals(expectedExtension, actual);
@@ -76,18 +76,19 @@ public class TestCreateModelWizard extends TestNewModelWizardBase {
 	public void testDiagramFileExtenstionForUML() {
 		final String expectedExtension = "di";
 		InitModelWizard wizard = new InitModelWizard() {
+
 			@Override
 			protected boolean isCreateFromExistingDomainModel() {
 				return false;
 			}
-			
+
 			@Override
 			protected String getDiagramCategoryId() {
 				return "uml";
 			}
-			
+
 		};
- 
+
 		initWizardDialog(wizard);
 		String actual = wizard.getDiagramFileExtension();
 		assertEquals(expectedExtension, actual);
