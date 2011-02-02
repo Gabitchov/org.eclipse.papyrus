@@ -29,6 +29,6 @@
         <cs:dependency name="org.apache.ant" componentType="osgi.bundle"/>
         <cs:dependency name="org.apache.derby" componentType="osgi.bundle"/>
         <cs:dependency name="org.eclipse.zest.sdk" componentType="eclipse.feature"/>
-        <cs:dependency name="org.eclipse.xtext.sdk" componentType="eclipse.feature" versionDesignator="1.0.2" versionType="OSGi"/>
+        <!--<cs:dependency name="org.eclipse.xtext.sdk" componentType="eclipse.feature" versionDesignator="1.0.2" versionType="OSGi"/>-->
 	</cs:dependencies>
 </cs:cspec>

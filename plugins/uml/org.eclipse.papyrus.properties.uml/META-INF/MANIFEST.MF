@@ -16,10 +16,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui;bundle-version="3.6.1",
  org.eclipse.papyrus.service.edit;bundle-version="0.8.0",
  org.eclipse.papyrus.diagram.common;bundle-version="0.8.0",
- org.eclipse.papyrus.widgets.xtext;bundle-version="0.8.0",
- org.eclipse.xtext.gmf.glue;bundle-version="0.8.0",
- org.eclipse.papyrus.property.editor.xtext;bundle-version="0.8.0",
- org.eclipse.papyrus.property.editor.xtext.ui;bundle-version="0.8.0",
  com.google.inject;bundle-version="2.0.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
