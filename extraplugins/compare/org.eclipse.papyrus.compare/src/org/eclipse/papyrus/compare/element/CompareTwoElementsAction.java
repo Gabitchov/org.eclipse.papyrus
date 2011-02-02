@@ -16,16 +16,19 @@ package org.eclipse.papyrus.compare.element;
 import static org.eclipse.papyrus.compare.Activator.log;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Collection;
 import java.util.Map;
 
 import org.eclipse.compare.CompareUI;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.compare.EMFCompareException;
+import org.eclipse.emf.compare.diff.metamodel.AbstractDiffExtension;
 import org.eclipse.emf.compare.diff.metamodel.ComparisonResourceSnapshot;
 import org.eclipse.emf.compare.diff.metamodel.ComparisonSnapshot;
 import org.eclipse.emf.compare.diff.metamodel.DiffFactory;
 import org.eclipse.emf.compare.diff.metamodel.DiffModel;
+import org.eclipse.emf.compare.diff.service.DiffService;
 import org.eclipse.emf.compare.match.MatchOptions;
 import org.eclipse.emf.compare.match.engine.GenericMatchScopeProvider;
 import org.eclipse.emf.compare.match.engine.IMatchEngine;
@@ -106,6 +109,14 @@ public class CompareTwoElementsAction extends TeamAction {
 	protected DiffModel contentDiff(final EObject left, final EObject right, final MatchModel match) {
 		ElementContentDiffEngine engine = new ElementContentDiffEngine(left, right);
 		final DiffModel diff = engine.doDiff(match);
+		final Collection<AbstractDiffExtension> extensions = DiffService.getCorrespondingDiffExtensions(match);
+		for(final AbstractDiffExtension ext : extensions) {
+			if(ext != null) {
+				ext.visit(diff);
+			}
+		}
+
+		engine.reset();
 		return diff;
 	}
 

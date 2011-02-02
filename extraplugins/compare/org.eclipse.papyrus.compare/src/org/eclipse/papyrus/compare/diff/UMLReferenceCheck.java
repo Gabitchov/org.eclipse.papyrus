@@ -44,9 +44,9 @@ public class UMLReferenceCheck extends ReferencesCheck {
 	
 	@Override
 	protected boolean shouldBeIgnored(EReference reference) {
-		if (isTaggedValue(reference)) {
-			return false;
-		}
+//		if (isTaggedValue(reference)) {
+//			return false;
+//		}
 		return super.shouldBeIgnored(reference);
 	}
 	

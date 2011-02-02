@@ -39,11 +39,13 @@
    <extension point="org.eclipse.ui.popupMenus">
       <objectContribution
             adaptable="true"
-            objectClass="org.eclipse.gmt.modisco.infra.browser.uicore.internal.model.ModelElementItem"
+            objectClass="org.eclipse.emf.ecore.EObject"
             nameFilter="*"
             id="org.eclipse.papyrus.domaincodegen.ui.popupMenus.contribution.IFile">
-         <menu id="org.eclipse.papyrus.compare.menu" label="Papyrus Compare" path="additionsAcceleo">
-               <groupMarker name="acceleo"/> 
+         <menu id="UMLCompare" label="Papyrus Compare" path="additions">
+            <separator
+                  name="compareTwoElements">
+            </separator>
          </menu>
          <action
                class="org.eclipse.papyrus.compare.element.CompareTwoElementsAction"
@@ -51,7 +53,7 @@
                id="org.eclipse.papyrus.compare.action.CompareTwoElementsAction"
                icon="icons/export_as_html.gif"
                label="Compare two models"
-               menubarPath="org.eclipse.papyrus.compare.menu/compare"/>
+               menubarPath="UMLCompare/compareTwoElements"/>
       </objectContribution>
    </extension>
 

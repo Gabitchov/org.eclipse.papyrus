@@ -65,11 +65,11 @@ public class ProcessTaggedValues extends AbstractDiffExtensionImpl {
 		}
 		if(element instanceof AttributeChange) {
 			AttributeChange attributeChange = (AttributeChange)element;
-			EObject stereotypeApplication = attributeChange.getLeftElement();
+			EObject stereotypeApplication = attributeChange.getRightElement();
 			if(UMLCompareUtils.isStereotypeApplication(stereotypeApplication)) {
 				return stereotypeApplication;
 			} 
-			stereotypeApplication = attributeChange.getRightElement();
+			stereotypeApplication = attributeChange.getLeftElement();
 			if(UMLCompareUtils.isStereotypeApplication(stereotypeApplication)) {
 				return stereotypeApplication;
 			} 
