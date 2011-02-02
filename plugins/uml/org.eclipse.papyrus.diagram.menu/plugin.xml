@@ -321,6 +321,18 @@
                   removeFromToolbar="true"
                   toolbarPath="/routerMenu/routerGroup">
             </partPredefinedItem>
+            <partPredefinedItem
+                  id="showConnectorLabels"
+                  removeFromMenubar="false"
+                  removeFromToolbar="true"
+                  toolbarPath="/toolbarFilterGroup">
+            </partPredefinedItem>
+            <partPredefinedItem
+                  id="hideConnectorLabels"
+                  removeFromMenubar="false"
+                  removeFromToolbar="true"
+                  toolbarPath="/toolbarFilterGroup">
+            </partPredefinedItem>
          </partContribution>
          <popupContribution
                class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
@@ -701,7 +713,7 @@
       </menu>
    </menuContribution>
    <menuContribution
-         locationURI="toolbar:org.eclipse.ui.main.toolbar?before=org.eclipse.papyrus.diagram.ui.toolbar">
+         locationURI="toolbar:org.eclipse.ui.main.toolbar?after=org.eclipse.papyrus.diagram.ui.toolbar">
       <toolbar
             id="org.eclipes.papyrus.menu.toolbar"
             label="Papyrus Toolbar Action">
@@ -1110,6 +1122,34 @@
                </with>
             </and>
          </visibleWhen>
+      </command>
+      <separator
+            name="org.eclipse.papyrus.menu.showhide.toolbar.separator0"
+            visible="true">
+      </separator>
+      <command
+            commandId="org.eclipse.papyrus.diagram.menu.commands.link.label.show.all"
+            icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/showconnector.gif"
+            id="org.eclipse.papyrus.menu.showhide.toolbar.all.connector.label"
+            label="&amp;All Connector Labels"
+            style="push"
+            tooltip="Display all labels on the selected connectors">
+      </command>
+      <command
+            commandId="org.eclipse.papyrus.diagram.menu.commands.link.label.hide.all"
+            icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/hideconnector.gif"
+            id="org.eclipse.papyrus.menu.showhide.toolbar.no.connector.label"
+            label="N&amp;o Connector Labels"
+            style="push"
+            tooltip="Hide all labels on the selected Connections">
+      </command>
+      <command
+            commandId="org.eclipse.papyrus.diagram.menu.commands.link.label.manager"
+            icon="icons/manage_connector_label.gif"
+            id="org.eclipse.papyrus.menu.showhide.toolbar.manage.connector.label"
+            label="&amp;Manage Connector Labels"
+            style="push"
+            tooltip="Manage the labels to display for the selected connections">
       </command>
    </menuContribution>
    <menuContribution
@@ -1801,6 +1841,34 @@
                mnemonic="&amp;F"
                style="push"
                tooltip="Sort or Filter Compartments Items for this shape">
+         </command>
+         <separator
+               name="org.eclipse.papyrus.diagram.ui.menu.filtersMenu.separator0"
+               visible="true">
+         </separator>
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.commands.link.label.show.all"
+               icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/showconnector.gif"
+               id="org.eclipse.papyrus.diagram.ui.menu.filtersMenu.all.connector.label"
+               label="&amp;All Connector Labels"
+               style="push"
+               tooltip="Display all labels on the selected connectors">
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.commands.link.label.hide.all"
+               icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/hideconnector.gif"
+               id="org.eclipse.papyrus.diagram.ui.menu.filtersMenu.no.connector.label"
+               label="N&amp;o Connector Labels"
+               style="push"
+               tooltip="Hide all labels on the selected Connections">
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.diagram.menu.commands.link.label.manager"
+               icon="icons/manage_connector_label.gif"
+               id="org.eclipse.papyrus.diagram.ui.menu.filtersMenu.manage.connector.label"
+               label="&amp;Manage Connector Labels"
+               style="push"
+               tooltip="Manage the labels to display for the selected connections">
          </command>
       </menu>
       <separator
@@ -2526,6 +2594,34 @@
             style="push"
             tooltip="Sort or Filter Compartments Items for this shape">
       </command>
+      <separator
+            name="org.eclipse.papyrus.diagram.ui.popupmenu.filters.separator0"
+            visible="true">
+      </separator>
+      <command
+            commandId="org.eclipse.papyrus.diagram.menu.commands.link.label.show.all"
+            icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/showconnector.gif"
+            id="org.eclipse.papyrus.diagram.ui.popupmenu.filters.all.connector.label"
+            label="&amp;All Connector Labels"
+            style="push"
+            tooltip="Display all labels on the selected connectors">
+      </command>
+      <command
+            commandId="org.eclipse.papyrus.diagram.menu.commands.link.label.hide.all"
+            icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/hideconnector.gif"
+            id="org.eclipse.papyrus.diagram.ui.popupmenu.filters.no.connector.label"
+            label="N&amp;o Connector Labels"
+            style="push"
+            tooltip="Hide all labels on the selected Connections">
+      </command>
+      <command
+            commandId="org.eclipse.papyrus.diagram.menu.commands.link.label.manager"
+            icon="icons/manage_connector_label.gif"
+            id="org.eclipse.papyrus.diagram.ui.popupmenu.filters.manage.connector.label"
+            label="&amp;Manage Connector Labels"
+            style="push"
+            tooltip="Manage the labels to display for the selected connections">
+      </command>
    </menuContribution>
    <menuContribution
          allPopups="false"
@@ -2888,6 +2984,24 @@
          description="Copy the appearance properties"
          id="org.eclipse.papyrus.diagram.menu.commands.CopyAppearancePropertiesCommand"
          name="Copy Appearance Properties Command">
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         description="Call the Command  to manage the displayed label on links"
+         id="org.eclipse.papyrus.diagram.menu.commands.link.label.manager"
+         name="Manage Displayed Labels Command">
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         description="Call the Command to show all labels on links"
+         id="org.eclipse.papyrus.diagram.menu.commands.link.label.show.all"
+         name="Show all labels on links">
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         description="Call the Command to hide all labels on links"
+         id="org.eclipse.papyrus.diagram.menu.commands.link.label.hide.all"
+         name="Hide all labels on links">
    </command>
 </extension>
 <extension
@@ -3722,6 +3836,58 @@
          </and>
       </activeWhen>
    </handler>
+   <handler
+         commandId="org.eclipse.papyrus.diagram.menu.commands.link.label.hide.all">
+      <class
+            class="org.eclipse.papyrus.diagram.menu.actions.handlers.ShowHideConnectionLabelsHandler">
+         <parameter
+               name="show_hide_link_label_parameter"
+               value="hide">
+         </parameter>
+      </class>
+      <activeWhen>
+         <with
+               variable="showHideConnectionLabels">
+            <equals
+                  value="enabled">
+            </equals>
+         </with>
+      </activeWhen>
+   </handler>
+   <handler
+         commandId="org.eclipse.papyrus.diagram.menu.commands.link.label.show.all">
+      <class
+            class="org.eclipse.papyrus.diagram.menu.actions.handlers.ShowHideConnectionLabelsHandler">
+         <parameter
+               name="show_hide_link_label_parameter"
+               value="show">
+         </parameter>
+      </class>
+      <activeWhen>
+         <with
+               variable="showHideConnectionLabels">
+            <equals
+                  value="enabled">
+            </equals>
+         </with></activeWhen>
+   </handler>
+   <handler
+         commandId="org.eclipse.papyrus.diagram.menu.commands.link.label.manager">
+      <class
+            class="org.eclipse.papyrus.diagram.menu.actions.handlers.ShowHideConnectionLabelsHandler">
+         <parameter
+               name="show_hide_link_label_parameter"
+               value="manage">
+         </parameter>
+      </class>
+      <activeWhen>
+         <with
+               variable="showHideConnectionLabels">
+            <equals
+                  value="enabled">
+            </equals>
+         </with></activeWhen>
+   </handler>
 </extension>
 <extension
       point="org.eclipse.ui.services">
@@ -3817,6 +3983,10 @@
       </variable>
       <variable
             name="lineTree"
+            priorityLevel="workbench">
+      </variable>
+      <variable
+            name="showHideConnectionLabels"
             priorityLevel="workbench">
       </variable>
    </sourceProvider>

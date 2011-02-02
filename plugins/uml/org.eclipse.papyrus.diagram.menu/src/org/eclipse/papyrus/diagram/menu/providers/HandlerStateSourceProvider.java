@@ -18,6 +18,7 @@ import org.eclipse.papyrus.diagram.common.providers.AbstractActionStateSourcePro
 import org.eclipse.papyrus.diagram.menu.actions.ArrangeAction;
 import org.eclipse.papyrus.diagram.menu.actions.LineStyleAction;
 import org.eclipse.papyrus.diagram.menu.actions.SelectAction;
+import org.eclipse.papyrus.diagram.menu.actions.ShowHideConnectionLabelsAction;
 import org.eclipse.papyrus.diagram.menu.actions.ZOrderAction;
 import org.eclipse.papyrus.diagram.menu.actions.handlers.ArrangeHandler;
 import org.eclipse.papyrus.diagram.menu.actions.handlers.CopyAppearancePropertiesHandler;
@@ -28,6 +29,7 @@ import org.eclipse.papyrus.diagram.menu.actions.handlers.LineStyleHandler;
 import org.eclipse.papyrus.diagram.menu.actions.handlers.RecalculatePageBreaksHandler;
 import org.eclipse.papyrus.diagram.menu.actions.handlers.SelectHandler;
 import org.eclipse.papyrus.diagram.menu.actions.handlers.ShowHideCompartmentHandler;
+import org.eclipse.papyrus.diagram.menu.actions.handlers.ShowHideConnectionLabelsHandler;
 import org.eclipse.papyrus.diagram.menu.actions.handlers.ShowHideContentsHandler;
 import org.eclipse.papyrus.diagram.menu.actions.handlers.SnapToGridHandler;
 import org.eclipse.papyrus.diagram.menu.actions.handlers.SortFilterCompartmentItemsHandler;
@@ -99,6 +101,8 @@ public class HandlerStateSourceProvider extends AbstractActionStateSourceProvide
 
 	public static final String LINE_STYLE_TREE = "lineStyleTree"; //$NON-NLS-1$
 
+	public static final String SHOW_HIDE_CONNECTION_LABELS = "showHideConnectionLabels"; //$NON-NLS-1$ 
+
 	/**
 	 * 
 	 * Constructor.
@@ -136,6 +140,7 @@ public class HandlerStateSourceProvider extends AbstractActionStateSourceProvide
 
 		currentState.put(LINE_STYLE, DISABLED);
 		currentState.put(LINE_STYLE_TREE, DISABLED);
+		currentState.put(SHOW_HIDE_CONNECTION_LABELS, DISABLED);
 
 	}
 
@@ -159,7 +164,7 @@ public class HandlerStateSourceProvider extends AbstractActionStateSourceProvide
 
 		, FONT
 
-		, FILL_COLOR, LINE_COLOR, LINE_STYLE, LINE_STYLE_TREE };
+		, FILL_COLOR, LINE_COLOR, LINE_STYLE, LINE_STYLE_TREE, SHOW_HIDE_CONNECTION_LABELS };
 
 	}
 
@@ -199,6 +204,7 @@ public class HandlerStateSourceProvider extends AbstractActionStateSourceProvide
 		refresh(LINE_COLOR, new LineColorHandler());
 		refresh(LINE_STYLE, new LineStyleHandler(LineStyleAction.RECTILINEAR));
 		refresh(LINE_STYLE_TREE, new LineStyleHandler(LineStyleAction.TREE));
+		refresh(SHOW_HIDE_CONNECTION_LABELS, new ShowHideConnectionLabelsHandler(ShowHideConnectionLabelsAction.SHOW_PARAMETER));
 	}
 
 	/**

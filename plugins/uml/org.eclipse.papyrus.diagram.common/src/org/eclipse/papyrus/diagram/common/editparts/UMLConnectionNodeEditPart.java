@@ -25,6 +25,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.editpolicies.ApplyStereotypeEditPolicy;
+import org.eclipse.papyrus.diagram.common.editpolicies.CustomConnectionLabelsEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.edge.UMLEdgeFigure;
 import org.eclipse.papyrus.diagram.common.service.ApplyStereotypeRequest;
 import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
@@ -79,6 +80,7 @@ public abstract class UMLConnectionNodeEditPart extends ConnectionNodeEditPart i
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
 
@@ -107,6 +109,9 @@ public abstract class UMLConnectionNodeEditPart extends ConnectionNodeEditPart i
 		super.createDefaultEditPolicies();
 		// adds the stereotype application edit policy
 		installEditPolicy(ApplyStereotypeRequest.APPLY_STEREOTYPE_REQUEST, new ApplyStereotypeEditPolicy());
+
+		//adds a custom EditPolicy to manage the displaying of each label on the connector
+		installEditPolicy(CustomConnectionLabelsEditPolicy.CUSTOM_CONNECTION_LABELS_ROLE, new CustomConnectionLabelsEditPolicy());
 	}
 
 	/**

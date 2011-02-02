@@ -24,6 +24,10 @@ public class Messages extends NLS {
 	public static String ShowHideCompartmentAction_No_Name;
 
 	public static String ShowHideCompartmentAction_Title;
+
+	public static String ShowHideConnectionLabelsAction_LabelsManager;
+
+	public static String ShowHideConnectionLabelsAction_SelectTheLabelToDisplay;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

@@ -37,19 +37,19 @@ import org.eclipse.gmf.runtime.notation.Routing;
 public class LineStyleAction extends AbstractGraphicalParametricAction {
 
 	/** possible parameters for this action */
-	public static final String RECTILINEAR = "rectilinear";
+	public static final String RECTILINEAR = "rectilinear"; //$NON-NLS-1$
 
-	public static final String OBLIQUE = "oblique";
+	public static final String OBLIQUE = "oblique"; //$NON-NLS-1$
 
-	public static final String TREE = "tree";
+	public static final String TREE = "tree"; //$NON-NLS-1$
 
-	public static final String REMOVE_BENDPOINTS = "remove_benpoints";
+	public static final String REMOVE_BENDPOINTS = "remove_benpoints"; //$NON-NLS-1$
 
 	/** property ID */
-	public static final String PROPERTY_ID = "notation.RoutingStyle.routing";
+	public static final String PROPERTY_ID = "notation.RoutingStyle.routing"; //$NON-NLS-1$
 
 	/** property name */
-	public static final String PROPERTY_NAME = "Routing";
+	public static final String PROPERTY_NAME = "Routing"; //$NON-NLS-1$
 
 	/**
 	 * 
@@ -70,7 +70,7 @@ public class LineStyleAction extends AbstractGraphicalParametricAction {
 	 */
 	@Override
 	protected Command getBuildedCommand() {
-		CompoundCommand command = new CompoundCommand("Routing command");
+		CompoundCommand command = new CompoundCommand("Routing command"); //$NON-NLS-1$
 
 		ChangePropertyValueRequest request = new ChangePropertyValueRequest(PROPERTY_NAME, PROPERTY_ID);
 		request.setValue(getValue());
