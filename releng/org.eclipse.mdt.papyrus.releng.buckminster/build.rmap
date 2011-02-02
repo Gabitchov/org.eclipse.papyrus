@@ -113,7 +113,7 @@
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
         mutable="false">
        
-      <rm:uri format="{0}/tools/orbit/downloads/drops/S20101204061544/repository">
+      <rm:uri format="{0}/tools/orbit/downloads/drops/S20110124210048/repository/">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -139,7 +139,7 @@
     </rm:provider>
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
         mutable="false">
-      <rm:uri format="{0}/modeling/emft/mwe/updates/">
+      <rm:uri format="{0}/modeling/emft/mwe/updates/milestones">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -151,7 +151,7 @@
     </rm:provider>
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
         mutable="false">
-      <rm:uri format="{0}/modeling/m2t/updates/releases/">
+      <rm:uri format="{0}/modeling/m2t/updates/milestones/">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -164,6 +164,12 @@
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
         mutable="false">
       <rm:uri format="{0}/modeling/mdt/ocl/updates/milestones/3.1.0">
+        <bc:propertyRef key="eclipse.downloads"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
+        mutable="false">
+      <rm:uri format="{0}/facet/updates/milestones/0.1">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -193,7 +199,7 @@
     </rm:provider>
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
         mutable="false">
-      <rm:uri format="{0}/modeling/m2t/xpand/updates/">
+      <rm:uri format="{0}/modeling/m2t/xpand/updates/milestones">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -211,7 +217,13 @@
     </rm:provider>
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
         mutable="false">
-      <rm:uri format="{0}/tools/gef/updates/interim">
+      <rm:uri format="{0}/tools/gef/updates/milestones">
+        <bc:propertyRef key="eclipse.downloads"/>
+      </rm:uri>
+    </rm:provider>
+     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
+        mutable="false">
+      <rm:uri format="{0}/e4/downloads/drops/S-0.11M5-201101282000/repository">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -222,7 +234,7 @@
       </rm:uri>
     </rm:provider>
 		<rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-			<rm:uri format="{0}/eclipse/updates/3.7milestones/S-3.7M4-201012081300">
+			<rm:uri format="{0}/eclipse/updates/3.7milestones/S-3.7M5-201101272034">
 				<bc:propertyRef key="eclipse.downloads"/>
 			</rm:uri>
 		</rm:provider>
