@@ -30,8 +30,7 @@ public class TestCreateModelWizard extends TestNewModelWizardBase {
 	}
 
 	public void testDiagramFileExtentionLabel() {
-		// final String expectedExtension = "test.xxx";
-		final String expectedExtension = "di";
+		final String expectedExtension = "test.xxx";
 		IWorkbenchWizard wizard = new InitModelWizard() {
 
 			@Override
