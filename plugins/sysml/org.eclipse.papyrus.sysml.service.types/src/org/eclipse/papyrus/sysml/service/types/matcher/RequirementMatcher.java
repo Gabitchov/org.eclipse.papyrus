@@ -11,25 +11,26 @@ package org.eclipse.papyrus.sysml.service.types.matcher;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
-import org.eclipse.papyrus.sysml.util.SysmlResource;
+import org.eclipse.papyrus.sysml.requirements.Requirement;
+import org.eclipse.papyrus.sysml.service.types.utils.ElementUtil;
 import org.eclipse.uml2.uml.Class;
 
 /**
- * Test if current Class is a Requirement
+ * Test if current {@link Class} is a {@link Requirement}
  */
 public class RequirementMatcher implements IElementMatcher {
 
 	public boolean matches(EObject eObject) {
 
-		boolean isRequirement = false;
+		boolean isMatch = false;
 		if(eObject instanceof Class) {
 
-			Class clazz = (Class)eObject;
-			if(clazz.getAppliedStereotype(SysmlResource.REQUIREMENT_ID) != null) {
-				isRequirement = true;
+			Class element = (Class)eObject;
+			if(ElementUtil.getStereotypeApplication(element, Requirement.class) != null) {
+				isMatch = true;
 			}
 		}
-		return isRequirement;
+		return isMatch;
 	}
 
 }

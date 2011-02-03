@@ -16,7 +16,7 @@ import org.eclipse.papyrus.sysml.service.types.utils.ElementUtil;
 import org.eclipse.uml2.uml.Interface;
 
 /**
- * Test if current Interface is a {@link FlowSpecification}
+ * Test if current {@link Interface} is a {@link FlowSpecification}
  */
 public class FlowSpecificationMatcher implements IElementMatcher {
 

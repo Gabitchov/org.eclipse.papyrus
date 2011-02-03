@@ -11,25 +11,26 @@ package org.eclipse.papyrus.sysml.service.types.matcher;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
-import org.eclipse.papyrus.sysml.util.SysmlResource;
+import org.eclipse.papyrus.sysml.blocks.Block;
+import org.eclipse.papyrus.sysml.service.types.utils.ElementUtil;
 import org.eclipse.uml2.uml.Class;
 
 /**
- * Test if current Class is a Block
+ * Test if current {@link Class} is a {@link Block}
  */
 public class BlockMatcher implements IElementMatcher {
 
 	public boolean matches(EObject eObject) {
 
-		boolean isBlock = false;
+		boolean isMatch = false;
 		if(eObject instanceof Class) {
 
-			Class clazz = (Class)eObject;
-			if(clazz.getAppliedStereotype(SysmlResource.BLOCK_ID) != null) {
-				isBlock = true;
+			Class element = (Class)eObject;
+			if(ElementUtil.getStereotypeApplication(element, Block.class) != null) {
+				isMatch = true;
 			}
 		}
-		return isBlock;
+		return isMatch;
 	}
 
 }

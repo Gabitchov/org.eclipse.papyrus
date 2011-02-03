@@ -17,7 +17,7 @@ import org.eclipse.papyrus.sysml.service.types.utils.ElementUtil;
 import org.eclipse.uml2.uml.Port;
 
 /**
- * Test if current Port is a FlowPort with IN direction
+ * Test if current {@link Port} is a {@link FlowPort} with IN direction
  */
 public class FlowPortInMatcher implements IElementMatcher {
 

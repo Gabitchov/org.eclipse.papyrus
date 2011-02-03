@@ -16,7 +16,7 @@ import org.eclipse.papyrus.sysml.service.types.utils.ElementUtil;
 import org.eclipse.uml2.uml.Abstraction;
 
 /**
- * Test if current Abstraction is a Copy
+ * Test if current {@link Abstraction} is a {@link Copy}
  */
 public class CopyMatcher implements IElementMatcher {
 

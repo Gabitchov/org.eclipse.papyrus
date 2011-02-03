@@ -16,7 +16,7 @@ import org.eclipse.papyrus.sysml.service.types.utils.ElementUtil;
 import org.eclipse.uml2.uml.Property;
 
 /**
- * Test if current Property is a {@link FlowProperty}
+ * Test if current {@link Property} is a {@link FlowProperty}
  */
 public class FlowPropertyMatcher implements IElementMatcher {
 

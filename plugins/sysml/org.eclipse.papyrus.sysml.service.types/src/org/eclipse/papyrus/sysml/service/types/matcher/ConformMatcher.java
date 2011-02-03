@@ -16,7 +16,7 @@ import org.eclipse.papyrus.sysml.service.types.utils.ElementUtil;
 import org.eclipse.uml2.uml.Dependency;
 
 /**
- * Test if current Dependency is a Conform
+ * Test if current {@link Dependency} is a {@link Conform}
  */
 public class ConformMatcher implements IElementMatcher {
 

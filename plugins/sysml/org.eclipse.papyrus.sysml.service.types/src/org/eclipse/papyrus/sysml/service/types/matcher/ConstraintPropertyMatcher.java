@@ -16,7 +16,7 @@ import org.eclipse.papyrus.sysml.service.types.utils.ElementUtil;
 import org.eclipse.uml2.uml.Property;
 
 /**
- * Test if current Property is a ConstraintProperty
+ * Test if current {@link Property} is a {@link ConstraintProperty}
  */
 public class ConstraintPropertyMatcher implements IElementMatcher {
 
