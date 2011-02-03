@@ -166,7 +166,7 @@
 				<!--
 				Hudson Ant property: org.eclipse.update.jarprocessor.pack200=${jdk1.5.dir}/jre/bin
 				-->
-				<jvmarg value="-Dorg.eclipse.update.jarprocessor.pack200=${org.eclipse.update.jarprocessor.pack200}" />
+				<jvmarg value="-Dorg.eclipse.update.jarprocessor.pack200=${org.eclipse.update.jarprocessor.pack200.buckminster}" />
 				<arg value="-r" />
 				<arg value="${eclipse.downloads}/${bm.headless.path}" />
 				<arg value="-d" />
