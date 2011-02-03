@@ -14,24 +14,17 @@
 package org.eclipse.papyrus.compare.diff;
 
 
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Iterator;
 
 import org.eclipse.emf.compare.diff.engine.GenericDiffEngine;
 import org.eclipse.emf.compare.diff.engine.check.ReferencesCheck;
 import org.eclipse.emf.compare.diff.metamodel.AbstractDiffExtension;
-import org.eclipse.emf.compare.diff.metamodel.AttributeChange;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.DiffFactory;
 import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
 import org.eclipse.emf.compare.diff.metamodel.DiffModel;
-import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeLeftTarget;
-import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeRightTarget;
 import org.eclipse.emf.compare.diff.metamodel.MoveModelElement;
-import org.eclipse.emf.compare.diff.metamodel.ReferenceChange;
-import org.eclipse.emf.compare.diff.metamodel.UpdateModelElement;
 import org.eclipse.emf.compare.diff.metamodel.util.DiffSwitch;
 import org.eclipse.emf.compare.match.metamodel.MatchModel;
 import org.eclipse.emf.ecore.EObject;
@@ -45,7 +38,7 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 public class PapyrusDiffEngine extends GenericDiffEngine {
 
 	private DiffSwitch<AbstractDiffExtension> myDiffElementBuilder = new DiffElementExtensionBuilder();
-	private DiffSwitch<Collection<EObject>> myGetModelElementSwitch = new GetModelElementSwitch();
+	private DiffSwitch<Collection<EObject>> myGetModelElementSwitch = new ModelElementSwitch();
 
 	@Override
 	protected ReferencesCheck getReferencesChecker() {
@@ -146,43 +139,4 @@ public class PapyrusDiffEngine extends GenericDiffEngine {
 		return false;
 	}
 	
-	private class GetModelElementSwitch extends DiffSwitch<Collection<EObject>> {
-		
-		@Override
-		public Collection<EObject> caseDiffGroup(DiffGroup object) {
-			return Collections.singletonList(object.getRightParent());
-		}
-		
-		@Override
-		public Collection<EObject> caseModelElementChangeLeftTarget(ModelElementChangeLeftTarget object) {
-			return Collections.singletonList(object.getLeftElement());
-		}
-		
-		@Override
-		public Collection<EObject> caseModelElementChangeRightTarget(ModelElementChangeRightTarget object) {
-			return Collections.singletonList(object.getRightElement());
-		}
-		
-		@Override
-		public Collection<EObject> caseUpdateModelElement(UpdateModelElement object) {
-			return Collections.singletonList(object.getLeftElement());
-		}
-		
-		@Override
-		public Collection<EObject> caseAttributeChange(AttributeChange object) {
-			return Arrays.asList(new EObject[]{
-				object.getLeftElement(), 
-				object.getRightElement(),
-				});
-		}
-		
-		@Override
-		public Collection<EObject> caseReferenceChange(ReferenceChange object) {
-			return Arrays.asList(new EObject[]{
-				object.getLeftElement(), 
-				object.getRightElement(),
-				});
-		}
-		
-	}
 }
