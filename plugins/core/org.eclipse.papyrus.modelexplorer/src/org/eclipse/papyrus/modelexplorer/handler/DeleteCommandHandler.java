@@ -14,6 +14,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.modelexplorer.handler;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.eclipse.core.commands.IHandler;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.UnexecutableCommand;
@@ -49,6 +52,11 @@ public class DeleteCommandHandler extends AbstractCommandHandler implements IHan
 	private Command buildCommand() {
 
 		ICommand gmfCommand = null;
+
+		// Parameters store the Request parameters of the previous request
+		// if multiple elements are selected for deletion.
+		Map parameters = new HashMap();
+
 		for(EObject selectedEObject : getSelectedElements()) {
 
 			if(selectedEObject == null) {
@@ -62,10 +70,18 @@ public class DeleteCommandHandler extends AbstractCommandHandler implements IHan
 
 			// Retrieve delete command from the Element Edit service
 			DestroyElementRequest request = new DestroyElementRequest(selectedEObject, false);
+			// Add parameters (contains the list of previously dependents to be deleted
+			// by previous commands.
+			request.getParameters().putAll(parameters);
+
 			ICommand deleteCommand = provider.getEditCommand(request);
 
 			// Add current EObject destroy command to the global command
 			gmfCommand = CompositeCommand.compose(gmfCommand, deleteCommand);
+
+			// Store the new parameters for next delete command.
+			parameters.clear();
+			parameters.putAll(request.getParameters());
 		}
 
 		if(gmfCommand == null) {
