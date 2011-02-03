@@ -26,7 +26,6 @@ import org.eclipse.papyrus.diagram.common.helper.NamedElementHelper;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Namespace;
 
-
 /**
  * <pre>
  * This is an advice helper used to initialize namedElement.

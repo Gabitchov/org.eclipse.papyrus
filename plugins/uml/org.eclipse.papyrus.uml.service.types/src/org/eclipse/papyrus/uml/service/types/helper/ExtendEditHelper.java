@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010-2011 CEA LIST.
+ * Copyright (c) 2011 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -17,27 +17,27 @@ package org.eclipse.papyrus.uml.service.types.helper;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
-import org.eclipse.papyrus.uml.service.types.command.GeneralizationReorientCommand;
-import org.eclipse.uml2.uml.Generalization;
+import org.eclipse.papyrus.uml.service.types.command.ExtendReorientCommand;
+import org.eclipse.uml2.uml.Extend;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * This helper provides edit commands for UML {@link Generalization}.
+ * This helper provides edit commands for UML {@link Extend}.
  */
-public class GeneralizationEditHelper extends DirectedRelationshipEditHelper {
+public class ExtendEditHelper extends DirectedRelationshipEditHelper {
 
 	@Override
 	protected EReference getSourceReference() {
-		return UMLPackage.eINSTANCE.getGeneralization_Specific();
+		return UMLPackage.eINSTANCE.getExtend_Extension();
 	}
 
 	@Override
 	protected EReference getTargetReference() {
-		return UMLPackage.eINSTANCE.getGeneralization_General();
+		return UMLPackage.eINSTANCE.getExtend_ExtendedCase();
 	}
 
 	@Override
 	protected ICommand getReorientRelationshipCommand(ReorientRelationshipRequest req) {
-		return new GeneralizationReorientCommand(req);
+		return new ExtendReorientCommand(req);
 	}
 }

@@ -18,7 +18,6 @@ import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
 import org.eclipse.uml2.uml.PartDecomposition;
 
-
 public class PartDecompositionHelperAdvice extends AbstractEditHelperAdvice {
 
 	protected ICommand getBeforeDestroyDependentsCommand(DestroyDependentsRequest request) {

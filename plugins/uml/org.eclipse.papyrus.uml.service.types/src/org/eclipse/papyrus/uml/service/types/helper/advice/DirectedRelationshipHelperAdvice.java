@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010-2011 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.helper.advice;
@@ -22,26 +22,23 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.editpolicies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.common.util.CrossReferencerUtil;
-import org.eclipse.uml2.uml.Generalization;
+import org.eclipse.uml2.uml.DirectedRelationship;
 
 /**
  * <pre>
- * This HelperAdvice completes {@link Generalization} edit commands 
+ * This HelperAdvice completes {@link DirectedRelationship} edit commands 
  * in order to :
  * - remove inconsistent (all except currently edited view) views 
- * of the edited Generalization in case a {@link Generalization} is re-oriented.
+ * of the edited DirectedRelationship in case a {@link DirectedRelationship} is re-oriented.
  * </pre>
  */
-public class GeneralizationHelperAdvice extends AbstractEditHelperAdvice {
+public class DirectedRelationshipHelperAdvice extends AbstractEditHelperAdvice {
 
 	@Override
 	protected ICommand getBeforeReorientRelationshipCommand(ReorientRelationshipRequest request) {
 
 		Set<View> viewsToDestroy = new HashSet<View>();
-
-		if(request.getRelationship() instanceof Generalization) {
-			viewsToDestroy.addAll(getGeneralizationViewsToDestroy((Generalization)request.getRelationship(), request));
-		}
+		viewsToDestroy.addAll(getViewsToDestroy((DirectedRelationship)request.getRelationship(), request));
 
 		//return the command to destroy all these views
 		if(!viewsToDestroy.isEmpty()) {
@@ -54,20 +51,20 @@ public class GeneralizationHelperAdvice extends AbstractEditHelperAdvice {
 	}
 
 	/**
-	 * Returns all views referencing generalization except the view currently re-oriented.
+	 * Returns all views referencing DirectedRelationship except the view currently re-oriented.
 	 * 
-	 * @param generalization
-	 *        the generalization referenced by views
+	 * @param relationship
+	 *        the relationship referenced by views
 	 * @param request
 	 *        the re-orient relationship request
 	 * @return the list of views to be destroy
 	 */
-	protected Set<View> getGeneralizationViewsToDestroy(Generalization generalization, ReorientRelationshipRequest request) {
+	private Set<View> getViewsToDestroy(DirectedRelationship relationship, ReorientRelationshipRequest request) {
 		Set<View> viewsToDestroy = new HashSet<View>();
 
-		// Find Views that are referencing current Generalization
+		// Find Views that are referencing current DirectedRelationship
 		View currentlyReorientedView = (View)request.getParameter(UMLBaseItemSemanticEditPolicy.GRAPHICAL_RECONNECTED_EDGE);
-		viewsToDestroy.addAll(CrossReferencerUtil.getCrossReferencingViews(generalization, null));
+		viewsToDestroy.addAll(CrossReferencerUtil.getCrossReferencingViews(relationship, null));
 		viewsToDestroy.remove(currentlyReorientedView);
 
 		return viewsToDestroy;

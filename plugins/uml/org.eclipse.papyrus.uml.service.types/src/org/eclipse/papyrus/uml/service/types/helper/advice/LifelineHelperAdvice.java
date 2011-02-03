@@ -58,7 +58,7 @@ public class LifelineHelperAdvice extends AbstractEditHelperAdvice {
 
 		// Destroy decomposed lifelines
 		PartDecomposition decomposition = lifeline.getDecomposedAs();
-		if (decomposition != null && PapyrusEcoreUtils.isOnlyUsage(decomposition, lifeline)) {
+		if(decomposition != null && PapyrusEcoreUtils.isOnlyUsage(decomposition, lifeline)) {
 			dependentsToDestroy.add(decomposition);
 		}
 

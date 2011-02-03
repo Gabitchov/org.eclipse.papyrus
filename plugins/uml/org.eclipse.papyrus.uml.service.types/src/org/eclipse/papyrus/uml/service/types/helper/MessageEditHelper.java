@@ -51,7 +51,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  * 
  * </pre>
  */
-public class MessageEditHelper extends DefaultUMLEditHelper {
+public class MessageEditHelper extends ElementEditHelper {
 
 	/**
 	 * <pre>
