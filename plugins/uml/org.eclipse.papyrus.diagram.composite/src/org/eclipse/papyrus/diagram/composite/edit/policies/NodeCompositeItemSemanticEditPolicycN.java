@@ -24,39 +24,29 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.papyrus.diagram.composite.edit.commands.AbstractionCreateCommand;
-import org.eclipse.papyrus.diagram.composite.edit.commands.AbstractionReorientCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.CommentAnnotatedElementCreateCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.CommentAnnotatedElementReorientCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.ComponentRealizationCreateCommand;
-import org.eclipse.papyrus.diagram.composite.edit.commands.ComponentRealizationReorientCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.ConstraintConstrainedElementCreateCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.ConstraintConstrainedElementReorientCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.DependencyCreateCommand;
-import org.eclipse.papyrus.diagram.composite.edit.commands.DependencyReorientCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.DeploymentCreateCommand;
-import org.eclipse.papyrus.diagram.composite.edit.commands.DeploymentReorientCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.DurationObservationEventCreateCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.DurationObservationEventReorientCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.GeneralizationCreateCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.InformationFlowCreateCommand;
-import org.eclipse.papyrus.diagram.composite.edit.commands.InformationFlowReorientCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.InterfaceRealizationCreateCommand;
-import org.eclipse.papyrus.diagram.composite.edit.commands.InterfaceRealizationReorientCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.ManifestationCreateCommand;
-import org.eclipse.papyrus.diagram.composite.edit.commands.ManifestationReorientCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.PortCreateCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.RealizationCreateCommand;
-import org.eclipse.papyrus.diagram.composite.edit.commands.RealizationReorientCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.RepresentationCreateCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.RepresentationReorientCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.RoleBindingCreateCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.RoleBindingReorientCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.SubstitutionCreateCommand;
-import org.eclipse.papyrus.diagram.composite.edit.commands.SubstitutionReorientCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.TimeObservationEventCreateCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.TimeObservationEventReorientCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.UsageCreateCommand;
-import org.eclipse.papyrus.diagram.composite.edit.commands.UsageReorientCommand;
 import org.eclipse.papyrus.diagram.composite.edit.parts.AbstractionEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.ComponentRealizationEditPart;
@@ -249,7 +239,17 @@ public class NodeCompositeItemSemanticEditPolicycN extends UMLBaseItemSemanticEd
 	 */
 	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 		switch(getVisualID(req)) {
+		case ComponentRealizationEditPart.VISUAL_ID:
+		case InterfaceRealizationEditPart.VISUAL_ID:
+		case SubstitutionEditPart.VISUAL_ID:
+		case RealizationEditPart.VISUAL_ID:
+		case ManifestationEditPart.VISUAL_ID:
+		case AbstractionEditPart.VISUAL_ID:
+		case UsageEditPart.VISUAL_ID:
+		case DeploymentEditPart.VISUAL_ID:
+		case DependencyEditPart.VISUAL_ID:
 		case GeneralizationEditPart.VISUAL_ID:
+		case InformationFlowEditPart.VISUAL_ID:
 			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(req.getRelationship());
 			if(provider == null) {
 				return UnexecutableCommand.INSTANCE;
@@ -260,28 +260,8 @@ public class NodeCompositeItemSemanticEditPolicycN extends UMLBaseItemSemanticEd
 				return UnexecutableCommand.INSTANCE;
 			}
 			return getGEFWrapper(reorientCommand.reduce());
-		case ComponentRealizationEditPart.VISUAL_ID:
-			return getGEFWrapper(new ComponentRealizationReorientCommand(req));
-		case InterfaceRealizationEditPart.VISUAL_ID:
-			return getGEFWrapper(new InterfaceRealizationReorientCommand(req));
-		case SubstitutionEditPart.VISUAL_ID:
-			return getGEFWrapper(new SubstitutionReorientCommand(req));
-		case RealizationEditPart.VISUAL_ID:
-			return getGEFWrapper(new RealizationReorientCommand(req));
-		case ManifestationEditPart.VISUAL_ID:
-			return getGEFWrapper(new ManifestationReorientCommand(req));
-		case AbstractionEditPart.VISUAL_ID:
-			return getGEFWrapper(new AbstractionReorientCommand(req));
-		case UsageEditPart.VISUAL_ID:
-			return getGEFWrapper(new UsageReorientCommand(req));
-		case DeploymentEditPart.VISUAL_ID:
-			return getGEFWrapper(new DeploymentReorientCommand(req));
 		case RoleBindingEditPart.VISUAL_ID:
 			return getGEFWrapper(new RoleBindingReorientCommand(req));
-		case DependencyEditPart.VISUAL_ID:
-			return getGEFWrapper(new DependencyReorientCommand(req));
-		case InformationFlowEditPart.VISUAL_ID:
-			return getGEFWrapper(new InformationFlowReorientCommand(req));
 		}
 		return super.getReorientRelationshipCommand(req);
 	}
