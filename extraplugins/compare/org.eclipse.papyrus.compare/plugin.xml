@@ -21,14 +21,6 @@
    </extension>
    
    <extension
-         point="org.eclipse.emf.compare.diff.extension">
-      <diffExtension
-            extensionClass="org.eclipse.papyrus.compare.diff.extension.ProcessTaggedValues"
-            fileExtension="uml">
-      </diffExtension>
-   </extension>
-   
-   <extension
          point="org.eclipse.compare.contentMergeViewers">
       <viewer
             class="org.eclipse.papyrus.compare.ui.viewer.content.UMLModelContentMergeViewerCreator"
