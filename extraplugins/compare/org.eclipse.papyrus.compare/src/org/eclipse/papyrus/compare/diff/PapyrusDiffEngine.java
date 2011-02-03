@@ -33,7 +33,7 @@ import org.eclipse.emf.compare.diff.metamodel.util.DiffSwitch;
 import org.eclipse.emf.compare.match.metamodel.MatchModel;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.compare.UMLCompareUtils;
-import org.eclipse.papyrus.compare.diff.extension.TaggedValueElementBuilder;
+import org.eclipse.papyrus.compare.diff.extension.DiffElementExtensionBuilder;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UMLDiffExtension;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UMLDiffFactory;
 import org.eclipse.uml2.uml.Element;
@@ -42,7 +42,7 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 
 public class PapyrusDiffEngine extends GenericDiffEngine {
 
-	private DiffSwitch<DiffElement> myDiffElementBuilder = new TaggedValueElementBuilder();
+	private DiffSwitch<DiffElement> myDiffElementBuilder = new DiffElementExtensionBuilder();
 
 	@Override
 	protected ReferencesCheck getReferencesChecker() {
