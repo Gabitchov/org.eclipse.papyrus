@@ -14,6 +14,9 @@
 package org.eclipse.papyrus.compare.diff;
 
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 
 import org.eclipse.emf.compare.diff.engine.GenericDiffEngine;
@@ -34,7 +37,6 @@ import org.eclipse.emf.compare.match.metamodel.MatchModel;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.compare.UMLCompareUtils;
 import org.eclipse.papyrus.compare.diff.extension.DiffElementExtensionBuilder;
-import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UMLDiffExtension;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UMLDiffFactory;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.util.UMLUtil;
@@ -42,7 +44,8 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 
 public class PapyrusDiffEngine extends GenericDiffEngine {
 
-	private DiffSwitch<DiffElement> myDiffElementBuilder = new DiffElementExtensionBuilder();
+	private DiffSwitch<AbstractDiffExtension> myDiffElementBuilder = new DiffElementExtensionBuilder();
+	private DiffSwitch<Collection<EObject>> myGetModelElementSwitch = new GetModelElementSwitch();
 
 	@Override
 	protected ReferencesCheck getReferencesChecker() {
@@ -66,61 +69,33 @@ public class PapyrusDiffEngine extends GenericDiffEngine {
 	}
 	
 	protected void visitElement(DiffModel root, DiffElement diffElement) {
-		AbstractDiffExtension hack = UMLDiffFactory.eINSTANCE.createUpdateTaggedValue();
-		EObject stereotypeApplication = getStereotypeApplication(diffElement);
-		boolean hasStereotypeApplication = stereotypeApplication != null; 
-		if(hasStereotypeApplication) {			
-			hack.getHideElements().add(diffElement);
-			
-			Element newVisualParent = UMLUtil.getBaseElement(stereotypeApplication);
-			DiffElement newDiffParent = findOrCreateDiffElementFor(root, newVisualParent);
-			DiffElement taggedValueDiff = myDiffElementBuilder.doSwitch(diffElement);
-			newDiffParent.getSubDiffElements().add(taggedValueDiff);
+
+		Collection<EObject> elements = myGetModelElementSwitch.doSwitch(diffElement);
+		for (EObject stereotypeApplication: elements) {
+			if(UMLCompareUtils.isStereotypeApplication(stereotypeApplication)) {
+				
+				Element newVisualParent = UMLUtil.getBaseElement(stereotypeApplication);
+				DiffElement newDiffParent = findOrCreateDiffElementFor(root, newVisualParent);
+				AbstractDiffExtension taggedValueDiff = myDiffElementBuilder.doSwitch(diffElement);
+				
+				newDiffParent.getSubDiffElements().add((DiffElement)taggedValueDiff);
+				hideElement(diffElement, taggedValueDiff);
+			} 
 		}
+
 		if (diffElement instanceof MoveModelElement) {
-			// HACK
-			hack.getHideElements().add(diffElement);
+			//HACK
+			hideElement(diffElement, null);
 		}
 	}
 	
-	protected EObject getStereotypeApplication(DiffElement element) {
-		if (element instanceof UMLDiffExtension) {
-			return null;
+	private void hideElement(DiffElement diffElement, AbstractDiffExtension diffExtension) {
+		if (diffExtension == null) {
+			diffExtension = UMLDiffFactory.eINSTANCE.createAddStereotypeApplication();
 		}
-		if(element instanceof AttributeChange) {
-			AttributeChange attributeChange = (AttributeChange)element;
-			EObject stereotypeApplication = attributeChange.getRightElement();
-			if(UMLCompareUtils.isStereotypeApplication(stereotypeApplication)) {
-				return stereotypeApplication;
-			} 
-			stereotypeApplication = attributeChange.getLeftElement();
-			if(UMLCompareUtils.isStereotypeApplication(stereotypeApplication)) {
-				return stereotypeApplication;
-			} 
-		} else if(element instanceof ReferenceChange) {
-			ReferenceChange referenceChange = (ReferenceChange)element;
-			EObject stereotypeApplication = referenceChange.getLeftElement();
-			if(UMLCompareUtils.isStereotypeApplication(stereotypeApplication)) {
-				return stereotypeApplication;
-			} 
-			stereotypeApplication = referenceChange.getRightElement();
-			if(UMLCompareUtils.isStereotypeApplication(stereotypeApplication)) {
-				return stereotypeApplication;
-			} 
-		} else if (element instanceof ModelElementChangeLeftTarget) {
-			EObject stereotypeApplication = ((ModelElementChangeLeftTarget)element).getLeftElement();
-			if(UMLCompareUtils.isStereotypeApplication(stereotypeApplication)) {
-				return stereotypeApplication;
-			} 
-		} else if (element instanceof ModelElementChangeRightTarget) {
-			EObject stereotypeApplication = ((ModelElementChangeRightTarget)element).getRightElement();
-			if(UMLCompareUtils.isStereotypeApplication(stereotypeApplication)) {
-				return stereotypeApplication;
-			} 
-		}
-		return null;
+		diffExtension.getHideElements().add(diffElement);
 	}
-
+	
 	private DiffElement findOrCreateDiffElementFor(DiffModel root, EObject object) {
 		if(object == null) {
 			if(!root.getOwnedElements().isEmpty()) {
@@ -162,24 +137,52 @@ public class PapyrusDiffEngine extends GenericDiffEngine {
 	}
 
 	private boolean isPertinentDiff(DiffElement diff, EObject modelElement) {
-		EObject curr = getModelElement(diff);
-		return modelElement.equals(curr) || modelElement.equals(getMatchedEObject(curr));
+		Collection<EObject> domainElements = myGetModelElementSwitch.doSwitch(diff);
+		for (EObject curr: domainElements) {
+			if (modelElement.equals(curr) || modelElement.equals(getMatchedEObject(curr))) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
-	private EObject getModelElement(DiffElement diff) {
-		if(diff instanceof DiffGroup) {
-			return ((DiffGroup)diff).getRightParent();
+	private class GetModelElementSwitch extends DiffSwitch<Collection<EObject>> {
+		
+		@Override
+		public Collection<EObject> caseDiffGroup(DiffGroup object) {
+			return Collections.singletonList(object.getRightParent());
 		}
-		if(diff instanceof ModelElementChangeLeftTarget) {
-			return ((ModelElementChangeLeftTarget)diff).getLeftElement();
+		
+		@Override
+		public Collection<EObject> caseModelElementChangeLeftTarget(ModelElementChangeLeftTarget object) {
+			return Collections.singletonList(object.getLeftElement());
 		}
-		if(diff instanceof ModelElementChangeRightTarget) {
-			return ((ModelElementChangeRightTarget)diff).getRightElement();
+		
+		@Override
+		public Collection<EObject> caseModelElementChangeRightTarget(ModelElementChangeRightTarget object) {
+			return Collections.singletonList(object.getRightElement());
 		}
-		if(diff instanceof UpdateModelElement) {
-			return ((UpdateModelElement)diff).getLeftElement();
+		
+		@Override
+		public Collection<EObject> caseUpdateModelElement(UpdateModelElement object) {
+			return Collections.singletonList(object.getLeftElement());
 		}
-		return null;
+		
+		@Override
+		public Collection<EObject> caseAttributeChange(AttributeChange object) {
+			return Arrays.asList(new EObject[]{
+				object.getLeftElement(), 
+				object.getRightElement(),
+				});
+		}
+		
+		@Override
+		public Collection<EObject> caseReferenceChange(ReferenceChange object) {
+			return Arrays.asList(new EObject[]{
+				object.getLeftElement(), 
+				object.getRightElement(),
+				});
+		}
 		
 	}
 }

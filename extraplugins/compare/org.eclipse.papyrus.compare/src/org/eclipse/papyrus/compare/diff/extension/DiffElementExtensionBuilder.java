@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.compare.diff.extension;
 
+import org.eclipse.emf.compare.diff.metamodel.AbstractDiffExtension;
 import org.eclipse.emf.compare.diff.metamodel.AttributeChange;
 import org.eclipse.emf.compare.diff.metamodel.AttributeChangeLeftTarget;
 import org.eclipse.emf.compare.diff.metamodel.AttributeChangeRightTarget;
@@ -32,36 +33,36 @@ import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UMLDiffFact
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UpdateTaggedValue;
 
 
-public class DiffElementExtensionBuilder extends DiffSwitch<DiffElement> {
+public class DiffElementExtensionBuilder extends DiffSwitch<AbstractDiffExtension> {
 	
 	@Override
-	public DiffElement caseDiffElement(DiffElement object) {
+	public AbstractDiffExtension caseDiffElement(DiffElement object) {
 		throw new UnsupportedOperationException();
 	}
 	
 	@Override
-	public DiffElement caseModelElementChangeLeftTarget(ModelElementChangeLeftTarget object) {
+	public AbstractDiffExtension caseModelElementChangeLeftTarget(ModelElementChangeLeftTarget object) {
 		RemoveStereotypeApplication newElement = UMLDiffFactory.eINSTANCE.createRemoveStereotypeApplication();
 		newElement.setLeftElement(object.getLeftElement());
 		return newElement;
 	}
 	
 	@Override
-	public DiffElement caseModelElementChangeRightTarget(ModelElementChangeRightTarget object) {
+	public AbstractDiffExtension caseModelElementChangeRightTarget(ModelElementChangeRightTarget object) {
 		AddStereotypeApplication newElement = UMLDiffFactory.eINSTANCE.createAddStereotypeApplication();
 		newElement.setRightElement(object.getRightElement());
 		return newElement;
 	}
 	
 	@Override
-	public DiffElement caseAttributeChange(AttributeChange object) {
+	public AbstractDiffExtension caseAttributeChange(AttributeChange object) {
 		TaggedValueChange newElement = UMLDiffFactory.eINSTANCE.createUpdateTaggedValue();
 		initTaggedValueDiff(newElement, object);
 		return newElement;
 	}
 	
 	@Override
-	public DiffElement caseAttributeChangeLeftTarget(AttributeChangeLeftTarget object) {
+	public AbstractDiffExtension caseAttributeChangeLeftTarget(AttributeChangeLeftTarget object) {
 		TaggedValueChangeLeftTarget newElement = UMLDiffFactory.eINSTANCE.createTaggedValueChangeLeftTarget();
 		initTaggedValueDiff(newElement, object);
 		newElement.setLeftTarget(object.getLeftTarget());
@@ -69,7 +70,7 @@ public class DiffElementExtensionBuilder extends DiffSwitch<DiffElement> {
 	}
 	
 	@Override
-	public DiffElement caseAttributeChangeRightTarget(AttributeChangeRightTarget object) {
+	public AbstractDiffExtension caseAttributeChangeRightTarget(AttributeChangeRightTarget object) {
 		TaggedValueChangeRightTarget newElement = UMLDiffFactory.eINSTANCE.createTaggedValueChangeRightTarget();
 		initTaggedValueDiff(newElement, object);
 		newElement.setRightTarget(object.getRightTarget());
@@ -77,14 +78,14 @@ public class DiffElementExtensionBuilder extends DiffSwitch<DiffElement> {
 	}
 	
 	@Override
-	public DiffElement caseUpdateAttribute(UpdateAttribute object) {
+	public AbstractDiffExtension caseUpdateAttribute(UpdateAttribute object) {
 		UpdateTaggedValue newElement = UMLDiffFactory.eINSTANCE.createUpdateTaggedValue();
 		initTaggedValueDiff(newElement, object);
 		return newElement;
 	}
 	
 	@Override
-	public DiffElement caseReferenceChange(ReferenceChange object) {
+	public AbstractDiffExtension caseReferenceChange(ReferenceChange object) {
 		TaggedValueReferenceChange newElement = UMLDiffFactory.eINSTANCE.createTaggedValueReferenceChange();
 		newElement.setLeftElement(object.getLeftElement());
 		newElement.setRightElement(object.getRightElement());
