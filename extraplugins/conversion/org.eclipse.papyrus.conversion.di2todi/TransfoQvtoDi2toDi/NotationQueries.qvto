@@ -65,6 +65,19 @@ query di2::Diagram::getDiagramtype() : String
 	return null;
 }
 
+query di2::GraphElement::getDiagramtype() : String {
+	var parent : Stdlib::Element := self.container();
+	
+	if (parent.oclIsTypeOf (di2::Diagram)) then {
+		return parent.oclAsType (di2::Diagram).getDiagramtype();
+	}
+	else {
+		if (parent.oclIsTypeOf (di2::GraphElement)) then {
+			return parent.oclAsType (di2::GraphElement).getDiagramtype();
+		} endif;
+	} endif;
+	return null;
+}
 
 query di2::GraphNode::getOperations() : OrderedSet(ecore::EObject)
 {

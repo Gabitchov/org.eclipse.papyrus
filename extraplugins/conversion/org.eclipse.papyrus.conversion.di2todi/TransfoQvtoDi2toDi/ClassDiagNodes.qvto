@@ -15,80 +15,56 @@ modeltype uml uses 'http://www.eclipse.org/uml2/2.1.0/UML';
 
 mapping di2::GraphNode::classDiagNode2Shape() : notation::Shape inherits di2::GraphNode::node2Shape
 {
+	eAnnotations := setEAnnotations ();
+
 	if (self.getElement().oclIsTypeOf(uml::Class)) then {
 		type := VisualId_Class;
+	  	children := setChildrenForClass(self);
+	    styles := setStylesForClass();
 	} endif;
 	if (self.getElement().oclIsTypeOf(uml::Comment)) then {
 		type := VisualId_Comment;
+	  	children := setChildrenForComment();
 	} endif;
 	if (self.getElement().oclIsTypeOf(uml::Profile)) then {
 		type := VisualId_Profile;
+	  	children := setChildrenForProfile(self);		
 	} endif;
 	if (self.getElement().oclIsTypeOf(uml::Stereotype)) then {
 		type := VisualId_Stereotype;
+	  	children := setChildrenForStereotype();		
 	} endif;
 	if (self.getElement().oclIsTypeOf(uml::Package)) then {
 		type := VisualId_Package;
+	  	children := setChildrenForPackage(self);
 	} endif;
 	if (self.getElement().oclIsTypeOf(uml::Enumeration)) then {
 		type := VisualId_Enum;
+	  	children := setChildrenForEnum(self);
 	} endif;
 	if (self.getElement().oclIsTypeOf(uml::Interface)) then {
 		type := VisualId_Interface;
+	  	children := setChildrenForInterface(self);
 	} endif;
 	if (self.getElement().oclIsTypeOf(uml::PrimitiveType)) then {
 		type := VisualId_PrimitiveType;
+	  	children := setChildrenForPrimitiveType(self);
 	} endif;
 	if (self.getElement().oclIsTypeOf(uml::DataType)) then {
 		type := VisualId_DataType;
+	  	children := setChildrenForDataType(self);		
 	} endif;
 	if (self.getElement().oclIsTypeOf(uml::Model)) then {
 		type := VisualId_Package;
 	} endif;
 	if (self.getElement().oclIsTypeOf(uml::Component)) then {
 		type := VisualId_Component;
+	  	children := setChildrenForComponent(self);
 	} endif;
 	if (self.getElement().oclIsTypeOf(uml::RedefinableTemplateSignature)) then {
 		type := VisualId_RedefinableTemplateSig;
-	} endif;	
-	
-	--adding 3 eAnnotations (shared by all: Class, Comment, Package, interface, primitiveType, datatype,Enumeration)
-	--often children and/or style
-	eAnnotations := setEAnnotations ();
-	if type = VisualId_Class then {
-	  	children := setChildrenForClass(self);
-	    styles := setStylesForClass();
-	} endif;
-	if type = VisualId_Component then {
-	  	children := setChildrenForComponent(self);
-	} endif;
-	if type = VisualId_Comment then {
-	  	children := setChildrenForComment();
-	} endif;
-	if type = VisualId_Package then {
-	  	children := setChildrenForPackage(self);
-	} endif;
-	if type = VisualId_Enum then {
-	  	children := setChildrenForEnum(self);
-	} endif;
-	if type = VisualId_Interface then {
-	  	children := setChildrenForInterface(self);
-	} endif;
-	if type = VisualId_PrimitiveType then {
-	  	children := setChildrenForPrimitiveType(self);
-	} endif;
-	if type = VisualId_DataType then {
-	  	children := setChildrenForDataType(self);		
-	} endif;
-	if type = VisualId_Profile then {
-	  	children := setChildrenForProfile(self);		
-	} endif;
-	if type = VisualId_Stereotype then {
-	  	children := setChildrenForStereotype();		
-	} endif;
-	if type = VisualId_RedefinableTemplateSig then {
 	  	children := setChildrenForRedefinableTemplateSignature(self); 			
-	} endif;
+	} endif;	
 }
 
 
@@ -97,26 +73,6 @@ mapping di2::GraphNode::classDiagNode2Shape() : notation::Shape inherits di2::Gr
 --basic compartment typed 7018
 helper setChildrenForClass (in node:di2::GraphNode) : OrderedSet(notation::Node)
 {
-   --<children xmi:type="notation:DecorationNode" type="5029"/>
-
-    --<children xmi:type="notation:BasicCompartment"  type="7017">
-    --  <styles xmi:type="notation:SortingStyle" />
-    -- <styles xmi:type="notation:FilteringStyle"/>
-    -- <layoutConstraint xmi:type="notation:Bounds" />
-   --</children>
-
-   -- <children xmi:type="notation:BasicCompartment" type="7018">
-   --   <styles xmi:type="notation:SortingStyle" xmi:id="..."/>
-   --   <styles xmi:type="notation:FilteringStyle" xmi:id=".../>
-   --   <layoutConstraint xmi:type="notation:Bounds" xmi:id="..."/>
-   -- </children>
-
-   -- <children xmi:type="notation:BasicCompartment" xmi:id="..." type="7019">
-   --   <styles xmi:type="notation:SortingStyle" xmi:id="..."/>
-   --  <styles xmi:type="notation:FilteringStyle" xmi:id="..."/>
-   --  <layoutConstraint xmi:type="notation:Bounds" xmi:id="..."/>
-   -- </children>
-
 	-- first child	
 	var child1 := object notation::DecorationNode {
 		type := VisualId_Class_Label;
@@ -252,11 +208,6 @@ helper setChildrenForPrimitiveType (in node:di2::GraphNode) : OrderedSet(notatio
 --for a data type
 helper setChildrenForDataType (in node:di2::GraphNode) : OrderedSet(notation::Node)
 {
-    -- <children xmi:type="notation:DecorationNode" xmi:id="_i40XxNMjEd-9-ci4J3MfKg" type="5020"/>
-    -- <children xmi:type="notation:DecorationNode" xmi:id="_i40XxdMjEd-9-ci4J3MfKg" type="7009">
-    --  <layoutConstraint xmi:type="notation:Bounds" xmi:id="_i40XxtMjEd-9-ci4J3MfKg"/>
-    -- </children>
-
 	-- first child	
 	var child1 := object notation::DecorationNode {
 		type := "5035";
@@ -308,16 +259,9 @@ helper setChildrenForDataType (in node:di2::GraphNode) : OrderedSet(notation::No
 --for an interface
 helper setChildrenForInterface (in node:di2::GraphNode) : OrderedSet(notation::Node)
 {
-    -- <children xmi:type="notation:DecorationNode" xmi:id="_i40XxNMjEd-9-ci4J3MfKg" type="5020"/>
-    -- <children xmi:type="notation:DecorationNode" xmi:id="_i40XxdMjEd-9-ci4J3MfKg" type="7009">
-    --  <layoutConstraint xmi:type="notation:Bounds" xmi:id="_i40XxtMjEd-9-ci4J3MfKg"/>
-    -- </children>
-
-	-- first child	
-		-- first child	
+ 	-- first child	
 	var child1 := object notation::DecorationNode {
 		type := "5011";
-		--the id is set automatically
 	};
 
 	-- second child	
@@ -385,13 +329,6 @@ helper setChildrenForInterface (in node:di2::GraphNode) : OrderedSet(notation::N
 --for an enumeration
 helper setChildrenForEnum (in node : di2::GraphNode) : OrderedSet(notation::Node)
 {
-    -- <children xmi:type="notation:DecorationNode" xmi:id="_WrbFYtP1Ed-9-ci4J3MfKg" type="5023"/>
-    -- <children xmi:type="notation:BasicCompartment" xmi:id="_WrbFY9P1Ed-9-ci4J3MfKg" type="7015">
-    --  <styles xmi:type="notation:SortingStyle" xmi:id="_WrbFZNP1Ed-9-ci4J3MfKg"/>
-    --  <styles xmi:type="notation:FilteringStyle" xmi:id="_WrbFZdP1Ed-9-ci4J3MfKg"/>
-    --  <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WrbFZtP1Ed-9-ci4J3MfKg"/>
-    --</children>
-
 	-- first child	
 	var child1 := object notation::DecorationNode {
 		type := VisualId_Enum_Label;

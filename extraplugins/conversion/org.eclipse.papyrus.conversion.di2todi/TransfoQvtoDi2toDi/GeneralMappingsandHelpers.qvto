@@ -37,25 +37,21 @@ mapping di2::GraphNode::node2Shape() : notation::Shape inherits di2::GraphElemen
 	fillColor := self.backgroundColor.rgb2int();
 	fontColor := self.fontColor.rgb2int();
 
-	if (self.oclIsTypeOf(di2::GraphNode)) then {
-		layoutConstraint := object notation::Bounds {
-			var size : notation::Size := self.oclAsType(di2::GraphNode).size.map dimension2Size();
-		
-			var relativeLocation: notation::Location :=null;
-		
-			var location : notation::Location :=
-			self.position.map point2Location();
-			x := location.x; 
-			y := location.y; 
-			width := size.width;
-			height := size.height;
-			if (self.container.oclIsTypeOf(di2::GraphNode)) then {
-				// correct position (why necessary??) of nested items
-				y := y - 20;
-			} endif;
-		};
-		
-	} endif;
+	layoutConstraint := object notation::Bounds {
+		var size : notation::Size := self.oclAsType(di2::GraphNode).size.map dimension2Size();
+
+		var relativeLocation: notation::Location :=null;
+	
+		var location : notation::Location := self.position.map point2Location();
+		x := location.x;
+		y := location.y;
+		width := size.width;
+		height := size.height;
+		if (self.container.oclIsTypeOf(di2::GraphNode)) then {
+			// correct position (why necessary??) of nested items
+			y := y - 20;
+		} endif;
+	}
 }
 
 -------------------------------------------------------------------------------------------------------------------------
@@ -91,8 +87,8 @@ helper setEAnnotations() : OrderedSet (ecore::EAnnotation)
 		--eAnnot1.eModelElement:=self.resolveone(notation::Node);
 		source := "ShadowFigure";
 		details := object ecore::EStringToStringMapEntry {
-			key:="ShadowFigure_Value";
-			value:="false";
+			key   := "ShadowFigure_Value";
+			value := "false";
 		};
 	};
 
@@ -101,8 +97,8 @@ helper setEAnnotations() : OrderedSet (ecore::EAnnotation)
 		--the id is set automatically
 		source := "displayNameLabelIcon";
 		details := object ecore::EStringToStringMapEntry {
-			 key:="displayNameLabelIcon_value";
-			 value:="false";
+			 key   := "displayNameLabelIcon_value";
+			 value := "false";
 		};
 	};
 	
@@ -111,8 +107,8 @@ helper setEAnnotations() : OrderedSet (ecore::EAnnotation)
 		-- the id is set automatically	
 		source := "QualifiedName";
 		details := object ecore::EStringToStringMapEntry {
-			key:="QualifiedNameDepth";
-			value:="1000";
+			key   := "QualifiedNameDepth";
+			value := "1000";
 		};	
 	};
 
@@ -130,8 +126,8 @@ helper noTypeEAnnotation() : OrderedSet (ecore::EAnnotation)
 		--eAnnot1.eModelElement:=self.resolveone(notation::Node);
 		source := "CustomAppearance_Annotation";
 		details := object ecore::EStringToStringMapEntry {
-			key     := "CustomAppearance_MaskValue";
-			value	:= "14";
+			key   := "CustomAppearance_MaskValue";
+			value := "14";
 		};
 	};
 	return OrderedSet {

@@ -2,6 +2,7 @@
 
 library HelpersEdge;
 import GeneralMappingsandHelpers;
+import NotationQueries;
 import ClassAndProfileDiagEdgeVisualIDs;
 
 modeltype di2 uses 'http://www.papyrusuml.org/di2';
@@ -26,7 +27,7 @@ mapping di2::GraphEdge::classAndProfileDiagEdge2Edge() : notation::Connector inh
 	 		--adding children
 			// children := setChildrenForExtension();
 		} else {
-			// extension is also an association, use "else" (else if is unfortunatley not supported)
+			// extension is also an association, use "else" (else if is unfortunatley not supported in QVTO)
 			if (self.getElement().isAssociation()) then {
 				type := VisualId_Edge_Association;
 				children := setChildrenForAssociation();
@@ -49,8 +50,16 @@ mapping di2::GraphEdge::classAndProfileDiagEdge2Edge() : notation::Connector inh
 	}
 	else {
 		--it is  a link
-		type := VisualId_Edge_Link;
-		element:=null;
+		var diagType : String = self.getDiagramtype ();
+		if (diagType = ClassDiagram_P2) then {
+			type := VisualId_CEdge_Link;
+		}
+		else {
+			if (diagType = ProfileDiagram_P2) then {
+				type := VisualId_PEdge_Link;
+			} endif;
+		} endif;
+		element := null;
 	} endif;
 	
 	--setting the source and target Anchors

@@ -2,13 +2,13 @@
 
 library HelpersEdge;
 import GeneralMappingsandHelpers;
-import CompositeDiagVisualIDs;
+import StateDiagVisualIDs;
 
 modeltype di2 uses 'http://www.papyrusuml.org/di2';
 modeltype notation uses 'http://www.eclipse.org/gmf/runtime/1.0.2/notation';
 modeltype uml uses 'http://www.eclipse.org/uml2/2.1.0/UML';
 
-mapping di2::GraphEdge::compositeDiagEdge2Edge() : notation::Connector inherits di2::GraphElement::Element2View
+mapping di2::GraphEdge::stateDiagEdge2Edge() : notation::Connector inherits di2::GraphEdge::edge2Connector
 {
 	-----------------------------------------------------------------------
 	--under an Edge "association"
@@ -26,16 +26,15 @@ mapping di2::GraphEdge::compositeDiagEdge2Edge() : notation::Connector inherits 
 	--setting the type and children
 	if (self.getElement() != null) then {
 	
-		if (self.getElement().isGeneralization()) then {
-	 		type := VisualId_Edge_GeneralizationComp;
+		if (self.getElement().oclIsTypeOf(uml::Transition)) then {
+	 		type := VisualId_Edge_Transition;
 	 		--adding children
-			children := setChildrenForGeneralization();
+			children := setChildrenForTransition();
 		} endif;
-		if (self.getElement().oclIsTypeOf(uml::Connector)) then {
-			type := VisualId_Edge_Link;
-			--adding children
-			children:=setChildrenForConnector();
-		} endif;
+	}
+	else {
+		--type := VisualId_Edge_Link;
+		--adding children
 	} endif;
 	
 	--setting the source and target Anchors
@@ -90,7 +89,7 @@ helper setChildrenForEdge2Children(in VisualId1: String, in VisualId2: String): 
 }
 
 
-helper setChildrenForGeneralization(): OrderedSet(notation::Node)
+helper setChildrenForTransition(): OrderedSet(notation::Node)
 {    
 	 --<children xmi:type="notation:DecorationNode"  type="6007">
       --  <layoutConstraint xmi:type="notation:Location"  y="40"/>
@@ -99,32 +98,31 @@ helper setChildrenForGeneralization(): OrderedSet(notation::Node)
 	var child1 := object notation::DecorationNode {
 		--the id is set automatically
 		--type := VisualId_DecoNodeGeneralization;
-		type := VisualId_DecoNodeGeneralizationComp;
+		type := VisualId_Edge_Transition_DecoNode1;
 		layoutConstraint := object notation::Location {
-			y := 40;
+			y := 10;
 		};
 	};
-	
-	return OrderedSet {child1};
-}
-
-
-
-helper setChildrenForConnector(): OrderedSet(notation::Node)
-{    
-	 --<children xmi:type="notation:DecorationNode"   type="6025">
-     -- <layoutConstraint xmi:type="notation:Location"  y="60"/>
-     --</children>
- 
-	var child1 := object notation::DecorationNode {
+	var child2 := object notation::DecorationNode {
 		--the id is set automatically
-		type := VisualId_Edge_Connector_Child;
+		--type := VisualId_DecoNodeGeneralization;
+		type := VisualId_Edge_Transition_DecoNode2;
 		layoutConstraint := object notation::Location {
-			y := 60;
+			y := 20;
 		};
 	};
-	
-	return OrderedSet {child1};
+	var child3 := object notation::DecorationNode {
+		--the id is set automatically
+		--type := VisualId_DecoNodeGeneralization;
+		type := VisualId_Edge_Transition_DecoNode3;
+		layoutConstraint := object notation::Location {
+			y := 20;
+		};
+	};
+
+	return OrderedSet {
+		child1, child2, child3
+	};
 }
 
 

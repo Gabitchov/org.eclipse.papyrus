@@ -153,7 +153,7 @@ public class UtilitiesLibrary {
 		// and thus detects elements referenced by the di2 model that do not exist (anymore) in the
 		// uml model
 		Element element = bridge.getElement();
-		if (element.eIsProxy()) {
+		if ((element != null) && element.eIsProxy()) {
 			// is still proxy (the getElement implementation of Uml1SemanticModelBridge already tried to
 			// resolve) => return null
 			return null;

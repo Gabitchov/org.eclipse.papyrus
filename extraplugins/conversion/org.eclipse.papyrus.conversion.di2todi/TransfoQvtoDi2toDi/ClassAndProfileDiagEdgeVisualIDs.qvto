@@ -27,8 +27,9 @@ property VisualId_Edge_Realization				: String = "4005";
 property VisualId_Edge_Realization_DecoNode1	: String = "6012";
 property VisualId_Edge_Realization_DecoNode2	: String = "6013";
 
---for a link
-property VisualId_Edge_Link					: String = "4013";
+--for a link (different for profile and class!)
+property VisualId_CEdge_Link					: String = "4013";
+property VisualId_PEdge_Link					: String = "1022";
 
 --for a package import
 property VisualId_Edge_PackageImport			: String = "1065";

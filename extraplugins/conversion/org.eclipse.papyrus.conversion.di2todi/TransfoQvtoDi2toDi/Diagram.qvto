@@ -2,9 +2,11 @@
 library Diagram;
 
 import ClassDiagNodes;
+import StateDiagNodes;
 import ProfileDiagNodes;
 import ClassAndProfileDiagEdges;
 import CompositeDiagNodes;
+import StateDiagEdges;
 import CompositeDiagEdges;
 
 --import VisualIDs;
@@ -43,9 +45,15 @@ mapping di2::Diagram::diagram2diagram() : notation::Diagram inherits di2::GraphE
 		children := setChildrenForCompositeDiagram(self.contained);
 		edges := setEdgesForCompositeDiagram(self.contained);
 	} endif;
+	if (type = StateMachineDiagram_P2) then {
+		children := setChildrenForStateDiagram(self.contained);
+		edges := setEdgesForStateDiagram(self.contained);
+	} endif;
 
 	--Set Style of diagram
-	styles := setStylesForDiagram();
+	if (type != null) then {
+		styles := setStylesForDiagram();
+	} endif;
 }
 
 
@@ -103,8 +111,18 @@ helper setChildrenForProfileDiagram (in contained:OrderedSet(di2::DiagramElement
 	return setOfChildren;
 }
 
-----------------------------------------------------------------
---converting edges
+--converting a state diagram 
+helper setChildrenForStateDiagram (in contained:OrderedSet(di2::DiagramElement)) : OrderedSet(notation::Node)
+{
+	var setOfChildren:OrderedSet(notation::Node); 
+	var child:notation::Node;																
+	contained ->forEach (node|node.oclIsTypeOf(di2::GraphNode)) {
+			child := node.oclAsType(di2::GraphNode).map stateDiagNode2Shape();
+			setOfChildren += child;
+	};								
+
+	return setOfChildren;
+}
 
 helper setEdgesForClassAndProfileDiagram (in contained : OrderedSet(di2::DiagramElement)) : OrderedSet (notation::Edge)
 {
@@ -154,6 +172,29 @@ helper setEdgesForCompositeDiagram (in contained : OrderedSet(di2::DiagramElemen
 	return setofEdges;
 }
 
+helper setEdgesForStateDiagram (in contained : OrderedSet(di2::DiagramElement)) : OrderedSet (notation::Edge)
+{
+	var setofEdges : OrderedSet(notation::Edge); 
+	var edge : notation::Edge;																
+	contained->forEach (node|node.oclIsTypeOf(di2::GraphEdge)) {
+			edge := node.oclAsType(di2::GraphEdge).map stateDiagEdge2Edge();
+			setofEdges += edge;
+	};
+	contained->forEach (composite|composite.oclIsTypeOf(di2::GraphNode)) {
+			composite.oclAsType(di2::GraphNode).contained->forEach (elem|elem.oclIsTypeOf(di2::GraphEdge)) {
+				edge := elem.oclAsType(di2::GraphEdge).map stateDiagEdge2Edge();
+				setofEdges += edge;
+			};
+			composite.oclAsType(di2::GraphNode).contained->forEach (prop|prop.oclIsTypeOf(di2::GraphNode)) {
+				prop.oclAsType(di2::GraphNode).contained->forEach (connect|connect.oclIsTypeOf(di2::GraphEdge)) {
+					edge := connect.oclAsType(di2::GraphEdge).map stateDiagEdge2Edge();
+					setofEdges += edge;
+				};					
+			};				
+	};
+	
+	return setofEdges;
+}
 
 --------------------------------
 --Helpers related to a diagram

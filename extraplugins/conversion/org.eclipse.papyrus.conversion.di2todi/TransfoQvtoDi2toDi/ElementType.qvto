@@ -21,3 +21,5 @@ property SequenceDiagram_P1     : String = "SequenceDiagram";
 property ComponentDiagram_P1    : String = "ComponentDiagram";
 property StateMachineDiagram_P1 : String = "StateMachineDiagram";
 property UseCaseDiagram_P1      : String = "UseCaseDiagram";
+-- does not exist in MDT
+-- property DeploymentDiagram_P1   : String = "DeploymentDiagram";
