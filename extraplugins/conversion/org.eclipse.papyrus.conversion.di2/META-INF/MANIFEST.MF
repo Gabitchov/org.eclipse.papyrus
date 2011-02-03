@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: di2 model code
+Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.conversion.di2;singleton:=true
 Bundle-Version: 0.8.0.qualifier
 Bundle-ClassPath: .
-Bundle-Vendor: CEA LIST
+Bundle-Vendor: %pluginProvider
 Bundle-Localization: plugin
 Export-Package: org.eclipse.papyrus.conversion.di2,
  org.eclipse.papyrus.conversion.di2.impl,
