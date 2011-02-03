@@ -23,7 +23,7 @@ http://www.eclipse.org/legal/epl-v10.html
    </license>
 
    <url>
-      <discovery label="%updateSiteName" url="http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/"/>
+      <discovery label="%updateSiteName" url="http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/helios"/>
    </url>
 
    <includes
