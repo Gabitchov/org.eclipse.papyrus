@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.menu.providers;
 
 import org.eclipse.emf.ecore.ENamedElement;
@@ -16,7 +29,12 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
-
+/**
+ * abstract class for the Line Style action, which are represented with toggle buttons
+ * 
+ * 
+ * 
+ */
 public abstract class AbstractLineStyleToggleState extends ToggleState implements ISelectionListener {
 
 	/** the parameter for this toggle */
@@ -36,7 +54,9 @@ public abstract class AbstractLineStyleToggleState extends ToggleState implement
 		this.parameter = parameter;
 		setValue(false);
 		addSelectionListener();
-		updateStatus(serv.getSelection());
+		if(serv != null) {
+			updateStatus(serv.getSelection());
+		}
 	}
 
 	/***
@@ -70,6 +90,11 @@ public abstract class AbstractLineStyleToggleState extends ToggleState implement
 		updateStatus(selection);
 	}
 
+	/**
+	 * 
+	 * @param selection
+	 *        update the status of the lineStyleAction
+	 */
 	protected void updateStatus(ISelection selection) {
 		boolean newValue = false;
 		if(selection instanceof IStructuredSelection) {
@@ -98,5 +123,18 @@ public abstract class AbstractLineStyleToggleState extends ToggleState implement
 		}
 		//		((DiagramGraphicalViewer)getDiagramGraphicalViewer()).getWorkspaceViewerPreferenceStore().setValue(id, !isChecked());
 		setValue(newValue);
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.core.commands.State#dispose()
+	 * 
+	 */
+	@Override
+	public void dispose() {
+		if(serv != null) {
+			serv.removeSelectionListener(this);
+		}
+		super.dispose();
 	}
 }
