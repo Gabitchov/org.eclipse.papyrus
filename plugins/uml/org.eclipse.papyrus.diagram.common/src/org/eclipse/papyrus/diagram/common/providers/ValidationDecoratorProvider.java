@@ -128,6 +128,11 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 		private String viewId;
 
 		/**
+		 * Store a copy of the editingDomain;
+		 */
+		private TransactionalEditingDomain editingDomain;
+
+		/**
 		 * @generated
 		 */
 		public StatusDecorator(IDecoratorTarget decoratorTarget) {
@@ -138,6 +143,7 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 
 					public void run() {
 						StatusDecorator.this.viewId = view != null ? ViewUtil.getIdStr(view) : null;
+						StatusDecorator.this.editingDomain = TransactionUtil.getEditingDomain(view);
 					}
 				});
 			} catch (Exception e) {
@@ -205,7 +211,7 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 				} else {
 					// get marker from EMF list
 					marker = emfMarkers[i - gmfMarkers.length];
-					EObject eObjectOfMarker = ValidationUtils.eObjectFromMarkerOrMap(marker, null, TransactionUtil.getEditingDomain(view));
+					EObject eObjectOfMarker = ValidationUtils.eObjectFromMarkerOrMap(marker, null, editingDomain);
 					markerIsForMe = (eObjectOfMarker == view.getElement());
 				}
 				if(markerIsForMe) {
@@ -285,24 +291,19 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 				allDecorators.put(viewId, this);
 			}
 		
-			// start listening to changes in resources
-			View view = (View) getDecoratorTarget().getAdapter(View.class);
-			if(view == null) {
-				return;
-			}
-			TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(view);
-			if(domain == null) {
-				return;
-			}
 			// stop listening to changes in resources if there are no more decorators
-			MarkerObserver fileObserver = fileObservers.get(domain);
+			MarkerObserver fileObserver = fileObservers.get(editingDomain);
 			if (fileObserver == null) {
-				fileObserver = new MarkerObserver(domain);
-				fileObservers.put(domain, fileObserver);
+				fileObserver = new MarkerObserver(editingDomain);
+				fileObservers.put(editingDomain, fileObserver);
 				FileChangeManager.getInstance().addFileObserver(fileObserver);
 			}
-			if (!fileObserver.views.contains(view)) {
-				fileObserver.views.add(view); 
+			// start listening to changes in resources
+			View view = (View) getDecoratorTarget().getAdapter(View.class);
+			if(view != null) {
+				if (!fileObserver.views.contains(view)) {
+					fileObserver.views.add(view); 
+				}
 			}
 		}
 
@@ -318,22 +319,20 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 			allDecorators.remove(viewId);
 			
 			View view = (View)getDecoratorTarget().getAdapter(View.class);
-			if(view == null) {
-				return;
-			}
-			TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(view);
-			if(domain == null) {
+			if ((view == null) || (editingDomain == null)) {
+				// should not happen
+				super.deactivate();
 				return;
 			}
 
 			// stop listening to changes in resources if there are no more decorators
-			MarkerObserver fileObserver = fileObservers.get(domain);
+			MarkerObserver fileObserver = fileObservers.get(editingDomain);
 			if (fileObserver != null) {
 				fileObserver.views.remove(view);
 				if (fileObserver.views.isEmpty()) {
 					// no more views registered for the listener => remove observer
 					FileChangeManager.getInstance().removeFileObserver(fileObserver);
-					fileObservers.remove(domain);
+					fileObservers.remove(editingDomain);
 				}
 			}
 
