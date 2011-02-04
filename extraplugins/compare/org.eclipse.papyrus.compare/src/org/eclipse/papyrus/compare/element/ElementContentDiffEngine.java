@@ -44,39 +44,10 @@ public class ElementContentDiffEngine extends PapyrusDiffEngine {
 	@Override
 	protected void postProcess(DiffModel diffModel) {
 		super.postProcess(diffModel);
-		DiffElement newRoot = getNewRoot(diffModel);
+		//#336361 - [UML Compare] Compare two elements: show right element as root
+		DiffElement newRoot = findDiffElementFor(diffModel, myRight);
 		diffModel.getOwnedElements().clear();
 		diffModel.getOwnedElements().add(newRoot);
-	}
-	
-	private DiffElement getNewRoot(DiffModel diffModel) {
-		for (DiffElement curr: diffModel.getOwnedElements()) {
-			for (EObject element: getModelElementsFor(curr)) {
-				if (myRight.equals(element)) {
-					return curr;
-				}
-				DiffElement found = getNewRoot(curr);
-				if (found != null) {
-					return found;
-				}
-			}
-		}
-		return null;
-	}
-
-	private DiffElement getNewRoot(DiffElement diffElement) {
-		for (DiffElement curr: diffElement.getSubDiffElements()) {
-			for (EObject element: getModelElementsFor(curr)) {
-				if (myRight.equals(element)) {
-					return curr;
-				}
-				DiffElement found = getNewRoot(curr);
-				if (found != null) {
-					return found;
-				}
-			}
-		}
-		return null;
 	}
 	
 	@Override

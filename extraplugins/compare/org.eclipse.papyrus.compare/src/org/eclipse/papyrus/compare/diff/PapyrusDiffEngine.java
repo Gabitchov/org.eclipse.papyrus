@@ -109,7 +109,7 @@ public class PapyrusDiffEngine extends GenericDiffEngine {
 		return modelElement.eContainer();
 	}
 
-	private DiffElement findDiffElementFor(DiffModel root, EObject modelElement) {
+	protected final DiffElement findDiffElementFor(DiffModel root, EObject modelElement) {
 		if(modelElement == null) {
 			return null;
 		}
