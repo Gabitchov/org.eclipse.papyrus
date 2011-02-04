@@ -24,7 +24,6 @@ import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.DiffFactory;
 import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
 import org.eclipse.emf.compare.diff.metamodel.DiffModel;
-import org.eclipse.emf.compare.diff.metamodel.MoveModelElement;
 import org.eclipse.emf.compare.diff.metamodel.util.DiffSwitch;
 import org.eclipse.emf.compare.match.metamodel.MatchModel;
 import org.eclipse.emf.ecore.EObject;
@@ -53,7 +52,7 @@ public class PapyrusDiffEngine extends GenericDiffEngine {
 	}
 
 
-	private void postProcess(DiffModel diffModel) {
+	protected void postProcess(DiffModel diffModel) {
 		final Iterator<EObject> it = diffModel.eAllContents();
 		while(it.hasNext()) {
 			DiffElement diffElement = (DiffElement)it.next();
@@ -63,7 +62,7 @@ public class PapyrusDiffEngine extends GenericDiffEngine {
 	
 	protected void visitElement(DiffModel root, DiffElement diffElement) {
 
-		Collection<EObject> elements = myGetModelElementSwitch.doSwitch(diffElement);
+		Collection<EObject> elements = getModelElementsFor(diffElement);
 		for (EObject stereotypeApplication: elements) {
 			if(UMLCompareUtils.isStereotypeApplication(stereotypeApplication)) {
 				
@@ -125,13 +124,17 @@ public class PapyrusDiffEngine extends GenericDiffEngine {
 	}
 
 	private boolean isPertinentDiff(DiffElement diff, EObject modelElement) {
-		Collection<EObject> domainElements = myGetModelElementSwitch.doSwitch(diff);
+		Collection<EObject> domainElements = getModelElementsFor(diff);
 		for (EObject curr: domainElements) {
 			if (modelElement.equals(curr) || modelElement.equals(getMatchedEObject(curr))) {
 				return true;
 			}
 		}
 		return false;
+	}
+	
+	protected Collection<EObject> getModelElementsFor(DiffElement diff) {
+		return myGetModelElementSwitch.doSwitch(diff);
 	}
 	
 }
