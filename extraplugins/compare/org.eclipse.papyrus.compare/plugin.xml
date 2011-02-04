@@ -44,7 +44,7 @@
                enablesFor="2"
                id="org.eclipse.papyrus.compare.action.CompareTwoElementsAction"
                icon="icons/export_as_html.gif"
-               label="Compare two models"
+               label="Compare"
                menubarPath="UMLCompare/compareTwoElements"/>
       </objectContribution>
    </extension>

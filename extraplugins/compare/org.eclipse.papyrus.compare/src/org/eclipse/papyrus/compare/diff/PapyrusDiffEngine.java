@@ -75,14 +75,9 @@ public class PapyrusDiffEngine extends GenericDiffEngine {
 				hideElement(diffElement, taggedValueDiff);
 			} 
 		}
-
-		if (diffElement instanceof MoveModelElement) {
-			//HACK
-			hideElement(diffElement, null);
-		}
 	}
 	
-	private void hideElement(DiffElement diffElement, AbstractDiffExtension diffExtension) {
+	protected void hideElement(DiffElement diffElement, AbstractDiffExtension diffExtension) {
 		if (diffExtension == null) {
 			diffExtension = UMLDiffFactory.eINSTANCE.createAddStereotypeApplication();
 		}

@@ -15,6 +15,8 @@ package org.eclipse.papyrus.compare.element;
 
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
+import org.eclipse.emf.compare.diff.metamodel.DiffModel;
+import org.eclipse.emf.compare.diff.metamodel.MoveModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.compare.diff.PapyrusDiffEngine;
 
@@ -37,6 +39,16 @@ public class ElementContentDiffEngine extends PapyrusDiffEngine {
 //			return;
 //		}
 		super.addInContainerPackage(root, operation, targetParent);
+	}
+	
+	@Override
+	protected void visitElement(DiffModel root, DiffElement diffElement) {
+		super.visitElement(root, diffElement);
+		if (diffElement instanceof MoveModelElement) {
+			// don't show 'element moved for the root elements'
+			//HACK
+			hideElement(diffElement, null);
+		}
 	}
 
 }
