@@ -21,6 +21,7 @@ import org.eclipse.emf.compare.diff.metamodel.AttributeChange;
 import org.eclipse.emf.compare.diff.metamodel.AttributeChangeLeftTarget;
 import org.eclipse.emf.compare.diff.metamodel.AttributeChangeRightTarget;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
+import org.eclipse.emf.compare.diff.metamodel.DiffModel;
 import org.eclipse.emf.compare.diff.metamodel.ModelElementChange;
 import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeLeftTarget;
 import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeRightTarget;
@@ -124,6 +125,10 @@ public class UMLDiffAdapterFactory extends AdapterFactoryImpl {
 				return createTaggedValueReferenceChangeAdapter();
 			}
 			@Override
+			public Adapter caseCompareTwoElementsDiffModel(CompareTwoElementsDiffModel object) {
+				return createCompareTwoElementsDiffModelAdapter();
+			}
+			@Override
 			public Adapter caseAbstractDiffExtension(AbstractDiffExtension object) {
 				return createAbstractDiffExtensionAdapter();
 			}
@@ -162,6 +167,10 @@ public class UMLDiffAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseReferenceChange(ReferenceChange object) {
 				return createReferenceChangeAdapter();
+			}
+			@Override
+			public Adapter caseDiffModel(DiffModel object) {
+				return createDiffModelAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -310,6 +319,20 @@ public class UMLDiffAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.CompareTwoElementsDiffModel <em>Compare Two Elements Diff Model</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.CompareTwoElementsDiffModel
+	 * @generated
+	 */
+	public Adapter createCompareTwoElementsDiffModelAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.compare.diff.metamodel.AbstractDiffExtension <em>Abstract Diff Extension</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -446,6 +469,20 @@ public class UMLDiffAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createReferenceChangeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.compare.diff.metamodel.DiffModel <em>Model</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.compare.diff.metamodel.DiffModel
+	 * @generated
+	 */
+	public Adapter createDiffModelAdapter() {
 		return null;
 	}
 

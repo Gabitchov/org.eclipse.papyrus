@@ -904,6 +904,80 @@ public interface UMLDiffPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.impl.CompareTwoElementsDiffModelImpl <em>Compare Two Elements Diff Model</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.impl.CompareTwoElementsDiffModelImpl
+	 * @see org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.impl.UMLDiffPackageImpl#getCompareTwoElementsDiffModel()
+	 * @generated
+	 */
+	int COMPARE_TWO_ELEMENTS_DIFF_MODEL = 9;
+
+	/**
+	 * The feature id for the '<em><b>Hide Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPARE_TWO_ELEMENTS_DIFF_MODEL__HIDE_ELEMENTS = UML_DIFF_EXTENSION__HIDE_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Is Collapsed</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPARE_TWO_ELEMENTS_DIFF_MODEL__IS_COLLAPSED = UML_DIFF_EXTENSION__IS_COLLAPSED;
+
+	/**
+	 * The feature id for the '<em><b>Owned Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPARE_TWO_ELEMENTS_DIFF_MODEL__OWNED_ELEMENTS = UML_DIFF_EXTENSION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Left Roots</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPARE_TWO_ELEMENTS_DIFF_MODEL__LEFT_ROOTS = UML_DIFF_EXTENSION_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Right Roots</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPARE_TWO_ELEMENTS_DIFF_MODEL__RIGHT_ROOTS = UML_DIFF_EXTENSION_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Ancestor Roots</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPARE_TWO_ELEMENTS_DIFF_MODEL__ANCESTOR_ROOTS = UML_DIFF_EXTENSION_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of structural features of the '<em>Compare Two Elements Diff Model</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPARE_TWO_ELEMENTS_DIFF_MODEL_FEATURE_COUNT = UML_DIFF_EXTENSION_FEATURE_COUNT + 4;
+
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UMLDiffExtension <em>Extension</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -992,6 +1066,16 @@ public interface UMLDiffPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getTaggedValueReferenceChange();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.CompareTwoElementsDiffModel <em>Compare Two Elements Diff Model</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Compare Two Elements Diff Model</em>'.
+	 * @see org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.CompareTwoElementsDiffModel
+	 * @generated
+	 */
+	EClass getCompareTwoElementsDiffModel();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1104,6 +1188,16 @@ public interface UMLDiffPackage extends EPackage {
 		 * @generated
 		 */
 		EClass TAGGED_VALUE_REFERENCE_CHANGE = eINSTANCE.getTaggedValueReferenceChange();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.impl.CompareTwoElementsDiffModelImpl <em>Compare Two Elements Diff Model</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.impl.CompareTwoElementsDiffModelImpl
+		 * @see org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.impl.UMLDiffPackageImpl#getCompareTwoElementsDiffModel()
+		 * @generated
+		 */
+		EClass COMPARE_TWO_ELEMENTS_DIFF_MODEL = eINSTANCE.getCompareTwoElementsDiffModel();
 
 	}
 

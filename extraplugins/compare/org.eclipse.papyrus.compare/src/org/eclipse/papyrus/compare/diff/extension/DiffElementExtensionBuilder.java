@@ -18,12 +18,14 @@ import org.eclipse.emf.compare.diff.metamodel.AttributeChange;
 import org.eclipse.emf.compare.diff.metamodel.AttributeChangeLeftTarget;
 import org.eclipse.emf.compare.diff.metamodel.AttributeChangeRightTarget;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
+import org.eclipse.emf.compare.diff.metamodel.DiffModel;
 import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeLeftTarget;
 import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeRightTarget;
 import org.eclipse.emf.compare.diff.metamodel.ReferenceChange;
 import org.eclipse.emf.compare.diff.metamodel.UpdateAttribute;
 import org.eclipse.emf.compare.diff.metamodel.util.DiffSwitch;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.AddStereotypeApplication;
+import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.CompareTwoElementsDiffModel;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.RemoveStereotypeApplication;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValueChange;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValueChangeLeftTarget;
@@ -38,6 +40,16 @@ public class DiffElementExtensionBuilder extends DiffSwitch<AbstractDiffExtensio
 	@Override
 	public AbstractDiffExtension caseDiffElement(DiffElement object) {
 		throw new UnsupportedOperationException();
+	}
+	
+	@Override
+	public AbstractDiffExtension caseDiffModel(DiffModel object) {
+		CompareTwoElementsDiffModel newElement = UMLDiffFactory.eINSTANCE.createCompareTwoElementsDiffModel();
+		newElement.getLeftRoots().addAll(object.getLeftRoots());
+		newElement.getRightRoots().addAll(object.getRightRoots());
+		newElement.getAncestorRoots().addAll(object.getAncestorRoots());
+		newElement.getOwnedElements().addAll(object.getOwnedElements());
+		return newElement;
 	}
 	
 	@Override

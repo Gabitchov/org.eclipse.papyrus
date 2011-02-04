@@ -18,6 +18,7 @@ import org.eclipse.emf.compare.diff.metamodel.AttributeChange;
 import org.eclipse.emf.compare.diff.metamodel.AttributeChangeLeftTarget;
 import org.eclipse.emf.compare.diff.metamodel.AttributeChangeRightTarget;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
+import org.eclipse.emf.compare.diff.metamodel.DiffModel;
 import org.eclipse.emf.compare.diff.metamodel.ModelElementChange;
 import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeLeftTarget;
 import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeRightTarget;
@@ -198,6 +199,15 @@ public class UMLDiffSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case UMLDiffPackage.COMPARE_TWO_ELEMENTS_DIFF_MODEL: {
+				CompareTwoElementsDiffModel compareTwoElementsDiffModel = (CompareTwoElementsDiffModel)theEObject;
+				T result = caseCompareTwoElementsDiffModel(compareTwoElementsDiffModel);
+				if (result == null) result = caseUMLDiffExtension(compareTwoElementsDiffModel);
+				if (result == null) result = caseDiffModel(compareTwoElementsDiffModel);
+				if (result == null) result = caseAbstractDiffExtension(compareTwoElementsDiffModel);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -334,6 +344,21 @@ public class UMLDiffSwitch<T> {
 	 * @generated
 	 */
 	public T caseTaggedValueReferenceChange(TaggedValueReferenceChange object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Compare Two Elements Diff Model</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Compare Two Elements Diff Model</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCompareTwoElementsDiffModel(CompareTwoElementsDiffModel object) {
 		return null;
 	}
 
@@ -484,6 +509,21 @@ public class UMLDiffSwitch<T> {
 	 * @generated
 	 */
 	public T caseReferenceChange(ReferenceChange object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Model</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Model</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDiffModel(DiffModel object) {
 		return null;
 	}
 

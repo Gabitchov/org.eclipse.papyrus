@@ -13,12 +13,15 @@
  *****************************************************************************/
 package org.eclipse.papyrus.compare.element;
 
+import org.eclipse.emf.compare.diff.metamodel.AbstractDiffExtension;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
 import org.eclipse.emf.compare.diff.metamodel.DiffModel;
 import org.eclipse.emf.compare.diff.metamodel.MoveModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.compare.diff.PapyrusDiffEngine;
+import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.CompareTwoElementsDiffModel;
+import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UMLDiffFactory;
 
 
 public class ElementContentDiffEngine extends PapyrusDiffEngine {
@@ -42,12 +45,21 @@ public class ElementContentDiffEngine extends PapyrusDiffEngine {
 	}
 	
 	@Override
-	protected void postProcess(DiffModel diffModel) {
+	protected DiffModel postProcess(DiffModel diffModel) {
 		super.postProcess(diffModel);
 		//#336361 - [UML Compare] Compare two elements: show right element as root
 		DiffElement newRoot = findDiffElementFor(diffModel, myRight);
-		diffModel.getOwnedElements().clear();
-		diffModel.getOwnedElements().add(newRoot);
+		CompareTwoElementsDiffModel newRootExt = buildCompareTwoElementsDiff(diffModel, newRoot);
+		return newRootExt;
+	}
+	
+	private CompareTwoElementsDiffModel buildCompareTwoElementsDiff(DiffModel object, DiffElement newRott) {
+			CompareTwoElementsDiffModel newElement = UMLDiffFactory.eINSTANCE.createCompareTwoElementsDiffModel();
+//			newElement.getLeftRoots().addAll(object.getLeftRoots());
+//			newElement.getRightRoots().addAll(object.getRightRoots());
+//			newElement.getAncestorRoots().addAll(object.getAncestorRoots());
+			newElement.getOwnedElements().add(newRott);
+			return newElement;
 	}
 	
 	@Override

@@ -47,17 +47,17 @@ public class PapyrusDiffEngine extends GenericDiffEngine {
 	@Override
 	public DiffModel doDiff(MatchModel match, boolean threeWay) {
 		DiffModel result = super.doDiff(match, threeWay);
-		postProcess(result);
-		return result;
+		return postProcess(result);
 	}
 
 
-	protected void postProcess(DiffModel diffModel) {
+	protected DiffModel postProcess(DiffModel diffModel) {
 		final Iterator<EObject> it = diffModel.eAllContents();
 		while(it.hasNext()) {
 			DiffElement diffElement = (DiffElement)it.next();
 			visitElement(diffModel, diffElement);
 		}
+		return diffModel;
 	}
 	
 	protected void visitElement(DiffModel root, DiffElement diffElement) {
@@ -68,7 +68,7 @@ public class PapyrusDiffEngine extends GenericDiffEngine {
 				
 				Element newVisualParent = UMLUtil.getBaseElement(stereotypeApplication);
 				DiffElement newDiffParent = findOrCreateDiffElementFor(root, newVisualParent);
-				AbstractDiffExtension taggedValueDiff = myDiffElementBuilder.doSwitch(diffElement);
+				AbstractDiffExtension taggedValueDiff = createDiffExtenstionElementFor(diffElement);
 				
 				newDiffParent.getSubDiffElements().add((DiffElement)taggedValueDiff);
 				hideElement(diffElement, taggedValueDiff);
@@ -135,6 +135,10 @@ public class PapyrusDiffEngine extends GenericDiffEngine {
 	
 	protected Collection<EObject> getModelElementsFor(DiffElement diff) {
 		return myGetModelElementSwitch.doSwitch(diff);
+	}
+	
+	protected AbstractDiffExtension createDiffExtenstionElementFor(DiffElement diffElement) {
+		return myDiffElementBuilder.doSwitch(diffElement);
 	}
 	
 }

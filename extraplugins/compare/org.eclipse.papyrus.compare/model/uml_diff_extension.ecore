@@ -12,4 +12,5 @@
   <eClassifiers xsi:type="ecore:EClass" name="AddStereotypeApplication" eSuperTypes="#//StereotypeChange platform:/plugin/org.eclipse.emf.compare.diff/model/diff.ecore#//ModelElementChangeRightTarget"/>
   <eClassifiers xsi:type="ecore:EClass" name="RemoveStereotypeApplication" eSuperTypes="#//StereotypeChange platform:/plugin/org.eclipse.emf.compare.diff/model/diff.ecore#//ModelElementChangeLeftTarget"/>
   <eClassifiers xsi:type="ecore:EClass" name="TaggedValueReferenceChange" eSuperTypes="#//UMLDiffExtension platform:/plugin/org.eclipse.emf.compare.diff/model/diff.ecore#//ReferenceChange"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CompareTwoElementsDiffModel" eSuperTypes="#//UMLDiffExtension platform:/plugin/org.eclipse.emf.compare.diff/model/diff.ecore#//DiffModel"/>
 </ecore:EPackage>

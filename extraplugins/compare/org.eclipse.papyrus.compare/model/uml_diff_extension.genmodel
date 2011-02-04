@@ -18,5 +18,6 @@
     <genClasses ecoreClass="uml_diff_extension.ecore#//AddStereotypeApplication"/>
     <genClasses ecoreClass="uml_diff_extension.ecore#//RemoveStereotypeApplication"/>
     <genClasses ecoreClass="uml_diff_extension.ecore#//TaggedValueReferenceChange"/>
+    <genClasses ecoreClass="uml_diff_extension.ecore#//CompareTwoElementsDiffModel"/>
   </genPackages>
 </genmodel:GenModel>

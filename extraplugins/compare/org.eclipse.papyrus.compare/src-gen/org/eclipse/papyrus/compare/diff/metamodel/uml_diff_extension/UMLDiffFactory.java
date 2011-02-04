@@ -85,6 +85,15 @@ public interface UMLDiffFactory extends EFactory {
 	TaggedValueReferenceChange createTaggedValueReferenceChange();
 
 	/**
+	 * Returns a new object of class '<em>Compare Two Elements Diff Model</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Compare Two Elements Diff Model</em>'.
+	 * @generated
+	 */
+	CompareTwoElementsDiffModel createCompareTwoElementsDiffModel();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

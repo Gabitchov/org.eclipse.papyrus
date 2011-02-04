@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.AddStereotypeApplication;
+import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.CompareTwoElementsDiffModel;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.RemoveStereotypeApplication;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.StereotypeChange;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValueChange;
@@ -99,6 +100,13 @@ public class UMLDiffPackageImpl extends EPackageImpl implements UMLDiffPackage {
 	 * @generated
 	 */
 	private EClass taggedValueReferenceChangeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass compareTwoElementsDiffModelEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -250,6 +258,15 @@ public class UMLDiffPackageImpl extends EPackageImpl implements UMLDiffPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getCompareTwoElementsDiffModel() {
+		return compareTwoElementsDiffModelEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public UMLDiffFactory getUMLDiffFactory() {
 		return (UMLDiffFactory)getEFactoryInstance();
 	}
@@ -290,6 +307,8 @@ public class UMLDiffPackageImpl extends EPackageImpl implements UMLDiffPackage {
 		removeStereotypeApplicationEClass = createEClass(REMOVE_STEREOTYPE_APPLICATION);
 
 		taggedValueReferenceChangeEClass = createEClass(TAGGED_VALUE_REFERENCE_CHANGE);
+
+		compareTwoElementsDiffModelEClass = createEClass(COMPARE_TWO_ELEMENTS_DIFF_MODEL);
 	}
 
 	/**
@@ -339,6 +358,8 @@ public class UMLDiffPackageImpl extends EPackageImpl implements UMLDiffPackage {
 		removeStereotypeApplicationEClass.getESuperTypes().add(theDiffPackage.getModelElementChangeLeftTarget());
 		taggedValueReferenceChangeEClass.getESuperTypes().add(this.getUMLDiffExtension());
 		taggedValueReferenceChangeEClass.getESuperTypes().add(theDiffPackage.getReferenceChange());
+		compareTwoElementsDiffModelEClass.getESuperTypes().add(this.getUMLDiffExtension());
+		compareTwoElementsDiffModelEClass.getESuperTypes().add(theDiffPackage.getDiffModel());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(umlDiffExtensionEClass, UMLDiffExtension.class, "UMLDiffExtension", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -358,6 +379,8 @@ public class UMLDiffPackageImpl extends EPackageImpl implements UMLDiffPackage {
 		initEClass(removeStereotypeApplicationEClass, RemoveStereotypeApplication.class, "RemoveStereotypeApplication", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(taggedValueReferenceChangeEClass, TaggedValueReferenceChange.class, "TaggedValueReferenceChange", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(compareTwoElementsDiffModelEClass, CompareTwoElementsDiffModel.class, "CompareTwoElementsDiffModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

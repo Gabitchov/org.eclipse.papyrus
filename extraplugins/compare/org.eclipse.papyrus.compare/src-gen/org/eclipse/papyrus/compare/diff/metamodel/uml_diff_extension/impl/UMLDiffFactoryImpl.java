@@ -71,6 +71,7 @@ public class UMLDiffFactoryImpl extends EFactoryImpl implements UMLDiffFactory {
 			case UMLDiffPackage.ADD_STEREOTYPE_APPLICATION: return createAddStereotypeApplication();
 			case UMLDiffPackage.REMOVE_STEREOTYPE_APPLICATION: return createRemoveStereotypeApplication();
 			case UMLDiffPackage.TAGGED_VALUE_REFERENCE_CHANGE: return createTaggedValueReferenceChange();
+			case UMLDiffPackage.COMPARE_TWO_ELEMENTS_DIFF_MODEL: return createCompareTwoElementsDiffModel();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -134,6 +135,16 @@ public class UMLDiffFactoryImpl extends EFactoryImpl implements UMLDiffFactory {
 	public TaggedValueReferenceChange createTaggedValueReferenceChange() {
 		TaggedValueReferenceChangeImpl taggedValueReferenceChange = new TaggedValueReferenceChangeImpl();
 		return taggedValueReferenceChange;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CompareTwoElementsDiffModel createCompareTwoElementsDiffModel() {
+		CompareTwoElementsDiffModelImpl compareTwoElementsDiffModel = new CompareTwoElementsDiffModelImpl();
+		return compareTwoElementsDiffModel;
 	}
 
 	/**
