@@ -342,7 +342,7 @@ public class CompareTwoElementsDiffModelImpl extends UMLDiffExtensionImpl implem
 	 */
 	@Override
 	public String getText() {
-		String message = "%s differences between elements";
+		String message = "%s change(s) between elements";
 		int subchanges = ((DiffGroup)getOwnedElements().get(0)).getSubchanges();
 //		String leftName = getLeftRoots().get(0).toString();
 //		String rightName = getRightRoots().get(0).toString();
