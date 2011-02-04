@@ -29,7 +29,5 @@ http://www.eclipse.org/legal/epl-v10.html
    <includes
          id="org.eclipse.papyrus.sdk"
          version="0.0.0"/>
-   <includes
-         id="org.eclipse.papyrus.tests"
-         version="0.0.0"/>
+
 </feature>

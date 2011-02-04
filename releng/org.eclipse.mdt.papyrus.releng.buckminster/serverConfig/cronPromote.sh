@@ -71,7 +71,7 @@ lastPromoteDateI=`stat --format=%Y $lastPromoteFileI`
 
 if [ $signalDateN -gt $lastPromoteDateN ]; then
         touch $lastPromoteFileN
-        echo "$DATE: getting last successful build" >> $logFile
+        echo "$DATE: NIGHTLY: getting last successful build" >> $logFile
         mkdir -p $BUILD_LOC_N
         #rm -f $BUILD_LOC_N/build.zip
         #rm -rf $BUILD_LOC_N/build
@@ -79,12 +79,12 @@ if [ $signalDateN -gt $lastPromoteDateN ]; then
         zipName=$(cat $promoteSignalN).zip
         # see http://wiki.hudson-ci.org/display/HUDSON/Remote+access+API
         wget --no-check-certificate "https://hudson.eclipse.org/hudson/job/cbi-papyrus-0.7-nightly/lastSuccessfulBuild/artifact/${zipName}"
-        if [ ! -f $zipName ]; then echo "ERROR:$zipName (from Hudson) not found"; exit -2; fi
+        if [ ! -f $zipName ]; then echo "$DATE: NIGHTLY [ERROR] $zipName (from Hudson) not found"; exit -2; fi
         VERSION=$(cat $promoteVersionN)
-        if [ -z "$VERSION" ]; then echo "ERROR:version not found"; exit -2; fi
+        if [ -z "$VERSION" ]; then echo "$DATE: NIGHTLY [ERROR] version not found"; exit -2; fi
         BUILDS_DIR=$DROPS_DIR/$VERSION
         prune N $BUILDS_DIR 4
-        echo "$DATE: publishing nightly build (on $VERSION) to $BUILDS_DIR..." >> $logFile
+        echo "$DATE: NIGHLTY publishing nightly build (on $VERSION) to $BUILDS_DIR..." >> $logFile
         unzip -o $zipName -d $BUILDS_DIR
         rm -rf $updates_nightly/*
         # extract the zip in which there is the update site zip to a tmp dir
@@ -95,7 +95,7 @@ if [ $signalDateN -gt $lastPromoteDateN ]; then
         $ADD_DOWNLOAD_STATS $updates_nightly
         chmod -R 755 $BUILDS_DIR
         chmod -R 755 $updates_nightly
-        echo "$DATE: done" >> $logFile
+        echo "$DATE: NIGHLTY done" >> $logFile
 	cp -f $tmpDrop/?20*/*.psf $DROPS_DIR/../../psf/ 
         trimLog
 fi
@@ -103,18 +103,18 @@ fi
 
 if [ $signalDateI -gt $lastPromoteDateI ]; then
         touch $lastPromoteFileI
-        echo "$DATE: getting last successful build" >> $logFile
+        echo "$DATE: INTEGRATION getting last successful build" >> $logFile
         mkdir -p $BUILD_LOC_I
         cd $BUILD_LOC_I
         zipName=$(cat $promoteSignalI).zip
         # see http://wiki.hudson-ci.org/display/HUDSON/Remote+access+API
         wget --no-check-certificate "https://hudson.eclipse.org/hudson/job/cbi-papyrus-integration/lastSuccessfulBuild/artifact/${zipName}"
-        if [ ! -f $zipName ]; then echo "ERROR:$zipName (from Hudson) not found"; exit -2; fi
+        if [ ! -f $zipName ]; then echo "$DATE: INTEGRATION [ERROR] $zipName (from Hudson) not found"; exit -2; fi
         VERSION=$(cat $promoteVersionI)
-        if [ -z "$VERSION" ]; then echo "ERROR:version not found"; exit -2; fi
+        if [ -z "$VERSION" ]; then echo "$DATE: INTEGRATION [ERROR] version not found"; exit -2; fi
         BUILDS_DIR=$DROPS_DIR/$VERSION
         prune I $BUILDS_DIR 4
-        echo "$DATE: publishing integration build (on $VERSION) to $BUILDS_DIR..." >> $logFile
+        echo "$DATE: INTEGRATION publishing integration build (on $VERSION) to $BUILDS_DIR..." >> $logFile
         unzip -o $zipName -d $BUILDS_DIR
         mkdir -p $updates_integration/$VERSION
         rm -rf $updates_integration/$VERSION/*
@@ -127,7 +127,7 @@ if [ $signalDateI -gt $lastPromoteDateI ]; then
         chmod -R 755 $BUILDS_DIR
         chmod -R 755 $updates_integration/$VERSION
         cp $integrationTags $DOWNLOAD_ITAGS
-        echo "$DATE: done" >> $logFile
+        echo "$DATE: INTEGRATION done" >> $logFile
         trimLog
 fi
 

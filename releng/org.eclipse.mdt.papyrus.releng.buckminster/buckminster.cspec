@@ -3,7 +3,8 @@
 	componentType="buckminster" version="0.7.1.qualifier">
 	<cs:dependencies>
 		<cs:dependency name="org.eclipse.papyrus.build" componentType="eclipse.feature"/>
-
+		<cs:dependency name="org.eclipse.papyrus.tests" componentType="eclipse.feature"/>
+		
 		<cs:dependency name="org.antlr.runtime" componentType="osgi.bundle"/>
         <cs:dependency name="org.eclipse.acceleo.sdk" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.emf.cdo.sdk" componentType="eclipse.feature"/>
