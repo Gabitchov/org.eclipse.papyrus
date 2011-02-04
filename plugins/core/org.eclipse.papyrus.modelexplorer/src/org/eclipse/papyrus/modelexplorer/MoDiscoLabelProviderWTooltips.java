@@ -14,6 +14,8 @@
 package org.eclipse.papyrus.modelexplorer;
 
 import org.eclipse.jface.viewers.ColumnLabelProvider;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
 
@@ -49,6 +51,28 @@ public class MoDiscoLabelProviderWTooltips extends ColumnLabelProvider {
 		return 10000;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.jface.viewers.IFontProvider#getFont(java.lang.Object)
+	 */
+	public Font getFont(Object element) {
+		return moDiscoLP.getFont(element);
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.jface.viewers.IColorProvider#getBackground(java.lang.Object)
+	 */
+	public Color getBackground(Object element) {
+		return moDiscoLP.getBackground(element);
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.jface.viewers.IColorProvider#getForeground(java.lang.Object)
+	 */
+	public Color getForeground(Object element) {
+		return moDiscoLP.getForeground(element);
+	}
+
+	
 	/**
 	 * return the image of an element in the model browser
 	 * evaluates error markers.
