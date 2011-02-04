@@ -8,4 +8,7 @@
    <extension point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
       <browserCustomization file="resource/packageableElementItemLinkNotVisible.uiCustom"/>
    </extension>
+   <extension point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
+      <browserCustomization file="resource/packagedElementsItemLinksWithIcon.uiCustom"/>
+   </extension>
 </plugin>
