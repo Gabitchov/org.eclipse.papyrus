@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ASCII"?>
+<facet:FacetSet xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:facet="http://www.eclipse.org/EmfFacet/infra/facet/0.8.incubation" xmlns:query="http://www.eclipse.org/EmfFacet/infra/query/0.8.incubation" name="umlModelExplorerRecipe" nsURI="umlModelExplorerRecipe" nsPrefix="umlModelExplorerRecipe">
+  <eClassifiers xsi:type="facet:Facet" name="NewPackage" abstract="true">
+    <eSuperTypes href="http://www.eclipse.org/uml2/3.0.0/UML#//Package"/>
+    <eStructuralFeatures xsi:type="facet:FacetReference" name="dependencies" upperBound="-1" changeable="false" volatile="true" unsettable="true" derived="true">
+      <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Dependency"/>
+      <valueQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/umlModelExplorerRecipe#getAllDependencies"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="facet:Facet" name="NewClassifier" abstract="true">
+    <eSuperTypes href="http://www.eclipse.org/uml2/3.0.0/UML#//Classifier"/>
+    <eStructuralFeatures xsi:type="facet:FacetReference" name="ports" upperBound="-1" changeable="false" volatile="true" unsettable="true" derived="true">
+      <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Property"/>
+      <valueQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/umlModelExplorerRecipe#getAllPorts"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <extendedPackage href="http://www.eclipse.org/uml2/3.0.0/UML#/"/>
+</facet:FacetSet>
