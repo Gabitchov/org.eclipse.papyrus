@@ -39,6 +39,7 @@ public class DiffElementExtensionBuilder extends DiffSwitch<AbstractDiffExtensio
 	
 	@Override
 	public AbstractDiffExtension caseDiffElement(DiffElement object) {
+		System.out.println(object.eClass() + " " + object);
 		throw new UnsupportedOperationException();
 	}
 	

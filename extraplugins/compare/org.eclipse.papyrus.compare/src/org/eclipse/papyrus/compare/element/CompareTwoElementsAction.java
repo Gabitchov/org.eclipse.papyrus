@@ -19,7 +19,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.Map;
 
+import org.eclipse.compare.CompareConfiguration;
 import org.eclipse.compare.CompareUI;
+import org.eclipse.compare.CompareViewerPane;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.compare.EMFCompareException;
@@ -34,10 +36,12 @@ import org.eclipse.emf.compare.match.engine.GenericMatchScopeProvider;
 import org.eclipse.emf.compare.match.engine.IMatchEngine;
 import org.eclipse.emf.compare.match.metamodel.MatchModel;
 import org.eclipse.emf.compare.ui.editor.ModelCompareEditorInput;
+import org.eclipse.emf.compare.ui.viewer.content.ModelContentMergeViewer;
 import org.eclipse.emf.compare.util.EMFCompareMap;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.operation.IRunnableWithProgress;
+import org.eclipse.papyrus.compare.ui.viewer.content.UMLModelContentMergeViewer;
 import org.eclipse.team.internal.ui.actions.TeamAction;
 import org.eclipse.ui.PlatformUI;
 
@@ -78,7 +82,12 @@ public class CompareTwoElementsAction extends TeamAction {
 	}
 
 	private void openInCompare(ComparisonSnapshot snapshot) {
-		CompareUI.openCompareEditor(new ModelCompareEditorInput(snapshot));
+		CompareUI.openCompareEditor(new ModelCompareEditorInput(snapshot) {
+			@Override
+			protected ModelContentMergeViewer createMergeViewer(CompareViewerPane pane, CompareConfiguration config) {
+				return new UMLModelContentMergeViewer(pane, config);
+			}
+		});
 	}
 
 	protected ComparisonResourceSnapshot doContentCompare(final EObject left, final EObject right) {
@@ -101,7 +110,7 @@ public class CompareTwoElementsAction extends TeamAction {
 		} catch (final EMFCompareException e) {
 			log.error(e);
 		} catch (final InvocationTargetException e) {
-			log.error(e);
+			e.printStackTrace();
 		}
 		return snapshot;
 	}

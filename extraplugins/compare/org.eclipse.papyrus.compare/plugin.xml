@@ -25,7 +25,8 @@
       <viewer
             class="org.eclipse.papyrus.compare.ui.viewer.content.UMLModelContentMergeViewerCreator"
             extensions="uml"
-            id="org.eclipse.papyrus.compare.ui.viewer.content.UMLModelContentMergeViewer"/>
+            id="org.eclipse.papyrus.compare.ui.viewer.content.UMLModelContentMergeViewer"
+            label="Papyrus UML"/>
    </extension>
    
    <extension point="org.eclipse.ui.popupMenus">

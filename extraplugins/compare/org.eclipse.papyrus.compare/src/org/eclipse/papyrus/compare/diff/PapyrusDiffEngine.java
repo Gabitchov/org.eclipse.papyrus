@@ -15,6 +15,7 @@ package org.eclipse.papyrus.compare.diff;
 
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 
 import org.eclipse.emf.compare.diff.engine.GenericDiffEngine;
@@ -61,6 +62,9 @@ public class PapyrusDiffEngine extends GenericDiffEngine {
 	}
 	
 	protected void visitElement(DiffModel root, DiffElement diffElement) {
+		if (diffElement instanceof DiffGroup) {
+			return;
+		}
 
 		Collection<EObject> elements = getModelElementsFor(diffElement);
 		for (EObject stereotypeApplication: elements) {
@@ -134,7 +138,11 @@ public class PapyrusDiffEngine extends GenericDiffEngine {
 	}
 	
 	protected Collection<EObject> getModelElementsFor(DiffElement diff) {
-		return myGetModelElementSwitch.doSwitch(diff);
+		Collection<EObject> result = myGetModelElementSwitch.doSwitch(diff);
+		if (result != null) {
+			return result;
+		}
+		return Collections.emptyList();
 	}
 	
 	protected AbstractDiffExtension createDiffExtenstionElementFor(DiffElement diffElement) {
