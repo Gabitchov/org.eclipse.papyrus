@@ -20,4 +20,10 @@
    <extension point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
       <browserCustomization file="resource/LoadRecipeFacet.uiCustom"/>
    </extension>
+   <extension
+         point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
+      <browserCustomization
+            file="resource/LoadRecipeFacet2.uiCustom">
+      </browserCustomization>
+   </extension>
 </plugin>

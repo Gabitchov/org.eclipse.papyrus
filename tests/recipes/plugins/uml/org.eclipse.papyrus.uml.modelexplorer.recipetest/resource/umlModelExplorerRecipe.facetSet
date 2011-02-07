@@ -6,12 +6,20 @@
       <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Dependency"/>
       <valueQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/umlModelExplorerRecipe#getAllDependencies"/>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="facet:FacetReference" name="others" upperBound="-1" changeable="false" volatile="true" unsettable="true" derived="true">
+      <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//PackageableElement"/>
+      <valueQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/umlModelExplorerRecipe#getAllWithoutDependencies"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="facet:Facet" name="NewClassifier" abstract="true">
     <eSuperTypes href="http://www.eclipse.org/uml2/3.0.0/UML#//Classifier"/>
     <eStructuralFeatures xsi:type="facet:FacetReference" name="ports" upperBound="-1" changeable="false" volatile="true" unsettable="true" derived="true">
       <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Property"/>
       <valueQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/umlModelExplorerRecipe#getAllPorts"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="facet:FacetReference" name="others" upperBound="-1" changeable="false" volatile="true" unsettable="true" derived="true">
+      <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Property"/>
+      <valueQuery xsi:type="query:JavaModelQuery" href="emffacet:/query/umlModelExplorerRecipe#getAllWithoutPorts"/>
     </eStructuralFeatures>
   </eClassifiers>
   <extendedPackage href="http://www.eclipse.org/uml2/3.0.0/UML#/"/>

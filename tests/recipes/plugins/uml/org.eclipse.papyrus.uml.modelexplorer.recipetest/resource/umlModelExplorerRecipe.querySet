@@ -9,4 +9,12 @@
     <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Property"/>
     <scope href="http://www.eclipse.org/uml2/3.0.0/UML#//Classifier"/>
   </queries>
+  <queries xsi:type="query:JavaModelQuery" name="getAllWithoutDependencies" description="get All without Dependencies" upperBound="-1" implementationClassName="org.eclipse.papyrus.uml.modelexplorer.recipetest.GetAllWithoutDependencies">
+    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//PackageableElement"/>
+    <scope href="http://www.eclipse.org/uml2/3.0.0/UML#//Package"/>
+  </queries>
+  <queries xsi:type="query:JavaModelQuery" name="getAllWithoutPorts" description="get all without ports from a classifier" upperBound="-1" implementationClassName="org.eclipse.papyrus.uml.modelexplorer.recipetest.GetAllWithoutPorts">
+    <returnType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Property"/>
+    <scope href="http://www.eclipse.org/uml2/3.0.0/UML#//Classifier"/>
+  </queries>
 </query:ModelQuerySet>

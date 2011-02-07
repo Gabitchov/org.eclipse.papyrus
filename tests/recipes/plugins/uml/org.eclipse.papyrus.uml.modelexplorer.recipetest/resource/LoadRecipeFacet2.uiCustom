@@ -6,11 +6,21 @@
         <defaultValue xsi:type="uicustom:StaticFeatureValue" value="/org.eclipse.papyrus.icons.uml/resource/gif/Port.gif"/>
       </customizedFeatures>
     </references>
+    <references referenceName="others">
+      <customizedFeatures>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
+      </customizedFeatures>
+    </references>
   </types>
   <types metaclassName="umlModelExplorerRecipe.NewPackage">
     <references referenceName="dependencies">
       <customizedFeatures customizedFeature="icon">
         <defaultValue xsi:type="uicustom:StaticFeatureValue" value="/org.eclipse.papyrus.icons.uml/resource/gif/Dependency.gif"/>
+      </customizedFeatures>
+    </references>
+    <references referenceName="other">
+      <customizedFeatures>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
       </customizedFeatures>
     </references>
   </types>
