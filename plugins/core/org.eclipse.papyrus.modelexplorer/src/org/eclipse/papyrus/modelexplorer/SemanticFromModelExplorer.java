@@ -15,6 +15,7 @@ package org.eclipse.papyrus.modelexplorer;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.core.IElementWithSemantic;
 
@@ -28,7 +29,13 @@ public class SemanticFromModelExplorer implements IElementWithSemantic {
 	 */
 	public Object getSemanticElement(Object wrapper) {
 		if( wrapper instanceof IAdaptable){
-			return ((IAdaptable)wrapper).getAdapter(EObject.class);
+			Object obj= ((IAdaptable)wrapper).getAdapter(EObject.class);
+			if(obj==null){
+				obj= ((IAdaptable)wrapper).getAdapter(EReference.class);
+			}
+			if(obj!=null){
+				return obj;
+			}
 		}
 		
 		if( wrapper instanceof Diagram){
