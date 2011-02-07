@@ -570,6 +570,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	public void revealSemanticElement(List<?> elementList) {
 		//for each element we reveal it
 		Iterator<?> elementListIterator= elementList.iterator();
+		ArrayList<Object> treeElementToSelect= new ArrayList<Object>();
 		while(elementListIterator.hasNext()) {
 			Object currentElement = (Object)elementListIterator.next();
 			//test if the type is an EObject
@@ -584,10 +585,11 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 					if(path.size()>0){
 						//expand in the common viewer the path
 						expandItems(path, getCommonViewer().getTree().getItems());
-						selectReveal(new StructuredSelection(path.get(path.size()-1)));
+						treeElementToSelect.add(path.get(path.size()-1));
 					}
 				}
 			}
+			selectReveal(new StructuredSelection(treeElementToSelect));
 		}
 	}
 
