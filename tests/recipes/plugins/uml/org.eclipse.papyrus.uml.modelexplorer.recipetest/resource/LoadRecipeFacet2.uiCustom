@@ -7,8 +7,8 @@
       </customizedFeatures>
     </references>
     <references referenceName="others">
-      <customizedFeatures>
-        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
+      <customizedFeatures customizedFeature="collapseLink">
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="true"/>
       </customizedFeatures>
     </references>
   </types>
@@ -19,6 +19,11 @@
       </customizedFeatures>
     </references>
     <references referenceName="other">
+      <customizedFeatures>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
+      </customizedFeatures>
+    </references>
+    <references referenceName="others">
       <customizedFeatures>
         <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
       </customizedFeatures>
