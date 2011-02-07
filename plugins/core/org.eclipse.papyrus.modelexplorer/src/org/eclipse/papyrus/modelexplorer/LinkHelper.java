@@ -18,12 +18,15 @@ import java.util.Iterator;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.ITreeSelection;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.ui.IRevealSemanticElement;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.ISelectionService;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.navigator.ILinkHelper;
 /**
@@ -50,29 +53,34 @@ public class LinkHelper implements ILinkHelper {
 		//no selection
 		if (aSelection == null || aSelection.isEmpty())
 			return;
+		ISelectionService selectService=aPage.getWorkbenchWindow().getSelectionService();
+		ISelection selection=selectService.getSelection();
 
-		IMultiDiagramEditor papyrusEditor=EditorUtils.getMultiDiagramEditor();
+		//test if the selection come the tree viewer in order to avoid  cycle: Diagram -> tree-> diagram
+		// if the diagram has been selected the selection is not a TreeSelection
+		if( selection  instanceof ITreeSelection){
+			IMultiDiagramEditor papyrusEditor=EditorUtils.getMultiDiagramEditor();
 
-		IEditorPart diagramEditor= papyrusEditor.getActiveEditor();
+			IEditorPart diagramEditor= papyrusEditor.getActiveEditor();
 
-		if (diagramEditor instanceof IRevealSemanticElement){
-			if( aSelection instanceof IStructuredSelection){
-				Iterator<?> selectionIterator=((IStructuredSelection)aSelection).iterator();
-				ArrayList<Object> semanticElementList= new ArrayList<Object>();
-				while(selectionIterator.hasNext()) {
-					Object currentSelection = (Object)selectionIterator.next();
-					if( currentSelection instanceof IAdaptable){
-						Object semanticElement=((IAdaptable)currentSelection).getAdapter(EObject.class);
-						if( semanticElement!=null){
-							semanticElementList.add(semanticElement);
+			if (diagramEditor instanceof IRevealSemanticElement){
+				if( aSelection instanceof IStructuredSelection){
+					Iterator<?> selectionIterator=((IStructuredSelection)aSelection).iterator();
+					ArrayList<Object> semanticElementList= new ArrayList<Object>();
+					while(selectionIterator.hasNext()) {
+						Object currentSelection = (Object)selectionIterator.next();
+						if( currentSelection instanceof IAdaptable){
+							Object semanticElement=((IAdaptable)currentSelection).getAdapter(EObject.class);
+							if( semanticElement!=null){
+								semanticElementList.add(semanticElement);
+							}
 						}
-					}
 
+					}
+					((IRevealSemanticElement)diagramEditor).revealSemanticElement(semanticElementList);
 				}
-				((IRevealSemanticElement)diagramEditor).revealSemanticElement(semanticElementList);
 			}
 		}
-
 	}
 
 
