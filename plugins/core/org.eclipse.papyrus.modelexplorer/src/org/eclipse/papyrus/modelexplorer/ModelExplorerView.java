@@ -49,6 +49,7 @@ import org.eclipse.papyrus.modelexplorer.listener.DoubleClickListener;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorPart;
@@ -138,6 +139,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	public ModelExplorerView(IMultiDiagramEditor part) {
 		this.editorPart = part;
 		setLinkingEnabled(true);
+	
 		try {
 			this.saveAndDirtyService =editorPart.getServicesRegistry().getService(ISaveAndDirtyService.class);
 		} catch (ServiceException e) {
@@ -266,6 +268,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 			}
 		}
 		ColumnViewerToolTipSupport.enableFor(viewer,ToolTip.NO_RECREATE);
+		
 		return viewer;
 	}
 
@@ -275,6 +278,8 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		getCommonViewer().setSorter(null);
 		((CustomCommonViewer)getCommonViewer()).getDropAdapter().setFeedbackEnabled(true);
 		getCommonViewer().addDoubleClickListener(new DoubleClickListener());
+		Tree tree = getCommonViewer().getTree();
+		Activator.getDefault().getCustomizationManager().installCustomPainter(tree);
 
 	}
 	/**

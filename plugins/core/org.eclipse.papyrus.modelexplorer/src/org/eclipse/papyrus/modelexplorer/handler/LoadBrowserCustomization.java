@@ -23,6 +23,7 @@ import java.util.Set;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.expressions.EvaluationContext;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -36,14 +37,21 @@ import org.eclipse.emf.facet.infra.browser.uicore.CustomizationManager;
 import org.eclipse.emf.facet.infra.facet.Facet;
 import org.eclipse.emf.facet.infra.facet.FacetSet;
 import org.eclipse.emf.facet.infra.facet.core.FacetSetCatalog;
+import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.window.Window;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.core.ui.pagebookview.MultiViewPageBookView;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.modelexplorer.Activator;
+import org.eclipse.papyrus.modelexplorer.CustomCommonViewer;
 import org.eclipse.papyrus.modelexplorer.ModelExplorerPageBookView;
+import org.eclipse.papyrus.modelexplorer.ModelExplorerView;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Tree;
 import org.eclipse.ui.IViewPart;
+import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.navigator.CommonNavigator;
 
 /**
@@ -100,7 +108,11 @@ public class LoadBrowserCustomization extends AbstractHandler {
 								.registerCustomization(metamodelView);
 					}
 					customizationManager.loadCustomizations();
-
+					if (getCommonNavigator() != null) {
+						Tree tree = getCommonNavigator().getCommonViewer().getTree();
+						customizationManager.installCustomPainter(tree);
+						tree.redraw();
+					}
 					// Activator.getDefault().getCustomizationManager().loadCustomizations(selectedCustomizations);
 
 				} catch (final Exception e) {
@@ -116,6 +128,7 @@ public class LoadBrowserCustomization extends AbstractHandler {
 		return null;
 	}
 
+	
 	/**
 	 * 
 	 * @return the RessourceSet

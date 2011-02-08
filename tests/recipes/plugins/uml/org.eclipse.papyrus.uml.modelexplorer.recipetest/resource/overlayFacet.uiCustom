@@ -4,6 +4,11 @@
     <customizedFeatures customizedFeature="facetOverlayIcon">
       <defaultValue xsi:type="uicustom:StaticFeatureValue" value="/org.eclipse.papyrus.uml.modelexplorer.recipetest/resource/overlay.gif:BottomLeft"/>
     </customizedFeatures>
+    <references referenceName="ports">
+      <customizedFeatures customizedFeature="underlined">
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="true"/>
+      </customizedFeatures>
+    </references>
   </types>
   <types metaclassName="umlModelExplorerRecipe.NewPackage">
     <customizedFeatures customizedFeature="facetOverlayIcon">
