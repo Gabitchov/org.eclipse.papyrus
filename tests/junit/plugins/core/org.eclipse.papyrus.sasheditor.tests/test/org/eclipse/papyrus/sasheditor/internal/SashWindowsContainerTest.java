@@ -14,6 +14,7 @@ import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.sasheditor.contentprovider.ITabFolderModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.simple.SimpleSashWindowsContentProvider;
+import org.eclipse.papyrus.sasheditor.editor.FakeEditorModel;
 import org.eclipse.papyrus.sasheditor.editor.IComponentPage;
 import org.eclipse.papyrus.sasheditor.editor.IEditorPage;
 import org.eclipse.papyrus.sasheditor.editor.IPage;
@@ -133,6 +134,48 @@ public class SashWindowsContainerTest extends TestCase {
 		SashWindowsContainer container = createSashWindowsContainer(contentProvider);
 		IPage page = container.getActiveSashWindowsPage();
 		assertNotNull("Page exist", page);
+	}
+
+	/**
+	 * Test the method on a model with several folders and page.
+	 * Test method for {@link org.eclipse.papyrus.sasheditor.internal.SashWindowsContainer#getActiveEditor()}.
+	 */
+	public void testGetVisiblePages() {
+		// Create 
+		SimpleSashWindowsContentProvider contentProvider = new SimpleSashWindowsContentProvider();
+
+		// Create pages and add them to the default folder
+		List<IPageModel> models = new ArrayList<IPageModel>();
+		for(int i = 0; i < 2; i++) {
+			IPageModel newModel = new MessagePartModel("model" + i);
+			contentProvider.addPage(newModel);
+			models.add(newModel);
+		}
+
+		// Create new folder
+		ITabFolderModel folder = contentProvider.getCurrentTabFolder();
+		contentProvider.createFolder(folder, 1, folder, SWT.TOP);
+		// Add pages
+		List<IPageModel> modelsInFolder2 = new ArrayList<IPageModel>();
+		for(int i = 0; i < 2; i++) {
+			IPageModel newModel = new MessagePartModel("modelInFolder2" + i);
+			contentProvider.addPage(newModel);
+			modelsInFolder2.add(newModel);
+		}
+
+		// Build a list of expected visible models
+		List<IPageModel> expectedVisibleModel = new ArrayList<IPageModel>();
+		expectedVisibleModel.add( models.get(models.size()-1) );
+		expectedVisibleModel.add( modelsInFolder2.get(models.size()-1) );
+
+		// Get the active editor
+		SashWindowsContainer container = createSashWindowsContainer(contentProvider);
+		List<IPage> pages = container.getVisiblePages();
+		
+		assertEquals("2 pages visible", 2, pages.size());
+		assertTrue("contains active from folder 1", expectedVisibleModel.contains(pages.get(0).getRawModel()) );
+		assertTrue("contains active from folder 1", expectedVisibleModel.contains(pages.get(1).getRawModel()) );
+//		assertNotNull("Page exist", page);
 	}
 
 	/**
