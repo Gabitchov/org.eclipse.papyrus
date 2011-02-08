@@ -20,10 +20,16 @@ import java.util.Comparator;
 import java.util.List;
 
 import org.eclipse.compare.CompareConfiguration;
+import org.eclipse.compare.contentmergeviewer.IMergeViewerContentProvider;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.compare.diff.metamodel.ComparisonSnapshot;
+import org.eclipse.emf.compare.diff.metamodel.DiffModel;
+import org.eclipse.emf.compare.diff.metamodel.DiffResourceSet;
+import org.eclipse.emf.compare.match.metamodel.Side;
+import org.eclipse.emf.compare.ui.ModelCompareInput;
 import org.eclipse.emf.compare.ui.TypedElementWrapper;
+import org.eclipse.emf.compare.ui.viewer.content.ModelContentMergeContentProvider;
 import org.eclipse.emf.compare.ui.viewer.content.ModelContentMergeViewer;
 import org.eclipse.emf.compare.ui.viewer.content.part.IModelContentMergeViewerTab;
 import org.eclipse.emf.compare.ui.viewer.content.part.ModelContentMergeTabFolder;
@@ -41,6 +47,7 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.jface.viewers.IContentProvider;
 import org.eclipse.papyrus.compare.UMLCompareUtils;
+import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.CompareTwoElementsDiffModel;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.edit.providers.UMLItemProviderAdapterFactory;
@@ -54,6 +61,49 @@ public class UMLModelContentMergeViewer extends ModelContentMergeViewer {
 	public UMLModelContentMergeViewer(Composite parent, CompareConfiguration config) {
 		super(parent, config);
 	}
+	
+	@Override
+	public void setInput(Object input) {
+		// TODO Auto-generated method stub
+		super.setInput(input);
+	}
+	
+	protected IMergeViewerContentProvider createMergeViewerContentProvider() {
+		return new ModelContentMergeContentProvider(configuration) {
+			@Override
+			public Object getLeftContent(Object element) {
+				if (element instanceof ModelCompareInput) {
+					// if we compared a complete resource set, we should display the different resources
+					final Object diff = ((ModelCompareInput)element).getDiff();
+					if (diff instanceof CompareTwoElementsDiffModel) {
+						return new RootObject(((CompareTwoElementsDiffModel)diff).getLeftRoots().get(0));
+					}
+				}
+				return super.getLeftContent(element);
+			}
+			
+			@Override
+			public Object getRightContent(Object element) {
+				if (element instanceof ModelCompareInput) {
+					// if we compared a complete resource set, we should display the different resources
+					final Object diff = ((ModelCompareInput)element).getDiff();
+					if (diff instanceof CompareTwoElementsDiffModel) {
+						return new RootObject(((CompareTwoElementsDiffModel)diff).getRightRoots().get(0));
+					}
+				}
+				return super.getRightContent(element);
+			}
+
+		};
+	}
+	
+	private class RootObject {
+		public final Object object;
+		public RootObject(Object object) {
+			this.object = object;
+		}
+	}
+
 
 	protected ModelContentMergeTabFolder createModelContentMergeTabFolder(Composite composite, int side) {
 		return new ModelContentMergeTabFolder(this, composite, side) {
@@ -72,6 +122,30 @@ public class UMLModelContentMergeViewer extends ModelContentMergeViewer {
 						}
 						super.setSelectionToWidget(result, reveal);
 					}
+					
+					public void setReflectiveInput(Object object) {
+						// We *need* to invalidate the cache here since setInput() would try to
+						// use it otherwise
+						clearCaches();
+
+						// setLabelProvider(createLabelProvider()); // already set in constructor
+						if (object instanceof EObject) {
+							setInput(object);
+						} else {
+							// may be invoked with a resourceSet, a list of resources, or a single resource
+							assert object instanceof Resource || object instanceof List;
+							if (object instanceof List) {
+								for (Object item : (List)object) {
+									assert item instanceof Resource;
+								}
+							}
+							setInput(object);
+						}
+
+						setupCaches();
+						needsRedraw = true;
+					}
+
 
 				};
 				
@@ -96,8 +170,17 @@ public class UMLModelContentMergeViewer extends ModelContentMergeViewer {
 		factories.add(new UMLReflectiveItemProviderAdapterFactory());
 
 		ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(factories);
+		AdapterFactoryContentProvider result = new AdapterFactoryContentProvider(adapterFactory) {
+			@Override
+			public Object[] getElements(Object object) {
+				if (object instanceof RootObject) {
+					return new Object[]{((RootObject)object).object};
+				}
+				return super.getElements(object);
+			}
+		};
 		
-		return new AdapterFactoryContentProvider(adapterFactory);
+		return result;
 	}
 	
 	protected IContentProvider createPropertyTabContentProvider() {
