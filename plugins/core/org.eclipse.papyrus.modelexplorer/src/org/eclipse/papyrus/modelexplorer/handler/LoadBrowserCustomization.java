@@ -58,8 +58,7 @@ public class LoadBrowserCustomization extends AbstractHandler {
 	 * @return the common navigator
 	 */
 	protected CommonNavigator getCommonNavigator() {
-		IViewPart part = org.eclipse.papyrus.modelexplorer.NavigatorUtils
-.findViewPart(ModelExplorerPageBookView.VIEW_ID); 
+		IViewPart part = org.eclipse.papyrus.modelexplorer.NavigatorUtils.findViewPart(ModelExplorerPageBookView.VIEW_ID); 
 		// the part is only a book, retrieving correct page
 		if (part instanceof ModelExplorerPageBookView) {
 			IViewPart page = ((ModelExplorerPageBookView)part).getActiveView();
@@ -88,9 +87,11 @@ public class LoadBrowserCustomization extends AbstractHandler {
 					 customizationManager.clearCustomizations();
 					List<MetamodelView> selectedCustomizations = loadCustomizationsDialog
 							.getSelectedCustomizations();
-
+					//before loading, clean all facet to prevent to let not interesting facets.
+					customizationManager.clearFacets();
 					if (loadCustomizationsDialog.isLoadRequiredFacetsSelected()) {
 						// load facets corresponding to customizations
+						
 						loadFacetsForCustomizations(selectedCustomizations,
 								customizationManager);
 					}
