@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="ASCII"?>
+<uicustom:MetamodelView xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uicustom="http://www.eclipse.org/EmfFacet/infra/browser/custom/0.8" metamodelURI="umlModelExplorerRecipe">
+  <types metaclassName="umlModelExplorerRecipe.NewClassifier">
+    <customizedFeatures customizedFeature="facetOverlayIcon">
+      <defaultValue xsi:type="uicustom:StaticFeatureValue" value="/org.eclipse.papyrus.uml.modelexplorer.recipetest/resource/overlay.gif:BottomLeft"/>
+    </customizedFeatures>
+  </types>
+  <types metaclassName="umlModelExplorerRecipe.NewPackage">
+    <customizedFeatures customizedFeature="facetOverlayIcon">
+      <defaultValue xsi:type="uicustom:StaticFeatureValue" value="/org.eclipse.papyrus.uml.modelexplorer.recipetest/resource/overlay.gif:BottomLeft"/>
+    </customizedFeatures>
+  </types>
+</uicustom:MetamodelView>
