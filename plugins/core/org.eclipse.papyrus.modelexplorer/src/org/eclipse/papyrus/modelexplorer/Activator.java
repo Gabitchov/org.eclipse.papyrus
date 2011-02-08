@@ -118,20 +118,10 @@ public class Activator extends AbstractUIPlugin implements org.eclipse.ui.IStart
 
 	private void init(final CustomizationManager customizationManager) {
 		// the appearance can be customized here:
-		// customizationManager.setShowEmptyLinks(true);
-		// customizationManager.setShowAttributes(true);
 
 		customizationManager.setShowDerivedLinks(true);
 
 		try {
-			// FacetSet facetSet = FacetSetCatalog.getSingleton().getFacetSet(
-			//					"MyFacet"); //$NON-NLS-1$
-			// if (facetSet != null) {
-			// EList<Facet> facets = facetSet.getFacets();
-			// for (Facet facet : facets) {
-			// getCustomizationManager().loadFacet(facet);
-			// }
-			// }
 
 			// load customizations defined as default through the customization
 			// extension
