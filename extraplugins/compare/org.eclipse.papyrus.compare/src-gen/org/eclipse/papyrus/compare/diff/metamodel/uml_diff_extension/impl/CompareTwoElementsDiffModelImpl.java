@@ -21,6 +21,7 @@ import org.eclipse.emf.compare.diff.metamodel.DiffElement;
 import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
 import org.eclipse.emf.compare.diff.metamodel.DiffModel;
 import org.eclipse.emf.compare.diff.metamodel.DiffPackage;
+import org.eclipse.emf.compare.util.AdapterUtils;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -342,11 +343,11 @@ public class CompareTwoElementsDiffModelImpl extends UMLDiffExtensionImpl implem
 	 */
 	@Override
 	public String getText() {
-		String message = "%s change(s) between elements";
+		String message = "%s change(s) between elements [%s] and [%s]";
 		int subchanges = ((DiffGroup)getOwnedElements().get(0)).getSubchanges();
-//		String leftName = getLeftRoots().get(0).toString();
-//		String rightName = getRightRoots().get(0).toString();
-		return String.format(message, subchanges);
+		String leftName = AdapterUtils.getItemProviderText(getLeftRoots().get(0));
+		String rightName = AdapterUtils.getItemProviderText(getRightRoots().get(0));
+		return String.format(message, subchanges, leftName, rightName);
 	}
 	
 	/**

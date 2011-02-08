@@ -55,8 +55,8 @@ public class ElementContentDiffEngine extends PapyrusDiffEngine {
 	
 	private CompareTwoElementsDiffModel buildCompareTwoElementsDiff(DiffModel object, DiffElement newRott) {
 			CompareTwoElementsDiffModel newElement = UMLDiffFactory.eINSTANCE.createCompareTwoElementsDiffModel();
-//			newElement.getLeftRoots().addAll(object.getLeftRoots());
-//			newElement.getRightRoots().addAll(object.getRightRoots());
+			newElement.getLeftRoots().add(myLeft);
+			newElement.getRightRoots().add(myRight);
 //			newElement.getAncestorRoots().addAll(object.getAncestorRoots());
 			newElement.getOwnedElements().add(newRott);
 			return newElement;
