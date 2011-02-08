@@ -57,6 +57,8 @@ import org.eclipse.ui.services.IServiceScopes;
 public class MultiPageEditorSite implements IEditorSite, INestable {
 
 
+	org.eclipse.ui.part.MultiPageEditorSite e;
+	
 	/**
 	 * The actionBarContributor associated to the site. Can be null. In this case,
 	 * use the multiEditor ActionBarContributor.
@@ -202,11 +204,14 @@ public class MultiPageEditorSite implements IEditorSite, INestable {
 
 		// Remove myself from the list of nested key binding services.
 		if(service != null) {
+			// TODO : check original implem - use main editor site !
 			IKeyBindingService parentService = getEditor().getSite().getKeyBindingService();
 			if(parentService instanceof INestableKeyBindingService) {
 				INestableKeyBindingService nestableParent = (INestableKeyBindingService)parentService;
 				nestableParent.removeKeyBindingService(this);
 			}
+			// TODO : dispose service ?
+			
 			service = null;
 		}
 
@@ -435,6 +440,8 @@ public class MultiPageEditorSite implements IEditorSite, INestable {
 	 */
 	protected void handlePostSelectionChanged(SelectionChangedEvent event) {
 		ISelectionProvider parentProvider = getMainEditorSite().getSelectionProvider();
+	
+		// TODO : use org.eclipse.ui.part.MultiPageSelectionProvider ?
 		if(parentProvider instanceof MultiPageSelectionProvider) {
 			SelectionChangedEvent newEvent = new SelectionChangedEvent(parentProvider, event.getSelection());
 			MultiPageSelectionProvider prov = (MultiPageSelectionProvider)parentProvider;

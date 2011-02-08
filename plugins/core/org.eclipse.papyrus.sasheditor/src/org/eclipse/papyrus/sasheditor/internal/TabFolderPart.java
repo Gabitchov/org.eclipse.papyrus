@@ -429,6 +429,20 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	}
 
 	/**
+	 * Get the visible PagePart (from the Container point of view). 
+	 * The visible PagePart is the one that has its diagram area visible.
+	 * From the folder point of view, this is the active PagePart.
+	 * @return
+	 */
+	public PagePart getVisiblePagePart() {
+		int index = getActivePage();
+		if(index != -1) {
+			return getPagePart(index);
+		}
+		return null;
+	}
+	
+	/**
 	 * Find the part associated to the provided control.
 	 * 
 	 */

@@ -1,5 +1,7 @@
 package org.eclipse.papyrus.sasheditor.editor;
 
+import java.util.List;
+
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.sasheditor.internal.SashContainerEventsListener;
@@ -22,6 +24,23 @@ public interface ISashWindowsContainer {
 	 */
 	public abstract IPage getActiveSashWindowsPage();
 
+	/**
+	 * Get the list of visible IPages. The visible IPages are the one that have there diagram area 
+	 * visible.
+	 * 
+	 * @return
+	 */
+	public List<IPage> getVisiblePages();
+
+	/**
+	 * Get the list of visible IEditorPart obtain from the pages of type IEditorPage. 
+	 * The visible IPages are the one that have there diagram area 
+	 * visible.
+	 * 
+	 * @return
+	 */
+	public List<IEditorPart> getVisibleIEditorParts();
+	
 	/**
 	 * The <code>AbstractMultiPageSashEditor</code> implementation of this <code>IWorkbenchPart</code> method sets focus on the active nested
 	 * editor, if there is one.

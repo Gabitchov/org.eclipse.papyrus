@@ -15,6 +15,8 @@ package org.eclipse.papyrus.sasheditor.internal;
 
 import static org.eclipse.papyrus.sasheditor.Activator.log;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.eclipse.jface.action.MenuManager;
@@ -23,6 +25,7 @@ import org.eclipse.papyrus.sasheditor.contentprovider.IComponentModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.IEditorModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
+import org.eclipse.papyrus.sasheditor.editor.IEditorPage;
 import org.eclipse.papyrus.sasheditor.editor.IPage;
 import org.eclipse.papyrus.sasheditor.editor.IPageChangedListener;
 import org.eclipse.papyrus.sasheditor.editor.IPageVisitor;
@@ -300,6 +303,47 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 */
 	public IPage getActiveSashWindowsPage() {
 		return getActivePage();
+	}
+
+	/**
+	 * Get the list of visible IPages. The visible IPages are the one that have there diagram area 
+	 * visible.
+	 * 
+	 * @return
+	 */
+	public List<IPage> getVisiblePages() {
+		CollectVisiblePageVisitor visitor = new CollectVisiblePageVisitor();
+		
+		rootPart.visit(visitor);
+		
+		return visitor.getVisiblePages();
+	}
+
+	/**
+	 * Get the list of visible IPages. The visible IPages are the one that have there diagram area 
+	 * visible.
+	 * 
+	 * @return
+	 */
+//	public List<IEditorPage> getVisibleIEditorPages() {
+//		CollectVisiblePageVisitor visitor = new CollectVisiblePageVisitor( IEditorPage.class);
+//		
+//		rootPart.visit(visitor);
+//		
+//		return visitor.getVisiblePages();
+//	}
+
+	/**
+	 * Get the list of visible IPages. The visible IPages are the one that have there diagram area 
+	 * visible.
+	 * 
+	 * @return
+	 */
+	public List<IEditorPart> getVisibleIEditorParts() {
+		CollectVisibleIEditorPart visitor = new CollectVisibleIEditorPart();
+		rootPart.visit(visitor);
+		
+		return visitor.getVisiblePages();
 	}
 
 
@@ -849,5 +893,111 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 
 	}
 
+	/**
+	 * Inner class.
+	 * A visitor used to collect all visible page in the sashcontainer.
+	 * A visible page is a page whose the diagram area is visible.
+	 */
+	private class CollectVisiblePageVisitor  extends PartVisitor {
+		
+		private List<IPage> visiblePages = new ArrayList<IPage>();
 
+		private Class<? extends IPage> expectedClass;
+		
+		/**
+		 * Constructor.
+		 * 
+		 * @param menuManager
+		 */
+		public CollectVisiblePageVisitor() {
+			
+		}
+
+		/**
+		 * Constructor.
+		 * 
+		 * @param menuManager
+		 */
+		public CollectVisiblePageVisitor(Class<? extends IPage> expectedClass) {
+			this.expectedClass = expectedClass;
+		}
+
+		/**
+		 * Get the result list.
+		 * @param <T>
+		 * @return
+		 */
+		@SuppressWarnings("unchecked")
+		public <T> List<T> getVisiblePages() {
+			return (List<T>)visiblePages;
+		}
+
+		/**
+		 * Set the menu if the visited node is a folder.
+		 */
+		@Override
+		public boolean accept(TabFolderPart part) {
+			
+			IPage page = part.getVisiblePagePart();
+			if( part != null) {
+				if( expectedClass != null && expectedClass.isInstance(page)) {
+					visiblePages.add(page);
+				}
+				else {
+					visiblePages.add(page);
+				}
+					
+			}
+			
+			return true;
+		}
+
+	}
+
+	/**
+	 * Inner class.
+	 * A visitor used to collect all visible page in the sashcontainer.
+	 * A visible page is a page whose the diagram area is visible.
+	 */
+	private class CollectVisibleIEditorPart  extends PartVisitor {
+		
+		private List<IEditorPart> visiblePages = new ArrayList<IEditorPart>();
+		/**
+		 * Constructor.
+		 * 
+		 * @param menuManager
+		 */
+		public CollectVisibleIEditorPart() {
+			
+		}
+
+		/**
+		 * Get the result list.
+		 * @param <T>
+		 * @return
+		 */
+		@SuppressWarnings("unchecked")
+		public List<IEditorPart> getVisiblePages() {
+			return visiblePages;
+		}
+
+		/**
+		 * Set the menu if the visited node is a folder.
+		 */
+		@Override
+		public boolean accept(TabFolderPart part) {
+			
+			IPage page = part.getVisiblePagePart();
+			if( part != null && part instanceof IEditorPage ) {
+				IEditorPage editorPage = (IEditorPage) page;
+					visiblePages.add(editorPage.getIEditorPart());
+					
+			}
+			// continue searching
+			return true;
+		}
+
+	}
+
+	
 }
