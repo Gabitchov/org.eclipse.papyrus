@@ -20,7 +20,11 @@ Require-Bundle: org.eclipse.emf.compare;bundle-version="1.1.0",
  org.eclipse.compare;bundle-version="3.5.200",
  org.eclipse.team.ui;bundle-version="3.5.100",
  org.eclipse.uml2.uml.edit;bundle-version="3.1.100",
- org.eclipse.papyrus.log;bundle-version="0.7.1"
+ org.eclipse.papyrus.log;bundle-version="0.7.1",
+ org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.1.0",
+ org.eclipse.emf.facet.infra.browser.custom;bundle-version="0.1.0",
+ org.eclipse.emf.facet.infra.browser.custom.core;bundle-version="0.1.0",
+ org.eclipse.papyrus.modelexplorer;bundle-version="0.8.0"
 Bundle-Activator: org.eclipse.papyrus.compare.Activator
 Export-Package: org.eclipse.papyrus.compare.diff,
  org.eclipse.papyrus.compare.match

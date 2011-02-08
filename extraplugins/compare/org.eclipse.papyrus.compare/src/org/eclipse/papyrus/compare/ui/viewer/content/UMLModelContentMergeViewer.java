@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.compare.ui.viewer.content;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -21,12 +23,11 @@ import java.util.List;
 
 import org.eclipse.compare.CompareConfiguration;
 import org.eclipse.compare.contentmergeviewer.IMergeViewerContentProvider;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.compare.diff.metamodel.ComparisonSnapshot;
-import org.eclipse.emf.compare.diff.metamodel.DiffModel;
-import org.eclipse.emf.compare.diff.metamodel.DiffResourceSet;
-import org.eclipse.emf.compare.match.metamodel.Side;
 import org.eclipse.emf.compare.ui.ModelCompareInput;
 import org.eclipse.emf.compare.ui.TypedElementWrapper;
 import org.eclipse.emf.compare.ui.viewer.content.ModelContentMergeContentProvider;
@@ -45,9 +46,19 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
+import org.eclipse.emf.facet.infra.browser.custom.MetamodelView;
+import org.eclipse.emf.facet.infra.browser.custom.core.CustomizationsCatalog;
+import org.eclipse.emf.facet.infra.browser.uicore.CustomizableModelLabelProvider;
+import org.eclipse.emf.facet.infra.browser.uicore.CustomizationManager;
+import org.eclipse.emf.facet.infra.browser.uicore.internal.AppearanceConfiguration;
+import org.eclipse.emf.facet.infra.browser.uicore.internal.model.ITreeElement;
+import org.eclipse.emf.facet.infra.browser.uicore.internal.model.ModelElementItem;
 import org.eclipse.jface.viewers.IContentProvider;
+import org.eclipse.papyrus.compare.Activator;
 import org.eclipse.papyrus.compare.UMLCompareUtils;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.CompareTwoElementsDiffModel;
+import org.eclipse.papyrus.modelexplorer.MoDiscoLabelProviderWTooltips;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.edit.providers.UMLItemProviderAdapterFactory;
@@ -108,6 +119,11 @@ public class UMLModelContentMergeViewer extends ModelContentMergeViewer {
 	protected ModelContentMergeTabFolder createModelContentMergeTabFolder(Composite composite, int side) {
 		return new ModelContentMergeTabFolder(this, composite, side) {
 
+			private CustomizationManager manager;
+			private ExtendedLabelProvider labelProvider2;
+
+
+
 			protected IModelContentMergeViewerTab createModelContentMergeDiffTab(Composite parent) {
 				ModelContentMergeDiffTab diffTab = new ModelContentMergeDiffTab(parent, partSide, this) {
 					protected void setSelectionToWidget(List l, boolean reveal) {
@@ -150,8 +166,30 @@ public class UMLModelContentMergeViewer extends ModelContentMergeViewer {
 				};
 				
 				diffTab.setContentProvider(createDiffTabContentProvider());
+				initCustomizationManager();
+				diffTab.setLabelProvider(labelProvider2);
 				return diffTab;
 			}
+			
+			protected void initCustomizationManager() {
+				manager = new CustomizationManager();
+				try {
+					List<MetamodelView> registryDefaultCustomizations = CustomizationsCatalog.getInstance().getRegistryDefaultCustomizations();
+					for(MetamodelView metamodelView : registryDefaultCustomizations) {
+						manager.registerCustomization(metamodelView);
+					}
+					manager.loadCustomizations();
+
+				} catch (Throwable e) {
+					Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Error initializing customizations", e)); //$NON-NLS-1$
+				}
+				manager.setShowFullQualifiedNames(true);
+				manager.setShowURI(true);
+				manager.setShowDerivedLinks(false);
+				labelProvider2 = new ExtendedLabelProvider(manager);
+			}
+
+
 			
 			protected IModelContentMergeViewerTab createModelContentMergeViewerTab(Composite parent) {
 				ModelContentMergePropertyTab propertyTab = new ModelContentMergePropertyTab(parent, partSide, this);
@@ -332,5 +370,83 @@ public class UMLModelContentMergeViewer extends ModelContentMergeViewer {
  		}
 
 	}
+	public class ExtendedLabelProvider extends CustomizableModelLabelProvider {
 
+		private final CustomizationManager customizationManager2;
+
+		private AppearanceConfiguration configuration;
+
+		/**
+		 * Constructor.
+		 * 
+		 * @param customizationManager
+		 */
+		public ExtendedLabelProvider(CustomizationManager customizationManager) {
+			super(customizationManager);
+			customizationManager2 = customizationManager;
+
+			configuration = getAppearanceConfiguration();
+		}
+
+		private AppearanceConfiguration getAppearanceConfiguration() {
+			Method getApperanceConfigurationMethod;
+			try {
+				getApperanceConfigurationMethod = CustomizationManager.class.getDeclaredMethod("getAppearanceConfiguration");
+				if(getApperanceConfigurationMethod != null) {
+					getApperanceConfigurationMethod.setAccessible(true);
+					return (AppearanceConfiguration)getApperanceConfigurationMethod.invoke(customizationManager2);
+				}
+			} catch (SecurityException e) {
+				Activator.log.error(e);
+			} catch (NoSuchMethodException e) {
+				Activator.log.error(e);
+			} catch (IllegalArgumentException e) {
+				Activator.log.error(e);
+			} catch (IllegalAccessException e) {
+				Activator.log.error(e);
+			} catch (InvocationTargetException e) {
+				Activator.log.error(e);
+			}
+			return new AppearanceConfiguration(null); // default one.
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public String getText(Object element) {
+			if(element == null) {
+				return "";
+			}
+			if(element instanceof EObject) {
+				ITreeElement treeElement = getTreeElement((EObject)element);
+				return super.getText(treeElement);
+			}
+			return super.getText(element);
+		}
+
+		@Override
+		public Image getImage(Object element) {
+			if(element == null) {
+				return null;
+			}
+			if(element instanceof EObject) {
+				ITreeElement treeElement = getTreeElement((EObject)element);
+				return super.getImage(treeElement);
+			}
+			return super.getImage(element);
+		}
+
+
+		/**
+		 * @param eObject
+		 * @return
+		 */
+		private ITreeElement getTreeElement(EObject eObject) {
+			if(eObject == null) {
+				return null;
+			}
+			return new ModelElementItem(eObject, getTreeElement(eObject.eContainer()), configuration);
+		}
+	}	
 }
