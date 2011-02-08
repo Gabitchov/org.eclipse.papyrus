@@ -31,7 +31,9 @@ import org.eclipse.ui.navigator.CommonNavigator;
  * The Class RenameActionFactory for creating a rename action for named element
  * 
  * @author Emilien Perico
+ * @deprecated
  */
+@Deprecated
 public class RenameActionFactory implements IActionHandlerFactory {
 
 	protected List<Action> actions = new LinkedList<Action>();

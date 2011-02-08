@@ -7,6 +7,7 @@
  * 
  * Contributors:
  *     Obeo - initial API and implementation
+ *    Vincent Lorenzo (vincent.lorenzo@cea.fr) - @deprecated
  *******************************************************************************/
 package org.eclipse.papyrus.modelexplorer.actions;
 
@@ -20,6 +21,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.action.Action;
 import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.modelexplorer.handler.DeleteDiagramHandler;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
@@ -29,7 +31,9 @@ import org.eclipse.ui.PlatformUI;
  * 
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  * @author cedric dumoulin
+ * @deprecated you should use {@link DeleteDiagramHandler}
  */
+@Deprecated
 public class DeleteDiagramAction extends Action {
 
 	Diagram diagram;
@@ -40,10 +44,8 @@ public class DeleteDiagramAction extends Action {
 		this.diagram = diagram;
 		this.pageMngr = pageMngr;
 
-		ISharedImages sharedImages = PlatformUI.getWorkbench()
-				.getSharedImages();
-		setImageDescriptor(sharedImages
-				.getImageDescriptor(ISharedImages.IMG_TOOL_DELETE));
+		ISharedImages sharedImages = PlatformUI.getWorkbench().getSharedImages();
+		setImageDescriptor(sharedImages.getImageDescriptor(ISharedImages.IMG_TOOL_DELETE));
 		setText("Delete");
 		setEnabled(true);
 	}
@@ -55,9 +57,8 @@ public class DeleteDiagramAction extends Action {
 	 */
 	@Override
 	public void run() {
-		TransactionalEditingDomain editingDomain = EditorUtils
-				.getTransactionalEditingDomain();
-		if (editingDomain != null) {
+		TransactionalEditingDomain editingDomain = EditorUtils.getTransactionalEditingDomain();
+		if(editingDomain != null) {
 
 			// Create a compound command containing removing of the sash and
 			// removing from GMF

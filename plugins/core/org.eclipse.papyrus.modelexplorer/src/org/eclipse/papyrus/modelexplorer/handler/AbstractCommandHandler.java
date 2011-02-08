@@ -10,14 +10,13 @@
  * Contributors:
  * 
  * 		Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
+ *      Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr
  *****************************************************************************/
 package org.eclipse.papyrus.modelexplorer.handler;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -43,7 +42,7 @@ import org.eclipse.ui.PlatformUI;
  * 
  * </pre>
  */
-public abstract class AbstractCommandHandler extends AbstractHandler {
+public abstract class AbstractCommandHandler extends AbstractModelExplorerHandler {
 
 	/**
 	 * <pre>
@@ -144,7 +143,7 @@ public abstract class AbstractCommandHandler extends AbstractHandler {
 			ServiceUtilsForActionHandlers util = new ServiceUtilsForActionHandlers();
 			util.getTransactionalEditingDomain().getCommandStack().execute(getCommand());
 		} catch (ServiceException e) {
-			Activator.log.error("Unexpected error while executing command.", e);
+			Activator.log.error("Unexpected error while executing command.", e); //$NON-NLS-1$
 		}
 
 		return null;
@@ -165,4 +164,6 @@ public abstract class AbstractCommandHandler extends AbstractHandler {
 	public boolean isVisible() {
 		return getCommand().canExecute();
 	}
+
+
 }

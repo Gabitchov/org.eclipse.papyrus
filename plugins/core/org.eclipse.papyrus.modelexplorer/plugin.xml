@@ -88,17 +88,6 @@
                </and>
             </enablement>
          </actionProvider>
-         <actionProvider
-               class="org.eclipse.papyrus.modelexplorer.actionprovider.DiagramActionProvider"
-               id="org.eclipse.papyrus.modelexplorer.actionprovider.DiagramActionProvider">
-            <enablement>
-               <or>
-                  <adapt
-                        type="org.eclipse.gmf.runtime.notation.Diagram">
-                  </adapt>
-               </or>
-            </enablement>
-         </actionProvider>
          <dropAssistant
                class="org.eclipse.papyrus.modelexplorer.dnd.CommonDropAdapterAssistant"
                id="org.eclipse.papyrus.modelexplorer.dnd.CommonDropAdapterAssistant">
@@ -217,6 +206,74 @@
           label="Validation"
           path="papyrus">
     </menu>
+    <separator
+          name="popup:org.eclipse.papyrus.modelexplorer.modelexplorer.popup.separator0"
+          visible="true">
+    </separator>
+    <command
+          commandId="org.eclipse.ui.edit.rename"
+          icon="icons/etool16/rename.gif"
+          label="&amp;Rename"
+          style="push"
+          tooltip="Rename the element">
+       <visibleWhen
+             checkEnabled="true">
+       </visibleWhen>
+    </command>
+    <separator
+          name="popup:org.eclipse.papyrus.modelexplorer.modelexplorer.popup.separator1"
+          visible="true">
+    </separator>
+    <command
+          commandId="org.eclipse.papyrus.modelexplorer.popup.open.command"
+          icon="icons/etool16/forward.gif"
+          label="&amp;Open"
+          style="push"
+          tooltip="Open">
+       <visibleWhen
+             checkEnabled="true">
+       </visibleWhen>
+    </command>
+    <command
+          commandId="org.eclipse.papyrus.modelexplorer.popup.open.new.command"
+          icon="icons/etool16/arrow_double.gif"
+          label="Open In &amp;New Table"
+          style="push"
+          tooltip="Open in new tab">
+       <visibleWhen
+             checkEnabled="true">
+       </visibleWhen>
+    </command>
+    <command
+          commandId="org.eclipse.papyrus.modelexplorer.popup.close.command"
+          icon="icons/etool16/close.png"
+          label="&amp;Close"
+          style="push"
+          tooltip="Close">
+       <visibleWhen
+             checkEnabled="true">
+       </visibleWhen>
+    </command>
+    <command
+          commandId="org.eclipse.papyrus.modelexplorer.close.all.command"
+          icon="icons/etool16/closeAll.png"
+          label="Close &amp;All"
+          style="push"
+          tooltip="Close All">
+       <visibleWhen
+             checkEnabled="true">
+       </visibleWhen>
+    </command>
+    <command
+          commandId="org.eclipse.papyrus.modelexplorer.duplicate.command"
+          icon="icons/etool16/duplicate.png"
+          label="&amp;Duplicate"
+          style="push"
+          tooltip="Duplicate the element">
+       <visibleWhen
+             checkEnabled="true">
+       </visibleWhen>
+    </command>
  </menuContribution>
 	<!-- ModelExplorer Contextual menu -->       
 	<menuContribution
@@ -380,6 +437,209 @@
 		</with>
 		</activeWhen>
 	</handler>
+</extension>
+<extension
+      point="org.eclipse.ui.commands">
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         description="The command to open in a tab"
+         id="org.eclipse.papyrus.modelexplorer.popup.open.command"
+         name="Open Command">
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         description="The command to open in a new tab"
+         id="org.eclipse.papyrus.modelexplorer.popup.open.new.command"
+         name="Open In New Tab Command">
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         description="The command to close"
+         id="org.eclipse.papyrus.modelexplorer.popup.close.command"
+         name="Close Command">
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         description="The command to close all "
+         id="org.eclipse.papyrus.modelexplorer.close.all.command"
+         name="Close All Command">
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         description="The Command to duplicate the selected element"
+         id="org.eclipse.papyrus.modelexplorer.duplicate.command"
+         name="Duplicate ">
+   </command>
+</extension>
+<extension
+      point="org.eclipse.ui.handlers">
+   <handler
+         class="org.eclipse.papyrus.modelexplorer.handler.RenameDiagramHandler"
+         commandId="org.eclipse.ui.edit.rename">
+      <activeWhen>
+         <with
+               variable="selection">
+            <and>
+               <count
+                     value="1">
+               </count>
+               <iterate
+                     ifEmpty="false"
+                     operator="and">
+                  <instanceof
+                        value="org.eclipse.gmf.runtime.notation.Diagram">
+                  </instanceof>
+               </iterate>
+            </and>
+         </with>
+      </activeWhen>
+   </handler>
+   <handler
+         commandId="org.eclipse.papyrus.modelexplorer.popup.close.command">
+      <activeWhen>
+         <with
+               variable="selection">
+            <and>
+               <iterate
+                     ifEmpty="false"
+                     operator="and">
+                  <instanceof
+                        value="org.eclipse.gmf.runtime.notation.Diagram">
+                  </instanceof>
+               </iterate>
+            </and>
+         </with>
+      </activeWhen>
+      <class
+            class="org.eclipse.papyrus.modelexplorer.handler.CloseHandler">
+         <parameter
+               name="close_parameter"
+               value="selection">
+         </parameter>
+      </class>
+   </handler>
+   <handler
+         commandId="org.eclipse.papyrus.modelexplorer.close.all.command">
+      <class
+            class="org.eclipse.papyrus.modelexplorer.handler.CloseHandler">
+         <parameter
+               name="close_parameter"
+               value="all">
+         </parameter>
+      </class>
+      <activeWhen>
+         <with
+               variable="selection">
+            <and>
+               <iterate
+                     ifEmpty="false"
+                     operator="and">
+                  <instanceof
+                        value="org.eclipse.gmf.runtime.notation.Diagram">
+                  </instanceof>
+               </iterate>
+            </and>
+         </with>
+      </activeWhen>
+   </handler>
+   <handler
+         class="org.eclipse.papyrus.modelexplorer.handler.DeleteDiagramHandler"
+         commandId="org.eclipse.ui.edit.delete">
+      <activeWhen>
+         <and>
+            <with
+                  variable="selection">
+               <iterate
+                     ifEmpty="false"
+                     operator="and">
+                  <instanceof
+                        value="org.eclipse.gmf.runtime.notation.Diagram">
+                  </instanceof>
+               </iterate>
+            </with>
+            <!-- We add this test in order to refresh the Delete action in the menu edit -->
+            <with
+                  variable="selection">
+               <test
+                     forcePluginActivation="true"
+                     property="org.eclipse.papyrus.modelexplorer.tester.isDiagram"
+                     value="true">
+               </test>
+            </with>
+         </and>
+      </activeWhen>
+   </handler>
+   <handler
+         commandId="org.eclipse.papyrus.modelexplorer.popup.open.command">
+      <activeWhen>
+         <with
+               variable="selection">
+            <iterate>
+               <instanceof
+                     value="org.eclipse.gmf.runtime.notation.Diagram">
+               </instanceof>
+            </iterate>
+         </with>
+      </activeWhen>
+      <class
+            class="org.eclipse.papyrus.modelexplorer.handler.OpenHandler">
+         <parameter
+               name="open_parameter"
+               value="close">
+         </parameter>
+      </class>
+   </handler>
+   <handler
+         commandId="org.eclipse.papyrus.modelexplorer.popup.open.new.command">
+      <activeWhen>
+         <with
+               variable="selection">
+            <iterate>
+               <instanceof
+                     value="org.eclipse.gmf.runtime.notation.Diagram">
+               </instanceof>
+            </iterate>
+         </with>
+      </activeWhen>
+      <class
+            class="org.eclipse.papyrus.modelexplorer.handler.OpenHandler">
+         <parameter
+               name="open_parameter"
+               value="already_open">
+         </parameter>
+      </class>
+   </handler>
+   <handler
+         class="org.eclipse.papyrus.modelexplorer.handler.DuplicateDiagramHandler"
+         commandId="org.eclipse.papyrus.modelexplorer.duplicate.command">
+      <activeWhen>
+         <with
+               variable="selection">
+            <and>
+               <count
+                     value="1">
+               </count>
+               <iterate
+                     ifEmpty="false"
+                     operator="and">
+                  <instanceof
+                        value="org.eclipse.gmf.runtime.notation.Diagram">
+                  </instanceof>
+               </iterate>
+            </and>
+         </with>
+      </activeWhen>
+   </handler>
+</extension>
+<extension
+      point="org.eclipse.core.expressions.propertyTesters">
+   <propertyTester
+         class="org.eclipse.papyrus.modelexplorer.provider.PropertyTester"
+         id="org.eclipse.papyrus.modelexplorer.tester"
+         namespace="org.eclipse.papyrus.modelexplorer.tester"
+         properties="isDiagram"
+         type="org.eclipse.jface.viewers.IStructuredSelection">
+   </propertyTester>
 </extension>
 
 </plugin>

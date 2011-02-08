@@ -36,6 +36,12 @@ import org.eclipse.uml2.uml.NamedElement;
  * key.
  * 
  */
+
+/**
+ * @deprecated
+ *             We should provide an Handler for the command org.eclipse.ui.edit.rename
+ */
+@Deprecated
 public class RenameNamedElementAction extends CommandActionHandler {
 
 	/**
@@ -107,8 +113,7 @@ public class RenameNamedElementAction extends CommandActionHandler {
 
 			@Override
 			protected void doExecute() {
-				InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(),
-						Messages.rename_element, Messages.new_name, getSelectedNamedElement().getName(), null);
+				InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(), Messages.rename_element, Messages.new_name, getSelectedNamedElement().getName(), null);
 				if(dialog.open() == Window.OK) {
 					final String name = dialog.getValue();
 					getSelectedNamedElement().setName(name);

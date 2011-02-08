@@ -7,6 +7,7 @@
  * 
  * Contributors:
  *     Obeo - initial API and implementation
+ *     Vincent Lorenzo (vincent.lorenzo@cea.fr) - @deprecated
  *******************************************************************************/
 package org.eclipse.papyrus.modelexplorer.actionprovider;
 
@@ -26,6 +27,10 @@ import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
  * 
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
+@Deprecated
+/**
+ * @deprecated use the command/handler/org.eclipse.ui.menus to do these actions
+ */
 public class DiagramActionProvider extends AbstractSubmenuActionProvider {
 
 	/**
@@ -35,40 +40,34 @@ public class DiagramActionProvider extends AbstractSubmenuActionProvider {
 	public void fillContextMenu(IMenuManager menu) {
 		Object selectedElement = resolveSemanticObject(getFirstSelectedElement());
 
-		if (selectedElement != null && selectedElement instanceof Diagram) {
-			Diagram diagram = (Diagram) selectedElement;
+		if(selectedElement != null && selectedElement instanceof Diagram) {
+			Diagram diagram = (Diagram)selectedElement;
 			// Get the Editor IPageMngr. It should be Transactional.
 			IPageMngr pageMngr = EditorUtils.getIPageMngr();
 
 			// Create Rename Diagram action
-			RenameDiagramAction renameDiagramAction = new RenameDiagramAction(
-					diagram);
+			RenameDiagramAction renameDiagramAction = new RenameDiagramAction(diagram);
 			menu.add(renameDiagramAction);
 
 			// Create Delete Diagram action
-			OpenDiagramAction openDiagramAction = new OpenDiagramAction(
-					pageMngr, diagram);
+			OpenDiagramAction openDiagramAction = new OpenDiagramAction(pageMngr, diagram);
 			menu.add(openDiagramAction);
 
 			// Create Delete Diagram action
-			CloseDiagramAction closeDiagramAction = new CloseDiagramAction(
-					pageMngr, diagram);
+			CloseDiagramAction closeDiagramAction = new CloseDiagramAction(pageMngr, diagram);
 			menu.add(closeDiagramAction);
 
 			// Create Close all diagrams action
 			// fjcano #287948 :: close all diagrams action
-			CloseAllDiagramsAction closeAllDiagramsAction = new CloseAllDiagramsAction(
-					pageMngr);
+			CloseAllDiagramsAction closeAllDiagramsAction = new CloseAllDiagramsAction(pageMngr);
 			menu.add(closeAllDiagramsAction);
 
 			// Create Delete Diagram action
-			DeleteDiagramAction deleteDiagramAction = new DeleteDiagramAction(
-					pageMngr, diagram);
+			DeleteDiagramAction deleteDiagramAction = new DeleteDiagramAction(pageMngr, diagram);
 			menu.add(deleteDiagramAction);
 
 			// Create Duplicate Diagram action
-			DuplicateDiagramAction duplicateDiagramAction = new DuplicateDiagramAction(
-					pageMngr, diagram);
+			DuplicateDiagramAction duplicateDiagramAction = new DuplicateDiagramAction(pageMngr, diagram);
 			menu.add(duplicateDiagramAction);
 		}
 	}

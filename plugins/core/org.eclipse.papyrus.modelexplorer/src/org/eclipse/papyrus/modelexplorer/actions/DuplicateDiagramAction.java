@@ -7,6 +7,7 @@
  * 
  * Contributors:
  *     Obeo - initial API and implementation
+ *    Vincent Lorenzo (vincent.lorenzo@cea.fr) - @deprecated
  *******************************************************************************/
 package org.eclipse.papyrus.modelexplorer.actions;
 
@@ -26,7 +27,9 @@ import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
  * Action used to duplicate the given diagram
  * 
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
+ * @deprecated you should use DuplicateDiagramHandler
  */
+@Deprecated
 public class DuplicateDiagramAction extends Action {
 
 	Diagram diagram;
@@ -37,8 +40,7 @@ public class DuplicateDiagramAction extends Action {
 		this.diagram = diagram;
 		this.pageMngr = pageMngr;
 
-		setImageDescriptor(Activator
-				.getImageDescriptor("icons/etool16/duplicate.png"));
+		setImageDescriptor(Activator.getImageDescriptor("icons/etool16/duplicate.png"));
 		setText("Duplicate");
 		setEnabled(true);
 	}
@@ -50,9 +52,8 @@ public class DuplicateDiagramAction extends Action {
 	 */
 	@Override
 	public void run() {
-		TransactionalEditingDomain editingDomain = EditorUtils
-				.getTransactionalEditingDomain();
-		if (editingDomain != null) {
+		TransactionalEditingDomain editingDomain = EditorUtils.getTransactionalEditingDomain();
+		if(editingDomain != null) {
 
 			// Create a compound command containing removing of the sash and
 			// removing from GMF
@@ -60,12 +61,11 @@ public class DuplicateDiagramAction extends Action {
 			CompoundCommand command = new CompoundCommand();
 
 			// Clone the current diagram
-			final Diagram newDiagram = (Diagram) EcoreUtil.copy(diagram);
+			final Diagram newDiagram = EcoreUtil.copy(diagram);
 			// Give a new name
 			newDiagram.setName("Copy of " + diagram.getName());
 
-			Command addGmfDiagramCmd = new AddCommand(editingDomain, diagram
-					.eResource().getContents(), newDiagram);
+			Command addGmfDiagramCmd = new AddCommand(editingDomain, diagram.eResource().getContents(), newDiagram);
 			// EMFCommandOperation operation = new
 			// EMFCommandOperation(editingDomain,
 			// addGmfDiagramCmd);

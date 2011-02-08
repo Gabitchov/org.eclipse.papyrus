@@ -113,7 +113,7 @@ See registered extension org.eclipse.papyrus.navigator.actionHandler
       </appinfo>
       <documentation>
          The class must implement interface org.eclipse.papyrus.navigator.factory.IActionHandlerFactory
-Deprecrated extension point. Use org.eclipse.ui.commands instead
+Deprecrated extension point. Use org.eclipse.ui.commands, org.eclipse.ui.menus, org.eclipse.ui.binding instead
       </documentation>
    </annotation>
 

@@ -39,4 +39,5 @@ Export-Package: org.eclipse.papyrus.core.ui.pagebookview,
  org.eclipse.papyrus.modelexplorer.dialog,
  org.eclipse.papyrus.modelexplorer.dnd,
  org.eclipse.papyrus.modelexplorer.factory,
+ org.eclipse.papyrus.modelexplorer.handler,
  org.eclipse.papyrus.modelexplorer.preferences
