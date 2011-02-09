@@ -312,7 +312,7 @@ public class ServicesRegistryTest extends TestCase {
 	}
 	
 	/**
-	 * Test the start order for services of type Start et Service
+	 * Test the start order for services of type Start and Service
 	 * @throws ServiceException
 	 */
 	public void testStartDependantOrder() throws ServiceException {
@@ -375,6 +375,43 @@ public class ServicesRegistryTest extends TestCase {
 		assertEquals("order", nameC + ",start", trace.getNameTrace(i++));
 		assertEquals("order", nameD + ",start", trace.getNameTrace(i++));
 		assertEquals("order", nameE + ",start", trace.getNameTrace(i++));
+
+	}
+
+	/**
+	 * Start regular services, then add a new service and try to start it. 
+	 * This should work.
+	 * @throws ServiceException
+	 */
+	public void testStartRegistryAndThenAddNewServiceAndStartIt() throws ServiceException {
+		
+		// Register some services
+		String A = "A";
+		String B = "B";
+		String C = "C";
+		servicesRegistry.add( new ServiceFactoryDesc( C, ServiceStartKind.STARTUP ));
+		servicesRegistry.add( new ServiceFactoryDesc( B, ServiceStartKind.STARTUP, Arrays.asList(C) ));
+		servicesRegistry.add( new ServiceFactoryDesc( A, ServiceStartKind.STARTUP, Arrays.asList(B) ));
+
+		// Start them
+		servicesRegistry.startRegistry();
+		
+		// Register another services as pojo
+		IService instanciatedService = new ServiceA();
+		String key = instanciatedService.getClass().getName();
+		servicesRegistry.add(key, 1, instanciatedService);
+
+		// Try to start it
+		servicesRegistry.startServices(key);
+		
+		// check services
+		assertTrue("service started", servicesRegistry.isStarted(A));
+		assertTrue("service started", servicesRegistry.isStarted(B));
+		assertTrue("service started", servicesRegistry.isStarted(C));
+		
+		assertTrue("service started", servicesRegistry.isStarted(key));
+		
+		assertEquals("get registered service", instanciatedService, servicesRegistry.getService(key));
 
 	}
 
