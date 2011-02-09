@@ -274,10 +274,6 @@ public class UMLModelContentMergeViewer extends ModelContentMergeViewer {
 
 	private static class UMLModelContentMergeTabFolder extends ModelContentMergeTabFolder {
 
-		private CustomizationManager manager;
-
-		private IBaseLabelProvider labelProvider2;
-
 		public UMLModelContentMergeTabFolder(ModelContentMergeViewer viewer, Composite composite, int side) {
 			super(viewer, composite, side);
 		}
@@ -285,8 +281,7 @@ public class UMLModelContentMergeViewer extends ModelContentMergeViewer {
 		protected IModelContentMergeViewerTab createModelContentMergeDiffTab(Composite parent) {
 			UMLModelContentMergeDiffTab diffTab = new UMLModelContentMergeDiffTab(parent, partSide, this);
 			diffTab.setContentProvider(createDiffTabContentProvider());
-			initCustomizationManager();
-			diffTab.setLabelProvider(labelProvider2);
+			diffTab.setLabelProvider(new PapyrusLabelProvider());
 			return diffTab;
 
 		}
@@ -312,26 +307,6 @@ public class UMLModelContentMergeViewer extends ModelContentMergeViewer {
 
 			return result;
 		}
-
-
-		protected void initCustomizationManager() {
-			manager = new CustomizationManager();
-			try {
-				List<MetamodelView> registryDefaultCustomizations = CustomizationsCatalog.getInstance().getRegistryDefaultCustomizations();
-				for(MetamodelView metamodelView : registryDefaultCustomizations) {
-					manager.registerCustomization(metamodelView);
-				}
-				manager.loadCustomizations();
-
-			} catch (Throwable e) {
-				Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Error initializing customizations", e)); //$NON-NLS-1$
-			}
-			manager.setShowFullQualifiedNames(true);
-			manager.setShowURI(true);
-			manager.setShowDerivedLinks(false);
-			labelProvider2 = new PapyrusLabelProvider(manager);
-		}
-
 
 
 		protected IModelContentMergeViewerTab createModelContentMergeViewerTab(Composite parent) {
