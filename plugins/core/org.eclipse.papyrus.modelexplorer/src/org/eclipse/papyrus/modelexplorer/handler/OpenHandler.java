@@ -23,7 +23,6 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExecutableExtension;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
@@ -87,30 +86,26 @@ public class OpenHandler extends AbstractModelExplorerHandler implements IExecut
 	 */
 	@Override
 	public boolean isEnabled() {
-		IPageMngr pageMngr = null;
-		try {
-			pageMngr = org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers.getInstance().getIPageMngr();
-		} catch (ServiceException e) {
-			e.printStackTrace();
-		}
-
-		IStructuredSelection selection = getSelectedElement();
-		Iterator<?> iter = selection.iterator();
-		if(selection != null) {
-			if(PARAMETER_CLOSE.equals(this.parameter)) {
-				while(iter.hasNext()) {
-					if(pageMngr.isOpen(iter.next())) {
-						return false;
+		IPageMngr pageMngr = getPageManager();
+		if(pageMngr != null) {
+			IStructuredSelection selection = getSelectedElement();
+			Iterator<?> iter = selection.iterator();
+			if(selection != null) {
+				if(PARAMETER_CLOSE.equals(this.parameter)) {
+					while(iter.hasNext()) {
+						if(pageMngr.isOpen(iter.next())) {
+							return false;
+						}
 					}
-				}
-				return true;
-			} else if(PARAMETER_ALREADY_OPEN.equals(this.parameter)) {
-				while(iter.hasNext()) {
-					if(pageMngr.isOpen(iter.next())) {
-						return true;
+					return true;
+				} else if(PARAMETER_ALREADY_OPEN.equals(this.parameter)) {
+					while(iter.hasNext()) {
+						if(pageMngr.isOpen(iter.next())) {
+							return true;
+						}
 					}
+					return false;
 				}
-				return false;
 			}
 		}
 		return false;
