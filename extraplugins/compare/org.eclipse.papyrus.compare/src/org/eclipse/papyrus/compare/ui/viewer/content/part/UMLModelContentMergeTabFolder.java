@@ -38,13 +38,7 @@ public class UMLModelContentMergeTabFolder extends ModelContentMergeTabFolder {
 	}
 
 	protected IContentProvider createDiffTabContentProvider() {
-		List<AdapterFactory> factories = new ArrayList<AdapterFactory>();
-		factories.add(new UMLResourceItemProviderAdapterFactory());
-		factories.add(new UMLItemProviderAdapterFactory());
-		factories.add(new EcoreItemProviderAdapterFactory());
-		factories.add(new UMLReflectiveItemProviderAdapterFactory());
-
-		ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(factories);
+		ComposedAdapterFactory adapterFactory = new UMLAdapterFactory();
 		AdapterFactoryContentProvider result = new AdapterFactoryContentProvider(adapterFactory) {
 
 			@Override
@@ -65,8 +59,5 @@ public class UMLModelContentMergeTabFolder extends ModelContentMergeTabFolder {
 		propertyTab.setContentProvider(new UMLPropertyContentProvider());
 		return propertyTab;
 	}
-
-
-
 
 }

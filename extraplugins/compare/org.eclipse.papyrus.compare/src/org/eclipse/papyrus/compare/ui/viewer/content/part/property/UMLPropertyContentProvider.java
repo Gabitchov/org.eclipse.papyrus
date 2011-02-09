@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
+import org.eclipse.papyrus.compare.ui.viewer.content.part.UMLAdapterFactory;
 import org.eclipse.uml2.uml.edit.providers.UMLItemProviderAdapterFactory;
 import org.eclipse.uml2.uml.edit.providers.UMLReflectiveItemProviderAdapterFactory;
 import org.eclipse.uml2.uml.edit.providers.UMLResourceItemProviderAdapterFactory;
@@ -26,14 +27,7 @@ public class UMLPropertyContentProvider extends PropertyContentProvider {
 		Object[] elements = new Object[]{};
 		if(getInputEObject() != null) {
 			final List<List<Object>> inputElements = new ArrayList<List<Object>>();
-			// This will fetch the property source of the input object
-			List<AdapterFactory> factories = new ArrayList<AdapterFactory>();
-			factories.add(new UMLResourceItemProviderAdapterFactory());
-			factories.add(new UMLItemProviderAdapterFactory());
-			factories.add(new EcoreItemProviderAdapterFactory());
-			factories.add(new UMLReflectiveItemProviderAdapterFactory());
-
-			ComposedAdapterFactory factory = new ComposedAdapterFactory(factories);
+			ComposedAdapterFactory factory = new UMLAdapterFactory();
 
 			final IItemPropertySource inputPropertySource = (IItemPropertySource)factory.adapt(getInputEObject(), IItemPropertySource.class);
 			// Iterates through the property descriptor to display only the "property" features of the input
