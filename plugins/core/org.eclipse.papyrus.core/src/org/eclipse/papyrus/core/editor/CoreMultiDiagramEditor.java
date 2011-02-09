@@ -52,6 +52,7 @@ import org.eclipse.papyrus.core.multidiagram.actionbarcontributor.CoreComposedAc
 import org.eclipse.papyrus.core.services.ExtensionServicesRegistry;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServiceMultiException;
+import org.eclipse.papyrus.core.services.ServiceNotFoundException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.core.utils.BusinessModelResolver;
 import org.eclipse.papyrus.resource.ModelMultiException;
@@ -555,6 +556,15 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		// TODO Auto-generated method stub
 		super.activate();
 		initFolderTabMenus();
+		
+		try {
+			// Register ISashWindowsContainer as service
+			// Should be done only once the container is ready.
+			getServicesRegistry().add(ISashWindowsContainer.class, 1, getISashWindowsContainer());
+			getServicesRegistry().startServices(ISashWindowsContainer.class.getName());
+		} catch (ServiceException e) {
+			log.error(e);
+		} 
 	}
 
 	/**

@@ -4,6 +4,7 @@
 package org.eclipse.papyrus.core.services;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -26,12 +27,44 @@ import org.eclipse.papyrus.core.services.internal.StartStartupEntry;
  * A registry of services.
  * This registry allows to get a service by its identifier. The identifier is generally
  * the classname of the service.
- * Services can be added using the Eclipse extension mechanism.
- * A Service is a class providing operations. A service is shared across the editors.
+ * Services can be added using the Eclipse extension mechanism (if you use {@link ExtensionServicesRegistry}).
+ * <br>
+ * A Service is a class providing operations. The ServiceRegistry is used to share objects (i.e. services) 
+ * between nested editors and also the core main editor.
  * 
  * <br>
  * In this implementation, services should be added to the registry before the call to createServices().
  * If a service is added after the call, it will not be started (except if it is a lazy service).
+ * <br>
+ * A typical usage is:
+ * <pre><code>
+ *   ServicesRegistry serviceRegistry = new ServiceRegistry();
+ *   // Add your services
+ *   serviceRegistry.add( ...);
+ *   serviceRegistry.add( ...);
+ *   
+ *   // start the services
+ *   serviceRegistry.startRegistry();
+ *   
+ *   // Retrieve a service
+ *   myService = serviceRegistry.getService( serviceKey );
+ * </code></pre>
+ * 
+ * It is possible to register new services after the serviceRegistry has been started. In this case, you need to start
+ * them explicitly if they are of type ServiceStartKind.STARTUP.
+ * <pre><code>
+ *   // Add your new services
+ *   serviceRegistry.add( key1, ...);
+ *   serviceRegistry.add( key2, ...);
+ *   
+ *   // start the new services
+ *   serviceRegistry.startRegistry(key1, key2);
+ * </code></pre>
+ * 
+ * <ul>
+ *  <li></li>
+ *  <li></li>
+ * </ul>
  * 
  * @author cedric dumoulin
  * 
@@ -48,17 +81,18 @@ public class ServicesRegistry {
 	//	private Map<Object, AbstractServiceEntry> services;
 
 	/**
-	 * Service added but not started.
+	 * A Map of services added to the register (thow the addXxx() methods), but not yet registered.
+	 * They will be registered after a call to startXxx().
 	 */
 	private Map<String, ServiceStartupEntry> addedServices = new HashMap<String, ServiceStartupEntry>();
 
 	/**
-	 * Map of existing services.
+	 * Map of services registered with a name.
 	 */
 	private Map<String, ServiceStartupEntry> namedServices = new HashMap<String, ServiceStartupEntry>();
 
 	/**
-	 * Registered anonymous services.
+	 * Map of services registered without a name (anonymous). Such services can't be retrieved.
 	 */
 	private List<ServiceStartupEntry> anonymousServices = new ArrayList<ServiceStartupEntry>();
 
@@ -442,6 +476,25 @@ public class ServicesRegistry {
 
 		// Start them
 		startServices(services, map);
+	}
+
+	/**
+	 * Same as {@link #startServices(List)}, but with an array as input.
+	 * @see #startServices(List)
+	 * 
+	 * @param serviceKeys
+	 *        Keys of services to start.
+	 * @throws ServiceMultiException
+	 * @throws ServiceNotFoundException
+	 *         If a service can't be retrieved by its key.
+	 * 
+	 * @throws ServiceException
+	 *         If a service can't be started.
+	 */
+	public void startServices(String  ... serviceKeys) throws ServiceMultiException, ServiceNotFoundException {
+
+		List<String> serviceKeysList = Arrays.asList(serviceKeys);
+		startServices(serviceKeysList);
 	}
 
 	/**
@@ -835,7 +888,7 @@ public class ServicesRegistry {
 
 				serviceEntry.initService(this);
 			} catch (ServiceException e) {
-				log.log(Level.SEVERE, "Can't initialized service '" + serviceEntry + "'", e);
+				log.log(Level.SEVERE, "Can't initialize service '" + serviceEntry + "'", e);
 				errors.addException(serviceEntry.getDescriptor().getKey(), e);
 			}
 		}
@@ -893,7 +946,8 @@ public class ServicesRegistry {
 	}
 
 	/**
-	 * A class used to lookup a service by its key inside one or more map.
+	 * This class represents a union of two maps of <String, ServiceStartupEntry>. 
+	 * It provide specific methods to retrieve a {@link ServiceStartupEntry} by its key.
 	 * 
 	 * @author cedric dumoulin
 	 * 
@@ -908,6 +962,7 @@ public class ServicesRegistry {
 		/**
 		 * 
 		 * Constructor.
+		 * Build a union of two maps.
 		 *
 		 * @param map1
 		 * @param map2
@@ -920,7 +975,8 @@ public class ServicesRegistry {
 		/**
 		 * 
 		 * Constructor.
-		 *
+		 * Build a union of one map (sic).
+		 * 
 		 * @param map
 		 */
 		@SuppressWarnings("unused")
