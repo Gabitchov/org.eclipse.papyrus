@@ -29,7 +29,7 @@ public class Activator extends AbstractUIPlugin {
 	private static Activator plugin;
 
     /** Logging helper */
-    public static LogHelper log;
+    public static LogHelper log = new LogHelper();
     
     /**
 	 * The constructor
@@ -46,7 +46,7 @@ public class Activator extends AbstractUIPlugin {
 		super.start(context);
 		plugin = this;
 		// register the login helper
-        log = new LogHelper(plugin);
+        log.setPlugin(plugin);
 	}
 
 	/*
