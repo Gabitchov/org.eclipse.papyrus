@@ -14,7 +14,9 @@
 package org.eclipse.papyrus.compare;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jface.viewers.IBaseLabelProvider;
 import org.eclipse.papyrus.compare.ui.PapyrusLabelProvider;
+import org.eclipse.papyrus.compare.ui.PapyrusStyledLabelProvider;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
 
@@ -22,7 +24,7 @@ public class UMLCompareUtils {
 
 	private static UMLCompareUtils ourInstance;
 
-	private PapyrusLabelProvider myPapyrusLabelProvider;
+	private IBaseLabelProvider myPapyrusLabelProvider;
 	
 	private UMLCompareUtils() {}
 	
@@ -37,15 +39,15 @@ public class UMLCompareUtils {
 		return UMLUtil.getStereotype(eObject) != null;
 	}
 
-	public PapyrusLabelProvider getPapyrusLabelProvider() {
-		if (myPapyrusLabelProvider == null) {
-			myPapyrusLabelProvider = new PapyrusLabelProvider();
-		}
-		return myPapyrusLabelProvider;
+	public IBaseLabelProvider getPapyrusLabelProvider() {
+		return new PapyrusStyledLabelProvider();
 	}
 
-	public PapyrusLabelProvider getStyledPapyrusLabelProvider() {
-		return getPapyrusLabelProvider();
+	public IBaseLabelProvider getStyledPapyrusLabelProvider() {
+		if (myPapyrusLabelProvider == null) {
+			myPapyrusLabelProvider = new PapyrusStyledLabelProvider();
+		}
+		return myPapyrusLabelProvider;
 	}
 
 }
