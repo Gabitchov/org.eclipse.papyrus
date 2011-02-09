@@ -27,10 +27,12 @@ public class UMLModelContentMergeViewer extends ModelContentMergeViewer {
 		super(parent, config);
 	}
 
+	@Override
 	protected IMergeViewerContentProvider createMergeViewerContentProvider() {
 		return new UMLModelContentMergeContentProvider(configuration);
 	}
 
+	@Override
 	protected ModelContentMergeTabFolder createModelContentMergeTabFolder(Composite composite, int side) {
 		return new UMLModelContentMergeTabFolder(this, composite, side);
 	}

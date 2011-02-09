@@ -21,12 +21,14 @@ import org.eclipse.uml2.uml.edit.providers.UMLResourceItemProviderAdapterFactory
 public class UMLPropertyContentProvider extends PropertyContentProvider {
 
 
+	@Override
 	public Object[] getElements(Object inputElement) {
 		// init inputObject value
 		super.getElements(inputElement);
 		Object[] elements = new Object[]{};
 		if(getInputEObject() != null) {
 			final List<List<Object>> inputElements = new ArrayList<List<Object>>();
+			// the only change with the super methos is here, we use UMLAdapterFactory
 			ComposedAdapterFactory factory = new UMLAdapterFactory();
 
 			final IItemPropertySource inputPropertySource = (IItemPropertySource)factory.adapt(getInputEObject(), IItemPropertySource.class);

@@ -19,6 +19,7 @@ public class UMLModelContentMergeDiffTab extends ModelContentMergeDiffTab {
 		super(parentComposite, side, parentFolder);
 	}
 
+	@Override
 	protected void setSelectionToWidget(List l, boolean reveal) {
 		List result = new ArrayList();
 		for(Object next : l) {
@@ -32,6 +33,7 @@ public class UMLModelContentMergeDiffTab extends ModelContentMergeDiffTab {
 		super.setSelectionToWidget(result, reveal);
 	}
 
+	@Override
 	public void setReflectiveInput(Object object) {
 		// We *need* to invalidate the cache here since setInput() would try to
 		// use it otherwise

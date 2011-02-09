@@ -21,8 +21,6 @@ import org.eclipse.swt.graphics.Image;
 public class PapyrusLabelProvider extends CustomizableModelLabelProvider {
 
 
-	private final CustomizationManager customizationManager2;
-
 	private AppearanceConfiguration configuration;
 
 	/**
@@ -32,10 +30,7 @@ public class PapyrusLabelProvider extends CustomizableModelLabelProvider {
 	 */
 	public PapyrusLabelProvider(CustomizationManager customizationManager) {
 		super(customizationManager);
-		
-		customizationManager2 = customizationManager;
-
-		configuration = getAppearanceConfiguration();
+		configuration = getAppearanceConfiguration(customizationManager);
 	}
 
 	public PapyrusLabelProvider() {
@@ -60,7 +55,7 @@ public class PapyrusLabelProvider extends CustomizableModelLabelProvider {
 		return manager;
 	}
 
-	private AppearanceConfiguration getAppearanceConfiguration() {
+	private AppearanceConfiguration getAppearanceConfiguration(CustomizationManager customizationManager2) {
 		Method getApperanceConfigurationMethod;
 		try {
 			getApperanceConfigurationMethod = CustomizationManager.class.getDeclaredMethod("getAppearanceConfiguration");

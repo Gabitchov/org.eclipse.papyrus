@@ -1,14 +1,9 @@
 package org.eclipse.papyrus.compare.ui.viewer.content.part;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.compare.ui.viewer.content.ModelContentMergeViewer;
 import org.eclipse.emf.compare.ui.viewer.content.part.IModelContentMergeViewerTab;
 import org.eclipse.emf.compare.ui.viewer.content.part.ModelContentMergeTabFolder;
 import org.eclipse.emf.compare.ui.viewer.content.part.property.ModelContentMergePropertyTab;
-import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.jface.viewers.IContentProvider;
@@ -17,9 +12,6 @@ import org.eclipse.papyrus.compare.ui.viewer.content.UMLModelContentMergeContent
 import org.eclipse.papyrus.compare.ui.viewer.content.part.diff.UMLModelContentMergeDiffTab;
 import org.eclipse.papyrus.compare.ui.viewer.content.part.property.UMLPropertyContentProvider;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.uml2.uml.edit.providers.UMLItemProviderAdapterFactory;
-import org.eclipse.uml2.uml.edit.providers.UMLReflectiveItemProviderAdapterFactory;
-import org.eclipse.uml2.uml.edit.providers.UMLResourceItemProviderAdapterFactory;
 
 
 public class UMLModelContentMergeTabFolder extends ModelContentMergeTabFolder {
@@ -29,6 +21,7 @@ public class UMLModelContentMergeTabFolder extends ModelContentMergeTabFolder {
 		super(viewer, composite, side);
 	}
 
+	@Override
 	protected IModelContentMergeViewerTab createModelContentMergeDiffTab(Composite parent) {
 		UMLModelContentMergeDiffTab diffTab = new UMLModelContentMergeDiffTab(parent, partSide, this);
 		diffTab.setContentProvider(createDiffTabContentProvider());
@@ -54,6 +47,7 @@ public class UMLModelContentMergeTabFolder extends ModelContentMergeTabFolder {
 	}
 
 
+	@Override
 	protected IModelContentMergeViewerTab createModelContentMergeViewerTab(Composite parent) {
 		ModelContentMergePropertyTab propertyTab = new ModelContentMergePropertyTab(parent, partSide, this);
 		propertyTab.setContentProvider(new UMLPropertyContentProvider());
