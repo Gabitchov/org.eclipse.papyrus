@@ -44,6 +44,15 @@
          <toolbar
                toolbarID="org.eclipes.papyrus.menu.toolbar">
          </toolbar>
+         <preferencePage
+               preferencepageID="org.eclipse.ui.preferencePages.Workbench">
+         </preferencePage>
+         <preferencePage
+               preferencepageID="org.eclipse.emf.compare.ui.preferences.EMFComparePreferencesPage">
+         </preferencePage>
+         <preferencePage
+               preferencepageID="org.eclipse.emf.validation.ui.rootPage">
+         </preferencePage>
       </configuration>
    </extension>
 
