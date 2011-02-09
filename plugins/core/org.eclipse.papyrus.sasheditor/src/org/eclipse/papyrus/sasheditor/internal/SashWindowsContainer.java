@@ -988,7 +988,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		public boolean accept(TabFolderPart part) {
 			
 			IPage page = part.getVisiblePagePart();
-			if( part != null && part instanceof IEditorPage ) {
+			if( page != null && page instanceof IEditorPage ) {
 				IEditorPage editorPage = (IEditorPage) page;
 					visiblePages.add(editorPage.getIEditorPart());
 					
