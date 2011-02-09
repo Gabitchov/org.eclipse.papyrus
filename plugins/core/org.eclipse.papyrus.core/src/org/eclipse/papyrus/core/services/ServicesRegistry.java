@@ -527,6 +527,25 @@ public class ServicesRegistry {
 	}
 
 	/**
+	 * Same as {@link #startServicesByClassKeys(List)}, but with an array as input.
+	 * @see #startServices(List)
+	 * 
+	 * @param serviceKeys
+	 *        Keys of services to start.
+	 * @throws ServiceMultiException
+	 * @throws ServiceNotFoundException
+	 *         If a service can't be retrieved by its key.
+	 * 
+	 * @throws ServiceException
+	 *         If a service can't be started.
+	 */
+	public void startServicesByClassKeys(Class<?>  ... serviceKeys) throws ServiceMultiException, ServiceNotFoundException {
+
+		List<Class<?>> serviceKeysList = Arrays.asList(serviceKeys);
+		startServicesByClassKeys(serviceKeysList);
+	}
+
+	/**
 	 * Start the specified services, and their required services.
 	 * The specifies services should be in the specified map.
 	 * The map is also used to resolves dependencies.

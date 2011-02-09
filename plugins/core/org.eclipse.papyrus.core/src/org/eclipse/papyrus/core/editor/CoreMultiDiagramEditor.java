@@ -561,7 +561,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 			// Register ISashWindowsContainer as service
 			// Should be done only once the container is ready.
 			getServicesRegistry().add(ISashWindowsContainer.class, 1, getISashWindowsContainer());
-			getServicesRegistry().startServices(ISashWindowsContainer.class.getName());
+			getServicesRegistry().startServicesByClassKeys(ISashWindowsContainer.class);
 		} catch (ServiceException e) {
 			log.error(e);
 		} 
