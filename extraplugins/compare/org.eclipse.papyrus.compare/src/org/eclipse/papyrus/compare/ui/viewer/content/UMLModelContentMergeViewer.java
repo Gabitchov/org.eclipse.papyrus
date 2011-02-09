@@ -57,7 +57,6 @@ import org.eclipse.jface.viewers.IContentProvider;
 import org.eclipse.papyrus.compare.Activator;
 import org.eclipse.papyrus.compare.UMLCompareUtils;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.CompareTwoElementsDiffModel;
-import org.eclipse.papyrus.modelexplorer.MoDiscoLabelProviderWTooltips;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.uml2.uml.Element;
@@ -72,33 +71,34 @@ public class UMLModelContentMergeViewer extends ModelContentMergeViewer {
 	public UMLModelContentMergeViewer(Composite parent, CompareConfiguration config) {
 		super(parent, config);
 	}
-	
+
 	@Override
 	public void setInput(Object input) {
 		// TODO Auto-generated method stub
 		super.setInput(input);
 	}
-	
+
 	protected IMergeViewerContentProvider createMergeViewerContentProvider() {
 		return new ModelContentMergeContentProvider(configuration) {
+
 			@Override
 			public Object getLeftContent(Object element) {
-				if (element instanceof ModelCompareInput) {
+				if(element instanceof ModelCompareInput) {
 					// if we compared a complete resource set, we should display the different resources
 					final Object diff = ((ModelCompareInput)element).getDiff();
-					if (diff instanceof CompareTwoElementsDiffModel) {
+					if(diff instanceof CompareTwoElementsDiffModel) {
 						return new RootObject(((CompareTwoElementsDiffModel)diff).getLeftRoots().get(0));
 					}
 				}
 				return super.getLeftContent(element);
 			}
-			
+
 			@Override
 			public Object getRightContent(Object element) {
-				if (element instanceof ModelCompareInput) {
+				if(element instanceof ModelCompareInput) {
 					// if we compared a complete resource set, we should display the different resources
 					final Object diff = ((ModelCompareInput)element).getDiff();
-					if (diff instanceof CompareTwoElementsDiffModel) {
+					if(diff instanceof CompareTwoElementsDiffModel) {
 						return new RootObject(((CompareTwoElementsDiffModel)diff).getRightRoots().get(0));
 					}
 				}
@@ -107,9 +107,11 @@ public class UMLModelContentMergeViewer extends ModelContentMergeViewer {
 
 		};
 	}
-	
+
 	private class RootObject {
+
 		public final Object object;
+
 		public RootObject(Object object) {
 			this.object = object;
 		}
@@ -117,89 +119,9 @@ public class UMLModelContentMergeViewer extends ModelContentMergeViewer {
 
 
 	protected ModelContentMergeTabFolder createModelContentMergeTabFolder(Composite composite, int side) {
-		return new ModelContentMergeTabFolder(this, composite, side) {
-
-			private CustomizationManager manager;
-			private ExtendedLabelProvider labelProvider2;
-
-
-
-			protected IModelContentMergeViewerTab createModelContentMergeDiffTab(Composite parent) {
-				ModelContentMergeDiffTab diffTab = new ModelContentMergeDiffTab(parent, partSide, this) {
-					protected void setSelectionToWidget(List l, boolean reveal) {
-						List result = new ArrayList();
-						for (Object next: l) {
-							if (next instanceof EObject && UMLCompareUtils.isStereotypeApplication((EObject)next)) {
-								EObject stereotypeApplication = (EObject)next;
-								result.add(UMLUtil.getBaseElement(stereotypeApplication));
-							} else {
-								result.add(next);
-							}
-						}
-						super.setSelectionToWidget(result, reveal);
-					}
-					
-					public void setReflectiveInput(Object object) {
-						// We *need* to invalidate the cache here since setInput() would try to
-						// use it otherwise
-						clearCaches();
-
-						// setLabelProvider(createLabelProvider()); // already set in constructor
-						if (object instanceof EObject) {
-							setInput(object);
-						} else {
-							// may be invoked with a resourceSet, a list of resources, or a single resource
-							assert object instanceof Resource || object instanceof List;
-							if (object instanceof List) {
-								for (Object item : (List)object) {
-									assert item instanceof Resource;
-								}
-							}
-							setInput(object);
-						}
-
-						setupCaches();
-						needsRedraw = true;
-					}
-
-
-				};
-				
-				diffTab.setContentProvider(createDiffTabContentProvider());
-				initCustomizationManager();
-				diffTab.setLabelProvider(labelProvider2);
-				return diffTab;
-			}
-			
-			protected void initCustomizationManager() {
-				manager = new CustomizationManager();
-				try {
-					List<MetamodelView> registryDefaultCustomizations = CustomizationsCatalog.getInstance().getRegistryDefaultCustomizations();
-					for(MetamodelView metamodelView : registryDefaultCustomizations) {
-						manager.registerCustomization(metamodelView);
-					}
-					manager.loadCustomizations();
-
-				} catch (Throwable e) {
-					Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Error initializing customizations", e)); //$NON-NLS-1$
-				}
-				manager.setShowFullQualifiedNames(true);
-				manager.setShowURI(true);
-				manager.setShowDerivedLinks(false);
-				labelProvider2 = new ExtendedLabelProvider(manager);
-			}
-
-
-			
-			protected IModelContentMergeViewerTab createModelContentMergeViewerTab(Composite parent) {
-				ModelContentMergePropertyTab propertyTab = new ModelContentMergePropertyTab(parent, partSide, this);
-				propertyTab.setContentProvider(createPropertyTabContentProvider());
-				return propertyTab;
-			}
-
-		};
+		return new UMLModelContentMergeTabFolder(this, composite, side);
 	}
-	
+
 	protected IContentProvider createDiffTabContentProvider() {
 		List<AdapterFactory> factories = new ArrayList<AdapterFactory>();
 		factories.add(new UMLResourceItemProviderAdapterFactory());
@@ -209,25 +131,27 @@ public class UMLModelContentMergeViewer extends ModelContentMergeViewer {
 
 		ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(factories);
 		AdapterFactoryContentProvider result = new AdapterFactoryContentProvider(adapterFactory) {
+
 			@Override
 			public Object[] getElements(Object object) {
-				if (object instanceof RootObject) {
-					return new Object[]{((RootObject)object).object};
+				if(object instanceof RootObject) {
+					return new Object[]{ ((RootObject)object).object };
 				}
 				return super.getElements(object);
 			}
 		};
-		
+
 		return result;
 	}
-	
+
 	protected IContentProvider createPropertyTabContentProvider() {
 		return new PropertyContentProvider() {
+
 			public Object[] getElements(Object inputElement) {
 				// init inputObject value
 				super.getElements(inputElement);
-				Object[] elements = new Object[] {};
-				if (getInputEObject() != null) {
+				Object[] elements = new Object[]{};
+				if(getInputEObject() != null) {
 					final List<List<Object>> inputElements = new ArrayList<List<Object>>();
 					// This will fetch the property source of the input object
 					List<AdapterFactory> factories = new ArrayList<AdapterFactory>();
@@ -238,12 +162,10 @@ public class UMLModelContentMergeViewer extends ModelContentMergeViewer {
 
 					ComposedAdapterFactory factory = new ComposedAdapterFactory(factories);
 
-					final IItemPropertySource inputPropertySource = (IItemPropertySource)factory.adapt(getInputEObject(),
-							IItemPropertySource.class);
+					final IItemPropertySource inputPropertySource = (IItemPropertySource)factory.adapt(getInputEObject(), IItemPropertySource.class);
 					// Iterates through the property descriptor to display only the "property" features of the input
 					// object
-					for (final IItemPropertyDescriptor descriptor : inputPropertySource
-							.getPropertyDescriptors(getInputEObject())) {
+					for(final IItemPropertyDescriptor descriptor : inputPropertySource.getPropertyDescriptors(getInputEObject())) {
 						/*
 						 * Filtering out "advanced" properties can be done by hiding properties on which
 						 * Arrays.binarySearch(descriptor.getFilterFlags(input),
@@ -258,6 +180,7 @@ public class UMLModelContentMergeViewer extends ModelContentMergeViewer {
 
 					elements = inputElements.toArray();
 					Arrays.sort(elements, new Comparator<Object>() {
+
 						public int compare(Object first, Object second) {
 							final String name1 = ((EStructuralFeature)((List<?>)first).get(0)).getName();
 							final String name2 = ((EStructuralFeature)((List<?>)second).get(0)).getName();
@@ -269,19 +192,20 @@ public class UMLModelContentMergeViewer extends ModelContentMergeViewer {
 				return elements;
 			}
 		};
-		
+
 	}
-	
+
 	/**
 	 * @author tatiana
-	 *
+	 * 
 	 */
 	class ModelContentMergeDiffTabContentProvider extends AdapterFactoryContentProvider {
+
 		/**
 		 * Default constructor. Delegates to the super implementation.
 		 * 
 		 * @param factory
-		 *            Factory to get labels and icons from.
+		 *        Factory to get labels and icons from.
 		 */
 		public ModelContentMergeDiffTabContentProvider(AdapterFactory factory) {
 			super(factory);
@@ -298,22 +222,21 @@ public class UMLModelContentMergeViewer extends ModelContentMergeViewer {
 			// overwritten to ensure contents of ResourceSets, List<Resource>, and Resource are correclty
 			// returned.
 			Object[] result = null;
-			if (object instanceof ResourceSet) {
+			if(object instanceof ResourceSet) {
 				final List<Resource> resources = ((ResourceSet)object).getResources();
 				final List<Resource> elements = new ArrayList<Resource>(resources.size());
-				for (final Resource resource : resources) {
-					if (resource.getContents().isEmpty()
-							|| !(resource.getContents().get(0) instanceof ComparisonSnapshot)) {
+				for(final Resource resource : resources) {
+					if(resource.getContents().isEmpty() || !(resource.getContents().get(0) instanceof ComparisonSnapshot)) {
 						elements.add(resource);
 					}
 				}
 				result = elements.toArray();
-			} else if (object instanceof TypedElementWrapper) {
-				result = new Object[] {((EObject)object).eResource(), };
-			} else if (object instanceof List) {
+			} else if(object instanceof TypedElementWrapper) {
+				result = new Object[]{ ((EObject)object).eResource(), };
+			} else if(object instanceof List) {
 				// we may also display a list of resources
 				result = ((List)object).toArray();
-			} else if (object instanceof Resource) {
+			} else if(object instanceof Resource) {
 				// return contents of resource
 				return filterStereotypeApplications((Resource)object);
 			} else {
@@ -321,13 +244,13 @@ public class UMLModelContentMergeViewer extends ModelContentMergeViewer {
 			}
 			return result;
 		}
-		
+
 		private Object[] filterStereotypeApplications(Resource object) {
 			EList<EObject> contents = object.getContents();
 			List<EObject> result = new ArrayList<EObject>();
-			for (int i = 0; i < contents.size(); i++) {
+			for(int i = 0; i < contents.size(); i++) {
 				EObject next = contents.get(i);
-				if (!UMLCompareUtils.isStereotypeApplication(next)) {
+				if(!UMLCompareUtils.isStereotypeApplication(next)) {
 					result.add(next);
 				}
 			}
@@ -340,11 +263,11 @@ public class UMLModelContentMergeViewer extends ModelContentMergeViewer {
 		 * @see org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider#getChildren(java.lang.Object)
 		 */
 		@Override
- 		public Object[] getChildren(Object object) {
- 			if (object instanceof Resource) {
+		public Object[] getChildren(Object object) {
+			if(object instanceof Resource) {
 				// return ((Resource)object).getContents().toArray();
-				return new Object[] {((Resource)object).getContents().get(0) };
- 			}
+				return new Object[]{ ((Resource)object).getContents().get(0) };
+			}
 			ArrayList<Object> result = new ArrayList<Object>();
 			result.addAll(Arrays.asList(super.getChildren(object)));
 			result.addAll(getStereotypeApplications(object));
@@ -352,24 +275,25 @@ public class UMLModelContentMergeViewer extends ModelContentMergeViewer {
 		}
 
 		private List<EObject> getStereotypeApplications(Object eObject) {
-			if (eObject instanceof Element) {
+			if(eObject instanceof Element) {
 				return ((Element)eObject).getStereotypeApplications();
 			}
 			return Collections.emptyList();
- 		}
-		
+		}
+
 
 		/**
-		 *{@inheritDoc}
+		 * {@inheritDoc}
 		 * 
 		 * @see org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider#hasChildren(java.lang.Object)
 		 */
 		@Override
- 		public boolean hasChildren(Object object) {
+		public boolean hasChildren(Object object) {
 			return getChildren(object).length > 0;
- 		}
+		}
 
 	}
+
 	public class ExtendedLabelProvider extends CustomizableModelLabelProvider {
 
 		private final CustomizationManager customizationManager2;
@@ -448,5 +372,99 @@ public class UMLModelContentMergeViewer extends ModelContentMergeViewer {
 			}
 			return new ModelElementItem(eObject, getTreeElement(eObject.eContainer()), configuration);
 		}
-	}	
+	}
+
+	private class UMLModelContentMergeTabFolder extends ModelContentMergeTabFolder {
+
+		private CustomizationManager manager;
+
+		private ExtendedLabelProvider labelProvider2;
+
+		public UMLModelContentMergeTabFolder(ModelContentMergeViewer viewer, Composite composite, int side) {
+			super(viewer, composite, side);
+		}
+
+		protected IModelContentMergeViewerTab createModelContentMergeDiffTab(Composite parent) {
+			UMLModelContentMergeDiffTab diffTab = new UMLModelContentMergeDiffTab(parent, partSide, this);
+			diffTab.setContentProvider(createDiffTabContentProvider());
+			initCustomizationManager();
+			diffTab.setLabelProvider(labelProvider2);
+			return diffTab;
+
+		}
+
+		protected void initCustomizationManager() {
+			manager = new CustomizationManager();
+			try {
+				List<MetamodelView> registryDefaultCustomizations = CustomizationsCatalog.getInstance().getRegistryDefaultCustomizations();
+				for(MetamodelView metamodelView : registryDefaultCustomizations) {
+					manager.registerCustomization(metamodelView);
+				}
+				manager.loadCustomizations();
+
+			} catch (Throwable e) {
+				Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Error initializing customizations", e)); //$NON-NLS-1$
+			}
+			manager.setShowFullQualifiedNames(true);
+			manager.setShowURI(true);
+			manager.setShowDerivedLinks(false);
+			labelProvider2 = new ExtendedLabelProvider(manager);
+		}
+
+
+
+		protected IModelContentMergeViewerTab createModelContentMergeViewerTab(Composite parent) {
+			ModelContentMergePropertyTab propertyTab = new ModelContentMergePropertyTab(parent, partSide, this);
+			propertyTab.setContentProvider(createPropertyTabContentProvider());
+			return propertyTab;
+		}
+
+
+
+	}
+
+
+	private static class UMLModelContentMergeDiffTab extends ModelContentMergeDiffTab {
+
+		public UMLModelContentMergeDiffTab(Composite parentComposite, int side, ModelContentMergeTabFolder parentFolder) {
+			super(parentComposite, side, parentFolder);
+		}
+
+		protected void setSelectionToWidget(List l, boolean reveal) {
+			List result = new ArrayList();
+			for(Object next : l) {
+				if(next instanceof EObject && UMLCompareUtils.isStereotypeApplication((EObject)next)) {
+					EObject stereotypeApplication = (EObject)next;
+					result.add(UMLUtil.getBaseElement(stereotypeApplication));
+				} else {
+					result.add(next);
+				}
+			}
+			super.setSelectionToWidget(result, reveal);
+		}
+
+		public void setReflectiveInput(Object object) {
+			// We *need* to invalidate the cache here since setInput() would try to
+			// use it otherwise
+			clearCaches();
+
+			// setLabelProvider(createLabelProvider()); // already set in constructor
+			if(object instanceof EObject) {
+				setInput(object);
+			} else {
+				// may be invoked with a resourceSet, a list of resources, or a single resource
+				assert object instanceof Resource || object instanceof List;
+				if(object instanceof List) {
+					for(Object item : (List)object) {
+						assert item instanceof Resource;
+					}
+				}
+				setInput(object);
+			}
+
+			setupCaches();
+			needsRedraw = true;
+		}
+
+	}
 }
