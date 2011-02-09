@@ -50,6 +50,7 @@ import org.eclipse.ui.internal.dnd.IDropTarget;
  * 
  * @author dumoulin
  */
+@SuppressWarnings("restriction")
 public class SashWindowsContainer implements ISashWindowsContainer {
 
 	/**
@@ -642,7 +643,6 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 				if(targetPart != null) {
 					final Control targetControl = targetPart.getControl();
 
-					@SuppressWarnings("restriction")
 					final Rectangle targetBounds = DragUtil.getDisplayBounds(targetControl);
 
 					int side = Geometry.getClosestSide(targetBounds, position);
@@ -918,6 +918,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		 * 
 		 * @param menuManager
 		 */
+		@SuppressWarnings("unused")
 		public CollectVisiblePageVisitor(Class<? extends IPage> expectedClass) {
 			this.expectedClass = expectedClass;
 		}
@@ -976,7 +977,6 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		 * @param <T>
 		 * @return
 		 */
-		@SuppressWarnings("unchecked")
 		public List<IEditorPart> getVisiblePages() {
 			return visiblePages;
 		}
