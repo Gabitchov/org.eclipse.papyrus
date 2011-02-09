@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.uml2.uml.diagram; singleton:=true
 Bundle-Version: 0.8.0.qualifier
-Bundle-Activator: org.eclipse.papyrus.diagram.newdiagram.part.UMLDiagramEditorPlugin
+Bundle-Activator: org.eclipse.papyrus.example.diagram.simplediagram.part.UMLDiagramEditorPlugin
 Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
@@ -42,11 +42,11 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
 Bundle-Localization: plugin
-Export-Package: org.eclipse.papyrus.diagram.newdiagram.edit.parts,
- org.eclipse.papyrus.diagram.newdiagram.part,
- org.eclipse.papyrus.diagram.newdiagram.providers
+Export-Package: org.eclipse.papyrus.example.diagram.simplediagram.edit.parts,
+ org.eclipse.papyrus.example.diagram.simplediagram.part,
+ org.eclipse.papyrus.example.diagram.simplediagram.providers
 Eclipse-LazyStart: true
 Import-Package: org.eclipse.papyrus.core.adaptor.gmf,
  org.eclipse.papyrus.core.editor,
  org.eclipse.papyrus.diagram.common.listeners,
- org.eclipse.papyrus.diagram.newdiagram.edit.parts
+ org.eclipse.papyrus.example.diagram.simplediagram.edit.parts
