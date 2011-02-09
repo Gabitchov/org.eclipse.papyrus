@@ -53,10 +53,12 @@ import org.eclipse.emf.facet.infra.browser.uicore.CustomizationManager;
 import org.eclipse.emf.facet.infra.browser.uicore.internal.AppearanceConfiguration;
 import org.eclipse.emf.facet.infra.browser.uicore.internal.model.ITreeElement;
 import org.eclipse.emf.facet.infra.browser.uicore.internal.model.ModelElementItem;
+import org.eclipse.jface.viewers.IBaseLabelProvider;
 import org.eclipse.jface.viewers.IContentProvider;
 import org.eclipse.papyrus.compare.Activator;
 import org.eclipse.papyrus.compare.UMLCompareUtils;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.CompareTwoElementsDiffModel;
+import org.eclipse.papyrus.compare.ui.PapyrusLabelProvider;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.uml2.uml.Element;
@@ -122,76 +124,52 @@ public class UMLModelContentMergeViewer extends ModelContentMergeViewer {
 		return new UMLModelContentMergeTabFolder(this, composite, side);
 	}
 
-	protected IContentProvider createDiffTabContentProvider() {
-		List<AdapterFactory> factories = new ArrayList<AdapterFactory>();
-		factories.add(new UMLResourceItemProviderAdapterFactory());
-		factories.add(new UMLItemProviderAdapterFactory());
-		factories.add(new EcoreItemProviderAdapterFactory());
-		factories.add(new UMLReflectiveItemProviderAdapterFactory());
+	private static class UMLPropertyTabContentProvider extends PropertyContentProvider {
 
-		ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(factories);
-		AdapterFactoryContentProvider result = new AdapterFactoryContentProvider(adapterFactory) {
+		public Object[] getElements(Object inputElement) {
+			// init inputObject value
+			super.getElements(inputElement);
+			Object[] elements = new Object[]{};
+			if(getInputEObject() != null) {
+				final List<List<Object>> inputElements = new ArrayList<List<Object>>();
+				// This will fetch the property source of the input object
+				List<AdapterFactory> factories = new ArrayList<AdapterFactory>();
+				factories.add(new UMLResourceItemProviderAdapterFactory());
+				factories.add(new UMLItemProviderAdapterFactory());
+				factories.add(new EcoreItemProviderAdapterFactory());
+				factories.add(new UMLReflectiveItemProviderAdapterFactory());
 
-			@Override
-			public Object[] getElements(Object object) {
-				if(object instanceof RootObject) {
-					return new Object[]{ ((RootObject)object).object };
+				ComposedAdapterFactory factory = new ComposedAdapterFactory(factories);
+
+				final IItemPropertySource inputPropertySource = (IItemPropertySource)factory.adapt(getInputEObject(), IItemPropertySource.class);
+				// Iterates through the property descriptor to display only the "property" features of the input
+				// object
+				for(final IItemPropertyDescriptor descriptor : inputPropertySource.getPropertyDescriptors(getInputEObject())) {
+					/*
+					 * Filtering out "advanced" properties can be done by hiding properties on which
+					 * Arrays.binarySearch(descriptor.getFilterFlags(input),
+					 * "org.eclipse.ui.views.properties.expert") returns an int > 0.
+					 */
+					final EStructuralFeature feature = (EStructuralFeature)descriptor.getFeature(getInputEObject());
+					final List<Object> row = new ArrayList<Object>();
+					row.add(feature);
+					row.add(getInputEObject().eGet(feature));
+					inputElements.add(row);
 				}
-				return super.getElements(object);
-			}
-		};
 
-		return result;
-	}
+				elements = inputElements.toArray();
+				Arrays.sort(elements, new Comparator<Object>() {
 
-	protected IContentProvider createPropertyTabContentProvider() {
-		return new PropertyContentProvider() {
+					public int compare(Object first, Object second) {
+						final String name1 = ((EStructuralFeature)((List<?>)first).get(0)).getName();
+						final String name2 = ((EStructuralFeature)((List<?>)second).get(0)).getName();
 
-			public Object[] getElements(Object inputElement) {
-				// init inputObject value
-				super.getElements(inputElement);
-				Object[] elements = new Object[]{};
-				if(getInputEObject() != null) {
-					final List<List<Object>> inputElements = new ArrayList<List<Object>>();
-					// This will fetch the property source of the input object
-					List<AdapterFactory> factories = new ArrayList<AdapterFactory>();
-					factories.add(new UMLResourceItemProviderAdapterFactory());
-					factories.add(new UMLItemProviderAdapterFactory());
-					factories.add(new EcoreItemProviderAdapterFactory());
-					factories.add(new UMLReflectiveItemProviderAdapterFactory());
-
-					ComposedAdapterFactory factory = new ComposedAdapterFactory(factories);
-
-					final IItemPropertySource inputPropertySource = (IItemPropertySource)factory.adapt(getInputEObject(), IItemPropertySource.class);
-					// Iterates through the property descriptor to display only the "property" features of the input
-					// object
-					for(final IItemPropertyDescriptor descriptor : inputPropertySource.getPropertyDescriptors(getInputEObject())) {
-						/*
-						 * Filtering out "advanced" properties can be done by hiding properties on which
-						 * Arrays.binarySearch(descriptor.getFilterFlags(input),
-						 * "org.eclipse.ui.views.properties.expert") returns an int > 0.
-						 */
-						final EStructuralFeature feature = (EStructuralFeature)descriptor.getFeature(getInputEObject());
-						final List<Object> row = new ArrayList<Object>();
-						row.add(feature);
-						row.add(getInputEObject().eGet(feature));
-						inputElements.add(row);
+						return name1.compareTo(name2);
 					}
-
-					elements = inputElements.toArray();
-					Arrays.sort(elements, new Comparator<Object>() {
-
-						public int compare(Object first, Object second) {
-							final String name1 = ((EStructuralFeature)((List<?>)first).get(0)).getName();
-							final String name2 = ((EStructuralFeature)((List<?>)second).get(0)).getName();
-
-							return name1.compareTo(name2);
-						}
-					});
-				}
-				return elements;
+				});
 			}
-		};
+			return elements;
+		}
 
 	}
 
@@ -294,91 +272,11 @@ public class UMLModelContentMergeViewer extends ModelContentMergeViewer {
 
 	}
 
-	public class ExtendedLabelProvider extends CustomizableModelLabelProvider {
-
-		private final CustomizationManager customizationManager2;
-
-		private AppearanceConfiguration configuration;
-
-		/**
-		 * Constructor.
-		 * 
-		 * @param customizationManager
-		 */
-		public ExtendedLabelProvider(CustomizationManager customizationManager) {
-			super(customizationManager);
-			customizationManager2 = customizationManager;
-
-			configuration = getAppearanceConfiguration();
-		}
-
-		private AppearanceConfiguration getAppearanceConfiguration() {
-			Method getApperanceConfigurationMethod;
-			try {
-				getApperanceConfigurationMethod = CustomizationManager.class.getDeclaredMethod("getAppearanceConfiguration");
-				if(getApperanceConfigurationMethod != null) {
-					getApperanceConfigurationMethod.setAccessible(true);
-					return (AppearanceConfiguration)getApperanceConfigurationMethod.invoke(customizationManager2);
-				}
-			} catch (SecurityException e) {
-				Activator.log.error(e);
-			} catch (NoSuchMethodException e) {
-				Activator.log.error(e);
-			} catch (IllegalArgumentException e) {
-				Activator.log.error(e);
-			} catch (IllegalAccessException e) {
-				Activator.log.error(e);
-			} catch (InvocationTargetException e) {
-				Activator.log.error(e);
-			}
-			return new AppearanceConfiguration(null); // default one.
-		}
-
-		/**
-		 * {@inheritDoc}
-		 */
-		@Override
-		public String getText(Object element) {
-			if(element == null) {
-				return "";
-			}
-			if(element instanceof EObject) {
-				ITreeElement treeElement = getTreeElement((EObject)element);
-				return super.getText(treeElement);
-			}
-			return super.getText(element);
-		}
-
-		@Override
-		public Image getImage(Object element) {
-			if(element == null) {
-				return null;
-			}
-			if(element instanceof EObject) {
-				ITreeElement treeElement = getTreeElement((EObject)element);
-				return super.getImage(treeElement);
-			}
-			return super.getImage(element);
-		}
-
-
-		/**
-		 * @param eObject
-		 * @return
-		 */
-		private ITreeElement getTreeElement(EObject eObject) {
-			if(eObject == null) {
-				return null;
-			}
-			return new ModelElementItem(eObject, getTreeElement(eObject.eContainer()), configuration);
-		}
-	}
-
-	private class UMLModelContentMergeTabFolder extends ModelContentMergeTabFolder {
+	private static class UMLModelContentMergeTabFolder extends ModelContentMergeTabFolder {
 
 		private CustomizationManager manager;
 
-		private ExtendedLabelProvider labelProvider2;
+		private IBaseLabelProvider labelProvider2;
 
 		public UMLModelContentMergeTabFolder(ModelContentMergeViewer viewer, Composite composite, int side) {
 			super(viewer, composite, side);
@@ -392,6 +290,29 @@ public class UMLModelContentMergeViewer extends ModelContentMergeViewer {
 			return diffTab;
 
 		}
+
+		protected IContentProvider createDiffTabContentProvider() {
+			List<AdapterFactory> factories = new ArrayList<AdapterFactory>();
+			factories.add(new UMLResourceItemProviderAdapterFactory());
+			factories.add(new UMLItemProviderAdapterFactory());
+			factories.add(new EcoreItemProviderAdapterFactory());
+			factories.add(new UMLReflectiveItemProviderAdapterFactory());
+
+			ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(factories);
+			AdapterFactoryContentProvider result = new AdapterFactoryContentProvider(adapterFactory) {
+
+				@Override
+				public Object[] getElements(Object object) {
+					if(object instanceof RootObject) {
+						return new Object[]{ ((RootObject)object).object };
+					}
+					return super.getElements(object);
+				}
+			};
+
+			return result;
+		}
+
 
 		protected void initCustomizationManager() {
 			manager = new CustomizationManager();
@@ -408,14 +329,14 @@ public class UMLModelContentMergeViewer extends ModelContentMergeViewer {
 			manager.setShowFullQualifiedNames(true);
 			manager.setShowURI(true);
 			manager.setShowDerivedLinks(false);
-			labelProvider2 = new ExtendedLabelProvider(manager);
+			labelProvider2 = new PapyrusLabelProvider(manager);
 		}
 
 
 
 		protected IModelContentMergeViewerTab createModelContentMergeViewerTab(Composite parent) {
 			ModelContentMergePropertyTab propertyTab = new ModelContentMergePropertyTab(parent, partSide, this);
-			propertyTab.setContentProvider(createPropertyTabContentProvider());
+			propertyTab.setContentProvider(new UMLPropertyTabContentProvider());
 			return propertyTab;
 		}
 
