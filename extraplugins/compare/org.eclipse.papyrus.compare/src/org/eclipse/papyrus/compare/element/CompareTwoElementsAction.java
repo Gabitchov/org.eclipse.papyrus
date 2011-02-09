@@ -22,6 +22,7 @@ import java.util.Map;
 import org.eclipse.compare.CompareConfiguration;
 import org.eclipse.compare.CompareUI;
 import org.eclipse.compare.CompareViewerPane;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.compare.EMFCompareException;
@@ -37,12 +38,24 @@ import org.eclipse.emf.compare.match.engine.IMatchEngine;
 import org.eclipse.emf.compare.match.metamodel.MatchModel;
 import org.eclipse.emf.compare.ui.editor.ModelCompareEditorInput;
 import org.eclipse.emf.compare.ui.viewer.content.ModelContentMergeViewer;
+import org.eclipse.emf.compare.util.AdapterUtils;
 import org.eclipse.emf.compare.util.EMFCompareMap;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.operation.IRunnableWithProgress;
+import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.jface.viewers.StyledCellLabelProvider;
+import org.eclipse.jface.viewers.StyledString;
+import org.eclipse.jface.viewers.ViewerCell;
 import org.eclipse.papyrus.compare.ui.viewer.content.UMLModelContentMergeViewer;
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.team.internal.ui.actions.TeamAction;
+import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 
 public class CompareTwoElementsAction extends TeamAction {
@@ -83,10 +96,19 @@ public class CompareTwoElementsAction extends TeamAction {
 
 	private void openInCompare(ComparisonSnapshot snapshot) {
 		CompareUI.openCompareEditor(new ModelCompareEditorInput(snapshot) {
+
 			@Override
 			protected ModelContentMergeViewer createMergeViewer(CompareViewerPane pane, CompareConfiguration config) {
 				return new UMLModelContentMergeViewer(pane, config);
 			}
+
+			@Override
+			public Control createOutlineContents(Composite parent, int direction) {
+				Control result = super.createOutlineContents(parent, direction);
+				structureMergeViewer.setLabelProvider(new PapyrusStyledadapterProvider());
+				return result;
+			}
+
 		});
 	}
 
@@ -150,6 +172,109 @@ public class CompareTwoElementsAction extends TeamAction {
 			return (EObject)object;
 		}
 		return null;
+	}
+
+	private class UMLModelStructureLabelProvider extends LabelProvider {
+
+		/**
+		 * We use this generic label provider, but we want to customize some aspects that's why we choose to
+		 * aggregate it.
+		 */
+		/* package */AdapterFactoryLabelProvider adapterProvider;
+
+		/**
+		 * Default constructor.
+		 */
+		public UMLModelStructureLabelProvider() {
+			adapterProvider = new AdapterFactoryLabelProvider(AdapterUtils.getAdapterFactory());
+
+		}
+
+		/**
+		 * Returns the platform icon for a given {@link IFile}. If not an {@link IFile}, delegates to the {@link AdapterFactoryLabelProvider} to get
+		 * the {@link Image}.
+		 * 
+		 * @param object
+		 *        Object to get the {@link Image} for.
+		 * @return The platform icon for the given object.
+		 * @see AdapterFactoryLabelProvider#getImage(Object)
+		 */
+		@Override
+		public Image getImage(Object object) {
+			Image image = null;
+			if(object instanceof AbstractDiffExtension) {
+				image = (Image)((AbstractDiffExtension)object).getImage();
+			}
+			if(object instanceof IFile) {
+				image = PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJ_FILE);
+			} else {
+				if(image == null) {
+					image = adapterProvider.getImage(object);
+				}
+			}
+			return image;
+		}
+
+		/**
+		 * Returns the name of the given {@link IFile}, delegates to {@link AdapterFactoryLabelProvider#getText(Object)} if not an {@link IFile}.
+		 * 
+		 * @param object
+		 *        Object we seek the name for.
+		 * @return The name of the given object.
+		 * @see AdapterFactoryLabelProvider#getText(Object)
+		 */
+		@Override
+		public String getText(Object object) {
+			String text = null;
+			if(object instanceof AbstractDiffExtension) {
+				text = ((AbstractDiffExtension)object).getText();
+			} else {
+				if(object instanceof IFile) {
+					text = ((IFile)object).getName();
+				} else if(object instanceof Resource) {
+					text = ((Resource)object).getURI().lastSegment();
+				} else {
+					text = adapterProvider.getText(object);
+				}
+			}
+			return text;
+		}
+	}
+
+	public class PapyrusStyledadapterProvider extends StyledCellLabelProvider implements ILabelProvider {
+
+		UMLModelStructureLabelProvider delegate;
+
+		public PapyrusStyledadapterProvider() {
+			delegate = new UMLModelStructureLabelProvider();
+		}
+
+		public Image getImage(Object element) {
+			return delegate.getImage(element);
+		}
+
+		public String getText(Object element) {
+			return getStyledText(element).getString();
+		}
+
+		public void update(ViewerCell cell) {
+			StyledString string = getStyledText(cell.getElement());
+			cell.setText(string.getString());
+			cell.setStyleRanges(string.getStyleRanges());
+			cell.setImage(getImage(cell.getElement()));
+			super.update(cell);
+		}
+
+		private StyledString getStyledText(Object element) {
+			StyledString styledString = new StyledString();
+			styledString.append(delegate.getText(element));
+			styledString.append(' ');
+			styledString.append('(', StyledString.QUALIFIER_STYLER);
+			styledString.append("bla-bla", StyledString.QUALIFIER_STYLER);
+			styledString.append(')', StyledString.QUALIFIER_STYLER);
+			return styledString;
+		}
+
 	}
 
 
