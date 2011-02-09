@@ -14,13 +14,38 @@
 package org.eclipse.papyrus.compare;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.compare.ui.PapyrusLabelProvider;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
 
 public class UMLCompareUtils {
 
+	private static UMLCompareUtils ourInstance;
+
+	private PapyrusLabelProvider myPapyrusLabelProvider;
+	
+	private UMLCompareUtils() {}
+	
+	public static UMLCompareUtils getInstance() {
+		if (ourInstance == null) {
+			ourInstance = new UMLCompareUtils();
+		}
+		return ourInstance;
+	}
+
 	public static boolean isStereotypeApplication(EObject eObject) {
 		return UMLUtil.getStereotype(eObject) != null;
+	}
+
+	public PapyrusLabelProvider getPapyrusLabelProvider() {
+		if (myPapyrusLabelProvider == null) {
+			myPapyrusLabelProvider = new PapyrusLabelProvider();
+		}
+		return myPapyrusLabelProvider;
+	}
+
+	public PapyrusLabelProvider getStyledPapyrusLabelProvider() {
+		return getPapyrusLabelProvider();
 	}
 
 }

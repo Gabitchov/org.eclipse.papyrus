@@ -6,7 +6,6 @@ import java.util.List;
 import org.eclipse.emf.compare.ui.viewer.content.part.ModelContentMergeTabFolder;
 import org.eclipse.emf.compare.ui.viewer.content.part.diff.ModelContentMergeDiffTab;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.papyrus.compare.UMLCompareUtils;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.uml2.uml.util.UMLUtil;
@@ -21,6 +20,7 @@ public class UMLModelContentMergeDiffTab extends ModelContentMergeDiffTab {
 
 	@Override
 	protected void setSelectionToWidget(List l, boolean reveal) {
+		// tfesenko filter stereotype applications
 		List result = new ArrayList();
 		for(Object next : l) {
 			if(next instanceof EObject && UMLCompareUtils.isStereotypeApplication((EObject)next)) {
@@ -35,26 +35,15 @@ public class UMLModelContentMergeDiffTab extends ModelContentMergeDiffTab {
 
 	@Override
 	public void setReflectiveInput(Object object) {
-		// We *need* to invalidate the cache here since setInput() would try to
-		// use it otherwise
-		clearCaches();
-
-		// setLabelProvider(createLabelProvider()); // already set in constructor
-		if(object instanceof EObject) {
+		// tfesenko 336361 - [UML Compare] Compare two elements: show right element as root
+		if (object instanceof EObject) {
+			clearCaches();
+			// tfesenko default implementation sets object.eResource here
 			setInput(object);
-		} else {
-			// may be invoked with a resourceSet, a list of resources, or a single resource
-			assert object instanceof Resource || object instanceof List;
-			if(object instanceof List) {
-				for(Object item : (List)object) {
-					assert item instanceof Resource;
-				}
-			}
-			setInput(object);
+			setupCaches();
+			needsRedraw = true;
 		}
-
-		setupCaches();
-		needsRedraw = true;
+		super.setReflectiveInput(object);
 	}
 
 

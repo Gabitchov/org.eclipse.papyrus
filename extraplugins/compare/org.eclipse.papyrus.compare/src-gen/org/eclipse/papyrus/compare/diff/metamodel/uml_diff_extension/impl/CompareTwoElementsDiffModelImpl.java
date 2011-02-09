@@ -31,8 +31,10 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.eclipse.papyrus.compare.UMLCompareUtils;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.CompareTwoElementsDiffModel;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UMLDiffPackage;
+import org.eclipse.papyrus.compare.ui.PapyrusLabelProvider;
 
 /**
  * <!-- begin-user-doc -->
@@ -345,8 +347,11 @@ public class CompareTwoElementsDiffModelImpl extends UMLDiffExtensionImpl implem
 	public String getText() {
 		String message = "%s change(s) between elements [%s] and [%s]";
 		int subchanges = ((DiffGroup)getOwnedElements().get(0)).getSubchanges();
-		String leftName = AdapterUtils.getItemProviderText(getLeftRoots().get(0));
-		String rightName = AdapterUtils.getItemProviderText(getRightRoots().get(0));
+		PapyrusLabelProvider labelProvider =  UMLCompareUtils.getInstance().getStyledPapyrusLabelProvider();
+		EObject leftElement = getLeftRoots().get(0);
+		String leftName = labelProvider.getText(leftElement);
+		EObject rightElement = getRightRoots().get(0);
+		String rightName = labelProvider.getText(rightElement);
 		return String.format(message, subchanges, leftName, rightName);
 	}
 	
