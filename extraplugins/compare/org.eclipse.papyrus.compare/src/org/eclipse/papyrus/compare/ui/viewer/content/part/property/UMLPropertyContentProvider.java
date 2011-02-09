@@ -23,13 +23,14 @@ public class UMLPropertyContentProvider extends PropertyContentProvider {
 
 	@Override
 	public Object[] getElements(Object inputElement) {
+		// tfesenko - the only change with the super method is here, we use UMLAdapterFactory
+		ComposedAdapterFactory factory = new UMLAdapterFactory();
+
 		// init inputObject value
 		super.getElements(inputElement);
 		Object[] elements = new Object[]{};
 		if(getInputEObject() != null) {
 			final List<List<Object>> inputElements = new ArrayList<List<Object>>();
-			// the only change with the super methos is here, we use UMLAdapterFactory
-			ComposedAdapterFactory factory = new UMLAdapterFactory();
 
 			final IItemPropertySource inputPropertySource = (IItemPropertySource)factory.adapt(getInputEObject(), IItemPropertySource.class);
 			// Iterates through the property descriptor to display only the "property" features of the input
