@@ -68,7 +68,7 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 	public StyledString caseRemoveStereotypeApplication(RemoveStereotypeApplication object) {
 		StyledString styledString = new StyledString();
 		EObject element = object.getLeftElement();
-		String elementLabel = AdapterUtils.getItemProviderText(element);
+		String elementLabel = getLabelProvider().getText(element);
 		if(UMLCompareUtils.isStereotypeApplication(element)) {
 			elementLabel = UMLUtil.getStereotype(element).getName();
 		}
@@ -81,8 +81,8 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 	public StyledString caseTaggedValueChange(TaggedValueChange object) {
 		StyledString styledString = new StyledString();
 
-		final String attributeLabel = AdapterUtils.getItemProviderText(object.getAttribute());
-		final String elementLabel = AdapterUtils.getItemProviderText(object.getLeftElement());
+		final String attributeLabel = getLabelProvider().getText(object.getAttribute());
+		final String elementLabel = getLabelProvider().getText(object.getLeftElement());
 		final Object leftValue = object.getLeftElement().eGet(object.getAttribute());
 		final Object rightValue = object.getRightElement().eGet(object.getAttribute());
 		final String leftValueString = leftValue == null ? "null" : leftValue.toString();
@@ -110,8 +110,8 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 	public StyledString caseTaggedValueChangeLeftTarget(TaggedValueChangeLeftTarget object) {
 		StyledString styledString = new StyledString();
 
-		final String attributeLabel = AdapterUtils.getItemProviderText(object.getAttribute());
-		final String elementLabel = AdapterUtils.getItemProviderText(object.getLeftElement());
+		final String attributeLabel = getLabelProvider().getText(object.getAttribute());
+		final String elementLabel = getLabelProvider().getText(object.getLeftElement());
 		final Object leftValue = object.getLeftElement().eGet(object.getAttribute());
 		final Object rightValue = object.getRightElement().eGet(object.getAttribute());
 		final String rightValueString = rightValue == null ? "null" : rightValue.toString();
@@ -133,8 +133,8 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 	@Override
 	public StyledString caseTaggedValueChangeRightTarget(TaggedValueChangeRightTarget object) {
 		StyledString styledString = new StyledString();
-		final String attributeLabel = AdapterUtils.getItemProviderText(object.getAttribute());
-		final String elementLabel = AdapterUtils.getItemProviderText(object.getLeftElement());
+		final String attributeLabel = getLabelProvider().getText(object.getAttribute());
+		final String elementLabel = getLabelProvider().getText(object.getLeftElement());
 		final Object leftValue = object.getLeftElement().eGet(object.getAttribute());
 		final Object rightValue = object.getRightElement().eGet(object.getAttribute());
 		final String leftValueString = leftValue == null ? "null" : leftValue.toString();
@@ -157,14 +157,14 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 	@Override
 	public StyledString caseTaggedValueReferenceChange(TaggedValueReferenceChange object) {
 		StyledString styledString = new StyledString();
-		final String referenceLabel = AdapterUtils.getItemProviderText(object.getReference());
-		final String elementLabel = AdapterUtils.getItemProviderText(object.getLeftElement());
+		final String referenceLabel = getLabelProvider().getText(object.getReference());
+		final String elementLabel = getLabelProvider().getText(object.getLeftElement());
 
 		Object leftTaggedValue = UMLUtil.getBaseElement(object.getLeftElement()).getValue(UMLUtil.getStereotype(object.getLeftElement()), object.getReference().getName());
 		Object rightTaggedValue = UMLUtil.getBaseElement(object.getRightElement()).getValue(UMLUtil.getStereotype(object.getRightElement()), object.getReference().getName());
 
-		String leftValue = AdapterUtils.getItemProviderText((EObject)leftTaggedValue);
-		String rightValue = AdapterUtils.getItemProviderText((EObject)rightTaggedValue);
+		String leftValue = getLabelProvider().getText((EObject)leftTaggedValue);
+		String rightValue = getLabelProvider().getText((EObject)rightTaggedValue);
 
 		if(object.isRemote()) {
 			styledString.append("Tagged value ", StyledString.DECORATIONS_STYLER);
@@ -188,8 +188,8 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 	public StyledString caseUpdateTaggedValue(UpdateTaggedValue object) {
 		StyledString styledString = new StyledString();
 
-		final String attributeLabel = AdapterUtils.getItemProviderText(object.getAttribute());
-		final String elementLabel = AdapterUtils.getItemProviderText(object.getLeftElement());
+		final String attributeLabel = getLabelProvider().getText(object.getAttribute());
+		final String elementLabel = getLabelProvider().getText(object.getLeftElement());
 
 		Object leftTaggedValue = UMLUtil.getBaseElement(object.getLeftElement()).getValue(UMLUtil.getStereotype(object.getLeftElement()), object.getAttribute().getName());
 		Object rightTaggedValue = UMLUtil.getBaseElement(object.getRightElement()).getValue(UMLUtil.getStereotype(object.getRightElement()), object.getAttribute().getName());
@@ -219,7 +219,7 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 		StyledString styledString = new StyledString();
 		final EObject parent = object.getRightParent();
 		if(parent != null) {
-			final String parentLabel = AdapterUtils.getItemProviderText(parent);
+			final String parentLabel = getLabelProvider().getText(parent);
 			styledString.append(String.valueOf(object.getSubchanges()));
 			styledString.append(" change(s) in ", StyledString.DECORATIONS_STYLER);
 			styledString.append(parentLabel);
