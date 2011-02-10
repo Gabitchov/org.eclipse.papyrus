@@ -19,9 +19,9 @@ import org.eclipse.emf.compare.ui.viewer.content.ModelContentMergeContentProvide
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.CompareTwoElementsDiffModel;
 
 
-public class UMLModelContentMergeContentProvider extends ModelContentMergeContentProvider {
+public class ElementContentMergeContentProvider extends ModelContentMergeContentProvider {
 
-	public UMLModelContentMergeContentProvider(CompareConfiguration cc) {
+	public ElementContentMergeContentProvider(CompareConfiguration cc) {
 		super(cc);
 	}
 

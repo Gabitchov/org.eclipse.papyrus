@@ -22,6 +22,7 @@ import java.util.Map;
 import org.eclipse.compare.CompareConfiguration;
 import org.eclipse.compare.CompareUI;
 import org.eclipse.compare.CompareViewerPane;
+import org.eclipse.compare.contentmergeviewer.IMergeViewerContentProvider;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.compare.EMFCompareException;
@@ -41,6 +42,7 @@ import org.eclipse.emf.compare.util.EMFCompareMap;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.operation.IRunnableWithProgress;
+import org.eclipse.papyrus.compare.ui.viewer.content.ElementContentMergeContentProvider;
 import org.eclipse.papyrus.compare.ui.viewer.content.UMLModelContentMergeViewer;
 import org.eclipse.papyrus.compare.ui.viewer.structure.UMLStyledStructureLabelProvider;
 import org.eclipse.swt.widgets.Composite;
@@ -89,7 +91,12 @@ public class CompareTwoElementsAction extends TeamAction {
 
 			@Override
 			protected ModelContentMergeViewer createMergeViewer(CompareViewerPane pane, CompareConfiguration config) {
-				return new UMLModelContentMergeViewer(pane, config);
+				return new UMLModelContentMergeViewer(pane, config) {
+					@Override
+					protected IMergeViewerContentProvider createMergeViewerContentProvider() {
+						return new ElementContentMergeContentProvider(configuration);
+					}
+				};
 			}
 
 			@Override
