@@ -27,36 +27,36 @@ import org.eclipse.emf.compare.diff.metamodel.util.DiffSwitch;
 import org.eclipse.emf.ecore.EObject;
 
 
-public class ModelElementSwitch extends DiffSwitch<Collection<EObject>> {
+public class ModelElementSwitch extends DiffSwitch<EObject> {
 
 	@Override
-	public Collection<EObject> caseDiffGroup(DiffGroup object) {
-		return Collections.singletonList(object.getRightParent());
+	public EObject caseDiffGroup(DiffGroup object) {
+		return object.getRightParent();
 	}
 
 	@Override
-	public Collection<EObject> caseModelElementChangeLeftTarget(ModelElementChangeLeftTarget object) {
-		return Collections.singletonList(object.getLeftElement());
+	public EObject caseModelElementChangeLeftTarget(ModelElementChangeLeftTarget object) {
+		return object.getLeftElement();
 	}
 
 	@Override
-	public Collection<EObject> caseModelElementChangeRightTarget(ModelElementChangeRightTarget object) {
-		return Collections.singletonList(object.getRightElement());
+	public EObject caseModelElementChangeRightTarget(ModelElementChangeRightTarget object) {
+		return object.getRightElement();
 	}
 
 	@Override
-	public Collection<EObject> caseUpdateModelElement(UpdateModelElement object) {
-		return Collections.singletonList(object.getLeftElement());
+	public EObject caseUpdateModelElement(UpdateModelElement object) {
+		return object.getLeftElement();
 	}
 
 	@Override
-	public Collection<EObject> caseAttributeChange(AttributeChange object) {
-		return Arrays.asList(new EObject[]{ object.getLeftElement(), object.getRightElement(), });
+	public EObject caseAttributeChange(AttributeChange object) {
+		return object.getLeftElement();
 	}
 
 	@Override
-	public Collection<EObject> caseReferenceChange(ReferenceChange object) {
-		return Arrays.asList(new EObject[]{ object.getLeftElement(), object.getRightElement(), });
+	public EObject caseReferenceChange(ReferenceChange object) {
+		return object.getLeftElement();
 	}
 
 }

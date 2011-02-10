@@ -14,8 +14,6 @@
 package org.eclipse.papyrus.compare.diff;
 
 
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Iterator;
 
 import org.eclipse.emf.compare.diff.engine.GenericDiffEngine;
@@ -38,13 +36,14 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 public class PapyrusDiffEngine extends GenericDiffEngine {
 
 	private DiffSwitch<AbstractDiffExtension> myDiffElementBuilder = new DiffElementExtensionBuilder();
-	private DiffSwitch<Collection<EObject>> myGetModelElementSwitch = new ModelElementSwitch();
+
+	private DiffSwitch<EObject> myGetModelElementSwitch = new ModelElementSwitch();
 
 	@Override
 	protected ReferencesCheck getReferencesChecker() {
 		return new UMLReferenceCheck(matchCrossReferencer);
 	}
-	
+
 	@Override
 	public DiffModel doDiff(MatchModel match, boolean threeWay) {
 		DiffModel result = super.doDiff(match, threeWay);
@@ -60,33 +59,30 @@ public class PapyrusDiffEngine extends GenericDiffEngine {
 		}
 		return diffModel;
 	}
-	
+
 	protected void visitElement(DiffModel root, DiffElement diffElement) {
-		if (diffElement instanceof DiffGroup) {
+		if(diffElement instanceof DiffGroup) {
 			return;
 		}
+		EObject stereotypeApplication = getModelElementsFor(diffElement);
+		if(UMLCompareUtils.isStereotypeApplication(stereotypeApplication)) {
 
-		Collection<EObject> elements = getModelElementsFor(diffElement);
-		for (EObject stereotypeApplication: elements) {
-			if(UMLCompareUtils.isStereotypeApplication(stereotypeApplication)) {
-				
-				Element newVisualParent = UMLUtil.getBaseElement(stereotypeApplication);
-				DiffElement newDiffParent = findOrCreateDiffElementFor(root, newVisualParent);
-				AbstractDiffExtension taggedValueDiff = createDiffExtenstionElementFor(diffElement);
-				
-				newDiffParent.getSubDiffElements().add((DiffElement)taggedValueDiff);
-				hideElement(diffElement, taggedValueDiff);
-			} 
+			Element newVisualParent = UMLUtil.getBaseElement(stereotypeApplication);
+			DiffElement newDiffParent = findOrCreateDiffElementFor(root, newVisualParent);
+			AbstractDiffExtension taggedValueDiff = createDiffExtenstionElementFor(diffElement);
+
+			newDiffParent.getSubDiffElements().add((DiffElement)taggedValueDiff);
+			hideElement(diffElement, taggedValueDiff);
 		}
 	}
-	
+
 	protected void hideElement(DiffElement diffElement, AbstractDiffExtension diffExtension) {
-		if (diffExtension == null) {
+		if(diffExtension == null) {
 			diffExtension = UMLDiffFactory.eINSTANCE.createAddStereotypeApplication();
 		}
 		diffExtension.getHideElements().add(diffElement);
 	}
-	
+
 	private DiffElement findOrCreateDiffElementFor(DiffModel root, EObject object) {
 		if(object == null) {
 			if(!root.getOwnedElements().isEmpty()) {
@@ -128,25 +124,16 @@ public class PapyrusDiffEngine extends GenericDiffEngine {
 	}
 
 	private boolean isPertinentDiff(DiffElement diff, EObject modelElement) {
-		Collection<EObject> domainElements = getModelElementsFor(diff);
-		for (EObject curr: domainElements) {
-			if (modelElement.equals(curr) || modelElement.equals(getMatchedEObject(curr))) {
-				return true;
-			}
-		}
-		return false;
+		EObject domainElement = getModelElementsFor(diff);
+		return modelElement.equals(domainElement) || modelElement.equals(getMatchedEObject(domainElement));
 	}
-	
-	protected Collection<EObject> getModelElementsFor(DiffElement diff) {
-		Collection<EObject> result = myGetModelElementSwitch.doSwitch(diff);
-		if (result != null) {
-			return result;
-		}
-		return Collections.emptyList();
+
+	protected EObject getModelElementsFor(DiffElement diff) {
+		return myGetModelElementSwitch.doSwitch(diff);
 	}
-	
+
 	protected AbstractDiffExtension createDiffExtenstionElementFor(DiffElement diffElement) {
 		return myDiffElementBuilder.doSwitch(diffElement);
 	}
-	
+
 }
