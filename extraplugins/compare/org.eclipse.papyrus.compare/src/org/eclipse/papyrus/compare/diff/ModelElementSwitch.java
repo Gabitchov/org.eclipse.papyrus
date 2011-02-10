@@ -13,10 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.compare.diff;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-
 import org.eclipse.emf.compare.diff.metamodel.AttributeChange;
 import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
 import org.eclipse.emf.compare.diff.metamodel.ModelElementChangeLeftTarget;
