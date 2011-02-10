@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+<extension point="org.eclipse.ui.navigator.navigatorContent">
+      <navigatorContent
+            activeByDefault="false"
+            contentProvider="org.eclipse.papyrus.diagram.modelexplorer.DiagramContentProvider"
+            icon="icon/diagrams.gif"
+            id="org.eclipse.papyrus.modelexplorer.DiagramNavigatorContent"
+            labelProvider="org.eclipse.papyrus.diagram.modelexplorer.DiagramLabelProvider"
+            name="Diagram Model Contents"
+            priority="lower">
+         <triggerPoints>
+            <or>
+               <instanceof value="org.eclipse.emf.ecore.EObject">
+               </instanceof>
+               <adapt type="org.eclipse.emf.ecore.EObject">
+               </adapt>
+               <instanceof value="java.lang.Object">
+               </instanceof>
+            </or>
+         </triggerPoints>
+         <possibleChildren>
+            <or>
+               <instanceof value="org.eclipse.gmt.modisco.infra.browser.uicore.internal.model.ModelElementItem">
+               </instanceof>
+               <instanceof value="org.eclipse.gmf.runtime.notation.Diagram">
+               </instanceof>
+            </or>
+         </possibleChildren>
+      </navigatorContent>
+   </extension>
+<extension
+      point="org.eclipse.ui.menus">
+   <menuContribution
+         allPopups="false"
+         locationURI="toolbar:org.eclipse.papyrus.modelexplorer.modelexplorer">
+      <command
+            commandId="org.eclipse.papyrus.modelexplorer.diagramviewcommand"
+            icon="icon/diagrams.gif"
+            label="Diagram view"
+            style="toggle">
+      </command>
+   </menuContribution>
+</extension>
+<extension point="org.eclipse.ui.commands">
+<command id="org.eclipse.papyrus.modelexplorer.diagramviewcommand"
+		name="DiagramView" description="go to the diagram view"
+		categoryId="org.eclipse.papyrus.editor.category"
+		defaultHandler="org.eclipse.papyrus.diagram.modelexplorer.handler.DiagramViewHandler">
+	</command>
+	</extension>
+</plugin>

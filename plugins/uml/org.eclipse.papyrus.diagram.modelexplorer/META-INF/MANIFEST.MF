@@ -1,0 +1,20 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.papyrus.diagram.modelexplorer;singleton:=true
+Bundle-Version: 0.8.0.qualifier
+Bundle-Activator: org.eclipse.papyrus.diagram.modelexplorer.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.ui.navigator;bundle-version ="3.4.0",
+ org.eclipse.emf.transaction;bundle-version="1.4.0",
+ org.eclipse.uml2.uml.editor;bundle-version="3.1.0",
+ org.eclipse.papyrus.uml.service.types;bundle-version="0.8.0",
+ org.eclipse.papyrus.service.edit;bundle-version="0.8.0",
+ org.eclipse.emf.facet.infra.facet;bundle-version="0.1.0",
+ org.eclipse.papyrus.modelexplorer;bundle-version="0.7.0",
+ org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.1.0",
+ org.eclipse.emf.ecore,org.eclipse.gmf.runtime.notation,
+ org.eclipse.emf.facet.infra.query.core
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Vendor: %providerName
