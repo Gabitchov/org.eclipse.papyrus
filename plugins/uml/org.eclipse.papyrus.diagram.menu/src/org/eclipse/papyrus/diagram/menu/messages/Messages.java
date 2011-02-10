@@ -28,6 +28,8 @@ public class Messages extends NLS {
 	public static String ShowHideConnectionLabelsAction_LabelsManager;
 
 	public static String ShowHideConnectionLabelsAction_SelectTheLabelToDisplay;
+
+	public static String ZoomToolbar_Zoom;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

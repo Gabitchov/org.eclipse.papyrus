@@ -28,10 +28,13 @@ import org.eclipse.jface.action.ContributionItem;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.core.editor.CoreMultiDiagramEditor;
+import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.menu.actions.ZoomAction;
+import org.eclipse.papyrus.diagram.menu.messages.Messages;
 import org.eclipse.papyrus.sasheditor.editor.IPage;
 import org.eclipse.papyrus.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
@@ -136,6 +139,12 @@ public class ZoomToolbar extends ContributionItem implements ZoomListener, Liste
 	public void fill(ToolBar parent, int index) {
 
 		ToolItem toolItem = new ToolItem(parent, SWT.SEPARATOR);
+		//TODO seems doesn't work : we doesn't show this icon in the toolbar customization
+		Image zoomImage = Activator.getPluginIconImage("org.eclipse.papyrus.diagram.menu", "/icons/zoomplus.gif"); //$NON-NLS-1$ //$NON-NLS-2$
+		toolItem.setHotImage(zoomImage);
+		toolItem.setImage(zoomImage);
+		toolItem.setToolTipText(Messages.ZoomToolbar_Zoom);
+
 		combo = new Combo(parent, SWT.DROP_DOWN);
 		combo.setItems(getZoomLevelsAsText(getZoomManager()));
 		combo.setVisibleItemCount(IUIConstants.DEFAULT_DROP_DOWN_SIZE);

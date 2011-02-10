@@ -535,10 +535,9 @@
          allPopups="false"
          locationURI="menu:org.eclipse.ui.main.menu?after=edit">
       <menu
-            icon="icons/Papyrus_16x16.gif"
+            icon="icons/papyrus.png"
             id="org.eclipse.papyrus.diagram.ui.menu"
-            label="Diagram"
-            mnemonic="Dia&amp;gram"
+            label="&amp;Diagram"
             tooltip="Diagram Menu">
          <visibleWhen>
             <with
@@ -556,15 +555,13 @@
       <menu
             icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/selectall.gif"
             id="org.eclipse.papyrus.diagram.ui.popupmenu.select.menu"
-            label="Select"
-            mnemonic="&amp;l"
+            label="Se&amp;lect"
             tooltip="Select Menu">
          <command
                commandId="org.eclipse.papyrus.diagram.menu.commands.SelectAllCommand"
                icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/selectall.gif"
                id="org.eclipse.papyrus.diagram.ui.popupmenu.select.all"
-               label="All"
-               mnemonic="&amp;A"
+               label="&amp;All"
                style="push"
                tooltip="Select All">
          </command>
@@ -572,8 +569,7 @@
                commandId="org.eclipse.papyrus.diagram.menu.commands.SelectAllShapesCommand"
                icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/selectshapes.gif"
                id="org.eclipse.papyrus.diagram.ui.popupmenu.select.all.shapes"
-               label="All Shapes"
-               mnemonic="&amp;S"
+               label="All &amp;Shapes"
                style="push"
                tooltip="Select All Shapes">
          </command>
@@ -581,8 +577,7 @@
                commandId="org.eclipse.papyrus.diagram.menu.commands.SelectAllConnectorsCommand"
                icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/selectconnectors.gif"
                id="org.eclipse.papyrus.diagram.ui.popupmenu.select.all.connectors"
-               label="All Connectors"
-               mnemonic="&amp;C"
+               label="All &amp;Connectors"
                style="push"
                tooltip="Select All Connectors">
          </command>
@@ -615,8 +610,7 @@
             commandId="org.eclipse.papyrus.diagram.menu.commands.ArrangeAllCommand"
             icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/arrangeall.gif"
             id="org.eclipse.papyrus.diagram.ui.popupmenu.arrange.all"
-            label="Arrange All"
-            mnemonic="&amp;g"
+            label="Arran&amp;ge All"
             style="push"
             tooltip="Arrange All">
          <visibleWhen
@@ -645,10 +639,9 @@
          </visibleWhen>
       </command>
       <menu
-            icon="icons/Papyrus_16x16.gif"
+            icon="icons/papyrus.png"
             id="org.eclipse.papyrus.diagram.ui.popupmenu.format"
-            label="Format"
-            mnemonic="&amp;m"
+            label="For&amp;mat"
             tooltip="Papyrus Format Menu">
          <visibleWhen>
             <with
@@ -660,10 +653,9 @@
          </visibleWhen>
       </menu>
       <menu
-            icon="icons/Papyrus_16x16.gif"
+            icon="icons/papyrus.png"
             id="org.eclipse.papyrus.diagram.ui.popupmenu.filters"
-            label="Filters"
-            mnemonic="&amp;i"
+            label="F&amp;ilters"
             tooltip="Papyrus Filters Menu">
          <visibleWhen>
             <with
@@ -682,10 +674,9 @@
          allPopups="false"
          locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu?after=endFilterMenu">
       <menu
-            icon="icons/Papyrus_16x16.gif"
+            icon="icons/papyrus.png"
             id="org.eclipse.papyrus.diagram.ui.popupmenu.view"
-            label="View"
-            mnemonic="&amp;V"
+            label="&amp;View"
             tooltip="Papyrus View Menu">
          <visibleWhen>
             <with
@@ -699,8 +690,7 @@
       <menu
             icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.providers/icons/zoomplus.gif"
             id="org.eclipse.papyrus.diagram.ui.popupmenu.zoom"
-            label="Zoom"
-            mnemonic="&amp;Z"
+            label="&amp;Zoom"
             tooltip="Zoom Menu">
          <visibleWhen>
             <with
@@ -742,7 +732,6 @@
                commandId="org.eclipse.papyrus.diagram.menu.commands.CopyAppearancePropertiesCommand"
                icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/copy_appearance_properties.gif"
                label="Apply Appearance &amp;Properties"
-               mnemonic="Apply Appearance &amp;Properties"
                style="push"
                tooltip="Apply the applicable appearance properties of the last selected shape to the other selected shapes.">
             <visibleWhen>
@@ -869,7 +858,6 @@
          <command
                commandId="org.eclipse.papyrus.diagram.menu.command.autosize"
                icon="icons/autosize.gif"
-               mnemonic="&amp;A"
                style="push"
                tooltip="Auto Size">
             <visibleWhen>
@@ -934,8 +922,7 @@
             commandId="org.eclipse.papyrus.diagram.menu.commands.line.style.rectilinear"
             icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/rectilinear.gif"
             id="org.eclipse.papyrus.menu.line.style.toolbar.rectilinear"
-            label="Rectilinear Style Routing"
-            mnemonic="&amp;R"
+            label="&amp;Rectilinear Style Routing"
             style="toggle"
             tooltip="Change routing to rectilinear style for connectors">
       </command>
@@ -943,8 +930,7 @@
             commandId="org.eclipse.papyrus.diagram.menu.commands.line.style.oblique"
             icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/oblique.gif"
             id="org.eclipse.papyrus.menu.line.style.toolbar.oblique"
-            label="Oblique Style Routing"
-            mnemonic="&amp;O"
+            label="&amp;Oblique Style Routing"
             style="toggle"
             tooltip="Change routing to oblique style for connectors">
       </command>
@@ -952,8 +938,7 @@
             commandId="org.eclipse.papyrus.diagram.menu.commands.line.style.tree"
             icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/tree.gif"
             id="org.eclipse.papyrus.menu.line.style.toolbar.tree"
-            label="Tree Style Routing"
-            mnemonic="&amp;T"
+            label="&amp;Tree Style Routing"
             style="toggle"
             tooltip="Change routing to tree style for connectors">
       </command>
@@ -965,8 +950,7 @@
             commandId="org.eclipse.papyrus.diagram.menu.commands.line.style.removebendpoint"
             icon="icons/no_bendpoints.gif"
             id="org.eclipse.papyrus.menu.line.style.toolbar.no.bendpoint"
-            label="Remove all bendpoints"
-            mnemonic="&amp;B"
+            label="Remove &amp;all bendpoints"
             style="push"
             tooltip="Remove all bendpoints on the selected connectors">
       </command>
@@ -976,24 +960,21 @@
       <command
             commandId="org.eclipse.papyrus.diagram.menu.commands.SelectAllCommand"
             icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/selectall.gif"
-            label="Select All"
-            mnemonic="&amp;A"
+            label="Select &amp;All"
             style="push"
             tooltip="Select All">
       </command>
       <command
             commandId="org.eclipse.papyrus.diagram.menu.commands.SelectAllShapesCommand"
             icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/selectshapes.gif"
-            label="Select All Shapes"
-            mnemonic="&amp;S"
+            label="&amp;Select All &amp;Shapes"
             style="push"
             tooltip="Select All Shapes">
       </command>
       <command
             commandId="org.eclipse.papyrus.diagram.menu.commands.SelectAllConnectorsCommand"
             icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/selectconnectors.gif"
-            label="Select All Connectors"
-            mnemonic="&amp;C"
+            label="Select All &amp;Connectors"
             style="push"
             tooltip="Select All Connectors">
       </command>
@@ -1003,16 +984,14 @@
       <command
             commandId="org.eclipse.papyrus.diagram.menu.commands.ArrangeAllCommand"
             icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/arrangeall.gif"
-            label="Arrange All"
-            mnemonic="&amp;g"
+            label="Arran&amp;ge All"
             style="push"
             tooltip="Arrange All">
       </command>
       <command
             commandId="org.eclipse.papyrus.diagram.menu.commands.ArrangeSelectionCommand"
             icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/arrangeselected.gif"
-            label="Arrange Selection"
-            mnemonic="&amp;s"
+            label="Arrange &amp;Selection"
             style="push"
             tooltip="Arrange Selection">
       </command>
@@ -1022,22 +1001,19 @@
       <command
             commandId="org.eclipse.papyrus.diagram.menu.command.alignment.left"
             icon="icons/alignleft.gif"
-            label="Align Left"
-            mnemonic="&amp;L"
+            label="Align &amp;Left"
             style="push">
       </command>
       <command
             commandId="org.eclipse.papyrus.diagram.menu.command.alignment.center"
             icon="icons/aligncenter.gif"
-            label="Align Center"
-            mnemonic="&amp;C"
+            label="Align &amp;Center"
             style="push">
       </command>
       <command
             commandId="org.eclipse.papyrus.diagram.menu.command.alignment.right"
             icon="icons/alignright.gif"
-            label="Align Right"
-            mnemonic="&amp;R"
+            label="Align &amp;Right"
             style="push">
       </command>
       <separator
@@ -1047,22 +1023,20 @@
       <command
             commandId="org.eclipse.papyrus.diagram.menu.command.alignment.bottom"
             icon="icons/alignbottom.gif"
-            label="Align Bottom"
-            mnemonic="&amp;B"
+            label="Align &amp;Bottom"
             style="push">
       </command>
       <command
             commandId="org.eclipse.papyrus.diagram.menu.command.alignment.middle"
             icon="icons/alignmid.gif"
-            label="Align Middle"
-            mnemonic="&amp;M"
+            label="Align &amp;Middle"
+
             style="push">
       </command>
       <command
             commandId="org.eclipse.papyrus.diagram.menu.command.alignment.top"
             icon="icons/aligntop.gif"
-            label="Align Top"
-            mnemonic="&amp;T"
+            label="Align &amp;Top"
             style="push">
       </command>
    </menuContribution>
@@ -1071,8 +1045,7 @@
       <command
             commandId="org.eclipse.papyrus.diagram.menu.commands.ShowHideContentsCommand"
             icon="icons/fantomContents.gif"
-            label="Show/Hide Contents"
-            mnemonic="&amp;C"
+            label="Show/Hide &amp;Contents"
             style="push"
             tooltip="The Show/Hide Contents Action">
          <visibleWhen>
@@ -1089,8 +1062,7 @@
       <command
             commandId="org.eclipse.papyrus.diagram.menu.commands.ShowHideCompartmentCommand"
             icon="icons/fantomCompartment.gif"
-            label="Show/Hide Compartments"
-            mnemonic="&amp;p"
+            label="Show/Hide Com&amp;partments"
             style="push"
             tooltip="The Show/Hide Compartments Action">
          <visibleWhen>
@@ -1108,8 +1080,7 @@
             commandId="org.eclipse.papyrus.diagram.menu.commands.SortFilterCompartmentItemsCommand"
             helpContextId="ActionToolTipText"
             icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/sortfilter.gif"
-            label="Sort/Filter Compartments Items..."
-            mnemonic="&amp;F"
+            label="Sort/&amp;Filter Compartments Items..."
             style="push"
             tooltip="Sort or Filter Compartments Items for this shape">
          <visibleWhen>
@@ -1157,15 +1128,13 @@
       <command
             commandId="org.eclipse.papyrus.diagram.menu.command.routing.left"
             icon="icons/horizontal_by_left.gif"
-            label="Set Horizontal By Left"
-            mnemonic="&amp;L"
+            label="Set Horizontal By &amp;Left"
             style="push">
       </command>
       <command
             commandId="org.eclipse.papyrus.diagram.menu.command.routing.right"
             icon="icons/horizontal_by_right.gif"
-            label="Set Horizontal By Right"
-            mnemonic="&amp;R"
+            label="Set Horizontal By &amp;Right"
             style="push">
       </command>
       <separator
@@ -1175,15 +1144,13 @@
       <command
             commandId="org.eclipse.papyrus.diagram.menu.command.routing.top"
             icon="icons/vertical_by_top.gif"
-            label="Set Vertical By Top"
-            mnemonic="&amp;T"
+            label="Set Vertical By &amp;Top"
             style="push">
       </command>
       <command
             commandId="org.eclipse.papyrus.diagram.menu.command.routing.bottom"
             icon="icons/vertical_by_bottom.gif"
-            label="Set Vertical By Bottom"
-            mnemonic="&amp;B"
+            label="Set Vertical By &amp;Bottom"
             style="push">
       </command>
    </menuContribution>
@@ -1192,15 +1159,13 @@
       <command
             commandId="org.eclipse.papyrus.diagram.menu.command.distribute.horizontally"
             icon="icons/distribute_horizontally.gif"
-            label="Distribute Nodes/Links Horizontally"
-            mnemonic="&amp;H"
+            label="Distribute Nodes/Links &amp;Horizontally"
             style="push">
       </command>
       <command
             commandId="org.eclipse.papyrus.diagram.menu.command.distribute.horizontally_between_nodesly"
             icon="icons/distribute_horizontally_between_nodes.gif"
-            label="Distribute Nodes/Links Horizontally Between 2 Nodes"
-            mnemonic="&amp;H"
+            label="Distribute Nodes/Links H&amp;orizontally Between 2 Nodes"
             style="push">
       </command>
       <separator
@@ -1210,15 +1175,13 @@
       <command
             commandId="org.eclipse.papyrus.diagram.menu.command.distribute.vertically"
             icon="icons/distibute_vertically.gif"
-            label="Distribute Nodes/Links Vertically"
-            mnemonic="&amp;V"
+            label="Distribute Nodes/Links &amp;Vertically"
             style="push">
       </command>
       <command
             commandId="org.eclipse.papyrus.diagram.menu.command.distribute.vertically_between_nodes"
             icon="icons/distribute_vertically_between_nodes.gif"
-            label="Distribute Nodes/Links Vertically Between 2 Nodes"
-            mnemonic="&amp;V"
+            label="Distribute Nodes/Links V&amp;ertically Between 2 Nodes"
             style="push">
       </command>
    </menuContribution>
@@ -1227,24 +1190,21 @@
       <command
             commandId="org.eclipse.papyrus.diagram.menu.command.sameSize.both"
             icon="icons/size_to_control.gif"
-            label="Both"
-            mnemonic="&amp;B"
+            label="&amp;Both"
             style="push"
             tooltip="Set the dimension of the last selected element">
       </command>
       <command
             commandId="org.eclipse.papyrus.diagram.menu.command.sameSize.height"
             icon="icons/size_to_control_height.gif"
-            label="Height"
-            mnemonic="&amp;H"
+            label="&amp;Height"
             style="push"
             tooltip="Set the height of the last selected element">
       </command>
       <command
             commandId="org.eclipse.papyrus.diagram.menu.command.sameSize.width"
             icon="icons/size_to_control_width.gif"
-            label="Width"
-            mnemonic="&amp;W"
+            label="&amp;Width"
             style="push"
             tooltip="Set the width of the last selected element">
       </command>
@@ -1258,8 +1218,7 @@
       <command
             commandId="org.eclipse.papyrus.diagram.menu.commands.FontCommand"
             icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/font_color.gif"
-            label="Font..."
-            mnemonic="&amp;F"
+            label="&amp;Font..."
             style="push"
             tooltip="Font">
          <visibleWhen
@@ -1268,8 +1227,7 @@
       </command>
       <menu
             icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/fill_color.gif"
-            label="Fill Color"
-            mnemonic="&amp;C"
+            label="Fill &amp;Color"
             tooltip="Fill Color">
          <command
                commandId="org.eclipse.papyrus.diagram.menu.fill.color.white.command"
@@ -1368,21 +1326,20 @@
          </separator>
          <command
                commandId="org.eclipse.papyrus.diagram.menu.fill.color.defaultcolor.command"
-               label="Default Color"
+               label="&amp;Default Color"
                style="push"
                tooltip="Default Colors">
          </command>
          <command
                commandId="org.eclipse.papyrus.diagram.menu.fill.color.morecolors.command"
-               label="More colors..."
+               label="&amp;More colors..."
                style="push"
                tooltip="More Colors">
          </command>
       </menu>
       <menu
             icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/line_color.gif"
-            label="Line Color"
-            mnemonic="&amp;n"
+            label="Li&amp;ne Color"
             tooltip="Line Color">
          <command
                commandId="org.eclipse.papyrus.diagram.menu.line.color.white.command"
@@ -1481,13 +1438,13 @@
          </separator>
          <command
                commandId="org.eclipse.papyrus.diagram.menu.line.color.defaultcolor.command"
-               label="Default Color"
+               label="&amp;Default Color"
                style="push"
                tooltip="Default Colors">
          </command>
          <command
                commandId="org.eclipse.papyrus.diagram.menu.line.color.morecolors.command"
-               label="More colors..."
+               label="&amp;More colors..."
                style="push"
                tooltip="More Colors">
          </command>
@@ -1495,15 +1452,13 @@
       <menu
             icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/line_style_group.gif"
             id="org.eclipse.papyrus.diagram.ui.menu.line.style.menu"
-            label="Line Style"
-            mnemonic="&amp;S"
+            label="Line &amp;Style"
             tooltip="Line Style">
          <command
                commandId="org.eclipse.papyrus.diagram.menu.commands.line.style.rectilinear"
                icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/rectilinear.gif"
                id="org.eclipse.papyrus.diagram.ui.menu.line.style.rectilinear"
-               label="Rectilinear Style Routing"
-               mnemonic="&amp;R"
+               label="&amp;Rectilinear Style Routing"
                style="toggle"
                tooltip="Change routing to rectilinear style for connectors">
          </command>
@@ -1511,8 +1466,7 @@
                commandId="org.eclipse.papyrus.diagram.menu.commands.line.style.oblique"
                icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/oblique.gif"
                id="org.eclipse.papyrus.diagram.ui.menu.line.style.oblique"
-               label="Oblique Style Routing"
-               mnemonic="&amp;O"
+               label="&amp;Oblique Style Routing"
                style="toggle"
                tooltip="Change routing to oblique style for connectors">
          </command>
@@ -1520,8 +1474,7 @@
                commandId="org.eclipse.papyrus.diagram.menu.commands.line.style.tree"
                icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/tree.gif"
                id="org.eclipse.papyrus.diagram.ui.menu.line.style.tree"
-               label="Tree Style Routing"
-               mnemonic="&amp;T"
+               label="&amp;Tree Style Routing"
                style="toggle"
                tooltip="Change routing to tree style for connectors">
          </command>
@@ -1533,8 +1486,7 @@
                commandId="org.eclipse.papyrus.diagram.menu.commands.line.style.removebendpoint"
                icon="icons/no_bendpoints.gif"
                id="org.eclipse.papyrus.diagram.ui.menu.line.style.no.bendpoint"
-               label="Remove all bendpoints"
-               mnemonic="&amp;B"
+               label="Remove &amp;all bendpoints"
                style="push"
                tooltip="Remove all bendpoints on the selected connectors">
          </command>
@@ -1545,52 +1497,45 @@
       </separator>
       <menu
             icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/selectall.gif"
-            label="Select"
-            mnemonic="&amp;l"
+            label="Se&amp;lect"
             tooltip="Select Menu">
          <command
                commandId="org.eclipse.papyrus.diagram.menu.commands.SelectAllCommand"
                icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/selectall.gif"
-               label="All"
-               mnemonic="&amp;A"
+               label="&amp;All"
                style="push"
                tooltip="Select All">
          </command>
          <command
                commandId="org.eclipse.papyrus.diagram.menu.commands.SelectAllShapesCommand"
                icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/selectshapes.gif"
-               label="All Shapes"
-               mnemonic="&amp;S"
+               label="All &amp;Shapes"
                style="push"
                tooltip="Select All Shapes">
          </command>
          <command
                commandId="org.eclipse.papyrus.diagram.menu.commands.SelectAllConnectorsCommand"
                icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/selectconnectors.gif"
-               label="All Connectors"
-               mnemonic="&amp;C"
+               label="All &amp;Connectors"
                style="push"
                tooltip="Select All Connectors">
          </command>
       </menu>
       <menu
             icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/arrangeall.gif"
-            label="Arrange"
-            mnemonic="&amp;r"
+            label="A&amp;rrange"
             tooltip="Arrange Menu">
          <command
                commandId="org.eclipse.papyrus.diagram.menu.commands.ArrangeAllCommand"
                icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/arrangeall.gif"
-               label="All"
-               mnemonic="&amp;g"
+               label="&amp;All"
                style="push"
                tooltip="Arrange All">
          </command>
          <command
                commandId="org.eclipse.papyrus.diagram.menu.commands.ArrangeSelectionCommand"
                icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/arrangeselected.gif"
-               label="Selection"
-               mnemonic="&amp;s"
+               label="&amp;Selection"
                style="push"
                tooltip="Arrange Selection">
          </command>
@@ -1598,28 +1543,24 @@
       <menu
             icon="icons/alignleft.gif"
             id="org.eclipse.papyrus.diagram.ui.menu.alignMenu"
-            label="Alignment"
-            mnemonic="&amp;g"
+            label="Ali&amp;gnment"
             tooltip="Alignement Menu">
          <command
                commandId="org.eclipse.papyrus.diagram.menu.command.alignment.left"
                icon="icons/alignleft.gif"
-               label="Align Left"
-               mnemonic="&amp;L"
+               label="Align &amp;Left"
                style="push">
          </command>
          <command
                commandId="org.eclipse.papyrus.diagram.menu.command.alignment.center"
                icon="icons/aligncenter.gif"
-               label="Align Center"
-               mnemonic="&amp;C"
+               label="Align &amp;Center"
                style="push">
          </command>
          <command
                commandId="org.eclipse.papyrus.diagram.menu.command.alignment.right"
                icon="icons/alignright.gif"
-               label="Align Right"
-               mnemonic="&amp;R"
+               label="Align &amp;Right"
                style="push">
          </command>
          <separator
@@ -1629,43 +1570,37 @@
          <command
                commandId="org.eclipse.papyrus.diagram.menu.command.alignment.bottom"
                icon="icons/alignbottom.gif"
-               label="Align Bottom"
-               mnemonic="&amp;B"
+               label="Align &amp;Bottom"
                style="push">
          </command>
          <command
                commandId="org.eclipse.papyrus.diagram.menu.command.alignment.middle"
                icon="icons/alignmid.gif"
-               label="Align Middle"
-               mnemonic="&amp;M"
+               label="Align &amp;Middle"
                style="push">
          </command>
          <command
                commandId="org.eclipse.papyrus.diagram.menu.command.alignment.top"
                icon="icons/aligntop.gif"
-               label="Align Top"
-               mnemonic="&amp;T"
+               label="Align &amp;Top"
                style="push">
          </command>
       </menu>
       <menu
             icon="icons/horizontal_by_left.gif"
             id="org.eclipse.papyrus.diagram.ui.menu.routingMenu"
-            label="Routing"
-            mnemonic="&amp;R"
+            label="&amp;Routing"
             tooltip="Routing Menu">
          <command
                commandId="org.eclipse.papyrus.diagram.menu.command.routing.left"
                icon="icons/horizontal_by_left.gif"
-               label="Set Horizontal By Left"
-               mnemonic="&amp;L"
+               label="Set Horizontal By &amp;Left"
                style="push">
          </command>
          <command
                commandId="org.eclipse.papyrus.diagram.menu.command.routing.right"
                icon="icons/horizontal_by_right.gif"
-               label="Set Horizontal By Right"
-               mnemonic="&amp;R"
+               label="Set Horizontal By &amp;Right"
                style="push">
          </command>
          <separator
@@ -1675,36 +1610,31 @@
          <command
                commandId="org.eclipse.papyrus.diagram.menu.command.routing.top"
                icon="icons/vertical_by_top.gif"
-               label="Set Vertical By Top"
-               mnemonic="&amp;T"
+               label="Set Vertical By &amp;Top"
                style="push">
          </command>
          <command
                commandId="org.eclipse.papyrus.diagram.menu.command.routing.bottom"
                icon="icons/vertical_by_bottom.gif"
-               label="Set Vertical By Bottom"
-               mnemonic="&amp;B"
+               label="Set Vertical By &amp;Bottom"
                style="push">
          </command>
       </menu>
       <menu
             icon="icons/distribute_horizontally.gif"
             id="org.eclipse.papyrus.diagram.ui.menu.distributeMenu"
-            label="Distribution"
-            mnemonic="&amp;D"
+            label="&amp;Distribution"
             tooltip="Distribute Menu">
          <command
                commandId="org.eclipse.papyrus.diagram.menu.command.distribute.horizontally"
                icon="icons/distribute_horizontally.gif"
-               label="Distribute Nodes/Links Horizontally"
-               mnemonic="&amp;Hmp;L"
+               label="Distribute Nodes/Links &amp;Horizontally"
                style="push">
          </command>
          <command
                commandId="org.eclipse.papyrus.diagram.menu.command.distribute.horizontally_between_nodesly"
                icon="icons/distribute_horizontally_between_nodes.gif"
-               label="Distribute Nodes/Links Horizontally Between 2 Nodes"
-               mnemonic="&amp;H"
+               label="Distribute Nodes/Links H&amp;orizontally Between 2 Nodes"
                style="push">
          </command>
          <separator
@@ -1714,51 +1644,44 @@
          <command
                commandId="org.eclipse.papyrus.diagram.menu.command.distribute.vertically"
                icon="icons/distibute_vertically.gif"
-               label="Distribute Nodes/Links Vertically"
-               mnemonic="&amp;V"
+               label="Distribute Nodes/Links &amp;Vertically"
                style="push">
          </command>
          <command
                commandId="org.eclipse.papyrus.diagram.menu.command.distribute.vertically_between_nodes"
                icon="icons/distribute_vertically_between_nodes.gif"
-               label="Distribute Nodes/Links Vertically Between 2 Nodes"
-               mnemonic="&amp;V"
+               label="Distribute Nodes/Links V&amp;ertically Between 2 Nodes"
                style="push">
          </command>
       </menu>
       <menu
-            label="Order"
-            mnemonic="&amp;O"
+            label="&amp;Order"
             tooltip="Order">
          <command
                commandId="org.eclipse.papyrus.diagram.menu.commands.BringToFrontCommand"
                icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/bring_to_front.gif"
-               label="Bring To Front"
-               mnemonic="&amp;F"
+               label="Bring To &amp;Front"
                style="push"
                tooltip="Bring To Front">
          </command>
          <command
                commandId="org.eclipse.papyrus.diagram.menu.commands.SendToBackCommand"
                icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/send_to_back.gif"
-               label="Send To Back"
-               mnemonic="&amp;B"
+               label="Send To &amp;Back"
                style="push"
                tooltip="Send To Back">
          </command>
          <command
                commandId="org.eclipse.papyrus.diagram.menu.commands.BringForwardCommand"
                icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/bring_forward.gif"
-               label="Bring Forward"
-               mnemonic="&amp;o"
+               label="Bring F&amp;orward"
                style="push"
                tooltip="Bring Forward">
          </command>
          <command
                commandId="org.eclipse.papyrus.diagram.menu.commands.SendBackwardCommand"
                icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/send_backward.gif"
-               label="Send Backward"
-               mnemonic="&amp;a"
+               label="Send B&amp;ackward"
                style="push"
                tooltip="Send Backward">
          </command>
@@ -1770,38 +1693,33 @@
       <command
             commandId="org.eclipse.papyrus.diagram.menu.command.autosize"
             icon="icons/autosize.gif"
-            label="Auto Size"
-            mnemonic="&amp;A"
+            label="&amp;Auto Size"
             style="push"
             tooltip="Auto Size">
       </command>
       <menu
             icon="icons/size_to_control.gif"
             id="org.eclipse.papyrus.diagram.ui.menu.sameSizeMenu"
-            label="Make Same Size"
-            mnemonic="&amp;M"
+            label="&amp;Make Same Size"
             tooltip="Make Same Size Menu">
          <command
                commandId="org.eclipse.papyrus.diagram.menu.command.sameSize.both"
                icon="icons/size_to_control.gif"
-               label="Both"
-               mnemonic="&amp;B"
+               label="&amp;Both"
                style="push"
                tooltip="Set the dimension of the last selected element">
          </command>
          <command
                commandId="org.eclipse.papyrus.diagram.menu.command.sameSize.height"
                icon="icons/size_to_control_height.gif"
-               label="Height"
-               mnemonic="&amp;H"
+               label="&amp;Height"
                style="push"
                tooltip="Set the height of the last selected element">
          </command>
          <command
                commandId="org.eclipse.papyrus.diagram.menu.command.sameSize.width"
                icon="icons/size_to_control_width.gif"
-               label="Width"
-               mnemonic="&amp;W"
+               label="&amp;Width"
                style="push"
                tooltip="Set the width of the last selected element">
          </command>
@@ -1813,23 +1731,20 @@
       <menu
             icon="icons/fantom.gif"
             id="org.eclipse.papyrus.diagram.ui.menu.filtersMenu"
-            label="Filters"
-            mnemonic="&amp;F"
+            label="&amp;Filters"
             tooltip="Filters Menu">
          <command
                commandId="org.eclipse.papyrus.diagram.menu.commands.ShowHideContentsCommand"
                icon="icons/fantomContents.gif"
                id="showh"
-               label="Show/Hide Contents"
-               mnemonic="&amp;C"
+               label="Show/Hide &amp;Contents"
                style="push"
                tooltip="The Show/Hide Contents Action">
          </command>
          <command
                commandId="org.eclipse.papyrus.diagram.menu.commands.ShowHideCompartmentCommand"
                icon="icons/fantomCompartment.gif"
-               label="Show/Hide Compartments"
-               mnemonic="&amp;p"
+               label="Show/Hide &amp;Compartments"
                style="push"
                tooltip="The Show/Hide Compartments Action">
          </command>
@@ -1837,8 +1752,7 @@
                commandId="org.eclipse.papyrus.diagram.menu.commands.SortFilterCompartmentItemsCommand"
                helpContextId="ActionToolTipText"
                icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/sortfilter.gif"
-               label="Sort/Filter Compartments Items..."
-               mnemonic="&amp;F"
+               label="Sort/&amp;Filter Compartments Items..."
                style="push"
                tooltip="Sort or Filter Compartments Items for this shape">
          </command>
@@ -1876,20 +1790,17 @@
             visible="true">
       </separator>
       <menu
-            label="View"
-            mnemonic="&amp;V"
+            label="&amp;View"
             tooltip="This Menu provides Action for the View">
          <command
                commandId="org.eclipse.papyrus.diagram.menu.commands.ViewGridCommand"
-               label="Grid"
-               mnemonic="&amp;G"
+               label="&amp;Grid"
                style="toggle"
                tooltip="Toggle the grid lines on the diagram">
          </command>
          <command
                commandId="org.eclipse.papyrus.diagram.menu.commands.ViewRulersCommand"
-               label="Rulers"
-               mnemonic="&amp;R"
+               label="&amp;Rulers"
                style="toggle"
                tooltip="Toggle the rulers on the diagram">
          </command>
@@ -1900,16 +1811,14 @@
          <command
                commandId="org.eclipse.papyrus.diagram.menu.commands.ViewPageBreaksCommand"
                icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/viewpagebreaks.gif"
-               label="Page Breaks"
-               mnemonic="&amp;P"
+               label="&amp;Page Breaks"
                style="toggle"
                tooltip="Show the page breaks on the diagram">
          </command>
          <command
                commandId="org.eclipse.papyrus.diagram.menu.commands.RecalculatePageBreaksCommand"
                icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/recalcpagebreaks.gif"
-               label="Recalculate Page Breaks"
-               mnemonic="&amp;R"
+               label="&amp;Recalculate Page Breaks"
                style="push"
                tooltip="Recalculate Page Breaks">
          </command>
@@ -1919,8 +1828,7 @@
          </separator>
          <command
                commandId="org.eclipse.papyrus.diagram.menu.commands.SnapToGridCommand"
-               label="Snap to Grid"
-               mnemonic="&amp;S"
+               label="&amp;Snap to Grid"
                style="toggle"
                tooltip="Toggle Snap to Grid">
          </command>
@@ -1928,56 +1836,48 @@
        <menu
             icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.providers/icons/zoomplus.gif"
             id="org.eclipse.papyrus.diagram.ui.menu.zoomMenu"
-            label="Zoom"
-            mnemonic="&amp;Z"
+            label="&amp;Zoom"
             tooltip="Zoom Menu">
          <command
                commandId="org.eclipse.papyrus.diagram.menu.commands.ZoomInCommand"
                icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/zoomplus.gif"
-               label="Zoom In"
-               mnemonic="&amp;I"
+               label="Zoom &amp;In"
                style="push">
          </command>
          <command
                commandId="org.eclipse.papyrus.diagram.menu.commands.ZoomOutCommand"
                icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/zoomminus.gif"
-               label="Zoom Out"
-               mnemonic="&amp;O"
+               label="Zoom &amp;Out"
                style="push">
          </command>
          <command
                commandId="org.eclipse.papyrus.diagram.menu.commands.Zoom100Command"
                icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/zoom100.gif"
-               label="Zoom to 100%"
-               mnemonic="&amp;t"
+               label="Zoom &amp;to 100%"
                style="push">
          </command>
          <command
                commandId="org.eclipse.papyrus.diagram.menu.commands.ZoomFitCommand"
                icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/zoomtofit.gif"
-               label="Zoom to Fit"
-               mnemonic="&amp;F"
+               label="Zoom to &amp;Fit"
                style="push">
          </command>
          <command
                commandId="org.eclipse.papyrus.diagram.menu.commands.ZoomWidthCommand"
                icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/zoomtofit.gif"
-               label="Fit to Width"
-               mnemonic="&amp;W"
+               label="Fit to &amp;Width"
                style="push">
          </command>
          <command
                commandId="org.eclipse.papyrus.diagram.menu.commands.ZoomHeightCommand"
                icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/zoomtofit.gif"
-               label="Fit to Height"
-               mnemonic="&amp;H"
+               label="Fit to &amp;Height"
                style="push">
          </command>
          <command
                commandId="org.eclipse.papyrus.diagram.menu.commands.ZoomSelectionCommand"
                icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/zoomtofit.gif"
-               label="Fit to Selection"
-               mnemonic="&amp;S"
+               label="Fit to &amp;Selection"
                style="push">
          </command>
       </menu>
@@ -1989,7 +1889,6 @@
             commandId="org.eclipse.papyrus.diagram.menu.commands.CopyAppearancePropertiesCommand"
             icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/copy_appearance_properties.gif"
             label="Apply Appearance &amp;Properties"
-            mnemonic="Apply Appearance &amp;Properties"
             style="push"
             tooltip="Apply the applicable appearance properties of the last selected shape to the other selected shapes.">
          <visibleWhen>
@@ -2013,8 +1912,7 @@
       <command
             commandId="org.eclipse.papyrus.diagram.menu.commands.FontCommand"
             icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/font_color.gif"
-            label="Font..."
-            mnemonic="&amp;F"
+            label="&amp;Font..."
             style="push"
             tooltip="Font">
          <visibleWhen
@@ -2023,8 +1921,7 @@
       </command>
       <menu
             icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/fill_color.gif"
-            label="Fill Color"
-            mnemonic="&amp;C"
+            label="Fill &amp;Color"
             tooltip="Fill Color">
          <command
                commandId="org.eclipse.papyrus.diagram.menu.fill.color.white.command"
@@ -2123,21 +2020,20 @@
          </separator>
          <command
                commandId="org.eclipse.papyrus.diagram.menu.fill.color.defaultcolor.command"
-               label="Default Color"
+               label="&amp;Default Color"
                style="push"
                tooltip="Default Colors">
          </command>
          <command
                commandId="org.eclipse.papyrus.diagram.menu.fill.color.morecolors.command"
-               label="More colors..."
+               label="&amp;More colors..."
                style="push"
                tooltip="More Colors">
          </command>
       </menu>
       <menu
             icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/line_color.gif"
-            label="Line Color"
-            mnemonic="&amp;n"
+            label="Li&amp;ne Color"
             tooltip="Line Color">
          <command
                commandId="org.eclipse.papyrus.diagram.menu.line.color.white.command"
@@ -2236,13 +2132,13 @@
          </separator>
          <command
                commandId="org.eclipse.papyrus.diagram.menu.line.color.defaultcolor.command"
-               label="Default Color"
+               label="&amp;Default Color"
                style="push"
                tooltip="Default Colors">
          </command>
          <command
                commandId="org.eclipse.papyrus.diagram.menu.line.color.morecolors.command"
-               label="More colors..."
+               label="&amp;More colors..."
                style="push"
                tooltip="More Colors">
          </command>
@@ -2250,15 +2146,13 @@
       <menu
             icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/line_style_group.gif"
             id="org.eclipse.papyrus.diagram.ui.popupmenu.format.line.style.menu"
-            label="Line Style"
-            mnemonic="&amp;S"
+            label="Line &amp;Style"
             tooltip="Line Style">
          <command
                commandId="org.eclipse.papyrus.diagram.menu.commands.line.style.rectilinear"
                icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/rectilinear.gif"
                id="org.eclipse.papyrus.diagram.ui.popupmenu.format.line.style.rectilinear"
-               label="Rectilinear Style Routing"
-               mnemonic="&amp;R"
+               label="&amp;Rectilinear Style Routing"
                style="toggle"
                tooltip="Change routing to rectilinear style for connectors">
          </command>
@@ -2266,8 +2160,7 @@
                commandId="org.eclipse.papyrus.diagram.menu.commands.line.style.oblique"
                icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/oblique.gif"
                id="org.eclipse.papyrus.diagram.ui.popupmenu.format.line.style.oblique"
-               label="Oblique Style Routing"
-               mnemonic="&amp;O"
+               label="&amp;Oblique Style Routing"
                style="toggle"
                tooltip="Change routing to oblique style for connectors">
          </command>
@@ -2275,8 +2168,7 @@
                commandId="org.eclipse.papyrus.diagram.menu.commands.line.style.tree"
                icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/tree.gif"
                id="org.eclipse.papyrus.diagram.ui.popupmenu.format.line.style.tree"
-               label="Tree Style Routing"
-               mnemonic="&amp;T"
+               label="&amp;Tree Style Routing"
                style="toggle"
                tooltip="Change routing to tree style for connectors">
          </command>
@@ -2288,8 +2180,7 @@
                commandId="org.eclipse.papyrus.diagram.menu.commands.line.style.removebendpoint"
                icon="icons/no_bendpoints.gif"
                id="org.eclipse.papyrus.diagram.ui.popupmenu.format.line.style.no.bendpoint"
-               label="Remove all bendpoints"
-               mnemonic="&amp;B"
+               label="Remove &amp;all bendpoints"
                style="push"
                tooltip="Remove all bendpoints on the selected connectors">
          </command>
@@ -2300,22 +2191,19 @@
       </separator>
       <menu
             icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/arrangeall.gif"
-            label="Arrange"
-            mnemonic="&amp;r"
+            label="A&amp;rrange"
             tooltip="Arrange Menu">
          <command
                commandId="org.eclipse.papyrus.diagram.menu.commands.ArrangeAllCommand"
                icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/arrangeall.gif"
-               label="All"
-               mnemonic="&amp;g"
+               label="&amp;All"
                style="push"
                tooltip="Arrange All">
          </command>
          <command
                commandId="org.eclipse.papyrus.diagram.menu.commands.ArrangeSelectionCommand"
                icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/arrangeselected.gif"
-               label="Selection"
-               mnemonic="&amp;s"
+               label="&amp;Selection"
                style="push"
                tooltip="Arrange Selection">
          </command>
@@ -2323,29 +2211,25 @@
       <menu
             icon="icons/alignleft.gif"
             id="org.eclipse.papyrus.diagram.ui.popupmenu.format.alignMenu"
-            label="Alignment"
-            mnemonic="&amp;g"
+            label="Ali&amp;gnment"
             tooltip="Alignement Menu">
          mmand>
          <command
                commandId="org.eclipse.papyrus.diagram.menu.command.alignment.left"
                icon="icons/alignleft.gif"
-               label="Align Left"
-               mnemonic="&amp;L"
+               label="Align &amp;Left"
                style="push">
          </command>
          <command
                commandId="org.eclipse.papyrus.diagram.menu.command.alignment.center"
                icon="icons/aligncenter.gif"
-               label="Align Center"
-               mnemonic="&amp;C"
+               label="Align &amp;Center"
                style="push">
          </command>
          <command
                commandId="org.eclipse.papyrus.diagram.menu.command.alignment.right"
                icon="icons/alignright.gif"
-               label="Align Right"
-               mnemonic="&amp;R"
+               label="Align &amp;Right"
                style="push">
          </command>
          <separator
@@ -2355,43 +2239,37 @@
          <command
                commandId="org.eclipse.papyrus.diagram.menu.command.alignment.bottom"
                icon="icons/alignbottom.gif"
-               label="Align Bottom"
-               mnemonic="&amp;B"
+               label="Align &amp;Bottom"
                style="push">
          </command>
          <command
                commandId="org.eclipse.papyrus.diagram.menu.command.alignment.middle"
                icon="icons/alignmid.gif"
-               label="Align Middle"
-               mnemonic="&amp;M"
+               label="Align &amp;Middle"
                style="push">
          </command>
          <command
                commandId="org.eclipse.papyrus.diagram.menu.command.alignment.top"
                icon="icons/aligntop.gif"
-               label="Align Top"
-               mnemonic="&amp;T"
+               label="Align &amp;Top"
                style="push">
          </command>
       </menu>
       <menu
             icon="icons/horizontal_by_left.gif"
             id="org.eclipse.papyrus.diagram.ui.popupmenu.format.routingMenu"
-            label="Routing"
-            mnemonic="&amp;R"
+            label="&amp;Routing"
             tooltip="Routing Menu">
          <command
                commandId="org.eclipse.papyrus.diagram.menu.command.routing.left"
                icon="icons/horizontal_by_left.gif"
-               label="Set Horizontal By Left"
-               mnemonic="&amp;L"
+               label="Set Horizontal By &amp;Left"
                style="push">
          </command>
          <command
                commandId="org.eclipse.papyrus.diagram.menu.command.routing.right"
                icon="icons/horizontal_by_right.gif"
-               label="Set Horizontal By Right"
-               mnemonic="&amp;R"
+               label="Set Horizontal By &amp;Right"
                style="push">
          </command>
          <separator
@@ -2401,36 +2279,31 @@
          <command
                commandId="org.eclipse.papyrus.diagram.menu.command.routing.top"
                icon="icons/vertical_by_top.gif"
-               label="Set Vertical By Top"
-               mnemonic="&amp;T"
+               label="Set Vertical By &amp;Top"
                style="push">
          </command>
          <command
                commandId="org.eclipse.papyrus.diagram.menu.command.routing.bottom"
                icon="icons/vertical_by_bottom.gif"
-               label="Set Vertical By Bottom"
-               mnemonic="&amp;B"
+               label="Set Vertical By &amp;Bottom"
                style="push">
          </command>
       </menu>
       <menu
             icon="icons/distribute_horizontally.gif"
             id="org.eclipse.papyrus.diagram.ui.popupmenu.format.distributeMenu"
-            label="Distribution"
-            mnemonic="&amp;D"
+            label="&amp;Distribution"
             tooltip="Distribute Menu">
          <command
                commandId="org.eclipse.papyrus.diagram.menu.command.distribute.horizontally"
                icon="icons/distribute_horizontally.gif"
-               label="Distribute Nodes/Links Horizontally"
-               mnemonic="&amp;Hmp;L"
+               label="Distribute Nodes/Links &amp;Horizontally"
                style="push">
          </command>
          <command
                commandId="org.eclipse.papyrus.diagram.menu.command.distribute.horizontally_between_nodesly"
                icon="icons/distribute_horizontally_between_nodes.gif"
-               label="Distribute Nodes/Links Horizontally Between 2 Nodes"
-               mnemonic="&amp;H"
+               label="Distribute Nodes/Links H&amp;orizontally Between 2 Nodes"
                style="push">
          </command>
          <separator
@@ -2440,51 +2313,44 @@
          <command
                commandId="org.eclipse.papyrus.diagram.menu.command.distribute.vertically"
                icon="icons/distibute_vertically.gif"
-               label="Distribute Nodes/Links Vertically"
-               mnemonic="&amp;V"
+               label="Distribute Nodes/Links &amp;Vertically"
                style="push">
          </command>
          <command
                commandId="org.eclipse.papyrus.diagram.menu.command.distribute.vertically_between_nodes"
                icon="icons/distribute_vertically_between_nodes.gif"
-               label="Distribute Nodes/Links Vertically Between 2 Nodes"
-               mnemonic="&amp;V"
+               label="Distribute Nodes/Links V&amp;ertically Between 2 Nodes"
                style="push">
          </command>
       </menu>
       <menu
-            label="Order"
-            mnemonic="&amp;O"
+            label="&amp;Order"
             tooltip="Order">
          <command
                commandId="org.eclipse.papyrus.diagram.menu.commands.BringToFrontCommand"
                icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/bring_to_front.gif"
-               label="Bring To Front"
-               mnemonic="&amp;F"
+               label="Bring To &amp;Front"
                style="push"
                tooltip="Bring To Front">
          </command>
          <command
                commandId="org.eclipse.papyrus.diagram.menu.commands.SendToBackCommand"
                icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/send_to_back.gif"
-               label="Send To Back"
-               mnemonic="&amp;B"
+               label="Send To &amp;Back"
                style="push"
                tooltip="Send To Back">
          </command>
          <command
                commandId="org.eclipse.papyrus.diagram.menu.commands.BringForwardCommand"
                icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/bring_forward.gif"
-               label="Bring Forward"
-               mnemonic="&amp;o"
+               label="Bring F&amp;orward"
                style="push"
                tooltip="Bring Forward">
          </command>
          <command
                commandId="org.eclipse.papyrus.diagram.menu.commands.SendBackwardCommand"
                icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/send_backward.gif"
-               label="Send Backward"
-               mnemonic="&amp;a"
+               label="Send B&amp;ackward"
                style="push"
                tooltip="Send Backward">
          </command>
@@ -2496,7 +2362,7 @@
       <command
             commandId="org.eclipse.papyrus.diagram.menu.command.autosize"
             icon="icons/autosize.gif"
-            mnemonic="&amp;A"
+            label="&amp;Autozise"
             style="push"
             tooltip="Auto Size">
          <visibleWhen>
@@ -2513,30 +2379,26 @@
       <menu
             icon="icons/size_to_control.gif"
             id="org.eclipse.papyrus.diagram.ui.popupmenu.format.sameSizeMenu"
-            label="Make Same Size"
-            mnemonic="&amp;M"
+            label="&amp;Make Same Size"
             tooltip="Make Same Size Menu">
          <command
                commandId="org.eclipse.papyrus.diagram.menu.command.sameSize.both"
                icon="icons/size_to_control.gif"
-               label="Both"
-               mnemonic="&amp;B"
+               label="&amp;Both"
                style="push"
                tooltip="Set the dimension of the last selected element">
          </command>
          <command
                commandId="org.eclipse.papyrus.diagram.menu.command.sameSize.height"
                icon="icons/size_to_control_height.gif"
-               label="Height"
-               mnemonic="&amp;H"
+               label="&amp;Height"
                style="push"
                tooltip="Set the height of the last selected element">
          </command>
          <command
                commandId="org.eclipse.papyrus.diagram.menu.command.sameSize.width"
                icon="icons/size_to_control_width.gif"
-               label="Width"
-               mnemonic="&amp;W"
+               label="&amp;Width"
                style="push"
                tooltip="Set the width of the last selected element">
          </command>
@@ -2549,7 +2411,6 @@
             commandId="org.eclipse.papyrus.diagram.menu.commands.CopyAppearancePropertiesCommand"
             icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/copy_appearance_properties.gif"
             label="Apply Appearance &amp;Properties"
-            mnemonic="Apply Appearance &amp;Properties"
             style="push"
             tooltip="Apply the applicable appearance properties of the last selected shape to the other selected shapes.">
          <visibleWhen>
@@ -2571,8 +2432,7 @@
             commandId="org.eclipse.papyrus.diagram.menu.commands.ShowHideContentsCommand"
             icon="icons/fantomContents.gif"
             id="showhidecontents.popup"
-            label="Show/Hide Contents"
-            mnemonic="&amp;C"
+            label="Show/Hide &amp;Contents"
             style="push"
             tooltip="The Show/Hide Contents Action">
       </command>
@@ -2580,8 +2440,7 @@
             commandId="org.eclipse.papyrus.diagram.menu.commands.ShowHideCompartmentCommand"
             icon="icons/fantomCompartment.gif"
             id="showhidecompartments.popup"
-            label="Show/Hide Compartments"
-            mnemonic="&amp;p"
+            label="Show/Hide Com&amp;partments"
             style="push"
             tooltip="The Show/Hide Compartments Action">
       </command>
@@ -2589,8 +2448,7 @@
             commandId="org.eclipse.papyrus.diagram.menu.commands.SortFilterCompartmentItemsCommand"
             helpContextId="ActionToolTipText"
             icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/sortfilter.gif"
-            label="Sort/Filter Compartments Items..."
-            mnemonic="&amp;F"
+            label="Sort/&amp;Filter Compartments Items..."
             style="push"
             tooltip="Sort or Filter Compartments Items for this shape">
       </command>
@@ -2628,15 +2486,13 @@
          locationURI="popup:org.eclipse.papyrus.diagram.ui.popupmenu.view">
       <command
             commandId="org.eclipse.papyrus.diagram.menu.commands.ViewGridCommand"
-            label="Grid"
-            mnemonic="&amp;Grid"
+            label="&amp;Grid"
             style="toggle"
             tooltip="Toggle the grid lines on the diagram">
       </command>
       <command
             commandId="org.eclipse.papyrus.diagram.menu.commands.ViewRulersCommand"
-            label="Rulers"
-            mnemonic="&amp;Rulers"
+            label="&amp;Rulers"
             style="toggle"
             tooltip="Toggle the rulers on the diagram">
       </command>
@@ -2647,16 +2503,14 @@
       <command
             commandId="org.eclipse.papyrus.diagram.menu.commands.ViewPageBreaksCommand"
             icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/viewpagebreaks.gif"
-            label="Page Breaks"
-            mnemonic="&amp;Page Breaks"
+            label="&amp;Page Breaks"
             style="toggle"
             tooltip="Show the page breaks on the diagram">
       </command>
       <command
             commandId="org.eclipse.papyrus.diagram.menu.commands.RecalculatePageBreaksCommand"
             icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/recalcpagebreaks.gif"
-            label="Recalculate Page Breaks"
-            mnemonic="&amp;R"
+            label="&amp;Recalculate Page Breaks"
             style="push"
             tooltip="Recalculate Page Breaks">
       </command>
@@ -2666,8 +2520,7 @@
       </separator>
       <command
             commandId="org.eclipse.papyrus.diagram.menu.commands.SnapToGridCommand"
-            label="Snap to Grid"
-            mnemonic="&amp;S"
+            label="Snap to &amp;Grid"
             style="toggle"
             tooltip="Toggle Snap to Grid">
       </command>
@@ -2678,50 +2531,43 @@
       <command
             commandId="org.eclipse.papyrus.diagram.menu.commands.ZoomInCommand"
             icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/zoomplus.gif"
-            label="Zoom In"
-            mnemonic="&amp;I"
+            label="Zoom &amp;In"
             style="push">
       </command>
       <command
             commandId="org.eclipse.papyrus.diagram.menu.commands.ZoomOutCommand"
             icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/zoomminus.gif"
-            label="Zoom Out"
-            mnemonic="&amp;O"
+            label="Zoom &amp;Out"
             style="push">
       </command>
       <command
             commandId="org.eclipse.papyrus.diagram.menu.commands.Zoom100Command"
             icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/zoom100.gif"
-            label="Zoom to 100%"
-            mnemonic="&amp;t"
+            label="Zoom &amp;to 100%"
             style="push">
       </command>
       <command
             commandId="org.eclipse.papyrus.diagram.menu.commands.ZoomFitCommand"
             icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/zoomtofit.gif"
-            label="Zoom to Fit"
-            mnemonic="&amp;F"
+            label="Zoom to &amp;Fit"
             style="push">
       </command>
       <command
             commandId="org.eclipse.papyrus.diagram.menu.commands.ZoomWidthCommand"
             icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/zoomtofit.gif"
-            label="Fit to Width"
-            mnemonic="&amp;W"
+            label="Fit to &amp;Width"
             style="push">
       </command>
       <command
             commandId="org.eclipse.papyrus.diagram.menu.commands.ZoomHeightCommand"
             icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/zoomtofit.gif"
-            label="Fit to Height"
-            mnemonic="&amp;H"
+            label="Fit to &amp;Heightight"
             style="push">
       </command>
       <command
             commandId="org.eclipse.papyrus.diagram.menu.commands.ZoomSelectionCommand"
             icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/zoomtofit.gif"
-            label="Fit to Selection"
-            mnemonic="&amp;S"
+            label="Fit to &amp;Selection"
             style="push">
       </command>
    </menuContribution>
