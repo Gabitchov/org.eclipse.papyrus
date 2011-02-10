@@ -18,9 +18,11 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.service.edit.service.IElementEditService;
+import org.eclipse.papyrus.uml.service.types.command.DependencyReorientCommand;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -39,6 +41,11 @@ public class DependencyEditHelper extends DirectedRelationshipEditHelper {
 		return UMLPackage.eINSTANCE.getDependency_Supplier();
 	}
 
+	@Override
+	protected ICommand getReorientRelationshipCommand(ReorientRelationshipRequest req) {
+		return new DependencyReorientCommand(req);
+	}
+	
 	@Override
 	protected ICommand getDestroyReferenceCommand(DestroyReferenceRequest req) {
 
