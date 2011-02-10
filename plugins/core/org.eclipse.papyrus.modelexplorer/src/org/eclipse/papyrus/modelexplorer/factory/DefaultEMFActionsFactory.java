@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
- *
+ *  Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr @deprecated
  *****************************************************************************/
 package org.eclipse.papyrus.modelexplorer.factory;
 
@@ -41,7 +41,9 @@ import org.eclipse.ui.navigator.CommonNavigator;
  * Undefined actions are not still in use or might be overridden
  * 
  * @author Emilien Perico
+ * @deprecated These actions are now rewritten using the Eclipse Framework
  */
+@Deprecated
 public class DefaultEMFActionsFactory implements IActionHandlerFactory {
 
 	protected List<Action> actions = new LinkedList<Action>();
@@ -155,7 +157,7 @@ public class DefaultEMFActionsFactory implements IActionHandlerFactory {
 		ArrayList array = new ArrayList();
 		Iterator iterator = structuredSelection.iterator();
 		while(iterator.hasNext()) {
-			Object object = (Object)iterator.next();
+			Object object = iterator.next();
 			if(NavigatorUtils.resolveSemanticObject(object) != null) {
 				array.add(NavigatorUtils.resolveSemanticObject(object));
 			}

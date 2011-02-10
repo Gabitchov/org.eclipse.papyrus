@@ -15,11 +15,18 @@ package org.eclipse.papyrus.modelexplorer.provider;
 
 import java.util.Iterator;
 
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.modelexplorer.ModelExplorerPageBookView;
+import org.eclipse.ui.IWorkbenchPart;
 
 /**
- * This class provides test called by the plugin.xml in order to know if handlers should be actived or not
+ * This class provides test called by the plugin.xml in order to know if handlers should be active or not.
+ * 
+ * Sometimes these test can be done directly in the plugin.xml in the activeWhen (with instanceof, adapt, ...),
+ * but in this case, Eclipse doesn't refresh correctly the status of the command in the menu Edit or in other menu.
  * 
  * 
  * 
@@ -27,8 +34,13 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 public class PropertyTester extends org.eclipse.core.expressions.PropertyTester {
 
 	/** property to test if the selected element are open in the editor */
-
 	public static final String IS_DIAGRAM = "isDiagram"; //$NON-NLS-1$
+
+	/** property to test if the selected elements is an eObject */
+	public static final String IS_EOBJECT = "isEObject"; //$NON-NLS-1$
+
+	/** property to test if the current activePart is the ModelExplorer */
+	public static final String IS_MODEL_EXPLORER = "isModelExplorer"; //$NON-NLS-1$
 
 	/**
 	 * 
@@ -45,8 +57,53 @@ public class PropertyTester extends org.eclipse.core.expressions.PropertyTester 
 			boolean answer = isDiagram((IStructuredSelection)receiver);
 			return new Boolean(answer).equals(expectedValue);
 		}
+
+		if(IS_EOBJECT.equals(property) && receiver instanceof IStructuredSelection) {
+			boolean answer = isObject((IStructuredSelection)receiver);
+			return new Boolean(answer).equals(expectedValue);
+		}
+		if(IS_MODEL_EXPLORER.equals(property) && receiver instanceof IWorkbenchPart) {
+			boolean answer = isModelExplorer((IWorkbenchPart)receiver);
+			return new Boolean(answer).equals(expectedValue);
+		}
 		return false;
 	}
+
+	/**
+	 * Tests if the current activePart is the Model Explorer
+	 * 
+	 * @param receiver
+	 * @return
+	 */
+	private boolean isModelExplorer(IWorkbenchPart receiver) {
+		return receiver instanceof ModelExplorerPageBookView;
+	}
+
+	/**
+	 * Tests if all elements in the selection are EObject
+	 * 
+	 * @param selection
+	 * @return
+	 */
+	private boolean isObject(IStructuredSelection selection) {
+		if(!selection.isEmpty()) {
+			Iterator<?> iter = selection.iterator();
+			while(iter.hasNext()) {
+				Object current = iter.next();
+				if(current instanceof IAdaptable) {
+					EObject eObject = (EObject)((IAdaptable)current).getAdapter(EObject.class);
+					if(eObject == null) {
+						return false;
+					}
+				} else {
+					return false;
+				}
+			}
+			return true;
+		}
+		return false;
+	}
+
 
 	/**
 	 * Tests the selection in order to know if it contains only {@link Diagram}

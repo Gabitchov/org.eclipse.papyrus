@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
- *
+ *  Vincent Lorenzo (CEA-LIST) @deprecated
  *****************************************************************************/
 package org.eclipse.papyrus.modelexplorer.factory;
 
@@ -23,14 +23,17 @@ import org.eclipse.ui.navigator.CommonNavigator;
 
 /**
  * A factory for creating Action objects from org.eclipse.jface.action
+ * 
+ * @deprecated The actions should be written using the Eclipse Framework (org.eclipse.ui.menu, org.eclipse.ui.handler, org.eclipse.ui.command)
  */
+@Deprecated
 public interface IActionHandlerFactory {
 
 	/**
 	 * Creates a new IActionHandler object.
 	 * 
 	 * @param editingDomain
-	 *            the editing domain
+	 *        the editing domain
 	 * 
 	 * @return the list of created actions
 	 */
@@ -47,7 +50,7 @@ public interface IActionHandlerFactory {
 	 * Activate the action.
 	 * 
 	 * @param activeViewPart
-	 *            the active view part
+	 *        the active view part
 	 */
 	void activate(CommonNavigator activeViewPart);
 
@@ -55,7 +58,7 @@ public interface IActionHandlerFactory {
 	 * Deactivate the action.
 	 * 
 	 * @param activeViewPart
-	 *            the active view part
+	 *        the active view part
 	 */
 	void deactivate(CommonNavigator activeViewPart);
 
@@ -63,7 +66,7 @@ public interface IActionHandlerFactory {
 	 * Update action from the selection
 	 * 
 	 * @param structuredSelection
-	 *            the structured selection
+	 *        the structured selection
 	 */
 	void update(IStructuredSelection structuredSelection);
 
@@ -75,7 +78,7 @@ public interface IActionHandlerFactory {
 	 * </p>
 	 * 
 	 * @param actionBars
-	 *            the part's action bars
+	 *        the part's action bars
 	 */
 	void fillActionBars(IActionBars actionBars);
 

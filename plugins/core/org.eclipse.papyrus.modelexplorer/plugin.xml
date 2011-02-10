@@ -127,9 +127,10 @@
          </action>
       </objectContribution>
    </extension>
+    <!--  
     <extension
          point="org.eclipse.papyrus.modelexplorer.actionHandler">
-      
+
       <customAction
             actionHandler="org.eclipse.papyrus.modelexplorer.factory.DefaultEMFActionsFactory"
             actionId="org.eclipse.papyrus.modelexplorer.factory.defaultEMFActions"
@@ -137,7 +138,7 @@
             needSeparator="true">
       </customAction>
    </extension>
-
+-->
 <extension point="org.eclipse.ui.menus">
 
 	<!-- ModelExplorer toolbar -->
@@ -213,6 +214,7 @@
     <command
           commandId="org.eclipse.ui.edit.rename"
           icon="icons/etool16/rename.gif"
+          id="org.eclipse.papyrus.modelexplorer.modelexplorer.popup.rename"
           label="&amp;Rename"
           style="push"
           tooltip="Rename the element">
@@ -225,8 +227,25 @@
           visible="true">
     </separator>
     <command
+          commandId="org.eclipse.ui.edit.undo"
+          id="org.eclipse.papyrus.modelexplorer.modelexplorer.popup.undo"
+          label="&amp;Undo"
+          style="push">
+    </command>
+    <command
+          commandId="org.eclipse.ui.edit.redo"
+          id="org.eclipse.papyrus.modelexplorer.modelexplorer.popup.redo"
+          label="&amp;Redo"
+          style="push">
+    </command>
+    <separator
+          name="popup:org.eclipse.papyrus.modelexplorer.modelexplorer.popup.separator2"
+          visible="true">
+    </separator>
+    <command
           commandId="org.eclipse.papyrus.modelexplorer.popup.open.command"
           icon="icons/etool16/forward.gif"
+          id="org.eclipse.papyrus.modelexplorer.modelexplorer.popup.open"
           label="&amp;Open"
           style="push"
           tooltip="Open">
@@ -237,6 +256,7 @@
     <command
           commandId="org.eclipse.papyrus.modelexplorer.popup.open.new.command"
           icon="icons/etool16/arrow_double.gif"
+          id="org.eclipse.papyrus.modelexplorer.modelexplorer.popup.open.new"
           label="Open In &amp;New Table"
           style="push"
           tooltip="Open in new tab">
@@ -247,6 +267,7 @@
     <command
           commandId="org.eclipse.papyrus.modelexplorer.popup.close.command"
           icon="icons/etool16/close.png"
+          id="org.eclipse.papyrus.modelexplorer.modelexplorer.popup.close"
           label="&amp;Close"
           style="push"
           tooltip="Close">
@@ -257,6 +278,7 @@
     <command
           commandId="org.eclipse.papyrus.modelexplorer.close.all.command"
           icon="icons/etool16/closeAll.png"
+          id="org.eclipse.papyrus.modelexplorer.modelexplorer.popup.close.all"
           label="Close &amp;All"
           style="push"
           tooltip="Close All">
@@ -267,11 +289,70 @@
     <command
           commandId="org.eclipse.papyrus.modelexplorer.duplicate.command"
           icon="icons/etool16/duplicate.png"
+          id="org.eclipse.papyrus.modelexplorer.modelexplorer.popup.duplicate"
           label="&amp;Duplicate"
           style="push"
           tooltip="Duplicate the element">
        <visibleWhen
              checkEnabled="true">
+       </visibleWhen>
+    </command>
+    <separator
+          name="popup:org.eclipse.papyrus.modelexplorer.modelexplorer.popup.separator3"
+          visible="true">
+    </separator>
+    <command
+          commandId="org.eclipse.ui.edit.cut"
+          id="org.eclipse.papyrus.modelexplorer.modelexplorer.popup.cut"
+          label="Cu&amp;t"
+          style="push">
+       <visibleWhen
+             checkEnabled="false">
+          <with
+                variable="selection">
+                <!-- We add this test in order to refresh the Cut action in the menu edit -->
+             <test
+                   forcePluginActivation="true"
+                   property="org.eclipse.papyrus.modelexplorer.tester.isEObject"
+                   value="true">
+             </test>
+          </with>
+       </visibleWhen>
+    </command>
+    <command
+          commandId="org.eclipse.ui.edit.copy"
+          id="org.eclipse.papyrus.modelexplorer.modelexplorer.popup.copy"
+          label="&amp;Copy"
+          style="push">
+       <visibleWhen
+             checkEnabled="false">
+          <with
+                variable="selection">
+                <!-- We add this test in order to refresh the Copy action in the menu edit -->
+             <test
+                   forcePluginActivation="true"
+                   property="org.eclipse.papyrus.modelexplorer.tester.isEObject"
+                   value="true">
+             </test>
+          </with>
+       </visibleWhen>
+    </command>
+    <command
+          commandId="org.eclipse.ui.edit.paste"
+          id="org.eclipse.papyrus.modelexplorer.modelexplorer.popup.paste"
+          label="&amp;Paste"
+          style="push">
+       <visibleWhen
+             checkEnabled="false">
+          <with
+                variable="selection">
+                <!-- We add this test in order to refresh the Paste action in the menu edit -->
+             <test
+                   forcePluginActivation="true"
+                   property="org.eclipse.papyrus.modelexplorer.tester.isEObject"
+                   value="true">
+             </test>
+          </with>
        </visibleWhen>
     </command>
  </menuContribution>
@@ -490,6 +571,12 @@
                         value="org.eclipse.gmf.runtime.notation.Diagram">
                   </instanceof>
                </iterate>
+               <!-- We add this test in order to refresh the Rename action in the menu edit -->
+               <test
+                     forcePluginActivation="true"
+                     property="org.eclipse.papyrus.modelexplorer.tester.isDiagram"
+                     value="true">
+               </test>
             </and>
          </with>
       </activeWhen>
@@ -630,15 +717,138 @@
          </with>
       </activeWhen>
    </handler>
+   <handler
+         class="org.eclipse.papyrus.modelexplorer.handler.CutHandler"
+         commandId="org.eclipse.ui.edit.cut">
+      <activeWhen>
+         <and>
+            <with
+                  variable="activePart">
+               <instanceof
+                     value="org.eclipse.papyrus.modelexplorer.ModelExplorerPageBookView">
+               </instanceof>
+            </with>
+            <with
+                  variable="selection">
+                  <!-- We add this test in order to refresh the Cut action in the menu edit -->
+               <test
+                     forcePluginActivation="true"
+                     property="org.eclipse.papyrus.modelexplorer.tester.isEObject"
+                     value="true">
+               </test>
+            </with>
+         </and>
+      </activeWhen>
+   </handler>
+   <handler
+         class="org.eclipse.papyrus.modelexplorer.handler.PasteHandler"
+         commandId="org.eclipse.ui.edit.paste">
+      <activeWhen>
+         <and>
+            <with
+                  variable="activePart">
+               <instanceof
+                     value="org.eclipse.papyrus.modelexplorer.ModelExplorerPageBookView">
+               </instanceof>
+            </with>
+            <with
+                  variable="selection">
+                  <!-- We add this test in order to refresh the Paste action in the menu edit -->
+               <test
+                     forcePluginActivation="true"
+                     property="org.eclipse.papyrus.modelexplorer.tester.isEObject"
+                     value="true">
+               </test>
+            </with>
+         </and>
+      </activeWhen>
+   </handler>
+   <handler
+         class="org.eclipse.papyrus.modelexplorer.handler.CopyHandler"
+         commandId="org.eclipse.ui.edit.copy">
+      <activeWhen>
+         <and>
+            <with
+                  variable="activePart">
+               <instanceof
+                     value="org.eclipse.papyrus.modelexplorer.ModelExplorerPageBookView">
+               </instanceof>
+            </with>
+            <with
+                  variable="selection">
+                  <!-- We add this test in order to refresh the Copy action in the menu edit -->
+               <test
+                     forcePluginActivation="true"
+                     property="org.eclipse.papyrus.modelexplorer.tester.isEObject"
+                     value="true">
+               </test>
+            </with>
+         </and>
+      </activeWhen>
+   </handler>
+   <handler
+         class="org.eclipse.papyrus.modelexplorer.handler.UndoHandler"
+         commandId="org.eclipse.ui.edit.undo">
+      <activeWhen>
+         <and>
+            <with
+                  variable="activePart">
+               <instanceof
+                     value="org.eclipse.papyrus.modelexplorer.ModelExplorerPageBookView">
+               </instanceof>
+            </with>
+            <with
+                  variable="activePart">
+                  <!-- We add this test in order to refresh the Undo action in the menu file -->
+               <test
+                     forcePluginActivation="true"
+                     property="org.eclipse.papyrus.modelexplorer.tester.view.isModelExplorer"
+                     value="true">
+               </test>
+            </with>
+         </and>
+      </activeWhen>
+   </handler>
+   <handler
+         class="org.eclipse.papyrus.modelexplorer.handler.RedoHandler"
+         commandId="org.eclipse.ui.edit.redo">
+      <activeWhen>
+         <and>
+            <with
+                  variable="activePart">
+               <instanceof
+                     value="org.eclipse.papyrus.modelexplorer.ModelExplorerPageBookView">
+               </instanceof>
+            </with>
+            <with
+                  variable="activePart">
+                  <!-- We add this test in order to refresh the Redo action in the menu edit -->
+               <test
+                     forcePluginActivation="true"
+                     property="org.eclipse.papyrus.modelexplorer.tester.view.isModelExplorer"
+                     value="true">
+               </test>
+            </with>
+         </and>
+      </activeWhen>
+   </handler>
 </extension>
 <extension
       point="org.eclipse.core.expressions.propertyTesters">
+      <!-- the property tester is used to enabled/disabled handler -->
    <propertyTester
          class="org.eclipse.papyrus.modelexplorer.provider.PropertyTester"
          id="org.eclipse.papyrus.modelexplorer.tester"
          namespace="org.eclipse.papyrus.modelexplorer.tester"
-         properties="isDiagram"
+         properties="isDiagram, isEObject"
          type="org.eclipse.jface.viewers.IStructuredSelection">
+   </propertyTester>
+   <propertyTester
+         class="org.eclipse.papyrus.modelexplorer.provider.PropertyTester"
+         id="org.eclipse.papyrus.modelexplorer.tester.view"
+         namespace="org.eclipse.papyrus.modelexplorer.tester.view"
+         properties="isModelExplorer"
+         type="org.eclipse.ui.IWorkbenchPart">
    </propertyTester>
 </extension>
 
