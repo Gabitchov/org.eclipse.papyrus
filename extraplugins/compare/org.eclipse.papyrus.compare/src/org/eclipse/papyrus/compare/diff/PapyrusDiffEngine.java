@@ -64,7 +64,7 @@ public class PapyrusDiffEngine extends GenericDiffEngine {
 		if(diffElement instanceof DiffGroup) {
 			return;
 		}
-		EObject stereotypeApplication = getModelElementsFor(diffElement);
+		EObject stereotypeApplication = getModelElementFor(diffElement);
 		if(UMLCompareUtils.isStereotypeApplication(stereotypeApplication)) {
 
 			Element newVisualParent = UMLUtil.getBaseElement(stereotypeApplication);
@@ -124,11 +124,11 @@ public class PapyrusDiffEngine extends GenericDiffEngine {
 	}
 
 	private boolean isPertinentDiff(DiffElement diff, EObject modelElement) {
-		EObject domainElement = getModelElementsFor(diff);
+		EObject domainElement = getModelElementFor(diff);
 		return modelElement.equals(domainElement) || modelElement.equals(getMatchedEObject(domainElement));
 	}
 
-	protected EObject getModelElementsFor(DiffElement diff) {
+	protected EObject getModelElementFor(DiffElement diff) {
 		return myGetModelElementSwitch.doSwitch(diff);
 	}
 
