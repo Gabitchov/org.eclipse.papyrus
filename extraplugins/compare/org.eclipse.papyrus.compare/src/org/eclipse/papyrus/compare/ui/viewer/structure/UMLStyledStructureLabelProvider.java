@@ -11,7 +11,7 @@
  *  Tatiana Fesenko (CEA LIST) - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.compare.ui;
+package org.eclipse.papyrus.compare.ui.viewer.structure;
 
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.StyledCellLabelProvider;
@@ -20,12 +20,12 @@ import org.eclipse.jface.viewers.ViewerCell;
 import org.eclipse.swt.graphics.Image;
 
 
-public class PapyrusStyledLabelProvider extends StyledCellLabelProvider implements ILabelProvider {
-	
-	PapyrusLabelProvider delegate;
-	
-	public PapyrusStyledLabelProvider() {
-		delegate = new PapyrusLabelProvider();
+public class UMLStyledStructureLabelProvider extends StyledCellLabelProvider implements ILabelProvider {
+
+	UMLModelStructureLabelProvider delegate;
+
+	public UMLStyledStructureLabelProvider() {
+		delegate = new UMLModelStructureLabelProvider();
 	}
 
 	public Image getImage(Object element) {
@@ -53,5 +53,6 @@ public class PapyrusStyledLabelProvider extends StyledCellLabelProvider implemen
 		styledString.append(')', StyledString.QUALIFIER_STYLER);
 		return styledString;
 	}
+
 
 }
