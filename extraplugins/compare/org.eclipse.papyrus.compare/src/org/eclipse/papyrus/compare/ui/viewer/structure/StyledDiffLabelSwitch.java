@@ -1,8 +1,9 @@
 package org.eclipse.papyrus.compare.ui.viewer.structure;
 
+import java.text.MessageFormat;
+
 import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
 import org.eclipse.emf.compare.diff.metamodel.DiffPackage;
-import org.eclipse.emf.compare.util.AdapterUtils;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.StyledString;
@@ -220,13 +221,29 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 		final EObject parent = object.getRightParent();
 		if(parent != null) {
 			final String parentLabel = getLabelProvider().getText(parent);
-			styledString.append(String.valueOf(object.getSubchanges()));
-			styledString.append(" change(s) in ", StyledString.DECORATIONS_STYLER);
-			styledString.append(parentLabel);
+			styledString = formatStyledString("{0} change(s) in {1}", String.valueOf(object.getSubchanges()), parentLabel);
 		} else {
 			styledString.append(String.valueOf(object.getSubchanges()));
 			styledString.append(" change(s) in ", StyledString.DECORATIONS_STYLER);
 			styledString.append("model");
+		}
+		return styledString;
+	}
+	
+	private StyledString formatStyledString(String pattern, String... args) {
+		StyledString styledString = new StyledString();
+		styledString.append(MessageFormat.format(pattern, (Object[])args), StyledString.DECORATIONS_STYLER);
+		int currInd = 0;
+		int gap = 0;
+		for (int i = 0; i < args.length; i++) {
+			int nextInd = pattern.indexOf("{", currInd);
+			if (nextInd != -1 && args.length > i) {
+				styledString.setStyle(nextInd + gap, args[i].length(), null);
+				currInd = nextInd + 1;
+				gap = args[i].length() - "{}".length() - String.valueOf(i).length();
+			} else {
+				break;
+			}
 		}
 		return styledString;
 	}
