@@ -1,6 +1,7 @@
 package org.eclipse.papyrus.compare.ui.viewer.structure;
 
 import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
+import org.eclipse.emf.compare.diff.metamodel.DiffPackage;
 import org.eclipse.emf.compare.util.AdapterUtils;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ILabelProvider;
@@ -19,21 +20,37 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 
 public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 
-	private ILabelProvider myDomainElementLabelProvider = (ILabelProvider)UMLCompareUtils.getInstance().getPapyrusLabelProvider();
-	
+	private ILabelProvider myDomainElementLabelProvider;
+
 	@Override
 	public StyledString defaultCase(EObject object) {
+		int classifierID = object.eClass().getClassifierID();
+		switch(classifierID) {
+		case DiffPackage.DIFF_GROUP:
+		{
+			DiffGroup diffGroup = (DiffGroup)object;
+			return caseDiffGroup(diffGroup);
+		}
+		}
 		return null;
 	}
+	
+	protected ILabelProvider getLabelProvider() {
+		if (myDomainElementLabelProvider == null) {
+			myDomainElementLabelProvider = (ILabelProvider)UMLCompareUtils.getInstance().getPapyrusLabelProvider();
+		}
+		return myDomainElementLabelProvider;
+	}
+
 
 	@Override
 	public StyledString caseCompareTwoElementsDiffModel(CompareTwoElementsDiffModel object) {
 		StyledString styledString = new StyledString();
 		int subchanges = ((DiffGroup)object.getOwnedElements().get(0)).getSubchanges();
 		EObject leftElement = object.getLeftRoots().get(0);
-		String leftName = myDomainElementLabelProvider.getText(leftElement);
+		String leftName = getLabelProvider().getText(leftElement);
 		EObject rightElement = object.getRightRoots().get(0);
-		String rightName = myDomainElementLabelProvider.getText(rightElement);
+		String rightName = getLabelProvider().getText(rightElement);
 
 		//		String message = "%s change(s) between elements [%s] and [%s]";
 		//		return String.format(message, subchanges, leftName, rightName);
@@ -197,5 +214,21 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 		}
 		return styledString;
 	}
-	
+
+	public StyledString caseDiffGroup(DiffGroup object) {
+		StyledString styledString = new StyledString();
+		final EObject parent = object.getRightParent();
+		if(parent != null) {
+			final String parentLabel = AdapterUtils.getItemProviderText(parent);
+			styledString.append(String.valueOf(object.getSubchanges()));
+			styledString.append(" change(s) in ", StyledString.DECORATIONS_STYLER);
+			styledString.append(parentLabel);
+		} else {
+			styledString.append(String.valueOf(object.getSubchanges()));
+			styledString.append(" change(s) in ", StyledString.DECORATIONS_STYLER);
+			styledString.append("model");
+		}
+		return styledString;
+	}
+
 }

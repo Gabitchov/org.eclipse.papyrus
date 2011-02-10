@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.compare.ui.viewer.structure;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.StyledCellLabelProvider;
 import org.eclipse.jface.viewers.StyledString;
@@ -49,8 +50,8 @@ public class UMLStyledStructureLabelProvider extends StyledCellLabelProvider imp
 	}
 
 	private StyledString getStyledText(Object element) {
-		if(element instanceof UMLDiffExtension) {
-			StyledString result = diffLabelSwitch.doSwitch((UMLDiffExtension)element);
+		if(element instanceof EObject) {
+			StyledString result = diffLabelSwitch.doSwitch((EObject)element);
 			if(result != null) {
 				return result;
 			}
