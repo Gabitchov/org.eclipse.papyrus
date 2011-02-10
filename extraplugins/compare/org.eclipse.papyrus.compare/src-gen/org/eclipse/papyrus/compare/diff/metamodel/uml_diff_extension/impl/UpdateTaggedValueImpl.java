@@ -161,8 +161,8 @@ public class UpdateTaggedValueImpl extends UpdateAttributeImpl implements Update
 		Object leftTaggedValue = UMLUtil.getBaseElement(getLeftElement()).getValue(UMLUtil.getStereotype(getLeftElement()), getAttribute().getName());
 		Object rightTaggedValue = UMLUtil.getBaseElement(getRightElement()).getValue(UMLUtil.getStereotype(getRightElement()), getAttribute().getName());
 
-		String leftValue = leftTaggedValue != null ? leftTaggedValue.toString() : "";
-		String rightValue = rightTaggedValue != null ? rightTaggedValue.toString() : "";
+		String leftValue = leftTaggedValue != null ? leftTaggedValue.toString() : "null";
+		String rightValue = rightTaggedValue != null ? rightTaggedValue.toString() : "null";
 
 		final String diffLabel;
 		if(isRemote()) {
