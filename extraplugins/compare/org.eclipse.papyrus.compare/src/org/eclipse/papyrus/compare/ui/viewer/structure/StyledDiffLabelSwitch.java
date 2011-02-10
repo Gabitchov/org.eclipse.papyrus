@@ -12,7 +12,6 @@ import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValue
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValueChangeLeftTarget;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValueChangeRightTarget;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValueReferenceChange;
-import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UMLDiffExtension;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UpdateTaggedValue;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.util.UMLDiffSwitch;
 import org.eclipse.uml2.uml.util.UMLUtil;
@@ -20,8 +19,10 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 
 public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 
+	private ILabelProvider myDomainElementLabelProvider = (ILabelProvider)UMLCompareUtils.getInstance().getPapyrusLabelProvider();
+	
 	@Override
-	public StyledString caseUMLDiffExtension(UMLDiffExtension object) {
+	public StyledString defaultCase(EObject object) {
 		return null;
 	}
 
@@ -29,11 +30,10 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 	public StyledString caseCompareTwoElementsDiffModel(CompareTwoElementsDiffModel object) {
 		StyledString styledString = new StyledString();
 		int subchanges = ((DiffGroup)object.getOwnedElements().get(0)).getSubchanges();
-		ILabelProvider labelProvider = (ILabelProvider)UMLCompareUtils.getInstance().getStyledPapyrusLabelProvider();
 		EObject leftElement = object.getLeftRoots().get(0);
-		String leftName = labelProvider.getText(leftElement);
+		String leftName = myDomainElementLabelProvider.getText(leftElement);
 		EObject rightElement = object.getRightRoots().get(0);
-		String rightName = labelProvider.getText(rightElement);
+		String rightName = myDomainElementLabelProvider.getText(rightElement);
 
 		//		String message = "%s change(s) between elements [%s] and [%s]";
 		//		return String.format(message, subchanges, leftName, rightName);
@@ -197,5 +197,5 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 		}
 		return styledString;
 	}
-
+	
 }
