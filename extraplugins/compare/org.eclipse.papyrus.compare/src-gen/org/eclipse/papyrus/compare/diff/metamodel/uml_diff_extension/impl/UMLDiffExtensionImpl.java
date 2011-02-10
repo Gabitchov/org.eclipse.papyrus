@@ -15,6 +15,7 @@ import org.eclipse.emf.compare.diff.metamodel.impl.AbstractDiffExtensionImpl;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.papyrus.compare.UMLCompareUtils;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UMLDiffExtension;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UMLDiffPackage;
 
@@ -46,5 +47,16 @@ public abstract class UMLDiffExtensionImpl extends AbstractDiffExtensionImpl imp
 	protected EClass eStaticClass() {
 		return UMLDiffPackage.Literals.UML_DIFF_EXTENSION;
 	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @NOT-generated
+	 */
+	@Override
+	public String getText() {
+		return UMLCompareUtils.getInstance().getText(this);
+	}
+
 
 } //UMLDiffExtensionImpl

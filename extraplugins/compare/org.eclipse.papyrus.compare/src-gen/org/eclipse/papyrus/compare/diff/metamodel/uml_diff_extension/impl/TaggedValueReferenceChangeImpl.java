@@ -606,30 +606,4 @@ public class TaggedValueReferenceChangeImpl extends UMLDiffExtensionImpl impleme
 		return super.getImage();
 	}
 	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @NOT-generated
-	 */
-	@Override
-	public String getText() {
-		
-		final String referenceLabel = AdapterUtils.getItemProviderText(getReference());
-		final String elementLabel = AdapterUtils.getItemProviderText(getLeftElement());
-		
-		Object leftTaggedValue = UMLUtil.getBaseElement(getLeftElement()).getValue(UMLUtil.getStereotype(getLeftElement()), getReference().getName());
-		Object rightTaggedValue = UMLUtil.getBaseElement(getRightElement()).getValue(UMLUtil.getStereotype(getRightElement()), getReference().getName());
-
-		String leftValue = AdapterUtils.getItemProviderText((EObject)leftTaggedValue);
-		String rightValue = AdapterUtils.getItemProviderText((EObject)rightTaggedValue);
-
-		final String diffLabel;
-		if(isRemote()) {
-			diffLabel = String.format("Tagged value %s : remote = %s, local = %s", elementLabel, leftValue, rightValue);
-		} else {
-			diffLabel = String.format("Tagged value %s: %s -> %s", referenceLabel, rightValue, leftValue);
-		}
-		return diffLabel;
-	};
-
 } //TaggedValueReferenceChangeImpl

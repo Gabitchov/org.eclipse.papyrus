@@ -25,6 +25,7 @@ import org.eclipse.swt.graphics.Image;
 public class UMLStyledStructureLabelProvider extends StyledCellLabelProvider implements ILabelProvider {
 
 	private UMLModelStructureLabelProvider delegate;
+
 	private UMLDiffSwitch<StyledString> diffLabelSwitch = new StyledDiffLabelSwitch();
 
 	public UMLStyledStructureLabelProvider() {
@@ -48,9 +49,9 @@ public class UMLStyledStructureLabelProvider extends StyledCellLabelProvider imp
 	}
 
 	private StyledString getStyledText(Object element) {
-		if (element instanceof UMLDiffExtension) {
+		if(element instanceof UMLDiffExtension) {
 			StyledString result = diffLabelSwitch.doSwitch((UMLDiffExtension)element);
-			if (result != null) {
+			if(result != null) {
 				return result;
 			}
 		}

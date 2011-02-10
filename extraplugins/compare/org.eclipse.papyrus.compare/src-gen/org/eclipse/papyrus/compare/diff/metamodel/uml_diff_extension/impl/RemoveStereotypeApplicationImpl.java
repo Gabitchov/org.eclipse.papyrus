@@ -517,21 +517,6 @@ public class RemoveStereotypeApplicationImpl extends StereotypeChangeImpl implem
 	 * @NOT-generated
 	 */
 	@Override
-	public String getText() {
-		EObject element = getLeftElement();
-		String elementLabel = AdapterUtils.getItemProviderText(element);
-		if (UMLCompareUtils.isStereotypeApplication(element)) {
-			elementLabel = UMLUtil.getStereotype(element).getName(); 
-		}
-		return String.format("%s stereotype has been removed", elementLabel);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @NOT-generated
-	 */
-	@Override
 	public IMerger provideMerger() {
 		return null;
 	}

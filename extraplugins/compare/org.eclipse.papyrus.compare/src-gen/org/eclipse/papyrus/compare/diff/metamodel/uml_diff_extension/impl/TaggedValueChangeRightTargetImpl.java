@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.papyrus.compare.UMLCompareUtils;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValueChange;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.TaggedValueChangeRightTarget;
 import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UMLDiffExtension;
@@ -148,20 +149,7 @@ public class TaggedValueChangeRightTargetImpl extends AttributeChangeRightTarget
 	 * @generated NOT
 	 */
 	public String getText() {
-		final String attributeLabel = AdapterUtils.getItemProviderText(getAttribute());
-		final String elementLabel = AdapterUtils.getItemProviderText(getLeftElement());
-		final Object leftValue = getLeftElement().eGet(getAttribute());
-		final Object rightValue = getRightElement().eGet(getAttribute());
-
-		final String diffLabel;
-		if (isRemote()) {
-			diffLabel = String.format("Tagged value %s has been remotely added: %s",
-					elementLabel, leftValue);
-		} else {
-			diffLabel = String.format("Tagged value %s has been removed: %s",
-						attributeLabel, leftValue);
-		}
-		return diffLabel;
+		return UMLCompareUtils.getInstance().getText(this);
 	}
 
 	/**

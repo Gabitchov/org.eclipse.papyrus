@@ -146,26 +146,6 @@ public abstract class TaggedValueChangeImpl extends AttributeChangeImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public String getText() {
-		final String attributeLabel = AdapterUtils.getItemProviderText(getAttribute());
-		final String elementLabel = AdapterUtils.getItemProviderText(getLeftElement());
-		final Object leftValue = getLeftElement().eGet(getAttribute());
-		final Object rightValue = getRightElement().eGet(getAttribute());
-
-		final String diffLabel;
-		if(isRemote()) {
-			diffLabel = String.format("Tagged value %s : remote = %s, local = %s", elementLabel, leftValue, rightValue);
-		} else {
-			diffLabel = String.format("Tagged value %s: %s -> %s", attributeLabel, rightValue, leftValue);
-		}
-		return diffLabel;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
 	public Object getImage() {
 		AdapterFactoryLabelProvider adapterProvider = new AdapterFactoryLabelProvider(AdapterUtils.getAdapterFactory());
 		Image labelImage = adapterProvider.getImage(getAttribute());
