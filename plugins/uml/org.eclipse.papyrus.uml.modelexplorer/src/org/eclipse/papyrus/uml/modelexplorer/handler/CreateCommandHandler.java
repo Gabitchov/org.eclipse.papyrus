@@ -61,6 +61,9 @@ public abstract class CreateCommandHandler extends AbstractCommandHandler {
 		}
 
 		EObject container = getSelectedElements().get(0);
+		if (container == null) {
+			return UnexecutableCommand.INSTANCE;
+		}
 
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(container);
 		if(provider == null) {
