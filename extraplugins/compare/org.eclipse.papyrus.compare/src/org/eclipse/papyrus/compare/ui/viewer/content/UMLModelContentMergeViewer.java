@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.compare.ui.viewer.content;
 
 import org.eclipse.compare.CompareConfiguration;
-import org.eclipse.compare.contentmergeviewer.IMergeViewerContentProvider;
 import org.eclipse.emf.compare.ui.viewer.content.ModelContentMergeViewer;
 import org.eclipse.emf.compare.ui.viewer.content.part.ModelContentMergeTabFolder;
 import org.eclipse.papyrus.compare.ui.viewer.content.part.UMLModelContentMergeTabFolder;
