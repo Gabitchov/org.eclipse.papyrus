@@ -17,12 +17,15 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.StyledCellLabelProvider;
 import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.jface.viewers.ViewerCell;
+import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.UMLDiffExtension;
+import org.eclipse.papyrus.compare.diff.metamodel.uml_diff_extension.util.UMLDiffSwitch;
 import org.eclipse.swt.graphics.Image;
 
 
 public class UMLStyledStructureLabelProvider extends StyledCellLabelProvider implements ILabelProvider {
 
-	UMLModelStructureLabelProvider delegate;
+	private UMLModelStructureLabelProvider delegate;
+	private UMLDiffSwitch<StyledString> diffLabelSwitch = new StyledDiffLabelSwitch();
 
 	public UMLStyledStructureLabelProvider() {
 		delegate = new UMLModelStructureLabelProvider();
@@ -45,12 +48,14 @@ public class UMLStyledStructureLabelProvider extends StyledCellLabelProvider imp
 	}
 
 	private StyledString getStyledText(Object element) {
+		if (element instanceof UMLDiffExtension) {
+			StyledString result = diffLabelSwitch.doSwitch((UMLDiffExtension)element);
+			if (result != null) {
+				return result;
+			}
+		}
 		StyledString styledString = new StyledString();
 		styledString.append(delegate.getText(element));
-		styledString.append(' ');
-		styledString.append('(', StyledString.QUALIFIER_STYLER);
-		styledString.append("bla-bla", StyledString.QUALIFIER_STYLER);
-		styledString.append(')', StyledString.QUALIFIER_STYLER);
 		return styledString;
 	}
 
