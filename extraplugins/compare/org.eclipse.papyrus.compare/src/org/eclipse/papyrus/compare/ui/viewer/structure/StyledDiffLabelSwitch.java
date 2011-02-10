@@ -46,7 +46,6 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 
 	@Override
 	public StyledString caseCompareTwoElementsDiffModel(CompareTwoElementsDiffModel object) {
-		StyledString styledString = new StyledString();
 		int subchanges = ((DiffGroup)object.getOwnedElements().get(0)).getSubchanges();
 		EObject leftElement = object.getLeftRoots().get(0);
 		String leftName = getLabelProvider().getText(leftElement);
@@ -56,12 +55,7 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 		//		String message = "%s change(s) between elements [%s] and [%s]";
 		//		return String.format(message, subchanges, leftName, rightName);
 
-		styledString.append(String.valueOf(subchanges));
-		styledString.append(" change(s) between elements ", StyledString.DECORATIONS_STYLER);
-		styledString.append(leftName);
-		styledString.append(" and ", StyledString.DECORATIONS_STYLER);
-		styledString.append(rightName);
-		return styledString;
+		return formatStyledString("{0} change(s) between elements {1} and {2}", String.valueOf(subchanges), leftName, rightName);
 
 	}
 
@@ -240,7 +234,7 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 			if (nextInd != -1 && args.length > i) {
 				styledString.setStyle(nextInd + gap, args[i].length(), null);
 				currInd = nextInd + 1;
-				gap = args[i].length() - "{}".length() - String.valueOf(i).length();
+				gap += args[i].length() - "{}".length() - String.valueOf(i).length();
 			} else {
 				break;
 			}
