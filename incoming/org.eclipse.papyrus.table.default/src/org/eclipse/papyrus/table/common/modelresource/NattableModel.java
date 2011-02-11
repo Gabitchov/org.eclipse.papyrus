@@ -122,7 +122,7 @@ public class NattableModel extends /* AbstractBaseModel */AbstractModelWithShare
 	@Override
 	protected boolean isModelRoot(EObject object) {
 		//never used!
-		Activator.log.debug("Warning currently this function returns always false!");
+		Activator.log.debug("Warning currently this function returns always false!"); //$NON-NLS-1$
 		return false;
 	}
 

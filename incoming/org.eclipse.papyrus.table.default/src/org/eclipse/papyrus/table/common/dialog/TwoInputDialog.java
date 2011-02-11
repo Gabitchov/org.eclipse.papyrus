@@ -46,12 +46,19 @@ public class TwoInputDialog extends InputDialog {
 	 * Constructor.
 	 * 
 	 * @param parentShell
+	 *        the parent shell
 	 * @param dialogTitle
-	 * @param dialogMessage
+	 *        the dialog title
+	 * @param message1
+	 *        the first message for the dialog
 	 * @param message2
-	 * @param initialTableName
-	 * @param initialDescription
+	 *        the second message for the dialog
+	 * @param initialValue1
+	 *        the first initial value
+	 * @param initialValue2
+	 *        the second initial value
 	 * @param validator
+	 *        the validator
 	 */
 	public TwoInputDialog(Shell parentShell, String dialogTitle, String message1, String message2, String initialValue1, String initialValue2, IInputValidator validator) {
 		super(parentShell, dialogTitle, message1, initialValue1, validator);

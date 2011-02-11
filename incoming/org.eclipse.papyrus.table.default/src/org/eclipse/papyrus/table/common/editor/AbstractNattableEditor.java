@@ -49,10 +49,10 @@ public abstract class AbstractNattableEditor extends NatTableEditor {
 	protected TableInstance rawModel;
 
 	/** key to get the name of the editor */
-	public static final String NAME_KEY = "NAME";
+	public static final String NAME_KEY = "NAME"; //$NON-NLS-1$
 
 	/** key to get the type of the editor */
-	public static final String TYPE_KEY = "TYPE";
+	public static final String TYPE_KEY = "TYPE"; //$NON-NLS-1$
 
 	/**
 	 * @param servicesRegistry

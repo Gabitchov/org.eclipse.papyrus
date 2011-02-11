@@ -26,10 +26,10 @@ public class DefaultNattableEditor extends AbstractNattableEditor {
 
 
 	/** the type of the editor */
-	public static final String EDITOR_TYPE = "PapyrusDefaultTable";
+	public static final String EDITOR_TYPE = "PapyrusDefaultTable"; //$NON-NLS-1$
 
 	/** the default name for this table */
-	public static final String DEFAULT_NAME = "DefaultTable";
+	public static final String DEFAULT_NAME = "DefaultTable"; //$NON-NLS-1$
 
 	/**
 	 * @param servicesRegistry

@@ -51,8 +51,10 @@ import org.eclipse.papyrus.resource.IModel;
 import org.eclipse.papyrus.resource.ModelSet;
 import org.eclipse.papyrus.resource.NotFoundException;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.table.common.Activator;
 import org.eclipse.papyrus.table.common.dialog.TwoInputDialog;
 import org.eclipse.papyrus.table.common.editor.AbstractNattableEditor;
+import org.eclipse.papyrus.table.common.messages.Messages;
 import org.eclipse.papyrus.table.common.modelresource.NattableModel;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
@@ -65,18 +67,30 @@ import org.eclipse.ui.PlatformUI;
 public abstract class AbstractCreateNattableEditorCommand extends AbstractHandler {
 
 
+	/** the default name for the table */
+	private String defaultName;
 
-	private String defaultName = "New Table";
+	/** the default description for the table */
+	private String defaultDescription = "Table Description"; //$NON-NLS-1$
 
-	private String defaultDescription = "Table Description";
+	/** the description for the table */
+	private String description;
 
-	private String description = defaultDescription;
+	/** the name for the table */
+	private String name;
 
-	private String name = defaultName;
-
-
+	/** the editor type */
 	private String editorType;
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param editorType
+	 *        the type of the editor
+	 * @param defaultName
+	 *        the default name for this editor
+	 */
 	public AbstractCreateNattableEditorCommand(String editorType, String defaultName) {
 		Assert.isNotNull(editorType != null);
 		this.editorType = editorType;
@@ -95,8 +109,7 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 
 			runAsTransaction();
 		} catch (ServiceException e) {
-			System.err.println("Can't execute command:" + e.getMessage());
-			throw new ExecutionException("Can't create TextEditor", e);
+			throw new ExecutionException("Can't create TableEditor", e); //$NON-NLS-1$
 		}
 		return null;
 	}
@@ -110,9 +123,9 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 	 */
 	public void runAsTransaction() throws ServiceException {
 		//default Value
-		name = "New Table";
-		description = "Table Description";
-		TwoInputDialog dialog = new TwoInputDialog(Display.getCurrent().getActiveShell(), "Enter a new Table Name and a new Table Description", "The new table name:", "The new table description:", defaultName, defaultDescription, null);
+		name = defaultName;
+		description = defaultDescription;
+		TwoInputDialog dialog = new TwoInputDialog(Display.getCurrent().getActiveShell(), Messages.AbstractCreateNattableEditorCommand_New_Table_Title, Messages.AbstractCreateNattableEditorCommand_Table_Name_Message, Messages.AbstractCreateNattableEditorCommand_Table_Description_Message, defaultName, defaultDescription, null);
 		if(dialog.open() == Dialog.OK) {
 			//get the name and the description for the table
 			this.name = dialog.getValue();
@@ -122,7 +135,7 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 			TransactionalEditingDomain domain = ServiceUtils.getInstance().getTransactionalEditingDomain(serviceRegistry);
 
 			//Create the transactional command
-			AbstractEMFOperation command = new AbstractEMFOperation(domain, "Create Table Editor") {
+			AbstractEMFOperation command = new AbstractEMFOperation(domain, "Create Table Editor") { //$NON-NLS-1$
 
 				@Override
 				protected IStatus doExecute(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
@@ -144,7 +157,7 @@ public abstract class AbstractCreateNattableEditorCommand extends AbstractHandle
 				OperationHistoryFactory.getOperationHistory().execute(command, new NullProgressMonitor(), null);
 			} catch (ExecutionException e) {
 				e.printStackTrace();
-				//			Activator.getInstance().logError("Can't create diagram", e);
+				Activator.getInstance().logError("Can't create Table Editor", e); //$NON-NLS-1$
 			}
 
 		}

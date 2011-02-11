@@ -14,6 +14,8 @@
 
 package org.eclipse.papyrus.table.common;
 
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -22,10 +24,10 @@ import org.osgi.framework.BundleContext;
  */
 public class Activator extends AbstractUIPlugin {
 
-	// The plug-in ID
-	public static final String PLUGIN_ID = "org.eclipse.papyrus.diagram.nattable"; //$NON-NLS-1$
+	/** The plug-in ID */
+	public static final String ID = "org.eclipse.papyrus.diagram.nattable"; //$NON-NLS-1$
 
-	// The shared instance
+	/** The shared instance */
 	private static Activator plugin;
 
 	/**
@@ -61,8 +63,73 @@ public class Activator extends AbstractUIPlugin {
 	 * 
 	 * @return the shared instance
 	 */
-	public static Activator getDefault() {
+	public static Activator getInstance() {
 		return plugin;
+	}
+
+
+
+	/**
+	 * 
+	 * @param error
+	 */
+	public void logError(String error) {
+		logError(error, null);
+	}
+
+	/**
+	 * @param error
+	 *        the error
+	 * @param throwable
+	 *        actual error or null could be passed
+	 * 
+	 */
+	public void logError(String error, Throwable throwable) {
+		if(error == null && throwable != null) {
+			error = throwable.getMessage();
+		}
+		getLog().log(new Status(IStatus.ERROR, Activator.ID, IStatus.OK, error, throwable));
+		debug(error, throwable);
+	}
+
+	/**
+	 * 
+	 * @param message
+	 */
+	public void logInfo(String message) {
+		logInfo(message, null);
+	}
+
+	/**
+	 * @param message
+	 *        the message
+	 * @param throwable
+	 *        actual error or null could be passed
+	 * @generated
+	 */
+	public void logInfo(String message, Throwable throwable) {
+		if(message == null && throwable != null) {
+			message = throwable.getMessage();
+		}
+		getLog().log(new Status(IStatus.INFO, Activator.ID, IStatus.OK, message, throwable));
+		debug(message, throwable);
+	}
+
+	/**
+	 * 
+	 * @param message
+	 * @param throwable
+	 */
+	private void debug(String message, Throwable throwable) {
+		if(!isDebugging()) {
+			return;
+		}
+		if(message != null) {
+			System.err.println(message);
+		}
+		if(throwable != null) {
+			throwable.printStackTrace();
+		}
 	}
 
 }
