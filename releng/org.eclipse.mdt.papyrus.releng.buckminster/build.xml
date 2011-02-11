@@ -159,7 +159,7 @@
 
 	<target name="install.buckminster" unless="buckminster.exists" depends="get.director">
 		<echo message="Configuring headless buckminster with needed features" />
-		<echo message="Switching to the 1.6 VM jar pack : ${org.eclipse.update.jarprocessor.pack200}"/>
+		<echo message="Switching to the 1.6 VM jar pack : ${org.eclipse.update.jarprocessor.pack200.buckminster}"/>
 		<eclipse.launch app="director">
 			<args>
 				<jvmarg value="-Declipse.p2.mirrors=false" />
