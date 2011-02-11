@@ -35,7 +35,7 @@
          <possibleChildren>
             <or>
                <instanceof
-                     value="org.eclipse.gmt.modisco.infra.browser.uicore.internal.model.ModelElementItem">
+                     value="org.eclipse.emf.facet.infra.browser.uicore.internal.model.ModelElementItem">
                </instanceof>
                <instanceof
                      value="org.eclipse.gmf.runtime.notation.Diagram">
@@ -75,11 +75,11 @@
             <possibleDropTargets>
                <or>
                   <instanceof
-                        value="org.eclipse.gmt.modisco.infra.browser.uicore.internal.model.ModelElementItem">
-                  </instanceof>
-                  <instanceof
                         value="org.eclipse.gmf.runtime.notation.Diagram">
                   </instanceof>
+                  <adapt
+                        type="org.eclipse.emf.ecore.EObject">
+                  </adapt>
                </or></possibleDropTargets>
          </dropAssistant>
       </navigatorContent>
