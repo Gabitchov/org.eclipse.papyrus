@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            id="org.eclipse.papyrus.table.menu.add.in.table"
+            name="Add in current table">
+      </command>
+      <command
+            categoryId="org.eclipse.emf.facet.widgets.nattable.command.category"
+            description="Edit Table Description"
+            id="org.eclipse.papyrus.edit"
+            name="Edit Table Description">
+      </command>
+      <command
+            categoryId="org.eclipse.emf.facet.widgets.nattable.command.category"
+            defaultHandler="org.eclipse.papyrus.table.menu.handler.CommonColumnHandler"
+            description="Show only the common columns"
+            id="org.eclipse.emf.facet.widget.nattable.common.columns.command"
+            name="Common Columns Command">
+         <state
+               class="org.eclipse.papyrus.table.menu.handler.states.OnlyCommonColumnsState"
+               id="org.eclipse.ui.commands.toggleState">
+         </state>
+      </command>
+      <command
+            categoryId="org.eclipse.emf.facet.widgets.nattable.command.category"
+            defaultHandler="org.eclipse.papyrus.table.menu.handler.HideEmptyColumnsHandler"
+            description="This command hides the empty columns"
+            id="org.eclipse.emf.facet.widget.nattable.empty.columns.command"
+            name="Hide Empty Columns Command">
+         <state
+               class="org.eclipse.papyrus.table.menu.handler.states.HideEmptyColumnState"
+               id="org.eclipse.ui.commands.toggleState">
+         </state>
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.eclipse.papyrus.table.menu.handler.AddToCurrentTableHandler"
+            commandId="org.eclipse.papyrus.table.menu.add.in.table">
+      </handler>
+      <handler
+            class="org.eclipse.papyrus.table.menu.handler.EditTableHandler"
+            commandId="org.eclipse.papyrus.edit">
+         <activeWhen>
+            <and>
+               <with
+                     variable="selection">
+                  <test
+                        forcePluginActivation="true"
+                        property="org.eclipse.papyrus.table.menu.providers.TableTester.isTable"
+                        value="true">
+                  </test>
+               </with>
+            </and>
+         </activeWhen>
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.papyrus.modelexplorer.modelexplorer.popup">
+         <command
+               commandId="org.eclipse.papyrus.table.menu.add.in.table"
+               icon="platform:/plugin/org.eclipse.emf.facet.widgets.nattable.workbench/icons/table.png"
+               label="Add in a table"
+               mnemonic="&amp;A"
+               style="push"
+               tooltip="Add the selected elements in the last opened table">
+            <visibleWhen>
+               <with
+                     variable="activeEditorId">
+                  <equals
+                        value="org.eclipse.papyrus.core.papyrusEditor">
+                  </equals>
+               </with>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:org.eclipse.ui.main.menu?before=navigate">
+         <menu
+               icon="platform:/plugin/org.eclipse.emf.facet.widgets.nattable.workbench/icons/table.png"
+               id="tableMenu"
+               label="&amp;Table"
+               tooltip="The table Menu">
+            <command
+                  commandId="org.eclipse.papyrus.edit"
+                  icon="icons/rename.gif"
+                  label="Edit &amp;Description"
+                  style="push"
+                  tooltip="Edit the table description">
+               <visibleWhen
+                     checkEnabled="true">
+               </visibleWhen>
+            </command>
+         </menu>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="toolbar:org.eclipse.emf.facet.widgets.nattable.workbench.editor.NatTableEditor.toolbar">
+         <separator
+               name="org.eclipse.papyrus.table.menu.separator1"
+               visible="true">
+         </separator>
+         <command
+               commandId="org.eclipse.emf.facet.widget.nattable.common.columns.command"
+               icon="icons/not_NA.png"
+               id="org.eclipse.papyrus.table.menu.common.column"
+               label="&amp;Show only the common columns"
+               style="toggle"
+               tooltip="Show only the common columns">
+            <visibleWhen
+                  checkEnabled="false">
+               <and>
+                  <with
+                        variable="selection">
+                     <test
+                           forcePluginActivation="true"
+                           property="org.eclipse.papyrus.table.menu.providers.TableTester.isTable"
+                           value="true">
+                     </test>
+                  </with>
+                  <with
+                        variable="activeEditor">
+                     <instanceof
+                           value="org.eclipse.papyrus.core.editor.CoreMultiDiagramEditor">
+                     </instanceof>
+                  </with>
+               </and>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.eclipse.emf.facet.widget.nattable.empty.columns.command"
+               icon="icons/empty.png"
+               id="org.eclipse.papyrus.table.menu.hide.empty.column"
+               label="&amp;Hide the empty columns"
+               style="toggle"
+               tooltip="Hide the empty columns">
+            <visibleWhen
+                  checkEnabled="false">
+               <and>
+                  <with
+                        variable="selection">
+                     <test
+                           forcePluginActivation="true"
+                           property="org.eclipse.papyrus.table.menu.providers.TableTester.isTable"
+                           value="true">
+                     </test>
+                  </with>
+                  <with
+                        variable="activeEditor">
+                     <instanceof
+                           value="org.eclipse.papyrus.core.editor.CoreMultiDiagramEditor">
+                     </instanceof>
+                  </with>
+               </and>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.propertyTesters">
+      <propertyTester
+            class="org.eclipse.papyrus.table.menu.providers.TableTester"
+            id="org.eclipse.papyrus.table.menu.providers.TableTester"
+            namespace="org.eclipse.papyrus.table.menu.providers.TableTester"
+            properties="isTable"
+            type="org.eclipse.jface.viewers.IStructuredSelection">
+      </propertyTester>
+   </extension>
+</plugin>
