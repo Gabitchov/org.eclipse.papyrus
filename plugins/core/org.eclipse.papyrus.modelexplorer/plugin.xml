@@ -26,10 +26,6 @@
                   pattern="org.eclipse.papyrus.modelexplorer.*">
             </contentExtension></includes>
       </viewerContentBinding>
-      <dragAssistant
-            class="org.eclipse.papyrus.modelexplorer.dnd.CommonDragAdapterAssistant"
-            viewerId="org.eclipse.papyrus.modelexplorer.modelexplorer">
-      </dragAssistant>
    </extension>
    <extension
          point="org.eclipse.ui.navigator.navigatorContent">
@@ -57,7 +53,7 @@
                <instanceof
                      value="org.eclipse.gmf.runtime.notation.impl.DiagramImpl">
                </instanceof>
-               <instanceof value="org.eclipse.gmt.modisco.infra.browser.uicore.internal.model.ModelElementItem"/>
+               <instanceof value="org.eclipse.emf.facet.infra.browser.uicore.internal.model.ModelElementItem"/>
             </or>
          </possibleChildren>
          <actionProvider
@@ -96,9 +92,9 @@
                   <instanceof
                         value="org.eclipse.gmf.runtime.notation.impl.DiagramImpl">
                   </instanceof>
-                  <instanceof
-                        value="org.eclipse.gmt.modisco.infra.browser.uicore.internal.model.ModelElementItem">
-                  </instanceof>
+                  <adapt
+                        type="org.eclipse.emf.ecore.EObject">
+                  </adapt>
                </or></possibleDropTargets>
          </dropAssistant>
     
