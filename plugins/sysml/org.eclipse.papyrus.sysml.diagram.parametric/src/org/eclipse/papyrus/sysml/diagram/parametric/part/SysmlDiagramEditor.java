@@ -24,7 +24,6 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.KeyHandler;
-import org.eclipse.gef.KeyStroke;
 import org.eclipse.gef.Tool;
 import org.eclipse.gef.commands.CommandStackListener;
 import org.eclipse.gef.palette.PaletteRoot;
@@ -194,19 +193,19 @@ public class SysmlDiagramEditor extends DiagramDocumentEditor implements IProvid
 		return documentProvider;
 	}
 
+
 	/**
 	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor#getKeyHandler()
 	 * 
 	 * @return
+	 * 
+	 * @generated NOT
 	 */
 	@Override
 	protected KeyHandler getKeyHandler() {
-		KeyHandler keyHandler = super.getKeyHandler();
-		//removes binding provided by GMF in order to avoid conflicting keybinding
-		if(keyHandler != null) {
-			keyHandler.remove(KeyStroke.getPressed(SWT.DEL, 127, 0));
-		}
+		//we remove all keybinding provided by GMF
+		KeyHandler keyHandler = new KeyHandler();
 		return keyHandler;
 	}
 

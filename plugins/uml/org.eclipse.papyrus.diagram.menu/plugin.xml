@@ -3334,6 +3334,18 @@
          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
          sequence="CTRL+SHIFT+ARROW_DOWN">
    </key>
+   <key
+         commandId="org.eclipse.papyrus.diagram.menu.commands.ZoomOutCommand"
+         contextId="org.eclipse.gmf.runtime.diagram.ui.diagramContext"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="CTRL+-">
+   </key>
+   <key
+         commandId="org.eclipse.papyrus.diagram.menu.commands.ZoomInCommand"
+         contextId="org.eclipse.gmf.runtime.diagram.ui.diagramContext"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="CTRL+=">
+   </key>
 </extension>
 <extension
       point="org.eclipse.ui.startup">

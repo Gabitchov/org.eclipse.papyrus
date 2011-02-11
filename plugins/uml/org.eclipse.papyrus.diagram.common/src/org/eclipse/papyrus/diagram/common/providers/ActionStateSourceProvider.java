@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.diagram.common.providers;
 
 import org.eclipse.papyrus.diagram.common.handlers.DeleteFromDiagramCommandHandler;
+import org.eclipse.papyrus.diagram.common.handlers.RenamedElementHandler;
 import org.eclipse.ui.ISources;
 
 /**
@@ -27,9 +28,11 @@ import org.eclipse.ui.ISources;
 public class ActionStateSourceProvider extends AbstractActionStateSourceProvider {
 
 	/**
-	 * The name of the variable to check.
+	 * The name of the variables to check.
 	 */
 	public static final String DELETE_IN_DIAGRAM = "deleteInDiagram"; //$NON-NLS-1$
+
+	public static final String RENAME_NAMED_ELEMENT = "renameNamedElement";//$NON-NLS-1$
 
 	/**
 	 * 
@@ -39,6 +42,7 @@ public class ActionStateSourceProvider extends AbstractActionStateSourceProvider
 	public ActionStateSourceProvider() {
 		super();
 		currentState.put(DELETE_IN_DIAGRAM, DISABLED);
+		currentState.put(RENAME_NAMED_ELEMENT, DISABLED);
 	}
 
 
@@ -50,7 +54,7 @@ public class ActionStateSourceProvider extends AbstractActionStateSourceProvider
 	 */
 	@Override
 	public String[] getProvidedSourceNames() {
-		return new String[]{ DELETE_IN_DIAGRAM };
+		return new String[]{ DELETE_IN_DIAGRAM, RENAME_NAMED_ELEMENT };
 	}
 
 
@@ -86,5 +90,24 @@ public class ActionStateSourceProvider extends AbstractActionStateSourceProvider
 	@Override
 	protected void refreshActions() {
 		refreshDeleteAction();
+		refreshRenamedNamedElement();
+	}
+
+
+	/**
+	 * Refresh the status of the handlers which listen {@link #RENAME_NAMED_ELEMENT}
+	 */
+	protected void refreshRenamedNamedElement() {
+		RenamedElementHandler handler = new RenamedElementHandler();
+		boolean newValue = handler.isEnabled();
+
+		String oldState = currentState.get(RENAME_NAMED_ELEMENT);
+		String newState = (newValue ? ENABLED : DISABLED);
+
+		if(oldState != newState) {
+			currentState.put(RENAME_NAMED_ELEMENT, newState);
+			fireSourceChanged(ISources.WORKBENCH, currentState);
+		}
+
 	}
 }

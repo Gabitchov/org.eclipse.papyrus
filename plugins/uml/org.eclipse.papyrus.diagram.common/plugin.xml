@@ -426,6 +426,10 @@
             name="deleteInDiagram"
             priorityLevel="workbench">
       </variable>
+      <variable
+            name="renameNamedElement"
+            priorityLevel="workbench">
+      </variable>
    </sourceProvider>
 </extension>
 <extension
@@ -456,6 +460,20 @@
                         value="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
                   </instanceof>
                </iterate>
+            </with>
+         </and>
+      </activeWhen>
+   </handler>
+   <handler
+         class="org.eclipse.papyrus.diagram.common.handlers.RenamedElementHandler"
+         commandId="org.eclipse.ui.edit.rename">
+      <activeWhen>
+         <and>
+            <with
+                  variable="renameNamedElement">
+               <equals
+                     value="enabled">
+               </equals>
             </with>
          </and>
       </activeWhen>
