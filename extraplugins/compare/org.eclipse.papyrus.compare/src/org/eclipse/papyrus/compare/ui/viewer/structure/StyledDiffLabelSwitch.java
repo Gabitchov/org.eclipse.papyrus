@@ -2,8 +2,14 @@ package org.eclipse.papyrus.compare.ui.viewer.structure;
 
 import java.text.MessageFormat;
 
+import org.eclipse.emf.compare.diff.metamodel.AttributeChange;
+import org.eclipse.emf.compare.diff.metamodel.AttributeChangeLeftTarget;
+import org.eclipse.emf.compare.diff.metamodel.AttributeChangeRightTarget;
 import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
 import org.eclipse.emf.compare.diff.metamodel.DiffPackage;
+import org.eclipse.emf.compare.diff.metamodel.ReferenceChange;
+import org.eclipse.emf.compare.diff.metamodel.UpdateAttribute;
+import org.eclipse.emf.compare.util.AdapterUtils;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.StyledString;
@@ -32,12 +38,17 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 			DiffGroup diffGroup = (DiffGroup)object;
 			return caseDiffGroup(diffGroup);
 		}
+		case DiffPackage.UPDATE_ATTRIBUTE:
+		{
+			UpdateAttribute updateAttribute = (UpdateAttribute)object;
+			return caseUpdateAttribute(updateAttribute);
+		}
 		}
 		return null;
 	}
-	
+
 	protected ILabelProvider getLabelProvider() {
-		if (myDomainElementLabelProvider == null) {
+		if(myDomainElementLabelProvider == null) {
 			myDomainElementLabelProvider = (ILabelProvider)UMLCompareUtils.getInstance().getPapyrusLabelProvider();
 		}
 		return myDomainElementLabelProvider;
@@ -223,15 +234,69 @@ public class StyledDiffLabelSwitch extends UMLDiffSwitch<StyledString> {
 		}
 		return styledString;
 	}
-	
+
+	@Override
+	public StyledString caseAttributeChange(AttributeChange object) {
+		return formatStyledString("Attribute Change {0}", String.valueOf(object.isConflicting()));
+	}
+
+	@Override
+	public StyledString caseAttributeChangeLeftTarget(AttributeChangeLeftTarget object) {
+		final String attributeLabel = AdapterUtils.getItemProviderText(object.getAttribute());
+		final String elementLabel = AdapterUtils.getItemProviderText(object.getRightElement());
+
+		if(object.isRemote()) {
+			return formatStyledString("{0} has been remotely removed from attribute {1} in {2}", attributeValueToString(object.getLeftTarget()), attributeLabel, elementLabel);
+		}
+		return formatStyledString("The value {0} has been added to the attribute {1} in {2}", attributeValueToString(object.getLeftTarget()), attributeLabel, elementLabel);
+	}
+
+	@Override
+	public StyledString caseAttributeChangeRightTarget(AttributeChangeRightTarget object) {
+		final String attributeLabel = AdapterUtils.getItemProviderText(object.getAttribute());
+		final String elementLabel = AdapterUtils.getItemProviderText(object.getLeftElement());
+
+		if(object.isRemote()) {
+			return formatStyledString("{0} has been remotely added to attribute {1} in {2}", attributeValueToString(object.getRightTarget()), attributeLabel, elementLabel);
+		}
+		return formatStyledString("The value {0} has been removed from the attribute {1} in {2}", attributeValueToString(object.getRightTarget()), attributeLabel, elementLabel);
+	}
+
+	@Override
+	public StyledString caseUpdateAttribute(UpdateAttribute object) {
+		final String attributeLabel = AdapterUtils.getItemProviderText(object.getAttribute());
+		final String elementLabel = AdapterUtils.getItemProviderText(object.getLeftElement());
+		final Object leftValue = object.getLeftElement().eGet(object.getAttribute());
+		final Object rightValue = object.getRightElement().eGet(object.getAttribute());
+
+		if(object.isRemote()) {
+			return formatStyledString("Attribute {0} in {1} has been remotely changed from {2} to {3}", attributeLabel, elementLabel, attributeValueToString(leftValue), attributeValueToString(rightValue));
+		}
+
+		if(object.isConflicting()) {
+			return formatStyledString("Attribute {0} : remote = {1}, local = {2}", attributeLabel, attributeValueToString(rightValue), attributeValueToString(leftValue));
+		}
+		return formatStyledString("Attribute {0} in {1} has changed from {2} to {3}", attributeLabel, elementLabel, attributeValueToString(rightValue), attributeValueToString(leftValue));
+	}
+
+	@Override
+	public StyledString caseReferenceChange(ReferenceChange object) {
+		return formatStyledString("Reference Change {0}", String.valueOf(object.isConflicting()));
+	}
+
+	private String attributeValueToString(Object attributeValue) {
+		return attributeValue == null ? "null" : attributeValue.toString();
+	}
+
 	private StyledString formatStyledString(String pattern, String... args) {
 		StyledString styledString = new StyledString();
+		// TODO process localized strings
 		styledString.append(MessageFormat.format(pattern, (Object[])args), StyledString.DECORATIONS_STYLER);
 		int currInd = 0;
 		int gap = 0;
-		for (int i = 0; i < args.length; i++) {
+		for(int i = 0; i < args.length; i++) {
 			int nextInd = pattern.indexOf("{", currInd);
-			if (nextInd != -1 && args.length > i) {
+			if(nextInd != -1 && args.length > i) {
 				styledString.setStyle(nextInd + gap, args[i].length(), null);
 				currInd = nextInd + 1;
 				gap += args[i].length() - "{}".length() - String.valueOf(i).length();
