@@ -139,10 +139,15 @@ public class ZoomToolbar extends ContributionItem implements ZoomListener, Liste
 	public void fill(ToolBar parent, int index) {
 
 		ToolItem toolItem = new ToolItem(parent, SWT.SEPARATOR);
-		//TODO seems doesn't work : we doesn't show this icon in the toolbar customization
 		Image zoomImage = Activator.getPluginIconImage("org.eclipse.papyrus.diagram.menu", "/icons/zoomplus.gif"); //$NON-NLS-1$ //$NON-NLS-2$
-		toolItem.setHotImage(zoomImage);
+		/*
+		 * TODO : the image is not set, when we use SWT.SEPARATOR.
+		 * It's a SWT bug.
+		 * This image is used in the Perspective Customization
+		 * That works fine with SWT.PUSH, SWT.PULL_DOWN, ..., but in this case it's the zoom which doesn't work
+		 */
 		toolItem.setImage(zoomImage);
+		//this text is used in the perspective customization
 		toolItem.setToolTipText(Messages.ZoomToolbar_Zoom);
 
 		combo = new Combo(parent, SWT.DROP_DOWN);
