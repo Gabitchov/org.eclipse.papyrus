@@ -1,0 +1,144 @@
+modeltype XML uses "http://www.eclipse.org/MoDisco/Xml/0.1.incubation/XML";
+modeltype UI uses "http://www.eclipse.org/papyrus/properties/ui";
+modeltype Environment uses "http://www.eclipse.org/papyrus/properties/environment";
+modeltype Context uses "http://www.eclipse.org/papyrus/properties/contexts";
+
+transformation UIToXML(in ui : UI, out xml : XML);
+
+main() {
+	ui.rootObjects()[CompositeWidget]->map toRoot()
+}
+
+mapping UI::Element::toXML() : XML::Node 
+	disjuncts Layout::toLayoutXML, Widget::toAbstractWidgetXML,
+	ValueAttribute::toAttributeXML, ReferenceAttribute::toReferenceXML,
+	ValueAttribute::toNamespace{
+}
+
+mapping Layout::toLayoutXML() : XML::Element{
+	name := self.container().oclAsType(UIComponent).getName()+".layout";
+	children := self.map toLayout();
+}
+
+mapping Layout::toLayout() : XML::Element {
+	name := self.getName();
+	children := self.attributes->map toXML();
+}
+
+mapping Widget::toAbstractWidgetXML() : XML::Element 
+	disjuncts CompositeWidget::toCompositeXML, StandardWidget::toStandardWidgetXML,
+	PropertyEditor::toEditorXML, UnknownComponent::toComponentXML{
+}
+
+abstract mapping Widget::toWidgetXML() : XML::Element {
+	name := self.getName();
+}
+
+mapping CompositeWidget::toRoot() : XML::Root {
+	name := self.getName();
+	var subElements : Sequence(UI::Element) := Sequence{self.layout};
+	subElements := subElements->union(self.attributes->asSequence());
+	subElements := subElements->union(self.widgets->asSequence());
+	
+	children := subElements->map toXML();
+}
+
+mapping CompositeWidget::toCompositeXML() : XML::Element inherits Widget::toWidgetXML{
+	var subElements : Sequence(UI::Element) := Sequence{self.layout};
+	subElements := subElements->union(self.attributes->asSequence());
+	subElements := subElements->union(self.widgets->asSequence());
+	
+	children := subElements->map toXML(); 
+}
+
+mapping PropertyEditor::toEditorXML() : XML::Element inherits Widget::toWidgetXML {
+	var subElements : OrderedSet(UI::Element) := self.attributes;
+	
+	children := (self.attributes->map toXML())->including(self._property.map toXML());
+}
+
+mapping StandardWidget::toStandardWidgetXML() : XML::Element inherits Widget::toWidgetXML {
+	children := self.attributes->map toXML();
+}
+
+mapping UnknownComponent::toComponentXML() : XML::Element inherits Widget::toWidgetXML{
+	children := self.attributes->map toXML();
+}
+
+mapping Property::toXML() : XML::Attribute {
+	name := "property";
+	value := self.contextElement.getQualifiedName()+":"+self.name; 
+}
+
+mapping UnknownProperty::toXML() : XML::Attribute {
+	name := "property";
+	value := self.name;
+}
+
+query DataContextElement::getQualifiedName() : String {
+	if self.package.oclIsUndefined() then
+		return self.name
+	else
+		return self.package.getQualifiedName()+":"+self.name
+	endif;
+	
+	return "";
+}
+
+query ValueAttribute::isNamespace() : Boolean {
+	var res := self.name = "xmlns" or self.name.startsWith("xmlns:"); 
+	return res;
+}
+
+mapping ValueAttribute::toAttributeXML() : Attribute 
+	when { not self.isNamespace() }{
+	name := self.name;
+	value := self.value;
+}
+
+mapping ValueAttribute::toNamespace() : Namespace 
+	when { self.isNamespace() }{
+	name := self.name;
+	value := self.value;
+}
+
+mapping ReferenceAttribute::toReferenceXML() : XML::Element {
+	name := self.container().oclAsType(UIComponent).getName()+"."+self.name;
+	children := self.value.map toXML();
+}
+
+abstract query UI::UIComponent::getName() : String{
+	return "abstract";
+}
+
+query getName(namespace : Environment::Namespace, className : String) : String{
+	var prefixedName :=
+		if not namespace.oclIsUndefined() then
+			namespace.name + ':'
+		else
+			''
+		endif
+	+ className;
+	
+	return prefixedName;
+}
+
+query Layout::getName() : String {
+	return getName(self.layoutType.namespace, self.layoutType.widgetClass);
+}
+
+query UI::CompositeWidget::getName() : String {
+	return getName(self.widgetType.namespace, self.widgetType.widgetClass);
+}
+
+query UI::StandardWidget::getName() : String {
+	return getName(self.widgetType.namespace, self.widgetType.widgetClass);
+}
+
+query UI::PropertyEditor::getName() : String {
+	return getName(self.widgetType.namespace, self.widgetType.widgetClass);
+}
+
+query UI::UnknownComponent::getName() : String {
+	return self.typeName;
+}
