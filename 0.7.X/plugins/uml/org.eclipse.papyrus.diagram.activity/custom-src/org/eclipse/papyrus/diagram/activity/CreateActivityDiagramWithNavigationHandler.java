@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 Atos Origin.
+ * Copyright (c) 2011 Atos Origin.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -11,11 +11,15 @@
  *  Mathieu Velten (Atos Origin) mathieu.velten@atosorigin.com - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.core.navigation;
+package org.eclipse.papyrus.diagram.activity;
 
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.diagram.common.actions.handlers.CreateDiagramWithNavigationHandler;
 
 
-public interface IBaseNameSetter {
-	public void setBaseName(String base, EObject toName);
+public class CreateActivityDiagramWithNavigationHandler extends CreateDiagramWithNavigationHandler {
+
+	public CreateActivityDiagramWithNavigationHandler() {
+		super(new CreateActivityDiagramCommand(), new ActivityDiagramCreationCondition());
+	}
+
 }

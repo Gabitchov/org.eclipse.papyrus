@@ -480,25 +480,4 @@
          </dependsOn>
  		</service>
 </extension>
-<extension
-      point="org.eclipse.papyrus.core.navigationRule">
-   <navigationRule
-         rule="org.eclipse.papyrus.diagram.common.navigation.CBARule">
-   </navigationRule>
-   <navigationRule
-         rule="org.eclipse.papyrus.diagram.common.navigation.BehavioredClassifierRule">
-   </navigationRule>
-   <navigationRule
-         rule="org.eclipse.papyrus.diagram.common.navigation.PackageRule">
-   </navigationRule>
-   <navigationRule
-         rule="org.eclipse.papyrus.diagram.common.navigation.TransitionRule">
-   </navigationRule>
-   <navigationRule
-         rule="org.eclipse.papyrus.diagram.common.navigation.OperationRule">
-   </navigationRule>
-   <navigationRule
-         rule="org.eclipse.papyrus.diagram.common.navigation.StateRule">
-   </navigationRule>
-</extension>
 </plugin>

@@ -33,12 +33,12 @@ import org.eclipse.papyrus.core.adaptor.gmf.DiagramsUtil;
 import org.eclipse.papyrus.core.extension.commands.CreationCommandDescriptor;
 import org.eclipse.papyrus.core.extension.commands.CreationCommandRegistry;
 import org.eclipse.papyrus.core.extension.commands.ICreationCommandRegistry;
-import org.eclipse.papyrus.core.navigation.ExistingNavigableElement;
-import org.eclipse.papyrus.core.navigation.NavigableElement;
-import org.eclipse.papyrus.core.navigation.NavigationHelper;
 import org.eclipse.papyrus.diagram.common.dialogs.NavigationCreateDiagramDialog;
 import org.eclipse.papyrus.diagram.common.dialogs.NavigationOpenDiagramDialog;
 import org.eclipse.papyrus.diagram.common.providers.NavigationDecorator;
+import org.eclipse.papyrus.navigation.ExistingNavigableElement;
+import org.eclipse.papyrus.navigation.NavigableElement;
+import org.eclipse.papyrus.navigation.NavigationHelper;
 import org.eclipse.swt.widgets.Display;
 
 /**

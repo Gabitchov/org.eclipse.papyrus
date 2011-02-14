@@ -85,12 +85,8 @@ public class NamedElementUtil {
 		if (base == null) {
 			base = "";
 		}
-		String eclassName = newElement.eClass().getName();
-		if(eclassName.length() > 0 && "".equals(base)) {
-			eclassName = eclassName.substring(0, 1).toLowerCase() + eclassName.substring(1, eclassName.length());
-		}
-		
-		return getDefaultNameWithIncrementFromBase(base + eclassName, contents);
+
+		return getDefaultNameWithIncrementFromBase(base + newElement.eClass().getName(), contents);
 	}
 	
 	@SuppressWarnings("rawtypes")

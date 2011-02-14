@@ -25,12 +25,12 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.papyrus.core.editor.BackboneException;
 import org.eclipse.papyrus.core.extension.commands.CreationCommandDescriptor;
-import org.eclipse.papyrus.core.navigation.CreatedNavigableElement;
-import org.eclipse.papyrus.core.navigation.NavigableElement;
-import org.eclipse.papyrus.core.navigation.NavigableElement.NavigationType;
-import org.eclipse.papyrus.core.navigation.NavigationHelper;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.diagram.common.helper.UMLNavigationHelper;
+import org.eclipse.papyrus.navigation.CreatedNavigableElement;
+import org.eclipse.papyrus.navigation.NavigableElement;
+import org.eclipse.papyrus.navigation.NavigationHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CCombo;
 import org.eclipse.swt.custom.TableEditor;
@@ -53,8 +53,6 @@ public class NavigationCreateDiagramDialog extends Dialog {
 		public NavigableElement ancestor = null;
 
 		public EStructuralFeature feature = null;
-
-		public NavigationType navigationType = null;
 
 		public int hashCode() {
 			return 0;
@@ -169,7 +167,6 @@ public class NavigationCreateDiagramDialog extends Dialog {
 			NavigableGroupKey groupKey = new NavigableGroupKey();
 
 			groupKey.feature = navElement.getFeature();
-			groupKey.navigationType = navElement.getNavigationType();
 
 			if(navElement instanceof CreatedNavigableElement) {
 				groupKey.ancestor = ((CreatedNavigableElement)navElement).getPreviousNavigableElement();
@@ -193,7 +190,7 @@ public class NavigationCreateDiagramDialog extends Dialog {
 			tableItem.setChecked(false);
 			tableItem.setData(CREATION_ENTRY_KEY, successors);
 
-			tableItem.setText(0, groupKey.navigationType.toString());
+			tableItem.setText(0, UMLNavigationHelper.getNavigationTypeFromFeature(groupKey.feature));
 			String featureString = "";
 			if(groupKey.feature != null) {
 				featureString = groupKey.feature.getName();

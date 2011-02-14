@@ -21,10 +21,11 @@ import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.Dialog;
-import org.eclipse.papyrus.core.navigation.NavigableElement;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.core.utils.OpenDiagramCommand;
+import org.eclipse.papyrus.diagram.common.helper.UMLNavigationHelper;
+import org.eclipse.papyrus.navigation.NavigableElement;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
@@ -117,7 +118,7 @@ public class NavigationOpenDiagramDialog extends Dialog {
 				TableItem tableItem = new TableItem(table, SWT.NONE);
 
 				tableItem.setChecked(true);
-				tableItem.setText(0, navElement.getNavigationType().toString());
+				tableItem.setText(0, UMLNavigationHelper.getNavigationType(navElement));
 				String featureString = "";
 				if(navElement.getFeature() != null) {
 					featureString = navElement.getFeature().getName();

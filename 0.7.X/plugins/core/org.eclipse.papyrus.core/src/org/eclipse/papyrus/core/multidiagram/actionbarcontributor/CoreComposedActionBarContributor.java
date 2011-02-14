@@ -61,9 +61,6 @@ public class CoreComposedActionBarContributor extends ComposedActionBarContribut
 		actionBarContributorRegistry = new ActionBarContributorRegistry(Activator.PLUGIN_ID);
 
 		contributors = actionBarContributorRegistry.getActionBarContributors();
-
-		// Add default create diagram contributor
-		contributors.add(new ActionBarCreateDiagramContributor());
 	}
 
 

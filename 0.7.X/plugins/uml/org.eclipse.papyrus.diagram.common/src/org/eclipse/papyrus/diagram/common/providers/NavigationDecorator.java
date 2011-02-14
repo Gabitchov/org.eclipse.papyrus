@@ -32,12 +32,12 @@ import org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoratorTarget;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.core.adaptor.gmf.DiagramsUtil;
-import org.eclipse.papyrus.core.navigation.ExistingNavigableElement;
-import org.eclipse.papyrus.core.navigation.NavigableElement;
-import org.eclipse.papyrus.core.navigation.NavigationHelper;
-import org.eclipse.papyrus.core.navigation.NavigableElement.NavigationType;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.diagram.common.draw2d.ManuallyDrawnShortcutDecorationFigure;
+import org.eclipse.papyrus.diagram.common.helper.UMLNavigationHelper;
+import org.eclipse.papyrus.navigation.ExistingNavigableElement;
+import org.eclipse.papyrus.navigation.NavigableElement;
+import org.eclipse.papyrus.navigation.NavigationHelper;
 
 
 public class NavigationDecorator extends AbstractDecorator implements Adapter {
@@ -105,7 +105,7 @@ public class NavigationDecorator extends AbstractDecorator implements Adapter {
 							for(Diagram diag : associatedDiagrams) {
 								addResourceListener(diag.eResource());
 								if(!diag.equals(currentDiagram)) {
-									if(NavigationType.BEHAVIORAL.equals(navElement.getNavigationType())) {
+									if(UMLNavigationHelper.BEHAVIORAL_NAVIGATION.equals(UMLNavigationHelper.getNavigationType(navElement))) {
 										behavioralNavigable = true;
 									} else {
 										structuralNavigable = true;

@@ -14,14 +14,16 @@
       <handler
             class="org.eclipse.papyrus.diagram.emftree.CreateEMFTreeDiagramHandler"
             commandId="com.cea.papyrus.ui.emftree.createTree">
-         <enabledWhen>
-            <with
-                  variable="activeEditorId">
-               <equals
-                     value="org.eclipse.papyrus.core.papyrusEditor">
-               </equals>
-            </with>
-         </enabledWhen>
+         <activeWhen>
+            <or>
+               <with
+                     variable="activeEditorId">
+                  <equals
+                        value="org.eclipse.papyrus.core.papyrusEditor">
+                  </equals>
+               </with>
+            </or>
+         </activeWhen>
       </handler>
    </extension>
   
@@ -46,6 +48,11 @@
                   label="Create a new EMF Tree"
                   style="push"
                   tooltip="Create a new EMF Tree">
+               <visibleWhen>
+                  <reference
+                        definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLModel">
+                  </reference>
+               </visibleWhen>
             </command>
          </menu>
       </menuContribution>
@@ -59,6 +66,11 @@
                   label="Create a new EMF Tree"
                   style="push"
                   tooltip="Create a new EMF Tree">
+               <visibleWhen>
+                  <reference
+                        definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLModel">
+                  </reference>
+               </visibleWhen>
             </command>
          </toolbar>
       </menuContribution>

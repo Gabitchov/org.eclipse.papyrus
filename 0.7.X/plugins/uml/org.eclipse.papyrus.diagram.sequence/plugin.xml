@@ -25,7 +25,7 @@
    <extension
          point="org.eclipse.ui.handlers">
       <handler
-            class="org.eclipse.papyrus.diagram.sequence.CreateSequenceDiagramCommand"
+            class="org.eclipse.papyrus.diagram.sequence.CreateSequenceDiagramWithNavigationHandler"
             commandId="org.eclipse.papyrus.diagram.sequence.CreateSequenceDiagramCommand">
          <activeWhen>
             <or>
@@ -57,6 +57,60 @@
             label="UML Sequence Diagram"
             language="uml">
       </creationCommand>
+   </extension>
+
+   <extension
+         point="org.eclipse.ui.menus">
+      
+      <menuContribution
+            locationURI="toolbar:org.eclipse.ui.main.toolbar">
+         <toolbar
+               id="org.eclipse.papyrus.diagram.ui.toolbar">
+            <command
+                  commandId="org.eclipse.papyrus.diagram.sequence.CreateSequenceDiagramCommand"
+                  icon="icons/obj16/Diagram_Sequence.gif"
+                  label="Create a new Sequence Diagram"
+                  style="push"
+                  tooltip="Create a new Sequence Diagram">
+                  <visibleWhen>
+                  	<reference definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLModel"/>
+                  </visibleWhen>
+            </command>
+         </toolbar>
+      </menuContribution>
+      
+      <menuContribution
+            locationURI="menu:org.eclipse.papyrus.ui.menu">
+         <menu
+               id="org.eclipse.papyrus.diagram.ui.menu.diagrams"
+               label="Diagrams">
+            <command
+                  commandId="org.eclipse.papyrus.diagram.sequence.CreateSequenceDiagramCommand"
+                  icon="icons/obj16/Diagram_Sequence.gif"
+                  label="Create a new Sequence Diagram"
+                  style="push"
+                  tooltip="Create a new Sequence Diagram">
+                  <visibleWhen>
+                  	<reference definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLModel"/>
+                  </visibleWhen>                  
+            </command>
+         </menu>
+      </menuContribution>
+
+	<menuContribution
+			locationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.creatediagram">
+		<command 
+			commandId="org.eclipse.papyrus.diagram.sequence.CreateSequenceDiagramCommand"
+			icon="icons/obj16/Diagram_Sequence.gif"
+			label="Create a new Sequence Diagram"
+			style="push"
+			tooltip="Create a new Sequence Diagram">
+			<visibleWhen>
+				<reference definitionId="org.eclipse.papyrus.diagram.common.IsPapyrusActiveWithUMLModel"/>
+			</visibleWhen>
+		</command>
+	</menuContribution>      
+      
    </extension>
 	
    <extension point="org.eclipse.gmf.runtime.common.ui.services.action.globalActionHandlerProviders" id="global-actions">
