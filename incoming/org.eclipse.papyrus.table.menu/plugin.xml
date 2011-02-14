@@ -90,17 +90,171 @@
             locationURI="menu:org.eclipse.ui.main.menu?before=navigate">
          <menu
                icon="platform:/plugin/org.eclipse.emf.facet.widgets.nattable.workbench/icons/table.png"
-               id="tableMenu"
+               id="org.eclipse.papyrus.table.menu"
                label="&amp;Table"
                tooltip="The table Menu">
             <command
                   commandId="org.eclipse.papyrus.edit"
                   icon="icons/rename.gif"
+                  id="org.eclipse.papyrus.table.menu.edit.description"
                   label="Edit &amp;Description"
                   style="push"
                   tooltip="Edit the table description">
                <visibleWhen
                      checkEnabled="true">
+               </visibleWhen>
+            </command>
+            <separator
+                  name="org.eclipse.papyrus.table.menu.separator0"
+                  visible="true">
+            </separator>
+            <command
+                  commandId="org.eclipse.emf.facet.widgets.nattable.loadCustomizationCommand"
+                  icon="platform:/plugin/org.eclipse.emf.facet.widgets.nattable.workbench/icons/uiCustom.gif"
+                  id="org.eclipse.papyrus.table.menu.load.customization"
+                  style="push"
+                  tooltip="%load.customization">
+               <visibleWhen
+                     checkEnabled="false">
+                  <with
+                        variable="selection">
+                     <test
+                           forcePluginActivation="true"
+                           property="org.eclipse.emf.facet.widgets.nattable.workbench.tableSelectionTester.isTable"
+                           value="true">
+                     </test>
+                  </with>
+               </visibleWhen>
+            </command>
+            <command
+                  commandId="org.eclipse.emf.facet.widgets.nattable.loadFacetCommand"
+                  icon="platform:/plugin/org.eclipse.emf.facet.widgets.nattable.workbench/icons/facet.gif"
+                  id="org.eclipse.papyrus.table.menu.load.emf.facet"
+                  style="push"
+                  tooltip="%load.emf.facet">
+               <visibleWhen
+                     checkEnabled="false">
+                  <with
+                        variable="selection">
+                     <test
+                           forcePluginActivation="true"
+                           property="org.eclipse.emf.facet.widgets.nattable.workbench.tableSelectionTester.isTable"
+                           value="true">
+                     </test>
+                  </with>
+               </visibleWhen>
+            </command>
+            <command
+                  commandId="org.eclipse.emf.facet.widgets.nattable.openSavedTableCommand"
+                  icon="IMG_OBJ_FOLDER"
+                  id="org.eclipse.papyrus.table.menu.open.table"
+                  style="push"
+                  tooltip="%open.table">
+               <visibleWhen
+                     checkEnabled="false">
+                  <with
+                        variable="selection">
+                     <test
+                           forcePluginActivation="true"
+                           property="org.eclipse.emf.facet.widgets.nattable.workbench.tableSelectionTester.isTable"
+                           value="true">
+                     </test>
+                  </with>
+               </visibleWhen>
+            </command>
+            <command
+                  commandId="org.eclipse.emf.facet.widgets.nattable.hideColumnCommand"
+                  icon="icons/select_column_to_hide_2.png"
+                  id="org.eclipse.papyrus.table.menu.hide.empty.column"
+                  style="push"
+                  tooltip="%select.column.to.hide">
+               <visibleWhen
+                     checkEnabled="false">
+                  <with
+                        variable="selection">
+                     <test
+                           forcePluginActivation="true"
+                           property="org.eclipse.emf.facet.widgets.nattable.workbench.tableSelectionTester.isTable"
+                           value="true">
+                     </test>
+                  </with>
+               </visibleWhen>
+            </command>
+            <command
+                  commandId="org.eclipse.emf.facet.widgets.nattable.sortColumnByTypeCommand"
+                  icon="platform:/plugin/org.eclipse.emf.facet.widgets.nattable.workbench/icons/sort_links_by_type.gif"
+                  id="org.eclipse.papyrus.table.menu.sort.column"
+                  mnemonic="org.eclipse.papyrus.table.toolbar.delete.line"
+                  style="push"
+                  tooltip="%sort.column.by.type">
+               <visibleWhen
+                     checkEnabled="false">
+                  <with
+                        variable="selection">
+                     <test
+                           forcePluginActivation="true"
+                           property="org.eclipse.emf.facet.widgets.nattable.workbench.tableSelectionTester.isTable"
+                           value="true">
+                     </test>
+                  </with>
+               </visibleWhen>
+            </command>
+            <separator
+                  name="org.eclipse.papyrus.table.menu.separator"
+                  visible="true">
+            </separator>
+            <command
+                  commandId="org.eclipse.emf.facet.widget.nattable.empty.columns.command"
+                  icon="icons/empty.png"
+                  id="org.eclipse.papyrus.table.menu.hide.empty.column"
+                  label="&amp;Hide the empty columns"
+                  style="toggle"
+                  tooltip="Hide the empty columns">
+               <visibleWhen
+                     checkEnabled="false">
+                  <and>
+                     <with
+                           variable="selection">
+                        <test
+                              forcePluginActivation="true"
+                              property="org.eclipse.papyrus.table.menu.providers.TableTester.isTable"
+                              value="true">
+                        </test>
+                     </with>
+                     <with
+                           variable="activeEditor">
+                        <instanceof
+                              value="org.eclipse.papyrus.core.editor.CoreMultiDiagramEditor">
+                        </instanceof>
+                     </with>
+                  </and>
+               </visibleWhen>
+            </command>
+            <command
+                  commandId="org.eclipse.emf.facet.widget.nattable.common.columns.command"
+                  icon="icons/not_NA.png"
+                  id="org.eclipse.papyrus.table.menu.common.column"
+                  label="&amp;Show only the common columns"
+                  style="toggle"
+                  tooltip="Show only the common columns">
+               <visibleWhen
+                     checkEnabled="false">
+                  <and>
+                     <with
+                           variable="selection">
+                        <test
+                              forcePluginActivation="true"
+                              property="org.eclipse.papyrus.table.menu.providers.TableTester.isTable"
+                              value="true">
+                        </test>
+                     </with>
+                     <with
+                           variable="activeEditor">
+                        <instanceof
+                              value="org.eclipse.papyrus.core.editor.CoreMultiDiagramEditor">
+                        </instanceof>
+                     </with>
+                  </and>
                </visibleWhen>
             </command>
          </menu>
@@ -115,7 +269,7 @@
          <command
                commandId="org.eclipse.emf.facet.widget.nattable.common.columns.command"
                icon="icons/not_NA.png"
-               id="org.eclipse.papyrus.table.menu.common.column"
+               id="org.eclipse.papyrus.table.toolbar.common.column"
                label="&amp;Show only the common columns"
                style="toggle"
                tooltip="Show only the common columns">
@@ -142,7 +296,7 @@
          <command
                commandId="org.eclipse.emf.facet.widget.nattable.empty.columns.command"
                icon="icons/empty.png"
-               id="org.eclipse.papyrus.table.menu.hide.empty.column"
+               id="org.eclipse.papyrus.table.toolbar.hide.empty.column"
                label="&amp;Hide the empty columns"
                style="toggle"
                tooltip="Hide the empty columns">
