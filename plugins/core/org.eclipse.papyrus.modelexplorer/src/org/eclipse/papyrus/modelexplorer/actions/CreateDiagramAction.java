@@ -1,37 +1,35 @@
-/*****************************************************************************
- * Copyright (c) 2010 Atos Origin.
- *
- *    
+/*******************************************************************************
+ * Copyright (c) 2009 Obeo.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
- *  Mathieu Velten (Atos Origin) mathieu.velten@atosorigin.com - Initial API and implementation
- *
- *****************************************************************************/
+ *     Obeo - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.papyrus.modelexplorer.actions;
 
 import static org.eclipse.papyrus.modelexplorer.Activator.log;
 
-import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.action.Action;
+import org.eclipse.papyrus.core.extension.NotFoundException;
 import org.eclipse.papyrus.core.extension.commands.CreationCommandDescriptor;
-import org.eclipse.papyrus.core.navigation.NavigableElement;
-import org.eclipse.papyrus.core.navigation.NavigationHelper;
-import org.eclipse.papyrus.core.utils.DiResourceSet;
+import org.eclipse.papyrus.core.extension.commands.CreationCommandRegistry;
+import org.eclipse.papyrus.core.extension.commands.ICreationCommand;
+import org.eclipse.papyrus.core.extension.commands.ICreationCommandRegistry;
 import org.eclipse.papyrus.core.utils.EditorUtils;
-import org.eclipse.papyrus.modelexplorer.handler.GMFtoEMFCommandWrapper;
-/**
- * Action to create a diagram on a navigable element
- *
- * @author mvelten
- *
- */
-public class CreateDiagramAction extends Action implements Comparable<CreateDiagramAction> {
 
-	private final NavigableElement navElement;
+/**
+ * Action used to create a new diagram for given type modified to remove link
+ * toUML
+ * 
+ * @deprecated
+ */
+public class CreateDiagramAction extends Action {
+
+	private final EObject container;
 
 	private final CreationCommandDescriptor commandDescriptor;
 
@@ -41,8 +39,8 @@ public class CreateDiagramAction extends Action implements Comparable<CreateDiag
 	 * @param selectedObject
 	 *        the selected Element on which the diagram is to be associated
 	 */
-	public CreateDiagramAction(NavigableElement navElement, CreationCommandDescriptor commandDescriptor) {
-		this.navElement = navElement;
+	public CreateDiagramAction(EObject eObject, CreationCommandDescriptor commandDescriptor) {
+		this.container = eObject;
 		this.commandDescriptor = commandDescriptor;
 		setText(commandDescriptor.getLabel());
 		setImageDescriptor(commandDescriptor.getIcon());
@@ -53,7 +51,7 @@ public class CreateDiagramAction extends Action implements Comparable<CreateDiag
 	 */
 	@Override
 	public boolean isEnabled() {
-		return navElement != null && navElement.getElement() != null;
+		return container != null;
 	}
 
 	/**
@@ -65,19 +63,26 @@ public class CreateDiagramAction extends Action implements Comparable<CreateDiag
 	@Override
 	public void run() {
 
-		try {
-			DiResourceSet diResourceSet = EditorUtils.getDiResourceSet();
+		// Start LOG
+		if(log.isDebugEnabled()) {
+			log.debug("Start - CreateDiagramAction#run"); //$NON-NLS-1$
+		}
 
-			if (diResourceSet != null) {
-				CompositeCommand command = NavigationHelper.getLinkCreateAndOpenNavigableDiagramCommand(navElement, commandDescriptor.getCommand(), null, diResourceSet);
-				diResourceSet.getTransactionalEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(command));
-			}
-		} catch (Exception e) {
+		try {
+			ICreationCommand creationCommand = getCreationCommandRegistry().getCommand(commandDescriptor.getCommandId());
+			creationCommand.createDiagram(EditorUtils.getDiResourceSet(), container, null);
+		} catch (NotFoundException e) {
 			log.error(e);
+		}
+
+		// END LOG
+		if(log.isDebugEnabled()) {
+			log.debug("End - CreateDiagramAction#run"); //$NON-NLS-1$
 		}
 	}
 
-	public int compareTo(CreateDiagramAction o) {
-		return commandDescriptor.compareTo(o.commandDescriptor);
+	private static ICreationCommandRegistry getCreationCommandRegistry() {
+		return CreationCommandRegistry.getInstance(org.eclipse.papyrus.core.Activator.PLUGIN_ID);
 	}
+
 }

@@ -11,7 +11,7 @@
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.modelexplorer.dialog;
+package org.eclipse.papyrus.core.ui;
 
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -118,7 +118,7 @@ public class InformationDialog extends MessageDialog {
 	 */
 	protected void buttonPressed(int buttonId) {
 		// OK pressed
-		if (buttonId == Window.OK && rememberChoice.getSelection()) {
+		if (buttonId == Window.OK && rememberChoice != null && rememberChoice.getSelection()) {
 			if (ps != null && preference != null && preference.length() > 0) {
 				// Store the preference
 				ps.setValue(preference, true);

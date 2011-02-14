@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 Atos Origin.
+ * Copyright (c) 2011 Atos Origin.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -11,16 +11,15 @@
  *  Mathieu Velten (Atos Origin) mathieu.velten@atosorigin.com - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.core.navigation;
+package org.eclipse.papyrus.diagram.profile;
 
-import java.util.List;
-
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.diagram.common.actions.handlers.CreateDiagramWithNavigationHandler;
 
 
-public interface INavigationRule {
+public class CreateProfileDiagramWithNavigationHandler extends CreateDiagramWithNavigationHandler {
 
-	public boolean handle(EObject element);
+	public CreateProfileDiagramWithNavigationHandler() {
+		super(new CreateProfileDiagramCommand(), new ProfileDiagramCreationCondition());
+	}
 
-	public List<NavigableElement> getNextPossibleElements(NavigableElement currentNavElement);
 }
