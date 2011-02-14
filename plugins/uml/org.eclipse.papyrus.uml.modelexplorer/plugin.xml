@@ -2910,6 +2910,17 @@
                            type="org.eclipse.uml2.uml.NamedElement">
                      </adapt>
                   </iterate>
+                  <!-- we add this test in order to avoid handler conflict for 'org.eclipse.ui.edit.rename':-->
+                  <test
+                        forcePluginActivation="true"
+                        property="org.eclipse.papyrus.modelexplorer.tester.isTable"
+                        value="false">
+                  </test>
+                  <test
+                        forcePluginActivation="true"
+                        property="org.eclipse.papyrus.modelexplorer.tester.isDiagram"
+                        value="false">
+                  </test>
                </and>
             </with>
          </or>
