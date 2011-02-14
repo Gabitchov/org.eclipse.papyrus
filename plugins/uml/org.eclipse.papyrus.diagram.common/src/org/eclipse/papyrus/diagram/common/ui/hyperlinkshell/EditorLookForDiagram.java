@@ -311,7 +311,7 @@ public class EditorLookForDiagram extends AbstractLookForDiagramShell {
 
 				List<Object> res = new ArrayList<Object>();
 				for(Object current : result) {
-					if(current != null) { //if the model is a little bit corrupted, we can have a null element in the list
+					if(current != null && current instanceof Diagram) { //if the model is a little bit corrupted, we can have a null element in the list
 						res.add(current);
 					}
 				}

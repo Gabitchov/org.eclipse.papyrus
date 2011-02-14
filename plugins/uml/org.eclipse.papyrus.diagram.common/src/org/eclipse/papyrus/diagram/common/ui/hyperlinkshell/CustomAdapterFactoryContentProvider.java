@@ -79,11 +79,14 @@ public class CustomAdapterFactoryContentProvider extends AdapterFactoryContentPr
 		IPageMngr iPageMngr = EditorUtils.getIPageMngr();
 		Iterator iter = iPageMngr.allPages().iterator();
 		while(iter.hasNext()) {
-			Diagram diag = (Diagram)iter.next();
-			//sometimes diag can loose the link to the element, so we need to test it.
-			if(diag != null && diag.getElement() != null) {//if the model is a little corrupted, we can have diag==null
-				if(diag.getElement().equals(object)) {
-					result.add(diag);
+			Object current = iter.next();
+			if(current instanceof Diagram) {
+				Diagram diag = (Diagram)current;
+				//sometimes diag can loose the link to the element, so we need to test it.
+				if(diag != null && diag.getElement() != null) {//if the model is a little corrupted, we can have diag==null
+					if(diag.getElement().equals(object)) {
+						result.add(diag);
+					}
 				}
 			}
 		}
