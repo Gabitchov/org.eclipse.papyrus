@@ -18,6 +18,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.service.edit.internal.ElementEditServiceProvider;
 
@@ -38,7 +39,7 @@ public interface IElementEditServiceProvider {
 	 * 
 	 * Get the registered edit service for the object in parameter
 	 * 
-	 * @param objectToEdit the object to edit (an EObject of EClass)
+	 * @param objectToEdit the object to edit (an EObject, EClass or {@link IElementType})
 	 * @return the edit service
 	 * @throws ServiceException
 	 * </pre>

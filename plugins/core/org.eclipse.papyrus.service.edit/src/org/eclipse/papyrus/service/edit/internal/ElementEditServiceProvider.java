@@ -85,8 +85,8 @@ public class ElementEditServiceProvider implements IElementEditServiceProvider {
 	 */
 	public IElementEditService getEditService(Object objectToEdit) throws ServiceException {
 
-		if(!(objectToEdit instanceof EObject) && !(objectToEdit instanceof EClass)) {
-			throw new ServiceException("EObject or EClass expected in method parameter.");
+		if(!(objectToEdit instanceof EObject) && !(objectToEdit instanceof EClass) && !(objectToEdit instanceof IElementType)) {
+			throw new ServiceException("EObject, EClass or IElementType expected in method parameter.");
 		}
 
 		IElementType elementType = null;
@@ -97,6 +97,10 @@ public class ElementEditServiceProvider implements IElementEditServiceProvider {
 
 		if(objectToEdit instanceof EClass) {
 			elementType = ElementTypeRegistry.getInstance().getElementType((EClass)objectToEdit, sharedClientContext);
+		}
+		
+		if(objectToEdit instanceof IElementType) {
+			elementType = (IElementType) objectToEdit;
 		}
 
 		if(elementType == null) {
